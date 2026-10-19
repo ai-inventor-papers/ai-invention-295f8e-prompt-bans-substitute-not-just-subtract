@@ -1,0 +1,332 @@
+{
+  "T1": {
+    "n_gold_programs": 30,
+    "n_references": 9,
+    "kappa_runtime_ast_gold": 0.3366093366093367,
+    "ref_agreement_runtime_and_ast": 1.0,
+    "ref_agreement_gold_judges": 1.0,
+    "gold_agreement_final_vs_adjudicated": 0.9333333333333333,
+    "gold_agreement_correct_programs_only": 0.9166666666666666,
+    "n_gold_correct": 12,
+    "kappa_runtime_ast_gold_correct_only": 0.34375000000000006,
+    "judge_disagrees_with_runtime_ast_consensus": 0.0,
+    "kappa_runtime_ast_population": 0.8811881755310081,
+    "runtime_ast_agreement_population": 0.9773384763741563,
+    "n_unique_programs": 2074,
+    "gate_passed": false,
+    "revisions": [
+      "rev1 tracer T1: BFS monotonicity and heap-key matching use first pops only; >=97% non-decreasing steps",
+      "rev1 tracer T1: A*/greedy fallback also accepts Spearman(key, h) >= 0.9 with few expansions",
+      "rev1 tracer T2: no heap, no FIFO, growth exponent >= 1.6 -> bellman_ford_spfa (rounds over adjacency)",
+      "rev1 AST T2: rounds over adjacency with a relaxation test, and FIFO label-correcting loops -> BF/SPFA",
+      "rev2 tracer T2: bidirectional requires interleaved pops from the two heaps (>=2 switches)",
+      "rev2 AST T2: bidirectional requires one loop popping two heaps",
+      "pre-gate (references only): FW growth rule also accepts exponent>=2.2 with >=n^3/2 line events; list.pop() classified with the pre-pop length; W1/W2 made strongly connected with a FIFO gadget"
+    ],
+    "flag": "labeller_gate_failed",
+    "confusion_final_vs_gold": {
+      "bidirectional_bfs->bidirectional_bfs": 7,
+      "iddfs->iddfs": 6,
+      "astar_greedy->other": 1,
+      "astar_greedy->astar_greedy": 7,
+      "bfs->bfs": 4,
+      "bfs->other": 1,
+      "dijkstra_unit->dijkstra_unit": 2,
+      "dfs->dfs": 2
+    },
+    "gold_label_counts": {
+      "bidirectional_bfs": 7,
+      "iddfs": 6,
+      "other": 2,
+      "astar_greedy": 7,
+      "bfs": 4,
+      "dijkstra_unit": 2,
+      "dfs": 2
+    },
+    "references": [
+      {
+        "ref": "t1_astar_greedy.py",
+        "mode": "astar_greedy",
+        "runtime": "astar_greedy",
+        "ast": "astar_greedy",
+        "gold": "astar_greedy"
+      },
+      {
+        "ref": "t1_bfs.py",
+        "mode": "bfs",
+        "runtime": "bfs",
+        "ast": "bfs",
+        "gold": "bfs"
+      },
+      {
+        "ref": "t1_bidirectional_bfs.py",
+        "mode": "bidirectional_bfs",
+        "runtime": "bidirectional_bfs",
+        "ast": "bidirectional_bfs",
+        "gold": "bidirectional_bfs"
+      },
+      {
+        "ref": "t1_dfs.py",
+        "mode": "dfs",
+        "runtime": "dfs",
+        "ast": "dfs",
+        "gold": "dfs"
+      },
+      {
+        "ref": "t1_dfs_recursive.py",
+        "mode": "dfs",
+        "runtime": "dfs",
+        "ast": "dfs",
+        "gold": "dfs"
+      },
+      {
+        "ref": "t1_dijkstra_unit.py",
+        "mode": "dijkstra_unit",
+        "runtime": "dijkstra_unit",
+        "ast": "dijkstra_unit",
+        "gold": "dijkstra_unit"
+      },
+      {
+        "ref": "t1_greedy_best_first.py",
+        "mode": "astar_greedy",
+        "runtime": "astar_greedy",
+        "ast": "astar_greedy",
+        "gold": "astar_greedy"
+      },
+      {
+        "ref": "t1_iddfs.py",
+        "mode": "iddfs",
+        "runtime": "iddfs",
+        "ast": "iddfs",
+        "gold": "iddfs"
+      },
+      {
+        "ref": "t1_iddfs_iterative.py",
+        "mode": "iddfs",
+        "runtime": "iddfs",
+        "ast": "iddfs",
+        "gold": "iddfs"
+      }
+    ],
+    "n_adjudicated": 6,
+    "forced_label_agreement": {
+      "all": 0.9,
+      "among_correct": 0.8904109589041096,
+      "n": 120,
+      "per_mode": {
+        "astar_greedy": {
+          "n": 20,
+          "labelled_as_forced": 20,
+          "correct": 20,
+          "verified": 20,
+          "label_counts": {
+            "astar_greedy": 20
+          }
+        },
+        "bfs": {
+          "n": 20,
+          "labelled_as_forced": 20,
+          "correct": 20,
+          "verified": 20,
+          "label_counts": {
+            "bfs": 20
+          }
+        },
+        "bidirectional_bfs": {
+          "n": 20,
+          "labelled_as_forced": 9,
+          "correct": 8,
+          "verified": 0,
+          "label_counts": {
+            "bidirectional_bfs": 9,
+            "bfs": 11
+          }
+        },
+        "dfs": {
+          "n": 20,
+          "labelled_as_forced": 20,
+          "correct": 6,
+          "verified": 6,
+          "label_counts": {
+            "dfs": 20
+          }
+        },
+        "dijkstra_unit": {
+          "n": 20,
+          "labelled_as_forced": 20,
+          "correct": 19,
+          "verified": 19,
+          "label_counts": {
+            "dijkstra_unit": 20
+          }
+        },
+        "iddfs": {
+          "n": 20,
+          "labelled_as_forced": 19,
+          "correct": 0,
+          "verified": 0,
+          "label_counts": {
+            "iddfs": 19,
+            "dfs": 1
+          }
+        }
+      }
+    }
+  },
+  "T2": {
+    "n_gold_programs": 30,
+    "n_references": 7,
+    "kappa_runtime_ast_gold": 0.11051212938005392,
+    "ref_agreement_runtime_and_ast": 1.0,
+    "ref_agreement_gold_judges": 1.0,
+    "gold_agreement_final_vs_adjudicated": 0.7,
+    "gold_agreement_correct_programs_only": 0.9230769230769231,
+    "n_gold_correct": 13,
+    "kappa_runtime_ast_gold_correct_only": 0.496124031007752,
+    "judge_disagrees_with_runtime_ast_consensus": 0.0,
+    "kappa_runtime_ast_population": 0.8510786144183785,
+    "runtime_ast_agreement_population": 0.9400715563506261,
+    "n_unique_programs": 1118,
+    "gate_passed": false,
+    "revisions": [
+      "rev1 tracer T1: BFS monotonicity and heap-key matching use first pops only; >=97% non-decreasing steps",
+      "rev1 tracer T1: A*/greedy fallback also accepts Spearman(key, h) >= 0.9 with few expansions",
+      "rev1 tracer T2: no heap, no FIFO, growth exponent >= 1.6 -> bellman_ford_spfa (rounds over adjacency)",
+      "rev1 AST T2: rounds over adjacency with a relaxation test, and FIFO label-correcting loops -> BF/SPFA",
+      "rev2 tracer T2: bidirectional requires interleaved pops from the two heaps (>=2 switches)",
+      "rev2 AST T2: bidirectional requires one loop popping two heaps",
+      "pre-gate (references only): FW growth rule also accepts exponent>=2.2 with >=n^3/2 line events; list.pop() classified with the pre-pop length; W1/W2 made strongly connected with a FIFO gadget"
+    ],
+    "flag": "labeller_gate_failed",
+    "confusion_final_vs_gold": {
+      "bellman_ford_spfa->bellman_ford_spfa": 5,
+      "dial->other": 3,
+      "dijkstra->dijkstra": 8,
+      "bidirectional_dijkstra->other": 5,
+      "dial->dial": 5,
+      "bellman_ford_spfa->other": 1,
+      "floyd_warshall->floyd_warshall": 3
+    },
+    "gold_label_counts": {
+      "bellman_ford_spfa": 5,
+      "other": 9,
+      "dijkstra": 8,
+      "dial": 5,
+      "floyd_warshall": 3
+    },
+    "references": [
+      {
+        "ref": "t2_bellman_ford_spfa.py",
+        "mode": "bellman_ford_spfa",
+        "runtime": "bellman_ford_spfa",
+        "ast": "bellman_ford_spfa",
+        "gold": "bellman_ford_spfa"
+      },
+      {
+        "ref": "t2_bidirectional_dijkstra.py",
+        "mode": "bidirectional_dijkstra",
+        "runtime": "bidirectional_dijkstra",
+        "ast": "bidirectional_dijkstra",
+        "gold": "bidirectional_dijkstra"
+      },
+      {
+        "ref": "t2_dial.py",
+        "mode": "dial",
+        "runtime": "dial",
+        "ast": "dial",
+        "gold": "dial"
+      },
+      {
+        "ref": "t2_dijkstra.py",
+        "mode": "dijkstra",
+        "runtime": "dijkstra",
+        "ast": "dijkstra",
+        "gold": "dijkstra"
+      },
+      {
+        "ref": "t2_dijkstra_eager.py",
+        "mode": "dijkstra",
+        "runtime": "dijkstra",
+        "ast": "dijkstra",
+        "gold": "dijkstra"
+      },
+      {
+        "ref": "t2_floyd_warshall.py",
+        "mode": "floyd_warshall",
+        "runtime": "floyd_warshall",
+        "ast": "floyd_warshall",
+        "gold": "floyd_warshall"
+      },
+      {
+        "ref": "t2_spfa.py",
+        "mode": "bellman_ford_spfa",
+        "runtime": "bellman_ford_spfa",
+        "ast": "bellman_ford_spfa",
+        "gold": "bellman_ford_spfa"
+      }
+    ],
+    "n_adjudicated": 11,
+    "forced_label_agreement": {
+      "all": 0.82,
+      "among_correct": 0.9558823529411765,
+      "n": 100,
+      "per_mode": {
+        "bellman_ford_spfa": {
+          "n": 20,
+          "labelled_as_forced": 20,
+          "correct": 20,
+          "verified": 20,
+          "label_counts": {
+            "bellman_ford_spfa": 20
+          }
+        },
+        "bidirectional_dijkstra": {
+          "n": 20,
+          "labelled_as_forced": 7,
+          "correct": 3,
+          "verified": 1,
+          "label_counts": {
+            "bidirectional_dijkstra": 7,
+            "dijkstra": 13
+          }
+        },
+        "dial": {
+          "n": 20,
+          "labelled_as_forced": 15,
+          "correct": 6,
+          "verified": 5,
+          "label_counts": {
+            "dial": 15,
+            "bellman_ford_spfa": 3,
+            "unparseable": 2
+          }
+        },
+        "dijkstra": {
+          "n": 20,
+          "labelled_as_forced": 20,
+          "correct": 20,
+          "verified": 20,
+          "label_counts": {
+            "dijkstra": 20
+          }
+        },
+        "floyd_warshall": {
+          "n": 20,
+          "labelled_as_forced": 20,
+          "correct": 19,
+          "verified": 19,
+          "label_counts": {
+            "floyd_warshall": 20
+          }
+        }
+      }
+    }
+  },
+  "gold_judges": [
+    "openai/gpt-4.1-mini",
+    "deepseek/deepseek-v4.1-flash-1017"
+  ],
+  "adjudicator": "google/gemini-2.5-flash",
+  "gold_cost_usd": 0.0,
+  "budget_stopped": false
+}

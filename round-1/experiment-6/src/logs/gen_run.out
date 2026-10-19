@@ -1,0 +1,100 @@
+.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+17:23:08|INFO   |top_k disabled value for this vLLM: -1
+INFO 10-19 17:23:09 [__init__.py:216] Automatically detected platform cuda.
+INFO 10-19 17:23:26 [arg_utils.py:504] HF_HUB_OFFLINE is True, replace model_id [Qwen/Qwen3-8B] to model_path [<HF_HOME>/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218]
+INFO 10-19 17:23:26 [arg_utils.py:504] HF_HUB_OFFLINE is True, replace model_id [<HF_HOME>/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218] to model_path [<HF_HOME>/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218]
+INFO 10-19 17:23:26 [utils.py:233] non-default args: {'dtype': 'bfloat16', 'seed': 0, 'max_model_len': 4096, 'enable_prefix_caching': True, 'gpu_memory_utilization': 0.92, 'max_num_seqs': 128, 'disable_log_stats': True, 'enforce_eager': True, 'generation_config': 'vllm', 'model': '<HF_HOME>/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218'}
+INFO 10-19 17:23:26 [model.py:547] Resolved architecture: Qwen3ForCausalLM
+`torch_dtype` is deprecated! Use `dtype` instead!
+INFO 10-19 17:23:26 [model.py:1510] Using max model len 4096
+INFO 10-19 17:23:31 [scheduler.py:205] Chunked prefill is enabled with max_num_batched_tokens=8192.
+INFO 10-19 17:23:31 [__init__.py:381] Cudagraph is disabled under eager mode
+.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+INFO 10-19 17:24:47 [__init__.py:216] Automatically detected platform cuda.
+[1;36m(EngineCore_DP0 pid=1583)[0;0m INFO 10-19 17:24:59 [core.py:644] Waiting for init message from front-end.
+[1;36m(EngineCore_DP0 pid=1583)[0;0m INFO 10-19 17:25:00 [core.py:77] Initializing a V1 LLM engine (v0.11.0) with config: model='<HF_HOME>/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218', speculative_config=None, tokenizer='<HF_HOME>/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser=''), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None), seed=0, served_model_name=<HF_HOME>/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218, enable_prefix_caching=True, chunked_prefill_enabled=True, pooler_config=None, compilation_config={"level":0,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":null,"use_inductor":true,"compile_sizes":[],"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"cudagraph_mode":0,"use_cudagraph":true,"cudagraph_num_of_warmups":0,"cudagraph_capture_sizes":[],"cudagraph_copy_inputs":false,"full_cuda_graph":false,"use_inductor_graph_partition":false,"pass_config":{},"max_capture_size":0,"local_cache_dir":null}
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[1;36m(EngineCore_DP0 pid=1583)[0;0m INFO 10-19 17:25:13 [parallel_state.py:1208] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0, EP rank 0
+[1;36m(EngineCore_DP0 pid=1583)[0;0m WARNING 10-19 17:25:14 [topk_topp_sampler.py:66] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+[1;36m(EngineCore_DP0 pid=1583)[0;0m INFO 10-19 17:25:14 [gpu_model_runner.py:2602] Starting to load model <HF_HOME>/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218...
+[1;36m(EngineCore_DP0 pid=1583)[0;0m INFO 10-19 17:25:14 [gpu_model_runner.py:2634] Loading model from scratch...
+[1;36m(EngineCore_DP0 pid=1583)[0;0m INFO 10-19 17:25:15 [cuda.py:366] Using Flash Attention backend on V1 engine.
+[1;36m(EngineCore_DP0 pid=1583)[0;0m Loading safetensors checkpoint shards:   0% Completed | 0/5 [00:00<?, ?it/s]
+[1;36m(EngineCore_DP0 pid=1583)[0;0m Loading safetensors checkpoint shards:  20% Completed | 1/5 [00:06<00:24,  6.25s/it]
+[1;36m(EngineCore_DP0 pid=1583)[0;0m Loading safetensors checkpoint shards:  40% Completed | 2/5 [00:12<00:19,  6.40s/it]
+[1;36m(EngineCore_DP0 pid=1583)[0;0m Loading safetensors checkpoint shards:  60% Completed | 3/5 [00:19<00:13,  6.56s/it]
+[1;36m(EngineCore_DP0 pid=1583)[0;0m Loading safetensors checkpoint shards:  80% Completed | 4/5 [00:24<00:06,  6.08s/it]
+[1;36m(EngineCore_DP0 pid=1583)[0;0m Loading safetensors checkpoint shards: 100% Completed | 5/5 [00:26<00:00,  4.60s/it]
+[1;36m(EngineCore_DP0 pid=1583)[0;0m Loading safetensors checkpoint shards: 100% Completed | 5/5 [00:26<00:00,  5.36s/it]
+[1;36m(EngineCore_DP0 pid=1583)[0;0m 
+[1;36m(EngineCore_DP0 pid=1583)[0;0m INFO 10-19 17:25:42 [default_loader.py:267] Loading weights took 26.84 seconds
+[1;36m(EngineCore_DP0 pid=1583)[0;0m INFO 10-19 17:25:42 [gpu_model_runner.py:2653] Model loading took 15.2663 GiB and 27.229143 seconds
+[1;36m(EngineCore_DP0 pid=1583)[0;0m INFO 10-19 17:25:44 [gpu_worker.py:298] Available KV cache memory: 12.69 GiB
+[1;36m(EngineCore_DP0 pid=1583)[0;0m INFO 10-19 17:25:44 [kv_cache_utils.py:1087] GPU KV cache size: 92,368 tokens
+[1;36m(EngineCore_DP0 pid=1583)[0;0m INFO 10-19 17:25:44 [kv_cache_utils.py:1091] Maximum concurrency for 4,096 tokens per request: 22.55x
+[1;36m(EngineCore_DP0 pid=1583)[0;0m WARNING 10-19 17:25:44 [cudagraph_dispatcher.py:106] cudagraph dispatching keys are not initialized. No cudagraph will be used.
+[1;36m(EngineCore_DP0 pid=1583)[0;0m INFO 10-19 17:25:44 [core.py:210] init engine (profile, create kv cache, warmup model) took 2.27 seconds
+[1;36m(EngineCore_DP0 pid=1583)[0;0m INFO 10-19 17:25:45 [__init__.py:381] Cudagraph is disabled under eager mode
+INFO 10-19 17:25:45 [llm.py:306] Supported_tasks: ['generate']
+17:25:45|INFO   |engine up: {'gpu_memory_utilization': 0.92, 'enforce_eager': True, 'load_s': 139.0, 'max_num_seqs': 128, 'max_model_len': 4096, 'num_gpu_blocks': 5773, 'block_size': 16, 'kv_tokens': 92368, 'max_concurrency_at_max_len': 22.55}
+17:25:52|INFO   |capacity: {'gpu_memory_utilization': 0.92, 'enforce_eager': True, 'load_s': 139.0, 'max_num_seqs': 128, 'max_model_len': 4096, 'num_gpu_blocks': 5773, 'block_size': 16, 'kv_tokens': 92368, 'max_concurrency_at_max_len': 22.55, 'model': 'Qwen/Qwen3-8B', 'vllm_version': '0.11.0', 'probe': {'n': 64, 'tokens': 19414, 'seconds': 6.8, 'tok_s': 2844}, 'mean_output_tokens': 303.3, 'core_generations': 3820, 'core_estimate_min': 6.8, 'decision': 'keep_8B'}
+17:25:52|INFO   |[A0] requested=200 already_done=0 todo=200
+17:25:56|INFO   |[A0] batch 10: {'n': 10, 'tokens': 2902, 'seconds': 4.3, 'tok_s': 672, 'stage': 10, 's_per_sample': 0.43, 'extrapolated_remaining_s': 81.7}
+17:26:04|INFO   |[A0] batch 100: {'n': 100, 'tokens': 28102, 'seconds': 7.5, 'tok_s': 3726, 'stage': 100, 's_per_sample': 0.075, 'extrapolated_remaining_s': 6.8}
+17:26:11|INFO   |[A0] batch 90: {'n': 90, 'tokens': 17867, 'seconds': 5.8, 'tok_s': 3070, 'stage': 90, 's_per_sample': 0.064, 'extrapolated_remaining_s': 0.0}
+17:26:11|INFO   |[A1] requested=1600 already_done=0 todo=1600
+17:26:14|INFO   |[A1] batch 10: {'n': 10, 'tokens': 2689, 'seconds': 3.6, 'tok_s': 742, 'stage': 10, 's_per_sample': 0.36, 'extrapolated_remaining_s': 572.4}
+17:26:23|INFO   |[A1] batch 100: {'n': 100, 'tokens': 29386, 'seconds': 7.8, 'tok_s': 3770, 'stage': 100, 's_per_sample': 0.078, 'extrapolated_remaining_s': 116.2}
+17:27:11|INFO   |[A1] batch 640: {'n': 640, 'tokens': 193462, 'seconds': 45.2, 'tok_s': 4278, 'stage': 640, 's_per_sample': 0.071, 'extrapolated_remaining_s': 60.0}
+17:27:43|INFO   |[A1] batch 640: {'n': 640, 'tokens': 129275, 'seconds': 29.5, 'tok_s': 4378, 'stage': 640, 's_per_sample': 0.046, 'extrapolated_remaining_s': 9.7}
+17:27:54|INFO   |[A1] batch 210: {'n': 210, 'tokens': 41272, 'seconds': 10.3, 'tok_s': 4019, 'stage': 210, 's_per_sample': 0.049, 'extrapolated_remaining_s': 0.0}
+17:27:54|INFO   |[A2] requested=600 already_done=0 todo=600
+17:27:59|INFO   |[A2] batch 10: {'n': 10, 'tokens': 2904, 'seconds': 4.3, 'tok_s': 668, 'stage': 10, 's_per_sample': 0.43, 'extrapolated_remaining_s': 253.7}
+17:28:07|INFO   |[A2] batch 100: {'n': 100, 'tokens': 28181, 'seconds': 7.4, 'tok_s': 3785, 'stage': 100, 's_per_sample': 0.074, 'extrapolated_remaining_s': 36.3}
+17:28:41|INFO   |[A2] batch 490: {'n': 490, 'tokens': 118708, 'seconds': 32.0, 'tok_s': 3714, 'stage': 490, 's_per_sample': 0.065, 'extrapolated_remaining_s': 0.0}
+17:28:41|INFO   |[A6a] requested=400 already_done=0 todo=400
+17:29:12|INFO   |[A6a] batch 10: {'n': 10, 'tokens': 23000, 'seconds': 31.5, 'tok_s': 730, 'n_pass2': 10, 'stage': 10, 's_per_sample': 3.15, 'extrapolated_remaining_s': 1228.5}
+17:31:07|INFO   |[A6a] batch 100: {'n': 100, 'tokens': 229875, 'seconds': 113.9, 'tok_s': 2018, 'n_pass2': 100, 'stage': 100, 's_per_sample': 1.139, 'extrapolated_remaining_s': 330.3}
+17:34:56|INFO   |[A6a] batch 200: {'n': 200, 'tokens': 463108, 'seconds': 228.3, 'tok_s': 2029, 'n_pass2': 200, 'stage': 200, 's_per_sample': 1.141, 'extrapolated_remaining_s': 102.7}
+17:36:50|INFO   |[A6a] batch 90: {'n': 90, 'tokens': 209523, 'seconds': 113.4, 'tok_s': 1847, 'n_pass2': 90, 'stage': 90, 's_per_sample': 1.26, 'extrapolated_remaining_s': 0.0}
+17:36:50|INFO   |[A3] requested=800 already_done=0 todo=800
+17:36:55|INFO   |[A3] batch 10: {'n': 10, 'tokens': 3049, 'seconds': 4.5, 'tok_s': 673, 'stage': 10, 's_per_sample': 0.45, 'extrapolated_remaining_s': 355.5}
+17:37:05|INFO   |[A3] batch 100: {'n': 100, 'tokens': 31111, 'seconds': 9.0, 'tok_s': 3465, 'stage': 100, 's_per_sample': 0.09, 'extrapolated_remaining_s': 62.1}
+17:37:44|INFO   |[A3] batch 640: {'n': 640, 'tokens': 160685, 'seconds': 36.9, 'tok_s': 4351, 'stage': 640, 's_per_sample': 0.058, 'extrapolated_remaining_s': 2.9}
+17:37:49|INFO   |[A3] batch 50: {'n': 50, 'tokens': 9603, 'seconds': 4.5, 'tok_s': 2142, 'stage': 50, 's_per_sample': 0.09, 'extrapolated_remaining_s': 0.0}
+17:37:49|INFO   |[A5] requested=220 already_done=0 todo=220
+17:37:53|INFO   |[A5] batch 10: {'n': 10, 'tokens': 3165, 'seconds': 4.6, 'tok_s': 684, 'stage': 10, 's_per_sample': 0.46, 'extrapolated_remaining_s': 96.6}
+17:38:07|INFO   |[A5] batch 100: {'n': 100, 'tokens': 31302, 'seconds': 13.1, 'tok_s': 2395, 'stage': 100, 's_per_sample': 0.131, 'extrapolated_remaining_s': 14.4}
+17:38:21|INFO   |[A5] batch 110: {'n': 110, 'tokens': 30387, 'seconds': 13.8, 'tok_s': 2207, 'stage': 110, 's_per_sample': 0.125, 'extrapolated_remaining_s': 0.0}
+17:38:21|INFO   |[A4s1] requested=200 already_done=0 todo=200
+17:38:25|INFO   |[A4s1] batch 10: {'n': 10, 'tokens': 2894, 'seconds': 4.0, 'tok_s': 719, 'stage': 10, 's_per_sample': 0.4, 'extrapolated_remaining_s': 76.0}
+17:38:33|INFO   |[A4s1] batch 100: {'n': 100, 'tokens': 29834, 'seconds': 7.5, 'tok_s': 3979, 'stage': 100, 's_per_sample': 0.075, 'extrapolated_remaining_s': 6.8}
+17:38:41|INFO   |[A4s1] batch 90: {'n': 90, 'tokens': 26241, 'seconds': 7.6, 'tok_s': 3449, 'stage': 90, 's_per_sample': 0.084, 'extrapolated_remaining_s': 0.0}
+17:38:41|INFO   |[A4s2] requested=200 already_done=0 todo=200
+17:38:48|INFO   |[A4s2] batch 10: {'n': 10, 'tokens': 3023, 'seconds': 7.1, 'tok_s': 426, 'stage': 10, 's_per_sample': 0.71, 'extrapolated_remaining_s': 134.9}
+17:39:00|INFO   |[A4s2] batch 100: {'n': 100, 'tokens': 31627, 'seconds': 11.6, 'tok_s': 2735, 'stage': 100, 's_per_sample': 0.116, 'extrapolated_remaining_s': 10.4}
+17:39:12|INFO   |[A4s2] batch 90: {'n': 90, 'tokens': 24143, 'seconds': 11.1, 'tok_s': 2172, 'stage': 90, 's_per_sample': 0.123, 'extrapolated_remaining_s': 0.0}
+17:39:12|INFO   |[A6b] requested=400 already_done=0 todo=400
+17:39:44|INFO   |[A6b] batch 10: {'n': 10, 'tokens': 23038, 'seconds': 31.9, 'tok_s': 722, 'n_pass2': 10, 'stage': 10, 's_per_sample': 3.19, 'extrapolated_remaining_s': 1244.1}
+17:41:43|INFO   |[A6b] batch 100: {'n': 100, 'tokens': 230137, 'seconds': 118.6, 'tok_s': 1941, 'n_pass2': 100, 'stage': 100, 's_per_sample': 1.186, 'extrapolated_remaining_s': 343.9}
+17:45:36|INFO   |[A6b] batch 200: {'n': 200, 'tokens': 460433, 'seconds': 231.7, 'tok_s': 1987, 'n_pass2': 200, 'stage': 200, 's_per_sample': 1.158, 'extrapolated_remaining_s': 104.3}
+17:47:31|INFO   |[A6b] batch 90: {'n': 90, 'tokens': 210351, 'seconds': 114.4, 'tok_s': 1839, 'n_pass2': 90, 'stage': 90, 's_per_sample': 1.271, 'extrapolated_remaining_s': 0.0}
+17:47:31|INFO   |[A6c] requested=400 already_done=0 todo=400
+17:48:01|INFO   |[A6c] batch 10: {'n': 10, 'tokens': 22404, 'seconds': 29.8, 'tok_s': 752, 'n_pass2': 10, 'stage': 10, 's_per_sample': 2.98, 'extrapolated_remaining_s': 1162.2}
+17:49:51|INFO   |[A6c] batch 100: {'n': 100, 'tokens': 224191, 'seconds': 109.6, 'tok_s': 2045, 'n_pass2': 100, 'stage': 100, 's_per_sample': 1.096, 'extrapolated_remaining_s': 317.8}
+17:53:33|INFO   |[A6c] batch 200: {'n': 200, 'tokens': 449471, 'seconds': 221.1, 'tok_s': 2033, 'n_pass2': 200, 'stage': 200, 's_per_sample': 1.105, 'extrapolated_remaining_s': 99.5}
+17:55:23|INFO   |[A6c] batch 90: {'n': 90, 'tokens': 204336, 'seconds': 109.3, 'tok_s': 1870, 'n_pass2': 90, 'stage': 90, 's_per_sample': 1.214, 'extrapolated_remaining_s': 0.0}
+17:55:23|INFO   |[A6d] requested=400 already_done=0 todo=400
+17:55:54|INFO   |[A6d] batch 10: {'n': 10, 'tokens': 22425, 'seconds': 30.4, 'tok_s': 737, 'n_pass2': 10, 'stage': 10, 's_per_sample': 3.04, 'extrapolated_remaining_s': 1185.6}
+17:57:48|INFO   |[A6d] batch 100: {'n': 100, 'tokens': 224118, 'seconds': 113.7, 'tok_s': 1972, 'n_pass2': 100, 'stage': 100, 's_per_sample': 1.137, 'extrapolated_remaining_s': 329.7}
+18:01:33|INFO   |[A6d] batch 200: {'n': 200, 'tokens': 447980, 'seconds': 223.4, 'tok_s': 2005, 'n_pass2': 200, 'stage': 200, 's_per_sample': 1.117, 'extrapolated_remaining_s': 100.5}
+18:03:20|INFO   |[A6d] batch 90: {'n': 90, 'tokens': 201667, 'seconds': 106.7, 'tok_s': 1891, 'n_pass2': 90, 'stage': 90, 's_per_sample': 1.186, 'extrapolated_remaining_s': 0.0}
+18:03:20|INFO   |all arms finished
+[rank0]:[W1019 18:03:20.836556629 ProcessGroupNCCL.cpp:1538] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
