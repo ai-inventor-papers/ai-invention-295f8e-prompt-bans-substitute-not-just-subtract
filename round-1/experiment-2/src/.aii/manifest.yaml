@@ -1,0 +1,26 @@
+entries:
+  - path: .venv/
+    delete: regenerable
+    source: "uv venv .venv --python 3.12 && uv pip install --python .venv/bin/python -r pyproject.toml"
+  - path: __pycache__/
+    delete: regenerable
+    source: "python bytecode, recreated on import (python -c 'import common')"
+  - path: gen/__pycache__/
+    delete: regenerable
+    source: "python bytecode, recreated on import (.venv/bin/python gen/phase_a.py --help)"
+  - path: labeller/__pycache__/
+    delete: regenerable
+    source: "python bytecode, recreated on import (.venv/bin/python labeller/test_labeller.py)"
+  - path: tasks/__pycache__/
+    delete: regenerable
+    source: "python bytecode, recreated on import (.venv/bin/python labeller/test_labeller.py)"
+  - path: analysis/__pycache__/
+    delete: regenerable
+    source: "python bytecode, recreated on import (.venv/bin/python method.py --only analysis)"
+  - path: hf/__pycache__/
+    delete: regenerable
+    source: "python bytecode, recreated on import (.venv/bin/python hf/phase_d.py --help)"
+  - path: .flashinfer_cache/
+    keep: flashinfer JIT log written during the failed vLLM engine start; documents that failure (tiny)
+  - path: cache/
+    keep: read-position hidden states (21 layers x 1330 prompts), directions, anchors and bases fitted in Phase B; ~35 GPU-minutes on an L4 to regenerate and reused by the next round without a GPU

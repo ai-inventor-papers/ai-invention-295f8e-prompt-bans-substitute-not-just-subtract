@@ -1,0 +1,209 @@
+{
+ "events": {
+  "t1|ban:bfs": {
+   "n": 100,
+   "n_compliant": 18,
+   "compliance": 0.18,
+   "label_counts_all": {
+    "dfs": 29,
+    "bfs": 62,
+    "dijkstra_unit": 9
+   },
+   "compliant_counts": {
+    "dijkstra_unit": 8,
+    "dfs": 10
+   },
+   "compliant_shares": {
+    "dijkstra_unit": 0.4444444444444444,
+    "dfs": 0.5555555555555556
+   },
+   "top": "dfs",
+   "runner_up": "dijkstra_unit",
+   "lead": 0.1111111111111111,
+   "realised": null,
+   "clear": false,
+   "ban_failure": true,
+   "pass_rate": 0.76,
+   "task": "t1",
+   "banset": [
+    "bfs"
+   ]
+  },
+  "t2|ban:dijkstra": {
+   "n": 100,
+   "n_compliant": 22,
+   "compliance": 0.22,
+   "label_counts_all": {
+    "dijkstra": 72,
+    "bellman_ford_spfa": 27,
+    "other": 1
+   },
+   "compliant_counts": {
+    "bellman_ford_spfa": 22
+   },
+   "compliant_shares": {
+    "bellman_ford_spfa": 1.0
+   },
+   "top": "bellman_ford_spfa",
+   "runner_up": null,
+   "lead": 1.0,
+   "realised": "bellman_ford_spfa",
+   "clear": true,
+   "ban_failure": true,
+   "pass_rate": 0.94,
+   "task": "t2",
+   "banset": [
+    "dijkstra"
+   ]
+  },
+  "t1|ban:bfs+dfs": {
+   "n": 50,
+   "n_compliant": 18,
+   "compliance": 0.36,
+   "label_counts_all": {
+    "bfs": 29,
+    "dfs": 2,
+    "dijkstra_unit": 19
+   },
+   "compliant_counts": {
+    "dijkstra_unit": 18
+   },
+   "compliant_shares": {
+    "dijkstra_unit": 1.0
+   },
+   "top": "dijkstra_unit",
+   "runner_up": null,
+   "lead": 1.0,
+   "realised": "dijkstra_unit",
+   "clear": true,
+   "ban_failure": true,
+   "pass_rate": 0.96,
+   "task": "t1",
+   "banset": [
+    "bfs",
+    "dfs"
+   ],
+   "step": 2,
+   "exploratory": true
+  },
+  "t1|ban:bfs+dijkstra_unit": {
+   "n": 50,
+   "n_compliant": 5,
+   "compliance": 0.1,
+   "label_counts_all": {
+    "dfs": 17,
+    "dijkstra_unit": 2,
+    "bfs": 31
+   },
+   "compliant_counts": {
+    "dfs": 5
+   },
+   "compliant_shares": {
+    "dfs": 1.0
+   },
+   "top": "dfs",
+   "runner_up": null,
+   "lead": 1.0,
+   "realised": "dfs",
+   "clear": true,
+   "ban_failure": true,
+   "pass_rate": 0.72,
+   "task": "t1",
+   "banset": [
+    "bfs",
+    "dijkstra_unit"
+   ],
+   "step": 2,
+   "exploratory": true
+  },
+  "t2|ban:dijkstra+bellman_ford_spfa": {
+   "n": 50,
+   "n_compliant": 0,
+   "compliance": 0.0,
+   "label_counts_all": {
+    "dijkstra": 37,
+    "bellman_ford_spfa": 12,
+    "other": 1
+   },
+   "compliant_counts": {},
+   "compliant_shares": {},
+   "top": null,
+   "runner_up": null,
+   "lead": 0.0,
+   "realised": null,
+   "clear": false,
+   "ban_failure": true,
+   "pass_rate": 0.92,
+   "task": "t2",
+   "banset": [
+    "dijkstra",
+    "bellman_ford_spfa"
+   ],
+   "step": 2,
+   "exploratory": true
+  },
+  "t1|mention:bfs": {
+   "n": 50,
+   "n_compliant": 50,
+   "compliance": 1.0,
+   "label_counts_all": {
+    "bfs": 50
+   },
+   "compliant_counts": {
+    "bfs": 50
+   },
+   "compliant_shares": {
+    "bfs": 1.0
+   },
+   "top": "bfs",
+   "runner_up": null,
+   "lead": 1.0,
+   "realised": "bfs",
+   "clear": true,
+   "ban_failure": false,
+   "pass_rate": 1.0,
+   "task": "t1",
+   "banset": [],
+   "kind": "mention"
+  },
+  "t2|mention:dijkstra": {
+   "n": 50,
+   "n_compliant": 50,
+   "compliance": 1.0,
+   "label_counts_all": {
+    "dijkstra": 50
+   },
+   "compliant_counts": {
+    "dijkstra": 50
+   },
+   "compliant_shares": {
+    "dijkstra": 1.0
+   },
+   "top": "dijkstra",
+   "runner_up": null,
+   "lead": 1.0,
+   "realised": "dijkstra",
+   "clear": true,
+   "ban_failure": false,
+   "pass_rate": 1.0,
+   "task": "t2",
+   "banset": [],
+   "kind": "mention"
+  }
+ },
+ "succession": {
+  "t1": {
+   "chain": [
+    "bfs"
+   ],
+   "stopped": "ban failure at t1|ban:bfs (compliance 0.18)"
+  },
+  "t2": {
+   "chain": [
+    "dijkstra"
+   ],
+   "stopped": "ban failure at t2|ban:dijkstra (compliance 0.22)"
+  }
+ },
+ "elapsed_min": 9.88471261660258
+}

@@ -1,0 +1,586 @@
+{
+  "metadata": {
+    "method_name": "path-search ban screen (Qwen3-8B)",
+    "summary": {
+      "baseline": {
+        "t1": {
+          "modal": "bfs",
+          "modal_share": 1.0,
+          "counts": {
+            "bfs": 200
+          },
+          "pass_rate": 0.99,
+          "hill_cc": 1.0
+        },
+        "t2": {
+          "modal": "dijkstra",
+          "modal_share": 1.0,
+          "counts": {
+            "dijkstra": 200
+          },
+          "pass_rate": 1.0,
+          "hill_cc": 1.0
+        }
+      },
+      "gate": {
+        "t1": {
+          "l_star": 27,
+          "band": [
+            24,
+            25,
+            26
+          ],
+          "pass": false
+        },
+        "t2": {
+          "l_star": 24,
+          "band": [
+            21,
+            22,
+            23
+          ],
+          "pass": true
+        }
+      },
+      "contest_aggregate_all": {
+        "per_predictor": {
+          "association": {
+            "hits": 1,
+            "events": 5,
+            "events_tied_excluded": 0,
+            "hit_rate": 0.2,
+            "wilson": [
+              0.03622316096978745,
+              0.6244717358814613
+            ],
+            "mean_log_score": -2.8131299716606217,
+            "mean_js": 0.3706327876561931,
+            "mean_top2": 0.6
+          },
+          "frequency": {
+            "hits": 0,
+            "events": 0,
+            "events_tied_excluded": 5,
+            "hit_rate": 0.0,
+            "wilson": [
+              0.0,
+              1.0
+            ],
+            "mean_log_score": -1.9701275799340472,
+            "mean_js": 0.24943687540831944,
+            "mean_top2": 0.8
+          },
+          "geodesic": {
+            "hits": 1,
+            "events": 5,
+            "events_tied_excluded": 0,
+            "hit_rate": 0.2,
+            "wilson": [
+              0.03622316096978745,
+              0.6244717358814613
+            ],
+            "mean_log_score": -1.8263438607711002,
+            "mean_js": 0.2108033463945064,
+            "mean_top2": 0.7
+          },
+          "decoder": {
+            "hits": 0,
+            "events": 5,
+            "events_tied_excluded": 0,
+            "hit_rate": 0.0,
+            "wilson": [
+              0.0,
+              0.43449149475208104
+            ],
+            "mean_log_score": -2.456106511928165,
+            "mean_js": 0.4000238753393067,
+            "mean_top2": 0.6
+          },
+          "association_X1": {
+            "hits": 0,
+            "events": 5,
+            "events_tied_excluded": 0,
+            "hit_rate": 0.0,
+            "wilson": [
+              0.0,
+              0.43449149475208104
+            ],
+            "mean_log_score": -2.870483872944381,
+            "mean_js": 0.3880680178142885,
+            "mean_top2": 0.5
+          }
+        },
+        "agreement_matrix_top1": {
+          "association": {
+            "association": 1.0,
+            "frequency": 0.0,
+            "geodesic": 0.4
+          },
+          "frequency": {
+            "association": 0.0,
+            "frequency": 1.0,
+            "geodesic": 0.4
+          },
+          "geodesic": {
+            "association": 0.4,
+            "frequency": 0.4,
+            "geodesic": 1.0
+          }
+        },
+        "n_events": 5,
+        "note": "descriptive only: about 4-7 events, no p-values"
+      },
+      "contest_aggregate_primary": {
+        "per_predictor": {
+          "association": {
+            "hits": 0,
+            "events": 2,
+            "events_tied_excluded": 0,
+            "hit_rate": 0.0,
+            "wilson": [
+              0.0,
+              0.6576280471103807
+            ],
+            "mean_log_score": -2.5948248864437655,
+            "mean_js": 0.46168766921372717,
+            "mean_top2": 0.5
+          },
+          "frequency": {
+            "hits": 0,
+            "events": 0,
+            "events_tied_excluded": 2,
+            "hit_rate": 0.0,
+            "wilson": [
+              0.0,
+              1.0
+            ],
+            "mean_log_score": -1.5628103786836351,
+            "mean_js": 0.3242708068608741,
+            "mean_top2": 0.75
+          },
+          "geodesic": {
+            "hits": 0,
+            "events": 2,
+            "events_tied_excluded": 0,
+            "hit_rate": 0.0,
+            "wilson": [
+              0.0,
+              0.6576280471103807
+            ],
+            "mean_log_score": -1.4334894522263806,
+            "mean_js": 0.28973167154835533,
+            "mean_top2": 0.75
+          },
+          "decoder": {
+            "hits": 0,
+            "events": 2,
+            "events_tied_excluded": 0,
+            "hit_rate": 0.0,
+            "wilson": [
+              0.0,
+              0.6576280471103807
+            ],
+            "mean_log_score": -1.4366932594721171,
+            "mean_js": 0.35838711988569283,
+            "mean_top2": 0.75
+          },
+          "association_X1": {
+            "hits": 0,
+            "events": 2,
+            "events_tied_excluded": 0,
+            "hit_rate": 0.0,
+            "wilson": [
+              0.0,
+              0.6576280471103807
+            ],
+            "mean_log_score": -2.5948248864437655,
+            "mean_js": 0.46168766921372717,
+            "mean_top2": 0.5
+          }
+        },
+        "agreement_matrix_top1": {
+          "association": {
+            "association": 1.0,
+            "frequency": 0.0,
+            "geodesic": 0.0
+          },
+          "frequency": {
+            "association": 0.0,
+            "frequency": 1.0,
+            "geodesic": 0.5
+          },
+          "geodesic": {
+            "association": 0.0,
+            "frequency": 0.5,
+            "geodesic": 1.0
+          }
+        },
+        "n_events": 2,
+        "note": "descriptive only: about 4-7 events, no p-values"
+      },
+      "contest_events": {
+        "t1|ban:bfs": {
+          "compliance": 0.18,
+          "realised_mode": "no clear mode",
+          "realised_counts": {
+            "dijkstra_unit": 8,
+            "dfs": 10
+          },
+          "exploratory": false,
+          "top1": {
+            "association": "astar",
+            "frequency": "dfs",
+            "geodesic": "dfs",
+            "decoder": "dfs"
+          },
+          "hits": {
+            "association": false,
+            "frequency": null,
+            "geodesic": false,
+            "decoder": false
+          }
+        },
+        "t1|ban:bfs+dfs": {
+          "compliance": 0.36,
+          "realised_mode": "dijkstra_unit",
+          "realised_counts": {
+            "dijkstra_unit": 18
+          },
+          "exploratory": true,
+          "top1": {
+            "association": "dijkstra_unit",
+            "frequency": "bidir_bfs",
+            "geodesic": "dijkstra_unit",
+            "decoder": "iddfs"
+          },
+          "hits": {
+            "association": true,
+            "frequency": null,
+            "geodesic": true,
+            "decoder": false
+          }
+        },
+        "t1|ban:bfs+dijkstra_unit": {
+          "compliance": 0.1,
+          "realised_mode": "dfs",
+          "realised_counts": {
+            "dfs": 5
+          },
+          "exploratory": true,
+          "top1": {
+            "association": "astar",
+            "frequency": "dfs",
+            "geodesic": "astar",
+            "decoder": "iddfs"
+          },
+          "hits": {
+            "association": false,
+            "frequency": null,
+            "geodesic": false,
+            "decoder": false
+          }
+        },
+        "t2|ban:dijkstra": {
+          "compliance": 0.22,
+          "realised_mode": "bellman_ford_spfa",
+          "realised_counts": {
+            "bellman_ford_spfa": 22
+          },
+          "exploratory": false,
+          "top1": {
+            "association": "dial",
+            "frequency": "bellman_ford_spfa",
+            "geodesic": "floyd_warshall",
+            "decoder": "bidir_dijkstra"
+          },
+          "hits": {
+            "association": false,
+            "frequency": null,
+            "geodesic": false,
+            "decoder": false
+          }
+        },
+        "t2|ban:dijkstra+bellman_ford_spfa": {
+          "compliance": 0.0,
+          "realised_mode": "no clear mode",
+          "realised_counts": {},
+          "exploratory": true,
+          "top1": {
+            "association": "floyd_warshall",
+            "frequency": "bidir_dijkstra",
+            "geodesic": "bidir_dijkstra",
+            "decoder": "bidir_dijkstra"
+          },
+          "hits": {
+            "association": false,
+            "frequency": null,
+            "geodesic": false,
+            "decoder": false
+          }
+        }
+      },
+      "c2_verdicts": {
+        "t1": "untestable (removal unsuccessful at the tested coefficients)",
+        "t2": "untestable (removal unsuccessful at the tested coefficients)"
+      },
+      "c3_verdicts": {
+        "t1": {
+          "bfs": "inconclusive",
+          "dfs": "inconclusive",
+          "bidir_bfs": "inconclusive",
+          "iddfs": "inconclusive",
+          "astar": "inconclusive",
+          "dijkstra_unit": "inconclusive"
+        },
+        "t2": {
+          "dijkstra": "inconclusive",
+          "bellman_ford_spfa": "inconclusive",
+          "bidir_dijkstra": "inconclusive",
+          "floyd_warshall": "inconclusive",
+          "dial": "inconclusive"
+        }
+      },
+      "buy": {
+        "t1": {
+          "prompt_ban": {
+            "hill_cc_base": 1.0,
+            "hill_cc_ban": 2.0342229323826078,
+            "pass_base": 0.99,
+            "pass_ban": 0.76,
+            "d_hill_per_pass_point_lost": 0.04496621445141773
+          }
+        },
+        "t2": {
+          "prompt_ban": {
+            "hill_cc_base": 1.0,
+            "hill_cc_ban": 1.7230828706133337,
+            "pass_base": 1.0,
+            "pass_ban": 0.94,
+            "d_hill_per_pass_point_lost": 0.12051381176888884
+          }
+        }
+      },
+      "commit_sha256": "186f7182ebb7c16a8cf808d18bfe63e6de25d3e71b619cd72affe8ce3d669e9a"
+    },
+    "deviations": [
+      "Generation engine: vLLM 0.32 could not start (Triton needs a C compiler; the container has none), so every phase samples with batched HF transformers generate (bf16, sdpa, left padding, identical toke...",
+      "Hardware: one NVIDIA L4 (23 GB, ~300 GB/s), 6 CPUs, 57 GB RAM (cgroup) instead of the planned RTX A4500.",
+      "Elicitation prompt: a final line \"Remember: answer with only the JSON list of approach names, not code.\" was appended after the task spec, because the spec itself ends by asking for a python code bloc..."
+    ]
+  },
+  "datasets": [
+    {
+      "dataset": "t1_grid_path",
+      "examples": [
+        {
+          "input": "Solve the following programming task.\n\nWrite a Python function solve(grid, start, goal). grid is a list of equal-length strings over . (free) and # (wall), at most 30 rows and 30 columns; start and go...",
+          "output": "```python\nfrom collections import deque\n\ndef solve(grid, start, goal):\n    rows = len(grid)\n    cols = len(grid[0]) if rows > 0 else 0\n    directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]  # right, dow...",
+          "predict_mode_label": "bfs",
+          "predict_passed": "True",
+          "predict_compliant": "True",
+          "metadata_phase": "A",
+          "metadata_condition": "baseline",
+          "metadata_paraphrase_id": 0,
+          "metadata_sample_id": 0,
+          "metadata_model": "Qwen3-8B-bf16",
+          "metadata_decoding": "T=1.0,top_p=1.0,top_k=off,min_p=0,max_tokens=1024,thinking=off,stop=closing_fence",
+          "metadata_labeller_source": "runtime+ast",
+          "metadata_wall_s": 0.0219,
+          "metadata_code_sha256": "b10318cfd5fe4b89652cb1d7ca42e760fdc60b19ac4156f4ae2d9002bba25090",
+          "metadata_arm": null,
+          "metadata_alpha": null,
+          "metadata_fail_kind": null
+        },
+        {
+          "input": "Implement A* search with a Manhattan-distance heuristic for this task.\n\nWrite a Python function solve(grid, start, goal). grid is a list of equal-length strings over . (free) and # (wall), at most 30 ...",
+          "output": "```python\nimport heapq\n\ndef solve(grid, start, goal):\n    rows = len(grid)\n    cols = len(grid[0]) if rows > 0 else 0\n\n    # Directions: up, right, down, left\n    directions = [(-1, 0), (0, 1), (1, 0)...",
+          "predict_mode_label": "astar",
+          "predict_passed": "True",
+          "predict_compliant": "True",
+          "metadata_phase": "A",
+          "metadata_condition": "forced:astar",
+          "metadata_paraphrase_id": 0,
+          "metadata_sample_id": 0,
+          "metadata_model": "Qwen3-8B-bf16",
+          "metadata_decoding": "T=1.0,top_p=1.0,top_k=off,min_p=0,max_tokens=1024,thinking=off,stop=closing_fence",
+          "metadata_labeller_source": "runtime+ast",
+          "metadata_wall_s": 0.0211,
+          "metadata_code_sha256": "02c0a5a942069ce2f88215753a8091ad8e486ea0a4ec95fbb0560b2a2f231e9f",
+          "metadata_arm": null,
+          "metadata_alpha": null,
+          "metadata_fail_kind": null
+        },
+        {
+          "input": "Read the task below carefully. Solve this task using A* search with a Manhattan-distance heuristic.\n\nWrite a Python function solve(grid, start, goal). grid is a list of equal-length strings over . (fr...",
+          "output": "```python\nimport heapq\n\ndef solve(grid, start, goal):\n    rows = len(grid)\n    cols = len(grid[0]) if rows > 0 else 0\n\n    # Directions: up, right, down, left\n    directions = [(-1, 0), (0, 1), (1, 0)...",
+          "predict_mode_label": "astar",
+          "predict_passed": "True",
+          "predict_compliant": "True",
+          "metadata_phase": "A",
+          "metadata_condition": "forced:astar",
+          "metadata_paraphrase_id": 10,
+          "metadata_sample_id": 0,
+          "metadata_model": "Qwen3-8B-bf16",
+          "metadata_decoding": "T=1.0,top_p=1.0,top_k=off,min_p=0,max_tokens=1024,thinking=off,stop=closing_fence",
+          "metadata_labeller_source": "judge",
+          "metadata_wall_s": 0.0274,
+          "metadata_code_sha256": "b9f9ee55937a1ab463c21afcc7fb4ae9fd63f0853f1b1083ff794237d58c5f29",
+          "metadata_arm": null,
+          "metadata_alpha": null,
+          "metadata_fail_kind": null
+        }
+      ]
+    },
+    {
+      "dataset": "t2_weighted_sp",
+      "examples": [
+        {
+          "input": "Solve the following programming task.\n\nWrite a Python function solve(n, edges, s, t). Nodes are 0..n-1 with n <= 100; edges is a list of directed (u, v, w) triples with integer weights 0 <= w <= 100, ...",
+          "output": "```python\nimport heapq\n\ndef solve(n, edges, s, t):\n    # Build adjacency list\n    graph = [[] for _ in range(n)]\n    for u, v, w in edges:\n        graph[u].append((v, w))\n    \n    # Dijkstra's algorit...",
+          "predict_mode_label": "dijkstra",
+          "predict_passed": "True",
+          "predict_compliant": "True",
+          "metadata_phase": "A",
+          "metadata_condition": "baseline",
+          "metadata_paraphrase_id": 0,
+          "metadata_sample_id": 0,
+          "metadata_model": "Qwen3-8B-bf16",
+          "metadata_decoding": "T=1.0,top_p=1.0,top_k=off,min_p=0,max_tokens=1024,thinking=off,stop=closing_fence",
+          "metadata_labeller_source": "runtime+ast",
+          "metadata_wall_s": 0.0249,
+          "metadata_code_sha256": "659abd03ff05c64b5169b48be148f02819ebe059d6852e53b389f4b63d571c03",
+          "metadata_arm": null,
+          "metadata_alpha": null,
+          "metadata_fail_kind": null
+        },
+        {
+          "input": "Implement Bellman-Ford (or SPFA) for this task.\n\nWrite a Python function solve(n, edges, s, t). Nodes are 0..n-1 with n <= 100; edges is a list of directed (u, v, w) triples with integer weights 0 <= ...",
+          "output": "```python\nfrom collections import deque\n\ndef solve(n, edges, s, t):\n    # Initialize distance array with infinity\n    INF = float('inf')\n    dist = [INF] * n\n    dist[s] = 0\n\n    # Create adjacency li...",
+          "predict_mode_label": "bellman_ford_spfa",
+          "predict_passed": "True",
+          "predict_compliant": "True",
+          "metadata_phase": "A",
+          "metadata_condition": "forced:bellman_ford_spfa",
+          "metadata_paraphrase_id": 0,
+          "metadata_sample_id": 0,
+          "metadata_model": "Qwen3-8B-bf16",
+          "metadata_decoding": "T=1.0,top_p=1.0,top_k=off,min_p=0,max_tokens=1024,thinking=off,stop=closing_fence",
+          "metadata_labeller_source": "runtime+ast",
+          "metadata_wall_s": 0.0229,
+          "metadata_code_sha256": "164a7de02c4cc1c8e61ea3a463847ee1acccdc7a4c5f573de9ff7f86521e0299",
+          "metadata_arm": null,
+          "metadata_alpha": null,
+          "metadata_fail_kind": null
+        },
+        {
+          "input": "Read the task below carefully. Solve this task using Bellman-Ford (or SPFA).\n\nWrite a Python function solve(n, edges, s, t). Nodes are 0..n-1 with n <= 100; edges is a list of directed (u, v, w) tripl...",
+          "output": "```python\nfrom collections import deque\n\ndef solve(n, edges, s, t):\n    # Initialize distance array with infinity\n    INF = float('inf')\n    dist = [INF] * n\n    dist[s] = 0\n\n    # Create adjacency li...",
+          "predict_mode_label": "bellman_ford_spfa",
+          "predict_passed": "True",
+          "predict_compliant": "True",
+          "metadata_phase": "A",
+          "metadata_condition": "forced:bellman_ford_spfa",
+          "metadata_paraphrase_id": 10,
+          "metadata_sample_id": 0,
+          "metadata_model": "Qwen3-8B-bf16",
+          "metadata_decoding": "T=1.0,top_p=1.0,top_k=off,min_p=0,max_tokens=1024,thinking=off,stop=closing_fence",
+          "metadata_labeller_source": "runtime+ast",
+          "metadata_wall_s": 0.0194,
+          "metadata_code_sha256": "a6eae8ab5fb17f22570e7e57fa60989fafd60133896fb8796bbab33358a5cb4a",
+          "metadata_arm": null,
+          "metadata_alpha": null,
+          "metadata_fail_kind": null
+        }
+      ]
+    },
+    {
+      "dataset": "contest_events",
+      "examples": [
+        {
+          "input": "t1|ban:bfs | banset=['bfs'] | survivors=['dfs', 'bidir_bfs', 'iddfs', 'astar', 'dijkstra_unit']",
+          "output": "{\"dijkstra_unit\": 8, \"dfs\": 10}",
+          "predict_association": "{\"dfs\": 0.004878048780487805, \"bidir_bfs\": 0.22926829268292684, \"iddfs\": 0.1073170731707317, \"astar\": 0.37073170731707317, \"dijkstra_unit\": 0.28780487804878047}",
+          "predict_frequency": "{\"dfs\": 0.2, \"bidir_bfs\": 0.2, \"iddfs\": 0.2, \"astar\": 0.2, \"dijkstra_unit\": 0.2}",
+          "predict_geodesic": "{\"dfs\": 0.287612360015868, \"bidir_bfs\": 0.13497827194654397, \"iddfs\": 0.1627377876576903, \"astar\": 0.188904735578166, \"dijkstra_unit\": 0.2257668448017317}",
+          "predict_decoder": "{\"dfs\": 0.6612348999003488, \"bidir_bfs\": 0.08984371697372436, \"iddfs\": 0.22244199700163667, \"astar\": 0.01570955385632266, \"dijkstra_unit\": 0.010769832267967485}",
+          "metadata_commit_sha256": "186f7182ebb7c16a8cf808d18bfe63e6de25d3e71b619cd72affe8ce3d669e9a",
+          "metadata_concordance": {
+            "AF": false,
+            "AG": false
+          },
+          "metadata_stability": {
+            "frequency_share_same_top1": 1.0,
+            "frequency_margin": 0.0,
+            "geodesic_share_same_nearest": 0.985,
+            "geodesic_margin": 17.20439208166546,
+            "frequency_stable": true,
+            "geodesic_stable": true
+          },
+          "metadata_realised_mode": "no clear mode",
+          "metadata_hits": {
+            "association": false,
+            "frequency": null,
+            "geodesic": false,
+            "decoder": false
+          }
+        },
+        {
+          "input": "t1|ban:bfs+dfs | banset=['bfs', 'dfs'] | survivors=['bidir_bfs', 'iddfs', 'astar', 'dijkstra_unit']",
+          "output": "{\"dijkstra_unit\": 18}",
+          "predict_association": "{\"bidir_bfs\": 0.046875, \"iddfs\": 0.296875, \"astar\": 0.2734375, \"dijkstra_unit\": 0.3828125}",
+          "predict_frequency": "{\"bidir_bfs\": 0.25, \"iddfs\": 0.25, \"astar\": 0.25, \"dijkstra_unit\": 0.25}",
+          "predict_geodesic": "{\"bidir_bfs\": 0.1933480774899167, \"iddfs\": 0.18192013978189064, \"astar\": 0.27057838752240626, \"dijkstra_unit\": 0.3541533952057865}",
+          "predict_decoder": "{\"bidir_bfs\": 0.12899490227137955, \"iddfs\": 0.8486840175757444, \"astar\": 0.018093381592635297, \"dijkstra_unit\": 0.004227698560240721}",
+          "metadata_commit_sha256": "186f7182ebb7c16a8cf808d18bfe63e6de25d3e71b619cd72affe8ce3d669e9a",
+          "metadata_concordance": {
+            "AF": false,
+            "AG": true
+          },
+          "metadata_stability": {
+            "frequency_share_same_top1": 1.0,
+            "frequency_margin": 0.0,
+            "geodesic_share_same_nearest": 1.0,
+            "geodesic_margin": 19.127097955343686,
+            "frequency_stable": true,
+            "geodesic_stable": true
+          },
+          "metadata_realised_mode": "dijkstra_unit",
+          "metadata_hits": {
+            "association": true,
+            "frequency": null,
+            "geodesic": true,
+            "decoder": false
+          }
+        },
+        {
+          "input": "t1|ban:bfs+dijkstra_unit | banset=['bfs', 'dijkstra_unit'] | survivors=['dfs', 'bidir_bfs', 'iddfs', 'astar']",
+          "output": "{\"dfs\": 5}",
+          "predict_association": "{\"dfs\": 0.007194244604316547, \"bidir_bfs\": 0.26618705035971224, \"iddfs\": 0.20863309352517986, \"astar\": 0.5179856115107914}",
+          "predict_frequency": "{\"dfs\": 0.25, \"bidir_bfs\": 0.25, \"iddfs\": 0.25, \"astar\": 0.25}",
+          "predict_geodesic": "{\"dfs\": 0.28558265718705533, \"bidir_bfs\": 0.22255932614326077, \"iddfs\": 0.20407731232936638, \"astar\": 0.2877807043403175}",
+          "predict_decoder": "{\"dfs\": 0.25936908959596816, \"bidir_bfs\": 0.08034942808419022, \"iddfs\": 0.5705024371678343, \"astar\": 0.0897790451520073}",
+          "metadata_commit_sha256": "186f7182ebb7c16a8cf808d18bfe63e6de25d3e71b619cd72affe8ce3d669e9a",
+          "metadata_concordance": {
+            "AF": false,
+            "AG": true
+          },
+          "metadata_stability": {
+            "frequency_share_same_top1": 1.0,
+            "frequency_margin": 0.0,
+            "geodesic_share_same_nearest": 0.447,
+            "geodesic_margin": 0.5448342092972638,
+            "frequency_stable": true,
+            "geodesic_stable": false
+          },
+          "metadata_realised_mode": "dfs",
+          "metadata_hits": {
+            "association": false,
+            "frequency": null,
+            "geodesic": false,
+            "decoder": false
+          }
+        }
+      ]
+    }
+  ]
+}
