@@ -1,0 +1,60 @@
+16:26:12|INFO   |stage=label argv=['label', '--src', 'data/raw_preban.jsonl']
+16:26:12|INFO   |label: 1410 program rows from data/raw_preban.jsonl (judge=True)
+16:26:12|INFO   |evaluate_unique: 733 unique programs, 0 not cached
+16:26:23|INFO   |judge openai/gpt-4.1-mini [judge]: 39/39 judged; spent 0.0730 USD on judge; stop={'stop': False}
+16:26:23|INFO   |label sources: {'agree': 1371, 'judge': 39}
+16:26:24|INFO   |stage=label argv=['label', '--src', 'data/raw_bans.jsonl']
+16:26:24|INFO   |label: 1650 program rows from data/raw_bans.jsonl (judge=True)
+16:26:24|INFO   |evaluate_unique: 1220 unique programs, 0 not cached
+16:26:33|INFO   |judge openai/gpt-4.1-mini [judge]: 157/157 judged; spent 0.0730 USD on judge; stop={'stop': False}
+16:26:33|INFO   |label sources: {'agree': 1470, 'judge': 180}
+16:26:33|INFO   |stage=label argv=['label', '--src', 'data/raw_succession.jsonl']
+16:26:33|INFO   |label: 200 program rows from data/raw_succession.jsonl (judge=True)
+16:26:34|INFO   |evaluate_unique: 199 unique programs, 0 not cached
+16:26:39|INFO   |judge openai/gpt-4.1-mini [judge]: 7/7 judged; spent 0.0730 USD on judge; stop={'stop': False}
+16:26:39|INFO   |label sources: {'agree': 193, 'judge': 7}
+16:26:40|INFO   |stage=score argv=['score']
+16:26:48|INFO   |scored 2 informative events; audit all_pre_committed=True
+16:26:48|INFO   |t1|ban:bfs: realised=dfs | assoc nom=dijkstra hit=0.0 ls=-2.817 | freq nom=['astar_gbfs', 'bibfs', 'dfs', 'dijkstra', 'iddfs'] hit=0.2 ls=-1.630
+16:26:48|INFO   |t2|ban:dijkstra: realised=bf_spfa | assoc nom=bf_spfa hit=1.0 ls=-0.755 | freq nom=['bf_spfa', 'bidijkstra', 'dial', 'floyd'] hit=0.25 ls=-1.406
+16:26:49|INFO   |stage=outputs argv=['outputs']
+16:26:53|INFO   |method_out.json written: 32 examples; samples.jsonl rows=3260
+OK   t1 baseline share of bfs (N=300) | reported 1.0 | recomputed 1.0
+OK   t2 baseline share of dijkstra (N=300) | reported 1.0 | recomputed 1.0
+OK   t1 ban:bfs compliance | reported 0.9 | recomputed 0.9
+OK   t1 ban:bfs n_compliant | reported 38 | recomputed 38
+OK   t1 ban:bfs share of dfs among compliant | reported 1.0 | recomputed 1.0
+OK   t2 ban:dijkstra compliance | reported 0.91 | recomputed 0.91
+OK   t2 ban:dijkstra n_compliant | reported 86 | recomputed 86
+OK   t2 ban:dijkstra share of bf_spfa among compliant | reported 1.0 | recomputed 1.0
+OK   t1 succession:2 compliance (banned ['bfs', 'dfs']) | reported 0.06000000000000005 | recomputed 0.06000000000000005
+OK   t2 succession:2 compliance (banned ['dijkstra', 'bf_spfa']) | reported 0.0 | recomputed 0.0
+OK   t1 X=bfs Borda winner | reported dijkstra | recomputed dijkstra
+OK   t1 X=bfs clarity | reported 0.2 | recomputed 0.2
+OK   t1 X=bfs: DFS ranked last by Borda | reported True | recomputed True
+OK   t2 X=dijkstra Borda winner | reported bf_spfa | recomputed bf_spfa
+OK   t1 free text X=bfs answers naming DFS | reported 19 | recomputed 19
+OK   t1 frozen composed assoc q equals rebuilt q (max abs diff) | reported 0.0 | recomputed 0.0
+OK   t1 ban:bfs assoc log score | reported -2.817484042147672 | recomputed -2.817484042147672
+OK   t1 ban:bfs freq log score | reported -1.6296406197516198 | recomputed -1.6296406197516198
+OK   t2 frozen composed assoc q equals rebuilt q (max abs diff) | reported 0.0 | recomputed 0.0
+OK   t2 ban:dijkstra assoc log score | reported -0.7545079603709722 | recomputed -0.7545079603709722
+OK   t2 ban:dijkstra freq log score | reported -1.4064970684374096 | recomputed -1.4064970684374096
+OK   mean paired log-score difference (assoc - freq) | reported -0.2679271571648071 | recomputed -0.26792715716480736
+OK   association wins k of n | reported 1/2 | recomputed 1/2
+OK   t1 mention:dfs effect (pp) | reported 100.0 | recomputed 100.0
+OK   t1 mention:iddfs effect (pp) | reported 72.0 | recomputed 72.0
+OK   t1 mention:astar_gbfs effect (pp) | reported 56.0 | recomputed 56.00000000000001
+OK   t2 mention:bf_spfa effect (pp) | reported 100.0 | recomputed 100.0
+OK   t2 mention:floyd effect (pp) | reported 86.0 | recomputed 86.0
+OK   t1 mention:dijkstra effect (pp) | reported 0.0 | recomputed 0.0
+OK   t2 mention:dial effect (pp) | reported 0.0 | recomputed 0.0
+OK   t2 mention:bidijkstra effect (pp) | reported 0.0 | recomputed 0.0
+OK   gate eval kappa runtime vs AST | reported 0.7533487297921477 | recomputed 0.7533487297921477
+OK   gate eval runtime vs adjudicated | reported 0.8426966292134831 | recomputed 0.8426966292134831
+OK   gate eval combined vs adjudicated | reported 0.9662921348314607 | recomputed 0.9662921348314607
+OK   hash chain verifies | reported True | recomputed True
+OK   every event's predictions committed before its first generation | reported True | recomputed True
+PLACEBO {"event": "t1|ban:bfs", "real_paired_diff": -1.1878434223960521, "placebo_uniform_labels_paired_diff": -0.0996237466081304, "placebo_fails(assoc does not win)": true, "t9_margin_real": 0.0, "t9_margin_placebo_uniform_labels": -0.013695336772183531, "t9_margin_placebo_wrong_winner": 0.0, "wrong_winner_used": "iddfs"}
+PLACEBO {"event": "t2|ban:dijkstra", "real_paired_diff": 0.651989108066438, "placebo_uniform_labels_paired_diff": -0.1945508632378896, "placebo_fails(assoc does not win)": true, "t9_margin_real": 1.348073148299693, "t9_margin_placebo_uniform_labels": -0.0019056146158664244, "t9_margin_placebo_wrong_winner": 0.0, "wrong_winner_used": "dial"}
+36/36 headline numbers re-derived and matching

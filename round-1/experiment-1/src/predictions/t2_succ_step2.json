@@ -1,0 +1,222 @@
+{
+ "ambiguous": false,
+ "assoc_restricted_winner": "floyd",
+ "banned_in_order": [
+  "dijkstra",
+  "bf_spfa"
+ ],
+ "baseline_share_of_banned": 0.0,
+ "clarity_S": 0.65,
+ "clarity_cc": 0.5333333333333333,
+ "composed": {
+  "assoc": {
+   "bidijkstra": 0.37543333333333334,
+   "dial": 0.10943333333333333,
+   "floyd": 0.49513333333333337,
+   "other": 0.02
+  },
+  "assoc_ext": {
+   "bidijkstra": 0.3137361111111111,
+   "dial": 0.3137361111111111,
+   "floyd": 0.3525277777777778,
+   "other": 0.02
+  },
+  "assoc_first": {
+   "bidijkstra": 0.10943333333333333,
+   "dial": 0.10943333333333333,
+   "floyd": 0.7611333333333333,
+   "other": 0.02
+  },
+  "assoc_firstban": {
+   "bidijkstra": 0.2971111111111111,
+   "dial": 0.25277777777777777,
+   "floyd": 0.43011111111111106,
+   "other": 0.02
+  },
+  "assoc_pooled": {
+   "bidijkstra": 0.3362722222222222,
+   "dial": 0.18110555555555552,
+   "floyd": 0.46262222222222216,
+   "other": 0.02
+  },
+  "freetext": {
+   "bidijkstra": 0.32666666666666666,
+   "dial": 0.32666666666666666,
+   "floyd": 0.32666666666666666,
+   "other": 0.02
+  },
+  "freq": {
+   "bidijkstra": 0.32666666666666666,
+   "dial": 0.32666666666666666,
+   "floyd": 0.32666666666666666,
+   "other": 0.02
+  },
+  "freq_T13": {
+   "bidijkstra": 0.32666666666666666,
+   "dial": 0.32666666666666666,
+   "floyd": 0.32666666666666666,
+   "other": 0.02
+  },
+  "freq_listall": {
+   "bidijkstra": 0.32666666666666666,
+   "dial": 0.32666666666666666,
+   "floyd": 0.32666666666666666,
+   "other": 0.02
+  }
+ },
+ "composition": "q(y)=0.98*(0.95 p(y)+0.05/|S|), q(other)=0.02",
+ "concordant_AF": false,
+ "contest_event": true,
+ "event_id": "t2|succession:2",
+ "first_entropy_norm": 0.4670340276877455,
+ "freq_margin": 0.0,
+ "freq_stability": 0.0,
+ "freq_stable": false,
+ "freq_tied": true,
+ "frozen_utc": "2026-10-19T15:29:06.167051Z",
+ "kendall_w": 0.573,
+ "kind": "succession_step",
+ "nominations": {
+  "assoc": {
+   "is_tied": false,
+   "tied": [],
+   "top": "floyd"
+  },
+  "assoc_ext": {
+   "is_tied": false,
+   "tied": [],
+   "top": "floyd"
+  },
+  "assoc_first": {
+   "is_tied": false,
+   "tied": [],
+   "top": "floyd"
+  },
+  "assoc_firstban": {
+   "is_tied": false,
+   "tied": [],
+   "top": "floyd"
+  },
+  "assoc_pooled": {
+   "is_tied": false,
+   "tied": [],
+   "top": "floyd"
+  },
+  "freetext": {
+   "is_tied": true,
+   "tied": [
+    "bidijkstra",
+    "dial",
+    "floyd"
+   ],
+   "top": null
+  },
+  "freq": {
+   "is_tied": true,
+   "tied": [
+    "bidijkstra",
+    "dial",
+    "floyd"
+   ],
+   "top": null
+  },
+  "freq_T13": {
+   "is_tied": true,
+   "tied": [
+    "bidijkstra",
+    "dial",
+    "floyd"
+   ],
+   "top": null
+  },
+  "freq_listall": {
+   "is_tied": true,
+   "tied": [
+    "bidijkstra",
+    "dial",
+    "floyd"
+   ],
+   "top": null
+  }
+ },
+ "prompts": [
+  "Do not use Dijkstra's algorithm or Bellman-Ford or SPFA.\n\nTask: write a Python function solve(n, edges, s, t) that returns the length of the shortest path from node s to node t in a directed weighted graph. Nodes are numbered 0 to n-1 with 1 <= n <= 100. edges is a list of (u, v, w) tuples, each a directed edge from u to v with integer weight 0 <= w <= 100; there are at most 600 edges and the graph may contain cycles, self-loops and parallel edges. Return the minimum total weight of a path from s to t as an int, 0 if s equals t, and -1 if t cannot be reached from s.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+  "Your solution must not use Dijkstra's algorithm or Bellman-Ford or SPFA.\n\nTask: write a Python function solve(n, edges, s, t) that returns the length of the shortest path from node s to node t in a directed weighted graph. Nodes are numbered 0 to n-1 with 1 <= n <= 100. edges is a list of (u, v, w) tuples, each a directed edge from u to v with integer weight 0 <= w <= 100; there are at most 600 edges and the graph may contain cycles, self-loops and parallel edges. Return the minimum total weight of a path from s to t as an int, 0 if s equals t, and -1 if t cannot be reached from s.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+  "Avoid using Dijkstra's algorithm or Bellman-Ford or SPFA in your solution.\n\nTask: write a Python function solve(n, edges, s, t) that returns the length of the shortest path from node s to node t in a directed weighted graph. Nodes are numbered 0 to n-1 with 1 <= n <= 100. edges is a list of (u, v, w) tuples, each a directed edge from u to v with integer weight 0 <= w <= 100; there are at most 600 edges and the graph may contain cycles, self-loops and parallel edges. Return the minimum total weight of a path from s to t as an int, 0 if s equals t, and -1 if t cannot be reached from s.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+  "Dijkstra's algorithm or Bellman-Ford or SPFA is not allowed for this task.\n\nTask: write a Python function solve(n, edges, s, t) that returns the length of the shortest path from node s to node t in a directed weighted graph. Nodes are numbered 0 to n-1 with 1 <= n <= 100. edges is a list of (u, v, w) tuples, each a directed edge from u to v with integer weight 0 <= w <= 100; there are at most 600 edges and the graph may contain cycles, self-loops and parallel edges. Return the minimum total weight of a path from s to t as an int, 0 if s equals t, and -1 if t cannot be reached from s.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+  "Do not implement Dijkstra's algorithm or Bellman-Ford or SPFA.\n\nTask: write a Python function solve(n, edges, s, t) that returns the length of the shortest path from node s to node t in a directed weighted graph. Nodes are numbered 0 to n-1 with 1 <= n <= 100. edges is a list of (u, v, w) tuples, each a directed edge from u to v with integer weight 0 <= w <= 100; there are at most 600 edges and the graph may contain cycles, self-loops and parallel edges. Return the minimum total weight of a path from s to t as an int, 0 if s equals t, and -1 if t cannot be reached from s.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+  "You may use any approach except Dijkstra's algorithm or Bellman-Ford or SPFA.\n\nTask: write a Python function solve(n, edges, s, t) that returns the length of the shortest path from node s to node t in a directed weighted graph. Nodes are numbered 0 to n-1 with 1 <= n <= 100. edges is a list of (u, v, w) tuples, each a directed edge from u to v with integer weight 0 <= w <= 100; there are at most 600 edges and the graph may contain cycles, self-loops and parallel edges. Return the minimum total weight of a path from s to t as an int, 0 if s equals t, and -1 if t cannot be reached from s.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+  "Please refrain from using Dijkstra's algorithm or Bellman-Ford or SPFA.\n\nTask: write a Python function solve(n, edges, s, t) that returns the length of the shortest path from node s to node t in a directed weighted graph. Nodes are numbered 0 to n-1 with 1 <= n <= 100. edges is a list of (u, v, w) tuples, each a directed edge from u to v with integer weight 0 <= w <= 100; there are at most 600 edges and the graph may contain cycles, self-loops and parallel edges. Return the minimum total weight of a path from s to t as an int, 0 if s equals t, and -1 if t cannot be reached from s.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+  "The solution must not rely on Dijkstra's algorithm or Bellman-Ford or SPFA.\n\nTask: write a Python function solve(n, edges, s, t) that returns the length of the shortest path from node s to node t in a directed weighted graph. Nodes are numbered 0 to n-1 with 1 <= n <= 100. edges is a list of (u, v, w) tuples, each a directed edge from u to v with integer weight 0 <= w <= 100; there are at most 600 edges and the graph may contain cycles, self-loops and parallel edges. Return the minimum total weight of a path from s to t as an int, 0 if s equals t, and -1 if t cannot be reached from s.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+  "Using Dijkstra's algorithm or Bellman-Ford or SPFA is forbidden here.\n\nTask: write a Python function solve(n, edges, s, t) that returns the length of the shortest path from node s to node t in a directed weighted graph. Nodes are numbered 0 to n-1 with 1 <= n <= 100. edges is a list of (u, v, w) tuples, each a directed edge from u to v with integer weight 0 <= w <= 100; there are at most 600 edges and the graph may contain cycles, self-loops and parallel edges. Return the minimum total weight of a path from s to t as an int, 0 if s equals t, and -1 if t cannot be reached from s.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+  "Don't use Dijkstra's algorithm or Bellman-Ford or SPFA.\n\nTask: write a Python function solve(n, edges, s, t) that returns the length of the shortest path from node s to node t in a directed weighted graph. Nodes are numbered 0 to n-1 with 1 <= n <= 100. edges is a list of (u, v, w) tuples, each a directed edge from u to v with integer weight 0 <= w <= 100; there are at most 600 edges and the graph may contain cycles, self-loops and parallel edges. Return the minimum total weight of a path from s to t as an int, 0 if s equals t, and -1 if t cannot be reached from s.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation."
+ ],
+ "raw": {
+  "assoc": {
+   "bidijkstra": 0.3857142857142857,
+   "dial": 0.09999999999999999,
+   "floyd": 0.5142857142857142
+  },
+  "assoc_ext": {
+   "bidijkstra": 0.3194444444444444,
+   "dial": 0.3194444444444444,
+   "floyd": 0.3611111111111111
+  },
+  "assoc_first": {
+   "bidijkstra": 0.1,
+   "dial": 0.1,
+   "floyd": 0.8
+  },
+  "assoc_firstban": {
+   "bidijkstra": 0.30158730158730157,
+   "dial": 0.25396825396825395,
+   "floyd": 0.4444444444444444
+  },
+  "assoc_pooled": {
+   "bidijkstra": 0.34365079365079365,
+   "dial": 0.17698412698412697,
+   "floyd": 0.4793650793650793
+  },
+  "freetext": {
+   "bidijkstra": 0.3333333333333333,
+   "dial": 0.3333333333333333,
+   "floyd": 0.3333333333333333
+  },
+  "freq": {
+   "bidijkstra": 0.3333333333333333,
+   "dial": 0.3333333333333333,
+   "floyd": 0.3333333333333333
+  },
+  "freq_T13": {
+   "bidijkstra": 0.3333333333333333,
+   "dial": 0.3333333333333333,
+   "floyd": 0.3333333333333333
+  },
+  "freq_listall": {
+   "bidijkstra": 0.3333333333333333,
+   "dial": 0.3333333333333333,
+   "floyd": 0.3333333333333333
+  }
+ },
+ "segments": [
+  "Do not use Dijkstra's algorithm or Bellman-Ford or SPFA.",
+  "Your solution must not use Dijkstra's algorithm or Bellman-Ford or SPFA.",
+  "Avoid using Dijkstra's algorithm or Bellman-Ford or SPFA in your solution.",
+  "Dijkstra's algorithm or Bellman-Ford or SPFA is not allowed for this task.",
+  "Do not implement Dijkstra's algorithm or Bellman-Ford or SPFA.",
+  "You may use any approach except Dijkstra's algorithm or Bellman-Ford or SPFA.",
+  "Please refrain from using Dijkstra's algorithm or Bellman-Ford or SPFA.",
+  "The solution must not rely on Dijkstra's algorithm or Bellman-Ford or SPFA.",
+  "Using Dijkstra's algorithm or Bellman-Ford or SPFA is forbidden here.",
+  "Don't use Dijkstra's algorithm or Bellman-Ford or SPFA."
+ ],
+ "step": 2,
+ "stratum": "succession",
+ "survivors": [
+  "bidijkstra",
+  "floyd",
+  "dial"
+ ],
+ "task": "t2",
+ "x_last": "bf_spfa"
+}

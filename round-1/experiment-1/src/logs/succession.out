@@ -1,0 +1,19 @@
+15:29:04|INFO   |stage=succession argv=['succession']
+15:29:06|INFO   |t1 step 1 ban:bfs: realised=dfs compliance=0.90 n_compliant=38 next=dfs (realised)
+15:29:06|INFO   |t2 step 1 ban:dijkstra: realised=bf_spfa compliance=0.91 n_compliant=86 next=bf_spfa (realised)
+15:29:06|INFO   |committed predictions/t1_succ_step2.json sha=dd6429019f9c entry=0c1875b468d5
+15:29:06|INFO   |committed predictions/t2_succ_step2.json sha=7d254307611d entry=2b31053a1b3d
+15:29:06|INFO   |raw_succession.jsonl: 20 requests, 0 already done, 20 to run
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+15:30:38|INFO   |raw_succession.jsonl: 20/20 requests, 200 samples, 602 out-tok/s, 92s
+15:30:38|INFO   |raw_succession.jsonl: finished {'n_requests': 20, 'n_samples': 200, 'output_tokens': 55646, 'truncated': 0, 'seconds': 92.40145182609558, 'errors': 0, 'sec_per_output_token': 0.001660522801748474}
+15:30:38|INFO   |succession step 2: generated {'n_requests': 20, 'n_samples': 200, 'output_tokens': 55646, 'truncated': 0, 'seconds': 92.40145182609558, 'errors': 0, 'sec_per_output_token': 0.001660522801748474}
+15:30:38|INFO   |label: 200 program rows from data/raw_succession.jsonl (judge=True)
+15:30:38|INFO   |evaluate_unique: 199 unique programs, 197 not cached
+15:30:47|INFO   |evaluate 197/197: 100/197
+15:30:52|INFO   |evaluate 197/197: 197/197
+15:31:03|INFO   |judge openai/gpt-4.1-mini [judge]: 7/7 judged; spent 0.0730 USD on judge; stop={'stop': False}
+15:31:04|INFO   |label sources: {'agree': 193, 'judge': 7}
+15:31:04|INFO   |t1 step 2 banned=['bfs', 'dfs']: realised=dijkstra compliance=0.06 n_compliant=5 next=None (ban_failure_lt20_compliant)
+15:31:04|INFO   |t2 step 2 banned=['dijkstra', 'bf_spfa']: realised=no clear mode compliance=0.00 n_compliant=0 next=None (ban_failure_lt20_compliant)
