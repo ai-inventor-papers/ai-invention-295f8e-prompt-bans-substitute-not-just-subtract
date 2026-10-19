@@ -1,0 +1,17 @@
+{
+ "written_utc": "2026-10-19T15:54:32.021095+00:00",
+ "note": "written before analysis/analyze.py was first run on any full arm; the c* grid search and bisection had been decided by gpu/hf_steer.py on pass rate only",
+ "rules": {
+  "S_flat": "rarefied hill1_cc(dc at c*_t) - hill1_cc(HF c=0) has a paraphrase-cluster bootstrap 90% CI above 0 on both tasks ('partial' if on one); c*_t must be correctness-preserving (pass >= 0.8 x pass(c=0)).",
+  "S_specific": "that gain exceeds each random direction's gain at c*_t (paired cluster-bootstrap 90% CI of rarefied hill1(dc) - hill1(rand_k) above 0, k=1,2), and also the placebo's when E1 ran.",
+  "S_vs_prompt": "dc at c*_t against enumerate and ban:X_t (efficiency = delta_hill/delta_pass_pts, CIs); 'best knob' only if the 90% CIs separate.",
+  "S_commit": "commitment-test verdict for the modal X on each task (intact / de-commits / commits / uninformative).",
+  "PREDICT": "log-score ranks and top-1 hits of the hash-committed forecasts, reported as a forecast record with no threshold.",
+  "overall": "ADVANCE if S_flat and S_specific hold on >= 1 task with the same sign (point estimate of delta_hill > 0) on the other; PARTIAL if S_flat holds without S_specific; DROP if S_flat fails at every correctness-preserving c of every task that has one; INCONCLUSIVE if no task has a correctness-preserving c.",
+  "c_star": "largest c in {0.25,0.5,1.0,1.5} plus at most one pre-registered bisection point with pass_rate(c) >= 0.8 x pass_rate(HF c=0); chosen on pass rate only, blind to diversity.",
+  "bisection": "if pass(0.25) < 0.8 pass(0): add c=0.1; else add the midpoint between c* and the next grid point when the pass rate crosses the threshold there.",
+  "engine_check": "vLLM baseline vs HF c=0 correct-label distributions: pass if TV < 0.15 and exact/Monte-Carlo p > 0.05; otherwise steering-vs-prompt comparisons use HF c=0 and are flagged.",
+  "decisions_use": "paraphrase-cluster bootstrap (2000 resamples, 90%); sample bootstrap reported alongside.",
+  "move_vs_flatten": "'moves' := realised mode != X and the cluster CI of delta_hill includes 0 or lies below 0.5; 'flattens' := the CI of delta_hill lies above 0."
+ }
+}

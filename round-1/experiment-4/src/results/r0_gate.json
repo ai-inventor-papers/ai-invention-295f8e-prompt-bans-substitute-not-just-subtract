@@ -1,0 +1,468 @@
+{
+ "R0": {
+  "T1": {
+   "references_pass": {
+    "T1_astar": true,
+    "T1_bfs": true,
+    "T1_bidirectional_bfs": true,
+    "T1_dfs": true,
+    "T1_dijkstra_unit": true,
+    "T1_iddfs": true
+   },
+   "wrong_fail": {
+    "T1_diagonal": true,
+    "T1_skip_start": true,
+    "T1_unreach_none": true
+   },
+   "reference_labels_ok": {
+    "T1_astar": true,
+    "T1_bfs": true,
+    "T1_bidirectional_bfs": true,
+    "T1_dfs": true,
+    "T1_dijkstra_unit": true,
+    "T1_iddfs": true
+   },
+   "variants_ok": {
+    "variant_dfs": true,
+    "variant_bfs": true,
+    "variant_dijkstra_unit": true
+   },
+   "broken_handled": {
+    "broken_raises": true,
+    "broken_loops": true,
+    "broken_nosolve": true,
+    "broken_syntax": true
+   },
+   "pass": true
+  },
+  "T2": {
+   "references_pass": {
+    "T2_bellman_ford": true,
+    "T2_bidirectional_dijkstra": true,
+    "T2_dial": true,
+    "T2_dijkstra": true,
+    "T2_floyd_warshall": true,
+    "T2_spfa": true
+   },
+   "wrong_fail": {
+    "T2_bfs_unweighted": true,
+    "T2_early_exit": true,
+    "T2_unreach_inf": true
+   },
+   "reference_labels_ok": {
+    "T2_bellman_ford": true,
+    "T2_bidirectional_dijkstra": true,
+    "T2_dial": true,
+    "T2_dijkstra": true,
+    "T2_floyd_warshall": true,
+    "T2_spfa": true
+   },
+   "variants_ok": {
+    "variant_dijkstra": true
+   },
+   "broken_handled": {
+    "broken_raises": true,
+    "broken_loops": true,
+    "broken_nosolve": true,
+    "broken_syntax": true
+   },
+   "pass": true
+  }
+ },
+ "unit_tests": {
+  "T1/T1_astar": {
+   "passed": true,
+   "runtime": "astar",
+   "ast": "astar",
+   "first_failure": null,
+   "trace_error": null
+  },
+  "T1/T1_bfs": {
+   "passed": true,
+   "runtime": "bfs",
+   "ast": "bfs",
+   "first_failure": null,
+   "trace_error": null
+  },
+  "T1/T1_bidirectional_bfs": {
+   "passed": true,
+   "runtime": "bidirectional_bfs",
+   "ast": "bidirectional_bfs",
+   "first_failure": null,
+   "trace_error": null
+  },
+  "T1/T1_dfs": {
+   "passed": true,
+   "runtime": "dfs",
+   "ast": "dfs",
+   "first_failure": null,
+   "trace_error": null
+  },
+  "T1/T1_dijkstra_unit": {
+   "passed": true,
+   "runtime": "dijkstra_unit",
+   "ast": "dijkstra_unit",
+   "first_failure": null,
+   "trace_error": null
+  },
+  "T1/T1_iddfs": {
+   "passed": true,
+   "runtime": "iddfs",
+   "ast": "iddfs",
+   "first_failure": null,
+   "trace_error": null
+  },
+  "T1/T1_diagonal": {
+   "passed": false,
+   "runtime": "bfs",
+   "ast": "bfs",
+   "first_failure": {
+    "id": "t1_open30",
+    "kind": "open 30x30",
+    "msg": "non-adjacent step (0, 0)->(1, 1)",
+    "t": 0.005
+   },
+   "trace_error": null
+  },
+  "T1/T1_skip_start": {
+   "passed": false,
+   "runtime": "bfs",
+   "ast": "bfs",
+   "first_failure": {
+    "id": "t1_single",
+    "kind": "1x1 start==goal",
+    "msg": "expected a path, got []",
+    "t": 0.0
+   },
+   "trace_error": null
+  },
+  "T1/T1_unreach_none": {
+   "passed": false,
+   "runtime": "bfs",
+   "ast": "bfs",
+   "first_failure": {
+    "id": "t1_rand11",
+    "kind": "random p=0.3 10x8",
+    "msg": "expected [] for unreachable, got None",
+    "t": 0.0
+   },
+   "trace_error": null
+  },
+  "T1/variant_dfs": {
+   "passed": true,
+   "runtime": "dfs",
+   "ast": "dfs",
+   "first_failure": null,
+   "trace_error": null
+  },
+  "T1/variant_bfs": {
+   "passed": true,
+   "runtime": "bfs",
+   "ast": "bfs",
+   "first_failure": null,
+   "trace_error": null
+  },
+  "T1/variant_dijkstra_unit": {
+   "passed": true,
+   "runtime": "dijkstra_unit",
+   "ast": "dijkstra_unit",
+   "first_failure": null,
+   "trace_error": null
+  },
+  "T1/offcat_relaxation_sweeps": {
+   "passed": true,
+   "runtime": "unknown",
+   "ast": "other",
+   "first_failure": null,
+   "trace_error": null
+  },
+  "T1/offcat_union_find_walk": {
+   "passed": true,
+   "runtime": "unknown",
+   "ast": "other",
+   "first_failure": null,
+   "trace_error": null
+  },
+  "T1/broken_raises": {
+   "passed": false,
+   "runtime": "unknown",
+   "ast": "other",
+   "first_failure": {
+    "id": "t1_single",
+    "kind": "1x1 start==goal",
+    "msg": "ValueError: boom",
+    "t": 0.0
+   },
+   "trace_error": {
+    "P1": "ValueError: boom",
+    "P2": "ValueError: boom",
+    "P3": "ValueError: boom"
+   }
+  },
+  "T1/broken_loops": {
+   "passed": false,
+   "runtime": "unknown",
+   "ast": "other",
+   "first_failure": {
+    "id": "t1_single",
+    "kind": "1x1 start==goal",
+    "msg": "timeout > 1.00s",
+    "t": 1.0
+   },
+   "trace_error": {
+    "P1": "timeout",
+    "P2": "timeout",
+    "P3": "timeout"
+   }
+  },
+  "T1/broken_nosolve": {
+   "passed": false,
+   "runtime": "unknown",
+   "ast": "other",
+   "first_failure": null,
+   "trace_error": null
+  },
+  "T1/broken_syntax": {
+   "passed": false,
+   "runtime": "unknown",
+   "ast": "other",
+   "first_failure": null,
+   "trace_error": null
+  },
+  "T2/T2_bellman_ford": {
+   "passed": true,
+   "runtime": "bellman_ford_spfa",
+   "ast": "bellman_ford_spfa",
+   "first_failure": null,
+   "trace_error": null
+  },
+  "T2/T2_bidirectional_dijkstra": {
+   "passed": true,
+   "runtime": "bidirectional_dijkstra",
+   "ast": "bidirectional_dijkstra",
+   "first_failure": null,
+   "trace_error": null
+  },
+  "T2/T2_dial": {
+   "passed": true,
+   "runtime": "dial",
+   "ast": "dial",
+   "first_failure": null,
+   "trace_error": {
+    "Q2": "IndexError: list index out of range"
+   }
+  },
+  "T2/T2_dijkstra": {
+   "passed": true,
+   "runtime": "dijkstra",
+   "ast": "dijkstra",
+   "first_failure": null,
+   "trace_error": null
+  },
+  "T2/T2_floyd_warshall": {
+   "passed": true,
+   "runtime": "floyd_warshall",
+   "ast": "floyd_warshall",
+   "first_failure": null,
+   "trace_error": null
+  },
+  "T2/T2_spfa": {
+   "passed": true,
+   "runtime": "bellman_ford_spfa",
+   "ast": "bellman_ford_spfa",
+   "first_failure": null,
+   "trace_error": null
+  },
+  "T2/T2_bfs_unweighted": {
+   "passed": false,
+   "runtime": "unknown",
+   "ast": "other",
+   "first_failure": {
+    "id": "t2_sparse2",
+    "kind": "sparse n=2",
+    "msg": "expected 57, got 1",
+    "t": 0.0
+   },
+   "trace_error": null
+  },
+  "T2/T2_early_exit": {
+   "passed": false,
+   "runtime": "dijkstra",
+   "ast": "dijkstra",
+   "first_failure": {
+    "id": "t2_dense10",
+    "kind": "dense n=10",
+    "msg": "expected 130, got 133",
+    "t": 0.0
+   },
+   "trace_error": null
+  },
+  "T2/T2_unreach_inf": {
+   "passed": false,
+   "runtime": "dijkstra",
+   "ast": "dijkstra",
+   "first_failure": {
+    "id": "t2_dense2",
+    "kind": "dense n=2",
+    "msg": "bad float inf",
+    "t": 0.0
+   },
+   "trace_error": null
+  },
+  "T2/variant_dijkstra": {
+   "passed": true,
+   "runtime": "unknown",
+   "ast": "dijkstra",
+   "first_failure": null,
+   "trace_error": null
+  },
+  "T2/offcat_minplus_squaring": {
+   "passed": true,
+   "runtime": "unknown",
+   "ast": "other",
+   "first_failure": null,
+   "trace_error": null
+  },
+  "T2/offcat_subdivided_01bfs": {
+   "passed": true,
+   "runtime": "unknown",
+   "ast": "other",
+   "first_failure": null,
+   "trace_error": null
+  },
+  "T2/broken_raises": {
+   "passed": false,
+   "runtime": "unknown",
+   "ast": "other",
+   "first_failure": {
+    "id": "t2_sparse1",
+    "kind": "sparse n=1",
+    "msg": "ValueError: boom",
+    "t": 0.0
+   },
+   "trace_error": {
+    "Q1": "ValueError: boom",
+    "Q2": "ValueError: boom",
+    "Q3": "ValueError: boom"
+   }
+  },
+  "T2/broken_loops": {
+   "passed": false,
+   "runtime": "unknown",
+   "ast": "other",
+   "first_failure": {
+    "id": "t2_sparse1",
+    "kind": "sparse n=1",
+    "msg": "timeout > 1.00s",
+    "t": 1.0
+   },
+   "trace_error": {
+    "Q1": "timeout",
+    "Q2": "timeout",
+    "Q3": "timeout"
+   }
+  },
+  "T2/broken_nosolve": {
+   "passed": false,
+   "runtime": "unknown",
+   "ast": "other",
+   "first_failure": null,
+   "trace_error": null
+  },
+  "T2/broken_syntax": {
+   "passed": false,
+   "runtime": "unknown",
+   "ast": "other",
+   "first_failure": null,
+   "trace_error": null
+  }
+ },
+ "limit_table": {
+  "T1": {
+   "t1_single": 1.0,
+   "t1_row": 1.0,
+   "t1_col": 1.0,
+   "t1_open30": 4.719,
+   "t1_open30_rev": 4.742,
+   "t1_rand0": 1.0,
+   "t1_rand1": 1.0,
+   "t1_rand2": 1.0,
+   "t1_rand3": 1.0,
+   "t1_rand4": 1.0,
+   "t1_rand5": 1.0,
+   "t1_rand6": 1.0,
+   "t1_rand7": 1.0,
+   "t1_rand8": 1.0,
+   "t1_rand9": 1.0,
+   "t1_rand10": 1.0,
+   "t1_rand11": 1.0,
+   "t1_rand12": 1.0,
+   "t1_rand13": 1.0,
+   "t1_rand14": 1.0,
+   "t1_rand15": 1.0,
+   "t1_rand16": 1.0,
+   "t1_rand17": 1.0,
+   "t1_rand18": 1.0,
+   "t1_rand19": 6.146,
+   "t1_maze15": 1.0,
+   "t1_maze29": 1.0,
+   "t1_maze29_mid": 1.0,
+   "t1_spiral21": 1.0,
+   "t1_spiral29": 1.0,
+   "t1_unreach0": 125.771,
+   "t1_unreach1": 2.339,
+   "t1_unreach2": 26.16,
+   "t1_unreach3": 1.0,
+   "t1_unreach4": 1.0,
+   "t1_unreach5": 1.0,
+   "t1_adjacent": 1.0,
+   "t1_adjacent2": 1.0,
+   "t1_same_big": 1.0,
+   "t1_comb": 1.015,
+   "t1_big0": 2.666,
+   "t1_big1": 2.753,
+   "t1_big2": 3.167
+  },
+  "T2": {
+   "t2_sparse1": 1.0,
+   "t2_dense1": 1.0,
+   "t2_sparse2": 1.0,
+   "t2_dense2": 1.0,
+   "t2_sparse3": 1.0,
+   "t2_dense3": 1.0,
+   "t2_sparse5": 1.0,
+   "t2_dense5": 1.0,
+   "t2_sparse10": 1.0,
+   "t2_dense10": 1.0,
+   "t2_sparse20": 1.0,
+   "t2_dense20": 1.0,
+   "t2_sparse50": 1.0,
+   "t2_dense50": 1.0,
+   "t2_sparse100": 1.0,
+   "t2_dense100": 1.0,
+   "t2_zero0": 1.0,
+   "t2_zero1": 1.0,
+   "t2_zero2": 1.0,
+   "t2_self0": 1.0,
+   "t2_self1": 1.0,
+   "t2_parallel0": 1.0,
+   "t2_parallel1": 1.0,
+   "t2_unreach0": 1.0,
+   "t2_unreach1": 1.0,
+   "t2_unreach2": 1.0,
+   "t2_same0": 1.0,
+   "t2_same1": 1.0,
+   "t2_chain": 1.0,
+   "t2_chain_rev": 1.0,
+   "t2_maxw0": 1.0,
+   "t2_maxw1": 1.0,
+   "t2_mixed0": 1.0,
+   "t2_mixed1": 1.0,
+   "t2_mixed2": 1.0,
+   "t2_mixed3": 1.0,
+   "t2_mixed4": 1.0,
+   "t2_mixed5": 1.0,
+   "t2_trap": 1.0
+  }
+ }
+}
