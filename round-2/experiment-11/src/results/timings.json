@@ -1,0 +1,45 @@
+{
+ "run_start_utc": "2026-10-20T03:11",
+ "gpu": "NVIDIA RTX 2000 Ada Generation, 16 GB (cc 8.9), 6 CPUs, 28 GB RAM (cgroup)",
+ "job_A_vllm_sampling": {
+  "start": "03:57:11",
+  "end": "04:11:46",
+  "seconds_generation": 730,
+  "requests": 3890,
+  "note": "two earlier launches failed at engine start (no C compiler for Triton) and are logged in logs/jobA_failed_*.out"
+ },
+ "job_B_scoring_attempt1": {
+  "start": "04:32:51",
+  "end": "04:44:33",
+  "pairs_scored": 3100,
+  "note": "CUDA OOM in prompt-logprob logits (max_num_batched_tokens 8192); resumed"
+ },
+ "job_B_scoring_attempt2": {
+  "start": "05:12:20",
+  "end": "05:42:28",
+  "seconds": 1803,
+  "pairs_scored": 9860,
+  "throughput_tok_s": 1680
+ },
+ "job_C_topups": {
+  "start": "05:42:40",
+  "end": "05:48:12",
+  "requests": 420
+ },
+ "job_B_topup_scoring": {
+  "start": "05:50:45",
+  "end": "06:00:52",
+  "seconds": 584,
+  "pairs": 3080
+ },
+ "cpu_labelling_round1_seconds": 400,
+ "cpu_build_seconds": 25,
+ "job_D_llama_pilot": {
+  "start": "06:01:00",
+  "end": "06:11:33",
+  "requests": 650,
+  "model": "RedHatAI/Meta-Llama-3.1-8B-Instruct-FP8"
+ },
+ "gpu_minutes_total_approx": 86.5,
+ "gpu_hours_total_approx": 1.44
+}
