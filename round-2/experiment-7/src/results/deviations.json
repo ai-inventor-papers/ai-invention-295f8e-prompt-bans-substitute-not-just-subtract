@@ -1,0 +1,13 @@
+[
+ "Yield correction: L = log y_j + logmeanexp(lw) is primary for the gate and implied distributions; the literal formula L_raw is reported beside it (gains/C1 unaffected).",
+ "Neutral-twin filler ' .'; 0 alignment failures over 190 pairs.",
+ "Noun ranking: all 718 noun-bank candidates are single-token, so the rank reduces to SUBTLEX frequency; a minimal neutrality screen removed one vulgar word and path/data-structure words (prompts_v2.json rules.noun_exclusions).",
+ "vLLM ran with enforce_eager=True (no C compiler in the container), max_num_seqs=48 (plan: 8) for throughput on the L4; per-request seeds make the sampled distribution independent of batching.",
+ "Scorer precision: bf16 activations failed validation (cached vs full up to 2.1 nats per program; B=1 vs B=8 contrast 2.7 nats). Production scoring keeps bf16 weights but runs fp32 activations with TF32 matmuls and an fp32 lm_head/log-softmax: per-program cached-vs-full 0.074 (passes 0.25), contrast 0.119 (misses 0.10 narrowly), B=1 vs B=8 0.045 (passes). One path is used for every condition.",
+ "Cut rule fired: measured 1046 tok/s (TF32) projected Q1-Q6 at M=30 to 242 min > 150 -> M=20 programs per algorithm (halves of 10) and the gate on 3 paraphrases.",
+ "pipeline.py (exp1 stage code) was copied in addition to the plan's list because its label_rows/evaluate_unique implement the canonical labeller orchestration; its evaluation cache points into data/.",
+ "Gate events: the realised mode / clear-mode test is computed over the allowed labels (banned labels excluded under a ban).",
+ "Variant (ii) uses ||h|| of the layer-18 OUTPUT at each edited position; its program-position edit is applied at every teacher-forced input position.",
+ "t2|bidijkstra: 71% scrub failures -> comment-only scrubbing (F5)",
+ "Free-form answers: {'t1': 0.06666666666666667, 't2': 0.47} truncated at the frozen 32 tokens; labelled 'other' shares {'t1': 0.0, 't2': 0.28} (association profiles are therefore weak; secondary aim only)."
+]
