@@ -1,0 +1,2889 @@
+{
+ "rule": "S0.7-S0.8 nominees (ASSOCIATE, FRLP_FP8) and S1d: ban-free forecasts + hash-chained commitment before any ban\nsample.\n\nattempted = label != 'invalid'; avoidance = 1 - share of D among attempted; landing = counts over survivors S plus\n'other' among attempted non-D programs.\nSUBTRACT = landing of the LAST chain round (persistent = round 0, iterated rounds 1..3) with >= 20 non-D attempts;\n  undefined (scored uniform, flagged) if no round has >= 20, or if D keeps >= 0.5 of attempts in every round\n  ('not carried by a small set of surface tokens').\nLADDER = summed non-D landing counts over the pushes (nonce, novelty, rand1-3) that each move >= 20 attempts off D;\n  undefined otherwise; LADDER_EXISTS = at least 2 such pushes share a modal non-default label (a survivor).\nASSOCIATE, PROXIMITY = point masses on their nominees.  Descriptive: SUBTRACT_1SHOT (one-shot landing, same >= 20\nrule), FRLP_FP8 (exp11 baseline FRLP mass over survivors with mass >= 0.01 and Kish ESS >= 5, renormalised).\nDISAGREEING = among the four primary families with a defined top-1 (>= 2 defined), the top-1s are not all equal.\n",
+ "tasks": {
+  "T03": {
+   "D": "full_sort",
+   "S": [
+    "size_k_heap",
+    "heapify_pop",
+    "quickselect",
+    "median_of_medians",
+    "counting_sort"
+   ],
+   "families": {
+    "SUBTRACT": {
+     "rounds": [
+      "persistent",
+      "iter1",
+      "iter2",
+      "iter3"
+     ],
+     "stop_reason": null,
+     "flags": [
+      "not carried by a small set of surface tokens"
+     ],
+     "defined": false,
+     "reason": "D keeps >= 0.5 of attempts in every round",
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "LADDER": {
+     "qualifying_pushes": [
+      "novelty",
+      "rand3"
+     ],
+     "per_push": {
+      "nonce": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "novelty": {
+       "n_non_default": 50,
+       "landing": {
+        "quickselect": 45,
+        "heapify_pop": 2,
+        "size_k_heap": 3
+       }
+      },
+      "rand1": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand2": {
+       "n_non_default": 3,
+       "landing": {
+        "quickselect": 3
+       }
+      },
+      "rand3": {
+       "n_non_default": 41,
+       "landing": {
+        "quickselect": 41
+       }
+      }
+     },
+     "modal_survivor_per_push": {
+      "novelty": "quickselect",
+      "rand3": "quickselect"
+     },
+     "LADDER_EXISTS": true,
+     "defined": true,
+     "counts": {
+      "quickselect": 86,
+      "heapify_pop": 2,
+      "size_k_heap": 3
+     },
+     "p_raw": {
+      "size_k_heap": 0.03296703296703297,
+      "heapify_pop": 0.02197802197802198,
+      "quickselect": 0.945054945054945,
+      "median_of_medians": 0.0,
+      "counting_sort": 0.0,
+      "other": 0.0
+     },
+     "top1": "quickselect",
+     "top1_tie": false
+    },
+    "ASSOCIATE": {
+     "defined": true,
+     "nominee": "quickselect",
+     "p_raw": {
+      "size_k_heap": 0.0,
+      "heapify_pop": 0.0,
+      "quickselect": 1.0,
+      "median_of_medians": 0.0,
+      "counting_sort": 0.0,
+      "other": 0.0
+     },
+     "tie": false,
+     "top1": "quickselect",
+     "top1_tie": false
+    },
+    "PROXIMITY": {
+     "defined": true,
+     "nominee": "heapify_pop",
+     "p_raw": {
+      "size_k_heap": 0.0,
+      "heapify_pop": 1.0,
+      "quickselect": 0.0,
+      "median_of_medians": 0.0,
+      "counting_sort": 0.0,
+      "other": 0.0
+     },
+     "top1": "heapify_pop",
+     "top1_tie": false
+    },
+    "SUBTRACT_1SHOT": {
+     "defined": false,
+     "p_raw": null,
+     "reason": "one-shot moved < 20 attempts off D",
+     "top1": null,
+     "top1_tie": false
+    },
+    "FRLP_FP8": {
+     "defined": true,
+     "p_raw": {
+      "size_k_heap": 0.0,
+      "heapify_pop": 0.0,
+      "quickselect": 1.0,
+      "median_of_medians": 0.0,
+      "counting_sort": 0.0,
+      "other": 0.0
+     },
+     "top1": "quickselect",
+     "top1_tie": false
+    },
+    "UNIFORM": {
+     "defined": false,
+     "p_raw": null,
+     "note": "uniform reference",
+     "top1": null,
+     "top1_tie": false
+    }
+   },
+   "arms": {
+    "twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 48,
+     "n_non_default": 2,
+     "default_share": 0.96,
+     "avoidance": 0.04,
+     "landing": {
+      "quickselect": 2
+     }
+    },
+    "oneshot": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 31,
+     "n_non_default": 19,
+     "default_share": 0.62,
+     "avoidance": 0.38,
+     "landing": {
+      "quickselect": 19
+     }
+    },
+    "sham": {
+     "n": 50,
+     "n_attempted": 11,
+     "n_default": 0,
+     "n_non_default": 11,
+     "default_share": 0.0,
+     "avoidance": 1.0,
+     "landing": {
+      "quickselect": 10,
+      "heapify_pop": 1
+     }
+    },
+    "persistent": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 32,
+     "n_non_default": 18,
+     "default_share": 0.64,
+     "avoidance": 0.36,
+     "landing": {
+      "quickselect": 18
+     }
+    },
+    "iter1": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 32,
+     "n_non_default": 18,
+     "default_share": 0.64,
+     "avoidance": 0.36,
+     "landing": {
+      "quickselect": 18
+     }
+    },
+    "iter2": {
+     "n": 50,
+     "n_attempted": 44,
+     "n_default": 26,
+     "n_non_default": 18,
+     "default_share": 0.5909090909090909,
+     "avoidance": 0.4090909090909091,
+     "landing": {
+      "quickselect": 18
+     }
+    },
+    "iter3": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 32,
+     "n_non_default": 18,
+     "default_share": 0.64,
+     "avoidance": 0.36,
+     "landing": {
+      "quickselect": 18
+     }
+    },
+    "nonce": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "novelty": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 0,
+     "n_non_default": 50,
+     "default_share": 0.0,
+     "avoidance": 1.0,
+     "landing": {
+      "quickselect": 45,
+      "heapify_pop": 2,
+      "size_k_heap": 3
+     }
+    },
+    "hf_twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 49,
+     "n_non_default": 1,
+     "default_share": 0.98,
+     "avoidance": 0.02,
+     "landing": {
+      "quickselect": 1
+     }
+    },
+    "rand1": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand2": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 47,
+     "n_non_default": 3,
+     "default_share": 0.94,
+     "avoidance": 0.06,
+     "landing": {
+      "quickselect": 3
+     }
+    },
+    "rand3": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 9,
+     "n_non_default": 41,
+     "default_share": 0.18,
+     "avoidance": 0.82,
+     "landing": {
+      "quickselect": 41
+     }
+    }
+   },
+   "n_primary_defined": 3,
+   "disagreeing": true,
+   "co_veto": []
+  },
+  "T04": {
+   "D": "naive",
+   "S": [
+    "kmp",
+    "rabin_karp",
+    "z_algorithm",
+    "bmh",
+    "builtin"
+   ],
+   "families": {
+    "SUBTRACT": {
+     "rounds": [
+      "persistent",
+      "iter1",
+      "iter2",
+      "iter3"
+     ],
+     "stop_reason": null,
+     "flags": [
+      "not carried by a small set of surface tokens"
+     ],
+     "defined": false,
+     "reason": "D keeps >= 0.5 of attempts in every round",
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "LADDER": {
+     "qualifying_pushes": [],
+     "per_push": {
+      "nonce": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "novelty": {
+       "n_non_default": 13,
+       "landing": {
+        "kmp": 11,
+        "bmh": 1,
+        "builtin": 1
+       }
+      },
+      "rand1": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand2": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand3": {
+       "n_non_default": 0,
+       "landing": {}
+      }
+     },
+     "modal_survivor_per_push": {},
+     "LADDER_EXISTS": false,
+     "defined": false,
+     "reason": "no push moved >= 20 attempts off D",
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "ASSOCIATE": {
+     "defined": true,
+     "nominee": "kmp",
+     "p_raw": {
+      "kmp": 1.0,
+      "rabin_karp": 0.0,
+      "z_algorithm": 0.0,
+      "bmh": 0.0,
+      "builtin": 0.0,
+      "other": 0.0
+     },
+     "tie": false,
+     "top1": "kmp",
+     "top1_tie": false
+    },
+    "PROXIMITY": {
+     "defined": true,
+     "nominee": "builtin",
+     "p_raw": {
+      "kmp": 0.0,
+      "rabin_karp": 0.0,
+      "z_algorithm": 0.0,
+      "bmh": 0.0,
+      "builtin": 1.0,
+      "other": 0.0
+     },
+     "top1": "builtin",
+     "top1_tie": false
+    },
+    "SUBTRACT_1SHOT": {
+     "defined": false,
+     "p_raw": null,
+     "reason": "one-shot moved < 20 attempts off D",
+     "top1": null,
+     "top1_tie": false
+    },
+    "FRLP_FP8": {
+     "defined": false,
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "UNIFORM": {
+     "defined": false,
+     "p_raw": null,
+     "note": "uniform reference",
+     "top1": null,
+     "top1_tie": false
+    }
+   },
+   "arms": {
+    "twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "oneshot": {
+     "n": 50,
+     "n_attempted": 43,
+     "n_default": 43,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "sham": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "persistent": {
+     "n": 50,
+     "n_attempted": 43,
+     "n_default": 43,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "iter1": {
+     "n": 50,
+     "n_attempted": 41,
+     "n_default": 40,
+     "n_non_default": 1,
+     "default_share": 0.975609756097561,
+     "avoidance": 0.024390243902439025,
+     "landing": {
+      "builtin": 1
+     }
+    },
+    "iter2": {
+     "n": 50,
+     "n_attempted": 42,
+     "n_default": 41,
+     "n_non_default": 1,
+     "default_share": 0.9761904761904762,
+     "avoidance": 0.023809523809523808,
+     "landing": {
+      "builtin": 1
+     }
+    },
+    "iter3": {
+     "n": 50,
+     "n_attempted": 45,
+     "n_default": 44,
+     "n_non_default": 1,
+     "default_share": 0.9777777777777777,
+     "avoidance": 0.022222222222222223,
+     "landing": {
+      "builtin": 1
+     }
+    },
+    "nonce": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "novelty": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 37,
+     "n_non_default": 13,
+     "default_share": 0.74,
+     "avoidance": 0.26,
+     "landing": {
+      "kmp": 11,
+      "bmh": 1,
+      "builtin": 1
+     }
+    },
+    "hf_twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand1": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand2": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand3": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    }
+   },
+   "n_primary_defined": 2,
+   "disagreeing": true,
+   "co_veto": []
+  },
+  "T06": {
+   "D": "hash_set",
+   "S": [
+    "sort_adjacent",
+    "floyd",
+    "value_binary_search",
+    "index_marking"
+   ],
+   "families": {
+    "SUBTRACT": {
+     "rounds": [
+      "persistent",
+      "iter1"
+     ],
+     "stop_reason": "round 1 default share 0.14 < 0.2",
+     "flags": [],
+     "defined": true,
+     "source_round": "iter1",
+     "counts": {
+      "floyd": 9,
+      "sort_adjacent": 32,
+      "index_marking": 1
+     },
+     "p_raw": {
+      "sort_adjacent": 0.7619047619047619,
+      "floyd": 0.21428571428571427,
+      "value_binary_search": 0.0,
+      "index_marking": 0.023809523809523808,
+      "other": 0.0
+     },
+     "top1": "sort_adjacent",
+     "top1_tie": false
+    },
+    "LADDER": {
+     "qualifying_pushes": [],
+     "per_push": {
+      "nonce": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "novelty": {
+       "n_non_default": 1,
+       "landing": {
+        "floyd": 1
+       }
+      },
+      "rand1": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand2": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand3": {
+       "n_non_default": 0,
+       "landing": {}
+      }
+     },
+     "modal_survivor_per_push": {},
+     "LADDER_EXISTS": false,
+     "defined": false,
+     "reason": "no push moved >= 20 attempts off D",
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "ASSOCIATE": {
+     "defined": true,
+     "nominee": "floyd",
+     "p_raw": {
+      "sort_adjacent": 0.0,
+      "floyd": 1.0,
+      "value_binary_search": 0.0,
+      "index_marking": 0.0,
+      "other": 0.0
+     },
+     "tie": false,
+     "top1": "floyd",
+     "top1_tie": false
+    },
+    "PROXIMITY": {
+     "defined": true,
+     "nominee": "sort_adjacent",
+     "p_raw": {
+      "sort_adjacent": 1.0,
+      "floyd": 0.0,
+      "value_binary_search": 0.0,
+      "index_marking": 0.0,
+      "other": 0.0
+     },
+     "top1": "sort_adjacent",
+     "top1_tie": false
+    },
+    "SUBTRACT_1SHOT": {
+     "defined": false,
+     "p_raw": null,
+     "reason": "one-shot moved < 20 attempts off D",
+     "top1": null,
+     "top1_tie": false
+    },
+    "FRLP_FP8": {
+     "defined": false,
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "UNIFORM": {
+     "defined": false,
+     "p_raw": null,
+     "note": "uniform reference",
+     "top1": null,
+     "top1_tie": false
+    }
+   },
+   "arms": {
+    "twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "oneshot": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "sham": {
+     "n": 50,
+     "n_attempted": 15,
+     "n_default": 7,
+     "n_non_default": 8,
+     "default_share": 0.4666666666666667,
+     "avoidance": 0.5333333333333333,
+     "landing": {
+      "index_marking": 2,
+      "floyd": 6
+     }
+    },
+    "persistent": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "iter1": {
+     "n": 50,
+     "n_attempted": 49,
+     "n_default": 7,
+     "n_non_default": 42,
+     "default_share": 0.14285714285714285,
+     "avoidance": 0.8571428571428571,
+     "landing": {
+      "floyd": 9,
+      "sort_adjacent": 32,
+      "index_marking": 1
+     }
+    },
+    "nonce": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "novelty": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 49,
+     "n_non_default": 1,
+     "default_share": 0.98,
+     "avoidance": 0.02,
+     "landing": {
+      "floyd": 1
+     }
+    },
+    "hf_twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand1": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand2": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand3": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    }
+   },
+   "n_primary_defined": 3,
+   "disagreeing": true,
+   "co_veto": []
+  },
+  "T05": {
+   "D": "hash_map",
+   "S": [
+    "sort_two_pointers",
+    "brute_force",
+    "sort_binary_search"
+   ],
+   "families": {
+    "SUBTRACT": {
+     "rounds": [
+      "persistent",
+      "iter1",
+      "iter2",
+      "iter3"
+     ],
+     "stop_reason": null,
+     "flags": [
+      "not carried by a small set of surface tokens"
+     ],
+     "defined": false,
+     "reason": "D keeps >= 0.5 of attempts in every round",
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "LADDER": {
+     "qualifying_pushes": [],
+     "per_push": {
+      "nonce": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "novelty": {
+       "n_non_default": 4,
+       "landing": {
+        "brute_force": 3,
+        "other": 1
+       }
+      },
+      "rand1": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand2": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand3": {
+       "n_non_default": 0,
+       "landing": {}
+      }
+     },
+     "modal_survivor_per_push": {},
+     "LADDER_EXISTS": false,
+     "defined": false,
+     "reason": "no push moved >= 20 attempts off D",
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "ASSOCIATE": {
+     "defined": true,
+     "nominee": "sort_two_pointers",
+     "p_raw": {
+      "sort_two_pointers": 1.0,
+      "brute_force": 0.0,
+      "sort_binary_search": 0.0,
+      "other": 0.0
+     },
+     "tie": false,
+     "top1": "sort_two_pointers",
+     "top1_tie": false
+    },
+    "PROXIMITY": {
+     "defined": true,
+     "nominee": "brute_force",
+     "p_raw": {
+      "sort_two_pointers": 0.0,
+      "brute_force": 1.0,
+      "sort_binary_search": 0.0,
+      "other": 0.0
+     },
+     "top1": "brute_force",
+     "top1_tie": false
+    },
+    "SUBTRACT_1SHOT": {
+     "defined": false,
+     "p_raw": null,
+     "reason": "one-shot moved < 20 attempts off D",
+     "top1": null,
+     "top1_tie": false
+    },
+    "FRLP_FP8": {
+     "defined": false,
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "UNIFORM": {
+     "defined": false,
+     "p_raw": null,
+     "note": "uniform reference",
+     "top1": null,
+     "top1_tie": false
+    }
+   },
+   "arms": {
+    "twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "oneshot": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "sham": {
+     "n": 50,
+     "n_attempted": 22,
+     "n_default": 18,
+     "n_non_default": 4,
+     "default_share": 0.8181818181818182,
+     "avoidance": 0.18181818181818182,
+     "landing": {
+      "brute_force": 3,
+      "sort_two_pointers": 1
+     }
+    },
+    "persistent": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "iter1": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "iter2": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "iter3": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "nonce": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "novelty": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 46,
+     "n_non_default": 4,
+     "default_share": 0.92,
+     "avoidance": 0.08,
+     "landing": {
+      "brute_force": 3,
+      "other": 1
+     }
+    },
+    "hf_twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand1": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand2": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand3": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    }
+   },
+   "n_primary_defined": 2,
+   "disagreeing": true,
+   "co_veto": []
+  },
+  "T10": {
+   "D": "union_find",
+   "S": [
+    "bfs",
+    "dfs",
+    "label_propagation"
+   ],
+   "families": {
+    "SUBTRACT": {
+     "rounds": [
+      "persistent",
+      "iter1"
+     ],
+     "stop_reason": "round 1 default share 0.00 < 0.2",
+     "flags": [],
+     "defined": true,
+     "source_round": "iter1",
+     "counts": {
+      "dfs": 49,
+      "bfs": 1
+     },
+     "p_raw": {
+      "bfs": 0.02,
+      "dfs": 0.98,
+      "label_propagation": 0.0,
+      "other": 0.0
+     },
+     "top1": "dfs",
+     "top1_tie": false
+    },
+    "LADDER": {
+     "qualifying_pushes": [],
+     "per_push": {
+      "nonce": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "novelty": {
+       "n_non_default": 11,
+       "landing": {
+        "dfs": 11
+       }
+      },
+      "rand1": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand2": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand3": {
+       "n_non_default": 13,
+       "landing": {
+        "dfs": 13
+       }
+      }
+     },
+     "modal_survivor_per_push": {},
+     "LADDER_EXISTS": false,
+     "defined": false,
+     "reason": "no push moved >= 20 attempts off D",
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "ASSOCIATE": {
+     "defined": true,
+     "nominee": "dfs",
+     "p_raw": {
+      "bfs": 0.0,
+      "dfs": 1.0,
+      "label_propagation": 0.0,
+      "other": 0.0
+     },
+     "tie": false,
+     "top1": "dfs",
+     "top1_tie": false
+    },
+    "PROXIMITY": {
+     "defined": true,
+     "nominee": "label_propagation",
+     "p_raw": {
+      "bfs": 0.0,
+      "dfs": 0.0,
+      "label_propagation": 1.0,
+      "other": 0.0
+     },
+     "top1": "label_propagation",
+     "top1_tie": false
+    },
+    "SUBTRACT_1SHOT": {
+     "defined": false,
+     "p_raw": null,
+     "reason": "one-shot moved < 20 attempts off D",
+     "top1": null,
+     "top1_tie": false
+    },
+    "FRLP_FP8": {
+     "defined": false,
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "UNIFORM": {
+     "defined": false,
+     "p_raw": null,
+     "note": "uniform reference",
+     "top1": null,
+     "top1_tie": false
+    }
+   },
+   "arms": {
+    "twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "oneshot": {
+     "n": 50,
+     "n_attempted": 12,
+     "n_default": 8,
+     "n_non_default": 4,
+     "default_share": 0.6666666666666666,
+     "avoidance": 0.3333333333333333,
+     "landing": {
+      "dfs": 4
+     }
+    },
+    "sham": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "persistent": {
+     "n": 50,
+     "n_attempted": 13,
+     "n_default": 9,
+     "n_non_default": 4,
+     "default_share": 0.6923076923076923,
+     "avoidance": 0.3076923076923077,
+     "landing": {
+      "dfs": 4
+     }
+    },
+    "iter1": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 0,
+     "n_non_default": 50,
+     "default_share": 0.0,
+     "avoidance": 1.0,
+     "landing": {
+      "dfs": 49,
+      "bfs": 1
+     }
+    },
+    "nonce": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "novelty": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 39,
+     "n_non_default": 11,
+     "default_share": 0.78,
+     "avoidance": 0.22,
+     "landing": {
+      "dfs": 11
+     }
+    },
+    "hf_twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand1": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand2": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand3": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 37,
+     "n_non_default": 13,
+     "default_share": 0.74,
+     "avoidance": 0.26,
+     "landing": {
+      "dfs": 13
+     }
+    }
+   },
+   "n_primary_defined": 3,
+   "disagreeing": true,
+   "co_veto": []
+  },
+  "R1": {
+   "D": "greedy_end",
+   "S": [
+    "dp_bisect",
+    "memo_recursion",
+    "dag_longest_path"
+   ],
+   "families": {
+    "SUBTRACT": {
+     "rounds": [
+      "persistent",
+      "iter1",
+      "iter2",
+      "iter3"
+     ],
+     "stop_reason": null,
+     "flags": [
+      "not carried by a small set of surface tokens"
+     ],
+     "defined": false,
+     "reason": "D keeps >= 0.5 of attempts in every round",
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "LADDER": {
+     "qualifying_pushes": [],
+     "per_push": {
+      "nonce": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "novelty": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand1": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand2": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand3": {
+       "n_non_default": 0,
+       "landing": {}
+      }
+     },
+     "modal_survivor_per_push": {},
+     "LADDER_EXISTS": false,
+     "defined": false,
+     "reason": "no push moved >= 20 attempts off D",
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "ASSOCIATE": {
+     "defined": true,
+     "nominee": "dp_bisect",
+     "p_raw": {
+      "dp_bisect": 1.0,
+      "memo_recursion": 0.0,
+      "dag_longest_path": 0.0,
+      "other": 0.0
+     },
+     "tie": false,
+     "top1": "dp_bisect",
+     "top1_tie": false
+    },
+    "PROXIMITY": {
+     "defined": true,
+     "nominee": "dag_longest_path",
+     "p_raw": {
+      "dp_bisect": 0.0,
+      "memo_recursion": 0.0,
+      "dag_longest_path": 1.0,
+      "other": 0.0
+     },
+     "top1": "dag_longest_path",
+     "top1_tie": false
+    },
+    "SUBTRACT_1SHOT": {
+     "defined": false,
+     "p_raw": null,
+     "reason": "one-shot moved < 20 attempts off D",
+     "top1": null,
+     "top1_tie": false
+    },
+    "FRLP_FP8": {
+     "defined": false,
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "UNIFORM": {
+     "defined": false,
+     "p_raw": null,
+     "note": "uniform reference",
+     "top1": null,
+     "top1_tie": false
+    }
+   },
+   "arms": {
+    "twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "oneshot": {
+     "n": 50,
+     "n_attempted": 41,
+     "n_default": 41,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "sham": {
+     "n": 50,
+     "n_attempted": 33,
+     "n_default": 33,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "persistent": {
+     "n": 50,
+     "n_attempted": 43,
+     "n_default": 43,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "iter1": {
+     "n": 50,
+     "n_attempted": 40,
+     "n_default": 40,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "iter2": {
+     "n": 50,
+     "n_attempted": 35,
+     "n_default": 35,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "iter3": {
+     "n": 50,
+     "n_attempted": 35,
+     "n_default": 35,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "nonce": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "novelty": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "hf_twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand1": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand2": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand3": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    }
+   },
+   "n_primary_defined": 2,
+   "disagreeing": true,
+   "co_veto": []
+  },
+  "T08": {
+   "D": "iteration",
+   "S": [
+    "memo_recursion",
+    "matrix_power",
+    "fast_doubling"
+   ],
+   "families": {
+    "SUBTRACT": {
+     "rounds": [
+      "persistent",
+      "iter1",
+      "iter2",
+      "iter3"
+     ],
+     "stop_reason": null,
+     "flags": [
+      "not carried by a small set of surface tokens"
+     ],
+     "defined": false,
+     "reason": "D keeps >= 0.5 of attempts in every round",
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "LADDER": {
+     "qualifying_pushes": [
+      "novelty"
+     ],
+     "per_push": {
+      "nonce": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "novelty": {
+       "n_non_default": 20,
+       "landing": {
+        "matrix_power": 14,
+        "fast_doubling": 5,
+        "other": 1
+       }
+      },
+      "rand1": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand2": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand3": {
+       "n_non_default": 1,
+       "landing": {
+        "fast_doubling": 1
+       }
+      }
+     },
+     "modal_survivor_per_push": {
+      "novelty": "matrix_power"
+     },
+     "LADDER_EXISTS": false,
+     "defined": true,
+     "counts": {
+      "matrix_power": 14,
+      "fast_doubling": 5,
+      "other": 1
+     },
+     "p_raw": {
+      "memo_recursion": 0.0,
+      "matrix_power": 0.7,
+      "fast_doubling": 0.25,
+      "other": 0.05
+     },
+     "top1": "matrix_power",
+     "top1_tie": false
+    },
+    "ASSOCIATE": {
+     "defined": true,
+     "nominee": "matrix_power",
+     "p_raw": {
+      "memo_recursion": 0.0,
+      "matrix_power": 1.0,
+      "fast_doubling": 0.0,
+      "other": 0.0
+     },
+     "tie": false,
+     "top1": "matrix_power",
+     "top1_tie": false
+    },
+    "PROXIMITY": {
+     "defined": true,
+     "nominee": "memo_recursion",
+     "p_raw": {
+      "memo_recursion": 1.0,
+      "matrix_power": 0.0,
+      "fast_doubling": 0.0,
+      "other": 0.0
+     },
+     "top1": "memo_recursion",
+     "top1_tie": false
+    },
+    "SUBTRACT_1SHOT": {
+     "defined": false,
+     "p_raw": null,
+     "reason": "one-shot moved < 20 attempts off D",
+     "top1": null,
+     "top1_tie": false
+    },
+    "FRLP_FP8": {
+     "defined": false,
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "UNIFORM": {
+     "defined": false,
+     "p_raw": null,
+     "note": "uniform reference",
+     "top1": null,
+     "top1_tie": false
+    }
+   },
+   "arms": {
+    "twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "oneshot": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "sham": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "persistent": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "iter1": {
+     "n": 50,
+     "n_attempted": 16,
+     "n_default": 16,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "iter2": {
+     "n": 50,
+     "n_attempted": 2,
+     "n_default": 2,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "iter3": {
+     "n": 50,
+     "n_attempted": 2,
+     "n_default": 2,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "nonce": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "novelty": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 30,
+     "n_non_default": 20,
+     "default_share": 0.6,
+     "avoidance": 0.4,
+     "landing": {
+      "matrix_power": 14,
+      "fast_doubling": 5,
+      "other": 1
+     }
+    },
+    "hf_twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand1": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand2": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand3": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 49,
+     "n_non_default": 1,
+     "default_share": 0.98,
+     "avoidance": 0.02,
+     "landing": {
+      "fast_doubling": 1
+     }
+    }
+   },
+   "n_primary_defined": 3,
+   "disagreeing": true,
+   "co_veto": []
+  },
+  "R3": {
+   "D": "kahn",
+   "S": [
+    "dfs_postorder",
+    "source_removal",
+    "layering"
+   ],
+   "families": {
+    "SUBTRACT": {
+     "rounds": [
+      "persistent",
+      "iter1",
+      "iter2",
+      "iter3"
+     ],
+     "stop_reason": null,
+     "flags": [
+      "not carried by a small set of surface tokens"
+     ],
+     "defined": false,
+     "reason": "D keeps >= 0.5 of attempts in every round",
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "LADDER": {
+     "qualifying_pushes": [],
+     "per_push": {
+      "nonce": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "novelty": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand1": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand2": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand3": {
+       "n_non_default": 0,
+       "landing": {}
+      }
+     },
+     "modal_survivor_per_push": {},
+     "LADDER_EXISTS": false,
+     "defined": false,
+     "reason": "no push moved >= 20 attempts off D",
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "ASSOCIATE": {
+     "defined": true,
+     "nominee": "dfs_postorder",
+     "p_raw": {
+      "dfs_postorder": 1.0,
+      "source_removal": 0.0,
+      "layering": 0.0,
+      "other": 0.0
+     },
+     "tie": false,
+     "top1": "dfs_postorder",
+     "top1_tie": false
+    },
+    "PROXIMITY": {
+     "defined": false,
+     "nominee": null,
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "SUBTRACT_1SHOT": {
+     "defined": false,
+     "p_raw": null,
+     "reason": "one-shot moved < 20 attempts off D",
+     "top1": null,
+     "top1_tie": false
+    },
+    "FRLP_FP8": {
+     "defined": false,
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "UNIFORM": {
+     "defined": false,
+     "p_raw": null,
+     "note": "uniform reference",
+     "top1": null,
+     "top1_tie": false
+    }
+   },
+   "arms": {
+    "twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "oneshot": {
+     "n": 50,
+     "n_attempted": 22,
+     "n_default": 22,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "sham": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "persistent": {
+     "n": 50,
+     "n_attempted": 23,
+     "n_default": 23,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "iter1": {
+     "n": 50,
+     "n_attempted": 31,
+     "n_default": 31,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "iter2": {
+     "n": 50,
+     "n_attempted": 32,
+     "n_default": 32,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "iter3": {
+     "n": 50,
+     "n_attempted": 5,
+     "n_default": 5,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "nonce": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "novelty": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "hf_twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand1": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand2": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand3": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    }
+   },
+   "n_primary_defined": 1,
+   "disagreeing": false,
+   "co_veto": []
+  },
+  "T13": {
+   "D": "sort_sweep",
+   "S": [
+    "interval_tree",
+    "union_find"
+   ],
+   "families": {
+    "SUBTRACT": {
+     "rounds": [
+      "persistent",
+      "iter1",
+      "iter2",
+      "iter3"
+     ],
+     "stop_reason": null,
+     "flags": [],
+     "defined": false,
+     "reason": "no chain round with >= 20 non-D attempts",
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "LADDER": {
+     "qualifying_pushes": [],
+     "per_push": {
+      "nonce": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "novelty": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand1": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand2": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand3": {
+       "n_non_default": 0,
+       "landing": {}
+      }
+     },
+     "modal_survivor_per_push": {},
+     "LADDER_EXISTS": false,
+     "defined": false,
+     "reason": "no push moved >= 20 attempts off D",
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "ASSOCIATE": {
+     "defined": true,
+     "nominee": "interval_tree",
+     "p_raw": {
+      "interval_tree": 1.0,
+      "union_find": 0.0,
+      "other": 0.0
+     },
+     "tie": false,
+     "top1": "interval_tree",
+     "top1_tie": false
+    },
+    "PROXIMITY": {
+     "defined": true,
+     "nominee": "union_find",
+     "p_raw": {
+      "interval_tree": 0.0,
+      "union_find": 1.0,
+      "other": 0.0
+     },
+     "top1": "union_find",
+     "top1_tie": false
+    },
+    "SUBTRACT_1SHOT": {
+     "defined": false,
+     "p_raw": null,
+     "reason": "one-shot moved < 20 attempts off D",
+     "top1": null,
+     "top1_tie": false
+    },
+    "FRLP_FP8": {
+     "defined": false,
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "UNIFORM": {
+     "defined": false,
+     "p_raw": null,
+     "note": "uniform reference",
+     "top1": null,
+     "top1_tie": false
+    }
+   },
+   "arms": {
+    "twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "oneshot": {
+     "n": 50,
+     "n_attempted": 31,
+     "n_default": 31,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "sham": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "persistent": {
+     "n": 50,
+     "n_attempted": 31,
+     "n_default": 31,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "iter1": {
+     "n": 50,
+     "n_attempted": 31,
+     "n_default": 31,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "iter2": {
+     "n": 50,
+     "n_attempted": 2,
+     "n_default": 2,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "iter3": {
+     "n": 50,
+     "n_attempted": 0,
+     "n_default": 0,
+     "n_non_default": 0,
+     "default_share": null,
+     "avoidance": null,
+     "landing": {}
+    },
+    "nonce": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "novelty": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "hf_twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand1": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand2": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand3": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    }
+   },
+   "n_primary_defined": 2,
+   "disagreeing": true,
+   "co_veto": []
+  },
+  "R6": {
+   "D": "binary_search",
+   "S": [
+    "bisect_module",
+    "exponential_search"
+   ],
+   "families": {
+    "SUBTRACT": {
+     "rounds": [
+      "persistent",
+      "iter1",
+      "iter2",
+      "iter3"
+     ],
+     "stop_reason": null,
+     "flags": [],
+     "defined": false,
+     "reason": "no chain round with >= 20 non-D attempts",
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "LADDER": {
+     "qualifying_pushes": [],
+     "per_push": {
+      "nonce": {
+       "n_non_default": 18,
+       "landing": {
+        "other": 18
+       }
+      },
+      "novelty": {
+       "n_non_default": 1,
+       "landing": {
+        "bisect_module": 1
+       }
+      },
+      "rand1": {
+       "n_non_default": 12,
+       "landing": {
+        "other": 12
+       }
+      },
+      "rand2": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand3": {
+       "n_non_default": 0,
+       "landing": {}
+      }
+     },
+     "modal_survivor_per_push": {},
+     "LADDER_EXISTS": false,
+     "defined": false,
+     "reason": "no push moved >= 20 attempts off D",
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "ASSOCIATE": {
+     "defined": true,
+     "nominee": "bisect_module",
+     "p_raw": {
+      "bisect_module": 1.0,
+      "exponential_search": 0.0,
+      "other": 0.0
+     },
+     "tie": false,
+     "top1": "bisect_module",
+     "top1_tie": false
+    },
+    "PROXIMITY": {
+     "defined": true,
+     "nominee": "bisect_module",
+     "p_raw": {
+      "bisect_module": 1.0,
+      "exponential_search": 0.0,
+      "other": 0.0
+     },
+     "top1": "bisect_module",
+     "top1_tie": false
+    },
+    "SUBTRACT_1SHOT": {
+     "defined": false,
+     "p_raw": null,
+     "reason": "one-shot moved < 20 attempts off D",
+     "top1": null,
+     "top1_tie": false
+    },
+    "FRLP_FP8": {
+     "defined": false,
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "UNIFORM": {
+     "defined": false,
+     "p_raw": null,
+     "note": "uniform reference",
+     "top1": null,
+     "top1_tie": false
+    }
+   },
+   "arms": {
+    "twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 40,
+     "n_non_default": 10,
+     "default_share": 0.8,
+     "avoidance": 0.2,
+     "landing": {
+      "other": 10
+     }
+    },
+    "oneshot": {
+     "n": 50,
+     "n_attempted": 24,
+     "n_default": 14,
+     "n_non_default": 10,
+     "default_share": 0.5833333333333334,
+     "avoidance": 0.4166666666666667,
+     "landing": {
+      "other": 10
+     }
+    },
+    "sham": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 40,
+     "n_non_default": 10,
+     "default_share": 0.8,
+     "avoidance": 0.2,
+     "landing": {
+      "other": 10
+     }
+    },
+    "persistent": {
+     "n": 50,
+     "n_attempted": 24,
+     "n_default": 14,
+     "n_non_default": 10,
+     "default_share": 0.5833333333333334,
+     "avoidance": 0.4166666666666667,
+     "landing": {
+      "other": 10
+     }
+    },
+    "iter1": {
+     "n": 50,
+     "n_attempted": 21,
+     "n_default": 11,
+     "n_non_default": 10,
+     "default_share": 0.5238095238095238,
+     "avoidance": 0.47619047619047616,
+     "landing": {
+      "other": 10
+     }
+    },
+    "iter2": {
+     "n": 50,
+     "n_attempted": 14,
+     "n_default": 4,
+     "n_non_default": 10,
+     "default_share": 0.2857142857142857,
+     "avoidance": 0.7142857142857143,
+     "landing": {
+      "other": 10
+     }
+    },
+    "iter3": {
+     "n": 50,
+     "n_attempted": 14,
+     "n_default": 4,
+     "n_non_default": 10,
+     "default_share": 0.2857142857142857,
+     "avoidance": 0.7142857142857143,
+     "landing": {
+      "other": 10
+     }
+    },
+    "nonce": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 32,
+     "n_non_default": 18,
+     "default_share": 0.64,
+     "avoidance": 0.36,
+     "landing": {
+      "other": 18
+     }
+    },
+    "novelty": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 49,
+     "n_non_default": 1,
+     "default_share": 0.98,
+     "avoidance": 0.02,
+     "landing": {
+      "bisect_module": 1
+     }
+    },
+    "hf_twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 43,
+     "n_non_default": 7,
+     "default_share": 0.86,
+     "avoidance": 0.14,
+     "landing": {
+      "other": 7
+     }
+    },
+    "rand1": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 38,
+     "n_non_default": 12,
+     "default_share": 0.76,
+     "avoidance": 0.24,
+     "landing": {
+      "other": 12
+     }
+    },
+    "rand2": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand3": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    }
+   },
+   "n_primary_defined": 2,
+   "disagreeing": false,
+   "co_veto": []
+  },
+  "T14": {
+   "D": "sort_by_count",
+   "S": [
+    "heap",
+    "bucket_sort",
+    "quickselect_counts"
+   ],
+   "families": {
+    "SUBTRACT": {
+     "rounds": [
+      "persistent",
+      "iter1",
+      "iter2",
+      "iter3"
+     ],
+     "stop_reason": null,
+     "flags": [
+      "not carried by a small set of surface tokens"
+     ],
+     "defined": false,
+     "reason": "D keeps >= 0.5 of attempts in every round",
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "LADDER": {
+     "qualifying_pushes": [],
+     "per_push": {
+      "nonce": {
+       "n_non_default": 2,
+       "landing": {
+        "other": 1,
+        "quickselect_counts": 1
+       }
+      },
+      "novelty": {
+       "n_non_default": 2,
+       "landing": {
+        "heap": 2
+       }
+      },
+      "rand1": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand2": {
+       "n_non_default": 1,
+       "landing": {
+        "other": 1
+       }
+      },
+      "rand3": {
+       "n_non_default": 0,
+       "landing": {}
+      }
+     },
+     "modal_survivor_per_push": {},
+     "LADDER_EXISTS": false,
+     "defined": false,
+     "reason": "no push moved >= 20 attempts off D",
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "ASSOCIATE": {
+     "defined": true,
+     "nominee": "heap",
+     "p_raw": {
+      "heap": 1.0,
+      "bucket_sort": 0.0,
+      "quickselect_counts": 0.0,
+      "other": 0.0
+     },
+     "tie": false,
+     "top1": "heap",
+     "top1_tie": false
+    },
+    "PROXIMITY": {
+     "defined": true,
+     "nominee": "heap",
+     "p_raw": {
+      "heap": 1.0,
+      "bucket_sort": 0.0,
+      "quickselect_counts": 0.0,
+      "other": 0.0
+     },
+     "top1": "heap",
+     "top1_tie": false
+    },
+    "SUBTRACT_1SHOT": {
+     "defined": false,
+     "p_raw": null,
+     "reason": "one-shot moved < 20 attempts off D",
+     "top1": null,
+     "top1_tie": false
+    },
+    "FRLP_FP8": {
+     "defined": false,
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "UNIFORM": {
+     "defined": false,
+     "p_raw": null,
+     "note": "uniform reference",
+     "top1": null,
+     "top1_tie": false
+    }
+   },
+   "arms": {
+    "twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 48,
+     "n_non_default": 2,
+     "default_share": 0.96,
+     "avoidance": 0.04,
+     "landing": {
+      "other": 2
+     }
+    },
+    "oneshot": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 48,
+     "n_non_default": 2,
+     "default_share": 0.96,
+     "avoidance": 0.04,
+     "landing": {
+      "other": 2
+     }
+    },
+    "sham": {
+     "n": 50,
+     "n_attempted": 45,
+     "n_default": 38,
+     "n_non_default": 7,
+     "default_share": 0.8444444444444444,
+     "avoidance": 0.15555555555555556,
+     "landing": {
+      "quickselect_counts": 1,
+      "other": 6
+     }
+    },
+    "persistent": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 48,
+     "n_non_default": 2,
+     "default_share": 0.96,
+     "avoidance": 0.04,
+     "landing": {
+      "other": 2
+     }
+    },
+    "iter1": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 48,
+     "n_non_default": 2,
+     "default_share": 0.96,
+     "avoidance": 0.04,
+     "landing": {
+      "other": 2
+     }
+    },
+    "iter2": {
+     "n": 50,
+     "n_attempted": 9,
+     "n_default": 7,
+     "n_non_default": 2,
+     "default_share": 0.7777777777777778,
+     "avoidance": 0.2222222222222222,
+     "landing": {
+      "other": 2
+     }
+    },
+    "iter3": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 48,
+     "n_non_default": 2,
+     "default_share": 0.96,
+     "avoidance": 0.04,
+     "landing": {
+      "other": 2
+     }
+    },
+    "nonce": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 48,
+     "n_non_default": 2,
+     "default_share": 0.96,
+     "avoidance": 0.04,
+     "landing": {
+      "other": 1,
+      "quickselect_counts": 1
+     }
+    },
+    "novelty": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 48,
+     "n_non_default": 2,
+     "default_share": 0.96,
+     "avoidance": 0.04,
+     "landing": {
+      "heap": 2
+     }
+    },
+    "hf_twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 47,
+     "n_non_default": 3,
+     "default_share": 0.94,
+     "avoidance": 0.06,
+     "landing": {
+      "quickselect_counts": 3
+     }
+    },
+    "rand1": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand2": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 49,
+     "n_non_default": 1,
+     "default_share": 0.98,
+     "avoidance": 0.02,
+     "landing": {
+      "other": 1
+     }
+    },
+    "rand3": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    }
+   },
+   "n_primary_defined": 2,
+   "disagreeing": false,
+   "co_veto": []
+  },
+  "T11": {
+   "D": "quadratic_dp",
+   "S": [
+    "patience_bisect",
+    "fenwick"
+   ],
+   "families": {
+    "SUBTRACT": {
+     "rounds": [
+      "persistent",
+      "iter1",
+      "iter2"
+     ],
+     "stop_reason": "round 2 default share 0.00 < 0.2",
+     "flags": [],
+     "defined": false,
+     "reason": "no chain round with >= 20 non-D attempts",
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "LADDER": {
+     "qualifying_pushes": [
+      "novelty"
+     ],
+     "per_push": {
+      "nonce": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "novelty": {
+       "n_non_default": 34,
+       "landing": {
+        "patience_bisect": 3,
+        "other": 30,
+        "fenwick": 1
+       }
+      },
+      "rand1": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand2": {
+       "n_non_default": 0,
+       "landing": {}
+      },
+      "rand3": {
+       "n_non_default": 0,
+       "landing": {}
+      }
+     },
+     "modal_survivor_per_push": {
+      "novelty": "patience_bisect"
+     },
+     "LADDER_EXISTS": false,
+     "defined": true,
+     "counts": {
+      "patience_bisect": 3,
+      "other": 30,
+      "fenwick": 1
+     },
+     "p_raw": {
+      "patience_bisect": 0.08823529411764706,
+      "fenwick": 0.029411764705882353,
+      "other": 0.8823529411764706
+     },
+     "top1": "patience_bisect",
+     "top1_tie": false
+    },
+    "ASSOCIATE": {
+     "defined": true,
+     "nominee": "patience_bisect",
+     "p_raw": {
+      "patience_bisect": 1.0,
+      "fenwick": 0.0,
+      "other": 0.0
+     },
+     "tie": false,
+     "top1": "patience_bisect",
+     "top1_tie": false
+    },
+    "PROXIMITY": {
+     "defined": true,
+     "nominee": "patience_bisect",
+     "p_raw": {
+      "patience_bisect": 1.0,
+      "fenwick": 0.0,
+      "other": 0.0
+     },
+     "top1": "patience_bisect",
+     "top1_tie": false
+    },
+    "SUBTRACT_1SHOT": {
+     "defined": false,
+     "p_raw": null,
+     "reason": "one-shot moved < 20 attempts off D",
+     "top1": null,
+     "top1_tie": false
+    },
+    "FRLP_FP8": {
+     "defined": false,
+     "p_raw": null,
+     "top1": null,
+     "top1_tie": false
+    },
+    "UNIFORM": {
+     "defined": false,
+     "p_raw": null,
+     "note": "uniform reference",
+     "top1": null,
+     "top1_tie": false
+    }
+   },
+   "arms": {
+    "twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "oneshot": {
+     "n": 50,
+     "n_attempted": 23,
+     "n_default": 23,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "sham": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "persistent": {
+     "n": 50,
+     "n_attempted": 19,
+     "n_default": 19,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "iter1": {
+     "n": 50,
+     "n_attempted": 16,
+     "n_default": 16,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "iter2": {
+     "n": 50,
+     "n_attempted": 0,
+     "n_default": 0,
+     "n_non_default": 0,
+     "default_share": null,
+     "avoidance": null,
+     "landing": {}
+    },
+    "nonce": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "novelty": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 16,
+     "n_non_default": 34,
+     "default_share": 0.32,
+     "avoidance": 0.68,
+     "landing": {
+      "patience_bisect": 3,
+      "other": 30,
+      "fenwick": 1
+     }
+    },
+    "hf_twin": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand1": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand2": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    },
+    "rand3": {
+     "n": 50,
+     "n_attempted": 50,
+     "n_default": 50,
+     "n_non_default": 0,
+     "default_share": 1.0,
+     "avoidance": 0.0,
+     "landing": {}
+    }
+   },
+   "n_primary_defined": 3,
+   "disagreeing": false,
+   "co_veto": []
+  }
+ },
+ "utc": "2026-10-20T18:50:14Z"
+}

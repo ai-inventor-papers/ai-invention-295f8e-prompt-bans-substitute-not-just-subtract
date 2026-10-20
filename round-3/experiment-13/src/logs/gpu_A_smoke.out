@@ -1,0 +1,80 @@
+/ai-inventor/aii_data/runs/run_aRfWvcSWjssb/3_invention_loop/iter_3/gen_art/gen_art_experiment_13/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+INFO 10-20 18:15:32 [__init__.py:216] Automatically detected platform cuda.
+INFO 10-20 18:16:18 [utils.py:233] non-default args: {'tokenizer': '/ai-inventor/aii_data/runs/run_aRfWvcSWjssb/.shared_cache/hf/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218', 'dtype': 'bfloat16', 'seed': 0, 'max_model_len': 2048, 'enable_prefix_caching': True, 'max_num_batched_tokens': 4096, 'max_num_seqs': 64, 'disable_log_stats': True, 'enforce_eager': True, 'generation_config': 'vllm', 'model': '/ai-inventor/aii_data/runs/run_aRfWvcSWjssb/.shared_cache/hf/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218'}
+INFO 10-20 18:17:57 [model.py:547] Resolved architecture: Qwen3ForCausalLM
+`torch_dtype` is deprecated! Use `dtype` instead!
+INFO 10-20 18:17:57 [model.py:1510] Using max model len 2048
+INFO 10-20 18:18:04 [scheduler.py:205] Chunked prefill is enabled with max_num_batched_tokens=4096.
+INFO 10-20 18:18:04 [__init__.py:381] Cudagraph is disabled under eager mode
+[1;36m(EngineCore_DP0 pid=17332)[0;0m INFO 10-20 18:18:04 [core.py:644] Waiting for init message from front-end.
+[1;36m(EngineCore_DP0 pid=17332)[0;0m INFO 10-20 18:18:04 [core.py:77] Initializing a V1 LLM engine (v0.11.0) with config: model='/ai-inventor/aii_data/runs/run_aRfWvcSWjssb/.shared_cache/hf/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218', speculative_config=None, tokenizer='/ai-inventor/aii_data/runs/run_aRfWvcSWjssb/.shared_cache/hf/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser=''), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None), seed=0, served_model_name=/ai-inventor/aii_data/runs/run_aRfWvcSWjssb/.shared_cache/hf/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218, enable_prefix_caching=True, chunked_prefill_enabled=True, pooler_config=None, compilation_config={"level":0,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":null,"use_inductor":true,"compile_sizes":[],"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"cudagraph_mode":0,"use_cudagraph":true,"cudagraph_num_of_warmups":0,"cudagraph_capture_sizes":[],"cudagraph_copy_inputs":false,"full_cuda_graph":false,"use_inductor_graph_partition":false,"pass_config":{},"max_capture_size":0,"local_cache_dir":null}
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[1;36m(EngineCore_DP0 pid=17332)[0;0m INFO 10-20 18:18:16 [parallel_state.py:1208] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0, EP rank 0
+[1;36m(EngineCore_DP0 pid=17332)[0;0m WARNING 10-20 18:18:16 [topk_topp_sampler.py:66] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+[1;36m(EngineCore_DP0 pid=17332)[0;0m INFO 10-20 18:18:17 [gpu_model_runner.py:2602] Starting to load model /ai-inventor/aii_data/runs/run_aRfWvcSWjssb/.shared_cache/hf/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218...
+[1;36m(EngineCore_DP0 pid=17332)[0;0m INFO 10-20 18:18:17 [gpu_model_runner.py:2634] Loading model from scratch...
+[1;36m(EngineCore_DP0 pid=17332)[0;0m INFO 10-20 18:18:17 [cuda.py:366] Using Flash Attention backend on V1 engine.
+[1;36m(EngineCore_DP0 pid=17332)[0;0m Loading safetensors checkpoint shards:   0% Completed | 0/5 [00:00<?, ?it/s]
+[1;36m(EngineCore_DP0 pid=17332)[0;0m Loading safetensors checkpoint shards:  20% Completed | 1/5 [00:04<00:16,  4.21s/it]
+[1;36m(EngineCore_DP0 pid=17332)[0;0m Loading safetensors checkpoint shards:  40% Completed | 2/5 [00:08<00:12,  4.08s/it]
+[1;36m(EngineCore_DP0 pid=17332)[0;0m Loading safetensors checkpoint shards:  60% Completed | 3/5 [00:12<00:08,  4.13s/it]
+[1;36m(EngineCore_DP0 pid=17332)[0;0m Loading safetensors checkpoint shards:  80% Completed | 4/5 [00:15<00:03,  3.85s/it]
+[1;36m(EngineCore_DP0 pid=17332)[0;0m Loading safetensors checkpoint shards: 100% Completed | 5/5 [00:17<00:00,  3.01s/it]
+[1;36m(EngineCore_DP0 pid=17332)[0;0m Loading safetensors checkpoint shards: 100% Completed | 5/5 [00:17<00:00,  3.46s/it]
+[1;36m(EngineCore_DP0 pid=17332)[0;0m 
+[1;36m(EngineCore_DP0 pid=17332)[0;0m INFO 10-20 18:18:35 [default_loader.py:267] Loading weights took 17.35 seconds
+[1;36m(EngineCore_DP0 pid=17332)[0;0m INFO 10-20 18:18:35 [gpu_model_runner.py:2653] Model loading took 15.2683 GiB and 17.683748 seconds
+[1;36m(EngineCore_DP0 pid=17332)[0;0m INFO 10-20 18:18:37 [gpu_worker.py:298] Available KV cache memory: 5.37 GiB
+[1;36m(EngineCore_DP0 pid=17332)[0;0m INFO 10-20 18:18:37 [kv_cache_utils.py:1087] GPU KV cache size: 39,072 tokens
+[1;36m(EngineCore_DP0 pid=17332)[0;0m INFO 10-20 18:18:37 [kv_cache_utils.py:1091] Maximum concurrency for 2,048 tokens per request: 19.08x
+[1;36m(EngineCore_DP0 pid=17332)[0;0m WARNING 10-20 18:18:37 [cudagraph_dispatcher.py:106] cudagraph dispatching keys are not initialized. No cudagraph will be used.
+[1;36m(EngineCore_DP0 pid=17332)[0;0m INFO 10-20 18:18:37 [core.py:210] init engine (profile, create kv cache, warmup model) took 1.93 seconds
+[1;36m(EngineCore_DP0 pid=17332)[0;0m INFO 10-20 18:18:37 [__init__.py:381] Cudagraph is disabled under eager mode
+INFO 10-20 18:18:37 [llm.py:306] Supported_tasks: ['generate']
+18:18:37|INFO   |vLLM up in 140s (Qwen/Qwen3-8B bf16, eager)
+18:18:38|INFO   |Labeller up: 11 workers, 176 cached code labels
+18:18:38|INFO   |effective SamplingParams: SamplingParams(n=1, presence_penalty=0.0, frequency_penalty=0.0, repetition_penalty=1.0, temperature=1.0, top_p=1.0, top_k=-1, min_p=0.0, seed=0, stop=[], stop_token_ids=[151645, 151643], bad_words=[], include_stop_str_in_output=False, ignore_eos=False, max_tokens=1024, min_tokens=0, logprobs=None, prompt_logprobs=None, skip_special_tokens=True, spaces_between_special_tokens=True, truncate_prompt_tokens=None, structured_outputs=None, extra_args=None)
+18:18:42|INFO   |sampled 20 x twin in 4s (228 tok/s)
+18:18:43|INFO   |labelled 20 rows twin in 1s (0 judged; spend $0.0000)
+18:18:43|INFO   |T03: twin D programs 9, bf16 coverage of FP8 n-gram 1.0, source fp8_pilot
+18:18:43|INFO   |T05: twin D programs 10, bf16 coverage of FP8 n-gram 1.0, source fp8_pilot
+18:18:47|INFO   |veto arm ut_oneshot (oneshot, round 0): 10 samples, 9 vetoes, 1 redraw rounds, 2 text leaks, 4s
+18:18:51|INFO   |veto arm ut_persistent (persistent, round 0): 10 samples, 9 vetoes, 1 redraw rounds, 2 text leaks, 4s
+18:18:51|INFO   |veto arm ut_never (persistent, round 0): 10 samples, 0 vetoes, 0 redraw rounds, 0 text leaks, 0s
+18:18:51|INFO   |veto unit tests: {'n': 10, 'mask': [[262, 10307]], 'a_oneshot_first_completion_removed': True, 'b_persistent_zero_completions': True, 'c_redraws_avoid_mask': True, 'd_never_firing_mask_identity': True, 'e_text_leaks_oneshot': 2, 'e_text_leaks_persistent': 2, 'f_fire_rate': 0.9, 'vetoes_persistent_mean': 0.9, 'all_pass': True}
+18:18:54|INFO   |veto arm oneshot (oneshot, round 0): 20 samples, 19 vetoes, 1 redraw rounds, 4 text leaks, 4s
+18:18:58|INFO   |veto arm sham (oneshot, round 0): 20 samples, 20 vetoes, 1 redraw rounds, 1 text leaks, 4s
+18:18:59|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:18:59|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:18:59|INFO   |judge batch of 9 done; running spend $0.0011
+18:18:59|INFO   |labelled 20 rows oneshot in 4s (9 judged; spend $0.0011)
+18:18:59|INFO   |labelled 20 rows sham in 1s (0 judged; spend $0.0011)
+18:19:02|INFO   |veto arm persistent (persistent, round 0): 20 samples, 19 vetoes, 1 redraw rounds, 4 text leaks, 4s
+18:19:02|INFO   |judge batch of 9 done; running spend $0.0011
+18:19:02|INFO   |labelled 20 rows persistent in 0s (9 judged; spend $0.0011)
+18:19:03|INFO   |sampled 10 x nonce in 1s (289 tok/s)
+18:19:03|INFO   |labelled 10 rows nonce in 0s (0 judged; spend $0.0011)
+18:19:08|INFO   |sampled 8 x novelty in 4s (228 tok/s)
+18:19:11|INFO   |judge batch of 1 done; running spend $0.0011
+18:19:11|INFO   |labelled 8 rows novelty in 3s (1 judged; spend $0.0011)
+18:19:13|INFO   |veto arm iter1 (persistent, round 1): 20 samples, 24 vetoes, 2 redraw rounds, 2 text leaks, 2s
+18:19:16|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:19:17|INFO   |judge batch of 9 done; running spend $0.0014
+18:19:17|INFO   |labelled 20 rows iter1 in 4s (9 judged; spend $0.0014)
+18:19:17|INFO   |round 1: triggered ['T03', 'T05']
+18:19:18|INFO   |veto arm iter2 (persistent, round 2): 20 samples, 15 vetoes, 1 redraw rounds, 8 text leaks, 1s
+18:19:20|INFO   |judge batch of 5 done; running spend $0.0017
+18:19:20|INFO   |labelled 20 rows iter2 in 2s (5 judged; spend $0.0017)
+18:19:20|INFO   |round 2: triggered ['T03', 'T05']
+18:19:21|INFO   |veto arm iter3 (persistent, round 3): 20 samples, 22 vetoes, 2 redraw rounds, 13 text leaks, 1s
+18:19:23|INFO   |judge batch of 9 done; running spend $0.0023
+18:19:23|INFO   |labelled 20 rows iter3 in 2s (9 judged; spend $0.0023)
+18:19:23|INFO   |round 3: triggered ['T03', 'T05']
+18:19:23|INFO   |process A done; judge spend $0.0023
+EXIT 0

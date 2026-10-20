@@ -1,0 +1,588 @@
+{
+ "rule": "S0.5: the default's distinctive token n-gram (and the SHAM control n-gram) per task.\n\ntokens(code) = tok.encode('```python\\n' + code.rstrip() + '\\n' + '```').  REF = token lists of the default's\nprograms (pilot rows labelled D, or the bf16 twin / round r-1 programs labelled D on re-derivation); OTHERS[m] =\nforced programs with label == forced_mode == m for every m != D.\n\nRule (frozen): for n = 1..6 keep n-grams with coverage(REF) >= 0.8; collateral coll[g][m] = share of OTHERS[m]\ncontaining g; choose argmin max_m coll (ties: smaller n, higher coverage, lexicographically smallest id tuple).\nCO_VETO = {m : coll[g][m] >= 0.5}.  No candidate -> GREEDY COVER (flagged): repeatedly add, among n-grams that occur\nin at least ceil(still-needed / slots-left) of the still-uncovered REF programs (coverage counted on them; 'needed' =\nprograms still missing to reach 0.8 of REF, 3 slots), the one with min max-collateral (same ties, coverage on the\nuncovered programs), until >= 0.8 of REF contain at least one chosen n-gram; else 'no_small_token_set'.\nSHAM: same n as g; among coverage >= 0.8 candidates maximise min_m coll (shared by every algorithm); ties: closest\ncoverage to g's, then closest median first-occurrence position to g's, then smallest id tuple.\n",
+ "tasks": {
+  "T03": {
+   "D": "full_sort",
+   "n_ref": 50,
+   "n_others": {
+    "size_k_heap": 36,
+    "heapify_pop": 29,
+    "quickselect": 40,
+    "median_of_medians": 40,
+    "counting_sort": 29
+   },
+   "distinctive": {
+    "ok": true,
+    "greedy": false,
+    "ngrams": [
+     [
+      262,
+      10307
+     ]
+    ],
+    "coverage": 0.88,
+    "coll": {
+     "size_k_heap": 0.0,
+     "heapify_pop": 0.0,
+     "quickselect": 0.0,
+     "median_of_medians": 0.0,
+     "counting_sort": 0.0
+    },
+    "score": 0.0,
+    "n_candidates": 108,
+    "reason": null,
+    "texts": [
+     "    nums"
+    ],
+    "co_veto": []
+   },
+   "sham": {
+    "ok": true,
+    "ngram": [
+     982,
+     262
+    ],
+    "coverage": 1.0,
+    "coll": {
+     "size_k_heap": 1.0,
+     "heapify_pop": 1.0,
+     "quickselect": 1.0,
+     "median_of_medians": 1.0,
+     "counting_sort": 1.0
+    },
+    "min_coll": 1.0,
+    "relaxed_n": false,
+    "text": "):\n   "
+   },
+   "source": "fp8_pilot"
+  },
+  "T04": {
+   "D": "naive",
+   "n_ref": 50,
+   "n_others": {
+    "kmp": 40,
+    "rabin_karp": 40,
+    "z_algorithm": 39,
+    "bmh": 39,
+    "builtin": 24
+   },
+   "distinctive": {
+    "ok": true,
+    "greedy": false,
+    "ngrams": [
+     [
+      30309,
+      510,
+      310
+     ]
+    ],
+    "coverage": 1.0,
+    "coll": {
+     "kmp": 0.0,
+     "rabin_karp": 0.0,
+     "z_algorithm": 0.0,
+     "bmh": 0.0,
+     "builtin": 0.0
+    },
+    "score": 0.0,
+    "n_candidates": 194,
+    "reason": null,
+    "texts": [
+     " needle:\n           "
+    ],
+    "co_veto": []
+   },
+   "sham": {
+    "ok": true,
+    "ngram": [
+     470,
+     481,
+     16
+    ],
+    "coverage": 1.0,
+    "coll": {
+     "kmp": 1.0,
+     "rabin_karp": 1.0,
+     "z_algorithm": 1.0,
+     "bmh": 1.0,
+     "builtin": 1.0
+    },
+    "min_coll": 1.0,
+    "relaxed_n": false,
+    "text": " return -1"
+   },
+   "source": "fp8_pilot"
+  },
+  "T06": {
+   "D": "hash_set",
+   "n_ref": 50,
+   "n_others": {
+    "sort_adjacent": 35,
+    "floyd": 40,
+    "value_binary_search": 40,
+    "index_marking": 1
+   },
+   "distinctive": {
+    "ok": true,
+    "greedy": false,
+    "ngrams": [
+     [
+      738
+     ]
+    ],
+    "coverage": 1.0,
+    "coll": {
+     "sort_adjacent": 0.0,
+     "floyd": 0.0,
+     "value_binary_search": 0.0,
+     "index_marking": 0.0
+    },
+    "score": 0.0,
+    "n_candidates": 173,
+    "reason": null,
+    "texts": [
+     " set"
+    ],
+    "co_veto": []
+   },
+   "sham": {
+    "ok": true,
+    "ngram": [
+     262
+    ],
+    "coverage": 1.0,
+    "coll": {
+     "sort_adjacent": 1.0,
+     "floyd": 1.0,
+     "value_binary_search": 1.0,
+     "index_marking": 1.0
+    },
+    "min_coll": 1.0,
+    "relaxed_n": false,
+    "text": "   "
+   },
+   "source": "fp8_pilot"
+  },
+  "T05": {
+   "D": "hash_map",
+   "n_ref": 50,
+   "n_others": {
+    "sort_two_pointers": 40,
+    "brute_force": 40,
+    "sort_binary_search": 26
+   },
+   "distinctive": {
+    "ok": true,
+    "greedy": false,
+    "ngrams": [
+     [
+      421,
+      22766
+     ]
+    ],
+    "coverage": 1.0,
+    "coll": {
+     "sort_two_pointers": 0.0,
+     "brute_force": 0.0,
+     "sort_binary_search": 0.0
+    },
+    "score": 0.0,
+    "n_candidates": 203,
+    "reason": null,
+    "texts": [
+     " if complement"
+    ],
+    "co_veto": []
+   },
+   "sham": {
+    "ok": true,
+    "ngram": [
+     982,
+     262
+    ],
+    "coverage": 1.0,
+    "coll": {
+     "sort_two_pointers": 1.0,
+     "brute_force": 1.0,
+     "sort_binary_search": 1.0
+    },
+    "min_coll": 1.0,
+    "relaxed_n": false,
+    "text": "):\n   "
+   },
+   "source": "fp8_pilot"
+  },
+  "T10": {
+   "D": "union_find",
+   "n_ref": 50,
+   "n_others": {
+    "bfs": 40,
+    "dfs": 40,
+    "label_propagation": 9
+   },
+   "distinctive": {
+    "ok": true,
+    "greedy": false,
+    "ngrams": [
+     [
+      1477
+     ]
+    ],
+    "coverage": 1.0,
+    "coll": {
+     "bfs": 0.0,
+     "dfs": 0.0,
+     "label_propagation": 0.0
+    },
+    "score": 0.0,
+    "n_candidates": 283,
+    "reason": null,
+    "texts": [
+     " find"
+    ],
+    "co_veto": []
+   },
+   "sham": {
+    "ok": true,
+    "ngram": [
+     286
+    ],
+    "coverage": 1.0,
+    "coll": {
+     "bfs": 1.0,
+     "dfs": 1.0,
+     "label_propagation": 1.0
+    },
+    "min_coll": 1.0,
+    "relaxed_n": false,
+    "text": "       "
+   },
+   "source": "fp8_pilot"
+  },
+  "R1": {
+   "D": "greedy_end",
+   "n_ref": 50,
+   "n_others": {
+    "dp_bisect": 1,
+    "memo_recursion": 39,
+    "dag_longest_path": 3
+   },
+   "distinctive": {
+    "ok": true,
+    "greedy": false,
+    "ngrams": [
+     [
+      75781
+     ]
+    ],
+    "coverage": 0.88,
+    "coll": {
+     "dp_bisect": 0.0,
+     "memo_recursion": 0.0,
+     "dag_longest_path": 0.0
+    },
+    "score": 0.0,
+    "n_candidates": 318,
+    "reason": null,
+    "texts": [
+     ":]:\n"
+    ],
+    "co_veto": []
+   },
+   "sham": {
+    "ok": true,
+    "ngram": [
+     1457
+    ],
+    "coverage": 0.88,
+    "coll": {
+     "dp_bisect": 1.0,
+     "memo_recursion": 1.0,
+     "dag_longest_path": 1.0
+    },
+    "min_coll": 1.0,
+    "relaxed_n": false,
+    "text": "]["
+   },
+   "source": "fp8_pilot"
+  },
+  "T08": {
+   "D": "iteration",
+   "n_ref": 50,
+   "n_others": {
+    "memo_recursion": 40,
+    "matrix_power": 40,
+    "fast_doubling": 40
+   },
+   "distinctive": {
+    "ok": true,
+    "greedy": false,
+    "ngrams": [
+     [
+      7
+     ]
+    ],
+    "coverage": 1.0,
+    "coll": {
+     "memo_recursion": 0.0,
+     "matrix_power": 0.0,
+     "fast_doubling": 0.0
+    },
+    "score": 0.0,
+    "n_candidates": 341,
+    "reason": null,
+    "texts": [
+     "("
+    ],
+    "co_veto": []
+   },
+   "sham": {
+    "ok": true,
+    "ngram": [
+     17
+    ],
+    "coverage": 1.0,
+    "coll": {
+     "memo_recursion": 1.0,
+     "matrix_power": 1.0,
+     "fast_doubling": 1.0
+    },
+    "min_coll": 1.0,
+    "relaxed_n": false,
+    "text": "2"
+   },
+   "source": "fp8_pilot"
+  },
+  "R3": {
+   "D": "kahn",
+   "n_ref": 50,
+   "n_others": {
+    "dfs_postorder": 32,
+    "source_removal": 0,
+    "layering": 0
+   },
+   "distinctive": {
+    "ok": true,
+    "greedy": false,
+    "ngrams": [
+     [
+      556
+     ]
+    ],
+    "coverage": 1.0,
+    "coll": {
+     "dfs_postorder": 0.0
+    },
+    "score": 0.0,
+    "n_candidates": 617,
+    "reason": null,
+    "texts": [
+     ".p"
+    ],
+    "co_veto": []
+   },
+   "sham": {
+    "ok": true,
+    "ngram": [
+     9565
+    ],
+    "coverage": 1.0,
+    "coll": {
+     "dfs_postorder": 1.0
+    },
+    "min_coll": 1.0,
+    "relaxed_n": false,
+    "text": " neighbor"
+   },
+   "source": "fp8_pilot"
+  },
+  "T13": {
+   "D": "sort_sweep",
+   "n_ref": 50,
+   "n_others": {
+    "interval_tree": 2,
+    "union_find": 23
+   },
+   "distinctive": {
+    "ok": true,
+    "greedy": false,
+    "ngrams": [
+     [
+      1537
+     ]
+    ],
+    "coverage": 1.0,
+    "coll": {
+     "interval_tree": 0.0,
+     "union_find": 0.0
+    },
+    "score": 0.0,
+    "n_candidates": 598,
+    "reason": null,
+    "texts": [
+     " last"
+    ],
+    "co_veto": []
+   },
+   "sham": {
+    "ok": true,
+    "ngram": [
+     304
+    ],
+    "coverage": 1.0,
+    "coll": {
+     "interval_tree": 1.0,
+     "union_find": 1.0
+    },
+    "min_coll": 1.0,
+    "relaxed_n": false,
+    "text": " in"
+   },
+   "source": "fp8_pilot"
+  },
+  "R6": {
+   "D": "binary_search",
+   "n_ref": 49,
+   "n_others": {
+    "bisect_module": 39,
+    "exponential_search": 35
+   },
+   "distinctive": {
+    "ok": true,
+    "greedy": false,
+    "ngrams": [
+     [
+      12195
+     ]
+    ],
+    "coverage": 0.9591836734693877,
+    "coll": {
+     "bisect_module": 0.0,
+     "exponential_search": 0.0
+    },
+    "score": 0.0,
+    "n_candidates": 571,
+    "reason": null,
+    "texts": [
+     "_last"
+    ],
+    "co_veto": []
+   },
+   "sham": {
+    "ok": true,
+    "ngram": [
+     10055
+    ],
+    "coverage": 0.9591836734693877,
+    "coll": {
+     "bisect_module": 1.0,
+     "exponential_search": 1.0
+    },
+    "min_coll": 1.0,
+    "relaxed_n": false,
+    "text": " [-"
+   },
+   "source": "fp8_pilot"
+  },
+  "T14": {
+   "D": "sort_by_count",
+   "n_ref": 50,
+   "n_others": {
+    "heap": 40,
+    "bucket_sort": 14,
+    "quickselect_counts": 36
+   },
+   "distinctive": {
+    "ok": true,
+    "greedy": false,
+    "ngrams": [
+     [
+      10907
+     ]
+    ],
+    "coverage": 0.94,
+    "coll": {
+     "heap": 0.0,
+     "bucket_sort": 0.0,
+     "quickselect_counts": 0.0
+    },
+    "score": 0.0,
+    "n_candidates": 276,
+    "reason": null,
+    "texts": [
+     "]))\n"
+    ],
+    "co_veto": []
+   },
+   "sham": {
+    "ok": true,
+    "ngram": [
+     369
+    ],
+    "coverage": 1.0,
+    "coll": {
+     "heap": 1.0,
+     "bucket_sort": 1.0,
+     "quickselect_counts": 1.0
+    },
+    "min_coll": 1.0,
+    "relaxed_n": false,
+    "text": " for"
+   },
+   "source": "fp8_pilot"
+  },
+  "T11": {
+   "D": "quadratic_dp",
+   "n_ref": 50,
+   "n_others": {
+    "patience_bisect": 40,
+    "fenwick": 40
+   },
+   "distinctive": {
+    "ok": true,
+    "greedy": false,
+    "ngrams": [
+     [
+      502
+     ]
+    ],
+    "coverage": 1.0,
+    "coll": {
+     "patience_bisect": 0.0,
+     "fenwick": 0.0
+    },
+    "score": 0.0,
+    "n_candidates": 311,
+    "reason": null,
+    "texts": [
+     " j"
+    ],
+    "co_veto": []
+   },
+   "sham": {
+    "ok": true,
+    "ngram": [
+     310
+    ],
+    "coverage": 1.0,
+    "coll": {
+     "patience_bisect": 1.0,
+     "fenwick": 1.0
+    },
+    "min_coll": 1.0,
+    "relaxed_n": false,
+    "text": "           "
+   },
+   "source": "fp8_pilot"
+  }
+ },
+ "unit_tests": {
+  "min_collateral": true,
+  "tie_rules": true,
+  "greedy_cover": true,
+  "deterministic": true,
+  "sham_relaxed_tie": true,
+  "sham_same_n_max_shared": true,
+  "all_pass": true
+ }
+}
