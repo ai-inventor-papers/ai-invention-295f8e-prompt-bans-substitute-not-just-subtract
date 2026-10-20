@@ -1,0 +1,469 @@
+{
+ "n": 50,
+ "n_judged": 50,
+ "agreement": 0.78,
+ "judge_model": "google/gemini-2.5-flash",
+ "stop": {
+  "stop": false
+ },
+ "pairs": [
+  {
+   "task": "t1",
+   "row_id": "A2|t1|forced:astar_gbfs:k7|2",
+   "combined": "astar_gbfs",
+   "source": "judge",
+   "audit_judge": "astar_gbfs",
+   "audit_rationale": "The code implements A* search because it uses a priority queue (simulated by a list and min function) ordered by f = g + h (cost_so_far + heuristic) and updates costs for neighbors."
+  },
+  {
+   "task": "t1",
+   "row_id": "A6|t1|forced:astar_gbfs:k3|5",
+   "combined": "astar_gbfs",
+   "source": "judge",
+   "audit_judge": "astar_gbfs",
+   "audit_rationale": "The program uses a priority queue (simulated by finding the minimum in 'open_set' based on a heuristic) and calculates a cost 'new_cost + heuristic(next, goal)', which is characteristic of A* search."
+  },
+  {
+   "task": "t1",
+   "row_id": "A6|t1|forced:astar_gbfs:k5|7",
+   "combined": "astar_gbfs",
+   "source": "agree",
+   "audit_judge": "astar_gbfs",
+   "audit_rationale": "The code uses a priority queue (heapq) ordered by f = g + h, where g is the cost from start (new_cost) and h is the Manhattan distance heuristic, which is the definition of A* search."
+  },
+  {
+   "task": "t1",
+   "row_id": "A6|t1|forced:dijkstra:k1|4",
+   "combined": "astar_gbfs",
+   "source": "judge",
+   "audit_judge": "astar_gbfs",
+   "audit_rationale": "The code uses a priority queue ordered by 'distance + heuristic' (Manhattan distance to goal), which is the characteristic of A* search."
+  },
+  {
+   "task": "t1",
+   "row_id": "A6|t1|forced:astar_gbfs:k8|5",
+   "combined": "astar_gbfs",
+   "source": "agree",
+   "audit_judge": "astar_gbfs",
+   "audit_rationale": "The program implements A* search by using a priority queue ordered by f = g + h, where g is the cost from start and h is the Manhattan distance heuristic."
+  },
+  {
+   "task": "t1",
+   "row_id": "C|t1|ban:dijkstra:w2|8",
+   "combined": "bfs",
+   "source": "judge",
+   "audit_judge": "bfs",
+   "audit_rationale": "The program uses a queue (list.pop(0)) to explore neighbors level by level, which is characteristic of Breadth-First Search."
+  },
+  {
+   "task": "t1",
+   "row_id": "A5|t1|twostep:bfs+dfs:w1|2",
+   "combined": "bfs",
+   "source": "agree",
+   "audit_judge": "bfs",
+   "audit_rationale": "The code uses a queue (list.pop(0)) to store states and explores neighbors level by level, which is characteristic of a breadth-first search."
+  },
+  {
+   "task": "t1",
+   "row_id": "A4|t1|ban:bfs:w2|2",
+   "combined": "bfs",
+   "source": "agree",
+   "audit_judge": "bfs",
+   "audit_rationale": "The code uses a queue (list.pop(0)) to store states and explores neighbors level by level, which is characteristic of Breadth-First Search."
+  },
+  {
+   "task": "t1",
+   "row_id": "A4|t1|ban:bfs:w4|19",
+   "combined": "bfs",
+   "source": "agree",
+   "audit_judge": "bfs",
+   "audit_rationale": "The program uses a queue (list acting as a FIFO queue with pop(0)) to explore nodes level by level, characteristic of Breadth-First Search."
+  },
+  {
+   "task": "t1",
+   "row_id": "A5|t1|twostep:bfs+dfs:w1|9",
+   "combined": "bfs",
+   "source": "judge",
+   "audit_judge": "bfs",
+   "audit_rationale": "The program uses a queue (list.pop(0)) to store states and explores neighbors level by level, which is characteristic of Breadth-First Search."
+  },
+  {
+   "task": "t1",
+   "row_id": "A6|t1|forced_desc:bibfs:k0|11",
+   "combined": "bibfs",
+   "source": "judge",
+   "audit_judge": "bibfs",
+   "audit_rationale": "The program uses two deques, one starting from 'start' and one from 'goal', and expands them alternately, checking for intersection, which is the definition of bidirectional BFS."
+  },
+  {
+   "task": "t1",
+   "row_id": "A6|t1|forced_desc:bibfs:k8|11",
+   "combined": "bibfs",
+   "source": "agree",
+   "audit_judge": "other",
+   "audit_rationale": "The code attempts a bidirectional search but the path reconstruction logic is fundamentally flawed and does not correctly track predecessors, making it an 'other' algorithm rather than a correct bibfs."
+  },
+  {
+   "task": "t1",
+   "row_id": "A2|t1|forced:bibfs:k4|2",
+   "combined": "bibfs",
+   "source": "judge",
+   "audit_judge": "bibfs",
+   "audit_rationale": "The code uses two queues and two visited sets to perform simultaneous BFS from start and goal, meeting in the middle, which is the definition of bidirectional BFS."
+  },
+  {
+   "task": "t1",
+   "row_id": "A6|t1|forced_desc:bibfs:k7|11",
+   "combined": "bibfs",
+   "source": "agree",
+   "audit_judge": "other",
+   "audit_rationale": "The code attempts a bidirectional search but incorrectly manages paths and visited sets, leading to an invalid path reconstruction and a non-standard search pattern."
+  },
+  {
+   "task": "t1",
+   "row_id": "A6|t1|forced_desc:bibfs:k4|9",
+   "combined": "bibfs",
+   "source": "agree",
+   "audit_judge": "bibfs",
+   "audit_rationale": "The code uses two queues, one starting from 'start' and one from 'goal', and expands them alternately, which is the definition of bidirectional breadth-first search."
+  },
+  {
+   "task": "t1",
+   "row_id": "A4|t1|ban:bfs:w5|19",
+   "combined": "dfs",
+   "source": "judge",
+   "audit_judge": "dfs",
+   "audit_rationale": "The program uses a list as a stack (path.pop()) to explore paths, which is characteristic of a depth-first search."
+  },
+  {
+   "task": "t1",
+   "row_id": "A6|t1|forced:iddfs:k3|7",
+   "combined": "dfs",
+   "source": "judge",
+   "audit_judge": "iddfs",
+   "audit_rationale": "The code implements iterative deepening depth-first search by repeatedly calling a depth-limited DFS with an increasing depth limit."
+  },
+  {
+   "task": "t1",
+   "row_id": "A4|t1|ban:bfs:w5|10",
+   "combined": "dfs",
+   "source": "judge",
+   "audit_judge": "dfs",
+   "audit_rationale": "The program uses a recursive function to explore paths, adding the current cell to the path and then recursively calling itself for unvisited neighbors, which is characteristic of Depth-First Search."
+  },
+  {
+   "task": "t1",
+   "row_id": "A2|t1|forced:iddfs:k2|2",
+   "combined": "dfs",
+   "source": "judge",
+   "audit_judge": "dfs",
+   "audit_rationale": "The program uses a stack (list.pop()) to store states and explores deeply along paths before backtracking, which is characteristic of Depth-First Search."
+  },
+  {
+   "task": "t1",
+   "row_id": "A6|t1|forced:iddfs:k2|5",
+   "combined": "dfs",
+   "source": "judge",
+   "audit_judge": "iddfs",
+   "audit_rationale": "The code explicitly implements iterative deepening depth-first search by iterating through increasing depth limits and performing a DFS for each limit."
+  },
+  {
+   "task": "t1",
+   "row_id": "A6|t1|forced:dijkstra:k0|6",
+   "combined": "dijkstra",
+   "source": "agree",
+   "audit_judge": "astar_gbfs",
+   "audit_rationale": "The algorithm uses a priority queue (heap) ordered by `new_dist + x + y`, which is a sum of the cost from start (`new_dist`) and a heuristic (`x + y`), characteristic of A* search."
+  },
+  {
+   "task": "t1",
+   "row_id": "A6|t1|forced:dijkstra:k1|6",
+   "combined": "dijkstra",
+   "source": "judge",
+   "audit_judge": "dijkstra",
+   "audit_rationale": "The program uses a priority queue ordered by the path cost (distance from start) and explores nodes in increasing order of cost, which is characteristic of Dijkstra's algorithm on a graph with uniform edge weights."
+  },
+  {
+   "task": "t1",
+   "row_id": "A6|t1|forced:dijkstra:k9|10",
+   "combined": "dijkstra",
+   "source": "agree",
+   "audit_judge": "dijkstra",
+   "audit_rationale": "The program uses a priority queue ordered by the accumulated cost from the start node (new_cost), which is characteristic of Dijkstra's algorithm on a graph with uniform edge weights."
+  },
+  {
+   "task": "t1",
+   "row_id": "C|t1|ban:dijkstra:w1|3",
+   "combined": "dijkstra",
+   "source": "agree",
+   "audit_judge": "dijkstra",
+   "audit_rationale": "The program uses a priority queue (heapq) ordered by the distance from the start node, which is characteristic of Dijkstra's algorithm."
+  },
+  {
+   "task": "t1",
+   "row_id": "A2|t1|forced:astar_gbfs:k2|1",
+   "combined": "dijkstra",
+   "source": "judge",
+   "audit_judge": "dijkstra",
+   "audit_rationale": "The program uses a priority queue ordered by the accumulated cost from the start node (new_cost), which is characteristic of Dijkstra's algorithm for finding the shortest path on an unweighted or uniformly weighted graph."
+  },
+  {
+   "task": "t1",
+   "row_id": "A6|t1|forced:iddfs:k5|5",
+   "combined": "iddfs",
+   "source": "judge",
+   "audit_judge": "iddfs",
+   "audit_rationale": "The code attempts to implement iterative deepening DFS by iterating through increasing depth limits and calling a DFS-like function, but the DFS implementation is flawed and does not correctly manage depth or visited states for IDDFS."
+  },
+  {
+   "task": "t1",
+   "row_id": "A6|t1|forced:iddfs:k8|10",
+   "combined": "iddfs",
+   "source": "agree",
+   "audit_judge": "other",
+   "audit_rationale": "The provided code attempts to implement IDDFS but has a fundamental flaw in its recursive structure and state management, making it neither a correct IDDFS nor any other standard algorithm."
+  },
+  {
+   "task": "t1",
+   "row_id": "A6|t1|forced:iddfs:k0|4",
+   "combined": "iddfs",
+   "source": "agree",
+   "audit_judge": "other",
+   "audit_rationale": "The provided code attempts to implement IDDFS but the inner `iddfs` function is not a true depth-limited DFS; it uses a queue (FIFO) instead of a stack (LIFO) for exploration, making it a breadth-first search with a depth limit, which is not a standard algorithm."
+  },
+  {
+   "task": "t1",
+   "row_id": "A2|t1|forced:iddfs:k8|0",
+   "combined": "iddfs",
+   "source": "agree",
+   "audit_judge": "other",
+   "audit_rationale": "The code implements a modified BFS within an iterative deepening loop, but the BFS itself is flawed as it does not use a visited set correctly, leading to re-exploring paths and potential infinite loops or incorrect path lengths, thus not fitting standard IDDFS or BFS."
+  },
+  {
+   "task": "t1",
+   "row_id": "A6|t1|forced:iddfs:k3|6",
+   "combined": "iddfs",
+   "source": "agree",
+   "audit_judge": "iddfs",
+   "audit_rationale": "The program implements iterative deepening depth-first search by repeatedly calling a depth-limited DFS with an increasing depth limit."
+  },
+  {
+   "task": "t1",
+   "row_id": "A6|t1|forced:iddfs:k2|9",
+   "combined": "other",
+   "source": "judge",
+   "audit_judge": "other",
+   "audit_rationale": "The code attempts to find a path using a combination of pre-calculating distances and a recursive function, but the implementation of `iterate` and `range_depth` does not clearly align with a standard graph search algorithm like BFS, DFS, or Dijkstra.",
+   "supplement": true
+  },
+  {
+   "task": "t1",
+   "row_id": "A6|t1|forced:dijkstra:k3|4",
+   "combined": "other",
+   "source": "judge",
+   "audit_judge": "other",
+   "audit_rationale": "The program attempts to implement a priority queue but the logic for adding to the queue and selecting the next node is flawed, making it not a standard A* or Dijkstra implementation.",
+   "supplement": true
+  },
+  {
+   "task": "t1",
+   "row_id": "A6|t1|forced:dijkstra:k5|11",
+   "combined": "other",
+   "source": "judge",
+   "audit_judge": "other",
+   "audit_rationale": "The code attempts to implement Dijkstra's algorithm but uses a heuristic in the priority queue, which makes it an A* search, but the heuristic calculation is incorrect and does not represent a valid distance or cost, making it neither a correct Dijkstra nor A*.",
+   "supplement": true
+  },
+  {
+   "task": "t1",
+   "row_id": "A1|t1|baseline:s3|5",
+   "combined": "other",
+   "source": "judge",
+   "audit_judge": "other",
+   "audit_rationale": "The provided code attempts to use a queue but its logic for path reconstruction and exploration is fundamentally flawed and does not resemble a standard BFS or any other listed algorithm.",
+   "supplement": true
+  },
+  {
+   "task": "t1",
+   "row_id": "A6|t1|forced:dijkstra:k2|5",
+   "combined": "other",
+   "source": "judge",
+   "audit_judge": "astar_gbfs",
+   "audit_rationale": "The code implements Dijkstra's algorithm with a heuristic function, which is A* search. The priority queue is ordered by `new_cost + h(successor)`, which is f = g + h.",
+   "supplement": true
+  },
+  {
+   "task": "t2",
+   "row_id": "A4|t2|listall:p4|7",
+   "combined": "bf_spfa",
+   "source": "agree",
+   "audit_judge": "bf_spfa",
+   "audit_rationale": "The code implements Bellman-Ford by repeatedly relaxing all edges for n iterations.",
+   "supplement": true
+  },
+  {
+   "task": "t2",
+   "row_id": "A6|t2|forced_desc:bidijkstra:k4|9",
+   "combined": "bidijkstra",
+   "source": "judge",
+   "audit_judge": "bidijkstra",
+   "audit_rationale": "The program implements a bidirectional Dijkstra's algorithm by running two Dijkstra-like searches simultaneously, one forward from s and one backward from t, using two priority queues.",
+   "supplement": true
+  },
+  {
+   "task": "t2",
+   "row_id": "A2|t2|forced:dial:k8|0",
+   "combined": "dial",
+   "source": "judge",
+   "audit_judge": "dial",
+   "audit_rationale": "The code implements Dijkstra's algorithm using a bucket queue, which is characteristic of Dial's algorithm.",
+   "supplement": true
+  },
+  {
+   "task": "t2",
+   "row_id": "A2|t2|forced:bidijkstra:k9|0",
+   "combined": "dijkstra",
+   "source": "judge",
+   "audit_judge": "other",
+   "audit_rationale": "The program attempts to implement Dijkstra's algorithm but then introduces a complex and incorrect unweighted search that does not correspond to any standard shortest path algorithm.",
+   "supplement": true
+  },
+  {
+   "task": "t2",
+   "row_id": "A2|t2|forced:floyd:k9|3",
+   "combined": "floyd",
+   "source": "agree",
+   "audit_judge": "floyd",
+   "audit_rationale": "The program explicitly implements the Floyd-Warshall algorithm with a triple nested loop for k, i, and j to update shortest paths between all pairs of nodes.",
+   "supplement": true
+  },
+  {
+   "task": "t2",
+   "row_id": "A4|t2|mention:dijkstra:w1|4",
+   "combined": "other",
+   "source": "judge",
+   "audit_judge": "other",
+   "audit_rationale": "The provided Dijkstra implementation is incorrect; it iterates through all edges for each node, and the relaxation condition `if v == cur_node and distance[u] + w < distance[v]` is fundamentally flawed for Dijkstra's algorithm, making it not a true Dijkstra's or any other listed algorithm.",
+   "supplement": true
+  },
+  {
+   "task": "t2",
+   "row_id": "A4|t2|ban:dijkstra:w1|18",
+   "combined": "bf_spfa",
+   "source": "agree",
+   "audit_judge": "other",
+   "audit_rationale": "The program attempts to implement a shortest path algorithm but uses a standard queue (FIFO) instead of a priority queue, which is characteristic of SPFA, but it also marks nodes as visited which is not standard for SPFA and can lead to incorrect results in graphs with cycles and non-negative weight",
+   "supplement": true
+  },
+  {
+   "task": "t2",
+   "row_id": "A2|t2|forced:bidijkstra:k7|0",
+   "combined": "bidijkstra",
+   "source": "judge",
+   "audit_judge": "bidijkstra",
+   "audit_rationale": "The program attempts to implement bidirectional Dijkstra's algorithm by maintaining two priority queues (pq1 and pq2) and two distance arrays (dist1 and dist2) for forward and backward searches, respectively.",
+   "supplement": true
+  },
+  {
+   "task": "t2",
+   "row_id": "A6|t2|forced_desc:dial:k5|10",
+   "combined": "dial",
+   "source": "judge",
+   "audit_judge": "dial",
+   "audit_rationale": "The program implements Dial's algorithm by using a bucket queue where buckets are indexed by distance and processed in increasing order.",
+   "supplement": true
+  },
+  {
+   "task": "t2",
+   "row_id": "A6|t2|forced:dial:k1|6",
+   "combined": "dijkstra",
+   "source": "judge",
+   "audit_judge": "dijkstra",
+   "audit_rationale": "The program implements Dijkstra's algorithm using a min-priority queue (heapq) to explore nodes in increasing order of tentative distance from the source, updating distances and pushing neighbors to the queue.",
+   "supplement": true
+  },
+  {
+   "task": "t2",
+   "row_id": "A2|t2|forced:floyd:k5|1",
+   "combined": "floyd",
+   "source": "agree",
+   "audit_judge": "floyd",
+   "audit_rationale": "The program implements the Floyd-Warshall algorithm with a triple nested loop iterating over k, i, and j to update shortest paths between all pairs of nodes.",
+   "supplement": true
+  },
+  {
+   "task": "t2",
+   "row_id": "A2|t2|forced:bidijkstra:k4|3",
+   "combined": "other",
+   "source": "judge",
+   "audit_judge": "other",
+   "audit_rationale": "The code attempts a bidirectional search but contains significant logical errors and inconsistencies in how it updates distances and uses the two priority queues, making it not a standard bidirectional Dijkstra or any other listed algorithm.",
+   "supplement": true
+  },
+  {
+   "task": "t2",
+   "row_id": "C|t2|ban:floyd:w3|2",
+   "combined": "bf_spfa",
+   "source": "judge",
+   "audit_judge": "bf_spfa",
+   "audit_rationale": "The program implements the SPFA algorithm, which is a variant of Bellman-Ford, using a queue to relax edges and detect improvements in distances.",
+   "supplement": true
+  },
+  {
+   "task": "t2",
+   "row_id": "A1|t2|baseline:s3|13",
+   "combined": "dijkstra",
+   "source": "judge",
+   "audit_judge": "dijkstra",
+   "audit_rationale": "The program implements Dijkstra's algorithm using a min-priority queue (heapq) to explore nodes in increasing order of tentative distance from the source.",
+   "supplement": true
+  },
+  {
+   "task": "t2",
+   "row_id": "C|t2|ban:floyd:w4|3",
+   "combined": "floyd",
+   "source": "judge",
+   "audit_judge": "floyd",
+   "audit_rationale": "The program implements the Floyd-Warshall algorithm by initializing a distance matrix and then iterating through all possible intermediate nodes k to update shortest paths between all pairs of nodes.",
+   "supplement": true
+  }
+ ],
+ "by_label": {
+  "t1:astar_gbfs": 5,
+  "t1:bfs": 5,
+  "t1:bibfs": 5,
+  "t1:dfs": 5,
+  "t1:dijkstra": 5,
+  "t1:iddfs": 5,
+  "t1:other": 5,
+  "t2:bf_spfa": 3,
+  "t2:bidijkstra": 2,
+  "t2:dial": 2,
+  "t2:dijkstra": 3,
+  "t2:floyd": 3,
+  "t2:other": 2
+ },
+ "disputed_row_ids": [
+  "A6|t1|forced_desc:bibfs:k8|11",
+  "A6|t1|forced_desc:bibfs:k7|11",
+  "A6|t1|forced:iddfs:k3|7",
+  "A6|t1|forced:iddfs:k2|5",
+  "A6|t1|forced:dijkstra:k0|6",
+  "A6|t1|forced:iddfs:k8|10",
+  "A6|t1|forced:iddfs:k0|4",
+  "A2|t1|forced:iddfs:k8|0",
+  "A6|t1|forced:dijkstra:k2|5",
+  "A2|t2|forced:bidijkstra:k9|0",
+  "A4|t2|ban:dijkstra:w1|18"
+ ],
+ "flag_below_0.9": true,
+ "stop_supplement": {
+  "stop": false
+ },
+ "agreement_per_task": {
+  "t1": 0.7428571428571429,
+  "t2": 0.8666666666666667
+ },
+ "agreement_first_draw": 0.7333333333333333,
+ "note": "first draw (30) filled with T1 catalogue labels only; supplement adds T1 'other' and T2"
+}

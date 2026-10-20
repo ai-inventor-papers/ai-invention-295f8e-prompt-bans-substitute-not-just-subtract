@@ -1,0 +1,99 @@
+{
+ "source": "art_j3Rm_lr2nzR6 full_data_out.json",
+ "datasets": {
+  "leetcodedataset": {
+   "n_examples": 2869,
+   "n_naming_an_algorithm": 405,
+   "n": 400,
+   "parses_after": 400,
+   "renamed_any": 282,
+   "residual_names": 3,
+   "residual_attribute_only": 3,
+   "plain": 100,
+   "plain_identical": 100
+  },
+  "mercury": {
+   "n_examples": 440,
+   "n_naming_an_algorithm": 51,
+   "n": 151,
+   "parses_after": 151,
+   "renamed_any": 39,
+   "residual_names": 6,
+   "residual_attribute_only": 6,
+   "plain": 100,
+   "plain_identical": 100
+  },
+  "llm_creativity": {
+   "n_examples": 225,
+   "t02_mode_counts": {
+    "dijkstra": 132,
+    "bidirectional_search": 30,
+    "other": 21,
+    "bellman_ford_spfa": 34,
+    "dial": 5,
+    "floyd_warshall": 1,
+    "a_star": 2
+   },
+   "use": "external reference: blind-judge T02 labels of other LLMs' programs"
+  },
+  "thealgorithms_python": {
+   "n_examples": 1354,
+   "n_naming_an_algorithm": 24,
+   "n": 124,
+   "parses_after": 124,
+   "renamed_any": 23,
+   "plain": 100,
+   "plain_identical": 100
+  },
+  "clrs_text": {
+   "n_examples": 2910,
+   "n_tested": 500,
+   "texts_naming_before": 95,
+   "texts_naming_after": 0
+  },
+  "humanevalplus": {
+   "n_examples": 164,
+   "n_naming_an_algorithm": 8,
+   "n": 108,
+   "parses_after": 108,
+   "plain": 100,
+   "plain_identical": 100
+  },
+  "enamel": {
+   "n_examples": 164,
+   "n_naming_an_algorithm": 6,
+   "n": 106,
+   "parses_after": 106,
+   "plain": 100,
+   "plain_identical": 100
+  },
+  "concreteness_norms": {
+   "n_examples": 39954,
+   "use": "neutral-noun bank (718 candidates) -> src/config.py",
+   "n_candidates": 718
+  },
+  "kodcode_algorithmic": {
+   "n_examples": 2767,
+   "n_naming_an_algorithm": 93,
+   "n": 193,
+   "parses_after": 193,
+   "renamed_any": 31,
+   "plain": 100,
+   "plain_identical": 100
+  },
+  "xlcost_python": {
+   "n_examples": 10622,
+   "n_naming_an_algorithm": 595,
+   "n": 270,
+   "parses_after": 270,
+   "renamed_any": 63,
+   "unparsable_input": 130,
+   "residual_names": 2,
+   "residual_attribute_only": 2,
+   "plain": 93,
+   "plain_identical": 93
+  }
+ },
+ "pass_rule": "no scrub error; every residual is an attribute name (never renamed by the plan's rule); programs naming no algorithm (text or identifier) are byte-identical",
+ "all_pass": true
+}
