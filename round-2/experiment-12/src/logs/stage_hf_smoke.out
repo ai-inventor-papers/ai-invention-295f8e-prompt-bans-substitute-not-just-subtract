@@ -1,0 +1,110 @@
+13:16:05|INFO   |stage hf (smoke=True)
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+13:17:22|INFO   |layers [15, 20, 27]; transfer corpus 3 seqs, mean len 502
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:02,  1.48it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.40it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.35it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  1.44it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.94it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.66it/s]
+13:18:12|INFO   |loaded Qwen/Qwen3-8B in 40s; GPU allocated 14.10 GiB, reserved 14.10 GiB
+13:18:12|INFO   |[E2_checks] start
+13:18:15|INFO   |splice sanity at L15: [{'ce_clean': 0.011030004359781742, 'ce_identity_splice': 0.011030004359781742, 'ce_zero_splice': 12.361821174621582}, {'ce_clean': 0.011261812411248684, 'ce_identity_splice': 0.011261812411248684, 'ce_zero_splice': 12.23542308807373}] -> pass=True
+13:18:16|INFO   |eager check: [{'prompt': 't1|ban|W1', 'max_abs_attn_diff_L0_17_35': [0.008598536252975464, 0.027013421058654785, 0.021947503089904785], 'max_abs_logit_diff': 0.65625, 'argmax_equal': True}, {'prompt': 't2|ban|W3', 'max_abs_attn_diff_L0_17_35': [0.0062961578369140625, 0.039047569036483765, 0.026929765939712524], 'max_abs_logit_diff': 0.578125, 'argmax_equal': True}, {'prompt': 't1|neutral|W5', 'max_abs_attn_diff_L0_17_35': [0.00605049729347229, 0.024377554655075073, 0.02188354730606079], 'max_abs_logit_diff': 0.65625, 'argmax_equal': True}]
+13:18:16|INFO   |[E2_checks] done in 0.1 min
+13:18:16|INFO   |[E1_instruct_clean] start
+13:18:17|INFO   |[E1_instruct_L15] start
+13:18:23|INFO   |E1[instruct] L15: CE clean 0.0139 splice 0.1570 dCE 0.1431 FVU 0.366 relMSE 0.198 cos 0.895 high-norm share 0.0000
+13:18:23|INFO   |[E1_instruct_L15] done in 0.1 min
+13:18:23|INFO   |[E1_instruct_L20] start
+13:18:28|INFO   |[E1_instruct_L20] done in 0.1 min
+13:18:28|INFO   |[E1_instruct_clean] done in 0.2 min
+13:18:28|ERROR  |An error has been caught in function '<module>', process 'MainProcess' (30152), thread 'MainThread' (136125775207296):
+Traceback (most recent call last):
+
+> File "./method.py", line 87, in <module>
+    main()
+    └ <function main at 0x7bce3f86c360>
+
+  File "./method.py", line 73, in main
+    run_stage_hf(smoke=args.smoke)
+    │                  │    └ True
+    │                  └ Namespace(stage='hf', smoke=True, n=None, part='traces')
+    └ <function run_stage_hf at 0x7bcd2dd8e2a0>
+
+  File "./src/hf_stage.py", line 642, in run_stage_hf
+    inst = run_transfer(model, corpus, layers, "instruct", want_codes=True, jl_gate=True)
+           │            │      │       └ [15, 20, 27]
+           │            │      └ [{'task': 't1', 'condition': 'baseline', 'paraphrase_id': 0, 'sample_id': 0, 'ids': [151644, 872, 198, 5501, 11625, 279, 2701...
+           │            └ Qwen3ForCausalLM(
+           │                (model): Qwen3Model(
+           │                  (embed_tokens): Embedding(151936, 4096)
+           │                  (layers): ModuleList(
+           │                    (0-35): ...
+           └ <function run_transfer at 0x7bcd2dd8df80>
+
+  File "./.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           │     │       └ {'want_codes': True, 'jl_gate': True}
+           │     └ (Qwen3ForCausalLM(
+           │         (model): Qwen3Model(
+           │           (embed_tokens): Embedding(151936, 4096)
+           │           (layers): ModuleList(
+           │             (0-35):...
+           └ <function run_transfer at 0x7bcd2dd8dee0>
+
+  File "./src/hf_stage.py", line 518, in run_transfer
+    v, i = sae.encode(x)
+    │      │   │      └ tensor([[-0.9609, -1.3203, -0.3301,  ..., -0.0107,  0.6758, -0.0078],
+    │      │   │                [-0.0352,  0.6016,  1.0469,  ..., -1.0156,  0.2...
+    │      │   └ <function SAE.encode at 0x7bcd2dd8d120>
+    │      └ <hf_stage.SAE object at 0x7bcd2f602330>
+    └ tensor([[26.2579, 18.2068, 11.1717,  ...,  2.3579,  2.3460,  2.3101],
+              [24.9851, 23.0346, 18.5221,  ...,  4.0172,  4.0...
+
+  File "./.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           │     │       └ {}
+           │     └ (<hf_stage.SAE object at 0x7bcd2f602330>, tensor([[-0.9609, -1.3203, -0.3301,  ..., -0.0107,  0.6758, -0.0078],
+           │               [-0.0...
+           └ <function SAE.encode at 0x7bcd2dd8d080>
+
+  File "./src/hf_stage.py", line 179, in encode
+    pre = torch.nn.functional.linear(x.to(torch.bfloat16), self.W_enc).float() + self.b_enc
+          │     │  │          │      │ │  │     │          │    │                │    └ tensor([ -4.4608,  -6.0148,  -4.3761,  ..., -11.0201,  -3.1901,  -1.5455],
+          │     │  │          │      │ │  │     │          │    │                │             device='cuda:0')
+          │     │  │          │      │ │  │     │          │    │                └ <hf_stage.SAE object at 0x7bcd2f602330>
+          │     │  │          │      │ │  │     │          │    └ tensor([[-0.0164, -0.0172,  0.0076,  ..., -0.0474, -0.0063,  0.0337],
+          │     │  │          │      │ │  │     │          │              [ 0.0151, -0.0128,  0.0237,  ...,  0.0150, -0.0...
+          │     │  │          │      │ │  │     │          └ <hf_stage.SAE object at 0x7bcd2f602330>
+          │     │  │          │      │ │  │     └ torch.bfloat16
+          │     │  │          │      │ │  └ <module 'torch' from './.venv...
+          │     │  │          │      │ └ <method 'to' of 'torch._C.TensorBase' objects>
+          │     │  │          │      └ tensor([[-0.9609, -1.3203, -0.3301,  ..., -0.0107,  0.6758, -0.0078],
+          │     │  │          │                [-0.0352,  0.6016,  1.0469,  ..., -1.0156,  0.2...
+          │     │  │          └ <built-in function linear>
+          │     │  └ <module 'torch.nn.functional' from '<server>/aii_data/runs/run_aRfWvcSWjssb/3_invention_loop/iter_2/gen_art/gen_art_exper...
+          │     └ <module 'torch.nn' from './.v...
+          └ <module 'torch' from './.venv...
+
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 140.00 MiB. GPU 0 has a total capacity of 15.58 GiB of which 136.25 MiB is free. Including non-PyTorch memory, this process has 15.43 GiB memory in use. Of the allocated memory 15.26 GiB is allocated by PyTorch, and 56.93 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "./method.py", line 87, in <module>
+    main()
+  File "./.venv/lib/python3.12/site-packages/loguru/_logger.py", line 1297, in catch_wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./method.py", line 73, in main
+    run_stage_hf(smoke=args.smoke)
+  File "./src/hf_stage.py", line 642, in run_stage_hf
+    inst = run_transfer(model, corpus, layers, "instruct", want_codes=True, jl_gate=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "./src/hf_stage.py", line 518, in run_transfer
+    v, i = sae.encode(x)
+           ^^^^^^^^^^^^^
+  File "./.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "./src/hf_stage.py", line 179, in encode
+    pre = torch.nn.functional.linear(x.to(torch.bfloat16), self.W_enc).float() + self.b_enc
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 140.00 MiB. GPU 0 has a total capacity of 15.58 GiB of which 136.25 MiB is free. Including non-PyTorch memory, this process has 15.43 GiB memory in use. Of the allocated memory 15.26 GiB is allocated by PyTorch, and 56.93 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

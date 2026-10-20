@@ -1,0 +1,438 @@
+04:12:27|INFO   |stage vllm1 (smoke=True)
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+INFO 10-20 04:13:35 [__init__.py:216] Automatically detected platform cuda.
+INFO 10-20 04:14:02 [utils.py:233] non-default args: {'tokenizer': 'Qwen/Qwen3-8B', 'seed': 0, 'max_model_len': 2048, 'enable_prefix_caching': True, 'max_num_batched_tokens': 4096, 'max_num_seqs': 8, 'disable_log_stats': True, 'logits_processors': [<class 'vllm_stage.CRNLogitsProcessor'>], 'model': 'Qwen/Qwen3-8B-FP8'}
+INFO 10-20 04:15:29 [model.py:547] Resolved architecture: Qwen3ForCausalLM
+`torch_dtype` is deprecated! Use `dtype` instead!
+INFO 10-20 04:15:29 [model.py:1510] Using max model len 2048
+INFO 10-20 04:15:37 [scheduler.py:205] Chunked prefill is enabled with max_num_batched_tokens=4096.
+INFO 10-20 04:15:39 [core.py:77] Initializing a V1 LLM engine (v0.11.0) with config: model='Qwen/Qwen3-8B-FP8', speculative_config=None, tokenizer='Qwen/Qwen3-8B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=fp8, enforce_eager=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser=''), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None), seed=0, served_model_name=Qwen/Qwen3-8B-FP8, enable_prefix_caching=True, chunked_prefill_enabled=True, pooler_config=None, compilation_config={"level":3,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output","vllm.mamba_mixer2","vllm.mamba_mixer","vllm.short_conv","vllm.linear_attention","vllm.plamo2_mamba_mixer","vllm.gdn_attention","vllm.sparse_attn_indexer"],"use_inductor":true,"compile_sizes":[],"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"cudagraph_mode":[2,1],"use_cudagraph":true,"cudagraph_num_of_warmups":1,"cudagraph_capture_sizes":[16,8,4,2,1],"cudagraph_copy_inputs":false,"full_cuda_graph":false,"use_inductor_graph_partition":false,"pass_config":{},"max_capture_size":16,"local_cache_dir":null}
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+INFO 10-20 04:15:49 [parallel_state.py:1208] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0, EP rank 0
+WARNING 10-20 04:15:49 [topk_topp_sampler.py:66] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+INFO 10-20 04:15:49 [gpu_model_runner.py:2602] Starting to load model Qwen/Qwen3-8B-FP8...
+INFO 10-20 04:15:50 [gpu_model_runner.py:2634] Loading model from scratch...
+INFO 10-20 04:15:50 [cuda.py:366] Using Flash Attention backend on V1 engine.
+INFO 10-20 04:15:51 [weight_utils.py:392] Using model weights format ['*.safetensors']
+Loading safetensors checkpoint shards:   0% Completed | 0/2 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  50% Completed | 1/2 [00:06<00:06,  6.85s/it]
+Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:13<00:00,  6.68s/it]
+Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:13<00:00,  6.71s/it]
+
+INFO 10-20 04:16:05 [default_loader.py:267] Loading weights took 13.56 seconds
+INFO 10-20 04:16:06 [gpu_model_runner.py:2653] Model loading took 8.8011 GiB and 15.503056 seconds
+INFO 10-20 04:16:26 [backends.py:548] Using cache directory: /home/aii-agent/.cache/vllm/torch_compile_cache/e8057d0ff5/rank_0_0/backbone for vLLM's torch.compile
+INFO 10-20 04:16:26 [backends.py:559] Dynamo bytecode transform time: 20.60 s
+04:16:29|ERROR  |An error has been caught in function '<module>', process 'MainProcess' (1437), thread 'MainThread' (124513174129536):
+Traceback (most recent call last):
+
+> File "./method.py", line 76, in <module>
+    main()
+    └ <function main at 0x713e7a8f8360>
+
+  File "./method.py", line 50, in main
+    session1(n_per_template=args.n or 40, smoke=args.smoke)
+    │                       │    │              │    └ True
+    │                       │    │              └ Namespace(stage='vllm1', smoke=True, n=None)
+    │                       │    └ None
+    │                       └ Namespace(stage='vllm1', smoke=True, n=None)
+    └ <function session1 at 0x713c6bd44ae0>
+
+  File "./src/vllm_stage.py", line 243, in session1
+    llm = make_engine(max_model_len=2048, max_num_seqs=48 if not smoke else 8, gpu_mem=0.90)
+          │                                                      └ True
+          └ <function make_engine at 0x713e7a8f9260>
+
+  File "./src/vllm_stage.py", line 88, in make_engine
+    llm = LLM(model=MODEL_GEN, tokenizer=MODEL_HF, dtype="auto", max_model_len=max_model_len,
+          │         │                    │                                     └ 2048
+          │         │                    └ 'Qwen/Qwen3-8B'
+          │         └ 'Qwen/Qwen3-8B-FP8'
+          └ <class 'vllm.entrypoints.llm.LLM'>
+
+  File "./.venv/lib/python3.12/site-packages/vllm/entrypoints/llm.py", line 297, in __init__
+    self.llm_engine = LLMEngine.from_engine_args(
+    │                 │         └ <classmethod(<function LLMEngine.from_engine_args at 0x713c4de04180>)>
+    │                 └ <class 'vllm.v1.engine.llm_engine.LLMEngine'>
+    └ <vllm.entrypoints.llm.LLM object at 0x713c6cb59580>
+  File "./.venv/lib/python3.12/site-packages/vllm/v1/engine/llm_engine.py", line 177, in from_engine_args
+    return cls(vllm_config=vllm_config,
+           │               └ VllmConfig(model_config=ModelConfig(model='Qwen/Qwen3-8B-FP8', runner='auto', convert='auto', task=None, tokenizer='Qwen/Qwen...
+           └ <class 'vllm.v1.engine.llm_engine.LLMEngine'>
+  File "./.venv/lib/python3.12/site-packages/vllm/v1/engine/llm_engine.py", line 114, in __init__
+    self.engine_core = EngineCoreClient.make_client(
+    │                  │                └ <staticmethod(<function EngineCoreClient.make_client at 0x713c63fbd620>)>
+    │                  └ <class 'vllm.v1.engine.core_client.EngineCoreClient'>
+    └ <vllm.v1.engine.llm_engine.LLMEngine object at 0x713c251e3ef0>
+  File "./.venv/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 82, in make_client
+    return InprocClient(vllm_config, executor_class, log_stats)
+           │            │            │               └ False
+           │            │            └ <class 'vllm.v1.executor.abstract.UniProcExecutor'>
+           │            └ VllmConfig(model_config=ModelConfig(model='Qwen/Qwen3-8B-FP8', runner='auto', convert='auto', task=None, tokenizer='Qwen/Qwen...
+           └ <class 'vllm.v1.engine.core_client.InprocClient'>
+  File "./.venv/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 245, in __init__
+    self.engine_core = EngineCore(*args, **kwargs)
+    │                  │           │       └ {}
+    │                  │           └ (VllmConfig(model_config=ModelConfig(model='Qwen/Qwen3-8B-FP8', runner='auto', convert='auto', task=None, tokenizer='Qwen/Qwe...
+    │                  └ <class 'vllm.v1.engine.core.EngineCore'>
+    └ <vllm.v1.engine.core_client.InprocClient object at 0x713c38396000>
+  File "./.venv/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 92, in __init__
+    self._initialize_kv_caches(vllm_config)
+    │    │                     └ VllmConfig(model_config=ModelConfig(model='Qwen/Qwen3-8B-FP8', runner='auto', convert='auto', task=None, tokenizer='Qwen/Qwen...
+    │    └ <function EngineCore._initialize_kv_caches at 0x713c4e17c900>
+    └ <vllm.v1.engine.core.EngineCore object at 0x713b813ae5d0>
+  File "./.venv/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 190, in _initialize_kv_caches
+    self.model_executor.determine_available_memory())
+    │    │              └ <function Executor.determine_available_memory at 0x713c4e03e980>
+    │    └ <vllm.v1.executor.abstract.UniProcExecutor object at 0x713c379091c0>
+    └ <vllm.v1.engine.core.EngineCore object at 0x713b813ae5d0>
+  File "./.venv/lib/python3.12/site-packages/vllm/v1/executor/abstract.py", line 85, in determine_available_memory
+    return self.collective_rpc("determine_available_memory")
+           │    └ <function UniProcExecutor.collective_rpc at 0x713c4e03e480>
+           └ <vllm.v1.executor.abstract.UniProcExecutor object at 0x713c379091c0>
+  File "./.venv/lib/python3.12/site-packages/vllm/executor/uniproc_executor.py", line 83, in collective_rpc
+    return [run_method(self.driver_worker, method, args, kwargs)]
+            │          │    │              │       │     └ {}
+            │          │    │              │       └ ()
+            │          │    │              └ 'determine_available_memory'
+            │          │    └ <vllm.worker.worker_base.WorkerWrapperBase object at 0x713b813ae870>
+            │          └ <vllm.v1.executor.abstract.UniProcExecutor object at 0x713c379091c0>
+            └ <function run_method at 0x713c6c9c1bc0>
+  File "./.venv/lib/python3.12/site-packages/vllm/utils/__init__.py", line 3122, in run_method
+    return func(*args, **kwargs)
+           │     │       └ {}
+           │     └ ()
+           └ <bound method Worker.determine_available_memory of <vllm.v1.worker.gpu_worker.Worker object at 0x713c1c79e180>>
+  File "./.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           │     │       └ {}
+           │     └ (<vllm.v1.worker.gpu_worker.Worker object at 0x713c1c79e180>,)
+           └ <function Worker.determine_available_memory at 0x713af7335440>
+  File "./.venv/lib/python3.12/site-packages/vllm/v1/worker/gpu_worker.py", line 263, in determine_available_memory
+    self.model_runner.profile_run()
+    │    │            └ <function GPUModelRunner.profile_run at 0x713af7334400>
+    │    └ <vllm.v1.worker.gpu_model_runner.GPUModelRunner object at 0x713b4d7e4c20>
+    └ <vllm.v1.worker.gpu_worker.Worker object at 0x713c1c79e180>
+  File "./.venv/lib/python3.12/site-packages/vllm/v1/worker/gpu_model_runner.py", line 3392, in profile_run
+    = self._dummy_run(self.max_num_tokens, is_profile=True)
+      │    │          │    └ 4096
+      │    │          └ <vllm.v1.worker.gpu_model_runner.GPUModelRunner object at 0x713b4d7e4c20>
+      │    └ <function GPUModelRunner._dummy_run at 0x713af7334040>
+      └ <vllm.v1.worker.gpu_model_runner.GPUModelRunner object at 0x713b4d7e4c20>
+  File "./.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           │     │       └ {'is_profile': True}
+           │     └ (<vllm.v1.worker.gpu_model_runner.GPUModelRunner object at 0x713b4d7e4c20>, 4096)
+           └ <function GPUModelRunner._dummy_run at 0x713af732bf60>
+  File "./.venv/lib/python3.12/site-packages/vllm/v1/worker/gpu_model_runner.py", line 3152, in _dummy_run
+    outputs = self.model(
+              │    └ <vllm.compilation.cuda_graph.CUDAGraphWrapper object at 0x713bf9f522d0>
+              └ <vllm.v1.worker.gpu_model_runner.GPUModelRunner object at 0x713b4d7e4c20>
+  File "./.venv/lib/python3.12/site-packages/vllm/compilation/cuda_graph.py", line 121, in __call__
+    return self.runnable(*args, **kwargs)
+           │    │         │       └ {'input_ids': tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0', dtype=torch.int32), 'positions': tensor([0, 0, 0,  ..., 0, 0,...
+           │    │         └ ()
+           │    └ Qwen3ForCausalLM(
+           │        (model): Qwen3Model(
+           │          (embed_tokens): VocabParallelEmbedding(num_embeddings=151936, embedding_dim=4096...
+           └ <vllm.compilation.cuda_graph.CUDAGraphWrapper object at 0x713bf9f522d0>
+  File "./.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           │    │           │       └ {'input_ids': tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0', dtype=torch.int32), 'positions': tensor([0, 0, 0,  ..., 0, 0,...
+           │    │           └ ()
+           │    └ <function Module._call_impl at 0x713cfcb1d440>
+           └ Qwen3ForCausalLM(
+               (model): Qwen3Model(
+                 (embed_tokens): VocabParallelEmbedding(num_embeddings=151936, embedding_dim=4096...
+  File "./.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           │             │       └ {'input_ids': tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0', dtype=torch.int32), 'positions': tensor([0, 0, 0,  ..., 0, 0,...
+           │             └ ()
+           └ <bound method Qwen3ForCausalLM.forward of Qwen3ForCausalLM(
+               (model): Qwen3Model(
+                 (embed_tokens): VocabParallelEmbedding...
+  File "./.venv/lib/python3.12/site-packages/vllm/model_executor/models/qwen3.py", line 323, in forward
+    hidden_states = self.model(input_ids, positions, intermediate_tensors,
+                    │          │          │          └ None
+                    │          │          └ tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+                    │          └ tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0', dtype=torch.int32)
+                    └ Qwen3ForCausalLM(
+                        (model): Qwen3Model(
+                          (embed_tokens): VocabParallelEmbedding(num_embeddings=151936, embedding_dim=4096...
+  File "./.venv/lib/python3.12/site-packages/vllm/compilation/decorators.py", line 310, in __call__
+    output = self.compiled_callable(*args, **kwargs)
+             │    │                  │       └ {}
+             │    │                  └ (tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0', dtype=torch.int32), tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0'), Non...
+             │    └ <function Qwen2Model.forward at 0x713add5bfa60>
+             └ Qwen3Model(
+                 (embed_tokens): VocabParallelEmbedding(num_embeddings=151936, embedding_dim=4096, org_vocab_size=151936, num_em...
+  File "./.venv/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py", line 749, in compile_wrapper
+    raise e.remove_dynamo_frames() from None  # see TORCHDYNAMO_VERBOSE=1
+  File "./.venv/lib/python3.12/site-packages/torch/_inductor/compile_fx.py", line 923, in _compile_fx_inner
+    raise InductorError(e, currentframe()).with_traceback(
+          │                └ <function currentframe at 0x713e7b413060>
+          └ <class 'torch._inductor.exc.InductorError'>
+  File "./.venv/lib/python3.12/site-packages/torch/_inductor/compile_fx.py", line 907, in _compile_fx_inner
+    mb_compiled_graph = fx_codegen_and_compile(
+                        └ <function fx_codegen_and_compile at 0x713c42d4cc20>
+  File "./.venv/lib/python3.12/site-packages/torch/_inductor/compile_fx.py", line 1578, in fx_codegen_and_compile
+    return scheme.codegen_and_compile(gm, example_inputs, inputs_to_check, graph_kwargs)
+           │      │                   │   │               │                └ {'static_input_idxs': [], 'cudagraphs': BoxedBool(value=False), 'graph_id': 0, 'is_inference': True, 'boxed_forward_device_in...
+           │      │                   │   │               └ [0, 2, 3, 4, 5, 6, 7, 8, 9]
+           │      │                   │   └ [FakeTensor(..., device='cuda:0', size=(s72,), dtype=torch.int32), s72, FakeTensor(..., device='cuda:0', size=(151936, 4096),...
+           │      │                   └ <lambda>()
+           │      └ <function _InProcessFxCompile.codegen_and_compile at 0x713c42d4cea0>
+           └ <torch._inductor.compile_fx._InProcessFxCompile object at 0x713a2c43b560>
+  File "./.venv/lib/python3.12/site-packages/torch/_inductor/compile_fx.py", line 1456, in codegen_and_compile
+    compiled_module = graph.compile_to_module()
+                      │     └ <function GraphLowering.compile_to_module at 0x713c42ceb560>
+                      └ <torch._inductor.graph.GraphLowering object at 0x713a2c479d30>
+  File "./.venv/lib/python3.12/site-packages/torch/_inductor/graph.py", line 2293, in compile_to_module
+    return self._compile_to_module()
+           │    └ <function GraphLowering._compile_to_module at 0x713c42ceb600>
+           └ <torch._inductor.graph.GraphLowering object at 0x713a2c479d30>
+  File "./.venv/lib/python3.12/site-packages/torch/_inductor/graph.py", line 2299, in _compile_to_module
+    self.codegen_with_cpp_wrapper() if self.cpp_wrapper else self.codegen()
+    │    │                             │    │                │    └ <function GraphLowering.codegen at 0x713c42ceb380>
+    │    │                             │    │                └ <torch._inductor.graph.GraphLowering object at 0x713a2c479d30>
+    │    │                             │    └ False
+    │    │                             └ <torch._inductor.graph.GraphLowering object at 0x713a2c479d30>
+    │    └ <function GraphLowering.codegen_with_cpp_wrapper at 0x713c42ceb240>
+    └ <torch._inductor.graph.GraphLowering object at 0x713a2c479d30>
+  File "./.venv/lib/python3.12/site-packages/torch/_inductor/graph.py", line 2238, in codegen
+    self.scheduler.codegen()
+    │    │         └ <function Scheduler.codegen at 0x713c444ea2a0>
+    │    └ <torch._inductor.scheduler.Scheduler object at 0x713cfaee11c0>
+    └ <torch._inductor.graph.GraphLowering object at 0x713a2c479d30>
+  File "./.venv/lib/python3.12/site-packages/torch/_inductor/scheduler.py", line 4598, in codegen
+    else self._codegen(self.nodes)
+         │    │        │    └ [FusedSchedulerNode(nodes=op0_op1_op2), ExternKernelSchedulerNode(name='op3'), ExternKernelSchedulerNode(name='op4'), Schedul...
+         │    │        └ <torch._inductor.scheduler.Scheduler object at 0x713cfaee11c0>
+         │    └ <function Scheduler._codegen at 0x713c444ea480>
+         └ <torch._inductor.scheduler.Scheduler object at 0x713cfaee11c0>
+  File "./.venv/lib/python3.12/site-packages/torch/_inductor/scheduler.py", line 4750, in _codegen
+    self.get_backend(device).codegen_node(node)
+    │    │           │                    └ FusedSchedulerNode(nodes=op0_op1_op2)
+    │    │           └ device(type='cuda', index=0)
+    │    └ <function Scheduler.get_backend at 0x713c444e9a80>
+    └ <torch._inductor.scheduler.Scheduler object at 0x713cfaee11c0>
+  File "./.venv/lib/python3.12/site-packages/torch/_inductor/codegen/cuda_combined_scheduling.py", line 107, in codegen_node
+    return self._triton_scheduling.codegen_node(node)
+           │    │                  │            └ FusedSchedulerNode(nodes=op0_op1_op2)
+           │    │                  └ <function SIMDScheduling.codegen_node at 0x713c43f53240>
+           │    └ <torch._inductor.codegen.triton.TritonScheduling object at 0x713a2c40b380>
+           └ <torch._inductor.codegen.cuda_combined_scheduling.CUDACombinedScheduling object at 0x713a242c7d40>
+  File "./.venv/lib/python3.12/site-packages/torch/_inductor/codegen/simd.py", line 1371, in codegen_node
+    return self.codegen_node_schedule(
+           │    └ <function SIMDScheduling.codegen_node_schedule at 0x713c43f53380>
+           └ <torch._inductor.codegen.triton.TritonScheduling object at 0x713a2c40b380>
+  File "./.venv/lib/python3.12/site-packages/torch/_inductor/codegen/simd.py", line 1424, in codegen_node_schedule
+    src_code = kernel.codegen_kernel()
+               │      └ <function TritonKernel.codegen_kernel at 0x713c43e08180>
+               └ <torch._inductor.codegen.triton.TritonKernel object at 0x713a1c713920>
+  File "./.venv/lib/python3.12/site-packages/torch/_inductor/codegen/triton.py", line 3677, in codegen_kernel
+    **self.inductor_meta_common(),
+      │    └ <staticmethod(<function TritonKernel.inductor_meta_common at 0x713c43e080e0>)>
+      └ <torch._inductor.codegen.triton.TritonKernel object at 0x713a1c713920>
+  File "./.venv/lib/python3.12/site-packages/torch/_inductor/codegen/triton.py", line 3501, in inductor_meta_common
+    "backend_hash": torch.utils._triton.triton_hash_with_backend(),
+                    │     │     │       └ <functools._lru_cache_wrapper object at 0x713cf99464b0>
+                    │     │     └ <module 'torch.utils._triton' from '<server>/aii_data/runs/run_aRfWvcSWjssb/3_invention_loop/iter_2/gen_art/gen_art_exper...
+                    │     └ <module 'torch.utils' from '....
+                    └ <module 'torch' from './.venv...
+  File "./.venv/lib/python3.12/site-packages/torch/utils/_triton.py", line 165, in triton_hash_with_backend
+    backend = triton_backend()
+              └ <functools._lru_cache_wrapper object at 0x713cf9946400>
+  File "./.venv/lib/python3.12/site-packages/torch/utils/_triton.py", line 157, in triton_backend
+    target = driver.active.get_current_target()
+             │      └ <LazyProxy for <function _create_driver at 0x713cf9755bc0> not yet initialized>
+             └ <triton.runtime.driver.DriverConfig object at 0x713cfa3b1bb0>
+  File "./.venv/lib/python3.12/site-packages/triton/runtime/driver.py", line 30, in __getattr__
+    return getattr(self._initialize_obj(), name)
+                   │    │                  └ 'get_current_target'
+                   │    └ <function LazyProxy._initialize_obj at 0x713cf97fc860>
+                   └ <LazyProxy for <function _create_driver at 0x713cf9755bc0> not yet initialized>
+  File "./.venv/lib/python3.12/site-packages/triton/runtime/driver.py", line 26, in _initialize_obj
+    self._obj = self._init_fn()
+    │    │      │    └ <function _create_driver at 0x713cf9755bc0>
+    │    │      └ <LazyProxy for <function _create_driver at 0x713cf9755bc0> not yet initialized>
+    │    └ None
+    └ <LazyProxy for <function _create_driver at 0x713cf9755bc0> not yet initialized>
+  File "./.venv/lib/python3.12/site-packages/triton/runtime/driver.py", line 12, in _create_driver
+    return active_drivers[0]()
+           └ [<class 'triton.backends.nvidia.driver.CudaDriver'>]
+  File "./.venv/lib/python3.12/site-packages/triton/backends/nvidia/driver.py", line 715, in __init__
+    self.utils = CudaUtils()  # TODO: make static
+    │            └ <class 'triton.backends.nvidia.driver.CudaUtils'>
+    └ <triton.backends.nvidia.driver.CudaDriver object at 0x713a1c621df0>
+  File "./.venv/lib/python3.12/site-packages/triton/backends/nvidia/driver.py", line 62, in __init__
+    mod = compile_module_from_src(
+          └ <function compile_module_from_src at 0x713cf97e2e80>
+  File "./.venv/lib/python3.12/site-packages/triton/runtime/build.py", line 88, in compile_module_from_src
+    so = _build(name, src_path, tmpdir, library_dirs or [], include_dirs or [], libraries or [])
+         │      │     │         │       │                   │                   └ ['cuda']
+         │      │     │         │       │                   └ ['./.venv/lib/python3.12/site...
+         │      │     │         │       └ ['./.venv/lib/python3.12/site...
+         │      │     │         └ '/tmp/tmpsb5ajrw4'
+         │      │     └ '/tmp/tmpsb5ajrw4/cuda_utils.c'
+         │      └ 'cuda_utils'
+         └ <function _build at 0x713cf97e14e0>
+  File "./.venv/lib/python3.12/site-packages/triton/runtime/build.py", line 32, in _build
+    raise RuntimeError(
+
+torch._inductor.exc.InductorError: RuntimeError: Failed to find C compiler. Please specify via CC environment variable or set triton.knobs.build.impl.
+
+Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "./method.py", line 76, in <module>
+[rank0]:     main()
+[rank0]:   File "./.venv/lib/python3.12/site-packages/loguru/_logger.py", line 1297, in catch_wrapper
+[rank0]:     return function(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./method.py", line 50, in main
+[rank0]:     session1(n_per_template=args.n or 40, smoke=args.smoke)
+[rank0]:   File "./src/vllm_stage.py", line 243, in session1
+[rank0]:     llm = make_engine(max_model_len=2048, max_num_seqs=48 if not smoke else 8, gpu_mem=0.90)
+[rank0]:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./src/vllm_stage.py", line 88, in make_engine
+[rank0]:     llm = LLM(model=MODEL_GEN, tokenizer=MODEL_HF, dtype="auto", max_model_len=max_model_len,
+[rank0]:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/vllm/entrypoints/llm.py", line 297, in __init__
+[rank0]:     self.llm_engine = LLMEngine.from_engine_args(
+[rank0]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/vllm/v1/engine/llm_engine.py", line 177, in from_engine_args
+[rank0]:     return cls(vllm_config=vllm_config,
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/vllm/v1/engine/llm_engine.py", line 114, in __init__
+[rank0]:     self.engine_core = EngineCoreClient.make_client(
+[rank0]:                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 82, in make_client
+[rank0]:     return InprocClient(vllm_config, executor_class, log_stats)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 245, in __init__
+[rank0]:     self.engine_core = EngineCore(*args, **kwargs)
+[rank0]:                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 92, in __init__
+[rank0]:     self._initialize_kv_caches(vllm_config)
+[rank0]:   File "./.venv/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 190, in _initialize_kv_caches
+[rank0]:     self.model_executor.determine_available_memory())
+[rank0]:     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/vllm/v1/executor/abstract.py", line 85, in determine_available_memory
+[rank0]:     return self.collective_rpc("determine_available_memory")
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/vllm/executor/uniproc_executor.py", line 83, in collective_rpc
+[rank0]:     return [run_method(self.driver_worker, method, args, kwargs)]
+[rank0]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/vllm/utils/__init__.py", line 3122, in run_method
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/vllm/v1/worker/gpu_worker.py", line 263, in determine_available_memory
+[rank0]:     self.model_runner.profile_run()
+[rank0]:   File "./.venv/lib/python3.12/site-packages/vllm/v1/worker/gpu_model_runner.py", line 3392, in profile_run
+[rank0]:     = self._dummy_run(self.max_num_tokens, is_profile=True)
+[rank0]:       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/vllm/v1/worker/gpu_model_runner.py", line 3152, in _dummy_run
+[rank0]:     outputs = self.model(
+[rank0]:               ^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/vllm/compilation/cuda_graph.py", line 121, in __call__
+[rank0]:     return self.runnable(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/vllm/model_executor/models/qwen3.py", line 323, in forward
+[rank0]:     hidden_states = self.model(input_ids, positions, intermediate_tensors,
+[rank0]:                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/vllm/compilation/decorators.py", line 310, in __call__
+[rank0]:     output = self.compiled_callable(*args, **kwargs)
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py", line 749, in compile_wrapper
+[rank0]:     raise e.remove_dynamo_frames() from None  # see TORCHDYNAMO_VERBOSE=1
+[rank0]:     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/torch/_inductor/compile_fx.py", line 923, in _compile_fx_inner
+[rank0]:     raise InductorError(e, currentframe()).with_traceback(
+[rank0]:   File "./.venv/lib/python3.12/site-packages/torch/_inductor/compile_fx.py", line 907, in _compile_fx_inner
+[rank0]:     mb_compiled_graph = fx_codegen_and_compile(
+[rank0]:                         ^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/torch/_inductor/compile_fx.py", line 1578, in fx_codegen_and_compile
+[rank0]:     return scheme.codegen_and_compile(gm, example_inputs, inputs_to_check, graph_kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/torch/_inductor/compile_fx.py", line 1456, in codegen_and_compile
+[rank0]:     compiled_module = graph.compile_to_module()
+[rank0]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/torch/_inductor/graph.py", line 2293, in compile_to_module
+[rank0]:     return self._compile_to_module()
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/torch/_inductor/graph.py", line 2299, in _compile_to_module
+[rank0]:     self.codegen_with_cpp_wrapper() if self.cpp_wrapper else self.codegen()
+[rank0]:                                                              ^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/torch/_inductor/graph.py", line 2238, in codegen
+[rank0]:     self.scheduler.codegen()
+[rank0]:   File "./.venv/lib/python3.12/site-packages/torch/_inductor/scheduler.py", line 4598, in codegen
+[rank0]:     else self._codegen(self.nodes)
+[rank0]:          ^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/torch/_inductor/scheduler.py", line 4750, in _codegen
+[rank0]:     self.get_backend(device).codegen_node(node)
+[rank0]:   File "./.venv/lib/python3.12/site-packages/torch/_inductor/codegen/cuda_combined_scheduling.py", line 107, in codegen_node
+[rank0]:     return self._triton_scheduling.codegen_node(node)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/torch/_inductor/codegen/simd.py", line 1371, in codegen_node
+[rank0]:     return self.codegen_node_schedule(
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/torch/_inductor/codegen/simd.py", line 1424, in codegen_node_schedule
+[rank0]:     src_code = kernel.codegen_kernel()
+[rank0]:                ^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/torch/_inductor/codegen/triton.py", line 3677, in codegen_kernel
+[rank0]:     **self.inductor_meta_common(),
+[rank0]:       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/torch/_inductor/codegen/triton.py", line 3501, in inductor_meta_common
+[rank0]:     "backend_hash": torch.utils._triton.triton_hash_with_backend(),
+[rank0]:                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/torch/utils/_triton.py", line 165, in triton_hash_with_backend
+[rank0]:     backend = triton_backend()
+[rank0]:               ^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/torch/utils/_triton.py", line 157, in triton_backend
+[rank0]:     target = driver.active.get_current_target()
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/triton/runtime/driver.py", line 30, in __getattr__
+[rank0]:     return getattr(self._initialize_obj(), name)
+[rank0]:                    ^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/triton/runtime/driver.py", line 26, in _initialize_obj
+[rank0]:     self._obj = self._init_fn()
+[rank0]:                 ^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/triton/runtime/driver.py", line 12, in _create_driver
+[rank0]:     return active_drivers[0]()
+[rank0]:            ^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/triton/backends/nvidia/driver.py", line 715, in __init__
+[rank0]:     self.utils = CudaUtils()  # TODO: make static
+[rank0]:                  ^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/triton/backends/nvidia/driver.py", line 62, in __init__
+[rank0]:     mod = compile_module_from_src(
+[rank0]:           ^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/triton/runtime/build.py", line 88, in compile_module_from_src
+[rank0]:     so = _build(name, src_path, tmpdir, library_dirs or [], include_dirs or [], libraries or [])
+[rank0]:          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "./.venv/lib/python3.12/site-packages/triton/runtime/build.py", line 32, in _build
+[rank0]:     raise RuntimeError(
+[rank0]: torch._inductor.exc.InductorError: RuntimeError: Failed to find C compiler. Please specify via CC environment variable or set triton.knobs.build.impl.
+
+[rank0]: Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+
+[rank0]:[W1020 04:16:31.277784854 ProcessGroupNCCL.cpp:1538] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+EXIT 1

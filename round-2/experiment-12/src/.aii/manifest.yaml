@@ -1,0 +1,27 @@
+entries:
+  - path: results/tensors/
+    keep: E2 fresh-pool residual states, attention-row masses, J-lens states, prompt-only states and E1 context-corpus SAE codes (~25 GPU-min on a 16 GB GPU to regenerate); read by src/analysis.py
+  - path: .venv/
+    delete: regenerable
+    source: "uv venv --python 3.12 .venv && uv pip install --python .venv/bin/python -r pyproject.toml"
+  - path: src/__pycache__/
+    delete: regenerable
+    source: "python bytecode cache; recreated on the next `uv run method.py --stage ...`"
+  - path: inputs/exp1/__pycache__/
+    delete: regenerable
+    source: "python bytecode cache of the copied exp1 suite; recreated by `uv run method.py --stage label`"
+  - path: inputs/exp1/labeller/__pycache__/
+    delete: regenerable
+    source: "python bytecode cache of the copied exp1 labeller; recreated by `uv run method.py --stage label`"
+  - path: inputs/exp1/tasks/__pycache__/
+    delete: regenerable
+    source: "python bytecode cache of the copied exp1 tasks harness; recreated by `uv run method.py --stage label`"
+  - path: inputs/exp3/labeller/__pycache__/
+    delete: regenerable
+    source: "python bytecode cache of the copied exp3 commit locator; recreated by `uv run method.py --stage label`"
+  - path: inputs/exp6/__pycache__/
+    delete: regenerable
+    source: "python bytecode cache of the copied exp6 code; recreated by `uv run method.py --stage final`"
+  - path: inputs/exp6/analysis/__pycache__/
+    delete: regenerable
+    source: "python bytecode cache of the copied exp6 analysis code; recreated by `uv run method.py --stage final`"

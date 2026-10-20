@@ -1,0 +1,103 @@
+13:50:40|INFO   |stage analyse (smoke=False)
+13:50:47|INFO   |[analyse_transfer_summary] start
+13:50:48|INFO   |[analyse_transfer_summary] done in 0.0 min
+13:50:48|INFO   |[analyse_readout_i_replication] start
+./.venv/lib/python3.12/site-packages/numpy/lib/_nanfunctions_impl.py:1601: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+13:51:38|INFO   |(i) t1|L15|k_pre: n=97 banned=15 sae_top1=0.27 sae_top20_lr=0.64 raw_dim=0.93 raw_lr=1.00 neuron_top20_lr=0.27 neuron_top1=0.73 sae_code_dim=0.80
+./.venv/lib/python3.12/site-packages/numpy/lib/_nanfunctions_impl.py:1601: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+13:51:52|INFO   |(i) t1|L15|k16: n=100 banned=15 sae_top1=0.60 sae_top20_lr=0.80 raw_dim=0.96 raw_lr=0.76 neuron_top20_lr=0.75 neuron_top1=0.92 sae_code_dim=0.95
+13:52:12|INFO   |(i) t2|L15|k_pre: n=99 banned=13 sae_top1=0.66 sae_top20_lr=0.65 raw_dim=0.66 raw_lr=0.69 neuron_top20_lr=0.78 neuron_top1=0.77 sae_code_dim=0.65
+13:52:32|INFO   |(i) t2|L15|k16: n=99 banned=13 sae_top1=0.62 sae_top20_lr=0.67 raw_dim=0.66 raw_lr=0.66 neuron_top20_lr=0.66 neuron_top1=0.60 sae_code_dim=0.65
+./.venv/lib/python3.12/site-packages/numpy/lib/_nanfunctions_impl.py:1601: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+13:52:49|INFO   |(i) t1|L20|k_pre: n=97 banned=15 sae_top1=0.80 sae_top20_lr=0.68 raw_dim=0.97 raw_lr=0.68 neuron_top20_lr=0.67 neuron_top1=0.63 sae_code_dim=0.67
+./.venv/lib/python3.12/site-packages/numpy/lib/_nanfunctions_impl.py:1601: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+13:53:05|INFO   |(i) t1|L20|k16: n=100 banned=15 sae_top1=0.60 sae_top20_lr=0.77 raw_dim=0.96 raw_lr=0.77 neuron_top20_lr=0.93 neuron_top1=0.28 sae_code_dim=0.98
+13:53:25|INFO   |(i) t2|L20|k_pre: n=99 banned=13 sae_top1=0.66 sae_top20_lr=0.66 raw_dim=0.66 raw_lr=0.77 neuron_top20_lr=0.77 neuron_top1=0.66 sae_code_dim=0.65
+13:53:45|INFO   |(i) t2|L20|k16: n=99 banned=13 sae_top1=0.62 sae_top20_lr=0.66 raw_dim=0.66 raw_lr=0.60 neuron_top20_lr=0.60 neuron_top1=0.47 sae_code_dim=0.65
+./.venv/lib/python3.12/site-packages/numpy/lib/_nanfunctions_impl.py:1601: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+13:54:02|INFO   |(i) t1|L27|k_pre: n=97 banned=15 sae_top1=0.52 sae_top20_lr=0.71 raw_dim=1.00 raw_lr=1.00 neuron_top20_lr=1.00 neuron_top1=0.71 sae_code_dim=1.00
+./.venv/lib/python3.12/site-packages/numpy/lib/_nanfunctions_impl.py:1601: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+13:54:16|INFO   |(i) t1|L27|k16: n=100 banned=15 sae_top1=0.60 sae_top20_lr=0.27 raw_dim=0.97 raw_lr=0.36 neuron_top20_lr=0.36 neuron_top1=0.77 sae_code_dim=0.87
+13:54:37|INFO   |(i) t2|L27|k_pre: n=99 banned=13 sae_top1=0.51 sae_top20_lr=0.77 raw_dim=0.76 raw_lr=0.66 neuron_top20_lr=0.66 neuron_top1=0.68 sae_code_dim=0.77
+13:54:58|INFO   |(i) t2|L27|k16: n=99 banned=13 sae_top1=0.60 sae_top20_lr=0.66 raw_dim=0.66 raw_lr=0.78 neuron_top20_lr=0.66 neuron_top1=0.78 sae_code_dim=0.65
+13:54:58|INFO   |[analyse_readout_i_replication] done in 4.2 min
+13:54:58|INFO   |[analyse_readout_ii_attention] start
+13:54:59|INFO   |(ii) t1: top head L21H17 ban-neutral 0.2072; thirds {'layers_0_11': 0.0019, 'layers_12_23': 0.0112, 'layers_24_35': 0.0054}
+13:55:00|INFO   |(ii) t2: top head L21H17 ban-neutral 0.0977; thirds {'layers_0_11': 0.0023, 'layers_12_23': 0.0063, 'layers_24_35': 0.0024}
+13:55:00|INFO   |[analyse_readout_ii_attention] done in 0.0 min
+13:55:00|INFO   |[analyse_readout_iii_prime_veto] start
+./src/analysis.py:319: RuntimeWarning: Mean of empty slice
+  pr[s]["means"] = {c: float(np.nanmean(acts[c][s])) for c in CONDS}
+13:55:07|INFO   |(iii) t1|L15: {'NAME_X_ban_ge_mention_gt_neutral_at_R': False, 'NAME_X_ban_ge_mention_gt_neutral_at_k_pre': False, 'IMPL_X_lower_under_ban_than_neutral_at_k_pre': True, 'DiM_projection_lower_under_ban_than_neutral_at_k_pre': False, 'prime_veto_pattern_present': False, 'latent_result_reproduced_by_DiM': False}
+13:55:13|INFO   |(iii) t2|L15: {'NAME_X_ban_ge_mention_gt_neutral_at_R': False, 'NAME_X_ban_ge_mention_gt_neutral_at_k_pre': False, 'IMPL_X_lower_under_ban_than_neutral_at_k_pre': False, 'DiM_projection_lower_under_ban_than_neutral_at_k_pre': True, 'prime_veto_pattern_present': False, 'latent_result_reproduced_by_DiM': False}
+13:55:20|INFO   |(iii) t1|L20: {'NAME_X_ban_ge_mention_gt_neutral_at_R': False, 'NAME_X_ban_ge_mention_gt_neutral_at_k_pre': False, 'IMPL_X_lower_under_ban_than_neutral_at_k_pre': False, 'DiM_projection_lower_under_ban_than_neutral_at_k_pre': False, 'prime_veto_pattern_present': False, 'latent_result_reproduced_by_DiM': True}
+13:55:26|INFO   |(iii) t2|L20: {'NAME_X_ban_ge_mention_gt_neutral_at_R': False, 'NAME_X_ban_ge_mention_gt_neutral_at_k_pre': False, 'IMPL_X_lower_under_ban_than_neutral_at_k_pre': False, 'DiM_projection_lower_under_ban_than_neutral_at_k_pre': True, 'prime_veto_pattern_present': False, 'latent_result_reproduced_by_DiM': False}
+13:55:32|INFO   |(iii) t1|L27: {'NAME_X_ban_ge_mention_gt_neutral_at_R': False, 'NAME_X_ban_ge_mention_gt_neutral_at_k_pre': False, 'IMPL_X_lower_under_ban_than_neutral_at_k_pre': True, 'DiM_projection_lower_under_ban_than_neutral_at_k_pre': True, 'prime_veto_pattern_present': False, 'latent_result_reproduced_by_DiM': True}
+13:55:37|INFO   |(iii) t2|L27: {'NAME_X_ban_ge_mention_gt_neutral_at_R': False, 'NAME_X_ban_ge_mention_gt_neutral_at_k_pre': False, 'IMPL_X_lower_under_ban_than_neutral_at_k_pre': True, 'DiM_projection_lower_under_ban_than_neutral_at_k_pre': False, 'prime_veto_pattern_present': False, 'latent_result_reproduced_by_DiM': False}
+13:55:37|INFO   |[analyse_readout_iii_prime_veto] done in 0.6 min
+13:55:37|INFO   |[analyse_latent_contexts] start
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+13:56:16|INFO   |[analyse_latent_contexts] done in 0.6 min
+13:56:16|INFO   |[analyse_jlens_summary] start
+13:56:16|INFO   |[analyse_jlens_summary] done in 0.0 min
+13:56:16|INFO   |[analyse_thought_anchors] start
+13:56:16|ERROR  |thought_anchors failed: ModuleNotFoundError("No module named 'analysis.metrics'; 'analysis' is not a package")
+Traceback (most recent call last):
+
+  File "./method.py", line 87, in <module>
+    main()
+    └ <function main at 0x7d28ff338360>
+
+  File "./method.py", line 77, in main
+    run_stage_analyse()
+    └ <function run_stage_analyse at 0x7d28ed653880>
+
+> File "./src/analysis.py", line 592, in run_stage_analyse
+    parts[name] = fn()
+    │     │       └ <function thought_anchors at 0x7d28ed6537e0>
+    │     └ 'thought_anchors'
+    └ {'transfer_summary': {'rule': 'PASS(L) := dCE_inst(L) <= 1.5 x dCE_base(L) (spliced-in CE over response tokens)', 'ce_clean_i...
+
+  File "./src/analysis.py", line 510, in thought_anchors
+    own_early = early_label(t, think)["label"]
+                │           │  └ '<think>\nOkay, I need to write a Python function called solve that finds a path in a grid from start to goal. The constraint...
+                │           └ 't1'
+                └ <function early_label at 0x7d28e6e9d620>
+
+  File "./src/early_label.py", line 124, in early_label
+    sents = sentences(think)
+            │         └ '<think>\nOkay, I need to write a Python function called solve that finds a path in a grid from start to goal. The constraint...
+            └ <function sentences at 0x7d28e6e9db20>
+
+  File "./src/early_label.py", line 51, in sentences
+    return thinking_mod().sentences(text)
+           │                        └ '<think>\nOkay, I need to write a Python function called solve that finds a path in a grid from start to goal. The constraint...
+           └ <function thinking_mod at 0x7d28e6e9dd00>
+
+  File "./src/early_label.py", line 46, in thinking_mod
+    _TH = load_module("exp6_thinking", EXP6 / "analysis" / "thinking.py")
+          │                            └ PosixPath('./inputs/exp6')
+          └ <function load_module at 0x7d28ff307ba0>
+
+  File "./src/core.py", line 218, in load_module
+    spec.loader.exec_module(mod)
+    │    │      │           └ <module 'exp6_thinking' from '<server>/aii_data/runs/run_aRfWvcSWjssb/3_invention_loop/iter_2/gen_art/gen_art_experiment_...
+    │    │      └ <function _LoaderBasics.exec_module at 0x7d29001b25c0>
+    │    └ <_frozen_importlib_external.SourceFileLoader object at 0x7d28e6483560>
+    └ ModuleSpec(name='exp6_thinking', loader=<_frozen_importlib_external.SourceFileLoader object at 0x7d28e6483560>, origin='/ai-i...
+
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+
+  File "./inputs/exp6/analysis/thinking.py", line 19, in <module>
+    from analysis.metrics import clusters  # noqa: E402
+
+ModuleNotFoundError: No module named 'analysis.metrics'; 'analysis' is not a package
+13:56:16|INFO   |[analyse_thought_anchors] done in 0.0 min
