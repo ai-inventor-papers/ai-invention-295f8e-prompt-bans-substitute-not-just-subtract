@@ -1,0 +1,349 @@
+20:16:49|INFO   |=== method.py stage1 (cpus=6) ===
+20:16:50|INFO   |OpenRouter /key: {"status": 200, "body": "{\"data\": {\"label\": \"AI Inventor run run_aRfWvcSWjssb: Test Idea\", \"limit\": 20.0, \"limit_remaining\": 17.284388, \"limit_reset\": null, \"usage\": 2.715612, \"usage_daily\": 2.715612, \"usage_weekly\": 2.715612, \"usage_monthly\": 2.715612, \"is_free_tier\": false, \"is_provisioning_key\": false, \"aii_phase\": \"test\", \"figure_reserve\": 0.0}}"}
+/ai-inventor/aii_data/runs/run_aRfWvcSWjssb/3_invention_loop/iter_3/gen_art/gen_art_experiment_14/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+INFO 10-20 20:17:44 [__init__.py:216] Automatically detected platform cuda.
+INFO 10-20 20:18:22 [utils.py:233] non-default args: {'dtype': 'bfloat16', 'seed': 20261020, 'max_model_len': 2048, 'enable_prefix_caching': True, 'gpu_memory_utilization': 0.92, 'max_num_batched_tokens': 4096, 'max_num_seqs': 64, 'disable_log_stats': True, 'revision': 'b968826d9c46dd6066d109eabc6255188de91218', 'tokenizer_revision': 'b968826d9c46dd6066d109eabc6255188de91218', 'enforce_eager': True, 'generation_config': 'vllm', 'logits_processors': ['exposure.veto:NgramVeto'], 'model': 'Qwen/Qwen3-8B'}
+INFO 10-20 20:18:23 [model.py:547] Resolved architecture: Qwen3ForCausalLM
+`torch_dtype` is deprecated! Use `dtype` instead!
+INFO 10-20 20:18:23 [model.py:1510] Using max model len 2048
+INFO 10-20 20:18:26 [scheduler.py:205] Chunked prefill is enabled with max_num_batched_tokens=4096.
+INFO 10-20 20:18:26 [__init__.py:381] Cudagraph is disabled under eager mode
+[1;36m(EngineCore_DP0 pid=273266)[0;0m INFO 10-20 20:18:27 [core.py:644] Waiting for init message from front-end.
+[1;36m(EngineCore_DP0 pid=273266)[0;0m INFO 10-20 20:18:27 [core.py:77] Initializing a V1 LLM engine (v0.11.0) with config: model='Qwen/Qwen3-8B', speculative_config=None, tokenizer='Qwen/Qwen3-8B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=b968826d9c46dd6066d109eabc6255188de91218, tokenizer_revision=b968826d9c46dd6066d109eabc6255188de91218, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser=''), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None), seed=20261020, served_model_name=Qwen/Qwen3-8B, enable_prefix_caching=True, chunked_prefill_enabled=True, pooler_config=None, compilation_config={"level":0,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":null,"use_inductor":true,"compile_sizes":[],"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"cudagraph_mode":0,"use_cudagraph":true,"cudagraph_num_of_warmups":0,"cudagraph_capture_sizes":[],"cudagraph_copy_inputs":false,"full_cuda_graph":false,"use_inductor_graph_partition":false,"pass_config":{},"max_capture_size":0,"local_cache_dir":null}
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[1;36m(EngineCore_DP0 pid=273266)[0;0m INFO 10-20 20:18:42 [parallel_state.py:1208] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0, EP rank 0
+[1;36m(EngineCore_DP0 pid=273266)[0;0m WARNING 10-20 20:18:43 [topk_topp_sampler.py:66] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+[1;36m(EngineCore_DP0 pid=273266)[0;0m INFO 10-20 20:18:43 [gpu_model_runner.py:2602] Starting to load model Qwen/Qwen3-8B...
+[1;36m(EngineCore_DP0 pid=273266)[0;0m INFO 10-20 20:18:43 [gpu_model_runner.py:2634] Loading model from scratch...
+[1;36m(EngineCore_DP0 pid=273266)[0;0m INFO 10-20 20:18:44 [cuda.py:366] Using Flash Attention backend on V1 engine.
+[1;36m(EngineCore_DP0 pid=273266)[0;0m INFO 10-20 20:18:44 [weight_utils.py:392] Using model weights format ['*.safetensors']
+[1;36m(EngineCore_DP0 pid=273266)[0;0m Loading safetensors checkpoint shards:   0% Completed | 0/5 [00:00<?, ?it/s]
+[1;36m(EngineCore_DP0 pid=273266)[0;0m Loading safetensors checkpoint shards:  20% Completed | 1/5 [00:07<00:31,  7.91s/it]
+[1;36m(EngineCore_DP0 pid=273266)[0;0m Loading safetensors checkpoint shards:  40% Completed | 2/5 [00:15<00:22,  7.47s/it]
+[1;36m(EngineCore_DP0 pid=273266)[0;0m Loading safetensors checkpoint shards:  60% Completed | 3/5 [00:23<00:15,  7.73s/it]
+[1;36m(EngineCore_DP0 pid=273266)[0;0m Loading safetensors checkpoint shards:  80% Completed | 4/5 [00:29<00:07,  7.26s/it]
+[1;36m(EngineCore_DP0 pid=273266)[0;0m Loading safetensors checkpoint shards: 100% Completed | 5/5 [00:31<00:00,  5.41s/it]
+[1;36m(EngineCore_DP0 pid=273266)[0;0m Loading safetensors checkpoint shards: 100% Completed | 5/5 [00:31<00:00,  6.35s/it]
+[1;36m(EngineCore_DP0 pid=273266)[0;0m 
+[1;36m(EngineCore_DP0 pid=273266)[0;0m INFO 10-20 20:19:16 [default_loader.py:267] Loading weights took 31.82 seconds
+[1;36m(EngineCore_DP0 pid=273266)[0;0m INFO 10-20 20:19:17 [gpu_model_runner.py:2653] Model loading took 15.2683 GiB and 32.987914 seconds
+[1;36m(EngineCore_DP0 pid=273266)[0;0m INFO 10-20 20:19:19 [gpu_worker.py:298] Available KV cache memory: 4.47 GiB
+[1;36m(EngineCore_DP0 pid=273266)[0;0m INFO 10-20 20:19:20 [kv_cache_utils.py:1087] GPU KV cache size: 32,576 tokens
+[1;36m(EngineCore_DP0 pid=273266)[0;0m INFO 10-20 20:19:20 [kv_cache_utils.py:1091] Maximum concurrency for 2,048 tokens per request: 15.91x
+[1;36m(EngineCore_DP0 pid=273266)[0;0m WARNING 10-20 20:19:20 [cudagraph_dispatcher.py:106] cudagraph dispatching keys are not initialized. No cudagraph will be used.
+[1;36m(EngineCore_DP0 pid=273266)[0;0m INFO 10-20 20:19:20 [core.py:210] init engine (profile, create kv cache, warmup model) took 3.00 seconds
+[1;36m(EngineCore_DP0 pid=273266)[0;0m INFO 10-20 20:19:20 [__init__.py:381] Cudagraph is disabled under eager mode
+INFO 10-20 20:19:20 [llm.py:306] Supported_tasks: ['generate']
+20:19:20|INFO   |vLLM engine up in 59s: {'model': 'Qwen/Qwen3-8B', 'revision': 'b968826d9c46dd6066d109eabc6255188de91218', 'dtype': 'bfloat16', 'gpu_memory_utilization': 0.92, 'max_model_len': 2048, 'enable_prefix_caching': True, 'max_num_seqs': 64, 'max_num_batched_tokens': 4096, 'enforce_eager': True, 'logits_processors': ['exposure.veto:NgramVeto'], 'seed': 20261020, 'generation_config': 'vllm'}
+20:19:21|INFO   |KV cache: 32576 tokens
+20:19:21|INFO   |RENDERED PROMPT copy (270 tokens, chat sha 8392bc2b951c):
+Here is a correct solution to this task:
+
+```python
+import heapq
+
+def solve(nums, k):
+    var1 = []
+    for num in nums:
+        if len(var1) < k:
+            heapq.heappush(var1, -num)
+        else:
+            if num < -var1[0]:
+                heapq.heappushpop(var1, -num)
+    return -var1[0]
+```
+
+Write a correct solution.
+
+Task: write a Python function solve(nums, k) that returns the k-th smallest value in nums. The argument nums is a list of integers with 1 <= len(nums) <= 2000, and every value lies between -10000 and 10000 inclusive; values may repeat. The argument k is an integer with 1 <= k <= len(nums), counted from 1, so k = 1 asks for the minimum and k = len(nums) for the maximum. Repeated values are counted separately: for nums = [3, 1, 3] and k = 3 the answer is 3.
+
+Use only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.
+20:19:21|INFO   |RENDERED PROMPT named (278 tokens, chat sha 83dc14407b2f):
+Here is a correct solution to this task:
+
+```python
+import heapq
+
+def solve(nums, k):
+    var1 = []
+    for num in nums:
+        if len(var1) < k:
+            heapq.heappush(var1, -num)
+        else:
+            if num < -var1[0]:
+                heapq.heappushpop(var1, -num)
+    return -var1[0]
+```
+
+Write a correct solution that does not use a size-k heap.
+
+Task: write a Python function solve(nums, k) that returns the k-th smallest value in nums. The argument nums is a list of integers with 1 <= len(nums) <= 2000, and every value lies between -10000 and 10000 inclusive; values may repeat. The argument k is an integer with 1 <= k <= len(nums), counted from 1, so k = 1 asks for the minimum and k = len(nums) for the maximum. Repeated values are counted separately: for nums = [3, 1, 3] and k = 3 the answer is 3.
+
+Use only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.
+20:19:21|INFO   |RENDERED PROMPT unnamed (279 tokens, chat sha 2bf38e71d1c3):
+Here is a correct solution to this task:
+
+```python
+import heapq
+
+def solve(nums, k):
+    var1 = []
+    for num in nums:
+        if len(var1) < k:
+            heapq.heappush(var1, -num)
+        else:
+            if num < -var1[0]:
+                heapq.heappushpop(var1, -num)
+    return -var1[0]
+```
+
+Write a correct solution that uses a different algorithm from the one above.
+
+Task: write a Python function solve(nums, k) that returns the k-th smallest value in nums. The argument nums is a list of integers with 1 <= len(nums) <= 2000, and every value lies between -10000 and 10000 inclusive; values may repeat. The argument k is an integer with 1 <= k <= len(nums), counted from 1, so k = 1 asks for the minimum and k = len(nums) for the maximum. Repeated values are counted separately: for nums = [3, 1, 3] and k = 3 the answer is 3.
+
+Use only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.
+20:19:21|INFO   |[stage1_batchA] 0 requests to generate (3540 already done)
+20:19:21|INFO   |batch A generated; waiting for 0 labels
+20:19:22|INFO   |judge: 528 disagreements (cache has 1028 entries; spend so far $0.0345)
+20:19:23|INFO   |judge batch of 528 done; running spend $0.0347
+20:19:24|INFO   |  veto r1 T03:size_k_heap: attempts 49, re-emerge 1.00, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:19:24|INFO   |  veto r1 T03:heapify_pop: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 0.96, vetoed occurrences 0
+20:19:24|INFO   |  veto r1 T03:quickselect: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 0.98, vetoed occurrences 0
+20:19:24|INFO   |  veto r1 T03:median_of_medians: attempts 50, re-emerge 0.56, non-Y 22 {'quickselect': 22}, pass 0.78, vetoed occurrences 0
+20:19:24|INFO   |  veto r1 T03:counting_sort: attempts 48, re-emerge 0.98, non-Y 1 {'other': 1}, pass 0.96, vetoed occurrences 0
+20:19:24|INFO   |  veto r1 T04:rabin_karp: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 0.98, vetoed occurrences 0
+20:19:24|INFO   |  veto r1 T04:z_algorithm: attempts 2, re-emerge 1.00, non-Y 0 {}, pass 0.04, vetoed occurrences 0
+20:19:24|INFO   |  veto r1 T04:bmh: attempts 15, re-emerge 1.00, non-Y 0 {}, pass 0.26, vetoed occurrences 0
+20:19:24|INFO   |  veto r1 T04:builtin: attempts 31, re-emerge 0.97, non-Y 1 {'naive': 1}, pass 0.46, vetoed occurrences 0
+20:19:24|INFO   |  veto r1 T06:sort_adjacent: attempts 7, re-emerge 1.00, non-Y 0 {}, pass 0.10, vetoed occurrences 0
+20:19:25|INFO   |  veto r1 T06:value_binary_search: attempts 5, re-emerge 0.80, non-Y 1 {'floyd': 1}, pass 0.04, vetoed occurrences 0
+20:19:25|INFO   |  veto r1 T06:index_marking: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 1.00, vetoed occurrences 0
+20:19:25|INFO   |  veto r1 T05:brute_force: attempts 50, re-emerge 0.36, non-Y 32 {'hash_map': 32}, pass 1.00, vetoed occurrences 0
+20:19:25|INFO   |  veto r1 T05:sort_binary_search: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:19:25|INFO   |  veto r1 T10:bfs: attempts 13, re-emerge 0.15, non-Y 11 {'dfs': 11}, pass 0.22, vetoed occurrences 0
+20:19:25|INFO   |  veto r1 T10:dfs: attempts 0, re-emerge nan, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:19:25|INFO   |  veto r1 T10:label_propagation: attempts 50, re-emerge 0.84, non-Y 8 {'union_find': 8}, pass 0.48, vetoed occurrences 0
+20:19:25|INFO   |  veto r1 T14:quickselect_counts: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 1.00, vetoed occurrences 0
+20:19:25|INFO   |  veto r1 T11:fenwick: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 1.00, vetoed occurrences 0
+20:19:25|INFO   |  veto r1 T04:kmp: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 1.00, vetoed occurrences 0
+20:19:25|INFO   |  veto r1 T06:floyd: attempts 26, re-emerge 1.00, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:19:25|INFO   |  veto r1 T05:sort_two_pointers: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 0.08, vetoed occurrences 0
+20:19:25|INFO   |  veto r1 R1:memo_recursion: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 0.86, vetoed occurrences 0
+20:19:26|INFO   |  veto r1 R1:dag_longest_path: attempts 9, re-emerge 0.22, non-Y 7 {'dp_bisect': 7}, pass 0.04, vetoed occurrences 0
+20:19:26|INFO   |  veto r1 T08:memo_recursion: attempts 8, re-emerge 1.00, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:19:26|INFO   |  veto r1 T08:matrix_power: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 0.44, vetoed occurrences 0
+20:19:26|INFO   |  veto r1 T08:fast_doubling: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 0.10, vetoed occurrences 0
+20:19:26|INFO   |  veto r1 T13:union_find: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 0.98, vetoed occurrences 0
+20:19:26|INFO   |  veto r1 R6:bisect_module: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:19:26|INFO   |  veto r1 R6:exponential_search: attempts 50, re-emerge 0.20, non-Y 40 {'binary_search': 39, 'other': 1}, pass 1.00, vetoed occurrences 0
+20:19:26|INFO   |  veto r1 T14:heap: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:19:26|INFO   |  veto r1 T14:bucket_sort: attempts 34, re-emerge 0.53, non-Y 16 {'quickselect_counts': 16}, pass 0.34, vetoed occurrences 0
+20:19:26|INFO   |  veto r1 T11:patience_bisect: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 1.00, vetoed occurrences 0
+20:19:26|INFO   |veto round 2: 31 Y re-emerged >= 0.2: ['T03:size_k_heap', 'T03:heapify_pop', 'T03:quickselect', 'T03:median_of_medians', 'T03:counting_sort', 'T04:rabin_karp', 'T04:z_algorithm', 'T04:bmh', 'T04:builtin', 'T06:sort_adjacent', 'T06:value_binary_search', 'T06:index_marking', 'T05:brute_force', 'T05:sort_binary_search', 'T10:label_propagation', 'T14:quickselect_counts', 'T11:fenwick', 'T04:kmp', 'T06:floyd', 'T05:sort_two_pointers', 'R1:memo_recursion', 'R1:dag_longest_path', 'T08:memo_recursion', 'T08:matrix_power', 'T08:fast_doubling', 'T13:union_find', 'R6:bisect_module', 'R6:exponential_search', 'T14:heap', 'T14:bucket_sort', 'T11:patience_bisect']
+20:19:26|INFO   |[stage1_round2] 1550 requests to generate (0 already done)
+20:19:32|INFO   |  generated 10 seqs, 780 new tokens in 5.6s (139 tok/s, 0.560 s/seq)
+20:19:32|INFO   |[stage1_round2] scale step 10: 5.6s, parse rate 1.00, mean new tokens 78; serial-rate upper bound for the remaining 1540: 14.4 min (batching makes it far shorter)
+20:19:32|INFO   |--- sample T03:size_k_heap:veto:r2:p0:s0 (78 tokens, stop):
+```python
+import heapq
+
+def solve(nums, k):
+    heap = []
+    for num in nums:
+        if len(heap) < k:
+            heapq.heappUSH(heap, -num)
+        else:
+            if num < -heap[0]:
+                heapq.heappop(heap)
+                heapq.heappUSH(heap, -num)
+    return -heap[0]
+```
+20:19:32|INFO   |--- sample T03:size_k_heap:veto:r2:p0:s1 (78 tokens, stop):
+```python
+import heapq
+
+def solve(nums, k):
+    heap = []
+    for num in nums:
+        if len(heap) < k:
+            heapq.heappUSH(heap, -num)
+        else:
+            if num < -heap[0]:
+                heapq.heappop(heap)
+                heapq.heappUSH(heap, -num)
+    return -heap[0]
+```
+20:19:32|INFO   |--- sample T03:size_k_heap:veto:r2:p0:s2 (78 tokens, stop):
+```python
+import heapq
+
+def solve(nums, k):
+    heap = []
+    for num in nums:
+        if len(heap) < k:
+            heapq.heappUSH(heap, -num)
+        else:
+            if num < -heap[0]:
+                heapq.heappop(heap)
+                heapq.heappUSH(heap, -num)
+    return -heap[0]
+```
+20:19:51|INFO   |  generated 100 seqs, 7272 new tokens in 19.2s (378 tok/s, 0.192 s/seq)
+20:19:51|INFO   |[stage1_round2] scale step 100: 19.2s, parse rate 1.00, mean new tokens 73; serial-rate upper bound for the remaining 1440: 4.6 min (batching makes it far shorter)
+20:22:44|INFO   |  generated 640 seqs, 95098 new tokens in 172.9s (550 tok/s, 0.270 s/seq)
+20:22:44|INFO   |[stage1_round2] 750/1550 generated; labelling backlog 640
+20:26:26|INFO   |  generated 640 seqs, 139134 new tokens in 222.1s (626 tok/s, 0.347 s/seq)
+20:26:27|INFO   |[stage1_round2] 1390/1550 generated; labelling backlog 640
+20:26:52|INFO   |  generated 160 seqs, 16548 new tokens in 25.2s (657 tok/s, 0.157 s/seq)
+20:26:52|INFO   |[stage1_round2] 1550/1550 generated; labelling backlog 301
+20:27:20|INFO   |judge: 865 disagreements (cache has 1031 entries; spend so far $0.0347)
+20:27:54|INFO   |judge batch of 865 done; running spend $0.0562
+20:27:55|INFO   |  veto r2 T03:size_k_heap: attempts 48, re-emerge 1.00, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:27:55|INFO   |  veto r2 T03:heapify_pop: attempts 17, re-emerge 1.00, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:27:55|INFO   |  veto r2 T03:quickselect: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 0.98, vetoed occurrences 0
+20:27:55|INFO   |  veto r2 T03:median_of_medians: attempts 50, re-emerge 0.58, non-Y 21 {'quickselect': 21}, pass 0.02, vetoed occurrences 0
+20:27:55|INFO   |  veto r2 T03:counting_sort: attempts 30, re-emerge 1.00, non-Y 0 {}, pass 0.60, vetoed occurrences 0
+20:27:55|INFO   |  veto r2 T04:rabin_karp: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 0.76, vetoed occurrences 0
+20:27:55|INFO   |  veto r2 T04:z_algorithm: attempts 3, re-emerge 1.00, non-Y 0 {}, pass 0.06, vetoed occurrences 0
+20:27:55|INFO   |  veto r2 T04:bmh: attempts 37, re-emerge 1.00, non-Y 0 {}, pass 0.52, vetoed occurrences 0
+20:27:55|INFO   |  veto r2 T04:builtin: attempts 9, re-emerge 1.00, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:27:55|INFO   |  veto r2 T06:sort_adjacent: attempts 8, re-emerge 0.75, non-Y 2 {'index_marking': 2}, pass 0.14, vetoed occurrences 0
+20:27:55|INFO   |  veto r2 T06:value_binary_search: attempts 3, re-emerge 0.67, non-Y 1 {'floyd': 1}, pass 0.02, vetoed occurrences 0
+20:27:55|INFO   |  veto r2 T06:index_marking: attempts 49, re-emerge 1.00, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:27:55|INFO   |  veto r2 T05:brute_force: attempts 49, re-emerge 0.39, non-Y 30 {'hash_map': 30}, pass 0.96, vetoed occurrences 0
+20:27:55|INFO   |  veto r2 T05:sort_binary_search: attempts 47, re-emerge 1.00, non-Y 0 {}, pass 0.90, vetoed occurrences 0
+20:27:55|INFO   |  veto r2 T10:label_propagation: attempts 50, re-emerge 0.00, non-Y 50 {'union_find': 48, 'dfs': 1, 'bfs': 1}, pass 0.98, vetoed occurrences 0
+20:27:55|INFO   |  veto r2 T14:quickselect_counts: attempts 3, re-emerge 1.00, non-Y 0 {}, pass 0.02, vetoed occurrences 0
+20:27:55|INFO   |  veto r2 T11:fenwick: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 1.00, vetoed occurrences 0
+20:27:56|INFO   |  veto r2 T04:kmp: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 1.00, vetoed occurrences 0
+20:27:56|INFO   |  veto r2 T06:floyd: attempts 4, re-emerge 1.00, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:27:56|INFO   |  veto r2 T05:sort_two_pointers: attempts 39, re-emerge 1.00, non-Y 0 {}, pass 0.24, vetoed occurrences 0
+20:27:56|INFO   |  veto r2 R1:memo_recursion: attempts 49, re-emerge 1.00, non-Y 0 {}, pass 0.02, vetoed occurrences 0
+20:27:56|INFO   |  veto r2 R1:dag_longest_path: attempts 10, re-emerge 0.20, non-Y 8 {'dp_bisect': 8}, pass 0.04, vetoed occurrences 0
+20:27:56|INFO   |  veto r2 T08:memo_recursion: attempts 0, re-emerge nan, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:27:56|INFO   |  veto r2 T08:matrix_power: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 0.80, vetoed occurrences 0
+20:27:56|INFO   |  veto r2 T08:fast_doubling: attempts 49, re-emerge 1.00, non-Y 0 {}, pass 0.72, vetoed occurrences 0
+20:27:56|INFO   |  veto r2 T13:union_find: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 0.94, vetoed occurrences 0
+20:27:56|INFO   |  veto r2 R6:bisect_module: attempts 45, re-emerge 1.00, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:27:56|INFO   |  veto r2 R6:exponential_search: attempts 50, re-emerge 0.20, non-Y 40 {'binary_search': 39, 'other': 1}, pass 0.94, vetoed occurrences 0
+20:27:56|INFO   |  veto r2 T14:heap: attempts 30, re-emerge 1.00, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:27:56|INFO   |  veto r2 T14:bucket_sort: attempts 1, re-emerge 1.00, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:27:56|INFO   |  veto r2 T11:patience_bisect: attempts 19, re-emerge 1.00, non-Y 0 {}, pass 0.18, vetoed occurrences 0
+20:27:56|INFO   |veto round 3: 29 Y re-emerged >= 0.2: ['T03:size_k_heap', 'T03:heapify_pop', 'T03:quickselect', 'T03:median_of_medians', 'T03:counting_sort', 'T04:rabin_karp', 'T04:z_algorithm', 'T04:bmh', 'T04:builtin', 'T06:sort_adjacent', 'T06:value_binary_search', 'T06:index_marking', 'T05:brute_force', 'T05:sort_binary_search', 'T14:quickselect_counts', 'T11:fenwick', 'T04:kmp', 'T06:floyd', 'T05:sort_two_pointers', 'R1:memo_recursion', 'R1:dag_longest_path', 'T08:matrix_power', 'T08:fast_doubling', 'T13:union_find', 'R6:bisect_module', 'R6:exponential_search', 'T14:heap', 'T14:bucket_sort', 'T11:patience_bisect']
+20:27:56|INFO   |[stage1_round3] 1450 requests to generate (0 already done)
+20:28:02|INFO   |  generated 10 seqs, 780 new tokens in 5.4s (145 tok/s, 0.536 s/seq)
+20:28:02|INFO   |[stage1_round3] scale step 10: 5.4s, parse rate 1.00, mean new tokens 78; serial-rate upper bound for the remaining 1440: 12.9 min (batching makes it far shorter)
+20:28:02|INFO   |--- sample T03:size_k_heap:veto:r3:p0:s0 (78 tokens, stop):
+```python
+import heapq
+
+def solve(nums, k):
+    heap = []
+    for num in nums:
+        if len(heap) < k:
+            heapq.heappUSH(heap, -num)
+        else:
+            if num < - heap[0]:
+                heapq.heappop(heap)
+                heapq.heappUSH(heap, -num)
+    return - heap[0]
+```
+20:28:02|INFO   |--- sample T03:size_k_heap:veto:r3:p0:s1 (78 tokens, stop):
+```python
+import heapq
+
+def solve(nums, k):
+    heap = []
+    for num in nums:
+        if len(heap) < k:
+            heapq.heappUSH(heap, -num)
+        else:
+            if num < - heap[0]:
+                heapq.heappop(heap)
+                heapq.heappUSH(heap, -num)
+    return - heap[0]
+```
+20:28:02|INFO   |--- sample T03:size_k_heap:veto:r3:p0:s2 (78 tokens, stop):
+```python
+import heapq
+
+def solve(nums, k):
+    heap = []
+    for num in nums:
+        if len(heap) < k:
+            heapq.heappUSH(heap, -num)
+        else:
+            if num < - heap[0]:
+                heapq.heappop(heap)
+                heapq.heappUSH(heap, -num)
+    return - heap[0]
+```
+20:28:22|INFO   |  generated 100 seqs, 7549 new tokens in 20.3s (371 tok/s, 0.203 s/seq)
+20:28:22|INFO   |[stage1_round3] scale step 100: 20.4s, parse rate 1.00, mean new tokens 75; serial-rate upper bound for the remaining 1340: 4.5 min (batching makes it far shorter)
+20:31:47|INFO   |  generated 640 seqs, 107791 new tokens in 204.7s (527 tok/s, 0.320 s/seq)
+20:31:47|INFO   |[stage1_round3] 750/1450 generated; labelling backlog 640
+20:35:06|INFO   |  generated 640 seqs, 132113 new tokens in 199.4s (662 tok/s, 0.312 s/seq)
+20:35:06|INFO   |[stage1_round3] 1390/1450 generated; labelling backlog 640
+20:35:16|INFO   |  generated 60 seqs, 4645 new tokens in 9.9s (471 tok/s, 0.164 s/seq)
+20:35:16|INFO   |[stage1_round3] 1450/1450 generated; labelling backlog 537
+20:35:51|INFO   |judge: 1234 disagreements (cache has 1181 entries; spend so far $0.0562)
+20:36:06|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+20:36:06|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+20:36:06|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+20:36:06|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+20:36:07|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+20:36:07|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+20:36:08|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+20:36:08|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+20:36:08|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+20:36:09|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+20:36:09|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+20:36:10|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+20:36:10|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+20:36:11|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+20:36:11|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+20:36:15|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+20:36:15|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+20:36:15|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+20:36:16|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+20:36:17|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+20:36:17|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+20:36:17|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+20:36:47|INFO   |judge batch of 1234 done; running spend $0.0831
+20:36:48|INFO   |  veto r3 T03:size_k_heap: attempts 47, re-emerge 1.00, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T03:heapify_pop: attempts 24, re-emerge 0.88, non-Y 3 {'full_sort': 3}, pass 0.06, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T03:quickselect: attempts 46, re-emerge 1.00, non-Y 0 {}, pass 0.92, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T03:median_of_medians: attempts 50, re-emerge 0.60, non-Y 20 {'quickselect': 19, 'counting_sort': 1}, pass 0.60, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T03:counting_sort: attempts 6, re-emerge 0.83, non-Y 1 {'quickselect': 1}, pass 0.06, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T04:rabin_karp: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 0.98, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T04:z_algorithm: attempts 3, re-emerge 1.00, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T04:bmh: attempts 25, re-emerge 0.72, non-Y 7 {'naive': 7}, pass 0.34, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T04:builtin: attempts 27, re-emerge 1.00, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T06:sort_adjacent: attempts 15, re-emerge 0.67, non-Y 5 {'index_marking': 1, 'hash_set': 3, 'other': 1}, pass 0.18, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T06:value_binary_search: attempts 2, re-emerge 0.50, non-Y 1 {'floyd': 1}, pass 0.02, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T06:index_marking: attempts 49, re-emerge 1.00, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T05:brute_force: attempts 32, re-emerge 0.06, non-Y 30 {'hash_map': 30}, pass 0.64, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T05:sort_binary_search: attempts 49, re-emerge 1.00, non-Y 0 {}, pass 0.96, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T14:quickselect_counts: attempts 2, re-emerge 1.00, non-Y 0 {}, pass 0.02, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T11:fenwick: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 1.00, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T04:kmp: attempts 21, re-emerge 1.00, non-Y 0 {}, pass 0.38, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T06:floyd: attempts 15, re-emerge 1.00, non-Y 0 {}, pass 0.02, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T05:sort_two_pointers: attempts 42, re-emerge 1.00, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 R1:memo_recursion: attempts 45, re-emerge 1.00, non-Y 0 {}, pass 0.16, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 R1:dag_longest_path: attempts 12, re-emerge 0.17, non-Y 10 {'dp_bisect': 10}, pass 0.04, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T08:matrix_power: attempts 40, re-emerge 1.00, non-Y 0 {}, pass 0.04, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T08:fast_doubling: attempts 38, re-emerge 1.00, non-Y 0 {}, pass 0.08, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T13:union_find: attempts 50, re-emerge 1.00, non-Y 0 {}, pass 0.92, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 R6:bisect_module: attempts 0, re-emerge nan, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 R6:exponential_search: attempts 50, re-emerge 0.20, non-Y 40 {'binary_search': 39, 'other': 1}, pass 0.92, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T14:heap: attempts 19, re-emerge 1.00, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T14:bucket_sort: attempts 0, re-emerge nan, non-Y 0 {}, pass 0.00, vetoed occurrences 0
+20:36:48|INFO   |  veto r3 T11:patience_bisect: attempts 18, re-emerge 1.00, non-Y 0 {}, pass 0.16, vetoed occurrences 0
+20:36:48|INFO   |[timing] stage1_gpu: 1197.5s (GPU)
+20:36:48|INFO   |SUBTRACT-IN-CONTEXT written for 33 Y (29 undefined); copy rates {'T03:size_k_heap': 1.0, 'T03:heapify_pop': 1.0, 'T03:quickselect': 1.0, 'T03:median_of_medians': 1.0, 'T03:counting_sort': 0.8, 'T04:rabin_karp': 1.0, 'T04:z_algorithm': 1.0, 'T04:bmh': 1.0, 'T04:builtin': 1.0, 'T06:sort_adjacent': 1.0, 'T06:value_binary_search': 0.98, 'T06:index_marking': 1.0, 'T05:brute_force': 0.36, 'T05:sort_binary_search': 1.0, 'T10:bfs': 1.0, 'T10:dfs': 1.0, 'T10:label_propagation': 0.84, 'T14:quickselect_counts': 1.0, 'T11:fenwick': 1.0, 'T04:kmp': 1.0, 'T06:floyd': 1.0, 'T05:sort_two_pointers': 1.0, 'R1:memo_recursion': 1.0, 'R1:dag_longest_path': 1.0, 'T08:memo_recursion': 1.0, 'T08:matrix_power': 1.0, 'T08:fast_doubling': 1.0, 'T13:union_find': 1.0, 'R6:bisect_module': 1.0, 'R6:exponential_search': 0.28, 'T14:heap': 1.0, 'T14:bucket_sort': 0.36, 'T11:patience_bisect': 1.0}
