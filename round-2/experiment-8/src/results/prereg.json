@@ -1,0 +1,181 @@
+{
+ "title": "Where an algorithm ban takes effect (C2 route test + C5 compliance at R)",
+ "created_utc": "2026-10-20T02:19:25.116369Z",
+ "model": "Qwen/Qwen3-8B",
+ "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+ "frozen_prompts_sha256": "de61ad494e1ab2c8f854db203375bacd15ddc04e9e2b4ee1d4b5aabd88b832ec",
+ "analysis_py_sha256": "c2c6fd6240acd11ebac4b1857db6d1156ec1d645cb9e04836ad4bb93564813cd",
+ "templates": {
+  "W1": [
+   "Do not use {X} for this task.",
+   "You could use {X} for this task.",
+   "Do not use {N} for this task."
+  ],
+  "W2": [
+   "Your solution must not rely on {X}.",
+   "Your solution may rely on {X}.",
+   "Your solution must not rely on {N}."
+  ],
+  "W3": [
+   "Avoid {X} entirely.",
+   "Consider {X} first.",
+   "Avoid {N} entirely."
+  ],
+  "W4": [
+   "{X} is not allowed here.",
+   "{X} is allowed here.",
+   "{N} is not allowed here."
+  ],
+  "W5": [
+   "Write a correct solution that does not use {X}.",
+   "Write a correct solution that may use {X}.",
+   "Write a correct solution that does not use {N}."
+  ]
+ },
+ "nouns": {
+  "t1": {
+   "A": {
+    "noun": "man",
+    "n_tok": 1,
+    "freq": 94133,
+    "companions": [
+     "house",
+     "baby",
+     "car"
+    ]
+   },
+   "B": {
+    "noun": "guy",
+    "n_tok": 1,
+    "freq": 38893,
+    "companions": [
+     "house",
+     "baby",
+     "car"
+    ]
+   }
+  },
+  "t2": {
+   "A": {
+    "noun": "man",
+    "n_tok": 1,
+    "freq": 94133,
+    "companions": [
+     "house",
+     "baby",
+     "car"
+    ]
+   },
+   "B": {
+    "noun": "guy",
+    "n_tok": 1,
+    "freq": 38893,
+    "companions": [
+     "house",
+     "baby",
+     "car"
+    ]
+   }
+  }
+ },
+ "signature_vocab": {
+  "bfs": [
+   "deque",
+   "popleft",
+   "collections"
+  ],
+  "dfs": [
+   "stack",
+   "pop()",
+   "setrecursionlimit"
+  ],
+  "dijkstra": [
+   "heapq",
+   "heappush",
+   "heappop",
+   "heapify"
+  ],
+  "astar_gbfs": [
+   "heapq",
+   "heuristic",
+   "abs("
+  ],
+  "bf_spfa": [
+   "deque",
+   "popleft",
+   "in_queue",
+   "inq",
+   "range(n - 1)"
+  ]
+ },
+ "scrub_regex": "bfs|breadth|dfs|depth[-_ ]?first|dijkstra|bellman|ford|spfa|floyd|warshall|dial|bucket[-_ ]?queue|a\\*|astar|a_star|best[-_ ]?first|greedy|bidirectional|bi_?bfs|iddfs|iterative[-_ ]?deepening",
+ "arms": {
+  "a": "full ban (ban cache, ban R logits)",
+  "b": "full neutral twin",
+  "c": "PROMPT ROUTE: neutral condition segment [p0,p1) + ban task-spec/R cache, ban R logits",
+  "d": "DIRECT ROUTE: ban condition segment + neutral task-spec/R cache, neutral R logits",
+  "e": "R-only: neutral cache with position P-1 from ban, ban R logits",
+  "f": "task-spec-only: neutral [0,p1) + ban [p1,P-1) + neutral P-1, neutral R logits",
+  "pl": "placebo: neutral-A [0,p1) + neutral-B [p1,P), R from neutral-B, vs b with noun B",
+  "K0": "condition-span attention knockout for all generated queries (cache a)",
+  "K1": "knockout for generated index < 16",
+  "K2": "knockout for generated index >= 16",
+  "B1/B2/B3": "knockout restricted to layer bands {'B1': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 'B2': [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], 'B3': [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]}",
+  "K0b": "K0 on the neutral cache (control)"
+ },
+ "primary_readout": "FRLP drop D_X(arm) = L_X(arm) - L_X(b); L_j(c) = log mean_m exp(l(p_m|c) - l(p_m|F_j)), mixture proposal over the forced paraphrases weighted by samples drawn per prompt",
+ "decision_rules": {
+  "prerequisite": "per task: D_X(a) < 0 with 95% bootstrap CI excluding 0, else 'no FRLP-level ban effect' (excluded from the pool, reported)",
+  "CONFIRMED_direct_route": "pooled F_direct = sum_t D_t(d) / sum_t D_t(a) >= 0.6667 and its bootstrap 2.5th percentile > 0.5",
+  "DECIDED_BEFORE_WRITING": "pooled F_prompt >= 0.6667 (report whether 2.5th pct > 0.5)",
+  "MIXED": "otherwise; report interaction I = D(a) - D(c) - D(d) with CI",
+  "ROBUST": "only if both tasks give the same branch",
+  "early_late_veto": "early if R_K1 - R_K2 > 0 with CI excluding 0 (net of the neutral-prompt K0 control); late if the reverse",
+  "placebo": "|D_X(pl)| < 0.2 |D_X(a)| else splicing flagged as noisy",
+  "C5": "CONFIRMED if combined within-cell Spearman rho <= -0.5 and one-sided stratified permutation p < 0.05; PARTIAL if rho < 0 with p < 0.05 but rho > -0.5; NULL otherwise; same for the decommitment axis; Holm over the two C5 axes"
+ },
+ "bootstrap": {
+  "n_boot": 2000,
+  "levels": "templates, then programs within each half (crossed)",
+  "pooled": "ratio of sums across tasks"
+ },
+ "c5": {
+  "n_perm": 10000,
+  "n_random_dirs": 200,
+  "layers": "8-28 z-scored then averaged",
+  "direction": "leave-one-experiment-out mean of normalised ban-minus-reference shifts"
+ },
+ "sampling": {
+  "N_per_arm": 100,
+  "temperature": 1.0,
+  "top_p": 1.0,
+  "max_new_tokens": 1024,
+  "crn": "one PCG64 uniform stream per (task, template, sample), inverse-CDF in vocabulary order"
+ },
+ "n_programs_per_algorithm": 30,
+ "gate": {
+  "avoidance": 0.5,
+  "min_nonbanned": 20
+ },
+ "drop_order": [
+  "layer-band knockouts FRLP only",
+  "tuned lens",
+  "C5 new-template cells",
+  "mention-twin FRLP",
+  "arms e, f, pl",
+  "K1/K2 behaviour",
+  "behaviour N 100 -> 50"
+ ],
+ "thresholds": {
+  "F_confirm": 0.6666666666666666,
+  "F_ci_lower": 0.5,
+  "placebo_max_frac": 0.2,
+  "ess_flag": 5.0,
+  "c5_rho": -0.5,
+  "c5_alpha": 0.05,
+  "gate_avoidance": 0.5,
+  "gate_min_nonbanned": 20,
+  "crn_floor_min": 0.95,
+  "veto_log_rank": 1.0
+ }
+}
