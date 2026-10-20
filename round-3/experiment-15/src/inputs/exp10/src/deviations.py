@@ -1,0 +1,86 @@
+#!/usr/bin/env python3
+"""Writes results/deviations.json: every interpretation fixed by this executor and every deviation from the plan,
+with the evidence file for each (numbers are read from results/ at write time, never typed in)."""
+
+from __future__ import annotations
+
+import json
+
+from src.ws import RESULTS, write_json
+from loguru import logger
+
+
+def ld(name: str):
+    p = RESULTS / name
+    return json.loads(p.read_text()) if p.exists() else {}
+
+
+@logger.catch(reraise=True)
+def main() -> None:
+    fs = ld("forced_set_summary.json").get("per_algorithm", {})
+    cost = ld("openrouter_cost.json")
+    audit = ld("llama_label_audit.json")
+    tb = ld("tests_scoring_B.json").get("t4", {})
+    td = ld("tests_scoring_D.json")
+    t9 = ld("test_analysis_c1.json")
+    sel = ld("selections.json")
+    col = ld("collapse.json")
+    dev = [
+        {"id": "D1", "what": "Model weights downloaded into the run's shared HF cache (HF_HUB_CACHE), not ./hf_cache",
+         "why": "runtime rule: never override the shared cache variables; avoids a second 16 GB copy", "evidence": "results/model_download.json"},
+        {"id": "D2", "what": "vLLM served with --enforce-eager and TORCHDYNAMO_DISABLE=1",
+         "why": "no C compiler in the container: Triton cannot build the torch.compile'd logprob helper (first run crashed: 'Failed to find C compiler'); eager execution is numerically the same kernels, slower only",
+         "evidence": "logs/vllm_server_A.log, scripts/serve_vllm.sh"},
+        {"id": "D3", "what": "max_num_seqs = 24 (plan: 8)", "why": "the pod has a 24 GB RTX 4090 (plan assumed a 20 GB A4500); KV cache 48,512 tokens = 23.7 x 2048", "evidence": "logs/vllm_server_A.log"},
+        {"id": "D4", "what": "Sampling through the OpenAI-compatible vLLM server with token-id prompts and --generation-config vllm (not the offline LLM class); every SamplingParams field set per request; logprobs=1 with return_tokens_as_token_ids to keep generated ids",
+         "why": "phases A4/A5/A6/C depend on labels of earlier phases; a long-lived server avoids reloading", "evidence": "src/gen_client.py"},
+        {"id": "D5", "what": "Templates W1-W5, nonce, novelty and display names taken verbatim from SHARED PROTOCOL v2 (gen_strat build_strategy.py)", "why": "the plan refers to 'the direction' for their text", "evidence": "results/frozen_config.json"},
+        {"id": "D6", "what": "Descriptive forced variant drops the final period of the MODE_DEFINITIONS sentence inside the bracket", "why": "keeps '... (that is, <definition>) for this task.' grammatical", "evidence": "src/config.py:descriptive_name"},
+        {"id": "D7", "what": f"T2 two-step s* = {sel.get('t2_substitute', {}).get('s_star')} although the modal attempted non-banned label under the Dijkstra ban was 'other'",
+         "why": "s* must be a catalogue algorithm for the 'd or s*' ban; most frequent catalogue label used and flagged clear_mode=False", "evidence": "results/selections.json"},
+        {"id": "D8", "what": "'Generation order' for the forced set = (A2 before A6, sample_id, paraphrase id)", "why": "balances paraphrases when more than 30 programs are labelled j", "evidence": "src/forced_set.py"},
+        {"id": "D9", "what": "F5 exclusions: " + ", ".join(f"{k} M={v['M']}" for k, v in fs.items() if v.get("excluded_M_lt_10")) + "; flagged M<30: " + ", ".join(f"{k} M={v['M']}" for k, v in fs.items() if v.get("flag_M_lt_30") and not v.get("excluded_M_lt_10")),
+         "why": "M_j < 10 after 120 attempts (40 with the descriptive variant). With two T2 exclusions K = 3, so every T2 single-ban row has 2 survivors (< 3): C1 is NOT computable on T2 and the pooled C1 equals T1. T2 still enters the FRLP gate and the descriptive tables.",
+         "evidence": "results/forced_set_summary.json"},
+        {"id": "D10", "what": "Scrub validation criterion for 'label unchanged': (runtime, AST) pair unchanged, or a new pair that agrees on the original label, or the blind judge (called only when the pair changed and disagrees)",
+         "why": "re-judging every judge-labelled scrubbed program would have exceeded the USD 0.50 judge cap", "evidence": "src/forced_set.py:_validate"},
+        {"id": "D11", "what": f"OpenRouter spend USD {cost.get('total_usd')} ({cost.get('by_purpose')}) within the 0.50 cap; no budget refusal", "why": "-", "evidence": "results/openrouter_cost.json"},
+        {"id": "D12", "what": f"Llama label audit: first draw (30) filled only with T1 catalogue labels; supplement of 20 (T1 'other' + T2). Agreement {audit.get('agreement')} (first draw {audit.get('agreement_first_draw')}), per task {audit.get('agreement_per_task')} < 0.9 -> flagged",
+         "why": "7 T1 labels x 5 > 30. Per plan S1 the C1 is re-run with the disputed forced programs removed (sensitivity 'audit_disputed_removed')",
+         "evidence": "results/llama_label_audit.json, results/sensitivities.json"},
+        {"id": "D13", "what": f"T4 failed its 0.02-nat tolerance: cached-batch vs full-forward max {tb.get('max_abs_diff_vs_full_forward')} / mean {tb.get('mean_abs_diff_vs_full_forward')} nats per program sum; batch-order max {tb.get('max_abs_diff_batch_order')}",
+         "why": "bf16 arithmetic: padded batch shapes change attention tiling. The first run (bf16 LM head) gave max 0.74; the LM head was moved to fp32 (bug fix before any S5 score, session B re-run). The residual (< 0.002 nats/token) is below the per-token HF-vs-vLLM agreement of T3 and enters the replicate variance; 0.02 per program sum is not attainable in bf16 with batching",
+         "evidence": "results/tests_scoring_B.json"},
+        {"id": "D14", "what": "T7 displacement tolerance evaluated at bf16 precision", "why": f"edited states are bf16; max relative error {[(k, v.get('max_rel_err')) for k, v in td.items() if k.startswith('t7')]}", "evidence": "results/tests_scoring_D.json"},
+        {"id": "D15", "what": "Noise correction: the frozen exchangeable-replicate Sigma is reported as primary; a template-mean estimator (5 template means, 4 df) is added as a sensitivity",
+         "why": f"T9 showed the frozen estimator is unbiased under exchangeable replicates but biased upward when template effects are shared by both halves (crossed design): {t9.get('iv', {}).get('crossed_design_bias')}",
+         "evidence": "results/test_analysis_c1.json"},
+        {"id": "D16", "what": "ESS weighting: per survivor entry, weight = mean over the 10 replicates of min(1, min(ESS_ban, ESS_ref)/5); applied entry-wise to the centred replicate vectors, which are then re-centred", "why": "plan states the rule per cell; this is the per-entry aggregation used", "evidence": "src/analysis_c1.py:c1_task"},
+        {"id": "D17", "what": "Gate (b): a sample labelled with a catalogue algorithm outside the FRLP set counts as 'other'; gate (a) evaluated per task and GATE requires the literal (a) on every task", "why": "S_e is restricted to FRLP-measured algorithms", "evidence": "src/analysis_c1.py:frlp_gate"},
+        {"id": "D18", "what": "Pooled branch: 'ladder exists' = the ladder exists on every task that contributes C1 rows", "why": "the plan defines the ladder per task", "evidence": "src/run_analysis.py"},
+        {"id": "D19", "what": f"Confirmation signals: baseline pass rate T1 {col.get('t1', {}).get('pass_rate')}, T2 {col.get('t2', {}).get('pass_rate')} (T1 below 0.5); median cell ESS below 5",
+         "why": "Llama-3.1-8B writes many attempts that fail edge cases (1x1 grids, start == goal). FRLP and C1 use attempted programs with mechanism labels, so they do not depend on pass status; the correct-only sensitivity and ESS weighting are reported. The S5 matrices were run as planned.",
+         "evidence": "results/collapse.json, results/frlp_gate.json"},
+        {"id": "D20", "what": "Proposal for an algorithm = equal mixture over every forced prompt used for it (10 standard + 10 descriptive where used); exp1 5-template and generating-paraphrase proposals as sensitivities", "why": "plan A6", "evidence": "src/analysis_c1.py:proposal"},
+        {"id": "D21", "what": "Labeller re-check combined label uses the stored production-judge labels of the gold set (no new judge calls)", "why": "exp1's gate metric definition; zero cost", "evidence": "results/labeller_recheck.json"},
+        {"id": "D22", "what": "Coverage shingles: AST node-type 4-grams with constant types and attribute names kept (identifier-normalised)", "why": "attributes such as popleft/heappush carry the mechanism", "evidence": "src/forced_set.py:shingles"},
+        {"id": "D23", "what": "Added beyond the plan: per-sample predictor comparison (FRLP top-1 vs typicality-ladder baseline vs free-form association) in method_out.json; scrubber stress test on external code from the dataset artifact", "why": "method-vs-baseline comparison on the same samples", "evidence": "method_out.json metadata.predictor_comparison_per_event"},
+        {"id": "D24", "what": "commitments.log carries a second entry for src/run_analysis.py and src/analysis_c1.py (sensitivity additions: audit-disputed removal, template-mean noise; all-NaN guard in gate clause c)", "why": "recorded extension/bug fix; the primary analysis is unchanged", "evidence": "commitments.log"},
+        {"id": "D25", "what": "8 forced programs whose ORIGINAL code does not parse (Python-2 tuple parameters, unmatched brackets, bad indentation) were dropped from the FRLP set (248 kept)",
+         "why": "they cannot be tokenised, so they cannot be name-scrubbed (plan S2.2-2.3 / F12: scrub or drop); a first S2 pass had kept them unscrubbed. Scores of the other 248 programs are unchanged (scoring is per program)",
+         "evidence": "results/forced_set_summary.json (scrub.unparsable_dropped), logs/s2_forced_set.log"},
+        {"id": "D26", "what": "POST-HOC diagnostics added: bootstrap bias and basic (reverse-percentile) intervals of the C1 statistics, and a bootstrap-variance noise correction (results/bootstrap_diagnostics.json)",
+         "why": "the percentile intervals of the quadratic V statistics lie above their point estimates (e.g. neutral pooled V_tot point vs percentile CI) because program resampling, shared by the 5 templates of a half, adds variance that the exchangeable-replicate Sigma cannot see; the bootstrap variance of gbar is several times trace(Sigma). The frozen branch rule is reported unchanged as primary.",
+         "evidence": "results/bootstrap_diagnostics.json"},
+        {"id": "D27", "what": "Bug fixes recorded in commitments.log after the freeze: View.u NaN vector for degenerate bootstrap draws (crashed the audit-disputed sensitivity only); free-form cross-check read exp1's file with the wrong keys", "why": "primary results byte-identical before/after (checked)", "evidence": "commitments.log"},
+        {"id": "D28", "what": "Sensitivities 'correct_only' and 'flagged_cells_dropped' leave fewer than 3 survivors per row and are not computable", "why": "few correct programs for several algorithms; most cells have ESS < 5", "evidence": "results/sensitivities.json"},
+        {"id": "D29", "what": "Per-sample predictor comparison uses four predictors: FRLP top-1 (method), latent ladder (baseline FRLP), sampled ladder (empirical baseline frequency over survivors) and free-form association", "why": "the latent ladder shares FRLP's calibration, so an independent empirical ladder is added", "evidence": "method_out.json metadata.predictor_comparison_per_event"},
+        {"id": "D30", "what": "Staged scaling (T10): A1 ran at 10 then full (stage-10 rows also gave the T3 logprobs); the other generation phases (<= 440 requests, ~1 min each) ran directly; S5 logged per-condition time and projected the full matrix after 3 conditions (10 min projected for T1's all-program block; total S5 ~25 min) before continuing",
+         "why": "the full volume fitted the budget by a wide margin, so the F7 drop order was never needed (route test included)", "evidence": "logs/timing.jsonl, logs/score_D.log"},
+    ]
+    write_json(RESULTS / "deviations.json", dev)
+    print(f"{len(dev)} deviations written")
+
+
+if __name__ == "__main__":
+    main()

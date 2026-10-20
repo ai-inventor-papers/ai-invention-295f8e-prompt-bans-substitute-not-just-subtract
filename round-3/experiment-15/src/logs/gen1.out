@@ -1,0 +1,56 @@
+<workspace>/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+INFO 10-20 18:18:17 [__init__.py:216] Automatically detected platform cuda.
+INFO 10-20 18:18:55 [utils.py:233] non-default args: {'dtype': 'bfloat16', 'seed': 0, 'max_model_len': 2048, 'enable_prefix_caching': True, 'gpu_memory_utilization': 0.92, 'max_num_batched_tokens': 2048, 'max_num_seqs': 32, 'disable_log_stats': True, 'enforce_eager': True, 'generation_config': 'vllm', 'logits_processors': [<class 'src.engine_vllm.VetoAdapter'>], 'model': '<run shared HF cache>/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659'}
+INFO 10-20 18:18:55 [model.py:547] Resolved architecture: LlamaForCausalLM
+`torch_dtype` is deprecated! Use `dtype` instead!
+INFO 10-20 18:18:55 [model.py:1510] Using max model len 2048
+INFO 10-20 18:18:58 [scheduler.py:205] Chunked prefill is enabled with max_num_batched_tokens=2048.
+INFO 10-20 18:18:58 [__init__.py:381] Cudagraph is disabled under eager mode
+INFO 10-20 18:18:59 [core.py:77] Initializing a V1 LLM engine (v0.11.0) with config: model='<run shared HF cache>/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659', speculative_config=None, tokenizer='<run shared HF cache>/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser=''), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None), seed=0, served_model_name=<run shared HF cache>/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659, enable_prefix_caching=True, chunked_prefill_enabled=True, pooler_config=None, compilation_config={"level":0,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":null,"use_inductor":true,"compile_sizes":[],"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"cudagraph_mode":0,"use_cudagraph":true,"cudagraph_num_of_warmups":0,"cudagraph_capture_sizes":[],"cudagraph_copy_inputs":false,"full_cuda_graph":false,"use_inductor_graph_partition":false,"pass_config":{},"max_capture_size":0,"local_cache_dir":null}
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+INFO 10-20 18:19:08 [parallel_state.py:1208] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0, EP rank 0
+WARNING 10-20 18:19:08 [topk_topp_sampler.py:66] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+INFO 10-20 18:19:08 [gpu_model_runner.py:2602] Starting to load model <run shared HF cache>/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659...
+INFO 10-20 18:19:09 [gpu_model_runner.py:2634] Loading model from scratch...
+INFO 10-20 18:19:09 [cuda.py:366] Using Flash Attention backend on V1 engine.
+
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:11<00:34, 11.52s/it]
+
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:23<00:23, 11.95s/it]
+
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:36<00:12, 12.08s/it]
+
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:39<00:00,  8.51s/it]
+
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:39<00:00,  9.76s/it]
+
+INFO 10-20 18:19:48 [default_loader.py:267] Loading weights took 39.11 seconds
+INFO 10-20 18:19:49 [gpu_model_runner.py:2653] Model loading took 14.9889 GiB and 39.550303 seconds
+INFO 10-20 18:19:51 [gpu_worker.py:298] Available KV cache memory: 5.03 GiB
+INFO 10-20 18:19:51 [kv_cache_utils.py:1087] GPU KV cache size: 41,200 tokens
+INFO 10-20 18:19:51 [kv_cache_utils.py:1091] Maximum concurrency for 2,048 tokens per request: 20.12x
+WARNING 10-20 18:19:51 [cudagraph_dispatcher.py:106] cudagraph dispatching keys are not initialized. No cudagraph will be used.
+INFO 10-20 18:19:51 [core.py:210] init engine (profile, create kv cache, warmup model) took 2.20 seconds
+INFO 10-20 18:19:51 [llm.py:306] Supported_tasks: ('generate',)
+18:19:51|INFO   |vLLM ready in 57s (prefix_caching=True, gpu_mem=0.92)
+18:19:51|INFO   |KV cache: {'num_gpu_blocks': 2575, 'block_size': 16, 'kv_tokens': 41200}
+18:20:02|INFO   |T2 sampler test: {'effective_params': {'temperature': 1.0, 'top_p': 1.0, 'top_k': -1, 'min_p': 0.0, 'repetition_penalty': 1.0, 'presence_penalty': 0.0, 'frequency_penalty': 0.0, 'max_tokens': 1024, 'seed': 1, 'stop_token_ids': [128001, 128008, 128009], 'logit_bias': None, 'extra_args': None}, 'n': 20, 'identical_on_rerun_same_seed': 16, 'identical_T1_vs_T0.6_same_seed': 3, 'passed': True}
+18:20:02|INFO   |[B1] 600 requests, 600 to run
+18:20:22|INFO   |[B1] {'stage': '0-10', 'n': 10, 'seconds': 19.9, 'new_tokens': 1236, 'tok_per_s': 62.1, 'mean_new_tokens': 123.6, 'length_rate': 0.0, 'remaining': 590, 'eta_seconds_linear': 1175.0}
+18:21:35|INFO   |[B1] {'stage': '10-110', 'n': 100, 'seconds': 73.0, 'new_tokens': 17608, 'tok_per_s': 241.3, 'mean_new_tokens': 176.1, 'length_rate': 0.0, 'remaining': 490, 'eta_seconds_linear': 358.0}
+18:25:19|INFO   |[B1] {'stage': '110-600', 'n': 490, 'seconds': 223.2, 'new_tokens': 74417, 'tok_per_s': 333.5, 'mean_new_tokens': 151.9, 'length_rate': 0.006, 'remaining': 0, 'eta_seconds_linear': 0.0}
+18:25:19|INFO   |B1 done in 317s
+18:25:19|INFO   |[B4] 600 requests, 600 to run
+18:25:41|INFO   |[B4] {'stage': '0-10', 'n': 10, 'seconds': 22.0, 'new_tokens': 1222, 'tok_per_s': 55.6, 'mean_new_tokens': 122.2, 'length_rate': 0.0, 'remaining': 590, 'eta_seconds_linear': 1296.0}
+18:26:28|INFO   |[B4] {'stage': '10-110', 'n': 100, 'seconds': 47.4, 'new_tokens': 15775, 'tok_per_s': 332.7, 'mean_new_tokens': 157.8, 'length_rate': 0.0, 'remaining': 490, 'eta_seconds_linear': 232.0}
+18:30:03|INFO   |[B4] {'stage': '110-600', 'n': 490, 'seconds': 215.2, 'new_tokens': 75969, 'tok_per_s': 353.1, 'mean_new_tokens': 155.0, 'length_rate': 0.006, 'remaining': 0, 'eta_seconds_linear': 0.0}
+18:30:03|INFO   |B4 done in 285s
+18:30:04|INFO   |[B3r1] 1000 requests, 1000 to run

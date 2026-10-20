@@ -1,0 +1,74 @@
+<workspace>/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+INFO 10-20 21:03:31 [__init__.py:216] Automatically detected platform cuda.
+21:04:04|INFO   |screen prompt identity: 10/10
+INFO 10-20 21:04:05 [utils.py:233] non-default args: {'dtype': 'bfloat16', 'seed': 0, 'max_model_len': 2048, 'enable_prefix_caching': True, 'gpu_memory_utilization': 0.92, 'max_num_batched_tokens': 2048, 'max_num_seqs': 64, 'disable_log_stats': True, 'enforce_eager': True, 'generation_config': 'vllm', 'logits_processors': [<class 'src.engine_vllm.VetoAdapter'>], 'model': '<run shared HF cache>/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659'}
+INFO 10-20 21:04:05 [model.py:547] Resolved architecture: LlamaForCausalLM
+`torch_dtype` is deprecated! Use `dtype` instead!
+INFO 10-20 21:04:05 [model.py:1510] Using max model len 2048
+INFO 10-20 21:04:08 [scheduler.py:205] Chunked prefill is enabled with max_num_batched_tokens=2048.
+INFO 10-20 21:04:08 [__init__.py:381] Cudagraph is disabled under eager mode
+INFO 10-20 21:04:08 [core.py:77] Initializing a V1 LLM engine (v0.11.0) with config: model='<run shared HF cache>/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659', speculative_config=None, tokenizer='<run shared HF cache>/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser=''), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None), seed=0, served_model_name=<run shared HF cache>/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659, enable_prefix_caching=True, chunked_prefill_enabled=True, pooler_config=None, compilation_config={"level":0,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":null,"use_inductor":true,"compile_sizes":[],"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"cudagraph_mode":0,"use_cudagraph":true,"cudagraph_num_of_warmups":0,"cudagraph_capture_sizes":[],"cudagraph_copy_inputs":false,"full_cuda_graph":false,"use_inductor_graph_partition":false,"pass_config":{},"max_capture_size":0,"local_cache_dir":null}
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+INFO 10-20 21:04:16 [parallel_state.py:1208] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0, EP rank 0
+WARNING 10-20 21:04:17 [topk_topp_sampler.py:66] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+INFO 10-20 21:04:17 [gpu_model_runner.py:2602] Starting to load model <run shared HF cache>/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659...
+INFO 10-20 21:04:17 [gpu_model_runner.py:2634] Loading model from scratch...
+INFO 10-20 21:04:18 [cuda.py:366] Using Flash Attention backend on V1 engine.
+
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:12<00:37, 12.53s/it]
+
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:25<00:25, 12.56s/it]
+
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:37<00:12, 12.64s/it]
+
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:40<00:00,  8.89s/it]
+
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:40<00:00, 10.25s/it]
+
+INFO 10-20 21:04:59 [default_loader.py:267] Loading weights took 41.05 seconds
+INFO 10-20 21:04:59 [gpu_model_runner.py:2653] Model loading took 14.9889 GiB and 41.635619 seconds
+INFO 10-20 21:05:01 [gpu_worker.py:298] Available KV cache memory: 4.84 GiB
+INFO 10-20 21:05:01 [kv_cache_utils.py:1087] GPU KV cache size: 39,632 tokens
+INFO 10-20 21:05:01 [kv_cache_utils.py:1091] Maximum concurrency for 2,048 tokens per request: 19.35x
+WARNING 10-20 21:05:01 [cudagraph_dispatcher.py:106] cudagraph dispatching keys are not initialized. No cudagraph will be used.
+INFO 10-20 21:05:01 [core.py:210] init engine (profile, create kv cache, warmup model) took 2.22 seconds
+INFO 10-20 21:05:02 [llm.py:306] Supported_tasks: ('generate',)
+21:05:02|INFO   |vLLM ready in 58s (prefix_caching=True, gpu_mem=0.92)
+21:05:02|INFO   |[S6] 300 requests, 300 to run
+21:05:31|INFO   |[S6] {'stage': '0-10', 'n': 10, 'seconds': 29.1, 'new_tokens': 3108, 'tok_per_s': 106.7, 'mean_new_tokens': 310.8, 'length_rate': 0.0, 'remaining': 290, 'eta_seconds_linear': 845.0}
+21:06:33|INFO   |[S6] {'stage': '10-110', 'n': 100, 'seconds': 61.7, 'new_tokens': 28771, 'tok_per_s': 466.4, 'mean_new_tokens': 287.7, 'length_rate': 0.0, 'remaining': 190, 'eta_seconds_linear': 117.0}
+21:08:40|INFO   |[S6] {'stage': '110-300', 'n': 190, 'seconds': 126.9, 'new_tokens': 65425, 'tok_per_s': 515.7, 'mean_new_tokens': 344.3, 'length_rate': 0.037, 'remaining': 0, 'eta_seconds_linear': 0.0}
+21:08:40|INFO   |evaluate_unique: 300 unique programs, 300 not cached
+21:08:58|INFO   |evaluate 240/300: 100/240
+21:09:06|INFO   |evaluate 240/300: 200/240
+21:09:11|INFO   |evaluate 240/300: 240/240
+21:09:17|INFO   |evaluate 300/300: 60/60
+21:09:33|INFO   |judge openai/gpt-4.1-mini [judge]: 155/155 judged; spent 0.0718 USD on judge; stop={'stop': False}
+21:09:34|INFO   |screen n-gram t1 bfs: ' queue:\n       ' max collateral 0.21
+21:09:34|INFO   |screen n-gram t2 dijkstra: ' continue' max collateral 0.03
+21:10:14|INFO   |evaluate_unique: 114 unique programs, 79 not cached
+21:10:27|INFO   |evaluate 79/79: 79/79
+21:10:33|INFO   |judge openai/gpt-4.1-mini [judge]: 60/60 judged; spent 0.0859 USD on judge; stop={'stop': False}
+21:10:33|INFO   |screen t1 r1: bfs share 0.56 over 50 attempts
+21:10:33|INFO   |screen t2 r1: dijkstra share 0.82 over 50 attempts
+21:11:18|INFO   |evaluate_unique: 100 unique programs, 72 not cached
+21:11:25|INFO   |evaluate 72/72: 72/72
+21:11:29|INFO   |judge openai/gpt-4.1-mini [judge]: 51/51 judged; spent 0.0987 USD on judge; stop={'stop': False}
+21:11:29|INFO   |screen t1 r2: bfs share 0.52 over 50 attempts
+21:11:29|INFO   |screen t2 r2: dijkstra share 0.78 over 50 attempts
+21:12:40|INFO   |evaluate_unique: 100 unique programs, 73 not cached
+21:12:48|INFO   |evaluate 73/73: 73/73
+21:12:53|INFO   |judge openai/gpt-4.1-mini [judge]: 63/63 judged; spent 0.1174 USD on judge; stop={'stop': False}
+21:12:53|INFO   |screen t1 r3: bfs share 0.58 over 50 attempts
+21:12:53|INFO   |screen t2 r3: dijkstra share 0.80 over 50 attempts
+21:17:38|INFO   |screen t1 ban bfs: hit dfs top1 {'SUBTRACT': 'dfs', 'LADDER': 'dfs', 'ASSOCIATE': 'dfs', 'PROXIMITY': 'dfs'} logscore {'SUBTRACT': -0.543, 'LADDER': -0.878, 'ASSOCIATE': -0.468, 'PROXIMITY': -0.468, 'RENORM': -0.473, 'UNIFORM': -1.797}
+21:17:38|INFO   |screen t2 ban dijkstra: hit other top1 {'SUBTRACT': None, 'LADDER': None, 'ASSOCIATE': 'bf_spfa', 'PROXIMITY': 'floyd'} logscore {'SUBTRACT': -1.593, 'LADDER': -1.593, 'ASSOCIATE': -1.794, 'PROXIMITY': -2.813, 'RENORM': -0.919, 'UNIFORM': -1.593}
+[rank0]:[W1020 21:17:39.487831104 ProcessGroupNCCL.cpp:1538] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
