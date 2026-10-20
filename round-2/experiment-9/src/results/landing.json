@@ -1,0 +1,1661 @@
+{
+ "dry_run": {
+  "planted_edge_p": 0.03333333333333333,
+  "n_perm": 120,
+  "uniform_p_mean": 0.5345,
+  "uniform_p_le_0.05": 0.015,
+  "logscore_check": -0.6931471805599453,
+  "logscore_expected": -0.6931471805599453,
+  "pooled_planted_p": 3.7037037037037037e-05,
+  "pooled_n": 1728000
+ },
+ "catalogue_t1": [
+  "bfs",
+  "dfs",
+  "bibfs",
+  "iddfs",
+  "astar",
+  "gbfs",
+  "idastar"
+ ],
+ "conditions": {
+  "t1|baseline": {
+   "banned": [],
+   "n_samples": 100,
+   "attempted": 100,
+   "unknown_rate": 0.0,
+   "truncation_rate": 0.0,
+   "counts": {
+    "bfs": 100
+   },
+   "fine_labels": {
+    "bfs": 100
+   },
+   "shares": {
+    "bfs": 1.0
+   },
+   "share_ci": {
+    "bfs": [
+     0.9630065017930143,
+     1.0
+    ]
+   },
+   "avoidance": 1.0,
+   "avoidance_ci": [
+    0.9630065017930143,
+    1.0
+   ],
+   "n_nonbanned": 100,
+   "compliant_share": 0.89,
+   "compliant_ci": [
+    0.8136870349691969,
+    0.9374580364293543
+   ],
+   "gate": true,
+   "pass_rate_attempted": 0.89,
+   "survivor_counts": {
+    "bfs": 100,
+    "dfs": 0,
+    "bibfs": 0,
+    "iddfs": 0,
+    "astar": 0,
+    "gbfs": 0,
+    "idastar": 0
+   },
+   "survivor_shares": {
+    "bfs": 1.0,
+    "dfs": 0.0,
+    "bibfs": 0.0,
+    "iddfs": 0.0,
+    "astar": 0.0,
+    "gbfs": 0.0,
+    "idastar": 0.0
+   },
+   "per_template": {
+    "B": {
+     "n": 100,
+     "attempted": 100,
+     "counts": {
+      "bfs": 100
+     },
+     "avoidance": 1.0
+    }
+   },
+   "cluster_bootstrap_ci": {
+    "avoidance": [
+     1.0,
+     1.0
+    ],
+    "surv_share:bfs": [
+     1.0,
+     1.0
+    ],
+    "surv_share:dfs": [
+     0.0,
+     0.0
+    ],
+    "surv_share:bibfs": [
+     0.0,
+     0.0
+    ],
+    "surv_share:iddfs": [
+     0.0,
+     0.0
+    ],
+    "surv_share:astar": [
+     0.0,
+     0.0
+    ],
+    "surv_share:gbfs": [
+     0.0,
+     0.0
+    ],
+    "surv_share:idastar": [
+     0.0,
+     0.0
+    ],
+    "share:bfs": [
+     1.0,
+     1.0
+    ],
+    "share:other": [
+     0.0,
+     0.0
+    ]
+   },
+   "disguise": {
+    "n_banned_mechanism": 0,
+    "n_disguised": 0,
+    "disguise_rate": null,
+    "by_mechanism": {},
+    "self_names_top": []
+   }
+  },
+  "t2|baseline": {
+   "banned": [],
+   "n_samples": 100,
+   "attempted": 100,
+   "unknown_rate": 0.0,
+   "truncation_rate": 0.0,
+   "counts": {
+    "dijkstra": 100
+   },
+   "fine_labels": {
+    "dijkstra": 100
+   },
+   "shares": {
+    "dijkstra": 1.0
+   },
+   "share_ci": {
+    "dijkstra": [
+     0.9630065017930143,
+     1.0
+    ]
+   },
+   "avoidance": 1.0,
+   "avoidance_ci": [
+    0.9630065017930143,
+    1.0
+   ],
+   "n_nonbanned": 100,
+   "compliant_share": 1.0,
+   "compliant_ci": [
+    0.9630065017930143,
+    1.0
+   ],
+   "gate": true,
+   "pass_rate_attempted": 1.0,
+   "survivor_counts": {
+    "dijkstra": 100,
+    "bf_spfa": 0,
+    "bidijkstra": 0,
+    "floyd": 0,
+    "dial": 0
+   },
+   "survivor_shares": {
+    "dijkstra": 1.0,
+    "bf_spfa": 0.0,
+    "bidijkstra": 0.0,
+    "floyd": 0.0,
+    "dial": 0.0
+   },
+   "per_template": {
+    "B": {
+     "n": 100,
+     "attempted": 100,
+     "counts": {
+      "dijkstra": 100
+     },
+     "avoidance": 1.0
+    }
+   },
+   "cluster_bootstrap_ci": {
+    "avoidance": [
+     1.0,
+     1.0
+    ],
+    "surv_share:dijkstra": [
+     1.0,
+     1.0
+    ],
+    "surv_share:bf_spfa": [
+     0.0,
+     0.0
+    ],
+    "surv_share:bidijkstra": [
+     0.0,
+     0.0
+    ],
+    "surv_share:floyd": [
+     0.0,
+     0.0
+    ],
+    "surv_share:dial": [
+     0.0,
+     0.0
+    ],
+    "share:other": [
+     0.0,
+     0.0
+    ],
+    "share:dijkstra": [
+     1.0,
+     1.0
+    ]
+   },
+   "disguise": {
+    "n_banned_mechanism": 0,
+    "n_disguised": 0,
+    "disguise_rate": null,
+    "by_mechanism": {},
+    "self_names_top": []
+   }
+  },
+  "t1|single:bfs": {
+   "banned": [
+    "bfs"
+   ],
+   "n_samples": 100,
+   "attempted": 100,
+   "unknown_rate": 0.0,
+   "truncation_rate": 0.0,
+   "counts": {
+    "dfs": 86,
+    "banned:bfs": 14
+   },
+   "fine_labels": {
+    "dfs": 86,
+    "bfs": 14
+   },
+   "shares": {
+    "dfs": 0.86,
+    "banned:bfs": 0.14
+   },
+   "share_ci": {
+    "dfs": [
+     0.7786281178903616,
+     0.9147365634006086
+    ],
+    "banned:bfs": [
+     0.08526343659939134,
+     0.22137188210963837
+    ]
+   },
+   "avoidance": 0.86,
+   "avoidance_ci": [
+    0.7786281178903616,
+    0.9147365634006086
+   ],
+   "n_nonbanned": 86,
+   "compliant_share": 0.3,
+   "compliant_ci": [
+    0.2189488529493276,
+    0.3958485463334666
+   ],
+   "gate": true,
+   "pass_rate_attempted": 0.41,
+   "survivor_counts": {
+    "dfs": 86,
+    "bibfs": 0,
+    "iddfs": 0,
+    "astar": 0,
+    "gbfs": 0,
+    "idastar": 0
+   },
+   "survivor_shares": {
+    "dfs": 1.0,
+    "bibfs": 0.0,
+    "iddfs": 0.0,
+    "astar": 0.0,
+    "gbfs": 0.0,
+    "idastar": 0.0
+   },
+   "per_template": {
+    "W1": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "dfs": 20
+     },
+     "avoidance": 1.0
+    },
+    "W2": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "dfs": 20
+     },
+     "avoidance": 1.0
+    },
+    "W3": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "dfs": 20
+     },
+     "avoidance": 1.0
+    },
+    "W4": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "banned:bfs": 14,
+      "dfs": 6
+     },
+     "avoidance": 0.30000000000000004
+    },
+    "W5": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "dfs": 20
+     },
+     "avoidance": 1.0
+    }
+   },
+   "cluster_bootstrap_ci": {
+    "avoidance": [
+     0.5800000000000001,
+     1.0
+    ],
+    "surv_share:dfs": [
+     1.0,
+     1.0
+    ],
+    "surv_share:bibfs": [
+     0.0,
+     0.0
+    ],
+    "surv_share:iddfs": [
+     0.0,
+     0.0
+    ],
+    "surv_share:astar": [
+     0.0,
+     0.0
+    ],
+    "surv_share:gbfs": [
+     0.0,
+     0.0
+    ],
+    "surv_share:idastar": [
+     0.0,
+     0.0
+    ],
+    "share:banned:bfs": [
+     0.0,
+     0.42
+    ],
+    "share:other": [
+     0.0,
+     0.0
+    ],
+    "share:dfs": [
+     0.58,
+     1.0
+    ]
+   },
+   "disguise": {
+    "n_banned_mechanism": 14,
+    "n_disguised": 14,
+    "disguise_rate": 1.0,
+    "by_mechanism": {
+     "bfs": {
+      "n": 14,
+      "disguised": 14
+     }
+    },
+    "self_names_top": []
+   }
+  },
+  "t2|single:dijkstra": {
+   "banned": [
+    "dijkstra"
+   ],
+   "n_samples": 100,
+   "attempted": 100,
+   "unknown_rate": 0.0,
+   "truncation_rate": 0.0,
+   "counts": {
+    "bf_spfa": 83,
+    "banned:dijkstra": 16,
+    "other": 1
+   },
+   "fine_labels": {
+    "bf_spfa": 83,
+    "dijkstra": 16,
+    "other": 1
+   },
+   "shares": {
+    "bf_spfa": 0.83,
+    "banned:dijkstra": 0.16,
+    "other": 0.01
+   },
+   "share_ci": {
+    "bf_spfa": [
+     0.7445199523239887,
+     0.8910643388594006
+    ],
+    "banned:dijkstra": [
+     0.10095288488804782,
+     0.24420269389270244
+    ],
+    "other": [
+     0.0017674320641406505,
+     0.054486196178705315
+    ]
+   },
+   "avoidance": 0.84,
+   "avoidance_ci": [
+    0.7557973061072976,
+    0.8990471151119521
+   ],
+   "n_nonbanned": 84,
+   "compliant_share": 0.79,
+   "compliant_ci": [
+    0.7002003116591013,
+    0.858343459380847
+   ],
+   "gate": true,
+   "pass_rate_attempted": 0.95,
+   "survivor_counts": {
+    "bf_spfa": 83,
+    "bidijkstra": 0,
+    "floyd": 0,
+    "dial": 0
+   },
+   "survivor_shares": {
+    "bf_spfa": 1.0,
+    "bidijkstra": 0.0,
+    "floyd": 0.0,
+    "dial": 0.0
+   },
+   "per_template": {
+    "W1": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "bf_spfa": 18,
+      "banned:dijkstra": 2
+     },
+     "avoidance": 0.9
+    },
+    "W2": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "bf_spfa": 18,
+      "other": 1,
+      "banned:dijkstra": 1
+     },
+     "avoidance": 0.95
+    },
+    "W3": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "banned:dijkstra": 6,
+      "bf_spfa": 14
+     },
+     "avoidance": 0.7
+    },
+    "W4": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "banned:dijkstra": 7,
+      "bf_spfa": 13
+     },
+     "avoidance": 0.65
+    },
+    "W5": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "bf_spfa": 20
+     },
+     "avoidance": 1.0
+    }
+   },
+   "cluster_bootstrap_ci": {
+    "avoidance": [
+     0.72,
+     0.9502499999999986
+    ],
+    "surv_share:bf_spfa": [
+     1.0,
+     1.0
+    ],
+    "surv_share:bidijkstra": [
+     0.0,
+     0.0
+    ],
+    "surv_share:floyd": [
+     0.0,
+     0.0
+    ],
+    "surv_share:dial": [
+     0.0,
+     0.0
+    ],
+    "share:bf_spfa": [
+     0.71,
+     0.94
+    ],
+    "share:other": [
+     0.0,
+     0.03
+    ],
+    "share:banned:dijkstra": [
+     0.049750000000000016,
+     0.28
+    ]
+   },
+   "disguise": {
+    "n_banned_mechanism": 16,
+    "n_disguised": 2,
+    "disguise_rate": 0.125,
+    "by_mechanism": {
+     "dijkstra": {
+      "n": 16,
+      "disguised": 2
+     }
+    },
+    "self_names_top": []
+   }
+  },
+  "t1|multi:ARC": {
+   "banned": [
+    "bfs",
+    "bibfs",
+    "astar",
+    "gbfs"
+   ],
+   "survivors": [
+    "dfs",
+    "iddfs",
+    "idastar"
+   ],
+   "n_samples": 100,
+   "attempted": 100,
+   "unknown_rate": 0.0,
+   "truncation_rate": 0.0,
+   "counts": {
+    "dfs": 37,
+    "banned:bfs": 63
+   },
+   "fine_labels": {
+    "dfs": 37,
+    "bfs": 63
+   },
+   "shares": {
+    "dfs": 0.37,
+    "banned:bfs": 0.63
+   },
+   "share_ci": {
+    "dfs": [
+     0.28182360534324524,
+     0.4677947041905709
+    ],
+    "banned:bfs": [
+     0.5322052958094291,
+     0.7181763946567546
+    ]
+   },
+   "avoidance": 0.37,
+   "avoidance_ci": [
+    0.28182360534324524,
+    0.4677947041905709
+   ],
+   "n_nonbanned": 37,
+   "compliant_share": 0.2,
+   "compliant_ci": [
+    0.1333669333310325,
+    0.2888291655931589
+   ],
+   "gate": false,
+   "pass_rate_attempted": 0.6,
+   "survivor_counts": {
+    "dfs": 37,
+    "iddfs": 0,
+    "idastar": 0
+   },
+   "survivor_shares": {
+    "dfs": 1.0,
+    "iddfs": 0.0,
+    "idastar": 0.0
+   },
+   "per_template": {
+    "W1": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "dfs": 14,
+      "banned:bfs": 6
+     },
+     "avoidance": 0.7
+    },
+    "W2": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "banned:bfs": 17,
+      "dfs": 3
+     },
+     "avoidance": 0.15000000000000002
+    },
+    "W3": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "dfs": 3,
+      "banned:bfs": 17
+     },
+     "avoidance": 0.15000000000000002
+    },
+    "W4": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "banned:bfs": 20
+     },
+     "avoidance": 0.0
+    },
+    "W5": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "dfs": 17,
+      "banned:bfs": 3
+     },
+     "avoidance": 0.85
+    }
+   },
+   "cluster_bootstrap_ci": {
+    "avoidance": [
+     0.08999999999999997,
+     0.6799999999999999
+    ],
+    "surv_share:dfs": [
+     1.0,
+     1.0
+    ],
+    "surv_share:iddfs": [
+     0.0,
+     0.0
+    ],
+    "surv_share:idastar": [
+     0.0,
+     0.0
+    ],
+    "share:banned:bfs": [
+     0.32,
+     0.91
+    ],
+    "share:other": [
+     0.0,
+     0.0
+    ],
+    "share:dfs": [
+     0.09,
+     0.68
+    ]
+   },
+   "disguise": {
+    "n_banned_mechanism": 63,
+    "n_disguised": 58,
+    "disguise_rate": 0.9206349206349206,
+    "by_mechanism": {
+     "bfs": {
+      "n": 63,
+      "disguised": 58
+     },
+     "bibfs": {
+      "n": 0,
+      "disguised": 0
+     },
+     "astar": {
+      "n": 0,
+      "disguised": 0
+     },
+     "gbfs": {
+      "n": 0,
+      "disguised": 0
+     }
+    },
+    "self_names_top": [
+     [
+      "is_valid",
+      2
+     ]
+    ]
+   },
+   "frlp_implied_avoidance": 0.9994862398727997
+  },
+  "t1|multi:SCATTER": {
+   "banned": [
+    "bfs",
+    "dfs",
+    "gbfs",
+    "idastar"
+   ],
+   "survivors": [
+    "bibfs",
+    "iddfs",
+    "astar"
+   ],
+   "n_samples": 100,
+   "attempted": 100,
+   "unknown_rate": 0.0,
+   "truncation_rate": 0.0,
+   "counts": {
+    "banned:bfs": 69,
+    "banned:dfs": 27,
+    "other": 2,
+    "astar": 2
+   },
+   "fine_labels": {
+    "bfs": 69,
+    "dfs": 27,
+    "dijkstra_unit": 2,
+    "astar": 2
+   },
+   "shares": {
+    "banned:bfs": 0.69,
+    "banned:dfs": 0.27,
+    "other": 0.02,
+    "astar": 0.02
+   },
+   "share_ci": {
+    "banned:bfs": [
+     0.5937394428051057,
+     0.7722030278762395
+    ],
+    "banned:dfs": [
+     0.1926958414957634,
+     0.36432116767944994
+    ],
+    "other": [
+     0.00550196755016235,
+     0.07001179072854388
+    ],
+    "astar": [
+     0.00550196755016235,
+     0.07001179072854388
+    ]
+   },
+   "avoidance": 0.040000000000000036,
+   "avoidance_ci": [
+    0.01566330399154762,
+    0.0983707143588792
+   ],
+   "n_nonbanned": 4,
+   "compliant_share": 0.04,
+   "compliant_ci": [
+    0.01566330399154762,
+    0.0983707143588792
+   ],
+   "gate": false,
+   "pass_rate_attempted": 0.75,
+   "survivor_counts": {
+    "bibfs": 0,
+    "iddfs": 0,
+    "astar": 2
+   },
+   "survivor_shares": {
+    "bibfs": 0.0,
+    "iddfs": 0.0,
+    "astar": 1.0
+   },
+   "per_template": {
+    "W1": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "banned:bfs": 9,
+      "banned:dfs": 11
+     },
+     "avoidance": 0.0
+    },
+    "W2": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "banned:bfs": 16,
+      "banned:dfs": 2,
+      "other": 1,
+      "astar": 1
+     },
+     "avoidance": 0.09999999999999998
+    },
+    "W3": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "banned:bfs": 13,
+      "banned:dfs": 7
+     },
+     "avoidance": 0.0
+    },
+    "W4": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "banned:bfs": 20
+     },
+     "avoidance": 0.0
+    },
+    "W5": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "banned:dfs": 7,
+      "other": 1,
+      "banned:bfs": 11,
+      "astar": 1
+     },
+     "avoidance": 0.09999999999999998
+    }
+   },
+   "cluster_bootstrap_ci": {
+    "avoidance": [
+     0.0,
+     0.07999999999999996
+    ],
+    "surv_share:bibfs": [
+     0.0,
+     0.0
+    ],
+    "surv_share:iddfs": [
+     0.0,
+     0.0
+    ],
+    "surv_share:astar": [
+     1.0,
+     1.0
+    ],
+    "share:banned:dfs": [
+     0.10950000000000003,
+     0.43
+    ],
+    "share:astar": [
+     0.0,
+     0.04
+    ],
+    "share:banned:bfs": [
+     0.53,
+     0.87
+    ],
+    "share:other": [
+     0.0,
+     0.04
+    ]
+   },
+   "disguise": {
+    "n_banned_mechanism": 96,
+    "n_disguised": 49,
+    "disguise_rate": 0.5104166666666666,
+    "by_mechanism": {
+     "bfs": {
+      "n": 69,
+      "disguised": 43
+     },
+     "dfs": {
+      "n": 27,
+      "disguised": 6
+     },
+     "gbfs": {
+      "n": 0,
+      "disguised": 0
+     },
+     "idastar": {
+      "n": 0,
+      "disguised": 0
+     }
+    },
+    "self_names_top": [
+     [
+      "backtrack",
+      10
+     ],
+     [
+      "is_valid",
+      7
+     ],
+     [
+      "depth-limited",
+      1
+     ],
+     [
+      "is_free",
+      1
+     ]
+    ]
+   },
+   "frlp_implied_avoidance": 8.802088694771974e-09
+  },
+  "t1|multi:TOP": {
+   "banned": [
+    "bfs",
+    "dfs",
+    "gbfs",
+    "iddfs"
+   ],
+   "survivors": [
+    "bibfs",
+    "astar",
+    "idastar"
+   ],
+   "n_samples": 100,
+   "attempted": 100,
+   "unknown_rate": 0.0,
+   "truncation_rate": 0.19,
+   "counts": {
+    "banned:dfs": 26,
+    "other": 13,
+    "banned:bfs": 59,
+    "banned:gbfs": 2
+   },
+   "fine_labels": {
+    "dfs": 26,
+    "other": 12,
+    "bfs": 59,
+    "gbfs": 2,
+    "dijkstra_unit": 1
+   },
+   "shares": {
+    "banned:dfs": 0.26,
+    "other": 0.13,
+    "banned:bfs": 0.59,
+    "banned:gbfs": 0.02
+   },
+   "share_ci": {
+    "banned:dfs": [
+     0.18404698464748132,
+     0.3537098944918718
+    ],
+    "other": [
+     0.07757167427240512,
+     0.20980351440076428
+    ],
+    "banned:bfs": [
+     0.4920143005341078,
+     0.6813268697886348
+    ],
+    "banned:gbfs": [
+     0.00550196755016235,
+     0.07001179072854388
+    ]
+   },
+   "avoidance": 0.13,
+   "avoidance_ci": [
+    0.07757167427240512,
+    0.20980351440076428
+   ],
+   "n_nonbanned": 13,
+   "compliant_share": 0.01,
+   "compliant_ci": [
+    0.0017674320641406505,
+    0.054486196178705315
+   ],
+   "gate": false,
+   "pass_rate_attempted": 0.4,
+   "survivor_counts": {
+    "bibfs": 0,
+    "astar": 0,
+    "idastar": 0
+   },
+   "survivor_shares": {
+    "bibfs": null,
+    "astar": null,
+    "idastar": null
+   },
+   "per_template": {
+    "W1": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "banned:dfs": 15,
+      "other": 3,
+      "banned:bfs": 2
+     },
+     "avoidance": 0.15000000000000002
+    },
+    "W2": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "banned:bfs": 15,
+      "banned:gbfs": 1,
+      "banned:dfs": 3,
+      "other": 1
+     },
+     "avoidance": 0.050000000000000044
+    },
+    "W3": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "banned:bfs": 18,
+      "banned:dfs": 2
+     },
+     "avoidance": 0.0
+    },
+    "W4": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "banned:bfs": 19,
+      "banned:dfs": 1
+     },
+     "avoidance": 0.0
+    },
+    "W5": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "banned:dfs": 5,
+      "other": 9,
+      "banned:bfs": 5,
+      "banned:gbfs": 1
+     },
+     "avoidance": 0.44999999999999996
+    }
+   },
+   "cluster_bootstrap_ci": {
+    "avoidance": [
+     0.010000000000000009,
+     0.29000000000000004
+    ],
+    "share:banned:dfs": [
+     0.09,
+     0.51
+    ],
+    "share:banned:gbfs": [
+     0.0,
+     0.04
+    ],
+    "share:banned:bfs": [
+     0.29,
+     0.8902499999999987
+    ],
+    "share:other": [
+     0.01,
+     0.29
+    ]
+   },
+   "disguise": {
+    "n_banned_mechanism": 87,
+    "n_disguised": 44,
+    "disguise_rate": 0.5057471264367817,
+    "by_mechanism": {
+     "bfs": {
+      "n": 59,
+      "disguised": 37
+     },
+     "dfs": {
+      "n": 26,
+      "disguised": 6
+     },
+     "gbfs": {
+      "n": 2,
+      "disguised": 1
+     },
+     "iddfs": {
+      "n": 0,
+      "disguised": 0
+     }
+    },
+    "self_names_top": [
+     [
+      "backtrack",
+      10
+     ],
+     [
+      "is_valid",
+      9
+     ],
+     [
+      "bfs",
+      1
+     ],
+     [
+      "heuristic",
+      1
+     ],
+     [
+      "priority queue",
+      1
+     ]
+    ]
+   },
+   "frlp_implied_avoidance": 3.013920384876042e-14
+  },
+  "t1|multi:TOP5": {
+   "banned": [
+    "bfs",
+    "dfs",
+    "gbfs",
+    "iddfs",
+    "astar"
+   ],
+   "survivors": [
+    "bibfs",
+    "idastar"
+   ],
+   "n_samples": 100,
+   "attempted": 100,
+   "unknown_rate": 0.0,
+   "truncation_rate": 0.0,
+   "counts": {
+    "banned:dfs": 36,
+    "banned:bfs": 63,
+    "banned:iddfs": 1
+   },
+   "fine_labels": {
+    "dfs": 36,
+    "bfs": 63,
+    "iddfs": 1
+   },
+   "shares": {
+    "banned:dfs": 0.36,
+    "banned:bfs": 0.63,
+    "banned:iddfs": 0.01
+   },
+   "share_ci": {
+    "banned:dfs": [
+     0.2727122040140433,
+     0.4576459754839126
+    ],
+    "banned:bfs": [
+     0.5322052958094291,
+     0.7181763946567546
+    ],
+    "banned:iddfs": [
+     0.0017674320641406505,
+     0.054486196178705315
+    ]
+   },
+   "avoidance": 0.0,
+   "avoidance_ci": [
+    3.469446951953614e-18,
+    0.03699349820698568
+   ],
+   "n_nonbanned": 0,
+   "compliant_share": 0.0,
+   "compliant_ci": [
+    3.469446951953614e-18,
+    0.03699349820698568
+   ],
+   "gate": false,
+   "pass_rate_attempted": 0.68,
+   "survivor_counts": {
+    "bibfs": 0,
+    "idastar": 0
+   },
+   "survivor_shares": {
+    "bibfs": null,
+    "idastar": null
+   },
+   "per_template": {
+    "W1": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "banned:dfs": 15,
+      "banned:bfs": 5
+     },
+     "avoidance": 0.0
+    },
+    "W2": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "banned:dfs": 5,
+      "banned:bfs": 15
+     },
+     "avoidance": 0.0
+    },
+    "W3": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "banned:bfs": 15,
+      "banned:dfs": 5
+     },
+     "avoidance": 0.0
+    },
+    "W4": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "banned:bfs": 19,
+      "banned:dfs": 1
+     },
+     "avoidance": 0.0
+    },
+    "W5": {
+     "n": 20,
+     "attempted": 20,
+     "counts": {
+      "banned:bfs": 9,
+      "banned:dfs": 10,
+      "banned:iddfs": 1
+     },
+     "avoidance": 0.0
+    }
+   },
+   "cluster_bootstrap_ci": {
+    "avoidance": [
+     0.0,
+     0.0
+    ],
+    "share:banned:bfs": [
+     0.43,
+     0.83
+    ],
+    "share:banned:iddfs": [
+     0.0,
+     0.03
+    ],
+    "share:banned:dfs": [
+     0.17,
+     0.56
+    ],
+    "share:other": [
+     0.0,
+     0.0
+    ]
+   },
+   "disguise": {
+    "n_banned_mechanism": 100,
+    "n_disguised": 41,
+    "disguise_rate": 0.41,
+    "by_mechanism": {
+     "bfs": {
+      "n": 63,
+      "disguised": 34
+     },
+     "dfs": {
+      "n": 36,
+      "disguised": 6
+     },
+     "gbfs": {
+      "n": 0,
+      "disguised": 0
+     },
+     "iddfs": {
+      "n": 1,
+      "disguised": 1
+     },
+     "astar": {
+      "n": 0,
+      "disguised": 0
+     }
+    },
+    "self_names_top": [
+     [
+      "is_valid",
+      10
+     ],
+     [
+      "backtrack",
+      8
+     ],
+     [
+      "find_path",
+      2
+     ],
+     [
+      "backtracking",
+      1
+     ],
+     [
+      "recursive",
+      1
+     ],
+     [
+      "get_neighbors",
+      1
+     ],
+     [
+      "depth_limited_search",
+      1
+     ],
+     [
+      "depth-limited",
+      1
+     ]
+    ]
+   },
+   "frlp_implied_avoidance": 1.7424650072987964e-18
+  }
+ },
+ "tests": {
+  "ARC": {
+   "survivors": [
+    "dfs",
+    "iddfs",
+    "idastar"
+   ],
+   "survivor_shares": {
+    "dfs": 1.0,
+    "iddfs": 0.0,
+    "idastar": 0.0
+   },
+   "n_landed_survivor": 37,
+   "S_edge": {
+    "observed": 0.0,
+    "p": 0.6666666666666666,
+    "n_perm": 6,
+    "null_mean": 0.0,
+    "EDGE": [
+     "idastar",
+     "dfs"
+    ],
+    "OPPOSITE": [
+     "iddfs",
+     "dfs"
+    ]
+   },
+   "rho": {
+    "LADDER": {
+     "observed": 0.8660254037844387,
+     "p": 0.3333333333333333,
+     "n_perm": 6,
+     "null_mean": 0.0
+    },
+    "PRIME_AND_VETO": {
+     "observed": 0.8660254037844387,
+     "p": 0.3333333333333333,
+     "n_perm": 6,
+     "null_mean": 0.0
+    },
+    "PROXIMITY": {
+     "observed": 0.0,
+     "p": 0.6666666666666666,
+     "n_perm": 6,
+     "null_mean": 0.0
+    },
+    "FRLP_BAN": {
+     "observed": 0.8660254037844387,
+     "p": 0.3333333333333333,
+     "n_perm": 6,
+     "null_mean": 0.0
+    },
+    "GENERIC": {
+     "observed": 0.8660254037844387,
+     "p": 0.3333333333333333,
+     "n_perm": 6,
+     "null_mean": 0.0
+    },
+    "CORPUS": {
+     "observed": 1.0,
+     "p": 0.3333333333333333,
+     "n_perm": 6,
+     "null_mean": -5.551115123125783e-17
+    }
+   },
+   "log_score": {
+    "n": 37,
+    "uniform": -1.1188149959856293,
+    "LADDER": {
+     "mean": -0.05480823649505344,
+     "minus_uniform": 1.0640067594905758,
+     "top1": "dfs",
+     "top1_hit": true
+    },
+    "PRIME_AND_VETO": {
+     "mean": -0.05480823808824333,
+     "minus_uniform": 1.064006757897386,
+     "top1": "dfs",
+     "top1_hit": true
+    },
+    "PROXIMITY": {
+     "mean": -1.14135920523132,
+     "minus_uniform": -0.022544209245690672,
+     "top1": "idastar",
+     "top1_hit": false
+    },
+    "FRLP_BAN": {
+     "mean": -0.054808473118865844,
+     "minus_uniform": 1.0640065228667634,
+     "top1": "dfs",
+     "top1_hit": true
+    },
+    "GENERIC": {
+     "mean": -0.05480823650362051,
+     "minus_uniform": 1.0640067594820088,
+     "top1": "dfs",
+     "top1_hit": true
+    },
+    "CORPUS": {
+     "mean": -0.05824909480044755,
+     "minus_uniform": 1.0605659011851818,
+     "top1": "dfs",
+     "top1_hit": true
+    }
+   },
+   "realised_top1": "dfs",
+   "likelihood_landing": {
+    "G_h2": {
+     "dfs": 0.5181835750152798,
+     "iddfs": 17.994894714716857,
+     "idastar": 6.694153073773089
+    },
+    "PV_h1": {
+     "dfs": -20.242711891248597,
+     "iddfs": -10.031406971997558,
+     "idastar": 9.658473082707392
+    },
+    "rho_PV": {
+     "observed": 0.5,
+     "p": 0.5,
+     "n_perm": 6,
+     "null_mean": 0.0
+    }
+   },
+   "gate": false,
+   "gate_note": "gate failed (avoidance < 0.5 or < 20 non-banned): flagged"
+  },
+  "SCATTER": {
+   "survivors": [
+    "bibfs",
+    "iddfs",
+    "astar"
+   ],
+   "survivor_shares": {
+    "bibfs": 0.0,
+    "iddfs": 0.0,
+    "astar": 1.0
+   },
+   "n_landed_survivor": 2,
+   "S_edge": {
+    "observed": 0.0,
+    "p": 0.6666666666666666,
+    "n_perm": 6,
+    "null_mean": 0.0,
+    "EDGE": [
+     "bibfs",
+     "astar"
+    ],
+    "OPPOSITE": [
+     "iddfs",
+     "astar"
+    ]
+   },
+   "rho": {
+    "LADDER": {
+     "observed": 0.0,
+     "p": 0.6666666666666666,
+     "n_perm": 6,
+     "null_mean": 0.0
+    },
+    "PRIME_AND_VETO": {
+     "observed": 0.8660254037844387,
+     "p": 0.3333333333333333,
+     "n_perm": 6,
+     "null_mean": 0.0
+    },
+    "PROXIMITY": {
+     "observed": 0.0,
+     "p": 0.6666666666666666,
+     "n_perm": 6,
+     "null_mean": 0.0
+    },
+    "FRLP_BAN": {
+     "observed": 0.0,
+     "p": 0.6666666666666666,
+     "n_perm": 6,
+     "null_mean": 0.0
+    },
+    "GENERIC": {
+     "observed": 0.0,
+     "p": 0.6666666666666666,
+     "n_perm": 6,
+     "null_mean": 0.0
+    },
+    "CORPUS": {
+     "observed": 0.8660254037844387,
+     "p": 0.3333333333333333,
+     "n_perm": 6,
+     "null_mean": 0.0
+    }
+   },
+   "log_score": {
+    "n": 4,
+    "uniform": -2.5154190007068875,
+    "LADDER": {
+     "mean": -2.6704661764375297,
+     "minus_uniform": -0.1550471757306422,
+     "top1": "iddfs",
+     "top1_hit": false
+    },
+    "PRIME_AND_VETO": {
+     "mean": -1.9865988415225766,
+     "minus_uniform": 0.5288201591843109,
+     "top1": "astar",
+     "top1_hit": true
+    },
+    "PROXIMITY": {
+     "mean": -2.4928117721572183,
+     "minus_uniform": 0.022607228549669234,
+     "top1": "bibfs",
+     "top1_hit": false
+    },
+    "FRLP_BAN": {
+     "mean": -4.002910741818256,
+     "minus_uniform": -1.4874917411113682,
+     "top1": "iddfs",
+     "top1_hit": false
+    },
+    "GENERIC": {
+     "mean": -4.001557296062443,
+     "minus_uniform": -1.4861382953555555,
+     "top1": "iddfs",
+     "top1_hit": false
+    },
+    "CORPUS": {
+     "mean": -2.013791756365716,
+     "minus_uniform": 0.5016272443411713,
+     "top1": "astar",
+     "top1_hit": true
+    }
+   },
+   "realised_top1": "astar",
+   "likelihood_landing": {
+    "G_h2": {
+     "bibfs": 11.29828992645712,
+     "iddfs": 20.52021643198595,
+     "astar": 7.016326659260696
+    },
+    "PV_h1": {
+     "bibfs": 13.152974711458507,
+     "iddfs": -5.991617554250503,
+     "astar": 2.727771538333817
+    },
+    "rho_PV": {
+     "observed": -0.5,
+     "p": 0.8333333333333334,
+     "n_perm": 6,
+     "null_mean": 0.0
+    }
+   },
+   "gate": false,
+   "gate_note": "gate failed (avoidance < 0.5 or < 20 non-banned): flagged"
+  },
+  "TOP": {
+   "survivors": [
+    "bibfs",
+    "astar",
+    "idastar"
+   ],
+   "survivor_shares": {
+    "bibfs": null,
+    "astar": null,
+    "idastar": null
+   },
+   "n_landed_survivor": 0,
+   "note": "no landed survivor mass (or < 2 survivors): rank tests undefined",
+   "gate": false,
+   "gate_note": "gate failed (avoidance < 0.5 or < 20 non-banned): flagged"
+  },
+  "TOP5": {
+   "survivors": [
+    "bibfs",
+    "idastar"
+   ],
+   "survivor_shares": {
+    "bibfs": null,
+    "idastar": null
+   },
+   "n_landed_survivor": 0,
+   "note": "no landed survivor mass (or < 2 survivors): rank tests undefined",
+   "gate": false,
+   "gate_note": "gate failed (avoidance < 0.5 or < 20 non-banned): flagged"
+  }
+ },
+ "pooled": {
+  "S_edge": {
+   "p": 0.6666666666666666,
+   "n": 36,
+   "observed_sum": 0.0
+  },
+  "rho:LADDER": {
+   "p": 0.3333333333333333,
+   "n": 36,
+   "observed_sum": 0.8660254037844387
+  },
+  "rho:PRIME_AND_VETO": {
+   "p": 0.1111111111111111,
+   "n": 36,
+   "observed_sum": 1.7320508075688774
+  },
+  "rho:PROXIMITY": {
+   "p": 0.6666666666666666,
+   "n": 36,
+   "observed_sum": 0.0
+  },
+  "rho:FRLP_BAN": {
+   "p": 0.3333333333333333,
+   "n": 36,
+   "observed_sum": 0.8660254037844387
+  },
+  "rho:GENERIC": {
+   "p": 0.3333333333333333,
+   "n": 36,
+   "observed_sum": 0.8660254037844387
+  },
+  "rho:CORPUS": {
+   "p": 0.1111111111111111,
+   "n": 36,
+   "observed_sum": 1.8660254037844388
+  },
+  "n_sets": {
+   "S_edge": 2,
+   "rho:LADDER": 2,
+   "rho:PRIME_AND_VETO": 2,
+   "rho:PROXIMITY": 2,
+   "rho:FRLP_BAN": 2,
+   "rho:GENERIC": 2,
+   "rho:CORPUS": 2
+  }
+ },
+ "reference_contrast": {
+  "t1_single_bfs": {
+   "dfs": 86,
+   "banned:bfs": 14
+  },
+  "t2_single_dijkstra": {
+   "bf_spfa": 83,
+   "banned:dijkstra": 16,
+   "other": 1
+  },
+  "t1_TOP": {
+   "banned:dfs": 26,
+   "other": 13,
+   "banned:bfs": 59,
+   "banned:gbfs": 2
+  }
+ }
+}

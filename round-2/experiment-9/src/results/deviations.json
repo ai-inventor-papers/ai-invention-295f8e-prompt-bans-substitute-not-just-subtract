@@ -1,0 +1,57 @@
+[
+ {
+  "code": "D-forced-dup",
+  "text": "The plan's new forced paraphrase 'Solve this task with {j}.' is verbatim exp1 forced template 3, so it was replaced by 'Apply {j} to solve this task.' to keep 10 distinct paraphrases.",
+  "utc": "2026-10-20T01:47:19.756836Z"
+ },
+ {
+  "code": "D-maxseqs",
+  "text": "vLLM max_num_seqs = 24 (plan: 8, or 12 if KV allows) because the pod has an RTX 4090 (24 GB; 41,136-token KV cache, 20x concurrency at 2,048 tokens) instead of the planned RTX A4500 (20 GB). Only throughput and bf16 batch numerics change; per-request seeds are logged.",
+  "utc": "2026-10-20T02:04:41.240542Z"
+ },
+ {
+  "code": "D-eager",
+  "text": "vLLM runs with --enforce-eager and without logprobs because the container has no C compiler (Triton/Inductor cannot build); the first server crashed on a logprobs request (torch.compile'd rank kernel) before any sample was written and was restarted. Generated token ids come from return_token_ids.",
+  "utc": "2026-10-20T02:04:41.254168Z"
+ },
+ {
+  "code": "D-server",
+  "text": "Sampling uses one PID-managed `vllm serve` process per session with an async client (the iteration-1 exp1 convention) instead of the offline LLM class; SamplingParams are identical (T=1.0, top_p=1.0, top_k=-1, max_tokens=1024, per-request seed).",
+  "utc": "2026-10-20T02:04:41.266329Z"
+ },
+ {
+  "code": "D-catalogue",
+  "text": "Only 5 of 10 grid algorithms pass the pre-registered keep rule (>= 70% of 40 forced programs labelled as requested), so the extension has failed (F4). F4's reduced form (TOP-5 over the kept catalogue) would ban every kept algorithm and leave no survivor; instead the analysis catalogue adds every non-kept algorithm with >= 10 programs labelled as requested (['bibfs', 'astar', 'dijkstra_unit']), flagged keep_failed, and cross-algorithm FRLP comparisons add log(as-requested share) to remove the P(j | F_j) < 1 ratio bias. JPS and bidirectional A* (< 10 programs) are excluded.",
+  "utc": "2026-10-20T02:42:27.637443Z"
+ },
+ {
+  "code": "D-gold-revision",
+  "text": "Gold gate round 0: combined vs adjudicated 33/40 (< 36); 6 of 7 misses were the production judge (gpt-4.1-mini) calling a buggy attempt 'other'/'bfs' where the two other judges named the attempted mechanism. Revision round 1 (the one the plan allows) rewords the judge instruction to attempt-level labelling ('label the listed algorithm whose mechanism the code attempts even if buggy; other only if none matches'); all disagreements and the gold set are re-judged under it. Round-0 files kept as *_round0.",
+  "utc": "2026-10-20T02:48:53.680605Z"
+ },
+ {
+  "code": "D-bf16-noise",
+  "text": "Scoring self-check (a) fails its 0.05-nat target: with bf16 weights, the prefix-cached batched pass and a single full-sequence pass differ by about 1 nat per program (SD over 8 programs ~0.9 nats, mean -0.16, no consistent sign; results/scoring_diag.json). An fp32 output head removed the logit-quantisation part; the rest is bf16 forward-path noise that also separates any two batched paths, so disabling cache reuse would not meet the target either. Cache reuse is kept; every twin (ban / mention / neutral) is scored on the identical program list, order and batch composition, so the noise is shared within a contrast as far as possible, and the noise level is reported beside the FRLP results.",
+  "utc": "2026-10-20T03:01:55.878866Z"
+ },
+ {
+  "code": "D-top5-literal",
+  "text": "With K = 7 the plan's F4 runs TOP-4, ARC-4 and SCATTER-4 (3 survivors each); the literal five-name ban TOP5 (top five by corrected FRLP, 2 survivors) is added as a fourth sampled condition with the same templates, twins and committed forecasts.",
+  "utc": "2026-10-20T03:11:12.485932Z"
+ },
+ {
+  "code": "D-dup-uid",
+  "text": "Program uids are task|algorithm|sha256(code)[:16], so identical forced programs (T2 Dijkstra 18 of 30, T1 DFS 3, BFS 2, T2 Floyd 2, BF/SPFA 1) share one uid. FRLP cells count them with multiplicity (they are separate importance samples, M stays 30), but a duplicate is scored once per prompt, so in the round-robin baseline it carries the score of the last baseline paraphrase it met. Unique-program FRLP base values (sensitivity, results/independent_rederivation.json): T2 Dijkstra -1.19 instead of -1.80; every other cell within 0.11 nats.",
+  "utc": "2026-10-20T04:45:22.980324Z"
+ },
+ {
+  "code": "D-pre-leak",
+  "text": "The 'pre' state position is located from the program's own label (the token before its first signature construct: deque/popleft for BFS, .pop()/self-call for DFS, ...), so within-ban probes at 'pre' separate classes partly by WHERE they read, not only by what the residual encodes; their perfect balanced accuracies (multi-bans) are a position artefact. g16, a label-independent position, is the clean probe readout.",
+  "utc": "2026-10-20T04:45:22.993759Z"
+ },
+ {
+  "code": "D-t4-sum",
+  "text": "T4 sanity: sum_j exp(L_j(base)) is 2.48 on T1 (in [0.3, 3]) but 0.17 on T2 (below 0.3): with ESS 1-6 per cell the importance-sampling FRLP under-covers the baseline's own Dijkstra programs. The default is still the largest L on both tasks, the W1 BFS ban lowers L_bfs by 9.4 nats, and the noun-B placebo passes 11/11 cells, so the pipeline continued; FRLP values are treated as rankings and contrasts, not calibrated probabilities (F8: 97% of cells have ESS < 5).",
+  "utc": "2026-10-20T04:45:23.021859Z"
+ }
+]

@@ -1,0 +1,46 @@
+03:28:46|INFO   |vLLM server (s2) started, PID 96183: ./.venv/bin/vllm serve Qwen/Qwen3-8B --revision b968826d9c46dd6066d109eabc6255188de91218 --dtype bfloat16 --gpu-memory-utilization 0.90 --max-model-len 2048 --max-num-seqs 24 --seed 0 --generation-config vllm --enable-prefix-caching --enforce-eager --port 8019 --host 127.0.0.1 --served-model-name qwen3-multiban --enable-log-requests --max-log-len 100
+03:31:11|INFO   |vLLM server ready: ['qwen3-multiban'] after 145s
+03:31:11|INFO   |stage serve done in 145.7s
+03:31:12|INFO   |session 2: 20 requests, 400 samples
+03:31:12|INFO   |raw_session2.jsonl: 1 requests, 0 done, 1 to run (20 samples)
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+03:32:09|INFO   |raw_session2.jsonl: 1/1 requests, 20 samples, 256 out-tok/s, 57s
+03:32:09|INFO   |raw_session2.jsonl: finished {'n_requests': 1, 'n_samples': 20, 'output_tokens': 14713, 'truncated': 7, 'seconds': 57.4065043926239, 'errors': 0}
+03:32:09|INFO   |stage <= 10 samples: 2.870 s/sample; extrapolated remaining 18.2 min
+03:32:09|INFO   |raw_session2.jsonl: 5 requests, 1 done, 4 to run (80 samples)
+03:32:50|INFO   |raw_session2.jsonl: 4/4 requests, 80 samples, 889 out-tok/s, 41s
+03:32:50|INFO   |raw_session2.jsonl: finished {'n_requests': 4, 'n_samples': 80, 'output_tokens': 36285, 'truncated': 12, 'seconds': 40.812365770339966, 'errors': 0}
+03:32:50|INFO   |stage <= 100 samples: 0.510 s/sample; extrapolated remaining 2.6 min
+03:32:50|INFO   |raw_session2.jsonl: 20 requests, 5 done, 15 to run (300 samples)
+03:34:22|INFO   |raw_session2.jsonl: 15/15 requests, 300 samples, 1054 out-tok/s, 92s
+03:34:22|INFO   |raw_session2.jsonl: finished {'n_requests': 15, 'n_samples': 300, 'output_tokens': 97232, 'truncated': 0, 'seconds': 92.27089500427246, 'errors': 0}
+03:34:22|INFO   |stage <= 400 samples: 0.308 s/sample; extrapolated remaining 0.0 min
+03:34:22|INFO   |session-2 stats: {'n': 400, 'extracted': 400, 'extract_rate': 1.0, 'truncated': 19, 'trunc_rate': 0.0475, 'thinking_text': 11, 'utc': '2026-10-20T03:34:22.953332Z'}
+03:34:22|INFO   |stage session2 done in 191.1s
+03:34:25|INFO   |vLLM server PID 96183 stopped
+03:34:25|INFO   |stage stop done in 1.4s
+03:34:25|INFO   |label: 400 rows from raw_session2.jsonl (judge=True)
+03:34:25|INFO   |evaluate_unique: 389 unique programs, 387 not cached
+03:34:32|INFO   |evaluate 240/387: 100/240
+03:34:37|INFO   |evaluate 240/387: 200/240
+03:34:44|INFO   |evaluate 240/387: 240/240
+03:34:50|INFO   |evaluate 387/387: 100/147
+03:34:56|INFO   |evaluate 387/387: 147/147
+03:35:09|INFO   |judge openai/gpt-4.1-mini [judge]: 58/58 judged; spent 0.3456 USD on judge; stop={'stop': False}
+03:35:09|INFO   |label sources: {'judge': 59, 'agree': 341}
+03:35:09|INFO   |  ('t1', 'multi:ARC', 'bfs'): 63
+03:35:09|INFO   |  ('t1', 'multi:ARC', 'dfs'): 37
+03:35:09|INFO   |  ('t1', 'multi:SCATTER', 'astar'): 2
+03:35:09|INFO   |  ('t1', 'multi:SCATTER', 'bfs'): 69
+03:35:09|INFO   |  ('t1', 'multi:SCATTER', 'dfs'): 27
+03:35:09|INFO   |  ('t1', 'multi:SCATTER', 'dijkstra_unit'): 2
+03:35:09|INFO   |  ('t1', 'multi:TOP', 'bfs'): 59
+03:35:09|INFO   |  ('t1', 'multi:TOP', 'dfs'): 26
+03:35:09|INFO   |  ('t1', 'multi:TOP', 'dijkstra_unit'): 1
+03:35:09|INFO   |  ('t1', 'multi:TOP', 'gbfs'): 2
+03:35:09|INFO   |  ('t1', 'multi:TOP', 'other'): 12
+03:35:09|INFO   |  ('t1', 'multi:TOP5', 'bfs'): 63
+03:35:09|INFO   |  ('t1', 'multi:TOP5', 'dfs'): 36
+03:35:09|INFO   |  ('t1', 'multi:TOP5', 'iddfs'): 1
+03:35:09|INFO   |stage label done in 44.4s
