@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "./src/audit.py", line 769, in <module>
+    for k, v in dependency_usage()["datasets"].items()})
+                ^^^^^^^^^^^^^^^^^^
+  File "./src/audit.py", line 722, in dependency_usage
+    p = subprocess.run([_sandbox_python(), "-I", "-c", prog if good else broken], capture_output=True,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/local/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+OSError: [Errno 7] Argument list too long: '/usr/local/bin/python3.12'
