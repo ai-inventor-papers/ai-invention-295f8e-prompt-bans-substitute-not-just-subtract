@@ -1,0 +1,342 @@
+{
+ "M_star": [
+  19,
+  295,
+  443,
+  1365,
+  1698
+ ],
+ "M_star_size": 5,
+ "M_star_share_of_h2_mean": 0.9907922077178956,
+ "rule": "the N_MASSIVE = 5 channels most often among the per-position top-5 |h| channels of the it twin (all prompts, blocks 11-22, spec positions)",
+ "top_channel_frequencies": {
+  "443": 1.0,
+  "295": 0.6820165866433872,
+  "1365": 0.5657936854357631,
+  "19": 0.4638222028226393,
+  "1698": 0.45706387312672775,
+  "1179": 0.28699257965953734,
+  "1980": 0.22309762840098937,
+  "2554": 0.16863814927979048,
+  "368": 0.14095009457296667,
+  "81": 0.12730976284009893,
+  "1209": 0.11332023861486978,
+  "2309": 0.11000290993743635,
+  "404": 0.097613851302197,
+  "1055": 0.05869343809108104,
+  "1276": 0.046471700858431546,
+  "1886": 0.044522042776080316,
+  "634": 0.036301469518405356,
+  "2242": 0.034169940346282554,
+  "656": 0.029797759348174014,
+  "2194": 0.027942674232504003,
+  "2513": 0.023876036665211698,
+  "1638": 0.0196129783209661,
+  "90": 0.018849119743925506,
+  "1633": 0.01753237305397934,
+  "1313": 0.014840680925360105,
+  "2511": 0.014287792812454533,
+  "1286": 0.011457878655608905,
+  "435": 0.011079586788884039,
+  "372": 0.010359377273388622,
+  "1418": 0.009893787283573404
+ },
+ "n_cells": 137460,
+ "literal_M_size": 488,
+ "literal_M_share_of_h2_mean": 0.9945669492085775,
+ "why": "COMMIT #1b (amendment; before ANY transplant sample, decided on the activation statistics only).\n\nThe plan's literal massive-channel rule (union over all prompts, band blocks and spec positions of the per-position\ntop-5 |h| channels) returned 488 channels, because at most positions the top-5 holds 1-3 truly massive channels plus\nposition-specific ordinary ones. With that M, the matched-random (RND) and cross-task (XT) controls would copy the\ntransplant's own displacement on 488 of 2,560 channels (51-92% of ||d||^2 by block), defeating their purpose (the\ndesign wants them matched where the model is sensitive and scrambled everywhere else). The amendment keeps the\ndesign's N_MASSIVE = 5: M* = the 5 channels most often in the per-position top-5 (channel 443 is in every cell's top-5\nand alone carries ~99% of ||h||^2). The literal set stays in commit_E1.json and is reported as a sensitivity of the\nnorm report; RND/XT/T use M*.",
+ "transplant_norms_M_star": {
+  "per_block": {
+   "11": {
+    "median_units": 5.6386120319366455,
+    "iqr": [
+     5.150412321090698,
+     6.463084936141968
+    ],
+    "massive_share_median": 0.8594581186771393,
+    "d_norm_median": 1566.5402221679688
+   },
+   "12": {
+    "median_units": 5.7009172439575195,
+    "iqr": [
+     5.232674479484558,
+     6.582225441932678
+    ],
+    "massive_share_median": 0.8333963751792908,
+    "d_norm_median": 1678.2894897460938
+   },
+   "13": {
+    "median_units": 5.783159255981445,
+    "iqr": [
+     5.273783564567566,
+     6.642420411109924
+    ],
+    "massive_share_median": 0.7941172122955322,
+    "d_norm_median": 1732.747802734375
+   },
+   "14": {
+    "median_units": 5.508749485015869,
+    "iqr": [
+     4.9919387102127075,
+     6.319112062454224
+    ],
+    "massive_share_median": 0.7582466006278992,
+    "d_norm_median": 1883.1520385742188
+   },
+   "15": {
+    "median_units": 5.33645486831665,
+    "iqr": [
+     4.846275448799133,
+     6.057125210762024
+    ],
+    "massive_share_median": 0.5831817984580994,
+    "d_norm_median": 1875.5116577148438
+   },
+   "16": {
+    "median_units": 5.10983419418335,
+    "iqr": [
+     4.661526679992676,
+     5.808777093887329
+    ],
+    "massive_share_median": 0.5340641140937805,
+    "d_norm_median": 2284.097412109375
+   },
+   "17": {
+    "median_units": 4.7128846645355225,
+    "iqr": [
+     4.311082720756531,
+     5.405733227729797
+    ],
+    "massive_share_median": 0.4565189480781555,
+    "d_norm_median": 2593.830078125
+   },
+   "18": {
+    "median_units": 4.739403486251831,
+    "iqr": [
+     4.2859309911727905,
+     5.433841347694397
+    ],
+    "massive_share_median": 0.4179805666208267,
+    "d_norm_median": 2943.740234375
+   },
+   "19": {
+    "median_units": 4.712787866592407,
+    "iqr": [
+     4.240746855735779,
+     5.446435809135437
+    ],
+    "massive_share_median": 0.3854113966226578,
+    "d_norm_median": 3368.2930908203125
+   },
+   "20": {
+    "median_units": 4.661533832550049,
+    "iqr": [
+     4.193375110626221,
+     5.384096026420593
+    ],
+    "massive_share_median": 0.3589238226413727,
+    "d_norm_median": 3894.9813232421875
+   },
+   "21": {
+    "median_units": 4.9072229862213135,
+    "iqr": [
+     4.360810279846191,
+     5.719790935516357
+    ],
+    "massive_share_median": 0.30953097343444824,
+    "d_norm_median": 4491.90185546875
+   },
+   "22": {
+    "median_units": 4.860648155212402,
+    "iqr": [
+     4.3031288385391235,
+     5.773186802864075
+    ],
+    "massive_share_median": 0.3566805124282837,
+    "d_norm_median": 5446.269775390625
+   }
+  },
+  "per_task": {
+   "T03": {
+    "median_units": 5.284170389175415
+   },
+   "T04": {
+    "median_units": 5.177795648574829
+   },
+   "T06": {
+    "median_units": 5.379341125488281
+   },
+   "T05": {
+    "median_units": 5.290288686752319
+   },
+   "T10": {
+    "median_units": 5.091026306152344
+   },
+   "R6": {
+    "median_units": 5.122470855712891
+   },
+   "T11": {
+    "median_units": 5.2616777420043945
+   },
+   "T2": {
+    "median_units": 5.019503593444824
+   },
+   "T13": {
+    "median_units": 5.079753875732422
+   },
+   "R1": {
+    "median_units": 5.199185371398926
+   }
+  },
+  "overall_median_units": 5.19160008430481,
+  "caveat_gt_4_units": true,
+  "note": "random-noise breakage dose in iteration 4 was about 4 ban-free units"
+ },
+ "transplant_norms_literal_M": {
+  "per_block": {
+   "11": {
+    "median_units": 4.142642974853516,
+    "iqr": [
+     3.7649243474006653,
+     4.730709910392761
+    ],
+    "massive_share_median": 0.9235059022903442,
+    "d_norm_median": 1566.5402221679688
+   },
+   "12": {
+    "median_units": 4.277442932128906,
+    "iqr": [
+     3.9213247299194336,
+     4.909769892692566
+    ],
+    "massive_share_median": 0.907335489988327,
+    "d_norm_median": 1678.2894897460938
+   },
+   "13": {
+    "median_units": 4.397078037261963,
+    "iqr": [
+     3.998672127723694,
+     5.007731318473816
+    ],
+    "massive_share_median": 0.8810031712055206,
+    "d_norm_median": 1732.747802734375
+   },
+   "14": {
+    "median_units": 4.3104798793792725,
+    "iqr": [
+     3.8897881507873535,
+     4.842445135116577
+    ],
+    "massive_share_median": 0.8540587425231934,
+    "d_norm_median": 1883.1520385742188
+   },
+   "15": {
+    "median_units": 4.269390344619751,
+    "iqr": [
+     3.869647800922394,
+     4.809294700622559
+    ],
+    "massive_share_median": 0.735946923494339,
+    "d_norm_median": 1875.5116577148438
+   },
+   "16": {
+    "median_units": 4.019036769866943,
+    "iqr": [
+     3.677482485771179,
+     4.516366124153137
+    ],
+    "massive_share_median": 0.7121190428733826,
+    "d_norm_median": 2284.097412109375
+   },
+   "17": {
+    "median_units": 3.743010401725769,
+    "iqr": [
+     3.4175674319267273,
+     4.260784268379211
+    ],
+    "massive_share_median": 0.6584426760673523,
+    "d_norm_median": 2593.830078125
+   },
+   "18": {
+    "median_units": 3.8339329957962036,
+    "iqr": [
+     3.457070231437683,
+     4.385254979133606
+    ],
+    "massive_share_median": 0.6199023127555847,
+    "d_norm_median": 2943.740234375
+   },
+   "19": {
+    "median_units": 3.9104353189468384,
+    "iqr": [
+     3.507964074611664,
+     4.502833843231201
+    ],
+    "massive_share_median": 0.5799741148948669,
+    "d_norm_median": 3368.2930908203125
+   },
+   "20": {
+    "median_units": 3.8798398971557617,
+    "iqr": [
+     3.474000036716461,
+     4.4898364543914795
+    ],
+    "massive_share_median": 0.5552621483802795,
+    "d_norm_median": 3894.9813232421875
+   },
+   "21": {
+    "median_units": 4.13900351524353,
+    "iqr": [
+     3.677755653858185,
+     4.834800839424133
+    ],
+    "massive_share_median": 0.5067228078842163,
+    "d_norm_median": 4491.90185546875
+   },
+   "22": {
+    "median_units": 4.1215291023254395,
+    "iqr": [
+     3.649154007434845,
+     4.9133336544036865
+    ],
+    "massive_share_median": 0.5345816016197205,
+    "d_norm_median": 5446.269775390625
+   }
+  },
+  "per_task": {
+   "T03": {
+    "median_units": 4.175487518310547
+   },
+   "T04": {
+    "median_units": 4.076760292053223
+   },
+   "T06": {
+    "median_units": 4.2704644203186035
+   },
+   "T05": {
+    "median_units": 4.180238723754883
+   },
+   "T10": {
+    "median_units": 4.010266065597534
+   },
+   "R6": {
+    "median_units": 4.045154094696045
+   },
+   "T11": {
+    "median_units": 4.1592841148376465
+   },
+   "T2": {
+    "median_units": 3.9065372943878174
+   },
+   "T13": {
+    "median_units": 4.011170387268066
+   },
+   "R1": {
+    "median_units": 4.097461223602295
+   }
+  },
+  "overall_median_units": 4.092039108276367,
+  "caveat_gt_4_units": true,
+  "note": "random-noise breakage dose in iteration 4 was about 4 ban-free units"
+ }
+}

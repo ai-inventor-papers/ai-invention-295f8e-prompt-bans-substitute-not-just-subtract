@@ -1,0 +1,67 @@
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+13:37:22|INFO   |google/gemma-3-4b-pt loaded in 15s; free VRAM 15.66/23.66 GB
+13:37:26|INFO   |U5: {'U5_logits_differ': True, 'js_next_token_it_vs_pt': 0.5746800899505615, 'top5_it': [2717, 1106, 106, 32651, 2629], 'top5_pt': [2063, 2717, 1106, 6294, 8291], 'pt_greedy_stub': {'valid_python': True, 'program_head': 'def solve(nums, k):\n    """Return the k-th smallest value in nums."""\n    nums.sort()\n    return nums[k-1]\n'}, 'pass': True, 'key_map_identical': True, 'tokenizer_vocab_identical': True}
+./src/engine.py:424: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  nxt = torch.searchsorted(cdf, Ut[:, step:step + 1]).squeeze(-1).clamp_(max=V - 1)
+13:38:49|INFO   |PTC:T2:h1: B=50 83.1s, 640 steps, finish {np.str_('fence'): np.int64(2), np.str_('length'): np.int64(24), np.str_('stop'): np.int64(24)}
+13:38:49|INFO   |pt_chat T2 done (1/15); 1.4 min; eta 19.4 min
+13:40:11|INFO   |PTC:T03:h0: B=50 82.3s, 640 steps, finish {np.str_('fence'): np.int64(10), np.str_('length'): np.int64(13), np.str_('stop'): np.int64(27)}
+13:41:35|INFO   |PTC:T03:h1: B=50 83.6s, 640 steps, finish {np.str_('fence'): np.int64(3), np.str_('length'): np.int64(20), np.str_('stop'): np.int64(27)}
+13:41:35|INFO   |pt_chat T03 done (2/15); 4.2 min; eta 27.0 min
+13:42:56|INFO   |PTC:T05:h0: B=50 81.3s, 640 steps, finish {np.str_('fence'): np.int64(3), np.str_('length'): np.int64(19), np.str_('stop'): np.int64(28)}
+13:44:17|INFO   |PTC:T05:h1: B=50 81.1s, 640 steps, finish {np.str_('fence'): np.int64(9), np.str_('length'): np.int64(15), np.str_('stop'): np.int64(26)}
+13:44:17|INFO   |pt_chat T05 done (3/15); 6.9 min; eta 27.4 min
+13:45:38|INFO   |PTC:T10:h0: B=50 80.5s, 640 steps, finish {np.str_('fence'): np.int64(3), np.str_('length'): np.int64(13), np.str_('stop'): np.int64(34)}
+13:46:58|INFO   |PTC:T10:h1: B=50 80.3s, 640 steps, finish {np.str_('fence'): np.int64(8), np.str_('length'): np.int64(13), np.str_('stop'): np.int64(29)}
+13:46:58|INFO   |pt_chat T10 done (4/15); 9.5 min; eta 26.2 min
+13:48:26|INFO   |PTC:T1:h0: B=50 87.8s, 640 steps, finish {np.str_('fence'): np.int64(2), np.str_('length'): np.int64(14), np.str_('stop'): np.int64(34)}
+13:49:54|INFO   |PTC:T1:h1: B=50 87.5s, 640 steps, finish {np.str_('fence'): np.int64(4), np.str_('length'): np.int64(16), np.str_('stop'): np.int64(30)}
+13:49:54|INFO   |pt_chat T1 done (5/15); 12.5 min; eta 24.9 min
+13:51:12|INFO   |PTC:T06:h0: B=50 77.8s, 640 steps, finish {np.str_('fence'): np.int64(5), np.str_('length'): np.int64(15), np.str_('stop'): np.int64(30)}
+13:52:29|INFO   |PTC:T06:h1: B=50 77.8s, 640 steps, finish {np.str_('fence'): np.int64(2), np.str_('length'): np.int64(13), np.str_('stop'): np.int64(35)}
+13:52:29|INFO   |pt_chat T06 done (6/15); 15.1 min; eta 22.6 min
+13:53:50|INFO   |PTC:T04:h0: B=50 80.0s, 640 steps, finish {np.str_('fence'): np.int64(4), np.str_('length'): np.int64(17), np.str_('stop'): np.int64(29)}
+13:55:09|INFO   |PTC:T04:h1: B=50 79.3s, 640 steps, finish {np.str_('fence'): np.int64(6), np.str_('length'): np.int64(11), np.str_('stop'): np.int64(33)}
+13:55:09|INFO   |pt_chat T04 done (7/15); 17.7 min; eta 20.2 min
+13:56:29|INFO   |PTC:R1:h0: B=50 80.6s, 640 steps, finish {np.str_('fence'): np.int64(2), np.str_('length'): np.int64(19), np.str_('stop'): np.int64(29)}
+13:57:50|INFO   |PTC:R1:h1: B=50 80.5s, 640 steps, finish {np.str_('fence'): np.int64(3), np.str_('length'): np.int64(13), np.str_('stop'): np.int64(34)}
+13:57:50|INFO   |pt_chat R1 done (8/15); 20.4 min; eta 17.9 min
+13:59:10|INFO   |PTC:T08:h0: B=50 79.8s, 640 steps, finish {np.str_('fence'): np.int64(3), np.str_('length'): np.int64(14), np.str_('stop'): np.int64(33)}
+14:00:30|INFO   |PTC:T08:h1: B=50 79.9s, 640 steps, finish {np.str_('fence'): np.int64(7), np.str_('length'): np.int64(12), np.str_('stop'): np.int64(31)}
+14:00:30|INFO   |pt_chat T08 done (9/15); 23.1 min; eta 15.4 min
+14:01:51|INFO   |PTC:R3:h0: B=50 81.0s, 640 steps, finish {np.str_('fence'): np.int64(6), np.str_('length'): np.int64(15), np.str_('stop'): np.int64(29)}
+14:03:12|INFO   |PTC:R3:h1: B=50 80.9s, 640 steps, finish {np.str_('fence'): np.int64(5), np.str_('length'): np.int64(22), np.str_('stop'): np.int64(23)}
+14:03:12|INFO   |pt_chat R3 done (10/15); 25.8 min; eta 12.9 min
+14:04:34|INFO   |PTC:T13:h0: B=50 81.6s, 640 steps, finish {np.str_('fence'): np.int64(6), np.str_('length'): np.int64(14), np.str_('stop'): np.int64(30)}
+14:05:55|INFO   |PTC:T13:h1: B=50 81.7s, 640 steps, finish {np.str_('fence'): np.int64(4), np.str_('length'): np.int64(13), np.str_('stop'): np.int64(33)}
+14:05:55|INFO   |pt_chat T13 done (11/15); 28.5 min; eta 10.4 min
+14:07:15|INFO   |PTC:R6:h0: B=50 79.3s, 640 steps, finish {np.str_('fence'): np.int64(3), np.str_('length'): np.int64(11), np.str_('stop'): np.int64(36)}
+14:08:34|INFO   |PTC:R6:h1: B=50 79.4s, 640 steps, finish {np.str_('fence'): np.int64(3), np.str_('length'): np.int64(21), np.str_('stop'): np.int64(26)}
+14:08:34|INFO   |pt_chat R6 done (12/15); 31.1 min; eta 7.8 min
+14:09:55|INFO   |PTC:T14:h0: B=50 80.5s, 640 steps, finish {np.str_('fence'): np.int64(8), np.str_('length'): np.int64(9), np.str_('stop'): np.int64(33)}
+14:11:15|INFO   |PTC:T14:h1: B=50 80.4s, 640 steps, finish {np.str_('fence'): np.int64(8), np.str_('length'): np.int64(11), np.str_('stop'): np.int64(31)}
+14:11:15|INFO   |pt_chat T14 done (13/15); 33.8 min; eta 5.2 min
+14:12:34|INFO   |PTC:T11:h0: B=50 78.6s, 640 steps, finish {np.str_('fence'): np.int64(2), np.str_('length'): np.int64(16), np.str_('stop'): np.int64(32)}
+14:13:52|INFO   |PTC:T11:h1: B=50 78.2s, 640 steps, finish {np.str_('fence'): np.int64(6), np.str_('length'): np.int64(15), np.str_('stop'): np.int64(29)}
+14:13:52|INFO   |pt_chat T11 done (14/15); 36.4 min; eta 2.6 min
+14:15:12|INFO   |PTC:R2:h0: B=50 80.3s, 640 steps, finish {np.str_('fence'): np.int64(5), np.str_('length'): np.int64(18), np.str_('stop'): np.int64(27)}
+14:16:33|INFO   |PTC:R2:h1: B=50 80.3s, 640 steps, finish {np.str_('fence'): np.int64(1), np.str_('length'): np.int64(12), np.str_('stop'): np.int64(37)}
+14:16:33|INFO   |pt_chat R2 done (15/15); 39.1 min; eta 0.0 min
+14:16:40|INFO   |pt states cached
+14:17:31|INFO   |PTP:T2: B=50 51.2s, 768 steps, finish {np.str_('length'): np.int64(8), np.str_('plain_end'): np.int64(9), np.str_('stop'): np.int64(33)}
+14:18:22|INFO   |PTP:T03: B=50 50.7s, 768 steps, finish {np.str_('length'): np.int64(2), np.str_('plain_end'): np.int64(20), np.str_('stop'): np.int64(28)}
+14:18:43|INFO   |PTP:T05: B=50 20.8s, 336 steps, finish {np.str_('plain_end'): np.int64(15), np.str_('stop'): np.int64(35)}
+14:19:33|INFO   |PTP:T10: B=50 50.0s, 768 steps, finish {np.str_('length'): np.int64(2), np.str_('plain_end'): np.int64(14), np.str_('stop'): np.int64(34)}
+14:20:26|INFO   |PTP:T1: B=50 52.8s, 768 steps, finish {np.str_('length'): np.int64(17), np.str_('plain_end'): np.int64(14), np.str_('stop'): np.int64(19)}
+14:20:42|INFO   |PTP:T06: B=50 16.2s, 272 steps, finish {np.str_('plain_end'): np.int64(12), np.str_('stop'): np.int64(38)}
+14:21:09|INFO   |PTP:T04: B=50 26.5s, 432 steps, finish {np.str_('plain_end'): np.int64(21), np.str_('stop'): np.int64(29)}
+14:21:59|INFO   |PTP:R1: B=50 49.9s, 768 steps, finish {np.str_('length'): np.int64(3), np.str_('plain_end'): np.int64(21), np.str_('stop'): np.int64(26)}
+14:22:34|INFO   |PTP:T08: B=50 35.1s, 560 steps, finish {np.str_('plain_end'): np.int64(14), np.str_('stop'): np.int64(36)}
+14:23:24|INFO   |PTP:R3: B=50 50.1s, 768 steps, finish {np.str_('length'): np.int64(3), np.str_('plain_end'): np.int64(23), np.str_('stop'): np.int64(24)}
+14:23:59|INFO   |PTP:T13: B=50 35.5s, 560 steps, finish {np.str_('plain_end'): np.int64(16), np.str_('stop'): np.int64(34)}
+14:24:49|INFO   |PTP:R6: B=50 49.6s, 768 steps, finish {np.str_('length'): np.int64(1), np.str_('plain_end'): np.int64(20), np.str_('stop'): np.int64(29)}
+14:25:39|INFO   |PTP:T14: B=50 49.9s, 768 steps, finish {np.str_('length'): np.int64(2), np.str_('plain_end'): np.int64(19), np.str_('stop'): np.int64(29)}
+14:26:28|INFO   |PTP:T11: B=50 49.3s, 768 steps, finish {np.str_('length'): np.int64(2), np.str_('plain_end'): np.int64(16), np.str_('stop'): np.int64(32)}
+14:27:18|INFO   |PTP:R2: B=50 50.1s, 768 steps, finish {np.str_('length'): np.int64(2), np.str_('plain_end'): np.int64(12), np.str_('stop'): np.int64(36)}
+14:27:18|INFO   |stage1_pt finished
