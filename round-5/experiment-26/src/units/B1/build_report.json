@@ -1,0 +1,104 @@
+{
+ "unit": "B1",
+ "utc": "2026-10-21T12:17:49.518274Z",
+ "spec_banned_hits": [],
+ "n_cases": 68,
+ "kinds": {
+  "example": 3,
+  "random": 55,
+  "stress": 10
+ },
+ "oracle_disagreements": [],
+ "references_pass_all": {
+  "arithmetic_sum": true,
+  "xor_fold": true,
+  "sort_scan": true,
+  "sort_binary_search": true,
+  "hash_set": true
+ },
+ "references_slow_cases": {
+  "arithmetic_sum": [],
+  "xor_fold": [],
+  "sort_scan": [],
+  "sort_binary_search": [],
+  "hash_set": []
+ },
+ "max_ref_time_by_mode": {
+  "arithmetic_sum": 0.014707,
+  "xor_fold": 0.019012,
+  "sort_scan": 0.02884,
+  "sort_binary_search": 0.027025,
+  "hash_set": 0.033493
+ },
+ "mutants": {
+  "mutant_0": {
+   "fails": true,
+   "first_fail": {
+    "i": 0,
+    "status": "wrong",
+    "case_id": "B1:ex0"
+   }
+  },
+  "mutant_1": {
+   "fails": true,
+   "first_fail": {
+    "i": 1,
+    "status": "wrong",
+    "case_id": "B1:ex1"
+   }
+  },
+  "mutant_2": {
+   "fails": true,
+   "first_fail": {
+    "i": 0,
+    "status": "wrong",
+    "case_id": "B1:ex0"
+   }
+  }
+ },
+ "excluded_by_limit": {
+  "list_membership_scan": {
+   "fails_stress": true,
+   "first_fail": {
+    "i": 1,
+    "status": "timeout",
+    "case_id": "B1:stress1"
+   },
+   "time_first_case": 0.014346
+  }
+ },
+ "labellers_on_references": {
+  "arithmetic_sum": {
+   "runtime": "arithmetic_sum",
+   "ast": "arithmetic_sum",
+   "ok": true
+  },
+  "xor_fold": {
+   "runtime": "xor_fold",
+   "ast": "xor_fold",
+   "ok": true
+  },
+  "sort_scan": {
+   "runtime": "sort_scan",
+   "ast": "sort_scan",
+   "ok": true
+  },
+  "sort_binary_search": {
+   "runtime": "sort_binary_search",
+   "ast": "sort_binary_search",
+   "ok": true
+  },
+  "hash_set": {
+   "runtime": "hash_set",
+   "ast": "hash_set",
+   "ok": true
+  }
+ },
+ "probes_run": true,
+ "probe_correct": {
+  "p200": true,
+  "p800": true
+ },
+ "stage_i": "PROVISIONAL",
+ "seconds": 8.966519117355347
+}

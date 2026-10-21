@@ -1,0 +1,43 @@
+{
+ "utc": "2026-10-21T12:06:25.337482Z",
+ "unit": "B1",
+ "template": "W1",
+ "U1_crn_determinism": {
+  "n": 20,
+  "identical": 20,
+  "pass": true
+ },
+ "U2_alpha0_equals_twin": {
+  "n": 10,
+  "identical": 10,
+  "pass": true,
+  "kv_max_abs_diff": 0.0
+ },
+ "U3_realised_displacement": {
+  "by_alpha": {
+   "1.0": {
+    "rel_err_max": 0.00027043878799304366,
+    "disp_R_norm_23": 18.0743,
+    "disp_R_norm_35": 107.8772,
+    "target_mean": 11.485200881958008
+   },
+   "2.0": {
+    "rel_err_max": 0.00014023625408299267,
+    "disp_R_norm_23": 35.6493,
+    "disp_R_norm_35": 207.3071,
+    "target_mean": 22.970401763916016
+   }
+  },
+  "threshold_rel": 0.001,
+  "pass": true,
+  "note": "realised displacement is read from the bf16 block output after the fp32 edit is cast back to bf16"
+ },
+ "U4_prompt_ids": {
+  "pass": true,
+  "how": "asserted at prompt build: base tokenizer re-encodes every rendered prompt to identical ids; spec span decodes to spec_text"
+ },
+ "unit_n_summary": {
+  "block12_mean": 4.571303844451904,
+  "block23_mean": 21.97962760925293
+ }
+}

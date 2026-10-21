@@ -1,0 +1,362 @@
+{
+ "references_100pct": true,
+ "references": {
+  "t1/astar_fg.py": {
+   "mode": "astar_gbfs",
+   "runtime": "astar_gbfs",
+   "ast": "astar_gbfs",
+   "ok": true
+  },
+  "t1/bfs_deque_parent.py": {
+   "mode": "bfs",
+   "runtime": "bfs",
+   "ast": "bfs",
+   "ok": true
+  },
+  "t1/bfs_listpop_pathcarry.py": {
+   "mode": "bfs",
+   "runtime": "bfs",
+   "ast": "bfs",
+   "ok": true
+  },
+  "t1/bibfs_deques.py": {
+   "mode": "bibfs",
+   "runtime": "bibfs",
+   "ast": "bibfs",
+   "ok": true
+  },
+  "t1/bibfs_sets.py": {
+   "mode": "bibfs",
+   "runtime": "bibfs",
+   "ast": "bibfs",
+   "ok": true
+  },
+  "t1/dfs_recursive.py": {
+   "mode": "dfs",
+   "runtime": "dfs",
+   "ast": "dfs",
+   "ok": true
+  },
+  "t1/dfs_stack.py": {
+   "mode": "dfs",
+   "runtime": "dfs",
+   "ast": "dfs",
+   "ok": true
+  },
+  "t1/dijkstra_counter.py": {
+   "mode": "dijkstra",
+   "runtime": "dijkstra",
+   "ast": "dijkstra",
+   "ok": true
+  },
+  "t1/dijkstra_lazy.py": {
+   "mode": "dijkstra",
+   "runtime": "dijkstra",
+   "ast": "dijkstra",
+   "ok": true
+  },
+  "t1/gbfs_counter.py": {
+   "mode": "astar_gbfs",
+   "runtime": "astar_gbfs",
+   "ast": "astar_gbfs",
+   "ok": true
+  },
+  "t1/iddfs_iterative.py": {
+   "mode": "iddfs",
+   "runtime": "iddfs",
+   "ast": "iddfs",
+   "ok": true
+  },
+  "t1/iddfs_recursive.py": {
+   "mode": "iddfs",
+   "runtime": "iddfs",
+   "ast": "iddfs",
+   "ok": true
+  },
+  "t2/bellman_ford.py": {
+   "mode": "bf_spfa",
+   "runtime": "bf_spfa",
+   "ast": "bf_spfa",
+   "ok": true
+  },
+  "t2/bidijkstra_alternate.py": {
+   "mode": "bidijkstra",
+   "runtime": "bidijkstra",
+   "ast": "bidijkstra",
+   "ok": true
+  },
+  "t2/bidijkstra_reverse.py": {
+   "mode": "bidijkstra",
+   "runtime": "bidijkstra",
+   "ast": "bidijkstra",
+   "ok": true
+  },
+  "t2/dial_dict.py": {
+   "mode": "dial",
+   "runtime": "dial",
+   "ast": "dial",
+   "ok": true
+  },
+  "t2/dial_list.py": {
+   "mode": "dial",
+   "runtime": "dial",
+   "ast": "dial",
+   "ok": true
+  },
+  "t2/dijkstra_decreasekey.py": {
+   "mode": "dijkstra",
+   "runtime": "dijkstra",
+   "ast": "dijkstra",
+   "ok": true
+  },
+  "t2/dijkstra_lazy.py": {
+   "mode": "dijkstra",
+   "runtime": "dijkstra",
+   "ast": "dijkstra",
+   "ok": true
+  },
+  "t2/floyd_bigint.py": {
+   "mode": "floyd",
+   "runtime": "floyd",
+   "ast": "floyd",
+   "ok": true
+  },
+  "t2/floyd_inf.py": {
+   "mode": "floyd",
+   "runtime": "floyd",
+   "ast": "floyd",
+   "ok": true
+  },
+  "t2/spfa.py": {
+   "mode": "bf_spfa",
+   "runtime": "bf_spfa",
+   "ast": "bf_spfa",
+   "ok": true
+  }
+ },
+ "gold_counts": {
+  "dev": 52,
+  "eval": 92,
+  "by_source": {
+   "forced:bfs": 10,
+   "forced:dfs": 10,
+   "forced:iddfs": 10,
+   "forced:bibfs": 10,
+   "forced:astar_gbfs": 10,
+   "forced:dijkstra": 14,
+   "forced:bf_spfa": 10,
+   "forced:floyd": 10,
+   "forced:bidijkstra": 10,
+   "forced:dial": 10,
+   "baseline": 40
+  }
+ },
+ "eval_metrics": {
+  "n": 92,
+  "n_unresolved": 3,
+  "kappa_runtime_ast": 0.7533487297921477,
+  "agree_runtime_ast": 0.797752808988764,
+  "acc_runtime_vs_adjudicated": 0.8426966292134831,
+  "acc_ast_vs_adjudicated": 0.8876404494382022,
+  "acc_combined_vs_adjudicated": 0.9662921348314607,
+  "kappa_judges_a_b": 0.8570281124497992,
+  "runtime_unknown_or_inconsistent": 8,
+  "confusion_runtime_x_adjudicated": {
+   "astar_gbfs->astar_gbfs": 4,
+   "bf_spfa->bf_spfa": 4,
+   "bfs->bfs": 22,
+   "bfs->bibfs": 1,
+   "bibfs->bibfs": 2,
+   "dfs->dfs": 5,
+   "dial->dijkstra": 1,
+   "dijkstra->dijkstra": 28,
+   "floyd->floyd": 5,
+   "iddfs->bfs": 4,
+   "iddfs->iddfs": 5,
+   "inconsistent->dijkstra": 1,
+   "unknown->bf_spfa": 1,
+   "unknown->bfs": 1,
+   "unknown->bibfs": 1,
+   "unknown->dial": 1,
+   "unknown->dijkstra": 1,
+   "unknown->other": 2
+  },
+  "forced_compliance_adjudicated": 0.7959183673469388
+ },
+ "dev_metrics": {
+  "n": 52,
+  "n_unresolved": 0,
+  "kappa_runtime_ast": 0.7448896156991006,
+  "agree_runtime_ast": 0.7692307692307693,
+  "acc_runtime_vs_adjudicated": 0.8461538461538461,
+  "acc_ast_vs_adjudicated": 0.8076923076923077,
+  "acc_combined_vs_adjudicated": 0.9615384615384616,
+  "kappa_judges_a_b": 0.8902490502321655,
+  "runtime_unknown_or_inconsistent": 6,
+  "confusion_runtime_x_adjudicated": {
+   "astar_gbfs->astar_gbfs": 5,
+   "bf_spfa->bf_spfa": 5,
+   "bfs->bfs": 8,
+   "bibfs->bibfs": 2,
+   "dfs->dfs": 5,
+   "dijkstra->bfs": 1,
+   "dijkstra->dijkstra": 9,
+   "dijkstra->other": 1,
+   "floyd->floyd": 5,
+   "iddfs->iddfs": 5,
+   "unknown->dial": 3,
+   "unknown->dijkstra": 2,
+   "unknown->other": 1
+  },
+  "forced_compliance_adjudicated": 0.7884615384615384
+ },
+ "eval_metrics_per_task": {
+  "t1": {
+   "n": 50,
+   "n_unresolved": 2,
+   "kappa_runtime_ast": 0.7636923076923079,
+   "agree_runtime_ast": 0.8333333333333334,
+   "acc_runtime_vs_adjudicated": 0.8333333333333334,
+   "acc_ast_vs_adjudicated": 0.9583333333333334,
+   "acc_combined_vs_adjudicated": 0.9583333333333334,
+   "kappa_judges_a_b": 0.8665740097289784,
+   "runtime_unknown_or_inconsistent": 3,
+   "confusion_runtime_x_adjudicated": {
+    "astar_gbfs->astar_gbfs": 4,
+    "bfs->bfs": 22,
+    "bfs->bibfs": 1,
+    "bibfs->bibfs": 2,
+    "dfs->dfs": 5,
+    "dijkstra->dijkstra": 2,
+    "iddfs->bfs": 4,
+    "iddfs->iddfs": 5,
+    "inconsistent->dijkstra": 1,
+    "unknown->bfs": 1,
+    "unknown->bibfs": 1
+   },
+   "forced_compliance_adjudicated": 0.9285714285714286
+  },
+  "t2": {
+   "n": 42,
+   "n_unresolved": 1,
+   "kappa_runtime_ast": 0.6135721017907635,
+   "agree_runtime_ast": 0.7560975609756098,
+   "acc_runtime_vs_adjudicated": 0.8536585365853658,
+   "acc_ast_vs_adjudicated": 0.8048780487804879,
+   "acc_combined_vs_adjudicated": 0.975609756097561,
+   "kappa_judges_a_b": 0.7442827442827442,
+   "runtime_unknown_or_inconsistent": 5,
+   "confusion_runtime_x_adjudicated": {
+    "bf_spfa->bf_spfa": 4,
+    "dial->dijkstra": 1,
+    "dijkstra->dijkstra": 26,
+    "floyd->floyd": 5,
+    "unknown->bf_spfa": 1,
+    "unknown->dial": 1,
+    "unknown->dijkstra": 1,
+    "unknown->other": 2
+   },
+   "forced_compliance_adjudicated": 0.6190476190476191
+  }
+ },
+ "targets": {
+  "kappa_runtime_ast": 0.8,
+  "acc_runtime_vs_adjudicated": 0.9
+ },
+ "gate_passed": false,
+ "spot_check_agree": {
+  "t1": {
+   "n": 10,
+   "judge_agrees": 10,
+   "pairs": [
+    [
+     "bfs",
+     "bfs"
+    ],
+    [
+     "bfs",
+     "bfs"
+    ],
+    [
+     "bfs",
+     "bfs"
+    ],
+    [
+     "bfs",
+     "bfs"
+    ],
+    [
+     "bfs",
+     "bfs"
+    ],
+    [
+     "bfs",
+     "bfs"
+    ],
+    [
+     "bfs",
+     "bfs"
+    ],
+    [
+     "bfs",
+     "bfs"
+    ],
+    [
+     "bfs",
+     "bfs"
+    ],
+    [
+     "bfs",
+     "bfs"
+    ]
+   ]
+  },
+  "t2": {
+   "n": 10,
+   "judge_agrees": 10,
+   "pairs": [
+    [
+     "dijkstra",
+     "dijkstra"
+    ],
+    [
+     "dijkstra",
+     "dijkstra"
+    ],
+    [
+     "dijkstra",
+     "dijkstra"
+    ],
+    [
+     "dijkstra",
+     "dijkstra"
+    ],
+    [
+     "dijkstra",
+     "dijkstra"
+    ],
+    [
+     "dijkstra",
+     "dijkstra"
+    ],
+    [
+     "dijkstra",
+     "dijkstra"
+    ],
+    [
+     "dijkstra",
+     "dijkstra"
+    ],
+    [
+     "dijkstra",
+     "dijkstra"
+    ],
+    [
+     "dijkstra",
+     "dijkstra"
+    ]
+   ]
+  }
+ },
+ "note": "Disagreements and unknown/inconsistent runtime labels are always routed to the blind judge in production, so the combined-label accuracy is the operative one; combined accuracy uses the production judge (one of the two gold judges) and is therefore optimistic."
+}

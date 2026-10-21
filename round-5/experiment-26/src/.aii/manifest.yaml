@@ -1,0 +1,28 @@
+entries:
+  - path: .venv/
+    delete: regenerable
+    source: "uv sync   (pyproject.toml / uv.lock pin every package; Python 3.12)"
+  - path: src/__pycache__/
+    delete: regenerable
+    source: "python -m compileall src (or any run of method.py)"
+  - path: src/units/__pycache__/
+    delete: regenerable
+    source: "python -m compileall src/units (or any labelling run)"
+  - path: analysis/__pycache__/
+    delete: regenerable
+    source: "python -m compileall analysis (or uv run method.py)"
+  - path: vendor/exp11/bench/__pycache__/
+    delete: regenerable
+    source: "regenerated automatically when the bench labeller is imported"
+  - path: vendor/exp11/bench/common/__pycache__/
+    delete: regenerable
+    source: "regenerated automatically when the bench labeller is imported"
+  - path: vendor/exp8/suite/tasks/__pycache__/
+    delete: regenerable
+    source: "regenerated automatically when the exp8 suite labeller is imported"
+  - path: vendor/exp8/suite/labeller/__pycache__/
+    delete: regenerable
+    source: "regenerated automatically when the exp8 suite labeller is imported"
+  - path: vendor/exp23/__pycache__/
+    delete: regenerable
+    source: "regenerated automatically when vendor/exp23/prox.py is imported"

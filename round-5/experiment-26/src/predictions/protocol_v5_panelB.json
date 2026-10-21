@@ -1,0 +1,313 @@
+{
+ "utc": "2026-10-21T12:03:47.153173Z",
+ "artifact": "iteration-5 panel B (Qwen3-8B instruct vs Qwen3-8B-Base)",
+ "models": {
+  "instruct": [
+   "Qwen/Qwen3-8B",
+   "b968826d9c46dd6066d109eabc6255188de91218"
+  ],
+  "base": [
+   "Qwen/Qwen3-8B-Base",
+   "49e3418fbbbca6ecbdf9608b4d22e5a407081db4"
+  ],
+  "base_revision_note": "pinned to the newest snapshot (no revision recorded in ITER1 exp5 for the base model's HF snapshot at hand)"
+ },
+ "precision": {
+  "utc": "2026-10-21T12:03:47.140398Z",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "compute_capability": [
+   8,
+   9
+  ],
+  "vram_gib": 23.5184326171875,
+  "rule": "if cc >= 8.9 and vram < 19.5 GiB: fp8_w8a8_hf else bf16_hf",
+  "engine": "bf16_hf",
+  "batch_rows": 20,
+  "note": "plan expected an RTX A4500 (bf16); the pod has an RTX 4090 (24 GiB) -> bf16 with B = 20 rows"
+ },
+ "templates": {
+  "W1": "Do not use {N} for this task.",
+  "W2": "Your solution must not rely on {N}.",
+  "W3": "Avoid {N} entirely.",
+  "W4": "{N} is not allowed here.",
+  "W5": "Write a correct solution that does not use {N}."
+ },
+ "pad_filler": " .",
+ "novelty_segment": "Write a novel algorithm for this task, one you have not seen before.",
+ "association_template": "What is the standard alternative to {x} for this task? Name one algorithm and answer in one sentence.",
+ "format_line": "Use only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+ "plain_completion": "opened ```python fence + 'def <signature>:' + docstring(description); stop at the closing fence; max 768 new tokens",
+ "decoding": {
+  "string": "T1.0_topp1.0_topk-off_max1024_thinkoff_fencestop",
+  "temperature": 1.0,
+  "top_p": 1.0,
+  "top_k": null,
+  "max_new_tokens": 1024,
+  "thinking": false,
+  "sampler": "exp8 inverse-CDF CRN, float64"
+ },
+ "crn_slot_map": {
+  "twin": "W1-W5 x k 0-9",
+  "t13": "W1-W5 x k 0-9 (paired with twin)",
+  "escape_stage1": "W1-W5 x k 0-1",
+  "confirmation": "W1-W5 x k 2-5",
+  "pn": "W1-W5 x k 0-9, fresh direction per sample",
+  "base_chat": "W1-W5 x k 0-19",
+  "base_pilot": "k 0-5 (N = 30)",
+  "base_plain": "k 0-49",
+  "novelty": "k 0-29",
+  "association": "20 answers per catalogue mode, max 64 tokens",
+  "gate_draw": "W1-W5 x k 100-101",
+  "batch": "B = 20 rows of one (unit, prompt); pads are *_EXTRA rows, never decisive",
+  "K": {
+   "twin": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "esc1": [
+    0,
+    1
+   ],
+   "conf": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "base": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+   ],
+   "pilot": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "pn": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "t13": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "gate": [
+    100,
+    101
+   ],
+   "parent_base": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ]
+  }
+ },
+ "escape_rule": {
+  "ESC_EXCESS": 0.2,
+  "ESC_PASS_FRAC": 0.8,
+  "share": "catalogue off-default over valid attempts (invalid and disputed excluded)",
+  "stage1": "N = 10 (k 0-1): share >= twin + 0.20 and pass >= 0.8 x twin pass -> +20 slots",
+  "confirmed": "pooled 30 keeps excess >= 0.20 with one-sided exact binomial p < 0.05 against p0 = (k_twin + 0.5)/(n_twin + 1), and pass >= 0.8 x twin",
+  "E_u": "confirmed/8 per alpha; E_u = mean over alpha 1, 2; MOVABLE := E_u > 0",
+  "directions": 8,
+  "alphas": [
+   1.0,
+   2.0
+  ]
+ },
+ "default_rule": "modal correct-only twin label if its share >= 0.6 with N >= 50, else NO_DEFAULT",
+ "unit_formula": "n[l,p] = r_Q(l) x ||h_twin_clean[l,p]||, r_Q from exp23 qwen_ratio.json key r_Q (interp over (l+1)/36), plain (not outlier-excluded) variant",
+ "edit": "h_S <- h_S + (alpha*n[l,p] - (h_S - h_twin_clean[l,p]).u) u at blocks 12-23, task-spec positions, prefill only (exp22 make_edits_v4 TARGET)",
+ "edit_blocks": [
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23
+ ],
+ "log_blocks": [
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+  29,
+  30,
+  31,
+  32,
+  33,
+  34,
+  35
+ ],
+ "direction_seed_rule": "seed(unit, k) = int(sha256(f'iter5|panelB|{unit}|dir|{k}').hexdigest()[:8], 16), k = 0..7; direction = PCG64(seed).standard_normal(4096) normalised; variants and their parents share the parent's seeds",
+ "gate": {
+  "stage_i": "references 100% by runtime AND AST; probes pass; mutants fail; oracles agree",
+  "stage_ii": "gold = references + 10 base-pilot + 10 instruct gate-draw programs; two blind judges (google/gemini-2.5-flash, openai/gpt-4.1-mini; tie-break deepseek/deepseek-chat) after a 5/6 control gate; PASS: references 100%, kappa(runtime, AST) >= 0.8, runtime vs adjudicated >= 0.9; one revision round"
+ },
+ "banned_words_base": [
+  "sort",
+  "sorted",
+  "order",
+  "heap",
+  "priority",
+  "queue",
+  "stack",
+  "hash",
+  "map",
+  "dictionary",
+  "set",
+  "tree",
+  "graph",
+  "node",
+  "vertex",
+  "edge",
+  "search",
+  "binary",
+  "partition",
+  "pivot",
+  "greedy",
+  "recursion",
+  "recursive",
+  "dynamic programming",
+  "xor",
+  "bit",
+  "union",
+  "merge",
+  "two pointers",
+  "window",
+  "newton",
+  "prim",
+  "kruskal",
+  "backtrack",
+  "mask"
+ ],
+ "prohibition_cues": [
+  "do not",
+  "don't",
+  "not allowed",
+  "avoid",
+  "without using",
+  "never use",
+  "must not"
+ ],
+ "candidate_order": [
+  "B1",
+  "B2",
+  "B3",
+  "B4",
+  "B5",
+  "B6",
+  "B7"
+ ],
+ "reserves": [
+  "B8",
+  "B9"
+ ],
+ "build_stratification": "alternate pilot-diverse (non-modal correct share >= 0.2) and pilot-collapsed (< 0.05) units for builds after two pilots exist; every gated unit is enrolled",
+ "mid_artifact_rule": "at T+3:00, if fewer than 5 units passed stage (ii), build B8 then B9",
+ "drop_order": [
+  "plain-completion base arm",
+  "T1.3",
+  "PN alpha 2",
+  "extra arm tail (later pairs first)"
+ ],
+ "never_drop": [
+  "gate",
+  "twin",
+  "base repertoire",
+  "commit before first push",
+  "escape population + confirmation",
+  "novelty audit"
+ ],
+ "per_unit_quantities": {
+  "beta_u": "share of correct base programs whose label != default (catalogue + other, invalid excluded)",
+  "r_u": "most frequent correct non-default CATALOGUE label in the base repertoire (ties flagged; top-1 hit scored 1/|tie|)",
+  "predicted_class": "MOVABLE iff beta_u >= 0.05",
+  "predicted_landing": "r_u",
+  "rivals": {
+   "R_margin": "-(mean_W [log p(default opening) - max_survivor log p(survivor opening)]), opening = reference's first <= 16 body tokens after the def line, teacher-forced under the twin prompt with assistant prefix '```python\\n' + def line",
+   "R_merit": "-log(runtime of fastest non-default reference / runtime of default reference) on hidden tests (+ length-ratio version)",
+   "R_modal": "1 - twin correct-only modal share",
+   "R_novel": "novelty-instruction catalogue off-default share over valid attempts",
+   "K_u": "number of catalogue modes passing limits"
+  },
+  "forecasts": "BASE / ASSOC / PROX over survivors + 'other'; 5% uniform mixing over survivors, 2% 'other' floor, +0.5 pseudo-counts (BASE, ASSOC); PROX = softmax(-d_j / median_j d_j)"
+ },
+ "analysis_rules": {
+  "A1": "rho_A1 = Spearman(beta_u, E_u) over gated new units with a default (average ranks); exact one-sided permutation p (full enumeration n <= 9, else 10,000 shuffles); bootstrap 95% CI (10,000); secondary Spearman(beta_u, PN_excess_u); share of beta < 0.05 units with E = 0 + exact CI; 2x3 table; partial Spearman controlling K_u; rivals with paired unit-bootstrap rho differences; sensitivities (attempt beta, plain beta, uncertain-class exclusion, split B2 label); shuffled-beta placebo (1,000); clustered A1 with variants. DESCRIPTIVE within this panel (pooled bar rho >= 0.6, p < 0.01 next round).",
+  "A2": "movable units with beta >= 0.05 and a defined push landing: top-1 hit (r_u == landing), chance 1/(K_u - 1), exact Poisson-binomial p; log score per event under BASE/ASSOC/PROX; paired differences (exact Wilcoxon if >= 5 events); 0.10-nat margin reported; JS landing vs base.",
+  "within_parent": "per pair delta_beta, delta_E, per-(direction, alpha) McNemar; sign agreement; Spearman.",
+  "analysis_code_freeze": "analysis/a1a2.py and analysis/variants.py are hash-committed before the first push sample of any unit"
+ }
+}

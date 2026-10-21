@@ -1,0 +1,13 @@
+{
+ "utc": "2026-10-21T12:03:47.140398Z",
+ "gpu": "NVIDIA GeForce RTX 4090",
+ "compute_capability": [
+  8,
+  9
+ ],
+ "vram_gib": 23.5184326171875,
+ "rule": "if cc >= 8.9 and vram < 19.5 GiB: fp8_w8a8_hf else bf16_hf",
+ "engine": "bf16_hf",
+ "batch_rows": 20,
+ "note": "plan expected an RTX A4500 (bf16); the pod has an RTX 4090 (24 GiB) -> bf16 with B = 20 rows"
+}
