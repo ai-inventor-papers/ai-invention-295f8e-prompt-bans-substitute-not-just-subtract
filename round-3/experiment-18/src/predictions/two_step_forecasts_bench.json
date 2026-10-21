@@ -1,0 +1,168 @@
+{
+ "utc": "2026-10-20T22:24:37.644142Z",
+ "group": "bench",
+ "tasks": {
+  "T03": {
+   "banned": [
+    "full_sort",
+    "counting_sort"
+   ],
+   "R2": {
+    "R2": "counting_sort",
+    "flagged": true,
+    "source": "modal non-default catalogue label at step 1 (>=5)"
+   },
+   "WALK2": {
+    "landing_counts": null,
+    "status": "walk did not reach step 2 (status STALLED)",
+    "top1": null
+   },
+   "ASSOCIATE": {
+    "for_R2": {
+     "label": "quickselect",
+     "share": 1.0,
+     "n": 20,
+     "counts": {
+      "quickselect": 20
+     }
+    },
+    "for_D": {
+     "label": "quickselect",
+     "share": 1.0,
+     "n": 20,
+     "counts": {
+      "quickselect": 20
+     }
+    }
+   },
+   "SNAPBACK": {
+    "top1": "full_sort",
+    "meaning": "ban failure: the default comes back"
+   },
+   "scoring": "frozen C1: mean log score per non-banned attempt (5% uniform over survivors, 2% shared 'other' floor) and top-1 hit; descriptive"
+  },
+  "T04": {
+   "banned": [
+    "naive",
+    "kmp"
+   ],
+   "R2": {
+    "R2": "kmp",
+    "flagged": true,
+    "source": "association modal answer for D"
+   },
+   "WALK2": {
+    "landing_counts": null,
+    "status": "walk did not reach step 2 (status STALLED)",
+    "top1": null
+   },
+   "ASSOCIATE": {
+    "for_R2": {
+     "label": "naive",
+     "share": 0.75,
+     "n": 20,
+     "counts": {
+      "naive": 15,
+      "bmh": 5
+     }
+    },
+    "for_D": {
+     "label": "kmp",
+     "share": 1.0,
+     "n": 20,
+     "counts": {
+      "kmp": 20
+     }
+    }
+   },
+   "SNAPBACK": {
+    "top1": "naive",
+    "meaning": "ban failure: the default comes back"
+   },
+   "scoring": "frozen C1: mean log score per non-banned attempt (5% uniform over survivors, 2% shared 'other' floor) and top-1 hit; descriptive"
+  },
+  "T06": {
+   "banned": [
+    "hash_set",
+    "sort_adjacent"
+   ],
+   "R2": {
+    "R2": "sort_adjacent",
+    "flagged": false,
+    "source": "walk rung 2"
+   },
+   "WALK2": {
+    "landing_counts": {
+     "floyd": 3,
+     "index_marking": 4,
+     "other": 13
+    },
+    "status": "available",
+    "top1": "other"
+   },
+   "ASSOCIATE": {
+    "for_R2": {
+     "label": "floyd",
+     "share": 0.65,
+     "n": 20,
+     "counts": {
+      "floyd": 13,
+      "hash_set": 7
+     }
+    },
+    "for_D": {
+     "label": "floyd",
+     "share": 1.0,
+     "n": 20,
+     "counts": {
+      "floyd": 20
+     }
+    }
+   },
+   "SNAPBACK": {
+    "top1": "hash_set",
+    "meaning": "ban failure: the default comes back"
+   },
+   "scoring": "frozen C1: mean log score per non-banned attempt (5% uniform over survivors, 2% shared 'other' floor) and top-1 hit; descriptive"
+  },
+  "T10": {
+   "banned": [
+    "union_find",
+    "dfs"
+   ],
+   "R2": {
+    "R2": "dfs",
+    "flagged": true,
+    "source": "modal non-default catalogue label at step 1 (>=5)"
+   },
+   "WALK2": {
+    "landing_counts": null,
+    "status": "walk did not reach step 2 (status STALLED)",
+    "top1": null
+   },
+   "ASSOCIATE": {
+    "for_R2": {
+     "label": "bfs",
+     "share": 1.0,
+     "n": 20,
+     "counts": {
+      "bfs": 20
+     }
+    },
+    "for_D": {
+     "label": "dfs",
+     "share": 1.0,
+     "n": 20,
+     "counts": {
+      "dfs": 20
+     }
+    }
+   },
+   "SNAPBACK": {
+    "top1": "union_find",
+    "meaning": "ban failure: the default comes back"
+   },
+   "scoring": "frozen C1: mean log score per non-banned attempt (5% uniform over survivors, 2% shared 'other' floor) and top-1 hit; descriptive"
+  }
+ }
+}

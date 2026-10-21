@@ -1,0 +1,600 @@
+
+=== [0] walk|T03||s1r1|1 task=T03 arm=walk role=correct_other passed=True extra=3/3
+A: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'The program uses a dictionary to count frequencies and then sorts the unique keys, which is a variation of counting sort that handles sparse value ranges more efficiently.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.9}
+B: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'The code counts occurrences of each distinct number and then iterates over the sorted keys to find the k-th smallest, effectively implementing counting sort over the distinct values.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.95}
+nearest known: [('kodcode_algorithmic', "['heap']", 0.327), ('kodcode_algorithmic', "['heap']", 0.312), ('kodcode_algorithmic', "['kth_smallest_largest']", 0.301)]
+nearest refs: [('size_k_heap', 0.41), ('heapify_pop', 0.325), ('counting_sort', 0.3)]
+def solve(nums, k):
+    nums_count = {}
+    for num in nums:
+        nums_count[num] = nums_count.get(num, 0) + 1
+    
+    sorted_nums = sorted(nums_count.keys())
+    for num in sorted_nums:
+        if k <= nums_count[num]:
+            return num
+        k -= nums_count[num]
+    return -1
+
+
+=== [1] walk|T03||s1r1|6 task=T03 arm=walk role=correct_other passed=True extra=3/3
+A: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'The program uses a dictionary to count frequencies and then sorts the unique keys, which is a variation of counting sort that handles sparse value ranges more efficiently than a fixed-size array.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.9}
+B: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'The code counts occurrences of each distinct value and iterates over sorted keys to find the k-th smallest, effectively implementing counting sort over the distinct values rather than a full range array.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.95}
+nearest known: [('kodcode_algorithmic', "['heap']", 0.327), ('kodcode_algorithmic', "['heap']", 0.312), ('kodcode_algorithmic', "['kth_smallest_largest']", 0.301)]
+nearest refs: [('size_k_heap', 0.41), ('heapify_pop', 0.325), ('counting_sort', 0.3)]
+def solve(nums, k):
+    nums_count = {}
+    for num in nums:
+        nums_count[num] = nums_count.get(num, 0) + 1
+    
+    sorted_nums = sorted(nums_count.keys())
+    
+    for num in sorted_nums:
+        if k <= nums_count[num]:
+            return num
+        k -= nums_count[num]
+    
+    return -1
+
+
+=== [2] walk|T03||s1r1|21 task=T03 arm=walk role=correct_other passed=True extra=3/3
+A: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'The program uses a dictionary to count frequencies and then sorts the unique keys, which is a variation of counting sort that handles sparse value ranges more efficiently.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.9}
+B: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'It counts occurrences of each distinct value and then iterates over sorted keys to find the k-th smallest, effectively implementing counting sort over the distinct values rather than a full range array.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.95}
+nearest known: [('kodcode_algorithmic', "['heap']", 0.327), ('kodcode_algorithmic', "['heap']", 0.312), ('kodcode_algorithmic', "['kth_smallest_largest']", 0.301)]
+nearest refs: [('size_k_heap', 0.41), ('heapify_pop', 0.325), ('counting_sort', 0.3)]
+def solve(nums, k):
+    nums_count = {}
+    for num in nums:
+        nums_count[num] = nums_count.get(num, 0) + 1
+    sorted_nums = sorted(nums_count.keys())
+    for num in sorted_nums:
+        if k <= nums_count[num]:
+            return num
+        k -= nums_count[num]
+    return -1
+
+
+=== [3] walk|T03||s1r1|23 task=T03 arm=walk role=correct_other passed=True extra=3/3
+A: {'class': None, 'closest_known_algorithm': None, 'differs_how': None, 'catalogue_label_if_miss': None, 'confidence': None}
+B: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'It counts occurrences of each distinct value and then iterates over sorted keys to find the k-th smallest, effectively implementing counting sort over the distinct values rather than a full range array.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.95}
+nearest known: [('kodcode_algorithmic', "['heap']", 0.327), ('kodcode_algorithmic', "['heap']", 0.312), ('xlcost_python', "['heap']", 0.301)]
+nearest refs: [('size_k_heap', 0.41), ('heapify_pop', 0.325), ('counting_sort', 0.3)]
+def solve(nums, k):
+    nums_count = {}
+    for num in nums:
+        nums_count[num] = nums_count.get(num, 0) + 1
+    
+    sorted_nums = sorted(nums_count.keys())
+    for num in sorted_nums:
+        if k <= nums_count[num]:
+            return num
+        k -= nums_count[num]
+    return None
+
+
+=== [4] walk|T03||s1r1|28 task=T03 arm=walk role=correct_other passed=True extra=3/3
+A: {'class': 'NOVEL ALGORITHM', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'The program uses a dictionary to count frequencies and then sorts the unique keys, which is a variation of counting sort but not a direct implementation.', 'catalogue_label_if_miss': 'null', 'confidence': 0.6}
+B: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'It counts occurrences of each distinct value and then iterates over sorted keys to find the k-th smallest, effectively implementing counting sort over the value domain.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.95}
+nearest known: [('kodcode_algorithmic', "['heap']", 0.327), ('kodcode_algorithmic', "['heap']", 0.312), ('xlcost_python', "['heap']", 0.301)]
+nearest refs: [('size_k_heap', 0.41), ('heapify_pop', 0.325), ('counting_sort', 0.3)]
+def solve(nums, k):
+    nums_count = {}
+    for num in nums:
+        nums_count[num] = nums_count.get(num, 0) + 1
+    sorted_nums = sorted(nums_count.keys())
+    for num in sorted_nums:
+        if k <= nums_count[num]:
+            return num
+        k -= nums_count[num]
+    return None
+
+
+=== [5] walk|T03||s1r1|34 task=T03 arm=walk role=correct_other passed=True extra=3/3
+A: {'class': 'NOVEL ALGORITHM', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'The provided code uses a dictionary to count frequencies and then sorts the unique keys, whereas counting sort typically uses an array indexed by the values themselves.', 'catalogue_label_if_miss': 'null', 'confidence': 0.6}
+B: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'The code counts occurrences of each distinct value and iterates over sorted keys to find the k-th smallest, effectively implementing counting sort over the distinct values.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.95}
+nearest known: [('kodcode_algorithmic', "['heap']", 0.375), ('kodcode_algorithmic', "['heap']", 0.3), ('kodcode_algorithmic', "['kth_smallest_largest']", 0.295)]
+nearest refs: [('size_k_heap', 0.386), ('heapify_pop', 0.318), ('counting_sort', 0.278)]
+def solve(nums, k):
+    nums_count = {}
+    for num in nums:
+        nums_count[num] = nums_count.get(num, 0) + 1
+    sorted_nums = sorted(nums_count.keys())
+    for num in sorted_nums:
+        if nums_count[num] >= k:
+            return num
+        else:
+            k -= nums_count[num]
+    return -1
+
+
+=== [6] walk|T03||s1r1|40 task=T03 arm=walk role=correct_other passed=True extra=3/3
+A: {'class': None, 'closest_known_algorithm': None, 'differs_how': None, 'catalogue_label_if_miss': None, 'confidence': None}
+B: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'It counts occurrences of each distinct value and then iterates over the sorted keys to find the k-th smallest, effectively implementing counting sort over the distinct values rather than a full range array.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.95}
+nearest known: [('kodcode_algorithmic', "['heap']", 0.308), ('kodcode_algorithmic', "['heap']", 0.294), ('xlcost_python', "['heap']", 0.287)]
+nearest refs: [('size_k_heap', 0.425), ('heapify_pop', 0.338), ('counting_sort', 0.322)]
+def solve(nums, k):
+    nums_count = {}
+    for num in nums:
+        nums_count[num] = nums_count.get(num, 0) + 1
+    
+    sorted_nums = sorted(nums_count.keys())
+    for num in sorted_nums:
+        if k <= nums_count[num]:
+            return num
+        k -= nums_count[num]
+
+
+=== [7] walk|T03||s1r1|47 task=T03 arm=walk role=correct_other passed=True extra=3/3
+A: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'The program uses a dictionary to count frequencies and then sorts the unique keys, which is a variation of counting sort that handles sparse value ranges more efficiently.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.9}
+B: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'It counts occurrences of each distinct value and then iterates over the sorted keys to find the k-th smallest, effectively implementing counting sort over the value range but using a dictionary instead of an array.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.95}
+nearest known: [('kodcode_algorithmic', "['heap']", 0.327), ('kodcode_algorithmic', "['heap']", 0.312), ('xlcost_python', "['heap']", 0.301)]
+nearest refs: [('size_k_heap', 0.41), ('heapify_pop', 0.325), ('counting_sort', 0.3)]
+def solve(nums, k):
+    nums_count = {}
+    for num in nums:
+        nums_count[num] = nums_count.get(num, 0) + 1
+    
+    sorted_nums = sorted(nums_count.keys())
+    
+    for num in sorted_nums:
+        if k <= nums_count[num]:
+            return num
+        k -= nums_count[num]
+    
+    return None
+
+
+=== [8] walk|T03||s1r2|25 task=T03 arm=walk role=correct_other passed=True extra=3/3
+A: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'The provided code implements a variation of counting sort by first finding unique elements, then iterating through them and accumulating counts from the original list until the k-th element is found, rather than directly using a count array for all possible values.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.85}
+B: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'The code sorts unique values and accumulates counts by repeated calls to count(), effectively implementing counting sort logic but less efficiently.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.95}
+nearest known: [('kodcode_algorithmic', "['counting_sort', 'bucket_sort']", 0.324), ('kodcode_algorithmic', "['kth_smallest_largest']", 0.319), ('mercury', 'kth-largest-element-in-an-array', 0.302)]
+nearest refs: [('counting_sort', 0.444), ('heapify_pop', 0.333), ('size_k_heap', 0.323)]
+def solve(nums, k):
+    nums_sort = sorted(set(nums))
+    count = 0
+    for num in nums_sort:
+        count += nums.count(num)
+        if count >= k:
+            return num
+
+
+=== [9] walk|T06||s2r1|9 task=T06 arm=walk role=correct_other passed=True extra=3/3
+A: {'class': 'DEGENERATE', 'closest_known_algorithm': 'hash_set', 'differs_how': 'The code uses list comprehension with `nums.index(x)` which has a time complexity of O(n) for each element, leading to an overall O(n^2) complexity, and it relies on the specific behavior of `list.index()` to find the first occurrence of a value, effectively bypassing a standard O(n) hash set approach.', 'catalogue_label_if_miss': 'hash_set', 'confidence': 0.8}
+B: {'class': 'DEGENERATE', 'closest_known_algorithm': 'hash_set', 'differs_how': 'The code uses a list comprehension with nums.index(x) inside a loop, which is an inefficient brute force approach relying on repeated index lookups rather than a proper algorithmic method.', 'catalogue_label_if_miss': None, 'confidence': 0.95}
+nearest known: [('kodcode_algorithmic', "['find_duplicate']", 0.29), ('kodcode_algorithmic', "['find_duplicate']", 0.267), ('thealgorithms_python', 'remove_duplicate (None)', 0.245)]
+nearest refs: [('sort_adjacent', 0.407), ('index_marking', 0.367), ('hash_set', 0.341)]
+def solve(nums):
+    nums = [x for i, x in enumerate(nums) if i != nums.index(x)]
+    return nums[0]
+
+
+=== [10] los|T03|LOS(counting_sort)|sr|0 task=T03 arm=los role=correct_other passed=True extra=3/3
+A: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'The program uses a dictionary to count frequencies and then sorts the unique keys, which is a variation of counting sort that handles sparse value ranges more efficiently than a fixed-size array.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.9}
+B: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'It uses a dictionary to count occurrences and then iterates over sorted keys to find the k-th smallest, effectively implementing counting sort over the value range but with a dictionary instead of an array.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.95}
+nearest known: [('kodcode_algorithmic', "['heap']", 0.327), ('kodcode_algorithmic', "['heap']", 0.312), ('kodcode_algorithmic', "['kth_smallest_largest']", 0.301)]
+nearest refs: [('size_k_heap', 0.41), ('heapify_pop', 0.325), ('counting_sort', 0.3)]
+def solve(nums, k):
+    count = {}
+    for num in nums:
+        count[num] = count.get(num, 0) + 1
+
+    sorted_nums = sorted(count.keys())
+    for num in sorted_nums:
+        if k <= count[num]:
+            return num
+        k -= count[num]
+    return -1
+
+
+=== [11] los|T03|LOS(counting_sort)|sr|40 task=T03 arm=los role=correct_other passed=True extra=3/3
+A: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'The program uses a dictionary to count frequencies and then sorts the unique keys, which is a variation of counting sort that handles sparse value ranges more efficiently than a fixed-size array.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.9}
+B: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'The code counts occurrences of each distinct value and then iterates over sorted keys to find the k-th smallest, effectively implementing counting sort over the value domain using a dictionary instead of an array.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.95}
+nearest known: [('kodcode_algorithmic', "['heap']", 0.327), ('kodcode_algorithmic', "['heap']", 0.312), ('xlcost_python', "['heap']", 0.301)]
+nearest refs: [('size_k_heap', 0.41), ('heapify_pop', 0.325), ('counting_sort', 0.3)]
+def solve(nums, k):
+    count = {}
+    for num in nums:
+        count[num] = count.get(num, 0) + 1
+    
+    sorted_nums = sorted(count.keys())
+    for num in sorted_nums:
+        if k <= count[num]:
+            return num
+        k -= count[num]
+    return None
+
+
+=== [12] los|T03|LOS(counting_sort)|sr|42 task=T03 arm=los role=correct_other passed=True extra=3/3
+A: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'The program uses a dictionary to count frequencies and then sorts the unique keys, which is a variation of counting sort that handles sparse value ranges more efficiently.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.9}
+B: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'The code counts occurrences of each distinct value and then iterates over the sorted keys to find the k-th smallest, effectively implementing counting sort over the distinct values.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.95}
+nearest known: [('kodcode_algorithmic', "['heap']", 0.327), ('kodcode_algorithmic', "['heap']", 0.312), ('kodcode_algorithmic', "['kth_smallest_largest']", 0.301)]
+nearest refs: [('size_k_heap', 0.41), ('heapify_pop', 0.325), ('counting_sort', 0.3)]
+def solve(nums, k):
+    counts = {}
+    for num in nums:
+        counts[num] = counts.get(num, 0) + 1
+    
+    sorted_nums = sorted(counts.keys())
+    for num in sorted_nums:
+        if k <= counts[num]:
+            return num
+        k -= counts[num]
+    
+    return -1
+
+
+=== [13] los|T03|LOS(counting_sort)|sr|45 task=T03 arm=los role=correct_other passed=True extra=3/3
+A: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'The program uses a dictionary to count frequencies and then sorts the unique keys, which is a variation of counting sort that handles sparse value ranges more efficiently than a fixed-size array.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.9}
+B: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'The code counts occurrences of each value and then iterates over sorted unique values to find the k-th smallest, effectively implementing counting sort over the value range using a dictionary instead of an array.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.95}
+nearest known: [('kodcode_algorithmic', "['heap']", 0.327), ('kodcode_algorithmic', "['heap']", 0.312), ('kodcode_algorithmic', "['kth_smallest_largest']", 0.301)]
+nearest refs: [('size_k_heap', 0.41), ('heapify_pop', 0.325), ('counting_sort', 0.3)]
+def solve(nums, k):
+    count = {}
+    for num in nums:
+        count[num] = count.get(num, 0) + 1
+    
+    sorted_nums = sorted(count.keys())
+    for num in sorted_nums:
+        if k <= count[num]:
+            return num
+        k -= count[num]
+    
+    return -1
+
+
+=== [14] los|T03|LOS(counting_sort)|sr|47 task=T03 arm=los role=correct_other passed=True extra=3/3
+A: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'The program uses a dictionary to count frequencies and then sorts the unique keys, which is a variation of counting sort that handles sparse value ranges more efficiently than a fixed-size array.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.9}
+B: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'counting_sort', 'differs_how': 'It uses a dictionary to count occurrences and then iterates over sorted keys to find the k-th smallest, effectively implementing counting sort over the value range but with a dictionary instead of an array.', 'catalogue_label_if_miss': 'counting_sort', 'confidence': 0.95}
+nearest known: [('kodcode_algorithmic', "['heap']", 0.327), ('kodcode_algorithmic', "['heap']", 0.312), ('xlcost_python', "['heap']", 0.301)]
+nearest refs: [('size_k_heap', 0.41), ('heapify_pop', 0.325), ('counting_sort', 0.3)]
+def solve(nums, k):
+    count = {}
+    for num in nums:
+        count[num] = count.get(num, 0) + 1
+    
+    sorted_nums = sorted(count.keys())
+    
+    for num in sorted_nums:
+        if k <= count[num]:
+            return num
+        k -= count[num]
+    
+    return None
+
+
+=== [15] walk|T03||s1r1|26 task=T03 arm=walk role=failing_other_sample passed=False extra=0/3
+A: {'class': 'NOVEL ALGORITHM', 'closest_known_algorithm': None, 'differs_how': None, 'catalogue_label_if_miss': None, 'confidence': None}
+B: {'class': 'DEGENERATE', 'closest_known_algorithm': 'none', 'differs_how': 'The code does not implement any algorithm but instead reassigns many list methods to themselves redundantly without performing any selection logic.', 'catalogue_label_if_miss': None, 'confidence': 1.0}
+nearest known: [('thealgorithms_python', 'binomial_heap (None)', 0.198), ('thealgorithms_python', 'remove_nth_node_from_end_of_list (None)', 0.175), ('thealgorithms_python', 'skew_heap (None)', 0.171)]
+nearest refs: [('median_of_medians', 0.101), ('quickselect', 0.082), ('counting_sort', 0.054)]
+def solve(nums, k):
+    nums.count = lambda x: nums.count(x)
+    nums.index = lambda x: nums.index(x)
+    nums.pop = lambda i: nums.pop(i)
+    nums.insert = lambda i, x: nums.insert(i, x)
+    nums.extend = lambda iterable: nums.extend(iterable)
+    nums.clear = lambda: nums.clear()
+    nums.copy = lambda: nums.copy()
+    nums.remove = lambda x: nums.remove(x)
+    nums.reverse = lambda: nums.reverse()
+    nums.__delitem__ = lambda i: nums.__delitem__(i)
+    nums.__setitem__ = lambda i, x: nums.__setitem__(i, x)
+    nums.__len__ = lambda: nums.__len__()
+    nums.__getitem__ = lambda i: nums.__getitem__(i)
+    nums.__iter__ = lambda: nums.__iter__()
+    nums.__contains__ = lambda x: nums.__contains__(x)
+    nums.__add__ = lambda other: nums.__add__(other)
+    nums.__iadd__ = lambda other: nums.__iadd__(other)
+    nums.__mul__ = lambda other: nums.__mul__(other)
+    nums.__imul__ = lambda other: nums.__imul__(other)
+    nums.__eq__ = lambda other: nums.__eq__(other)
+    nums.__lt__ = lambda other: nums.__lt__(other)
+    nums.__le__ = lambda other: nums.__le__(other)
+    nums.__gt__ = lambda other: nums.__gt__(other)
+    nums.__ge__ = lambda other: nums.__ge__(other)
+    nums.__hash__ = lambda: nums.__hash__()
+    nums.__repr__ = lambda: nums.__repr__()
+    nums.__str__ = lambda: nums.__str__()
+    nums.__bool__ = lambda: nums.__bool__()
+    nums.__format__ = lambda spec: nums.__format__(spec)
+    nums.__class__ = type(nums)
+    nums.__module__ = '__main__'
+    nums.__dict__ = {}
+    nums.__slots__ = ()
+    nums.__weakref__ = None
+    nums.__new__ = lambda cls, *args, **kwargs: cls(*args, **kwargs)
+    nums.__init__ = lambda self, *args, **kwargs: None
+    nums.__del__ = lambda self: None
+    nums.__getattribute__ = lambda self, name: getattr(self, name)
+    nums.__setattr__ = lambda self, name, value: setattr(self, name, value)
+    nums.__setattr__ = lambda self, name, value: setattr(self, name, value)
+    nums.__class_getitem__ = lambda cls, params: cls.__class_getitem__(params)
+    nums.__class__ = type(nums)
+    nums.__annotations__ = {}
+    nums.__doc__ = None
+    nums.__name__ = None
+    nums.__qualname__ = None
+    nums.__defaults__ = None
+    nums.__kwdefaults__ = None
+    nums.__text_signature__ = None
+    nums.__module__ = '__main__'
+    nums.__dict__ = {}
+    nums.__slots__ = ()
+    nums.__weakref__ = None
+    nums.__new__ = lambda cls, *args, **kwargs: cls(*args, **kwargs)
+    nums.__init__ = lambda self, *args, **kwargs: None
+    nums.__del__ = lam
+
+=== [16] walk|T06||s2r1|38 task=T06 arm=walk role=failing_other_sample passed=False extra=3/3
+A: {'class': 'DEGENERATE', 'closest_known_algorithm': 'hash_set', 'differs_how': 'The code uses a list comprehension with `nums.count(x)` which has a time complexity of O(n^2) for each element, making it inefficient and not a standard implementation of the hash set approach.', 'catalogue_label_if_miss': 'hash_set', 'confidence': 0.95}
+B: {'class': 'DEGENERATE', 'closest_known_algorithm': 'hash_set', 'differs_how': 'The code uses a brute force count operation inside a list comprehension, which is inefficient and bypasses algorithmic work by relying on repeated counting rather than a proper search or marking method.', 'catalogue_label_if_miss': None, 'confidence': 0.95}
+nearest known: [('kodcode_algorithmic', "['find_duplicate']", 0.29), ('kodcode_algorithmic', "['find_duplicate']", 0.267), ('mercury', 'find-the-duplicate-number', 0.258)]
+nearest refs: [('sort_adjacent', 0.407), ('hash_set', 0.39), ('index_marking', 0.388)]
+def solve(nums):
+    nums = [x for x in nums if nums.count(x) > 1]
+    return nums[0]
+
+
+=== [17] two_step|T06|TWO(hash_set,sort_adjacent)|sr|41 task=T06 arm=two_step role=failing_other_sample passed=False extra=0/3
+A: {'class': 'NOVEL ALGORITHM', 'closest_known_algorithm': 'hash_set', 'differs_how': 'The program simulates a linked list traversal by repeatedly moving the first element to the position of the next unique element it encounters, effectively searching for a cycle without explicitly using a set or modifying the array.', 'catalogue_label_if_miss': None, 'confidence': 0.7}
+B: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'hash_set', 'differs_how': 'The code uses a destructive in-place approach to remove seen elements by setting them to None and scanning for duplicates, effectively simulating a set of seen elements without an explicit container.', 'catalogue_label_if_miss': 'hash_set', 'confidence': 0.9}
+nearest known: [('kodcode_algorithmic', "['find_duplicate']", 0.356), ('mercury', 'find-the-duplicate-number', 0.351), ('mercury', 'find-the-duplicate-number', 0.338)]
+nearest refs: [('index_marking', 0.39), ('floyd', 0.373), ('hash_set', 0.351)]
+def solve(nums):
+    while True:
+        current = nums[0]
+        nums[0] = None
+        try:
+            next_val = next(num for num in nums if num is not None)
+            if next_val == current:
+                return current
+            nums[0] = next_val
+        except StopIteration:
+            return current
+
+
+=== [18] walk|T06||s2r1|37 task=T06 arm=walk role=failing_other_sample passed=False extra=3/3
+A: {'class': 'DEGENERATE', 'closest_known_algorithm': 'sort_adjacent', 'differs_how': 'The code first filters the list to only include elements that appear more than once, then sorts this filtered list and checks for adjacent duplicates, which is an inefficient and indirect way to achieve the same result as sorting the original list.', 'catalogue_label_if_miss': 'sort_adjacent', 'confidence': 0.8}
+B: {'class': 'DEGENERATE', 'closest_known_algorithm': 'sort_adjacent', 'differs_how': 'The code uses a costly nums.count(x) inside a list comprehension to filter duplicates without sorting, then attempts to find adjacent duplicates without sorting, which is incorrect and inefficient.', 'catalogue_label_if_miss': 'sort_adjacent', 'confidence': 0.9}
+nearest known: [('kodcode_algorithmic', "['find_duplicate']", 0.469), ('mercury', 'find-the-duplicate-number', 0.317), ('kodcode_algorithmic', "['find_duplicate']", 0.317)]
+nearest refs: [('sort_adjacent', 0.656), ('index_marking', 0.453), ('hash_set', 0.391)]
+def solve(nums):
+    nums = [x for x in nums if nums.count(x) > 1]
+    for i in range(len(nums)):
+        if nums[i] == nums[i + 1]:
+            return nums[i]
+
+
+=== [19] walk|T06||s2r1|26 task=T06 arm=walk role=failing_other_sample passed=False extra=3/3
+A: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'sort_adjacent', 'differs_how': 'The code first filters the list to only include elements that appear more than once, then sorts this filtered list and checks for adjacent duplicates.', 'catalogue_label_if_miss': 'sort_adjacent', 'confidence': 0.7}
+B: {'class': 'DEGENERATE', 'closest_known_algorithm': 'sort_adjacent', 'differs_how': 'The code uses a costly nums.count(n) inside a list comprehension and then assumes duplicates are adjacent without sorting, which is inefficient and incorrect for the task.', 'catalogue_label_if_miss': None, 'confidence': 0.9}
+nearest known: [('kodcode_algorithmic', "['find_duplicate']", 0.469), ('mercury', 'find-the-duplicate-number', 0.317), ('kodcode_algorithmic', "['find_duplicate']", 0.317)]
+nearest refs: [('sort_adjacent', 0.656), ('index_marking', 0.453), ('hash_set', 0.391)]
+def solve(nums):
+    nums = [n for n in nums if nums.count(n) > 1]
+    for i in range(len(nums)):
+        if nums[i] == nums[i + 1]:
+            return nums[i]
+
+
+=== [20] walk|T06||s2r1|13 task=T06 arm=walk role=failing_other_sample passed=False extra=3/3
+A: {'class': 'DEGENERATE', 'closest_known_algorithm': 'sort_adjacent', 'differs_how': 'The code first filters the list to only include elements that appear more than once, then sorts this filtered list and checks for adjacent duplicates, which is an inefficient and indirect way to achieve the same result as sorting the original list.', 'catalogue_label_if_miss': 'null', 'confidence': 0.9}
+B: {'class': 'DEGENERATE', 'closest_known_algorithm': 'sort_adjacent', 'differs_how': 'The code uses a costly nums.count(x) inside a list comprehension and then tries to find adjacent duplicates without sorting, which is incorrect and inefficient, effectively brute forcing counts multiple times.', 'catalogue_label_if_miss': None, 'confidence': 0.95}
+nearest known: [('kodcode_algorithmic', "['find_duplicate']", 0.469), ('mercury', 'find-the-duplicate-number', 0.317), ('kodcode_algorithmic', "['find_duplicate']", 0.317)]
+nearest refs: [('sort_adjacent', 0.656), ('index_marking', 0.453), ('hash_set', 0.391)]
+def solve(nums):
+    nums = [x for x in nums if nums.count(x) > 1]
+    for i in range(len(nums)):
+        if nums[i] == nums[i+1]:
+            return nums[i]
+
+
+=== [21] walk|T06||s2r0|20 task=T06 arm=walk role=failing_other_sample passed=False extra=0/3
+A: {'class': 'NOVEL ALGORITHM', 'closest_known_algorithm': 'None', 'differs_how': 'The provided code uses the XOR operation to find the repeated number, which is not a standard algorithm for this specific problem and does not leverage the properties of the input constraints effectively.', 'catalogue_label_if_miss': None, 'confidence': 0.95}
+B: {'class': 'DEGENERATE', 'closest_known_algorithm': 'none', 'differs_how': 'The code returns the XOR of all elements, which does not correctly find the duplicate in this problem setting and is not a known algorithm for this task.', 'catalogue_label_if_miss': None, 'confidence': 1.0}
+nearest known: [('kodcode_algorithmic', "['find_duplicate']", 0.468), ('kodcode_algorithmic', "['find_duplicate']", 0.333), ('kodcode_algorithmic', "['find_duplicate']", 0.327)]
+nearest refs: [('sort_adjacent', 0.593), ('hash_set', 0.463), ('index_marking', 0.449)]
+def solve(nums):
+    s = 0
+    for i in range(len(nums)):
+        s ^= nums[i]
+    return s
+
+
+=== [22] walk|T06||s2r1|23 task=T06 arm=walk role=failing_other_sample passed=False extra=0/3
+A: {'class': 'NOVEL ALGORITHM', 'closest_known_algorithm': 'hash_set', 'differs_how': 'The provided code uses the XOR operation to find the duplicate, which is not a standard approach for this problem and does not leverage any of the listed catalogue algorithms.', 'catalogue_label_if_miss': None, 'confidence': 0.95}
+B: {'class': 'DEGENERATE', 'closest_known_algorithm': 'none', 'differs_how': 'The code returns the XOR of all numbers, which does not correctly identify the repeated value in this problem setting.', 'catalogue_label_if_miss': None, 'confidence': 1.0}
+nearest known: [('kodcode_algorithmic', "['find_duplicate']", 0.345), ('kodcode_algorithmic', "['find_duplicate']", 0.339), ('kodcode_algorithmic', "['find_duplicate']", 0.317)]
+nearest refs: [('hash_set', 0.585), ('sort_adjacent', 0.444), ('index_marking', 0.388)]
+def solve(nums):
+    s = 0
+    for num in nums:
+        s ^= num
+    return s
+
+
+=== [23] walk|T06||s1r2|6 task=T06 arm=walk role=failing_other_sample passed=False extra=0/3
+A: {'class': 'NOVEL ALGORITHM', 'closest_known_algorithm': 'None', 'differs_how': 'The program uses a mathematical property of the input (sum of numbers) to deduce the duplicate, which is not a recognized algorithmic pattern for this problem.', 'catalogue_label_if_miss': None, 'confidence': 0.95}
+B: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'sum_difference', 'differs_how': 'The code uses the arithmetic sum formula difference to find the duplicate, which is a known mathematical approach but not listed in the provided catalogue.', 'catalogue_label_if_miss': None, 'confidence': 0.9}
+nearest known: [('kodcode_algorithmic', "['find_duplicate']", 0.323), ('kodcode_algorithmic', "['find_duplicate']", 0.317), ('mercury', 'find-the-duplicate-number', 0.28)]
+nearest refs: [('sort_adjacent', 0.481), ('hash_set', 0.381), ('index_marking', 0.347)]
+def solve(nums):
+    s = sum(nums)
+    n = len(nums) - 1
+    expected_sum = n * (n + 1) // 2
+    return s - expected_sum
+
+
+=== [24] walk|T06||s2r2|3 task=T06 arm=walk role=failing_other_sample passed=False extra=0/3
+A: {'class': 'DEGENERATE', 'closest_known_algorithm': 'hash_set', 'differs_how': 'The provided code only compares the current element with the first element of the list, which is not a general solution for finding duplicates.', 'catalogue_label_if_miss': 'null', 'confidence': 0.95}
+B: {'class': 'DEGENERATE', 'closest_known_algorithm': 'hash_set', 'differs_how': 'The code only compares adjacent elements in the original list without sorting or using any data structure, which does not guarantee finding the duplicate unless the list is already sorted or the duplicate is adjacent.', 'catalogue_label_if_miss': None, 'confidence': 0.95}
+nearest known: [('kodcode_algorithmic', "['find_duplicate']", 0.387), ('kodcode_algorithmic', "['find_duplicate']", 0.382), ('kodcode_algorithmic', "['find_duplicate']", 0.367)]
+nearest refs: [('hash_set', 0.652), ('sort_adjacent', 0.481), ('floyd', 0.41)]
+def solve(nums):
+    s = nums[0]
+    for num in nums[1:]:
+        if num == s:
+            return num
+        s = num
+    return -1
+
+
+=== [25] walk|T06||s2r1|20 task=T06 arm=walk role=failing_other_sample passed=False extra=0/3
+A: {'class': 'NOVEL ALGORITHM', 'closest_known_algorithm': 'hash_set', 'differs_how': 'The program uses a list comprehension that filters out elements based on their count, which is an inefficient and indirect way to find the duplicate compared to a direct hash set approach.', 'catalogue_label_if_miss': None, 'confidence': 0.8}
+B: {'class': 'DEGENERATE', 'closest_known_algorithm': 'none', 'differs_how': 'The code uses nums.count(x) inside a list comprehension in a way that does not correctly implement any known algorithm and is logically flawed, effectively relying on repeated counting which is inefficient and incorrect.', 'catalogue_label_if_miss': None, 'confidence': 0.95}
+nearest known: [('kodcode_algorithmic', "['find_duplicate']", 0.29), ('kodcode_algorithmic', "['find_duplicate']", 0.267), ('thealgorithms_python', 'remove_duplicate (None)', 0.245)]
+nearest refs: [('sort_adjacent', 0.407), ('index_marking', 0.367), ('hash_set', 0.341)]
+def solve(nums):
+    nums = [x for i, x in enumerate(nums) if i != nums.count(x)]
+    return nums[0]
+
+
+=== [26] walk|T06||s2r2|26 task=T06 arm=walk role=failing_other_sample passed=False extra=0/3
+A: {'class': 'DEGENERATE', 'closest_known_algorithm': 'sort_adjacent', 'differs_how': 'The code attempts to filter out unique elements by comparing an element to its count, which is an inefficient and incorrect approach for finding duplicates, and then sorts the remaining elements to find the duplicate.', 'catalogue_label_if_miss': None, 'confidence': 0.3}
+B: {'class': 'DEGENERATE', 'closest_known_algorithm': 'none', 'differs_how': 'The code uses an incorrect and nonsensical filtering condition and an out-of-range index access, which does not implement any known algorithm and will raise an error or behave unpredictably.', 'catalogue_label_if_miss': None, 'confidence': 1}
+nearest known: [('kodcode_algorithmic', "['find_duplicate']", 0.5), ('kodcode_algorithmic', "['find_duplicate']", 0.366), ('kodcode_algorithmic', "['find_duplicate']", 0.3)]
+nearest refs: [('sort_adjacent', 0.586), ('index_marking', 0.443), ('hash_set', 0.414)]
+def solve(nums):
+    nums = [x for x in nums if x != nums.count(x)]
+    for i in range(len(nums)):
+        if nums[i] != nums[i + 1]:
+            return nums[i]
+    return nums[0]
+
+
+=== [27] two_step|T1|TWO(bfs,dfs)|sr|96 task=T1 arm=two_step role=failing_other_sample passed=False extra=0/3
+A: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'bfs_listpop_pathcarry', 'differs_how': 'The provided code uses a list as a stack for DFS-like exploration, but it pops from the end and appends to the end, effectively behaving like a stack, and it reconstructs the path by backtracking from the goal. The nearest catalogue reference uses a list as a queue (pop(0)) for BFS and carries the path with each element.', 'catalogue_label_if_miss': 'dfs_stack', 'confidence': 0.8}
+B: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'dfs', 'differs_how': 'The code implements a depth-first search using a path list as a stack and backtracking by popping when no new moves are found, which is a standard DFS approach.', 'catalogue_label_if_miss': 'dfs', 'confidence': 0.95}
+nearest known: [('kodcode_algorithmic', "['bfs']", 0.37), ('kodcode_algorithmic', "['bfs']", 0.356), ('kodcode_algorithmic', "['bfs']", 0.339)]
+nearest refs: [('bfs_listpop_pathcarry', 0.38), ('dfs_stack', 0.342), ('astar_fg', 0.333)]
+def solve(grid, start, goal):
+    if not grid or start == goal:
+        if grid[start[0]][start[1]] == '.':
+            return [start]
+        else:
+            return []
+    
+    rows, cols = len(grid), len(grid[0])
+    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+    
+    # Check if start or goal is a wall
+    if grid[start[0]][start[1]] == '#' or grid[goal[0]][goal[1]] == '#':
+        return []
+    
+    # Initialize path and visited set
+    path = [start]
+    visited = set([start])
+    
+    # Try to extend the path in all directions
+    while path:
+        current = path[-1]
+        for dr, dc in directions:
+            r, c = current[0] + dr, current[1] + dc
+            if 0 <= r < rows and 0 <= c < cols and grid[r][c] == '.' and (r, c) not in visited:
+                visited.add((r, c))
+                path.append((r, c))
+                if (r, c) == goal:
+                    return path
+        # If no new direction is possible, backtrack
+        if len(path) > 1:
+            path.pop()
+    
+    return []
+
+
+=== [28] two_step|T2|TWO(dijkstra,bf_spfa)|sr|49 task=T2 arm=two_step role=failing_other_sample passed=False extra=0/3
+A: {'class': 'LABELLER MISS', 'closest_known_algorithm': 'dijkstra_lazy', 'differs_how': "The program uses a simple BFS-like traversal with a deque and a visited array, which is not Dijkstra's algorithm as it does not prioritize nodes by distance and can explore paths with higher cumulative weights before shorter ones.", 'catalogue_label_if_miss': 'dijkstra', 'confidence': 0.6}
+B: {'class': 'DEGENERATE', 'closest_known_algorithm': 'dijkstra', 'differs_how': 'The code uses a BFS with a visited array that prevents revisiting nodes, which is incorrect for weighted graphs and does not compute shortest paths properly.', 'catalogue_label_if_miss': 'dijkstra', 'confidence': 1.0}
+nearest known: [('mercury', 'network-delay-time', 0.329), ('mercury', 'network-delay-time', 0.325), ('mercury', 'network-delay-time', 0.323)]
+nearest refs: [('dijkstra_lazy', 0.549), ('spfa', 0.536), ('dial_list', 0.391)]
+from collections import deque
+
+def solve(n, edges, s, t):
+    if s == t:
+        return 0
+    
+    # Build adjacency list
+    adj = [[] for _ in range(n)]
+    for u, v, w in edges:
+        adj[u].append((v, w))
+    
+    # BFS-like approach with pruning to avoid cycles
+    visited = [False] * n
+    queue = deque()
+    queue.append((s, 0))
+    visited[s] = True
+    
+    while queue:
+        u, dist = queue.popleft()
+        
+        for v, w in adj[u]:
+            if not visited[v]:
+                visited[v] = True
+                queue.append((v, dist + w))
+                if v == t:
+                    return dist + w
+    
+    return -1
+
+
+=== [29] two_step|T04|TWO(naive,kmp)|sr|23 task=T04 arm=two_step role=failing_other_sample passed=False extra=1/3
+A: {'class': 'NOVEL ALGORITHM', 'closest_known_algorithm': 'kmp', 'differs_how': 'The program implements a suffix automaton for string matching, which is a different data structure and algorithm than KMP.', 'catalogue_label_if_miss': None, 'confidence': 0.9}
+B: {'class': 'CATALOGUE VARIANT', 'closest_known_algorithm': 'suffix automaton substring search', 'differs_how': 'It uses a suffix automaton built for the needle to find the substring in the haystack, which is a known but less common approach compared to the listed catalogue algorithms.', 'catalogue_label_if_miss': None, 'confidence': 0.95}
+nearest known: [('kodcode_algorithmic', "['kmp']", 0.259), ('thealgorithms_python', 'min_window_substring (None)', 0.255), ('kodcode_algorithmic', "['kmp', 'pattern_search']", 0.253)]
+nearest refs: [('kmp', 0.235), ('z_algorithm', 0.214), ('rabin_karp', 0.183)]
+def solve(haystack, needle):
+    if len(needle) > len(haystack):
+        return -1
+
+    # Preprocessing the needle to build a suffix automaton
+    class State:
+        def __init__(self):
+            self.next = {}  # transitions
+            self.link = -1  # suffix link
+            self.len = 0    # length of the longest substring
+
+    # Build the suffix automaton for the needle
+    sa = [State()]
+    last = 0
+
+    for c in needle:
+        curr = len(sa)
+        sa.append(State())
+        sa[curr].len = sa[last].len + 1
+        p = last
+        while p >= 0 and c not in sa[p].next:
+            sa[p].next[c] = curr
+            p = sa[p].link
+        if p == -1:
+            sa[curr].link = 0
+        else:
+            q = sa[p].next[c]
+            if sa[p].len + 1 == sa[q].len:
+                sa[curr].link = q
+            else:
+                clone = len(sa)
+                sa.append(State())
+                sa[clone].len = sa[p].len + 1
+                sa[clone].next = sa[q].next.copy()
+                sa[clone].link = sa[q].link
+                while p >= 0 and sa[p].next[c] == q:
+                    sa[p].next[c] = clone
+                    p = sa[p].link
+                sa[q].link = clone
+                sa[curr].link = clone
+        last = curr
+
+    # Now check if the haystack matches the needle using the suffix automaton
+    current = 0
+    for i, c in enumerate(haystack):
+        while current > 0 and c not in sa[current].next:
+            current = sa[current].link
+        if c in sa[current].next:
+            current = sa[current].next[c]
+        else:
+            current = 0
+        if sa[current].len == len(needle):
+            return i - len(needle) + 1
+
+    return -1
+

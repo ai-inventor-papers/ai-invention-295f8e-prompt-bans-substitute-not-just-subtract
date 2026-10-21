@@ -1,0 +1,6154 @@
+{
+  "metadata": {
+    "method_name": "Token-walk logit vetoes vs prompt bans vs long-form novelty instructions (Qwen3-8B)",
+    "artifact_plan_id": "gen_plan_experiment_6_idx7",
+    "utc": "2026-10-21T00:51:23.541030Z",
+    "model": "Qwen/Qwen3-8B (+ official FP8)",
+    "model_revision_bf16": "b968826d9c46dd6066d109eabc6255188de91218",
+    "versions": {
+      "vllm": "0.11.0",
+      "torch": "2.8.0",
+      "transformers": "4.57.6",
+      "numpy": "2.2.6",
+      "scipy": "1.18.1"
+    },
+    "hardware_branch": "L4 23 GB (between the plan's 20 GB and >=24 GB branches); precision by family (D2)",
+    "decoding": {
+      "temperature": 1.0,
+      "top_p": 1.0,
+      "top_k": -1,
+      "min_p": 0.0,
+      "max_tokens_short": 1024,
+      "max_tokens_long": 4096,
+      "think_cap": 16384
+    },
+    "baseline_vs_method": {
+      "baselines": [
+        "step 0 neutral twins (no veto) per veto arm",
+        "prompt bans (LOS lists, two-step bans, exp9 TOP5/T2 LOS)",
+        "sham n-gram veto (matched control)"
+      ],
+      "methods": [
+        "persistent distinctive n-gram veto walk",
+        "fixed TOP5 veto",
+        "long-form novelty instructions (thinking off / on)"
+      ]
+    },
+    "walk": {
+      "T1": {
+        "status": "STALLED",
+        "vetoed": [
+          "bfs"
+        ],
+        "rungs": [
+          {
+            "rung": 1,
+            "label": "bfs",
+            "source": "default (step 0)"
+          }
+        ],
+        "deepest_rung_reached": 1,
+        "sham_vs_distinctive": {
+          "sham_ngram": " start == goal:\n",
+          "sham_default_share": 1.0,
+          "sham_default_ci": [
+            0.9286523998213857,
+            0.9999999999999999
+          ],
+          "distinctive_default_share": 0.9411764705882353,
+          "distinctive_default_ci": [
+            0.7301796914154303,
+            0.9895395991310502
+          ],
+          "default_share_diff": {
+            "diff": 0.05882352941176472,
+            "ci": [
+              -0.027370857027818676,
+              0.26982030858456973
+            ]
+          },
+          "sham_pass_rate": 0.96,
+          "distinctive_pass_rate": 0.7647058823529411,
+          "pass_diff": {
+            "diff": 0.19529411764705884,
+            "ci": [
+              0.026540965052046755,
+              0.4343785448870954
+            ]
+          },
+          "sham_invalid_share": 0.0,
+          "distinctive_invalid_share": 0.66,
+          "sham_leak_rate": 0.0,
+          "prediction": "sham keeps the default share >= 0.9",
+          "prediction_met": true,
+          "flag_generic_masking": false
+        }
+      },
+      "T2": {
+        "status": "STALLED",
+        "vetoed": [
+          "dijkstra"
+        ],
+        "rungs": [
+          {
+            "rung": 1,
+            "label": "dijkstra",
+            "source": "default (step 0)"
+          }
+        ],
+        "deepest_rung_reached": 1,
+        "sham_vs_distinctive": {
+          "sham_ngram": " u, v, w",
+          "sham_default_share": 1.0,
+          "sham_default_ci": [
+            0.9286523998213857,
+            0.9999999999999999
+          ],
+          "distinctive_default_share": 1.0,
+          "distinctive_default_ci": [
+            0.92292643579224,
+            1.0
+          ],
+          "default_share_diff": {
+            "diff": 0.0,
+            "ci": [
+              -0.0713476001786143,
+              0.07707356420776001
+            ]
+          },
+          "sham_pass_rate": 1.0,
+          "distinctive_pass_rate": 0.41304347826086957,
+          "pass_diff": {
+            "diff": 0.5869565217391304,
+            "ci": [
+              0.4266430872907092,
+              0.7171139686530077
+            ]
+          },
+          "sham_invalid_share": 0.0,
+          "distinctive_invalid_share": 0.08,
+          "sham_leak_rate": 0.96,
+          "prediction": "sham keeps the default share >= 0.9",
+          "prediction_met": true,
+          "flag_generic_masking": false
+        }
+      },
+      "T03": {
+        "status": "STALLED",
+        "vetoed": [
+          "full_sort"
+        ],
+        "rungs": [
+          {
+            "rung": 1,
+            "label": "full_sort",
+            "source": "default (step 0)"
+          }
+        ],
+        "deepest_rung_reached": 1,
+        "sham_vs_distinctive": {
+          "utc": "2026-10-20T22:14:47.573840Z",
+          "task": "T03",
+          "sham_candidate": {
+            "ids": [
+              10614,
+              741
+            ],
+            "string": ".sort()\n",
+            "n": 2,
+            "presence_refs": 0.88,
+            "min_presence_others": 0.0,
+            "presence_others": {
+              "size_k_heap": 0.0,
+              "heapify_pop": 0.0,
+              "quickselect": 0.0,
+              "median_of_medians": 0.3,
+              "counting_sort": 0.0
+            },
+            "rule": "fallback: maximise the minimum presence across algorithms (tie at min presence 0.00 broken by max mean presence 0.06)",
+            "n_pool": 1,
+            "n_target": 2,
+            "presence_target": 0.88
+          },
+          "status": "NOT_CONSTRUCTIBLE",
+          "reason": "no algorithm-generic n-gram (>= 0.8 presence in every algorithm's programs, identifier text, outside the signature) exists; the fallback candidate is default-specific, so it would not be a sham"
+        }
+      },
+      "T04": {
+        "status": "STALLED",
+        "vetoed": [
+          "naive"
+        ],
+        "rungs": [
+          {
+            "rung": 1,
+            "label": "naive",
+            "source": "default (step 0)"
+          }
+        ],
+        "deepest_rung_reached": 1,
+        "sham_vs_distinctive": {
+          "sham_ngram": " len",
+          "sham_default_share": 0.98,
+          "sham_default_ci": [
+            0.8950455630610349,
+            0.9964607407674954
+          ],
+          "distinctive_default_share": 1.0,
+          "distinctive_default_ci": [
+            0.9286523998213857,
+            0.9999999999999999
+          ],
+          "default_share_diff": {
+            "diff": -0.020000000000000018,
+            "ci": [
+              -0.10495443693896511,
+              0.05322182760531237
+            ]
+          },
+          "sham_pass_rate": 0.96,
+          "distinctive_pass_rate": 1.0,
+          "pass_diff": {
+            "diff": -0.040000000000000036,
+            "ci": [
+              -0.13460090793615154,
+              0.03700146932362093
+            ]
+          },
+          "sham_invalid_share": 0.0,
+          "distinctive_invalid_share": 0.0,
+          "sham_leak_rate": 0.98,
+          "prediction": "sham keeps the default share >= 0.9",
+          "prediction_met": true,
+          "flag_generic_masking": false
+        }
+      },
+      "T06": {
+        "status": "STALLED",
+        "vetoed": [
+          "hash_set",
+          "sort_adjacent"
+        ],
+        "rungs": [
+          {
+            "rung": 1,
+            "label": "hash_set",
+            "source": "default (step 0)"
+          },
+          {
+            "rung": 2,
+            "label": "sort_adjacent",
+            "correct_only": "sort_adjacent",
+            "share": 0.8409090909090909
+          }
+        ],
+        "deepest_rung_reached": 2,
+        "sham_vs_distinctive": {
+          "utc": "2026-10-20T22:14:47.801642Z",
+          "task": "T06",
+          "sham_candidate": {
+            "ids": [
+              10307,
+              510
+            ],
+            "string": " nums:\n",
+            "n": 2,
+            "presence_refs": 1.0,
+            "min_presence_others": 0.0,
+            "presence_others": {
+              "sort_adjacent": 0.0,
+              "floyd": 0.0,
+              "value_binary_search": 0.925,
+              "index_marking": 0.6818181818181818
+            },
+            "rule": "fallback: maximise the minimum presence across algorithms (tie at min presence 0.00 broken by max mean presence 0.40)",
+            "n_pool": 1,
+            "n_target": 1,
+            "presence_target": 1.0
+          },
+          "status": "NOT_CONSTRUCTIBLE",
+          "reason": "no algorithm-generic n-gram (>= 0.8 presence in every algorithm's programs, identifier text, outside the signature) exists; the fallback candidate is default-specific, so it would not be a sham"
+        }
+      },
+      "T10": {
+        "status": "STALLED",
+        "vetoed": [
+          "union_find"
+        ],
+        "rungs": [
+          {
+            "rung": 1,
+            "label": "union_find",
+            "source": "default (step 0)"
+          }
+        ],
+        "deepest_rung_reached": 1,
+        "sham_vs_distinctive": {
+          "sham_ngram": " range",
+          "sham_default_share": 1.0,
+          "sham_default_ci": [
+            0.9197043950765086,
+            0.9999999999999999
+          ],
+          "distinctive_default_share": 0.2727272727272727,
+          "distinctive_default_ci": [
+            0.09746059213308628,
+            0.5656453033189257
+          ],
+          "default_share_diff": {
+            "diff": 0.7272727272727273,
+            "ci": [
+              0.42354858135126455,
+              0.9025394078669138
+            ]
+          },
+          "sham_pass_rate": 1.0,
+          "distinctive_pass_rate": 0.8181818181818182,
+          "pass_diff": {
+            "diff": 0.18181818181818177,
+            "ci": [
+              0.028636214296370893,
+              0.47698056435423275
+            ]
+          },
+          "sham_invalid_share": 0.12,
+          "distinctive_invalid_share": 0.78,
+          "sham_leak_rate": 0.98,
+          "prediction": "sham keeps the default share >= 0.9",
+          "prediction_met": true,
+          "flag_generic_masking": false
+        }
+      }
+    },
+    "fixed_top5_T1": {
+      "targets": [
+        "bfs",
+        "dfs",
+        "iddfs"
+      ],
+      "rounds": [
+        {
+          "round": 0,
+          "counts": {
+            "invalid": 38,
+            "bfs": 12
+          },
+          "pass_rate": 0.75,
+          "reemergence": {
+            "bfs": 1.0,
+            "dfs": 0.0,
+            "iddfs": 0.0,
+            "astar_gbfs": 0.0
+          },
+          "leak_rate": 0.02,
+          "decision": "re-emergence {'bfs': 1.0, 'dfs': 0.0, 'iddfs': 0.0, 'astar_gbfs': 0.0}: +[' queue.append(start']"
+        },
+        {
+          "round": 1,
+          "counts": {
+            "invalid": 40,
+            "bfs": 10
+          },
+          "pass_rate": 0.7,
+          "reemergence": {
+            "bfs": 1.0,
+            "dfs": 0.0,
+            "iddfs": 0.0,
+            "astar_gbfs": 0.0
+          },
+          "leak_rate": 0.0,
+          "decision": "re-emergence {'bfs': 1.0, 'dfs': 0.0, 'iddfs': 0.0, 'astar_gbfs': 0.0}: +[' parent[n']"
+        },
+        {
+          "round": 2,
+          "counts": {
+            "invalid": 35,
+            "bfs": 13,
+            "dfs": 2
+          },
+          "pass_rate": 0.4666666666666667,
+          "reemergence": {
+            "bfs": 0.8666666666666667,
+            "dfs": 0.13333333333333333,
+            "iddfs": 0.0,
+            "astar_gbfs": 0.0
+          },
+          "leak_rate": 0.04,
+          "decision": null
+        }
+      ],
+      "final_round": {
+        "n": 50,
+        "attempted": 15,
+        "counts": {
+          "invalid": 35,
+          "bfs": 13,
+          "dfs": 2
+        },
+        "avoidance": 0.0,
+        "avoidance_ci": [
+          0.0,
+          0.20388330359648707
+        ],
+        "landing": {},
+        "landing_correct": {},
+        "hill_cc": 0.0,
+        "hill_cc_rarefied20": null,
+        "other_share": 0.0,
+        "invalid_share": 0.7,
+        "pass_rate": 0.4666666666666667,
+        "pass_ci": [
+          0.24809535232620925,
+          0.6988302012468901
+        ],
+        "per_template": {
+          "W1": {
+            "invalid": 8,
+            "bfs": 2
+          },
+          "W2": {
+            "invalid": 6,
+            "bfs": 3,
+            "dfs": 1
+          },
+          "W3": {
+            "invalid": 5,
+            "bfs": 5
+          },
+          "W4": {
+            "invalid": 8,
+            "bfs": 2
+          },
+          "W5": {
+            "invalid": 8,
+            "bfs": 1,
+            "dfs": 1
+          }
+        }
+      },
+      "mask_items": [
+        {
+          "algo": "bfs",
+          "string": " c, path = queue.p",
+          "kind": "fixed_top5"
+        },
+        {
+          "algo": "dfs",
+          "string": " path):\n",
+          "kind": "fixed_top5"
+        },
+        {
+          "algo": "iddfs",
+          "string": " depth",
+          "kind": "fixed_top5"
+        }
+      ],
+      "exp9_TOP5_prompt_ban": {
+        "avoidance": 0.0,
+        "counts": {
+          "banned:dfs": 36,
+          "banned:bfs": 63,
+          "banned:iddfs": 1
+        },
+        "banned": [
+          "bfs",
+          "dfs",
+          "gbfs"
+        ],
+        "pass_rate_attempted": 0.68,
+        "n": 100
+      }
+    },
+    "c3": {
+      "cells": [
+        {
+          "task": "T2",
+          "S": "dijkstra",
+          "rung": 1,
+          "can": 1.0,
+          "qualifies": false,
+          "prediction": null,
+          "disconfirming": null,
+          "will_source": "exp9 LOS (not re-run)",
+          "will": 0.95,
+          "n_attempted": 100,
+          "k": 95,
+          "will_ci": [
+            0.8882495307680808,
+            0.9784563208456319
+          ],
+          "will_template_bootstrap_ci": [
+            1.0,
+            1.0
+          ],
+          "cell_verdict": null
+        },
+        {
+          "task": "T2",
+          "S": "bf_spfa",
+          "rung": 2,
+          "can": 0.85,
+          "qualifies": false,
+          "prediction": null,
+          "disconfirming": null,
+          "will_source": "exp9 LOS (not re-run)",
+          "will": 0.51,
+          "n_attempted": 100,
+          "k": 51,
+          "will_ci": [
+            0.4134801193402717,
+            0.6057800106955886
+          ],
+          "will_template_bootstrap_ci": [
+            1.0,
+            1.0
+          ],
+          "cell_verdict": null
+        },
+        {
+          "task": "T2",
+          "S": "bidijkstra",
+          "rung": ">=3",
+          "can": 0.016666666666666666,
+          "qualifies": false,
+          "prediction": null,
+          "disconfirming": null,
+          "will_source": "exp9 LOS (not re-run)",
+          "will": 0.0,
+          "n_attempted": 100,
+          "k": 0,
+          "will_ci": [
+            3.469446951953614e-18,
+            0.03699349820698568
+          ],
+          "will_template_bootstrap_ci": null,
+          "cell_verdict": null
+        }
+      ],
+      "per_task": {
+        "T2": {
+          "verdict": "CONFIRMED",
+          "n_qualifying": 1
+        },
+        "T03": {
+          "verdict": "DISCONFIRMED",
+          "n_qualifying": 3
+        },
+        "T04": {
+          "verdict": "UNTESTABLE",
+          "n_qualifying": 0
+        },
+        "T06": {
+          "verdict": "MIXED",
+          "n_qualifying": 2
+        },
+        "T10": {
+          "verdict": "DISCONFIRMED",
+          "n_qualifying": 1
+        }
+      },
+      "overall": "DISCONFIRMED",
+      "sensitivity_association_rung2": {
+        "cells": [
+          {
+            "task": "T2",
+            "S": "dijkstra",
+            "rung": 1,
+            "rung_alt": null,
+            "rung2_alt": null,
+            "can": 1.0,
+            "will": 0.95,
+            "will_corrected": null,
+            "qualifies": false,
+            "qualifies_alt": null
+          },
+          {
+            "task": "T2",
+            "S": "bf_spfa",
+            "rung": 2,
+            "rung_alt": null,
+            "rung2_alt": null,
+            "can": 0.85,
+            "will": 0.51,
+            "will_corrected": null,
+            "qualifies": false,
+            "qualifies_alt": null
+          },
+          {
+            "task": "T2",
+            "S": "bidijkstra",
+            "rung": ">=3",
+            "rung_alt": null,
+            "rung2_alt": null,
+            "can": 0.016666666666666666,
+            "will": 0.0,
+            "will_corrected": null,
+            "qualifies": false,
+            "qualifies_alt": null
+          }
+        ],
+        "verdict_alt": "DISCONFIRMED",
+        "note": "post hoc (not preregistered): the walk stalled at step 1 on T03 and T10, so their committed rung 2 came from the flagged fallback chain; this recomputes C3 with rung 2 := the association modal answer ..."
+      },
+      "holm_family": "C3 reach is a SECONDARY Holm-family member (recorded for next-round pooling; no Holm adjustment is applied inside this artifact because the verdict rule is a point-estimate rule)",
+      "rule": "CONFIRMED if every qualifying cell (rung >= 3, can >= 0.7) has will <= 0.1 and >= 1 cell exists; DISCONFIRMED if any has will >= 0.3; else MIXED / UNTESTABLE",
+      "scope": "Qwen3-8B only; bench cells from this artifact (FP8), T2 cells from exp9 (bf16, not re-run); T1 has no LOS (C3 untestable on T1: can is low for most algorithms)"
+    },
+    "reach": {
+      "walk_vs_prompt": {
+        "T1": {
+          "walk_status": "STALLED",
+          "walk_deepest_rung": 1,
+          "walk_rungs": [
+            {
+              "rung": 1,
+              "label": "bfs",
+              "source": "default (step 0)"
+            }
+          ],
+          "rung3plus_reached_at_share_ge_0.30": [],
+          "statement": "not decided at any single token; vetoes are bypassed"
+        },
+        "T2": {
+          "walk_status": "STALLED",
+          "walk_deepest_rung": 1,
+          "walk_rungs": [
+            {
+              "rung": 1,
+              "label": "dijkstra",
+              "source": "default (step 0)"
+            }
+          ],
+          "rung3plus_reached_at_share_ge_0.30": [],
+          "statement": "not decided at any single token; vetoes are bypassed"
+        },
+        "T03": {
+          "walk_status": "STALLED",
+          "walk_deepest_rung": 1,
+          "walk_rungs": [
+            {
+              "rung": 1,
+              "label": "full_sort",
+              "source": "default (step 0)"
+            }
+          ],
+          "rung3plus_reached_at_share_ge_0.30": [],
+          "statement": "not decided at any single token; vetoes are bypassed"
+        },
+        "T04": {
+          "walk_status": "STALLED",
+          "walk_deepest_rung": 1,
+          "walk_rungs": [
+            {
+              "rung": 1,
+              "label": "naive",
+              "source": "default (step 0)"
+            }
+          ],
+          "rung3plus_reached_at_share_ge_0.30": [],
+          "statement": "not decided at any single token; vetoes are bypassed"
+        },
+        "T06": {
+          "walk_status": "STALLED",
+          "walk_deepest_rung": 2,
+          "walk_rungs": [
+            {
+              "rung": 1,
+              "label": "hash_set",
+              "source": "default (step 0)"
+            },
+            {
+              "rung": 2,
+              "label": "sort_adjacent",
+              "correct_only": "sort_adjacent",
+              "share": 0.8409090909090909
+            }
+          ],
+          "rung3plus_reached_at_share_ge_0.30": [],
+          "statement": "not decided at any single token; vetoes are bypassed"
+        },
+        "T10": {
+          "walk_status": "STALLED",
+          "walk_deepest_rung": 1,
+          "walk_rungs": [
+            {
+              "rung": 1,
+              "label": "union_find",
+              "source": "default (step 0)"
+            }
+          ],
+          "rung3plus_reached_at_share_ge_0.30": [],
+          "statement": "not decided at any single token; vetoes are bypassed"
+        }
+      },
+      "two_step": {
+        "T1": {
+          "banned": [
+            "bfs",
+            "dfs"
+          ],
+          "R2": {
+            "R2": "dfs",
+            "flagged": true,
+            "source": "exp8/exp9 realised single-ban substitute"
+          },
+          "n": 100,
+          "attempted": 100,
+          "counts": {
+            "dfs": 82,
+            "bfs": 16,
+            "dijkstra": 1,
+            "other": 1
+          },
+          "avoidance": 0.02,
+          "avoidance_ci": [
+            0.0055019675006616475,
+            0.07001179131757478
+          ],
+          "landing": {
+            "dijkstra": 1,
+            "other": 1
+          },
+          "landing_correct": {
+            "dijkstra": 1
+          },
+          "hill_cc": 1.0,
+          "hill_cc_rarefied20": null,
+          "other_share": 0.01,
+          "invalid_share": 0.0,
+          "pass_rate": 0.54,
+          "pass_ci": [
+            0.4426486024827802,
+            0.6343919176157
+          ],
+          "per_template": {
+            "W1": {
+              "dfs": 20
+            },
+            "W2": {
+              "dfs": 20
+            },
+            "W3": {
+              "dfs": 19,
+              "bfs": 1
+            },
+            "W4": {
+              "bfs": 13,
+              "dfs": 7
+            },
+            "W5": {
+              "dfs": 16,
+              "bfs": 2,
+              "dijkstra": 1,
+              "other": 1
+            }
+          },
+          "compliance": 0.02,
+          "scores": {
+            "SNAPBACK": {
+              "snap_back_rate": 0.16,
+              "top1_hit": false
+            }
+          },
+          "disguise": {
+            "bfs": {
+              "n": 16,
+              "disguised": 13
+            },
+            "dfs": {
+              "n": 82,
+              "disguised": 30
+            }
+          },
+          "disguise_rate": 0.4387755102040816
+        },
+        "T2": {
+          "banned": [
+            "dijkstra",
+            "bf_spfa"
+          ],
+          "R2": {
+            "R2": "bf_spfa",
+            "flagged": true,
+            "source": "exp8/exp9 realised single-ban substitute"
+          },
+          "n": 100,
+          "attempted": 100,
+          "counts": {
+            "bf_spfa": 67,
+            "dijkstra": 32,
+            "other": 1
+          },
+          "avoidance": 0.01,
+          "avoidance_ci": [
+            0.0017674320446096452,
+            0.05448619674900669
+          ],
+          "landing": {
+            "other": 1
+          },
+          "landing_correct": {},
+          "hill_cc": 0.0,
+          "hill_cc_rarefied20": null,
+          "other_share": 0.01,
+          "invalid_share": 0.0,
+          "pass_rate": 0.81,
+          "pass_ci": [
+            0.7222115454423077,
+            0.8748524853209148
+          ],
+          "per_template": {
+            "W1": {
+              "bf_spfa": 11,
+              "dijkstra": 9
+            },
+            "W2": {
+              "bf_spfa": 13,
+              "dijkstra": 7
+            },
+            "W3": {
+              "dijkstra": 9,
+              "bf_spfa": 10,
+              "other": 1
+            },
+            "W4": {
+              "bf_spfa": 18,
+              "dijkstra": 2
+            },
+            "W5": {
+              "bf_spfa": 15,
+              "dijkstra": 5
+            }
+          },
+          "compliance": 0.01,
+          "scores": {
+            "SNAPBACK": {
+              "snap_back_rate": 0.32,
+              "top1_hit": false
+            }
+          },
+          "disguise": {
+            "dijkstra": {
+              "n": 32,
+              "disguised": 4
+            },
+            "bf_spfa": {
+              "n": 67,
+              "disguised": 50
+            }
+          },
+          "disguise_rate": 0.5454545454545454
+        },
+        "T03": {
+          "banned": [
+            "full_sort",
+            "counting_sort"
+          ],
+          "R2": {
+            "R2": "counting_sort",
+            "flagged": true,
+            "source": "modal non-default catalogue label at step 1 (>=5)"
+          },
+          "n": 100,
+          "attempted": 100,
+          "counts": {
+            "quickselect": 63,
+            "size_k_heap": 37
+          },
+          "avoidance": 1.0,
+          "avoidance_ci": [
+            0.9630065012310038,
+            1.0
+          ],
+          "landing": {
+            "quickselect": 63,
+            "size_k_heap": 37
+          },
+          "landing_correct": {
+            "quickselect": 52,
+            "size_k_heap": 37
+          },
+          "hill_cc": 1.9716611546974494,
+          "hill_cc_rarefied20": 1.9305293965731614,
+          "other_share": 0.0,
+          "invalid_share": 0.0,
+          "pass_rate": 0.89,
+          "pass_ci": [
+            0.8136870342543766,
+            0.9374580367058064
+          ],
+          "per_template": {
+            "W1": {
+              "quickselect": 16,
+              "size_k_heap": 4
+            },
+            "W2": {
+              "size_k_heap": 9,
+              "quickselect": 11
+            },
+            "W3": {
+              "size_k_heap": 17,
+              "quickselect": 3
+            },
+            "W4": {
+              "quickselect": 20
+            },
+            "W5": {
+              "quickselect": 13,
+              "size_k_heap": 7
+            }
+          },
+          "compliance": 1.0,
+          "scores": {
+            "ASSOCIATE": {
+              "mean_log_score": -1.658658051415118,
+              "top1": "quickselect",
+              "observed_modal": "quickselect",
+              "top1_hit": true
+            },
+            "SNAPBACK": {
+              "snap_back_rate": 0.0,
+              "top1_hit": false
+            }
+          },
+          "disguise": {
+            "full_sort": {
+              "n": 0,
+              "disguised": 0
+            },
+            "counting_sort": {
+              "n": 0,
+              "disguised": 0
+            }
+          },
+          "disguise_rate": null
+        },
+        "T04": {
+          "banned": [
+            "naive",
+            "kmp"
+          ],
+          "R2": {
+            "R2": "kmp",
+            "flagged": true,
+            "source": "association modal answer for D"
+          },
+          "n": 100,
+          "attempted": 100,
+          "counts": {
+            "naive": 74,
+            "bmh": 2,
+            "other": 1,
+            "builtin": 2,
+            "kmp": 12,
+            "rabin_karp": 9
+          },
+          "avoidance": 0.14,
+          "avoidance_ci": [
+            0.08526343626497376,
+            0.2213718828487036
+          ],
+          "landing": {
+            "bmh": 2,
+            "other": 1,
+            "builtin": 2,
+            "rabin_karp": 9
+          },
+          "landing_correct": {
+            "builtin": 2,
+            "rabin_karp": 3
+          },
+          "hill_cc": 1.9601317042077895,
+          "hill_cc_rarefied20": null,
+          "other_share": 0.01,
+          "invalid_share": 0.0,
+          "pass_rate": 0.9,
+          "pass_ci": [
+            0.8256343377898756,
+            0.9447708631949274
+          ],
+          "per_template": {
+            "W1": {
+              "naive": 20
+            },
+            "W2": {
+              "naive": 8,
+              "bmh": 1,
+              "other": 1,
+              "builtin": 2,
+              "kmp": 6,
+              "rabin_karp": 2
+            },
+            "W3": {
+              "naive": 16,
+              "rabin_karp": 1,
+              "kmp": 3
+            },
+            "W4": {
+              "naive": 20
+            },
+            "W5": {
+              "kmp": 3,
+              "naive": 10,
+              "bmh": 1,
+              "rabin_karp": 6
+            }
+          },
+          "compliance": 0.14,
+          "scores": {
+            "SNAPBACK": {
+              "snap_back_rate": 0.74,
+              "top1_hit": true
+            }
+          },
+          "disguise": {
+            "naive": {
+              "n": 74,
+              "disguised": 72
+            },
+            "kmp": {
+              "n": 12,
+              "disguised": 0
+            }
+          },
+          "disguise_rate": 0.8372093023255814
+        },
+        "T06": {
+          "banned": [
+            "hash_set",
+            "sort_adjacent"
+          ],
+          "R2": {
+            "R2": "sort_adjacent",
+            "flagged": false,
+            "source": "walk rung 2"
+          },
+          "n": 100,
+          "attempted": 100,
+          "counts": {
+            "index_marking": 52,
+            "hash_set": 4,
+            "floyd": 42,
+            "other": 2
+          },
+          "avoidance": 0.96,
+          "avoidance_ci": [
+            0.9016292850152788,
+            0.9843366961172447
+          ],
+          "landing": {
+            "index_marking": 52,
+            "floyd": 42,
+            "other": 2
+          },
+          "landing_correct": {
+            "floyd": 35,
+            "index_marking": 34
+          },
+          "hill_cc": 1.9997899637685828,
+          "hill_cc_rarefied20": 1.9616798550745422,
+          "other_share": 0.02,
+          "invalid_share": 0.0,
+          "pass_rate": 0.73,
+          "pass_ci": [
+            0.6356788315330401,
+            0.8073041590332216
+          ],
+          "per_template": {
+            "W1": {
+              "index_marking": 11,
+              "hash_set": 2,
+              "floyd": 6,
+              "other": 1
+            },
+            "W2": {
+              "index_marking": 10,
+              "floyd": 10
+            },
+            "W3": {
+              "floyd": 17,
+              "other": 1,
+              "index_marking": 2
+            },
+            "W4": {
+              "index_marking": 20
+            },
+            "W5": {
+              "index_marking": 9,
+              "floyd": 9,
+              "hash_set": 2
+            }
+          },
+          "compliance": 0.96,
+          "scores": {
+            "WALK2": {
+              "mean_log_score": -0.7917281623127459,
+              "top1": "index_marking",
+              "observed_modal": "index_marking",
+              "top1_hit": true
+            },
+            "ASSOCIATE": {
+              "mean_log_score": -2.3232490539499513,
+              "top1": "floyd",
+              "observed_modal": "index_marking",
+              "top1_hit": false
+            },
+            "SNAPBACK": {
+              "snap_back_rate": 0.04,
+              "top1_hit": false
+            }
+          },
+          "disguise": {
+            "hash_set": {
+              "n": 4,
+              "disguised": 4
+            },
+            "sort_adjacent": {
+              "n": 0,
+              "disguised": 0
+            }
+          },
+          "disguise_rate": 1.0
+        },
+        "T10": {
+          "banned": [
+            "union_find",
+            "dfs"
+          ],
+          "R2": {
+            "R2": "dfs",
+            "flagged": true,
+            "source": "modal non-default catalogue label at step 1 (>=5)"
+          },
+          "n": 100,
+          "attempted": 100,
+          "counts": {
+            "bfs": 100
+          },
+          "avoidance": 1.0,
+          "avoidance_ci": [
+            0.9630065012310038,
+            1.0
+          ],
+          "landing": {
+            "bfs": 100
+          },
+          "landing_correct": {
+            "bfs": 100
+          },
+          "hill_cc": 1.0,
+          "hill_cc_rarefied20": 1.0,
+          "other_share": 0.0,
+          "invalid_share": 0.0,
+          "pass_rate": 1.0,
+          "pass_ci": [
+            0.9630065012310038,
+            1.0
+          ],
+          "per_template": {
+            "W1": {
+              "bfs": 20
+            },
+            "W2": {
+              "bfs": 20
+            },
+            "W3": {
+              "bfs": 20
+            },
+            "W4": {
+              "bfs": 20
+            },
+            "W5": {
+              "bfs": 20
+            }
+          },
+          "compliance": 1.0,
+          "scores": {
+            "ASSOCIATE": {
+              "mean_log_score": -0.046043938501406846,
+              "top1": "bfs",
+              "observed_modal": "bfs",
+              "top1_hit": true
+            },
+            "SNAPBACK": {
+              "snap_back_rate": 0.0,
+              "top1_hit": false
+            }
+          },
+          "disguise": {
+            "union_find": {
+              "n": 0,
+              "disguised": 0
+            },
+            "dfs": {
+              "n": 0,
+              "disguised": 0
+            }
+          },
+          "disguise_rate": null
+        }
+      },
+      "los_events": [
+        {
+          "event_type": "los",
+          "task": "T03",
+          "condition": "LOS(full_sort)",
+          "banned": [
+            "size_k_heap",
+            "heapify_pop",
+            "quickselect"
+          ],
+          "survivor": "full_sort",
+          "n": 50,
+          "attempted": 50,
+          "counts": {
+            "quickselect": 50
+          },
+          "avoidance": 0.0,
+          "avoidance_ci": [
+            0.0,
+            0.07134760017861413
+          ],
+          "landing": {},
+          "landing_correct": {},
+          "hill_cc": 0.0,
+          "hill_cc_rarefied20": null,
+          "other_share": 0.0,
+          "invalid_share": 0.0,
+          "pass_rate": 0.94,
+          "pass_ci": [
+            0.8378290820312557,
+            0.9793850298115638
+          ],
+          "per_template": {
+            "W1": {
+              "quickselect": 10
+            },
+            "W2": {
+              "quickselect": 10
+            },
+            "W3": {
+              "quickselect": 10
+            },
+            "W4": {
+              "quickselect": 10
+            },
+            "W5": {
+              "quickselect": 10
+            }
+          },
+          "counts_corrected": {
+            "quickselect": 50
+          },
+          "will_corrected": 0.0,
+          "will": 0.0,
+          "will_ci": [
+            0.0,
+            0.07134760017861413
+          ],
+          "will_template_bootstrap_ci": [
+            0.0,
+            0.0
+          ],
+          "disguise": {
+            "size_k_heap": {
+              "n": 0,
+              "disguised": 0
+            },
+            "heapify_pop": {
+              "n": 0,
+              "disguised": 0
+            },
+            "quickselect": {
+              "n": 50,
+              "disguised": 2
+            },
+            "median_of_medians": {
+              "n": 0,
+              "disguised": 0
+            },
+            "counting_sort": {
+              "n": 0,
+              "disguised": 0
+            }
+          },
+          "disguise_rate": 0.04
+        },
+        {
+          "event_type": "los",
+          "task": "T03",
+          "condition": "LOS(quickselect)",
+          "banned": [
+            "full_sort",
+            "size_k_heap",
+            "heapify_pop"
+          ],
+          "survivor": "quickselect",
+          "n": 50,
+          "attempted": 50,
+          "counts": {
+            "quickselect": 50
+          },
+          "avoidance": 1.0,
+          "avoidance_ci": [
+            0.9286523998213857,
+            0.9999999999999999
+          ],
+          "landing": {
+            "quickselect": 50
+          },
+          "landing_correct": {
+            "quickselect": 49
+          },
+          "hill_cc": 1.0,
+          "hill_cc_rarefied20": 1.0,
+          "other_share": 0.0,
+          "invalid_share": 0.0,
+          "pass_rate": 0.98,
+          "pass_ci": [
+            0.8950455630610349,
+            0.9964607407674954
+          ],
+          "per_template": {
+            "W1": {
+              "quickselect": 10
+            },
+            "W2": {
+              "quickselect": 10
+            },
+            "W3": {
+              "quickselect": 10
+            },
+            "W4": {
+              "quickselect": 10
+            },
+            "W5": {
+              "quickselect": 10
+            }
+          },
+          "counts_corrected": {
+            "quickselect": 50
+          },
+          "will_corrected": 1.0,
+          "will": 1.0,
+          "will_ci": [
+            0.9286523998213857,
+            0.9999999999999999
+          ],
+          "will_template_bootstrap_ci": [
+            1.0,
+            1.0
+          ],
+          "disguise": {
+            "full_sort": {
+              "n": 0,
+              "disguised": 0
+            },
+            "size_k_heap": {
+              "n": 0,
+              "disguised": 0
+            },
+            "heapify_pop": {
+              "n": 0,
+              "disguised": 0
+            },
+            "median_of_medians": {
+              "n": 0,
+              "disguised": 0
+            },
+            "counting_sort": {
+              "n": 0,
+              "disguised": 0
+            }
+          },
+          "disguise_rate": null
+        },
+        {
+          "event_type": "los",
+          "task": "T03",
+          "condition": "LOS(size_k_heap)",
+          "banned": [
+            "full_sort",
+            "heapify_pop",
+            "quickselect"
+          ],
+          "survivor": "size_k_heap",
+          "n": 50,
+          "attempted": 50,
+          "counts": {
+            "quickselect": 50
+          },
+          "avoidance": 0.0,
+          "avoidance_ci": [
+            0.0,
+            0.07134760017861413
+          ],
+          "landing": {},
+          "landing_correct": {},
+          "hill_cc": 0.0,
+          "hill_cc_rarefied20": null,
+          "other_share": 0.0,
+          "invalid_share": 0.0,
+          "pass_rate": 0.9,
+          "pass_ci": [
+            0.7863976845138676,
+            0.956524235343241
+          ],
+          "per_template": {
+            "W1": {
+              "quickselect": 10
+            },
+            "W2": {
+              "quickselect": 10
+            },
+            "W3": {
+              "quickselect": 10
+            },
+            "W4": {
+              "quickselect": 10
+            },
+            "W5": {
+              "quickselect": 10
+            }
+          },
+          "counts_corrected": {
+            "quickselect": 50
+          },
+          "will_corrected": 0.0,
+          "will": 0.0,
+          "will_ci": [
+            0.0,
+            0.07134760017861413
+          ],
+          "will_template_bootstrap_ci": [
+            0.0,
+            0.0
+          ],
+          "disguise": {
+            "full_sort": {
+              "n": 0,
+              "disguised": 0
+            },
+            "heapify_pop": {
+              "n": 0,
+              "disguised": 0
+            },
+            "quickselect": {
+              "n": 50,
+              "disguised": 4
+            },
+            "median_of_medians": {
+              "n": 0,
+              "disguised": 0
+            },
+            "counting_sort": {
+              "n": 0,
+              "disguised": 0
+            }
+          },
+          "disguise_rate": 0.08
+        }
+      ],
+      "exp9_T1_multibans": {
+        "bfs_dfs_counts": {
+          "TOP": [
+            59,
+            26
+          ],
+          "ARC": [
+            63,
+            37
+          ],
+          "SCATTER": [
+            69,
+            27
+          ],
+          "TOP5": [
+            63,
+            36
+          ]
+        },
+        "chi2": 2.4754867707044657,
+        "chi2_p": 0.4797374663011915,
+        "dfs_share_range": 0.08875,
+        "perm_p": 0.5658,
+        "note": "post hoc (not pre-registered): homogeneity of the BFS/DFS mix across the four multi-bans"
+      },
+      "exp9_T2_los": {
+        "dijkstra": {
+          "will": 0.95,
+          "can_labelled_as_requested": 1.0,
+          "can_pass_rate": 1.0
+        },
+        "bf_spfa": {
+          "will": 0.51,
+          "can_labelled_as_requested": 1.0,
+          "can_pass_rate": 0.85
+        },
+        "bidijkstra": {
+          "will": 0.0,
+          "can_labelled_as_requested": 0.35,
+          "can_pass_rate": 0.225
+        },
+        "floyd": {
+          "will": 0.0,
+          "can_labelled_as_requested": 1.0,
+          "can_pass_rate": 1.0
+        },
+        "dial": {
+          "will": 0.0,
+          "can_labelled_as_requested": 0.9,
+          "can_pass_rate": 0.175
+        }
+      }
+    },
+    "list_independence": {
+      "T03": {
+        "D": "full_sort",
+        "R2": "counting_sort",
+        "groups": {
+          "LOS(quickselect)": {
+            "D_share": null,
+            "n": 0
+          },
+          "LOS(size_k_heap)": {
+            "D_share": null,
+            "n": 0
+          },
+          "LOS(heapify_pop)": {
+            "D_share": null,
+            "n": 0
+          },
+          "TWO(full_sort,counting_sort)": {
+            "D_share": null,
+            "n": 0
+          }
+        },
+        "n_groups_ge10": 0,
+        "descriptive_only": true,
+        "test": null,
+        "prediction": "p >= 0.05 (the reimplementation mix does not depend on the rest of the list)",
+        "prediction_met": null,
+        "effect_size": null
+      },
+      "T04": {
+        "D": "naive",
+        "R2": "kmp",
+        "groups": {
+          "LOS(rabin_karp)": {
+            "D_share": 0.8181818181818182,
+            "n": 44
+          },
+          "LOS(builtin)": {
+            "D_share": 0.98,
+            "n": 50
+          },
+          "LOS(z_algorithm)": {
+            "D_share": 0.9387755102040817,
+            "n": 49
+          },
+          "TWO(naive,kmp)": {
+            "D_share": 0.8604651162790697,
+            "n": 86
+          }
+        },
+        "n_groups_ge10": 4,
+        "descriptive_only": false,
+        "test": {
+          "chi2": 8.711960291970138,
+          "p_perm": 0.0327967203279672,
+          "n_perm": 10000,
+          "categories": [
+            "D",
+            "R2"
+          ],
+          "counts": {
+            "LOS(rabin_karp)": {
+              "D": 36,
+              "R2": 8
+            },
+            "LOS(builtin)": {
+              "D": 49,
+              "R2": 1
+            },
+            "LOS(z_algorithm)": {
+              "D": 46,
+              "R2": 3
+            },
+            "TWO(naive,kmp)": {
+              "D": 74,
+              "R2": 12
+            }
+          }
+        },
+        "prediction": "p >= 0.05 (the reimplementation mix does not depend on the rest of the list)",
+        "prediction_met": false,
+        "effect_size": {
+          "max_pairwise_diff": 0.16181818181818175,
+          "groups": [
+            "LOS(rabin_karp)",
+            "LOS(builtin)"
+          ],
+          "newcombe": {
+            "diff": -0.16181818181818175,
+            "ci": [
+              -0.3005852666090972,
+              -0.04044094279153797
+            ]
+          }
+        }
+      },
+      "T06": {
+        "D": "hash_set",
+        "R2": "sort_adjacent",
+        "groups": {
+          "LOS(value_binary_search)": {
+            "D_share": 1.0,
+            "n": 10
+          },
+          "LOS(floyd)": {
+            "D_share": 1.0,
+            "n": 9
+          },
+          "TWO(hash_set,sort_adjacent)": {
+            "D_share": 1.0,
+            "n": 4
+          }
+        },
+        "n_groups_ge10": 1,
+        "descriptive_only": true,
+        "test": {
+          "chi2": 0.0,
+          "p_perm": 1.0,
+          "n_perm": 10000,
+          "categories": [
+            "D"
+          ],
+          "counts": {
+            "LOS(value_binary_search)": {
+              "D": 10
+            },
+            "LOS(floyd)": {
+              "D": 9
+            },
+            "TWO(hash_set,sort_adjacent)": {
+              "D": 4
+            }
+          }
+        },
+        "prediction": "p >= 0.05 (the reimplementation mix does not depend on the rest of the list)",
+        "prediction_met": true,
+        "effect_size": {
+          "max_pairwise_diff": 0.0,
+          "groups": [
+            "LOS(value_binary_search)",
+            "LOS(floyd)"
+          ],
+          "newcombe": {
+            "diff": 0.0,
+            "ci": [
+              -0.2775328030260579,
+              0.299145051727044
+            ]
+          }
+        }
+      },
+      "T10": {
+        "D": "union_find",
+        "R2": "dfs",
+        "groups": {
+          "LOS(bfs)": {
+            "D_share": null,
+            "n": 0
+          },
+          "TWO(union_find,dfs)": {
+            "D_share": null,
+            "n": 0
+          }
+        },
+        "n_groups_ge10": 0,
+        "descriptive_only": true,
+        "test": null,
+        "prediction": "p >= 0.05 (the reimplementation mix does not depend on the rest of the list)",
+        "prediction_met": null,
+        "effect_size": null
+      }
+    },
+    "disguise": {
+      "los": {
+        "LOS(full_sort)|T03": {
+          "disguise": {
+            "size_k_heap": {
+              "n": 0,
+              "disguised": 0
+            },
+            "heapify_pop": {
+              "n": 0,
+              "disguised": 0
+            },
+            "quickselect": {
+              "n": 50,
+              "disguised": 2
+            },
+            "median_of_medians": {
+              "n": 0,
+              "disguised": 0
+            },
+            "counting_sort": {
+              "n": 0,
+              "disguised": 0
+            }
+          },
+          "rate": 0.04
+        },
+        "LOS(quickselect)|T03": {
+          "disguise": {
+            "full_sort": {
+              "n": 0,
+              "disguised": 0
+            },
+            "size_k_heap": {
+              "n": 0,
+              "disguised": 0
+            },
+            "heapify_pop": {
+              "n": 0,
+              "disguised": 0
+            },
+            "median_of_medians": {
+              "n": 0,
+              "disguised": 0
+            },
+            "counting_sort": {
+              "n": 0,
+              "disguised": 0
+            }
+          },
+          "rate": null
+        },
+        "LOS(size_k_heap)|T03": {
+          "disguise": {
+            "full_sort": {
+              "n": 0,
+              "disguised": 0
+            },
+            "heapify_pop": {
+              "n": 0,
+              "disguised": 0
+            },
+            "quickselect": {
+              "n": 50,
+              "disguised": 4
+            },
+            "median_of_medians": {
+              "n": 0,
+              "disguised": 0
+            },
+            "counting_sort": {
+              "n": 0,
+              "disguised": 0
+            }
+          },
+          "rate": 0.08
+        },
+        "LOS(counting_sort)|T03": {
+          "disguise": {
+            "full_sort": {
+              "n": 0,
+              "disguised": 0
+            },
+            "size_k_heap": {
+              "n": 0,
+              "disguised": 0
+            },
+            "heapify_pop": {
+              "n": 0,
+              "disguised": 0
+            },
+            "quickselect": {
+              "n": 44,
+              "disguised": 4
+            },
+            "median_of_medians": {
+              "n": 0,
+              "disguised": 0
+            }
+          },
+          "rate": 0.09090909090909091
+        },
+        "LOS(heapify_pop)|T03": {
+          "disguise": {
+            "full_sort": {
+              "n": 0,
+              "disguised": 0
+            },
+            "size_k_heap": {
+              "n": 0,
+              "disguised": 0
+            },
+            "quickselect": {
+              "n": 50,
+              "disguised": 0
+            },
+            "median_of_medians": {
+              "n": 0,
+              "disguised": 0
+            },
+            "counting_sort": {
+              "n": 0,
+              "disguised": 0
+            }
+          },
+          "rate": 0.0
+        },
+        "LOS(naive)|T04": {
+          "disguise": {
+            "kmp": {
+              "n": 0,
+              "disguised": 0
+            },
+            "rabin_karp": {
+              "n": 0,
+              "disguised": 0
+            },
+            "z_algorithm": {
+              "n": 0,
+              "disguised": 0
+            },
+            "bmh": {
+              "n": 0,
+              "disguised": 0
+            },
+            "builtin": {
+              "n": 0,
+              "disguised": 0
+            }
+          },
+          "rate": null
+        },
+        "LOS(kmp)|T04": {
+          "disguise": {
+            "naive": {
+              "n": 37,
+              "disguised": 37
+            },
+            "rabin_karp": {
+              "n": 0,
+              "disguised": 0
+            },
+            "z_algorithm": {
+              "n": 0,
+              "disguised": 0
+            },
+            "bmh": {
+              "n": 0,
+              "disguised": 0
+            },
+            "builtin": {
+              "n": 0,
+              "disguised": 0
+            }
+          },
+          "rate": 1.0
+        },
+        "LOS(rabin_karp)|T04": {
+          "disguise": {
+            "naive": {
+              "n": 36,
+              "disguised": 34
+            },
+            "kmp": {
+              "n": 8,
+              "disguised": 0
+            },
+            "z_algorithm": {
+              "n": 0,
+              "disguised": 0
+            },
+            "bmh": {
+              "n": 1,
+              "disguised": 0
+            },
+            "builtin": {
+              "n": 0,
+              "disguised": 0
+            }
+          },
+          "rate": 0.7555555555555555
+        },
+        "LOS(builtin)|T04": {
+          "disguise": {
+            "naive": {
+              "n": 49,
+              "disguised": 46
+            },
+            "kmp": {
+              "n": 1,
+              "disguised": 0
+            },
+            "rabin_karp": {
+              "n": 0,
+              "disguised": 0
+            },
+            "z_algorithm": {
+              "n": 0,
+              "disguised": 0
+            },
+            "bmh": {
+              "n": 0,
+              "disguised": 0
+            }
+          },
+          "rate": 0.92
+        },
+        "LOS(z_algorithm)|T04": {
+          "disguise": {
+            "naive": {
+              "n": 46,
+              "disguised": 45
+            },
+            "kmp": {
+              "n": 3,
+              "disguised": 0
+            },
+            "rabin_karp": {
+              "n": 0,
+              "disguised": 0
+            },
+            "bmh": {
+              "n": 1,
+              "disguised": 1
+            },
+            "builtin": {
+              "n": 0,
+              "disguised": 0
+            }
+          },
+          "rate": 0.92
+        },
+        "LOS(hash_set)|T06": {
+          "disguise": {
+            "sort_adjacent": {
+              "n": 0,
+              "disguised": 0
+            },
+            "floyd": {
+              "n": 3,
+              "disguised": 0
+            },
+            "value_binary_search": {
+              "n": 0,
+              "disguised": 0
+            },
+            "index_marking": {
+              "n": 4,
+              "disguised": 4
+            }
+          },
+          "rate": 0.5714285714285714
+        },
+        "LOS(value_binary_search)|T06": {
+          "disguise": {
+            "hash_set": {
+              "n": 10,
+              "disguised": 10
+            },
+            "sort_adjacent": {
+              "n": 0,
+              "disguised": 0
+            },
+            "floyd": {
+              "n": 0,
+              "disguised": 0
+            },
+            "index_marking": {
+              "n": 40,
+              "disguised": 40
+            }
+          },
+          "rate": 1.0
+        },
+        "LOS(floyd)|T06": {
+          "disguise": {
+            "hash_set": {
+              "n": 9,
+              "disguised": 9
+            },
+            "sort_adjacent": {
+              "n": 0,
+              "disguised": 0
+            },
+            "value_binary_search": {
+              "n": 0,
+              "disguised": 0
+            },
+            "index_marking": {
+              "n": 34,
+              "disguised": 34
+            }
+          },
+          "rate": 1.0
+        },
+        "LOS(sort_adjacent)|T06": {
+          "disguise": {
+            "hash_set": {
+              "n": 11,
+              "disguised": 10
+            },
+            "floyd": {
+              "n": 3,
+              "disguised": 2
+            },
+            "value_binary_search": {
+              "n": 1,
+              "disguised": 1
+            },
+            "index_marking": {
+              "n": 33,
+              "disguised": 33
+            }
+          },
+          "rate": 0.9583333333333334
+        },
+        "LOS(bfs)|T10": {
+          "disguise": {
+            "dfs": {
+              "n": 0,
+              "disguised": 0
+            },
+            "union_find": {
+              "n": 0,
+              "disguised": 0
+            },
+            "label_propagation": {
+              "n": 0,
+              "disguised": 0
+            }
+          },
+          "rate": null
+        },
+        "LOS(dfs)|T10": {
+          "disguise": {
+            "bfs": {
+              "n": 0,
+              "disguised": 0
+            },
+            "union_find": {
+              "n": 1,
+              "disguised": 1
+            },
+            "label_propagation": {
+              "n": 0,
+              "disguised": 0
+            }
+          },
+          "rate": 1.0
+        },
+        "LOS(union_find)|T10": {
+          "disguise": {
+            "bfs": {
+              "n": 0,
+              "disguised": 0
+            },
+            "dfs": {
+              "n": 3,
+              "disguised": 2
+            },
+            "label_propagation": {
+              "n": 0,
+              "disguised": 0
+            }
+          },
+          "rate": 0.6666666666666666
+        }
+      },
+      "two_step": {
+        "T1": {
+          "disguise": {
+            "bfs": {
+              "n": 16,
+              "disguised": 13
+            },
+            "dfs": {
+              "n": 82,
+              "disguised": 30
+            }
+          },
+          "rate": 0.4387755102040816
+        },
+        "T2": {
+          "disguise": {
+            "dijkstra": {
+              "n": 32,
+              "disguised": 4
+            },
+            "bf_spfa": {
+              "n": 67,
+              "disguised": 50
+            }
+          },
+          "rate": 0.5454545454545454
+        },
+        "T03": {
+          "disguise": {
+            "full_sort": {
+              "n": 0,
+              "disguised": 0
+            },
+            "counting_sort": {
+              "n": 0,
+              "disguised": 0
+            }
+          },
+          "rate": null
+        },
+        "T04": {
+          "disguise": {
+            "naive": {
+              "n": 74,
+              "disguised": 72
+            },
+            "kmp": {
+              "n": 12,
+              "disguised": 0
+            }
+          },
+          "rate": 0.8372093023255814
+        },
+        "T06": {
+          "disguise": {
+            "hash_set": {
+              "n": 4,
+              "disguised": 4
+            },
+            "sort_adjacent": {
+              "n": 0,
+              "disguised": 0
+            }
+          },
+          "rate": 1.0
+        },
+        "T10": {
+          "disguise": {
+            "union_find": {
+              "n": 0,
+              "disguised": 0
+            },
+            "dfs": {
+              "n": 0,
+              "disguised": 0
+            }
+          },
+          "rate": null
+        }
+      }
+    },
+    "longform": {
+      "T03|LF1|think_off|fp8": {
+        "n": 50,
+        "attempted": 32,
+        "counts": {
+          "other": 12,
+          "invalid": 18,
+          "counting_sort": 5,
+          "full_sort": 3,
+          "quickselect": 12
+        },
+        "avoidance": 1.0,
+        "avoidance_ci": [
+          0.8928208002353198,
+          1.0
+        ],
+        "landing": {
+          "other": 12,
+          "counting_sort": 5,
+          "full_sort": 3,
+          "quickselect": 12
+        },
+        "landing_correct": {
+          "other": 12,
+          "counting_sort": 5,
+          "full_sort": 3,
+          "quickselect": 5
+        },
+        "hill_cc": 3.492130447419181,
+        "hill_cc_rarefied20": 3.449504275573602,
+        "other_share": 0.24,
+        "invalid_share": 0.36,
+        "pass_rate": 0.78125,
+        "pass_ci": [
+          0.6124500620603575,
+          0.8897616380720099
+        ],
+        "per_template": {
+          "LF1": {
+            "other": 12,
+            "invalid": 18,
+            "counting_sort": 5,
+            "full_sort": 3,
+            "quickselect": 12
+          }
+        },
+        "N": 50,
+        "n_correct": 25,
+        "novel_count": 0,
+        "novel_rate_upper95": 0.05815507911697225,
+        "novel_rate_upper95_among_correct": 0.1129281450068432,
+        "mean_new_tokens": 2017.92,
+        "mean_rationale_words": 1349.18,
+        "extraction": {
+          "last_python_block_with_solve": 32,
+          "no_code": 15,
+          "any_block": 3
+        },
+        "truncated_share": 0.0,
+        "claims": {
+          "mechanism_check": {
+            "n_claiming_novelty": 46,
+            "n_with_valid_code": 30,
+            "share_code_is_catalogue_algorithm": 0.6,
+            "share_code_is_default": 0.06666666666666667,
+            "share_code_off_catalogue": 0.4,
+            "share_no_code": 0.34782608695652173
+          },
+          "n_with_claim_record": 50,
+          "share_claiming_novelty": 0.92,
+          "share_of_claimed_inventions_known": 0.043478260869565216,
+          "claim_code_consistency": {
+            "yes": 46,
+            "no": 4
+          },
+          "novelty_in_prose_default_in_code": 0.04
+        }
+      },
+      "T03|LF1|think_on|fp8": {
+        "n": 10,
+        "attempted": 8,
+        "counts": {
+          "counting_sort": 6,
+          "invalid": 2,
+          "quickselect": 1,
+          "other": 1
+        },
+        "avoidance": 1.0,
+        "avoidance_ci": [
+          0.6755924316585924,
+          1.0
+        ],
+        "landing": {
+          "counting_sort": 6,
+          "quickselect": 1,
+          "other": 1
+        },
+        "landing_correct": {
+          "counting_sort": 6,
+          "quickselect": 1,
+          "other": 1
+        },
+        "hill_cc": 2.0867794400977164,
+        "hill_cc_rarefied20": null,
+        "other_share": 0.1,
+        "invalid_share": 0.2,
+        "pass_rate": 1.0,
+        "pass_ci": [
+          0.6755924316585924,
+          1.0
+        ],
+        "per_template": {
+          "LF1": {
+            "counting_sort": 6,
+            "invalid": 2,
+            "quickselect": 1,
+            "other": 1
+          }
+        },
+        "N": 10,
+        "n_correct": 8,
+        "novel_count": 0,
+        "novel_rate_upper95": 0.2588655508930522,
+        "novel_rate_upper95_among_correct": 0.3123439780663678,
+        "mean_new_tokens": 6775.6,
+        "mean_rationale_words": 595.7,
+        "extraction": {
+          "last_python_block_with_solve": 8,
+          "no_code": 2
+        },
+        "truncated_share": 0.0,
+        "claims": {
+          "mechanism_check": {
+            "n_claiming_novelty": 5,
+            "n_with_valid_code": 4,
+            "share_code_is_catalogue_algorithm": 0.75,
+            "share_code_is_default": 0.0,
+            "share_code_off_catalogue": 0.25,
+            "share_no_code": 0.2
+          },
+          "n_with_claim_record": 10,
+          "share_claiming_novelty": 0.5,
+          "share_of_claimed_inventions_known": 0.0,
+          "claim_code_consistency": {
+            "yes": 10
+          },
+          "novelty_in_prose_default_in_code": 0.0
+        },
+        "thinking": {
+          "completion_rate": 1.0,
+          "mean_thinking_tokens": 5163.3,
+          "mean_answer_tokens": 1612.3,
+          "pass_rate_complete": 0.8,
+          "pass_rate_forced_stop": null,
+          "n_complete": 10,
+          "n_forced_stop": 0
+        }
+      },
+      "T03|LF2|think_off|fp8": {
+        "n": 50,
+        "attempted": 20,
+        "counts": {
+          "invalid": 30,
+          "other": 8,
+          "counting_sort": 4,
+          "quickselect": 7,
+          "median_of_medians": 1
+        },
+        "avoidance": 1.0,
+        "avoidance_ci": [
+          0.8388748398148705,
+          1.0
+        ],
+        "landing": {
+          "other": 8,
+          "counting_sort": 4,
+          "quickselect": 7,
+          "median_of_medians": 1
+        },
+        "landing_correct": {
+          "other": 7,
+          "quickselect": 4,
+          "counting_sort": 3,
+          "median_of_medians": 1
+        },
+        "hill_cc": 3.3553558963193817,
+        "hill_cc_rarefied20": null,
+        "other_share": 0.16,
+        "invalid_share": 0.6,
+        "pass_rate": 0.75,
+        "pass_ci": [
+          0.5312991206074114,
+          0.8881382993000237
+        ],
+        "per_template": {
+          "LF2": {
+            "invalid": 30,
+            "other": 8,
+            "counting_sort": 4,
+            "quickselect": 7,
+            "median_of_medians": 1
+          }
+        },
+        "N": 50,
+        "n_correct": 15,
+        "novel_count": 0,
+        "novel_rate_upper95": 0.05815507911697225,
+        "novel_rate_upper95_among_correct": 0.18103627252208462,
+        "mean_new_tokens": 1950.36,
+        "mean_rationale_words": 1431.0,
+        "extraction": {
+          "no_code": 30,
+          "last_python_block_with_solve": 20
+        },
+        "truncated_share": 0.0,
+        "claims": {
+          "mechanism_check": {
+            "n_claiming_novelty": 50,
+            "n_with_valid_code": 20,
+            "share_code_is_catalogue_algorithm": 0.6,
+            "share_code_is_default": 0.0,
+            "share_code_off_catalogue": 0.4,
+            "share_no_code": 0.6
+          },
+          "n_with_claim_record": 50,
+          "share_claiming_novelty": 1.0,
+          "share_of_claimed_inventions_known": 0.0,
+          "claim_code_consistency": {
+            "no": 17,
+            "yes": 27,
+            "partial": 6
+          },
+          "novelty_in_prose_default_in_code": 0.0
+        }
+      },
+      "T03|LF2|think_on|fp8": {
+        "n": 10,
+        "attempted": 9,
+        "counts": {
+          "counting_sort": 7,
+          "quickselect": 2,
+          "invalid": 1
+        },
+        "avoidance": 1.0,
+        "avoidance_ci": [
+          0.700854948272956,
+          1.0
+        ],
+        "landing": {
+          "counting_sort": 7,
+          "quickselect": 2
+        },
+        "landing_correct": {
+          "counting_sort": 6,
+          "quickselect": 2
+        },
+        "hill_cc": 1.7547653506033232,
+        "hill_cc_rarefied20": null,
+        "other_share": 0.0,
+        "invalid_share": 0.1,
+        "pass_rate": 0.8888888888888888,
+        "pass_ci": [
+          0.565000291629209,
+          0.9801091125830901
+        ],
+        "per_template": {
+          "LF2": {
+            "counting_sort": 7,
+            "quickselect": 2,
+            "invalid": 1
+          }
+        },
+        "N": 10,
+        "n_correct": 8,
+        "novel_count": 0,
+        "novel_rate_upper95": 0.2588655508930522,
+        "novel_rate_upper95_among_correct": 0.3123439780663678,
+        "mean_new_tokens": 6972.2,
+        "mean_rationale_words": 437.7,
+        "extraction": {
+          "last_python_block_with_solve": 9,
+          "no_code": 1
+        },
+        "truncated_share": 0.0,
+        "claims": {
+          "mechanism_check": {
+            "n_claiming_novelty": 8,
+            "n_with_valid_code": 7,
+            "share_code_is_catalogue_algorithm": 1.0,
+            "share_code_is_default": 0.0,
+            "share_code_off_catalogue": 0.0,
+            "share_no_code": 0.125
+          },
+          "n_with_claim_record": 10,
+          "share_claiming_novelty": 0.8,
+          "share_of_claimed_inventions_known": 0.125,
+          "claim_code_consistency": {
+            "yes": 10
+          },
+          "novelty_in_prose_default_in_code": 0.0
+        },
+        "thinking": {
+          "completion_rate": 1.0,
+          "mean_thinking_tokens": 5736.1,
+          "mean_answer_tokens": 1236.1,
+          "pass_rate_complete": 0.8,
+          "pass_rate_forced_stop": null,
+          "n_complete": 10,
+          "n_forced_stop": 0
+        }
+      },
+      "T04|LF1|think_off|fp8": {
+        "n": 50,
+        "attempted": 35,
+        "counts": {
+          "naive": 27,
+          "invalid": 15,
+          "builtin": 4,
+          "rabin_karp": 3,
+          "other": 1
+        },
+        "avoidance": 1.0,
+        "avoidance_ci": [
+          0.901099006269668,
+          1.0
+        ],
+        "landing": {
+          "naive": 27,
+          "builtin": 4,
+          "rabin_karp": 3,
+          "other": 1
+        },
+        "landing_correct": {
+          "naive": 26,
+          "builtin": 4,
+          "rabin_karp": 2
+        },
+        "hill_cc": 1.8256278800579229,
+        "hill_cc_rarefied20": 1.7821567204307707,
+        "other_share": 0.02,
+        "invalid_share": 0.3,
+        "pass_rate": 0.9142857142857143,
+        "pass_ci": [
+          0.7762072589454966,
+          0.9704176319636569
+        ],
+        "per_template": {
+          "LF1": {
+            "naive": 27,
+            "invalid": 15,
+            "builtin": 4,
+            "rabin_karp": 3,
+            "other": 1
+          }
+        },
+        "N": 50,
+        "n_correct": 32,
+        "novel_count": 0,
+        "novel_rate_upper95": 0.05815507911697225,
+        "novel_rate_upper95_among_correct": 0.08936819898626475,
+        "mean_new_tokens": 1959.44,
+        "mean_rationale_words": 1343.28,
+        "extraction": {
+          "last_python_block_with_solve": 35,
+          "no_code": 14,
+          "any_block": 1
+        },
+        "truncated_share": 0.0,
+        "claims": {
+          "mechanism_check": {
+            "n_claiming_novelty": 35,
+            "n_with_valid_code": 21,
+            "share_code_is_catalogue_algorithm": 0.9523809523809523,
+            "share_code_is_default": 0.7142857142857143,
+            "share_code_off_catalogue": 0.047619047619047616,
+            "share_no_code": 0.4
+          },
+          "n_with_claim_record": 50,
+          "share_claiming_novelty": 0.7,
+          "share_of_claimed_inventions_known": 0.05714285714285714,
+          "claim_code_consistency": {
+            "yes": 45,
+            "no": 4,
+            "partial": 1
+          },
+          "novelty_in_prose_default_in_code": 0.3
+        }
+      },
+      "T04|LF1|think_on|fp8": {
+        "n": 10,
+        "attempted": 10,
+        "counts": {
+          "naive": 7,
+          "rabin_karp": 1,
+          "z_algorithm": 1,
+          "kmp": 1
+        },
+        "avoidance": 1.0,
+        "avoidance_ci": [
+          0.7224671969739421,
+          0.9999999999999999
+        ],
+        "landing": {
+          "naive": 7,
+          "rabin_karp": 1,
+          "z_algorithm": 1,
+          "kmp": 1
+        },
+        "landing_correct": {
+          "naive": 7,
+          "rabin_karp": 1,
+          "z_algorithm": 1,
+          "kmp": 1
+        },
+        "hill_cc": 2.5611285178871386,
+        "hill_cc_rarefied20": null,
+        "other_share": 0.0,
+        "invalid_share": 0.0,
+        "pass_rate": 1.0,
+        "pass_ci": [
+          0.7224671969739421,
+          0.9999999999999999
+        ],
+        "per_template": {
+          "LF1": {
+            "naive": 7,
+            "rabin_karp": 1,
+            "z_algorithm": 1,
+            "kmp": 1
+          }
+        },
+        "N": 10,
+        "n_correct": 10,
+        "novel_count": 0,
+        "novel_rate_upper95": 0.2588655508930522,
+        "novel_rate_upper95_among_correct": 0.2588655508930522,
+        "mean_new_tokens": 6138.4,
+        "mean_rationale_words": 377.0,
+        "extraction": {
+          "last_python_block_with_solve": 10
+        },
+        "truncated_share": 0.0,
+        "claims": {
+          "mechanism_check": {
+            "n_claiming_novelty": 1,
+            "n_with_valid_code": 1,
+            "share_code_is_catalogue_algorithm": 1.0,
+            "share_code_is_default": 0.0,
+            "share_code_off_catalogue": 0.0,
+            "share_no_code": 0.0
+          },
+          "n_with_claim_record": 10,
+          "share_claiming_novelty": 0.1,
+          "share_of_claimed_inventions_known": 1.0,
+          "claim_code_consistency": {
+            "yes": 10
+          },
+          "novelty_in_prose_default_in_code": 0.0
+        },
+        "thinking": {
+          "completion_rate": 1.0,
+          "mean_thinking_tokens": 4143.3,
+          "mean_answer_tokens": 1995.1,
+          "pass_rate_complete": 1.0,
+          "pass_rate_forced_stop": null,
+          "n_complete": 10,
+          "n_forced_stop": 0
+        }
+      },
+      "T04|LF2|think_off|fp8": {
+        "n": 50,
+        "attempted": 22,
+        "counts": {
+          "invalid": 28,
+          "naive": 10,
+          "rabin_karp": 8,
+          "other": 4
+        },
+        "avoidance": 1.0,
+        "avoidance_ci": [
+          0.8513451233948545,
+          1.0
+        ],
+        "landing": {
+          "naive": 10,
+          "rabin_karp": 8,
+          "other": 4
+        },
+        "landing_correct": {
+          "naive": 9,
+          "rabin_karp": 3,
+          "other": 1
+        },
+        "hill_cc": 2.2039869452704277,
+        "hill_cc_rarefied20": null,
+        "other_share": 0.08,
+        "invalid_share": 0.56,
+        "pass_rate": 0.5909090909090909,
+        "pass_ci": [
+          0.387348183298974,
+          0.7674418391364541
+        ],
+        "per_template": {
+          "LF2": {
+            "invalid": 28,
+            "naive": 10,
+            "rabin_karp": 8,
+            "other": 4
+          }
+        },
+        "N": 50,
+        "n_correct": 13,
+        "novel_count": 0,
+        "novel_rate_upper95": 0.05815507911697225,
+        "novel_rate_upper95_among_correct": 0.20581666518655062,
+        "mean_new_tokens": 1906.86,
+        "mean_rationale_words": 1348.68,
+        "extraction": {
+          "no_code": 25,
+          "last_python_block_with_solve": 23,
+          "any_block": 2
+        },
+        "truncated_share": 0.0,
+        "claims": {
+          "mechanism_check": {
+            "n_claiming_novelty": 49,
+            "n_with_valid_code": 21,
+            "share_code_is_catalogue_algorithm": 0.8095238095238095,
+            "share_code_is_default": 0.47619047619047616,
+            "share_code_off_catalogue": 0.19047619047619047,
+            "share_no_code": 0.5714285714285714
+          },
+          "n_with_claim_record": 49,
+          "share_claiming_novelty": 1.0,
+          "share_of_claimed_inventions_known": 0.0,
+          "claim_code_consistency": {
+            "no": 22,
+            "partial": 6,
+            "yes": 21
+          },
+          "novelty_in_prose_default_in_code": 0.2
+        }
+      },
+      "T04|LF2|think_on|fp8": {
+        "n": 10,
+        "attempted": 8,
+        "counts": {
+          "naive": 7,
+          "invalid": 2,
+          "rabin_karp": 1
+        },
+        "avoidance": 1.0,
+        "avoidance_ci": [
+          0.6755924316585924,
+          1.0
+        ],
+        "landing": {
+          "naive": 7,
+          "rabin_karp": 1
+        },
+        "landing_correct": {
+          "naive": 7,
+          "rabin_karp": 1
+        },
+        "hill_cc": 1.4575692649810903,
+        "hill_cc_rarefied20": null,
+        "other_share": 0.0,
+        "invalid_share": 0.2,
+        "pass_rate": 1.0,
+        "pass_ci": [
+          0.6755924316585924,
+          1.0
+        ],
+        "per_template": {
+          "LF2": {
+            "naive": 7,
+            "invalid": 2,
+            "rabin_karp": 1
+          }
+        },
+        "N": 10,
+        "n_correct": 8,
+        "novel_count": 0,
+        "novel_rate_upper95": 0.2588655508930522,
+        "novel_rate_upper95_among_correct": 0.3123439780663678,
+        "mean_new_tokens": 6872.5,
+        "mean_rationale_words": 564.7,
+        "extraction": {
+          "last_python_block_with_solve": 8,
+          "no_code": 2
+        },
+        "truncated_share": 0.0,
+        "claims": {
+          "mechanism_check": {
+            "n_claiming_novelty": 5,
+            "n_with_valid_code": 3,
+            "share_code_is_catalogue_algorithm": 1.0,
+            "share_code_is_default": 0.6666666666666666,
+            "share_code_off_catalogue": 0.0,
+            "share_no_code": 0.4
+          },
+          "n_with_claim_record": 10,
+          "share_claiming_novelty": 0.5,
+          "share_of_claimed_inventions_known": 0.0,
+          "claim_code_consistency": {
+            "yes": 10
+          },
+          "novelty_in_prose_default_in_code": 0.2
+        },
+        "thinking": {
+          "completion_rate": 1.0,
+          "mean_thinking_tokens": 5295.8,
+          "mean_answer_tokens": 1576.7,
+          "pass_rate_complete": 0.8,
+          "pass_rate_forced_stop": null,
+          "n_complete": 10,
+          "n_forced_stop": 0
+        }
+      },
+      "T06|LF1|think_off|fp8": {
+        "n": 50,
+        "attempted": 35,
+        "counts": {
+          "other": 17,
+          "floyd": 10,
+          "hash_set": 5,
+          "index_marking": 2,
+          "invalid": 15,
+          "value_binary_search": 1
+        },
+        "avoidance": 1.0,
+        "avoidance_ci": [
+          0.901099006269668,
+          1.0
+        ],
+        "landing": {
+          "other": 17,
+          "floyd": 10,
+          "hash_set": 5,
+          "index_marking": 2,
+          "value_binary_search": 1
+        },
+        "landing_correct": {
+          "hash_set": 5,
+          "index_marking": 2,
+          "floyd": 6
+        },
+        "hill_cc": 2.7520080331879986,
+        "hill_cc_rarefied20": null,
+        "other_share": 0.34,
+        "invalid_share": 0.3,
+        "pass_rate": 0.37142857142857144,
+        "pass_ci": [
+          0.23165819412304786,
+          0.5366306328361803
+        ],
+        "per_template": {
+          "LF1": {
+            "other": 17,
+            "floyd": 10,
+            "hash_set": 5,
+            "index_marking": 2,
+            "invalid": 15,
+            "value_binary_search": 1
+          }
+        },
+        "N": 50,
+        "n_correct": 13,
+        "novel_count": 0,
+        "novel_rate_upper95": 0.05815507911697225,
+        "novel_rate_upper95_among_correct": 0.20581666518655062,
+        "mean_new_tokens": 2021.54,
+        "mean_rationale_words": 1387.5,
+        "extraction": {
+          "last_python_block_with_solve": 35,
+          "no_code": 13,
+          "any_block": 2
+        },
+        "truncated_share": 0.0,
+        "claims": {
+          "mechanism_check": {
+            "n_claiming_novelty": 39,
+            "n_with_valid_code": 27,
+            "share_code_is_catalogue_algorithm": 0.4444444444444444,
+            "share_code_is_default": 0.14814814814814814,
+            "share_code_off_catalogue": 0.5555555555555556,
+            "share_no_code": 0.3076923076923077
+          },
+          "n_with_claim_record": 50,
+          "share_claiming_novelty": 0.78,
+          "share_of_claimed_inventions_known": 0.05128205128205128,
+          "claim_code_consistency": {
+            "yes": 46,
+            "no": 4
+          },
+          "novelty_in_prose_default_in_code": 0.08
+        }
+      },
+      "T06|LF1|think_on|fp8": {
+        "n": 10,
+        "attempted": 9,
+        "counts": {
+          "value_binary_search": 2,
+          "floyd": 2,
+          "other": 5,
+          "invalid": 1
+        },
+        "avoidance": 1.0,
+        "avoidance_ci": [
+          0.700854948272956,
+          1.0
+        ],
+        "landing": {
+          "value_binary_search": 2,
+          "floyd": 2,
+          "other": 5
+        },
+        "landing_correct": {
+          "value_binary_search": 2,
+          "floyd": 2
+        },
+        "hill_cc": 2.0,
+        "hill_cc_rarefied20": null,
+        "other_share": 0.5,
+        "invalid_share": 0.1,
+        "pass_rate": 0.4444444444444444,
+        "pass_ci": [
+          0.18877851977054566,
+          0.7333487081991259
+        ],
+        "per_template": {
+          "LF1": {
+            "value_binary_search": 2,
+            "floyd": 2,
+            "other": 5,
+            "invalid": 1
+          }
+        },
+        "N": 10,
+        "n_correct": 4,
+        "novel_count": 0,
+        "novel_rate_upper95": 0.2588655508930522,
+        "novel_rate_upper95_among_correct": 0.527129195498412,
+        "mean_new_tokens": 9223.9,
+        "mean_rationale_words": 523.7,
+        "extraction": {
+          "last_python_block_with_solve": 9,
+          "no_code": 1
+        },
+        "truncated_share": 0.0,
+        "claims": {
+          "mechanism_check": {
+            "n_claiming_novelty": 6,
+            "n_with_valid_code": 5,
+            "share_code_is_catalogue_algorithm": 0.2,
+            "share_code_is_default": 0.0,
+            "share_code_off_catalogue": 0.8,
+            "share_no_code": 0.16666666666666666
+          },
+          "n_with_claim_record": 10,
+          "share_claiming_novelty": 0.6,
+          "share_of_claimed_inventions_known": 0.16666666666666666,
+          "claim_code_consistency": {
+            "yes": 10
+          },
+          "novelty_in_prose_default_in_code": 0.0
+        },
+        "thinking": {
+          "completion_rate": 1.0,
+          "mean_thinking_tokens": 7665.3,
+          "mean_answer_tokens": 1558.6,
+          "pass_rate_complete": 0.4,
+          "pass_rate_forced_stop": null,
+          "n_complete": 10,
+          "n_forced_stop": 0
+        }
+      },
+      "T06|LF2|think_off|fp8": {
+        "n": 50,
+        "attempted": 25,
+        "counts": {
+          "invalid": 25,
+          "hash_set": 4,
+          "other": 7,
+          "floyd": 10,
+          "index_marking": 2,
+          "value_binary_search": 2
+        },
+        "avoidance": 1.0,
+        "avoidance_ci": [
+          0.866807747239609,
+          1.0
+        ],
+        "landing": {
+          "hash_set": 4,
+          "other": 7,
+          "floyd": 10,
+          "index_marking": 2,
+          "value_binary_search": 2
+        },
+        "landing_correct": {
+          "hash_set": 3,
+          "index_marking": 1,
+          "value_binary_search": 1,
+          "floyd": 2,
+          "other": 1
+        },
+        "hill_cc": 4.455659733512511,
+        "hill_cc_rarefied20": null,
+        "other_share": 0.14,
+        "invalid_share": 0.5,
+        "pass_rate": 0.32,
+        "pass_ci": [
+          0.172051902198581,
+          0.5158973087951597
+        ],
+        "per_template": {
+          "LF2": {
+            "invalid": 25,
+            "hash_set": 4,
+            "other": 7,
+            "floyd": 10,
+            "index_marking": 2,
+            "value_binary_search": 2
+          }
+        },
+        "N": 50,
+        "n_correct": 8,
+        "novel_count": 0,
+        "novel_rate_upper95": 0.05815507911697225,
+        "novel_rate_upper95_among_correct": 0.3123439780663678,
+        "mean_new_tokens": 2024.74,
+        "mean_rationale_words": 1422.78,
+        "extraction": {
+          "any_block": 5,
+          "no_code": 20,
+          "last_python_block_with_solve": 25
+        },
+        "truncated_share": 0.0,
+        "claims": {
+          "mechanism_check": {
+            "n_claiming_novelty": 48,
+            "n_with_valid_code": 24,
+            "share_code_is_catalogue_algorithm": 0.7083333333333334,
+            "share_code_is_default": 0.125,
+            "share_code_off_catalogue": 0.2916666666666667,
+            "share_no_code": 0.5
+          },
+          "n_with_claim_record": 50,
+          "share_claiming_novelty": 0.96,
+          "share_of_claimed_inventions_known": 0.041666666666666664,
+          "claim_code_consistency": {
+            "yes": 33,
+            "no": 17
+          },
+          "novelty_in_prose_default_in_code": 0.06
+        }
+      },
+      "T06|LF2|think_on|fp8": {
+        "n": 10,
+        "attempted": 9,
+        "counts": {
+          "value_binary_search": 2,
+          "other": 6,
+          "floyd": 1,
+          "invalid": 1
+        },
+        "avoidance": 1.0,
+        "avoidance_ci": [
+          0.700854948272956,
+          1.0
+        ],
+        "landing": {
+          "value_binary_search": 2,
+          "other": 6,
+          "floyd": 1
+        },
+        "landing_correct": {
+          "value_binary_search": 2,
+          "floyd": 1
+        },
+        "hill_cc": 1.8898815748423097,
+        "hill_cc_rarefied20": null,
+        "other_share": 0.6,
+        "invalid_share": 0.1,
+        "pass_rate": 0.3333333333333333,
+        "pass_ci": [
+          0.12058381743407343,
+          0.6457978664749412
+        ],
+        "per_template": {
+          "LF2": {
+            "value_binary_search": 2,
+            "other": 6,
+            "floyd": 1,
+            "invalid": 1
+          }
+        },
+        "N": 10,
+        "n_correct": 3,
+        "novel_count": 0,
+        "novel_rate_upper95": 0.2588655508930522,
+        "novel_rate_upper95_among_correct": 0.6315968501359612,
+        "mean_new_tokens": 8206.2,
+        "mean_rationale_words": 664.2,
+        "extraction": {
+          "last_python_block_with_solve": 9,
+          "no_code": 1
+        },
+        "truncated_share": 0.0,
+        "claims": {
+          "mechanism_check": {
+            "n_claiming_novelty": 9,
+            "n_with_valid_code": 8,
+            "share_code_is_catalogue_algorithm": 0.25,
+            "share_code_is_default": 0.0,
+            "share_code_off_catalogue": 0.75,
+            "share_no_code": 0.1111111111111111
+          },
+          "n_with_claim_record": 10,
+          "share_claiming_novelty": 0.9,
+          "share_of_claimed_inventions_known": 0.0,
+          "claim_code_consistency": {
+            "yes": 10
+          },
+          "novelty_in_prose_default_in_code": 0.0
+        },
+        "thinking": {
+          "completion_rate": 1.0,
+          "mean_thinking_tokens": 6901.3,
+          "mean_answer_tokens": 1304.9,
+          "pass_rate_complete": 0.3,
+          "pass_rate_forced_stop": null,
+          "n_complete": 10,
+          "n_forced_stop": 0
+        }
+      },
+      "T1|LF1|think_off|bf16": {
+        "n": 25,
+        "attempted": 16,
+        "counts": {
+          "invalid": 9,
+          "dfs": 12,
+          "bfs": 3,
+          "other": 1
+        },
+        "avoidance": 1.0,
+        "avoidance_ci": [
+          0.8063923170025951,
+          1.0
+        ],
+        "landing": {
+          "dfs": 12,
+          "bfs": 3,
+          "other": 1
+        },
+        "landing_correct": {
+          "dfs": 4,
+          "bfs": 3
+        },
+        "hill_cc": 1.9796263300525183,
+        "hill_cc_rarefied20": null,
+        "other_share": 0.04,
+        "invalid_share": 0.36,
+        "pass_rate": 0.4375,
+        "pass_ci": [
+          0.23098652281405668,
+          0.6682144375606189
+        ],
+        "per_template": {
+          "LF1": {
+            "invalid": 9,
+            "dfs": 12,
+            "bfs": 3,
+            "other": 1
+          }
+        },
+        "N": 25,
+        "n_correct": 7,
+        "novel_count": 0,
+        "novel_rate_upper95": 0.1129281450068432,
+        "novel_rate_upper95_among_correct": 0.34816365513116077,
+        "mean_new_tokens": 2030.16,
+        "mean_rationale_words": 1371.08,
+        "extraction": {
+          "no_code": 9,
+          "last_python_block_with_solve": 16
+        },
+        "truncated_share": 0.0,
+        "claims": {
+          "mechanism_check": {
+            "n_claiming_novelty": 21,
+            "n_with_valid_code": 13,
+            "share_code_is_catalogue_algorithm": 0.9230769230769231,
+            "share_code_is_default": 0.07692307692307693,
+            "share_code_off_catalogue": 0.07692307692307693,
+            "share_no_code": 0.38095238095238093
+          },
+          "n_with_claim_record": 25,
+          "share_claiming_novelty": 0.84,
+          "share_of_claimed_inventions_known": 0.0,
+          "claim_code_consistency": {
+            "no": 2,
+            "yes": 23
+          },
+          "novelty_in_prose_default_in_code": 0.04
+        }
+      },
+      "T1|LF1|think_on|fp8": {
+        "n": 10,
+        "attempted": 8,
+        "counts": {
+          "invalid": 2,
+          "dfs": 8
+        },
+        "avoidance": 1.0,
+        "avoidance_ci": [
+          0.6755924316585924,
+          1.0
+        ],
+        "landing": {
+          "dfs": 8
+        },
+        "landing_correct": {
+          "dfs": 3
+        },
+        "hill_cc": 1.0,
+        "hill_cc_rarefied20": null,
+        "other_share": 0.0,
+        "invalid_share": 0.2,
+        "pass_rate": 0.375,
+        "pass_ci": [
+          0.13684428473912286,
+          0.694257607346229
+        ],
+        "per_template": {
+          "LF1": {
+            "invalid": 2,
+            "dfs": 8
+          }
+        },
+        "N": 10,
+        "n_correct": 3,
+        "novel_count": 0,
+        "novel_rate_upper95": 0.2588655508930522,
+        "novel_rate_upper95_among_correct": 0.6315968501359612,
+        "mean_new_tokens": 9835.2,
+        "mean_rationale_words": 397.6,
+        "extraction": {
+          "no_code": 2,
+          "last_python_block_with_solve": 8
+        },
+        "truncated_share": 0.0,
+        "claims": {
+          "mechanism_check": {
+            "n_claiming_novelty": 9,
+            "n_with_valid_code": 7,
+            "share_code_is_catalogue_algorithm": 1.0,
+            "share_code_is_default": 0.0,
+            "share_code_off_catalogue": 0.0,
+            "share_no_code": 0.2222222222222222
+          },
+          "n_with_claim_record": 10,
+          "share_claiming_novelty": 0.9,
+          "share_of_claimed_inventions_known": 0.0,
+          "claim_code_consistency": {
+            "yes": 9,
+            "no": 1
+          },
+          "novelty_in_prose_default_in_code": 0.0
+        },
+        "thinking": {
+          "completion_rate": 1.0,
+          "mean_thinking_tokens": 8634.2,
+          "mean_answer_tokens": 1201.0,
+          "pass_rate_complete": 0.3,
+          "pass_rate_forced_stop": null,
+          "n_complete": 10,
+          "n_forced_stop": 0
+        }
+      },
+      "T1|LF2|think_off|bf16": {
+        "n": 25,
+        "attempted": 8,
+        "counts": {
+          "dijkstra": 1,
+          "invalid": 17,
+          "bfs": 3,
+          "other": 2,
+          "dfs": 2
+        },
+        "avoidance": 1.0,
+        "avoidance_ci": [
+          0.6755924316585924,
+          1.0
+        ],
+        "landing": {
+          "dijkstra": 1,
+          "bfs": 3,
+          "other": 2,
+          "dfs": 2
+        },
+        "landing_correct": {
+          "dijkstra": 1,
+          "bfs": 2
+        },
+        "hill_cc": 1.8898815748423097,
+        "hill_cc_rarefied20": null,
+        "other_share": 0.08,
+        "invalid_share": 0.68,
+        "pass_rate": 0.375,
+        "pass_ci": [
+          0.13684428473912286,
+          0.694257607346229
+        ],
+        "per_template": {
+          "LF2": {
+            "dijkstra": 1,
+            "invalid": 17,
+            "bfs": 3,
+            "other": 2,
+            "dfs": 2
+          }
+        },
+        "N": 25,
+        "n_correct": 3,
+        "novel_count": 0,
+        "novel_rate_upper95": 0.1129281450068432,
+        "novel_rate_upper95_among_correct": 0.6315968501359612,
+        "mean_new_tokens": 2661.08,
+        "mean_rationale_words": 1688.48,
+        "extraction": {
+          "last_python_block_with_solve": 8,
+          "no_code": 13,
+          "unterminated_block": 4
+        },
+        "truncated_share": 0.24,
+        "claims": {
+          "mechanism_check": {
+            "n_claiming_novelty": 25,
+            "n_with_valid_code": 8,
+            "share_code_is_catalogue_algorithm": 0.75,
+            "share_code_is_default": 0.375,
+            "share_code_off_catalogue": 0.25,
+            "share_no_code": 0.68
+          },
+          "n_with_claim_record": 25,
+          "share_claiming_novelty": 1.0,
+          "share_of_claimed_inventions_known": 0.0,
+          "claim_code_consistency": {
+            "partial": 2,
+            "no": 17,
+            "yes": 6
+          },
+          "novelty_in_prose_default_in_code": 0.12
+        }
+      },
+      "T1|LF2|think_on|fp8": {
+        "n": 10,
+        "attempted": 9,
+        "counts": {
+          "other": 2,
+          "dfs": 5,
+          "dijkstra": 2,
+          "invalid": 1
+        },
+        "avoidance": 1.0,
+        "avoidance_ci": [
+          0.700854948272956,
+          1.0
+        ],
+        "landing": {
+          "other": 2,
+          "dfs": 5,
+          "dijkstra": 2
+        },
+        "landing_correct": {
+          "dfs": 2,
+          "dijkstra": 1
+        },
+        "hill_cc": 1.8898815748423097,
+        "hill_cc_rarefied20": null,
+        "other_share": 0.2,
+        "invalid_share": 0.1,
+        "pass_rate": 0.3333333333333333,
+        "pass_ci": [
+          0.12058381743407343,
+          0.6457978664749412
+        ],
+        "per_template": {
+          "LF2": {
+            "other": 2,
+            "dfs": 5,
+            "dijkstra": 2,
+            "invalid": 1
+          }
+        },
+        "N": 10,
+        "n_correct": 3,
+        "novel_count": 0,
+        "novel_rate_upper95": 0.2588655508930522,
+        "novel_rate_upper95_among_correct": 0.6315968501359612,
+        "mean_new_tokens": 7852.4,
+        "mean_rationale_words": 201.8,
+        "extraction": {
+          "last_python_block_with_solve": 9,
+          "no_code": 1
+        },
+        "truncated_share": 0.0,
+        "claims": {
+          "mechanism_check": {
+            "n_claiming_novelty": 8,
+            "n_with_valid_code": 7,
+            "share_code_is_catalogue_algorithm": 0.7142857142857143,
+            "share_code_is_default": 0.0,
+            "share_code_off_catalogue": 0.2857142857142857,
+            "share_no_code": 0.125
+          },
+          "n_with_claim_record": 10,
+          "share_claiming_novelty": 0.8,
+          "share_of_claimed_inventions_known": 0.0,
+          "claim_code_consistency": {
+            "partial": 3,
+            "yes": 6,
+            "no": 1
+          },
+          "novelty_in_prose_default_in_code": 0.0
+        },
+        "thinking": {
+          "completion_rate": 1.0,
+          "mean_thinking_tokens": 6528.2,
+          "mean_answer_tokens": 1324.2,
+          "pass_rate_complete": 0.3,
+          "pass_rate_forced_stop": null,
+          "n_complete": 10,
+          "n_forced_stop": 0
+        }
+      },
+      "T2|LF1|think_off|bf16": {
+        "n": 50,
+        "attempted": 40,
+        "counts": {
+          "dijkstra": 17,
+          "bf_spfa": 19,
+          "floyd": 1,
+          "other": 3,
+          "invalid": 10
+        },
+        "avoidance": 1.0,
+        "avoidance_ci": [
+          0.9123783975415363,
+          1.0
+        ],
+        "landing": {
+          "dijkstra": 17,
+          "bf_spfa": 19,
+          "floyd": 1,
+          "other": 3
+        },
+        "landing_correct": {
+          "dijkstra": 16,
+          "bf_spfa": 18,
+          "floyd": 1
+        },
+        "hill_cc": 2.228663385920142,
+        "hill_cc_rarefied20": 2.1889699068340494,
+        "other_share": 0.06,
+        "invalid_share": 0.2,
+        "pass_rate": 0.875,
+        "pass_ci": [
+          0.7388788003201471,
+          0.9454049978360052
+        ],
+        "per_template": {
+          "LF1": {
+            "dijkstra": 17,
+            "bf_spfa": 19,
+            "floyd": 1,
+            "other": 3,
+            "invalid": 10
+          }
+        },
+        "N": 50,
+        "n_correct": 35,
+        "novel_count": 0,
+        "novel_rate_upper95": 0.05815507911697225,
+        "novel_rate_upper95_among_correct": 0.08203163585667045,
+        "mean_new_tokens": 2260.48,
+        "mean_rationale_words": 1483.58,
+        "extraction": {
+          "last_python_block_with_solve": 41,
+          "no_code": 9
+        },
+        "truncated_share": 0.0,
+        "claims": {
+          "mechanism_check": {
+            "n_claiming_novelty": 41,
+            "n_with_valid_code": 33,
+            "share_code_is_catalogue_algorithm": 0.9090909090909091,
+            "share_code_is_default": 0.36363636363636365,
+            "share_code_off_catalogue": 0.09090909090909091,
+            "share_no_code": 0.1951219512195122
+          },
+          "n_with_claim_record": 50,
+          "share_claiming_novelty": 0.82,
+          "share_of_claimed_inventions_known": 0.0,
+          "claim_code_consistency": {
+            "yes": 41,
+            "partial": 4,
+            "no": 5
+          },
+          "novelty_in_prose_default_in_code": 0.24
+        }
+      },
+      "T2|LF1|think_off|fp8": {
+        "n": 50,
+        "attempted": 34,
+        "counts": {
+          "invalid": 16,
+          "dijkstra": 18,
+          "bf_spfa": 12,
+          "other": 4
+        },
+        "avoidance": 1.0,
+        "avoidance_ci": [
+          0.8984854444077807,
+          0.9999999999999999
+        ],
+        "landing": {
+          "dijkstra": 18,
+          "bf_spfa": 12,
+          "other": 4
+        },
+        "landing_correct": {
+          "dijkstra": 17,
+          "bf_spfa": 11,
+          "other": 1
+        },
+        "hill_cc": 2.2186527571389387,
+        "hill_cc_rarefied20": 2.2136508008464393,
+        "other_share": 0.08,
+        "invalid_share": 0.32,
+        "pass_rate": 0.8529411764705882,
+        "pass_ci": [
+          0.6987194336217214,
+          0.9355055859602414
+        ],
+        "per_template": {
+          "LF1": {
+            "invalid": 16,
+            "dijkstra": 18,
+            "bf_spfa": 12,
+            "other": 4
+          }
+        },
+        "N": 50,
+        "n_correct": 29,
+        "novel_count": 0,
+        "novel_rate_upper95": 0.05815507911697225,
+        "novel_rate_upper95_among_correct": 0.0981446276772957,
+        "mean_new_tokens": 2315.02,
+        "mean_rationale_words": 1550.76,
+        "extraction": {
+          "no_code": 15,
+          "last_python_block_with_solve": 34,
+          "any_block": 1
+        },
+        "truncated_share": 0.0,
+        "claims": {
+          "mechanism_check": {
+            "n_claiming_novelty": 45,
+            "n_with_valid_code": 30,
+            "share_code_is_catalogue_algorithm": 0.8666666666666667,
+            "share_code_is_default": 0.5,
+            "share_code_off_catalogue": 0.13333333333333333,
+            "share_no_code": 0.3333333333333333
+          },
+          "n_with_claim_record": 50,
+          "share_claiming_novelty": 0.9,
+          "share_of_claimed_inventions_known": 0.0,
+          "claim_code_consistency": {
+            "yes": 39,
+            "partial": 4,
+            "no": 7
+          },
+          "novelty_in_prose_default_in_code": 0.3
+        }
+      },
+      "T2|LF1|think_on|fp8": {
+        "n": 10,
+        "attempted": 8,
+        "counts": {
+          "bf_spfa": 5,
+          "invalid": 2,
+          "dijkstra": 2,
+          "floyd": 1
+        },
+        "avoidance": 1.0,
+        "avoidance_ci": [
+          0.6755924316585924,
+          1.0
+        ],
+        "landing": {
+          "bf_spfa": 5,
+          "dijkstra": 2,
+          "floyd": 1
+        },
+        "landing_correct": {
+          "bf_spfa": 5,
+          "dijkstra": 2,
+          "floyd": 1
+        },
+        "hill_cc": 2.4602329762891006,
+        "hill_cc_rarefied20": null,
+        "other_share": 0.0,
+        "invalid_share": 0.2,
+        "pass_rate": 1.0,
+        "pass_ci": [
+          0.6755924316585924,
+          1.0
+        ],
+        "per_template": {
+          "LF1": {
+            "bf_spfa": 5,
+            "invalid": 2,
+            "dijkstra": 2,
+            "floyd": 1
+          }
+        },
+        "N": 10,
+        "n_correct": 8,
+        "novel_count": 0,
+        "novel_rate_upper95": 0.2588655508930522,
+        "novel_rate_upper95_among_correct": 0.3123439780663678,
+        "mean_new_tokens": 8163.7,
+        "mean_rationale_words": 631.9,
+        "extraction": {
+          "last_python_block_with_solve": 8,
+          "no_code": 2
+        },
+        "truncated_share": 0.0,
+        "claims": {
+          "mechanism_check": {
+            "n_claiming_novelty": 4,
+            "n_with_valid_code": 4,
+            "share_code_is_catalogue_algorithm": 1.0,
+            "share_code_is_default": 0.25,
+            "share_code_off_catalogue": 0.0,
+            "share_no_code": 0.0
+          },
+          "n_with_claim_record": 10,
+          "share_claiming_novelty": 0.4,
+          "share_of_claimed_inventions_known": 0.5,
+          "claim_code_consistency": {
+            "yes": 10
+          },
+          "novelty_in_prose_default_in_code": 0.1
+        },
+        "thinking": {
+          "completion_rate": 1.0,
+          "mean_thinking_tokens": 6300.5,
+          "mean_answer_tokens": 1863.2,
+          "pass_rate_complete": 0.8,
+          "pass_rate_forced_stop": null,
+          "n_complete": 10,
+          "n_forced_stop": 0
+        }
+      },
+      "T2|LF2|think_off|bf16": {
+        "n": 25,
+        "attempted": 17,
+        "counts": {
+          "invalid": 8,
+          "other": 5,
+          "bf_spfa": 5,
+          "dijkstra": 6,
+          "floyd": 1
+        },
+        "avoidance": 1.0,
+        "avoidance_ci": [
+          0.8156818626193445,
+          1.0
+        ],
+        "landing": {
+          "other": 5,
+          "bf_spfa": 5,
+          "dijkstra": 6,
+          "floyd": 1
+        },
+        "landing_correct": {
+          "bf_spfa": 3,
+          "dijkstra": 5,
+          "floyd": 1
+        },
+        "hill_cc": 2.552027924280892,
+        "hill_cc_rarefied20": null,
+        "other_share": 0.2,
+        "invalid_share": 0.32,
+        "pass_rate": 0.5294117647058824,
+        "pass_ci": [
+          0.3096323491502231,
+          0.7383489368862088
+        ],
+        "per_template": {
+          "LF2": {
+            "invalid": 8,
+            "other": 5,
+            "bf_spfa": 5,
+            "dijkstra": 6,
+            "floyd": 1
+          }
+        },
+        "N": 25,
+        "n_correct": 9,
+        "novel_count": 0,
+        "novel_rate_upper95": 0.1129281450068432,
+        "novel_rate_upper95_among_correct": 0.28312883556311347,
+        "mean_new_tokens": 2121.52,
+        "mean_rationale_words": 1473.32,
+        "extraction": {
+          "no_code": 8,
+          "last_python_block_with_solve": 17
+        },
+        "truncated_share": 0.0,
+        "claims": {
+          "mechanism_check": {
+            "n_claiming_novelty": 25,
+            "n_with_valid_code": 17,
+            "share_code_is_catalogue_algorithm": 0.7058823529411765,
+            "share_code_is_default": 0.35294117647058826,
+            "share_code_off_catalogue": 0.29411764705882354,
+            "share_no_code": 0.32
+          },
+          "n_with_claim_record": 25,
+          "share_claiming_novelty": 1.0,
+          "share_of_claimed_inventions_known": 0.0,
+          "claim_code_consistency": {
+            "yes": 12,
+            "no": 10,
+            "partial": 3
+          },
+          "novelty_in_prose_default_in_code": 0.24
+        }
+      },
+      "T2|LF2|think_on|fp8": {
+        "n": 10,
+        "attempted": 10,
+        "counts": {
+          "bf_spfa": 4,
+          "dijkstra": 6
+        },
+        "avoidance": 1.0,
+        "avoidance_ci": [
+          0.7224671969739421,
+          0.9999999999999999
+        ],
+        "landing": {
+          "bf_spfa": 4,
+          "dijkstra": 6
+        },
+        "landing_correct": {
+          "bf_spfa": 3,
+          "dijkstra": 6
+        },
+        "hill_cc": 1.8898815748423097,
+        "hill_cc_rarefied20": null,
+        "other_share": 0.0,
+        "invalid_share": 0.0,
+        "pass_rate": 0.9,
+        "pass_ci": [
+          0.5958499704752279,
+          0.982123787103926
+        ],
+        "per_template": {
+          "LF2": {
+            "bf_spfa": 4,
+            "dijkstra": 6
+          }
+        },
+        "N": 10,
+        "n_correct": 9,
+        "novel_count": 0,
+        "novel_rate_upper95": 0.2588655508930522,
+        "novel_rate_upper95_among_correct": 0.28312883556311347,
+        "mean_new_tokens": 8440.3,
+        "mean_rationale_words": 324.3,
+        "extraction": {
+          "last_python_block_with_solve": 10
+        },
+        "truncated_share": 0.0,
+        "claims": {
+          "mechanism_check": {
+            "n_claiming_novelty": 5,
+            "n_with_valid_code": 5,
+            "share_code_is_catalogue_algorithm": 1.0,
+            "share_code_is_default": 0.2,
+            "share_code_off_catalogue": 0.0,
+            "share_no_code": 0.0
+          },
+          "n_with_claim_record": 10,
+          "share_claiming_novelty": 0.5,
+          "share_of_claimed_inventions_known": 0.0,
+          "claim_code_consistency": {
+            "yes": 10
+          },
+          "novelty_in_prose_default_in_code": 0.1
+        },
+        "thinking": {
+          "completion_rate": 1.0,
+          "mean_thinking_tokens": 7055.0,
+          "mean_answer_tokens": 1385.3,
+          "pass_rate_complete": 0.9,
+          "pass_rate_forced_stop": null,
+          "n_complete": 10,
+          "n_forced_stop": 0
+        }
+      }
+    },
+    "fp8_crosscheck": {
+      "n_bf16": 50,
+      "n_fp8": 50,
+      "composition_bf16": {
+        "dijkstra": 17,
+        "bf_spfa": 19,
+        "floyd": 1,
+        "other": 3,
+        "invalid": 10
+      },
+      "composition_fp8": {
+        "invalid": 16,
+        "dijkstra": 18,
+        "bf_spfa": 12,
+        "other": 4
+      },
+      "js": {
+        "js_bits": 0.03281951201197907,
+        "null_p95": 0.06774720758920148,
+        "p_value": 0.351824087956022,
+        "n_boot": 2000
+      },
+      "pass_rate_bf16": 0.7,
+      "pass_rate_fp8": 0.58,
+      "pass_diff": {
+        "diff": 0.12,
+        "ci": [
+          -0.0666715520676899,
+          0.29557069125622876
+        ]
+      },
+      "mean_tokens_bf16": 2260.48,
+      "mean_tokens_fp8": 2315.02,
+      "rationale_words_bf16": 1483.58,
+      "rationale_words_fp8": 1550.76,
+      "correct_other_bf16": 0,
+      "correct_other_fp8": 1
+    },
+    "novelty_audit_summary": {
+      "n": 53,
+      "n_correct_other": 38,
+      "kappa_A_B": 0.27314285714285713,
+      "kappa_A_final": 0.33123028391167186,
+      "kappa_B_final": 0.593444909344491,
+      "final_classes_correct_other": {
+        "LABELLER MISS": 30,
+        "DEGENERATE": 1,
+        "CATALOGUE VARIANT": 7
+      },
+      "final_classes_all": {
+        "LABELLER MISS": 31,
+        "DEGENERATE": 12,
+        "CATALOGUE VARIANT": 10
+      },
+      "novel": []
+    },
+    "audit_controls": {
+      "controls": [
+        {
+          "id": "ctrl_ref_kmp",
+          "kind": "catalogue reference (KMP)",
+          "expected": "LABELLER MISS",
+          "A": "LABELLER MISS",
+          "B": "LABELLER MISS"
+        },
+        {
+          "id": "ctrl_ref_bfs_t10",
+          "kind": "catalogue reference (BFS)",
+          "expected": "LABELLER MISS",
+          "A": "LABELLER MISS",
+          "B": "LABELLER MISS"
+        },
+        {
+          "id": "ctrl_obfuscated_uf",
+          "kind": "obfuscated union-find",
+          "expected": "LABELLER MISS",
+          "A": "LABELLER MISS",
+          "B": "LABELLER MISS"
+        }
+      ],
+      "judge_A_correct": 5,
+      "judge_B_correct": 5,
+      "threshold": "5/6",
+      "judge_A_pass": true,
+      "judge_B_pass": true,
+      "utc": "2026-10-20T22:03:28.566831Z"
+    },
+    "can": {
+      "tasks": {
+        "T1": {
+          "bfs": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 40,
+              "can_k": 38,
+              "can": 0.95,
+              "can_ci": [
+                0.8349612250489412,
+                0.9861793327384413
+              ],
+              "labelled_share": 1.0,
+              "pass_given_labelled": 0.95,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp9": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 38,
+                "can": 0.95,
+                "can_ci": [
+                  0.8349612250489412,
+                  0.9861793327384413
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 0.95,
+                "n_desc": 0,
+                "desc_can": null
+              },
+              "exp7": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 39,
+                "can": 0.975,
+                "can_ci": [
+                  0.8711863091181636,
+                  0.9955731685462955
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 0.975,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "dfs": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 40,
+              "can_k": 9,
+              "can": 0.225,
+              "can_ci": [
+                0.12316091264273149,
+                0.37503096870942354
+              ],
+              "labelled_share": 1.0,
+              "pass_given_labelled": 0.225,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp9": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 9,
+                "can": 0.225,
+                "can_ci": [
+                  0.12316091264273149,
+                  0.37503096870942354
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 0.225,
+                "n_desc": 0,
+                "desc_can": null
+              },
+              "exp7": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 8,
+                "can": 0.2,
+                "can_ci": [
+                  0.1049998967188637,
+                  0.3475730647562145
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 0.2,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "bibfs": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 21,
+              "can_k": 5,
+              "can": 0.125,
+              "can_ci": [
+                0.05459500216399486,
+                0.26112119967985287
+              ],
+              "labelled_share": 0.525,
+              "pass_given_labelled": 0.23809523809523808,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp9": {
+                "n_plain": 40,
+                "labelled_as_requested": 21,
+                "can_k": 5,
+                "can": 0.125,
+                "can_ci": [
+                  0.05459500216399486,
+                  0.26112119967985287
+                ],
+                "labelled_share": 0.525,
+                "pass_given_labelled": 0.23809523809523808,
+                "n_desc": 0,
+                "desc_can": null
+              },
+              "exp7": {
+                "n_plain": 120,
+                "labelled_as_requested": 30,
+                "can_k": 6,
+                "can": 0.05,
+                "can_ci": [
+                  0.023114364279201043,
+                  0.10480288592438619
+                ],
+                "labelled_share": 0.25,
+                "pass_given_labelled": 0.2,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "iddfs": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 37,
+              "can_k": 0,
+              "can": 0.0,
+              "can_ci": [
+                0.0,
+                0.08762160245846368
+              ],
+              "labelled_share": 0.925,
+              "pass_given_labelled": 0.0,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp9": {
+                "n_plain": 40,
+                "labelled_as_requested": 37,
+                "can_k": 0,
+                "can": 0.0,
+                "can_ci": [
+                  0.0,
+                  0.08762160245846368
+                ],
+                "labelled_share": 0.925,
+                "pass_given_labelled": 0.0,
+                "n_desc": 0,
+                "desc_can": null
+              },
+              "exp7": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 0,
+                "can": 0.0,
+                "can_ci": [
+                  0.0,
+                  0.08762160245846368
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 0.0,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "astar_gbfs": {
+            "primary": {
+              "n_plain": 80,
+              "labelled_as_requested": 47,
+              "can_k": 36,
+              "can": 0.45,
+              "can_ci": [
+                0.34577689107955234,
+                0.5588049219429702
+              ],
+              "labelled_share": 0.5875,
+              "pass_given_labelled": 0.7659574468085106,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp9": {
+                "n_plain": 80,
+                "labelled_as_requested": 47,
+                "can_k": 36,
+                "can": 0.45,
+                "can_ci": [
+                  0.34577689107955234,
+                  0.5588049219429702
+                ],
+                "labelled_share": 0.5875,
+                "pass_given_labelled": 0.7659574468085106,
+                "n_desc": 0,
+                "desc_can": null
+              },
+              "exp7": {
+                "n_plain": 90,
+                "labelled_as_requested": 32,
+                "can_k": 32,
+                "can": 0.35555555555555557,
+                "can_ci": [
+                  0.26443868894919004,
+                  0.4584982697260955
+                ],
+                "labelled_share": 0.35555555555555557,
+                "pass_given_labelled": 1.0,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "dijkstra": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 13,
+              "can_k": 11,
+              "can": 0.275,
+              "can_ci": [
+                0.16108016177777446,
+                0.4283495593285342
+              ],
+              "labelled_share": 0.325,
+              "pass_given_labelled": 0.8461538461538461,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp9": {
+                "n_plain": 40,
+                "labelled_as_requested": 13,
+                "can_k": 11,
+                "can": 0.275,
+                "can_ci": [
+                  0.16108016177777446,
+                  0.4283495593285342
+                ],
+                "labelled_share": 0.325,
+                "pass_given_labelled": 0.8461538461538461,
+                "n_desc": 0,
+                "desc_can": null
+              },
+              "exp7": {
+                "n_plain": 120,
+                "labelled_as_requested": 26,
+                "can_k": 25,
+                "can": 0.20833333333333334,
+                "can_ci": [
+                  0.14528439565967385,
+                  0.28947678502783636
+                ],
+                "labelled_share": 0.21666666666666667,
+                "pass_given_labelled": 0.9615384615384616,
+                "n_desc": 120,
+                "desc_can": 0.625
+              }
+            }
+          }
+        },
+        "T2": {
+          "dijkstra": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 40,
+              "can_k": 40,
+              "can": 1.0,
+              "can_ci": [
+                0.9123783975415363,
+                1.0
+              ],
+              "labelled_share": 1.0,
+              "pass_given_labelled": 1.0,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp9": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 40,
+                "can": 1.0,
+                "can_ci": [
+                  0.9123783975415363,
+                  1.0
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 1.0,
+                "n_desc": 0,
+                "desc_can": null
+              },
+              "exp7": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 40,
+                "can": 1.0,
+                "can_ci": [
+                  0.9123783975415363,
+                  1.0
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 1.0,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "bf_spfa": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 40,
+              "can_k": 34,
+              "can": 0.85,
+              "can_ci": [
+                0.7092767550401498,
+                0.9293881232389256
+              ],
+              "labelled_share": 1.0,
+              "pass_given_labelled": 0.85,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp9": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 34,
+                "can": 0.85,
+                "can_ci": [
+                  0.7092767550401498,
+                  0.9293881232389256
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 0.85,
+                "n_desc": 0,
+                "desc_can": null
+              },
+              "exp7": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 36,
+                "can": 0.9,
+                "can_ci": [
+                  0.7694822464406407,
+                  0.9604204715925885
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 0.9,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "bidijkstra": {
+            "primary": {
+              "n_plain": 120,
+              "labelled_as_requested": 2,
+              "can_k": 2,
+              "can": 0.016666666666666666,
+              "can_ci": [
+                0.004582564524701124,
+                0.05873596347174441
+              ],
+              "labelled_share": 0.016666666666666666,
+              "pass_given_labelled": 1.0,
+              "n_desc": 120,
+              "desc_can": 0.09166666666666666,
+              "note": "no plain exp9 attempts; exp7 plain used as primary"
+            },
+            "by_source": {
+              "exp9": {
+                "n_plain": 0,
+                "labelled_as_requested": 0,
+                "can_k": 0,
+                "can": null,
+                "can_ci": [
+                  0.0,
+                  1.0
+                ],
+                "labelled_share": null,
+                "pass_given_labelled": null,
+                "n_desc": 40,
+                "desc_can": 0.225
+              },
+              "exp7": {
+                "n_plain": 120,
+                "labelled_as_requested": 2,
+                "can_k": 2,
+                "can": 0.016666666666666666,
+                "can_ci": [
+                  0.004582564524701124,
+                  0.05873596347174441
+                ],
+                "labelled_share": 0.016666666666666666,
+                "pass_given_labelled": 1.0,
+                "n_desc": 120,
+                "desc_can": 0.09166666666666666
+              }
+            }
+          },
+          "floyd": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 40,
+              "can_k": 40,
+              "can": 1.0,
+              "can_ci": [
+                0.9123783975415363,
+                1.0
+              ],
+              "labelled_share": 1.0,
+              "pass_given_labelled": 1.0,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp9": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 40,
+                "can": 1.0,
+                "can_ci": [
+                  0.9123783975415363,
+                  1.0
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 1.0,
+                "n_desc": 0,
+                "desc_can": null
+              },
+              "exp7": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 37,
+                "can": 0.925,
+                "can_ci": [
+                  0.8013576634835684,
+                  0.9741639744267374
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 0.925,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "dial": {
+            "primary": {
+              "n_plain": 120,
+              "labelled_as_requested": 22,
+              "can_k": 9,
+              "can": 0.075,
+              "can_ci": [
+                0.039957115201337684,
+                0.1364091766576058
+              ],
+              "labelled_share": 0.18333333333333332,
+              "pass_given_labelled": 0.4090909090909091,
+              "n_desc": 120,
+              "desc_can": 0.30833333333333335,
+              "note": "no plain exp9 attempts; exp7 plain used as primary"
+            },
+            "by_source": {
+              "exp9": {
+                "n_plain": 0,
+                "labelled_as_requested": 0,
+                "can_k": 0,
+                "can": null,
+                "can_ci": [
+                  0.0,
+                  1.0
+                ],
+                "labelled_share": null,
+                "pass_given_labelled": null,
+                "n_desc": 40,
+                "desc_can": 0.175
+              },
+              "exp7": {
+                "n_plain": 120,
+                "labelled_as_requested": 22,
+                "can_k": 9,
+                "can": 0.075,
+                "can_ci": [
+                  0.039957115201337684,
+                  0.1364091766576058
+                ],
+                "labelled_share": 0.18333333333333332,
+                "pass_given_labelled": 0.4090909090909091,
+                "n_desc": 120,
+                "desc_can": 0.30833333333333335
+              }
+            }
+          }
+        },
+        "T03": {
+          "full_sort": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 40,
+              "can_k": 40,
+              "can": 1.0,
+              "can_ci": [
+                0.9123783975415363,
+                1.0
+              ],
+              "labelled_share": 1.0,
+              "pass_given_labelled": 1.0,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp11": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 40,
+                "can": 1.0,
+                "can_ci": [
+                  0.9123783975415363,
+                  1.0
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 1.0,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "size_k_heap": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 36,
+              "can_k": 30,
+              "can": 0.75,
+              "can_ci": [
+                0.5980603845146479,
+                0.8581288142561201
+              ],
+              "labelled_share": 0.9,
+              "pass_given_labelled": 0.8333333333333334,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp11": {
+                "n_plain": 40,
+                "labelled_as_requested": 36,
+                "can_k": 30,
+                "can": 0.75,
+                "can_ci": [
+                  0.5980603845146479,
+                  0.8581288142561201
+                ],
+                "labelled_share": 0.9,
+                "pass_given_labelled": 0.8333333333333334,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "heapify_pop": {
+            "primary": {
+              "n_plain": 60,
+              "labelled_as_requested": 42,
+              "can_k": 42,
+              "can": 0.7,
+              "can_ci": [
+                0.5749129195048435,
+                0.8010183392814656
+              ],
+              "labelled_share": 0.7,
+              "pass_given_labelled": 1.0,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp11": {
+                "n_plain": 60,
+                "labelled_as_requested": 42,
+                "can_k": 42,
+                "can": 0.7,
+                "can_ci": [
+                  0.5749129195048435,
+                  0.8010183392814656
+                ],
+                "labelled_share": 0.7,
+                "pass_given_labelled": 1.0,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "quickselect": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 40,
+              "can_k": 38,
+              "can": 0.95,
+              "can_ci": [
+                0.8349612250489412,
+                0.9861793327384413
+              ],
+              "labelled_share": 1.0,
+              "pass_given_labelled": 0.95,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp11": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 38,
+                "can": 0.95,
+                "can_ci": [
+                  0.8349612250489412,
+                  0.9861793327384413
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 0.95,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "median_of_medians": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 40,
+              "can_k": 4,
+              "can": 0.1,
+              "can_ci": [
+                0.039579528407411566,
+                0.23051775355935938
+              ],
+              "labelled_share": 1.0,
+              "pass_given_labelled": 0.1,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp11": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 4,
+                "can": 0.1,
+                "can_ci": [
+                  0.039579528407411566,
+                  0.23051775355935938
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 0.1,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "counting_sort": {
+            "primary": {
+              "n_plain": 60,
+              "labelled_as_requested": 47,
+              "can_k": 46,
+              "can": 0.7666666666666667,
+              "can_ci": [
+                0.6456372951896278,
+                0.855604383192118
+              ],
+              "labelled_share": 0.7833333333333333,
+              "pass_given_labelled": 0.9787234042553191,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp11": {
+                "n_plain": 60,
+                "labelled_as_requested": 47,
+                "can_k": 46,
+                "can": 0.7666666666666667,
+                "can_ci": [
+                  0.6456372951896278,
+                  0.855604383192118
+                ],
+                "labelled_share": 0.7833333333333333,
+                "pass_given_labelled": 0.9787234042553191,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          }
+        },
+        "T04": {
+          "naive": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 40,
+              "can_k": 40,
+              "can": 1.0,
+              "can_ci": [
+                0.9123783975415363,
+                1.0
+              ],
+              "labelled_share": 1.0,
+              "pass_given_labelled": 1.0,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp11": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 40,
+                "can": 1.0,
+                "can_ci": [
+                  0.9123783975415363,
+                  1.0
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 1.0,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "kmp": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 40,
+              "can_k": 40,
+              "can": 1.0,
+              "can_ci": [
+                0.9123783975415363,
+                1.0
+              ],
+              "labelled_share": 1.0,
+              "pass_given_labelled": 1.0,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp11": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 40,
+                "can": 1.0,
+                "can_ci": [
+                  0.9123783975415363,
+                  1.0
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 1.0,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "rabin_karp": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 40,
+              "can_k": 26,
+              "can": 0.65,
+              "can_ci": [
+                0.4950588071541522,
+                0.7786547121083087
+              ],
+              "labelled_share": 1.0,
+              "pass_given_labelled": 0.65,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp11": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 26,
+                "can": 0.65,
+                "can_ci": [
+                  0.4950588071541522,
+                  0.7786547121083087
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 0.65,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "z_algorithm": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 39,
+              "can_k": 23,
+              "can": 0.575,
+              "can_ci": [
+                0.42195068426904103,
+                0.7149060753621894
+              ],
+              "labelled_share": 0.975,
+              "pass_given_labelled": 0.5897435897435898,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp11": {
+                "n_plain": 40,
+                "labelled_as_requested": 39,
+                "can_k": 23,
+                "can": 0.575,
+                "can_ci": [
+                  0.42195068426904103,
+                  0.7149060753621894
+                ],
+                "labelled_share": 0.975,
+                "pass_given_labelled": 0.5897435897435898,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "bmh": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 39,
+              "can_k": 15,
+              "can": 0.375,
+              "can_ci": [
+                0.24222979078963872,
+                0.5296756098249772
+              ],
+              "labelled_share": 0.975,
+              "pass_given_labelled": 0.38461538461538464,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp11": {
+                "n_plain": 40,
+                "labelled_as_requested": 39,
+                "can_k": 15,
+                "can": 0.375,
+                "can_ci": [
+                  0.24222979078963872,
+                  0.5296756098249772
+                ],
+                "labelled_share": 0.975,
+                "pass_given_labelled": 0.38461538461538464,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "builtin": {
+            "primary": {
+              "n_plain": 60,
+              "labelled_as_requested": 36,
+              "can_k": 36,
+              "can": 0.6,
+              "can_ci": [
+                0.47366053393698454,
+                0.7143050954561698
+              ],
+              "labelled_share": 0.6,
+              "pass_given_labelled": 1.0,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp11": {
+                "n_plain": 60,
+                "labelled_as_requested": 36,
+                "can_k": 36,
+                "can": 0.6,
+                "can_ci": [
+                  0.47366053393698454,
+                  0.7143050954561698
+                ],
+                "labelled_share": 0.6,
+                "pass_given_labelled": 1.0,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          }
+        },
+        "T06": {
+          "hash_set": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 40,
+              "can_k": 40,
+              "can": 1.0,
+              "can_ci": [
+                0.9123783975415363,
+                1.0
+              ],
+              "labelled_share": 1.0,
+              "pass_given_labelled": 1.0,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp11": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 40,
+                "can": 1.0,
+                "can_ci": [
+                  0.9123783975415363,
+                  1.0
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 1.0,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "sort_adjacent": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 35,
+              "can_k": 21,
+              "can": 0.525,
+              "can_ci": [
+                0.3749736199712279,
+                0.670645299905849
+              ],
+              "labelled_share": 0.875,
+              "pass_given_labelled": 0.6,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp11": {
+                "n_plain": 40,
+                "labelled_as_requested": 35,
+                "can_k": 21,
+                "can": 0.525,
+                "can_ci": [
+                  0.3749736199712279,
+                  0.670645299905849
+                ],
+                "labelled_share": 0.875,
+                "pass_given_labelled": 0.6,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "floyd": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 40,
+              "can_k": 28,
+              "can": 0.7,
+              "can_ci": [
+                0.5456998105658182,
+                0.8192515484507963
+              ],
+              "labelled_share": 1.0,
+              "pass_given_labelled": 0.7,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp11": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 28,
+                "can": 0.7,
+                "can_ci": [
+                  0.5456998105658182,
+                  0.8192515484507963
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 0.7,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "value_binary_search": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 40,
+              "can_k": 31,
+              "can": 0.775,
+              "can_ci": [
+                0.6249690312905765,
+                0.8768390873572685
+              ],
+              "labelled_share": 1.0,
+              "pass_given_labelled": 0.775,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp11": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 31,
+                "can": 0.775,
+                "can_ci": [
+                  0.6249690312905765,
+                  0.8768390873572685
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 0.775,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "index_marking": {
+            "primary": {
+              "n_plain": 60,
+              "labelled_as_requested": 2,
+              "can_k": 2,
+              "can": 0.03333333333333333,
+              "can_ci": [
+                0.009189319173450283,
+                0.11363774365849509
+              ],
+              "labelled_share": 0.03333333333333333,
+              "pass_given_labelled": 1.0,
+              "n_desc": 20,
+              "desc_can": 1.0
+            },
+            "by_source": {
+              "exp11": {
+                "n_plain": 60,
+                "labelled_as_requested": 2,
+                "can_k": 2,
+                "can": 0.03333333333333333,
+                "can_ci": [
+                  0.009189319173450283,
+                  0.11363774365849509
+                ],
+                "labelled_share": 0.03333333333333333,
+                "pass_given_labelled": 1.0,
+                "n_desc": 20,
+                "desc_can": 1.0
+              }
+            }
+          }
+        },
+        "T10": {
+          "bfs": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 40,
+              "can_k": 40,
+              "can": 1.0,
+              "can_ci": [
+                0.9123783975415363,
+                1.0
+              ],
+              "labelled_share": 1.0,
+              "pass_given_labelled": 1.0,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp11": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 40,
+                "can": 1.0,
+                "can_ci": [
+                  0.9123783975415363,
+                  1.0
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 1.0,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "dfs": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 40,
+              "can_k": 40,
+              "can": 1.0,
+              "can_ci": [
+                0.9123783975415363,
+                1.0
+              ],
+              "labelled_share": 1.0,
+              "pass_given_labelled": 1.0,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp11": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 40,
+                "can": 1.0,
+                "can_ci": [
+                  0.9123783975415363,
+                  1.0
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 1.0,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "union_find": {
+            "primary": {
+              "n_plain": 40,
+              "labelled_as_requested": 40,
+              "can_k": 40,
+              "can": 1.0,
+              "can_ci": [
+                0.9123783975415363,
+                1.0
+              ],
+              "labelled_share": 1.0,
+              "pass_given_labelled": 1.0,
+              "n_desc": 0,
+              "desc_can": null
+            },
+            "by_source": {
+              "exp11": {
+                "n_plain": 40,
+                "labelled_as_requested": 40,
+                "can_k": 40,
+                "can": 1.0,
+                "can_ci": [
+                  0.9123783975415363,
+                  1.0
+                ],
+                "labelled_share": 1.0,
+                "pass_given_labelled": 1.0,
+                "n_desc": 0,
+                "desc_can": null
+              }
+            }
+          },
+          "label_propagation": {
+            "primary": {
+              "n_plain": 60,
+              "labelled_as_requested": 15,
+              "can_k": 11,
+              "can": 0.18333333333333332,
+              "can_ci": [
+                0.10557796842900966,
+                0.2991975384926676
+              ],
+              "labelled_share": 0.25,
+              "pass_given_labelled": 0.7333333333333333,
+              "n_desc": 20,
+              "desc_can": 0.1
+            },
+            "by_source": {
+              "exp11": {
+                "n_plain": 60,
+                "labelled_as_requested": 15,
+                "can_k": 11,
+                "can": 0.18333333333333332,
+                "can_ci": [
+                  0.10557796842900966,
+                  0.2991975384926676
+                ],
+                "labelled_share": 0.25,
+                "pass_given_labelled": 0.7333333333333333,
+                "n_desc": 20,
+                "desc_can": 0.1
+              }
+            }
+          }
+        }
+      },
+      "analysis_sets": {
+        "T03": {
+          "recomputed": [
+            "counting_sort",
+            "full_sort",
+            "heapify_pop"
+          ],
+          "plan": [
+            "counting_sort",
+            "full_sort",
+            "heapify_pop"
+          ],
+          "match": true
+        },
+        "T04": {
+          "recomputed": [
+            "builtin",
+            "kmp",
+            "naive"
+          ],
+          "plan": [
+            "builtin",
+            "kmp",
+            "naive"
+          ],
+          "match": true
+        },
+        "T06": {
+          "recomputed": [
+            "floyd",
+            "hash_set",
+            "sort_adjacent"
+          ],
+          "plan": [
+            "floyd",
+            "hash_set",
+            "sort_adjacent"
+          ],
+          "match": true
+        },
+        "T10": {
+          "recomputed": [
+            "bfs",
+            "dfs",
+            "union_find"
+          ],
+          "plan": [
+            "bfs",
+            "dfs",
+            "union_find"
+          ],
+          "match": true
+        }
+      },
+      "exp11_forced_adherence_crosscheck": {
+        "T03:full_sort": {
+          "exp11_adherence": 1.0,
+          "recomputed_labelled_share": 1.0
+        },
+        "T03:size_k_heap": {
+          "exp11_adherence": 0.9,
+          "recomputed_labelled_share": 0.9
+        },
+        "T03:heapify_pop": {
+          "exp11_adherence": 0.7,
+          "recomputed_labelled_share": 0.7
+        },
+        "T03:quickselect": {
+          "exp11_adherence": 1.0,
+          "recomputed_labelled_share": 1.0
+        },
+        "T03:median_of_medians": {
+          "exp11_adherence": 1.0,
+          "recomputed_labelled_share": 1.0
+        },
+        "T03:counting_sort": {
+          "exp11_adherence": 0.7833333333333333,
+          "recomputed_labelled_share": 0.7833333333333333
+        },
+        "T04:naive": {
+          "exp11_adherence": 1.0,
+          "recomputed_labelled_share": 1.0
+        },
+        "T04:kmp": {
+          "exp11_adherence": 1.0,
+          "recomputed_labelled_share": 1.0
+        },
+        "T04:rabin_karp": {
+          "exp11_adherence": 1.0,
+          "recomputed_labelled_share": 1.0
+        },
+        "T04:z_algorithm": {
+          "exp11_adherence": 0.975,
+          "recomputed_labelled_share": 0.975
+        },
+        "T04:bmh": {
+          "exp11_adherence": 0.975,
+          "recomputed_labelled_share": 0.975
+        },
+        "T04:builtin": {
+          "exp11_adherence": 0.6,
+          "recomputed_labelled_share": 0.6
+        },
+        "T06:hash_set": {
+          "exp11_adherence": 1.0,
+          "recomputed_labelled_share": 1.0
+        },
+        "T06:sort_adjacent": {
+          "exp11_adherence": 0.875,
+          "recomputed_labelled_share": 0.875
+        },
+        "T06:floyd": {
+          "exp11_adherence": 1.0,
+          "recomputed_labelled_share": 1.0
+        },
+        "T06:value_binary_search": {
+          "exp11_adherence": 1.0,
+          "recomputed_labelled_share": 1.0
+        },
+        "T06:index_marking": {
+          "exp11_adherence": 0.275,
+          "recomputed_labelled_share": 0.03333333333333333
+        },
+        "T10:bfs": {
+          "exp11_adherence": 1.0,
+          "recomputed_labelled_share": 1.0
+        },
+        "T10:dfs": {
+          "exp11_adherence": 1.0,
+          "recomputed_labelled_share": 1.0
+        },
+        "T10:union_find": {
+          "exp11_adherence": 1.0,
+          "recomputed_labelled_share": 1.0
+        },
+        "T10:label_propagation": {
+          "exp11_adherence": 0.2875,
+          "recomputed_labelled_share": 0.25
+        }
+      }
+    },
+    "labeller_recheck": {
+      "utc": "2026-10-20T21:56:43.513625Z",
+      "tasks": {
+        "T1": {
+          "n_refs": 12,
+          "refs_runtime_correct": 12,
+          "refs_ast_correct": 12,
+          "ref_misses": [],
+          "n_gold": 80,
+          "gold_runtime_vs_adjudicated": 0.8625,
+          "flag_below_0.85": false
+        },
+        "T2": {
+          "n_refs": 10,
+          "refs_runtime_correct": 10,
+          "refs_ast_correct": 10,
+          "ref_misses": [],
+          "n_gold": 64,
+          "gold_runtime_vs_adjudicated": 0.765625,
+          "flag_below_0.85": true
+        },
+        "T03": {
+          "n_refs": 6,
+          "refs_runtime_correct": 6,
+          "refs_ast_correct": 6,
+          "ref_misses": [],
+          "n_gold": 28,
+          "gold_runtime_vs_adjudicated": 0.9642857142857143,
+          "flag_below_0.85": false
+        },
+        "T04": {
+          "n_refs": 6,
+          "refs_runtime_correct": 6,
+          "refs_ast_correct": 6,
+          "ref_misses": [],
+          "n_gold": 28,
+          "gold_runtime_vs_adjudicated": 1.0,
+          "flag_below_0.85": false
+        },
+        "T06": {
+          "n_refs": 5,
+          "refs_runtime_correct": 5,
+          "refs_ast_correct": 5,
+          "ref_misses": [],
+          "n_gold": 25,
+          "gold_runtime_vs_adjudicated": 1.0,
+          "flag_below_0.85": false
+        },
+        "T10": {
+          "n_refs": 4,
+          "refs_runtime_correct": 4,
+          "refs_ast_correct": 4,
+          "ref_misses": [],
+          "n_gold": 22,
+          "gold_runtime_vs_adjudicated": 1.0,
+          "flag_below_0.85": false
+        }
+      }
+    },
+    "veto_unit_tests": {
+      "bf16": {
+        "utc": "2026-10-20T21:11:57.772674Z",
+        "engine": "bf16",
+        "u1": {
+          "task": "T2",
+          "vetoed": " dist[u]:\n           ",
+          "seqs": [
+            [
+              1582,
+              21335,
+              10343
+            ],
+            [
+              198,
+              12211,
+              21335
+            ],
+            [
+              12211,
+              21335,
+              10343
+            ]
+          ],
+          "occurrences": [
+            0,
+            0,
+            0
+          ],
+          "pass": true,
+          "string_in_text": 20
+        },
+        "u2": {
+          "n": 20,
+          "identical_token_for_token": 17,
+          "rate": 0.85,
+          "note": "same seeds, no veto, batch A alone vs interleaved with vetoed rows; a processor-free engine was not loaded (second ~6 min engine load), so this measures batch/plugin invariance and vLLM nondeterminism...",
+          "pass": true
+        },
+        "u3": {
+          "rows_A_own_occurrences": 0,
+          "rows_B_own_occurrences": 0,
+          "rows_B_containing_A_seq": 10,
+          "pass": true
+        },
+        "u4": {
+          "synthetic_text": "x = dist[u]:()\n",
+          "leak": true,
+          "spans": [
+            [
+              67,
+              72,
+              82
+            ]
+          ],
+          "pass": true
+        },
+        "ngram_unit_tests": {
+          "planted_found": true,
+          "tie_smaller_n": true,
+          "sham_generic": true,
+          "expand_variants": true,
+          "occurrences": true,
+          "all_pass": true
+        },
+        "all_pass": true
+      },
+      "fp8": {
+        "utc": "2026-10-20T22:10:48.557286Z",
+        "engine": "fp8",
+        "u1": {
+          "task": "T10",
+          "vetoed": " parent",
+          "seqs": [
+            [
+              2681
+            ],
+            [
+              198,
+              3765
+            ],
+            [
+              3765
+            ]
+          ],
+          "occurrences": [
+            0,
+            0,
+            0
+          ],
+          "pass": true,
+          "string_in_text": 20
+        },
+        "u2": {
+          "n": 20,
+          "identical_token_for_token": 19,
+          "rate": 0.95,
+          "note": "same seeds, no veto, batch A alone vs interleaved with vetoed rows; a processor-free engine was not loaded (second ~6 min engine load), so this measures batch/plugin invariance and vLLM nondeterminism...",
+          "pass": true
+        },
+        "u3": {
+          "rows_A_own_occurrences": 0,
+          "rows_B_own_occurrences": 0,
+          "rows_B_containing_A_seq": 10,
+          "pass": true
+        },
+        "u4": {
+          "synthetic_text": "x = parent()\n",
+          "leak": true,
+          "spans": [
+            [
+              79,
+              64,
+              81
+            ]
+          ],
+          "pass": true
+        },
+        "ngram_unit_tests": {
+          "planted_found": true,
+          "tie_smaller_n": true,
+          "sham_generic": true,
+          "expand_variants": true,
+          "occurrences": true,
+          "all_pass": true
+        },
+        "all_pass": true
+      }
+    },
+    "inputs_check": {
+      "bench_commitment": {
+        "T03": {
+          "n_files": 15,
+          "mismatches": [],
+          "task_sha256_ok": true,
+          "ok": true
+        },
+        "T04": {
+          "n_files": 15,
+          "mismatches": [],
+          "task_sha256_ok": true,
+          "ok": true
+        },
+        "T06": {
+          "n_files": 14,
+          "mismatches": [],
+          "task_sha256_ok": true,
+          "ok": true
+        },
+        "T10": {
+          "n_files": 13,
+          "mismatches": [],
+          "task_sha256_ok": true,
+          "ok": true
+        }
+      },
+      "n_input_files_hashed": 343,
+      "utc": "2026-10-20T21:08:50.929680Z"
+    },
+    "known_solutions": {
+      "n": 472,
+      "by_source_task": {
+        "kodcode_algorithmic|T03": 40,
+        "kodcode_algorithmic|T04": 16,
+        "kodcode_algorithmic|T06": 10,
+        "kodcode_algorithmic|T1": 64,
+        "kodcode_algorithmic|T10": 1,
+        "kodcode_algorithmic|T2": 6,
+        "leetcodedataset|T03": 1,
+        "leetcodedataset|T04": 1,
+        "leetcodedataset|T06": 1,
+        "leetcodedataset|T1": 1,
+        "leetcodedataset|T10": 3,
+        "leetcodedataset|T2": 3,
+        "mercury|T03": 25,
+        "mercury|T04": 18,
+        "mercury|T06": 28,
+        "mercury|T1": 20,
+        "mercury|T10": 52,
+        "mercury|T2": 31,
+        "thealgorithms_python|T03": 27,
+        "thealgorithms_python|T04": 12,
+        "thealgorithms_python|T06": 5,
+        "thealgorithms_python|T1": 11,
+        "thealgorithms_python|T10": 8,
+        "thealgorithms_python|T2": 11,
+        "xlcost_python|T03": 35,
+        "xlcost_python|T04": 11,
+        "xlcost_python|T06": 6,
+        "xlcost_python|T1": 10,
+        "xlcost_python|T10": 10,
+        "xlcost_python|T2": 5
+      },
+      "utc": "2026-10-20T21:38:33.831984Z"
+    },
+    "costs": {
+      "total_usd": 0.488379,
+      "by_purpose": {
+        "labeller_judge": 0.050332,
+        "audit_controls": 0.011943,
+        "audit_pool": 0.055656,
+        "claims": 0.370449
+      },
+      "n_calls": 1159,
+      "budget_refusals": 0,
+      "stopped": false,
+      "stop_reason": null,
+      "own_cap_usd": 0.95,
+      "updated_utc": "2026-10-21T00:06:53.852861Z"
+    },
+    "longform_branch": {
+      "stage10": {
+        "tag": "stage10_LF1_T2_bf16",
+        "kind": "bf16",
+        "thinking": false,
+        "n": 10,
+        "wall_s": 264.6,
+        "new_tokens": 22219,
+        "tok_per_s": 84.0,
+        "mean_tokens": 2221.9,
+        "utc": "2026-10-20T21:35:57.366028Z"
+      },
+      "projected_bf16_minutes_all_500": 220.42658730158732,
+      "branch": "split",
+      "utc": "2026-10-20T21:35:57.379073Z",
+      "note": "measured while sharing the GPU with phase A"
+    },
+    "dependency_usage": {
+      "utc": "2026-10-20T23:47:55.136206Z",
+      "datasets": {
+        "leetcodedataset": {
+          "n": 2869,
+          "use": "known-solution corpus (reference solutions)"
+        },
+        "mercury": {
+          "n": 440,
+          "use": "known-solution corpus (human solutions)"
+        },
+        "thealgorithms_python": {
+          "n": 1354,
+          "use": "known-solution corpus (textbook code)"
+        },
+        "kodcode_algorithmic": {
+          "n": 2767,
+          "use": "known-solution corpus (named-mode code)"
+        },
+        "xlcost_python": {
+          "n": 10622,
+          "use": "known-solution corpus (named-mode code)"
+        },
+        "llm_creativity": {
+          "n": 225,
+          "use": "external T2 label prior",
+          "t2_mode_counts": {
+            "dijkstra": 132,
+            "bidirectional_search": 30,
+            "other": 21,
+            "bellman_ford_spfa": 34,
+            "dial": 5,
+            "floyd_warshall": 1,
+            "a_star": 2
+          },
+          "dijkstra_share": 0.5866666666666667,
+          "this_artifact_T2_step0": {
+            "dijkstra": 50
+          }
+        },
+        "concreteness_norms": {
+          "n": 39954,
+          "use": "provenance of the rendered neutral nouns",
+          "bench_default_nouns": {
+            "full_sort": "man",
+            "naive": "bank",
+            "hash_set": "fire",
+            "union_find": "ship"
+          },
+          "rows": {
+            "baby": {
+              "concreteness": "5.00",
+              "subtlex_frequency": 25978,
+              "qwen3_tokens_with_leading_space": 1,
+              "noun_bank_candidate": true
+            },
+            "house": {
+              "concreteness": "5.00",
+              "subtlex_frequency": 26214,
+              "qwen3_tokens_with_leading_space": 1,
+              "noun_bank_candidate": true
+            },
+            "car": {
+              "concreteness": "4.89",
+              "subtlex_frequency": 24636,
+              "qwen3_tokens_with_leading_space": 1,
+              "noun_bank_candidate": true
+            },
+            "ship": {
+              "concreteness": "4.87",
+              "subtlex_frequency": 5043,
+              "qwen3_tokens_with_leading_space": 1,
+              "noun_bank_candidate": true
+            },
+            "man": {
+              "concreteness": "4.79",
+              "subtlex_frequency": 94133,
+              "qwen3_tokens_with_leading_space": 1,
+              "noun_bank_candidate": true
+            },
+            "bank": {
+              "concreteness": "4.78",
+              "subtlex_frequency": 4334,
+              "qwen3_tokens_with_leading_space": 1,
+              "noun_bank_candidate": true
+            },
+            "fire": {
+              "concreteness": "4.68",
+              "subtlex_frequency": 10990,
+              "qwen3_tokens_with_leading_space": 1,
+              "noun_bank_candidate": true
+            },
+            "guy": {
+              "concreteness": "4.68",
+              "subtlex_frequency": 38893,
+              "qwen3_tokens_with_leading_space": 1,
+              "noun_bank_candidate": true
+            }
+          },
+          "all_found": true
+        },
+        "clrs_text": {
+          "n": 2910,
+          "use": "bench tracer access-order tests (exp11)",
+          "traces_per_bench_link": {
+            "T04_substring_search:naive_string_search": 305,
+            "T02_weighted_shortest_path:bellman_ford_spfa": 215,
+            "T04_substring_search:kmp": 305,
+            "T02_weighted_shortest_path:dijkstra": 165,
+            "R6_first_occurrence:binary_search": 305,
+            "T01_grid_path:bfs": 285,
+            "T10_connected_components:bfs": 285,
+            "T01_grid_path:dfs": 125,
+            "T10_connected_components:dfs": 125,
+            "R1_interval_scheduling:activity_selection": 280,
+            "T07_convex_hull:graham_scan": 205,
+            "T03_kth_smallest:quickselect": 305,
+            "R3_course_schedule:topological_sort": 135,
+            "T07_convex_hull:jarvis_march": 65,
+            "T10_connected_components:union_find": 45,
+            "R2_redundant_connection:union_find": 45,
+            "T02_weighted_shortest_path:dag_dp": 115,
+            "T02_weighted_shortest_path:floyd_warshall": 55
+          }
+        },
+        "humanevalplus": {
+          "n": 164,
+          "use": "bench harness smoke test (exp11); not re-run here"
+        },
+        "enamel": {
+          "n": 164,
+          "use": "bench stress calibration material (exp11); not re-run here"
+        }
+      }
+    },
+    "labeller_recheck_note": "runtime vs adjudicated on gold",
+    "rederive": {
+      "walk_rounds": {
+        "T03|s0r0": {
+          "n": 50,
+          "modal_nonvetoed": "full_sort",
+          "reemergence": {},
+          "veto_occurrences": 0
+        },
+        "T03|s1r0": {
+          "n": 50,
+          "modal_nonvetoed": "quickselect",
+          "reemergence": {
+            "full_sort": 0.88
+          },
+          "veto_occurrences": 0
+        },
+        "T03|s1r1": {
+          "n": 50,
+          "modal_nonvetoed": "other",
+          "reemergence": {
+            "full_sort": 0.6444444444444445
+          },
+          "veto_occurrences": 0
+        },
+        "T03|s1r2": {
+          "n": 50,
+          "modal_nonvetoed": "invalid",
+          "reemergence": {
+            "full_sort": 0.575
+          },
+          "veto_occurrences": 0
+        },
+        "T04|s0r0": {
+          "n": 50,
+          "modal_nonvetoed": "naive",
+          "reemergence": {},
+          "veto_occurrences": 0
+        },
+        "T04|s1r0": {
+          "n": 50,
+          "modal_nonvetoed": null,
+          "reemergence": {
+            "naive": 1.0
+          },
+          "veto_occurrences": 0
+        },
+        "T04|s1r1": {
+          "n": 50,
+          "modal_nonvetoed": null,
+          "reemergence": {
+            "naive": 1.0
+          },
+          "veto_occurrences": 0
+        },
+        "T04|s1r2": {
+          "n": 50,
+          "modal_nonvetoed": null,
+          "reemergence": {
+            "naive": 1.0
+          },
+          "veto_occurrences": 0
+        },
+        "T06|s0r0": {
+          "n": 50,
+          "modal_nonvetoed": "hash_set",
+          "reemergence": {},
+          "veto_occurrences": 0
+        },
+        "T06|s1r0": {
+          "n": 50,
+          "modal_nonvetoed": null,
+          "reemergence": {
+            "hash_set": 1.0
+          },
+          "veto_occurrences": 0
+        },
+        "T06|s1r1": {
+          "n": 50,
+          "modal_nonvetoed": "sort_adjacent",
+          "reemergence": {
+            "hash_set": 0.1
+          },
+          "veto_occurrences": 0
+        },
+        "T06|s1r2": {
+          "n": 50,
+          "modal_nonvetoed": "sort_adjacent",
+          "reemergence": {
+            "hash_set": 0.12
+          },
+          "veto_occurrences": 0
+        },
+        "T06|s2r0": {
+          "n": 50,
+          "modal_nonvetoed": "floyd",
+          "reemergence": {
+            "hash_set": 0.82,
+            "sort_adjacent": 0.0
+          },
+          "veto_occurrences": 0
+        },
+        "T06|s2r1": {
+          "n": 50,
+          "modal_nonvetoed": "other",
+          "reemergence": {
+            "hash_set": 0.10204081632653061,
+            "sort_adjacent": 0.2653061224489796
+          },
+          "veto_occurrences": 0
+        },
+        "T06|s2r2": {
+          "n": 50,
+          "modal_nonvetoed": "other",
+          "reemergence": {
+            "hash_set": 0.2,
+            "sort_adjacent": 0.4
+          },
+          "veto_occurrences": 0
+        },
+        "T10|s0r0": {
+          "n": 50,
+          "modal_nonvetoed": "union_find",
+          "reemergence": {},
+          "veto_occurrences": 0
+        },
+        "T10|s1r0": {
+          "n": 50,
+          "modal_nonvetoed": "invalid",
+          "reemergence": {
+            "union_find": 0.2727272727272727
+          },
+          "veto_occurrences": 0
+        },
+        "T10|s1r1": {
+          "n": 50,
+          "modal_nonvetoed": "dfs",
+          "reemergence": {
+            "union_find": 0.8571428571428571
+          },
+          "veto_occurrences": 0
+        },
+        "T10|s1r2": {
+          "n": 50,
+          "modal_nonvetoed": "dfs",
+          "reemergence": {
+            "union_find": 0.88
+          },
+          "veto_occurrences": 0
+        },
+        "T1|s0r0": {
+          "n": 50,
+          "modal_nonvetoed": "bfs",
+          "reemergence": {},
+          "veto_occurrences": 0
+        },
+        "T1|s1r0": {
+          "n": 50,
+          "modal_nonvetoed": "invalid",
+          "reemergence": {
+            "bfs": 0.9411764705882353
+          },
+          "veto_occurrences": 0
+        },
+        "T1|s1r1": {
+          "n": 50,
+          "modal_nonvetoed": "invalid",
+          "reemergence": {
+            "bfs": 0.9
+          },
+          "veto_occurrences": 0
+        },
+        "T1|s1r2": {
+          "n": 50,
+          "modal_nonvetoed": "invalid",
+          "reemergence": {
+            "bfs": 1.0
+          },
+          "veto_occurrences": 0
+        },
+        "T1|s1r3": {
+          "n": 50,
+          "modal_nonvetoed": "invalid",
+          "reemergence": {
+            "bfs": 0.8571428571428571
+          },
+          "veto_occurrences": 0
+        },
+        "T2|s0r0": {
+          "n": 50,
+          "modal_nonvetoed": "dijkstra",
+          "reemergence": {},
+          "veto_occurrences": 0
+        },
+        "T2|s1r0": {
+          "n": 50,
+          "modal_nonvetoed": "invalid",
+          "reemergence": {
+            "dijkstra": 1.0
+          },
+          "veto_occurrences": 0
+        },
+        "T2|s1r1": {
+          "n": 50,
+          "modal_nonvetoed": "invalid",
+          "reemergence": {
+            "dijkstra": 1.0
+          },
+          "veto_occurrences": 0
+        },
+        "T2|s1r2": {
+          "n": 50,
+          "modal_nonvetoed": "invalid",
+          "reemergence": {
+            "dijkstra": 1.0
+          },
+          "veto_occurrences": 0
+        }
+      },
+      "walk_mismatches": [],
+      "c3": {
+        "cells": [
+          {
+            "task": "T2",
+            "S": "floyd",
+            "will": 0.0
+          },
+          {
+            "task": "T03",
+            "S": "quickselect",
+            "will": 1.0
+          },
+          {
+            "task": "T03",
+            "S": "size_k_heap",
+            "will": 0.0
+          }
+        ],
+        "verdict": "DISCONFIRMED"
+      },
+      "c3_placebo": [
+        "DISCONFIRMED",
+        "DISCONFIRMED",
+        "DISCONFIRMED"
+      ],
+      "c3_matches_analysis": true,
+      "list_independence": {
+        "T03": {
+          "p_perm": null,
+          "analysis_p": null,
+          "placebo_p": [
+            null,
+            null,
+            null
+          ]
+        },
+        "T04": {
+          "p_perm": 0.0327967203279672,
+          "analysis_p": 0.0327967203279672,
+          "placebo_p": [
+            0.6111944027986007,
+            0.5552223888055972,
+            0.06046976511744128
+          ]
+        },
+        "T06": {
+          "p_perm": 1.0,
+          "analysis_p": 1.0,
+          "placebo_p": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "T10": {
+          "p_perm": null,
+          "analysis_p": null,
+          "placebo_p": [
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "novel_count": 0,
+      "crosscheck_js_bits": 0.03281951201197908,
+      "crosscheck_matches": true,
+      "n_mismatches": 0
+    },
+    "deviations": [
+      {
+        "id": "D1",
+        "what": "Hardware: NVIDIA L4 (23 GB, 300 GB/s) instead of the planned RTX A4500 (20 GB, 640 GB/s); 6 CPUs (cgroup quota 5.1), 57 GB RAM.",
+        "consequence": "bf16 decode measured at ~250-410 tok/s for short programs and ~84 tok/s (shared GPU) for long-form."
+      },
+      {
+        "id": "D2",
+        "what": "Precision by task family instead of bf16 for every short arm: T1/T2 arms in bf16 (their reference programs and 'can' came from bf16 exp8/exp9), bench arms (T03/T04/T06/T10) on the official Qwen3-8B-FP...",
+        "consequence": "each family is compared with references of its own precision; the bf16-vs-FP8 cross-check on LF1-T2 bounds the precision effect for one task only."
+      },
+      {
+        "id": "D3",
+        "what": "Distinctive n-gram candidates must be lexical: an n-gram containing a whitespace-only token (indentation / newline) is format-unsafe. Added after veto unit test u1: the first choice for T2 (' dist[u]:...",
+        "consequence": "the plan's selection rule (argmin max collateral; ties -> smaller n) is otherwise unchanged."
+      }
+    ],
+    "not_run": [
+      {
+        "item": "O2 5b temperature sweep (thinking on, T in {0.3,0.7,1.0,1.3})",
+        "reason": "drop order #1; L4 throughput left no room"
+      },
+      {
+        "item": "O1 manifold placement of walk landings",
+        "reason": "drop order #2; no internal-state claim is made"
+      },
+      {
+        "item": "thinking-on extension of T1/T2 to N=25 per prompt",
+        "reason": "the extension process (T1/T2 indices 10-24 together with the bench cells) was stopped at 22:36 when the KV cache saturated; the bench cells were re-launched alone at 23:07 and completed (60 runs); the..."
+      }
+    ],
+    "commitments": {
+      "n": 49,
+      "ok": false,
+      "bad": [
+        {
+          "label": "code sha256 analysis.py before bench ban samples",
+          "path": "src/analysis.py",
+          "chain_ok": true,
+          "file_ok": false
+        }
+      ],
+      "head": "a4f108d2a29f6406def1094b267273653b71f549fd0e9185527b170df7fece90"
+    },
+    "c1_events_note": "this artifact has no C1 event types (modal, present_minor, exposure), so it writes no results/c1_events.jsonl; per-event rows are in results/reach_events.jsonl",
+    "headline_rule": "'no instruction or knob in this artifact produced a correct novel algorithm' only if the final NOVEL count over ALL arms is 0",
+    "novel_count_all_arms": 0
+  },
+  "datasets": [
+    {
+      "dataset": "token_walk",
+      "examples": [
+        {
+          "input": "Do not use man, the house and the baby for this task.\n\nTask: write a Python function solve(grid, start, goal) that finds a path between two cells of a grid. grid is a list of equal-length strings with...",
+          "output": "bfs|pass",
+          "predict_baseline_default": "bfs",
+          "predict_committed_forecast": "bfs",
+          "metadata_task": "T1",
+          "metadata_arm": "walk",
+          "metadata_step": 0,
+          "metadata_round": 0,
+          "metadata_template": "W1",
+          "metadata_seed": 22261021,
+          "metadata_n_veto_seqs": 0,
+          "metadata_veto_occurrences": 0,
+          "metadata_fires": 0,
+          "metadata_string_leak": false,
+          "metadata_engine_dtype": "bf16",
+          "metadata_labeller_source": "agree",
+          "metadata_code_sha256": "a8fc51a73fe834e4825cde20de94f33b8c09f674b90c35ed12a92bfcf4154309",
+          "metadata_code": "from collections import deque\n\ndef solve(grid, start, goal):\n    if not grid or not grid[0]:\n        return []\n    rows, cols = len(grid), len(grid[0])\n    start_row, start_col = start\n    goal_row, g...",
+          "metadata_finish_reason": "stop",
+          "metadata_thinking": false
+        },
+        {
+          "input": "Do not use man, the house and the baby for this task.\n\nTask: write a Python function solve(grid, start, goal) that finds a path between two cells of a grid. grid is a list of equal-length strings with...",
+          "output": "bfs|pass",
+          "predict_baseline_default": "bfs",
+          "predict_committed_forecast": "bfs",
+          "metadata_task": "T1",
+          "metadata_arm": "walk",
+          "metadata_step": 0,
+          "metadata_round": 0,
+          "metadata_template": "W1",
+          "metadata_seed": 22261022,
+          "metadata_n_veto_seqs": 0,
+          "metadata_veto_occurrences": 0,
+          "metadata_fires": 0,
+          "metadata_string_leak": false,
+          "metadata_engine_dtype": "bf16",
+          "metadata_labeller_source": "agree",
+          "metadata_code_sha256": "ef66313db16da567c60581af65137f7a2a6e6d26256b1637b6a52914955d1b20",
+          "metadata_code": "from collections import deque\n\ndef solve(grid, start, goal):\n    rows = len(grid)\n    cols = len(grid[0]) if rows > 0 else 0\n    \n    if not (0 <= start[0] < rows and 0 <= start[1] < cols or 0 <= goal...",
+          "metadata_finish_reason": "stop",
+          "metadata_thinking": false
+        },
+        {
+          "input": "Do not use man, the house and the baby for this task.\n\nTask: write a Python function solve(grid, start, goal) that finds a path between two cells of a grid. grid is a list of equal-length strings with...",
+          "output": "bfs|pass",
+          "predict_baseline_default": "bfs",
+          "predict_committed_forecast": "bfs",
+          "metadata_task": "T1",
+          "metadata_arm": "walk",
+          "metadata_step": 0,
+          "metadata_round": 0,
+          "metadata_template": "W1",
+          "metadata_seed": 22261023,
+          "metadata_n_veto_seqs": 0,
+          "metadata_veto_occurrences": 0,
+          "metadata_fires": 0,
+          "metadata_string_leak": false,
+          "metadata_engine_dtype": "bf16",
+          "metadata_labeller_source": "agree",
+          "metadata_code_sha256": "ef384422416f40d6c8c8f19fbdafaeb6e622cddb725d0be2f1a3862fe13dc12d",
+          "metadata_code": "from collections import deque\n\ndef solve(grid, start, goal):\n    if not grid or not grid[0]:\n        return []\n    rows, cols = len(grid), len(grid[0])\n    start_row, start_col = start\n    goal_row, g...",
+          "metadata_finish_reason": "stop",
+          "metadata_thinking": false
+        }
+      ]
+    },
+    {
+      "dataset": "prompt_reach",
+      "examples": [
+        {
+          "input": "Do not use a size-k heap, heapify-and-pop, quickselect, median of medians or counting sort for this task.\n\nTask: write a Python function solve(nums, k) that returns the k-th smallest value in nums. Th...",
+          "output": "quickselect|pass",
+          "predict_baseline_default": "full_sort",
+          "metadata_task": "T03",
+          "metadata_arm": "los",
+          "metadata_condition": "los:LOS(full_sort)",
+          "metadata_banned": [
+            "size_k_heap",
+            "heapify_pop",
+            "quickselect"
+          ],
+          "metadata_template": "W1",
+          "metadata_seed": 23281021,
+          "metadata_engine_dtype": "fp8",
+          "metadata_labeller_source": "runtime+ast",
+          "metadata_code_sha256": "5b4fd00bca3e8a27833264c59471f18f6d75fd42de0bc3343cbbb8e433911fba",
+          "metadata_code": "def solve(nums, k):\n    def partition(arr, low, high):\n        pivot = arr[high]\n        i = low - 1\n        for j in range(low, high):\n            if arr[j] <= pivot:\n                i += 1\n         ...",
+          "metadata_thinking": false,
+          "predict_survivor": "full_sort",
+          "predict_c3": "n/a (not a C3 cell)"
+        },
+        {
+          "input": "Do not use a size-k heap, heapify-and-pop, quickselect, median of medians or counting sort for this task.\n\nTask: write a Python function solve(nums, k) that returns the k-th smallest value in nums. Th...",
+          "output": "quickselect|pass",
+          "predict_baseline_default": "full_sort",
+          "metadata_task": "T03",
+          "metadata_arm": "los",
+          "metadata_condition": "los:LOS(full_sort)",
+          "metadata_banned": [
+            "size_k_heap",
+            "heapify_pop",
+            "quickselect"
+          ],
+          "metadata_template": "W1",
+          "metadata_seed": 23281022,
+          "metadata_engine_dtype": "fp8",
+          "metadata_labeller_source": "runtime+ast",
+          "metadata_code_sha256": "5b4fd00bca3e8a27833264c59471f18f6d75fd42de0bc3343cbbb8e433911fba",
+          "metadata_code": "def solve(nums, k):\n    def partition(arr, low, high):\n        pivot = arr[high]\n        i = low - 1\n        for j in range(low, high):\n            if arr[j] <= pivot:\n                i += 1\n         ...",
+          "metadata_thinking": false,
+          "predict_survivor": "full_sort",
+          "predict_c3": "n/a (not a C3 cell)"
+        },
+        {
+          "input": "Do not use a size-k heap, heapify-and-pop, quickselect, median of medians or counting sort for this task.\n\nTask: write a Python function solve(nums, k) that returns the k-th smallest value in nums. Th...",
+          "output": "quickselect|pass",
+          "predict_baseline_default": "full_sort",
+          "metadata_task": "T03",
+          "metadata_arm": "los",
+          "metadata_condition": "los:LOS(full_sort)",
+          "metadata_banned": [
+            "size_k_heap",
+            "heapify_pop",
+            "quickselect"
+          ],
+          "metadata_template": "W1",
+          "metadata_seed": 23281023,
+          "metadata_engine_dtype": "fp8",
+          "metadata_labeller_source": "runtime+ast",
+          "metadata_code_sha256": "cedf22616f6b1427197082b788da67e038af99feb7ee653d2294f55cd48e9a32",
+          "metadata_code": "def solve(nums, k):\n    def partition(arr, low, high):\n        pivot = arr[high]\n        i = low\n        for j in range(low, high):\n            if arr[j] <= pivot:\n                arr[i], arr[j] = arr...",
+          "metadata_thinking": false,
+          "predict_survivor": "full_sort",
+          "predict_c3": "n/a (not a C3 cell)"
+        }
+      ]
+    },
+    {
+      "dataset": "long_form",
+      "examples": [
+        {
+          "input": "Make a new algorithm for this task. Before writing any code, write a design rationale of about 2,000 words that explains the idea, how it differs from every algorithm you know for this task, and why i...",
+          "output": "dijkstra|pass",
+          "predict_baseline_default": "dijkstra",
+          "predict_judge_a_code_mechanism": "dijkstra",
+          "predict_judge_a_claims_novelty": "True",
+          "metadata_task": "T2",
+          "metadata_arm": "longform",
+          "metadata_prompt_id": "LF1",
+          "metadata_thinking": false,
+          "metadata_engine_dtype": "bf16",
+          "metadata_seed": 25271021,
+          "metadata_rationale_words": 1525,
+          "metadata_thinking_tokens": 0,
+          "metadata_thinking_complete": null,
+          "metadata_extract_method": "last_python_block_with_solve",
+          "metadata_code_sha256": "2f8e78476ba908906b3c546c325ac0fc272f9872322114de58ad5890d36fa937",
+          "metadata_code": "import heapq\n\ndef solve(n, edges, s, t):\n    if s == t:\n        return 0\n    \n    # Build adjacency list\n    adj = [[] for _ in range(n)]\n    for u, v, w in edges:\n        adj[u].append((v, w))\n    \n ...",
+          "metadata_finish_reason": "stop"
+        },
+        {
+          "input": "Make a new algorithm for this task. Before writing any code, write a design rationale of about 2,000 words that explains the idea, how it differs from every algorithm you know for this task, and why i...",
+          "output": "bf_spfa|pass",
+          "predict_baseline_default": "dijkstra",
+          "predict_judge_a_code_mechanism": "bf_spfa",
+          "predict_judge_a_claims_novelty": "False",
+          "metadata_task": "T2",
+          "metadata_arm": "longform",
+          "metadata_prompt_id": "LF1",
+          "metadata_thinking": false,
+          "metadata_engine_dtype": "bf16",
+          "metadata_seed": 25271022,
+          "metadata_rationale_words": 1374,
+          "metadata_thinking_tokens": 0,
+          "metadata_thinking_complete": null,
+          "metadata_extract_method": "last_python_block_with_solve",
+          "metadata_code_sha256": "e8a64e79f5346e2317b0365bebac11e91480d7e8916ac761a41a16c157b5fe87",
+          "metadata_code": "def solve(n, edges, s, t):\n    if s == t:\n        return 0\n    \n    # Initialize distance array\n    INF = float('inf')\n    dist = [INF] * n\n    dist[s] = 0\n\n    # Relax all edges up to n-1 times\n    f...",
+          "metadata_finish_reason": "stop"
+        },
+        {
+          "input": "Make a new algorithm for this task. Before writing any code, write a design rationale of about 2,000 words that explains the idea, how it differs from every algorithm you know for this task, and why i...",
+          "output": "floyd|pass",
+          "predict_baseline_default": "dijkstra",
+          "predict_judge_a_code_mechanism": "floyd",
+          "predict_judge_a_claims_novelty": "True",
+          "metadata_task": "T2",
+          "metadata_arm": "longform",
+          "metadata_prompt_id": "LF1",
+          "metadata_thinking": false,
+          "metadata_engine_dtype": "bf16",
+          "metadata_seed": 25271023,
+          "metadata_rationale_words": 1556,
+          "metadata_thinking_tokens": 0,
+          "metadata_thinking_complete": null,
+          "metadata_extract_method": "last_python_block_with_solve",
+          "metadata_code_sha256": "0fbe4996896438f8a5140be4799b60e702b5114eb2748acfbe2f3f52ee585326",
+          "metadata_code": "def solve(n, edges, s, t):\n    if s == t:\n        return 0\n\n    INF = float('inf')\n    # Initialize distance matrix\n    dist = [[INF] * n for _ in range(n)]\n    \n    for i in range(n):\n        dist[i]...",
+          "metadata_finish_reason": "stop"
+        }
+      ]
+    }
+  ]
+}
