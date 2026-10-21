@@ -1,0 +1,87 @@
+{
+ "task": "T14",
+ "task_id": "T14_top_k_frequent",
+ "leetcode_ids": [
+  347
+ ],
+ "signature": "solve(nums, k)",
+ "description": "Task: write a Python function solve(nums, k) that returns the k values that occur most often in nums, as a list in any order. The argument nums is a list of integers with 1 <= len(nums) <= 10000 and every value between -10000 and 10000 inclusive; k is an integer between 1 and the number of distinct values in nums. The inputs are chosen so that the answer is unique: the k-th and (k+1)-th highest frequencies always differ.",
+ "format_line": "Use only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+ "spec_text": "Task: write a Python function solve(nums, k) that returns the k values that occur most often in nums, as a list in any order. The argument nums is a list of integers with 1 <= len(nums) <= 10000 and every value between -10000 and 10000 inclusive; k is an integer between 1 and the number of distinct values in nums. The inputs are chosen so that the answer is unique: the k-th and (k+1)-th highest frequencies always differ.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+ "bounds": {
+  "n": [
+   1,
+   10000
+  ],
+  "value": [
+   -10000,
+   10000
+  ]
+ },
+ "catalogue": [
+  {
+   "mode": "sort_by_count",
+   "display_name": "sorting by frequency",
+   "mechanism": "count the values and sort the distinct values by count (or Counter.most_common() with no argument)"
+  },
+  {
+   "mode": "heap",
+   "display_name": "a heap",
+   "mechanism": "count the values and keep the k best in a heap (heapq push/pop of size k, heapq.nlargest or Counter.most_common(k))"
+  },
+  {
+   "mode": "bucket_sort",
+   "display_name": "bucket sort by frequency",
+   "mechanism": "count the values, put each value into bucket[count] for counts 0..n and read buckets from the highest"
+  },
+  {
+   "mode": "quickselect_counts",
+   "display_name": "quickselect on the counts",
+   "mechanism": "count the values and partition the distinct values by count around a pivot until the top k are separated"
+  }
+ ],
+ "aliases": {
+  "sort_by_count": [
+   "sorting by frequency",
+   "sort by frequency",
+   "sort by count",
+   "sorting",
+   "most_common()"
+  ],
+  "heap": [
+   "heap",
+   "heapq",
+   "priority queue",
+   "nlargest",
+   "min-heap",
+   "max-heap"
+  ],
+  "bucket_sort": [
+   "bucket sort",
+   "bucket-sort",
+   "buckets",
+   "bucket"
+  ],
+  "quickselect_counts": [
+   "quickselect",
+   "quick select",
+   "hoare",
+   "partition"
+  ]
+ },
+ "forced_templates": [
+  "Implement {j} for this task.",
+  "Use {j} to solve this task.",
+  "Solve this task with {j}.",
+  "Your solution should use {j}.",
+  "Write an implementation based on {j}.",
+  "Solve the task below using {j}.",
+  "Your solution must implement {j}.",
+  "Write code that implements {j}.",
+  "Base your solution on {j}.",
+  "Apply {j} to solve this task."
+ ],
+ "descriptive_forced_template": "Implement the approach described as: {d}",
+ "association_template": "What is the standard alternative to {x} for this task? Name one algorithm and answer in one sentence.",
+ "spec_version": 1
+}
