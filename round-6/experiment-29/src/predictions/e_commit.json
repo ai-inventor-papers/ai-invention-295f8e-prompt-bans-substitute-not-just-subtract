@@ -1,0 +1,122 @@
+{
+ "utc": "2026-10-21T20:32:48.336696Z",
+ "claim": "E: the plan-noise movability measured in iteration 4 (FP8 W8A8 engine) is a property of the 8-bit arithmetic, tested by a 2x2 weight-by-activation precision factorial on identical inputs",
+ "predictions": {
+  "W8A8_PN_a2_Y_correct_min": {
+   "T10": 0.4,
+   "T2": 0.3
+  },
+  "W8A8_PN_a2_inside_iter4_cp95": true,
+  "W16A16_PN_a2_Y_correct_max": {
+   "T10": 0.1,
+   "T2": 0.1
+  },
+  "W8A8_minus_W16A16_min": {
+   "T10": 0.25,
+   "T2": 0.15
+  },
+  "mcnemar_exact_two_sided_p_max": 0.01,
+  "disconfirming": "|W8A8 - W16A16| <= 0.10 on both tasks"
+ },
+ "outcome_definitions": {
+  "Y_correct": "passed AND label not in {default, invalid} ('other' counted as off-default)",
+  "Y_correct_catalogue_only": "passed AND label not in {default, invalid, other}",
+  "Y_attempted": "label not in {default, invalid}",
+  "defaults": {
+   "T10": "union_find",
+   "T2": "dijkstra",
+   "T03": "full_sort"
+  }
+ },
+ "verdict_rule": {
+  "PRECISION EFFECT": "both T10 and T2: diff >= threshold and McNemar p < 0.01",
+  "PARTIAL": "one task",
+  "NO PRECISION EFFECT": "|diff| <= 0.10 on both",
+  "AMBIGUOUS": "otherwise",
+  "holm": "4-claim primary family: smallest p < 0.0125",
+  "backend": "verdict stated for EMU; REAL repeats the McNemar as the kernel check"
+ },
+ "attribution_rule": {
+  "AME": "0.5*[(W8A8-W8A16)+(W16A8-W16A16)]",
+  "WME": "0.5*[(W8A8-W16A8)+(W8A16-W16A16)]",
+  "INT": "(W8A8-W8A16)-(W16A8-W16A16)",
+  "ACTIVATION": "AME >= 0.20 and WME < 0.10 and AME slot-bootstrap 95% CI excludes 0",
+  "WEIGHT": "WME >= 0.20 and AME < 0.10 and WME CI excludes 0",
+  "INTERACTION": "W8A8-W16A16 >= threshold while W8A16-W16A16 < 0.10 and W16A8-W16A16 < 0.10",
+  "else": "MIXED",
+  "scope": "PN_a2, per task, then pooled over T10+T2 stratified by task; population check = same rule on per-direction mean shares of the 40 directions"
+ },
+ "consequence_rule": {
+  "PRECISION EFFECT": "every iteration-4 internal claim (same-seed contrast, task-spec site, plan noise as the cheapest knob, frozen screen) is written as a property of the FP8 W8A8 engine; the effect is reported as a deployment finding, with the attribution class",
+  "NO PRECISION EFFECT": "the unit cross locates the iteration-5 shrinkage; the iteration-4 claims are restored as model properties"
+ },
+ "gate_rules": {
+  "REAL": "byte identity with exp19 on 25 TWIN + 25 PN_a1 slots when the card is the iteration-4 type; on another sm_89 SKU (here L4) report the identity rate and apply the EMU criteria",
+  "EMU": "twin label agreement >= 0.9 on 25 T2 slots (W1 k0-9, W2 k0-9, W3 k0-4); PN_a2 shares inside iteration 4's 95% CP intervals (correct-only like-for-like)",
+  "W16A16_anchor": "label agreement >= 0.9 with 25 exp27 TWIN slots (T10, W1-W5 k0-4)",
+  "failed_gate": "does not stop the factorial; the verdict is written as conditional on emulation"
+ },
+ "drop_order_time_only": [
+  "dither (ii)",
+  "dither (i)",
+  "unit cross",
+  "T03 under W8A16 and W16A8",
+  "40 directions under W8A16/W16A8 down to N 5 (k 0 only)",
+  "REAL T03 and REAL population cells"
+ ],
+ "never_drop": [
+  "engine check",
+  "W8A8/W16A16/W8A16/W16A8 TWIN+PN (core) on T10 and T2",
+  "W8A8 and W16A16 40-direction arm (k 0-1)",
+  "middle precisions' 40-direction arm at k 0",
+  "T03 under W8A8 and W16A16",
+  "mechanism readouts",
+  "novelty audit"
+ ],
+ "device_rule": {
+  "device": "NVIDIA L4",
+  "capability": [
+   8,
+   9
+  ],
+  "vram_total_gb": 23.66,
+  "torch": "2.8.0+cu128",
+  "cuda": "12.8",
+  "cublas": "_BlasBackend.Cublas",
+  "transformers": "4.57.6",
+  "driver": "595.91.07",
+  "W8A8_REAL_AVAILABLE": true,
+  "probe": [
+   {
+    "B": 20,
+    "peak_reserved_gb": 21.07,
+    "free_at_peak_gib": 2.41,
+    "pass": true
+   }
+  ],
+  "utc": "2026-10-21T20:07:44.899745Z",
+  "B": 20,
+  "batch_composition": "one (task, template, prompt ids) per batch; B = 20 -> exp19 pairs [TWIN k0-9 + PN_a0.5 k0-9], [PN_a1 k0-9 + PN_a2 k0-9]; 40-direction arm: 10 directions x k0-1"
+ },
+ "B": 20,
+ "sha256": {
+  "analysis_e.py": "c2770531ea2b7ed602b5d135604db1a46e58c8e3a30e77e235e04dae3b7cfddf",
+  "qlinear.py": "2406252db837924bede237c8c6c87c6dc46abba31aaa1342238d3545305f2b42",
+  "hooks.py": "f6ff55488fe963b476db03e5be4d94c65facdd4f2fe991e3847b566d38ad1f72",
+  "engine_e.py": "09048c7a82e66ca49f936a9e6e325b5a88fadc6dbb3bdd35d7caa983f8b7ef02",
+  "engine_v4.py": "4cc1d9485ce7b7071c9788db282b008b519b78eb3c66c90b8907fc37f902a309",
+  "sampling_v4.py": "612f3342f7d79a9ff25b6f2a94e867dc7a2c1aa11401715fead1e87117fa9bfa",
+  "dither.py": "1802f2eeee3d78743fd91a8378e39554075d4b7de78f24b78356ce0603556e1e",
+  "run_e.py": "1c583bc0b56c599ae37e74beacee9f593f8ebc227d820f1504b1e9e8b2c28cdb",
+  "readouts.py": "5b25f8e078acd5d91db3e30817782dccf9d935940558833d92201992fe00de1c",
+  "label_e.py": "2d24061086318d772975b21b7bf3947feca89a9a9beef9ecb3c838ff78051b24",
+  "label_worker_v4.py": "9a341c92a263b3d9d5c0deeb4aa994850a373ab2f252b429bdd1d813a4f00a68",
+  "cfg.py": "f6923fa7674af2e3353bb641f8521beac28d201abd8be6aeee068b90280f15b0",
+  "cfg_e.py": "8136c43fcdaa1e7a76d52a825f5a3fc1b82b35aa4e7197d71ab21ed7c78e1d1d"
+ },
+ "e_inputs_sha256": "ccd8c541094270f2be02afce792a601168b6e843e2c702f680d9d8aaf6bf4e31",
+ "tests": {
+  "cpu_all_pass": true,
+  "gpu_all_pass": true
+ }
+}

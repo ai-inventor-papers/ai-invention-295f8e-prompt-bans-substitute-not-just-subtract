@@ -1,0 +1,32 @@
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:02,  1.36it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.25it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.22it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.32it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.83it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.53it/s]
+22:41:00|INFO   |bf16 weights on CPU + shared parts on GPU in 10s (path <HF_HUB_CACHE>/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218)
+22:41:01|INFO   |queue: 20 items, 20 to run (B = 20)
+22:41:43|INFO   |family W16 installed: {'family': 'W16', 'seconds': 42.3, 'rebuilt': True, 'free_vram_gb': 7.05, 'alloc_gb': 16.38}
+./src/engine_v4.py:263: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  tok = torch.searchsorted(cdf, u[:, None].to(cdf.dtype)).squeeze(-1)
+22:42:03|INFO   |P1:posthoc_it5:W16A16:T10:W1:IT5_a1+IT5_a2: 19.4s (prefills 3.3s), 192 steps, cap hits 0/20
+22:42:16|INFO   |P1:posthoc_it5:W16A16:T10:W2:IT5_a1+IT5_a2: 13.0s (prefills 2.1s), 136 steps, cap hits 0/20
+22:42:28|INFO   |P1:posthoc_it5:W16A16:T10:W3:IT5_a1+IT5_a2: 12.4s (prefills 2.1s), 128 steps, cap hits 0/20
+22:42:46|INFO   |P1:posthoc_it5:W16A16:T10:W4:IT5_a1+IT5_a2: 17.7s (prefills 2.1s), 192 steps, cap hits 0/20
+22:42:58|INFO   |P1:posthoc_it5:W16A16:T10:W5:IT5_a1+IT5_a2: 12.4s (prefills 2.1s), 128 steps, cap hits 0/20
+22:43:18|INFO   |P1:posthoc_it5:W16A16:T2:W1:IT5_a1+IT5_a2: 19.9s (prefills 2.3s), 216 steps, cap hits 0/20
+22:43:38|INFO   |P1:posthoc_it5:W16A16:T2:W2:IT5_a1+IT5_a2: 19.2s (prefills 2.3s), 208 steps, cap hits 0/20
+22:43:56|INFO   |P1:posthoc_it5:W16A16:T2:W3:IT5_a1+IT5_a2: 18.5s (prefills 2.2s), 200 steps, cap hits 0/20
+22:44:21|INFO   |P1:posthoc_it5:W16A16:T2:W4:IT5_a1+IT5_a2: 25.2s (prefills 2.3s), 280 steps, cap hits 0/20
+22:44:40|INFO   |P1:posthoc_it5:W16A16:T2:W5:IT5_a1+IT5_a2: 18.6s (prefills 2.3s), 200 steps, cap hits 0/20
+22:44:40|INFO   |progress 10 batches in 219s; median 18.6s/batch; peak VRAM 21.7 GB
+22:44:47|INFO   |family W8 installed: {'family': 'W8', 'seconds': 6.2, 'rebuilt': True, 'free_vram_gb': 6.47, 'alloc_gb': 16.9}
+22:45:07|INFO   |P1:posthoc_it5:W8A8:T10:W1:IT5_a1+IT5_a2: 20.2s (prefills 2.6s), 200 steps, cap hits 0/20
+22:45:21|INFO   |P1:posthoc_it5:W8A8:T10:W2:IT5_a1+IT5_a2: 14.4s (prefills 2.5s), 136 steps, cap hits 0/20
+22:45:35|INFO   |P1:posthoc_it5:W8A8:T10:W3:IT5_a1+IT5_a2: 13.7s (prefills 2.5s), 128 steps, cap hits 0/20
+22:45:55|INFO   |P1:posthoc_it5:W8A8:T10:W4:IT5_a1+IT5_a2: 20.1s (prefills 2.6s), 200 steps, cap hits 0/20
+22:46:15|INFO   |P1:posthoc_it5:W8A8:T10:W5:IT5_a1+IT5_a2: 19.4s (prefills 2.5s), 192 steps, cap hits 0/20
+22:46:41|INFO   |P1:posthoc_it5:W8A8:T2:W1:IT5_a1+IT5_a2: 26.1s (prefills 2.7s), 264 steps, cap hits 0/20
+22:47:03|INFO   |P1:posthoc_it5:W8A8:T2:W2:IT5_a1+IT5_a2: 21.8s (prefills 2.7s), 216 steps, cap hits 0/20
+22:47:24|INFO   |P1:posthoc_it5:W8A8:T2:W3:IT5_a1+IT5_a2: 21.7s (prefills 2.7s), 216 steps, cap hits 0/20
+22:47:48|INFO   |P1:posthoc_it5:W8A8:T2:W4:IT5_a1+IT5_a2: 23.9s (prefills 2.7s), 240 steps, cap hits 0/20
+22:48:09|INFO   |P1:posthoc_it5:W8A8:T2:W5:IT5_a1+IT5_a2: 20.3s (prefills 2.7s), 200 steps, cap hits 0/20
+22:48:09|INFO   |progress 20 batches in 428s; median 19.4s/batch; peak VRAM 21.7 GB
+22:48:09|INFO   |queue result: {'n_batches': 20, 'seconds': 427.9, 'dropped_prio': [], 'median_sec_per_batch': 19.441187977790833, 'utc': '2026-10-21T22:48:09.245926Z'}

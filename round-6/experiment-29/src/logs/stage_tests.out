@@ -1,0 +1,24 @@
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:02,  1.37it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.27it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.25it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.34it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.84it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.55it/s]
+20:07:44|INFO   |bf16 weights on CPU + shared parts on GPU in 13s (path <HF_HUB_CACHE>/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218)
+20:08:30|INFO   |family W8 installed: {'family': 'W8', 'seconds': 45.5, 'rebuilt': True, 'free_vram_gb': 7.02, 'alloc_gb': 16.39}
+./src/engine_v4.py:263: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  tok = torch.searchsorted(cdf, u[:, None].to(cdf.dtype)).squeeze(-1)
+20:08:52|INFO   |probe:B20: 22.2s (prefills 2.7s), 216 steps, cap hits 0/20
+20:08:52|INFO   |device rule: {'device': 'NVIDIA L4', 'capability': [8, 9], 'vram_total_gb': 23.66, 'torch': '2.8.0+cu128', 'cuda': '12.8', 'cublas': '_BlasBackend.Cublas', 'transformers': '4.57.6', 'driver': '595.91.07', 'W8A8_REAL_AVAILABLE': True, 'probe': [{'B': 20, 'peak_reserved_gb': 21.07, 'free_at_peak_gib': 2.41, 'pass': True}], 'utc': '2026-10-21T20:07:44.899745Z', 'B': 20, 'batch_composition': 'one (task, template, prompt ids) per batch; B = 20 -> exp19 pairs [TWIN k0-9 + PN_a0.5 k0-9], [PN_a1 k0-9 + PN_a2 k0-9]; 40-direction arm: 10 directions x k0-1'}
+20:08:58|INFO   |family W16 installed: {'family': 'W16', 'seconds': 6.0, 'rebuilt': True, 'free_vram_gb': 7.01, 'alloc_gb': 16.39}
+20:09:05|INFO   |family W8 installed: {'family': 'W8', 'seconds': 6.6, 'rebuilt': True, 'free_vram_gb': 6.94, 'alloc_gb': 16.43}
+20:09:12|INFO   |family W16 installed: {'family': 'W16', 'seconds': 5.8, 'rebuilt': True, 'free_vram_gb': 6.12, 'alloc_gb': 17.2}
+20:09:31|INFO   |family REAL installed: {'family': 'REAL', 'seconds': 16.0, 'rebuilt': True, 'free_vram_gb': 13.06, 'alloc_gb': 10.26}
+20:09:38|INFO   |family W16 installed: {'family': 'W16', 'seconds': 5.9, 'rebuilt': True, 'free_vram_gb': 6.87, 'alloc_gb': 16.39}
+20:09:45|INFO   |family W8 installed: {'family': 'W8', 'seconds': 6.6, 'rebuilt': True, 'free_vram_gb': 6.84, 'alloc_gb': 16.44}
+20:09:52|INFO   |family W16 installed: {'family': 'W16', 'seconds': 5.9, 'rebuilt': True, 'free_vram_gb': 6.85, 'alloc_gb': 16.42}
+20:10:00|INFO   |family W8 installed: {'family': 'W8', 'seconds': 6.8, 'rebuilt': True, 'free_vram_gb': 6.82, 'alloc_gb': 16.4}
+20:10:24|INFO   |U2/U3/U5 W8A8: {'U2_crn_determinism': True, 'U3_row_independence': '10/10', 'U3_pass': True, 'U5_alpha0_equals_clean': '10/10', 'U5_pass': True, 'seconds': 24.3}
+20:10:30|INFO   |family W16 installed: {'family': 'W16', 'seconds': 5.9, 'rebuilt': True, 'free_vram_gb': 6.89, 'alloc_gb': 16.39}
+20:10:52|INFO   |U2/U3/U5 W16A16: {'U2_crn_determinism': True, 'U3_row_independence': '10/10', 'U3_pass': True, 'U5_alpha0_equals_clean': '10/10', 'U5_pass': True, 'seconds': 22.1}
+20:10:59|INFO   |family W8 installed: {'family': 'W8', 'seconds': 6.7, 'rebuilt': True, 'free_vram_gb': 6.86, 'alloc_gb': 16.4}
+20:11:11|INFO   |family W16 installed: {'family': 'W16', 'seconds': 5.9, 'rebuilt': True, 'free_vram_gb': 6.9, 'alloc_gb': 16.42}
+20:11:32|INFO   |family REAL installed: {'family': 'REAL', 'seconds': 15.5, 'rebuilt': True, 'free_vram_gb': 13.65, 'alloc_gb': 9.48}
+20:11:34|INFO   |GPU tests all_pass=True

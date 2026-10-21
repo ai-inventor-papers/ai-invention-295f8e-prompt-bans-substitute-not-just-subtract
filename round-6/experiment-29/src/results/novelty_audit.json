@@ -1,0 +1,391 @@
+{
+ "utc": "2026-10-21T22:51:40.033255Z",
+ "n_unique_correct_other": 10,
+ "n_rows_correct_other": 13,
+ "by_cell": {
+  "T03|W16A16|PN_a2": 2,
+  "T03|W16A8|PN_a2": 1,
+  "T03|W8A16|PN_a2": 1,
+  "T2|W16A16|DITHER_PN2_v1": 1,
+  "T2|W16A16|PN_a2": 1,
+  "T2|W16A16|POP_d9129_a2.0": 1,
+  "T2|W16A16|POP_d9131_a2.0": 1,
+  "T2|W16A8|POP_d9101_a2.0": 1,
+  "T2|W16A8|POP_d9114_a2.0": 1,
+  "T2|W16A8|POP_d9133_a2.0": 1,
+  "T2|W8A16|POP_d9103_a2.0": 1,
+  "T2|W8A8|PN_a2": 1
+ },
+ "classes": {
+  "CATALOGUE VARIANT": 9,
+  "LABELLER MISS": 1
+ },
+ "novel_count": 0,
+ "statement": "no correct novel algorithm (0 of 10; rule-of-three 95% upper bound 0.300)",
+ "spend_usd": 0.01036,
+ "stopped": false,
+ "stop_reason": null,
+ "judges": [
+  "google/gemini-2.5-flash-lite",
+  "openai/gpt-4.1-mini"
+ ],
+ "tiebreak": "deepseek/deepseek-chat-v3.1",
+ "items": [
+  {
+   "task": "T2",
+   "code_sha256": "5f51cfc49bda92717fce76d5d43643243f7fa279ab78d0e0f6b6080ab9581b13",
+   "first_sample_id": "T2|W8A8|PN_a2|W3|2",
+   "n_rows": 1,
+   "judge_a": "CATALOGUE VARIANT",
+   "judge_b": "LABELLER MISS",
+   "tiebreak": "CATALOGUE VARIANT",
+   "final": "CATALOGUE VARIANT",
+   "raw_a": "```json\n{\n  \"class\": \"CATALOGUE VARIANT\",\n  \"mechanism\": \"The program implements Dijkstra's algorithm using a set for visited nodes and finding the minimum distance node by iterating through unvisited nodes, which is an equivalent but less efficient data structure than a priority queue.\",\n  \"nearest_known\": \"Dijkstra\"\n}\n```",
+   "raw_b": "```json\n{\n  \"class\": \"LABELLER MISS\",\n  \"mechanism\": \"The program implements Dijkstra's algorithm using an array and linear search to select the next node with minimum distance.\",\n  \"nearest_known\": \"Dijkstra (array)\"\n}\n```",
+   "nearest": [
+    {
+     "ratio": 0.587,
+     "source": "kodcode_algorithmic",
+     "id": "kodcode_algorithmic:180",
+     "mode_hint": [
+      "dijkstra",
+      "bellman_ford_spfa"
+     ]
+    },
+    {
+     "ratio": 0.5531,
+     "source": "mercury",
+     "id": "mercury:703",
+     "mode_hint": null
+    },
+    {
+     "ratio": 0.5531,
+     "source": "exp18:mercury",
+     "id": "network-delay-time",
+     "mode_hint": "network-delay-time"
+    }
+   ]
+  },
+  {
+   "task": "T2",
+   "code_sha256": "9c7723cca2e7f1adc7fffce56c4adff035244fc385f63c22d66a5a42d9c2b344",
+   "first_sample_id": "T2|W8A16|POP_d9103_a2.0|W5|1",
+   "n_rows": 1,
+   "judge_a": "CATALOGUE VARIANT",
+   "judge_b": "LABELLER MISS",
+   "tiebreak": "CATALOGUE VARIANT",
+   "final": "CATALOGUE VARIANT",
+   "raw_a": "```json\n{\n  \"class\": \"CATALOGUE VARIANT\",\n  \"mechanism\": \"The program implements Dijkstra's algorithm using an array-based approach to find the minimum distance node in each iteration, which is equivalent to using a binary heap but less efficient.\",\n  \"nearest_known\": \"Dijkstra\"\n}\n```",
+   "raw_b": "```json\n{\n  \"class\": \"LABELLER MISS\",\n  \"mechanism\": \"The program implements Dijkstra's algorithm using an array to select the next node with minimum distance instead of a priority queue.\",\n  \"nearest_known\": \"Dijkstra (array)\"\n}\n```",
+   "nearest": [
+    {
+     "ratio": 0.6411,
+     "source": "kodcode_algorithmic",
+     "id": "kodcode_algorithmic:180",
+     "mode_hint": [
+      "dijkstra",
+      "bellman_ford_spfa"
+     ]
+    },
+    {
+     "ratio": 0.5694,
+     "source": "mercury",
+     "id": "mercury:703",
+     "mode_hint": null
+    },
+    {
+     "ratio": 0.5694,
+     "source": "exp18:mercury",
+     "id": "network-delay-time",
+     "mode_hint": "network-delay-time"
+    }
+   ]
+  },
+  {
+   "task": "T03",
+   "code_sha256": "f65ae995dab9fdb512504fdd713ce871e144b87376c7ac2181f788eadadbe4ee",
+   "first_sample_id": "T03|W8A16|PN_a2|W4|8",
+   "n_rows": 3,
+   "judge_a": "CATALOGUE VARIANT",
+   "judge_b": "CATALOGUE VARIANT",
+   "final": "CATALOGUE VARIANT",
+   "raw_a": "```json\n{\n  \"class\": \"CATALOGUE VARIANT\",\n  \"mechanism\": \"The program first counts the frequency of each number, then iterates through the unique sorted numbers, decrementing k by the count of each number until k is less than or equal to the count of the current number.\",\n  \"nearest_known\": \"counting sort\"\n}\n```",
+   "raw_b": "```json\n{\n  \"class\": \"CATALOGUE VARIANT\",\n  \"mechanism\": \"It uses counting frequencies and then iterates over sorted unique elements to find the k-th smallest, effectively a variant of counting sort.\",\n  \"nearest_known\": \"counting sort\"\n}\n```",
+   "nearest": [
+    {
+     "ratio": 0.5926,
+     "source": "mercury",
+     "id": "mercury:463",
+     "mode_hint": null
+    },
+    {
+     "ratio": 0.5926,
+     "source": "exp18:mercury",
+     "id": "kth-largest-element-in-an-array",
+     "mode_hint": "kth-largest-element-in-an-array"
+    },
+    {
+     "ratio": 0.5634,
+     "source": "mercury",
+     "id": "mercury:463",
+     "mode_hint": null
+    }
+   ]
+  },
+  {
+   "task": "T2",
+   "code_sha256": "c0b930ecf07fac93b17a236a4b92151cbc34d23e6dcf864d4fc7dabae451847a",
+   "first_sample_id": "T2|W16A16|PN_a2|W4|3",
+   "n_rows": 2,
+   "judge_a": "CATALOGUE VARIANT",
+   "judge_b": "LABELLER MISS",
+   "tiebreak": "CATALOGUE VARIANT",
+   "final": "CATALOGUE VARIANT",
+   "raw_a": "```json\n{\n  \"class\": \"CATALOGUE VARIANT\",\n  \"mechanism\": \"The program implements Dijkstra's algorithm using an array to find the minimum distance node in each iteration, which is equivalent to using a binary heap but less efficient for sparse graphs.\",\n  \"nearest_known\": \"Dijkstra\"\n}\n```",
+   "raw_b": "```json\n{\n  \"class\": \"LABELLER MISS\",\n  \"mechanism\": \"The program implements Dijkstra's algorithm using an array to select the next node with minimum distance instead of a priority queue.\",\n  \"nearest_known\": \"Dijkstra (array)\"\n}\n```",
+   "nearest": [
+    {
+     "ratio": 0.591,
+     "source": "kodcode_algorithmic",
+     "id": "kodcode_algorithmic:180",
+     "mode_hint": [
+      "dijkstra",
+      "bellman_ford_spfa"
+     ]
+    },
+    {
+     "ratio": 0.5805,
+     "source": "leetcodedataset",
+     "id": "leetcodedataset:594",
+     "mode_hint": null
+    },
+    {
+     "ratio": 0.5805,
+     "source": "exp18:leetcodedataset",
+     "id": "network-delay-time",
+     "mode_hint": "network-delay-time"
+    }
+   ]
+  },
+  {
+   "task": "T2",
+   "code_sha256": "6e02ae166eebab23186d3675620a4837f30484eecc42400e1bd8e941d35a506c",
+   "first_sample_id": "T2|W16A16|POP_d9129_a2.0|W1|0",
+   "n_rows": 1,
+   "judge_a": "CATALOGUE VARIANT",
+   "judge_b": "LABELLER MISS",
+   "tiebreak": "LABELLER MISS",
+   "final": "LABELLER MISS",
+   "raw_a": "```json\n{\n  \"class\": \"CATALOGUE VARIANT\",\n  \"mechanism\": \"The program implements Dijkstra's algorithm but uses a linear scan to find the minimum distance node instead of a priority queue (binary heap or array).\",\n  \"nearest_known\": \"Dijkstra\"\n}\n```",
+   "raw_b": "```json\n{\n  \"class\": \"LABELLER MISS\",\n  \"mechanism\": \"The program implements Dijkstra's algorithm using an array to find the minimum-distance unvisited node at each step.\",\n  \"nearest_known\": \"Dijkstra (array)\"\n}\n```",
+   "nearest": [
+    {
+     "ratio": 0.631,
+     "source": "kodcode_algorithmic",
+     "id": "kodcode_algorithmic:180",
+     "mode_hint": [
+      "dijkstra",
+      "bellman_ford_spfa"
+     ]
+    },
+    {
+     "ratio": 0.566,
+     "source": "mercury",
+     "id": "mercury:703",
+     "mode_hint": null
+    },
+    {
+     "ratio": 0.566,
+     "source": "exp18:mercury",
+     "id": "network-delay-time",
+     "mode_hint": "network-delay-time"
+    }
+   ]
+  },
+  {
+   "task": "T2",
+   "code_sha256": "a35f278b1ca9ccc9ca485a0d400d5011145a50fea5d4e0716d876ed7e76d2eae",
+   "first_sample_id": "T2|W16A16|POP_d9131_a2.0|W2|0",
+   "n_rows": 1,
+   "judge_a": "CATALOGUE VARIANT",
+   "judge_b": "LABELLER MISS",
+   "tiebreak": "CATALOGUE VARIANT",
+   "final": "CATALOGUE VARIANT",
+   "raw_a": "```json\n{\n  \"class\": \"CATALOGUE VARIANT\",\n  \"mechanism\": \"The program implements Dijkstra's algorithm using an array to find the unvisited node with the minimum distance in each iteration, which is an equivalent but less efficient data structure than a binary heap.\",\n  \"nearest_known\": \"Dijkstra (array)\"\n}\n```",
+   "raw_b": "```json\n{\n  \"class\": \"LABELLER MISS\",\n  \"mechanism\": \"It implements Dijkstra's algorithm using an array to find the minimum distance node instead of a priority queue.\",\n  \"nearest_known\": \"Dijkstra (array)\"\n}\n```",
+   "nearest": [
+    {
+     "ratio": 0.6195,
+     "source": "kodcode_algorithmic",
+     "id": "kodcode_algorithmic:180",
+     "mode_hint": [
+      "dijkstra",
+      "bellman_ford_spfa"
+     ]
+    },
+    {
+     "ratio": 0.6028,
+     "source": "kodcode_algorithmic",
+     "id": "kodcode_algorithmic:5966",
+     "mode_hint": [
+      "dijkstra",
+      "heap"
+     ]
+    },
+    {
+     "ratio": 0.574,
+     "source": "kodcode_algorithmic",
+     "id": "kodcode_algorithmic:8918",
+     "mode_hint": [
+      "dijkstra",
+      "heap"
+     ]
+    }
+   ]
+  },
+  {
+   "task": "T2",
+   "code_sha256": "89fc145906a089c222cc44d52075d8a1fcfa419db111bcfae1cc7abbe7d7d196",
+   "first_sample_id": "T2|W16A8|POP_d9114_a2.0|W4|0",
+   "n_rows": 1,
+   "judge_a": "CATALOGUE VARIANT",
+   "judge_b": "LABELLER MISS",
+   "tiebreak": "CATALOGUE VARIANT",
+   "final": "CATALOGUE VARIANT",
+   "raw_a": "```json\n{\n  \"class\": \"CATALOGUE VARIANT\",\n  \"mechanism\": \"The program implements Dijkstra's algorithm using an array-based approach to find the minimum distance node in each iteration, which is an equivalent data structure to a binary heap for this purpose.\",\n  \"nearest_known\": \"Dijkstra (array)\"\n}\n```",
+   "raw_b": "```json\n{\n  \"class\": \"LABELLER MISS\",\n  \"mechanism\": \"The program implements Dijkstra's algorithm using an array to find the unvisited node with the smallest distance instead of a priority queue.\",\n  \"nearest_known\": \"Dijkstra (array)\"\n}\n```",
+   "nearest": [
+    {
+     "ratio": 0.6238,
+     "source": "kodcode_algorithmic",
+     "id": "kodcode_algorithmic:5966",
+     "mode_hint": [
+      "dijkstra",
+      "heap"
+     ]
+    },
+    {
+     "ratio": 0.6022,
+     "source": "kodcode_algorithmic",
+     "id": "kodcode_algorithmic:180",
+     "mode_hint": [
+      "dijkstra",
+      "bellman_ford_spfa"
+     ]
+    },
+    {
+     "ratio": 0.579,
+     "source": "leetcodedataset",
+     "id": "leetcodedataset:594",
+     "mode_hint": null
+    }
+   ]
+  },
+  {
+   "task": "T2",
+   "code_sha256": "fdf8c27095edc23ccaf964847e71b31eb5880eb4c42bc4aff4601f812296abe7",
+   "first_sample_id": "T2|W16A8|POP_d9101_a2.0|W1|1",
+   "n_rows": 1,
+   "judge_a": "CATALOGUE VARIANT",
+   "judge_b": "LABELLER MISS",
+   "tiebreak": "CATALOGUE VARIANT",
+   "final": "CATALOGUE VARIANT",
+   "raw_a": "```json\n{\n  \"class\": \"CATALOGUE VARIANT\",\n  \"mechanism\": \"The program implements Dijkstra's algorithm using an array to find the unvisited node with the minimum distance in each iteration, which is an equivalent data structure to a binary heap for this purpose.\",\n  \"nearest_known\": \"Dijkstra\"\n}\n```",
+   "raw_b": "```json\n{\n  \"class\": \"LABELLER MISS\",\n  \"mechanism\": \"Implements Dijkstra's algorithm using an array to find the minimum distance node instead of a priority queue.\",\n  \"nearest_known\": \"Dijkstra (array)\"\n}\n```",
+   "nearest": [
+    {
+     "ratio": 0.6222,
+     "source": "kodcode_algorithmic",
+     "id": "kodcode_algorithmic:5966",
+     "mode_hint": [
+      "dijkstra",
+      "heap"
+     ]
+    },
+    {
+     "ratio": 0.6058,
+     "source": "kodcode_algorithmic",
+     "id": "kodcode_algorithmic:180",
+     "mode_hint": [
+      "dijkstra",
+      "bellman_ford_spfa"
+     ]
+    },
+    {
+     "ratio": 0.5784,
+     "source": "leetcodedataset",
+     "id": "leetcodedataset:594",
+     "mode_hint": null
+    }
+   ]
+  },
+  {
+   "task": "T2",
+   "code_sha256": "aa5d5a7e89221258e90b0e8d229ca37b7e4c59ddab3024d12c2260552b18b45b",
+   "first_sample_id": "T2|W16A8|POP_d9133_a2.0|W3|1",
+   "n_rows": 1,
+   "judge_a": "CATALOGUE VARIANT",
+   "judge_b": "LABELLER MISS",
+   "tiebreak": "CATALOGUE VARIANT",
+   "final": "CATALOGUE VARIANT",
+   "raw_a": "```json\n{\n  \"class\": \"CATALOGUE VARIANT\",\n  \"mechanism\": \"The program implements Dijkstra's algorithm using an array-based approach to find the minimum distance node instead of a priority queue (binary heap).\",\n  \"nearest_known\": \"Dijkstra\"\n}\n```",
+   "raw_b": "```json\n{\n  \"class\": \"LABELLER MISS\",\n  \"mechanism\": \"The program implements Dijkstra's algorithm using an array to find the minimum-distance unvisited node, updating distances accordingly.\",\n  \"nearest_known\": \"Dijkstra (array)\"\n}\n```",
+   "nearest": [
+    {
+     "ratio": 0.6353,
+     "source": "kodcode_algorithmic",
+     "id": "kodcode_algorithmic:180",
+     "mode_hint": [
+      "dijkstra",
+      "bellman_ford_spfa"
+     ]
+    },
+    {
+     "ratio": 0.5497,
+     "source": "mercury",
+     "id": "mercury:703",
+     "mode_hint": null
+    },
+    {
+     "ratio": 0.5497,
+     "source": "exp18:mercury",
+     "id": "network-delay-time",
+     "mode_hint": "network-delay-time"
+    }
+   ]
+  },
+  {
+   "task": "T03",
+   "code_sha256": "b3f1cfad86e8d592fc9ada89b8016243b01b636797249ab4b5a6d9a8702cf82f",
+   "first_sample_id": "T03|W16A16|PN_a2|W1|5",
+   "n_rows": 1,
+   "judge_a": "CATALOGUE VARIANT",
+   "judge_b": "CATALOGUE VARIANT",
+   "final": "CATALOGUE VARIANT",
+   "raw_a": "```json\n{\n  \"class\": \"CATALOGUE VARIANT\",\n  \"mechanism\": \"The program first counts the frequency of each number, then sorts the unique numbers and iterates through them, decrementing k by the count of each number until k is less than or equal to the count of the current number.\",\n  \"nearest_known\": \"counting sort\"\n}\n```",
+   "raw_b": "```json\n{\n  \"class\": \"CATALOGUE VARIANT\",\n  \"mechanism\": \"It uses counting frequencies and a sorted list of unique elements to find the k-th smallest value by cumulative counting, effectively a variant of counting sort.\",\n  \"nearest_known\": \"counting sort\"\n}\n```",
+   "nearest": [
+    {
+     "ratio": 0.5729,
+     "source": "mercury",
+     "id": "mercury:463",
+     "mode_hint": null
+    },
+    {
+     "ratio": 0.5486,
+     "source": "kodcode_algorithmic",
+     "id": "kodcode_algorithmic:912",
+     "mode_hint": [
+      "kth_smallest_largest"
+     ]
+    },
+    {
+     "ratio": 0.5486,
+     "source": "exp18:kodcode_algorithmic",
+     "id": "['kth_smallest_largest']",
+     "mode_hint": "['kth_smallest_largest']"
+    }
+   ]
+  }
+ ]
+}

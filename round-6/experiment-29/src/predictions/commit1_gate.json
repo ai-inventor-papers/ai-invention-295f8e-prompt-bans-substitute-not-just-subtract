@@ -1,0 +1,63 @@
+{
+ "utc": "2026-10-21T20:47:59.450128Z",
+ "gate": {
+  "REAL_vs_exp19": {
+   "n": 25,
+   "byte_identity": 0.76,
+   "label_agreement": 1.0,
+   "PN_a1": {
+    "n": 25,
+    "byte_identity": 0.36,
+    "label_agreement": 0.84
+   }
+  },
+  "EMU_vs_exp19": {
+   "n": 25,
+   "byte_identity": 0.76,
+   "label_agreement": 0.96,
+   "PN_a1": {
+    "n": 25,
+    "byte_identity": 0.2,
+    "label_agreement": 0.88
+   }
+  },
+  "EMU_gate_twin_label_agreement_ge_0.9": true,
+  "card_note": "NVIDIA L4 (sm_89) is not the iteration-4 card type (RTX 2000 Ada): byte identity is reported, the EMU criteria (label agreement) apply to REAL as well"
+ },
+ "timing_per_precision": {
+  "W8A8": {
+   "n_batches": 26,
+   "sec_per_batch_median": 20.21,
+   "sec_per_step_median": 0.08825961538461538
+  },
+  "W8A8REAL": {
+   "n_batches": 6,
+   "sec_per_batch_median": 14.495000000000001,
+   "sec_per_step_median": 0.054534111721611725
+  }
+ },
+ "u8_timing": {
+  "W8A8": {
+   "prefill_s": 0.1149,
+   "decode_step_s": 0.0855
+  },
+  "W8A16": {
+   "prefill_s": 0.1071,
+   "decode_step_s": 0.0795
+  },
+  "W16A8": {
+   "prefill_s": 0.1141,
+   "decode_step_s": 0.0845
+  },
+  "W16A16": {
+   "prefill_s": 0.1001,
+   "decode_step_s": 0.0785
+  },
+  "W8A8REAL": {
+   "prefill_s": 0.1378,
+   "decode_step_s": 0.0514
+  }
+ },
+ "drops": [],
+ "extrapolation": "queue estimated at ~350 batches x ~20 s = ~2 h at B = 20; no drop expected"
+}

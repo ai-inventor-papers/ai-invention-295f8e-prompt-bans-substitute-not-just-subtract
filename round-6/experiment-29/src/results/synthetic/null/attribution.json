@@ -1,0 +1,214 @@
+{
+ "rule": {
+  "ACTIVATION": "AME >= 0.20 and WME < 0.10 and AME boot CI excludes 0",
+  "WEIGHT": "WME >= 0.20 and AME < 0.10 and WME boot CI excludes 0",
+  "INTERACTION": "W8A8-W16A16 >= threshold, W8A16-W16A16 < 0.10, W16A8-W16A16 < 0.10",
+  "else": "MIXED"
+ },
+ "tasks": {
+  "T10": {
+   "n_slots": 50,
+   "effects": {
+    "AME": 0.0,
+    "WME": 0.0,
+    "INT": 0.0,
+    "d_W8A8": 0.0,
+    "d_W8A16": 0.0,
+    "d_W16A8": 0.0,
+    "share_W8A8": 0.1,
+    "share_W8A16": 0.1,
+    "share_W16A8": 0.1,
+    "share_W16A16": 0.1
+   },
+   "boot95": {
+    "AME": [
+     0.0,
+     0.0
+    ],
+    "WME": [
+     0.0,
+     0.0
+    ],
+    "INT": [
+     0.0,
+     0.0
+    ],
+    "d_W8A8": [
+     0.0,
+     0.0
+    ],
+    "d_W8A16": [
+     0.0,
+     0.0
+    ],
+    "d_W16A8": [
+     0.0,
+     0.0
+    ]
+   },
+   "se_AME": 0.0,
+   "MDE_AME_80pct_power": 0.0,
+   "verdict": "MIXED",
+   "gee": {
+    "formula": "y ~ Wq * Aq",
+    "params": {
+     "Intercept": -2.1972245773362906,
+     "Wq": -1.4454857422849582e-16,
+     "Aq": -1.6557492780911194e-16,
+     "Wq:Aq": 1.2871205961295062e-16
+    },
+    "bse": {
+     "Intercept": 0.47140452079106215,
+     "Wq": null,
+     "Aq": 1.4614238391005983e-18,
+     "Wq:Aq": 4.567495922688846e-18
+    },
+    "pvalues": {
+     "Intercept": 3.146504316108191e-06,
+     "Wq": null,
+     "Aq": 0.0,
+     "Wq:Aq": 1.0281854767480297e-174
+    },
+    "n_obs": 200,
+    "n_clusters": 50
+   }
+  },
+  "T2": {
+   "n_slots": 50,
+   "effects": {
+    "AME": 0.0,
+    "WME": 0.0,
+    "INT": 0.0,
+    "d_W8A8": 0.0,
+    "d_W8A16": 0.0,
+    "d_W16A8": 0.0,
+    "share_W8A8": 0.06,
+    "share_W8A16": 0.06,
+    "share_W16A8": 0.06,
+    "share_W16A16": 0.06
+   },
+   "boot95": {
+    "AME": [
+     0.0,
+     0.0
+    ],
+    "WME": [
+     0.0,
+     0.0
+    ],
+    "INT": [
+     0.0,
+     0.0
+    ],
+    "d_W8A8": [
+     0.0,
+     0.0
+    ],
+    "d_W8A16": [
+     0.0,
+     0.0
+    ],
+    "d_W16A8": [
+     0.0,
+     0.0
+    ]
+   },
+   "se_AME": 0.0,
+   "MDE_AME_80pct_power": 0.0,
+   "verdict": "MIXED",
+   "gee": {
+    "formula": "y ~ Wq * Aq",
+    "params": {
+     "Intercept": -2.7515353130419644,
+     "Wq": -1.2519463822217082e-16,
+     "Aq": 6.634577438864833e-17,
+     "Wq:Aq": 2.554957829710715e-16
+    },
+    "bse": {
+     "Intercept": 0.5954913341754192,
+     "Wq": null,
+     "Aq": null,
+     "Wq:Aq": null
+    },
+    "pvalues": {
+     "Intercept": 3.826069139209279e-06,
+     "Wq": null,
+     "Aq": null,
+     "Wq:Aq": null
+    },
+    "n_obs": 200,
+    "n_clusters": 50
+   }
+  }
+ },
+ "pooled": {
+  "effects": {
+   "AME": 0.0,
+   "WME": 0.0,
+   "INT": 0.0,
+   "d_W8A8": 0.0,
+   "d_W8A16": 0.0,
+   "d_W16A8": 0.0,
+   "share_W8A8": 0.08,
+   "share_W8A16": 0.08,
+   "share_W16A8": 0.08,
+   "share_W16A16": 0.08
+  },
+  "boot95": {
+   "AME": [
+    0.0,
+    0.0
+   ],
+   "WME": [
+    0.0,
+    0.0
+   ],
+   "INT": [
+    0.0,
+    0.0
+   ],
+   "d_W8A8": [
+    0.0,
+    0.0
+   ],
+   "d_W8A16": [
+    0.0,
+    0.0
+   ],
+   "d_W16A8": [
+    0.0,
+    0.0
+   ]
+  },
+  "se_AME": 0.0,
+  "MDE_AME_80pct_power": 0.0,
+  "verdict": "MIXED",
+  "gee": {
+   "formula": "y ~ Wq * Aq + C(task)",
+   "params": {
+    "Intercept": -2.1972245773362955,
+    "C(task)[T.T2]": -0.5543107357055398,
+    "Wq": 1.0042095260260239e-16,
+    "Aq": 8.360161144376763e-17,
+    "Wq:Aq": -9.710022468443197e-17
+   },
+   "bse": {
+    "Intercept": 0.47140452079116485,
+    "C(task)[T.T2]": 0.7594946683817205,
+    "Wq": null,
+    "Aq": 3.6179842869687275e-18,
+    "Wq:Aq": 3.602478551716022e-18
+   },
+   "pvalues": {
+    "Intercept": 3.1465043161235447e-06,
+    "C(task)[T.T2]": 0.4654870679043285,
+    "Wq": null,
+    "Aq": 3.9160985805300043e-118,
+    "Wq:Aq": 5.1583719845918554e-160
+   },
+   "n_obs": 400,
+   "n_clusters": 100
+  },
+  "stratified_by": "task (equal weights)"
+ }
+}
