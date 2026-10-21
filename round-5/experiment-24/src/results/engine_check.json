@@ -1,0 +1,70 @@
+{
+ "T03|EC_NEUTRAL": {
+  "n_slots": 50,
+  "per_slot_label_agreement": 1.0,
+  "per_slot_pass_agreement": 1.0,
+  "per_slot_identical_code": 0.9,
+  "ours": {
+   "full_sort": 50
+  },
+  "exp17_screen": {
+   "full_sort": 50
+  },
+  "js": 0.0,
+  "null_q95": 0.0,
+  "within_null": true
+ },
+ "T03|EC_RAND9002_a1.0": {
+  "n_slots": 50,
+  "per_slot_label_agreement": 0.74,
+  "per_slot_pass_agreement": 1.0,
+  "per_slot_identical_code": 0.64,
+  "ours": {
+   "size_k_heap": 29,
+   "full_sort": 9,
+   "quickselect": 12
+  },
+  "exp17_screen": {
+   "quickselect": 16,
+   "full_sort": 15,
+   "size_k_heap": 19
+  },
+  "js": 0.030210677003540146,
+  "null_q95": 0.07538212925093421,
+  "within_null": true
+ },
+ "T2|EC_NEUTRAL": {
+  "n_slots": 50,
+  "per_slot_label_agreement": 0.98,
+  "per_slot_pass_agreement": 0.98,
+  "per_slot_identical_code": 0.7,
+  "ours": {
+   "dijkstra": 49,
+   "bf_spfa": 1
+  },
+  "exp17_screen": {
+   "dijkstra": 50
+  },
+  "js": 0.01007286462500093,
+  "null_q95": 0.0,
+  "within_null": false
+ },
+ "T2|EC_RAND9004_a1.0": {
+  "n_slots": 50,
+  "per_slot_label_agreement": 0.88,
+  "per_slot_pass_agreement": 0.94,
+  "per_slot_identical_code": 0.2,
+  "ours": {
+   "dijkstra": 30,
+   "bf_spfa": 20
+  },
+  "exp17_screen": {
+   "dijkstra": 26,
+   "bf_spfa": 24
+  },
+  "js": 0.004689455997120329,
+  "null_q95": 0.004689455997120329,
+  "within_null": true
+ },
+ "precision_note": "exp17 rows are FP8 W8A8 (16 GB RTX 2000 Ada); this artifact runs bf16 on an RTX 4090 (precision rule). Byte identity is not expected; agreement/JS vs a template-resampling null quantify the precision sensitivity."
+}

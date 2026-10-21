@@ -1,0 +1,1696 @@
+{
+ "n_unique_correct_noncatalogue_programs": 48,
+ "class_counts": {
+  "NOVEL_ALGORITHM": 14,
+  "DISAGREE": 10,
+  "DEGENERATE": 14,
+  "CATALOGUE_VARIANT": 10
+ },
+ "n_novel": 14,
+ "rule_of_three_upper_95": null,
+ "items": [
+  {
+   "task": "R6",
+   "code_sha256": "050f05b5de2eb9cb55536079b5dd0cbd49d0ec920541685bce947b3560a2c298",
+   "arms": {
+    "EARLY1.0": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(nums, target):\n    first = -1\n    last = -1\n    for i in range(len(nums)):\n        if nums[i] == target:\n            first = i\n            while i < len(nums) and nums[i] == target:\n                i += 1\n            last = i - 1\n            break\n    return [first, last]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.22770398481973433,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "binary_search",
+    "reason": "Linear scan to find first, then inner loop to find last. Variant of binary search.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear scan with break and inner loop, not binary search or bisect module usage.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear scan with early termination, not matching catalogue algorithms",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "NOVEL_ALGORITHM",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "linear search (textbook brute force for first/last position)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "12dc6ec4ea5e85c90e55b5368b89f03de061be5bfd87a0c1f30f3421a50f8750",
+   "arms": {
+    "BASE_CHAT": 1
+   },
+   "pipeline_labels": {
+    "linear_scan": 1
+   },
+   "code": "def solve(nums, target):\n    if not nums:\n        return [-1, -1]\n    first = -1\n    last = -1\n    for i, num in enumerate(nums):\n        if num == target:\n            if first == -1:\n                first = i\n            last = i\n    return [first, last if last != -1 else first if first != -1 else -1]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.11001410437235543,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "binary_search",
+    "reason": "Linear scan, but the logic implies a binary search approach for finding bounds.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear scan approach not in catalogue or textbook binary search variants for sorted array.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "DEGENERATE",
+    "named": "linear_search",
+    "reason": "Uses simple linear scan instead of binary search",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "DISAGREE",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "linear search (textbook brute force for first/last position)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "13eba44dbe440e5c907d4214c91eb245e94ad862871dca321ad6592767c7f556",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(nums, target):\n    return [-1, -1] if target not in nums else [nums.index(target), len(nums) - 1 - nums[::-1].index(target)]\n",
+   "nearest_known_source": "art_j3Rm:leetcodedataset",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.12535612535612536,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "DEGENERATE",
+    "named": "library one-liner",
+    "reason": "Uses built-in `in` and `index` methods, not a search algorithm.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "DEGENERATE",
+    "named": "none",
+    "reason": "Uses Python list methods index and reversed index, no binary search or bisect used.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "final_class": "DEGENERATE",
+   "manual_class": "DEGENERATE",
+   "manual_note": "library list.index call"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "1fd2dd0745320bf3109e55c3c0a3a96def5160d0d2ee5fa25405ea0039ee372c",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(nums, target):\n    return [nums.index(target), len(nums) - nums[-1::-1].index(target) - 1] if target in nums else [-1, -1]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.16230366492146597,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "DEGENERATE",
+    "named": "library one-liner",
+    "reason": "Uses built-in list methods `index` and slicing for a concise solution.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "DEGENERATE",
+    "named": "list.index and list.reverse.index",
+    "reason": "Uses Python list methods, no binary search or bisect, trivial one-liner.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "final_class": "DEGENERATE",
+   "manual_class": "DEGENERATE",
+   "manual_note": "library list.index call"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "2e3cf3bd0660a1f0b3a4a4da2f77adab65aa0ad40815c51d6c7a3ba8e8f9b552",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "linear_scan": 1
+   },
+   "code": "def solve(nums, target):\n    \"\"\"\n    This function returns a list [first, last] holding the first and the last index at which target occurs in nums, or [-1, -1] if target does not occur.\n    nums is a list of integers sorted in non-decreasing order.\n    target is an integer.\n    \"\"\"\n    first_index = -1\n    last_index = -1\n    for i, num in enumerate(nums):\n        if num == target:\n            if first_index == -1:\n                first_index = i\n            last_index = i\n    return [first_index, last_index]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.08957055214723926,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "LABELLER_MISS",
+    "named": "binary_search",
+    "reason": "The provided code implements a linear scan, not a binary search as implied by the task and textbook solution.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear scan approach not in catalogue or textbook binary search variants for sorted arrays.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "DEGENERATE",
+    "named": "linear_search",
+    "reason": "Uses simple linear scan instead of binary search",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "DISAGREE",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "linear search (textbook brute force for first/last position)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "309fe188e3293445cd82cb13517b109d9e5a6d9eefe6932a1595c1dd35ea0d95",
+   "arms": {
+    "BASE_CHAT": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(nums, target):\n    try:\n        first = nums.index(target)\n        second = len(nums) - nums[::-1].index(target) - 1\n        return [first, second]\n    except ValueError:\n        return [-1, -1]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.1894273127753304,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "DEGENERATE",
+    "named": "library one-liner",
+    "reason": "Uses built-in list methods `index` and slicing, not a search algorithm.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "DEGENERATE",
+    "named": "list.index and reverse index",
+    "reason": "Uses built-in list.index and reverse index, no binary search or bisect module.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "final_class": "DEGENERATE",
+   "manual_class": "DEGENERATE",
+   "manual_note": "library list.index call"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "3cba443e7f7e1e6060bcf0fa430a1524a509f52e0b47078c91f16f9e54516a4d",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "binary_expand": 1
+   },
+   "code": "def solve(nums, target):\n    \"\"\"\n    Returns a list [first, last] holding the first and the last index at which target occurs in nums,\n    or [-1, -1] if target does not occur. The argument nums is a list of integers sorted in non-decreasing order,\n    with 0 <= len(nums) <= 100000 and every value between -10**9 and 10**9 inclusive. target is an integer in the same range.\n    \"\"\"\n    if not nums:\n        return [-1, -1]\n    left, right = (0, len(nums) - 1)\n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] < target:\n            left = mid + 1\n        elif nums[mid] > target:\n            right = mid - 1\n        else:\n            left = right = mid\n            while left > 0 and nums[left - 1] == target:\n                left -= 1\n            while right < len(nums) - 1 and nums[right + 1] == target:\n                right += 1\n            return [left, right]\n    return [-1, -1]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.14666666666666667,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "binary_search",
+    "reason": "Uses a modified binary search to find the first and last occurrences.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Binary search plus linear expansion is not a standard binary search or bisect approach.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "binary_search",
+    "reason": "Uses binary search with linear expansion for boundaries",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "CATALOGUE_VARIANT",
+   "manual_class": "CATALOGUE VARIANT",
+   "manual_note": "binary_search (find, then expand)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "3d5f357775f1349a97ca370911427bd944876f3c11d3b692ad900eddda5dd6a3",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(nums, target):\n    if target in nums:\n        first = nums.index(target)\n        last = len(nums) - nums[::-1].index(target) - 1\n        return [first, last]\n    else:\n        return [-1, -1]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.2039911308203991,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "DEGENERATE",
+    "named": "library one-liner",
+    "reason": "Uses built-in list methods `index` and slicing for a direct solution.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "DEGENERATE",
+    "named": "library one-liner",
+    "reason": "Uses Python built-in index and reversed index, no binary search or bisect module.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "final_class": "DEGENERATE",
+   "manual_class": "DEGENERATE",
+   "manual_note": "library list.index call"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "44c79b6a1eaf2a9b0499e0a7207c58eb8f3f9293ac604dd235ff29dd1c39cbe8",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "binary_expand": 1
+   },
+   "code": "def solve(nums, target):\n\n    def binary_search(nums, target, left, right):\n        if left > right:\n            return [-1, -1]\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            first = mid\n            last = mid\n            while first > left and nums[first - 1] == target:\n                first -= 1\n            while last < right and nums[last + 1] == target:\n                last += 1\n            return [first, last]\n        elif nums[mid] < target:\n            return binary_search(nums, target, mid + 1, right)\n        else:\n            return binary_search(nums, target, left, mid - 1)\n    return binary_search(nums, target, 0, len(nums) - 1)\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.2811853893866299,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "binary_search",
+    "reason": "Hand-written binary search with post-processing to find first and last occurrences.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "binary_search",
+    "reason": "Recursive binary search with linear expansion to find first and last occurrences.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "final_class": "CATALOGUE_VARIANT",
+   "manual_class": "CATALOGUE VARIANT",
+   "manual_note": "binary_search (find, then expand)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "522e5c5627a7a36132fc81193212c65b054beaa9f2b9755db81924b3103cc596",
+   "arms": {
+    "MR1.0": 1
+   },
+   "pipeline_labels": {
+    "linear_scan": 1
+   },
+   "code": "def solve(nums, target):\n    first = -1\n    last = -1\n    n = len(nums)\n    for i in range(n):\n        if nums[i] == target:\n            first = i\n            break\n    for i in range(n-1, -1, -1):\n        if nums[i] == target:\n            last = i\n            break\n    return [first, last]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.12038303693570451,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "binary_search",
+    "reason": "Linear scans are used, but the sorted nature implies binary search is intended.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear scans from start and end, not binary search or bisect, novel for sorted array",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "DEGENERATE",
+    "named": "linear_search",
+    "reason": "Uses linear search instead of binary search",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "DISAGREE",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "linear search (textbook brute force for first/last position)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "5546649fb0dcf868de547a6cbe0a3d02746a8ec6829f2678b437e66864a21ec4",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(nums, target):\n    pos = 0\n    try:\n        pos = nums.index(target)\n    except:\n        return (-1, -1)\n    pos1 = pos\n    while pos1 < len(nums) and nums[pos1] == target:\n        pos1 += 1\n    return (pos, pos1 - 1)\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.16771488469601678,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "binary_search",
+    "reason": "Uses linear scan after finding first occurrence, not pure binary search.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Uses linear search and scanning, not binary search or bisect module methods.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Uses linear search, not binary search or bisect module",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "NOVEL_ALGORITHM",
+   "manual_class": "DEGENERATE",
+   "manual_note": "library list.index call"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "5e84896b6afe0315eae0e51bfaf116bb74ede8e112c080a8ca77284bf833d026",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(nums, target):\n    first = -1\n    last = -1\n    for i in range(0, len(nums)):\n        if nums[i] == target:\n            first = i\n            for j in range(first, len(nums)):\n                if nums[j] == target:\n                    last = j\n                else:\n                    break\n            break\n    return [first, last]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.24521072796934865,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "binary_search",
+    "reason": "Linear scan for first occurrence, then nested linear scan for last. Inefficient but correct.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear scan with nested loop, not binary search or bisect, novel but inefficient.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear search with nested loop for last index, not in catalogue",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "NOVEL_ALGORITHM",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "linear search (textbook brute force for first/last position)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "69602dfeda7cf8764fbc6d0b77fc6ac8749577c5139f09030d5c1ccf85f12b1a",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "linear_scan": 1
+   },
+   "code": "def solve(nums, target):\n    try:\n        first = nums.index(target)\n        last = len(nums) - nums[::-1].index(target) - 1\n        return [first, last]\n    except ValueError:\n        return [-1, -1]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.19111111111111112,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "DEGENERATE",
+    "named": "library one-liner",
+    "reason": "Uses built-in list methods `index` and slicing, not a search algorithm.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "DEGENERATE",
+    "named": "list.index and reverse index",
+    "reason": "Uses Python list.index and reverse index, no binary search or bisect module",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "final_class": "DEGENERATE",
+   "manual_class": "DEGENERATE",
+   "manual_note": "library list.index call"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "79c5e70003bdb62fcd261f989be76f430c119add5ae9566ed723e1201baa7d99",
+   "arms": {
+    "T0.5": 1,
+    "EARLY1.0": 1,
+    "MR0.25": 1
+   },
+   "pipeline_labels": {
+    "other": 3
+   },
+   "code": "def solve(nums, target):\n    first = -1\n    last = -1\n    n = len(nums)\n    for i in range(n):\n        if nums[i] == target:\n            first = i\n            while i < n and nums[i] == target:\n                i += 1\n            last = i - 1\n            break\n    return [first, last]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.2215909090909091,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "binary_search",
+    "reason": "Linear scan to find first, then inner loop to find last. Essentially a modified binary search.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear scan with break and inner loop, not binary search or bisect or exponential search",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear scan with early termination, not matching any catalogue algorithm",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "NOVEL_ALGORITHM",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "linear search (textbook brute force for first/last position)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "7d1cd5e9be5a8d4587af96c7edf4536fa80d57015c3f53b9229b33110a2b2578",
+   "arms": {
+    "MR1.0": 1
+   },
+   "pipeline_labels": {
+    "linear_scan": 1
+   },
+   "code": "def solve(nums, target):\n    first = -1\n    last = -1\n    found = False\n    for i, num in enumerate(nums):\n        if num == target:\n            if not found:\n                first = i\n                found = True\n            last = i\n    return [first, last]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.10601719197707736,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "binary_search",
+    "reason": "Linear scan, but the task is solvable with binary search on sorted array.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "DEGENERATE",
+    "named": "linear_scan",
+    "reason": "Simple linear scan, no binary search or bisect used, trivial direct search.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "DEGENERATE",
+    "named": "linear_search",
+    "reason": "Simple linear scan without optimization",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "DEGENERATE",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "linear search (textbook brute force for first/last position)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "8aac9c6551918867feca9d39efc4ebc7eb8983cd5f6f769b9b74967eb0ecc3f7",
+   "arms": {
+    "BASE_CHAT": 1,
+    "TWIN": 1,
+    "T1.0": 1,
+    "T0.5": 1,
+    "MR0.5": 1,
+    "MR1.0": 1,
+    "XT0.25": 3,
+    "T0.25": 1
+   },
+   "pipeline_labels": {
+    "linear_scan": 10
+   },
+   "code": "def solve(nums, target):\n    first = -1\n    last = -1\n    for i, num in enumerate(nums):\n        if num == target:\n            if first == -1:\n                first = i\n            last = i\n    return [first, last]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.1257606490872211,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "LABELLER_MISS",
+    "named": "binary_search",
+    "reason": "Linear scan, but the task is solvable with binary search on sorted array.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear scan to find first and last occurrence, not binary search or bisect-based.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "DEGENERATE",
+    "named": "trivial",
+    "reason": "Linear scan instead of binary search",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "DISAGREE",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "linear search (textbook brute force for first/last position)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "9fbe6b05f3286da0eb0400aa6e80361a473afa39bb60a5c60e179dd6a5d6704d",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "binary_expand": 1
+   },
+   "code": "def solve(nums, target):\n    i = 0\n    while i < len(nums) and target > nums[i]:\n        i += 1\n    if i == len(nums) or target != nums[i]:\n        return [-1, -1]\n    return [i, i + nums[i:].count(target) - 1]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.20319634703196346,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "binary_search",
+    "reason": "Uses a linear scan to find the first occurrence, then counts subsequent occurrences.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear scan with count; not binary search or bisect, novel approach for sorted array.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear scan with count, not matching catalogue algorithms",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "NOVEL_ALGORITHM",
+   "manual_class": "CATALOGUE VARIANT",
+   "manual_note": "binary_search (find, then expand)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "a3c95580fe82bbfc029a572cdf0bc9805bf4b076ce6ce5ee006c095836db988a",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(nums, target):\n    if len(nums) == 0:\n        return [-1, -1]\n    if len(nums) == 1 and nums[0] == target:\n        return [0, 0]\n    elif len(nums) == 1 and nums[0] != target:\n        return [-1, -1]\n    for i in range(len(nums)):\n        if target > nums[-1]:\n            return [-1, -1]\n        elif target < nums[0]:\n            return [-1, -1]\n        elif nums[i] == target:\n            start = i\n            for n in range(i, len(nums)):\n                if nums[n] <= target:\n                    last = n\n                else:\n                    break\n            return [start, last]\n    return [-1, -1]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.22054665409990576,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "binary_search",
+    "reason": "Uses linear scans after finding the first element, but the core idea is finding elements in a sorted array.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear scan with early boundary checks, not binary search or bisect, novel approach.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Uses linear search with early termination, not matching any catalogue algorithm",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "NOVEL_ALGORITHM",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "linear search (textbook brute force for first/last position)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "bec447aa4c93fa976bc6eb24e546e3ed06e993ead0a97b142315329388c43131",
+   "arms": {
+    "MR1.0": 1
+   },
+   "pipeline_labels": {
+    "linear_scan": 1
+   },
+   "code": "def solve(nums, target):\n    first = -1\n    last = -1\n    found = False\n\n    for i in range(len(nums)):\n        if nums[i] == target:\n            if not found:\n                first = i\n                found = True\n            last = i\n\n    return [first, last]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.1312410841654779,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "linear_search",
+    "reason": "The program uses a simple linear scan to find the first and last occurrences.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear scan to find first and last occurrence, not binary search or bisect-based.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear scan is not in the catalogue for this task",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "NOVEL_ALGORITHM",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "linear search (textbook brute force for first/last position)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "bf6090aaf16d69f020135093c22e6a6128d8e65f3d8e0119fb746c0028c21bd8",
+   "arms": {
+    "BASE_CHAT": 1,
+    "TWIN": 2,
+    "MR1.0": 2,
+    "MR0.25": 2,
+    "MR0.5": 1,
+    "T0.25": 1
+   },
+   "pipeline_labels": {
+    "linear_scan": 9
+   },
+   "code": "def solve(nums, target):\n    first = -1\n    last = -1\n    for i in range(len(nums)):\n        if nums[i] == target:\n            if first == -1:\n                first = i\n            last = i\n    return [first, last]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.1658878504672897,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "binary_search",
+    "reason": "Linear scan, but conceptually finds first and last occurrences like binary search.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "none",
+    "reason": "Linear scan to find first and last occurrence, not binary search or bisect module.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "DEGENERATE",
+    "named": "linear_search",
+    "reason": "Simple linear scan, not using any efficient search technique.",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "DISAGREE",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "linear search (textbook brute force for first/last position)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "c10ae419aa2a51934ae3f01d22e1426766ebfe12ff9f54d30c255a1a25ff728c",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "linear_scan": 1
+   },
+   "code": "def solve(nums, target):\n    first_occurrence = -1\n    last_occurrence = -1\n    for i, num in enumerate(nums):\n        if num == target:\n            if first_occurrence == -1:\n                first_occurrence = i\n            last_occurrence = i\n    if first_occurrence == -1:\n        return [-1, -1]\n    return [first_occurrence, last_occurrence]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.09341825902335456,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "binary_search",
+    "reason": "Linear scan instead of binary search, but solves the problem for sorted arrays.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "linear_scan",
+    "reason": "Linear scan to find first and last occurrence, not binary search or bisect module.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "DEGENERATE",
+    "named": "linear_search",
+    "reason": "Uses linear scan instead of binary search",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "DISAGREE",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "linear search (textbook brute force for first/last position)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "c5b7938dc980cae2bdc1caaaa2cb4808136d02be96bc6f740bc9ed08efccade1",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "linear_scan": 1
+   },
+   "code": "def solve(nums, target):\n    first = last = -1\n    seen = False\n    for i, v in enumerate(nums):\n        if v == target:\n            if not seen:\n                first = i\n                seen = True\n            last = i\n    return [first, last] if first > -1 else [-1, -1]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.11089866156787763,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "binary_search",
+    "reason": "Linear scan is a degenerate form of binary search on a sorted array.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear scan to find first and last occurrence, not binary search or bisect module",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear scan is not in the catalogue",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "NOVEL_ALGORITHM",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "linear search (textbook brute force for first/last position)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "c5da4bd77c1ce41e4977fd068e9c5313f72312191431ebf4c72da2fec5e2d9e4",
+   "arms": {
+    "MR1.0": 1
+   },
+   "pipeline_labels": {
+    "linear_scan": 1
+   },
+   "code": "def solve(nums, target):\n    first = -1\n    last = -1\n    n = len(nums)\n    \n    # Find the first occurrence\n    for i in range(n):\n        if nums[i] == target:\n            first = i\n            break\n    \n    # Find the last occurrence\n    for i in range(n - 1, -1, -1):\n        if nums[i] == target:\n            last = i\n            break\n    \n    return [first, last]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.13030602171767028,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "binary_search",
+    "reason": "Uses linear scans instead of binary search, but solves the same problem.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear scans from start and end, not binary search or bisect, unique approach for sorted array.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear search is not in the catalogue for this task",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "NOVEL_ALGORITHM",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "linear search (textbook brute force for first/last position)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "c662e5031d4645694330da69708a6493b782a3da6511eb1c17dba1ee14741d29",
+   "arms": {
+    "BASE_CHAT": 1
+   },
+   "pipeline_labels": {
+    "linear_scan": 1
+   },
+   "code": "def solve(nums, target):\n    if target not in nums:\n        return [-1, -1]\n    first = nums.index(target)\n    for i in range(len(nums) - 1, -1, -1):\n        if nums[i] == target:\n            last = i\n            break\n    return [first, last]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.11929307805596466,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "DEGENERATE",
+    "named": "library one-liner",
+    "reason": "Uses `in` and `index` which are not efficient for sorted lists.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "DEGENERATE",
+    "named": "none",
+    "reason": "Uses linear search and Python list methods, no binary search or bisect module.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "final_class": "DEGENERATE",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "linear search (textbook brute force for first/last position)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "cc173f52c181280b8c48390993f5e7e1dc3e72403daafdf3604d1c290b881668",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(nums, target):\n    first = nums.index(target) if target in nums else -1\n    last = len(nums) - 1 - nums[::-1].index(target) if target in nums else -1\n    result = [first, last]\n    return result\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.16299559471365638,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "DEGENERATE",
+    "named": "library one-liner",
+    "reason": "Uses built-in list methods 'index' and slicing, not a search algorithm.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "DEGENERATE",
+    "named": "list.index and list.reverse.index",
+    "reason": "Uses Python list methods, no binary search or bisect, trivial direct search",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "final_class": "DEGENERATE",
+   "manual_class": "DEGENERATE",
+   "manual_note": "library list.index call"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "d32f494bff95a1e7f384ba1312157d941d8d2a188e991328fd3a7fb21238e7e5",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "linear_scan": 1
+   },
+   "code": "def solve(nums, target):\n    first = last = -1\n    for i, x in enumerate(nums):\n        if x == target:\n            if first == -1:\n                first = i\n            last = i\n    return [first, last]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.11479028697571744,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "LABELLER_MISS",
+    "named": "binary_search",
+    "reason": "The provided code implements a linear scan, not binary search, but the task is solvable by binary search.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear scan to find first and last occurrence, not binary search or bisect module",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "linear_search",
+    "reason": "Uses linear search, not in catalogue or textbook solution",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "NOVEL_ALGORITHM",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "linear search (textbook brute force for first/last position)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "dd343e4f0901014f4becec6d43474372cdb423e58bb7883c0c0d054a632bda7d",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "linear_scan": 1
+   },
+   "code": "def solve(nums, target):\n    begin = [i for i, num in enumerate(nums) if num == target]\n    return [-1, -1] if len(begin) == 0 else [begin[0], begin[-1]]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.1588089330024814,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "DEGENERATE",
+    "named": "list_comprehension",
+    "reason": "Uses list comprehension to find all occurrences, not a search algorithm.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Uses list comprehension to find all indices, not binary search or bisect module.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "DEGENERATE",
+    "named": "linear_search",
+    "reason": "Uses list comprehension for linear scan, not efficient for large inputs",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "DEGENERATE",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "linear search (textbook brute force for first/last position)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "e105c4d8fafb3f863cd2706ee4230ecef52b07ddd7eef67038a356e2f78f67af",
+   "arms": {
+    "BASE_CHAT": 1
+   },
+   "pipeline_labels": {
+    "linear_scan": 1
+   },
+   "code": "def solve(nums, target):\n    first, last = (-1, -1)\n    for i, num in enumerate(nums):\n        if num == target:\n            if first == -1:\n                first = i\n            last = i\n    return [first, last]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.11241217798594848,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "LABELLER_MISS",
+    "named": "binary_search",
+    "reason": "The provided code implements a linear scan, not binary search.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear scan approach not in catalogue or textbook binary search variants for sorted arrays.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "DEGENERATE",
+    "named": "linear_search",
+    "reason": "Simple linear scan, not using any catalogue algorithm",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "DISAGREE",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "linear search (textbook brute force for first/last position)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "ea6842e4870b7720a58d4ee33aad4272e0623bfda5fbb139827838bf3cd1f704",
+   "arms": {
+    "BASE_CHAT": 1
+   },
+   "pipeline_labels": {
+    "linear_scan": 1
+   },
+   "code": "def solve(nums, target):\n    left = -1\n    right = -1\n    first = -1\n    last = -1\n    if len(nums) == 0:\n        return [first, last]\n    for index in range(len(nums)):\n        if nums[index] == target:\n            if first == -1:\n                first = index\n                last = index\n            else:\n                last = index\n    if first != -1:\n        return [first, last]\n    else:\n        return [left, right]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.15028177833437695,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "LABELLER_MISS",
+    "named": "binary_search",
+    "reason": "The provided code implements a linear scan, not binary search, but the task is solvable by binary search.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear scan approach not matching binary search or bisect module patterns in catalogue or textbook",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "DEGENERATE",
+    "named": "linear_search",
+    "reason": "The program uses a simple linear scan instead of any efficient search algorithm.",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "DISAGREE",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "linear search (textbook brute force for first/last position)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "ed3c8981fe304d1350c5db89af9a6c9e0d5568a4391f408bbe24350289f598c8",
+   "arms": {
+    "TWIN": 2,
+    "LATE1.0": 1,
+    "MR0.5": 1
+   },
+   "pipeline_labels": {
+    "linear_scan": 4
+   },
+   "code": "def solve(nums, target):\n    first = -1\n    last = -1\n    n = len(nums)\n    \n    for i in range(n):\n        if nums[i] == target:\n            first = i\n            break\n    \n    for i in range(n-1, -1, -1):\n        if nums[i] == target:\n            last = i\n            break\n    \n    return [first, last]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.11796246648793565,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "binary_search",
+    "reason": "Uses linear scans instead of binary search on sorted array.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear scans from start and end, not binary search or bisect, novel but inefficient.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "DEGENERATE",
+    "named": "linear_search",
+    "reason": "Uses simple linear search instead of binary search",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "DISAGREE",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "linear search (textbook brute force for first/last position)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "f99353a783842fa3416ddd7eb52c76e5af15c74cd58a24e9cc3b2231c35faf40",
+   "arms": {
+    "BASE_CHAT": 1
+   },
+   "pipeline_labels": {
+    "linear_scan": 1
+   },
+   "code": "def solve(nums, target):\n    first = -1\n    last = -1\n    for i, num in enumerate(nums):\n        if num == target:\n            if first == -1:\n                first = i\n            last = i\n    return [first, last]\n\ndef indices_of_apples(arr):\n    return [i for i, x in enumerate(arr) if x > 0]\n\ndef find_median_sorted_arrays(nums1, nums2):\n    nums = nums1 + nums2\n    nums.sort()\n    n = len(nums)\n    if n % 2 == 1:\n        return nums[n // 2]\n    else:\n        return (nums[n // 2 - 1] + nums[n // 2]) / 2\narr = [4, 5, 6, 7, 8, 9]\nsoln = [i for i in indices_of_apples(arr)]\nmedian = find_median_sorted_arrays([1, 3], [2, 4])\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.11023622047244094,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "LABELLER_MISS",
+    "named": "binary_search",
+    "reason": "The provided code uses a linear scan, not binary search, to find the target.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "DEGENERATE",
+    "named": "linear_scan",
+    "reason": "Simple linear scan, no binary search or bisect, straightforward but inefficient for large input.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "DEGENERATE",
+    "named": "linear_search",
+    "reason": "Simple linear scan without optimization",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "DEGENERATE",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "linear search (textbook brute force for first/last position)"
+  },
+  {
+   "task": "R6",
+   "code_sha256": "fb62bcdc8f083077d04069e4980f0e34c772eee1bd1f04a706dfe8e9eb97a179",
+   "arms": {
+    "BASE_CHAT": 1
+   },
+   "pipeline_labels": {
+    "linear_scan": 1
+   },
+   "code": "def solve(nums, target):\n    first = -1\n    last = -1\n    for i, num in enumerate(nums):\n        if num == target:\n            first = i\n            break\n    if first == -1:\n        return [-1, -1]\n    for i, num in reversed(list(enumerate(nums))):\n        if num == target:\n            last = i\n            break\n    return [first, last]\n",
+   "nearest_known_source": "art_j3Rm:mercury",
+   "nearest_known_hint": "find-first-and-last-position-of-element-in-sorted-array",
+   "nearest_ratio": 0.13861386138613863,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "binary_search",
+    "reason": "Linear scan is used, but the task implies binary search due to sorted input.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Linear scan from start and end, not binary search or bisect or exponential search.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "linear_search",
+    "reason": "Uses linear search, not in catalogue",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "NOVEL_ALGORITHM",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "linear search (textbook brute force for first/last position)"
+  },
+  {
+   "task": "T03",
+   "code_sha256": "59d4165016ba155966a5edaa3034e8fe32511d949d49c6ed0a4404edb1e14a48",
+   "arms": {
+    "MR1.0": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(nums, k):\n    count = {}\n    for num in nums:\n        count[num] = count.get(num, 0) + 1\n    sorted_nums = sorted(count.keys())\n    for num in sorted_nums:\n        if k <= count[num]:\n            return num\n        k -= count[num]\n    return None\n",
+   "nearest_known_source": "mercury",
+   "nearest_known_hint": "kth-largest-element-in-an-array",
+   "nearest_ratio": 0.37593984962406013,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "counting_sort",
+    "reason": "Counts occurrences then iterates through sorted unique values to find k-th.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "counting_sort",
+    "named": "counting_sort",
+    "reason": "Counts occurrences and iterates sorted keys to find k-th smallest value.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "counting_sort",
+    "reason": "Uses counting and sorted keys to find k-th smallest.",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "CATALOGUE_VARIANT",
+   "manual_class": "CATALOGUE VARIANT",
+   "manual_note": "counting_sort over the distinct keys"
+  },
+  {
+   "task": "T03",
+   "code_sha256": "a5980ed7d9f4785e50863e4c42773f05c4adac6fa2cd18dfe1f3621b6c063c69",
+   "arms": {
+    "BASE_CHAT": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(nums, k):\n    num_count = {}\n    for num in nums:\n        if num in num_count:\n            num_count[num] += 1\n        else:\n            num_count[num] = 1\n    sorted_nums = sorted(num_count.keys())\n    count = 0\n    for num in sorted_nums:\n        count += num_count[num]\n        if count >= k:\n            return num\n",
+   "nearest_known_source": "mercury",
+   "nearest_known_hint": "kth-largest-element-in-an-array",
+   "nearest_ratio": 0.33121019108280253,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "counting sort",
+    "reason": "Counts occurrences and walks counts, similar to counting sort logic.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "counting_sort",
+    "reason": "Counts occurrences then accumulates counts to find k-th smallest, like counting sort.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "final_class": "CATALOGUE_VARIANT",
+   "manual_class": "CATALOGUE VARIANT",
+   "manual_note": "counting_sort over the distinct keys"
+  },
+  {
+   "task": "T03",
+   "code_sha256": "d90c278b8e0367b71483893c8a080104111ee1eaa36d5b72ccca67174e30a36f",
+   "arms": {
+    "MR1.0": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(nums, k):\n    count = {}\n    for num in nums:\n        count[num] = count.get(num, 0) + 1\n    sorted_nums = sorted(count.keys())\n    for num in sorted_nums:\n        if k <= count[num]:\n            return num\n        k -= count[num]\n",
+   "nearest_known_source": "mercury",
+   "nearest_known_hint": "kth-largest-element-in-an-array",
+   "nearest_ratio": 0.391644908616188,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "counting_sort",
+    "reason": "Counts occurrences and iterates through unique sorted values to find k-th.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "counting_sort",
+    "reason": "Counts occurrences then iterates sorted keys to find k-th smallest, like counting sort.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "final_class": "CATALOGUE_VARIANT",
+   "manual_class": "CATALOGUE VARIANT",
+   "manual_note": "counting_sort over the distinct keys"
+  },
+  {
+   "task": "T06",
+   "code_sha256": "49df63f44603f09606b026c46d04485e2d58525d1a29dbbad0f5d2bf02b38533",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(nums):\n    l = []\n    for i in nums:\n        if i in l:\n            return i\n        else:\n            l.append(i)\n",
+   "nearest_known_source": "mercury",
+   "nearest_known_hint": "find-the-duplicate-number",
+   "nearest_ratio": 0.6006600660066007,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "hash_set",
+    "reason": "Uses a list as a hash set to detect duplicates by checking for existence.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "hash_set",
+    "reason": "Uses list as a set substitute to detect duplicates, same logic as hash set approach",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "final_class": "CATALOGUE_VARIANT",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "list-membership brute force (quadratic form of hash_set)"
+  },
+  {
+   "task": "T06",
+   "code_sha256": "521f60fb0de8072dd117774a7adb307db36b8e3d24f2619d14e6e574543f6ffd",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(nums):\n    \"\"\"\n  :type nums: list[int]\n  :rtype: int\n  \"\"\"\n    unique_nums = []\n    for i in nums:\n        if i not in unique_nums:\n            unique_nums.append(i)\n        else:\n            ans = i\n            break\n    return ans\n",
+   "nearest_known_source": "mercury",
+   "nearest_known_hint": "find-the-duplicate-number",
+   "nearest_ratio": 0.55125284738041,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "hash_set",
+    "reason": "Uses a list as a set, simulating hash set behavior inefficiently.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "LABELLER_MISS",
+    "named": "hash_set",
+    "reason": "Uses a list as a set to detect duplicates, equivalent to hash set approach",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "hash_set",
+    "reason": "Uses a list to track seen values, similar to hash_set but less efficient.",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "CATALOGUE_VARIANT",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "list-membership brute force (quadratic form of hash_set)"
+  },
+  {
+   "task": "T06",
+   "code_sha256": "5b1d82dd83ed0265cd9364f88552de0ea9be3de4882f6eb35c1446ff464e14ac",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(nums):\n    \"\"\"\n    Returns the repeated value in nums.\n    \"\"\"\n    output = []\n    for i in nums:\n        if i in output:\n            return i\n        else:\n            output.append(i)\n",
+   "nearest_known_source": "mercury",
+   "nearest_known_hint": "find-the-duplicate-number",
+   "nearest_ratio": 0.5240641711229946,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "hash_set",
+    "reason": "Uses a list as a hash set to detect duplicates.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "hash_set",
+    "reason": "Uses list as seen container, equivalent to hash set for duplicate detection",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "final_class": "CATALOGUE_VARIANT",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "list-membership brute force (quadratic form of hash_set)"
+  },
+  {
+   "task": "T06",
+   "code_sha256": "69fe6061c698972626f853cbc253b5fcffd047537ee7dc50442c8b2cd0ca272a",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(nums):\n    ys = []\n    x = 1\n    for x in nums:\n        if x not in ys:\n            ys.append(x)\n        else:\n            return x\n    return 0\n",
+   "nearest_known_source": "mercury",
+   "nearest_known_hint": "find-the-duplicate-number",
+   "nearest_ratio": 0.5345345345345346,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "hash_set",
+    "reason": "Uses a list as a hash set to detect duplicates by checking for existence.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "LABELLER_MISS",
+    "named": "hash_set",
+    "reason": "Uses a list as a set to detect duplicates, equivalent to hash set approach",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "hash_set",
+    "reason": "Uses a list to track seen values, similar to hash_set but less efficient",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "CATALOGUE_VARIANT",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "list-membership brute force (quadratic form of hash_set)"
+  },
+  {
+   "task": "T06",
+   "code_sha256": "6ac0d47e0925d74e524fe6503d223865fedf70901c1c266841e260f8b56b9921",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(nums):\n    \"\"\"\n    Example credit: Drew Parks\n    \"\"\"\n    for i in nums:\n        if nums.count(i) > 1:\n            return i\n",
+   "nearest_known_source": "mercury",
+   "nearest_known_hint": "find-the-duplicate-number",
+   "nearest_ratio": 0.4935897435897436,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "hash_set",
+    "reason": "Uses a loop and count, which is less efficient than a hash set but achieves the same goal.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "DEGENERATE",
+    "named": "none",
+    "reason": "Uses repeated count calls, a trivial brute-force approach, not matching any catalogue algorithm.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "DEGENERATE",
+    "named": "N/A",
+    "reason": "Uses count() in a loop, inefficient but correct",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "DEGENERATE",
+   "manual_class": "DEGENERATE",
+   "manual_note": "quadratic list.count brute force"
+  },
+  {
+   "task": "T06",
+   "code_sha256": "89edadc4faa39401f01c310cfe73d4580ee49e39e62a14b28ea3a0780a033ddf",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(nums):\n    for i, n in enumerate(nums):\n        if nums.count(n) > 1:\n            return n\n",
+   "nearest_known_source": "mercury",
+   "nearest_known_hint": "find-the-duplicate-number",
+   "nearest_ratio": 0.4874551971326165,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "LABELLER_MISS",
+    "named": "hash_set",
+    "reason": "Uses a set to detect the first repeated element.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "DEGENERATE",
+    "named": "hash_set",
+    "reason": "Uses repeated count check, equivalent to hash set membership detection but inefficiently.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "DEGENERATE",
+    "named": "count",
+    "reason": "Uses built-in count method, inefficient for large n",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "DEGENERATE",
+   "manual_class": "DEGENERATE",
+   "manual_note": "quadratic list.count brute force"
+  },
+  {
+   "task": "T06",
+   "code_sha256": "91deedc93ae163475395d44a6fb1f31ee0c5b1e6dad3c33273043e394af329b3",
+   "arms": {
+    "BASE_CHAT": 2
+   },
+   "pipeline_labels": {
+    "other": 2
+   },
+   "code": "def solve(nums):\n    for num in nums:\n        if nums.count(num) > 1:\n            return num\n",
+   "nearest_known_source": "mercury",
+   "nearest_known_hint": "find-the-duplicate-number",
+   "nearest_ratio": 0.5241379310344828,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "hash_set",
+    "reason": "Uses a set to track seen numbers, but inefficiently re-counts each time.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "DEGENERATE",
+    "named": "none",
+    "reason": "Uses count() repeatedly, inefficient but trivial brute-force approach, not a known catalogue algorithm.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "DEGENERATE",
+    "named": "N/A",
+    "reason": "Uses count() in a loop, inefficient and not a standard solution",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "DEGENERATE",
+   "manual_class": "DEGENERATE",
+   "manual_note": "quadratic list.count brute force"
+  },
+  {
+   "task": "T06",
+   "code_sha256": "a08790b1d24b0e858ce5c56be130c8cbd226a465dd028442ad898a6f950d255d",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(nums):\n    res = []\n    for ele in nums:\n        if nums.count(ele) > 1:\n            res.append(ele)\n    return res[0]\n",
+   "nearest_known_source": "mercury",
+   "nearest_known_hint": "find-the-duplicate-number",
+   "nearest_ratio": 0.5079365079365079,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "hash_set",
+    "reason": "Uses a list and count, less efficient but conceptually similar to hash set.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "DEGENERATE",
+    "named": "hash_set",
+    "reason": "Uses repeated count calls instead of set but logically detects duplicates by repeated membership.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Uses count() method, not in catalogue or textbook",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "DISAGREE",
+   "manual_class": "DEGENERATE",
+   "manual_note": "quadratic list.count brute force"
+  },
+  {
+   "task": "T06",
+   "code_sha256": "b225d5e06460a3427c222ff67dd3648a1e0c43717f6c9e933fad5075ebbeffb8",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(nums):\n    \"\"\"\n    Returns the repeated value in the list nums.\n    \"\"\"\n    for num in range(1, len(nums)):\n        if nums.count(num) > 1:\n            return num\n",
+   "nearest_known_source": "mercury",
+   "nearest_known_hint": "find-the-duplicate-number",
+   "nearest_ratio": 0.4540540540540541,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "hash_set",
+    "reason": "Uses `list.count` repeatedly, which is inefficient but conceptually similar to checking for seen values.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "DEGENERATE",
+    "named": "none",
+    "reason": "Brute force count check; inefficient but correct, not matching any catalogue algorithm.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "DEGENERATE",
+    "named": "count_method",
+    "reason": "Uses built-in count method in a loop, inefficient but correct",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "DEGENERATE",
+   "manual_class": "DEGENERATE",
+   "manual_note": "quadratic list.count brute force"
+  },
+  {
+   "task": "T10",
+   "code_sha256": "b70d802c31823d739420b05babc40a400e227c9a42193e1d1acf298889ab0237",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(n, edges):\n    components = {i: {i} for i in range(n)}\n    for u, v in edges:\n        for component_u in components:\n            if u in components[component_u]:\n                for component_v in components:\n                    if v in components[component_v]:\n                        components[component_u].update(components[component_v])\n                        for key in components:\n                            if key != component_u and components[key].issubset(components[component_u]):\n                                components[key].clear()\n                                components[component_u].update(components[key])\n                        break\n                break\n    return len({frozenset(c) for c in components.values() if c})\n",
+   "nearest_known_source": "mercury",
+   "nearest_known_hint": "find-if-path-exists-in-graph",
+   "nearest_ratio": 0.13007083065035416,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "The implementation attempts to merge sets but uses inefficient set operations and logic.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Uses a custom merging of sets, not standard BFS, DFS, union-find, or label propagation.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "final_class": "NOVEL_ALGORITHM",
+   "manual_class": "CATALOGUE VARIANT",
+   "manual_note": "union_find by naive set merging (quick-find)"
+  },
+  {
+   "task": "T14",
+   "code_sha256": "301899322daea942d50c6e5416d15a57d9d15d37ba4fbc91597b02551d813d71",
+   "arms": {
+    "BASE_PLAIN": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(nums, k):\n    value_counter = list()\n    for num in nums:\n        add_values = False\n        for value in value_counter:\n            if num == value[0]:\n                value[1] += 1\n                add_values = True\n                break\n        if not add_values:\n            value_counter.append([num, 1])\n    length = len(value_counter)\n    output = []\n    while k > 0:\n        max_index = next((index for index, value in enumerate(value_counter) if value[1] == max([value[1] for value in value_counter])))\n        output.append(value_counter[max_index][0])\n        del value_counter[max_index]\n        k -= 1\n    return output\nimport unittest\n\nclass TestCommon(unittest.TestCase):\n\n    def test_1(self):\n        return [self.assertEqual(solve(*args), expect) for args, expect in [([[1, 2, 7, 6, 4, 3, 4, 7, 4, 5], 2], [4, 7]), ([[1, 2, 3, 4, 5], 1], [1]), ([[1, 2, 2, 2, 3, 3, 4, 5, 5, 5, 5, 5], 2], [5, 2]), ([[2, 2, 4, 4, 4], 2], [4, 2]), ([[2, 2, 4, 4, 5], 2], [2, 4]), ([[2, 2, 4, 4, 3], 2], [2, 4]), ([[2, 2, 2, 2, 2], 2], [2])]]\n",
+   "nearest_known_source": "art_j3Rm:leetcodedataset",
+   "nearest_known_hint": "top-k-frequent-elements",
+   "nearest_ratio": 0.14710743801652892,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "LABELLER_MISS",
+    "named": "sort_by_count",
+    "reason": "Counts frequencies and repeatedly finds and removes the max, effectively sorting by count.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Manual frequency counting and repeated max search without sorting, heap, bucket, or quickselect methods",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Custom frequency counting and max selection, not matching catalogue.",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "NOVEL_ALGORITHM",
+   "manual_class": "CATALOGUE VARIANT",
+   "manual_note": "sort_by_count by repeated max selection"
+  },
+  {
+   "task": "T14",
+   "code_sha256": "b5b89a2a579f593780cf8b0b15c0df371226c232a5ad59405f0dbe3293762eb1",
+   "arms": {
+    "MR1.0": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "from collections import Counter\n\ndef solve(nums, k):\n    count = Counter(nums)\n    freq = list(count.values())\n    max_freq = max(freq)\n    \n    # Find the frequency threshold for the k-th most frequent element\n    # Using binary search to find the threshold\n    left, right = 1, max_freq\n    while left < right:\n        mid = (left + right + 1) // 2\n        total = 0\n        for f in freq:\n            if f >= mid:\n                total += 1\n        if total >= k:\n            left = mid\n        else:\n            right = mid - 1\n    \n    # Now collect all elements with frequency >= left\n    result = []\n    for num, freq in count.items():\n        if freq >= left:\n            result.append(num)\n    \n    # Sort the result by frequency descending, then by value ascending\n    result.sort(key=lambda x: (-count[x], x))\n    \n    # Extract the first k elements\n    return result[:k]\n",
+   "nearest_known_source": "art_j3Rm:leetcodedataset",
+   "nearest_known_hint": "top-k-frequent-elements",
+   "nearest_ratio": 0.10354745925215723,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "quickselect_counts",
+    "reason": "Uses binary search on frequencies, similar to quickselect's partitioning logic.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Uses binary search on frequency threshold, not in catalogue or textbook solutions.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "NOVEL_ALGORITHM",
+    "named": "",
+    "reason": "Uses binary search to find frequency threshold, not in catalogue.",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "NOVEL_ALGORITHM",
+   "manual_class": "KNOWN, OUTSIDE THE CATALOGUE",
+   "manual_note": "binary search on the frequency threshold (search-on-the-answer)"
+  },
+  {
+   "task": "T2",
+   "code_sha256": "0b55542cefbf83f943e6e30059e64880c00d2c8fe529fb219aff0dc5f1cb30e7",
+   "arms": {
+    "BASE_CHAT": 1
+   },
+   "pipeline_labels": {
+    "other": 1
+   },
+   "code": "def solve(n, edges, s, t):\n    graph = [[] for _ in range(n)]\n    for u, v, w in edges:\n        graph[u].append((v, w))\n    dist = [float('inf')] * n\n    dist[s] = 0\n    q = [s]\n    while q:\n        u = q.pop()\n        for v, w in graph[u]:\n            new_dist = dist[u] + w\n            if new_dist < dist[v]:\n                dist[v] = new_dist\n                q.append(v)\n    return dist[t] if dist[t] < float('inf') else -1\n",
+   "nearest_known_source": "mercury",
+   "nearest_known_hint": "network-delay-time",
+   "nearest_ratio": 0.22829131652661064,
+   "t2_array_scan_dijkstra": false,
+   "judge_a": {
+    "class": "LABELLER_MISS",
+    "named": "bf_spfa",
+    "reason": "Uses a queue for relaxation, characteristic of SPFA, not Dijkstra's heap.",
+    "model": "google/gemini-2.5-flash-lite"
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "bf_spfa",
+    "reason": "Queue-based relaxation resembles SPFA variant of Bellman-Ford algorithm.",
+    "model": "openai/gpt-4.1-mini"
+   },
+   "judge_c": {
+    "class": "CATALOGUE_VARIANT",
+    "named": "bf_spfa",
+    "reason": "SPFA without FIFO queue, using a simple list for relaxation",
+    "model": "deepseek/deepseek-chat-v3-0324"
+   },
+   "final_class": "CATALOGUE_VARIANT",
+   "manual_class": "CATALOGUE VARIANT",
+   "manual_note": "bf_spfa (LIFO label-correcting relaxation)"
+  }
+ ],
+ "judges": [
+  "google/gemini-2.5-flash-lite",
+  "openai/gpt-4.1-mini",
+  "deepseek/deepseek-chat-v3-0324 (tie)"
+ ],
+ "manual_note": "the nearest-known comparison is automatic (difflib ratio against the iteration-3 corpus and the art_j3Rm Mercury/LeetCode human solutions); NOVEL needs 2 of 3 judges",
+ "spend_usd": 0.06938155,
+ "utc": "2026-10-21T14:32:36.357624Z",
+ "manual_class_counts": {
+  "KNOWN, OUTSIDE THE CATALOGUE": 27,
+  "DEGENERATE": 12,
+  "CATALOGUE VARIANT": 9
+ },
+ "n_novel_manual": 0,
+ "n_judge_novel_overcalls": 14,
+ "rule_of_three_upper_95_manual": 0.0625,
+ "verdict": "no correct novel algorithm (manual adjudication; count 0)"
+}
