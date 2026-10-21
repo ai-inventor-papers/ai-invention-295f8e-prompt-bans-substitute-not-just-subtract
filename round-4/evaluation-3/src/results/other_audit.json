@@ -1,0 +1,1406 @@
+{
+ "pool": {
+  "n_events": 21,
+  "n_programs": 226,
+  "n_passed": 6,
+  "cap_per_event": 25
+ },
+ "judges": {
+  "models": {
+   "A": "openai/gpt-4.1-mini",
+   "B": "google/gemini-2.5-flash",
+   "C": "deepseek/deepseek-chat-v3.1 (tie-break)"
+  },
+  "controls": {
+   "A": {
+    "positives_strict_class": 4,
+    "positives_right_mode": 6,
+    "negatives_degenerate": 4,
+    "n_pos": 6,
+    "n_neg": 4,
+    "answered": 10,
+    "weighted": false
+   },
+   "B": {
+    "positives_strict_class": 5,
+    "positives_right_mode": 6,
+    "negatives_degenerate": 4,
+    "n_pos": 6,
+    "n_neg": 4,
+    "answered": 10,
+    "weighted": true
+   },
+   "C": {
+    "positives_strict_class": 0,
+    "positives_right_mode": 1,
+    "negatives_degenerate": 0,
+    "n_pos": 6,
+    "n_neg": 4,
+    "answered": 1,
+    "weighted": false
+   }
+  },
+  "weighted": [
+   "B"
+  ],
+  "kappa_A_B": 0.7746996169788551,
+  "kappa_A_B_ci95": [
+   0.6682416380843961,
+   0.8633758147370477
+  ],
+  "agreement_A_B": 0.915929203539823,
+  "n_compared": 226,
+  "kappa_vs_manual": {
+   "A": 0.47625555175948064,
+   "B": 0.5145257262863143
+  },
+  "spent_usd": 0.0,
+  "stopped": false,
+  "class_counts_A": {
+   "CATALOGUE_VARIANT": 45,
+   "DEGENERATE": 175,
+   "NOVEL": 4,
+   "LABELLER_MISS": 2
+  },
+  "class_counts_B": {
+   "CATALOGUE_VARIANT": 54,
+   "DEGENERATE": 169,
+   "NOVEL": 3
+  }
+ },
+ "final_class_counts": {
+  "CATALOGUE_VARIANT": 68,
+  "DEGENERATE": 156,
+  "LABELLER_MISS": 2
+ },
+ "final_class_counts_passed": {
+  "CATALOGUE_VARIANT": 4,
+  "LABELLER_MISS": 2
+ },
+ "final_source_counts": {
+  "judge B only (other judge below the 5/6 control gate)": 153,
+  "manual": 73
+ },
+ "n_exp18_verdicts_reused": 0,
+ "exp18_reuse_note": "sha256 match against exp18 results/novelty_audit.json records (manual_audit.json verdicts)",
+ "novel_flagged_by_a_judge": 7,
+ "novel_confirmed": 0,
+ "reruns": {
+  "ab8047e5e1f34ada3e95b11366204bbf7b2768618269427212a4bafc827167aa": {
+   "hidden_pass": 60,
+   "hidden_n": 60,
+   "extra_pass": 3,
+   "extra_n": 3,
+   "fail": [],
+   "extra_note": "3 seeded random stress cases (n 2,000-20,000) checked against the default reference"
+  }
+ },
+ "manual_sample": {
+  "n": 38,
+  "seed_and_ids": "audit/manual_sample_ids.json",
+  "agreement_vs_manual": {
+   "A": 0.9210526315789473,
+   "B": 0.9210526315789473
+  },
+  "kappa_vs_manual": {
+   "A": 0.7246376811594203,
+   "B": 0.7510917030567684
+  },
+  "manual_class_counts": {
+   "CATALOGUE_VARIANT": 8,
+   "DEGENERATE": 30
+  }
+ },
+ "manual_pass": {
+  "n_read": 73,
+  "scope": "every passed program, every program a judge called NOVEL, and all 44 exp13 T13 'other' programs (merge-intervals correction), plus a seeded 20% sample of the remaining programs (manual_sample)"
+ },
+ "catalogue_only": {
+  "residue_gated_events": {
+   "exp13": [
+    "T13"
+   ],
+   "exp15": [
+    "T06|modal|hash_set"
+   ],
+   "exp16": [
+    "T13:a"
+   ]
+  },
+  "table95": [
+   {
+    "task": "R1",
+    "n_attempted": 100,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 95 (exp13 Qwen bench modal bans; art_1AYTO1Epb_7t:data/samples.jsonl)",
+    "residue_gated": false
+   },
+   {
+    "task": "R3",
+    "n_attempted": 100,
+    "offdef_share": 0.07999999999999996,
+    "cat_only_avoidance": 0.08,
+    "other_share": 0.0,
+    "table": "Table 95 (exp13 Qwen bench modal bans; art_1AYTO1Epb_7t:data/samples.jsonl)",
+    "residue_gated": false
+   },
+   {
+    "task": "R6",
+    "n_attempted": 100,
+    "offdef_share": 0.030000000000000027,
+    "cat_only_avoidance": 0.01,
+    "other_share": 0.01,
+    "table": "Table 95 (exp13 Qwen bench modal bans; art_1AYTO1Epb_7t:data/samples.jsonl)",
+    "residue_gated": false
+   },
+   {
+    "task": "T03",
+    "n_attempted": 100,
+    "offdef_share": 0.97,
+    "cat_only_avoidance": 0.97,
+    "other_share": 0.0,
+    "table": "Table 95 (exp13 Qwen bench modal bans; art_1AYTO1Epb_7t:data/samples.jsonl)",
+    "residue_gated": false
+   },
+   {
+    "task": "T04",
+    "n_attempted": 100,
+    "offdef_share": 0.4,
+    "cat_only_avoidance": 0.4,
+    "other_share": 0.0,
+    "table": "Table 95 (exp13 Qwen bench modal bans; art_1AYTO1Epb_7t:data/samples.jsonl)",
+    "residue_gated": false
+   },
+   {
+    "task": "T05",
+    "n_attempted": 100,
+    "offdef_share": 0.86,
+    "cat_only_avoidance": 0.86,
+    "other_share": 0.0,
+    "table": "Table 95 (exp13 Qwen bench modal bans; art_1AYTO1Epb_7t:data/samples.jsonl)",
+    "residue_gated": false
+   },
+   {
+    "task": "T06",
+    "n_attempted": 100,
+    "offdef_share": 0.79,
+    "cat_only_avoidance": 0.79,
+    "other_share": 0.0,
+    "table": "Table 95 (exp13 Qwen bench modal bans; art_1AYTO1Epb_7t:data/samples.jsonl)",
+    "residue_gated": false
+   },
+   {
+    "task": "T08",
+    "n_attempted": 100,
+    "offdef_share": 0.33999999999999997,
+    "cat_only_avoidance": 0.01,
+    "other_share": 0.33,
+    "table": "Table 95 (exp13 Qwen bench modal bans; art_1AYTO1Epb_7t:data/samples.jsonl)",
+    "residue_gated": false
+   },
+   {
+    "task": "T10",
+    "n_attempted": 100,
+    "offdef_share": 1.0,
+    "cat_only_avoidance": 1.0,
+    "other_share": 0.0,
+    "table": "Table 95 (exp13 Qwen bench modal bans; art_1AYTO1Epb_7t:data/samples.jsonl)",
+    "residue_gated": false
+   },
+   {
+    "task": "T11",
+    "n_attempted": 100,
+    "offdef_share": 0.020000000000000018,
+    "cat_only_avoidance": 0.02,
+    "other_share": 0.0,
+    "table": "Table 95 (exp13 Qwen bench modal bans; art_1AYTO1Epb_7t:data/samples.jsonl)",
+    "residue_gated": false
+   },
+   {
+    "task": "T13",
+    "n_attempted": 100,
+    "offdef_share": 0.5800000000000001,
+    "cat_only_avoidance": 0.14,
+    "other_share": 0.44,
+    "table": "Table 95 (exp13 Qwen bench modal bans; art_1AYTO1Epb_7t:data/samples.jsonl)",
+    "residue_gated": true
+   },
+   {
+    "task": "T14",
+    "n_attempted": 100,
+    "offdef_share": 0.48,
+    "cat_only_avoidance": 0.47,
+    "other_share": 0.01,
+    "table": "Table 95 (exp13 Qwen bench modal bans; art_1AYTO1Epb_7t:data/samples.jsonl)",
+    "residue_gated": false
+   }
+  ],
+  "table102": [
+   {
+    "task": "T03",
+    "event_id": "T03|modal|full_sort",
+    "n_attempted": 92,
+    "offdef_share": 0.9456521739130435,
+    "cat_only_avoidance": 0.8586956521739131,
+    "other_share": 0.08695652173913043,
+    "table": "Table 102 (exp15 Llama ban events)",
+    "residue_gated": false
+   },
+   {
+    "task": "T04",
+    "event_id": "T04|modal|naive",
+    "n_attempted": 81,
+    "offdef_share": 0.7901234567901234,
+    "cat_only_avoidance": 0.7407407407407407,
+    "other_share": 0.04938271604938271,
+    "table": "Table 102 (exp15 Llama ban events)",
+    "residue_gated": false
+   },
+   {
+    "task": "T06",
+    "event_id": "T06|modal|hash_set",
+    "n_attempted": 94,
+    "offdef_share": 0.7553191489361702,
+    "cat_only_avoidance": 0.22340425531914893,
+    "other_share": 0.5319148936170213,
+    "table": "Table 102 (exp15 Llama ban events)",
+    "residue_gated": true
+   },
+   {
+    "task": "T05",
+    "event_id": "T05|modal|hash_map",
+    "n_attempted": 95,
+    "offdef_share": 0.9052631578947369,
+    "cat_only_avoidance": 0.8315789473684211,
+    "other_share": 0.07368421052631578,
+    "table": "Table 102 (exp15 Llama ban events)",
+    "residue_gated": false
+   },
+   {
+    "task": "T10",
+    "event_id": "T10|modal|union_find",
+    "n_attempted": 95,
+    "offdef_share": 0.8210526315789474,
+    "cat_only_avoidance": 0.7789473684210526,
+    "other_share": 0.042105263157894736,
+    "table": "Table 102 (exp15 Llama ban events)",
+    "residue_gated": false
+   },
+   {
+    "task": "R1",
+    "event_id": "R1|modal|greedy_end",
+    "n_attempted": 89,
+    "offdef_share": 0.2921348314606742,
+    "cat_only_avoidance": 0.07865168539325842,
+    "other_share": 0.21348314606741572,
+    "table": "Table 102 (exp15 Llama ban events)",
+    "residue_gated": false
+   },
+   {
+    "task": "T08",
+    "event_id": "T08|modal|matrix_power",
+    "n_attempted": 91,
+    "offdef_share": 0.7912087912087912,
+    "cat_only_avoidance": 0.6593406593406593,
+    "other_share": 0.13186813186813187,
+    "table": "Table 102 (exp15 Llama ban events)",
+    "residue_gated": false
+   },
+   {
+    "task": "R3",
+    "event_id": "R3|modal|kahn",
+    "n_attempted": 96,
+    "offdef_share": 0.17708333333333337,
+    "cat_only_avoidance": 0.13541666666666666,
+    "other_share": 0.041666666666666664,
+    "table": "Table 102 (exp15 Llama ban events)",
+    "residue_gated": false
+   },
+   {
+    "task": "T13",
+    "event_id": "T13|modal|sort_sweep",
+    "n_attempted": 82,
+    "offdef_share": 0.30487804878048785,
+    "cat_only_avoidance": 0.07317073170731707,
+    "other_share": 0.23170731707317074,
+    "table": "Table 102 (exp15 Llama ban events)",
+    "residue_gated": false
+   },
+   {
+    "task": "R6",
+    "event_id": "R6|modal|binary_search",
+    "n_attempted": 97,
+    "offdef_share": 0.04123711340206182,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.020618556701030927,
+    "table": "Table 102 (exp15 Llama ban events)",
+    "residue_gated": false
+   },
+   {
+    "task": "T14",
+    "event_id": "T14|modal|heap",
+    "n_attempted": 94,
+    "offdef_share": 0.8936170212765957,
+    "cat_only_avoidance": 0.8404255319148937,
+    "other_share": 0.05319148936170213,
+    "table": "Table 102 (exp15 Llama ban events)",
+    "residue_gated": false
+   },
+   {
+    "task": "T11",
+    "event_id": "T11|modal|quadratic_dp",
+    "n_attempted": 95,
+    "offdef_share": 0.2315789473684211,
+    "cat_only_avoidance": 0.1368421052631579,
+    "other_share": 0.09473684210526316,
+    "table": "Table 102 (exp15 Llama ban events)",
+    "residue_gated": false
+   },
+   {
+    "task": "T14",
+    "event_id": "T14|present_minor|sort_by_count",
+    "n_attempted": 91,
+    "offdef_share": 0.8241758241758241,
+    "cat_only_avoidance": 0.7362637362637363,
+    "other_share": 0.08791208791208792,
+    "table": "Table 102 (exp15 Llama ban events)",
+    "residue_gated": false
+   },
+   {
+    "task": "T03",
+    "event_id": "T03|present_minor|heapify_pop",
+    "n_attempted": 88,
+    "offdef_share": 0.875,
+    "cat_only_avoidance": 0.7840909090909091,
+    "other_share": 0.09090909090909091,
+    "table": "Table 102 (exp15 Llama ban events)",
+    "residue_gated": false
+   },
+   {
+    "task": "T03",
+    "event_id": "T03|present_minor|quickselect",
+    "n_attempted": 94,
+    "offdef_share": 0.7553191489361702,
+    "cat_only_avoidance": 0.6595744680851063,
+    "other_share": 0.09574468085106383,
+    "table": "Table 102 (exp15 Llama ban events)",
+    "residue_gated": false
+   },
+   {
+    "task": "T04",
+    "event_id": "T04|present_minor|kmp",
+    "n_attempted": 94,
+    "offdef_share": 0.7021276595744681,
+    "cat_only_avoidance": 0.6170212765957447,
+    "other_share": 0.0851063829787234,
+    "table": "Table 102 (exp15 Llama ban events)",
+    "residue_gated": false
+   },
+   {
+    "task": "T10",
+    "event_id": "T10|present_minor|dfs",
+    "n_attempted": 96,
+    "offdef_share": 0.8854166666666666,
+    "cat_only_avoidance": 0.8645833333333334,
+    "other_share": 0.020833333333333332,
+    "table": "Table 102 (exp15 Llama ban events)",
+    "residue_gated": false
+   },
+   {
+    "task": "T03",
+    "event_id": "T03|present_minor|size_k_heap",
+    "n_attempted": 93,
+    "offdef_share": 0.8387096774193549,
+    "cat_only_avoidance": 0.7419354838709677,
+    "other_share": 0.0967741935483871,
+    "table": "Table 102 (exp15 Llama ban events)",
+    "residue_gated": false
+   }
+  ],
+  "table106": [
+   {
+    "task": "R1",
+    "arm": "K0",
+    "n_attempted": 50,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "R1",
+    "arm": "V1",
+    "n_attempted": 97,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "R1",
+    "arm": "a",
+    "n_attempted": 100,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "R1",
+    "arm": "b",
+    "n_attempted": 100,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "R1",
+    "arm": "c",
+    "n_attempted": 100,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "R1",
+    "arm": "d",
+    "n_attempted": 100,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "R3",
+    "arm": "K0",
+    "n_attempted": 50,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "R3",
+    "arm": "V1",
+    "n_attempted": 46,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "R3",
+    "arm": "a",
+    "n_attempted": 100,
+    "offdef_share": 0.040000000000000036,
+    "cat_only_avoidance": 0.04,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "R3",
+    "arm": "b",
+    "n_attempted": 100,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "R3",
+    "arm": "c",
+    "n_attempted": 100,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "R3",
+    "arm": "d",
+    "n_attempted": 100,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "R6",
+    "arm": "K0",
+    "n_attempted": 50,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "R6",
+    "arm": "V1",
+    "n_attempted": 62,
+    "offdef_share": 0.3870967741935484,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.3709677419354839,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "R6",
+    "arm": "a",
+    "n_attempted": 100,
+    "offdef_share": 0.020000000000000018,
+    "cat_only_avoidance": 0.01,
+    "other_share": 0.01,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "R6",
+    "arm": "b",
+    "n_attempted": 100,
+    "offdef_share": 0.24,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.23,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "R6",
+    "arm": "c",
+    "n_attempted": 100,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "R6",
+    "arm": "d",
+    "n_attempted": 100,
+    "offdef_share": 0.24,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.21,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T03",
+    "arm": "K0",
+    "n_attempted": 100,
+    "offdef_share": 0.99,
+    "cat_only_avoidance": 0.99,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T03",
+    "arm": "V1",
+    "n_attempted": 100,
+    "offdef_share": 0.41000000000000003,
+    "cat_only_avoidance": 0.41,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T03",
+    "arm": "a",
+    "n_attempted": 100,
+    "offdef_share": 0.99,
+    "cat_only_avoidance": 0.99,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T03",
+    "arm": "b",
+    "n_attempted": 100,
+    "offdef_share": 0.050000000000000044,
+    "cat_only_avoidance": 0.05,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T03",
+    "arm": "c",
+    "n_attempted": 100,
+    "offdef_share": 0.99,
+    "cat_only_avoidance": 0.99,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T03",
+    "arm": "d",
+    "n_attempted": 100,
+    "offdef_share": 0.75,
+    "cat_only_avoidance": 0.75,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T04",
+    "arm": "K0",
+    "n_attempted": 50,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T04",
+    "arm": "V1",
+    "n_attempted": 94,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T04",
+    "arm": "a",
+    "n_attempted": 100,
+    "offdef_share": 0.42000000000000004,
+    "cat_only_avoidance": 0.42,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T04",
+    "arm": "b",
+    "n_attempted": 100,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T04",
+    "arm": "c",
+    "n_attempted": 100,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T04",
+    "arm": "d",
+    "n_attempted": 100,
+    "offdef_share": 0.10999999999999999,
+    "cat_only_avoidance": 0.11,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T05",
+    "arm": "K0",
+    "n_attempted": 100,
+    "offdef_share": 0.32999999999999996,
+    "cat_only_avoidance": 0.33,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T05",
+    "arm": "V1",
+    "n_attempted": 100,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T05",
+    "arm": "a",
+    "n_attempted": 100,
+    "offdef_share": 0.83,
+    "cat_only_avoidance": 0.83,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T05",
+    "arm": "b",
+    "n_attempted": 100,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T05",
+    "arm": "c",
+    "n_attempted": 100,
+    "offdef_share": 0.33999999999999997,
+    "cat_only_avoidance": 0.34,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T05",
+    "arm": "d",
+    "n_attempted": 100,
+    "offdef_share": 0.8,
+    "cat_only_avoidance": 0.8,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T06",
+    "arm": "K0",
+    "n_attempted": 100,
+    "offdef_share": 0.050000000000000044,
+    "cat_only_avoidance": 0.05,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T06",
+    "arm": "V1",
+    "n_attempted": 100,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T06",
+    "arm": "a",
+    "n_attempted": 100,
+    "offdef_share": 0.79,
+    "cat_only_avoidance": 0.78,
+    "other_share": 0.01,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T06",
+    "arm": "b",
+    "n_attempted": 100,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T06",
+    "arm": "c",
+    "n_attempted": 100,
+    "offdef_share": 0.030000000000000027,
+    "cat_only_avoidance": 0.03,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T06",
+    "arm": "d",
+    "n_attempted": 100,
+    "offdef_share": 0.78,
+    "cat_only_avoidance": 0.75,
+    "other_share": 0.03,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T08",
+    "arm": "K0",
+    "n_attempted": 50,
+    "offdef_share": 0.040000000000000036,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.04,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T08",
+    "arm": "V1",
+    "n_attempted": 100,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T08",
+    "arm": "a",
+    "n_attempted": 100,
+    "offdef_share": 0.31000000000000005,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.31,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T08",
+    "arm": "b",
+    "n_attempted": 100,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T08",
+    "arm": "c",
+    "n_attempted": 100,
+    "offdef_share": 0.010000000000000009,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.01,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T08",
+    "arm": "d",
+    "n_attempted": 100,
+    "offdef_share": 0.28,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.28,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T1",
+    "arm": "V1",
+    "n_attempted": 50,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T10",
+    "arm": "K0",
+    "n_attempted": 100,
+    "offdef_share": 1.0,
+    "cat_only_avoidance": 1.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T10",
+    "arm": "V1",
+    "n_attempted": 20,
+    "offdef_share": 0.30000000000000004,
+    "cat_only_avoidance": 0.3,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T10",
+    "arm": "a",
+    "n_attempted": 100,
+    "offdef_share": 1.0,
+    "cat_only_avoidance": 1.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T10",
+    "arm": "b",
+    "n_attempted": 100,
+    "offdef_share": 0.010000000000000009,
+    "cat_only_avoidance": 0.01,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T10",
+    "arm": "c",
+    "n_attempted": 100,
+    "offdef_share": 1.0,
+    "cat_only_avoidance": 1.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T10",
+    "arm": "d",
+    "n_attempted": 100,
+    "offdef_share": 0.8,
+    "cat_only_avoidance": 0.8,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T11",
+    "arm": "K0",
+    "n_attempted": 50,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T11",
+    "arm": "V1",
+    "n_attempted": 42,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T11",
+    "arm": "a",
+    "n_attempted": 100,
+    "offdef_share": 0.020000000000000018,
+    "cat_only_avoidance": 0.01,
+    "other_share": 0.01,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T11",
+    "arm": "b",
+    "n_attempted": 100,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T11",
+    "arm": "c",
+    "n_attempted": 100,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T11",
+    "arm": "d",
+    "n_attempted": 100,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T13",
+    "arm": "K0",
+    "n_attempted": 100,
+    "offdef_share": 0.26,
+    "cat_only_avoidance": 0.04,
+    "other_share": 0.22,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T13",
+    "arm": "V1",
+    "n_attempted": 69,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T13",
+    "arm": "a",
+    "n_attempted": 100,
+    "offdef_share": 0.5900000000000001,
+    "cat_only_avoidance": 0.15,
+    "other_share": 0.44,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": true
+   },
+   {
+    "task": "T13",
+    "arm": "b",
+    "n_attempted": 100,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T13",
+    "arm": "c",
+    "n_attempted": 100,
+    "offdef_share": 0.22999999999999998,
+    "cat_only_avoidance": 0.04,
+    "other_share": 0.19,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T13",
+    "arm": "d",
+    "n_attempted": 100,
+    "offdef_share": 0.010000000000000009,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.01,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T14",
+    "arm": "K0",
+    "n_attempted": 50,
+    "offdef_share": 0.06000000000000005,
+    "cat_only_avoidance": 0.04,
+    "other_share": 0.02,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T14",
+    "arm": "V1",
+    "n_attempted": 100,
+    "offdef_share": 0.06999999999999995,
+    "cat_only_avoidance": 0.05,
+    "other_share": 0.02,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T14",
+    "arm": "a",
+    "n_attempted": 100,
+    "offdef_share": 0.41000000000000003,
+    "cat_only_avoidance": 0.4,
+    "other_share": 0.01,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T14",
+    "arm": "b",
+    "n_attempted": 100,
+    "offdef_share": 0.06999999999999995,
+    "cat_only_avoidance": 0.05,
+    "other_share": 0.02,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T14",
+    "arm": "c",
+    "n_attempted": 100,
+    "offdef_share": 0.030000000000000027,
+    "cat_only_avoidance": 0.03,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T14",
+    "arm": "d",
+    "n_attempted": 100,
+    "offdef_share": 0.22999999999999998,
+    "cat_only_avoidance": 0.19,
+    "other_share": 0.04,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T2",
+    "arm": "V1",
+    "n_attempted": 50,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T2",
+    "arm": "a",
+    "n_attempted": 20,
+    "offdef_share": 1.0,
+    "cat_only_avoidance": 1.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T2",
+    "arm": "b",
+    "n_attempted": 20,
+    "offdef_share": 0.0,
+    "cat_only_avoidance": 0.0,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T2",
+    "arm": "c",
+    "n_attempted": 20,
+    "offdef_share": 0.85,
+    "cat_only_avoidance": 0.85,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   },
+   {
+    "task": "T2",
+    "arm": "d",
+    "n_attempted": 20,
+    "offdef_share": 0.050000000000000044,
+    "cat_only_avoidance": 0.05,
+    "other_share": 0.0,
+    "table": "Table 106 (exp16 route arms)",
+    "residue_gated": false
+   }
+  ]
+ },
+ "contest_exp13": {
+  "with_residue_events": {
+   "SUBTRACT": {
+    "mean_minus_uniform": -0.6946454257641218,
+    "n": 5
+   },
+   "LADDER": {
+    "mean_minus_uniform": 0.060681932670600555,
+    "n": 5
+   },
+   "ASSOCIATE": {
+    "mean_minus_uniform": -1.7793171250470414,
+    "n": 5
+   },
+   "PROXIMITY": {
+    "mean_minus_uniform": -1.5293578019877663,
+    "n": 5
+   }
+  },
+  "without_residue_events": {
+   "SUBTRACT": {
+    "mean_minus_uniform": -0.8683067822051522,
+    "n": 4
+   },
+   "LADDER": {
+    "mean_minus_uniform": 0.0758524158382507,
+    "n": 4
+   },
+   "ASSOCIATE": {
+    "mean_minus_uniform": -2.044588587656601,
+    "n": 4
+   },
+   "PROXIMITY": {
+    "mean_minus_uniform": -1.9519657149470562,
+    "n": 4
+   }
+  },
+  "residue_tasks_dropped": [
+   "T13"
+  ]
+ },
+ "route_fractions": {
+  "plain_all5": {
+   "point": {
+    "F_prompt": 0.6111111111111112,
+    "F_direct": 0.7439613526570049,
+    "I": -0.3550724637681161,
+    "F_K0": 0.6207729468599034
+   },
+   "jackknife_ci95": {
+    "F_prompt": [
+     0.05514898596799367,
+     1.1670732362542287
+    ],
+    "F_direct": [
+     0.3823307191609827,
+     1.1055919861530272
+    ]
+   }
+  },
+  "plain_wo_T13": {
+   "point": {
+    "F_prompt": 0.647887323943662,
+    "F_direct": 0.8647887323943663,
+    "I": -0.5126760563380283,
+    "F_K0": 0.6507042253521127
+   },
+   "jackknife_ci95": {
+    "F_prompt": [
+     -0.08299090632836914,
+     1.3787655542156931
+    ],
+    "F_direct": [
+     0.6762544709233649,
+     1.0533229938653677
+    ]
+   }
+  },
+  "cat_all5": {
+   "point": {
+    "F_prompt": 0.6341463414634146,
+    "F_direct": 0.8238482384823849,
+    "I": -0.4579945799457995,
+    "F_K0": 0.6368563685636857
+   },
+   "jackknife_ci95": {
+    "F_prompt": [
+     0.008146667661644402,
+     1.2601460152651849
+    ],
+    "F_direct": [
+     0.6474358291334287,
+     1.0002606478313412
+    ]
+   }
+  },
+  "cat_wo_T13": {
+   "point": {
+    "F_prompt": 0.6497175141242937,
+    "F_direct": 0.8587570621468926,
+    "I": -0.5084745762711863,
+    "F_K0": 0.652542372881356
+   },
+   "jackknife_ci95": {
+    "F_prompt": [
+     -0.07797445701459338,
+     1.3774094852631809
+    ],
+    "F_direct": [
+     0.681544335050936,
+     1.0359697892428492
+    ]
+   }
+  }
+ },
+ "merge_intervals": {
+  "n": 44,
+  "regex_counts": {
+   "UNSORTED_SWEEP": 14,
+   "COVERAGE_ARRAY": 29,
+   "OTHER": 1
+  },
+  "manual_counts": {
+   "UNSORTED_SWEEP": 12,
+   "OTHER": 3,
+   "COVERAGE_ARRAY": 29
+  },
+  "regex_manual_agreement": 0.9090909090909091,
+  "n_passed": 0,
+  "statement": "exp16's 'superadditive' T13 route class rests on residue: the 44 exp13 T13 'other' programs are coverage-array and unsorted-sweep attempts that all fail; with catalogue-only avoidance T13 is not gated (full-ban avoidance 0.15 < 0.5): no route class.",
+  "T13_route_class": {
+   "plain": "superadditive",
+   "cat_only": "not gated (full-ban avoidance 0.15 < 0.5): no route class",
+   "plain_F": {
+    "s": {
+     "a": 0.41,
+     "b": 1.0,
+     "c": 0.77,
+     "d": 0.99,
+     "K0": 0.74
+    },
+    "F_prompt": 0.3898305084745762,
+    "F_direct": 0.016949152542372895,
+    "counts": {
+     "a": [
+      41,
+      100
+     ],
+     "b": [
+      100,
+      100
+     ],
+     "c": [
+      77,
+      100
+     ],
+     "d": [
+      99,
+      100
+     ],
+     "K0": [
+      74,
+      100
+     ]
+    }
+   },
+   "cat_F": {
+    "s": {
+     "a": 0.85,
+     "b": 1.0,
+     "c": 0.96,
+     "d": 1.0,
+     "K0": 0.96
+    },
+    "F_prompt": 0.2666666666666669,
+    "F_direct": 0.0,
+    "counts": {
+     "a": [
+      85,
+      100
+     ],
+     "b": [
+      100,
+      100
+     ],
+     "c": [
+      96,
+      100
+     ],
+     "d": [
+      100,
+      100
+     ],
+     "K0": [
+      96,
+      100
+     ]
+    }
+   }
+  }
+ }
+}

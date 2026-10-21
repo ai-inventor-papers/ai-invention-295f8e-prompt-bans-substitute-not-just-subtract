@@ -1,0 +1,548 @@
+{
+ "note": "Executor's manual pass (Step C). Each program was read with its code and recorded hidden-test outcome only (never the condition, ban or model). Keys are code_sha256 prefixes (>= 10 hex chars). merge_class applies to the 44 exp13 T13 'other' programs (merge-intervals correction).",
+ "programs": {
+  "092d330290f5": {
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking (extended variant of T13)",
+   "reason": "Marks every integer point covered by an interval in a set, then scans maximal covered runs: the known coverage-array approach; fails (touching intervals such as [1,2],[3,4] are fused).",
+   "merge_class": "COVERAGE_ARRAY"
+  },
+  "87557878aa5f": {
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "sort_sweep (without the sort)",
+   "reason": "Scans coordinates 0..max_end and greedily extends from every interval start to a fixpoint; emits nested starts again, so output overlaps; brute-force unsorted sweep, not a new idea.",
+   "merge_class": "UNSORTED_SWEEP"
+  },
+  "ab8047e5e1f3": {
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "full_sort / value binary search",
+   "reason": "sorted(set(nums)) then binary search over the distinct values with a count-less-than predicate: binary search on the answer with a counting predicate (textbook), built on a full sort; correct, not novel."
+  },
+  "f401926b5417": {
+   "final_class": "LABELLER_MISS",
+   "nearest": "counting_sort",
+   "reason": "Counts values in a dict and expands the distinct values in sorted order: the catalogue's counting-sort mechanism with a sparse map (same verdict exp18 gave this pattern)."
+  },
+  "86640a653384": {
+   "final_class": "DEGENERATE",
+   "nearest": "naive",
+   "reason": "Binary search over haystack positions with a non-monotone match predicate: incoherent; fails."
+  },
+  "29a4d11fbb21": {
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "Compares index-residue sums over non-prime moduli; no relation to the task; fails."
+  },
+  "6b5655718af3": {
+   "final_class": "DEGENERATE",
+   "nearest": "sum trick (extended variant)",
+   "reason": "An invented weighted-sum identity that does not hold; fails."
+  },
+  "78867e9f7363": {
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "brute force (outside the T06 catalogue)",
+   "reason": "Returns the first value whose nums.count exceeds 1: the textbook quadratic brute-force count scan; correct, not novel."
+  },
+  "595835080a2a": {
+   "final_class": "LABELLER_MISS",
+   "nearest": "iteration",
+   "reason": "solve() is plain bottom-up iteration (a, b = b, a + b); the matrix helpers are dead code that confused the labeller."
+  },
+  "76f54e2be68c": {
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "linear scan (outside the R6 catalogue)",
+   "reason": "Linear scan with early exit that overwrites first on every match: buggy linear scan; fails."
+  },
+  "de09c0f073ed": {
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "bucket_sort",
+   "reason": "Histogram of frequencies, then the threshold frequency read from the highest bucket down: a bucket-sort-by-frequency variant; correct."
+  },
+  "f97326cb34af": {
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "bucket_sort",
+   "reason": "Counts per frequency walked downward from the maximum to a threshold: bucket sort by frequency in threshold form; correct."
+  },
+  "3628591fd3": {
+   "merge_class": "UNSORTED_SWEEP",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "sort_sweep (without the sort)",
+   "reason": "Single sweep in input order without sorting; fails."
+  },
+  "98a17ba97d": {
+   "merge_class": "UNSORTED_SWEEP",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "sort_sweep (without the sort)",
+   "reason": "Endpoint scan over the coordinate range (open at starts, close at ends), no sort; fails."
+  },
+  "267c79b500": {
+   "merge_class": "OTHER",
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "Never reads the intervals after min/max: builds runs from its own output; fails."
+  },
+  "19bfbfe907": {
+   "merge_class": "UNSORTED_SWEEP",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "sort_sweep (without the sort)",
+   "reason": "Recursive input-order sweep, no sort; fails."
+  },
+  "f94deb8166": {
+   "merge_class": "UNSORTED_SWEEP",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "sort_sweep (without the sort)",
+   "reason": "Endpoint scan over coordinates; fails."
+  },
+  "a0cc8335a4": {
+   "merge_class": "UNSORTED_SWEEP",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "sort_sweep (without the sort)",
+   "reason": "Endpoint scan over coordinates; fails."
+  },
+  "1e92f8c4ce": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Boolean array marking starts True and ends False (not the covered span); fails."
+  },
+  "9ccca24a59": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage array then run scan; fails on touching intervals."
+  },
+  "cc06fe81cc": {
+   "merge_class": "UNSORTED_SWEEP",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "sort_sweep (without the sort)",
+   "reason": "Input-order sweep, sorts only the output; fails."
+  },
+  "ffea900b0d": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage array then run scan; fails."
+  },
+  "0341387a61": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking (difference array)",
+   "reason": "Difference array over coordinates, runs of positive count; fails on touching intervals."
+  },
+  "f1ca136605": {
+   "merge_class": "UNSORTED_SWEEP",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "sort_sweep (without the sort)",
+   "reason": "Endpoint scan over coordinates; fails."
+  },
+  "7b81c36800": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage array then run scan; fails."
+  },
+  "851b147a39": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage set then run scan; fails."
+  },
+  "6ef8fe5ffb": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage array then run scan; fails."
+  },
+  "4a201e842e": {
+   "merge_class": "UNSORTED_SWEEP",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "sort_sweep (without the sort)",
+   "reason": "Endpoint scan over coordinates; fails."
+  },
+  "863ae41a3e": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage array then run scan; fails."
+  },
+  "e4118f4313": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage array then run scan; fails."
+  },
+  "d28a5d8ab0": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage array then run scan; fails."
+  },
+  "417a11476b": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage array then run scan; fails."
+  },
+  "19f395899b": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage array then run scan; fails."
+  },
+  "d32c4fa9a3": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage set then run scan; fails."
+  },
+  "0ab89447d1": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage array then run scan; fails."
+  },
+  "349d7c4f1b": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage array then run scan (0 used as sentinel); fails."
+  },
+  "667a264854": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Marks starts True and ends False only; fails."
+  },
+  "8d2c299a1d": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage array then run scan; fails."
+  },
+  "e2bcc639b7": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Start/end count arrays scanned over the coordinate range; fails."
+  },
+  "293796b428": {
+   "merge_class": "UNSORTED_SWEEP",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "sort_sweep (without the sort)",
+   "reason": "Endpoint scan over coordinates; fails."
+  },
+  "c53ff0715d": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking (difference array)",
+   "reason": "Difference array over coordinates; fails."
+  },
+  "eb286a892a": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Marks endpoints only, then run scan; fails."
+  },
+  "0671fa6e1e": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage array then run scan; fails."
+  },
+  "ca0d24ddf0": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage array then run scan; fails."
+  },
+  "371de144dd": {
+   "merge_class": "UNSORTED_SWEEP",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "sort_sweep (without the sort)",
+   "reason": "Endpoint scan over coordinates; fails."
+  },
+  "14eac85ba1": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage timeline then run scan; fails."
+  },
+  "f9387132d9": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage array then run scan; fails."
+  },
+  "6964e5c9af": {
+   "merge_class": "OTHER",
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "Ignores the intervals; builds runs from its own output; fails."
+  },
+  "526bcdb258": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage array then run scan; fails."
+  },
+  "8040ab7122": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage set then run scan; fails."
+  },
+  "c92e37c62b": {
+   "merge_class": "OTHER",
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "Ignores the intervals; builds runs from its own output; fails."
+  },
+  "a402f48812": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Offset coverage array then run scan; fails."
+  },
+  "ce5e5fd05b": {
+   "merge_class": "COVERAGE_ARRAY",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage array then run scan; fails."
+  },
+  "e75b2e850b": {
+   "merge_class": "UNSORTED_SWEEP",
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "sort_sweep (without the sort)",
+   "reason": "Endpoint scan over coordinates; fails."
+  },
+  "02c2532448b4": {
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "Incoherent 'next available value' bookkeeping with bisect (never imported); not an interval-scheduling algorithm; fails.",
+   "sample": true
+  },
+  "05a9d3a98cd6": {
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "Strided index search unrelated to the duplicate structure; fails.",
+   "sample": true
+  },
+  "070ae0d97ba4": {
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage array then run scan (set of runs); fails on touching intervals.",
+   "sample": true
+  },
+  "11a9950951a5": {
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "Broken event-list code (tuple-indexed list); raises; fails.",
+   "sample": true
+  },
+  "12876151003c": {
+   "final_class": "DEGENERATE",
+   "nearest": "sum trick",
+   "reason": "Returns sum(nums): a degenerate sum identity; fails.",
+   "sample": true
+  },
+  "14fbca91b5e6": {
+   "final_class": "DEGENERATE",
+   "nearest": "hash_map",
+   "reason": "Hash-map idea with a set and set.index (no such method): raises on the first hit; fails.",
+   "sample": true
+  },
+  "18c7f8f0f886": {
+   "final_class": "DEGENERATE",
+   "nearest": "Binet (broken)",
+   "reason": "Binet's formula pushed through modular exponentiation of floats: incoherent; fails.",
+   "sample": true
+  },
+  "2a98af5cf7a8": {
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "Binet's closed form",
+   "reason": "Floating-point Binet closed form (index off by one in the first branch); fails on large n.",
+   "sample": true
+  },
+  "2d94669e5034": {
+   "final_class": "DEGENERATE",
+   "nearest": "sum trick",
+   "reason": "Sum identity applied to indices; fails.",
+   "sample": true
+  },
+  "2e6fe6b0fdb0": {
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "Incoherent active-set merging that mutates loop tuples; fails.",
+   "sample": true
+  },
+  "2efedd4b5240": {
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "Swap-and-pop loop with an undefined variable; fails.",
+   "sample": true
+  },
+  "34c913259412": {
+   "final_class": "DEGENERATE",
+   "nearest": "greedy_end (broken)",
+   "reason": "Sort by start with an incoherent merge counter; fails.",
+   "sample": true
+  },
+  "376a6b920130": {
+   "final_class": "DEGENERATE",
+   "nearest": "counting_sort (broken)",
+   "reason": "Counts values but orders distinct values by frequency: wrong order; fails.",
+   "sample": true
+  },
+  "3d3a5c3c6992": {
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "Binet's closed form",
+   "reason": "Floating-point Binet closed form; fails on large n (precision).",
+   "sample": true
+  },
+  "3e78e75ac95f": {
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "Compares each value with a fixed cyclic offset; fails.",
+   "sample": true
+  },
+  "4ab86c771c40": {
+   "final_class": "DEGENERATE",
+   "nearest": "counting_sort (broken)",
+   "reason": "Sorted distinct values indexed by k, ignoring multiplicities; fails with duplicates.",
+   "sample": true
+  },
+  "5305907fc955": {
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "Pairwise merge helper with a meaningless return value; fails.",
+   "sample": true
+  },
+  "555d31e79c2f": {
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "Bit-mask counting indexed by powers of two (out of range); fails.",
+   "sample": true
+  },
+  "569f9ce81f77": {
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "naive exponential recursion",
+   "reason": "Plain exponential recursion (known extended variant); times out.",
+   "sample": true
+  },
+  "66df52ba01ca": {
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "Distinct-value indexing with incoherent repair logic and unrelated helpers; fails.",
+   "sample": true
+  },
+  "6d512ec52ff6": {
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "Bitwise 'interval creation' unrelated to merging; fails.",
+   "sample": true
+  },
+  "7d1455748510": {
+   "final_class": "DEGENERATE",
+   "nearest": "sum trick",
+   "reason": "Greedy subtraction from the triangular number; fails.",
+   "sample": true
+  },
+  "85da4134ce05": {
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage array then run scan (0 used as sentinel); fails.",
+   "sample": true
+  },
+  "86daa383528f": {
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "Frequency loop that confuses values with counts; fails.",
+   "sample": true
+  },
+  "8c9df7ea197d": {
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "A correct-looking iteration solve() is overridden by a later solve() built on number-theory nonsense; fails.",
+   "sample": true
+  },
+  "8cf67027b6f5": {
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "Max-frequency list manipulation that loses the top-k structure; fails.",
+   "sample": true
+  },
+  "8d94dd974e8b": {
+   "final_class": "DEGENERATE",
+   "nearest": "counting_sort (broken)",
+   "reason": "Sorts distinct values by count instead of value; fails.",
+   "sample": true
+  },
+  "a518a8da9cf1": {
+   "final_class": "DEGENERATE",
+   "nearest": "interval_tree (broken)",
+   "reason": "BST over interval endpoints with a constructor mismatch; raises; fails.",
+   "sample": true
+  },
+  "a938047290d2": {
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "Fixed 51-iteration bit tricks; fails.",
+   "sample": true
+  },
+  "bbc67b5e3756": {
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "Incoherent DP over sorted intervals; fails.",
+   "sample": true
+  },
+  "c272611ebf51": {
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "Triple loop comparing an element with itself; never finds the duplicate.",
+   "sample": true
+  },
+  "c8d63445d52b": {
+   "final_class": "DEGENERATE",
+   "nearest": "Binet (broken)",
+   "reason": "Binet with int(sqrt 5) and a wrong denominator; fails.",
+   "sample": true
+  },
+  "d8d70ed2762b": {
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "Binary-search scaffolding with tuple/float comparisons; fails.",
+   "sample": true
+  },
+  "da50caca2540": {
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "Event sweep with incoherent counting; fails.",
+   "sample": true
+  },
+  "dbd6548bdf67": {
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "coverage marking",
+   "reason": "Coverage array then run scan; fails.",
+   "sample": true
+  },
+  "dc929aee08bc": {
+   "final_class": "DEGENERATE",
+   "nearest": "none",
+   "reason": "Union-find scaffolding misapplied to interval removal; fails.",
+   "sample": true
+  },
+  "df341248887f": {
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "sort_sweep (without the sort)",
+   "reason": "Input-order sweep with the merged end initialised to the global maximum; fails.",
+   "sample": true
+  },
+  "f5186a631f4e": {
+   "final_class": "CATALOGUE_VARIANT",
+   "nearest": "greedy_end (broken)",
+   "reason": "Sorts by end, then a quadratic removal pass over a pre-filtered list: a broken earliest-finish greedy; fails.",
+   "sample": true
+  }
+ },
+ "sample_note": "Entries with sample=true are the seeded 20% sample (seed 20261021) of the 191 programs not otherwise read (audit/manual_sample_ids.json)."
+}

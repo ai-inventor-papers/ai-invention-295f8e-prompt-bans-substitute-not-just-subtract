@@ -1,0 +1,195 @@
+{
+ "markers": [
+  {
+   "marker_id": "M1",
+   "file_png": "figures/marker_M1_fig_manifold_t1_baseline.png",
+   "file_pdf": "figures/marker_M1_fig_manifold_t1_baseline.pdf",
+   "source": "art_IVZc3TWCeE9f:figures/fig_manifold_t1_baseline.png",
+   "caption": "[M1] fig_manifold_t1_baseline (art_IVZc3TWCeE9f:figures/fig_manifold_t1_baseline.png). States are read at the token before the commit token, whose position depends on the program's own label, so separation can partly reflect position. Implemented counts / shares under this condition: {\"bfs\": 100}.",
+   "implemented_counts": {
+    "bfs": 100
+   }
+  },
+  {
+   "marker_id": "M2",
+   "file_png": "figures/marker_M2_fig_manifold_t1_single_bfs.png",
+   "file_pdf": "figures/marker_M2_fig_manifold_t1_single_bfs.pdf",
+   "source": "art_IVZc3TWCeE9f:figures/fig_manifold_t1_single_bfs.png",
+   "caption": "[M2] fig_manifold_t1_single_bfs (art_IVZc3TWCeE9f:figures/fig_manifold_t1_single_bfs.png). States are read at the token before the commit token, whose position depends on the program's own label, so separation can partly reflect position. Implemented counts / shares under this condition: {\"dfs\": 86, \"banned:bfs\": 14}. Banned: bfs.",
+   "implemented_counts": {
+    "dfs": 86,
+    "banned:bfs": 14
+   }
+  },
+  {
+   "marker_id": "M3",
+   "file_png": "figures/marker_M3_fig_manifold_t1_multi_TOP5.png",
+   "file_pdf": "figures/marker_M3_fig_manifold_t1_multi_TOP5.pdf",
+   "source": "art_IVZc3TWCeE9f:figures/fig_manifold_t1_multi_TOP5.png",
+   "caption": "[M3] fig_manifold_t1_multi_TOP5 (art_IVZc3TWCeE9f:figures/fig_manifold_t1_multi_TOP5.png). States are read at the token before the commit token, whose position depends on the program's own label, so separation can partly reflect position. Implemented counts / shares under this condition: {\"banned:dfs\": 36, \"banned:bfs\": 63, \"banned:iddfs\": 1}. Banned: bfs, dfs, gbfs, iddfs, astar. Under TOP5 the implemented programs sit on the banned BFS and DFS centroids (avoidance 0.00).",
+   "implemented_counts": {
+    "banned:dfs": 36,
+    "banned:bfs": 63,
+    "banned:iddfs": 1
+   }
+  },
+  {
+   "marker_id": "M4",
+   "file_png": "figures/marker_M4_fig_manifold_t2_los_bf_spfa.png",
+   "file_pdf": "figures/marker_M4_fig_manifold_t2_los_bf_spfa.pdf",
+   "source": "art_IVZc3TWCeE9f:figures/fig_manifold_t2_los_bf_spfa.png",
+   "caption": "[M4] fig_manifold_t2_los_bf_spfa (art_IVZc3TWCeE9f:figures/fig_manifold_t2_los_bf_spfa.png). States are read at the token before the commit token, whose position depends on the program's own label, so separation can partly reflect position. Implemented counts / shares under this condition: {\"will_attempted_share\": 0.51, \"banned_share_by_mechanism\": {\"dijkstra\": 0.48, \"bidijkstra\": 0.0, \"floyd\": 0.0, \"dial\": 0.0}}.",
+   "implemented_counts": {
+    "will_attempted_share": 0.51,
+    "banned_share_by_mechanism": {
+     "dijkstra": 0.48,
+     "bidijkstra": 0.0,
+     "floyd": 0.0,
+     "dial": 0.0
+    }
+   }
+  },
+  {
+   "marker_id": "M5",
+   "file_png": "figures/marker_M5_fig7_manifold.png",
+   "file_pdf": "figures/marker_M5_fig7_manifold.pdf",
+   "source": "art_pVlCZ272hDV7:figures/fig7_manifold.png",
+   "caption": "[M5] fig7_manifold (art_pVlCZ272hDV7:figures/fig7_manifold.png). States are read at the token before the commit token, whose position depends on the program's own label, so separation can partly reflect position.",
+   "implemented_counts": null
+  }
+ ],
+ "g16": {
+  "status": "computed",
+  "t1_forced_states_layer24": {
+   "pre": {
+    "bfs_neighbour_order": [
+     "bibfs",
+     "gbfs",
+     "dfs",
+     "astar",
+     "dijkstra_unit",
+     "other",
+     "idastar",
+     "iddfs"
+    ],
+    "bfs_nn": "bibfs",
+    "n_programs": 782,
+    "label_counts": {
+     "bfs": 398,
+     "dfs": 242,
+     "bibfs": 21,
+     "iddfs": 31,
+     "astar": 13,
+     "gbfs": 32,
+     "idastar": 30,
+     "other": 12,
+     "dijkstra_unit": 3
+    },
+    "perm_share_nn_is_bibfs": 0.01,
+    "d_bfs_bibfs": 81.24858856201172
+   },
+   "g16": {
+    "bfs_neighbour_order": [
+     "idastar",
+     "iddfs",
+     "dfs",
+     "bibfs",
+     "dijkstra_unit",
+     "other",
+     "gbfs",
+     "astar"
+    ],
+    "bfs_nn": "idastar",
+    "n_programs": 782,
+    "label_counts": {
+     "bfs": 398,
+     "dfs": 242,
+     "bibfs": 21,
+     "iddfs": 31,
+     "astar": 13,
+     "gbfs": 32,
+     "idastar": 30,
+     "other": 12,
+     "dijkstra_unit": 3
+    },
+    "perm_share_nn_is_bibfs": 0.022,
+    "d_bfs_bibfs": 99.10957336425781
+   }
+  },
+  "note": "g16 states exist in exp9 states/ (positions g8, g16, g32, pre). Label-independent check: centroids of the T1 forced programs (baseline-prompt context) at layer 24, BFS nearest-neighbour order at the fixed generated-token position g16 versus the label-dependent 'pre' position, with a 500-draw label permutation null. The iteration-3 audit's N1 p 0.19 and exchangeability p 0.48 are cited, not re-derived (source not a declared dependency)."
+ },
+ "composite": {
+  "file_png": "figures/composite_2x2_activation.png",
+  "file_pdf": "figures/composite_2x2_activation.pdf",
+  "panels": {
+   "T1 baseline": {
+    "n_sampled_states": 100,
+    "conditions_available": [
+     "baseline",
+     "multi:ARC",
+     "multi:SCATTER",
+     "multi:TOP",
+     "multi:TOP5",
+     "single:bfs"
+    ],
+    "mds_stress1_primary_centroid_D": 0.025257667205944707,
+    "implemented_counts": {
+     "bfs": 100
+    }
+   },
+   "T1 single BFS ban": {
+    "n_sampled_states": 100,
+    "conditions_available": [
+     "baseline",
+     "multi:ARC",
+     "multi:SCATTER",
+     "multi:TOP",
+     "multi:TOP5",
+     "single:bfs"
+    ],
+    "mds_stress1_primary_centroid_D": 0.025257667205944707,
+    "implemented_counts": {
+     "dfs": 86,
+     "bfs": 14
+    }
+   },
+   "T1 TOP5 ban": {
+    "n_sampled_states": 100,
+    "conditions_available": [
+     "baseline",
+     "multi:ARC",
+     "multi:SCATTER",
+     "multi:TOP",
+     "multi:TOP5",
+     "single:bfs"
+    ],
+    "mds_stress1_primary_centroid_D": 0.025257667205944707,
+    "implemented_counts": {
+     "dfs": 36,
+     "bfs": 63,
+     "iddfs": 1
+    }
+   },
+   "T2 LOS (BF/SPFA left)": {
+    "n_sampled_states": 100,
+    "conditions_available": [
+     "baseline",
+     "los:bf_spfa",
+     "los:bidijkstra",
+     "los:dial",
+     "los:dijkstra",
+     "los:floyd",
+     "single:dijkstra"
+    ],
+    "mds_stress1_primary_centroid_D": 0.005994908044716637,
+    "implemented_counts": {
+     "bf_spfa": 51,
+     "dijkstra": 48,
+     "other": 1
+    }
+   }
+  },
+  "mode": "activation coordinates",
+  "caption": "Regenerated 2x2 composite (T1 baseline, T1 single BFS ban, T1 TOP5, T2 leave-one-survivor with BF/SPFA left) in actual activation coordinates: exp9 states at layer 24, position 'pre', Isomap (k = 10) fitted on forced-program states with the sampled states projected onto it. Centroid marker area and colour scale with the implemented count; banned centroids are crossed out; each panel prints the MDS stress-1 of the primary centroid geodesic matrix. States are read at the token before the commit token, whose position depends on the program's own label, so separation can partly reflect position."
+ }
+}

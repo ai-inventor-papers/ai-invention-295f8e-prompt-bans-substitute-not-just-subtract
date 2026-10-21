@@ -1,0 +1,19 @@
+entries:
+  - path: .venv/
+    delete: regenerable
+    source: "uv sync --frozen"
+  - path: __pycache__/
+    delete: regenerable
+    source: "uv run pytest"
+  - path: src/__pycache__/
+    delete: regenerable
+    source: "uv run eval.py --stages all"
+  - path: tests/__pycache__/
+    delete: regenerable
+    source: "uv run pytest"
+  - path: .pytest_cache/
+    delete: regenerable
+    source: "uv run pytest"
+  - path: audit/rerun/__pycache__/
+    delete: regenerable
+    source: "uv run eval.py --stages other"

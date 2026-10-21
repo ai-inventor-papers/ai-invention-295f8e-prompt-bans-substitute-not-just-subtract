@@ -1,0 +1,383 @@
+artifact_id,arm,class,family,description,ref_arm,precision,n_cells
+art_0ndRfWKBWclR,llama_pilot_fp8,control,pilot,FP8 pilot (no ban),,fp8,13
+art_0ndRfWKBWclR,pilot_fp8,control,pilot,FP8 pilot (no ban),,fp8,13
+art_1AYTO1Epb_7t,ban,knob,prompt:ban,modal 'do not use X' ban,twin,bf16,12
+art_1AYTO1Epb_7t,bandpatch,knob,activation-ban-derived,ban task-spec states patched into the twin (ban-derived),hf_twin,bf16,12
+art_1AYTO1Epb_7t,hf_twin,control,twin,neutral twin (HF engine),hf_twin,bf16,12
+art_1AYTO1Epb_7t,iter1,knob,veto,iterated veto round 1,twin,bf16,12
+art_1AYTO1Epb_7t,iter2,knob,veto,iterated veto round 2,twin,bf16,10
+art_1AYTO1Epb_7t,iter3,knob,veto,iterated veto round 3,twin,bf16,9
+art_1AYTO1Epb_7t,nonce,knob,prompt:nonce,nonce ban,twin,bf16,12
+art_1AYTO1Epb_7t,novelty,knob,prompt:novelty,novelty instruction,twin,bf16,12
+art_1AYTO1Epb_7t,oneshot,knob,veto,one-shot token veto,twin,bf16,12
+art_1AYTO1Epb_7t,persistent,knob,veto,persistent token veto,twin,bf16,12
+art_1AYTO1Epb_7t,rand1,knob,activation-random,"matched-norm isotropic random direction at task-spec states, layers 12-23",hf_twin,bf16,12
+art_1AYTO1Epb_7t,rand2,knob,activation-random,"matched-norm isotropic random direction at task-spec states, layers 12-23",hf_twin,bf16,12
+art_1AYTO1Epb_7t,rand3,knob,activation-random,"matched-norm isotropic random direction at task-spec states, layers 12-23",hf_twin,bf16,12
+art_1AYTO1Epb_7t,sham,control,sham_veto,sham token veto,twin,bf16,12
+art_1AYTO1Epb_7t,twin,control,twin,neutral twin (vLLM),twin,bf16,12
+art_IVZc3TWCeE9f,baseline,control,twin,no-ban baseline,baseline,bf16,2
+art_IVZc3TWCeE9f,los:bf_spfa,knob,prompt:list,leave-one-survivor list,baseline,bf16,1
+art_IVZc3TWCeE9f,los:bidijkstra,knob,prompt:list,leave-one-survivor list,baseline,bf16,1
+art_IVZc3TWCeE9f,los:dial,knob,prompt:list,leave-one-survivor list,baseline,bf16,1
+art_IVZc3TWCeE9f,los:dijkstra,knob,prompt:list,leave-one-survivor list,baseline,bf16,1
+art_IVZc3TWCeE9f,los:floyd,knob,prompt:list,leave-one-survivor list,baseline,bf16,1
+art_IVZc3TWCeE9f,multi:ARC,knob,prompt:list,multi-name ban list,baseline,bf16,1
+art_IVZc3TWCeE9f,multi:SCATTER,knob,prompt:list,multi-name ban list,baseline,bf16,1
+art_IVZc3TWCeE9f,multi:TOP,knob,prompt:list,multi-name ban list,baseline,bf16,1
+art_IVZc3TWCeE9f,multi:TOP5,knob,prompt:list,multi-name ban list,baseline,bf16,1
+art_IVZc3TWCeE9f,single:bfs,knob,prompt:ban,single-name ban,baseline,bf16,1
+art_IVZc3TWCeE9f,single:dijkstra,knob,prompt:ban,single-name ban,baseline,bf16,1
+art_Q-qh-9HhPoWo,ban_modal:binary_search,knob,prompt:ban,modal ban of binary_search (Llama),neutral_baseline,bf16,1
+art_Q-qh-9HhPoWo,ban_modal:full_sort,knob,prompt:ban,modal ban of full_sort (Llama),neutral_baseline,bf16,1
+art_Q-qh-9HhPoWo,ban_modal:greedy_end,knob,prompt:ban,modal ban of greedy_end (Llama),neutral_baseline,bf16,1
+art_Q-qh-9HhPoWo,ban_modal:hash_map,knob,prompt:ban,modal ban of hash_map (Llama),neutral_baseline,bf16,1
+art_Q-qh-9HhPoWo,ban_modal:hash_set,knob,prompt:ban,modal ban of hash_set (Llama),neutral_baseline,bf16,1
+art_Q-qh-9HhPoWo,ban_modal:heap,knob,prompt:ban,modal ban of heap (Llama),neutral_baseline,bf16,1
+art_Q-qh-9HhPoWo,ban_modal:kahn,knob,prompt:ban,modal ban of kahn (Llama),neutral_baseline,bf16,1
+art_Q-qh-9HhPoWo,ban_modal:matrix_power,knob,prompt:ban,modal ban of matrix_power (Llama),neutral_baseline,bf16,1
+art_Q-qh-9HhPoWo,ban_modal:naive,knob,prompt:ban,modal ban of naive (Llama),neutral_baseline,bf16,1
+art_Q-qh-9HhPoWo,ban_modal:quadratic_dp,knob,prompt:ban,modal ban of quadratic_dp (Llama),neutral_baseline,bf16,1
+art_Q-qh-9HhPoWo,ban_modal:sort_sweep,knob,prompt:ban,modal ban of sort_sweep (Llama),neutral_baseline,bf16,1
+art_Q-qh-9HhPoWo,ban_modal:union_find,knob,prompt:ban,modal ban of union_find (Llama),neutral_baseline,bf16,1
+art_Q-qh-9HhPoWo,ban_present_minor:dfs,knob,prompt:ban,present_minor ban of dfs (Llama),neutral_baseline,bf16,1
+art_Q-qh-9HhPoWo,ban_present_minor:heapify_pop,knob,prompt:ban,present_minor ban of heapify_pop (Llama),neutral_baseline,bf16,1
+art_Q-qh-9HhPoWo,ban_present_minor:kmp,knob,prompt:ban,present_minor ban of kmp (Llama),neutral_baseline,bf16,1
+art_Q-qh-9HhPoWo,ban_present_minor:quickselect,knob,prompt:ban,present_minor ban of quickselect (Llama),neutral_baseline,bf16,1
+art_Q-qh-9HhPoWo,ban_present_minor:size_k_heap,knob,prompt:ban,present_minor ban of size_k_heap (Llama),neutral_baseline,bf16,1
+art_Q-qh-9HhPoWo,ban_present_minor:sort_by_count,knob,prompt:ban,present_minor ban of sort_by_count (Llama),neutral_baseline,bf16,1
+art_Q-qh-9HhPoWo,neutral_baseline,control,twin,Llama neutral twin,neutral_baseline,bf16,12
+art_Q-qh-9HhPoWo,nonce,knob,prompt:nonce,nonce prompt (Llama),neutral_baseline,bf16,12
+art_Q-qh-9HhPoWo,novelty,knob,prompt:novelty,novelty prompt (Llama),neutral_baseline,bf16,12
+art_Q-qh-9HhPoWo,pilot_fp8,control,pilot,Llama FP8 pilot (no ban),neutral_baseline,fp8,13
+art_Q-qh-9HhPoWo,rand_s0,knob,activation-random,"matched-norm random direction at spec positions, layers 11-21 (Llama)",neutral_baseline,bf16,12
+art_Q-qh-9HhPoWo,rand_s1,knob,activation-random,"matched-norm random direction at spec positions, layers 11-21 (Llama)",neutral_baseline,bf16,12
+art_Q-qh-9HhPoWo,rand_s2,knob,activation-random,"matched-norm random direction at spec positions, layers 11-21 (Llama)",neutral_baseline,bf16,12
+art_Q-qh-9HhPoWo,veto_oneshot,knob,veto,oneshot signature-n-gram veto (Llama),vetofree,bf16,12
+art_Q-qh-9HhPoWo,veto_persistent,knob,veto,persistent signature-n-gram veto (Llama),vetofree,bf16,35
+art_Q-qh-9HhPoWo,vetofree,control,twin,Llama neutral twin (veto chain pass-1),neutral_baseline,bf16,12
+art_U5UKkFrOgSsE,ban:bfs,knob,prompt:ban,modal ban,baseline,bf16,1
+art_U5UKkFrOgSsE,ban:dijkstra,knob,prompt:ban,modal ban,baseline,bf16,1
+art_U5UKkFrOgSsE,baseline,control,twin,vLLM baseline,baseline,bf16,2
+art_U5UKkFrOgSsE,enumerate,knob,prompt:instruction,enumeration prompt,baseline,bf16,2
+art_U5UKkFrOgSsE,enumerate@1024,knob,prompt:instruction,enumeration prompt,baseline,bf16,2
+art_U5UKkFrOgSsE,mention:bfs,control,mention_twin,mention twin,baseline,bf16,1
+art_U5UKkFrOgSsE,mention:dijkstra,control,mention_twin,mention twin,baseline,bf16,1
+art_U5UKkFrOgSsE,steer:breadth,knob,activation-structured,breadth direction,"steer:dc {""c"": 0.0, ""layer"": 18}",bf16,2
+art_U5UKkFrOgSsE,steer:dc,control,twin,HF c=0 hook,"steer:dc {""c"": 0.0, ""layer"": 18}",bf16,16
+art_U5UKkFrOgSsE,steer:dcxfer,knob,activation-structured,cross-task transferred d_dc,"steer:dc {""c"": 0.0, ""layer"": 18}",bf16,2
+art_U5UKkFrOgSsE,steer:placebo,knob,activation-structured,variable-name placebo direction,"steer:dc {""c"": 0.0, ""layer"": 18}",bf16,2
+art_U5UKkFrOgSsE,steer:rand1,knob,activation-random,random direction (iteration 1),"steer:dc {""c"": 0.0, ""layer"": 18}",bf16,2
+art_U5UKkFrOgSsE,steer:rand2,knob,activation-random,random direction (iteration 1),"steer:dc {""c"": 0.0, ""layer"": 18}",bf16,2
+art_U5UKkFrOgSsE,succession:2,knob,prompt:ban,succession ban,baseline,bf16,2
+art_UoCVh2Qe5RZ0,A0:baseline,control,twin,"no-cue baseline T=1.0, pure sampling, thinking off","A0:baseline {""T"": 1.0, ""sampler"": ""pure"", ""thinking"": false}",bf16,2
+art_UoCVh2Qe5RZ0,A1:baseline,knob,decoding,temperature x sampler grid,"A0:baseline {""T"": 1.0, ""sampler"": ""pure"", ""thinking"": false}",bf16,16
+art_UoCVh2Qe5RZ0,A2:seed_entropy,knob,prompt:seed,entropy seed,"A0:baseline {""T"": 1.0, ""sampler"": ""pure"", ""thinking"": false}",bf16,2
+art_UoCVh2Qe5RZ0,A2:seed_semantic,knob,prompt:seed,semantic seed,"A0:baseline {""T"": 1.0, ""sampler"": ""pure"", ""thinking"": false}",bf16,2
+art_UoCVh2Qe5RZ0,A2:seed_word,knob,prompt:seed,word seed,"A0:baseline {""T"": 1.0, ""sampler"": ""pure"", ""thinking"": false}",bf16,2
+art_UoCVh2Qe5RZ0,A3:instr_creative,knob,prompt:instruction,creativity instruction instr_creative,"A0:baseline {""T"": 1.0, ""sampler"": ""pure"", ""thinking"": false}",bf16,2
+art_UoCVh2Qe5RZ0,A3:instr_enumerate,knob,prompt:instruction,creativity instruction instr_enumerate,"A0:baseline {""T"": 1.0, ""sampler"": ""pure"", ""thinking"": false}",bf16,2
+art_UoCVh2Qe5RZ0,A3:instr_fully_novel,knob,prompt:instruction,creativity instruction instr_fully_novel,"A0:baseline {""T"": 1.0, ""sampler"": ""pure"", ""thinking"": false}",bf16,2
+art_UoCVh2Qe5RZ0,A3:instr_new_algo,knob,prompt:instruction,creativity instruction instr_new_algo,"A0:baseline {""T"": 1.0, ""sampler"": ""pure"", ""thinking"": false}",bf16,2
+art_UoCVh2Qe5RZ0,A4s2:gen_then_select,ceiling,generate_then_select,"generate-then-select (ceiling, never ranked)","A0:baseline {""T"": 1.0, ""sampler"": ""pure"", ""thinking"": false}",bf16,2
+art_UoCVh2Qe5RZ0,A6a:baseline,knob,decoding,temperature x sampler grid (thinking on),"A0:baseline {""T"": 1.0, ""sampler"": ""pure"", ""thinking"": false}",bf16,4
+art_UoCVh2Qe5RZ0,A6b:baseline,knob,decoding,temperature x sampler grid (thinking on),"A0:baseline {""T"": 1.0, ""sampler"": ""pure"", ""thinking"": false}",bf16,4
+art_UoCVh2Qe5RZ0,A6c:baseline,knob,decoding,temperature x sampler grid (thinking on),"A0:baseline {""T"": 1.0, ""sampler"": ""pure"", ""thinking"": false}",bf16,4
+art_UoCVh2Qe5RZ0,A6d:baseline,knob,decoding,temperature x sampler grid (thinking on),"A0:baseline {""T"": 1.0, ""sampler"": ""pure"", ""thinking"": false}",bf16,4
+art_WiY4wqHLb9Gy,W1:bfs,knob,prompt:exposure_ban,"exposure ban, template arm W1",copy:bfs,bf16,1
+art_WiY4wqHLb9Gy,W1:bmh,knob,prompt:exposure_ban,"exposure ban, template arm W1",copy:bmh,bf16,1
+art_WiY4wqHLb9Gy,W1:brute_force,knob,prompt:exposure_ban,"exposure ban, template arm W1",copy:brute_force,bf16,1
+art_WiY4wqHLb9Gy,W1:builtin,knob,prompt:exposure_ban,"exposure ban, template arm W1",copy:builtin,bf16,1
+art_WiY4wqHLb9Gy,W1:counting_sort,knob,prompt:exposure_ban,"exposure ban, template arm W1",copy:counting_sort,bf16,1
+art_WiY4wqHLb9Gy,W1:dfs,knob,prompt:exposure_ban,"exposure ban, template arm W1",copy:dfs,bf16,1
+art_WiY4wqHLb9Gy,W1:fenwick,knob,prompt:exposure_ban,"exposure ban, template arm W1",copy:fenwick,bf16,1
+art_WiY4wqHLb9Gy,W1:heapify_pop,knob,prompt:exposure_ban,"exposure ban, template arm W1",copy:heapify_pop,bf16,1
+art_WiY4wqHLb9Gy,W1:index_marking,knob,prompt:exposure_ban,"exposure ban, template arm W1",copy:index_marking,bf16,1
+art_WiY4wqHLb9Gy,W1:label_propagation,knob,prompt:exposure_ban,"exposure ban, template arm W1",copy:label_propagation,bf16,1
+art_WiY4wqHLb9Gy,W1:median_of_medians,knob,prompt:exposure_ban,"exposure ban, template arm W1",copy:median_of_medians,bf16,1
+art_WiY4wqHLb9Gy,W1:quickselect,knob,prompt:exposure_ban,"exposure ban, template arm W1",copy:quickselect,bf16,1
+art_WiY4wqHLb9Gy,W1:quickselect_counts,knob,prompt:exposure_ban,"exposure ban, template arm W1",copy:quickselect_counts,bf16,1
+art_WiY4wqHLb9Gy,W1:rabin_karp,knob,prompt:exposure_ban,"exposure ban, template arm W1",copy:rabin_karp,bf16,1
+art_WiY4wqHLb9Gy,W1:size_k_heap,knob,prompt:exposure_ban,"exposure ban, template arm W1",copy:size_k_heap,bf16,1
+art_WiY4wqHLb9Gy,W1:sort_adjacent,knob,prompt:exposure_ban,"exposure ban, template arm W1",copy:sort_adjacent,bf16,1
+art_WiY4wqHLb9Gy,W1:sort_binary_search,knob,prompt:exposure_ban,"exposure ban, template arm W1",copy:sort_binary_search,bf16,1
+art_WiY4wqHLb9Gy,W1:value_binary_search,knob,prompt:exposure_ban,"exposure ban, template arm W1",copy:value_binary_search,bf16,1
+art_WiY4wqHLb9Gy,W1:z_algorithm,knob,prompt:exposure_ban,"exposure ban, template arm W1",copy:z_algorithm,bf16,1
+art_WiY4wqHLb9Gy,W2:bfs,knob,prompt:exposure_ban,"exposure ban, template arm W2",copy:bfs,bf16,1
+art_WiY4wqHLb9Gy,W2:bmh,knob,prompt:exposure_ban,"exposure ban, template arm W2",copy:bmh,bf16,1
+art_WiY4wqHLb9Gy,W2:brute_force,knob,prompt:exposure_ban,"exposure ban, template arm W2",copy:brute_force,bf16,1
+art_WiY4wqHLb9Gy,W2:builtin,knob,prompt:exposure_ban,"exposure ban, template arm W2",copy:builtin,bf16,1
+art_WiY4wqHLb9Gy,W2:counting_sort,knob,prompt:exposure_ban,"exposure ban, template arm W2",copy:counting_sort,bf16,1
+art_WiY4wqHLb9Gy,W2:dfs,knob,prompt:exposure_ban,"exposure ban, template arm W2",copy:dfs,bf16,1
+art_WiY4wqHLb9Gy,W2:fenwick,knob,prompt:exposure_ban,"exposure ban, template arm W2",copy:fenwick,bf16,1
+art_WiY4wqHLb9Gy,W2:heapify_pop,knob,prompt:exposure_ban,"exposure ban, template arm W2",copy:heapify_pop,bf16,1
+art_WiY4wqHLb9Gy,W2:index_marking,knob,prompt:exposure_ban,"exposure ban, template arm W2",copy:index_marking,bf16,1
+art_WiY4wqHLb9Gy,W2:label_propagation,knob,prompt:exposure_ban,"exposure ban, template arm W2",copy:label_propagation,bf16,1
+art_WiY4wqHLb9Gy,W2:median_of_medians,knob,prompt:exposure_ban,"exposure ban, template arm W2",copy:median_of_medians,bf16,1
+art_WiY4wqHLb9Gy,W2:quickselect,knob,prompt:exposure_ban,"exposure ban, template arm W2",copy:quickselect,bf16,1
+art_WiY4wqHLb9Gy,W2:quickselect_counts,knob,prompt:exposure_ban,"exposure ban, template arm W2",copy:quickselect_counts,bf16,1
+art_WiY4wqHLb9Gy,W2:rabin_karp,knob,prompt:exposure_ban,"exposure ban, template arm W2",copy:rabin_karp,bf16,1
+art_WiY4wqHLb9Gy,W2:size_k_heap,knob,prompt:exposure_ban,"exposure ban, template arm W2",copy:size_k_heap,bf16,1
+art_WiY4wqHLb9Gy,W2:sort_adjacent,knob,prompt:exposure_ban,"exposure ban, template arm W2",copy:sort_adjacent,bf16,1
+art_WiY4wqHLb9Gy,W2:sort_binary_search,knob,prompt:exposure_ban,"exposure ban, template arm W2",copy:sort_binary_search,bf16,1
+art_WiY4wqHLb9Gy,W2:value_binary_search,knob,prompt:exposure_ban,"exposure ban, template arm W2",copy:value_binary_search,bf16,1
+art_WiY4wqHLb9Gy,W2:z_algorithm,knob,prompt:exposure_ban,"exposure ban, template arm W2",copy:z_algorithm,bf16,1
+art_WiY4wqHLb9Gy,W3:bfs,knob,prompt:exposure_ban,"exposure ban, template arm W3",copy:bfs,bf16,1
+art_WiY4wqHLb9Gy,W3:bmh,knob,prompt:exposure_ban,"exposure ban, template arm W3",copy:bmh,bf16,1
+art_WiY4wqHLb9Gy,W3:brute_force,knob,prompt:exposure_ban,"exposure ban, template arm W3",copy:brute_force,bf16,1
+art_WiY4wqHLb9Gy,W3:builtin,knob,prompt:exposure_ban,"exposure ban, template arm W3",copy:builtin,bf16,1
+art_WiY4wqHLb9Gy,W3:counting_sort,knob,prompt:exposure_ban,"exposure ban, template arm W3",copy:counting_sort,bf16,1
+art_WiY4wqHLb9Gy,W3:dfs,knob,prompt:exposure_ban,"exposure ban, template arm W3",copy:dfs,bf16,1
+art_WiY4wqHLb9Gy,W3:fenwick,knob,prompt:exposure_ban,"exposure ban, template arm W3",copy:fenwick,bf16,1
+art_WiY4wqHLb9Gy,W3:heapify_pop,knob,prompt:exposure_ban,"exposure ban, template arm W3",copy:heapify_pop,bf16,1
+art_WiY4wqHLb9Gy,W3:index_marking,knob,prompt:exposure_ban,"exposure ban, template arm W3",copy:index_marking,bf16,1
+art_WiY4wqHLb9Gy,W3:label_propagation,knob,prompt:exposure_ban,"exposure ban, template arm W3",copy:label_propagation,bf16,1
+art_WiY4wqHLb9Gy,W3:median_of_medians,knob,prompt:exposure_ban,"exposure ban, template arm W3",copy:median_of_medians,bf16,1
+art_WiY4wqHLb9Gy,W3:quickselect,knob,prompt:exposure_ban,"exposure ban, template arm W3",copy:quickselect,bf16,1
+art_WiY4wqHLb9Gy,W3:quickselect_counts,knob,prompt:exposure_ban,"exposure ban, template arm W3",copy:quickselect_counts,bf16,1
+art_WiY4wqHLb9Gy,W3:rabin_karp,knob,prompt:exposure_ban,"exposure ban, template arm W3",copy:rabin_karp,bf16,1
+art_WiY4wqHLb9Gy,W3:size_k_heap,knob,prompt:exposure_ban,"exposure ban, template arm W3",copy:size_k_heap,bf16,1
+art_WiY4wqHLb9Gy,W3:sort_adjacent,knob,prompt:exposure_ban,"exposure ban, template arm W3",copy:sort_adjacent,bf16,1
+art_WiY4wqHLb9Gy,W3:sort_binary_search,knob,prompt:exposure_ban,"exposure ban, template arm W3",copy:sort_binary_search,bf16,1
+art_WiY4wqHLb9Gy,W3:value_binary_search,knob,prompt:exposure_ban,"exposure ban, template arm W3",copy:value_binary_search,bf16,1
+art_WiY4wqHLb9Gy,W3:z_algorithm,knob,prompt:exposure_ban,"exposure ban, template arm W3",copy:z_algorithm,bf16,1
+art_WiY4wqHLb9Gy,W4:bfs,knob,prompt:exposure_ban,"exposure ban, template arm W4",copy:bfs,bf16,1
+art_WiY4wqHLb9Gy,W4:bmh,knob,prompt:exposure_ban,"exposure ban, template arm W4",copy:bmh,bf16,1
+art_WiY4wqHLb9Gy,W4:brute_force,knob,prompt:exposure_ban,"exposure ban, template arm W4",copy:brute_force,bf16,1
+art_WiY4wqHLb9Gy,W4:builtin,knob,prompt:exposure_ban,"exposure ban, template arm W4",copy:builtin,bf16,1
+art_WiY4wqHLb9Gy,W4:counting_sort,knob,prompt:exposure_ban,"exposure ban, template arm W4",copy:counting_sort,bf16,1
+art_WiY4wqHLb9Gy,W4:dfs,knob,prompt:exposure_ban,"exposure ban, template arm W4",copy:dfs,bf16,1
+art_WiY4wqHLb9Gy,W4:fenwick,knob,prompt:exposure_ban,"exposure ban, template arm W4",copy:fenwick,bf16,1
+art_WiY4wqHLb9Gy,W4:heapify_pop,knob,prompt:exposure_ban,"exposure ban, template arm W4",copy:heapify_pop,bf16,1
+art_WiY4wqHLb9Gy,W4:index_marking,knob,prompt:exposure_ban,"exposure ban, template arm W4",copy:index_marking,bf16,1
+art_WiY4wqHLb9Gy,W4:label_propagation,knob,prompt:exposure_ban,"exposure ban, template arm W4",copy:label_propagation,bf16,1
+art_WiY4wqHLb9Gy,W4:median_of_medians,knob,prompt:exposure_ban,"exposure ban, template arm W4",copy:median_of_medians,bf16,1
+art_WiY4wqHLb9Gy,W4:quickselect,knob,prompt:exposure_ban,"exposure ban, template arm W4",copy:quickselect,bf16,1
+art_WiY4wqHLb9Gy,W4:quickselect_counts,knob,prompt:exposure_ban,"exposure ban, template arm W4",copy:quickselect_counts,bf16,1
+art_WiY4wqHLb9Gy,W4:rabin_karp,knob,prompt:exposure_ban,"exposure ban, template arm W4",copy:rabin_karp,bf16,1
+art_WiY4wqHLb9Gy,W4:size_k_heap,knob,prompt:exposure_ban,"exposure ban, template arm W4",copy:size_k_heap,bf16,1
+art_WiY4wqHLb9Gy,W4:sort_adjacent,knob,prompt:exposure_ban,"exposure ban, template arm W4",copy:sort_adjacent,bf16,1
+art_WiY4wqHLb9Gy,W4:sort_binary_search,knob,prompt:exposure_ban,"exposure ban, template arm W4",copy:sort_binary_search,bf16,1
+art_WiY4wqHLb9Gy,W4:value_binary_search,knob,prompt:exposure_ban,"exposure ban, template arm W4",copy:value_binary_search,bf16,1
+art_WiY4wqHLb9Gy,W4:z_algorithm,knob,prompt:exposure_ban,"exposure ban, template arm W4",copy:z_algorithm,bf16,1
+art_WiY4wqHLb9Gy,baseline,control,twin,no-exposure baseline,,bf16,12
+art_WiY4wqHLb9Gy,copy:bfs,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:bisect_module,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:bmh,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:brute_force,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:bucket_sort,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:builtin,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:counting_sort,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:dag_longest_path,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:dfs,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:exponential_search,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:fast_doubling,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:fenwick,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:floyd,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:heap,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:heapify_pop,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:index_marking,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:kmp,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:label_propagation,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:matrix_power,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:median_of_medians,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:memo_recursion,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,2
+art_WiY4wqHLb9Gy,copy:patience_bisect,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:quickselect,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:quickselect_counts,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:rabin_karp,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:size_k_heap,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:sort_adjacent,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:sort_binary_search,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:sort_two_pointers,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:union_find,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:value_binary_search,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,copy:z_algorithm,control,copy,"COPY: shown programs of Y, no ban",baseline,bf16,1
+art_WiY4wqHLb9Gy,named:bfs,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:bfs,bf16,1
+art_WiY4wqHLb9Gy,named:bisect_module,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:bisect_module,bf16,1
+art_WiY4wqHLb9Gy,named:bmh,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:bmh,bf16,1
+art_WiY4wqHLb9Gy,named:brute_force,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:brute_force,bf16,1
+art_WiY4wqHLb9Gy,named:bucket_sort,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:bucket_sort,bf16,1
+art_WiY4wqHLb9Gy,named:builtin,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:builtin,bf16,1
+art_WiY4wqHLb9Gy,named:counting_sort,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:counting_sort,bf16,1
+art_WiY4wqHLb9Gy,named:dag_longest_path,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:dag_longest_path,bf16,1
+art_WiY4wqHLb9Gy,named:dfs,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:dfs,bf16,1
+art_WiY4wqHLb9Gy,named:exponential_search,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:exponential_search,bf16,1
+art_WiY4wqHLb9Gy,named:fast_doubling,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:fast_doubling,bf16,1
+art_WiY4wqHLb9Gy,named:fenwick,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:fenwick,bf16,1
+art_WiY4wqHLb9Gy,named:floyd,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:floyd,bf16,1
+art_WiY4wqHLb9Gy,named:heap,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:heap,bf16,1
+art_WiY4wqHLb9Gy,named:heapify_pop,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:heapify_pop,bf16,1
+art_WiY4wqHLb9Gy,named:index_marking,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:index_marking,bf16,1
+art_WiY4wqHLb9Gy,named:kmp,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:kmp,bf16,1
+art_WiY4wqHLb9Gy,named:label_propagation,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:label_propagation,bf16,1
+art_WiY4wqHLb9Gy,named:matrix_power,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:matrix_power,bf16,1
+art_WiY4wqHLb9Gy,named:median_of_medians,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:median_of_medians,bf16,1
+art_WiY4wqHLb9Gy,named:memo_recursion,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:memo_recursion,bf16,2
+art_WiY4wqHLb9Gy,named:patience_bisect,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:patience_bisect,bf16,1
+art_WiY4wqHLb9Gy,named:quickselect,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:quickselect,bf16,1
+art_WiY4wqHLb9Gy,named:quickselect_counts,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:quickselect_counts,bf16,1
+art_WiY4wqHLb9Gy,named:rabin_karp,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:rabin_karp,bf16,1
+art_WiY4wqHLb9Gy,named:size_k_heap,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:size_k_heap,bf16,1
+art_WiY4wqHLb9Gy,named:sort_adjacent,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:sort_adjacent,bf16,1
+art_WiY4wqHLb9Gy,named:sort_binary_search,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:sort_binary_search,bf16,1
+art_WiY4wqHLb9Gy,named:sort_two_pointers,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:sort_two_pointers,bf16,1
+art_WiY4wqHLb9Gy,named:union_find,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:union_find,bf16,1
+art_WiY4wqHLb9Gy,named:value_binary_search,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:value_binary_search,bf16,1
+art_WiY4wqHLb9Gy,named:z_algorithm,knob,prompt:exposure_ban,NAMED exposure ban of the shown algorithm,copy:z_algorithm,bf16,1
+art_WiY4wqHLb9Gy,unnamed:bfs,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:bfs,bf16,1
+art_WiY4wqHLb9Gy,unnamed:bisect_module,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:bisect_module,bf16,1
+art_WiY4wqHLb9Gy,unnamed:bmh,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:bmh,bf16,1
+art_WiY4wqHLb9Gy,unnamed:brute_force,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:brute_force,bf16,1
+art_WiY4wqHLb9Gy,unnamed:bucket_sort,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:bucket_sort,bf16,1
+art_WiY4wqHLb9Gy,unnamed:builtin,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:builtin,bf16,1
+art_WiY4wqHLb9Gy,unnamed:counting_sort,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:counting_sort,bf16,1
+art_WiY4wqHLb9Gy,unnamed:dag_longest_path,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:dag_longest_path,bf16,1
+art_WiY4wqHLb9Gy,unnamed:dfs,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:dfs,bf16,1
+art_WiY4wqHLb9Gy,unnamed:exponential_search,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:exponential_search,bf16,1
+art_WiY4wqHLb9Gy,unnamed:fast_doubling,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:fast_doubling,bf16,1
+art_WiY4wqHLb9Gy,unnamed:fenwick,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:fenwick,bf16,1
+art_WiY4wqHLb9Gy,unnamed:floyd,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:floyd,bf16,1
+art_WiY4wqHLb9Gy,unnamed:heap,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:heap,bf16,1
+art_WiY4wqHLb9Gy,unnamed:heapify_pop,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:heapify_pop,bf16,1
+art_WiY4wqHLb9Gy,unnamed:index_marking,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:index_marking,bf16,1
+art_WiY4wqHLb9Gy,unnamed:kmp,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:kmp,bf16,1
+art_WiY4wqHLb9Gy,unnamed:label_propagation,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:label_propagation,bf16,1
+art_WiY4wqHLb9Gy,unnamed:matrix_power,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:matrix_power,bf16,1
+art_WiY4wqHLb9Gy,unnamed:median_of_medians,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:median_of_medians,bf16,1
+art_WiY4wqHLb9Gy,unnamed:memo_recursion,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:memo_recursion,bf16,2
+art_WiY4wqHLb9Gy,unnamed:patience_bisect,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:patience_bisect,bf16,1
+art_WiY4wqHLb9Gy,unnamed:quickselect,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:quickselect,bf16,1
+art_WiY4wqHLb9Gy,unnamed:quickselect_counts,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:quickselect_counts,bf16,1
+art_WiY4wqHLb9Gy,unnamed:rabin_karp,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:rabin_karp,bf16,1
+art_WiY4wqHLb9Gy,unnamed:size_k_heap,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:size_k_heap,bf16,1
+art_WiY4wqHLb9Gy,unnamed:sort_adjacent,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:sort_adjacent,bf16,1
+art_WiY4wqHLb9Gy,unnamed:sort_binary_search,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:sort_binary_search,bf16,1
+art_WiY4wqHLb9Gy,unnamed:sort_two_pointers,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:sort_two_pointers,bf16,1
+art_WiY4wqHLb9Gy,unnamed:union_find,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:union_find,bf16,1
+art_WiY4wqHLb9Gy,unnamed:value_binary_search,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:value_binary_search,bf16,1
+art_WiY4wqHLb9Gy,unnamed:z_algorithm,knob,prompt:exposure_ban,UNNAMED exposure ban of the shown algorithm,copy:z_algorithm,bf16,1
+art_WiY4wqHLb9Gy,veto:bfs,knob,veto,in-context signature veto of the shown algorithm,copy:bfs,bf16,1
+art_WiY4wqHLb9Gy,veto:bisect_module,knob,veto,in-context signature veto of the shown algorithm,copy:bisect_module,bf16,3
+art_WiY4wqHLb9Gy,veto:bmh,knob,veto,in-context signature veto of the shown algorithm,copy:bmh,bf16,3
+art_WiY4wqHLb9Gy,veto:brute_force,knob,veto,in-context signature veto of the shown algorithm,copy:brute_force,bf16,3
+art_WiY4wqHLb9Gy,veto:bucket_sort,knob,veto,in-context signature veto of the shown algorithm,copy:bucket_sort,bf16,3
+art_WiY4wqHLb9Gy,veto:builtin,knob,veto,in-context signature veto of the shown algorithm,copy:builtin,bf16,3
+art_WiY4wqHLb9Gy,veto:counting_sort,knob,veto,in-context signature veto of the shown algorithm,copy:counting_sort,bf16,3
+art_WiY4wqHLb9Gy,veto:dag_longest_path,knob,veto,in-context signature veto of the shown algorithm,copy:dag_longest_path,bf16,3
+art_WiY4wqHLb9Gy,veto:dfs,knob,veto,in-context signature veto of the shown algorithm,copy:dfs,bf16,1
+art_WiY4wqHLb9Gy,veto:exponential_search,knob,veto,in-context signature veto of the shown algorithm,copy:exponential_search,bf16,3
+art_WiY4wqHLb9Gy,veto:fast_doubling,knob,veto,in-context signature veto of the shown algorithm,copy:fast_doubling,bf16,3
+art_WiY4wqHLb9Gy,veto:fenwick,knob,veto,in-context signature veto of the shown algorithm,copy:fenwick,bf16,3
+art_WiY4wqHLb9Gy,veto:floyd,knob,veto,in-context signature veto of the shown algorithm,copy:floyd,bf16,3
+art_WiY4wqHLb9Gy,veto:heap,knob,veto,in-context signature veto of the shown algorithm,copy:heap,bf16,3
+art_WiY4wqHLb9Gy,veto:heapify_pop,knob,veto,in-context signature veto of the shown algorithm,copy:heapify_pop,bf16,3
+art_WiY4wqHLb9Gy,veto:index_marking,knob,veto,in-context signature veto of the shown algorithm,copy:index_marking,bf16,3
+art_WiY4wqHLb9Gy,veto:kmp,knob,veto,in-context signature veto of the shown algorithm,copy:kmp,bf16,3
+art_WiY4wqHLb9Gy,veto:label_propagation,knob,veto,in-context signature veto of the shown algorithm,copy:label_propagation,bf16,2
+art_WiY4wqHLb9Gy,veto:matrix_power,knob,veto,in-context signature veto of the shown algorithm,copy:matrix_power,bf16,3
+art_WiY4wqHLb9Gy,veto:median_of_medians,knob,veto,in-context signature veto of the shown algorithm,copy:median_of_medians,bf16,3
+art_WiY4wqHLb9Gy,veto:memo_recursion,knob,veto,in-context signature veto of the shown algorithm,copy:memo_recursion,bf16,5
+art_WiY4wqHLb9Gy,veto:patience_bisect,knob,veto,in-context signature veto of the shown algorithm,copy:patience_bisect,bf16,3
+art_WiY4wqHLb9Gy,veto:quickselect,knob,veto,in-context signature veto of the shown algorithm,copy:quickselect,bf16,3
+art_WiY4wqHLb9Gy,veto:quickselect_counts,knob,veto,in-context signature veto of the shown algorithm,copy:quickselect_counts,bf16,3
+art_WiY4wqHLb9Gy,veto:rabin_karp,knob,veto,in-context signature veto of the shown algorithm,copy:rabin_karp,bf16,3
+art_WiY4wqHLb9Gy,veto:size_k_heap,knob,veto,in-context signature veto of the shown algorithm,copy:size_k_heap,bf16,3
+art_WiY4wqHLb9Gy,veto:sort_adjacent,knob,veto,in-context signature veto of the shown algorithm,copy:sort_adjacent,bf16,3
+art_WiY4wqHLb9Gy,veto:sort_binary_search,knob,veto,in-context signature veto of the shown algorithm,copy:sort_binary_search,bf16,3
+art_WiY4wqHLb9Gy,veto:sort_two_pointers,knob,veto,in-context signature veto of the shown algorithm,copy:sort_two_pointers,bf16,3
+art_WiY4wqHLb9Gy,veto:union_find,knob,veto,in-context signature veto of the shown algorithm,copy:union_find,bf16,3
+art_WiY4wqHLb9Gy,veto:value_binary_search,knob,veto,in-context signature veto of the shown algorithm,copy:value_binary_search,bf16,3
+art_WiY4wqHLb9Gy,veto:z_algorithm,knob,veto,in-context signature veto of the shown algorithm,copy:z_algorithm,bf16,3
+art__5akZ9W9iZM4,BAN+D25,control,route_diagnostic,route/prefill diagnostic arm,b,bf16,5
+art__5akZ9W9iZM4,BAN+D50,control,route_diagnostic,route/prefill diagnostic arm,b,bf16,5
+art__5akZ9W9iZM4,BAN+D75,control,route_diagnostic,route/prefill diagnostic arm,b,bf16,5
+art__5akZ9W9iZM4,BAN+HEAPQ,control,route_diagnostic,route/prefill diagnostic arm,b,bf16,1
+art__5akZ9W9iZM4,BAN+NEU,control,route_diagnostic,route/prefill diagnostic arm,b,bf16,5
+art__5akZ9W9iZM4,BAN+SIG,control,route_diagnostic,route/prefill diagnostic arm,b,bf16,5
+art__5akZ9W9iZM4,K0,control,route_diagnostic,condition span invisible to generated tokens,b,bf16,12
+art__5akZ9W9iZM4,K0b,control,route_diagnostic,route/prefill diagnostic arm,b,bf16,6
+art__5akZ9W9iZM4,OPEN,control,route_diagnostic,route/prefill diagnostic arm,,bf16,2
+art__5akZ9W9iZM4,R2,control,route_diagnostic,route/prefill diagnostic arm,,bf16,2
+art__5akZ9W9iZM4,R3,control,route_diagnostic,route/prefill diagnostic arm,,bf16,2
+art__5akZ9W9iZM4,TWIN+D25,control,route_diagnostic,route/prefill diagnostic arm,b,bf16,5
+art__5akZ9W9iZM4,TWIN+D50,control,route_diagnostic,route/prefill diagnostic arm,b,bf16,5
+art__5akZ9W9iZM4,TWIN+D75,control,route_diagnostic,route/prefill diagnostic arm,b,bf16,5
+art__5akZ9W9iZM4,TWIN+HEAPQ,control,route_diagnostic,route/prefill diagnostic arm,b,bf16,1
+art__5akZ9W9iZM4,TWIN+NEU,control,route_diagnostic,route/prefill diagnostic arm,b,bf16,5
+art__5akZ9W9iZM4,TWIN+SIG,control,route_diagnostic,route/prefill diagnostic arm,b,bf16,5
+art__5akZ9W9iZM4,V1,control,route_diagnostic,one-shot veto of the default's n-gram,b,bf16,14
+art__5akZ9W9iZM4,VP,control,route_diagnostic,route/prefill diagnostic arm,,bf16,2
+art__5akZ9W9iZM4,a,control,route_diagnostic,full ban,b,bf16,13
+art__5akZ9W9iZM4,a@r2,control,route_diagnostic,route/prefill diagnostic arm,b,bf16,5
+art__5akZ9W9iZM4,b,control,route_diagnostic,token-matched neutral twin,b,bf16,13
+art__5akZ9W9iZM4,b@r2,control,route_diagnostic,route/prefill diagnostic arm,b,bf16,5
+art__5akZ9W9iZM4,bB,control,route_diagnostic,route/prefill diagnostic arm,b,bf16,6
+art__5akZ9W9iZM4,c,control,route_diagnostic,prompt route (twin condition + ban spec states),b,bf16,13
+art__5akZ9W9iZM4,c@r2,control,route_diagnostic,route/prefill diagnostic arm,b,bf16,5
+art__5akZ9W9iZM4,d,control,route_diagnostic,direct route (ban condition + twin spec states),b,bf16,13
+art__5akZ9W9iZM4,d@r2,control,route_diagnostic,route/prefill diagnostic arm,b,bf16,5
+art__5akZ9W9iZM4,pl,control,route_diagnostic,route/prefill diagnostic arm,b,bf16,6
+art_ccAbfJVcv0LO,fixed_top5,knob,veto,fixed TOP5 veto,walk_twin,bf16,1
+art_ccAbfJVcv0LO,longform:LF1,knob,prompt:instruction,"2,000-word 'make a (fully) novel algorithm' instruction",walk_twin,fp8,11
+art_ccAbfJVcv0LO,longform:LF2,knob,prompt:instruction,"2,000-word 'make a (fully) novel algorithm' instruction",walk_twin,fp8,10
+art_ccAbfJVcv0LO,los:LOS(bfs),knob,prompt:list,leave-one-survivor list ban,walk_twin,fp8,1
+art_ccAbfJVcv0LO,los:LOS(builtin),knob,prompt:list,leave-one-survivor list ban,walk_twin,fp8,1
+art_ccAbfJVcv0LO,los:LOS(counting_sort),knob,prompt:list,leave-one-survivor list ban,walk_twin,fp8,1
+art_ccAbfJVcv0LO,los:LOS(dfs),knob,prompt:list,leave-one-survivor list ban,walk_twin,fp8,1
+art_ccAbfJVcv0LO,los:LOS(floyd),knob,prompt:list,leave-one-survivor list ban,walk_twin,fp8,1
+art_ccAbfJVcv0LO,los:LOS(full_sort),knob,prompt:list,leave-one-survivor list ban,walk_twin,fp8,1
+art_ccAbfJVcv0LO,los:LOS(hash_set),knob,prompt:list,leave-one-survivor list ban,walk_twin,fp8,1
+art_ccAbfJVcv0LO,los:LOS(heapify_pop),knob,prompt:list,leave-one-survivor list ban,walk_twin,fp8,1
+art_ccAbfJVcv0LO,los:LOS(kmp),knob,prompt:list,leave-one-survivor list ban,walk_twin,fp8,1
+art_ccAbfJVcv0LO,los:LOS(naive),knob,prompt:list,leave-one-survivor list ban,walk_twin,fp8,1
+art_ccAbfJVcv0LO,los:LOS(quickselect),knob,prompt:list,leave-one-survivor list ban,walk_twin,fp8,1
+art_ccAbfJVcv0LO,los:LOS(rabin_karp),knob,prompt:list,leave-one-survivor list ban,walk_twin,fp8,1
+art_ccAbfJVcv0LO,los:LOS(size_k_heap),knob,prompt:list,leave-one-survivor list ban,walk_twin,fp8,1
+art_ccAbfJVcv0LO,los:LOS(sort_adjacent),knob,prompt:list,leave-one-survivor list ban,walk_twin,fp8,1
+art_ccAbfJVcv0LO,los:LOS(union_find),knob,prompt:list,leave-one-survivor list ban,walk_twin,fp8,1
+art_ccAbfJVcv0LO,los:LOS(value_binary_search),knob,prompt:list,leave-one-survivor list ban,walk_twin,fp8,1
+art_ccAbfJVcv0LO,los:LOS(z_algorithm),knob,prompt:list,leave-one-survivor list ban,walk_twin,fp8,1
+art_ccAbfJVcv0LO,sham,control,sham_veto,matched sham veto,walk_twin,fp8,4
+art_ccAbfJVcv0LO,"two_step:TWO(bfs,dfs)",knob,prompt:ban,two-step ban,walk_twin,bf16,1
+art_ccAbfJVcv0LO,"two_step:TWO(dijkstra,bf_spfa)",knob,prompt:ban,two-step ban,walk_twin,bf16,1
+art_ccAbfJVcv0LO,"two_step:TWO(full_sort,counting_sort)",knob,prompt:ban,two-step ban,walk_twin,fp8,1
+art_ccAbfJVcv0LO,"two_step:TWO(hash_set,sort_adjacent)",knob,prompt:ban,two-step ban,walk_twin,fp8,1
+art_ccAbfJVcv0LO,"two_step:TWO(naive,kmp)",knob,prompt:ban,two-step ban,walk_twin,fp8,1
+art_ccAbfJVcv0LO,"two_step:TWO(union_find,dfs)",knob,prompt:ban,two-step ban,walk_twin,fp8,1
+art_ccAbfJVcv0LO,walk_step1,knob,veto,persistent token-walk veto,walk_twin,fp8,19
+art_ccAbfJVcv0LO,walk_step2,knob,veto,persistent token-walk veto,walk_twin,fp8,3
+art_ccAbfJVcv0LO,walk_twin,control,twin,neutral twin (walk step 0),walk_twin,fp8,6
+art_pVlCZ272hDV7,ADD_a0.5,knob,activation-structured,leave-one-task-out prohibition direction added to the twin,NEUTRAL,fp8,6
+art_pVlCZ272hDV7,ADD_a1.0,knob,activation-structured,leave-one-task-out prohibition direction added to the twin,NEUTRAL,fp8,6
+art_pVlCZ272hDV7,ADD_a2.0,knob,activation-structured,leave-one-task-out prohibition direction added to the twin,NEUTRAL,fp8,6
+art_pVlCZ272hDV7,BAN,knob,prompt:ban,modal ban,NEUTRAL,fp8,6
+art_pVlCZ272hDV7,BAN_TOPUP,knob,prompt:ban,modal ban (top-up samples),NEUTRAL,fp8,1
+art_pVlCZ272hDV7,HEADS_rand7101,ablation,ablation-on-ban,intervention on the ban (projection / head ablation); not a knob,NEUTRAL,fp8,2
+art_pVlCZ272hDV7,HEADS_rand7102,ablation,ablation-on-ban,intervention on the ban (projection / head ablation); not a knob,NEUTRAL,fp8,2
+art_pVlCZ272hDV7,HEADS_rand7103,ablation,ablation-on-ban,intervention on the ban (projection / head ablation); not a knob,NEUTRAL,fp8,2
+art_pVlCZ272hDV7,HEADS_target,ablation,ablation-on-ban,intervention on the ban (projection / head ablation); not a knob,NEUTRAL,fp8,2
+art_pVlCZ272hDV7,NEUTRAL,control,twin,"neutral twin (HF, FP8 linears)",NEUTRAL,fp8,6
+art_pVlCZ272hDV7,RAND9001_a1.0,knob,activation-random,norm-matched random direction added to the twin,NEUTRAL,fp8,6
+art_pVlCZ272hDV7,RAND9001_a2.0,knob,activation-random,norm-matched random direction added to the twin,NEUTRAL,fp8,6
+art_pVlCZ272hDV7,RAND9002_a1.0,knob,activation-random,norm-matched random direction added to the twin,NEUTRAL,fp8,6
+art_pVlCZ272hDV7,RAND9002_a2.0,knob,activation-random,norm-matched random direction added to the twin,NEUTRAL,fp8,6
+art_pVlCZ272hDV7,RAND9003_a1.0,knob,activation-random,norm-matched random direction added to the twin,NEUTRAL,fp8,6
+art_pVlCZ272hDV7,RAND9003_a2.0,knob,activation-random,norm-matched random direction added to the twin,NEUTRAL,fp8,6
+art_pVlCZ272hDV7,RAND9004_a1.0,knob,activation-random,norm-matched random direction added to the twin,NEUTRAL,fp8,3
+art_pVlCZ272hDV7,RAND9005_a1.0,knob,activation-random,norm-matched random direction added to the twin,NEUTRAL,fp8,3
+art_pVlCZ272hDV7,RAND9006_a1.0,knob,activation-random,norm-matched random direction added to the twin,NEUTRAL,fp8,3
+art_pVlCZ272hDV7,RAND9007_a1.0,knob,activation-random,norm-matched random direction added to the twin,NEUTRAL,fp8,3
+art_pVlCZ272hDV7,RAND9008_a1.0,knob,activation-random,norm-matched random direction added to the twin,NEUTRAL,fp8,3
+art_pVlCZ272hDV7,RAND9009_a1.0,knob,activation-random,norm-matched random direction added to the twin,NEUTRAL,fp8,3
+art_pVlCZ272hDV7,RAND9010_a1.0,knob,activation-random,norm-matched random direction added to the twin,NEUTRAL,fp8,3
+art_pVlCZ272hDV7,RAND9011_a1.0,knob,activation-random,norm-matched random direction added to the twin,NEUTRAL,fp8,3
+art_pVlCZ272hDV7,RAND9012_a1.0,knob,activation-random,norm-matched random direction added to the twin,NEUTRAL,fp8,3
+art_pVlCZ272hDV7,RAND9013_a1.0,knob,activation-random,norm-matched random direction added to the twin,NEUTRAL,fp8,3
+art_pVlCZ272hDV7,RAND9014_a1.0,knob,activation-random,norm-matched random direction added to the twin,NEUTRAL,fp8,3
+art_pVlCZ272hDV7,RAND9015_a1.0,knob,activation-random,norm-matched random direction added to the twin,NEUTRAL,fp8,3
+art_pVlCZ272hDV7,SUB_affine,ablation,ablation-on-ban,intervention on the ban (projection / head ablation); not a knob,NEUTRAL,fp8,2
+art_pVlCZ272hDV7,SUB_plain,ablation,ablation-on-ban,intervention on the ban (projection / head ablation); not a knob,NEUTRAL,fp8,6
+art_pVlCZ272hDV7,SUB_rand9001,ablation,ablation-on-ban,intervention on the ban (projection / head ablation); not a knob,NEUTRAL,fp8,2
+art_pVlCZ272hDV7,U7_BAN,control,engine_check,U7 engine reproduction check,NEUTRAL,fp8,1
+art_pVlCZ272hDV7,U7_NEUTRAL,control,engine_check,U7 engine reproduction check,NEUTRAL,fp8,1
