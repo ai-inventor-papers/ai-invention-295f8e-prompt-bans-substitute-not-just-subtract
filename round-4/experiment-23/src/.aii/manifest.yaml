@@ -1,0 +1,25 @@
+entries:
+  - path: .venv/
+    delete: regenerable
+    source: "uv venv .venv --python=3.12 && uv pip install --python .venv/bin/python -r pyproject.toml"
+  - path: src/__pycache__/
+    delete: regenerable
+    source: "python -m compileall src (or any run of the pipeline)"
+  - path: inputs/exp11/bench/__pycache__/
+    delete: regenerable
+    source: "python -m compileall inputs/exp11/bench (or any labelling run)"
+  - path: inputs/exp11/bench/common/__pycache__/
+    delete: regenerable
+    source: "python -m compileall inputs/exp11/bench/common (or any labelling run)"
+  - path: inputs/exp8/suite/__pycache__/
+    delete: regenerable
+    source: "python -m compileall inputs/exp8/suite (or any labelling run)"
+  - path: inputs/exp8/suite/tasks/__pycache__/
+    delete: regenerable
+    source: "python -m compileall inputs/exp8/suite/tasks (or any labelling run)"
+  - path: inputs/exp8/suite/labeller/__pycache__/
+    delete: regenerable
+    source: "python -m compileall inputs/exp8/suite/labeller (or any labelling run)"
+  - path: predictions/__pycache__/
+    delete: regenerable
+    source: "python -m compileall predictions (created when the frozen analysis module is imported)"

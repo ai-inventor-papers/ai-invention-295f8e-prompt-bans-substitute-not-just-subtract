@@ -1,0 +1,534 @@
+{
+ "T03": {
+  "defined": true,
+  "D": "full_sort",
+  "K": 3,
+  "n_contexts": 10,
+  "openings": {
+   "counting_sort": "def counting_sort(arr):",
+   "full_sort": "nums.sort()",
+   "heapify_pop": "heapq.heapify(nums)",
+   "median_of_medians": "def median_of_medians(arr, k):",
+   "quickselect": "def quickselect(arr, k):",
+   "size_k_heap": "heap = []"
+  },
+  "own_D": "nums.sort()",
+  "logp": {
+   "counting_sort": -23.575874657005226,
+   "full_sort": -0.00016292605556327694,
+   "heapify_pop": -30.528250126577042,
+   "median_of_medians": -30.311401794036904,
+   "quickselect": -18.677140554476864,
+   "size_k_heap": -29.49811593248803
+  },
+  "distribution": {
+   "counting_sort": 0.007400570724838999,
+   "heapify_pop": 7.077614611279141e-06,
+   "median_of_medians": 8.791499284041295e-06,
+   "quickselect": 0.9925637326362288,
+   "size_k_heap": 1.982752503696112e-05
+  },
+  "top1": "quickselect",
+  "margin": 18.6769776284213,
+  "margin_ownD_sensitivity": 18.6769776284213,
+  "per_token_mean_logp": {
+   "counting_sort": -8.114152661951053,
+   "full_sort": -5.430919576004574e-05,
+   "heapify_pop": -10.54767475922075,
+   "median_of_medians": -10.280819376301435,
+   "quickselect": -6.530819331597954,
+   "size_k_heap": -10.247674758227337,
+   "__own_D__": -5.430919576004574e-05
+  },
+  "missing_modes": []
+ },
+ "T2": {
+  "defined": true,
+  "D": "dijkstra",
+  "K": 3,
+  "n_contexts": 10,
+  "openings": {
+   "bf_spfa": "INF = float('inf')",
+   "bidijkstra": "if s == t:",
+   "dial": "graph = defaultdict(list)",
+   "dijkstra": "graph = {}",
+   "floyd": "INF = 10 ** 18"
+  },
+  "own_D": "if s == t:",
+  "logp": {
+   "bf_spfa": -20.948108820946505,
+   "bidijkstra": -0.05592534576364951,
+   "dial": -2.9545935514377266,
+   "dijkstra": -2.9545935514377266,
+   "floyd": -20.948108820946505
+  },
+  "distribution": {
+   "bf_spfa": 8.00475047854199e-10,
+   "bidijkstra": 0.9477805607771305,
+   "dial": 0.05221943762191963,
+   "floyd": 8.00475047854199e-10
+  },
+  "top1": "bidijkstra",
+  "margin": -2.898668205674077,
+  "margin_ownD_sensitivity": 0.0,
+  "per_token_mean_logp": {
+   "bf_spfa": -7.260475054523036,
+   "bidijkstra": -0.018808356284534967,
+   "dial": -1.110475030681179,
+   "dijkstra": -1.110475030681179,
+   "floyd": -7.260475054523036,
+   "__own_D__": -0.018808356284534967
+  },
+  "missing_modes": []
+ },
+ "T05": {
+  "defined": true,
+  "D": "hash_map",
+  "K": 3,
+  "n_contexts": 10,
+  "openings": {
+   "brute_force": "for i in range(len(nums)):",
+   "hash_map": "seen = {}",
+   "sort_binary_search": "def binary_search(arr, x):",
+   "sort_two_pointers": "nums_sorted = sorted(nums)"
+  },
+  "own_D": "num_map = {}",
+  "logp": {
+   "brute_force": -17.734976973756144,
+   "hash_map": -0.8404538207288348,
+   "sort_binary_search": -50.0516109399622,
+   "sort_two_pointers": -8.372281882788027
+  },
+  "distribution": {
+   "brute_force": 8.586099078913457e-05,
+   "sort_binary_search": 7.922460644704282e-19,
+   "sort_two_pointers": 0.9999141390092109
+  },
+  "top1": "sort_two_pointers",
+  "margin": 7.531828062059192,
+  "margin_ownD_sensitivity": 7.806937596880497,
+  "per_token_mean_logp": {
+   "brute_force": -6.060789783789733,
+   "hash_map": -0.3254071275333748,
+   "sort_binary_search": -16.787296144161637,
+   "sort_two_pointers": -2.7941231171230663,
+   "__own_D__": -0.20872815250754634
+  },
+  "missing_modes": []
+ },
+ "T06": {
+  "defined": true,
+  "D": "hash_set",
+  "K": 4,
+  "n_contexts": 10,
+  "openings": {
+   "floyd": "slow = nums[0]",
+   "hash_set": "seen = set()",
+   "index_marking": "for i in range(len(nums)):",
+   "sort_adjacent": "nums.sort()",
+   "value_binary_search": "left, right = 1, len(nums) - 1"
+  },
+  "own_D": "n = len(nums) - 1",
+  "logp": {
+   "floyd": -17.214811994548775,
+   "hash_set": -0.8750260024410401,
+   "index_marking": -22.492801009551286,
+   "sort_adjacent": -35.0978824256264,
+   "value_binary_search": -32.13898580101539
+  },
+  "distribution": {
+   "floyd": 0.9949228796748604,
+   "index_marking": 0.005076774968599453,
+   "sort_adjacent": 1.7032194601687527e-08,
+   "value_binary_search": 3.283243454245763e-07
+  },
+  "top1": "floyd",
+  "margin": 16.339785992107736,
+  "margin_ownD_sensitivity": 16.586651367897304,
+  "per_token_mean_logp": {
+   "floyd": -4.373912952840646,
+   "hash_set": -0.24277477247778734,
+   "index_marking": -5.732777814568175,
+   "sort_adjacent": -8.867662338913528,
+   "value_binary_search": -8.23432352024065,
+   "__own_D__": -0.17483607232679788
+  },
+  "missing_modes": []
+ },
+ "T04": {
+  "defined": true,
+  "D": "naive",
+  "K": 9,
+  "n_contexts": 10,
+  "openings": {
+   "bmh": "if len(needle) > len(haystack):",
+   "builtin": "if len(needle) > len(haystack):",
+   "kmp": "if len(needle) > len(haystack):",
+   "naive": "len_h = len(haystack)",
+   "rabin_karp": "if len(needle) > len(haystack):",
+   "z_algorithm": "if len(needle) > len(haystack):"
+  },
+  "own_D": "if len(needle) > len(haystack):",
+  "logp": {
+   "bmh": -0.00022018269319047312,
+   "builtin": -0.00022018269319047312,
+   "kmp": -0.00022018269319047312,
+   "naive": -26.476055064314956,
+   "rabin_karp": -0.00022018269319047312,
+   "z_algorithm": -0.00022018269319047312
+  },
+  "distribution": {
+   "bmh": 0.2,
+   "builtin": 0.2,
+   "kmp": 0.2,
+   "rabin_karp": 0.2,
+   "z_algorithm": 0.2
+  },
+  "top1": "bmh",
+  "margin": -26.475834881621765,
+  "margin_ownD_sensitivity": 0.0,
+  "per_token_mean_logp": {
+   "bmh": -2.4465419148277254e-05,
+   "builtin": -2.4465419148277254e-05,
+   "kmp": -2.4465419148277254e-05,
+   "naive": -3.027982819751034,
+   "rabin_karp": -2.4465419148277254e-05,
+   "z_algorithm": -2.4465419148277254e-05,
+   "__own_D__": -2.4465419148277254e-05
+  },
+  "missing_modes": []
+ },
+ "T1": {
+  "defined": true,
+  "D": "dfs",
+  "K": 14,
+  "n_contexts": 10,
+  "openings": {
+   "astar_gbfs": "rows, cols = len(grid), len(grid[0])",
+   "bfs": "rows, cols = len(grid), len(grid[0])",
+   "bibfs": "rows, cols = len(grid), len(grid[0])",
+   "dfs": "rows, cols = len(grid), len(grid[0])",
+   "dijkstra": "rows, cols = len(grid), len(grid[0])",
+   "iddfs": "rows, cols = len(grid), len(grid[0])"
+  },
+  "own_D": "rows = len(grid)",
+  "logp": {
+   "astar_gbfs": -11.08747373526344,
+   "bfs": -11.08747373526344,
+   "bibfs": -11.08747373526344,
+   "dfs": -11.08747373526344,
+   "dijkstra": -11.08747373526344,
+   "iddfs": -11.08747373526344
+  },
+  "distribution": {
+   "astar_gbfs": 0.2,
+   "bfs": 0.2,
+   "bibfs": 0.2,
+   "dijkstra": 0.2,
+   "iddfs": 0.2
+  },
+  "top1": "astar_gbfs",
+  "margin": 0.0,
+  "margin_ownD_sensitivity": 11.074513761738615,
+  "per_token_mean_logp": {
+   "astar_gbfs": -0.797355517139468,
+   "bfs": -0.797355517139468,
+   "bibfs": -0.797355517139468,
+   "dfs": -0.797355517139468,
+   "dijkstra": -0.797355517139468,
+   "iddfs": -0.797355517139468,
+   "__own_D__": -0.0018539152441105343
+  },
+  "missing_modes": []
+ },
+ "T10": {
+  "defined": true,
+  "D": "dfs",
+  "K": 4,
+  "n_contexts": 10,
+  "openings": {
+   "bfs": "graph = [[] for _ in range(n)]",
+   "dfs": "from collections import defaultdict",
+   "label_propagation": "def label_propagate():",
+   "union_find": "parent = list(range(n))"
+  },
+  "own_D": "adj = [[] for _ in range(n)]",
+  "logp": {
+   "bfs": -5.1293505097927685,
+   "dfs": -25.349795874816778,
+   "label_propagation": -42.223896806566565,
+   "union_find": -6.055005913413219
+  },
+  "distribution": {
+   "bfs": 0.7161930304055601,
+   "label_propagation": 5.559981224162678e-17,
+   "union_find": 0.28380696959443985
+  },
+  "top1": "bfs",
+  "margin": -20.22044536502401,
+  "margin_ownD_sensitivity": 5.069284494872922,
+  "per_token_mean_logp": {
+   "bfs": -1.3531743201357131,
+   "dfs": -6.465735536812718,
+   "label_propagation": -11.145270007847722,
+   "union_find": -1.6782355248917653,
+   "__own_D__": -0.015127776558233563
+  },
+  "missing_modes": []
+ },
+ "R1": {
+  "defined": true,
+  "D": "greedy_end",
+  "K": 4,
+  "n_contexts": 10,
+  "openings": {
+   "dag_longest_path": "if not intervals:",
+   "greedy_end": "if not intervals:",
+   "memo_recursion": "if not intervals:"
+  },
+  "own_D": "if not intervals:",
+  "logp": {
+   "dag_longest_path": -1.790509051385895e-05,
+   "greedy_end": -1.790509051385895e-05,
+   "memo_recursion": -1.790509051385895e-05
+  },
+  "distribution": {
+   "dag_longest_path": 0.5,
+   "memo_recursion": 0.5
+  },
+  "top1": "dag_longest_path",
+  "margin": 0.0,
+  "margin_ownD_sensitivity": 0.0,
+  "per_token_mean_logp": {
+   "dag_longest_path": -4.4762783392826576e-06,
+   "greedy_end": -4.4762783392826576e-06,
+   "memo_recursion": -4.4762783392826576e-06,
+   "__own_D__": -4.4762783392826576e-06
+  },
+  "missing_modes": [
+   "dp_bisect"
+  ]
+ },
+ "T08": {
+  "defined": true,
+  "D": "iteration",
+  "K": 3,
+  "n_contexts": 10,
+  "openings": {
+   "fast_doubling": "def fib_pair(n):",
+   "iteration": "if n == 0:",
+   "matrix_power": "def multiply(a, b):",
+   "memo_recursion": "memo = {}"
+  },
+  "own_D": "if n <= 1:",
+  "logp": {
+   "fast_doubling": -16.625772941382753,
+   "iteration": -0.00012841958202157954,
+   "matrix_power": -37.600991467864844,
+   "memo_recursion": -21.392020547424753
+  },
+  "distribution": {
+   "fast_doubling": 0.9915595845880306,
+   "matrix_power": 7.707209319054952e-10,
+   "memo_recursion": 0.008440414641248365
+  },
+  "top1": "fast_doubling",
+  "margin": 16.62564452180073,
+  "margin_ownD_sensitivity": 16.62564452180073,
+  "per_token_mean_logp": {
+   "fast_doubling": -5.833376470778667,
+   "iteration": -4.280836747057037e-05,
+   "matrix_power": -14.016709732586666,
+   "memo_recursion": -7.866709478273515,
+   "__own_D__": -4.280836747057037e-05
+  },
+  "missing_modes": []
+ },
+ "R3": {
+  "defined": false,
+  "D": "kahn",
+  "K": 9,
+  "n_contexts": 10,
+  "openings": {
+   "kahn": "in_degree = [0] * n"
+  },
+  "own_D": "graph = [[] for _ in range(n)]",
+  "logp": {
+   "kahn": -4.099743398459465
+  },
+  "distribution": {},
+  "top1": null,
+  "margin": null,
+  "margin_ownD_sensitivity": null,
+  "per_token_mean_logp": {
+   "kahn": -0.4643535719965087,
+   "__own_D__": -0.003964986340457067
+  },
+  "missing_modes": [
+   "dfs_postorder",
+   "source_removal",
+   "layering"
+  ]
+ },
+ "T13": {
+  "defined": true,
+  "D": "sort_sweep",
+  "K": 4,
+  "n_contexts": 10,
+  "openings": {
+   "sort_sweep": "if not intervals:",
+   "union_find": "if not intervals:"
+  },
+  "own_D": "if not intervals:",
+  "logp": {
+   "sort_sweep": -0.0029073270288109618,
+   "union_find": -0.0029073270288109618
+  },
+  "distribution": {
+   "union_find": 1.0
+  },
+  "top1": "union_find",
+  "margin": 0.0,
+  "margin_ownD_sensitivity": 0.0,
+  "per_token_mean_logp": {
+   "sort_sweep": -0.0007278965068948651,
+   "union_find": -0.0007278965068948651,
+   "__own_D__": -0.0007278965068948651
+  },
+  "missing_modes": [
+   "interval_tree"
+  ]
+ },
+ "R6": {
+  "defined": true,
+  "D": "binary_search",
+  "K": 4,
+  "n_contexts": 10,
+  "openings": {
+   "binary_search": "def find_first():",
+   "bisect_module": "if not nums:",
+   "exponential_search": "def binary_search_left(nums, target):"
+  },
+  "own_D": "left = 0",
+  "logp": {
+   "binary_search": -6.2502175734471095,
+   "bisect_module": -6.805303094939178,
+   "exponential_search": -14.06086636097886
+  },
+  "distribution": {
+   "bisect_module": 0.999294263945773,
+   "exponential_search": 0.0007057360542269113
+  },
+  "top1": "bisect_module",
+  "margin": 0.5550855214920682,
+  "margin_ownD_sensitivity": 3.729169802310307,
+  "per_token_mean_logp": {
+   "binary_search": -1.5757134752868978,
+   "bisect_module": -1.7381093978840947,
+   "exponential_search": -3.6507149219349118,
+   "__own_D__": -0.8907931455370204
+  },
+  "missing_modes": []
+ },
+ "T14": {
+  "defined": true,
+  "D": "sort_by_count",
+  "K": 6,
+  "n_contexts": 10,
+  "openings": {
+   "bucket_sort": "freq = Counter(nums)",
+   "heap": "counts = Counter(nums)",
+   "quickselect_counts": "counts = collections.Counter(nums)",
+   "sort_by_count": "count = Counter(nums)"
+  },
+  "own_D": "counts = {}",
+  "logp": {
+   "bucket_sort": -12.653814596470195,
+   "heap": -1.6640058174046206,
+   "quickselect_counts": -28.655183262153166,
+   "sort_by_count": -9.414005789579047
+  },
+  "distribution": {
+   "bucket_sort": 1.687249710842373e-05,
+   "heap": 0.9999831275009954,
+   "quickselect_counts": 1.8961524344896288e-12
+  },
+  "top1": "heap",
+  "margin": -7.749999972174426,
+  "margin_ownD_sensitivity": 1.435543237926999,
+  "per_token_mean_logp": {
+   "bucket_sort": -4.532302059463403,
+   "heap": -3.7567049140360935,
+   "quickselect_counts": -4.853030621149132,
+   "sort_by_count": -6.385871869070914,
+   "__own_D__": -1.0538073710541398
+  },
+  "missing_modes": []
+ },
+ "T11": {
+  "defined": true,
+  "D": "patience_bisect",
+  "K": 3,
+  "n_contexts": 10,
+  "openings": {
+   "fenwick": "if not nums:",
+   "patience_bisect": "tails = []",
+   "quadratic_dp": "n = len(nums)"
+  },
+  "own_D": "tails = []",
+  "logp": {
+   "fenwick": -3.089378748204258,
+   "patience_bisect": -0.06196002025067382,
+   "quadratic_dp": -4.249263895132767
+  },
+  "distribution": {
+   "fenwick": 0.7613118448148006,
+   "quadratic_dp": 0.23868815518519942
+  },
+  "top1": "fenwick",
+  "margin": 3.0274187279535845,
+  "margin_ownD_sensitivity": 3.0274187279535845,
+  "per_token_mean_logp": {
+   "fenwick": -1.1544864415970162,
+   "patience_bisect": -0.02115411570715272,
+   "quadratic_dp": -1.5378197192993563,
+   "__own_D__": -0.02115411570715272
+  },
+  "missing_modes": []
+ },
+ "R2": {
+  "defined": true,
+  "D": "dfs_parent",
+  "K": 4,
+  "n_contexts": 10,
+  "openings": {
+   "bfs_parent": "graph = [[] for _ in range(n)]",
+   "dfs_parent": "from collections import defaultdict",
+   "edge_count": "def count_edges(component):",
+   "union_find": "parent = list(range(n))"
+  },
+  "own_D": "adj = [[] for _ in range(n)]",
+  "logp": {
+   "bfs_parent": -3.916812937112367,
+   "dfs_parent": -24.34290718037495,
+   "edge_count": -34.98310982954002,
+   "union_find": -15.707920535447387
+  },
+  "distribution": {
+   "bfs_parent": 0.9999924284682457,
+   "edge_count": 3.221628051796475e-14,
+   "union_find": 7.571531722033694e-06
+  },
+  "top1": "bfs_parent",
+  "margin": -20.426094243262582,
+  "margin_ownD_sensitivity": 3.894597345356036,
+  "per_token_mean_logp": {
+   "bfs_parent": -0.9810414282535305,
+   "dfs_parent": -6.124088257549593,
+   "edge_count": -8.861186003683901,
+   "union_find": -3.9928380250919107,
+   "__own_D__": -0.00555462520357537
+  },
+  "missing_modes": []
+ }
+}

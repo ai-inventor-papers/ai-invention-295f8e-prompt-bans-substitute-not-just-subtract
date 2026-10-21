@@ -1,0 +1,12 @@
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+07:08:30|INFO   |google/gemma-3-4b-it loaded in 17s; free VRAM 8.84/16.72 GB
+./src/engine_gemma.py:331: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  nxt = torch.searchsorted(cdf, Ut[:, step:step + 1]).squeeze(-1).clamp_(max=V - 1)
+07:08:52|INFO   |T16:T2: 21.5s, 240 steps, B=25
+07:08:58|INFO   |T16:T05: 6.3s, 80 steps, B=25
+07:09:06|INFO   |T16:T04: 7.3s, 96 steps, B=25
+07:09:46|INFO   |T16:T1: 39.7s, 416 steps, B=25
+07:10:00|INFO   |T16:T10: 14.0s, 176 steps, B=25
+07:10:11|INFO   |T16:T11: 11.0s, 144 steps, B=25
+07:10:11|INFO   |t16 finished
