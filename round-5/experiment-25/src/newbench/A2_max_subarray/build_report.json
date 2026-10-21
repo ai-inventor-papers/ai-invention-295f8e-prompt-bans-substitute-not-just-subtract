@@ -1,0 +1,126 @@
+{
+ "unit": "A2",
+ "utc": "2026-10-21T12:34:15Z",
+ "n_lc_ok": 98,
+ "n_lc_kept": 40,
+ "n_generated": 30,
+ "oracle": "kadane",
+ "n_cases": 70,
+ "n_stress": 6,
+ "references": {
+  "kadane": {
+   "passed": true,
+   "n_pass": 70,
+   "max_time_over_limit": 0.0026440320070832968,
+   "first_fail": null,
+   "load_error": null
+  },
+  "prefix_min": {
+   "passed": true,
+   "n_pass": 70,
+   "max_time_over_limit": 0.0028933999710716307,
+   "first_fail": null,
+   "load_error": null
+  },
+  "divide_conquer": {
+   "passed": true,
+   "n_pass": 70,
+   "max_time_over_limit": 0.015733306005131453,
+   "first_fail": null,
+   "load_error": null
+  },
+  "segment_tree": {
+   "passed": true,
+   "n_pass": 70,
+   "max_time_over_limit": 0.016016347042750567,
+   "first_fail": null,
+   "load_error": null
+  }
+ },
+ "mutants": {
+  "kadane_mut0": {
+   "fails": true,
+   "n_pass": 62
+  },
+  "prefix_min_mut1": {
+   "fails": true,
+   "n_pass": 62
+  },
+  "divide_conquer_mut2": {
+   "fails": true,
+   "n_pass": 29
+  },
+  "segment_tree_mut3": {
+   "fails": true,
+   "n_pass": 29
+  }
+ },
+ "baselines": {
+  "brute_force_quadratic": {
+   "expect": "fail",
+   "passed": false,
+   "n_pass": 64,
+   "first_fail": {
+    "i": 64,
+    "status": "timeout",
+    "case_id": "gen:stress:0"
+   }
+  }
+ },
+ "labels_on_references": {
+  "kadane": {
+   "runtime": "kadane",
+   "ast": "kadane"
+  },
+  "prefix_min": {
+   "runtime": "prefix_min",
+   "ast": "prefix_min"
+  },
+  "divide_conquer": {
+   "runtime": "divide_conquer",
+   "ast": "divide_conquer"
+  },
+  "segment_tree": {
+   "runtime": "segment_tree",
+   "ast": "segment_tree"
+  }
+ },
+ "labels_on_variants": {
+  "kadane_reset": {
+   "expected": "kadane",
+   "runtime": "kadane",
+   "ast": "kadane"
+  },
+  "kadane_dp": {
+   "expected": "kadane",
+   "runtime": "kadane",
+   "ast": "kadane"
+  },
+  "prefix_accumulate": {
+   "expected": "prefix_min",
+   "runtime": "prefix_min",
+   "ast": "prefix_min"
+  },
+  "dc_slices": {
+   "expected": "divide_conquer",
+   "runtime": "divide_conquer",
+   "ast": "divide_conquer"
+  },
+  "segtree_class": {
+   "expected": "segment_tree",
+   "runtime": "segment_tree",
+   "ast": "segment_tree"
+  }
+ },
+ "ref_label_acc_runtime": 1.0,
+ "ref_label_acc_ast": 1.0,
+ "variant_acc_runtime": 1.0,
+ "variant_acc_ast": 1.0,
+ "checks": {
+  "references_all_pass": true,
+  "references_within_quarter_limit": true,
+  "mutants_all_fail": true,
+  "baselines_as_expected": true,
+  "labellers_100pct_on_references": true
+ }
+}

@@ -1,0 +1,151 @@
+{
+ "unit": "A4",
+ "utc": "2026-10-21T12:47:54Z",
+ "n_lc_ok": 33,
+ "n_lc_kept": 16,
+ "n_generated": 32,
+ "oracle": "eratosthenes",
+ "n_cases": 48,
+ "n_stress": 6,
+ "references": {
+  "eratosthenes": {
+   "passed": true,
+   "n_pass": 48,
+   "max_time_over_limit": 0.0019144120160490274,
+   "first_fail": null,
+   "load_error": null
+  },
+  "trial_division": {
+   "passed": true,
+   "n_pass": 48,
+   "max_time_over_limit": 0.010361402004491538,
+   "first_fail": null,
+   "load_error": null
+  },
+  "linear_sieve": {
+   "passed": true,
+   "n_pass": 48,
+   "max_time_over_limit": 0.003954640997108072,
+   "first_fail": null,
+   "load_error": null
+  },
+  "segmented_sieve": {
+   "passed": true,
+   "n_pass": 48,
+   "max_time_over_limit": 0.003813535033259541,
+   "first_fail": null,
+   "load_error": null
+  },
+  "sundaram": {
+   "passed": true,
+   "n_pass": 48,
+   "max_time_over_limit": 0.0045653359848074615,
+   "first_fail": null,
+   "load_error": null
+  },
+  "atkin": {
+   "passed": true,
+   "n_pass": 48,
+   "max_time_over_limit": 0.0093069730210118,
+   "first_fail": null,
+   "load_error": null
+  }
+ },
+ "mutants": {
+  "eratosthenes_mut0": {
+   "fails": true,
+   "n_pass": 9
+  },
+  "trial_division_mut1": {
+   "fails": true,
+   "n_pass": 9
+  },
+  "linear_sieve_mut2": {
+   "fails": true,
+   "n_pass": 0
+  },
+  "segmented_sieve_mut3": {
+   "fails": true,
+   "n_pass": 9
+  },
+  "sundaram_mut4": {
+   "fails": true,
+   "n_pass": 6
+  },
+  "atkin_mut5": {
+   "fails": true,
+   "n_pass": 9
+  }
+ },
+ "baselines": {
+  "naive_quadratic": {
+   "expect": "fail",
+   "passed": false,
+   "n_pass": 11,
+   "first_fail": {
+    "i": 11,
+    "status": "timeout",
+    "case_id": "leetcodedataset:204:15"
+   }
+  }
+ },
+ "labels_on_references": {
+  "eratosthenes": {
+   "runtime": "eratosthenes",
+   "ast": "eratosthenes"
+  },
+  "trial_division": {
+   "runtime": "trial_division",
+   "ast": "trial_division"
+  },
+  "linear_sieve": {
+   "runtime": "linear_sieve",
+   "ast": "linear_sieve"
+  },
+  "segmented_sieve": {
+   "runtime": "segmented_sieve",
+   "ast": "segmented_sieve"
+  },
+  "sundaram": {
+   "runtime": "sundaram",
+   "ast": "sundaram"
+  },
+  "atkin": {
+   "runtime": "atkin",
+   "ast": "atkin"
+  }
+ },
+ "labels_on_variants": {
+  "erat_slice": {
+   "expected": "eratosthenes",
+   "runtime": "eratosthenes",
+   "ast": "eratosthenes"
+  },
+  "erat_bytearray": {
+   "expected": "eratosthenes",
+   "runtime": "eratosthenes",
+   "ast": "eratosthenes"
+  },
+  "trial_6k": {
+   "expected": "trial_division",
+   "runtime": "trial_division",
+   "ast": "trial_division"
+  },
+  "trial_sqrt": {
+   "expected": "trial_division",
+   "runtime": "trial_division",
+   "ast": "trial_division"
+  }
+ },
+ "ref_label_acc_runtime": 1.0,
+ "ref_label_acc_ast": 1.0,
+ "variant_acc_runtime": 1.0,
+ "variant_acc_ast": 1.0,
+ "checks": {
+  "references_all_pass": true,
+  "references_within_quarter_limit": true,
+  "mutants_all_fail": true,
+  "baselines_as_expected": true,
+  "labellers_100pct_on_references": true
+ }
+}

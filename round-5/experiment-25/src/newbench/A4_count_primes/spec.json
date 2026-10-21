@@ -1,0 +1,82 @@
+{
+ "task": "A4",
+ "task_id": "A4_count_primes",
+ "leetcode_ids": [
+  204
+ ],
+ "signature": "solve(n)",
+ "description": "Task: write a Python function solve(n) that returns how many prime numbers are strictly smaller than n. The argument n is an integer with 0 <= n <= 50000. A prime number is an integer greater than 1 whose only positive divisors are 1 and itself, so for n = 10 the answer is 4 (2, 3, 5 and 7), and for n = 0, 1 or 2 the answer is 0.",
+ "format_line": "Use only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+ "spec_text": "Task: write a Python function solve(n) that returns how many prime numbers are strictly smaller than n. The argument n is an integer with 0 <= n <= 50000. A prime number is an integer greater than 1 whose only positive divisors are 1 and itself, so for n = 10 the answer is 4 (2, 3, 5 and 7), and for n = 0, 1 or 2 the answer is 0.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+ "bounds": {
+  "n": [
+   0,
+   50000
+  ]
+ },
+ "whitelist": [
+  "prime",
+  "divisors"
+ ],
+ "catalogue": [
+  {
+   "mode": "eratosthenes",
+   "display_name": "sieve of Eratosthenes",
+   "mechanism": "mark the multiples of every prime in a boolean array of size n (slice assignment or inner loops) and count the unmarked entries"
+  },
+  {
+   "mode": "trial_division",
+   "display_name": "trial division",
+   "mechanism": "test each number for divisibility by smaller numbers (all integers, 6k +- 1 candidates or the primes found so far) up to its square root"
+  },
+  {
+   "mode": "linear_sieve",
+   "display_name": "linear sieve (Euler's sieve)",
+   "mechanism": "keep a list of primes and cross off i * p for primes p up to the smallest prime factor of i, breaking when p divides i, so each composite is crossed once"
+  },
+  {
+   "mode": "segmented_sieve",
+   "display_name": "segmented sieve",
+   "mechanism": "sieve the range in fixed-size blocks using the primes up to the square root of n"
+  },
+  {
+   "mode": "sundaram",
+   "display_name": "sieve of Sundaram",
+   "mechanism": "cross out i + j + 2ij for 1 <= i <= j and map each surviving k to the odd prime 2k + 1"
+  },
+  {
+   "mode": "atkin",
+   "display_name": "sieve of Atkin",
+   "mechanism": "toggle candidates by the quadratic forms 4x^2 + y^2, 3x^2 + y^2 and 3x^2 - y^2 modulo 12, then remove multiples of squares of primes"
+  }
+ ],
+ "aliases": {
+  "eratosthenes": [
+   "eratosthenes"
+  ],
+  "trial_division": [
+   "trial division",
+   "primality test",
+   "check each number",
+   "is_prime"
+  ],
+  "linear_sieve": [
+   "linear sieve",
+   "euler's sieve",
+   "euler sieve",
+   "sieve of euler"
+  ],
+  "segmented_sieve": [
+   "segmented sieve",
+   "segmented"
+  ],
+  "sundaram": [
+   "sundaram"
+  ],
+  "atkin": [
+   "atkin"
+  ]
+ },
+ "association_template": "What is the standard alternative to {x} for this task? Name one algorithm and answer in one sentence.",
+ "spec_version": 1
+}

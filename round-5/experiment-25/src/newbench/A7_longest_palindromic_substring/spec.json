@@ -1,0 +1,67 @@
+{
+ "task": "A7",
+ "task_id": "A7_longest_palindromic_substring",
+ "leetcode_ids": [
+  5
+ ],
+ "signature": "solve(s)",
+ "description": "Task: write a Python function solve(s) that returns a longest substring of s that reads the same forwards and backwards. The argument s is a string of 1 to 600 characters, each a lowercase English letter or a digit. When several substrings share the maximum length any one of them is accepted: for s = \"babad\" both \"bab\" and \"aba\" are correct answers, and for s = \"cbbd\" the answer is \"bb\".",
+ "format_line": "Use only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+ "spec_text": "Task: write a Python function solve(s) that returns a longest substring of s that reads the same forwards and backwards. The argument s is a string of 1 to 600 characters, each a lowercase English letter or a digit. When several substrings share the maximum length any one of them is accepted: for s = \"babad\" both \"bab\" and \"aba\" are correct answers, and for s = \"cbbd\" the answer is \"bb\".\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+ "bounds": {
+  "len(s)": [
+   1,
+   600
+  ]
+ },
+ "whitelist": [],
+ "catalogue": [
+  {
+   "mode": "expand_center",
+   "display_name": "expanding around each center",
+   "mechanism": "for each of the 2n - 1 centers expand outwards while the characters on both sides match, keeping the longest"
+  },
+  {
+   "mode": "dp_table",
+   "display_name": "dynamic programming table",
+   "mechanism": "fill a table dp[i][j] that records whether s[i..j] reads the same both ways from shorter substrings (dp[i + 1][j - 1])"
+  },
+  {
+   "mode": "manacher",
+   "display_name": "Manacher's algorithm",
+   "mechanism": "transform the string with separators and compute all radii in linear time by mirroring around the rightmost known center"
+  },
+  {
+   "mode": "brute_force",
+   "display_name": "brute force",
+   "mechanism": "check every substring (or every substring from longest to shortest) by comparing it with its reverse"
+  }
+ ],
+ "aliases": {
+  "expand_center": [
+   "expand around",
+   "center expansion",
+   "expanding around",
+   "expand from the",
+   "around each center",
+   "around the center",
+   "around center"
+  ],
+  "dp_table": [
+   "dynamic programming",
+   "dp table",
+   "dp"
+  ],
+  "manacher": [
+   "manacher"
+  ],
+  "brute_force": [
+   "brute force",
+   "brute-force",
+   "check every substring",
+   "all substrings"
+  ]
+ },
+ "association_template": "What is the standard alternative to {x} for this task? Name one algorithm and answer in one sentence.",
+ "spec_version": 1
+}

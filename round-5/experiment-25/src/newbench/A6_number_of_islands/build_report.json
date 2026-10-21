@@ -1,0 +1,95 @@
+{
+ "unit": "A6",
+ "utc": "2026-10-21T12:56:24Z",
+ "n_lc_ok": 59,
+ "n_lc_kept": 40,
+ "n_generated": 29,
+ "oracle": "dfs_flood",
+ "n_cases": 69,
+ "n_stress": 6,
+ "references": {
+  "dfs_flood": {
+   "passed": true,
+   "n_pass": 69,
+   "max_time_over_limit": 0.00022109498968347907,
+   "first_fail": null,
+   "load_error": null
+  },
+  "bfs_flood": {
+   "passed": true,
+   "n_pass": 69,
+   "max_time_over_limit": 0.00022210698807612062,
+   "first_fail": null,
+   "load_error": null
+  },
+  "union_find": {
+   "passed": true,
+   "n_pass": 69,
+   "max_time_over_limit": 0.00022466201335191727,
+   "first_fail": null,
+   "load_error": null
+  }
+ },
+ "mutants": {
+  "dfs_flood_mut0": {
+   "fails": true,
+   "n_pass": 13
+  },
+  "bfs_flood_mut1": {
+   "fails": true,
+   "n_pass": 28
+  },
+  "union_find_mut2": {
+   "fails": true,
+   "n_pass": 16
+  }
+ },
+ "baselines": {},
+ "labels_on_references": {
+  "dfs_flood": {
+   "runtime": "dfs_flood",
+   "ast": "dfs_flood"
+  },
+  "bfs_flood": {
+   "runtime": "bfs_flood",
+   "ast": "bfs_flood"
+  },
+  "union_find": {
+   "runtime": "union_find",
+   "ast": "union_find"
+  }
+ },
+ "labels_on_variants": {
+  "dfs_stack": {
+   "expected": "dfs_flood",
+   "runtime": "dfs_flood",
+   "ast": "dfs_flood"
+  },
+  "dfs_sink": {
+   "expected": "dfs_flood",
+   "runtime": "dfs_flood",
+   "ast": "unknown"
+  },
+  "bfs_list_pop0": {
+   "expected": "bfs_flood",
+   "runtime": "bfs_flood",
+   "ast": "bfs_flood"
+  },
+  "uf_class": {
+   "expected": "union_find",
+   "runtime": "union_find",
+   "ast": "union_find"
+  }
+ },
+ "ref_label_acc_runtime": 1.0,
+ "ref_label_acc_ast": 1.0,
+ "variant_acc_runtime": 1.0,
+ "variant_acc_ast": 0.75,
+ "checks": {
+  "references_all_pass": true,
+  "references_within_quarter_limit": true,
+  "mutants_all_fail": true,
+  "baselines_as_expected": true,
+  "labellers_100pct_on_references": true
+ }
+}
