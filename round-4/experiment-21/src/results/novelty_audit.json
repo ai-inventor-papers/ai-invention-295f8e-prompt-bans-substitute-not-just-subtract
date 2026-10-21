@@ -1,0 +1,27 @@
+{
+ "n_correct_other_programs": 1,
+ "n_unique": 1,
+ "rows": [
+  {
+   "task": "T2",
+   "arm": "PN_D46005_a2.0_T1.0",
+   "template": "W4",
+   "sample_id": 2,
+   "judge_a": "degenerate",
+   "judge_b": "catalogue variant",
+   "final": "labeller miss",
+   "raw_a": "```json\n{\"label\": \"degenerate\", \"algorithm\": \"dijkstra (naive implementation)\"}\n```",
+   "raw_b": "```json\n{\"label\": \"catalogue variant\", \"algorithm\": \"dijkstra\"}\n```",
+   "nearest_known_jaccard": 0.19144144144144143,
+   "nearest_known_head": "import sys\ndef sfpa ( V , src , Edges , M ) :\n    g = [ [ ] for i in range ( V ) ]\n    for i in range ( M ) :\n        u = Edges [ i ] [ 0 ]\n        v = Edges [ i ] [ 1 ]\n        w = Edges [ i ] [ 2 ]\n        g [ u ] . append ( [ v , w ] )\n    dist = [ sys . maxsize for i in range ( V ) ]\n    inQueue"
+  }
+ ],
+ "final_counts": {
+  "labeller miss": 1
+ },
+ "per_arm": {
+  "PN_D46005_a2.0_T1.0|labeller miss": 1
+ },
+ "usd": 0.0008011100000000001,
+ "manual_pass": "each row carries its AST-nearest known solution (Jaccard of identifier-normalised 4-gram shingles) for the executor's manual read"
+}

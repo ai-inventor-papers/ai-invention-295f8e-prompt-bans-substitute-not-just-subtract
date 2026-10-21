@@ -1,0 +1,91 @@
+{
+ "task": "R3",
+ "task_id": "R3_topological_order",
+ "leetcode_ids": [
+  210
+ ],
+ "signature": "solve(n, prerequisites)",
+ "description": "Task: write a Python function solve(n, prerequisites) that orders n tasks numbered 0 to n - 1. Each pair [a, b] in the list prerequisites means that task b has to come before task a. Return a list that contains every task exactly once and respects every pair; if several orders are valid, any of them is accepted. If no valid order exists, return an empty list. Here 1 <= n <= 500, 0 <= len(prerequisites) <= 2000, a != b, and no pair is repeated.",
+ "format_line": "Use only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+ "spec_text": "Task: write a Python function solve(n, prerequisites) that orders n tasks numbered 0 to n - 1. Each pair [a, b] in the list prerequisites means that task b has to come before task a. Return a list that contains every task exactly once and respects every pair; if several orders are valid, any of them is accepted. If no valid order exists, return an empty list. Here 1 <= n <= 500, 0 <= len(prerequisites) <= 2000, a != b, and no pair is repeated.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+ "bounds": {
+  "n": [
+   1,
+   500
+  ],
+  "edges": [
+   0,
+   2000
+  ]
+ },
+ "catalogue": [
+  {
+   "mode": "kahn",
+   "display_name": "Kahn's in-degree queue",
+   "mechanism": "compute in-degrees and repeatedly pop zero in-degree nodes from a queue, decrementing their successors"
+  },
+  {
+   "mode": "dfs_postorder",
+   "display_name": "DFS post-order",
+   "mechanism": "depth-first search with three colours; emit nodes in post-order and reverse, reporting a back edge as a cycle"
+  },
+  {
+   "mode": "source_removal",
+   "display_name": "repeated source removal",
+   "mechanism": "repeatedly rescan the remaining nodes for one with no remaining prerequisite and delete it, without a maintained queue"
+  },
+  {
+   "mode": "layering",
+   "display_name": "longest-path layering",
+   "mechanism": "assign each node its longest-path depth from the sources and output nodes sorted by depth"
+  }
+ ],
+ "aliases": {
+  "kahn": [
+   "kahn",
+   "in-degree",
+   "indegree",
+   "in degree",
+   "bfs",
+   "breadth-first"
+  ],
+  "dfs_postorder": [
+   "post-order",
+   "postorder",
+   "post order",
+   "dfs",
+   "depth-first",
+   "depth first",
+   "three colours",
+   "three colors"
+  ],
+  "source_removal": [
+   "source removal",
+   "source-removal",
+   "remove sources",
+   "repeated removal"
+  ],
+  "layering": [
+   "layering",
+   "longest path",
+   "longest-path",
+   "levels",
+   "layer"
+  ]
+ },
+ "forced_templates": [
+  "Implement {j} for this task.",
+  "Use {j} to solve this task.",
+  "Solve this task with {j}.",
+  "Your solution should use {j}.",
+  "Write an implementation based on {j}.",
+  "Solve the task below using {j}.",
+  "Your solution must implement {j}.",
+  "Write code that implements {j}.",
+  "Base your solution on {j}.",
+  "Apply {j} to solve this task."
+ ],
+ "descriptive_forced_template": "Implement the approach described as: {d}",
+ "association_template": "What is the standard alternative to {x} for this task? Name one algorithm and answer in one sentence.",
+ "spec_version": 1
+}

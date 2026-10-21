@@ -1,0 +1,22 @@
+entries:
+  - path: .venv_hf/
+    delete: regenerable
+    source: "uv venv .venv_hf --python=3.12 && uv pip install --python .venv_hf/bin/python -r env/requirements_hf.txt"
+  - path: .venv_vllm/
+    delete: regenerable
+    source: "uv venv .venv_vllm --python=3.12 && uv pip install --python .venv_vllm/bin/python -r env/requirements_vllm.txt"
+  - path: src/__pycache__/
+    delete: regenerable
+    source: "python -m compileall src"
+  - path: analysis/__pycache__/
+    delete: regenerable
+    source: "python -m compileall analysis"
+  - path: audit/__pycache__/
+    delete: regenerable
+    source: "python -m compileall audit"
+  - path: inputs/exp8/suite/tasks/__pycache__/
+    delete: regenerable
+    source: "python -m compileall inputs/exp8/suite/tasks"
+  - path: inputs/exp11/bench/common/__pycache__/
+    delete: regenerable
+    source: "python -m compileall inputs/exp11/bench/common"
