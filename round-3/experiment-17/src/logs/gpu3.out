@@ -1,0 +1,118 @@
+21:10:41|INFO   |stage gpu3: deadline in 35 min, optional until +0 min
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:02,  1.45it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.33it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.34it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  1.42it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.98it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.66it/s]
+21:11:49|INFO   |bf16 weights on CPU in 5s; quantising decoder linears to FP8
+21:12:35|INFO   |Qwen/Qwen3-8B loaded in 50s ({'n_fp8_linears': 252}); free VRAM 7.2/16.7 GB
+21:13:04|INFO   |C2e-X states T2: 100 rows
+21:13:28|INFO   |C2e-X states T04: 100 rows
+21:14:14|INFO   |C2e-X states T1: 160 rows
+./src/engine.py:216: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  tok = torch.searchsorted(cdf, u[:, None].to(cdf.dtype)).squeeze(-1)
+21:14:38|INFO   |X1:T2:W1:b0 T2/W1 ['RAND9004_a1.0', 'RAND9005_a1.0']: 23.3s, 376 steps, max len 373
+21:14:57|INFO   |X1:T2:W1:b1 T2/W1 ['RAND9006_a1.0', 'RAND9007_a1.0']: 19.3s, 320 steps, max len 314
+21:15:11|INFO   |X1:T2:W1:b2 T2/W1 ['RAND9008_a1.0', 'RAND9009_a1.0']: 13.6s, 224 steps, max len 224
+21:15:24|INFO   |X1:T2:W1:b3 T2/W1 ['RAND9010_a1.0', 'RAND9011_a1.0']: 13.0s, 216 steps, max len 214
+21:15:36|INFO   |X1:T2:W1:b4 T2/W1 ['RAND9012_a1.0', 'RAND9013_a1.0']: 12.5s, 208 steps, max len 207
+21:15:49|INFO   |X1:T2:W1:b5 T2/W1 ['RAND9014_a1.0', 'RAND9015_a1.0']: 13.0s, 216 steps, max len 212
+21:16:06|INFO   |X1:T2:W2:b0 T2/W2 ['RAND9004_a1.0', 'RAND9005_a1.0']: 16.5s, 272 steps, max len 266
+21:16:23|INFO   |X1:T2:W2:b1 T2/W2 ['RAND9006_a1.0', 'RAND9007_a1.0']: 17.3s, 288 steps, max len 286
+21:16:36|INFO   |X1:T2:W2:b2 T2/W2 ['RAND9008_a1.0', 'RAND9009_a1.0']: 13.0s, 216 steps, max len 216
+21:16:48|INFO   |X1:T2:W2:b3 T2/W2 ['RAND9010_a1.0', 'RAND9011_a1.0']: 12.0s, 200 steps, max len 196
+21:17:00|INFO   |X1:T2:W2:b4 T2/W2 ['RAND9012_a1.0', 'RAND9013_a1.0']: 12.0s, 200 steps, max len 196
+21:17:14|INFO   |X1:T2:W2:b5 T2/W2 ['RAND9014_a1.0', 'RAND9015_a1.0']: 13.4s, 224 steps, max len 217
+21:17:37|INFO   |X1:T2:W3:b0 T2/W3 ['RAND9004_a1.0', 'RAND9005_a1.0']: 23.4s, 384 steps, max len 383
+21:17:50|INFO   |X1:T2:W3:b1 T2/W3 ['RAND9006_a1.0', 'RAND9007_a1.0']: 13.0s, 216 steps, max len 214
+21:18:03|INFO   |X1:T2:W3:b2 T2/W3 ['RAND9008_a1.0', 'RAND9009_a1.0']: 12.5s, 208 steps, max len 201
+21:18:15|INFO   |X1:T2:W3:b3 T2/W3 ['RAND9010_a1.0', 'RAND9011_a1.0']: 12.0s, 200 steps, max len 198
+21:18:27|INFO   |X1:T2:W3:b4 T2/W3 ['RAND9012_a1.0', 'RAND9013_a1.0']: 12.0s, 200 steps, max len 193
+21:18:40|INFO   |X1:T2:W3:b5 T2/W3 ['RAND9014_a1.0', 'RAND9015_a1.0']: 13.5s, 224 steps, max len 217
+21:19:03|INFO   |X1:T2:W4:b0 T2/W4 ['RAND9004_a1.0', 'RAND9005_a1.0']: 23.0s, 376 steps, max len 370
+21:19:16|INFO   |X1:T2:W4:b1 T2/W4 ['RAND9006_a1.0', 'RAND9007_a1.0']: 12.9s, 216 steps, max len 212
+21:19:29|INFO   |X1:T2:W4:b2 T2/W4 ['RAND9008_a1.0', 'RAND9009_a1.0']: 12.5s, 208 steps, max len 201
+21:19:41|INFO   |X1:T2:W4:b3 T2/W4 ['RAND9010_a1.0', 'RAND9011_a1.0']: 12.2s, 200 steps, max len 198
+21:19:57|INFO   |X1:T2:W4:b4 T2/W4 ['RAND9012_a1.0', 'RAND9013_a1.0']: 16.3s, 272 steps, max len 271
+21:20:12|INFO   |X1:T2:W4:b5 T2/W4 ['RAND9014_a1.0', 'RAND9015_a1.0']: 14.4s, 240 steps, max len 236
+21:20:30|INFO   |X1:T2:W5:b0 T2/W5 ['RAND9004_a1.0', 'RAND9005_a1.0']: 18.5s, 304 steps, max len 299
+21:20:54|INFO   |X1:T2:W5:b1 T2/W5 ['RAND9006_a1.0', 'RAND9007_a1.0']: 23.7s, 392 steps, max len 389
+21:21:07|INFO   |X1:T2:W5:b2 T2/W5 ['RAND9008_a1.0', 'RAND9009_a1.0']: 12.5s, 208 steps, max len 203
+21:21:24|INFO   |X1:T2:W5:b3 T2/W5 ['RAND9010_a1.0', 'RAND9011_a1.0']: 17.8s, 296 steps, max len 294
+21:21:36|INFO   |X1:T2:W5:b4 T2/W5 ['RAND9012_a1.0', 'RAND9013_a1.0']: 12.0s, 200 steps, max len 199
+21:21:51|INFO   |X1:T2:W5:b5 T2/W5 ['RAND9014_a1.0', 'RAND9015_a1.0']: 14.4s, 240 steps, max len 235
+21:21:51|INFO   |X1 extra random directions T2: 30 batches
+21:22:13|INFO   |X1:T1:W1:b0 T1/W1 ['RAND9004_a1.0', 'RAND9005_a1.0']: 22.2s, 360 steps, max len 354
+21:22:38|INFO   |X1:T1:W1:b1 T1/W1 ['RAND9006_a1.0', 'RAND9007_a1.0']: 24.6s, 400 steps, max len 398
+21:22:59|INFO   |X1:T1:W1:b2 T1/W1 ['RAND9008_a1.0', 'RAND9009_a1.0']: 21.5s, 352 steps, max len 352
+21:23:22|INFO   |X1:T1:W1:b3 T1/W1 ['RAND9010_a1.0', 'RAND9011_a1.0']: 23.0s, 376 steps, max len 373
+21:23:43|INFO   |X1:T1:W1:b4 T1/W1 ['RAND9012_a1.0', 'RAND9013_a1.0']: 21.0s, 344 steps, max len 338
+21:24:07|INFO   |X1:T1:W1:b5 T1/W1 ['RAND9014_a1.0', 'RAND9015_a1.0']: 24.0s, 392 steps, max len 391
+21:24:33|INFO   |X1:T1:W2:b0 T1/W2 ['RAND9004_a1.0', 'RAND9005_a1.0']: 25.7s, 416 steps, max len 416
+21:24:55|INFO   |X1:T1:W2:b1 T1/W2 ['RAND9006_a1.0', 'RAND9007_a1.0']: 22.0s, 360 steps, max len 353
+21:25:15|INFO   |X1:T1:W2:b2 T1/W2 ['RAND9008_a1.0', 'RAND9009_a1.0']: 20.0s, 328 steps, max len 327
+21:25:37|INFO   |X1:T1:W2:b3 T1/W2 ['RAND9010_a1.0', 'RAND9011_a1.0']: 22.0s, 360 steps, max len 353
+21:26:00|INFO   |X1:T1:W2:b4 T1/W2 ['RAND9012_a1.0', 'RAND9013_a1.0']: 22.5s, 368 steps, max len 364
+21:26:26|INFO   |X1:T1:W2:b5 T1/W2 ['RAND9014_a1.0', 'RAND9015_a1.0']: 26.5s, 432 steps, max len 425
+21:26:49|INFO   |X1:T1:W3:b0 T1/W3 ['RAND9004_a1.0', 'RAND9005_a1.0']: 22.3s, 360 steps, max len 355
+21:27:11|INFO   |X1:T1:W3:b1 T1/W3 ['RAND9006_a1.0', 'RAND9007_a1.0']: 22.0s, 360 steps, max len 357
+21:27:31|INFO   |X1:T1:W3:b2 T1/W3 ['RAND9008_a1.0', 'RAND9009_a1.0']: 20.0s, 328 steps, max len 328
+21:27:52|INFO   |X1:T1:W3:b3 T1/W3 ['RAND9010_a1.0', 'RAND9011_a1.0']: 21.4s, 352 steps, max len 349
+21:28:13|INFO   |X1:T1:W3:b4 T1/W3 ['RAND9012_a1.0', 'RAND9013_a1.0']: 21.4s, 352 steps, max len 349
+21:28:39|INFO   |X1:T1:W3:b5 T1/W3 ['RAND9014_a1.0', 'RAND9015_a1.0']: 25.5s, 416 steps, max len 412
+21:29:01|INFO   |X1:T1:W4:b0 T1/W4 ['RAND9004_a1.0', 'RAND9005_a1.0']: 22.2s, 360 steps, max len 359
+21:29:26|INFO   |X1:T1:W4:b1 T1/W4 ['RAND9006_a1.0', 'RAND9007_a1.0']: 25.0s, 408 steps, max len 405
+21:29:48|INFO   |X1:T1:W4:b2 T1/W4 ['RAND9008_a1.0', 'RAND9009_a1.0']: 21.5s, 352 steps, max len 347
+21:30:10|INFO   |X1:T1:W4:b3 T1/W4 ['RAND9010_a1.0', 'RAND9011_a1.0']: 22.0s, 360 steps, max len 354
+21:30:32|INFO   |X1:T1:W4:b4 T1/W4 ['RAND9012_a1.0', 'RAND9013_a1.0']: 22.5s, 368 steps, max len 364
+21:30:55|INFO   |X1:T1:W4:b5 T1/W4 ['RAND9014_a1.0', 'RAND9015_a1.0']: 23.0s, 376 steps, max len 372
+21:31:17|INFO   |X1:T1:W5:b0 T1/W5 ['RAND9004_a1.0', 'RAND9005_a1.0']: 21.7s, 352 steps, max len 350
+21:31:38|INFO   |X1:T1:W5:b1 T1/W5 ['RAND9006_a1.0', 'RAND9007_a1.0']: 20.5s, 336 steps, max len 334
+21:31:57|INFO   |X1:T1:W5:b2 T1/W5 ['RAND9008_a1.0', 'RAND9009_a1.0']: 20.0s, 328 steps, max len 323
+21:32:18|INFO   |X1:T1:W5:b3 T1/W5 ['RAND9010_a1.0', 'RAND9011_a1.0']: 20.5s, 336 steps, max len 333
+21:32:38|INFO   |X1:T1:W5:b4 T1/W5 ['RAND9012_a1.0', 'RAND9013_a1.0']: 20.5s, 336 steps, max len 336
+21:32:59|INFO   |X1:T1:W5:b5 T1/W5 ['RAND9014_a1.0', 'RAND9015_a1.0']: 21.0s, 344 steps, max len 339
+21:33:00|INFO   |X1 extra random directions T1: 30 batches
+21:33:02|INFO   |X1:T03:W1:b0 T03/W1 ['RAND9004_a1.0', 'RAND9005_a1.0']: 1.9s, 24 steps, max len 22
+21:33:15|INFO   |X1:T03:W1:b1 T03/W1 ['RAND9006_a1.0', 'RAND9007_a1.0']: 12.9s, 216 steps, max len 209
+21:33:16|INFO   |X1:T03:W1:b2 T03/W1 ['RAND9008_a1.0', 'RAND9009_a1.0']: 1.7s, 24 steps, max len 22
+21:33:29|INFO   |X1:T03:W1:b3 T03/W1 ['RAND9010_a1.0', 'RAND9011_a1.0']: 12.9s, 216 steps, max len 213
+21:33:31|INFO   |X1:T03:W1:b4 T03/W1 ['RAND9012_a1.0', 'RAND9013_a1.0']: 1.7s, 24 steps, max len 22
+21:33:43|INFO   |X1:T03:W1:b5 T03/W1 ['RAND9014_a1.0', 'RAND9015_a1.0']: 12.0s, 200 steps, max len 199
+21:33:45|INFO   |X1:T03:W2:b0 T03/W2 ['RAND9004_a1.0', 'RAND9005_a1.0']: 2.3s, 32 steps, max len 26
+21:33:58|INFO   |X1:T03:W2:b1 T03/W2 ['RAND9006_a1.0', 'RAND9007_a1.0']: 12.4s, 208 steps, max len 207
+21:33:59|INFO   |X1:T03:W2:b2 T03/W2 ['RAND9008_a1.0', 'RAND9009_a1.0']: 1.7s, 24 steps, max len 22
+21:34:12|INFO   |X1:T03:W2:b3 T03/W2 ['RAND9010_a1.0', 'RAND9011_a1.0']: 12.9s, 216 steps, max len 209
+21:34:15|INFO   |X1:T03:W2:b4 T03/W2 ['RAND9012_a1.0', 'RAND9013_a1.0']: 3.1s, 48 steps, max len 44
+21:34:17|INFO   |X1:T03:W2:b5 T03/W2 ['RAND9014_a1.0', 'RAND9015_a1.0']: 2.1s, 32 steps, max len 27
+21:34:19|INFO   |X1:T03:W3:b0 T03/W3 ['RAND9004_a1.0', 'RAND9005_a1.0']: 1.8s, 24 steps, max len 22
+21:34:31|INFO   |X1:T03:W3:b1 T03/W3 ['RAND9006_a1.0', 'RAND9007_a1.0']: 11.9s, 200 steps, max len 199
+21:34:37|INFO   |X1:T03:W3:b2 T03/W3 ['RAND9008_a1.0', 'RAND9009_a1.0']: 5.8s, 96 steps, max len 92
+21:34:50|INFO   |X1:T03:W3:b3 T03/W3 ['RAND9010_a1.0', 'RAND9011_a1.0']: 12.8s, 216 steps, max len 213
+21:34:52|INFO   |X1:T03:W3:b4 T03/W3 ['RAND9012_a1.0', 'RAND9013_a1.0']: 1.7s, 24 steps, max len 22
+21:35:01|INFO   |X1:T03:W3:b5 T03/W3 ['RAND9014_a1.0', 'RAND9015_a1.0']: 9.1s, 152 steps, max len 145
+21:35:03|INFO   |X1:T03:W4:b0 T03/W4 ['RAND9004_a1.0', 'RAND9005_a1.0']: 1.9s, 24 steps, max len 22
+21:35:15|INFO   |X1:T03:W4:b1 T03/W4 ['RAND9006_a1.0', 'RAND9007_a1.0']: 11.9s, 200 steps, max len 199
+21:35:16|INFO   |X1:T03:W4:b2 T03/W4 ['RAND9008_a1.0', 'RAND9009_a1.0']: 1.7s, 24 steps, max len 22
+21:35:25|INFO   |X1:T03:W4:b3 T03/W4 ['RAND9010_a1.0', 'RAND9011_a1.0']: 9.1s, 152 steps, max len 145
+21:35:28|INFO   |X1:T03:W4:b4 T03/W4 ['RAND9012_a1.0', 'RAND9013_a1.0']: 3.1s, 48 steps, max len 44
+21:35:31|INFO   |X1:T03:W4:b5 T03/W4 ['RAND9014_a1.0', 'RAND9015_a1.0']: 2.1s, 32 steps, max len 27
+21:35:33|INFO   |X1:T03:W5:b0 T03/W5 ['RAND9004_a1.0', 'RAND9005_a1.0']: 2.0s, 24 steps, max len 22
+21:35:34|INFO   |X1:T03:W5:b1 T03/W5 ['RAND9006_a1.0', 'RAND9007_a1.0']: 1.7s, 24 steps, max len 22
+21:35:36|INFO   |X1:T03:W5:b2 T03/W5 ['RAND9008_a1.0', 'RAND9009_a1.0']: 1.7s, 24 steps, max len 23
+21:35:49|INFO   |X1:T03:W5:b3 T03/W5 ['RAND9010_a1.0', 'RAND9011_a1.0']: 13.3s, 224 steps, max len 217
+21:35:51|INFO   |X1:T03:W5:b4 T03/W5 ['RAND9012_a1.0', 'RAND9013_a1.0']: 1.7s, 24 steps, max len 22
+21:35:58|INFO   |X1:T03:W5:b5 T03/W5 ['RAND9014_a1.0', 'RAND9015_a1.0']: 6.7s, 112 steps, max len 105
+21:35:58|INFO   |X1 extra random directions T03: 30 batches
+21:36:05|INFO   |C2e-X T2 k24: state 0.574 (null q95 0.689) text {'Ta': 0.4015151560306549, 'Td': 0.47159090638160706, 'Tc': 0.5, 'template_only': 0.4280303120613098}
+21:36:11|INFO   |C2e-X T2 k32: state 0.663 (null q95 0.703) text {'Ta': 0.46780306100845337, 'Td': 0.47727271914482117, 'Tc': 0.48295454545454547, 'template_only': 0.4280303120613098}
+21:36:16|INFO   |C2e-X T2 k48: state 0.449 (null q95 0.697) text {'Ta': 0.46022728085517883, 'Td': 0.5359848737716675, 'Tc': 0.48863636363636365, 'template_only': 0.4280303120613098}
+21:36:22|INFO   |C2e-X T2 k64: state 0.502 (null q95 0.695) text {'Ta': 0.405303031206131, 'Td': 0.4526515305042267, 'Tc': 0.48863636363636365, 'template_only': 0.4280303120613098}
+21:36:26|INFO   |C2e-X T2 k96: state 0.750 (null q95 0.663) text {'Ta': 0.5587121248245239, 'Td': 0.5946969389915466, 'Tc': 0.5, 'template_only': 0.4280303120613098}
+21:36:32|INFO   |C2e-X T04 k24: state 0.810 (null q95 0.842) text {'Ta': 0.8293317556381226, 'Td': 0.8293317556381226, 'Tc': 0.8297318927571029, 'template_only': 0.832132875919342}
+21:36:37|INFO   |C2e-X T04 k32: state 0.820 (null q95 0.831) text {'Ta': 0.8293317556381226, 'Td': 0.8297319412231445, 'Tc': 0.8301320528211285, 'template_only': 0.832132875919342}
+21:36:42|INFO   |C2e-X T04 k48: state 0.849 (null q95 0.789) text {'Ta': 0.8395358324050903, 'Td': 0.8991596698760986, 'Tc': 0.9211684673869548, 'template_only': 0.832132875919342}
+21:36:47|INFO   |C2e-X T04 k64: state 0.818 (null q95 0.769) text {'Ta': 0.7971188426017761, 'Td': 0.7661064863204956, 'Tc': 0.9309723889555822, 'template_only': 0.832132875919342}
+21:36:54|INFO   |C2e-X T1 k24: state 0.883 (null q95 0.896) text {'Ta': 0.8693492412567139, 'Td': 0.8693492412567139, 'Tc': 0.904040404040404, 'template_only': 0.9040403962135315}
+21:37:01|INFO   |C2e-X T1 k32: state 0.868 (null q95 0.881) text {'Ta': 0.8580062389373779, 'Td': 0.8479052782058716, 'Tc': 0.9022189104156317, 'template_only': 0.9040403962135315}
+21:37:06|INFO   |C2e-X T1 k48: state 0.871 (null q95 0.860) text {'Ta': 0.8466633558273315, 'Td': 0.8309322595596313, 'Tc': 0.9533035270740189, 'template_only': 0.9040403962135315}
+21:37:12|INFO   |C2e-X T1 k64: state 0.869 (null q95 0.842) text {'Ta': 0.808163583278656, 'Td': 0.8094055652618408, 'Tc': 0.9545454545454546, 'template_only': 0.9040403962135315}
+21:37:18|INFO   |C2e-X T1 k96: state 0.850 (null q95 0.796) text {'Ta': 0.8201689124107361, 'Td': 0.7785229086875916, 'Tc': 0.9311972180824639, 'template_only': 0.9040403962135315}

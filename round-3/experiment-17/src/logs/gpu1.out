@@ -1,0 +1,170 @@
+19:26:54|INFO   |stage gpu1: deadline in 78 min, optional until +92 min
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:02,  1.45it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.28it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.28it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  1.39it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.93it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.61it/s]
+19:28:04|INFO   |bf16 weights on CPU in 4s; quantising decoder linears to FP8
+19:28:48|INFO   |Qwen/Qwen3-8B loaded in 49s ({'n_fp8_linears': 252}); free VRAM 7.2/16.7 GB
+./src/engine.py:216: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  tok = torch.searchsorted(cdf, u[:, None].to(cdf.dtype)).squeeze(-1)
+19:29:03|INFO   |GPU unit tests: {'U1_crn_determinism': True, 'U2a_add_alpha0_identical_ids': True, 'U2a_r_logits_max_abs_diff': 0.0, 'U2b_rel_err_along_u_ADD1_max': 0.0031176614575088024, 'U2b_rel_err_along_u_RAND2_max': 0.00011462197289802134, 'U2b_pass': True, 'U2c_sub_plain_max_ratio': 0.0009793194476515055, 'U2c_pass': True, 'U2d_heads_identity_ids': True, 'U3_max_rel_diff_sampling_vs_teacher_forced': 0.07280940562486649, 'U3_mean_rel_diff_aligned': 0.051953304558992386, 'U3_mean_rel_diff_off_by_one': 0.8230510950088501, 'U3_pass': True, 'seconds': 15.343880891799927, 'all_pass': True}
+19:29:04|INFO   |commit #1: 34 files hash-chained
+19:29:31|INFO   |U7:T2:W1:BAN T2/W1 ['BAN']: 27.4s, 456 steps, max len 451
+19:29:31|INFO   |U7 BAN: 20 rows sampled with exp8 keys
+19:29:43|INFO   |U7:T2:W1:NEUTRAL T2/W1 ['NEUTRAL']: 11.8s, 200 steps, max len 196
+19:29:43|INFO   |U7 NEUTRAL: 20 rows sampled with exp8 keys
+19:29:55|INFO   |S5:T2:W1:b0 T2/W1 ['NEUTRAL']: 12.3s, 208 steps, max len 202
+19:30:09|INFO   |S5:T2:W1:b1 T2/W1 ['ADD_a1.0', 'ADD_a2.0']: 13.4s, 224 steps, max len 224
+19:30:22|INFO   |S5:T2:W1:b2 T2/W1 ['RAND9001_a1.0', 'RAND9002_a1.0']: 13.5s, 224 steps, max len 218
+19:30:41|INFO   |S5:T2:W1:b3 T2/W1 ['RAND9003_a1.0', 'RAND9001_a2.0']: 18.2s, 304 steps, max len 302
+19:30:52|INFO   |S5:T2:W2:b0 T2/W2 ['NEUTRAL']: 11.8s, 200 steps, max len 196
+19:31:06|INFO   |S5:T2:W2:b1 T2/W2 ['ADD_a1.0', 'ADD_a2.0']: 13.9s, 232 steps, max len 230
+19:31:19|INFO   |S5:T2:W2:b2 T2/W2 ['RAND9001_a1.0', 'RAND9002_a1.0']: 12.5s, 208 steps, max len 204
+19:31:33|INFO   |S5:T2:W2:b3 T2/W2 ['RAND9003_a1.0', 'RAND9001_a2.0']: 13.9s, 232 steps, max len 231
+19:31:45|INFO   |S5:T2:W3:b0 T2/W3 ['NEUTRAL']: 11.8s, 200 steps, max len 198
+19:31:58|INFO   |S5:T2:W3:b1 T2/W3 ['ADD_a1.0', 'ADD_a2.0']: 13.0s, 216 steps, max len 210
+19:32:10|INFO   |S5:T2:W3:b2 T2/W3 ['RAND9001_a1.0', 'RAND9002_a1.0']: 12.5s, 208 steps, max len 207
+19:32:24|INFO   |S5:T2:W3:b3 T2/W3 ['RAND9003_a1.0', 'RAND9001_a2.0']: 13.4s, 224 steps, max len 218
+19:32:35|INFO   |S5:T2:W4:b0 T2/W4 ['NEUTRAL']: 11.8s, 200 steps, max len 199
+19:32:48|INFO   |S5:T2:W4:b1 T2/W4 ['ADD_a1.0', 'ADD_a2.0']: 12.5s, 208 steps, max len 205
+19:33:03|INFO   |S5:T2:W4:b2 T2/W4 ['RAND9001_a1.0', 'RAND9002_a1.0']: 14.9s, 248 steps, max len 248
+19:33:24|INFO   |S5:T2:W4:b3 T2/W4 ['RAND9003_a1.0', 'RAND9001_a2.0']: 21.7s, 360 steps, max len 357
+19:33:36|INFO   |S5:T2:W5:b0 T2/W5 ['NEUTRAL']: 11.8s, 200 steps, max len 194
+19:33:50|INFO   |S5:T2:W5:b1 T2/W5 ['ADD_a1.0', 'ADD_a2.0']: 13.5s, 224 steps, max len 217
+19:34:03|INFO   |S5:T2:W5:b2 T2/W5 ['RAND9001_a1.0', 'RAND9002_a1.0']: 13.4s, 224 steps, max len 217
+19:34:17|INFO   |S5:T2:W5:b3 T2/W5 ['RAND9003_a1.0', 'RAND9001_a2.0']: 13.5s, 224 steps, max len 217
+19:34:17|INFO   |S5 T2: 20 new batches
+19:34:41|INFO   |S5:T1:W1:b0 T1/W1 ['NEUTRAL']: 23.7s, 392 steps, max len 387
+19:35:07|INFO   |S5:T1:W1:b1 T1/W1 ['ADD_a1.0', 'ADD_a2.0']: 26.0s, 424 steps, max len 420
+19:35:29|INFO   |S5:T1:W1:b2 T1/W1 ['RAND9001_a1.0', 'RAND9002_a1.0']: 22.0s, 360 steps, max len 357
+19:35:52|INFO   |S5:T1:W1:b3 T1/W1 ['RAND9003_a1.0', 'RAND9001_a2.0']: 23.5s, 384 steps, max len 379
+19:36:16|INFO   |S5:T1:W2:b0 T1/W2 ['NEUTRAL']: 23.7s, 392 steps, max len 388
+19:36:40|INFO   |S5:T1:W2:b1 T1/W2 ['ADD_a1.0', 'ADD_a2.0']: 24.0s, 392 steps, max len 389
+19:37:04|INFO   |S5:T1:W2:b2 T1/W2 ['RAND9001_a1.0', 'RAND9002_a1.0']: 24.0s, 392 steps, max len 391
+19:37:27|INFO   |S5:T1:W2:b3 T1/W2 ['RAND9003_a1.0', 'RAND9001_a2.0']: 23.5s, 384 steps, max len 377
+19:37:53|INFO   |S5:T1:W3:b0 T1/W3 ['NEUTRAL']: 25.7s, 424 steps, max len 423
+19:38:18|INFO   |S5:T1:W3:b1 T1/W3 ['ADD_a1.0', 'ADD_a2.0']: 24.5s, 400 steps, max len 398
+19:38:39|INFO   |S5:T1:W3:b2 T1/W3 ['RAND9001_a1.0', 'RAND9002_a1.0']: 21.5s, 352 steps, max len 348
+19:39:02|INFO   |S5:T1:W3:b3 T1/W3 ['RAND9003_a1.0', 'RAND9001_a2.0']: 23.0s, 376 steps, max len 370
+19:39:28|INFO   |S5:T1:W4:b0 T1/W4 ['NEUTRAL']: 25.8s, 424 steps, max len 421
+19:39:54|INFO   |S5:T1:W4:b1 T1/W4 ['ADD_a1.0', 'ADD_a2.0']: 25.5s, 416 steps, max len 411
+19:40:17|INFO   |S5:T1:W4:b2 T1/W4 ['RAND9001_a1.0', 'RAND9002_a1.0']: 23.0s, 376 steps, max len 376
+19:40:40|INFO   |S5:T1:W4:b3 T1/W4 ['RAND9003_a1.0', 'RAND9001_a2.0']: 23.5s, 384 steps, max len 379
+19:41:05|INFO   |S5:T1:W5:b0 T1/W5 ['NEUTRAL']: 24.3s, 400 steps, max len 394
+19:41:26|INFO   |S5:T1:W5:b1 T1/W5 ['ADD_a1.0', 'ADD_a2.0']: 21.5s, 352 steps, max len 351
+19:41:49|INFO   |S5:T1:W5:b2 T1/W5 ['RAND9001_a1.0', 'RAND9002_a1.0']: 23.0s, 376 steps, max len 375
+19:42:12|INFO   |S5:T1:W5:b3 T1/W5 ['RAND9003_a1.0', 'RAND9001_a2.0']: 23.0s, 376 steps, max len 374
+19:42:12|INFO   |S5 T1: 20 new batches
+19:42:14|INFO   |S5:T03:W1:b0 T03/W1 ['NEUTRAL']: 1.5s, 24 steps, max len 22
+19:42:26|INFO   |S5:T03:W1:b1 T03/W1 ['ADD_a1.0', 'ADD_a2.0']: 11.9s, 200 steps, max len 199
+19:42:38|INFO   |S5:T03:W1:b2 T03/W1 ['RAND9001_a1.0', 'RAND9002_a1.0']: 11.9s, 200 steps, max len 195
+19:42:50|INFO   |S5:T03:W1:b3 T03/W1 ['RAND9003_a1.0', 'RAND9001_a2.0']: 12.4s, 208 steps, max len 201
+19:42:52|INFO   |S5:T03:W2:b0 T03/W2 ['NEUTRAL']: 1.5s, 24 steps, max len 22
+19:42:54|INFO   |S5:T03:W2:b1 T03/W2 ['ADD_a1.0', 'ADD_a2.0']: 2.1s, 32 steps, max len 26
+19:43:06|INFO   |S5:T03:W2:b2 T03/W2 ['RAND9001_a1.0', 'RAND9002_a1.0']: 12.0s, 200 steps, max len 199
+19:43:20|INFO   |S5:T03:W2:b3 T03/W2 ['RAND9003_a1.0', 'RAND9001_a2.0']: 13.8s, 232 steps, max len 225
+19:43:29|INFO   |S5:T03:W3:b0 T03/W3 ['NEUTRAL']: 8.9s, 152 steps, max len 145
+19:43:40|INFO   |S5:T03:W3:b1 T03/W3 ['ADD_a1.0', 'ADD_a2.0']: 11.9s, 200 steps, max len 195
+19:43:53|INFO   |S5:T03:W3:b2 T03/W3 ['RAND9001_a1.0', 'RAND9002_a1.0']: 12.3s, 208 steps, max len 201
+19:44:06|INFO   |S5:T03:W3:b3 T03/W3 ['RAND9003_a1.0', 'RAND9001_a2.0']: 13.3s, 224 steps, max len 220
+19:44:08|INFO   |S5:T03:W4:b0 T03/W4 ['NEUTRAL']: 1.5s, 24 steps, max len 22
+19:44:10|INFO   |S5:T03:W4:b1 T03/W4 ['ADD_a1.0', 'ADD_a2.0']: 2.1s, 32 steps, max len 27
+19:44:12|INFO   |S5:T03:W4:b2 T03/W4 ['RAND9001_a1.0', 'RAND9002_a1.0']: 2.1s, 32 steps, max len 27
+19:44:25|INFO   |S5:T03:W4:b3 T03/W4 ['RAND9003_a1.0', 'RAND9001_a2.0']: 13.3s, 224 steps, max len 224
+19:44:27|INFO   |S5:T03:W5:b0 T03/W5 ['NEUTRAL']: 1.5s, 24 steps, max len 23
+19:44:29|INFO   |S5:T03:W5:b1 T03/W5 ['ADD_a1.0', 'ADD_a2.0']: 2.2s, 32 steps, max len 26
+19:44:38|INFO   |S5:T03:W5:b2 T03/W5 ['RAND9001_a1.0', 'RAND9002_a1.0']: 9.1s, 152 steps, max len 145
+19:44:51|INFO   |S5:T03:W5:b3 T03/W5 ['RAND9003_a1.0', 'RAND9001_a2.0']: 13.3s, 224 steps, max len 224
+19:44:52|INFO   |S5 T03: 20 new batches
+19:44:57|INFO   |S5:T04:W1:b0 T04/W1 ['NEUTRAL']: 5.1s, 88 steps, max len 88
+19:45:02|INFO   |S5:T04:W1:b1 T04/W1 ['ADD_a1.0', 'ADD_a2.0']: 5.3s, 88 steps, max len 81
+19:45:07|INFO   |S5:T04:W1:b2 T04/W1 ['RAND9001_a1.0', 'RAND9002_a1.0']: 5.3s, 88 steps, max len 85
+19:45:13|INFO   |S5:T04:W1:b3 T04/W1 ['RAND9003_a1.0', 'RAND9001_a2.0']: 5.3s, 88 steps, max len 85
+19:45:18|INFO   |S5:T04:W2:b0 T04/W2 ['NEUTRAL']: 5.1s, 88 steps, max len 85
+19:45:23|INFO   |S5:T04:W2:b1 T04/W2 ['ADD_a1.0', 'ADD_a2.0']: 5.3s, 88 steps, max len 85
+19:45:28|INFO   |S5:T04:W2:b2 T04/W2 ['RAND9001_a1.0', 'RAND9002_a1.0']: 5.3s, 88 steps, max len 85
+19:45:34|INFO   |S5:T04:W2:b3 T04/W2 ['RAND9003_a1.0', 'RAND9001_a2.0']: 5.3s, 88 steps, max len 85
+19:45:39|INFO   |S5:T04:W3:b0 T04/W3 ['NEUTRAL']: 5.1s, 88 steps, max len 88
+19:45:44|INFO   |S5:T04:W3:b1 T04/W3 ['ADD_a1.0', 'ADD_a2.0']: 5.3s, 88 steps, max len 85
+19:45:50|INFO   |S5:T04:W3:b2 T04/W3 ['RAND9001_a1.0', 'RAND9002_a1.0']: 5.3s, 88 steps, max len 88
+19:45:55|INFO   |S5:T04:W3:b3 T04/W3 ['RAND9003_a1.0', 'RAND9001_a2.0']: 5.3s, 88 steps, max len 85
+19:46:00|INFO   |S5:T04:W4:b0 T04/W4 ['NEUTRAL']: 5.1s, 88 steps, max len 88
+19:46:05|INFO   |S5:T04:W4:b1 T04/W4 ['ADD_a1.0', 'ADD_a2.0']: 5.3s, 88 steps, max len 85
+19:46:11|INFO   |S5:T04:W4:b2 T04/W4 ['RAND9001_a1.0', 'RAND9002_a1.0']: 5.3s, 88 steps, max len 88
+19:46:16|INFO   |S5:T04:W4:b3 T04/W4 ['RAND9003_a1.0', 'RAND9001_a2.0']: 5.3s, 88 steps, max len 85
+19:46:21|INFO   |S5:T04:W5:b0 T04/W5 ['NEUTRAL']: 5.1s, 88 steps, max len 88
+19:46:26|INFO   |S5:T04:W5:b1 T04/W5 ['ADD_a1.0', 'ADD_a2.0']: 5.3s, 88 steps, max len 85
+19:46:32|INFO   |S5:T04:W5:b2 T04/W5 ['RAND9001_a1.0', 'RAND9002_a1.0']: 5.3s, 88 steps, max len 88
+19:46:37|INFO   |S5:T04:W5:b3 T04/W5 ['RAND9003_a1.0', 'RAND9001_a2.0']: 5.3s, 88 steps, max len 85
+19:46:37|INFO   |S5 T04: 20 new batches
+19:46:40|INFO   |S5:T06:W1:b0 T06/W1 ['NEUTRAL']: 2.4s, 40 steps, max len 40
+19:46:42|INFO   |S5:T06:W1:b1 T06/W1 ['ADD_a1.0', 'ADD_a2.0']: 2.5s, 40 steps, max len 40
+19:46:45|INFO   |S5:T06:W1:b2 T06/W1 ['RAND9001_a1.0', 'RAND9002_a1.0']: 2.5s, 40 steps, max len 40
+19:46:47|INFO   |S5:T06:W1:b3 T06/W1 ['RAND9003_a1.0', 'RAND9001_a2.0']: 2.5s, 40 steps, max len 40
+19:46:50|INFO   |S5:T06:W2:b0 T06/W2 ['NEUTRAL']: 2.4s, 40 steps, max len 40
+19:46:52|INFO   |S5:T06:W2:b1 T06/W2 ['ADD_a1.0', 'ADD_a2.0']: 2.6s, 40 steps, max len 40
+19:46:55|INFO   |S5:T06:W2:b2 T06/W2 ['RAND9001_a1.0', 'RAND9002_a1.0']: 2.5s, 40 steps, max len 40
+19:46:57|INFO   |S5:T06:W2:b3 T06/W2 ['RAND9003_a1.0', 'RAND9001_a2.0']: 2.6s, 40 steps, max len 40
+19:47:00|INFO   |S5:T06:W3:b0 T06/W3 ['NEUTRAL']: 2.4s, 40 steps, max len 40
+19:47:02|INFO   |S5:T06:W3:b1 T06/W3 ['ADD_a1.0', 'ADD_a2.0']: 2.5s, 40 steps, max len 40
+19:47:05|INFO   |S5:T06:W3:b2 T06/W3 ['RAND9001_a1.0', 'RAND9002_a1.0']: 2.5s, 40 steps, max len 40
+19:47:08|INFO   |S5:T06:W3:b3 T06/W3 ['RAND9003_a1.0', 'RAND9001_a2.0']: 2.5s, 40 steps, max len 40
+19:47:10|INFO   |S5:T06:W4:b0 T06/W4 ['NEUTRAL']: 2.4s, 40 steps, max len 40
+19:47:13|INFO   |S5:T06:W4:b1 T06/W4 ['ADD_a1.0', 'ADD_a2.0']: 2.5s, 40 steps, max len 40
+19:47:15|INFO   |S5:T06:W4:b2 T06/W4 ['RAND9001_a1.0', 'RAND9002_a1.0']: 2.5s, 40 steps, max len 40
+19:47:18|INFO   |S5:T06:W4:b3 T06/W4 ['RAND9003_a1.0', 'RAND9001_a2.0']: 2.5s, 40 steps, max len 40
+19:47:20|INFO   |S5:T06:W5:b0 T06/W5 ['NEUTRAL']: 2.4s, 40 steps, max len 40
+19:47:23|INFO   |S5:T06:W5:b1 T06/W5 ['ADD_a1.0', 'ADD_a2.0']: 2.6s, 40 steps, max len 40
+19:47:25|INFO   |S5:T06:W5:b2 T06/W5 ['RAND9001_a1.0', 'RAND9002_a1.0']: 2.7s, 40 steps, max len 40
+19:47:28|INFO   |S5:T06:W5:b3 T06/W5 ['RAND9003_a1.0', 'RAND9001_a2.0']: 2.5s, 40 steps, max len 40
+19:47:28|INFO   |S5 T06: 20 new batches
+19:47:32|INFO   |S5:T05:W1:b0 T05/W1 ['NEUTRAL']: 3.9s, 64 steps, max len 57
+19:47:37|INFO   |S5:T05:W1:b1 T05/W1 ['ADD_a1.0', 'ADD_a2.0']: 4.5s, 64 steps, max len 57
+19:47:42|INFO   |S5:T05:W1:b2 T05/W1 ['RAND9001_a1.0', 'RAND9002_a1.0']: 5.6s, 72 steps, max len 69
+19:47:47|INFO   |S5:T05:W1:b3 T05/W1 ['RAND9003_a1.0', 'RAND9001_a2.0']: 5.1s, 64 steps, max len 57
+19:47:51|INFO   |S5:T05:W2:b0 T05/W2 ['NEUTRAL']: 3.7s, 64 steps, max len 62
+19:47:55|INFO   |S5:T05:W2:b1 T05/W2 ['ADD_a1.0', 'ADD_a2.0']: 3.9s, 64 steps, max len 57
+19:47:59|INFO   |S5:T05:W2:b2 T05/W2 ['RAND9001_a1.0', 'RAND9002_a1.0']: 4.4s, 72 steps, max len 71
+19:48:03|INFO   |S5:T05:W2:b3 T05/W2 ['RAND9003_a1.0', 'RAND9001_a2.0']: 4.0s, 64 steps, max len 57
+19:48:07|INFO   |S5:T05:W3:b0 T05/W3 ['NEUTRAL']: 3.7s, 64 steps, max len 62
+19:48:11|INFO   |S5:T05:W3:b1 T05/W3 ['ADD_a1.0', 'ADD_a2.0']: 3.9s, 64 steps, max len 57
+19:48:15|INFO   |S5:T05:W3:b2 T05/W3 ['RAND9001_a1.0', 'RAND9002_a1.0']: 3.9s, 64 steps, max len 62
+19:48:19|INFO   |S5:T05:W3:b3 T05/W3 ['RAND9003_a1.0', 'RAND9001_a2.0']: 3.9s, 64 steps, max len 57
+19:48:23|INFO   |S5:T05:W4:b0 T05/W4 ['NEUTRAL']: 3.7s, 64 steps, max len 57
+19:48:27|INFO   |S5:T05:W4:b1 T05/W4 ['ADD_a1.0', 'ADD_a2.0']: 4.0s, 64 steps, max len 57
+19:48:31|INFO   |S5:T05:W4:b2 T05/W4 ['RAND9001_a1.0', 'RAND9002_a1.0']: 3.9s, 64 steps, max len 62
+19:48:35|INFO   |S5:T05:W4:b3 T05/W4 ['RAND9003_a1.0', 'RAND9001_a2.0']: 3.9s, 64 steps, max len 57
+19:48:39|INFO   |S5:T05:W5:b0 T05/W5 ['NEUTRAL']: 3.8s, 64 steps, max len 62
+19:48:43|INFO   |S5:T05:W5:b1 T05/W5 ['ADD_a1.0', 'ADD_a2.0']: 4.0s, 64 steps, max len 57
+19:48:47|INFO   |S5:T05:W5:b2 T05/W5 ['RAND9001_a1.0', 'RAND9002_a1.0']: 3.9s, 64 steps, max len 61
+19:48:51|INFO   |S5:T05:W5:b3 T05/W5 ['RAND9003_a1.0', 'RAND9001_a2.0']: 3.9s, 64 steps, max len 57
+19:48:51|INFO   |S5 T05: 20 new batches
+19:49:03|INFO   |S5:T2:W1:b4 T2/W1 ['RAND9002_a2.0', 'RAND9003_a2.0']: 12.7s, 208 steps, max len 201
+19:49:16|INFO   |S5:T2:W2:b4 T2/W2 ['RAND9002_a2.0', 'RAND9003_a2.0']: 12.7s, 208 steps, max len 205
+19:49:33|INFO   |S5:T2:W3:b4 T2/W3 ['RAND9002_a2.0', 'RAND9003_a2.0']: 17.0s, 280 steps, max len 273
+19:49:46|INFO   |S5:T2:W4:b4 T2/W4 ['RAND9002_a2.0', 'RAND9003_a2.0']: 12.7s, 208 steps, max len 208
+19:49:59|INFO   |S5:T2:W5:b4 T2/W5 ['RAND9002_a2.0', 'RAND9003_a2.0']: 12.8s, 208 steps, max len 203
+19:50:22|INFO   |S5:T1:W1:b4 T1/W1 ['RAND9002_a2.0', 'RAND9003_a2.0']: 23.1s, 360 steps, max len 360
+19:50:44|INFO   |S5:T1:W2:b4 T1/W2 ['RAND9002_a2.0', 'RAND9003_a2.0']: 21.7s, 352 steps, max len 352
+19:51:04|INFO   |S5:T1:W3:b4 T1/W3 ['RAND9002_a2.0', 'RAND9003_a2.0']: 20.2s, 328 steps, max len 323
+19:51:32|INFO   |S5:T1:W4:b4 T1/W4 ['RAND9002_a2.0', 'RAND9003_a2.0']: 27.2s, 440 steps, max len 438
+19:51:57|INFO   |S5:T1:W5:b4 T1/W5 ['RAND9002_a2.0', 'RAND9003_a2.0']: 25.2s, 408 steps, max len 408
+19:52:10|INFO   |S5:T03:W1:b4 T03/W1 ['RAND9002_a2.0', 'RAND9003_a2.0']: 12.1s, 200 steps, max len 199
+19:52:22|INFO   |S5:T03:W2:b4 T03/W2 ['RAND9002_a2.0', 'RAND9003_a2.0']: 12.5s, 208 steps, max len 206
+19:52:34|INFO   |S5:T03:W3:b4 T03/W3 ['RAND9002_a2.0', 'RAND9003_a2.0']: 12.1s, 200 steps, max len 199
+19:52:47|INFO   |S5:T03:W4:b4 T03/W4 ['RAND9002_a2.0', 'RAND9003_a2.0']: 12.1s, 200 steps, max len 198
+19:52:49|INFO   |S5:T03:W5:b4 T03/W5 ['RAND9002_a2.0', 'RAND9003_a2.0']: 2.4s, 32 steps, max len 26
+19:52:54|INFO   |S5:T04:W1:b4 T04/W1 ['RAND9002_a2.0', 'RAND9003_a2.0']: 4.6s, 72 steps, max len 70
+19:52:59|INFO   |S5:T04:W2:b4 T04/W2 ['RAND9002_a2.0', 'RAND9003_a2.0']: 5.0s, 80 steps, max len 78
+19:53:04|INFO   |S5:T04:W3:b4 T04/W3 ['RAND9002_a2.0', 'RAND9003_a2.0']: 5.0s, 80 steps, max len 78
+19:53:09|INFO   |S5:T04:W4:b4 T04/W4 ['RAND9002_a2.0', 'RAND9003_a2.0']: 4.6s, 72 steps, max len 70
+19:53:14|INFO   |S5:T04:W5:b4 T04/W5 ['RAND9002_a2.0', 'RAND9003_a2.0']: 5.0s, 80 steps, max len 78
+19:53:18|INFO   |S5:T06:W1:b4 T06/W1 ['RAND9002_a2.0', 'RAND9003_a2.0']: 3.6s, 56 steps, max len 50
+19:53:23|INFO   |S5:T06:W2:b4 T06/W2 ['RAND9002_a2.0', 'RAND9003_a2.0']: 5.4s, 88 steps, max len 82
+19:53:28|INFO   |S5:T06:W3:b4 T06/W3 ['RAND9002_a2.0', 'RAND9003_a2.0']: 5.0s, 80 steps, max len 78
+19:53:32|INFO   |S5:T06:W4:b4 T06/W4 ['RAND9002_a2.0', 'RAND9003_a2.0']: 3.6s, 56 steps, max len 50
+19:53:37|INFO   |S5:T06:W5:b4 T06/W5 ['RAND9002_a2.0', 'RAND9003_a2.0']: 4.5s, 72 steps, max len 71
+19:53:41|INFO   |S5:T05:W1:b4 T05/W1 ['RAND9002_a2.0', 'RAND9003_a2.0']: 4.1s, 64 steps, max len 59
+19:53:45|INFO   |S5:T05:W2:b4 T05/W2 ['RAND9002_a2.0', 'RAND9003_a2.0']: 4.1s, 64 steps, max len 59
+19:53:49|INFO   |S5:T05:W3:b4 T05/W3 ['RAND9002_a2.0', 'RAND9003_a2.0']: 4.1s, 64 steps, max len 62
+19:53:56|INFO   |S5:T05:W4:b4 T05/W4 ['RAND9002_a2.0', 'RAND9003_a2.0']: 6.9s, 112 steps, max len 106
+19:54:01|INFO   |S5:T05:W5:b4 T05/W5 ['RAND9002_a2.0', 'RAND9003_a2.0']: 4.1s, 64 steps, max len 59

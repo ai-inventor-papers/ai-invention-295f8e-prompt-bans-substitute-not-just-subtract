@@ -1,0 +1,36 @@
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:00,  4.65it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:00<00:00,  3.79it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:00<00:00,  3.79it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:00<00:00,  4.07it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  4.95it/s]
+19:06:14|INFO   |bf16 weights on CPU in 4s; quantising decoder linears to FP8
+19:06:59|INFO   |Qwen/Qwen3-8B loaded in 49s ({'n_fp8_linears': 252}); free VRAM 7.2/16.7 GB
+19:07:00|INFO   |prefill P=200 1.13s
+19:07:01|INFO   |R top5: [('```', 0.0), ('``', -23.625), (' ```', -25.0), ('To', -28.5), ('$$', -28.625)]
+./src/engine.py:216: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  tok = torch.searchsorted(cdf, u[:, None].to(cdf.dtype)).squeeze(-1)
+19:07:14|INFO   |sample 20 rows: steps=199 13.1s -> 65.9 ms/step; max mem 10.76 GB
+19:07:14|INFO   |TEXT0: ```python
+def solve(n, edges, s, t):
+    if s == t:
+        return 0
+    
+    from collections import deque
+    
+    # Build adjacency list
+    adj = [[] for _ in range(n)]
+    for u, v, w in edges:
+        adj[u].append((v, w))
+    
+    # Bellman-Ford algorithm to find the shortest path from s to t
+    # Initialize distance array
+    dist = [float('inf')] * n
+    dist[s] = 0
+    
+    # Relax edges up to n-1 times
+    for i in range(n - 1):
+        updated = False
+        for u in range(n):
+            if dist[u] == float('inf'):
+                continue
+            for v, w in adj[u]:
+       
+19:08:41|INFO   |forced 1024 steps x 20 rows: 87.6s (85.6 ms/step); max mem 13.21 GB

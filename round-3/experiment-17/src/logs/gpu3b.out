@@ -1,0 +1,28 @@
+21:37:24|INFO   |stage gpu3: deadline in 20 min, optional until +0 min
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.29it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.22it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.19it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.24it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.69it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.45it/s]
+21:38:27|INFO   |bf16 weights on CPU in 5s; quantising decoder linears to FP8
+21:39:13|INFO   |Qwen/Qwen3-8B loaded in 51s ({'n_fp8_linears': 252}); free VRAM 7.2/16.7 GB
+./src/engine.py:216: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  tok = torch.searchsorted(cdf, u[:, None].to(cdf.dtype)).squeeze(-1)
+21:39:23|INFO   |U1b: {'decode_rows_identical_given_same_uniforms': True, 'n_pairs': 10, 'batch1_repeat_max_abs_diff_block28': 0.0, 'batch20_identical_rows_max_rel_l2_diff_block28': 0.098593570291996, 'batch20_vs_batch1_max_rel_l2_diff_block28': 0.1011323407292366, 'note': '(a) decode at M=20 is position independent, so CRN coupling across arms is exact; (b)/(c) teacher forcing must run at batch 1 for states to depend only on the prefix'}
+21:39:46|INFO   |S8 (batch 1) T2/BAN: 100 rows (23s)
+21:40:08|INFO   |S8 (batch 1) T2/NEUTRAL: 100 rows (45s)
+21:40:38|INFO   |S8 (batch 1) T1/BAN: 100 rows (75s)
+21:41:07|INFO   |S8 (batch 1) T1/NEUTRAL: 100 rows (104s)
+21:41:25|INFO   |S8 (batch 1) T1/BAN_TOPUP: 60 rows (122s)
+21:41:48|INFO   |S8 (batch 1) T03/BAN: 100 rows (145s)
+21:42:10|INFO   |S8 (batch 1) T03/NEUTRAL: 100 rows (167s)
+21:42:29|INFO   |S8 (batch 1) T04/BAN: 100 rows (186s)
+21:42:48|INFO   |S8 (batch 1) T04/NEUTRAL: 100 rows (205s)
+21:43:06|INFO   |S8 (batch 1) T06/BAN: 100 rows (223s)
+21:43:24|INFO   |S8 (batch 1) T06/NEUTRAL: 100 rows (240s)
+21:43:43|INFO   |S8 (batch 1) T05/BAN: 100 rows (260s)
+21:44:02|INFO   |S8 (batch 1) T05/NEUTRAL: 100 rows (279s)
+21:44:02|INFO   |archive rows: {'exp8_arm_a': 200, 'exp12_fresh_pool': 200, 'rejected_prompt_mismatch': 0, 'rejected_no_ids': 0}
+21:45:01|INFO   |S8 (batch 1) archive T1: 200 rows (338s)
+21:45:46|INFO   |S8 (batch 1) archive T2: 200 rows (383s)
+21:45:46|INFO   |X1 extra random directions T2: 0 batches
+21:45:47|INFO   |X1 extra random directions T1: 0 batches
+21:45:47|INFO   |X1 extra random directions T03: 0 batches
