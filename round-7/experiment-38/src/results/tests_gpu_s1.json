@@ -1,0 +1,63 @@
+{
+ "U1_crn_determinism": {
+  "pass": true,
+  "n": 2
+ },
+ "U2_identity_hooks": {
+  "zero": true,
+  "full_src_eq_base": true,
+  "das_lambda0": true,
+  "mlp_target_eq_clean": true,
+  "head_target_eq_clean": true
+ },
+ "U3_single_position_kv": {
+  "rows": [
+   {
+    "P": 280,
+    "m_full": -2.0349769592285156,
+    "m_kv": -1.9322357177734375,
+    "abs_diff": 0.10274124145507812,
+    "clean_abs_diff": 0.24791336059570312,
+    "edit_dm": 0.050380706787109375
+   },
+   {
+    "P": 279,
+    "m_full": -0.5972213745117188,
+    "m_kv": -0.6920356750488281,
+    "abs_diff": 0.09481430053710938,
+    "clean_abs_diff": 0.2335052490234375,
+    "edit_dm": 0.0
+   },
+   {
+    "P": 276,
+    "m_full": -0.7829971313476562,
+    "m_kv": -0.7829971313476562,
+    "abs_diff": 0.0,
+    "clean_abs_diff": 0.047023773193359375,
+    "edit_dm": -0.0578155517578125
+   },
+   {
+    "P": 278,
+    "m_full": -1.5193557739257812,
+    "m_kv": -1.55157470703125,
+    "abs_diff": 0.03221893310546875,
+    "clean_abs_diff": 0.22144699096679688,
+    "edit_dm": -0.3509864807128906
+   },
+   {
+    "P": 281,
+    "m_full": -1.1100044250488281,
+    "m_kv": -1.3849296569824219,
+    "abs_diff": 0.27492523193359375,
+    "clean_abs_diff": 0.25,
+    "edit_dm": -0.1497802734375
+   }
+  ],
+  "max_abs_diff": 0.27492523193359375,
+  "pass_1e-3": false,
+  "pass_bf16_tol_0.05": false
+ },
+ "U4_topk_vocab_equals_plain": {
+  "pass": true
+ }
+}

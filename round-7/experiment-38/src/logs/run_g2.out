@@ -1,0 +1,24 @@
+17:13:46|INFO   |stage g2 start
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+17:15:19|INFO   |google/gemma-3-4b-it loaded in 18s; free VRAM 8.83/16.72 GB
+17:15:32|INFO   |g2: base KV stacks built; VRAM 9.95 GB
+17:15:41|INFO   |g2: ceiling {"17": 3.62, "18": 3.8, "19": 4.34, "20": 5.67, "21": 5.36, "22": 7.36, "23": 6.87, "24": 7.62, "25": 8.19, "26": 9.11, "27": 8.99, "28": 8.9, "29": 8.81}
+./src/g2.py:370: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  tot += float(loss)
+17:16:39|INFO   |g2 scan L17: {'cv_median_recovery_by_fold': [2.151192901308435, 2.2596641931459036, 2.0481576820655585], 'cv_median_recovery': 2.151192901308435}
+17:17:31|INFO   |g2 scan L19: {'cv_median_recovery_by_fold': [2.065080421757044, 2.095756205291225, 1.9430559909586227], 'cv_median_recovery': 2.065080421757044}
+17:18:17|INFO   |g2 scan L21: {'cv_median_recovery_by_fold': [1.6695638377352124, 1.8024214969938221, 1.6048463873734269], 'cv_median_recovery': 1.6695638377352124}
+17:19:00|INFO   |g2 scan L22: {'cv_median_recovery_by_fold': [1.1680706450806624, 1.218765258278672, 1.1749894747122662], 'cv_median_recovery': 1.1749894747122662}
+17:19:39|INFO   |g2 scan L23: {'cv_median_recovery_by_fold': [1.1950197249512842, 1.2213796899404854, 1.1744501856327378], 'cv_median_recovery': 1.1950197249512842}
+17:20:13|INFO   |g2 scan L25: {'cv_median_recovery_by_fold': [1.0711371315312808, 1.0651124266684917, 1.0716700416982563], 'cv_median_recovery': 1.0711371315312808}
+17:20:41|INFO   |g2 scan L27: {'cv_median_recovery_by_fold': [1.0909187509594123, 1.0667632815454486, 1.0868168990222236], 'cv_median_recovery': 1.0868168990222236}
+17:21:04|INFO   |g2 scan L29: {'cv_median_recovery_by_fold': [1.1540425090695612, 1.1001292206325122, 1.0888643170802794], 'cv_median_recovery': 1.1001292206325122}
+17:29:32|INFO   |g2 L17 seed 0: k1 rec 2.039, k2 rec 2.365, k4 rec 2.581, k8 rec 2.807
+17:33:03|INFO   |g2 L17 seed 1: k1 rec 1.985, k2 rec 2.332, k4 rec 2.540, k8 rec 2.798
+17:36:34|INFO   |g2 L17 seed 2: k1 rec 1.981, k2 rec 2.362, k4 rec 2.579, k8 rec 2.877
+17:52:24|INFO   |g2 L22 seed 0: k1 rec 1.080, k2 rec 1.176, k4 rec 1.480, k8 rec 1.713
+17:55:00|INFO   |g2 L22 seed 1: k1 rec 1.063, k2 rec 1.319, k4 rec 1.510, k8 rec 1.683
+17:57:36|INFO   |g2 L22 seed 2: k1 rec 1.087, k2 rec 1.336, k4 rec 1.542, k8 rec 1.799
+18:00:29|INFO   |stage g2 done in 2803s

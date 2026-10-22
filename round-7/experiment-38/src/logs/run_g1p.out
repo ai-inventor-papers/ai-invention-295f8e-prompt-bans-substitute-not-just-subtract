@@ -1,0 +1,10 @@
+18:28:52|INFO   |stage g1p start
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+18:30:05|INFO   |google/gemma-3-4b-it loaded in 17s; free VRAM 8.73/16.72 GB
+18:30:12|INFO   |g1p: activations for 30 prompts in 63s; 15 pairs
+18:30:13|INFO   |g1p smoke: {'m_clean': -3.220439910888672, 'm_corrupt': -0.22518157958984375, 'm_patch_all': -0.22518157958984375, 'm_patch_none': -3.4684371948242188, 'all_reproduces_corrupt': True, 'none_reproduces_clean': False, 'dm_patch_all_vs_in_batch_base': 2.622039794921875, 'total_effect_pair': 2.995258331298828, 'note': 'raw batched margins differ from the batch-1 clean margin by a bf16 batch-shape offset; every reported dm is measured against an unedited base row of the same chunk'}
+18:30:32|INFO   |g1p: AtP done (83s); top AtP ['mlp|L21|H-1|FORK', 'mlp|L25|H-1|FORK', 'mlp|L17|H-1|FORK', 'head|L22|H5|FORK', 'mlp|L33|H-1|FORK', 'head|L15|H7|FORK', 'mlp|L22|H-1|FORK', 'mlp|L26|H-1|FORK']
+18:31:30|INFO   |g1p: exact patching done (141s)
+18:32:26|INFO   |g1p done in 196s; commit2 b6bd0f3cf129; top10 ['mlp|L0|H-1|COND', 'mlp|L6|H-1|COND', 'mlp|L25|H-1|FORK', 'mlp|L21|H-1|FORK', 'mlp|L2|H-1|COND', 'head|L22|H5|FORK', 'mlp|L26|H-1|FORK', 'mlp|L14|H-1|COND', 'mlp|L22|H-1|FORK', 'mlp|L17|H-1|FORK']
+18:32:26|INFO   |stage g1p done in 214s
