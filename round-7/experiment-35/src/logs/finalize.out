@@ -1,0 +1,288 @@
+14:39:38|INFO   |=== finalize ===
+14:39:38|INFO   |$ python novelty7.py dep
+{
+ "leetcodedataset": {
+  "n_examples": 2869,
+  "n_relevant": 21
+ },
+ "mercury": {
+  "n_examples": 440,
+  "n_relevant": 0
+ },
+ "llm_creativity": {
+  "n_examples": 225,
+  "n_relevant": 0
+ },
+ "thealgorithms_python": {
+  "n_examples": 1354,
+  "n_relevant": 9
+ },
+ "clrs_text": {
+  "n_examples": 2910,
+  "n_relevant": 45
+ },
+ "humanevalplus": {
+  "n_examples": 164,
+  "n_relevant": 0
+ },
+ "enamel": {
+  "n_examples": 164,
+  "n_relevant": 0
+ },
+ "concreteness_norms": {
+  "n_examples": 39954,
+  "n_relevant": 4
+ },
+ "kodcode_algorithmic": {
+  "n_examples": 2767,
+  "n_relevant": 63
+ },
+ "xlcost_python": {
+  "n_examples": 10622,
+  "n_relevant": 53
+ }
+}
+14:39:39|INFO   |  done in 1s
+14:39:39|INFO   |$ python novelty7.py judge
+14:39:42|INFO   |judging 16 disputed programs; budget {'label': 'AI Inventor run run_0oWBKrKEGsmU: Test Idea', 'limit': 20.0, 'limit_remaining': 17.276816, 'limit_reset': None, 'usage': 2.723184, 'usage_daily': 2.723184, 'usage_weekly': 2.723184, 'usage_monthly': 2.723184, 'is_free_tier': False, 'is_provisioning_key': False, 'aii_phase': 'test', 'figure_reserve': 0.0}
+14:40:02|WARNING|judge call failed (google/gemini-2.5-flash-lite, attempt 0): Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+14:40:06|WARNING|judge call failed (google/gemini-2.5-flash-lite, attempt 1): Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+14:40:12|WARNING|judge call failed (google/gemini-2.5-flash-lite, attempt 2): Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+{'n': 16, 'resolved': 16, 'spent': 0.00209550625}
+14:40:20|INFO   |  done in 41s
+14:40:20|INFO   |$ python analysis_T.py
+{
+ "verdict": "PARTIAL",
+ "passes": {
+  "test1": true,
+  "test2": false,
+  "test3": true
+ },
+ "disconfirming": {
+  "test1": false,
+  "test2": false
+ },
+ "secondary_raw_p_pooled_mcnemar": 2.4616718292236328e-05,
+ "secondary_unadjusted_0.05": true,
+ "secondary_bonferroni_0.05_over_7": true
+}
+14:43:17|INFO   |  done in 177s
+14:43:17|INFO   |$ python rederive.py
+{
+ "n_checks": 44,
+ "n_mismatch": 0,
+ "mismatches": [],
+ "placebo": {
+  "B3": {
+   "placebo_drop_test_pass_rate": 0.01,
+   "observed_drop_test_pass": true
+  },
+  "A3": {
+   "placebo_drop_test_pass_rate": 0.0,
+   "observed_drop_test_pass": false
+  },
+  "B6": {
+   "placebo_drop_test_pass_rate": 0.0,
+   "observed_drop_test_pass": false
+  }
+ }
+}
+14:43:17|INFO   |  done in 0s
+14:43:17|INFO   |$ python posthoc7.py
+{
+ "B3": {
+  "judged_continuations": {
+   "n_continuation_labels_changed": 0,
+   "cells_a_min": {
+    "T0.3_p1": 0.06823244743699411,
+    "T0.3_k10": 0.06823244743697596,
+    "T0.7_p1": 0.19346312796705784,
+    "T0.7_k10": 0.19346271610709434,
+    "T1.0_p1": 0.23715393459341066,
+    "T1.0_k10": 0.23713576740758233,
+    "T1.3_p1": 0.24737886521247682,
+    "T1.3_k10": 0.2472822107090733
+   },
+   "H_bits": 0.05030873574551974,
+   "committed_cells_a_min": {
+    "T0.3_p1": 0.06823244743699411,
+    "T0.3_k10": 0.06823244743697596,
+    "T0.7_p1": 0.19346312796705784,
+    "T0.7_k10": 0.19346271610709434,
+    "T1.0_p1": 0.23715393459341066,
+    "T1.0_k10": 0.23713576740758233,
+    "T1.3_p1": 0.24737886521247682,
+    "T1.3_k10": 0.2472822107090733
+   }
+  },
+  "twin_vs_sweep_T1": {
+   "twin": [
+    20,
+    100
+   ],
+   "sweep_T1.0_p1": [
+    20,
+    50
+   ],
+   "fisher_p": 0.011315850518915215
+  },
+  "topk10_token_identical": [
+   200,
+   200
+  ]
+ },
+ "A3": {
+  "judged_continuations": {
+   "n_continuation_labels_changed": 97,
+   "cells_a_min": {
+    "T0.3_p1": 0.16644569854460708,
+    "T0.3_k10": 0.16644569854460708,
+    "T0.7_p1": 0.2850403873284786,
+    "T0.7_k10": 0.2850403874611696,
+    "T1.0_p1": 0.3107183701830378,
+    "T1.0_k10": 0.3107184855520698,
+    "T1.3_p1": 0.31944001205707384,
+    "T1.3_k10": 0.3194450454530987
+   },
+   "H_bits": 0.15270280763476754,
+   "committed_cells_a_min": {
+    "T0.3_p1": 0.16644569854460708,
+    "T0.3_k10": 0.16644569854460708,
+    "T0.7_p1": 0.2850403873254866,
+    "T0.7_k10": 0.2850403874611696,
+    "T1.0_p1": 0.310718364795482,
+    "T1.0_k10": 0.3107184855520698,
+    "T1.3_p1": 0.3194396793088198,
+    "T1.3_k10": 0.3194450454530987
+   }
+  },
+  "twin_vs_sweep_T1": {
+   "twin": [
+    32,
+    100
+   ],
+   "sweep_T1.0_p1": [
+    9,
+    50
+   ],
+   "fisher_p": 0.08186451903934142
+  },
+  "topk10_token_identical": [
+   200,
+   200
+  ]
+ },
+ "B6": {
+  "judged_continuations": {
+   "n_continuation_labels_changed": 0,
+   "cells_a_min": {
+    "T0.3_p1": 0.16115862288005847,
+    "T0.3_k10": 0.16115862288005847,
+    "T0.7_p1": 0.1820319976270039,
+    "T0.7_k10": 0.18203199748762633,
+    "T1.0_p1": 0.1998990138525924,
+    "T1.0_k10": 0.19989891052526665,
+    "T1.3_p1": 0.2124278753705738,
+    "T1.3_k10": 0.2124242919903767
+   },
+   "H_bits": 0.18937364407720628,
+   "committed_cells_a_min": {
+    "T0.3_p1": 0.16115862288005847,
+    "T0.3_k10": 0.16115862288005847,
+    "T0.7_p1": 0.1820319976270039,
+    "T0.7_k10": 0.18203199748762633,
+    "T1.0_p1": 0.1998990138525924,
+    "T1.0_k10": 0.19989891052526665,
+    "T1.3_p1": 0.2124278753705738,
+    "T1.3_k10": 0.2124242919903767
+   }
+  },
+  "twin_vs_sweep_T1": {
+   "twin": [
+    13,
+    100
+   ],
+   "sweep_T1.0_p1": [
+    6,
+    50
+   ],
+   "fisher_p": 1.0
+  },
+  "topk10_token_identical": [
+   200,
+   200
+  ]
+ }
+}
+14:43:37|INFO   |  done in 20s
+14:43:37|INFO   |$ python novelty7.py audit
+{'n_correct_other_rows': 0, 'n_distinct': 0, 'no_correct_novel_algorithm_claim': 'only at a count of 0 after the manual read', 'utc': '2026-10-22T14:43:42.998240Z'}
+14:43:43|INFO   |  done in 5s
+14:43:43|INFO   |$ python figures7.py
+./src/figures7.py:28: UserWarning: Glyph 24038 (\N{CJK UNIFIED IDEOGRAPH-5DE6}) missing from font(s) DejaVu Sans.
+  fig.savefig(FIG_DIR / f"{name}.pdf", bbox_inches="tight")
+./src/figures7.py:29: UserWarning: Glyph 24038 (\N{CJK UNIFIED IDEOGRAPH-5DE6}) missing from font(s) DejaVu Sans.
+  fig.savefig(FIG_DIR / f"{name}.png", bbox_inches="tight", dpi=200)
+ok f1_outcome_curves
+ok f2_fork_tokens
+ok f3_pred_vs_obs
+ok f4_margins
+ok f5_s4a
+ok f6_s4b
+ok f7_geometry
+14:43:59|INFO   |  done in 16s
+14:43:59|INFO   |$ python report7.py
+## S0 twins (N = 100 per unit, T 1.0, top-p 1)
+
+| unit | counts | A_min | A_min share | pass rate | iteration-5 record |
+|---|---|---|---|---|---|
+| B3 | {'prim_heap': 19, 'kruskal': 80, 'disputed': 1} | prim_heap | 0.19 | 0.97 | 0.34 |
+| A3 | {'two_pointers': 31, 'prefix_suffix_max': 68, 'disputed': 1} | two_pointers | 0.31 | 1.00 | 0.36 |
+| B6 | {'hash_count': 10, 'sort_compare': 77, 'fixed_count_array': 13} | fixed_count_array | 0.13 | 1.00 | 0.24 |
+
+## S1 fork location
+
+| unit | mode | |O| | coverage (clusters) | confirmed / base paths | on-O confirmed at |O|+1 | calibration (k=0 vs twin, Fisher p) |
+|---|---|---|---|---|---|---|
+| B3 | ONE-TOKEN | 61 | c0 61 tok 0.51, c1 61 tok 0.20 | 5/12 | 3/3 | 0.16 vs 0.19 (p 0.58, pass) |
+| A3 | ONE-TOKEN | 18 | c0 18 tok 0.48, c1 19 tok 0.31 | 2/12 | 1/1 | 0.22 vs 0.31 (p 0.20, pass) |
+| B6 | ONE-TOKEN | 23 | c0 23 tok 0.78 | 1/8 | 1/1 | 0.22 vs 0.13 (p 0.19, pass) |
+
+Confirmed fork tokens:
+
+- B3: ' Prim' at k=62 (jump 0.70); ' Prim' at k=62 (jump 0.85); ' Prim' at k=62 (jump 0.50); ' Prim' at k=62 (jump 0.65); ' Prim' at k=62 (jump 0.80)
+- A3: ' left' at k=19 (jump 0.75); ' left' at k=19 (jump 0.55)
+- B6: ' return' at k=24 (jump 0.75)
+
+## Test (1): one-token concentration H(A | fork class)
+
+| unit | H (bits) | bootstrap 95% CI | class mass | undecided-token mass | pass (<= 0.3) |
+|---|---|---|---|---|---|
+| B3 | 0.050 | [0.014, 0.096] | {'kruskal': 0.741, 'prim_heap': 0.259} | 0.003 | yes |
+| A3 | 0.153 | [0.091, 0.203] | {'prefix_suffix_max': 0.571, 'two_pointers': 0.429, 'other': 0.0} | 0.116 | yes |
+| B6 | 0.189 | [0.123, 0.239] | {'sort_compare': 0.738, 'fixed_count_array': 0.261, 'hash_count': 0.001, 'other': 0.0} | 0.000 | yes |
+
+## Test (2): committed predictions vs the same-seed sweep (attempted A_min share, N = 50 per cell)
+
+| unit | cell | predicted | observed [Wilson 95%] | correct A_min obs / pred | on-opening obs / pred | JS (bits) | replay acc |
+|---|---|---|---|---|---|---|---|
+| B3 | T0.3_p1 | 0.068 | 0.060 [0.02, 0.16] | 0.060 / 0.068 | 1.00 / 0.99 | 0.000 | 0.98 (n 50) |
+| B3 | T0.3_k10 | 0.068 | 0.060 [0.02, 0.16] | 0.060 / 0.068 | 1.00 / 0.99 | 0.000 | 0.98 (n 50) |
+| B3 | T0.7_p1 | 0.193 | 0.220 [0.13, 0.35] | 0.220 / 0.193 | 0.92 / 0.87 | 0.003 | 0.96 (n 47) |
+| B3 | T0.7_k10 | 0.193 | 0.220 [0.13, 0.35] | 0.220 / 0.193 | 0.92 / 0.87 | 0.003 | 0.96 (n 47) |
+| B3 | T1.0_p1 | 0.237 | 0.400 [0.28, 0.54] | 0.400 / 0.237 | 0.76 / 0.72 | 0.026 | 0.95 (n 37) |
+| B3 | T1.0_k10 | 0.237 | 0.400 [0.28, 0.54] | 0.400 / 0.237 | 0.76 / 0.72 | 0.026 | 0.95 (n 37) |
+| B3 | T1.3_p1 | 0.247 | 0.380 [0.26, 0.52] | 0.360 / 0.247 | 0.60 / 0.55 | 0.022 | 0.94 (n 32) |
+| B3 | T1.3_k10 | 0.247 | 0.380 [0.26, 0.52] | 0.360 / 0.247 | 0.60 / 0.55 | 0.022 | 0.91 (n 32) |
+| A3 | T0.3_p1 | 0.166 | 0.100 [0.04, 0.21] | 0.100 / 0.166 | 0.88 / 0.86 | 0.007 | 0.98 (n 45) |
+| A3 | T0.3_k10 | 0.166 | 0.100 [0.04, 0.21] | 0.100 / 0.166 | 0.88 / 0.86 | 0.007 | 0.98 (n 45) |
+| A3 | T0.7_p1 | 0.285 | 0.180 [0.10, 0.31]
+14:44:00|INFO   |  done in 1s
+14:44:00|INFO   |$ python outputs7.py
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+{'twin': 300, 'sweep': 1200, 'collapsed': 160, 's4a': 270, 's4b': 360, 'fork_scan': 12676} 10.9 MB
+14:45:08|INFO   |  done in 68s
+14:45:08|INFO   |$ python commit7.py
+{'ok': True, 'n': 3, 'bad': []}
+14:45:10|INFO   |  done in 1s

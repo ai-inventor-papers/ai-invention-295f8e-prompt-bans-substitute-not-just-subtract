@@ -1,0 +1,10 @@
+entries:
+  - path: .venv/
+    delete: regenerable
+    source: "uv venv .venv --python=3.12 && uv pip install --python .venv/bin/python -r pyproject.toml"
+  - path: cache/tf/
+    delete: regenerable
+    source: ".venv/bin/python src/gpu7.py predict,s4predict --units B3,A3,B6"
+  - path: "**/__pycache__/"
+    delete: regenerable
+    source: ".venv/bin/python -m compileall -q src inputs"
