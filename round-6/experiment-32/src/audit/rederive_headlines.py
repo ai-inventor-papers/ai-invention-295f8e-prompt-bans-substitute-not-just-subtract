@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
-"""Second independent re-derivation (standard library only; shares no code with src/, analysis/ or audit/rederive.py)
-of the headline numbers not covered by audit/rederive.py: the top-1 hit counts of r_u, qlik_top1 and t_u, the mean
-log-score differences D_lik and D_tail on the CONFIRMATION events, the escape fraction E_u per unit (escape rule
-re-implemented from the raw rows), beta re-counted from the raw base rows, the M headline Spearman rho(beta, E_u)
-with its exact one-sided permutation p, and the L2 violation count. Inputs: data/samples.jsonl (one row per program)
-and predictions/units/II*.json (the committed forecasts); results/*.json are read only to compare.
-Placebos that must FAIL: (1) E_u shuffled across units (2,000 shuffles: the share with p < 0.05 must sit near 0.05);
-(2) q_base permuted over S inside each event (the mean D_lik advantage must vanish); (3) a constant beta (rho undefined)."""
+"""Independent re-derivation of the README's headline numbers that audit/rederive.py does not cover.
 
-import itertools
+Reads only raw rows (data/labels*.jsonl, data/judgements.jsonl, data/local_judgements.jsonl, cache/*.npz + indexes) and
+recomputes through its own code (no import from src/ or analysis/). Every significant paired test is re-run on placebo
+input (random within-pair swaps; a control-vs-control comparison) and must FAIL there. Writes results/rederive_headlines.json.
+"""
+
 import json
 import math
 import random
@@ -18,190 +15,184 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def binom_sf(k, n, p):
-    return sum(math.comb(n, i) * p ** i * (1 - p) ** (n - i) for i in range(k, n + 1))
+def rows(rel):
+    p = ROOT / rel
+    return [json.loads(l) for l in p.read_text().splitlines() if l.strip()] if p.exists() else []
 
 
-def ranks(x):
-    order = sorted(range(len(x)), key=lambda i: x[i])
-    r = [0.0] * len(x)
-    i = 0
-    while i < len(order):
-        j = i
-        while j + 1 < len(order) and x[order[j + 1]] == x[order[i]]:
-            j += 1
-        for t in range(i, j + 1):
-            r[order[t]] = (i + j) / 2 + 1
-        i = j + 1
-    return r
+def p_two_sided(b, n):
+    if n == 0:
+        return 1.0
+    tail = sum(math.comb(n, k) for k in range(0, min(b, n - b) + 1)) / 2 ** n
+    return min(1.0, 2 * tail)
 
 
-def pearson(a, b):
-    ma, mb = sum(a) / len(a), sum(b) / len(b)
-    va = sum((x - ma) ** 2 for x in a)
-    vb = sum((y - mb) ** 2 for y in b)
-    if va == 0 or vb == 0:
-        return None
-    return sum((x - ma) * (y - mb) for x, y in zip(a, b)) / math.sqrt(va * vb)
+def paired(a, b):
+    """a, b: dict slot -> 0/1 outcome. Returns discordant counts and exact two-sided p."""
+    ks = sorted(set(a) & set(b))
+    bb = sum(1 for k in ks if a[k] == 1 and b[k] == 0)
+    cc = sum(1 for k in ks if a[k] == 0 and b[k] == 1)
+    return {"n": len(ks), "b": bb, "c": cc, "p": p_two_sided(bb, bb + cc)}
 
 
-def spearman(a, b):
-    return pearson(ranks(a), ranks(b))
-
-
-def perm_p(a, b):
-    r0 = spearman(a, b)
-    if r0 is None:
-        return None, None
-    ra, rb = ranks(a), ranks(b)
-    hits = tot = 0
-    for perm in itertools.permutations(range(len(b))):
-        r = pearson(ra, [rb[i] for i in perm])
-        hits += r is not None and r >= r0 - 1e-12
-        tot += 1
-    return r0, hits / tot
-
-
-def main():
-    rows = [json.loads(l) for l in (ROOT / "data" / "samples.jsonl").read_text().splitlines() if l.strip()]
-    units = {p.stem: json.loads(p.read_text()) for p in sorted((ROOT / "predictions" / "units").glob("II*.json"))}
-    by_unit = defaultdict(list)
-    for r in rows:
-        by_unit[r["unit"]].append(r)
-    E, eu, beta_raw, l2_viol, l2_n = [], {}, {}, 0, 0
-    for u, c in units.items():
-        d = c["default"]
-        if d == "NO_DEFAULT":
-            continue
-        S = [a for a in c["catalogue"] if a != d]
-        R = by_unit[u]
-        ok = (c.get("engine_check_twin") or {}).get("pass", True)
-        tw = [r for r in R if r["arm"] == "TWIN" and r["model_tag"] == "instruct" and
-              ((r["engine"] == "hf" and r["slot"] < 10) or (ok and r["engine"] == "vllm"))]
-        n_tw = len(tw)
-        k_tw = sum(1 for r in tw if r["passed"] and r["label"] in S)
-        pass_tw = sum(1 for r in tw if r["passed"]) / n_tw
-        p0 = (k_tw + 0.5) / (n_tw + 1)
-        cells = defaultdict(list)
-        for r in R:
-            if r["family"] in ("ESC", "PN", "GTN"):
-                cells[r["arm"]].append(r)
-        conf = defaultdict(lambda: [0, 0])
-        pooled = defaultdict(Counter)
-        for arm, rr in cells.items():
-            fam = arm.split("_")[0]
-            if fam == "ESC":
-                alpha = arm.rsplit("_a", 1)[1]
-                s1 = [r for r in rr if r["slot"] <= 1]
-                s30 = [r for r in rr if r["slot"] <= 5]
-                conf[alpha][1] += 1
-                sh1 = sum(1 for r in s1 if r["passed"] and r["label"] in S) / len(s1)
-                pr1 = sum(1 for r in s1 if r["passed"]) / len(s1)
-                st1 = len(s1) >= 10 and pr1 >= 0.8 * pass_tw - 1e-12 and sh1 - k_tw / n_tw >= 0.2 - 1e-12
-                if st1 and len(s30) >= 30:
-                    k = sum(1 for r in s30 if r["passed"] and r["label"] in S)
-                    pr = sum(1 for r in s30 if r["passed"]) / len(s30)
-                    conf[alpha][0] += binom_sf(k, len(s30), p0) < 0.05 and pr >= 0.8 * pass_tw - 1e-12
-                use = s30 if len(s30) >= 30 else s1
+def swap_placebo(a, b, n_perm=2000, seed=3):
+    """Randomly exchange the two arms inside each pair; share of permutations reaching p < 0.05 (should be ~<= 0.05)."""
+    rng = random.Random(seed)
+    ks = sorted(set(a) & set(b))
+    hits = 0
+    for _ in range(n_perm):
+        x, y = {}, {}
+        for k in ks:
+            if rng.random() < 0.5:
+                x[k], y[k] = b[k], a[k]
             else:
-                if arm not in ("PN_a2.0", "PN_a4.0", "GTN_a2.0"):
-                    continue
-                use = rr
-            if sum(1 for r in use if r["passed"]) / len(use) < 0.8 * pass_tw - 1e-12:
-                continue
-            pooled[fam].update(r["label"] for r in use if r["passed"] and r["label"] in S)
-        for r in R:                       # L2 counts ALL correct S-labelled content-free nudged programs (plan)
-            if r["family"] in ("ESC", "PN", "GTN") and r["passed"] and r["label"] in S:
-                l2_n += 1
-                sup = (c.get("support") or {}).get(r["label"], {})
-                l2_viol += sup.get("valid", 0) == 0 and sup.get("correct", 0) == 0
-        eu[u] = sum(cf / 8 for cf, _ in conf.values()) / len(conf) if conf else None
-        base = [r for r in R if r["model_tag"] == "base" and r["arm"] in ("BASE", "PLAIN") and r["passed"]
-                and r["label"] not in ("invalid", "disputed")]
-        bc = Counter(r["label"] for r in base)
-        beta_raw[u] = 1 - bc.get(d, 0) / sum(bc.values()) if bc else None
-        for fam, cnt in pooled.items():
-            n = sum(cnt.values())
-            if n < 5:
-                continue
-            srt = sorted(S, key=lambda a: (-cnt.get(a, 0), S.index(a)))
-            lead = cnt.get(srt[0], 0) / n - (cnt.get(srt[1], 0) / n if len(srt) > 1 else 0)
-            E.append({"id": f"{u}|{fam}", "S": S, "cnt": cnt, "n": n, "c": c,
-                      "modal": srt[0] if lead >= 0.15 - 1e-12 else "NO_CLEAR_LANDING"})
-
-    def q_of(c, key, S):
-        q = c.get(key)
-        if not q:
-            return {a: 1 / len(S) for a in S}
-        t = sum(q.get(a, 0) for a in S)
-        return {a: q.get(a, 0) / t for a in S}
-
-    def ls(e, q):
-        return sum(v * math.log(max(q[a], 1e-12)) for a, v in e["cnt"].items() if a in q) / e["n"]
-
-    hits = {k: sum(1 for e in E if e["c"].get(k) and e["c"][k] == e["modal"]) for k in ("r_u", "qlik_top1", "t_u")}
-    n_tu = sum(1 for e in E if e["c"].get("t_u"))
-    d_lik = [ls(e, q_of(e["c"], "q_base", e["S"])) - ls(e, q_of(e["c"], "q_lik", e["S"])) for e in E]
-    d_tail = [ls(e, q_of(e["c"], "q_base", e["S"])) - ls(e, q_of(e["c"], "q_tail", e["S"])) for e in E]
-    us = sorted(u for u in eu if eu[u] is not None)
-    betas = [units[u]["m_candidates"]["beta"] for u in us]
-    rho, p = perm_p(betas, [eu[u] for u in us])
-    # placebo 1: E_u shuffled across units
-    rng = random.Random(20261021)
-    rej, rhos = 0, []
-    vals = [eu[u] for u in us]
-    for _ in range(300):
-        sh = vals[:]
-        rng.shuffle(sh)
-        r_, p_ = perm_p(betas, sh)
-        rhos.append(r_ or 0.0)
-        rej += p_ is not None and p_ < 0.05
-    # placebo 2: q_base permuted over S inside each event
-    pl = []
-    for _ in range(200):
-        tot = 0.0
-        for e in E:
-            qb = q_of(e["c"], "q_base", e["S"])
-            perm = e["S"][:]
-            rng.shuffle(perm)
-            qp = {a: qb[b] for a, b in zip(e["S"], perm)}
-            tot += ls(e, qp) - ls(e, q_of(e["c"], "q_lik", e["S"]))
-        pl.append(tot / len(E))
-    # placebo 3: constant beta
-    rho_const = spearman([0.5] * len(us), [eu[u] for u in us])
-    frozen = {"l1": json.loads((ROOT / "results" / "l1.json").read_text()),
-              "m": json.loads((ROOT / "results" / "m.json").read_text()),
-              "l2": json.loads((ROOT / "results" / "l2.json").read_text())}
-    fl = frozen["l1"]["log_scores"]["E"]
-    out = {"n_events_E": len(E), "hits": hits, "n_events_t_u_defined": n_tu,
-           "mean_D_lik": sum(d_lik) / len(d_lik), "mean_D_tail": sum(d_tail) / len(d_tail),
-           "frozen_mean_D_lik": fl["D_lik"]["event"]["mean"], "frozen_mean_D_tail": fl["D_tail"]["event"]["mean"],
-           "E_u": eu, "frozen_E_u": frozen["m"]["E_u"],
-           "beta_committed": dict(zip(us, betas)), "beta_recounted_from_rows": {u: beta_raw[u] for u in us},
-           "M_beta": {"rho": rho, "p_one_sided": p, "frozen_rho": frozen["m"]["candidates"]["beta"]["rho"],
-                      "frozen_p": frozen["m"]["candidates"]["beta"]["p_one_sided"]},
-           "L2": {"violations": l2_viol, "n": l2_n, "frozen": [frozen["l2"]["content_free"]["violations"],
-                                                                frozen["l2"]["content_free"]["n_programs"]]},
-           "placebo_shuffled_E_u": {"rejection_rate_p<0.05": rej / 300, "mean_rho": sum(rhos) / len(rhos)},
-           "placebo_permuted_q_base_mean_D_lik": sum(pl) / len(pl),
-           "placebo_constant_beta_rho": rho_const}
-    out["checks"] = {
-        "D_lik_match": abs(out["mean_D_lik"] - out["frozen_mean_D_lik"]) < 1e-9,
-        "D_tail_match": abs(out["mean_D_tail"] - out["frozen_mean_D_tail"]) < 1e-9,
-        "E_u_match": all(abs((eu[u] or 0) - (frozen["m"]["E_u"].get(u) or 0)) < 1e-9 for u in us),
-        "beta_rho_match": rho is not None and abs(rho - out["M_beta"]["frozen_rho"]) < 1e-9,
-        "beta_p_match": p is not None and abs(p - out["M_beta"]["frozen_p"]) < 1e-9,
-        "L2_match": [l2_viol, l2_n] == out["L2"]["frozen"],
-        "beta_recount_max_abs_drift_after_final_adjudication": max(abs((beta_raw[u] or 0) - b) for u, b in zip(us, betas)),
-        "M_rho_with_recounted_beta": spearman([beta_raw[u] for u in us], [eu[u] for u in us]),
-        "placebo_shuffle_fails": rej / 300 < 0.15,
-        "placebo_permuted_q_base_loses_advantage": out["placebo_permuted_q_base_mean_D_lik"] < out["mean_D_lik"],
-        "placebo_constant_beta_undefined": rho_const is None}
-    (ROOT / "results" / "rederive_headlines.json").write_text(json.dumps(out, indent=1))
-    print(json.dumps({k: out[k] for k in ("n_events_E", "hits", "n_events_t_u_defined", "mean_D_lik", "mean_D_tail",
-                                          "M_beta", "L2", "placebo_shuffled_E_u",
-                                          "placebo_permuted_q_base_mean_D_lik", "checks")}, indent=1))
+                x[k], y[k] = a[k], b[k]
+        hits += paired(x, y)["p"] < 0.05
+    return hits / n_perm
 
 
-if __name__ == "__main__":
-    main()
+out = {}
+lab = rows("data/labels.jsonl")
+# ---------------------------------------------------------------- behaviour
+twin = [r for r in lab if r["arm"] == "TWIN" and int(r["slot"]) < 10]
+ban = [r for r in lab if r["arm"] == "BAN"]
+beh = {}
+for t in sorted({r["task"] for r in twin}):
+    tc = Counter(r["label"] for r in twin if r["task"] == t and r["passed"])
+    bc = Counter(r["label"] for r in ban if r["task"] == t and r["passed"])
+    top = tc.most_common(1)[0]
+    beh[t] = {"twin_correct": dict(tc), "default_share": round(top[1] / sum(tc.values()), 3), "ban_correct": dict(bc)}
+out["behaviour"] = beh
+tmap = {(r["task"], r["template"], int(r["slot"])): r["label"] for r in twin}
+flips = Counter((r["task"], tmap.get((r["task"], r["template"], int(r["slot"]))), r["label"]) for r in ban)
+out["T10_union_find_to_dfs_flips"] = flips[("T10", "union_find", "dfs")]
+w4 = [r for r in ban if r["template"] == "W4"]
+defaults = json.loads((ROOT / "predictions" / "commit1_defaults.json").read_text())["tasks"]
+out["W4_attempts_default"] = f"{sum(r['label'] == defaults[r['task']]['default'] for r in w4)}/{len(w4)}"
+# ---------------------------------------------------------------- instrument gate (numpy, own implementation)
+try:
+    import numpy as np
+
+    idx = {r["state_id"]: r for r in rows("cache/states_index.jsonl")}
+    z = np.load(ROOT / "cache" / "states_L20.npz")
+    rec_ids = [r["expl_id"] for r in rows("cache/recon_index.jsonl")]
+    P = np.load(ROOT / "cache" / "recon.npz")["P"]
+    pos = {e: i for i, e in enumerate(rec_ids)}
+    ex = {e["expl_id"]: e for e in rows("data/explanations.jsonl")}
+
+    def unit(X):
+        return X / np.linalg.norm(X, axis=-1, keepdims=True)
+
+    def fve(ids, H, ref_ids):
+        g = unit(np.stack([H[idx[ex[i]["state_id"]]["row"]] for i in ids]))
+        p = unit(np.stack([P[pos[i]] for i in ids]))
+        gr = unit(np.stack([H[idx[ex[i]["state_id"]]["row"]] for i in ref_ids]))
+        num = np.mean(np.sum((p - g) ** 2, axis=1))          # unit-norm scale; the sqrt(d) factor cancels in the ratio
+        den = np.mean(np.sum((gr - gr.mean(0)) ** 2, axis=1))
+        return float(1 - num / den), float(np.mean(np.sum(p * g, axis=1)))
+
+    gate = {}
+    for conv, key in (("hs20", "H20"), ("hs21", "H21")):
+        ref = [e for e, r in ex.items() if r.get("kind") == "REF" and r.get("gate_set") and r["convention"] == conv]
+        gate[f"reference_{conv}"] = fve(ref, z[key], ref)
+    ref21 = [e for e, r in ex.items() if r.get("kind") == "REF" and r.get("gate_set") and r["convention"] == "hs21"]
+    task = [e for e, r in ex.items() if r.get("convention") == "hs21" and r.get("kind") in ("PREFILL", "GEN")
+            and int(r["idx"]) <= 3]
+    gate["task_all_hs21"] = fve(task, z["H21"], ref21)
+    out["gate_fve_cos"] = gate
+except (ImportError, FileNotFoundError, KeyError) as e:
+    out["gate_fve_cos"] = f"not re-derived: {e!r}"
+# ---------------------------------------------------------------- readout: prefill mention rate, N6 placebo
+jud = rows("data/judgements.jsonl")
+sidx = {r["state_id"]: r for r in rows("cache/states_index.jsonl")}
+c2 = json.loads((ROOT / "predictions" / "commit2_readout.json").read_text())["tasks"]
+men = defaultdict(lambda: [0, 0])
+for j in jud:
+    if j["mode"] != "EXPL":
+        continue
+    r = sidx[j["state_id"]]
+    if r["kind"] != "PREFILL" or r["condition"] not in ("forced", "ban"):
+        continue
+    tgt = r.get("mode")
+    men[r["condition"]][0] += tgt in (j.get("mentioned_any") or [])
+    men[r["condition"]][1] += 1
+out["prefill_mentions_named_algorithm"] = {k: f"{v[0]}/{v[1]}" for k, v in men.items()}
+expl = defaultdict(list)
+text = {}
+for j in jud:
+    if j["mode"] == "EXPL":
+        expl[j["state_id"]].append(j)
+    else:
+        text[(j["mode"], j["text_id"])] = j["resolved"]
+labmap = {r["sample_id"]: r for r in lab}
+units = []
+for sid, r in sidx.items():
+    if r["kind"] != "GEN" or not r.get("mixed") or not c2.get(r["task"], {}).get("regate_pass", True):
+        continue
+    L = labmap.get(r["sample_id"])
+    if L is None:
+        continue
+    tid = f"{r['task']}|{r['condition']}|{r.get('mode') or '-'}|{r['template']}|{r['position']}|{r['slot']}"
+    es = sorted(expl.get(sid, []), key=lambda e: int(e["expl_id"].split("#")[-1]))[:3]
+    if not es or text.get(("PREDICT", tid)) is None:
+        continue
+    units.append({"key": sid, "sample": r["sample_id"], "g": int(r["position"][1:]),
+                  "x": int(sum(e["resolved"] == L["label"] for e in es) >= 2),
+                  "y": int(text[("PREDICT", tid)] == L["label"]), "name": text.get(("NAME", tid))})
+first = {}
+for u in sorted(units, key=lambda u: u["g"]):
+    if u["name"] not in (None, "none_named", "other", "unresolved") and u["sample"] not in first:
+        first[u["sample"]] = u["g"]
+sel = [u for u in units if u["g"] < first.get(u["sample"], 99)]
+A = {u["key"]: u["x"] for u in sel}
+B = {u["key"]: u["y"] for u in sel}
+out["N6"] = paired(A, B) | {"nla_acc": round(sum(A.values()) / len(A), 3), "predict_acc": round(sum(B.values()) / len(B), 3),
+                            "placebo_swap_share_p_lt_05": swap_placebo(A, B)}
+# ---------------------------------------------------------------- exploratory causal headline numbers
+cx = rows("data/labels_causal_extra.jsonl") + rows("data/labels_causal_extra2.jsonl")
+c3 = json.loads((ROOT / "predictions" / "commit3_causal.json").read_text())
+Y = {p["task"]: p["Y"] for p in c3["causal_plan"]}
+cells = defaultdict(dict)
+for r in cx:
+    cells[(r["task"], r["cell"])][(r["template"], int(r["slot"]))] = int(bool(r["passed"]) and r["label"] == Y[r["task"]])
+C0 = {t: {(r["template"], int(r["slot"])): int(bool(r["passed"]) and r["label"] == Y[t])
+          for r in lab if r["task"] == t and r["arm"] == "TWIN" and int(r["slot"]) < 10} for t in Y}
+
+
+def pooled(t, kind):
+    d = dict(cells.get((t, f"EXP_GEN_{kind}_x8"), {}))
+    d.update(cells.get((t, f"REP_GEN_{kind}_x8"), {}))
+    return d
+
+
+exp = {}
+for t in ("T06", "T05"):
+    E, R = pooled(t, "EDIT"), pooled(t, "RAND")
+    exp[t] = {"edit_x8_vs_C0": paired(E, C0[t]), "edit_x8_Y_share": round(sum(E.values()) / len(E), 3),
+              "C0_Y_share_slots0_9": round(sum(C0[t].values()) / len(C0[t]), 3),
+              "replication_slots6_9_vs_C0": paired(cells.get((t, "REP_GEN_EDIT_x8"), {}), C0[t]),
+              "edit_vs_rand_x8": paired(E, R),
+              "edit_vs_unrel_x8": paired(cells.get((t, "EXP_GEN_EDIT_x8"), {}), cells.get((t, "EXP2_GEN_UNREL_x8"), {})),
+              "edit_vs_rtm_x8": paired(cells.get((t, "EXP_GEN_EDIT_x8"), {}), cells.get((t, "EXP2_GEN_RTM_x8"), {})),
+              "edit_x16_vs_C0": paired(cells.get((t, "EXP2_GEN_EDIT_x16"), {}), C0[t]),
+              "placebo_rand_x8_vs_C0": paired(R, C0[t]),
+              "placebo_swap_share_p_lt_05": swap_placebo(E, C0[t])}
+exp["T10_dim_x16_vs_C0"] = paired(cells.get(("T10", "EXP2_GEN_DIM_x16"), {}), C0["T10"])
+exp["T10_placebo_rand_x16_vs_C0"] = paired(cells.get(("T10", "EXP2_GEN_RAND_x16"), {}), C0["T10"])
+out["exploratory_causal"] = exp
+# ---------------------------------------------------------------- local positive control
+lj = rows("data/local_judgements.jsonl")
+lidx = {r["state_id"]: r for r in rows("cache/local_states_index.jsonl")}
+by = defaultdict(list)
+for e in lj:
+    by[e["state_id"]].append(e)
+loc = {}
+for cond in ("forced", "ban"):
+    for k in ("NAME", "SENT"):
+        sts = [s for s, r in lidx.items() if r["condition"] == cond and r["position"] == k]
+        m = [int(sum(lidx[s]["mode"] in (e.get("mentioned_any") or []) for e in by[s]) >= 2) for s in sts]
+        pl = [int(sum(e["resolved"] == lidx[s]["mode"] for e in by[s]) >= 2) for s in sts]
+        loc[f"{cond}|{k}"] = {"n": len(sts), "mentioned": round(sum(m) / len(m), 3), "planned": round(sum(pl) / len(pl), 3)}
+out["local_control"] = loc
+(ROOT / "results" / "rederive_headlines.json").write_text(json.dumps(out, indent=1))
+print(json.dumps(out, indent=1)[:6000])

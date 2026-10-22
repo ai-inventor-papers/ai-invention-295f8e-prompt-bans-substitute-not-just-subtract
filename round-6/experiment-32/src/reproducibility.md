@@ -1,179 +1,164 @@
-# Reproducibility: panel II landing test (iteration 6)
+# Reproducing this artifact (iteration 6, experiment 32: "Reading the planned algorithm in words")
 
-This file describes what was **actually run** on 2026-10-21/22 (UTC), in order, and what a reader should get.
-Every path is relative to this folder. No secret values appear here; environment variables are named only.
+This file describes what was **actually run**, in order, on 2026-10-22 (UTC 04:50-07:45). Every path below is relative
+to this artifact's folder.
 
 ## 1. Get the artifact
 
-The workspace is published as one folder of a public GitHub repository:
+The workspace is published as one folder of a public GitHub repository.
 
 ```bash
-git clone <repository-url>
-cd <repository>/<this-artifact-folder>        # the folder that holds this file, method.py and pyproject.toml
+git clone <the run's repository URL>
+cd <repository>/<this artifact's folder>      # the folder that holds this file, method.py and README.md
 ```
 
-The declared dependency **art_j3Rm_lr2nzR6** ("Source data for an algorithm-choice coding bench") is published as a
-sibling folder of the same repository. It is read through ONE environment variable, `AII_DEP_ART_J3RM`. Its default is
-the sibling folder `../art_j3Rm_lr2nzR6`, which must hold `full_data_out.json`. Only `src/extract_sources.py` reads it.
-Its output, `inputs/sources.json`, is already in this folder, so the CPU re-analysis does not need the dependency.
+The folder already contains:
+- every input copied from earlier artifacts of this research direction (`inputs/`, hashes in `inputs/SHA256SUMS`);
+- all prompts, raw samples, labels, explanations and judgements (`data/`);
+- the result files (`results/`), the figures (`figures/`) and the pre-registration chain (`commitments.log`,
+  `predictions/`).
 
-The read-only iteration-2..5 inputs this run used are vendored under `vendor/`, so the reader needs no other run
-folder:
+Two things are not in the published folder, by design:
+- `cache/*.npz` (layer-20 states, AR reconstructions, causal deltas). These are binary and 70-91 MB each. They stay
+  on the run volume and are rebuilt by steps S4/S6 below. Their indexes (`cache/*_index.jsonl`) are published.
+- `.venv/` and the `.git/` folders of the two `third_party/` clones. The venv is rebuilt by section 2 and the clones by section 3.
 
-- iteration-5 B-unit rows: `vendor/exp26/samples_B_nocode.jsonl`, with its source hash beside it;
-- pooled iteration-5 inputs: `vendor/exp25/` and `vendor/exp26/`;
-- r_Q: `vendor/exp23/qwen_ratio.json`;
-- twin templates: `vendor/exp7/frozen/`;
-- hull code: `vendor/exp27/src/`;
-- exp19 and exp20 hooks.
-
-There were **no user-uploaded inputs** (the run's upload folder was empty).
+**User uploads:** none. The run's `user_uploads` folder was empty, and no private input was used.
 
 ## 2. System, Python and libraries
 
-- **OS:** Ubuntu/Debian-like Linux x86_64 (the run used Debian 12, kernel 6.8, a container capped at 6 vCPUs and 66 GB
-  RAM).
-- **GPU:** one NVIDIA L4 (23 GB VRAM, compute capability 8.9), driver 595.91, CUDA 13.2 runtime on the host; the
-  wheels use CUDA 12.8 (torch 2.8.0+cu128).
-- **Python:** 3.12.14.
-- **Package manager:** `uv` (no pip in the venvs).
-
-**Main environment** (HF transformers, analysis, labellers): every package is pinned in `pyproject.toml`, which equals
-`uv pip freeze` of `.venv` with 89 packages, and in `uv.lock`. Key pins:
-
-- torch 2.8.0
-- transformers 4.57.6
-- tokenizers 0.22.2
-- accelerate 1.15.0
-- numpy 2.2.6
-- scipy 1.18.1
-- pandas 3.0.6
-- matplotlib 3.11.2
-- openai 3.35.1
-- loguru 0.7.3
-- jsonschema 4.25.1
-- pytest 8.4.2
+- **OS and tools.** Debian 12 (bookworm) container; any Ubuntu 22.04+ works. You need `git`, `curl` and
+  `uv` 0.6.14.
+- **Python.** CPython **3.12.14**. A `python3.12` binary must also be on `PATH`, because the bench labellers run every
+  candidate program in a sandboxed `python3.12 -I -S` subprocess. `BENCH_SANDBOX_PYTHON` overrides that binary.
+- **GPU.** One NVIDIA L4, 24 GB (23.7 GB usable), driver 595.91.07 (CUDA 13.2 driver API). torch 2.8.0 is the
+  PyPI CUDA-12.8 wheel. Any ≥ 22 GB GPU works; 7B bf16 needs about 15.2 GB plus a KV cache of up to about 5 GB.
+- **CPU and RAM.** 6 CPUs (cgroup quota) and 66 GB RAM (cgroup limit). Scripts cap themselves with `RLIMIT_AS` at
+  60 GB.
 
 ```bash
-uv sync                    # creates .venv from pyproject.toml / uv.lock (took ~4.5 min on the run's network FS)
+uv venv .venv --python=3.12
+uv pip install --python .venv/bin/python -r pyproject.toml   # 89 packages, all pinned (== versions)
 ```
 
-**vLLM environment** (unhooked sampling only, a separate process so it cannot perturb the HF pins): pinned in
-`requirements-vllm.lock.txt` (157 packages), which equals `uv pip freeze` of `.venv_vllm`. vllm 0.11.0 installed
-transformers 5.20.2, which fails to load the Qwen tokenizer (`all_special_tokens_extended`), so transformers was pinned
-back to 4.57.6:
+`pyproject.toml` pins every package to the exact version installed in `.venv` (`uv pip freeze`; the same list is in
+`env_freeze.txt`). The packages that matter are torch==2.8.0, transformers==4.57.6, accelerate==1.15.0,
+safetensors==0.8.0, tokenizers==0.22.2, huggingface-hub==0.36.2, datasets==5.0.1, numpy==2.2.6, scipy==1.18.1,
+pandas==3.0.6, scikit-learn==1.9.1, matplotlib==3.11.2, openai==3.35.1, loguru==0.7.3, pyyaml==6.0.3 and
+rapidfuzz==3.14.6. The venv was created with uv, so it contains no `pip`; `uv pip freeze` replaces `pip freeze`.
+
+## 3. Downloads, environment variables and the dependency
+
+**Models.** Fetch them into the Hugging Face cache, at the exact revisions used:
 
 ```bash
-uv venv .venv_vllm --python 3.12
-uv pip install --python .venv_vllm/bin/python vllm==0.11.0
-uv pip install --python .venv_vllm/bin/python transformers==4.57.6 tokenizers==0.22.2
-# exact closure: uv pip install --python .venv_vllm/bin/python -r requirements-vllm.lock.txt
+hf download Qwen/Qwen2.5-7B-Instruct    --revision a09a35458c702b33eeacc393d103063234e8bc28   # 15.2 GB
+hf download kitft/nla-qwen2.5-7b-L20-av --revision b88469162777ae6553bc14208eb0cb579336f8f4   # 15.3 GB (AV)
+hf download kitft/nla-qwen2.5-7b-L20-ar --revision e2c9e57eac213d37a31612087f645ab6332c1bb6   # 10.9 GB (AR + value_head)
 ```
 
-`restore.sh` runs the environment steps above plus the model downloads below.
-
-## 3. Models, data and keys
-
-**Models** (in the Hugging Face cache named by `HF_HUB_CACHE`; never stored in this folder):
-
-- `Qwen/Qwen3-8B` at revision `b968826d9c46dd6066d109eabc6255188de91218` (instruct);
-- `Qwen/Qwen3-8B-Base` at revision `49e3418fbbbca6ecbdf9608b4d22e5a407081db4` (base).
+**Reference code.** It is read only for the recipe, never imported:
 
 ```bash
-.venv/bin/python -c "from huggingface_hub import snapshot_download as s; s('Qwen/Qwen3-8B', revision='b968826d9c46dd6066d109eabc6255188de91218'); s('Qwen/Qwen3-8B-Base', revision='49e3418fbbbca6ecbdf9608b4d22e5a407081db4')"
+git clone https://github.com/kitft/nla-inference.git third_party/nla-inference                         # commit 38b802a33d1d
+git clone https://github.com/kitft/natural_language_autoencoders.git third_party/natural_language_autoencoders  # commit 0577769b55ad
 ```
 
-The run-time scripts locate the snapshots as `$HF_HUB_CACHE/models--Qwen--Qwen3-8B[-Base]/snapshots/<revision>`
-(`src/cfg5.py:model_path`; the vLLM driver takes the snapshot folder as `--model`).
+The sidecars (`nla_meta.yaml`, configs, chat templates) are copied into `third_party/hf_meta/`.
 
-**Environment variables** (names only):
+**Dataset dependency `art_j3Rm_lr2nzR6`** (`full_data_out.json`, 96 MB). Only `src/dep_usage.py` reads it, through
+the single constant `cfg.DEP_DATASET_DIR`. That constant defaults to the sibling folder `../art_j3Rm_lr2nzR6`, which
+is how the repository publishes it; the environment variable `ART_J3RM_DIR` points elsewhere. Its outputs are already
+published: `data/reference_sources.json`, `data/novelty_pool.jsonl` and `results/dependency_usage.json`.
 
-| variable | used by | needed for |
+**Ultra-FineWeb.** `src/dep_usage.py` streams `openbmb/Ultra-FineWeb` (split `en`) and keeps the first 20 documents of
+1,200-6,000 characters. They are saved and published as `data/ultrafineweb_docs.json`, so a re-run reuses them and
+needs no streaming.
+
+**Environment variables** (names only, never values):
+
+| variable | required? | purpose |
 |---|---|---|
-| `HF_HUB_CACHE` | `src/cfg5.py`, the vLLM commands | model snapshots |
-| `HF_TOKEN` | huggingface_hub | optional (public models) |
-| `OPENROUTER_BASE_URL`, `OPENROUTER_API_KEY` | `src/judge5.py`, `src/novelty6.py` | the blind judges (`google/gemini-2.5-flash`, `openai/gpt-4.1-mini`, `deepseek/deepseek-chat`); cached in `data/judge_cache.jsonl` and `data/novelty_cache.jsonl`, so re-running the analysis costs nothing |
-| `AII_DEP_ART_J3RM` | `src/extract_sources.py` | the dependency folder (default `../art_j3Rm_lr2nzR6`) |
+| `OPENROUTER_BASE_URL`, `OPENROUTER_API_KEY` | required | every judge call (S3 re-gate, S7, novelty audit, local control) |
+| `HF_HOME` / `HF_HUB_CACHE` | optional | model cache location; the code resolves snapshots from `HF_HUB_CACHE` |
+| `HF_TOKEN` | optional | model downloads; the models are not gated |
+| `ART_J3RM_DIR` | optional | location of the dependency, see above |
+| `BENCH_SANDBOX_PYTHON` | optional | the sandbox interpreter for the labellers |
 
 ## 4. What was run, in order
 
-Wall clock: about 4 h 40 min, from 19:37 to 00:16 UTC. GPU time: HF hooked/CRN sampling 1.44 h (450 batches of 20
-rows), vLLM sampling 0.61 h, plus model loads. OpenRouter: USD 0.33 over 1,468 judge calls.
+The GPU stages load one model at a time. Seeds:
+- **CRN uniform streams:** `PCG64(sha256("task|template|slot"))`, shared by every arm.
+- **AV sampling:** `torch.manual_seed(stable_seed("av", tag, first explanation id))`.
+- **Random deltas and perturbations:** `stable_seed("rand_delta"|"eps", ...)`.
+- **Bootstrap:** seed 20261022.
+- **Judge item shuffle:** `stable_seed("judge_shuffle")`.
 
-Every seed is derived by sha256 from fixed strings (`predictions/protocol_v6_panelII.json` -> `dose.seeds`):
+Judges run at temperature 0, but API outputs are not bit-reproducible. Their caches are published
+(`data/judge_nla_cache.jsonl`, `data/judge_cache*.jsonl`), so re-runs reuse every cached answer.
 
-- ESC directions: `int(sha256('iter6|panelII|<u>|dir|<k>')[:8], 16)`;
-- PN and GTN directions: `'iter6|panelII|<u>|PN|<alpha>|<w>|<s>'` and the same string with `GTN`;
-- CRN uniforms of new units: `'iter6|crn|<u>|<w>|<s>'`; iteration-5 units reuse the exp26 stream;
-- vLLM request seeds: `'iter6|vllm|...'`;
-- bootstraps: `numpy.random.default_rng(20261021)`.
-
-| # | command | what it does | time |
+| # | command | where | time |
 |---|---|---|---|
-| 1 | `.venv/bin/python src/extract_sources.py` | 12 LeetCode rows + keyword rows + noun bank + validation subsets -> `inputs/sources.json` | 10 s |
-| 2 | `.venv/bin/python src/protocol6.py` | **commit #0** (`predictions/protocol_v6_panelII.json`, 20:12:53Z, before any sample) | 1 s |
-| 3 | vLLM job `screenB_instruct` (see 4a) | B1-B7 twin top-up (T 1.0 k 10-39, T 1.3 k 0-19) + forced programs | 5 min |
-| 4 | `.venv/bin/python src/unitbuild.py II1` (... II6) | gate stage (i): tests, two oracles, references, mutants, labellers | 1 min/unit |
-| 5 | `.venv/bin/python src/label5.py` (background daemon) | sandboxed tests + runtime tracer + AST labels -> `data/labels.jsonl` | all day |
-| 6 | prompts + vLLM `new1_instruct`, `base1`, `instruct2` (4a) | II1-II6 twin/T 1.3/forced/association; base 200 chat + 100 plain + 30 intents; forced top-up + BINT code | 28 min |
-| 7 | `.venv/bin/python src/judge5.py controls`; `.venv/bin/python src/gate2.py II1,II3,II4,II5,II6` | judge control gate (6/6 each); gate stage (ii) | 2 min |
-| 8 | `.venv/bin/python src/gpu6.py --plan data/gpu_plan.json` (background) | HF: twin CRN k 0-9, q_lik scoring, then nudges once committed | daemon |
-| 9 | `.venv/bin/python src/m_screen.py`; analysis commit (`commit5.commit`, tag `analysis_commit`) | M signs from iteration-5 data; analysis code + schema + tests committed at 22:11:51Z | 1 min |
-| 10 | `.venv/bin/python src/quantities6.py II1,II3,II4,II5,II6,II2` | per-unit forecasts + **unit commits** (22:12Z), first nudge 22:18Z | 20 s |
-| 11 | `src/unitbuild.py II7,II8`; vLLM `new2_instruct`, `new2_base`, `new2_bint`; `src/gate2.py II7,II8` (+ II7 `--revision`); `src/quantities6.py II8` / `II7` | second wave (`logs/switch_vllm.sh`, `logs/watch_ii78.sh`, `logs/watch_ii7.sh`) | 50 min |
-| 12 | `.venv/bin/python src/quantities6.py B1,...,B7`; `src/gpu6.py --plan data/gpu_plan_v3.json` | SCREEN commits; II7/II8 nudges; B-unit alpha-4 ESC, PN alpha 4, GTN alpha 2; HF re-draw of iteration-5 twin slots | 60 min |
-| 13 | `.venv/bin/python src/gpu_tests6.py` | G1-G6 GPU tests -> `results/tests_gpu.json` | 2 min |
-| 14 | adjudication of remaining disagreements; `src/base_audit6.py II1,...,II8`; `src/novelty6.py` | judges | 5 min |
-| 15 | `.venv/bin/python method.py` | final CPU stage (below) | 8 min |
+| S0 | `.venv/bin/python src/tests_cpu.py` (51/51 references labelled correctly) | CPU | 1 min |
+| S0 | `.venv/bin/python src/dep_usage.py` (all ten dependency datasets; reference documents) | CPU + network | 1 min |
+| S0 | commit #0, run inline; identical to `.venv/bin/python src/commit0.py` | CPU | — |
+| S1-S3 | `.venv/bin/python src/gen.py twin engine_check forced_seed ban` | GPU | 30 min |
+| | beside it, `.venv/bin/python src/labels.py --raw data/samples_raw.jsonl --out data/labels.jsonl --follow-until data/flag_ban.done --name label_behaviour` | CPU | |
+| | after the twin labels, before the ban stage: `.venv/bin/python src/behaviour.py defaults` (commit #1) | CPU | |
+| S3 | `.venv/bin/python src/behaviour.py report` then `.venv/bin/python src/behaviour.py regate` | CPU + API | 4 min |
+| S4 | `.venv/bin/python src/states.py` | GPU | 1.5 min |
+| S7a | `.venv/bin/python src/judges.py calibrate` (rubric v1, then v2; see deviations D-rubric-v2 and D-judge-swap) | API | 2 min |
+| | `.venv/bin/python src/commit2.py` (commit #2) | CPU | — |
+| S5a | `.venv/bin/python src/nla_av.py gate` (smoke tests and reference set, both conventions) | GPU | 2 min |
+| S5-S8 | `./run_chain.sh` | GPU + API | 25 min + 15 min |
 
-4a. Every vLLM job was built with the `src/requests6.py` builders. The builders write `data/vllm_req/<job>.jsonl`;
-those files are kept, so a job can be re-run without rebuilding. Each job was run as:
+`./run_chain.sh` runs these steps in turn:
+1. `nla_ar.py gate`, which picks the layer convention, hidden_states[21];
+2. `nla_av.py production`, 6,180 explanations;
+3. `nla_ar.py production`, which writes the gate, the edits, the deltas and commit #3;
+4. `judges.py run`, run in the background;
+5. `labels.py --raw data/samples_causal_raw.jsonl --out data/labels_causal.jsonl --follow-until data/flag_causal.done`;
+6. `causal_gen.py --deadline-min 70`.
 
-```bash
-.venv_vllm/bin/python src/vllm_gen.py --model "$HF_HUB_CACHE/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218" \
-    --requests data/vllm_req/<job>.jsonl --out data/vllm_out/<job>.jsonl --max-num-seqs 128
-.venv/bin/python src/requests6.py ingest <job> [--model-tag base]     # -> data/samples_raw.jsonl
-```
+The rest was run by hand after the chain:
 
-For base jobs, use the base snapshot. Throughput was 18-40k programs/h for instruct and 7-10k/h for base.
+| # | command | where | time |
+|---|---|---|---|
+| S7 | `.venv/bin/python src/judges.py run --conc 8`, re-run from cache until the final pass (see deviations D-judge-projection, D-judge-json, D-judge-j3-missing) | API | 10 min |
+| S9 | `.venv/bin/python analysis/causal.py`, `analysis/readout.py`, `analysis/geometry.py` | CPU | 1 min |
+| EXPL | `.venv/bin/python src/causal_extra.py && .venv/bin/python src/labels.py --raw data/samples_causal_extra_raw.jsonl --out data/labels_causal_extra.jsonl` | GPU | 10 min |
+| EXPL | `.venv/bin/python src/causal_extra2.py && .venv/bin/python src/labels.py --raw data/samples_causal_extra2_raw.jsonl --out data/labels_causal_extra2.jsonl` | GPU | 17 min |
+| EXPL | `.venv/bin/python src/local_control.py` | GPU + API | 8 min |
+| S9 | `.venv/bin/python analysis/causal_extra.py`, `src/novelty.py`, `src/figures.py` | CPU + API | 3 min |
+| audit | `python3 audit/rederive.py` (stdlib only), then `.venv/bin/python audit/rederive_headlines.py` | CPU | 1 min |
+| out | `.venv/bin/python src/outputs.py`, then the aii-json format script (`--input method_out.json`) | CPU | 1 min |
 
-**Re-running only the analysis (CPU, no GPU, no API spend: every judge answer is cached):**
+`method.py` chains the pre-registered stages S0-S9 (`.venv/bin/python method.py [--from STAGE]`). The exploratory
+commands are listed separately in `README.md`. Total wall-clock was about 2.9 h, of which about 2 h was GPU.
+OpenRouter spend was about USD 2.0.
 
-```bash
-uv run method.py                          # outputs6 (events, frozen analysis, figures, method_out.json),
-                                          # audit/commit_order.py, audit/rederive.py, src/cpu_checks6.py, README
-python3 -I audit/rederive_headlines.py    # second independent re-derivation of the headline numbers
-.venv/bin/python -m pytest -q -c pytest.ini tests/test_pool_l1.py     # 9 synthetic checks of the frozen analysis
-```
+**Determinism notes.**
+- Generation is exact-CRN in bf16 on the same GPU and kernels, with CRN determinism 8/8.
+- The batch composition (left padding) changes about 1 in 16 labels (batch invariance 15/16). A different GPU or
+  kernel version can change individual tokens but not the aggregate conclusions.
+- The prefill states are bit-identical for identical prefixes.
 
-`src/cpu_checks6.py` also checks seed disjointness. It reads the iteration-4/5 sibling run folders, which exist only on
-the original run volume; in the published repository that check finds no old seeds and says so.
+## 5. What you should get
 
-## 5. What a reader should get
+The README's "Results in detail" section reproduces every number below. There is no paper yet; the README is the
+write-up.
 
-| output | expected content |
-|---|---|
-| `results/l1.json` (`verdict`) | **DESCRIPTIVE** |
-| L1a (tail-empty events) | r_u hits 3/4 (II4/ESC, II5/ESC, II5/PN, II7/GTN), exact Poisson-binomial p = 0.1042 (6 events required) |
-| L1b (discordant events) | b = 6, c = 3, ties 0, one-sided sign-test p = 0.2539 (FAIL); unit level b = 2, c = 1 over 3 units |
-| hit counts on the 13 CONFIRMATION events | r_u 9, qlik_top1 6, t_u 9/9 where defined |
-| log scores (`results/l1.json`, `log_scores.E`) | mean D_lik = 0.311 (one-sided LB 0.07), mean D_tail = 0.005 (LB -0.25) |
-| `results/l2.json` | 6 of 940 correct off-default content-free nudged programs fall outside the base repertoire (II1 bisect_positions) |
-| `results/m.json` | beta: rho = 0.946 over 7 units, one-sided exact p = 0.0016, Holm p = 0.010 (SUPPORTED); the other 5 candidates are not supported |
-| `results/rederive.json`, `results/rederive_headlines.json` | 0 mismatches; placebos fail (random r_u at chance, shuffled E_u rejects about 3%, permuted q_base loses the D_lik advantage, swapped forecasts flip L1b) |
-| `results/commit_order.json` | 0 chain breaks, commit #0 before the first sample, analysis code before the first nudge, 0 nudge rows before their unit commit |
-| `results/tests_gpu.json` | CRN determinism; alpha-0 identity 20/20 (ESC) and 10/10 (GTN); max realised-dose error 0.0016; 5,700/5,700 identical vLLM prompt ids |
-| `landing_events.json`, `units.json` | the pooling files (schema `schema/iter6_landing_v1.json`) for the next round's panel I + II test |
-| `method_out.json` (+ full/mini/preview) | exp_gen_sol_out; all analyses in `metadata` |
-| `figures/F1`-`F6` | landings per event, log-score forest, escape heatmap, base vs tail composition, M candidates, knob prices |
-
-There is no paper yet. These numbers feed the panel-II paragraph of the iteration-6 write-up. F1 is the landing figure,
-F2 the forecast comparison and F5 the M result. The README tables repeat every number above.
-
-Sources of run-to-run variation if re-sampled:
-
-- HF sampling is CRN-deterministic on the same GPU, kernels and batch shape (G1).
-- vLLM rows use fixed per-request seeds but are not bit-reproducible across vLLM builds.
-- bf16 numerics differ across GPU types: the iteration-5 twin slots re-drawn on the L4 agreed per slot 0.96-1.0 with
-  the RTX 4090 originals.
-- Judge answers are cached; fresh judge calls may differ slightly.
+| quantity | file | value |
+|---|---|---|
+| defaults (modal correct twin share) | `results/behaviour.json` | T1 BFS 1.00, T2 Dijkstra 0.88, T05 hash map 0.98, T06 hash set 0.71, T10 DFS 0.62, T04 naive 1.00, R6 binary search 1.00, T03 none (quickselect 0.40) |
+| bans | `results/behaviour.json` | only T05 has a substitute (brute force 32/46 correct); T10 DFS rises 29 → 43 (15 union-find → DFS flips); W4 70/70 attempts use the default |
+| layer convention | `results/layer_convention.json` | FVE_ref hs20 0.580 vs hs21 0.695 → hs21; pipeline check vs 0.752 passes |
+| task gate | `results/gate.json` | FVE_ref 0.512, PARTIAL (READ 0.65, SPEC 0.50, g2 0.28), mean cosine 0.826 |
+| N1, N2, N3, N8b | `results/readout.json` | 0/16, 0/112, 0.00 on all 7 tasks, 0/96 |
+| N6 | `results/readout.json` | NLA 0.066 vs outside reader 0.253, exact McNemar 20:88, p = 2.3e-11 |
+| committed causal arm | `results/causal.json` | 0 of 4 tasks pass |
+| exploratory: GEN-site edit | `results/causal_exploratory_followup.json` | T06 Floyd 0.76 vs C0 0.28 (25:1 over N=50; replication 13:0); T05 brute force 10:0 at ×8, 23:0 at ×16; T10 DIM ×16 15:1 |
+| exploratory: local control | `results/local_control.json` | mention at the name token 0.80 (forced) / 0.89 (ban); at the end of the prompt 8/1080 and 3/420 |
+| novelty | `results/novelty.json` | 10 correct "other" programs: 8 labeller misses, 2 degenerate, 0 novel |
+| re-derivations | `results/rederive.json`, `results/rederive_headlines.json` | every number above recomputed independently; placebos fail |
+| outputs | `method_out.json` (= `full_method_out.json`), `mini_method_out.json`, `preview_method_out.json` | 5 datasets, 8,480 examples; exp_gen_sol_out schema validated |

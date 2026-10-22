@@ -1,69 +1,90 @@
 #!/usr/bin/env python3
-"""Panel II (iteration 6): where nudged code lands -- base runner-up vs the tuned model's own tail and likelihood
-ranking (Qwen3-8B vs Qwen3-8B-Base). Entry point.
+"""Reading the planned algorithm in words -- the full pipeline of this artifact (iteration 6, experiment 32).
 
-    uv run method.py                 # CPU final stage (default): events, frozen analysis, audits, figures, outputs
-    uv run method.py --stage gpu     # print the GPU pipeline commands, in the order they were run
+Qwen/Qwen2.5-7B-Instruct (bf16) writes Python solutions to 8 algorithm-choice tasks. The released natural-language
+autoencoder pair kitft/nla-qwen2.5-7b-L20-av / -ar verbalises its layer-20 states before any code token; blind judges
+map every explanation to a catalogue algorithm. The METHOD is the NLA readout; its BASELINES / CONTROLS are the
+text-only reader (same judges, the visible text), the outside-reader forecast (PREDICT), swapped twin explanations,
+explanations of matched-norm random perturbations and the forced-prompt positive control. The causal arm patches the
+difference of two AR reconstructions (edited vs unedited explanation) into the layer-20 states, against the unedited
+round trip, an unrelated-word edit, a matched-norm random push and a matched-norm difference-in-means push.
 
-The method (base-model forecasts r_u / q_base) and its baselines (the tuned model's own twin tail t_u / q_tail, its
-likelihood ranking qlik_top1 / q_lik, association answers and uniform) are computed side by side by the same code
-(src/quantities6.py) and scored on the same landing events by the frozen analysis (analysis/pool_l1.py)."""
+Stages (one GPU model in memory at a time; every stage is its own script under src/ so it can be resumed):
+  S0  src/tests_cpu.py, src/dep_usage.py, src/commit0.py          CPU tests, dependency use, commit #0
+  S1-3 src/gen.py twin engine_check forced_seed ban             prompts, engine checks, behaviour (GPU)
+       src/labels.py (follows data/samples_raw.jsonl)           frozen labellers (CPU, in parallel)
+       src/behaviour.py defaults | report | regate              commit #1, per-task report, style re-gate
+  S4  src/states.py                                             layer-20 state cache (GPU)
+       src/judges.py calibrate ; src/commit2.py                 judge calibration gate, commit #2
+  S5  src/nla_av.py gate ; S6 src/nla_ar.py gate                smoke tests, reference FVE, layer convention
+  S5  src/nla_av.py production ; S6 src/nla_ar.py production    explanations, task gate, edits, deltas, commit #3
+  S7  src/judges.py run                                         blind judges (OpenRouter; runs while S8 uses the GPU)
+  S8  src/causal_gen.py + src/labels.py (labels_causal)         causal arm (GPU)
+  S9  src/novelty.py ; analysis/readout.py ; analysis/causal.py ; src/figures.py ; audit/rederive.py ; src/outputs.py
+
+Usage: python method.py [--from STAGE] [--only STAGE ...]
+"""
 
 from __future__ import annotations
 
 import argparse
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 from loguru import logger
 
 ROOT = Path(__file__).resolve().parent
 PY = sys.executable
-GPU_STEPS = [
-    "python src/extract_sources.py                       # rows of the dependency art_j3Rm_lr2nzR6",
-    "python src/protocol6.py                             # commit #0 (before any sample)",
-    "python src/unitbuild.py II1,II2,...,II8             # gate stage (i)",
-    "python -c 'import requests6 ...'                    # vLLM request files (src/requests6.py builders)",
-    ".venv_vllm/bin/python src/vllm_gen.py --model <snapshot> --requests data/vllm_req/<job>.jsonl --out data/vllm_out/<job>.jsonl",
-    "python src/requests6.py ingest <job> [--model-tag base]",
-    "python src/label5.py                                # label daemon (runtime + AST labellers, sandboxed tests)",
-    "python src/gate2.py II1,...                         # gate stage (ii): gold set, two judge families",
-    "python src/m_screen.py                              # M-screen signs from iteration-5 data",
-    "python src/gpu6.py --plan data/gpu_plan_v3.json     # HF daemon: twin CRN slots, q_lik, ESC/PN/GTN",
-    "python src/quantities6.py <units>                   # per-unit forecasts + hash-chained commit (before nudges)",
-    "python src/base_audit6.py <units> ; python src/novelty6.py ; python src/gpu_tests6.py",
+STAGES: list[tuple[str, list[list[str]]]] = [
+    ("S0", [["src/tests_cpu.py"], ["src/dep_usage.py"], ["src/commit0.py"]]),
+    ("S3", [["src/gen.py", "twin", "engine_check", "forced_seed", "ban"]]),  # labels.py and behaviour.py defaults run beside it
+    ("S3b", [["src/labels.py", "--raw", "data/samples_raw.jsonl", "--out", "data/labels.jsonl"]]),
+    ("S3c", [["src/behaviour.py", "report"], ["src/behaviour.py", "regate"]]),
+    ("S4", [["src/states.py"], ["src/judges.py", "calibrate"], ["src/commit2.py"]]),
+    ("S5a", [["src/nla_av.py", "gate"], ["src/nla_ar.py", "gate"]]),
+    ("S5b", [["src/nla_av.py", "production"], ["src/nla_ar.py", "production"]]),
+    ("S7S8", [["src/causal_gen.py", "--deadline-min", "75"]]),  # src/judges.py run in parallel
+    ("S8b", [["src/labels.py", "--raw", "data/samples_causal_raw.jsonl", "--out", "data/labels_causal.jsonl",
+              "--name", "label_causal"]]),
+    ("S9", [["src/novelty.py"], ["analysis/readout.py"], ["analysis/causal.py"], ["src/figures.py"],
+            ["audit/rederive.py"], ["src/outputs.py"]]),
 ]
 
 
 def run(cmd: list[str]) -> None:
-    logger.info("$ " + " ".join(cmd))
-    r = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
+    t0 = time.time()
+    logger.info(f"$ {' '.join(cmd)}")
+    r = subprocess.run([PY] + cmd, cwd=ROOT)
     if r.returncode != 0:
-        logger.error(r.stderr[-2000:])
-        raise RuntimeError(f"step failed: {' '.join(cmd)}")
-    logger.info(r.stdout[-800:])
+        raise RuntimeError(f"{cmd} exited {r.returncode}")
+    logger.info(f"  done in {time.time() - t0:.0f}s")
 
 
 @logger.catch(reraise=True)
 def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--from", dest="start", default="S0")
+    ap.add_argument("--only", nargs="*", default=None)
+    args = ap.parse_args()
     logger.remove()
     logger.add(sys.stdout, level="INFO", format="{time:HH:mm:ss}|{level:<7}|{message}")
     (ROOT / "logs").mkdir(exist_ok=True)
     logger.add(str(ROOT / "logs" / "method.log"), rotation="30 MB", level="DEBUG")
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--stage", default="final", choices=["final", "gpu"])
-    a = ap.parse_args()
-    if a.stage == "gpu":
-        print("\n".join(GPU_STEPS))
-        return
-    run([PY, "src/outputs6.py"])
-    run([PY, "-I", "audit/commit_order.py"])
-    run([PY, "-I", "audit/rederive.py"])
-    run([PY, "-I", "audit/rederive_headlines.py"])
-    run([PY, "src/cpu_checks6.py"])
-    run([PY, "src/readme6.py"])
-    logger.info("final stage complete: method_out.json, landing_events.json, units.json, results/, figures/")
+    names = [s for s, _ in STAGES]
+    todo = args.only or names[names.index(args.start):]
+    for name, cmds in STAGES:
+        if name not in todo:
+            continue
+        if name == "S7S8":
+            jp = subprocess.Popen([PY, "src/judges.py", "run"], cwd=ROOT)
+            for c in cmds:
+                run(c)
+            jp.wait()
+            continue
+        for c in cmds:
+            run(c)
 
 
 if __name__ == "__main__":

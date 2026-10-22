@@ -1,82 +1,251 @@
 {
- "n_events_E": 13,
- "hits": {
-  "r_u": 9,
-  "qlik_top1": 6,
-  "t_u": 9
+ "behaviour": {
+  "R6": {
+   "twin_correct": {
+    "binary_search": 38
+   },
+   "default_share": 1.0,
+   "ban_correct": {
+    "binary_search": 41,
+    "bisect_module": 1
+   }
+  },
+  "T03": {
+   "twin_correct": {
+    "full_sort": 4,
+    "size_k_heap": 16,
+    "heapify_pop": 5,
+    "quickselect": 19,
+    "counting_sort": 1,
+    "other": 2
+   },
+   "default_share": 0.404,
+   "ban_correct": {}
+  },
+  "T04": {
+   "twin_correct": {
+    "naive": 50
+   },
+   "default_share": 1.0,
+   "ban_correct": {
+    "naive": 47,
+    "kmp": 1
+   }
+  },
+  "T05": {
+   "twin_correct": {
+    "hash_map": 49,
+    "sort_two_pointers": 1
+   },
+   "default_share": 0.98,
+   "ban_correct": {
+    "brute_force": 32,
+    "hash_map": 14
+   }
+  },
+  "T06": {
+   "twin_correct": {
+    "floyd": 14,
+    "hash_set": 35
+   },
+   "default_share": 0.714,
+   "ban_correct": {
+    "hash_set": 23,
+    "value_binary_search": 4,
+    "floyd": 7
+   }
+  },
+  "T1": {
+   "twin_correct": {
+    "bfs": 13
+   },
+   "default_share": 1.0,
+   "ban_correct": {
+    "bfs": 4,
+    "dfs": 3
+   }
+  },
+  "T10": {
+   "twin_correct": {
+    "dfs": 29,
+    "union_find": 18
+   },
+   "default_share": 0.617,
+   "ban_correct": {
+    "dfs": 43,
+    "union_find": 2,
+    "bfs": 3
+   }
+  },
+  "T2": {
+   "twin_correct": {
+    "dijkstra": 38,
+    "bf_spfa": 5
+   },
+   "default_share": 0.884,
+   "ban_correct": {
+    "bf_spfa": 9,
+    "dijkstra": 19
+   }
+  }
  },
- "n_events_t_u_defined": 9,
- "mean_D_lik": 0.3109379610959711,
- "mean_D_tail": 0.005457837181173089,
- "frozen_mean_D_lik": 0.3109379610959711,
- "frozen_mean_D_tail": 0.0054578371811730714,
- "E_u": {
-  "II1": 0.16666666666666666,
-  "II3": 0.2916666666666667,
-  "II4": 0.08333333333333333,
-  "II5": 0.375,
-  "II6": 0.0,
-  "II7": 0.0,
-  "II8": 0.16666666666666666
- },
- "frozen_E_u": {
-  "II1": 0.16666666666666666,
-  "II3": 0.2916666666666667,
-  "II4": 0.08333333333333333,
-  "II5": 0.375,
-  "II6": 0.0,
-  "II7": 0.0,
-  "II8": 0.16666666666666666
- },
- "beta_committed": {
-  "II1": 0.308641975308642,
-  "II3": 0.5252525252525253,
-  "II4": 0.25,
-  "II5": 0.417910447761194,
-  "II6": 0.006802721088435382,
-  "II7": 0.23170731707317072,
-  "II8": 0.2875
- },
- "beta_recounted_from_rows": {
-  "II1": 0.3012048192771084,
-  "II3": 0.5142857142857142,
-  "II4": 0.28409090909090906,
-  "II5": 0.410958904109589,
-  "II6": 0.006802721088435382,
-  "II7": 0.2325581395348837,
-  "II8": 0.2875
- },
- "M_beta": {
-  "rho": 0.9456108576893003,
-  "p_one_sided": 0.0015873015873015873,
-  "frozen_rho": 0.9456108576893005,
-  "frozen_p": 0.0015873015873015873
- },
- "L2": {
-  "violations": 6,
-  "n": 940,
-  "frozen": [
-   6,
-   940
+ "T10_union_find_to_dfs_flips": 15,
+ "W4_attempts_default": "70/70",
+ "gate_fve_cos": {
+  "reference_hs20": [
+   0.5796262621879578,
+   0.8533385396003723
+  ],
+  "reference_hs21": [
+   0.6953920125961304,
+   0.8914506435394287
+  ],
+  "task_all_hs21": [
+   0.5118215680122375,
+   0.8260340094566345
   ]
  },
- "placebo_shuffled_E_u": {
-  "rejection_rate_p<0.05": 0.02666666666666667,
-  "mean_rho": 0.0161844935258361
+ "prefill_mentions_named_algorithm": {
+  "forced": "8/1080",
+  "ban": "3/420"
  },
- "placebo_permuted_q_base_mean_D_lik": -0.7739385044338043,
- "placebo_constant_beta_rho": null,
- "checks": {
-  "D_lik_match": true,
-  "D_tail_match": true,
-  "E_u_match": true,
-  "beta_rho_match": true,
-  "beta_p_match": true,
-  "L2_match": true,
-  "beta_recount_max_abs_drift_after_final_adjudication": 0.03409090909090906,
-  "M_rho_with_recounted_beta": 0.9456108576893003,
-  "placebo_shuffle_fails": true,
-  "placebo_permuted_q_base_loses_advantage": true,
-  "placebo_constant_beta_undefined": true
+ "N6": {
+  "n": 364,
+  "b": 20,
+  "c": 88,
+  "p": 2.3222098297326024e-11,
+  "nla_acc": 0.066,
+  "predict_acc": 0.253,
+  "placebo_swap_share_p_lt_05": 0.049
+ },
+ "exploratory_causal": {
+  "T06": {
+   "edit_x8_vs_C0": {
+    "n": 50,
+    "b": 25,
+    "c": 1,
+    "p": 8.046627044677734e-07
+   },
+   "edit_x8_Y_share": 0.76,
+   "C0_Y_share_slots0_9": 0.28,
+   "replication_slots6_9_vs_C0": {
+    "n": 20,
+    "b": 13,
+    "c": 0,
+    "p": 0.000244140625
+   },
+   "edit_vs_rand_x8": {
+    "n": 50,
+    "b": 28,
+    "c": 1,
+    "p": 1.1175870895385742e-07
+   },
+   "edit_vs_unrel_x8": {
+    "n": 30,
+    "b": 12,
+    "c": 1,
+    "p": 0.00341796875
+   },
+   "edit_vs_rtm_x8": {
+    "n": 30,
+    "b": 13,
+    "c": 1,
+    "p": 0.0018310546875
+   },
+   "edit_x16_vs_C0": {
+    "n": 30,
+    "b": 2,
+    "c": 5,
+    "p": 0.453125
+   },
+   "placebo_rand_x8_vs_C0": {
+    "n": 50,
+    "b": 5,
+    "c": 8,
+    "p": 0.5810546875
+   },
+   "placebo_swap_share_p_lt_05": 0.028
+  },
+  "T05": {
+   "edit_x8_vs_C0": {
+    "n": 50,
+    "b": 10,
+    "c": 0,
+    "p": 0.001953125
+   },
+   "edit_x8_Y_share": 0.2,
+   "C0_Y_share_slots0_9": 0.0,
+   "replication_slots6_9_vs_C0": {
+    "n": 20,
+    "b": 6,
+    "c": 0,
+    "p": 0.03125
+   },
+   "edit_vs_rand_x8": {
+    "n": 50,
+    "b": 10,
+    "c": 0,
+    "p": 0.001953125
+   },
+   "edit_vs_unrel_x8": {
+    "n": 30,
+    "b": 4,
+    "c": 0,
+    "p": 0.125
+   },
+   "edit_vs_rtm_x8": {
+    "n": 30,
+    "b": 4,
+    "c": 0,
+    "p": 0.125
+   },
+   "edit_x16_vs_C0": {
+    "n": 30,
+    "b": 23,
+    "c": 0,
+    "p": 2.384185791015625e-07
+   },
+   "placebo_rand_x8_vs_C0": {
+    "n": 50,
+    "b": 0,
+    "c": 0,
+    "p": 1.0
+   },
+   "placebo_swap_share_p_lt_05": 0.022
+  },
+  "T10_dim_x16_vs_C0": {
+   "n": 30,
+   "b": 15,
+   "c": 1,
+   "p": 0.000518798828125
+  },
+  "T10_placebo_rand_x16_vs_C0": {
+   "n": 30,
+   "b": 6,
+   "c": 6,
+   "p": 1.0
+  }
+ },
+ "local_control": {
+  "forced|NAME": {
+   "n": 75,
+   "mentioned": 0.8,
+   "planned": 0.48
+  },
+  "forced|SENT": {
+   "n": 75,
+   "mentioned": 0.267,
+   "planned": 0.107
+  },
+  "ban|NAME": {
+   "n": 35,
+   "mentioned": 0.886,
+   "planned": 0.057
+  },
+  "ban|SENT": {
+   "n": 35,
+   "mentioned": 0.057,
+   "planned": 0.0
+  }
  }
 }
