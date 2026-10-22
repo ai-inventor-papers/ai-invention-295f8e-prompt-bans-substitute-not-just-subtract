@@ -1,0 +1,121 @@
+{
+ "unit": "A3",
+ "utc": "2026-10-21T12:40:39Z",
+ "n_lc_ok": 128,
+ "n_lc_kept": 40,
+ "n_generated": 32,
+ "oracle": "two_pointers",
+ "n_cases": 72,
+ "n_stress": 6,
+ "references": {
+  "two_pointers": {
+   "passed": true,
+   "n_pass": 72,
+   "max_time_over_limit": 0.0011174860410392284,
+   "first_fail": null,
+   "load_error": null
+  },
+  "prefix_suffix_max": {
+   "passed": true,
+   "n_pass": 72,
+   "max_time_over_limit": 0.005440108012408018,
+   "first_fail": null,
+   "load_error": null
+  },
+  "monotonic_stack": {
+   "passed": true,
+   "n_pass": 72,
+   "max_time_over_limit": 0.003835627983789891,
+   "first_fail": null,
+   "load_error": null
+  },
+  "peak_split": {
+   "passed": true,
+   "n_pass": 72,
+   "max_time_over_limit": 0.0017013330361805856,
+   "first_fail": null,
+   "load_error": null
+  }
+ },
+ "mutants": {
+  "two_pointers_mut0": {
+   "fails": true,
+   "n_pass": 26
+  },
+  "prefix_suffix_max_mut1": {
+   "fails": true,
+   "n_pass": 33
+  },
+  "monotonic_stack_mut2": {
+   "fails": true,
+   "n_pass": 31
+  },
+  "peak_split_mut3": {
+   "fails": true,
+   "n_pass": 26
+  }
+ },
+ "baselines": {
+  "per_bar_quadratic": {
+   "expect": "fail",
+   "passed": false,
+   "n_pass": 66,
+   "first_fail": {
+    "i": 66,
+    "status": "timeout",
+    "case_id": "gen:stress:0"
+   }
+  }
+ },
+ "labels_on_references": {
+  "two_pointers": {
+   "runtime": "two_pointers",
+   "ast": "two_pointers"
+  },
+  "prefix_suffix_max": {
+   "runtime": "prefix_suffix_max",
+   "ast": "prefix_suffix_max"
+  },
+  "monotonic_stack": {
+   "runtime": "monotonic_stack",
+   "ast": "monotonic_stack"
+  },
+  "peak_split": {
+   "runtime": "peak_split",
+   "ast": "peak_split"
+  }
+ },
+ "labels_on_variants": {
+  "two_ptr_max": {
+   "expected": "two_pointers",
+   "runtime": "two_pointers",
+   "ast": "two_pointers"
+  },
+  "prefix_accumulate": {
+   "expected": "prefix_suffix_max",
+   "runtime": "prefix_suffix_max",
+   "ast": "prefix_suffix_max"
+  },
+  "stack_deque": {
+   "expected": "monotonic_stack",
+   "runtime": "monotonic_stack",
+   "ast": "monotonic_stack"
+  },
+  "peak_index": {
+   "expected": "peak_split",
+   "runtime": "peak_split",
+   "ast": "peak_split"
+  }
+ },
+ "ref_label_acc_runtime": 1.0,
+ "ref_label_acc_ast": 1.0,
+ "variant_acc_runtime": 1.0,
+ "variant_acc_ast": 1.0,
+ "checks": {
+  "references_all_pass": true,
+  "references_within_quarter_limit": true,
+  "mutants_all_fail": true,
+  "baselines_as_expected": true,
+  "labellers_100pct_on_references": true
+ }
+}

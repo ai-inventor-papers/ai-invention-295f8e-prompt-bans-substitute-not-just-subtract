@@ -1,0 +1,157 @@
+{
+ "utc": "2026-10-22T14:45:11.616650+00:00",
+ "hypothesis": "Claim N (iteration 7, secondary family): a FunSearch / MAP-Elites program search with Qwen3-8B (bf16, thinking off, vLLM, T 1.0) as the mutator, hidden tests plus fresh randomised stress tests as the evaluator, and a novelty critic built against the 18,237 known solutions of art_j3Rm_lr2nzR6 produces correct out-of-catalogue programs at a much higher rate per call than the best single-sample text knobs of iteration 5, on memorised LeetCode-style tasks with one 8B mutator.",
+ "prediction": "S >= 10x K on >= 2 tasks: per task the point estimate R_hat = (X_S/N_S)/(X_K/N_K) >= 10 and the exact conditional Poisson one-sided 95% lower bound LB95 on R above 1, at level a (distinct OOC_screen programs), K = the better of EAP and BINT per task (max rule). With 2 tasks run, MET needs both.",
+ "ladder": {
+  "level0": {
+   "T2": {
+    "S": 1500,
+    "EAP": 750,
+    "BINT": 750,
+    "NE": 500,
+    "I0": 500,
+    "B0": 200
+   },
+   "T03": {
+    "S": 1500,
+    "EAP": 750,
+    "BINT": 750,
+    "NE": 500,
+    "I0": 500,
+    "B0": 200
+   }
+  },
+  "level1": {
+   "A3": {
+    "S": 1000,
+    "EAP": 500,
+    "BINT": 500,
+    "NE": 300,
+    "I0": 300,
+    "B0": 100
+   }
+  },
+  "level2": "raise S on T03 then T2 in +1000 steps up to 4000 while time allows; K arms >= S/2",
+  "level3": "reachability (prompt_logprobs teacher forcing) - optional",
+  "level4": "large mutator arm L on T03 via OpenRouter, 500 children, <= USD 1.0 - optional, concurrent",
+  "level5": "plan noise - first dropped",
+  "floors": {
+   "S": 1000,
+   "EAP": 400,
+   "BINT": 400,
+   "NE": 300,
+   "I0": 300,
+   "B0": 100
+  },
+  "drop_order": [
+   "plan_noise",
+   "L (only if OpenRouter binds)",
+   "reachability",
+   "A3",
+   "I0->300,B0->100",
+   "K arms->500",
+   "S->1500->1000 on T2/T03"
+  ]
+ },
+ "definitions": {
+  "call": "one generated child program (one completion); EAP/BINT count only code-writing calls, their stage-1 GPU time is charged to their GPU-seconds",
+  "correct": "valid (AST pre-screen) AND stage 1 (8 quick cases) AND stage 2 (full hidden suite) AND stage 3 (10 seeded max-size stress inputs vs the fastest reference)",
+  "OOC_screen": "correct AND (final label == 'other' OR nearest-known Jaccard s < s*_task), s*_task = 5th percentile of nearest-known similarities of correct forced catalogue programs (label == Y) and the references",
+  "distinct": "within an arm in call order: identical normalised-token hash merges, then Jaccard >= 0.9 to an earlier program collapses into it",
+  "idea_cluster": "pooled over arms, within each cell (runtime label, DS-signature): single-linkage components at Jaccard >= 0.5; after adjudication clusters whose judges named the same algorithm merge",
+  "level_a": "distinct OOC_screen programs",
+  "level_b": "distinct adjudicated KNOWN OUTSIDE CATALOGUE + NOVEL",
+  "cell": "(runtime label, DS-signature = first 3 of heap, deque_or_queue, sort, bisect, recursion, dict_or_counter, set, matrix_2d, stack_list, bitops, random, custom_class)",
+  "novelty": "nu = 1 - s, s = max token-4-gram Jaccard to corpus + catalogue references (self-match of a seed excluded)"
+ },
+ "tests": {
+  "primary": "exact conditional binomial test of two Poisson rates; LB95 from the one-sided Clopper-Pearson bound; two-sided 95% CI; Holm across tasks",
+  "verdict": "STRONG LB95>=10; MET R_hat>=10 & LB95>1; UNRESOLVED R_hat>=10 & LB95<=1; NOT MET R_hat<10; NOT ESTIMABLE X_S=X_K=0; overall MET if >=2 tasks MET/STRONG",
+  "secondary": [
+   "S vs NE",
+   "S vs I0",
+   "NE vs I0",
+   "I0 vs K",
+   "K vs B0",
+   "L vs S (first 500 calls, T03)"
+  ],
+  "matched_effort": "rarefaction/Chao-1 extrapolation of idea-cluster richness of i.i.d. arms to N_S (trusted to 2x N)",
+  "robustness": "island-cluster bootstrap (2,000 reps) of S's rate; arm-shuffle placebo; seeds-as-children check",
+  "zero": "rule of three 3/n"
+ },
+ "judges": {
+  "pair": [
+   "mistralai/mistral-medium-3.1",
+   "moonshotai/kimi-k2-0905"
+  ],
+  "replacements": [
+   "google/gemini-2.5-flash",
+   "deepseek/deepseek-chat-v3.1",
+   "openai/gpt-4.1-mini"
+  ],
+  "third": "deepseek/deepseek-chat-v3.1",
+  "temperature": 0,
+  "gate": ">= 9 of 10 controls",
+  "label_dispute_judge": "google/gemini-2.5-flash-lite",
+  "L_mutator": "qwen/qwen3-235b-a22b-2507",
+  "L_fallback": "qwen/qwen3-coder"
+ },
+ "judge_prompt": "You are an expert in algorithms. Decide whether the program below implements a NEW algorithm for a known task.\n\nTASK\n{spec}\n\nCATALOGUE (the standard known algorithms for this task)\n{catalogue}\n\nPROGRAM UNDER REVIEW (comments and docstrings removed)\n```python\n{code}\n```\n\nNEAREST KNOWN SOLUTIONS from a corpus of 18,237 published code solutions (for comparison)\n{nearest}\n\nSANDBOXED STRESS RESULTS of the program (inputs at three sizes; runtime ratio to the fastest catalogue reference; log-log slope of runtime against size)\n{stress}\n\nClassify the program's core algorithm into exactly one class:\n- NOVEL ALGORITHM: a correct general algorithm whose core mechanism is not in the catalogue and that you cannot identify as any known published algorithm or textbook technique.\n- KNOWN OUTSIDE CATALOGUE: a correct general algorithm that is a known, nameable algorithm or textbook technique not in the catalogue (name it).\n- CATALOGUE VARIANT: an implementation, restyling or minor modification of a catalogue algorithm (name which).\n- DEGENERATE: hard-coded or special-cased answers, wrong in general, or brute force that passes only because the tests are small.\n\nAnswer with JSON only: {{\"class\": \"NOVEL ALGORITHM|KNOWN OUTSIDE CATALOGUE|CATALOGUE VARIANT|DEGENERATE\", \"named_algorithm\": \"...\", \"core_idea\": \"<one sentence>\", \"confidence\": <0 to 1>, \"rationale\": \"<at most two sentences>\"}}",
+ "control_set_plan": [
+  "T03 quickselect (Lomuto partition, renamed identifiers) -> CATALOGUE VARIANT",
+  "T03 Floyd-Rivest selection -> KNOWN OUTSIDE CATALOGUE",
+  "T03 binary search over the value range counting elements <= mid -> KNOWN OUTSIDE CATALOGUE",
+  "T03 answer lookup table failing stress -> DEGENERATE",
+  "T2 D'Esopo-Pape deque shortest paths -> KNOWN OUTSIDE CATALOGUE",
+  "T2 Dijkstra with a hand-written binary-heap class -> CATALOGUE VARIANT",
+  "T2 exhaustive simple-path enumeration passing only tiny graphs -> DEGENERATE",
+  "A3 sparse-table range-maximum solution -> KNOWN OUTSIDE CATALOGUE",
+  "A3 monotonic stack with renamed identifiers -> CATALOGUE VARIANT",
+  "A3 decreasing-height processing keeping leftmost/rightmost index -> KNOWN OUTSIDE CATALOGUE"
+ ],
+ "openrouter_cap_usd": 3.5,
+ "decoding": {
+  "temperature": 1.0,
+  "top_p": 1.0,
+  "top_k": null,
+  "max_tokens": {
+   "T2": 1536,
+   "T03": 1024,
+   "A3": 1024
+  },
+  "stop": [
+   "\\n```\\n"
+  ],
+  "model": "Qwen/Qwen3-8B@b968826d9c46dd6066d109eabc6255188de91218",
+  "base": "Qwen/Qwen3-8B-Base@49e3418fbbbca6ecbdf9608b4d22e5a407081db4",
+  "precision": "bf16",
+  "thinking": false
+ },
+ "search": {
+  "islands": 4,
+  "prompts_per_island_per_round": 3,
+  "children_per_prompt": 4,
+  "reset_every": 500,
+  "tau": "0.1*(1-(t mod 500)/500)+0.01",
+  "parents_per_prompt": 2
+ },
+ "code_sha256": {
+  "src/analysis.py": "0a46c1504ab6e82ab9d7bdc276bb6396266333625bb80887e1de07983bf719ff",
+  "src/run.py": "57fedf0d3d4d9b3d722093d20b209d431f453c9afac1b85c4929f882984d0ee9",
+  "src/search.py": "85a6b68481e5ad8ca7fcf180c85223de71c047a67cf18d8746f6f23fcbf8b25e",
+  "src/prompts.py": "7300d5f8d4a67c634c6c0e6523dacf902cedd80e31273a48864d0c122309c4d2",
+  "src/sandbox.py": "9bf15eaa13ba5cbd7184f23d0529862af6cb242597d598612399bc97ab328849",
+  "src/sandbox_runner.py": "ee9fd7f1d54cb21f53fd071eb6d7b07fbf05ca59824599a07a853260a50b5698",
+  "src/critic.py": "37ca64a81ad284388a70ce5189a51654bee55a0579e583076f94b0e04b2900ea",
+  "src/labels.py": "bd91e41f26df061138ae54754e906fe9db9c53b6232a7cb9ccd959c59d3bf101",
+  "src/inputs.py": "9cac51ef37417ba93dfdc51b31a02c5ac9eef312f22b39a40ac55fa0096ce9f0"
+ },
+ "input_sha256": {
+  "vendor_manifest": "29336ec31f732336a8870a00584710fbd595762bad6dcc7b5eecf52d2d773d4f",
+  "task_T2": "86cf8aa8e04447d5e977b5ec218867efe47eb12d62e17eea5f7bfda6a288d028",
+  "task_T03": "1357c617a0023f916cb00df24e227958a5ab9f0a4110a330290431b02a8dc179",
+  "task_A3": "9af97c49f2fdb45509745aec45aa3b6b6c816c77cd38ad6238e27e38d1287f4d",
+  "corpus_summary": "de71265fe8b871a8ff1274a1ab7a152c389d96c4d846a25723479436a6ad1439",
+  "corpus_shingles": "0ce6fab90e0960aac4df5c0ae43690437d298e11bafe7843900f37df7ce039a9"
+ }
+}

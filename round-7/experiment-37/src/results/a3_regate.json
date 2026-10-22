@@ -1,0 +1,53 @@
+{
+ "references": {
+  "monotonic_stack": true,
+  "peak_split": true,
+  "prefix_suffix_max": true,
+  "two_pointers": true
+ },
+ "variants": {
+  "two_ptr_max": {
+   "expected": "two_pointers",
+   "runtime": "two_pointers",
+   "ast": "two_pointers",
+   "correct": true
+  },
+  "prefix_accumulate": {
+   "expected": "prefix_suffix_max",
+   "runtime": "prefix_suffix_max",
+   "ast": "prefix_suffix_max",
+   "correct": true
+  },
+  "stack_deque": {
+   "expected": "monotonic_stack",
+   "runtime": "monotonic_stack",
+   "ast": "monotonic_stack",
+   "correct": true
+  },
+  "peak_index": {
+   "expected": "peak_split",
+   "runtime": "peak_split",
+   "ast": "peak_split",
+   "correct": true
+  }
+ },
+ "mutants_fail": {
+  "two_pointers_mut0": true,
+  "prefix_suffix_max_mut1": true,
+  "monotonic_stack_mut2": true,
+  "peak_split_mut3": true
+ },
+ "baselines": {
+  "per_bar_quadratic": {
+   "expected": "fail",
+   "correct": false
+  }
+ },
+ "recorded_gate": {
+  "kappa_runtime_ast": 0.8220338983050848,
+  "runtime_vs_adjudicated": 0.9047619047619048,
+  "gate_pass": true
+ },
+ "gold_items_rerun": "not possible: gate_round0.json stores labels but no program text for the 20 non-reference gold items",
+ "regate_pass_reproducible_part": true
+}
