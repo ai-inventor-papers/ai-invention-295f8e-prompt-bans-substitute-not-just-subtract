@@ -1,0 +1,112 @@
+[
+ {
+  "code": "D-gpu",
+  "text": "GPU is an RTX 4090 (24 GB), not the plan's RTX A4500; exp29 engine-d outcomes came from an RTX 2000 Ada. Same bf16 weights/code path (exp29 engines.load_b, F.linear, CPU embedding gather), different cuBLAS kernels; measured by Stage 0.",
+  "utc": "2026-10-22T14:34:00.330433Z"
+ },
+ {
+  "code": "D-batch",
+  "text": "Batch sizes B = 24 (T10, T03) and 16 (T2, T1) instead of exp29's B = 7; every arm of a task uses the same B (CRN pairing exact within this engine).",
+  "utc": "2026-10-22T14:34:00.344159Z"
+ },
+ {
+  "code": "D-0c",
+  "text": "Stage 0c: realised S-mean displacement norms of directions 9101-9105 match exp29 within 0.003% (block 12) and 0.27% (block 23) but differ by up to 2.35% at block 35 (> 2%); pre-declared fallback 1 executed: all 40 directions re-measured at N = 10 on T10/T2 in this engine (sealed until commit #3); primary stays exp29 engine d as committed.",
+  "utc": "2026-10-22T14:34:00.351515Z"
+ },
+ {
+  "code": "D-commit0",
+  "text": "commit #0 (rules, thresholds, input hashes) was written after the Stage 0 code; the analysis drivers (analysis7.py, analysis_push.py, top5geo.py, stats7.py, predict7.py, ...) were frozen by hash in amendment commit0b before commit #3; no POP outcome row was readable before commit #3 (guarded_e29_rows).",
+  "utc": "2026-10-22T14:34:00.360058Z"
+ },
+ {
+  "code": "D-classifier",
+  "text": "Opening classifier: import-only evidence (from collections import deque / import heapq) removed because pushed programs import unused modules (13.6% of exp29 Dijkstra programs import deque); BFS via .pop(0) added. Agreement with the frozen labels on all non-POP labelled programs: T2 0.996 (761), T10 0.998 (1511), T03 1.000 (1235 committed, 15 abstain); stratified 200-program validation 1.0 on all three.",
+  "utc": "2026-10-22T14:34:00.367745Z"
+ },
+ {
+  "code": "D-t03paths",
+  "text": "T03 pushed base paths (exp30 ST S0 alpha 2 with exp30's ban-free unit) were not used: porting the exp23 r_Q unit for resampling did not fit the budget; all T03 non-default base paths are BAN paths (6 quickselect, 6 size_k_heap).",
+  "utc": "2026-10-22T14:34:00.374608Z"
+ },
+ {
+  "code": "D-commit1",
+  "text": "commit1_forks was written by code that had not yet run the pre-declared 128-token window extension; commit1b adds it (T2: one off-default change at token 92 on a pushed path, none on the default path; T03: none). commit1c removes a 2-token fork-merge rule (it hid T10's second fork ' def' -> ' find'/' dfs') and adds the sequential multi-fork rule (q_j of the default-path token is 0 at every fork but the last). All amendments precede every margin and predictor.",
+  "utc": "2026-10-22T14:34:00.383205Z"
+ },
+ {
+  "code": "D-forced",
+  "text": "A1 forced-runner-up prompts are prompts4 'named' prompts F0-F9 (display-name variant 0; K = 10) instead of re-built exp8/exp11 frames; T2's F0 is sha256-identical to exp30's FORCED prompt and T10 bfs F0 to exp30's T10 FORCED prompt.",
+  "utc": "2026-10-22T14:34:00.393445Z"
+ },
+ {
+  "code": "D-natvar",
+  "text": "Natural-variance (dormant-subspace) check uses 10 neutral prompts per task (W1-W5 twins + exp30 placebo twins, i.e. 2 nouns per template) instead of 3 nouns x 5 templates.",
+  "utc": "2026-10-22T14:34:00.402157Z"
+ },
+ {
+  "code": "D-das",
+  "text": "P2 secondary DAS skipped (drop item 5) to keep the never-drop items inside the budget.",
+  "utc": "2026-10-22T14:34:00.427241Z"
+ },
+ {
+  "code": "D-t1labels",
+  "text": "T1 10-algorithm labels come from exp9 labeller_ext AST rules only (exp9's runtime tracer probes were not ported); the frozen exp8 runtime+AST 6-class label and the hidden-test pass flag are kept beside it.",
+  "utc": "2026-10-22T14:34:00.434790Z"
+ },
+ {
+  "code": "D-tier3",
+  "text": "Tier-3 margin cells COND (KV splice), RPOS and MR (per-sample random exchange) were not computed; X_24-35, X_0-11 and PLACEBO were.",
+  "utc": "2026-10-22T14:34:00.443312Z"
+ },
+ {
+  "code": "D-C3",
+  "text": "CPU test C3 fails as specified: with only 3 pre-jump screen positions (t = 0, 4, 8) a 0.4 jump is detected at p < 0.01 in 54% of simulations (0.3: 35%, 0.2: 7%; null 0%). The screen is underpowered for very early forks; weak forks can be missed.",
+  "utc": "2026-10-22T14:34:00.449668Z"
+ },
+ {
+  "code": "D-Lgeo",
+  "text": "L_geo = block 18 (exp30's F5 figure layer is not recorded in its npz, which holds S-means of blocks 12-23; block 18 is iteration 4's GEO_BLOCKS[0]); geometry is also reported at L_ax(T1) = median of the three tasks' L_ax.",
+  "utc": "2026-10-22T14:34:00.456793Z"
+ },
+ {
+  "code": "D-t1forced",
+  "text": "T1 forced prompts for the 10-algorithm catalogue: exp9 frozen_prompts 'forced:X' (10 paraphrases each, plain condition), built in the prompts4 chat frame (spec ids asserted identical to the twins').",
+  "utc": "2026-10-22T14:34:00.464595Z"
+ },
+ {
+  "code": "D-targeted-ext",
+  "text": "Targeted push never escaped at s <= 1 on T10, T2, T03 (claim fails as committed); pre-declared fallback 8 adds s in {2, 4} (descriptive, N = 30, same CRN slots) and s = 8 (beyond the plan, because rho_s at s = 1 was 0.13-0.18, i.e. the escaping random directions realise 5.6-8x the s = 1 displacement at L_ax).",
+  "utc": "2026-10-22T14:56:47.901929Z"
+ },
+ {
+  "code": "D-isomap-k",
+  "text": "Geodesic g(X) and the edge/opposite split use the smallest Isomap k in {5,10,15} whose kNN graph is connected (k = 15 at both layers; k = 5 and 10 are disconnected). Decided from the forced-prompt geometry alone, before any T1 landing label was read; the k sweep is reported.",
+  "utc": "2026-10-22T14:59:20.196702Z"
+ },
+ {
+  "code": "D-code-after-0b",
+  "text": "Analysis code changed after commit0b: (1) analysis7/analysis_push/outputs7 read the latest commit-#3 file via c7.c3_path() and predict7 the latest fork file (before any outcome row was opened; commit3b); (2) top5geo uses the smallest connected Isomap k for g(X) (after the forced-prompt geometry, before any T1 landing label was read; D-isomap-k); (3) analysis_push adds the fallback-8 descriptive doses s = 2, 4, 8 (after the committed s <= 1 result was seen; descriptive only); (4) figures7/readme7/outputs7 presentation changes and the exploratory scripts (explore_llr, force_token, analysis_force) after the committed results. Every committed statistic is computed by the code hashed in commit0b except for change (1), which only selects the amended input file.",
+  "utc": "2026-10-22T16:00:06.163451Z"
+ },
+ {
+  "code": "D-u5",
+  "text": "GPU test U5 misses its 0.05 tolerance: teacher-forced (use_cache=False) and KV-prefill log-probs differ by up to 0.25 on the top-50 tokens (argmax equal) because the two SDPA paths round differently in bf16; all margins use the same teacher-forced path, so cells are comparable.",
+  "utc": "2026-10-22T16:00:06.173257Z"
+ },
+ {
+  "code": "D-t1-ast",
+  "text": "CPU test C6: the AST-only exp9 labeller_ext agrees with the adjudicated exp9 T1 gold labels on 32/40 programs (0.80); T1 conclusions (every push arm BFS 30/30) agree with the frozen exp8 runtime+AST 6-class label on every row.",
+  "utc": "2026-10-22T16:00:06.181129Z"
+ },
+ {
+  "code": "D-tokenmap",
+  "text": "Exploratory forced-token test shows the T10 token map is cell-dependent for non-committal tokens (' #' has q = 1.00 pooled over ban/PN cells but gives union-find 30/30 under the twin); the committed margin pools q over cells as specified, which limits F.",
+  "utc": "2026-10-22T16:00:06.188204Z"
+ },
+ {
+  "code": "D-portable-paths",
+  "text": "Portability edits after the analysis: src/dep7.py reads the dependency art_j3Rm_lr2nzR6 through AII_DEP_ART_J3RM (default: the sibling folder ../art_j3Rm_lr2nzR6) instead of an absolute server path; src/axis7.py's seed-disjointness scan reads extra roots from AII_EARLIER_ARTIFACT_ROOTS (default: the vendored copies). No result changes (the committed scan is recorded in commit #2).",
+  "utc": "2026-10-22T16:40:23.578611Z"
+ }
+]
