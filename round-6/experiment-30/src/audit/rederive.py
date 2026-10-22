@@ -1,333 +1,331 @@
 #!/usr/bin/env python3
-"""Independent re-derivation of the headlines from the raw files (stdlib + numpy; shares no code with src/).
+"""Independent re-derivation of every headline (Python standard library only; shares no code with src/).
 
-Recomputes from data/samples.jsonl: every cell's n / pass / correct off-default count; the S-a selection, b:c and
-exact McNemar p of every contrast; the S-b Mantel-Haenszel OR (hand-coded RBG); S-c b:c and one-sided p; the F1 share
-(own code-start rule on decoded tokens); m from results/q_lik_raw.json. Placebos that must fail: site labels shuffled
-within (task, alpha) (S-a pass rate over 200 shuffles); pair members swapped at random (McNemar rejection rate);
-the MH indicator shuffled within task (share of CIs excluding 1).
-Writes results/rederive.json with mismatches against results/*.json.
-"""
-
-from __future__ import annotations
-
-import os
-
-for _v in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS"):  # 5-CPU cgroup: avoid BLAS oversubscription
-    os.environ.setdefault(_v, "2")
+Reads data/samples_raw.jsonl + data/labels.jsonl (+ data/l_events.json, data/tf_scores.jsonl) and recomputes:
+Stage A Y shares, transfers and exact McNemar counts/p (X vs TWIN, X_0-35 vs MR_0-35); ST correct off-default counts per
+(task, site, alpha); S3-vs-DMD discordant flips; top-five landing compositions; L top-1 hits and the sign test.
+Each number is compared with results/*.json (tolerance 1e-9) and mismatches are counted. Placebos (must FAIL to show
+an effect): shuffled slot pairing for the X_0-35 vs TWIN McNemar, shuffled site labels for the ST site contrast.
+Writes results/rederive.json."""
 
 import json
 import math
+import os
 import random
 import sys
-from collections import defaultdict
-from pathlib import Path
+from collections import Counter, defaultdict
 
-import numpy as np
-
-ROOT = Path(__file__).resolve().parents[1]
-DEF = {"T03": "full_sort", "T10": "union_find", "T2": "dijkstra", "T1": "bfs"}
-CAT = {"T03": {"full_sort", "size_k_heap", "heapify_pop", "quickselect", "median_of_medians", "counting_sort"},
-       "T10": {"bfs", "dfs", "union_find", "label_propagation"},
-       "T2": {"dijkstra", "bf_spfa", "bidijkstra", "floyd", "dial"},
-       "T1": {"bfs", "dfs", "bibfs", "iddfs", "astar_gbfs", "dijkstra"}}
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DEFAULT = {"T03": "full_sort", "T10": "union_find", "T2": "dijkstra", "T05": "hash_map", "T06": "hash_set", "T1": "bfs"}
+LAB = {}
+Y = {"T2": "bf_spfa", "T03": "quickselect", "T10": "bfs", "T1": "dfs", "T05": "brute_force", "T06": "index_marking"}
 
 
-def load(p: Path) -> list[dict]:
-    return [json.loads(l) for l in p.read_text().splitlines() if l.strip()]
-
-
-def yv(r: dict) -> int:
-    return int(bool(r["passed"]) and r["label"] in CAT[r["task"]] and r["label"] != DEF[r["task"]])
-
-
-def binom_cdf(k: int, n: int) -> float:
-    return sum(math.comb(n, i) for i in range(0, k + 1)) / 2 ** n
-
-
-def mcn2(b: int, c: int) -> float:
-    n = b + c
-    return 1.0 if n == 0 else min(1.0, 2 * binom_cdf(min(b, c), n))
-
-
-def mcn1(b: int, c: int) -> float:
-    n = b + c
-    return 1.0 if n == 0 else sum(math.comb(n, i) for i in range(b, n + 1)) / 2 ** n
-
-
-def holm(ps: list[float]) -> list[float]:
-    o = sorted(range(len(ps)), key=lambda i: ps[i])
-    out = [0.0] * len(ps)
-    run = 0.0
-    for r, i in enumerate(o):
-        run = max(run, min(1.0, (len(ps) - r) * ps[i]))
-        out[i] = run
+def jl(p):
+    out = []
+    if not os.path.exists(p):
+        return out
+    with open(p) as fh:
+        for line in fh:
+            line = line.strip()
+            if line:
+                out.append(json.loads(line))
     return out
 
 
-def mh(tables: list[tuple[int, int, int, int]]) -> tuple[float, float, float]:
-    R = S = A = Bq = C = 0.0
-    for a, b, c, d in tables:
-        n = a + b + c + d
-        if n < 2 or a + b == 0 or c + d == 0:
-            continue
-        r, s = a * d / n, b * c / n
-        p, q = (a + d) / n, (b + c) / n
-        R += r
-        S += s
-        A += p * r
-        Bq += p * s + q * r
-        C += q * s
-    if R == 0 or S == 0:
-        return float("nan"), float("nan"), float("nan")
-    lor = math.log(R / S)
-    se = math.sqrt(A / (2 * R * R) + Bq / (2 * R * S) + C / (2 * S * S))
-    return math.exp(lor), math.exp(lor - 1.96 * se), math.exp(lor + 1.96 * se)
+def binom_two_sided(k, n):
+    if n == 0:
+        return 1.0
+    k = min(k, n - k)
+    tail = sum(math.comb(n, i) for i in range(0, k + 1)) / 2 ** n
+    return min(1.0, 2 * tail)
 
 
-def main() -> None:
-    rows = [r for r in load(ROOT / "data" / "samples.jsonl") if not str(r["arm"]).startswith(("SMOKE_", "ENG",
-                                                                                              "TWIN_X"))]
-    res: dict = {"n_rows": len(rows), "mismatches": []}
-    cells = defaultdict(dict)
+def main():
+    labs = {r["sample_id"]: r for r in jl(os.path.join(ROOT, "data", "labels.jsonl"))}
+    LAB.update({k: v["label"] for k, v in labs.items()})
+    raw_rows = jl(os.path.join(ROOT, "data", "samples_raw.jsonl"))
+    rows = []
+    for r in raw_rows:
+        l = labs.get(r["sample_id"])
+        if l:
+            rows.append({"task": r["task"], "arm": r["arm"], "cell": r["cell"], "site": r.get("site"),
+                         "alpha": r.get("alpha"), "s": r["slot_index"], "label": l["label"], "sid": r["sample_id"],
+                         "passed": bool(l.get("passed"))})
+    by = defaultdict(dict)
     for r in rows:
-        cells[(r["task"], r["arm"])][(r["template"], int(r["k"]))] = r
-    # cells
-    cl = json.loads((ROOT / "results" / "cells.json").read_text())
-    nck = 0
-    for (t, arm), c in cells.items():
-        k = f"{t}|{arm}"
-        n = len(c)
-        y = sum(yv(r) for r in c.values())
-        p = sum(bool(r["passed"]) for r in c.values()) / n
-        nck += 1
-        if k not in cl or cl[k]["n"] != n or cl[k]["y"] != y or abs(cl[k]["pass"] - p) > 1e-9:
-            res["mismatches"].append(f"cell {k}")
-    res["cells_checked"] = nck
+        by[(r["task"], r["arm"])][r["s"]] = r
+    res = {"n_rows": len(rows), "checks": [], "mismatches": 0}
 
-    # S-a
-    def share(c, slots=None):
-        v = [c[s] for s in (slots or c) if s in c]
-        return (sum(yv(r) for r in v) / len(v)) if v else 0.0
-
-    def passr(c):
-        return sum(bool(r["passed"]) for r in c.values()) / len(c) if c else 0.0
-
-    def s_a(cells_: dict) -> dict:
-        out = {}
-        allp = []
-        for t in ("T03", "T10"):
-            tw = cells_.get((t, "TWIN"), {})
-            gate = 0.8 * passr(tw)
-            cand = []
-            for a in (1.0, 2.0, 4.0):
-                for s in ("S0", "S4"):
-                    c = cells_.get((t, f"{s}_a{a:g}"), {})
-                    if c and passr(c) >= gate:
-                        cand.append((-share(c), a, 0 if s == "S0" else 1, s))
-            if not cand:
-                out[t] = None
+    def check(name, mine, theirs):
+        ok = (mine is None and theirs is None) or (mine is not None and theirs is not None and
+                                                   abs(float(mine) - float(theirs)) < 1e-9)
+        res["checks"].append({"name": name, "rederived": mine, "analysis": theirs, "match": ok})
+        if not ok:
+            res["mismatches"] += 1
+    sa_p = os.path.join(ROOT, "results", "stage_a.json")
+    sa = json.load(open(sa_p))["tasks"] if os.path.exists(sa_p) else {}
+    for t in DEFAULT:
+        tw = {s: r for s, r in by.get((t, "TWIN"), {}).items() if s < 30}
+        if not tw:
+            continue
+        ytw = sum(r["label"] == Y[t] for r in tw.values()) / len(tw)
+        for arm in ("BAN", "X_0-11", "X_12-23", "X_24-35", "X_0-35", "COND", "RPOS", "MR_0-35", "MR_12-23", "PLACEBO"):
+            c = by.get((t, arm))
+            if not c:
                 continue
-            cand.sort()
-            _, a, _, s = cand[0]
-            A = cells_[(t, f"{s}_a{a:g}")]
-            con = {}
-            for comp in ("S1", "S2", "S5"):
-                B = cells_.get((t, f"{comp}_a{a:g}"), {})
-                sh = sorted(set(A) & set(B))
-                b = sum(1 for x in sh if yv(A[x]) == 1 and yv(B[x]) == 0)
-                c_ = sum(1 for x in sh if yv(A[x]) == 0 and yv(B[x]) == 1)
-                con[comp] = {"b": b, "c": c_, "p": mcn2(b, c_), "diff": share(A, sh) - share(B, sh)}
-                allp.append((t, comp))
-            out[t] = {"site": s, "alpha": a, "contrasts": con}
-        ps = [out[t]["contrasts"][c]["p"] for t, c in allp]
-        hp = holm(ps) if ps else []
-        for (t, c), h in zip(allp, hp):
-            out[t]["contrasts"][c]["p_holm"] = h
-        passed = all(out.get(t) and all(v["diff"] >= 0.15 and v["p_holm"] < 0.05 for v in out[t]["contrasts"].values())
-                     for t in ("T03", "T10"))
-        return {"tasks": out, "pass": passed}
-
-    sa = s_a(cells)
-    sa_ref = json.loads((ROOT / "results" / "s_a.json").read_text())
+            share = sum(r["label"] == Y[t] for r in c.values()) / len(c)
+            b = sum(c[s]["label"] == Y[t] and tw[s]["label"] != Y[t] for s in c if s in tw)
+            cc = sum(c[s]["label"] != Y[t] and tw[s]["label"] == Y[t] for s in c if s in tw)
+            a = (sa.get(t, {}).get("cells", {}).get(arm) or {})
+            check(f"{t}|{arm}|transfer", share - ytw, a.get("transfer"))
+            check(f"{t}|{arm}|mcnemar_b", b, (a.get("mcnemar_vs_twin") or {}).get("b_Y_only_cell"))
+            check(f"{t}|{arm}|mcnemar_c", cc, (a.get("mcnemar_vs_twin") or {}).get("c_Y_only_twin"))
+            check(f"{t}|{arm}|mcnemar_p", binom_two_sided(b, b + cc) if b + cc else 1.0,
+                  (a.get("mcnemar_vs_twin") or {}).get("p"))
+        x, m = by.get((t, "X_0-35"), {}), by.get((t, "MR_0-35"), {})
+        if x and m:
+            b = sum(x[s]["label"] == Y[t] and m[s]["label"] != Y[t] for s in x if s in m)
+            cc = sum(x[s]["label"] != Y[t] and m[s]["label"] == Y[t] for s in x if s in m)
+            a = ((sa.get(t, {}).get("cells", {}).get("X_0-35") or {}).get("mcnemar_vs_MR_0-35") or {})
+            check(f"{t}|X_0-35_vs_MR|b", b, a.get("b_X_only"))
+            check(f"{t}|X_0-35_vs_MR|c", cc, a.get("c_MR_only"))
+        # placebo 1: shuffled slot pairing must destroy the paired structure (report the counts)
+        x = by.get((t, "X_0-35"), {})
+        if x and tw:
+            rnd = random.Random(3)
+            ks = sorted(set(x) & set(tw))
+            perm = ks[:]
+            rnd.shuffle(perm)
+            b = sum(x[s]["label"] == Y[t] and tw[p]["label"] != Y[t] for s, p in zip(ks, perm))
+            cc = sum(x[s]["label"] != Y[t] and tw[p]["label"] == Y[t] for s, p in zip(ks, perm))
+            res.setdefault("placebo_shuffled_slots", {})[t] = {"b": b, "c": cc,
+                                                               "note": "twin has no Y rows, so pairing cannot matter "
+                                                                       "when Y_twin = 0" if ytw == 0 else ""}
+    # ST cells
+    sg_p = os.path.join(ROOT, "results", "site_grid.json")
+    sg = json.load(open(sg_p))["tasks"] if os.path.exists(sg_p) else {}
     for t in ("T03", "T10"):
-        mine = sa["tasks"].get(t)
-        ref = sa_ref["tasks"].get(t, {}).get("selected")
-        if (mine is None) != (ref is None) or (mine and (mine["site"] != ref["site"] or mine["alpha"] != ref["alpha"])):
-            res["mismatches"].append(f"S-a selection {t}")
-        if mine:
-            for comp, v in mine["contrasts"].items():
-                rv = sa_ref["tasks"][t]["contrasts"].get(comp, {})
-                if rv.get("b") != v["b"] or rv.get("c") != v["c"] or abs(rv.get("p", -1) - v["p"]) > 1e-9:
-                    res["mismatches"].append(f"S-a contrast {t}/{comp}")
-    res["S_a"] = sa
-    # S-a placebo: site labels shuffled within (task, alpha)
-    rng = random.Random(0)
-    n_pass = 0
-    for rep in range(200):
-        sh_cells = defaultdict(dict)
-        groups = defaultdict(list)
-        for (t, arm), c in cells.items():
-            if arm == "TWIN" or "_a" not in arm:
-                sh_cells[(t, arm)] = c
-                continue
-            site, a = arm.rsplit("_a", 1)
-            if site in ("S0", "S4", "S1", "S2", "S5"):
-                groups[(t, a)].append(arm)
-            else:
-                sh_cells[(t, arm)] = c
-        for (t, a), arms in groups.items():
-            for slot in {s for arm in arms for s in cells[(t, arm)]}:
-                present = [arm for arm in arms if slot in cells[(t, arm)]]
-                perm = present[:]
-                rng.shuffle(perm)
-                for src, dst in zip(present, perm):
-                    sh_cells[(t, dst)][slot] = cells[(t, src)][slot]
-        n_pass += s_a(sh_cells)["pass"]
-    res["placebo_site_shuffle_S_a_pass_rate"] = n_pass / 200
-
-    # S-b
-    pr = [r for r in rows if r["task"] in ("T03", "T10", "T2") and r["site"] in ("S0", "S4", "S5", "S1", "S1E", "S2")
-          and (r.get("realised_disp") or {}).get("disp_R35") is not None]
-    disp = np.array([float(r["realised_disp"]["disp_R35"]) for r in pr])
-    edges = np.quantile(disp, np.linspace(0, 1, 11)[1:-1])
-    dec = np.searchsorted(edges, disp, side="right")
-
-    def tables(ind):
-        tb = []
-        for t in ("T03", "T10", "T2"):
-            for d in range(10):
-                a = b = c = dd = 0
-                for r, de, e in zip(pr, dec, ind):
-                    if r["task"] != t or de != d:
-                        continue
-                    y = yv(r)
-                    if e and y:
-                        a += 1
-                    elif e:
-                        b += 1
-                    elif y:
-                        c += 1
-                    else:
-                        dd += 1
-                tb.append((a, b, c, dd))
-        return tb
-    ind = [r["site"] in ("S0", "S4") for r in pr]
-    orr, lo, hi = mh(tables(ind))
-    sb_ref = json.loads((ROOT / "results" / "s_b.json").read_text())["primary"]["mh"]
-    if not (abs(orr - sb_ref["or"]) < 1e-6 * max(1, orr)):
-        res["mismatches"].append("S-b OR")
-    res["S_b"] = {"or": orr, "ci": [lo, hi]}
-    exc = 0
-    for rep in range(200):
-        ind2 = ind[:]
-        for t in ("T03", "T10", "T2"):
-            ii = [i for i, r in enumerate(pr) if r["task"] == t]
-            vals = [ind2[i] for i in ii]
-            rng.shuffle(vals)
-            for i, v in zip(ii, vals):
-                ind2[i] = v
-        _, l2, _ = mh(tables(ind2))
-        exc += (l2 == l2 and l2 > 1)
-    res["placebo_mh_indicator_shuffle_ci_excludes_1"] = exc / 200
-
-    # pair-swap placebo: S0 vs S1 at every alpha, members swapped at random per slot
-    rej = tot = 0
-    for rep in range(100):
-        for t in ("T03", "T10"):
-            for a in (1.0, 2.0, 4.0):
-                A = cells.get((t, f"S0_a{a:g}"), {})
-                B = cells.get((t, f"S1_a{a:g}"), {})
-                sh = sorted(set(A) & set(B))
-                b = c = 0
-                for s in sh:
-                    x, z = (A[s], B[s]) if rng.random() < 0.5 else (B[s], A[s])
-                    b += yv(x) == 1 and yv(z) == 0
-                    c += yv(x) == 0 and yv(z) == 1
-                tot += 1
-                rej += mcn2(b, c) < 0.05
-    res["placebo_pair_swap_rejection_rate"] = rej / max(1, tot)
-
-    # S-c
-    sc_ref = json.loads((ROOT / "results" / "s_c.json").read_text())
-    for t in ("T03", "T10", "T2"):
-        tw = cells.get((t, "TWIN"), {})
-        for a in (1.0, 2.0, 4.0):
-            S3 = cells.get((t, f"S3_a{a:g}"), {})
-            if not S3:
-                continue
-            sh = sorted(set(S3) & set(tw))
-            b = sum(1 for s in sh if yv(S3[s]) == 1 and yv(tw[s]) == 0)
-            c = sum(1 for s in sh if yv(S3[s]) == 0 and yv(tw[s]) == 1)
-            ref = next((x for x in sc_ref.get(t, {}).get("by_dose", []) if x["alpha"] == a), {})
-            if ref.get("b") != b or ref.get("c") != c or abs(ref.get("p_one_sided", -1) - mcn1(b, c)) > 1e-9:
-                res["mismatches"].append(f"S-c {t}/{a}")
-    # F1 (own code-start rule)
-    try:
-        from transformers import AutoTokenizer
-
-        snap = next((Path(__import__("os").environ.get("HF_HUB_CACHE", "")) / "models--Qwen--Qwen3-8B" /
-                     "snapshots").glob("b968826d*"))
-        tok = AutoTokenizer.from_pretrained(str(snap))
-        twin = {(r["task"], r["template"], int(r["k"])): r for r in rows if r["arm"] == "TWIN"}
-        n = e = 0
+        cnt = defaultdict(lambda: [0, 0])
         for r in rows:
-            if r["arm"] == "TWIN" or r["site"] in ("TOP5", "TOP3"):
+            if r["task"] == t and r["cell"] == "ST":
+                k = f"{r['site']}|a{float(r['alpha']):g}"
+                cnt[k][0] += 1
+                cnt[k][1] += int(r["passed"] and r["label"] not in (DEFAULT[t], "other", "invalid"))
+        for k, (n, kk) in cnt.items():
+            a = sg.get(t, {}).get("cells", {}).get(k) or {}
+            check(f"ST|{t}|{k}|k_correct_off_default", kk, a.get("k_correct_off_default"))
+        # placebo 2: shuffled site labels -> S0-vs-others contrast should vanish
+        st = [r for r in rows if r["task"] == t and r["cell"] == "ST" and r["site"] in ("S0", "S1", "S2")]
+        if st:
+            rnd = random.Random(5)
+            sites = [r["site"] for r in st]
+            rnd.shuffle(sites)
+            sh = defaultdict(lambda: [0, 0])
+            for r, s in zip(st, sites):
+                sh[s][0] += 1
+                sh[s][1] += int(r["passed"] and r["label"] not in (DEFAULT[t], "other", "invalid"))
+            res.setdefault("placebo_shuffled_sites", {})[t] = {s: v[1] / v[0] for s, v in sh.items()}
+    # S3 vs DMD
+    sv_p = os.path.join(ROOT, "results", "state_vs_token.json")
+    sv = json.load(open(sv_p)) if os.path.exists(sv_p) else {}
+    for t in ("T03", "T10"):
+        tw = by.get((t, "TWIN"), {})
+        for a in (2.0, 4.0):
+            s3 = {r["s"]: r for r in rows if r["task"] == t and r["cell"] == "ST" and r["site"] == "S3"
+                  and float(r["alpha"]) == a}
+            dm = by.get((t, f"DMD_a{a:g}"), {})
+            sl = sorted(set(s3) & set(dm) & set(tw))
+            if not sl:
                 continue
-            tw = twin.get((r["task"], r["template"], int(r["k"])))
-            if tw is None or r["label"] in ("invalid", "unresolved") or tw["label"] in ("invalid", "unresolved") or \
-                    r["label"] == tw["label"] or not r.get("valid", True) or not tw.get("valid", True):
-                continue
-            text = ""
-            cs = None
-            seen = False
-            for i, tid in enumerate(tw["token_ids"][:64]):
-                s = tok.decode([tid])
-                text += s
-                if not seen and "```" in s:
-                    seen = True
-                    if "\n" in s[s.find("```"):]:
-                        cs = i + 1
-                        break
+            f = lambda r, s: r["passed"] and r["label"] not in (DEFAULT[t], "other", "invalid") and tw[s]["label"] == DEFAULT[t]  # noqa: E731
+            b = sum(f(s3[s], s) and not f(dm[s], s) for s in sl)
+            c = sum(f(dm[s], s) and not f(s3[s], s) for s in sl)
+            k = f"{t}|a{a:g}"
+            check(f"SVT|{k}|S3_only", b, (sv.get(k) or {}).get("S3_only_flips"))
+            check(f"SVT|{k}|DMD_only", c, (sv.get(k) or {}).get("DMD_only_flips"))
+    # top-five landing compositions
+    t5_p = os.path.join(ROOT, "results", "top5_push.json")
+    t5 = json.load(open(t5_p)) if os.path.exists(t5_p) else {}
+    for arm in ("TOP5_a1", "TOP5_a2", "TOP5_a4", "TOP5_a8", "TOP5BAN"):
+        c = by.get(("T1", arm))
+        if not c:
+            continue
+        n = sum(r["passed"] and r["label"] not in ("bfs", "other", "invalid") for r in c.values())
+        check(f"TOP5|{arm}|correct_non_bfs", n, ((t5.get("cells") or {}).get(arm) or {}).get("correct_non_bfs"))
+    # L: base top-1 hits from the frozen event table
+    ev_p = os.path.join(ROOT, "data", "l_events.json")
+    lf_p = os.path.join(ROOT, "results", "landing_forecast.json")
+    if os.path.exists(ev_p):
+        ev = json.load(open(ev_p))["events"]
+        check("L|base_runner_up_hits_recorded", sum(e["r_u"] == e["landing_top1"] for e in ev),
+              json.load(open(ev_p))["hits_base_top1"])
+        if os.path.exists(lf_p):
+            lf = json.load(open(lf_p))
+            check("L|BASE_top1_hits", sum(1 for e in lf["events"] if e.get("BASE_hit")), lf["BASE_hits"]["hits"])
+            st = lf["primary_sign_test"]
+            n, k = st["n_discordant"], st["base_wins"]
+            p = sum(math.comb(n, i) for i in range(k, n + 1)) / 2 ** n if n else float("nan")
+            if n:
+                check("L|sign_test_p", p, st["p_one_sided_base_gt_open"])
+    headline_tests(rows, by, raw_rows, check, res)
+    res["n_checks"] = len(res["checks"])
+    with open(os.path.join(ROOT, "results", "rederive.json"), "w") as fh:
+        json.dump(res, fh, indent=1)
+    print(json.dumps({"n_checks": res["n_checks"], "mismatches": res["mismatches"]}))
+    return 0 if res["mismatches"] == 0 else 1
+
+
+# ------------------------------------------------------------------------------------------------ headline tests + placebos
+def swap_placebo(pairs, seed, n_perm=2000):
+    """pairs: [(event_a, event_b)] booleans per paired slot. Observed exact McNemar (b, c, p); one placebo with the two
+    labels of every pair swapped at random (the null), and the permutation p of the observed discordance."""
+    b = sum(1 for a, c in pairs if a and not c)
+    c = sum(1 for a, cc in pairs if cc and not a)
+    rnd = random.Random(seed)
+    sw = [(cc, a) if rnd.random() < 0.5 else (a, cc) for a, cc in pairs]
+    pb = sum(1 for a, cc in sw if a and not cc)
+    pc = sum(1 for a, cc in sw if cc and not a)
+    obs = abs(b - c)
+    hits = 0
+    for _ in range(n_perm):
+        d = 0
+        for a, cc in pairs:
+            if a != cc:
+                d += (1 if a else -1) * (1 if rnd.random() < 0.5 else -1)
+        hits += abs(d) >= obs
+    return {"b": b, "c": c, "p": binom_two_sided(b, b + c) if b + c else 1.0, "placebo_b": pb, "placebo_c": pc,
+            "placebo_p": binom_two_sided(pb, pb + pc) if pb + pc else 1.0, "permutation_p": (hits + 1) / (n_perm + 1)}
+
+
+def headline_tests(rows, by, raw_rows, check, res):
+    out = {}
+    D = DEFAULT
+    # Stage A: X_0-35 vs TWIN and X_0-35 vs MR_0-35 on Y (paired CRN slots)
+    for t in ("T2", "T03", "T10"):
+        x, tw, mr = by.get((t, "X_0-35"), {}), {s: r for s, r in by.get((t, "TWIN"), {}).items() if s < 30}, \
+            by.get((t, "MR_0-35"), {})
+        out[f"stageA|{t}|X_vs_TWIN"] = swap_placebo([(x[s]["label"] == Y[t], tw[s]["label"] == Y[t])
+                                                     for s in sorted(x) if s in tw], 11)
+        out[f"stageA|{t}|X_vs_MR"] = swap_placebo([(x[s]["label"] == Y[t], mr[s]["label"] == Y[t])
+                                                  for s in sorted(x) if s in mr], 12)
+    # ST: paired S0 vs S1 flips (all alphas) and the Mantel-Haenszel OR in log D_R quintiles, from raw rows
+    disp = {}
+    for r in raw_rows:
+        rec = r.get("realised") or {}
+        dr = (rec.get("dR") or {}).get("35")
+        if r.get("cell") == "ST" and dr is not None:
+            disp[r["sample_id"]] = dr
+    for t in ("T03", "T10"):
+        ok = lambda r: r["passed"] and r["label"] not in (D[t], "other", "invalid")  # noqa: E731
+        st = [r for r in rows if r["task"] == t and r["cell"] == "ST"]
+        pairs = []
+        for a in (1.0, 2.0, 4.0, 8.0):
+            s0 = {r["s"]: r for r in st if r["site"] == "S0" and float(r["alpha"]) == a}
+            s1 = {r["s"]: r for r in st if r["site"] == "S1" and float(r["alpha"]) == a}
+            pairs += [(ok(s0[s]), ok(s1[s])) for s in sorted(set(s0) & set(s1))]
+        out[f"ST|{t}|S0_vs_S1_flips"] = swap_placebo(pairs, 13)
+        sub = [r for r in st if r["site"] in ("S0", "S1") and r["sid"] in disp]
+        lx = sorted(math.log(disp[r["sid"]] + 1e-3) for r in sub)
+        def q(p_):
+            k = (len(lx) - 1) * p_
+            f, c = math.floor(k), math.ceil(k)
+            return lx[f] + (lx[c] - lx[f]) * (k - f)
+        edges = [q(i / 5) for i in range(6)]
+        def mh(site_of):
+            num = den = 0.0
+            for i in range(5):
+                g = [r for r in sub if edges[i] <= math.log(disp[r["sid"]] + 1e-3) <= edges[i + 1]]
+                n = len(g)
+                if not n:
                     continue
-                if seen and "\n" in s:
-                    cs = i + 1
-                    break
-            if cs is None:
-                continue
-            a_, b_ = tw["token_ids"], r["token_ids"]
-            fd = next((i for i in range(min(len(a_), len(b_))) if a_[i] != b_[i]), min(len(a_), len(b_)))
-            n += 1
-            e += (fd - cs) < 32
-        f1_ref = json.loads((ROOT / "results" / "f1.json").read_text())["decision"]
-        res["F1"] = {"n": n, "early": e, "share": e / n if n else None}
-        if f1_ref["n_label_changing_pairs"] != n or f1_ref["n_first_div_lt_32"] != e:
-            res["mismatches"].append("F1")
-    except Exception as ex:  # noqa: BLE001
-        res["F1_error"] = str(ex)
-    # F2 m
-    qp = ROOT / "results" / "q_lik_raw.json"
-    if qp.exists():
-        q = json.loads(qp.read_text())["rows"]
-        f2r = json.loads((ROOT / "results" / "f2.json").read_text())
-        mm = {}
-        for t in ("T2", "T03", "T1"):
-            d, ru = f2r.get(t, {}).get("default"), f2r.get(t, {}).get("r_u")
-            if not d or not ru:
-                continue
-            per = []
-            for w in ("W1", "W2", "W3", "W4", "W5"):
-                a = [x["lp48"] for x in q if x["task"] == t and x["alg"] == d and x["w"] == w]
-                b = [x["lp48"] for x in q if x["task"] == t and x["alg"] == ru and x["w"] == w]
-                if a and b:
-                    per.append(sum(a) / len(a) - sum(b) / len(b))
-            mm[t] = sum(per) / len(per) if per else None
-            if mm[t] is not None and abs(mm[t] - f2r[t]["m"]) > 1e-6:
-                res["mismatches"].append(f"F2 {t}")
-        res["F2_m"] = mm
-    res["n_mismatches"] = len(res["mismatches"])
-    (ROOT / "results" / "rederive.json").write_text(json.dumps(res, indent=1, default=str))
-    print(json.dumps({k: v for k, v in res.items() if k not in ("S_a",)}, indent=1, default=str)[:3000])
+                a_ = sum(1 for r in g if site_of(r) == "S0" and ok(r))
+                b_ = sum(1 for r in g if site_of(r) == "S0" and not ok(r))
+                c_ = sum(1 for r in g if site_of(r) == "S1" and ok(r))
+                d_ = sum(1 for r in g if site_of(r) == "S1" and not ok(r))
+                if (a_ + b_) and (c_ + d_):
+                    num += a_ * d_ / n
+                    den += b_ * c_ / n
+            return num / den if den else float("inf")
+        obs = mh(lambda r: r["site"])
+        rnd = random.Random(17)
+        labs = [r["site"] for r in sub]
+        perm_or = []
+        for _ in range(500):
+            sh = labs[:]
+            rnd.shuffle(sh)
+            m = dict(zip([r["sid"] for r in sub], sh))
+            perm_or.append(mh(lambda r: m[r["sid"]]))
+        out[f"ST|{t}|MH_OR_S0_vs_S1"] = {"or": obs, "placebo_or_first_shuffle": perm_or[0],
+                                         "permutation_p_or_ge_obs": (sum(v >= obs for v in perm_or) + 1) / 501}
+        sg_p = os.path.join(ROOT, "results", "site_grid.json")
+        if os.path.exists(sg_p):
+            a_or = json.load(open(sg_p))["tasks"][t]["mh"].get("S0_vs_S1", {}).get("or")
+            check(f"ST|{t}|MH_OR_S0_vs_S1", obs if math.isfinite(obs) else None, a_or)
+            pf = json.load(open(sg_p))["tasks"][t]["paired_flips"]["S0_vs_S1"]
+            check(f"ST|{t}|paired_flips_S0_only", out[f"ST|{t}|S0_vs_S1_flips"]["b"], pf["S0_only"])
+            check(f"ST|{t}|paired_flips_S1_only", out[f"ST|{t}|S0_vs_S1_flips"]["c"], pf["other_only"])
+    # engine check: this engine's twin vs exp27's twin labels at the same (task, template, stream index)
+    e27 = {}
+    for r in jl(os.path.join(ROOT, "inputs_extra", "exp27", "data", "labels.jsonl")):
+        if r.get("arm") == "TWIN":
+            e27[(r["task"], r["template"], int(r["slot"]))] = r["label"]
+    ec_p = os.path.join(ROOT, "results", "engine_check.json")
+    ec = json.load(open(ec_p)) if os.path.exists(ec_p) else {}
+    for t in ("T03", "T2"):
+        tw = [r for r in raw_rows if r["task"] == t and r["arm"] == "TWIN"]
+        pairs = [(LAB.get(r["sample_id"]), e27.get((t, r["template"], int(r["slot"])))) for r in tw]
+        pairs = [(a, b) for a, b in pairs if b is not None and a is not None]
+        agree = sum(a == b for a, b in pairs) / len(pairs)
+        out[f"engine|{t}"] = {"n_pairs": len(pairs), "agreement": agree}
+        check(f"engine|{t}|agreement", agree, (ec.get(t) or {}).get("label_agreement"))
+    # L: OPEN top-1 recomputed from the raw teacher-forced rows; BASE top-1 from the frozen event table; sign test
+    ev = json.load(open(os.path.join(ROOT, "data", "l_events.json")))["events"]
+    fc = json.load(open(os.path.join(ROOT, "predictions", "commit1b_L_forecasts.json")))["forecasts"]
+    tf = defaultdict(list)
+    for r in jl(os.path.join(ROOT, "data", "tf_scores.jsonl")):
+        tf[(r["model"], r["task"], r["alg"], r["tmpl_idx"])].append(r["ll48"])
+    per = defaultdict(lambda: defaultdict(list))
+    for (m, t, a, ti), v in tf.items():
+        mx = max(v)
+        per[(m, t)][a].append(mx + math.log(sum(math.exp(x - mx) for x in v) / len(v)))
+    openv = {k: {a: sum(v) / len(v) for a, v in d.items()} for k, d in per.items()}
+    rowsL = []
+    for e in ev:
+        sup = fc[e["event"]]["support"]
+        if e.get("q_base_counts"):
+            sc = {a: e["q_base_counts"].get(a, 0) + 1 for a in sup}
+        elif e.get("q_base_probs"):
+            sc = {a: e["q_base_probs"].get(a, 0.0) for a in sup}
+        else:
+            sc = {a: (2.0 if a == e["r_u"] else 1.0) for a in sup}
+        base = max(sup, key=lambda a: sc[a])
+        ov = openv.get((e["model"], e["task"]), {})
+        cand = [a for a in sup if a in ov]
+        op = max(cand, key=lambda a: ov[a]) if cand else None
+        rowsL.append((e["event"], base, op, e["landing_top1"]))
+    disc = [(b == l, o == l) for _, b, o, l in rowsL if o and b != o and ((b == l) != (o == l))]
+    kb, n = sum(1 for a, _ in disc if a), len(disc)
+    pL = sum(math.comb(n, i) for i in range(kb, n + 1)) / 2 ** n if n else float("nan")
+    rnd = random.Random(19)
+    sw = [((o == l), (b == l)) if rnd.random() < 0.5 else ((b == l), (o == l)) for _, b, o, l in rowsL
+          if o and b != o and ((b == l) != (o == l))]
+    kp = sum(1 for a, _ in sw if a)
+    out["L|sign_test_from_raw"] = {"base_hits": sum(b == l for _, b, _, l in rowsL),
+                                   "open_hits": sum(o == l for _, _, o, l in rowsL), "n_discordant": n,
+                                   "base_wins": kb, "p_one_sided": pL, "placebo_base_wins": kp,
+                                   "placebo_p_one_sided": sum(math.comb(n, i) for i in range(kp, n + 1)) / 2 ** n}
+    lf_p = os.path.join(ROOT, "results", "landing_forecast.json")
+    if os.path.exists(lf_p):
+        lf = json.load(open(lf_p))
+        check("L|OPEN_hits_from_raw_tf", out["L|sign_test_from_raw"]["open_hits"], lf["OPEN_hits"]["hits"])
+        check("L|BASE_hits_from_events", out["L|sign_test_from_raw"]["base_hits"], lf["BASE_hits"]["hits"])
+        check("L|discordant_from_raw", n, lf["primary_sign_test"]["n_discordant"])
+        check("L|base_wins_from_raw", kb, lf["primary_sign_test"]["base_wins"])
+        check("L|sign_test_p_from_raw", pL, lf["primary_sign_test"]["p_one_sided_base_gt_open"])
+    res["headline_tests_with_placebos"] = out
+    res["placebo_failures_expected"] = {k: v.get("placebo_p", v.get("placebo_p_one_sided")) for k, v in out.items()
+                                        if isinstance(v, dict) and ("placebo_p" in v or "placebo_p_one_sided" in v)}
 
 
 if __name__ == "__main__":

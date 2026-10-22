@@ -1,79 +1,66 @@
 #!/usr/bin/env python3
-"""Where noise changes the algorithm, in bf16 (iteration 6, Step 2): orchestrator, one sub-command per stage.
+"""Where in the prompt the algorithm is chosen -- iteration 6 entry point (bf16 Qwen3-8B, one 16 GB GPU).
 
-  uv run method.py inputs     STEP 0.2  input hashes (inputs/SHA256SUMS) + bench check against commitment.json
-  uv run method.py cputests   STEP 0.4  CPU unit tests -> results/unit_tests_cpu.json
-  uv run method.py prep       STEP 1-2, 5 (GPU) positions, r_Q, ban-free units, forced states, banned sets, pushes
-  uv run method.py seeds      STEP 1.4  direction seeds + cosines with earlier directions -> directions/seeds.json
-  uv run method.py gputests   STEP 4 (GPU) U1-U7, positive control U8, smoke batches
-  uv run method.py commit1    STEP 6    commit #1 (predictions/s_commit.json + hash chain)
-  uv run method.py sample     STEP 7 (GPU) decisive sampling (waits for commit #1; staged; time-only drop order)
-  uv run method.py label      STEP 8    label worker (follows data/samples_raw.jsonl) ; label_k7 for T1
-  uv run method.py score      STEP 5.4/5.5 (GPU) F2 q_lik passes on 15 tasks + thinking-on T2 margin
-  uv run method.py commit2    STEP 9    commit #2 (final analysis code)
-  uv run method.py analyse    STEP 9    every analysis -> results/*.json
-  uv run method.py audit      STEP 9.10 novelty audit (OpenRouter judges, capped) -> results/novelty_audit.json
-  uv run method.py figures    STEP 10   figures/*.pdf + .png
-  uv run method.py outputs    STEP 11   method_out.json (+ re-derivation audit/rederive.py)
-The GPU stages run src/gpu_main.py / src/scoring.py in their own process (model loaded once per stage).
+Method (Stage A): full-state exchange of the modal ban's residual states into the token-length-matched neutral twin,
+per block band at the task-specification positions, plus a KV splice of the condition span (direct route) and a
+read-position exchange. Baselines/controls: the neutral twin itself, a matched-norm random exchange (MR), a placebo
+exchange from a second neutral twin, identity and KV-splice equivalence tests. Also: the bf16 noise-site grid with a
+Firth indicator model at matched downstream displacement (ST), state noise vs KL-matched temperature (P4 half), the
+top-five plan push on the forced-prompt geometry, and a retrospective landing-forecast contest (L).
+
+Every stage runs in its own process (the GPU holds one model at a time) and is resumable; usage:
+    .venv/bin/python method.py [all | prompts utest commit0 gpu ext lgpu label analysis novelty figures outputs audit]
 """
 
 from __future__ import annotations
 
 import subprocess
 import sys
+import time
 from pathlib import Path
 
+from loguru import logger
+
 ROOT = Path(__file__).resolve().parent
-SRC = ROOT / "src"
-PY = sys.executable
+PY = str(ROOT / ".venv" / "bin" / "python")
+logger.remove()
+logger.add(sys.stdout, level="INFO", format="{time:HH:mm:ss}|{level:<7}|{message}")
+(ROOT / "logs").mkdir(exist_ok=True)
+logger.add(str(ROOT / "logs" / "method.log"), rotation="30 MB", level="DEBUG")
+
+STAGES = {
+    "prompts": [[PY, "src/prompts6.py"]],                                 # STEP 0-1 (CPU): prompts, positions, dep
+    "utest": [[PY, "src/gpu6.py", "utest"]],                              # STEP 2 (GPU): U1-U5
+    "commit0": [[PY, "src/prereg6.py"]],                                  # commit #0 before any decisive sample
+    "gpu": [["bash", "scripts/run_gpu_main.sh", "175"]],                  # STEPS 4-8 (GPU, deadline in minutes)
+    "ext": [[PY, "src/gpu6.py", "ext", "--deadline-min", "25"]],           # STEP 9 extensions (forced, seed, W4)
+    "label": [[PY, "src/label6.py"]],                                     # STEP 10 (CPU worker; follows the GPU)
+    "lgpu": [[PY, "src/lcontest.py", "events"], [PY, "src/lcontest.py", "open"]],  # STEP 3 (L teacher-forced)
+    "analysis": [[PY, "src/analysis6.py"], [PY, "src/lcontest.py", "score"]],
+    "novelty": [[PY, "src/novelty6.py"]],
+    "figures": [[PY, "src/figures6.py"]],
+    "outputs": [[PY, "src/bookkeeping6.py"], [PY, "src/outputs6.py"]],
+    "audit": [["python3", "-I", "audit/rederive.py"]],
+}
+ORDER = ["prompts", "utest", "commit0", "gpu", "ext", "lgpu", "label", "analysis", "novelty", "figures", "outputs",
+         "audit"]
 
 
-def run(args: list[str]) -> int:
-    import os
-
-    print("+", " ".join(args), flush=True)
-    env = dict(os.environ)
-    for v in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS"):
-        env.setdefault(v, "2")  # 5-CPU cgroup on a 48-core host: avoid BLAS oversubscription
-    return subprocess.call(args, cwd=str(SRC), env=env)
-
-
-def main() -> int:
-    if len(sys.argv) < 2:
-        print(__doc__)
-        return 1
-    cmd = sys.argv[1]
-    extra = sys.argv[2:]
-    table = {
-        "inputs": [PY, "prereg.py", "inputs"],
-        "cputests": [PY, str(ROOT / "tests" / "test_cpu.py")],
-        "prep": [PY, "gpu_main.py", "--stage", "prep"],
-        "seeds": [PY, "prereg.py", "seeds"],
-        "gputests": [PY, "gpu_main.py", "--stage", "tests"],
-        "commit1": [PY, "prereg.py", "commit1"],
-        "sample": [PY, "gpu_main.py", "--stage", "sample"] + extra,
-        "label": [PY, "label_worker.py", "once"],
-        "label_k7": [PY, "label_k7.py"],
-        "score": [PY, "scoring.py", "all"],
-        "commit2": [PY, "prereg.py", "commit2"],
-        "analyse": [PY, "analysis.py"],
-        "audit": [PY, "audit.py", "run"],
-        "audit_summary": [PY, "audit.py", "summary"],
-        "figures": [PY, "figures.py"],
-        "outputs": [PY, "outputs.py"],
-        "rederive": [PY, str(ROOT / "audit" / "rederive.py")],
-    }
-    if cmd not in table:
-        print(f"unknown stage {cmd}\n{__doc__}")
-        return 1
-    rc = run(table[cmd])
-    if cmd == "label" and rc == 0:
-        rc = run(table["label_k7"])
-    if cmd == "outputs" and rc == 0:
-        rc = run(table["rederive"])
-    return rc
+@logger.catch(reraise=True)
+def main() -> None:
+    want = sys.argv[1:] or ["all"]
+    stages = ORDER if want == ["all"] else want
+    for st in stages:
+        for cmd in STAGES[st]:
+            t0 = time.time()
+            logger.info(f"stage {st}: {' '.join(cmd)}")
+            if st == "label" and "all" in want:
+                (ROOT / "results" / "gpu_all_done.flag").write_text("done\n")  # the GPU work above has finished
+            r = subprocess.run(cmd, cwd=ROOT)
+            logger.info(f"stage {st} exit {r.returncode} in {time.time() - t0:.0f}s")
+            if r.returncode != 0:
+                raise RuntimeError(f"stage {st} failed ({' '.join(cmd)})")
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()

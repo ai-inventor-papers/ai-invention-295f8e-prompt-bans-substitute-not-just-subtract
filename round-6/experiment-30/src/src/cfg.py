@@ -1,17 +1,14 @@
 #!/usr/bin/env python3
-"""Shared constants, paths and utilities for 'Where noise changes the algorithm, in bf16' (iteration 6, Step 2).
+"""Shared constants, paths and utilities for the iteration-4 'pricing plan noise against temperature' artifact.
 
-Conventions (stated again in README.md and method_out.json):
-- Precision W16A16: bf16 weights and bf16 activations (HF transformers, sdpa), edits computed in fp32 and cast to bf16.
-- BLOCK l = decoder block l (0-based); its output is HF hidden_states[l + 1] (exp17/exp20 convention).
-- Prompt layout (exp8/exp17): '<|im_start|>user\\n' + condition sentence + '\\n\\n' + task specification + chat tail.
-  COND = condition-sentence tokens (exp20 D3: a token that merges the final '.' with '\\n\\n' belongs to COND),
-  S = [p1, spec_end) task-specification tokens, R = P - 1 (last chat-tail token).
-- Generated input position k (1-based) = absolute position P + k - 1 (generated token k is the INPUT there).
-- CRN slot = (task, template, k): token uniforms u_stream(task, template, k) (exp17 key) and ONE random direction
-  u(t, w, k) = normalise(PCG64(stable_seed('ITER6_S2', t, w, k)).standard_normal(4096)) shared by EVERY arm.
-- Ban-free unit: n[l, p] = ||h_twin[l, p]|| * r_Q(l) (r_Q: exp23 frozen at blocks 12-23, bf16 recomputation by
-  exp23's recipe at blocks 0-11 and 24-35).
+Conventions (inherited from iteration-3 exp17, also stated in README.md):
+- BLOCK l = decoder block l (0-based); its output is HF hidden_states[l + 1].
+- SPEC positions S = [p1, spec_end): from the first token of 'Task:' to the last user token (chat tail excluded).
+  R = P - 1 (the read position).
+- CRN slot = (task, template w, k); uniforms u_stream(task, w, k) (PCG64 of a sha256 seed) are shared by EVERY arm of
+  this artifact; one uniform per (row, step), inverse-CDF in vocabulary order.
+- PN direction of a row: seed_k = stable_seed(task, arm, w, k); u = x / ||x||, x ~ N(0, I_4096) from PCG64(seed_k),
+  shared across blocks 12-23 and spec positions (the exp17 screen's construction, one fresh direction per sample).
 """
 
 from __future__ import annotations
@@ -30,38 +27,39 @@ from loguru import logger
 
 ROOT = Path(__file__).resolve().parents[1]
 INPUTS = ROOT / "inputs"
-E7 = INPUTS / "exp7"
 E8 = INPUTS / "exp8"
-E9 = INPUTS / "exp9"
 E11 = INPUTS / "exp11"
+E7 = INPUTS / "exp7"
 E13 = INPUTS / "exp13"
+E16 = INPUTS / "exp16"
 E17 = INPUTS / "exp17"
 E18 = INPUTS / "exp18"
-E19 = INPUTS / "exp19"
-E20 = INPUTS / "exp20"
-E21 = INPUTS / "exp21"
-E22 = INPUTS / "exp22"
-E23 = INPUTS / "exp23"
-E24 = INPUTS / "exp24"
-E25 = INPUTS / "exp25"
-E27 = INPUTS / "exp27"
+E6 = INPUTS / "exp6"
+EVAL2 = INPUTS / "eval2"
+DEP = INPUTS / "dep_dataset"
 BENCH = E11 / "bench"
 SUITE = E8 / "suite"
 DATA_DIR = ROOT / "data"
-ROWLOG_DIR = DATA_DIR / "row_logs"
 RESULTS_DIR = ROOT / "results"
 FIG_DIR = ROOT / "figures"
 LOG_DIR = ROOT / "logs"
-UNITS_DIR = ROOT / "units"
-DIR_DIR = ROOT / "directions"
 PRED_DIR = ROOT / "predictions"
 AUDIT_DIR = ROOT / "audit"
-CACHE_DIR = ROOT / "cache"
-for _d in (DATA_DIR, ROWLOG_DIR, RESULTS_DIR, FIG_DIR, LOG_DIR, UNITS_DIR, DIR_DIR, PRED_DIR, AUDIT_DIR, CACHE_DIR):
+for _d in (DATA_DIR, RESULTS_DIR, FIG_DIR, LOG_DIR, PRED_DIR, AUDIT_DIR):
     _d.mkdir(parents=True, exist_ok=True)
 
-# Declared dataset dependency art_j3Rm_lr2nzR6 (read in place, never written, never copied: 96 MB).
-DEP_DATASET = Path(os.environ.get("ART_J3RM_DIR", str(ROOT.parent / "art_j3Rm_lr2nzR6")))
+# Source artifacts (read-only). This folder sits at <runs>/<run>/3_invention_loop/iter_4/gen_art/<artifact>, so the
+# earlier iterations are found relative to it; each location can be overridden by an environment variable. Only the
+# input-copy step, src/screen.py (exp16 path rows) and src/dep_usage.py (the dataset dependency) read them.
+RUN_ROOT = Path(os.environ.get("AII_LOOP_DIR", ROOT.parents[2]))  # <run>/3_invention_loop
+ITER2 = Path(os.environ.get("AII_ITER2_DIR", RUN_ROOT / "round-2" / "."))
+ITER3 = Path(os.environ.get("AII_ITER3_DIR", RUN_ROOT / "round-3" / "."))
+# iteration 1 belongs to another run of the same pipeline (run_4VFKidE1bxPG)
+ITER1 = Path(os.environ.get("AII_ITER1_DIR", ROOT.parents[4] / "run_4VFKidE1bxPG" / "." / "round-1"
+                            / "."))
+# the declared dataset dependency art_j3Rm_lr2nzR6: ART_J3RM_DIR, else the published sibling folder, else the run layout
+DEP_DATASET_DIR = Path(os.environ.get("ART_J3RM_DIR") or next(
+    (d for d in (ROOT.parent / "art_j3Rm_lr2nzR6",) if d.exists()), ITER1 / "gen_art_dataset_1"))
 
 # ------------------------------------------------------------------------------------------------ model
 MODEL_ID = "Qwen/Qwen3-8B"
@@ -70,11 +68,12 @@ N_LAYERS = 36
 D_MODEL = 4096
 IM_END = 151645
 ENDOFTEXT = 151643
-TEMPERATURE = 1.0
-PRECISION = "W16A16"
-PRECISION_DESC = "bf16 weights and activations (HF transformers 4.57.6, attn sdpa); edits in fp32 cast to bf16"
+MAX_NEW_TOKENS = 1024          # bench tasks and the engine check (the exp17 screen's cap)
+MAX_NEW_PATH = 1024            # path tasks: the screen's cap (plan: 1,536; see deviations D-cap)
 TEMPLATE_TAIL = "<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
-DIRECTION_NS = "ITER6_S2"
+QUANT = ("fp8_e4m3_w8a8_dynamic(per-output-channel weight scales, per-token activation scales; "
+         "lm_head/embeddings/norms bf16)")
+ENGINE_TAG = "hf_fp8"
 
 
 def model_path(model_id: str = MODEL_ID, revision: str | None = MODEL_REVISION) -> str:
@@ -87,47 +86,65 @@ def model_path(model_id: str = MODEL_ID, revision: str | None = MODEL_REVISION) 
 
 
 # ------------------------------------------------------------------------------------------------ tasks
-TASKS = ("T03", "T10", "T2", "T1")           # sampled here
-UNIT_TASKS = ("T03", "T05", "T06", "T10", "T1", "T2")  # exp20's ban prompts (forward passes only) for r_Q
 PATH_TASKS = ("T1", "T2")
-BENCH_TASKS = ("T03", "T10")
-DEFAULT = {"T1": "bfs", "T2": "dijkstra", "T03": "full_sort", "T05": "hash_map", "T06": "hash_set",
-           "T10": "union_find"}
-RUNNER_UP = {"T03": "quickselect", "T10": "dfs", "T2": "bf_spfa", "T1": "dfs"}  # exp24 base r_t
+E6_TASKS = ("T03", "T05", "T06", "T10", "T1", "T2")            # frozen decisive event set
+HELDOUT = ("R2",)
+P3_TASKS = ("T04", "T08", "T11", "T13", "T14", "R1", "R3", "R6")  # the other 8 bench tasks
+P3_DROP_ORDER = ("T11", "T14", "R6", "T13", "R3", "T08", "R1", "T04")  # reverse Stage-A order
+BENCH12 = ("T03", "T04", "T06", "T05", "T10", "R1", "T08", "R3", "T13", "R6", "T14", "T11")
+BENCH_TASKS = BENCH12 + ("R2",)
+ALL_TASKS = PATH_TASKS + BENCH_TASKS
+DEFAULT = {"T1": "bfs", "T2": "dijkstra", "T03": "full_sort", "T04": "naive", "T06": "hash_set", "T05": "hash_map",
+           "T10": "union_find", "R1": "greedy_end", "T08": "iteration", "R3": "kahn", "T13": "sort_sweep",
+           "R6": "binary_search", "T14": "sort_by_count", "T11": "quadratic_dp", "R2": "dfs_parent"}
 EXP8_TASK = {"T1": "t1", "T2": "t2"}
-TEMPLATE_IDS = ["W1", "W2", "W3", "W4", "W5"]
-MAX_NEW = {"T03": 1024, "T10": 1024, "T2": 1536, "T1": 1536}
-BENCH_DIRS = {"T03": "T03_kth_smallest", "T10": "T10_connected_components"}
+TEMPLATES: dict[str, tuple[str, str]] = {  # (ban, neutral) -- protocol v2 W1-W5, verbatim
+    "W1": ("Do not use {X} for this task.", "Do not use {N} for this task."),
+    "W2": ("Your solution must not rely on {X}.", "Your solution must not rely on {N}."),
+    "W3": ("Avoid {X} entirely.", "Avoid {N} entirely."),
+    "W4": ("{X} is not allowed here.", "{N} is not allowed here."),
+    "W5": ("Write a correct solution that does not use {X}.", "Write a correct solution that does not use {N}."),
+}
+TEMPLATE_IDS = list(TEMPLATES)
+PAD_FILLER = " ."
+NONCE_X = "the Zorblax method"
+NOVELTY = "Write a novel algorithm for this task, one you have not seen before."
+VS_SEGMENT = ("Before writing code, list five different algorithms that solve this task, each with the probability "
+              "that you would choose it; then pick one of them at random according to those probabilities and "
+              "implement only that one.")
 
-# ------------------------------------------------------------------------------------------------ sites
-PLAN_BLOCKS = list(range(12, 24))
-LOW_BLOCKS = list(range(0, 12))
-HIGH_BLOCKS = list(range(24, 36))
-ALL_BLOCKS = list(range(N_LAYERS))
-SITES = ("S0", "S4", "S5", "S1", "S2", "S3", "S1E")
-SITE_BLOCKS = {"S0": PLAN_BLOCKS, "S1": PLAN_BLOCKS, "S2": PLAN_BLOCKS, "S3": PLAN_BLOCKS, "S4": LOW_BLOCKS,
-               "S5": HIGH_BLOCKS, "S1E": PLAN_BLOCKS, "TOP5": PLAN_BLOCKS, "TOP3": PLAN_BLOCKS,
-               "ENG": PLAN_BLOCKS}
-SITE_POS = {"S0": "S", "S1": "R", "S2": "COND", "S3": "GEN1-32", "S4": "S", "S5": "S", "S1E": "R", "TOP5": "S",
-            "TOP3": "S", "ENG": "S"}
-PREFILL_SITES = ("S0", "S4", "S5", "S1", "S2", "S1E")
-TS_SITES = ("S0", "S4")
-COMPARATORS = ("S1", "S2", "S5")
-S3_STEPS = 32
-ALPHAS = (1.0, 2.0, 4.0)
-N30_K = list(range(6))   # slots 0-5 x 5 templates = N 30
-N50_K = list(range(10))  # slots 0-9 x 5 templates = N 50
-TOPUP_K = [6, 7, 8, 9]
-SMOKE_K0 = 100           # smoke / test slots k >= 100 are never analysed
-FILL_K0 = 10             # filler twin rows (TWIN_X) use k >= 10 (descriptive only)
-
-# fixed batch shape per task (memory probe on the NVIDIA L4, frozen before commit #1; see results/batch_probe.json)
-BATCH = {"T03": 16, "T10": 16, "T2": 12, "T1": 12}
-
-JUDGE_CAP_LABEL_USD = 0.30
-AUDIT_CAP_USD = 0.15
-ARTIFACT_CAP_USD = 0.50
+# ------------------------------------------------------------------------------------------------ design
+V_BLOCKS = list(range(12, 24))          # PN is added at the task-spec positions of blocks 12-23, prefill only
+NORM_BLOCKS = list(range(12, N_LAYERS))  # realised displacement logged at blocks 12-35
+SLOTS = list(range(10))                 # k 0-9 per template -> N = 50
+PN_ALPHAS = (0.5, 1.0, 2.0, 4.0)
+PN_EXTRA_ALPHA = 8.0
+# arm -> decoding / prompt definition. prompt kinds: twin, plain, nonce, novelty, semseed, vs
+ARMS: dict[str, dict[str, Any]] = {
+    "TWIN": {"prompt": "twin", "T": 1.0, "top_k": 0, "min_p": 0.0, "alpha": None, "knob": "REF"},
+    "PN_a0.5": {"prompt": "twin", "T": 1.0, "top_k": 0, "min_p": 0.0, "alpha": 0.5, "knob": "PN"},
+    "PN_a1": {"prompt": "twin", "T": 1.0, "top_k": 0, "min_p": 0.0, "alpha": 1.0, "knob": "PN"},
+    "PN_a2": {"prompt": "twin", "T": 1.0, "top_k": 0, "min_p": 0.0, "alpha": 2.0, "knob": "PN"},
+    "PN_a4": {"prompt": "twin", "T": 1.0, "top_k": 0, "min_p": 0.0, "alpha": 4.0, "knob": "PN"},
+    "PN_a8": {"prompt": "twin", "T": 1.0, "top_k": 0, "min_p": 0.0, "alpha": 8.0, "knob": "PN_EXTRA"},
+    "T1.3": {"prompt": "twin", "T": 1.3, "top_k": 0, "min_p": 0.0, "alpha": None, "knob": "TEMP"},
+    "T1.6": {"prompt": "twin", "T": 1.6, "top_k": 0, "min_p": 0.0, "alpha": None, "knob": "TEMP"},
+    "TOPK10": {"prompt": "twin", "T": 1.0, "top_k": 10, "min_p": 0.0, "alpha": None, "knob": "TOPK10"},
+    "MINP_T1.6": {"prompt": "twin", "T": 1.6, "top_k": 0, "min_p": 0.1, "alpha": None, "knob": "MINP"},
+    "MINP_T2.0": {"prompt": "twin", "T": 2.0, "top_k": 0, "min_p": 0.1, "alpha": None, "knob": "MINP"},
+    "PLAIN": {"prompt": "plain", "T": 1.0, "top_k": 0, "min_p": 0.0, "alpha": None, "knob": "REF_PLAIN"},
+    "PNPLAIN_a1": {"prompt": "plain", "T": 1.0, "top_k": 0, "min_p": 0.0, "alpha": 1.0, "knob": "PNPLAIN"},
+    "NONCE": {"prompt": "nonce", "T": 1.0, "top_k": 0, "min_p": 0.0, "alpha": None, "knob": "NONCE"},
+    "NOVELTY": {"prompt": "novelty", "T": 1.0, "top_k": 0, "min_p": 0.0, "alpha": None, "knob": "NOVELTY"},
+    "SEMSEED": {"prompt": "semseed", "T": 1.0, "top_k": 0, "min_p": 0.0, "alpha": None, "knob": "SEMSEED"},
+    "VS": {"prompt": "vs", "T": 1.0, "top_k": 0, "min_p": 0.0, "alpha": None, "knob": "VS"},
+}
+PN_ARMS = ("PN_a0.5", "PN_a1", "PN_a2", "PN_a4")
+JUDGE_CAP_USD = 1.00
 BUDGET_MSG = "AI Inventor per-run OpenRouter budget"
+BOOT_SEED = 20261021
+N_BOOT = 2000
+DEPTH = 25
 
 
 # ------------------------------------------------------------------------------------------------ utils
@@ -145,23 +162,12 @@ def set_ram_limit(gb: float) -> None:
         logger.warning(f"could not set RLIMIT_AS: {e}")
 
 
-def container_ram_gb() -> float | None:
-    for p in ("/sys/fs/cgroup/memory.max", "/sys/fs/cgroup/memory/memory.limit_in_bytes"):
-        try:
-            v = Path(p).read_text().strip()
-            if v != "max" and int(v) < 1_000_000_000_000:
-                return int(v) / 1e9
-        except (FileNotFoundError, ValueError):
-            pass
-    return None
-
-
 def detect_cpus() -> int:
     try:
         q = int(Path("/sys/fs/cgroup/cpu/cpu.cfs_quota_us").read_text())
         p = int(Path("/sys/fs/cgroup/cpu/cpu.cfs_period_us").read_text())
         if q > 0:
-            return max(1, math.floor(q / p))
+            return max(1, math.ceil(q / p))
     except (FileNotFoundError, ValueError):
         pass
     try:
@@ -187,7 +193,7 @@ def sha256_file(p: Path) -> str:
 
 
 def stable_seed(*parts: Any) -> int:
-    """Deterministic 63-bit seed from arbitrary parts (sha256 of their '|'-joined str) -- exp8/exp17 convention."""
+    """Deterministic 63-bit seed from arbitrary parts (sha256 of their '|'-joined repr) -- exp8/exp17 convention."""
     return int(hashlib.sha256("|".join(str(p) for p in parts).encode()).hexdigest(), 16) % (2 ** 63)
 
 
@@ -205,24 +211,6 @@ def read_jsonl(p: Path) -> list[dict[str, Any]]:
                 except json.JSONDecodeError:
                     logger.warning(f"skipping malformed line in {p.name}")
     return out
-
-
-def _json_default(o: Any) -> Any:
-    import numpy as np
-
-    if isinstance(o, np.integer):
-        return int(o)
-    if isinstance(o, np.floating):
-        return None if not np.isfinite(o) else float(o)
-    if isinstance(o, np.ndarray):
-        return o.tolist()
-    if isinstance(o, np.bool_):
-        return bool(o)
-    if isinstance(o, Path):
-        return str(o)
-    if isinstance(o, (set, frozenset)):
-        return sorted(o)
-    raise TypeError(f"not JSON serialisable: {type(o)}")
 
 
 def append_jsonl(p: Path, rows: Iterable[dict[str, Any]]) -> None:
@@ -244,6 +232,24 @@ def write_jsonl(p: Path, rows: Iterable[dict[str, Any]]) -> None:
     tmp.replace(p)
 
 
+def _json_default(o: Any) -> Any:
+    import numpy as np
+
+    if isinstance(o, np.integer):
+        return int(o)
+    if isinstance(o, np.floating):
+        return None if not np.isfinite(o) else float(o)
+    if isinstance(o, np.ndarray):
+        return o.tolist()
+    if isinstance(o, np.bool_):
+        return bool(o)
+    if isinstance(o, Path):
+        return str(o)
+    if isinstance(o, (set, frozenset)):
+        return sorted(o)
+    raise TypeError(f"not JSON serialisable: {type(o)}")
+
+
 def _finite(o: Any) -> Any:
     if isinstance(o, float):
         return o if math.isfinite(o) else None
@@ -262,32 +268,12 @@ def write_json(p: Path, obj: Any, indent: int | None = 1) -> None:
     tmp.replace(p)
 
 
-def canonical_json(obj: Any) -> str:
-    """Sorted keys, floats rounded to 6 decimals, no whitespace (byte-stable)."""
-    def rnd(o: Any) -> Any:
-        if isinstance(o, float):
-            return round(o, 6) if math.isfinite(o) else None
-        if isinstance(o, dict):
-            return {str(k): rnd(v) for k, v in o.items()}
-        if isinstance(o, (list, tuple)):
-            return [rnd(v) for v in o]
-        return o
-    return json.dumps(rnd(json.loads(json.dumps(obj, default=_json_default))), sort_keys=True,
-                      separators=(",", ":"))
-
-
 def read_json(p: Path) -> Any:
     return json.loads(Path(p).read_text())
 
 
-def wilson_ci(k: int, n: int, z: float = 1.959963984540054) -> tuple[float, float]:
-    if n == 0:
-        return (float("nan"), float("nan"))
-    p = k / n
-    den = 1 + z * z / n
-    c = (p + z * z / (2 * n)) / den
-    h = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / den
-    return (max(0.0, c - h), min(1.0, c + h))
+def cap_first(s: str) -> str:
+    return s[:1].upper() + s[1:] if s else s
 
 
 def rel(p: Path | str) -> str:
@@ -298,10 +284,18 @@ def rel(p: Path | str) -> str:
         return str(p)
 
 
-def log_deviation(did: str, what: str, why: str, consequence: str) -> None:
-    """Append one deviation to results/deviations.json (idempotent by id)."""
-    p = RESULTS_DIR / "deviations.json"
-    cur = read_json(p) if p.exists() else []
-    cur = [d for d in cur if d.get("id") != did]
-    cur.append({"id": did, "what": what, "why": why, "consequence": consequence, "utc": utc_now()})
-    write_json(p, cur)
+def append_deviation(did: str, text: str) -> None:
+    p = RESULTS_DIR / "deviations.jsonl"
+    rows = read_jsonl(p)
+    if any(r.get("id") == did for r in rows):
+        return
+    append_jsonl(p, [{"id": did, "utc": utc_now(), "deviation": text}])
+    logger.warning(f"DEVIATION {did}: {text}")
+
+
+def bench_paths() -> None:
+    for p in (str(SUITE), str(E11)):
+        if p not in sys.path:
+            sys.path.insert(0, p)
+N_HEADS = 32
+HEAD_DIM = 128
