@@ -1,0 +1,1152 @@
+{
+  "metadata": {
+    "evaluation_name": "iteration-7 Step 0 record repair",
+    "read_date": "2026-10-22",
+    "dependencies": [
+      "art_lpQalcAXMGr1",
+      "art_rMlbrjVB1c__",
+      "art_zNyBP6zieI5u"
+    ],
+    "read_by_path": [
+      "art_aRTQM6CQ0Dre",
+      "art_OUuQUYQn5voE",
+      "iter_7 current_report.md"
+    ],
+    "sections": {
+      "0a": {
+        "commit0_transfer": "share(label == Y | cell) - share(label == Y | TWIN), all samples (invalid rows count as not-Y)",
+        "commit0_pass_ratio": "pass_X / pass_TWIN (validity gate >= 0.8)",
+        "mr_posthoc_correct_Y": {
+          "T2": {
+            "n_pairs": 30,
+            "correct_b": 21,
+            "correct_c": 0,
+            "correct_p": 9.5367431640625e-07,
+            "attempted_b": 23,
+            "attempted_c": 0,
+            "attempted_p": 2.384185791015625e-07
+          },
+          "T03": {
+            "n_pairs": 30,
+            "correct_b": 15,
+            "correct_c": 2,
+            "correct_p": 0.002349853515625,
+            "attempted_b": 16,
+            "attempted_c": 2,
+            "attempted_p": 0.001312255859375
+          },
+          "T10": {
+            "n_pairs": 30,
+            "correct_b": 11,
+            "correct_c": 0,
+            "correct_p": 0.0009765625,
+            "attempted_b": 11,
+            "attempted_c": 0,
+            "attempted_p": 0.0009765625
+          }
+        },
+        "occurrence_ledger_rows": 248,
+        "occurrence_ledger_stageA": 10
+      },
+      "0b": {
+        "rule_label": "WITHDRAWN as FP8-specific: the site of the choice is open",
+        "posthoc_condition_span": {
+          "T03": [
+            -1.697527658620218,
+            [
+              -3.959012235840403,
+              0.4186236667810668
+            ],
+            [
+              -6.817807270693442,
+              1.1590028092176397
+            ]
+          ],
+          "T10": [
+            -0.5550691439306527,
+            [
+              -4.930415910726578,
+              2.9055122471548898
+            ],
+            [
+              -6.152164487475844,
+              3.410293100768349
+            ]
+          ]
+        },
+        "S4": [
+          2.510616706233365,
+          [
+            1.3887016238250927,
+            3.7990103714205614
+          ]
+        ],
+        "flips": {
+          "S0_only": 4,
+          "other_only": 18,
+          "p": 0.004343509674072266
+        },
+        "concordance": {
+          "T03": {
+            "noise_max_by_band": {
+              "0-11": 0.36666666666666664,
+              "12-23": 0.36666666666666664,
+              "24-35": 0.03333333333333333
+            },
+            "noise_alpha_at_max": {
+              "0-11": 4,
+              "12-23": 2,
+              "24-35": 4
+            },
+            "noise_mean_by_band": {
+              "0-11": 0.18888888888888888,
+              "12-23": 0.27777777777777773,
+              "24-35": 0.022222222222222223
+            },
+            "exchange_Y_transfer_by_band": {
+              "0-11": 0.4,
+              "12-23": 0.5666666666666667,
+              "24-35": 0.03333333333333333
+            },
+            "exchange_off_default_by_band": {
+              "0-11": 0.5333333333333333,
+              "12-23": 1.0,
+              "24-35": 0.03333333333333333
+            },
+            "noise_band": "12-23",
+            "exchange_band": "12-23",
+            "concordant": true
+          },
+          "T10": {
+            "noise_max_by_band": {
+              "0-11": 0.3333333333333333,
+              "12-23": 0.16666666666666666,
+              "24-35": 0.0
+            },
+            "noise_alpha_at_max": {
+              "0-11": 4,
+              "12-23": 4,
+              "24-35": 4
+            },
+            "noise_mean_by_band": {
+              "0-11": 0.18888888888888888,
+              "12-23": 0.07777777777777778,
+              "24-35": 0.0
+            },
+            "exchange_Y_transfer_by_band": {
+              "0-11": 0.0,
+              "12-23": 0.4666666666666667,
+              "24-35": 0.0
+            },
+            "exchange_off_default_by_band": {
+              "0-11": 0.8666666666666667,
+              "12-23": 1.0,
+              "24-35": 0.6333333333333333
+            },
+            "noise_band": "0-11",
+            "exchange_band": "12-23",
+            "concordant": false
+          }
+        },
+        "depth_redundancy": {
+          "X_0-11_off_default": 0.8666666666666667,
+          "X_24-35_off_default": 0.6333333333333333
+        }
+      },
+      "0c": {
+        "das": {
+          "1": {
+            "das": 8.812887221574783,
+            "random": -0.0765459653404024,
+            "shuffled": 10.105492691198984,
+            "frac_pos": 1.0
+          },
+          "2": {
+            "das": 9.512160748243332,
+            "random": 0.02688435692754057,
+            "shuffled": 9.68864173690478,
+            "frac_pos": 1.0
+          },
+          "4": {
+            "das": 9.763976097106934,
+            "random": 0.0457171288629373,
+            "shuffled": 11.415820876757303,
+            "frac_pos": 1.0
+          }
+        },
+        "das_gen": {
+          "bfs": 50,
+          "n": 50,
+          "passing": 0
+        },
+        "lasso": 0.6615564574837122,
+        "ridge_std": 0.1498987135180151,
+        "ridge_ctrl": 0.08612865257107882,
+        "ridge_delta": 0.06377006094693627,
+        "unstd_sae": [
+          -0.756,
+          0.062
+        ],
+        "raw_ridge": [
+          0.705,
+          0.719
+        ],
+        "twin_pass": 0.84,
+        "top5": {
+          "bfs": 18,
+          "n": 50,
+          "pass": 0.84
+        },
+        "main4_pass": [
+          0.16,
+          0.58
+        ],
+        "other_pass": [
+          0.6,
+          0.78
+        ]
+      },
+      "0d": {
+        "table": "Table 279 (NEW)",
+        "paragraphs": [
+          "6.9",
+          "6.10 dead ends",
+          "6.10 item 2"
+        ]
+      },
+      "0e": {
+        "figures": [
+          "fig_qwen_top5_geometry",
+          "fig_gemma_geometry_raw_L17",
+          "fig_gemma_geometry_raw_L22"
+        ],
+        "verified": 7
+      },
+      "0f": {
+        "centroid_pc1_range": [
+          -0.09768930822610855,
+          0.14444226026535034
+        ],
+        "twin_pc1": 0.09248753264546394,
+        "push_pc1": {
+          "push1": -0.44078385829925537,
+          "push2": -0.9724843502044678,
+          "push4": -2.025535523891449,
+          "push8": -4.132061243057251
+        },
+        "pass": {
+          "1": 0.6666666666666666,
+          "2": 0.3,
+          "4": 0.03333333333333333,
+          "8": 0.0
+        }
+      },
+      "0g": {
+        "screen": {
+          "a": 15,
+          "b": 8,
+          "c": 8,
+          "d": 9
+        },
+        "excess_met_pass_failed": {
+          "a": 17,
+          "b": 14,
+          "c": 17,
+          "d": 17
+        },
+        "verdict_T2": {
+          "literal": "NOT_REPRODUCED_HIGH",
+          "screen_level": "MIXED"
+        }
+      },
+      "0h": {
+        "n_units": 364,
+        "b": 20,
+        "c": 88,
+        "p": 2.3222098297326027e-11,
+        "cluster_boot_ci": [
+          -0.3471502590673575,
+          0.021897810218978103
+        ],
+        "clusters": [
+          "T05",
+          "T06",
+          "T1"
+        ],
+        "n_samples": 104,
+        "one_unit_first": {
+          "b": 0,
+          "c": 25,
+          "p": 5.960464477539063e-08
+        },
+        "random_unit": {
+          "median_b": 4.0,
+          "median_c": 29.0,
+          "median_p": 1.9301194697618484e-05,
+          "share_p_lt_05": 1.0,
+          "n_draws": 2000,
+          "seed": 20261022
+        },
+        "sign_test_per_sample": {
+          "n_pos": 12,
+          "n_neg": 38,
+          "n_zero": 54,
+          "p": 0.00030586400160359517
+        },
+        "durkalski": {
+          "B": 20,
+          "C": 88,
+          "chi2": 15.944827586206896,
+          "p": 6.521573842496228e-05,
+          "n_clusters": 104
+        },
+        "per_task": {
+          "T05": {
+            "n_units": 28,
+            "n_samples": 16,
+            "mean_x": 0.0,
+            "mean_y": 0.0
+          },
+          "T06": {
+            "n_units": 163,
+            "n_samples": 40,
+            "mean_x": 0.03680981595092025,
+            "mean_y": 0.37423312883435583
+          },
+          "T1": {
+            "n_units": 61,
+            "n_samples": 16,
+            "mean_x": 0.22950819672131148,
+            "mean_y": 0.11475409836065574
+          },
+          "T10": {
+            "n_units": 96,
+            "n_samples": 20,
+            "mean_x": 0.041666666666666664,
+            "mean_y": 0.125
+          },
+          "T2": {
+            "n_units": 16,
+            "n_samples": 12,
+            "mean_x": 0.0,
+            "mean_y": 0.75
+          }
+        },
+        "task_level_sign": {
+          "n_pos": 1,
+          "n_neg": 3,
+          "n_zero": 1,
+          "p": 0.625
+        },
+        "cluster_floor_p": 0.0625
+      },
+      "0i": {
+        "U6": {
+          "full_prefix_reproduces_label": true,
+          "t0_bfs_share": 0.3802083333333333,
+          "t0_n": 192,
+          "s3_bfs_share": 0.305,
+          "s3_ci95": [
+            0.24536415630735034,
+            0.37198552097978366
+          ],
+          "t0_within_ci": false,
+          "k": 73,
+          "exact_binomial_p": 0.027910137329807475,
+          "verdict": "mild failure"
+        },
+        "D12": "Not run: U4 (clamp readback) and U5 (matched-norm realisation) as separate unit tests (the matched norm is imposed by construction in src/clamp.py and each edit's realised norm is logged per row); the...",
+        "novelty": {
+          "n_programs": 3,
+          "gate": {
+            "openai/gpt-4.1-mini": {
+              "exact_correct": 6,
+              "merged_correct": 8,
+              "passed": false
+            },
+            "deepseek/deepseek-chat-v3.1": {
+              "exact_correct": 7,
+              "merged_correct": 10,
+              "passed": true
+            },
+            "google/gemini-2.5-flash-lite": {
+              "exact_correct": 6,
+              "merged_correct": 8,
+              "passed": false
+            }
+          },
+          "kappa_merged_classes": null,
+          "kappa_exact_classes": null,
+          "n_novel_final": 0,
+          "spend": {
+            "spent_usd_this_run": 0.032470070000000004,
+            "stopped": false,
+            "stop_reason": null,
+            "cached_total_usd": 0.07726138
+          },
+          "corpus_note": "The 18,237-solution corpus of art_j3Rm_lr2nzR6 is not in a declared tree; a 406-solution subset of it (34 shortest-path solutions) is vendored inside art_lpQalcAXMGr1 and is used with the bench refere..."
+        }
+      },
+      "0j": {
+        "insertion_found_by": "diff against art_aRTQM6CQ0Dre:inputs/report/current_report.md",
+        "insertion": "; the 14 that judges over-called in iteration 5 were re-adjudicated blind in iteration 6 (judges 14 of 48, manual 0, second adjudication 1 of 14 (Mistral Medium 3.1, three calls at temperature 0, cont...",
+        "other_lines_with_claim": []
+      },
+      "0k": {
+        "neighbours": {
+          "forking_paths": {
+            "name": "Forking Paths in Neural Text Generation (Bigelow et al.)",
+            "arxiv": "2412.07961",
+            "claimed": "ICLR 2025",
+            "row_in_table_277": 33,
+            "title_found": "Forking Paths in Neural Text Generation",
+            "fetched": true,
+            "version_found": "v1 10 Dec 2024",
+            "arxiv_comment": null,
+            "venue_found": "ICLR 2025",
+            "quote": "We hypothesize that there exist key forking tokens, such that re-sampling the system at those specific tokens, but not others, leads to very different outcomes.",
+            "quote_source": "art_OUuQUYQn5voE:evidence/quotes_iter6.jsonl (re-matched live)",
+            "quote_status": "VERIFIED",
+            "quote_url": "https://arxiv.org/html/2412.07961v1",
+            "venue_evidence": "https://openreview.net/forum?id=8RCmNLeeXx",
+            "venue_status": "MATCH"
+          },
+          "forking_fast": {
+            "name": "Forking Fast",
+            "arxiv": "2608.19611",
+            "claimed": "arXiv v1 2026-08-20; NeurIPS 2026 virtual page",
+            "row_in_table_277": null,
+            "title_found": "Forking Fast: Efficiently Estimating Uncertainty Dynamics in Text Generation",
+            "fetched": true,
+            "version_found": "v1 20 Aug 2026",
+            "arxiv_comment": null,
+            "venue_found": null,
+            "quote": "LLM reasoning is stochastic, and so understanding a model requires grappling with the distribution of reasoning chains that it might produce for a given question, i.e., its uncertainty.",
+            "quote_source": "first sentence of the live arXiv abstract",
+            "quote_status": "VERIFIED-ABSTRACT",
+            "quote_url": "https://arxiv.org/abs/2608.19611",
+            "neurips_2026_page": null,
+            "venue_note": "no paper-specific NeurIPS 2026 page was returned by the dated search (only generic neurips.cc listings); the arXiv record carries no venue comment",
+            "venue_status": "UNVERIFIED (no venue on the arXiv record)"
+          },
+          "hanna_ameisen": {
+            "name": "Latent Planning Emerges with Scale (Hanna and Ameisen)",
+            "arxiv": "2604.12493",
+            "claimed": "ICLR 2026",
+            "row_in_table_277": 52,
+            "title_found": "Latent Planning Emerges with Scale",
+            "fetched": true,
+            "version_found": "v1 14 Apr 2026",
+            "arxiv_comment": "ICLR 2026",
+            "venue_found": "ICLR 2026",
+            "quote": "even the less-successful Qwen-3 4B-8B have nascent planning mechanisms.",
+            "quote_source": "art_OUuQUYQn5voE:evidence/quotes_iter6.jsonl (re-matched live)",
+            "quote_status": "VERIFIED",
+            "quote_url": "https://arxiv.org/html/2604.12493v1",
+            "venue_status": "MATCH"
+          },
+          "nainani": {
+            "name": "Detecting and Characterizing Planning in Language Models (Nainani et al.)",
+            "arxiv": "2508.18098",
+            "claimed": "arXiv preprint",
+            "row_in_table_277": 11,
+            "title_found": "Detecting and Characterizing Planning in Language Models",
+            "fetched": true,
+            "version_found": "v1 25 Aug 2025",
+            "arxiv_comment": "9 pages, 4 figures",
+            "venue_found": null,
+            "quote": "We apply this pipeline to both base and instruction-tuned Gemma-2-2B models on the MBPP code generation benchmark and a poem generation task where Claude 3.5 Haiku was previously shown to plan.",
+            "quote_source": "art_OUuQUYQn5voE:evidence/quotes_iter6.jsonl (re-matched live)",
+            "quote_status": "VERIFIED",
+            "quote_url": "https://arxiv.org/html/2508.18098v1",
+            "venue_status": "n/a (claimed as a preprint)"
+          },
+          "ma_rui": {
+            "name": "Where's the Plan? (Ma and Rui)",
+            "arxiv": "2605.07984",
+            "claimed": "ICML 2026",
+            "row_in_table_277": null,
+            "title_found": "Where's the Plan? Locating Latent Planning in Language Models with Lightweight Mechanistic Interventions",
+            "fetched": true,
+            "version_found": "v1 8 May 2026, v2 11 Jun 2026",
+            "arxiv_comment": "13 pages, 20 figures, 3 tables. Accepted to Workshop on Mechanistic Interpretability @ ICML 2026",
+            "venue_found": "Workshop on Mechanistic Interpretability @ ICML 2026",
+            "quote": "We study planning site formation in language models -- where internal representations of structurally-constrained future tokens form during the forward pass, and whether they causally drive generation...",
+            "quote_source": "first sentence of the live arXiv abstract",
+            "quote_status": "VERIFIED-ABSTRACT",
+            "quote_url": "https://arxiv.org/abs/2605.07984",
+            "venue_status": "CORRECTED (arXiv comment: Workshop on Mechanistic Interpretability @ ICML 2026)"
+          },
+          "jacopin": {
+            "name": "Planning or Improvisation? (Jacopin)",
+            "arxiv": "2609.18440",
+            "claimed": "arXiv v1 2026-09-16",
+            "row_in_table_277": 49,
+            "title_found": "Planning or Improvisation? Stress-Testing the Poetry Planning Site on Open Models and Open Cross-Layer Transcoders",
+            "fetched": true,
+            "version_found": "v1 16 Sep 2026",
+            "arxiv_comment": "17 pages, 3 figures, 8 tables. Code, data and analysis scripts: [this https URL](https://github.com/PCfVW/poetry-planning-site) . An earlier version was submitted to the BlackboxNLP 2026 special track...",
+            "venue_found": null,
+            "quote": "C2 and C3 are not recovered by any probe: a census of every active feature finds no rhyme-anticipating enrichment at the newline",
+            "quote_source": "art_OUuQUYQn5voE:evidence/quotes_iter6.jsonl (re-matched live)",
+            "quote_status": "VERIFIED",
+            "quote_url": "https://arxiv.org/html/2609.18440v1",
+            "venue_status": "n/a (claimed as a preprint)"
+          }
+        },
+        "verdict_counts": {
+          "temperature_fork_margin": {
+            "occupies": 0,
+            "adjacent": 6,
+            "irrelevant": 0
+          },
+          "das_algorithm_choice_code": {
+            "occupies": 0,
+            "adjacent": 3,
+            "irrelevant": 1
+          },
+          "evaluator_search_novel_algorithms": {
+            "occupies": 0,
+            "adjacent": 5,
+            "irrelevant": 0
+          }
+        },
+        "wording": "to our knowledge, mini search dated 2026-10-22",
+        "consistency_check": {
+          "row_has_readable_across_prompts": false,
+          "row_has_next_token_qualifier": true,
+          "passed": true
+        }
+      },
+      "0l": {
+        "tag": "(ban-free unit and iteration-5 seeds; pending the 2x2 of Step K)",
+        "n_tagged": 6
+      }
+    },
+    "discrepancies": [
+      {
+        "name": "venue|forking_fast",
+        "recorded": "NeurIPS 2026 virtual page",
+        "recomputed": "no NeurIPS 2026 paper page found",
+        "source": "arXiv 2608.19611 abstract page"
+      },
+      {
+        "name": "venue|ma_rui",
+        "recorded": "ICML 2026",
+        "recomputed": "Workshop on Mechanistic Interpretability @ ICML 2026",
+        "source": "arXiv 2605.07984 abstract page"
+      },
+      {
+        "name": "venue|seed_2604.09921",
+        "recorded": "ICML 2026",
+        "recomputed": "COLM (arXiv v2 comment)",
+        "source": "arXiv 2604.09921 abstract page"
+      }
+    ],
+    "apply_test": {
+      "n": 54,
+      "n_pass": 54,
+      "pass_rate": 1.0,
+      "overlaps": [],
+      "passed": true
+    },
+    "lint": {
+      "uncorrected": [
+        {
+          "line": 5505,
+          "rule": "stageA_share_without_of_30",
+          "snippet": "On kth smallest the same exchange transfers 0.57 to quickselect with every slot leaving the full sort, blocks 0 to 11 alone already transfer 0.40, and here the condition span also carries the ban (0.9..."
+        },
+        {
+          "line": 5505,
+          "rule": "stageA_share_without_of_30",
+          "snippet": "On connected components every slot leaves union find under the exchange at blocks 12 to 23 or 0 to 35 (off-default transfer 1.00), but only 0.37 to 0.47 land on the ban's BFS and the rest on DFS."
+        },
+        {
+          "line": 5505,
+          "rule": "stageA_share_without_of_30",
+          "snippet": "On the grid task, whose route was carried by the prompt states in likelihood and mixed in behaviour, the exchange at all blocks transfers 0.47 toward DFS and the condition-span splice 0.33, so each ca..."
+        }
+      ],
+      "corrected": []
+    },
+    "audit": {
+      "n_checks": 520,
+      "n_mismatches": 0,
+      "mismatches": [],
+      "n_placebos": 7,
+      "n_placebos_failing": 7,
+      "placebos": [
+        {
+          "placebo": "P1 Y swapped to the default",
+          "n_checks": 300,
+          "n_mismatch": 149,
+          "fails": true
+        },
+        {
+          "placebo": "P2 passed inverted",
+          "n_checks": 300,
+          "n_mismatch": 119,
+          "fails": true
+        },
+        {
+          "placebo": "P3 labels shuffled within task",
+          "n_checks": 300,
+          "n_mismatch": 146,
+          "fails": true
+        }
+      ],
+      "checks": [
+        {
+          "check": "stageA|T03|TWIN|n",
+          "got": 30,
+          "want": 30,
+          "ok": true
+        },
+        {
+          "check": "stageA|T03|TWIN|attempted_Y",
+          "got": 0,
+          "want": 0,
+          "ok": true
+        },
+        {
+          "check": "stageA|T03|TWIN|correct_Y",
+          "got": 0,
+          "want": 0,
+          "ok": true
+        }
+      ]
+    },
+    "predict_crosscheck": {
+      "checks": [
+        {
+          "check": "engine_pn|a|T10|PN_a1|correct",
+          "from_predict": 50,
+          "from_raw_rows": 50,
+          "ok": true
+        },
+        {
+          "check": "engine_pn|a|T10|PN_a1|correct_off_default",
+          "from_predict": 6,
+          "from_raw_rows": 6,
+          "ok": true
+        },
+        {
+          "check": "engine_pn|a|T10|PN_a2|correct",
+          "from_predict": 50,
+          "from_raw_rows": 50,
+          "ok": true
+        }
+      ],
+      "files": {
+        "art_lpQalcAXMGr1:full_method_out.json": "856011849a7ce0126f2e255d15b79e5f27d8fb5822c955e39e1a31d5c13fce36",
+        "art_rMlbrjVB1c__:full_method_out.json": "0a247d6cfc54e31cb1b1610e425a6c9db0f2375bf65325dffb3f0cf991590fdc",
+        "art_dbUtqBjT0tPf:full_method_out.json": "61c9696c5b6da8855565c8d044c6bb70401767d9ec4d721ecf45939f70eaee61"
+      },
+      "stage_a_cells_compared": 51,
+      "stage_a_cells_in_dataset": 51,
+      "nla_units_found_in_dataset": 364,
+      "n_checks": 137,
+      "n_mismatches": 0
+    },
+    "headline_check": {
+      "checks": [
+        {
+          "name": "n_corrections",
+          "got": 54,
+          "want": 54,
+          "ok": true
+        },
+        {
+          "name": "old_text_found_exactly_once",
+          "got": 54,
+          "want": 54,
+          "ok": true
+        },
+        {
+          "name": "spliced_equals_report_corrected",
+          "got": true,
+          "want": true,
+          "ok": true
+        }
+      ],
+      "placebos": [
+        {
+          "name": "perturbed old_text is found",
+          "value": 0,
+          "fails_as_it_must": true
+        },
+        {
+          "name": "mr_T2_arms_swapped_at_random",
+          "b_c": [
+            15,
+            6
+          ],
+          "p": 0.0783538818359375,
+          "fails_as_it_must": true
+        },
+        {
+          "name": "mr_T03_arms_swapped_at_random",
+          "b_c": [
+            10,
+            7
+          ],
+          "p": 0.629058837890625,
+          "fails_as_it_must": true
+        }
+      ],
+      "n_checks": 35,
+      "n_failed": 0,
+      "n_placebos": 7,
+      "n_placebos_failing": 7
+    },
+    "departures": [
+      "no new model compute (Gemma random-init, shuffled-target and forced-DFS DAS controls and a logit-lens control are named, not run)",
+      "one-unit-per-sample NLA test assumes independent samples; 5 task clusters cap any cluster-level test at p >= 0.0625",
+      "nearest-known comparison against bench references, the run's correct catalogue-labelled programs and a 406-solution subset of the 18,237-solution corpus (34 shortest-path)"
+    ]
+  },
+  "metrics_agg": {
+    "m1_n_corrections": 54.0,
+    "m1_values_match": 603.0,
+    "m1_values_corrected": 3.0,
+    "m1_values_new": 117.0,
+    "m1_values_carried": 1.0,
+    "m1_apply_pass_rate": 1.0,
+    "m1_overlapping_corrections": 0.0,
+    "m2_lint_flags_uncorrected": 16.0,
+    "m2_lint_flags_corrected": 0.0,
+    "m3_n_cells": 75.0,
+    "m3_cells_failing_gate": 5.0,
+    "m3_T2_X_0_35_attempted_Y": 24.0,
+    "m3_T2_X_0_35_correct_Y": 21.0,
+    "m3_T2_X_0_35_transfer_commit0": 0.8,
+    "m3_T2_X_12_23_attempted_Y": 18.0,
+    "m3_T2_X_12_23_correct_Y": 11.0,
+    "m3_T2_X_12_23_transfer_commit0": 0.6,
+    "m3_T03_X_0_35_attempted_Y": 17.0,
+    "m3_T03_X_0_35_correct_Y": 16.0,
+    "m3_T03_X_0_35_transfer_commit0": 0.5666666666666667,
+    "m3_T1_X_0_35_attempted_Y": 14.0,
+    "m3_T1_X_0_35_correct_Y": 3.0,
+    "m3_T1_X_0_35_transfer_commit0": 0.4666666666666667,
+    "m3_T1_COND_attempted_Y": 10.0,
+    "m3_T1_COND_correct_Y": 7.0,
+    "m3_T1_COND_transfer_commit0": 0.3333333333333333,
+    "m3_T2_FORCEDX_0_35_attempted_Y": 30.0,
+    "m3_T2_FORCEDX_0_35_correct_Y": 30.0,
+    "m3_T2_FORCEDX_0_35_transfer_commit0": 0.9666666666666667,
+    "m3_T10_FORCEDX_0_35_attempted_Y": 28.0,
+    "m3_T10_FORCEDX_0_35_correct_Y": 24.0,
+    "m3_T10_FORCEDX_0_35_transfer_commit0": 0.9333333333333333,
+    "m3_posthoc_correctY_vs_MR_T2_b": 21.0,
+    "m3_posthoc_correctY_vs_MR_T2_c": 0.0,
+    "m3_posthoc_correctY_vs_MR_T2_p": 9.5367431640625e-07,
+    "m3_posthoc_correctY_vs_MR_T03_b": 15.0,
+    "m3_posthoc_correctY_vs_MR_T03_c": 2.0,
+    "m3_posthoc_correctY_vs_MR_T03_p": 0.002349853515625,
+    "m3_posthoc_correctY_vs_MR_T10_b": 11.0,
+    "m3_posthoc_correctY_vs_MR_T10_c": 0.0,
+    "m3_posthoc_correctY_vs_MR_T10_p": 0.0009765625,
+    "m4_posthoc_condspan_beta_T03": -1.697527658620218,
+    "m4_posthoc_condspan_boot_lo_T03": -3.959012235840403,
+    "m4_posthoc_condspan_boot_hi_T03": 0.4186236667810668,
+    "m4_concordant_T03": 1.0,
+    "m4_posthoc_condspan_beta_T10": -0.5550691439306527,
+    "m4_posthoc_condspan_boot_lo_T10": -4.930415910726578,
+    "m4_posthoc_condspan_boot_hi_T10": 2.9055122471548898,
+    "m4_concordant_T10": 0.0,
+    "m4_S4_beta_T10": 2.510616706233365,
+    "m4_flips_S0_only_T10": 4.0,
+    "m4_flips_S4_only_T10": 18.0,
+    "m4_flips_p_T10": 0.004343509674072266,
+    "m4_X011_off_default_T10": 0.8666666666666667,
+    "m4_X2435_off_default_T10": 0.6333333333333333,
+    "m5_das_k1_heldout_dy": 8.812887221574783,
+    "m5_das_k4_heldout_dy": 9.763976097106934,
+    "m5_das_random_max_abs_dy": 0.0765459653404024,
+    "m5_das_shuffled_k1_dy": 10.105492691198984,
+    "m5_das_k4_generation_bfs": 50.0,
+    "m5_das_k4_generation_passing": 0.0,
+    "m5_readout_lasso_r2": 0.6615564574837122,
+    "m5_readout_ridge_std_r2": 0.1498987135180151,
+    "m5_readout_ridge_control_r2": 0.08612865257107882,
+    "m5_readout_ridge_delta": 0.06377006094693627,
+    "m5_raw_ridge_max_r2": 0.719,
+    "m5_twin_pass": 0.84,
+    "m5_sae_top5_pass": 0.84,
+    "m5_sae_top5_bfs": 18.0,
+    "m5_bfsward_pass_min_main4": 0.16,
+    "m5_bfsward_pass_max_main4": 0.58,
+    "m6_T10_PN_a1_a_correct_off_default": 6.0,
+    "m6_T10_PN_a1_a_correct": 50.0,
+    "m6_T10_PN_a2_a_correct_off_default": 30.0,
+    "m6_T10_PN_a2_a_correct": 50.0,
+    "m6_T2_PN_a1_a_correct_off_default": 9.0,
+    "m6_T2_PN_a1_a_correct": 43.0,
+    "m6_T2_PN_a2_a_correct_off_default": 14.0,
+    "m6_T2_PN_a2_a_correct": 37.0,
+    "m6_T10_PN_a1_b_correct_off_default": 9.0,
+    "m6_T10_PN_a1_b_correct": 50.0,
+    "m6_T10_PN_a2_b_correct_off_default": 27.0,
+    "m6_T10_PN_a2_b_correct": 50.0,
+    "m6_T2_PN_a1_b_correct_off_default": 7.0,
+    "m6_T2_PN_a1_b_correct": 43.0,
+    "m6_T2_PN_a2_b_correct_off_default": 11.0,
+    "m6_T2_PN_a2_b_correct": 39.0,
+    "m6_T10_PN_a1_c_correct_off_default": 4.0,
+    "m6_T10_PN_a1_c_correct": 50.0,
+    "m6_T10_PN_a2_c_correct_off_default": 21.0,
+    "m6_T10_PN_a2_c_correct": 49.0,
+    "m6_T2_PN_a1_c_correct_off_default": 6.0,
+    "m6_T2_PN_a1_c_correct": 40.0,
+    "m6_T2_PN_a2_c_correct_off_default": 6.0,
+    "m6_T2_PN_a2_c_correct": 32.0,
+    "m6_T10_PN_a1_d_correct_off_default": 7.0,
+    "m6_T10_PN_a1_d_correct": 50.0,
+    "m6_T10_PN_a2_d_correct_off_default": 24.0,
+    "m6_T10_PN_a2_d_correct": 49.0,
+    "m6_T2_PN_a1_d_correct_off_default": 5.0,
+    "m6_T2_PN_a1_d_correct": 43.0,
+    "m6_T2_PN_a2_d_correct_off_default": 9.0,
+    "m6_T2_PN_a2_d_correct": 31.0,
+    "m6_T2_screen_passes_a": 15.0,
+    "m6_T2_excess_met_pass_failed_a": 17.0,
+    "m6_T2_screen_passes_b": 8.0,
+    "m6_T2_excess_met_pass_failed_b": 14.0,
+    "m6_T2_screen_passes_c": 8.0,
+    "m6_T2_excess_met_pass_failed_c": 17.0,
+    "m6_T2_screen_passes_d": 9.0,
+    "m6_T2_excess_met_pass_failed_d": 17.0,
+    "m7_units": 364.0,
+    "m7_b": 20.0,
+    "m7_c": 88.0,
+    "m7_p": 2.3222098297326027e-11,
+    "m7_cluster_boot_lo": -0.3471502590673575,
+    "m7_cluster_boot_hi": 0.021897810218978103,
+    "m7_n_clusters": 5.0,
+    "m7_n_samples": 104.0,
+    "m7_one_unit_b": 0.0,
+    "m7_one_unit_c": 25.0,
+    "m7_one_unit_p": 5.960464477539063e-08,
+    "m7_random_unit_median_p": 1.9301194697618484e-05,
+    "m7_random_unit_share_p_lt_05": 1.0,
+    "m7_sign_test_per_sample_p": 0.00030586400160359517,
+    "m7_durkalski_p": 6.521573842496228e-05,
+    "m7_cluster_sign_floor_p": 0.0625,
+    "m8_u6_t0_bfs_share": 0.3802083333333333,
+    "m8_u6_exact_binomial_p": 0.027910137329807475,
+    "m8_d12_reported": 1.0,
+    "m9_n_programs": 3.0,
+    "m9_n_novel_final": 0.0,
+    "m9_kappa_merged": -1.0,
+    "m9_kappa_exact": -1.0,
+    "m9_programs_all_hidden_pass": 3.0,
+    "m9_programs_all_stress_pass": 3.0,
+    "m9_openrouter_usd": 0.07726138,
+    "m9_judge1_gate_merged_correct": 8.0,
+    "m9_judge1_gate_exact_correct": 6.0,
+    "m9_judge1_gate_passed": 0.0,
+    "m9_judge2_gate_merged_correct": 10.0,
+    "m9_judge2_gate_exact_correct": 7.0,
+    "m9_judge2_gate_passed": 1.0,
+    "m9_judge3_gate_merged_correct": 8.0,
+    "m9_judge3_gate_exact_correct": 6.0,
+    "m9_judge3_gate_passed": 0.0,
+    "m10_figures_verified": 7.0,
+    "m10_figures_total": 7.0,
+    "m10_caption_fields_min": 6.0,
+    "m11_quotes_verified": 6.0,
+    "m11_quotes_attempted": 6.0,
+    "m11_queries": 14.0,
+    "m11_scholarly_queries": 6.0,
+    "m11_hits": 137.0,
+    "m11_unique_hits": 136.0,
+    "m11_screened": 137.0,
+    "m11_occupies": 0.0,
+    "m11_adjacent": 14.0,
+    "m11_irrelevant": 1.0,
+    "m11_consistency_check_passed": 1.0,
+    "m12_checks": 520.0,
+    "m12_mismatches": 0.0,
+    "m12_placebos_run": 7.0,
+    "m12_placebos_failing": 7.0,
+    "m12_predict_crosschecks": 137.0,
+    "m12_predict_crosscheck_mismatches": 0.0,
+    "m12_headline_checks": 35.0,
+    "m12_headline_checks_failed": 0.0,
+    "m12_headline_placebos": 7.0,
+    "m12_headline_placebos_failing": 7.0,
+    "m12_inputs_hashed": 69.0,
+    "m12_inputs_missing": 0.0,
+    "m12_openrouter_usd": 0.07726138,
+    "m12_cpu_secs": 10.857906758,
+    "m12_wall_secs": 19.72562336921692
+  },
+  "datasets": [
+    {
+      "dataset": "corrections",
+      "examples": [
+        {
+          "input": "**Table 244.** Stage A on kth smallest (default full sort; Y = quickselect; route class from iterations 2 and 3: either route suffices). Twin on slots 0 to 29: Y share 0.00, off-default 0.00, pass 1.0...",
+          "output": "**Table 244.** Stage A on kth smallest (default full sort; Y = quickselect; route class from iterations 2 and 3: either route suffices). Twin on slots 0 to 29: Y share 0.00, off-default 0.00, pass 1.0...",
+          "metadata_id": "C7-01",
+          "metadata_item": "0a",
+          "metadata_also_items": [],
+          "metadata_section": "6.4.1",
+          "metadata_table": "Table 244",
+          "metadata_line_at_read": 5509,
+          "metadata_kind": "table_replace",
+          "metadata_values": [
+            {
+              "name": "T244|BAN|Y_share_printed",
+              "recorded": 0.67,
+              "recomputed": 0.67,
+              "status": "MATCH",
+              "tolerance": "prop",
+              "source": "art_rMlbrjVB1c__:data/labels.jsonl"
+            },
+            {
+              "name": "T244|X_0-11|Y_share_printed",
+              "recorded": 0.4,
+              "recomputed": 0.4,
+              "status": "MATCH",
+              "tolerance": "prop",
+              "source": "art_rMlbrjVB1c__:data/labels.jsonl"
+            },
+            {
+              "name": "T244|X_12-23|Y_share_printed",
+              "recorded": 0.57,
+              "recomputed": 0.57,
+              "status": "MATCH",
+              "tolerance": "prop",
+              "source": "art_rMlbrjVB1c__:data/labels.jsonl"
+            }
+          ],
+          "metadata_rationale": "commit0's outcome restored as primary; correct-Y column added beside it",
+          "eval_applies": 1.0,
+          "eval_n_values": 10.0
+        },
+        {
+          "input": "**Table 245.** Stage A on connected components (default union find; Y = BFS). Twin: Y share 0.00, off-default 0.00, pass 1.00, union find 30. Exchange at blocks 0-35 against the matched-norm random ex...",
+          "output": "**Table 245.** Stage A on connected components (default union find; Y = BFS). Twin: Y share 0.00, off-default 0.00, pass 1.00, union find 30. Exchange at blocks 0-35 against the matched-norm random ex...",
+          "metadata_id": "C7-02",
+          "metadata_item": "0a",
+          "metadata_also_items": [],
+          "metadata_section": "6.4.1",
+          "metadata_table": "Table 245",
+          "metadata_line_at_read": 5524,
+          "metadata_kind": "table_replace",
+          "metadata_values": [
+            {
+              "name": "T245|BAN|Y_share_printed",
+              "recorded": 0.9,
+              "recomputed": 0.9,
+              "status": "MATCH",
+              "tolerance": "prop",
+              "source": "art_rMlbrjVB1c__:data/labels.jsonl"
+            },
+            {
+              "name": "T245|X_0-11|Y_share_printed",
+              "recorded": 0.0,
+              "recomputed": 0.0,
+              "status": "MATCH",
+              "tolerance": "prop",
+              "source": "art_rMlbrjVB1c__:data/labels.jsonl"
+            },
+            {
+              "name": "T245|X_12-23|Y_share_printed",
+              "recorded": 0.47,
+              "recomputed": 0.47,
+              "status": "MATCH",
+              "tolerance": "prop",
+              "source": "art_rMlbrjVB1c__:data/labels.jsonl"
+            }
+          ],
+          "metadata_rationale": "commit0's outcome restored as primary; correct-Y column added beside it",
+          "eval_applies": 1.0,
+          "eval_n_values": 10.0
+        },
+        {
+          "input": "**Table 246.** Stage A on shortest path (default Dijkstra; Y = Bellman-Ford/SPFA; prompt route). Twin: Y share 0.00, off-default 0.00, pass 1.00, Dijkstra 30. Exchange at blocks 0-35 against the match...",
+          "output": "**Table 246.** Stage A on shortest path (default Dijkstra; Y = Bellman-Ford/SPFA; prompt route). Twin: Y share 0.00, off-default 0.00, pass 1.00, Dijkstra 30. Exchange at blocks 0-35 against the match...",
+          "metadata_id": "C7-03",
+          "metadata_item": "0a",
+          "metadata_also_items": [],
+          "metadata_section": "6.4.1",
+          "metadata_table": "Table 246",
+          "metadata_line_at_read": 5539,
+          "metadata_kind": "table_replace",
+          "metadata_values": [
+            {
+              "name": "T246|BAN|Y_share_printed",
+              "recorded": 0.97,
+              "recomputed": 0.97,
+              "status": "MATCH",
+              "tolerance": "prop",
+              "source": "art_rMlbrjVB1c__:data/labels.jsonl"
+            },
+            {
+              "name": "T246|X_0-11|Y_share_printed",
+              "recorded": 0.0,
+              "recomputed": 0.0,
+              "status": "MATCH",
+              "tolerance": "prop",
+              "source": "art_rMlbrjVB1c__:data/labels.jsonl"
+            },
+            {
+              "name": "T246|X_12-23|Y_share_printed",
+              "recorded": 0.6,
+              "recomputed": 0.6,
+              "status": "MATCH",
+              "tolerance": "prop",
+              "source": "art_rMlbrjVB1c__:data/labels.jsonl"
+            }
+          ],
+          "metadata_rationale": "commit0's outcome restored as primary; correct-Y column added beside it",
+          "eval_applies": 1.0,
+          "eval_n_values": 10.0
+        }
+      ]
+    },
+    {
+      "dataset": "stage_a_cells",
+      "examples": [
+        {
+          "input": "Stage A cell BAN on task T03 (Y = quickselect, default full_sort)",
+          "output": "attempted Y 20/30; correct Y 18/30",
+          "metadata_task": "T03",
+          "metadata_cell": "BAN",
+          "metadata_twin_cell": "TWIN",
+          "metadata_Y_ci95_cp": [
+            0.47187995521011944,
+            0.8271257784739607
+          ],
+          "metadata_correct_Y_ci95_cp": [
+            0.4060349300518187,
+            0.7734423511714064
+          ],
+          "metadata_attempted_comp": {
+            "size_k_heap": 10,
+            "quickselect": 20
+          },
+          "metadata_correct_comp": {
+            "size_k_heap": 10,
+            "quickselect": 18
+          },
+          "predict_commit0_share": "0.6667",
+          "predict_correct_Y_share": "0.6000",
+          "eval_Y_share": 0.6666666666666666,
+          "eval_correct_Y_share": 0.6,
+          "eval_transfer_commit0": 0.6666666666666666,
+          "eval_pass": 0.9333333333333333,
+          "eval_pass_ratio": 0.9333333333333333,
+          "eval_gate_ok": 1.0
+        },
+        {
+          "input": "Stage A cell BAN_W4 on task T03 (Y = quickselect, default full_sort)",
+          "output": "attempted Y 3/10; correct Y 3/10",
+          "metadata_task": "T03",
+          "metadata_cell": "BAN_W4",
+          "metadata_twin_cell": "TWIN_W4",
+          "metadata_Y_ci95_cp": [
+            0.06673951117773447,
+            0.6524528500599973
+          ],
+          "metadata_correct_Y_ci95_cp": [
+            0.06673951117773447,
+            0.6524528500599973
+          ],
+          "metadata_attempted_comp": {
+            "quickselect": 3,
+            "size_k_heap": 7
+          },
+          "metadata_correct_comp": {
+            "quickselect": 3,
+            "size_k_heap": 7
+          },
+          "predict_commit0_share": "0.3000",
+          "predict_correct_Y_share": "0.3000",
+          "eval_Y_share": 0.3,
+          "eval_correct_Y_share": 0.3,
+          "eval_transfer_commit0": 0.3,
+          "eval_pass": 1.0,
+          "eval_pass_ratio": 1.0,
+          "eval_gate_ok": 1.0
+        },
+        {
+          "input": "Stage A cell COND on task T03 (Y = quickselect, default full_sort)",
+          "output": "attempted Y 28/30; correct Y 25/30",
+          "metadata_task": "T03",
+          "metadata_cell": "COND",
+          "metadata_twin_cell": "TWIN",
+          "metadata_Y_ci95_cp": [
+            0.7792645984770381,
+            0.9918218655393437
+          ],
+          "metadata_correct_Y_ci95_cp": [
+            0.6527883011658562,
+            0.9435783035319285
+          ],
+          "metadata_attempted_comp": {
+            "quickselect": 28,
+            "size_k_heap": 2
+          },
+          "metadata_correct_comp": {
+            "quickselect": 25,
+            "size_k_heap": 2
+          },
+          "predict_commit0_share": "0.9333",
+          "predict_correct_Y_share": "0.8333",
+          "eval_Y_share": 0.9333333333333333,
+          "eval_correct_Y_share": 0.8333333333333334,
+          "eval_transfer_commit0": 0.9333333333333333,
+          "eval_pass": 0.9,
+          "eval_pass_ratio": 0.9,
+          "eval_gate_ok": 1.0
+        }
+      ]
+    },
+    {
+      "dataset": "table238_rows",
+      "examples": [
+        {
+          "input": "per-sample plan noise PN_a1 on T10 under engine a",
+          "output": "correct off-default 6/50 correct programs; 6/50 of all",
+          "metadata_engine": "a",
+          "metadata_task": "T10",
+          "metadata_arm": "PN_a1",
+          "predict_correct_only": "6/50",
+          "eval_n": 50.0,
+          "eval_correct": 50.0,
+          "eval_off_default": 6.0,
+          "eval_correct_off_default": 6.0
+        },
+        {
+          "input": "per-sample plan noise PN_a2 on T10 under engine a",
+          "output": "correct off-default 30/50 correct programs; 30/50 of all",
+          "metadata_engine": "a",
+          "metadata_task": "T10",
+          "metadata_arm": "PN_a2",
+          "predict_correct_only": "30/50",
+          "eval_n": 50.0,
+          "eval_correct": 50.0,
+          "eval_off_default": 30.0,
+          "eval_correct_off_default": 30.0
+        },
+        {
+          "input": "per-sample plan noise PN_a1 on T2 under engine a",
+          "output": "correct off-default 9/43 correct programs; 9/50 of all",
+          "metadata_engine": "a",
+          "metadata_task": "T2",
+          "metadata_arm": "PN_a1",
+          "predict_correct_only": "9/43",
+          "eval_n": 50.0,
+          "eval_correct": 43.0,
+          "eval_off_default": 12.0,
+          "eval_correct_off_default": 9.0
+        }
+      ]
+    }
+  ]
+}
