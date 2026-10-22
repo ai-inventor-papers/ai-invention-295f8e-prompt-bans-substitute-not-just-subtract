@@ -1,0 +1,32 @@
+06:20:21|INFO   |GPU stage: RAM bounded by the cgroup (28 GB); VRAM by set_per_process_memory_fraction
+06:20:21|INFO   |stage tfgate start; pid 20100
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+06:22:14|INFO   |google/gemma-3-4b-it loaded in 27s; free VRAM 8.84/16.72 GB
+06:22:43|INFO   |states T1: 200 samples -> s3_T1.pt
+06:23:03|INFO   |states T04: 200 samples -> s3_T04.pt
+06:23:22|INFO   |states R6: 200 samples -> s3_R6.pt
+
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 192.53it/s]
+
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 187.97it/s]
+
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 195.56it/s]
+
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 133.77it/s]
+./src/engine.py:455: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  nxt = torch.searchsorted(cdf, Ut[:, step:step + 1]).squeeze(-1).clamp_(max=V - 1)
+06:24:27|INFO   |greedy 0: 20 rows, 496 steps
+06:25:30|INFO   |greedy 20: 20 rows, 512 steps
+06:26:32|INFO   |greedy 40: 20 rows, 512 steps
+06:27:35|INFO   |greedy 60: 20 rows, 512 steps
+06:28:45|INFO   |greedy 80: 20 rows, 512 steps
+06:32:19|INFO   |gate corpus A: 180 texts, 28024 tokens
+06:38:34|INFO   |gate corpus B: 200 texts, 78279 tokens
+06:39:18|INFO   |gate corpus C: 41 texts, 6792 tokens
+06:39:18|INFO   |gate: {"9": [false, 0.065, 0.033], "17": [false, 0.097, 0.184], "22": [true, 0.036, 0.259], "29": [true, 0.017, 0.212]}
+06:39:19|INFO   |stage tfgate done in 1138s

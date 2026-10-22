@@ -1,0 +1,26 @@
+08:30:10|INFO   |GPU stage: RAM bounded by the cgroup (28 GB); VRAM by set_per_process_memory_fraction
+08:30:10|INFO   |stage clamps start; pid 27450
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+08:31:59|INFO   |google/gemma-3-4b-it loaded in 26s; free VRAM 8.84/16.72 GB
+
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 184.92it/s]
+
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 192.55it/s]
+
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 196.71it/s]
+
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 215.65it/s]
+08:32:04|INFO   |logit sweep done
+./src/engine.py:455: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  nxt = torch.searchsorted(cdf, Ut[:, step:step + 1]).squeeze(-1).clamp_(max=V - 1)
+08:32:26|INFO   |CELL:W1:0: 20/20 rows 18.7s, 304 steps, {'stop': 19, 'fence': 1}
+08:32:46|INFO   |CELL:W2:0: 20/20 rows 19.9s, 336 steps, {'stop': 20}
+08:33:04|INFO   |CELL:W3:0: 20/20 rows 17.3s, 288 steps, {'stop': 19, 'fence': 1}
+08:33:25|INFO   |CELL:W4:0: 20/20 rows 20.8s, 352 steps, {'stop': 20}
+08:33:45|INFO   |CELL:W5:0: 20/20 rows 20.6s, 352 steps, {'stop': 18, 'fence': 2}
+08:33:46|INFO   |stage clamps done in 216s

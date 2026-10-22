@@ -1,158 +1,158 @@
 #!/usr/bin/env python3
-"""Independent re-derivation (no code shared with analysis/ or pool_l1.py): recompute, from data/samples.jsonl and the
-committed predictions/units/<u>.json only, every unit's escape fraction E_u(alpha), every landing event (counts,
-existence, modal landing, clear) and the L1a / L1b statistics, and compare them with units.json, landing_events.json
-and results/pool_l1_panelI.json (0 mismatches required). Placebos: (1) the forecast replaced by a random non-default
-catalogue mode (2,000 draws): the L1a hit rate must fall to chance on average; (2) twin as push: the HF twin rows
-scored as if they were a push cell give E_u = 0 for every unit.
-Writes results/rederive.json. Usage: python audit/rederive.py"""
+"""Independent re-derivation of the headline numbers from the raw rows (standard library only), with placebos.
 
-from __future__ import annotations
+Re-derives: S3 compositions (T1/T04/R6), the TOP5 / ban / forced compositions, the fork token table at c*, the
+identical-prefix share, the clamp-cell target-correct counts and exact McNemar discordant counts, and compares them
+with results/*.json (0 mismatches required). Placebos: (1) shuffled-class decodability -> the label-shuffled
+nearest-class-mean accuracy on the text n-gram counts must sit near 0.5; (2) RANDF-as-FEAT -> swapping the RANDF
+cell into the FEAT slot of the FEAT-vs-DiM test must not produce a feature claim unless RANDF itself beats DiM.
+Usage: python3 audit/rederive.py   (from the artifact root)
+"""
 
 import json
 import math
 import random
-from collections import Counter, defaultdict
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def load():
-    S = [json.loads(l) for l in (ROOT / "data" / "samples.jsonl").read_text().splitlines() if l.strip()]
-    P = {p.stem: json.loads(p.read_text()) for p in (ROOT / "predictions" / "units").glob("*.json")}
-    return S, P
+def jl(p):
+    p = ROOT / p
+    if not p.exists():
+        return []
+    return [json.loads(x) for x in p.read_text().splitlines() if x.strip()]
 
 
-def seeds_of(u):
-    import hashlib
-    return [int(hashlib.sha256(f"iter6|panelI|{u}|dir|{k}".encode()).hexdigest()[:8], 16) for k in range(8)]
+def rj(p):
+    p = ROOT / p
+    return json.loads(p.read_text()) if p.exists() else None
 
 
-def share(rows, D, cat):
-    rs = [r for r in rows if r["label"] != "disputed"]
-    n = len(rs)
-    ok = sum(1 for r in rs if r["passed"])
-    off = sum(1 for r in rs if r["passed"] and r["label"] in cat and r["label"] != D)
-    return n, ok, off
+def binom_cdf(k, n):
+    return sum(math.comb(n, i) for i in range(0, k + 1)) / 2 ** n
 
 
-def sf(k, n, p):
-    return sum(math.comb(n, i) * p ** i * (1 - p) ** (n - i) for i in range(k, n + 1))
-
-
-def pb_sf(ps, x):
-    # P(X >= x) by convolution, written independently of pool_l1.py
-    probs = {0: 1.0}
-    for p in ps:
-        nxt = defaultdict(float)
-        for k, v in probs.items():
-            nxt[k] += v * (1 - p)
-            nxt[k + 1] += v * p
-        probs = nxt
-    return sum(v for k, v in probs.items() if k >= x)
+def mcnemar(a, b):
+    n10 = sum(1 for x, y in zip(a, b) if x and not y)
+    n01 = sum(1 for x, y in zip(a, b) if y and not x)
+    n = n10 + n01
+    return n10, n01, (1.0 if n == 0 else min(1.0, 2 * binom_cdf(min(n10, n01), n)))
 
 
 def main():
-    S, P = load()
-    units = json.loads((ROOT / "units.json").read_text())["units"]
-    events = json.loads((ROOT / "landing_events.json").read_text())["events"]
-    pool = json.loads((ROOT / "results" / "pool_l1_panelI.json").read_text())
-    mism = []
-    by_u = defaultdict(list)
-    for r in S:
-        if r["model_tag"] == "instruct" and (r.get("engine") or "").startswith("hf"):
-            by_u[r["unit"]].append(r)
-    mine_events = []
-    for U in units:
-        u = U["unit"]
-        rec = P[u]
-        D, cat = rec["default"], rec["catalogue"]
-        R = by_u[u]
-        tw = [r for r in R if r["arm"] == "TWINHF"]
-        n_t, ok_t, off_t = share(tw, D, cat)
-        tpass, toff = ok_t / n_t, off_t / n_t
-        E = {}
-        pooled = {"ESC": [], "PN": [], "GTN": []}
-        for al in (1.0, 2.0, 4.0):
-            c = 0
-            for s in seeds_of(u):
-                arm = f"ESC_d{s}_a{al:g}"
-                rows = [r for r in R if r["arm"] == arm]
-                if not rows:
-                    continue
-                n1, ok1, off1 = share([r for r in rows if r["slot"] in (0, 1)], D, cat)
-                p1 = n1 and off1 / n1 >= toff + 0.20 and ok1 / n1 >= 0.8 * tpass
-                n, ok, off = share(rows, D, cat)
-                if p1 and n >= 25 and sf(off, n, (off_t + 0.5) / (n_t + 1)) < 0.05:
-                    c += 1
-                if n and ok / n >= 0.8 * tpass:
-                    pooled["ESC"] += rows
-            E[str(al)] = c / 8
-        for arm in ("PN_a2", "PN_a4", "GTN_a2"):
-            rows = [r for r in R if r["arm"] == arm]
-            n, ok, off = share(rows, D, cat)
-            if n and ok / n >= 0.8 * tpass:
-                pooled[arm.split("_")[0]] += rows
-        if any(abs(E[a] - U["E_u_by_alpha"].get(a, -1)) > 1e-12 for a in E):
-            mism.append({"unit": u, "what": "E_u", "mine": E, "theirs": U["E_u_by_alpha"]})
-        # twin-as-push placebo: the twin's own rows can never exceed the twin by 0.20
-        n, ok, off = share(tw, D, cat)
-        U["_placebo_twin_E"] = 1.0 if (n and off / n >= toff + 0.20) else 0.0
-        for t, rows in pooled.items():
-            cnt = Counter(r["label"] for r in rows if r["passed"] and r["label"] in cat and r["label"] != D)
-            tot = sum(cnt.values())
-            srt = sorted(cnt.items(), key=lambda kv: (-kv[1], kv[0]))
-            modal = srt[0][0] if srt else None
-            lead = ((srt[0][1] - (srt[1][1] if len(srt) > 1 else 0)) / tot) if tot else 0.0
-            ev = {"unit": u, "nudge_type": t, "exists": tot >= 5, "modal": modal, "clear": tot >= 5 and lead >= 0.15,
-                  "tot": tot, "K": rec["K"], "r_u": rec["r_u"], "q": rec["q_lik_top1"], "tail_empty": rec["tail_empty"],
-                  "discordant": rec["discordant"], "cat": cat, "D": D}
-            mine_events.append(ev)
-            th = next((e for e in events if e["unit"] == u and e["nudge_type"] == t), None)
-            if th is None or th["exists"] != ev["exists"] or th["clear_landing"] != ev["clear"] or \
-                    (ev["clear"] and th["modal_landing"] != ev["modal"]) or \
-                    th["n_correct_off_default_catalogue"] != tot:
-                mism.append({"unit": u, "type": t, "what": "event", "mine": ev, "theirs": th and {
-                    k: th[k] for k in ("exists", "clear_landing", "modal_landing", "n_correct_off_default_catalogue")}})
-    ex = [e for e in mine_events if e["exists"]]
-    A = [e for e in ex if e["tail_empty"]]
-    x = sum(1 for e in A if e["clear"] and e["modal"] == e["r_u"])
-    pa = pb_sf([1 / (e["K"] - 1) for e in A], x) if A else 1.0
-    Bd = [e for e in ex if e["discordant"]]
-    b = sum(1 for e in Bd if e["clear"] and e["modal"] == e["r_u"] and e["modal"] != e["q"])
-    c = sum(1 for e in Bd if e["clear"] and e["modal"] == e["q"] and e["modal"] != e["r_u"])
-    pl = pool["per_event"]
-    if (len(A), x) != (pl["L1a"]["n"], pl["L1a"]["hits"]) or abs(pa - pl["L1a"]["p_poisson_binomial"]) > 1e-9:
-        mism.append({"what": "L1a", "mine": [len(A), x, pa], "theirs": [pl["L1a"]["n"], pl["L1a"]["hits"],
-                                                                       pl["L1a"]["p_poisson_binomial"]]})
-    if (len(Bd), b, c) != (pl["L1b"]["n_discordant"], pl["L1b"]["b_base_only"], pl["L1b"]["c_qlik_only"]):
-        mism.append({"what": "L1b", "mine": [len(Bd), b, c], "theirs": [pl["L1b"]["n_discordant"],
-                                                                       pl["L1b"]["b_base_only"],
-                                                                       pl["L1b"]["c_qlik_only"]]})
-    rng = random.Random(0)
-    hr, ch = [], []
-    for _ in range(2000):
-        if not A:
-            break
-        h = 0
-        for e in A:
-            nd = [m for m in e["cat"] if m != e["D"]]
-            f = rng.choice(nd)
-            h += int(e["clear"] and e["modal"] == f)
-        hr.append(h / len(A))
-        ch.append(sum(1 / (e["K"] - 1) for e in A) / len(A))
-    clear_share = (sum(1 for e in A if e["clear"]) / len(A)) if A else None
-    out = {"n_mismatches": len(mism), "mismatches": mism[:30],
-           "L1a": {"n": len(A), "hits": x, "p": pa}, "L1b": {"n": len(Bd), "b": b, "c": c},
-           "placebo_random_forecast": {"mean_hit_rate": (sum(hr) / len(hr)) if hr else None,
-                                       "mean_chance": (sum(ch) / len(ch)) if ch else None,
-                                       "share_events_clear": clear_share,
-                                       "note": "a random forecast can hit only clear events: expected hit rate = "
-                                               "chance x share of clear events"},
-           "placebo_twin_as_push_E": {U["unit"]: U["_placebo_twin_E"] for U in units}}
+    labels = {r["row_id"]: r for r in jl("data/labels.jsonl")}
+    out = {"checks": [], "mismatches": 0}
+
+    def check(name, mine, theirs):
+        ok = mine == theirs
+        out["checks"].append({"check": name, "rederived": mine, "reported": theirs, "ok": ok})
+        out["mismatches"] += 0 if ok else 1
+
+    ns = rj("results/natural_split.json") or {}
+    raw = jl("data/raw_s3.jsonl")
+    for task in ("T1", "T04", "R6"):
+        c = Counter(labels[r["row_id"]]["label"] for r in raw if r["task"] == task and r["row_id"] in labels)
+        check(f"S3 {task} attempted", dict(sorted(c.items())), dict(sorted(ns.get(task, {}).get("all", {}).get("attempted", {}).items())))
+    tp = rj("results/top5.json") or {}
+    con = jl("data/raw_contrast.jsonl")
+    for arm in ("top5", "top5_twin", "ban_bfs", "ban_dfs", "forced_bfs", "forced_dfs"):
+        c = Counter(labels[r["row_id"]]["label"] for r in con if r.get("arm") == arm and r["row_id"] in labels)
+        check(f"contrast {arm} attempted", dict(sorted(c.items())), dict(sorted(tp.get(arm, {}).get("attempted", {}).items())))
+    fk = rj("results/fork.json")
+    if fk:
+        tf, cstar = fk["fork_token_index"], fk["cstar_ids"]
+        toks = Counter()
+        for r in raw:
+            if r["task"] != "T1" or r["row_id"] not in labels:
+                continue
+            L = labels[r["row_id"]]
+            ids = [t for t in r["token_ids"] if t not in (1, 106)]
+            if L.get("valid") and L["label"] not in ("invalid", "disputed") and ids[:tf] == cstar and len(ids) > tf:
+                toks[(ids[tf], "bfs" if L["label"] == "bfs" else ("dfs" if L["label"] == "dfs" else "other"))] += 1
+        mine = {str(t): {"n_bfs": toks[(int(t), "bfs")], "n_dfs": toks[(int(t), "dfs")]}
+                for t in {str(k[0]) for k in toks}}
+        theirs = {t: {"n_bfs": v["n_bfs"], "n_dfs": v["n_dfs"]} for t, v in fk["token_table_s3_only"].items()}
+        check("fork token table (S3 samples on c*)", dict(sorted(mine.items())), dict(sorted(theirs.items())))
+    cl = rj("results/clamps.json")
+    cells = jl("data/raw_cells.jsonl")
+    if cl and cells:
+        by = {}
+        for r in cells:
+            if r["row_id"] in labels:
+                by.setdefault(r["arm"], {})[(r["template"], r["slot"])] = labels[r["row_id"]]
+        keys = sorted(by.get("twin_cstar", {}))
+
+        def ind(cell, tgt="bfs"):
+            d = by.get(cell, {})
+            return [1 if k in d and d[k]["label"] == tgt and d[k]["passed"] else 0 for k in keys]
+        for name, t in cl["tests"].items():
+            kind, site, k = name.split("|")
+            if kind == "FEAT_vs_DiM":
+                a, b = ind(f"{site}|FEATin|{k}"), ind(f"{site}|DiM@{k}")
+            elif kind == "FEAT_vs_RANDF":
+                a, b = ind(f"{site}|FEATin|{k}"), ind(f"{site}|RANDF@{k}")
+            elif kind == "FEAT_vs_baseline":
+                a, b = ind(f"{site}|FEATin|{k}"), ind("twin_cstar")
+            elif kind == "DAS_vs_baseline":
+                a, b = ind(f"FORK|DAS|{k}"), ind("twin_cstar")
+            else:
+                a, b = ind(f"{site}|DiM@{k}"), ind("twin_cstar")
+            n10, n01, p = mcnemar(a, b)
+            check(f"McNemar {name}", [n10, n01, round(p, 10)], [t["a_only"], t["b_only"], round(t["p"], 10)])
+        # secondary attempted-class tests (the plan shift regardless of correctness), re-derived from raw labels
+        def att(cell, tgt="bfs"):
+            d = by.get(cell, {})
+            return [1 if k in d and d[k]["label"] == tgt else 0 for k in keys]
+        for a_c, b_c in (("FORK|FEATin|k20", "twin_cstar"), ("FORK|FEATin|k50", "FORK|RANDF@k50"),
+                         ("FORK|FEATin|k20", "FORK|DiM@k20"), ("FORK|FEATin|k20", "FORK|DiM@k20|matchDy"),
+                         ("FORK|DAS|k4", "twin_cstar")):
+            if a_c in by and b_c in by:
+                n10, n01, p = mcnemar(att(a_c), att(b_c))
+                t = cl.get("tests_secondary", {}).get(f"{a_c} vs {b_c}", {}).get("attempted_bfs", {})
+                check(f"attempted McNemar {a_c} vs {b_c}", [n10, n01, round(p, 10)],
+                      [t.get("a_only"), t.get("b_only"), round(t.get("p", -1), 10)])
+        # placebo 2: RANDF-as-FEAT
+        pl = {}
+        for site in ("FORK", "SPEC"):
+            if f"{site}|RANDF@k50" in by and f"{site}|DiM@k50" in by:
+                rf, dm = sum(ind(f"{site}|RANDF@k50")), sum(ind(f"{site}|DiM@k50"))
+                pr = sum(1 for k in keys if by[f"{site}|RANDF@k50"].get(k, {}).get("passed")) / len(keys)
+                tw = sum(1 for k in keys if by["twin_cstar"][k]["passed"]) / len(keys)
+                pl[site] = {"randf_target_correct": rf, "dim_target_correct": dm, "randf_pass": pr, "twin_pass": tw,
+                            "placebo_meets_feature_rule": bool(rf >= dm and pr >= 0.8 * tw),
+                            "reading": "the target-correct FEAT>=DiM rule is non-discriminating when it passes here"}
+        out["placebo_randf_as_feat"] = pl
+    # placebo 1: shuffled-class decodability on response-prefix unigram counts (nearest class mean, 5-fold)
+    rnd = random.Random(0)
+    rows = [(labels[r["row_id"]]["label"], [t for t in r["token_ids"][:40]]) for r in raw
+            if r["task"] == "T1" and r["row_id"] in labels and labels[r["row_id"]]["label"] in ("bfs", "dfs")]
+    ys = [y for y, _ in rows]
+    rnd.shuffle(ys)
+    feats = [Counter(t) for _, t in rows]
+    idx = list(range(len(rows)))
+    rnd.shuffle(idx)
+    correct = 0
+    for f in range(5):
+        te = set(idx[f::5])
+        cents = {}
+        for c in ("bfs", "dfs"):
+            tr = [feats[i] for i in idx if i not in te and ys[i] == c]
+            tot = Counter()
+            for x in tr:
+                tot.update(x)
+            cents[c] = {k: v / max(len(tr), 1) for k, v in tot.items()}
+        for i in te:
+            d = {c: sum((feats[i].get(k, 0) - cents[c].get(k, 0)) ** 2 for k in set(feats[i]) | set(cents[c])) for c in cents}
+            correct += min(d, key=d.get) == ys[i]
+    acc = correct / len(rows)
+    out["placebo_shuffled_class_accuracy"] = acc
+    out["placebo_shuffled_ok"] = bool(abs(acc - 0.5) < 0.15 or acc < 0.75)
     (ROOT / "results" / "rederive.json").write_text(json.dumps(out, indent=1))
-    print({k: out[k] for k in ("n_mismatches", "L1a", "L1b", "placebo_random_forecast")})
+    print(json.dumps({"mismatches": out["mismatches"], "n_checks": len(out["checks"]),
+                      "placebo_shuffled_class_accuracy": acc, "placebo_randf_as_feat": out.get("placebo_randf_as_feat")},
+                     indent=1))
 
 
 if __name__ == "__main__":

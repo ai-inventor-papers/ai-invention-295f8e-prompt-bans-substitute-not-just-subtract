@@ -1,95 +1,97 @@
 {
- "n_existing_events": 7,
- "events": [
-  [
-   "I7",
-   "ESC",
-   "builtin_count"
-  ],
-  [
-   "I7",
-   "PN",
-   "builtin_count"
-  ],
-  [
-   "I7",
-   "GTN",
-   "builtin_count"
-  ],
-  [
-   "I6",
-   "ESC",
-   "counting_overwrite"
-  ],
-  [
-   "I5",
-   "ESC",
-   "min_heap_ends"
-  ],
-  [
-   "I5",
-   "PN",
-   "min_heap_ends"
-  ],
-  [
-   "I2",
-   "ESC",
-   "count_key"
-  ]
- ],
- "r_u_hits": 5,
- "t_u_hits_defined": [
-  5,
-  6
- ],
- "q_lik_hits": 3,
- "L1a": {
-  "n": 1,
-  "hits": 1
- },
- "L1b": {
-  "n": 6,
-  "b": 4,
-  "c": 2,
-  "p": 0.34375
- },
- "mean_D_base_minus_qlik": 0.9512564211262975,
- "mean_D_base_minus_qtail": 0.2529867000594441,
- "L2": {
-  "N": 477,
-  "in_base_absent_modes": 0
- },
- "E_u": {
-  "I1": 0.0,
-  "I10": 0.0,
-  "I2": 0.041666666666666664,
-  "I3": 0.0,
-  "I4": 0.0,
-  "I5": 0.4166666666666667,
-  "I6": 0.041666666666666664,
-  "I7": 0.25,
-  "I8": 0.0,
-  "I9": 0.0
- },
- "M": {
-  "twin_modal_share": {
-   "rho": -0.8854849719717417,
-   "p_one_sided_mc": 0.0026498675066246686
-  },
-  "beta": {
-   "rho": 0.7059930039893708,
-   "p_one_sided_mc": 0.014449277536123194
+ "H1_readout": {
+  "y_sd": 0.6743763879529655,
+  "y_mean": -0.9154334505399068,
+  "R2_lono_ridge_SAE_FORK29": 0.1498987135180151,
+  "R2_lono_ridge_template_nounnorms": 0.08612865257107882,
+  "delta": 0.06377006094693627,
+  "placebo_within_template_permuted_delta_mean": -1.9788871190333013,
+  "placebo_max": -0.3130240936195017,
+  "placebo_fails": true,
+  "estimator_sensitivity_unstandardized_ridge": {
+   "SAE|codes_fork|L29|ridge_raw_a0.1": -0.756,
+   "SAE|codes_fork|L29|ridge_raw_a1.0": -0.553,
+   "SAE|codes_fork|L29|ridge_raw_a10.0": -0.325,
+   "SAE|codes_fork|L29|ridge_raw_a100.0": 0.062,
+   "RAW|codes_fork|L29|ridge_raw_a1000": 0.705,
+   "RAW|codes_fork|L29|ridge_raw_a100000": 0.719,
+   "RAW|codes_fork|L29|ridge_raw_a1e+07": 0.284,
+   "SAE|codes_fork|L22|ridge_raw_a0.1": -19.722,
+   "SAE|codes_fork|L22|ridge_raw_a1.0": -0.352,
+   "SAE|codes_fork|L22|ridge_raw_a10.0": 0.09,
+   "SAE|codes_fork|L22|ridge_raw_a100.0": 0.026,
+   "RAW|codes_fork|L22|ridge_raw_a1000": 0.318,
+   "RAW|codes_fork|L22|ridge_raw_a100000": 0.387,
+   "RAW|codes_fork|L22|ridge_raw_a1e+07": 0.003,
+   "SAE|codes_spec_mean|L22|ridge_raw_a0.1": -0.047,
+   "SAE|codes_spec_mean|L22|ridge_raw_a1.0": -0.045,
+   "SAE|codes_spec_mean|L22|ridge_raw_a10.0": -0.033,
+   "SAE|codes_spec_mean|L22|ridge_raw_a100.0": 0.033,
+   "RAW|codes_spec_mean|L22|ridge_raw_a1000": 0.27,
+   "RAW|codes_spec_mean|L22|ridge_raw_a100000": 0.095,
+   "RAW|codes_spec_mean|L22|ridge_raw_a1e+07": -0.034,
+   "template_only_a1": 0.148
   }
  },
- "placebo_L1b_random_r_u_share_p_lt_0.05": 0.0,
- "placebo_M_permuted_E_share_p_lt_0.05": 0.035,
- "placebo_D_random_dirichlet_vs_qlik_mean": -0.19463396140370098,
- "placebo_D_share_ge_observed": 0.0,
- "matches_reported": {
-  "n_events": true,
-  "L1b": true,
-  "r_u_hits": true,
-  "D_qlik": true,
-  "D_tail": true
+ "H2_sampling_validation": {
+  "n_variants": 60,
+  "spearman": 0.6540309423244546,
+  "placebo_mean": -0.006701030463371841,
+  "placebo_p95": 0.22283050515928088,
+  "placebo_fails": true
+ },
+ "H3_dose_response_FORK_L22": {
+  "FEAT|input|k20": {
+   "n": 120,
+   "mean_dy": 1.7789659251769383
+  },
+  "FEAT|input|k50": {
+   "n": 120,
+   "mean_dy": 2.2609442489842575
+  },
+  "DiM|input|k20": {
+   "n": 120,
+   "mean_dy": 4.043585300445557
+  },
+  "DiM|input|k50": {
+   "n": 120,
+   "mean_dy": 7.082693719863892
+  },
+  "RANDF|input|k20": {
+   "n": 120,
+   "mean_dy": 0.5092765544851621
+  },
+  "RANDF|input|k50": {
+   "n": 120,
+   "mean_dy": 0.885591322928667
+  },
+  "ISO|input|k20": {
+   "n": 120,
+   "mean_dy": 0.11651135832071305
+  },
+  "ISO|input|k50": {
+   "n": 120,
+   "mean_dy": 0.2340434581041336
+  },
+  "FEAT|output|k20": {
+   "n": 120,
+   "mean_dy": 1.3450079629818599
+  },
+  "FEAT|output|k50": {
+   "n": 120,
+   "mean_dy": 2.9446279272437095
+  },
+  "placebo_ISO_near_zero": true,
+  "DiM_over_FEAT_k20": 2.272997612387307
+ },
+ "H4_top5_vs_twin": {
+  "n_pairs": 50,
+  "top5_bfs": 41,
+  "twin_bfs": 10,
+  "a_only": 32,
+  "b_only": 1,
+  "p": 7.916241884231567e-09,
+  "placebo_twin_vs_shuffled_twin_p": 1.0,
+  "placebo_fails": true
  }
 }

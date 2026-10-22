@@ -1,0 +1,96 @@
+{
+ "claim": "S (secondary): gemma-3-4b-it, bf16, T1 grid path; where the BFS/DFS choice forks and whether Gemma Scope 2 resid_post SAEs (16k, l0 medium, layers 9/17/22/29) read and steer it better than DiM, raw residual, raw dimensions, random features, isotropic random directions and prompting.",
+ "decoding": "T=1.0, top-p 1.0, no top-k, exact inverse-CDF CRN; uniforms PCG64(stable_seed(prefix, task, template, slot)), prefix 'iter5E' for slots 0-9 and 'iter6S' otherwise; fence stop; max_new 1536 (T1) / 1024 (T04, R6); coupled single-prompt batches have fixed shape B_CRN = 20 (pad rows inactive).",
+ "S3_cells": {
+  "tasks": [
+   "T1",
+   "T04",
+   "R6"
+  ],
+  "templates": [
+   "W1",
+   "W2",
+   "W3",
+   "W4",
+   "W5"
+  ],
+  "slots_per_template": 40,
+  "N_per_task": 200,
+  "engine_check_rows": "slots 0-9 of T1 and T04 (exp28 keys)",
+  "engine_check_expect": ">= 0.95 per-slot label agreement with exp28 data/samples.jsonl arm twin; lower reported as kernel sensitivity (different GPU and batch shape)"
+ },
+ "default_rule": "modal correct label with share >= 0.6 of correct programs, else NO DEFAULT",
+ "S2_gate": {
+  "rule": "a site PASSES if deltaCE_A <= 1.5 * deltaCE_B and FVU_A <= 1.5 * FVU_B (BOS excluded, error NOT added back, response tokens of corpus A; corpus B = wikitext-103 passages + LeetCode statements with greedy answers)",
+  "fail_branch": "failing sites are descriptive only; if all four fail, test l0_big at the same layers before declaring SAE results descriptive"
+ },
+ "S4_fork": {
+  "base_paths": "12 BFS + 12 DFS valid T1 attempts from S3 (>= 2 per template per class when available; prefer correct)",
+  "positions": "t in {0,4,...,60}",
+  "continuations": 8,
+  "partial_labeller": "lexical/AST rules on the first 320 response tokens; used only if agreement with full labels on S3 valid attempts >= 0.95, else continuations to completion with the full labeller",
+  "change_points": "binomial segmentation of the own-class share series pooled per class (at most 2 change points); significance by 1000 position permutations at 0.05; FORK = first significant change point with a rise >= 0.4",
+  "refinement": "every token in [fork-4, fork] with 16 continuations",
+  "no_change_point_branch": "fork = argmax |delta p|, labelled 'distributed over generation'",
+  "token_sets": "B = fork tokens with P(BFS|tok) >= 0.8, D = <= 0.2 (from S3 + S4); if B or D empty use y = logit(sum_tok p(tok) q(tok)) with q pooled to the marginal below 3 observations"
+ },
+ "S6_decodability": {
+  "within_prompt": "read positions r_id (primary: last token before the first algorithm-identifying token) and r_fork (secondary); a sample enters only if its prefix up to r differs from every other-class prefix in its template; SAE codes vs text control (L1-logistic on response-prefix uni+bigrams + template one-hot), raw PCA-64 L2-logistic, DiM projection, top-32 raw dims (massive excluded); 5-fold stratified-by-template CV with nested C; balanced accuracy; 1000 within-template permutations; threshold BA_SAE - BA_text >= 0.10 with p < 0.01; undefined/underpowered if < 30 per class or identical-prefix share >= 0.9",
+  "cross_prompt": "y_v over 120 neutral variants (5 templates x 24 nouns); Lasso on SAE codes, ridge on raw PCA-16/64, DiM 1-D, text-only control (sentence embedding all-MiniLM-L6-v2 of the condition sentence + noun concreteness, log frequency, token count); template one-hot in every model; leave-one-noun-out CV (24 folds), leave-one-template-out sensitivity; R2_cv and Spearman; 1000 within-template permutations; bootstrap over nouns for delta R2; threshold delta R2 >= 0.10 with p < 0.01; UNINFORMATIVE if SD(y_v) < 0.2 nats"
+ },
+ "S7_selection": {
+  "input_score": "Cohen's d forced-BFS vs forced-DFS (F1-F5 + 10 exp9 forced paraphrases), latents active in >= 5% of contrast points, top-k by |d|, k in {5,20,50}",
+  "output_score": "attribution patching s_i = mean_v a_i (grad_h y . W_dec[i]) on W1-W3 neutral variants; top-k sign-consistent",
+  "layer_rule": "per site, gated layer maximising held-out (W4-W5) mean delta y per unit ox-norm for input-score k=20 lam=1",
+  "DiM": "unit(mu_forcedBFS - mu_forcedDFS) with massive channels zeroed, at the site and layer",
+  "RANDF": "seeded random k latents active in >= 5% of tokens, random signs"
+ },
+ "S8_clamps": {
+  "edits": "prefill only, block-l output at site positions; FEAT dh = sum_{i in S} lam (t_i - f_i) W_dec[i] (error preserved); DiM/RANDF/ISO scaled to the FEAT edit's realised norm with the 5 massive channels excluded, per position",
+  "cells_toward_BFS": [
+   "FORK FEAT-input k5",
+   "FORK FEAT-input k20",
+   "FORK FEAT-input k50",
+   "FORK DiM@k20",
+   "FORK DiM@k50",
+   "FORK RANDF@k50",
+   "SPEC FEAT-input k5",
+   "SPEC FEAT-input k20",
+   "SPEC FEAT-input k50",
+   "SPEC DiM@k20",
+   "SPEC DiM@k50",
+   "SPEC RANDF@k50",
+   "better-site FEAT-output k20"
+  ],
+  "cells_toward_DFS": [
+   "better-site FEAT-input k20",
+   "better-site DiM@k20"
+  ],
+  "N_per_cell": 50,
+  "tests": "exact McNemar on CRN-paired target-correct indicators, Holm within family S; FEATURE CLAIM only if FEAT target-correct >= DiM target-correct at matched norm with pass >= 0.8 x twin pass; FEAT vs RANDF delta >= 0.20 with p < 0.05; matched-pass rule: if FEAT and DiM pass rates differ by > 0.10, one extra DiM cell at the norm whose logit-level delta y equals FEAT's"
+ },
+ "S11_top5": "exp9 TOP5 literal ban (BFS, DFS, IDDFS, A* or greedy best-first) per template W1-W5 x 10 slots, vs ' .'-padded neutral twin; landing composition over the 6-mode catalogue; geometry PCA/Isomap(k=10)/classical MDS on SPEC-mean states (raw, massive removed; SAE codes)",
+ "drop_order": [
+  "S10 attribution graph",
+  "R6 split",
+  "S9 DAS",
+  "T04 fork",
+  "sampling validation to 30 variants",
+  "generation cells to N=30"
+ ],
+ "never_drop": [
+  "S2 gate",
+  "T1 split",
+  "S4 fork",
+  "S6 decodability vs text control",
+  "S8 clamp vs DiM and RANDF",
+  "S13 novelty audit"
+ ],
+ "screen_rule": "any positive is a screen for iteration 7 (one model, one decisive task)",
+ "planned_departures_known_at_commit0": [
+  "GPU is an RTX 2000 Ada (16 GB) not an A4500: B_CRN = 20 instead of exp28's batch shapes; engine-check disagreements are kernel/batch-shape sensitivity",
+  "S10 circuit-tracer graph dropped first by the drop order (time budget on a slower GPU); first-order attribution patching on the four resid_post SAE sites is the fallback, labelled as such",
+  "forced paraphrases come from exp9 frozen_prompts.json forced_templates (exp7 prompts_v2.json holds no forced conditions)",
+  "analysis code is hashed at commit #1 (before any clamp generation); commit #0 holds the rules in machine-readable form"
+ ]
+}

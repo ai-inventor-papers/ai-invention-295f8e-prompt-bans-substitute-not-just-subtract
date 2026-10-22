@@ -1,0 +1,59 @@
+05:20:22|INFO   |GPU stage: RAM bounded by the cgroup (28 GB); VRAM by set_per_process_memory_fraction
+05:20:22|INFO   |stage gen1 start; pid 1637
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+05:21:57|INFO   |google/gemma-3-4b-it loaded in 25s; free VRAM 8.84/16.72 GB
+./src/engine.py:455: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  nxt = torch.searchsorted(cdf, Ut[:, step:step + 1]).squeeze(-1).clamp_(max=V - 1)
+05:22:07|INFO   |U1a:0: 2/20 rows 7.7s, 96 steps, {'length': 2}
+05:22:13|INFO   |U1b:0: 2/20 rows 6.5s, 96 steps, {'length': 2}
+
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 214.67it/s]
+05:22:16|INFO   |unit tests: {"U1_crn_determinism": {"pass": true, "n": 2}, "U2_identity_hooks": {"zero_edit_bit_identical": true, "error_preserving_splice_bit_identical": true, "splice_max_abs_logit_diff": 0.0, "clamp_to_own_value_bit_identical": true}}
+05:22:39|INFO   |S3:T1:W1:0: 20/20 rows 23.0s, 400 steps, {'stop': 20}
+05:23:00|INFO   |S3:T1:W1:1: 20/20 rows 21.5s, 368 steps, {'stop': 20}
+05:23:21|INFO   |S3:T1:W2:0: 20/20 rows 21.2s, 368 steps, {'stop': 18, 'fence': 2}
+05:23:42|INFO   |S3:T1:W2:1: 20/20 rows 20.3s, 352 steps, {'stop': 19, 'fence': 1}
+05:24:02|INFO   |S3:T1:W3:0: 20/20 rows 20.5s, 352 steps, {'stop': 20}
+05:24:24|INFO   |S3:T1:W3:1: 20/20 rows 22.0s, 368 steps, {'stop': 20}
+05:24:45|INFO   |S3:T1:W4:0: 20/20 rows 20.7s, 352 steps, {'stop': 20}
+05:25:10|INFO   |S3:T1:W4:1: 20/20 rows 25.1s, 416 steps, {'stop': 20}
+05:25:34|INFO   |S3:T1:W5:0: 20/20 rows 23.7s, 400 steps, {'stop': 19, 'fence': 1}
+05:25:55|INFO   |S3:T1:W5:1: 20/20 rows 20.8s, 352 steps, {'stop': 19, 'fence': 1}
+05:26:01|INFO   |S3:T04:W1:0: 20/20 rows 6.5s, 96 steps, {'stop': 20}
+05:26:08|INFO   |S3:T04:W1:1: 20/20 rows 6.4s, 96 steps, {'stop': 20}
+05:26:14|INFO   |S3:T04:W2:0: 20/20 rows 6.0s, 96 steps, {'stop': 20}
+05:26:20|INFO   |S3:T04:W2:1: 20/20 rows 6.2s, 96 steps, {'stop': 20}
+05:26:27|INFO   |S3:T04:W3:0: 20/20 rows 6.9s, 112 steps, {'stop': 20}
+05:26:32|INFO   |S3:T04:W3:1: 20/20 rows 5.3s, 80 steps, {'stop': 20}
+05:26:38|INFO   |S3:T04:W4:0: 20/20 rows 5.2s, 80 steps, {'stop': 20}
+05:26:44|INFO   |S3:T04:W4:1: 20/20 rows 6.1s, 96 steps, {'stop': 20}
+05:26:50|INFO   |S3:T04:W5:0: 20/20 rows 6.1s, 96 steps, {'stop': 20}
+05:26:55|INFO   |S3:T04:W5:1: 20/20 rows 5.1s, 80 steps, {'stop': 20}
+05:27:09|INFO   |S3:R6:W1:0: 20/20 rows 14.3s, 240 steps, {'stop': 20}
+05:27:24|INFO   |S3:R6:W1:1: 20/20 rows 14.2s, 240 steps, {'stop': 19, 'fence': 1}
+05:27:38|INFO   |S3:R6:W2:0: 20/20 rows 14.8s, 256 steps, {'fence': 1, 'stop': 19}
+05:27:52|INFO   |S3:R6:W2:1: 20/20 rows 13.9s, 240 steps, {'stop': 18, 'fence': 2}
+05:27:58|INFO   |S3:R6:W3:0: 20/20 rows 5.4s, 80 steps, {'stop': 20}
+05:28:03|INFO   |S3:R6:W3:1: 20/20 rows 5.1s, 80 steps, {'stop': 20}
+05:28:08|INFO   |S3:R6:W4:0: 20/20 rows 5.2s, 80 steps, {'stop': 20}
+05:28:13|INFO   |S3:R6:W4:1: 20/20 rows 5.1s, 80 steps, {'stop': 20}
+05:28:28|INFO   |S3:R6:W5:0: 20/20 rows 14.2s, 240 steps, {'stop': 20}
+05:28:42|INFO   |S3:R6:W5:1: 20/20 rows 13.9s, 240 steps, {'stop': 20}
+05:29:03|INFO   |CON:0: 20/20 rows 21.0s, 336 steps
+05:29:24|INFO   |CON:1: 20/20 rows 21.0s, 336 steps
+05:29:46|INFO   |CON:2: 20/20 rows 21.9s, 336 steps
+05:30:07|INFO   |CON:3: 20/20 rows 21.4s, 336 steps
+05:30:30|INFO   |CON:4: 20/20 rows 22.3s, 352 steps
+05:30:50|INFO   |CON:5: 20/20 rows 20.8s, 336 steps
+05:31:15|INFO   |CON:6: 20/20 rows 24.7s, 400 steps
+05:31:40|INFO   |CON:7: 20/20 rows 24.6s, 400 steps
+05:32:12|INFO   |CON:8: 20/20 rows 31.8s, 368 steps
+05:32:36|INFO   |CON:9: 20/20 rows 24.4s, 400 steps
+05:32:56|INFO   |CON:10: 20/20 rows 20.3s, 336 steps
+05:33:19|INFO   |CON:11: 20/20 rows 23.1s, 368 steps
+05:33:42|INFO   |CON:12: 20/20 rows 22.3s, 368 steps
+05:34:06|INFO   |CON:13: 20/20 rows 24.1s, 384 steps
+05:34:31|INFO   |CON:14: 20/20 rows 25.5s, 400 steps
+05:34:32|INFO   |stage gen1 done in 850s

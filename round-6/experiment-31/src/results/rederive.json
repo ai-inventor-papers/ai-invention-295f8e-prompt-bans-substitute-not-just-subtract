@@ -1,32 +1,487 @@
 {
- "n_mismatches": 0,
- "mismatches": [],
- "L1a": {
-  "n": 1,
-  "hits": 1,
-  "p": 0.3333333333333333
+ "checks": [
+  {
+   "check": "S3 T1 attempted",
+   "rederived": {
+    "bfs": 61,
+    "dfs": 139
+   },
+   "reported": {
+    "bfs": 61,
+    "dfs": 139
+   },
+   "ok": true
+  },
+  {
+   "check": "S3 T04 attempted",
+   "rederived": {
+    "builtin": 27,
+    "naive": 173
+   },
+   "reported": {
+    "builtin": 27,
+    "naive": 173
+   },
+   "ok": true
+  },
+  {
+   "check": "S3 R6 attempted",
+   "rederived": {
+    "binary_search": 29,
+    "linear_scan": 170,
+    "other": 1
+   },
+   "reported": {
+    "binary_search": 29,
+    "linear_scan": 170,
+    "other": 1
+   },
+   "ok": true
+  },
+  {
+   "check": "contrast top5 attempted",
+   "rederived": {
+    "bfs": 41,
+    "dfs": 9
+   },
+   "reported": {
+    "bfs": 41,
+    "dfs": 9
+   },
+   "ok": true
+  },
+  {
+   "check": "contrast top5_twin attempted",
+   "rederived": {
+    "bfs": 10,
+    "dfs": 40
+   },
+   "reported": {
+    "bfs": 10,
+    "dfs": 40
+   },
+   "ok": true
+  },
+  {
+   "check": "contrast ban_bfs attempted",
+   "rederived": {
+    "bfs": 11,
+    "dfs": 39
+   },
+   "reported": {
+    "bfs": 11,
+    "dfs": 39
+   },
+   "ok": true
+  },
+  {
+   "check": "contrast ban_dfs attempted",
+   "rederived": {
+    "bfs": 42,
+    "dfs": 8
+   },
+   "reported": {
+    "bfs": 42,
+    "dfs": 8
+   },
+   "ok": true
+  },
+  {
+   "check": "contrast forced_bfs attempted",
+   "rederived": {
+    "bfs": 50
+   },
+   "reported": {
+    "bfs": 50
+   },
+   "ok": true
+  },
+  {
+   "check": "contrast forced_dfs attempted",
+   "rederived": {
+    "dfs": 50
+   },
+   "reported": {
+    "dfs": 50
+   },
+   "ok": true
+  },
+  {
+   "check": "fork token table (S3 samples on c*)",
+   "rederived": {
+    "107": {
+     "n_bfs": 19,
+     "n_dfs": 2
+    },
+    "15204": {
+     "n_bfs": 4,
+     "n_dfs": 0
+    },
+    "236809": {
+     "n_bfs": 1,
+     "n_dfs": 0
+    },
+    "53227": {
+     "n_bfs": 2,
+     "n_dfs": 132
+    },
+    "584": {
+     "n_bfs": 16,
+     "n_dfs": 1
+    }
+   },
+   "reported": {
+    "107": {
+     "n_bfs": 19,
+     "n_dfs": 2
+    },
+    "15204": {
+     "n_bfs": 4,
+     "n_dfs": 0
+    },
+    "236809": {
+     "n_bfs": 1,
+     "n_dfs": 0
+    },
+    "53227": {
+     "n_bfs": 2,
+     "n_dfs": 132
+    },
+    "584": {
+     "n_bfs": 16,
+     "n_dfs": 1
+    }
+   },
+   "ok": true
+  },
+  {
+   "check": "McNemar FEAT_vs_DiM|FORK|k20",
+   "rederived": [
+    0,
+    3,
+    0.25
+   ],
+   "reported": [
+    0,
+    3,
+    0.25
+   ],
+   "ok": true
+  },
+  {
+   "check": "McNemar FEAT_vs_DiM|FORK|k50",
+   "rederived": [
+    4,
+    1,
+    0.375
+   ],
+   "reported": [
+    4,
+    1,
+    0.375
+   ],
+   "ok": true
+  },
+  {
+   "check": "McNemar FEAT_vs_RANDF|FORK|k50",
+   "rederived": [
+    3,
+    2,
+    1.0
+   ],
+   "reported": [
+    3,
+    2,
+    1.0
+   ],
+   "ok": true
+  },
+  {
+   "check": "McNemar FEAT_vs_baseline|FORK|k5",
+   "rederived": [
+    5,
+    1,
+    0.21875
+   ],
+   "reported": [
+    5,
+    1,
+    0.21875
+   ],
+   "ok": true
+  },
+  {
+   "check": "McNemar FEAT_vs_baseline|FORK|k20",
+   "rederived": [
+    3,
+    0,
+    0.25
+   ],
+   "reported": [
+    3,
+    0,
+    0.25
+   ],
+   "ok": true
+  },
+  {
+   "check": "McNemar FEAT_vs_baseline|FORK|k50",
+   "rederived": [
+    4,
+    0,
+    0.125
+   ],
+   "reported": [
+    4,
+    0,
+    0.125
+   ],
+   "ok": true
+  },
+  {
+   "check": "McNemar DiM_vs_baseline|FORK|k20",
+   "rederived": [
+    6,
+    0,
+    0.03125
+   ],
+   "reported": [
+    6,
+    0,
+    0.03125
+   ],
+   "ok": true
+  },
+  {
+   "check": "McNemar DiM_vs_baseline|FORK|k50",
+   "rederived": [
+    3,
+    2,
+    1.0
+   ],
+   "reported": [
+    3,
+    2,
+    1.0
+   ],
+   "ok": true
+  },
+  {
+   "check": "McNemar FEAT_vs_DiM|SPEC|k20",
+   "rederived": [
+    0,
+    5,
+    0.0625
+   ],
+   "reported": [
+    0,
+    5,
+    0.0625
+   ],
+   "ok": true
+  },
+  {
+   "check": "McNemar FEAT_vs_DiM|SPEC|k50",
+   "rederived": [
+    0,
+    4,
+    0.125
+   ],
+   "reported": [
+    0,
+    4,
+    0.125
+   ],
+   "ok": true
+  },
+  {
+   "check": "McNemar FEAT_vs_RANDF|SPEC|k50",
+   "rederived": [
+    1,
+    5,
+    0.21875
+   ],
+   "reported": [
+    1,
+    5,
+    0.21875
+   ],
+   "ok": true
+  },
+  {
+   "check": "McNemar FEAT_vs_baseline|SPEC|k5",
+   "rederived": [
+    2,
+    2,
+    1.0
+   ],
+   "reported": [
+    2,
+    2,
+    1.0
+   ],
+   "ok": true
+  },
+  {
+   "check": "McNemar FEAT_vs_baseline|SPEC|k20",
+   "rederived": [
+    0,
+    2,
+    0.5
+   ],
+   "reported": [
+    0,
+    2,
+    0.5
+   ],
+   "ok": true
+  },
+  {
+   "check": "McNemar FEAT_vs_baseline|SPEC|k50",
+   "rederived": [
+    2,
+    3,
+    1.0
+   ],
+   "reported": [
+    2,
+    3,
+    1.0
+   ],
+   "ok": true
+  },
+  {
+   "check": "McNemar DiM_vs_baseline|SPEC|k20",
+   "rederived": [
+    4,
+    1,
+    0.375
+   ],
+   "reported": [
+    4,
+    1,
+    0.375
+   ],
+   "ok": true
+  },
+  {
+   "check": "McNemar DiM_vs_baseline|SPEC|k50",
+   "rederived": [
+    4,
+    1,
+    0.375
+   ],
+   "reported": [
+    4,
+    1,
+    0.375
+   ],
+   "ok": true
+  },
+  {
+   "check": "McNemar DAS_vs_baseline|FORK|k4",
+   "rederived": [
+    0,
+    6,
+    0.03125
+   ],
+   "reported": [
+    0,
+    6,
+    0.03125
+   ],
+   "ok": true
+  },
+  {
+   "check": "attempted McNemar FORK|FEATin|k20 vs twin_cstar",
+   "rederived": [
+    17,
+    0,
+    1.52588e-05
+   ],
+   "reported": [
+    17,
+    0,
+    1.52588e-05
+   ],
+   "ok": true
+  },
+  {
+   "check": "attempted McNemar FORK|FEATin|k50 vs FORK|RANDF@k50",
+   "rederived": [
+    15,
+    0,
+    6.10352e-05
+   ],
+   "reported": [
+    15,
+    0,
+    6.10352e-05
+   ],
+   "ok": true
+  },
+  {
+   "check": "attempted McNemar FORK|FEATin|k20 vs FORK|DiM@k20",
+   "rederived": [
+    0,
+    16,
+    3.05176e-05
+   ],
+   "reported": [
+    0,
+    16,
+    3.05176e-05
+   ],
+   "ok": true
+  },
+  {
+   "check": "attempted McNemar FORK|FEATin|k20 vs FORK|DiM@k20|matchDy",
+   "rederived": [
+    0,
+    2,
+    0.5
+   ],
+   "reported": [
+    0,
+    2,
+    0.5
+   ],
+   "ok": true
+  },
+  {
+   "check": "attempted McNemar FORK|DAS|k4 vs twin_cstar",
+   "rederived": [
+    37,
+    0,
+    0.0
+   ],
+   "reported": [
+    37,
+    0,
+    0.0
+   ],
+   "ok": true
+  }
+ ],
+ "mismatches": 0,
+ "placebo_randf_as_feat": {
+  "FORK": {
+   "randf_target_correct": 9,
+   "dim_target_correct": 7,
+   "randf_pass": 0.76,
+   "twin_pass": 0.84,
+   "placebo_meets_feature_rule": true,
+   "reading": "the target-correct FEAT>=DiM rule is non-discriminating when it passes here"
+  },
+  "SPEC": {
+   "randf_target_correct": 9,
+   "dim_target_correct": 9,
+   "randf_pass": 0.88,
+   "twin_pass": 0.84,
+   "placebo_meets_feature_rule": true,
+   "reading": "the target-correct FEAT>=DiM rule is non-discriminating when it passes here"
+  }
  },
- "L1b": {
-  "n": 6,
-  "b": 4,
-  "c": 2
- },
- "placebo_random_forecast": {
-  "mean_hit_rate": 0.338,
-  "mean_chance": 0.3333333333333333,
-  "share_events_clear": 1.0,
-  "note": "a random forecast can hit only clear events: expected hit rate = chance x share of clear events"
- },
- "placebo_twin_as_push_E": {
-  "I1": 0.0,
-  "I2": 0.0,
-  "I3": 0.0,
-  "I4": 0.0,
-  "I6": 0.0,
-  "I7": 0.0,
-  "I8": 0.0,
-  "I9": 0.0,
-  "I10": 0.0,
-  "I5": 0.0
- }
+ "placebo_shuffled_class_accuracy": 0.43,
+ "placebo_shuffled_ok": true
 }
