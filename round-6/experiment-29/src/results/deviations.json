@@ -1,0 +1,75 @@
+{
+ "utc": "2026-10-22T10:07:20.693663Z",
+ "deviations": [
+  {
+   "id": "D-GPU",
+   "what": "The pod is an RTX 2000 Ada (sm_89, 16 GB), not the planned 20 GB Ampere A4500.",
+   "consequence": "Engine a runs on the native torch._scaled_mm kernel (iteration-4 numerics; the plan's sm_89+ fallback). The exact-math emulation is used only in U1 (validation)."
+  },
+  {
+   "id": "D-B",
+   "what": "Weight set Q (a, b) runs at B = 20 (exp22's batch shape); weight set B (c, d) at the largest B that fits next to 14.1 GiB of bf16 weights (memory probe; recorded in gpu_b_log.json).",
+   "consequence": "Not one B for all engines. Mitigation: U3 shows a row's logits are bitwise identical across batch sizes >= 2-3 in every engine (only B = 1 differs), and the aB control re-runs engine a at weight set B's batch size on the REPRO cells."
+  },
+  {
+   "id": "D-KVCAP",
+   "what": "Weight set B uses a copy of the vendored sampler whose KV buffer holds `cap` generated tokens (448) and builds each prefill's KV directly into the batch buffer.",
+   "consequence": "Bitwise identical for every row that finishes within cap tokens (U6); rows that do not are moved to a full-length buffer and continue in a smaller batch (flagged overflow_at_step)."
+  },
+  {
+   "id": "D-REUSE-A",
+   "what": "Engine a was re-run only on the REPRO cells (twins + 9101-9110 alpha 2) and the exp19 PN W1 slots; both were byte-identical to iteration 4 (400/400 and 40/40), so exp22's (relabelled) rows serve as engine a on all other cells and exp19's PN rows as engine-a PN (rule fixed in COMMIT #0).",
+   "consequence": "Engine a's alpha-1 cells and confirmations come from iteration 4 itself."
+  },
+  {
+   "id": "D-ALPHA1",
+   "what": "S5 (alpha 1) not run for b and c (committed drop order); E_rule therefore uses alpha 2 for all four engines.",
+   "consequence": "alpha-1 escape fractions are descriptive (a: exp22; d: only if the follow-up ran)."
+  },
+  {
+   "id": "D-MIMIC",
+   "what": "S6 (Gaussian mimic) not run.",
+   "consequence": "No 'generic noise suffices' reading."
+  },
+  {
+   "id": "D-T03",
+   "what": "S7 (T03, descriptive) not run.",
+   "consequence": "Claims are scoped to T10 and T2."
+  },
+  {
+   "id": "D-ANALYSIS-LATE",
+   "what": "src/analysis.py and src/rederive.py were committed by AMENDMENT #1, after COMMIT #0 and after the first engine-d rows existed (no b or c row existed).",
+   "consequence": "The binding decision rules are COMMIT #0's text; the code implements them verbatim."
+  },
+  {
+   "id": "D-STAGE-ORDER",
+   "what": "Weight set B ran d screen, d confirmations, c screen, PN (d, c), diagnostics, then c confirmations; PN before alpha 1 (as planned).",
+   "consequence": "none"
+  },
+  {
+   "id": "D-FIDELITY-ORDER",
+   "what": "FIDELITY and KL (teacher-forced) ran inside each weight-set process after the decisive stages had started.",
+   "consequence": "They are diagnostics only: engine a was validated by byte identity instead (stronger)."
+  },
+  {
+   "id": "D-NOVELTY",
+   "what": "The two-judge novelty audit of correct 'other' programs was not run.",
+   "consequence": "Counts of correct 'other' programs per engine are reported instead."
+  },
+  {
+   "id": "D-W8A16-IMPL",
+   "what": "The fused Triton W8A16 kernel could not be built (no C compiler in the container: 'Failed to find C compiler'); by the committed rule engine b uses the reference implementation torch.mm(x, codes_bf16^T, out_dtype=float32) * s_w with a per-call e4m3->bf16 cast (results/w8a16_impl.json).",
+   "consequence": "Exactly the planned math; about 2.5x slower per decode step than the native FP8 kernel."
+  },
+  {
+   "id": "D-AB-DROPPED",
+   "what": "The B-sensitivity control (engine a at weight set B's B = 7) was dropped by the second weight-set-Q process's deadline.",
+   "consequence": "B-invariance rests on U3 (bitwise identical logits across B >= 3 in bf16/W16A8 and B >= 10 in FP8/W8A16) and on engine d reproducing iteration 5's bf16 twin composition exactly."
+  },
+  {
+   "id": "D-B2-SKIPPED",
+   "what": "The engine-d alpha-1 follow-up (src/gpu_b2.py) was skipped (data/SKIP_B2); the remaining GPU time went to engine b's confirmations (src/gpu_q3.py, same engine and implementation, resumable by done slots).",
+   "consequence": "The half-dose point comes from bf16 PN at alpha 1 (7/50 on T10 vs FP8 6/50) instead of fixed directions."
+  }
+ ]
+}

@@ -1,0 +1,234 @@
+/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.08it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:02<00:03,  1.08s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:03<00:02,  1.14s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:04<00:01,  1.09s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:04<00:00,  1.23it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:04<00:00,  1.07it/s]
+08:32:54|INFO   |bf16 weights on CPU in 7s; quantising decoder linears to FP8
+08:33:51|INFO   |Qwen/Qwen3-8B loaded in 63s ({'n_fp8_linears': 252}); free VRAM 7.2/16.7 GB
+08:33:53|ERROR  |Triton W8A16 validation failed: Failed to find C compiler. Please specify via CC environment variable or set triton.knobs.build.impl.
+Traceback (most recent call last):
+
+  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/src/gpu_q.py", line 118, in <module>
+    main()
+    └ <function main at 0x78fe131aa700>
+
+  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/src/gpu_q.py", line 114, in main
+    gpu_q2.main(args.deadline_min)
+    │      │    │    └ 70.0
+    │      │    └ Namespace(phase='q2', deadline_min=70.0)
+    │      └ <function main at 0x78fe131ab4c0>
+    └ <module 'gpu_q2' from '/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/src/...
+
+> File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/src/gpu_q2.py", line 107, in main
+    imp = choose_b_impl(model, prompts)
+          │             │      └ {'T1|ban|bfs|W1|-': {'pid': 'T1|ban|bfs|W1|-', 'task': 'T1', 'kind': 'ban', 'segment': 'Do not use breadth-first search (BFS)...
+          │             └ Qwen3ForCausalLM(
+          │                 (model): Qwen3Model(
+          │                   (embed_tokens): Embedding(151936, 4096)
+          │                   (layers): ModuleList(
+          │                     (0-35): ...
+          └ <function choose_b_impl at 0x78fe131ab380>
+
+  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           │     │       └ {}
+           │     └ (Qwen3ForCausalLM(
+           │         (model): Qwen3Model(
+           │           (embed_tokens): Embedding(151936, 4096)
+           │           (layers): ModuleList(
+           │             (0-35):...
+           └ <function choose_b_impl at 0x78fe131ab2e0>
+
+  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/src/gpu_q2.py", line 47, in choose_b_impl
+    tri = WT.w8a16_mm(xx, codes, mod.w_scale)
+          │  │        │   │      └ FP8Linear()
+          │  │        │   └ tensor([[  36.0000,  160.0000,   96.0000,  ...,   64.0000,  -80.0000,
+          │  │        │                36.0000],
+          │  │        │             [ -80.0000,   -9.0000,   -...
+          │  │        └ tensor([[ 0.0024, -0.0010, -0.0103,  ..., -0.0067, -0.0062,  0.0081],
+          │  │                  [-0.0148, -0.0096,  0.0210,  ..., -0.0032, -0.0...
+          │  └ <function w8a16_mm at 0x78fd882091c0>
+          └ <module 'w8a16_triton' from '/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_2...
+
+  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/src/w8a16_triton.py", line 61, in w8a16_mm
+    _w8a16_kernel[grid](x2, codes, s, y, M, N, K, mb, x2.stride(0), x2.stride(1), codes.stride(0), codes.stride(1),
+    │             │     │   │      │  │  │  │  │  │   │  │          │  │          │     │          │     └ <method 'stride' of 'torch._C.TensorBase' objects>
+    │             │     │   │      │  │  │  │  │  │   │  │          │  │          │     │          └ tensor([[  36.0000,  160.0000,   96.0000,  ...,   64.0000,  -80.0000,
+    │             │     │   │      │  │  │  │  │  │   │  │          │  │          │     │                       36.0000],
+    │             │     │   │      │  │  │  │  │  │   │  │          │  │          │     │                    [ -80.0000,   -9.0000,   -...
+    │             │     │   │      │  │  │  │  │  │   │  │          │  │          │     └ <method 'stride' of 'torch._C.TensorBase' objects>
+    │             │     │   │      │  │  │  │  │  │   │  │          │  │          └ tensor([[  36.0000,  160.0000,   96.0000,  ...,   64.0000,  -80.0000,
+    │             │     │   │      │  │  │  │  │  │   │  │          │  │                       36.0000],
+    │             │     │   │      │  │  │  │  │  │   │  │          │  │                    [ -80.0000,   -9.0000,   -...
+    │             │     │   │      │  │  │  │  │  │   │  │          │  └ <method 'stride' of 'torch._C.TensorBase' objects>
+    │             │     │   │      │  │  │  │  │  │   │  │          └ tensor([[ 0.0024, -0.0010, -0.0103,  ..., -0.0067, -0.0062,  0.0081],
+    │             │     │   │      │  │  │  │  │  │   │  │                    [-0.0148, -0.0096,  0.0210,  ..., -0.0032, -0.0...
+    │             │     │   │      │  │  │  │  │  │   │  └ <method 'stride' of 'torch._C.TensorBase' objects>
+    │             │     │   │      │  │  │  │  │  │   └ tensor([[ 0.0024, -0.0010, -0.0103,  ..., -0.0067, -0.0062,  0.0081],
+    │             │     │   │      │  │  │  │  │  │             [-0.0148, -0.0096,  0.0210,  ..., -0.0032, -0.0...
+    │             │     │   │      │  │  │  │  │  └ 32
+    │             │     │   │      │  │  │  │  └ 4096
+    │             │     │   │      │  │  │  └ 4096
+    │             │     │   │      │  │  └ 20
+    │             │     │   │      │  └ tensor([[-1.4236e+28,  1.3188e+01, -1.2891e-01,  ..., -2.6500e+01,
+    │             │     │   │      │              1.4670e-24, -4.3000e+01],
+    │             │     │   │      │            [-1.0400e-32, ...
+    │             │     │   │      └ tensor([0.0002, 0.0002, 0.0002,  ..., 0.0004, 0.0007, 0.0006], device='cuda:0')
+    │             │     │   └ tensor([[  36.0000,  160.0000,   96.0000,  ...,   64.0000,  -80.0000,
+    │             │     │                36.0000],
+    │             │     │             [ -80.0000,   -9.0000,   -...
+    │             │     └ tensor([[ 0.0024, -0.0010, -0.0103,  ..., -0.0067, -0.0062,  0.0081],
+    │             │               [-0.0148, -0.0096,  0.0210,  ..., -0.0032, -0.0...
+    │             └ <function w8a16_mm.<locals>.grid at 0x78fd7a834e00>
+    └ <triton.runtime.autotuner.Autotuner object at 0x78fd7a66c200>
+
+  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/.venv/lib/python3.12/site-packages/triton/runtime/jit.py", line 390, in <lambda>
+    return lambda *args, **kwargs: self.run(grid=grid, warmup=False, *args, **kwargs)
+                   │       │       │    │        │                    │       └ {}
+                   │       │       │    │        │                    └ (tensor([[ 0.0024, -0.0010, -0.0103,  ..., -0.0067, -0.0062,  0.0081],
+                   │       │       │    │        │                              [-0.0148, -0.0096,  0.0210,  ..., -0.0032, -0....
+                   │       │       │    │        └ <function w8a16_mm.<locals>.grid at 0x78fd7a834e00>
+                   │       │       │    └ <function Autotuner.run at 0x78fd85e99760>
+                   │       │       └ <triton.runtime.autotuner.Autotuner object at 0x78fd7a66c200>
+                   │       └ {}
+                   └ (tensor([[ 0.0024, -0.0010, -0.0103,  ..., -0.0067, -0.0062,  0.0081],
+                             [-0.0148, -0.0096,  0.0210,  ..., -0.0032, -0....
+  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/.venv/lib/python3.12/site-packages/triton/runtime/autotuner.py", line 239, in run
+    benchmark()
+    └ <function Autotuner.run.<locals>.benchmark at 0x78fd8820a2a0>
+  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/.venv/lib/python3.12/site-packages/triton/runtime/autotuner.py", line 228, in benchmark
+    timings = {config: self._bench(*args, config=config, **kwargs) for config in pruned_configs}
+                       │    │       │                      │                     └ [<triton.runtime.autotuner.Config object at 0x78fd7863ae10>, <triton.runtime.autotuner.Config object at 0x78fd786213a0>, <tri...
+                       │    │       │                      └ {'grid': <function w8a16_mm.<locals>.grid at 0x78fd7a834e00>, 'warmup': False}
+                       │    │       └ (tensor([[ 0.0024, -0.0010, -0.0103,  ..., -0.0067, -0.0062,  0.0081],
+                       │    │                 [-0.0148, -0.0096,  0.0210,  ..., -0.0032, -0....
+                       │    └ <function Autotuner._bench at 0x78fd85e99620>
+                       └ <triton.runtime.autotuner.Autotuner object at 0x78fd7a66c200>
+  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/.venv/lib/python3.12/site-packages/triton/runtime/autotuner.py", line 160, in _bench
+    return self.do_bench(kernel_call, quantiles=(0.5, 0.2, 0.8))
+           │    │        └ <function Autotuner._bench.<locals>.kernel_call at 0x78fd8820a020>
+           │    └ <functools.cached_property object at 0x78fd85f9ab10>
+           └ <triton.runtime.autotuner.Autotuner object at 0x78fd7a66c200>
+  File "/usr/local/lib/python3.12/functools.py", line 998, in __get__
+    val = self.func(instance)
+          │    │    └ <triton.runtime.autotuner.Autotuner object at 0x78fd7a66c200>
+          │    └ <function Autotuner.do_bench at 0x78fd85e99580>
+          └ <functools.cached_property object at 0x78fd85f9ab10>
+  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/.venv/lib/python3.12/site-packages/triton/runtime/autotuner.py", line 121, in do_bench
+    return driver.active.get_benchmarker()
+           │      └ <LazyProxy for <function _create_driver at 0x78fd85fbd8a0> not yet initialized>
+           └ <triton.runtime.driver.DriverConfig object at 0x78fd86006060>
+  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/.venv/lib/python3.12/site-packages/triton/runtime/driver.py", line 30, in __getattr__
+    return getattr(self._initialize_obj(), name)
+                   │    │                  └ 'get_benchmarker'
+                   │    └ <function LazyProxy._initialize_obj at 0x78fd85e84540>
+                   └ <LazyProxy for <function _create_driver at 0x78fd85fbd8a0> not yet initialized>
+  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/.venv/lib/python3.12/site-packages/triton/runtime/driver.py", line 26, in _initialize_obj
+    self._obj = self._init_fn()
+    │    │      │    └ <function _create_driver at 0x78fd85fbd8a0>
+    │    │      └ <LazyProxy for <function _create_driver at 0x78fd85fbd8a0> not yet initialized>
+    │    └ None
+    └ <LazyProxy for <function _create_driver at 0x78fd85fbd8a0> not yet initialized>
+  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/.venv/lib/python3.12/site-packages/triton/runtime/driver.py", line 12, in _create_driver
+    return active_drivers[0]()
+           └ [<class 'triton.backends.nvidia.driver.CudaDriver'>]
+  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/.venv/lib/python3.12/site-packages/triton/backends/nvidia/driver.py", line 715, in __init__
+    self.utils = CudaUtils()  # TODO: make static
+    │            └ <class 'triton.backends.nvidia.driver.CudaUtils'>
+    └ <triton.backends.nvidia.driver.CudaDriver object at 0x78fd7a7fda00>
+  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/.venv/lib/python3.12/site-packages/triton/backends/nvidia/driver.py", line 62, in __init__
+    mod = compile_module_from_src(
+          └ <function compile_module_from_src at 0x78fd85e62b60>
+  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/.venv/lib/python3.12/site-packages/triton/runtime/build.py", line 88, in compile_module_from_src
+    so = _build(name, src_path, tmpdir, library_dirs or [], include_dirs or [], libraries or [])
+         │      │     │         │       │                   │                   └ ['cuda']
+         │      │     │         │       │                   └ ['/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/.venv/lib/python3.12/site...
+         │      │     │         │       └ ['/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/.venv/lib/python3.12/site...
+         │      │     │         └ '/tmp/tmptda1idlx'
+         │      │     └ '/tmp/tmptda1idlx/cuda_utils.c'
+         │      └ 'cuda_utils'
+         └ <function _build at 0x78fd85e611c0>
+  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/.venv/lib/python3.12/site-packages/triton/runtime/build.py", line 32, in _build
+    raise RuntimeError(
+
+RuntimeError: Failed to find C compiler. Please specify via CC environment variable or set triton.knobs.build.impl.
+08:33:53|INFO   |W8A16 impl: cast frac<=1ulp None times None
+/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/vendor/exp22/src_base/engine.py:216: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  tok = torch.searchsorted(cdf, u[:, None].to(cdf.dtype)).squeeze(-1)
+08:35:26|INFO   |U b: {'U5_same_batch_twice_identical': True, 'U3_batchmates_changed_rows_identical': True, 'U3_max_abs_dlogit_vs_B': {'1': 0.375, '10': 0.0, '20': 0.0}, 'B': 20} {'alpha0_bitwise_twin_logits': True, 'alpha0_bitwise_twin_kv': True, 'alpha2_rel_err_max': 0.00012567236262839288, 'alpha2_disp_S_b23': 70.02456665039062, 'alpha2_disp_S_b35': 231.9751739501953, 'alpha2_disp_R_b35': 216.85011291503906}
+08:36:16|INFO   |[b] S1S3_screen T10/W1 6 cells: 49.7s, 208 steps
+08:37:03|INFO   |[b] S1S3_screen T10/W1 10 cells: 47.3s, 192 steps
+08:37:47|INFO   |[b] S1S3_screen T10/W1 10 cells: 43.7s, 176 steps
+08:38:36|INFO   |[b] S1S3_screen T10/W1 10 cells: 49.2s, 200 steps
+08:39:22|INFO   |[b] S1S3_screen T10/W1 6 cells: 45.7s, 192 steps
+08:39:55|INFO   |[b] S1S3_screen T10/W2 6 cells: 33.1s, 136 steps
+08:40:31|INFO   |[b] S1S3_screen T10/W2 10 cells: 36.2s, 144 steps
+08:41:15|INFO   |[b] S1S3_screen T10/W2 10 cells: 43.5s, 176 steps
+08:42:08|INFO   |[b] S1S3_screen T10/W2 10 cells: 52.9s, 216 steps
+08:42:38|INFO   |[b] S1S3_screen T10/W2 6 cells: 30.9s, 128 steps
+08:43:25|INFO   |[b] S1S3_screen T10/W3 6 cells: 46.0s, 192 steps
+08:44:12|INFO   |[b] S1S3_screen T10/W3 10 cells: 47.2s, 192 steps
+08:44:52|INFO   |[b] S1S3_screen T10/W3 10 cells: 39.8s, 160 steps
+08:45:48|INFO   |[b] S1S3_screen T10/W3 10 cells: 56.6s, 232 steps
+08:46:19|INFO   |[b] S1S3_screen T10/W3 6 cells: 30.8s, 128 steps
+08:47:07|INFO   |[b] S1S3_screen T10/W4 6 cells: 47.9s, 200 steps
+08:47:54|INFO   |[b] S1S3_screen T10/W4 10 cells: 47.2s, 192 steps
+08:48:34|INFO   |[b] S1S3_screen T10/W4 10 cells: 39.8s, 160 steps
+08:49:29|INFO   |[b] S1S3_screen T10/W4 10 cells: 54.7s, 224 steps
+08:50:15|INFO   |[b] S1S3_screen T10/W4 6 cells: 45.7s, 192 steps
+08:51:04|INFO   |[b] S1S3_screen T10/W5 6 cells: 49.7s, 208 steps
+08:51:41|INFO   |[b] S1S3_screen T10/W5 10 cells: 36.2s, 144 steps
+08:52:17|INFO   |[b] S1S3_screen T10/W5 10 cells: 36.2s, 144 steps
+08:53:08|INFO   |[b] S1S3_screen T10/W5 10 cells: 51.1s, 208 steps
+08:53:57|INFO   |[b] S1S3_screen T10/W5 6 cells: 49.5s, 208 steps
+08:55:01|INFO   |[b] S1S3_screen T2/W1 6 cells: 62.9s, 264 steps
+08:55:55|INFO   |[b] S1S3_screen T2/W1 10 cells: 54.7s, 224 steps
+08:56:48|INFO   |[b] S1S3_screen T2/W1 10 cells: 52.8s, 216 steps
+08:57:41|INFO   |[b] S1S3_screen T2/W1 10 cells: 53.0s, 216 steps
+08:58:57|INFO   |[b] S1S3_screen T2/W1 7 cells: 76.1s, 320 steps
+08:59:55|INFO   |[b] S1S3_screen T2/W2 6 cells: 57.3s, 240 steps
+09:01:08|INFO   |[b] S1S3_screen T2/W2 10 cells: 73.5s, 304 steps
+09:02:03|INFO   |[b] S1S3_screen T2/W2 10 cells: 54.7s, 224 steps
+09:02:58|INFO   |[b] S1S3_screen T2/W2 10 cells: 54.8s, 224 steps
+09:04:25|INFO   |[b] S1S3_screen T2/W2 7 cells: 87.4s, 368 steps
+09:05:15|INFO   |[b] S1S3_screen T2/W3 6 cells: 49.8s, 208 steps
+09:06:10|INFO   |[b] S1S3_screen T2/W3 10 cells: 54.7s, 224 steps
+09:07:07|INFO   |[b] S1S3_screen T2/W3 10 cells: 56.6s, 232 steps
+09:08:00|INFO   |[b] S1S3_screen T2/W3 10 cells: 53.0s, 216 steps
+09:09:16|INFO   |[b] S1S3_screen T2/W3 7 cells: 76.2s, 320 steps
+09:10:08|INFO   |[b] S1S3_screen T2/W4 6 cells: 51.7s, 216 steps
+09:11:29|INFO   |[b] S1S3_screen T2/W4 10 cells: 81.1s, 336 steps
+09:12:25|INFO   |[b] S1S3_screen T2/W4 10 cells: 56.6s, 232 steps
+09:13:35|INFO   |[b] S1S3_screen T2/W4 10 cells: 69.8s, 288 steps
+09:14:38|INFO   |[b] S1S3_screen T2/W4 7 cells: 62.9s, 264 steps
+09:15:56|INFO   |[b] S1S3_screen T2/W5 6 cells: 78.0s, 328 steps
+09:16:49|INFO   |[b] S1S3_screen T2/W5 10 cells: 52.9s, 216 steps
+09:17:44|INFO   |[b] S1S3_screen T2/W5 10 cells: 54.8s, 224 steps
+09:18:56|INFO   |[b] S1S3_screen T2/W5 10 cells: 71.7s, 296 steps
+09:20:08|INFO   |[b] S1S3_screen T2/W5 7 cells: 72.4s, 304 steps
+09:20:59|INFO   |[b] S4_PN T10/W1 2 cells: 50.7s, 192 steps
+09:21:53|INFO   |[b] S4_PN T10/W2 2 cells: 54.3s, 208 steps
+09:22:31|INFO   |[b] S4_PN T10/W3 2 cells: 37.5s, 136 steps
+09:23:22|INFO   |[b] S4_PN T10/W4 2 cells: 50.6s, 192 steps
+09:24:16|INFO   |[b] S4_PN T10/W5 2 cells: 54.3s, 208 steps
+09:25:15|INFO   |[b] S4_PN T2/W1 2 cells: 57.9s, 224 steps
+09:26:41|INFO   |[b] S4_PN T2/W2 2 cells: 86.2s, 344 steps
+09:27:35|INFO   |[b] S4_PN T2/W3 2 cells: 54.2s, 208 steps
+09:28:48|INFO   |[b] S4_PN T2/W4 2 cells: 73.0s, 288 steps
+09:29:56|INFO   |[b] S4_PN T2/W5 2 cells: 67.4s, 264 steps
+09:31:34|INFO   |diagnostics Q done in 1.6 min
+09:32:20|INFO   |[b] S3_confirm T10/W1 5 cells: 46.0s, 192 steps
+09:33:06|INFO   |[b] S3_confirm T10/W1 5 cells: 45.7s, 192 steps
+09:33:40|INFO   |[b] S3_confirm T10/W1 5 cells: 34.6s, 144 steps
+09:34:22|INFO   |[b] S3_confirm T10/W1 5 cells: 42.0s, 176 steps
+09:35:10|INFO   |[b] S3_confirm T10/W1 5 cells: 47.6s, 200 steps
+09:35:55|INFO   |[b] S3_confirm T10/W1 4 cells: 45.1s, 192 steps
+09:36:45|INFO   |[b] S3_confirm T10/W2 5 cells: 49.8s, 208 steps
+09:37:35|INFO   |[b] S3_confirm T10/W2 5 cells: 49.5s, 208 steps
+09:38:22|INFO   |[b] S3_confirm T10/W2 5 cells: 47.6s, 200 steps
+09:39:02|INFO   |[b] S3_confirm T10/W2 5 cells: 40.1s, 168 steps
+09:39:52|INFO   |[b] S3_confirm T10/W2 5 cells: 49.5s, 208 steps
+09:40:41|INFO   |[b] S3_confirm T10/W2 4 cells: 48.8s, 208 steps
+09:41:31|INFO   |[b] S3_confirm T10/W3 5 cells: 49.7s, 208 steps
+09:42:20|INFO   |[b] S3_confirm T10/W3 5 cells: 49.5s, 208 steps
+09:42:20|WARNING|[b] deadline reached before S3_confirm T10/W3
+09:42:20|WARNING|[b] deadline reached before S3_confirm T2/W1
+09:42:21|INFO   |gpu_q2 done

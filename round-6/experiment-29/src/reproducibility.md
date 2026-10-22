@@ -1,137 +1,103 @@
-# Reproducing artifact E (did 8-bit arithmetic cause the nudge effect?)
+# Reproducing this artifact
 
-Everything below is what was actually run, in order, on one NVIDIA L4. Every path is relative to this folder.
+All paths below are relative to this folder. It reproduces what was actually run on 2026-10-22.
 
 ## 1. Get the artifact
 
-This folder is published as one folder of a public GitHub repository:
-
 ```bash
-git clone <the repository URL>
-cd <repository>/<this artifact's folder>        # the folder that holds method.py and this file
+git clone <the published repository>   # this workspace is one folder of it
+cd <this folder>
 ```
 
-The code finds the declared dataset dependency **art_j3Rm_lr2nzR6** (the algorithm-choice source data; only
-`full_data_out.json` is read, by `src/dep_usage_e.py`) through ONE constant, `cfg.DEP_DATASET_DIR`:
+- **Shipped inputs.** The verified copies of every earlier-artifact input ship with this folder: `vendor/` (code,
+  prompts, directions, units, labellers; `vendor/SHA256SUMS`) and `inputs/` (iteration-4/5 rows and results;
+  `inputs/MANIFEST.json`). `src/setup_inputs.py` re-creates them from the source artifacts, which are needed only to
+  re-verify:
+  - art_SHaWv77P1XCI (iteration-4 exp22);
+  - art_mWn-MQEnNelg (exp19);
+  - art_jR6Pyy3W9xum (exp27);
+  - art_hG0QPiaIPNhP (exp28);
+  - art_8WbrpoEFslk9 (exp25).
+- **Location of the source artifacts.** `setup_inputs.py` reads them from `AII_ITER45_ROOT`, which defaults to the
+  sibling folder `../iter45_sources`. Inside it, the expected layout is `iter_4/gen_art/gen_art_experiment_{19,22}`
+  and `iter_5/gen_art/gen_art_experiment_{25,27,28}`.
+- **Declared dataset.** The dataset art_j3Rm_lr2nzR6 is read only by `src/known6.py`, from `AII_DEP_ART_J3RM`
+  (default: the sibling folder `../art_j3Rm_lr2nzR6`).
+- **No private inputs.** No user-uploaded file is used.
 
-1. the environment variable `ART_J3RM_DIR`, if set;
-2. else the published sibling folder `../art_j3Rm_lr2nzR6`;
-3. else the run layout.
+## 2. System, Python, packages
 
-The read-only inputs from earlier iterations (exp19, exp22, exp23, exp24, exp25, exp27, exp18 and exp19's own
-inputs: exp7/8/11/13/16/17 and eval2) are copied into `inputs/`. Their sha256 values are listed in
-`predictions/e_inputs.json` (committed in `commitments.log`).
-
-No user-uploaded material is used.
-
-## 2. System, Python and libraries
-
-- Ubuntu/Debian with an NVIDIA driver that supports CUDA 12.8 (this run used driver 595.91.07).
-- Python 3.12.
-- `uv` (this run used uv 0.6.14). There is no `pip` binary in the venv.
-
-```bash
-uv sync --frozen        # creates .venv from uv.lock; pyproject.toml pins every package to the installed version
-```
-
-Key pins:
-
-- torch 2.8.0+cu128 (needs `torch.mm(..., out_dtype=torch.float32)` and `torch._scaled_mm`);
-- transformers 4.57.6 (exp19's PreallocLayer relies on its Cache internals);
-- numpy 2.2.6, scipy 1.18.1, statsmodels 0.15.0, ml-dtypes 0.6.0, openai 3.35.1, loguru 0.7.3.
-
-`logs/uv_pip_freeze.txt` holds the full frozen list (84 packages).
-
-## 3. Model, environment variables and keys (names only)
-
-- Model: `Qwen/Qwen3-8B` at revision `b968826d9c46dd6066d109eabc6255188de91218`, about 16.4 GB of bf16 safetensors.
-  Download it with:
-
-  ```bash
-  huggingface-cli download Qwen/Qwen3-8B --revision b968826d9c46dd6066d109eabc6255188de91218
-  ```
-
-  The code resolves the snapshot through `HF_HUB_CACHE` (or `HF_HOME`). `HF_TOKEN` is optional.
-- `OPENROUTER_BASE_URL` and `OPENROUTER_API_KEY` are needed only for:
-  - judge calls on labeller disagreements (exp8 suite and exp11 bench judges; almost all of them hit the copied caches
-    `data/judge_cache*.jsonl`);
-  - the novelty audit (`src/novelty_e.py`, artifact cap 0.50 USD).
-- Hardware used: NVIDIA L4 (sm_89, 23 GB VRAM), 6 CPUs, 57 GB RAM container limit.
-  `predictions/device_rule.json` records the device rule; the memory probe picked B = 20.
-
-## 4. Commands, in the order they were run
+- **System.** Ubuntu with an NVIDIA driver, run with driver 595.91.07 / CUDA 12.8 wheels. Python 3.12 (3.12.14
+  was used) and `uv`.
+- **Hardware used.**
+  - One NVIDIA RTX 2000 Ada (sm_89, 16 GB); FP8 tensor cores are needed for engine a's native kernel.
+  - A 5.1-CPU cgroup quota and a 31 GB RAM limit.
+  - No C compiler was installed, so the optional Triton W8A16 kernel fell back to the reference implementation.
 
 ```bash
-export PYTHONPATH=src
-uv run src/stage_a.py                 # inputs + sha256 -> predictions/e_inputs.json (commit 'stageA_inputs'),
-                                      # results/iter4_reference.json, results/prompt_diff.json, predictions/landing_ref.json
-uv run src/label_e.py --recheck       # copied labeller re-labels 450 exp19 + 1,700 exp22 rows: agreement 1.00 / 1.00
-uv run src/run_e.py --stage tests     # device rule + memory probe (B = 20) + GPU tests U1-U8 -> results/tests_gpu.json (~3 min)
-uv run src/run_e.py --stage smoke     # every arm type end to end -> data/smoke_*.jsonl (~2 min)
-uv run src/label_e.py --raw data/smoke_raw.jsonl --out data/smoke_labels.jsonl
-uv run src/tests_cpu.py               # CPU tests 1-8 (incl. the synthetic-analysis test) -> results/tests_cpu.json
-uv run src/commit0.py                 # commit #0 (2026-10-21T20:32:48Z): predictions, rules, analysis/engine sha256
-./run_gpu_pipeline.sh                 # generation queue (src/run_e.py --stage gen), then the mechanism readouts
-uv run src/label_e.py --follow-until results/gen_done.flag   # concurrent CPU labelling of every generated row
-uv run src/commit1.py                 # commit #1: gate outcomes + timing
-uv run src/dep_usage_e.py             # dependency usage + known solutions for the novelty audit
-uv run src/analysis_e.py              # Stage G -> results/*.json
-uv run src/novelty_e.py               # novelty audit (OpenRouter)
-./run_posthoc.sh                      # POST-HOC (not pre-registered): iteration-5 replication cells IT5_a1/IT5_a2
-                                      # (exp27's PN5 seeds + per-template ban-free unit) under W16A16 and W8A8, then labels
-uv run src/analysis_e.py              # re-run so the post-hoc rows enter factorial.json
-uv run src/posthoc_e.py               # results/posthoc.json (replication vs exp27, unit decomposition, unit profiles)
-uv run src/rederive_e.py              # independent re-derivation + placebos + commit-chain audit
-uv run src/figures_e.py               # figures/F1-F9 (PDF + PNG)
-uv run src/report_e.py                # results/summary.md (numbers rendered from JSON)
-uv run src/outputs_e.py               # method_out.json (exp_gen_sol_out)
-# aii-json skill: aii_json_format_mini_preview.py --input method_out.json -> full_/mini_/preview_method_out.json
-uv run src/write_readme.py            # README.md (results section rendered from results/*.json)
-uv run src/final_struct.py            # .terminal_claude_agent_struct_out.json (summary numbers read from JSON)
+uv venv --python 3.12 .venv
+uv pip install --python .venv/bin/python -r pyproject.toml     # 82 packages, all pinned (torch==2.8.0+cu128 wheel set,
+                                                               # transformers==4.57.6, nvidia-cublas-cu12==12.8.4.1)
 ```
 
-`uv run method.py --stage all` runs the same stages in this order. `uv run method.py --stage post` re-runs only the
-CPU analysis stages on the rows already on disk.
+## 3. Model, keys, environment
 
-Seeds and determinism:
+- **Model.**
+  `hf download Qwen/Qwen3-8B --revision b968826d9c46dd6066d109eabc6255188de91218` puts the bf16 safetensors (16 GB)
+  in the HF cache. The code finds the snapshot through `HF_HUB_CACHE`.
+- **Labeller judges.** Set `OPENROUTER_BASE_URL` and `OPENROUTER_API_KEY` (names only). The judges are
+  openai/gpt-4.1-mini for T2 and google/gemini-2.5-flash-lite for T10, called only when the runtime and AST labels
+  disagree. Total spend was USD 0.085 against a USD 0.40 cap.
+- **Optional.**
+  - `AII_JSON_SKILL_DIR` points `finalize.sh` at the aii-json validator; without it, that step is skipped.
+  - `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True` is needed for the bf16 weight set (set by `method.py`).
 
-- CRN uniforms: `u_stream(task, w, k) = PCG64(stable_seed(task, w, k)).random(1024)`.
-- PN directions: `PCG64(stable_seed(task, arm, w, k)).standard_normal(4096)`, normalised.
-- The 40 fixed directions are exp22's `rand_9101..9140.npy`.
-- Dither noise: `torch.Generator('cuda')` seeded by `stable_seed(task, 'DITHER', variant, w, k, block, input, step)`.
-- Bootstrap seed: 20261021 (2,000 replicates).
-- The same batch run twice gives identical token ids (U2).
+## 4. Commands, in the order run
 
-Generation was interrupted and resumed once (deviation D9): rows are keyed by `sample_id` and a batch is skipped only
-when all of its rows exist. Generation took 370 batches of 20 rows (7,400 programs, including 400 post-hoc rows) in 1.98 GPU-hours of batch time (results/timing.json; median 18-20 s per batch for the EMU and native cells, 13 s for REAL), plus about 6 minutes of mechanism readouts and about 1 minute per model load. There were zero cap hits. CPU labelling ran concurrently (6 CPUs). OpenRouter spend: about 0.01 USD for the novelty audit plus a few judge calls on labeller disagreements (most hit the copied caches).
+No free randomness is involved:
+- every CRN slot uses `u_stream(task, template, k)` (PCG64 of `stable_seed`);
+- directions are `rand_<seed>` (seeds 9101–9140; 9004 positive control);
+- PN directions use exp19's `stable_seed(task, arm, template, k)`;
+- the analysis placebos use seeds 7 and 11.
+
+| # | command | what | runtime here |
+|---|---|---|---|
+| 1 | `.venv/bin/python src/setup_inputs.py` | copy + sha256 inputs (optional; copies ship) | 30 s |
+| 2 | `.venv/bin/python src/cpu_gates.py` | gates C1–C5, iteration-4 relabel → `results/cpu_gates.json` | 30 s |
+| 3 | `.venv/bin/python src/make_commit0.py` | COMMIT #0 → `predictions/commit0.json`, `commitments.log` | 1 s |
+| 4 | `.venv/bin/python src/label_worker6.py &` | labeller, background, for steps 5–8 (stops on `data/STOP_LABELLER`) | concurrent |
+| 5 | `.venv/bin/python src/gpu_q.py --phase q1` | unit tests U1–U5, engine-a REPRO (byte identity vs exp22), exp19 PN check | 8 min |
+| 6 | `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True .venv/bin/python src/gpu_b.py --deadline-min 180 --cap 448` | engines d and c: twins, α-2 screen and confirmations, POSCTRL, PN, diagnostics (B = 7 from the memory probe) | 2 h 38 min |
+| 7 | `.venv/bin/python src/gpu_q.py --phase q2 --deadline-min 70` | engine b (W8A16, B = 20): twins, screen, PN, diagnostics, confirmations | 70 min |
+| 8 | `.venv/bin/python src/gpu_q3.py --deadline-min 13`, then again with `--deadline-min 7` | finish engine b's confirmations (resumable) | 21 min |
+| 9 | `./finalize.sh` | analysis, nearest-known pass, re-derivation, figures, `method_out.json` + mini/preview, README tables | 1 min |
+| 10 | `python3 -I src/audit_headlines.py` | independent headline audit from raw rows, with placebos | 10 s |
+
+Notes on the table:
+- Steps 6–8 ran unattended through `logs/chain.sh`, `logs/chain2.sh` and `logs/chain3.sh`.
+- `uv run method.py all` chains steps 1–9 with default deadlines.
+- Each GPU step resumes from its done-slot keys, so rerunning one only fills missing slots.
 
 ## 5. What you should get
 
-- `results/verdict.json`: the frozen verdict and the consequence text.
-- `results/primary_E.json`: paired McNemar for W8A8 vs W16A16 on PN alpha 2, T10 and T2; the REAL repeat.
-- `results/attribution.json`: AME / WME / INT, slot bootstrap, GEE.
-- `results/population40.json`, `unit_cross.json`, `t03_control.json`, `dither.json`, `mechanism.json`,
-  `landing.json`, `engine_check.json`.
-- `results/rederive.json`: 0 mismatches is the target; both placebos fail to reject.
-- `results/summary.md`: every headline table, rendered from the JSON files. The README's Results section reproduces it.
-- `method_out.json`, `full_method_out.json`, `mini_method_out.json` and `preview_method_out.json`: per-program
-  predictions per precision plus all analyses in their metadata.
-- `figures/F1_factorial` (the paper's factorial figure), `F2_flip_matrices`, `F3_divergence_travel`,
-  `F4_population40`, `F5_attribution`, `F6_dither`, `F7_landing` and `F8_scale_rerounding`.
+- **Headline verdict.** `results/verdict.json` gives NOT_REPRODUCED_HIGH on T10 and on T2: bf16 escapes nearly as
+  often as iteration 4's FP8 engine, at the same absolute dose. Escape fractions at α 2 out of 40 directions:
 
-Headline numbers (re-derived independently in results/rederive.json, 0 mismatches):
+  | task | a W8A8 | b W8A16 | c W16A8 | d bf16 |
+  |---|---|---|---|---|
+  | T10 | 0.725 | screen 0.70, confirmation incomplete | 0.600 | 0.650 |
+  | T2 | 0.200 | 0.125 | 0.150 | 0.150 |
 
-- Frozen verdict: NO PRECISION EFFECT. PN alpha 2, W8A8 vs W16A16:
-  - T10: 0.58 vs 0.50 (exact McNemar p 0.22);
-  - T2: 0.20 vs 0.18 (p 1).
-- Unit cross under W16A16, ban unit vs ban-free unit:
-  - T10: 0.50 vs 0.10 (p 1.1e-05);
-  - T2: 0.18 vs 0.02 (p 0.021).
-- POST-HOC replication of iteration 5 under W16A16, T10: 0.02
-  (exp27 0.02; per-slot label agreement 1.00).
-- Figures for a paper: F1 (factorial) and F9 (unit decomposition) carry the result; F4 (40 directions) and
-  F3/F8 (mechanism readouts) support it.
-
-Bitwise reproduction is expected only on the same card type (L4, sm_89) with the same driver/cuBLAS. On other
-cards, kernel choice changes rows near decision boundaries. Compare label shares within their Wilson intervals, not
-token ids.
+- **Engine a = iteration 4.** `results/repro_bytes.json` gives 400/400 REPRO rows and 40/40 PN rows byte-identical to
+  iteration 4.
+- **Per-slot T10 boost.** `results/slot_flips.json` gives T10 screen-slot off-default 0.583 (a) vs 0.532 (d), exact
+  McNemar 30:10, p = 0.0022; T2 shows no difference.
+- **PN.** `results/pn.json` gives T10 α 2: a 30/50, b 27/50, c 22/50, d 25/50.
+- **Checks.**
+  - `results/rederive.json` and `results/audit_headlines.json` contain the independent recomputations. They match;
+    the engine-swap placebo is non-significant.
+  - `commitments.log` verifies with `.venv/bin/python src/commit6.py`.
+- **Where the numbers appear.** The README "Results" section and its generated tables (`results/report_tables.md`)
+  carry every number, and `figures/` holds the plots.
+- **Bitwise reproduction.** Exact token streams reproduce only on the same GPU model, driver and pinned wheels.
+  Elsewhere, population-level numbers should agree within sampling error.
