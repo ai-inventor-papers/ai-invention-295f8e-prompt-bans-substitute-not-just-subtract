@@ -1,781 +1,1229 @@
-# Prior work on base landings and 8-bit nudges
+# Who already found the hidden plan?
 
 ## Summary
 
-Dated (2026-10-21/22 UTC) positioning and saturation audit for iteration-6 Claims L, E, S/F and K. Provides paste-ready Table 92e (96 rows, same columns as 92b-92d; 80 new verbatim quotes plus 4 venue-page confirmations: 64 VERIFIED full text, 12 VERIFIED-ABSTRACT, 4 VERIFIED-BLOG; 84/84 re-matched by live fetch_grep; 64/64 supporting passages literal on live pages); inherited 92b-92d quotes cited by row id. Search under a protocol frozen before the first call (sha256 0e2dc2d7...): 6 families / 21 strings on OpenAlex/Crossref, arXiv API, Semantic Scholar, OpenReview ICLR 2027 + 14 grey-literature calls, forward citations of 8 seeds, rounds 2-4; 150 calls, 4446 raw hits, 3798 unique, 577 hand-screened, 61 scored (5 occupies, 52 adjacent, 4 irrelevant); same-agent re-screen kappa 0.791. Stopped after R4 by a logged deviation. FLAG E (activation quantisation changes an activation-level intervention's behavioural effect): PARTLY FIRED. Full-text evidence is weight-only (Steering Under Compression 2609.06473: bitsandbytes INT8/NF4, activations FP16/BF16, 'activation quantization (W8A8, W4A4) ... excluded by design'; PRISM 2610.20808 NF4) or joint W+A (PAHQ 2510.23264: FP32 vs 8-bit RTN of all weights and activations collapses ACDC patching AUC on GPT-2-scale). Two contemporaneous ICLR 2027 submissions report at abstract level that the SAME steering intervention's effect drifts across precision while fidelity/direction similarity are preserved (OpenReview 8iTqrW1sxY desk-rejected; h57duZqLOr), precision factor unstated, PDFs 403. Per-token-scaled FP8 W8A8 is accuracy-lossless (Kurtic et al., ACL 2025), supporting the 'same default' premise. So Claim E's general deployment statement is occupied; claimable: activation-vs-weight 2x2 attribution on identical hooks, per-token-scaled FP8 W8A8 engine, content-free nudges at matched dose with CRN, test-checked algorithm labels, absmax/scale readouts. E-deployment general form also occupied by KV-cache quantisation silently removing refusals (2606.09864) and flips (Dutta 2024). Reviewer baselines: kernel-swap control (Integer Alibi 2608.13756), batch invariance, weights-through-16-bit kernels (2609.04748), BF16 vs FP16 (TMLR 2609.26621). FLAG L (base forecast of where a perturbed tuned model lands, scored vs the tuned model's own tail/likelihood): PARTLY FIRED by Re-Emergent Misalignment 2507.03662 (retrospective likelihoods), Language Models Resist Alignment (ACL 2025) / Alignment Dynamics 2605.18309 (distribution-level rebound), Gravitational Safety Reversion 2606.28525 (prospective, geometric null); not fired: no algorithm-level, committed forecast vs q_lik/q_tail. Rival-supporting: jailbroken landings within the safe model's own top-10 (2401.17256), EM persona subspace in the frozen tuned model (2607.21356). Token-level: Sparse but Critical (ICLR 2026; ~30%/80%/90% at high-divergence positions). S: partly occupied (inherited site comparisons; Gaussian embedding perturbation 2602.02427; forks in the road 2605.17026); FLAG S not fired. F1 crowded (Forking Paths ICLR 2025, Forking Fast, Thought Anchors, Cliff tokens, Locked at the Entrance now arXiv 2608.29188). F2: the top-two-margin flip mechanism is occupied for numerics (2609.26621, MarginGate 2605.30218); present the temperature bound as a diagnostic. K: partly occupied (base merging restores diversity incl. code, ICLR 2027 MYXgOex05m; alignment-tax averaging EMNLP 2024; WiSE-FT); FLAG K not fired (no algorithm-level labels). Permitted wording: dated 'to our knowledge', never 'first'. 16 corrections (e.g., Give Me FP32 = NeurIPS 2025 oral under v2 title; URIAL/EFT ICLR 2024; Top-nσ ACL 2025 retitled; 'base model' in 2608.29118 = pre-EM instruct model). Files: research_report.md, evidence/{protocol_iter6,flags_iter6}.json, quotes/scored_hits/search_log/screening jsonl, reproducibility.md.
+Dated (2026-10-22) positioning audit for the iteration-6 claims P1-P5, N, S and E. It provides paste-ready Table 92e in research_report.md: 8 claim blocks plus CTRL rows. It has 123 new verbatim, versioned quotes from 94 sources, all 123/123 matched against cached source text and 123/123 re-matched by an independent live fetch_grep pass. Statuses: 82 VERIFIED, 22 VERIFIED-ABSTRACT, 4 VERIFIED-BLOG, 15 VERIFIED-README. It cites Tables 92b/92c (art_kjrCpQnPaniY) and 92d (art_ObxQOIlAM9MS) by row id without re-verifying them. Saturation search: protocol frozen and sha256-stamped before the first call; 21 strings over 7 lanes on arXiv API, Semantic Scholar, the OpenReview ICLR 2027 pool, OpenAlex/Crossref and grey literature; 6 round-2 strings; snowballing; a round 3 that met the stop rule; 126 logged calls (incl. 3 supplementary full-text checks). 2,191 raw hits gave 1,820 unique records, 1,401 in the window and 67 papers scored on the O/I/C rubric (75 claim-rows: 3 occupy, 66 adjacent, 6 irrelevant). FLAGS: A (DAS localization of algorithm choice in code, validated by generation) NOT FIRED, narrowly. CDAS (ICLR 2026) does DAS steering validated by generation, but on refusal and a CoT backdoor. Algorithm choice in code is moved only by prompt cues (92c Invisible Lottery). Code attributes that are not the algorithm (language, library, coding habits) are moved by patching or difference-in-means vectors. The nearest same-model, same-site neighbour is the ICLR 2027 submission 'Before Reasoning Begins' (Qwen3-8B final-prompt SAE targets, code benchmarks, random nulls). B (activation quantization changes perturbation effects) PARTLY FIRED. Steering under quantization has been measured only with weight-only INT8/NF4 (2609.06473: activations stay FP16/BF16). Two ICLR 2027 submissions show effect changes across precision with aligned directions, but their abstracts do not say whether activations are quantized (PDFs 403). FP8 W8A8 appears only in a non-determinism study. No source found measures the effect size of random perturbations under activation rounding. C (editing verbaliser explanations to steer) FIRED. The NLA paper (Transformer Circuits, 7 May 2026; cite as Fraser-Taliente, Kantamneni, Ong et al.) edits a rhyme-plan explanation, reconstructs it with the AR and steers at the newline only (~50% success). LatentQA, SelfIE and Dreaming Vectors are kin. N is therefore a replication in a new setting. Cautions: about 2% claim-dependence of the AR (2607.20379), no newline plan in small open models (2609.18440), and published readout controls (ICLR 2027 'Auditing the Auditor'). D (resampling a fitted causal plan variable for diversity) PARTLY FIRED. Activation noise and latent-code sampling are occupied; the closest fitted-direction work is the ICLR 2027 'Random Choice in LMs'. Lane verdicts: P1 PARTLY OCCUPIED (method); P2, P3 and P4 ADJACENT-ONLY; P5 PARTLY OCCUPIED; N OCCUPIED (method); S PARTLY OCCUPIED (SAE-Steering, ACL 2026, beats prompt and activation baselines on reasoning strategies); E ADJACENT-ONLY in the published record but PARTLY OCCUPIED by contemporaneous submissions. Corrections: there is no official NLA for Qwen3-8B, but community NLAs exist at L24 (nanoNLA, EasyNLA); circuit-tracer has Qwen-3 PLTs including 8B (Hanna et al.), so justify Gemma for S; Gemma Scope 2 dates from 22 Dec 2025, with IT SAEs finetuned from PT; Sutter's 'any network to any algorithm' phrase is not in v2; Engels' v3 title. The report also gives permitted and forbidden wording per claim and reviewer baselines. Evidence files are in evidence/.
 
 ## Research Findings
 
-# Prior work on base landings and 8-bit nudges: positioning and saturation audit for iteration-6 Claims L, E, S/F, K (Table 92e)
+# Who already found the hidden plan? Positioning audit for iteration-6 claims (Table 92e)
 
-## 1. Scope, date and method
+*Retrieval date: 2026-10-22. This audit covers iteration-6 claims P1-P5, N, S and E. It extends Tables 92b/92c (art_kjrCpQnPaniY) and 92d (art_ObxQOIlAM9MS) and cites their rows by id without re-verifying them. Every new quote below is copied from the source's own versioned text: arXiv HTML (the PDF where no HTML exists), a transformer-circuits page, a PMLR or ICLR page, an OpenReview API record, a Hugging Face card or a GitHub README. Each quote was checked against a cached copy of that text, and then re-matched live by an independent fetch_grep pass. Rows state design facts only and quote no run-internal result.*
 
-Dated audit (logged search calls 2026-10-21T23:35:20Z to 2026-10-21T23:56:15Z; quote verification and live re-match 2026-10-21/22 UTC) of the iteration-6 claims L1a/L1b/L2/L3 (landing identity), E/E-attribution/E-deployment (FP8 W8A8 engine control), S-a..S-d and F1/F2 (site of content-free nudges, forks, margins) and K (diversity knobs). It extends Tables 92b/92c (art_kjrCpQnPaniY) and 92d (art_ObxQOIlAM9MS); their verified quotes are cited by row id and not re-verified. Claim wording comes from the artifact plan (the iteration-6 hypothesis text was not passed to this executor), and the 'what this run adds' column uses design facts only. The protocol (claims, 6 query families / 21 frozen strings, engines E1 OpenAlex/Crossref, E3 arXiv API, E4 Semantic Scholar, E5 OpenReview ICLR 2027, E6 grey literature, rubric, flags, stop rule) was frozen before the first search call (evidence/protocol_iter6.json, sha256 0e2dc2d7...a9c52, written 2026-10-21T23:34:28Z) [107, 108, 109].
+## 1. Summary
 
-Totals: 150 logged search calls (E1 27, E3 27, E4 27, E5 28, E6 14, OpenAlex 4, S2 23; S2 = Semantic Scholar citation calls), 4446 raw hits, 3798 unique records after de-duplication against both earlier audits (618 seen before and re-screened), 2925 in the 2026 window, 2379 passing the lane keyword pre-screen, 577 title/abstract-screened by hand, 61 scored on the O/I/C rubric (5 occupies, 52 adjacent, 4 irrelevant). 84 new quote records: 80 Table 92e quotes (64 VERIFIED on versioned full text, 12 VERIFIED-ABSTRACT, 4 VERIFIED-BLOG/documentation) plus 4 venue-page confirmations; 0 unverified. A live second pass with the skill's fetch_grep re-matched 84/84. A same-agent re-screen of 54 hits gave observed agreement 0.981 and Cohen's kappa 0.791 (consistency, not independence: one screener). No OpenRouter calls were made; the built-in WebSearch tool used for E6 returns model-written result summaries, which served only to discover URLs and never as evidence.
+- **The four flags.** A: NOT FIRED (narrowly). B: PARTLY FIRED. C: FIRED. D: PARTLY FIRED.
+- **N is a replication, not a new method.** The NLA paper (Transformer Circuits, 7 May 2026) already does what N proposes [1]. It edits the explanation of a *plan* (the rhyme word on the newline), turns the edit into an activation with the AR, and steers at the newline only. This works "roughly 50% of the time".
+  - Verbaliser kin also steer: LatentQA [2], SelfIE [3, 4], and Dreaming Vectors, which takes steering vectors from Activation Oracles [5].
+  - N's causal arm is therefore a **replication in a new setting**: algorithm choice in code, Qwen2.5-7B-Instruct at L20, and new controls.
+  - Two 2026 results argue against assuming the edit will work. On a released Qwen-2.5-7B verbalizer, only "as few as" about 2% of specific claims are ones the reconstruction depends on [6]. A stress test on open models found no newline-resident rhyme plan [7].
+- **E is open in the published record, but crowded by contemporaneous submissions.**
+  - In the arXiv record, steering effect sizes under quantization have been compared with full precision only for weight-only INT8/NF4: "Activations remain in FP16/BF16 throughout the forward pass" [8].
+  - Two ICLR 2027 submissions show that the same steering direction can have a different effect at another precision, even when the directions stay aligned [9, 10]. Their abstracts do not say whether activations are quantized, and their PDFs returned HTTP 403.
+  - Among the sources found, FP8 weight-and-activation quantization appears only in a non-determinism study with no perturbations [11].
+  - **No source found (search dated 2026-10-22) measures how activation rounding (FP8 W8A8, dynamic per-token scales [12]) changes the effect size of random activation perturbations.**
+- **P1: the method is published, the object is open.**
+  - DAS is the standard method for localizing a causal variable [13, 14].
+  - DAS has already been used for steering validated by generation, but on refusal and a CoT backdoor, not on a plan [15].
+  - In the sources found, algorithm choice in code has been moved only by prompt cues (92c source 30 [16]). Code attributes that are not the algorithm (language, library, coding habits) have been moved by patching or difference-in-means vectors [17, 18, 19].
+  - The nearest same-model, same-site neighbour is an ICLR 2027 submission: SAE-feature targets at Qwen3-8B's final prompt position, with code benchmarks and random-null controls [20].
+- **S: the method is occupied on a non-code strategy.** SAE-feature steering of *reasoning strategies* beats prompt-based and activation-based baselines, validated by generation [21] (ACL 2026).
+  - Two priors pull in opposite directions. AxBench (prompting beats steering; SAEs not competitive [22]) is countered by its rebuttal [23]. On an open-model rhyme-planning task, only CLT-based steering succeeded [24].
+  - Qwen-3 transcoders that include 8B exist in circuit-tracer [25, 26], and a planning study already uses them [27]. The paper must therefore say why S runs on Gemma Scope 2.
+- **P2, P3 and P4 are ADJACENT-ONLY.**
+- **P5 is PARTLY OCCUPIED.** Activation noise and latent-code sampling for diversity are occupied lanes [28, 29, 30, 31, 32, 33]. Resampling a *fitted, causally localized* plan variable is not published. The closest work, a fitted random-choice direction, is an ICLR 2027 submission [34].
 
-## 2. Answer box
+## 2. Scope, date and method (PRISMA-S items)
 
-**FLAG E (activation quantisation changes what an activation-level intervention does): PARTLY FIRED.** No verified full text isolates ACTIVATION quantisation at matched weights and reports a changed behavioural effect of steering, noise, patching or ablation, so the flag does not fire. The nearest full text is weight-only: Steering Under Compression [1] keeps activations in FP16/BF16 and states: "We study only bitsandbytes weight-only quantization (INT8, NF4); activation quantization (W8A8, W4A4) and outlier-aware weight algorithms (GPTQ, AWQ, SmoothQuant, QuaRot) are excluded by design and may behave differently." PAHQ [4] quantises weights and activations together (FP32 vs 8-bit RTN) and finds that activation-patching circuit discovery fails: "when precision is reduced from 32 bits to 8 bits, direct quantization (also called Round-to-Nearest Quantization, RTN-Q) significantly increases the minimum quantization step size, causing activation values below this threshold to be truncated to zero and ultimately rendering the automated circuit discovery method ineffective." Two contemporaneous ICLR 2027 submissions (abstract only; PDFs HTTP 403) report the general effect without saying whether activations are quantised: "Preserving standard model quality or direction-level representation similarity does not guarantee that the intervention effect is preserved." [2]; "We show that ordinary output fidelity alone does not guarantee preservation of responses to the same intervention." [3].
+- **Protocol.** Frozen and sha256-stamped before the first search call: sha256 `88e3bab2e451d477009ac5c62d284b00e2614a50fc583f86380cc71b26f3c4bc`, stamped 2026-10-22T06:19:27Z (evidence/protocol_iter6.json and .sha256). Amendments are logged with timestamps in evidence/protocol_amendments_iter6.jsonl:
+  - an interpretation note on flag A;
+  - reuse of prior audit tools;
+  - two stop-rule entries.
+- **Databases and engines.**
+  - E1: OpenAlex/Crossref via the aii-web-tools scholarly search [35].
+  - E3: arXiv API, sorted by submission date, newest first [36].
+  - E4: Semantic Scholar search with year=2026, plus citations and references [37].
+  - E5: the OpenReview ICLR 2027 pool through api2 notes/search [38].
+  - E6: grey literature through the built-in web search, restricted to transformer-circuits.pub, lesswrong.com, alignmentforum.org, huggingface.co, github.com, neuronpedia.org and substack.com.
+- **Strings and rounds.**
+  - Round 1: 21 strings over 7 lanes (L1-L7). Every string ran on E3, E4 and E5; L1, L4 and L6 also ran on E1; L4, L5 and L6 also ran on E6.
+  - Round 2: 6 strings, each motivated by a named round-1 hit (evidence/round2_queries_iter6.json), run on E1, E3, E4 and E5.
+  - Snowballing: forward citations on Semantic Scholar for MIB (61 citers) and Emergent Response Planning (20 citers). Steering Under Compression had 0 citers, so the backward references of 2609.06473 and 2606.03002 were taken instead.
+  - The NLA paper is not indexed by Semantic Scholar title search, so its forward search used E6.
+  - Round 3 ran because round 2 produced new hits scoring at least 1.5: forward and backward references of those hits. It found no new hit scoring at least 1.5, so the search stopped (stop rule met).
+  - In total: 126 logged calls (E1 15, E3 27, E4 43, E5 28, E6 10, SUPP 3), each with UTC time, engine, string, hit count and top-20 ids (evidence/search_log_iter6.jsonl).
+- **Dates and limits.** Window: 2026-01-01 to 2026-10-22; anchors may be older. Contemporaneity rule inherited from 92d:
+  - an arXiv v1 after 2026-06-22 is tagged contemporaneous_4mo;
+  - every ICLR 2027 submission is tagged contemporaneous;
+  - arXiv-only papers are exempt from the ICLR rule.
+- **De-duplication.** 2191 raw hits reduced to 1820 unique records, keyed by arXiv id, then OpenReview forum id, then normalized title.
+- **Screening.**
+  - 1401 records were in the window. A documented keyword pre-screen (lane groups G1-G7, in tools/screen_iter6.py) passed 605.
+  - Manual title and abstract screening, with full text for the shortlist, led to O/I/C scores for 75 claim-rows covering 67 papers (some anchors predate the window).
+  - Results: 3 occupying, 66 adjacent, 6 irrelevant. In addition, 561 records were judged irrelevant at title/abstract and 790 were excluded at the keyword pre-screen.
+  - Every in-window record has a one-line verdict in evidence/saturation_hits_iter6.jsonl.
+- **Rubric (frozen).** Each axis scores 0, 0.5 or 1; a total of at least 2.5 occupies, 1-2 is adjacent, and below 1 is irrelevant.
+  - O (object): 1 = which algorithm a code model writes; 0.5 = a categorical plan, strategy or attribute in another domain.
+  - I (instrument): 1 = the claim's own intervention class; 0.5 = a neighbouring intervention.
+  - C (criterion): 1 = validated by generation scored by tests or labels; 0.5 = a logit, probe or next-token readout.
+- **Quote verification.**
+  - 123 new quotes from 94 sources: 123/123 matched the cached source text under the inherited normalization rule (whitespace, ligatures, curly quotes and dashes, html2text emphasis; [...] segments must occur in order).
+  - Statuses: 82 VERIFIED, 22 VERIFIED-ABSTRACT, 4 VERIFIED-BLOG, 15 VERIFIED-README.
+  - QA (Step 4): an independent live fetch_grep pass re-matched 123/123 quotes (evidence/qa_second_pass_iter6.jsonl).
+  - Where arXiv HTML renders a MathML number twice, the quote is split with [...] (2607.20379v2, 2602.17691v1, 2602.05234v2).
+  - No number in this report comes from a text that could not be retrieved.
+- **Inherited material.** 92b/92c/92d rows and quotes are cited by id (evidence/inherited_index.json: 207 sources). For the 8 flag-critical inherited references, the arXiv API was rechecked: none has a newer version than the one inherited (2601.22010, 2605.11936, 2608.21595, 2606.10302, 2603.23629, 2606.04057, 2605.05115, 2603.18353).
 
-**FLAG L (base-model forecast of where a perturbed tuned model lands, scored against the tuned model's own tail or likelihood): PARTLY FIRED.** No paper forecasts, from the base model, which enumerated alternative a perturbed tuned model lands on and scores that forecast against the tuned model's own sampled tail or likelihood ranking, so the flag does not fire. Fine-tuning-perturbation work reports reversion toward base behaviour at distribution or likelihood level. The closest candidate is retrospective: "The aligned model (instruct) sharply suppresses the likelihood of the harmful generation. In contrast, both the base and misaligned models assign significantly higher probabilities to the same tokens. They do so with strikingly similar distributions." [31]. The others are distribution-level rebound [32, 33] and a prospective direction toward base-descended helpful-only states scored against a matched geometric null [34]. Token-level candidate preservation is adjacent [30, 60, 61]. The rival the run must beat has support: "We observe that the top-ranked tokens in jailbroken LLMs are largely found within the top ten tokens ranked by safe LLMs." [35].
+## 3. Verdict box
 
-### 2.1 Verdict per claim (lane verdict; deciding references)
+| Claim | Lane verdict | Deciding reference(s) |
+|---|---|---|
+| P1 low-rank causal PLAN variable (interchange/DAS) decides which algorithm Qwen3-8B writes; validated by generation | PARTLY OCCUPIED: the method is occupied (DAS; DAS steering validated by generation on a non-plan attribute); the object is open; flag A not fired | DAS/Boundless DAS [13, 39]; MIB [14]; CDAS [15]; Invisible Lottery [16]; Before Reasoning Begins [20] |
+| P2 plan subspace mediates which random pushes switch the algorithm | ADJACENT-ONLY (unchanged from 92c C2a; prediction of random-push effects is still open) | Before the First Token [40]; AJR [41]; DecodeShare [42]; output-sensitive component [43]; coordinate outside a subspace [44] |
+| P3 plan is discrete under interpolation | ADJACENT-ONLY | Park et al. [45]; Engels et al. [46]; Manifold Steering [47]; prolepsis [24]; random-choice switch [34] |
+| P4 temperature leaves the plan untouched, state noise moves it, at matched KL | ADJACENT-ONLY | departure-matched decoding [48]; Peeperkorn [49]; Forking Paths [50]; future-behaviour forecasting [51] |
+| P5 resampling the plan as a diversity knob | PARTLY OCCUPIED (activation noise and latent sampling for diversity are occupied; resampling a fitted causal plan variable is open); flag D partly fired | STARS / Noise Steering / REI [28, 29, 30]; LP-BD / PPLR / SVP [31, 32, 33]; Random Choice [34] |
+| N read and edit the plan in words with NLAs | OCCUPIED (method): replication in a new setting; flag C fired | NLA [1]; LatentQA [2]; SelfIE [3]; cautions [6, 7, 52] |
+| S the plan in Gemma Scope 2 SAE and transcoder features | PARTLY OCCUPIED (SAE-feature steering of reasoning strategies against prompt and activation baselines, validated by generation); algorithm choice in code is open | SAE-Steering [21]; AxBench and its rebuttal [22, 23]; Do SAEs Identify Reasoning Features [53]; prolepsis [24] |
+| E FP8 W8A8 activation rounding inflates the apparent effect of activation perturbations | ADJACENT-ONLY in the published and arXiv record; the general claim is PARTLY OCCUPIED by contemporaneous ICLR 2027 submissions (abstract-level); flag B partly fired | weight-only steering [8]; Stable Directions [9]; Low-bit steering [10]; FP8 W8A8 non-determinism [11] |
 
-| Claim | Verdict | Deciding references | Note |
-|---|---|---|---|
-| L1a landing = base runner-up, forecast in advance | ADJACENT at algorithm level; concept partly occupied ('fine-tune-perturbed tuned models revert toward base behaviour') | [31, 32, 33, 34, 30, 60, 61, 38] | all fine-tuning perturbations, distribution/likelihood/token level; sealed base forecasts exist only for circuit change [38] |
-| L1b scored against q_lik and q_tail | OPEN to our knowledge; rival-supporting evidence exists | [35, 36, 37, 63] | the tuned model's own ranking/subspace already contains landings in these settings |
-| L2 support | ADJACENT / supporting | [40, 30, 91, 90] | theory and token-level evidence that post-training stays within base support |
-| L3 power shape | ADJACENT / stylised | [41, 62] | power sampling of the base matches GRPO in-domain; no fit against rivals on a perturbed tuned model |
-| E engine control (2x2 factorial) | PARTLY OCCUPIED (general precision-dependence of steering effects: contemporaneous, abstract-level) | [2, 3, 1, 4, 8] | activation-vs-weight attribution not found in any verified text |
-| E-attribution (absmax/scale readout) | ADJACENT | [10, 16, 15, 11, 21, 22, 23] | scale-factor mechanisms are documented for KV cache and perplexity, not for nudges |
-| E-deployment ('same default, different nudgeability') | GENERAL form OCCUPIED (activation-side KV-cache quantisation silently changes refusals at ~flat perplexity; flips at matched accuracy); nudgeability form open | [10, 18, 3, 99, 100, 19] | premise supported: per-token-scaled FP8 W8A8 is accuracy-lossless [19]; frame the finding as an instance of a known deployment hazard |
-| S-a..S-d site at matched dose | PARTLY OCCUPIED (inherited site comparisons for narratives/test coverage); FLAG S not fired | [69, 70, 71, 42, 43, 72, 73] | no matched-dose comparison of prefill bands vs read position vs condition vs generated tokens on a categorical choice |
-| F1 fork / entrance | CROWDED-ADJACENT | [44, 46, 47, 48, 49, 50, 68] | fork finding is published; the run's contribution is the margin readout at the algorithm opening |
-| F2 margin bounds temperature | GENERAL margin mechanism OCCUPIED (precision flips); temperature form is textbook (logit/T) | [17, 54, 16, 51, 53, 75] | present as a diagnostic/application, not a finding |
-| K knobs priced on algorithm labels | PARTLY OCCUPIED (base merging restores diversity on code benchmarks; weight averaging; base-aligned collaboration); FLAG K not fired | [57, 56, 55, 79, 83, 85, 84, 82, 43] | no test-checked algorithm-level labels in any neighbour |
-| G scope | unchanged (no new search) | [92, 93] | cross-reference to 92c C3ca/C3cb |
+**Optional lines (no new search):**
+- **ST and L.** Site comparisons for diversity injection remain as in 92c C1-site: PARTLY OCCUPIED [54, 29, 28].
+- **G.** The base-model variety lines remain as in 92d (A2/G rows: transplant and goal published; inference-time movability open) [55, 56].
 
-### 2.2 Permitted wording (dated; 'first' is never licensed by a search)
+## 4. Flags (frozen definitions in evidence/protocol_iter6.json; verdicts in evidence/flags_iter6.json)
 
-- **L1a/L1b.** "Fine-tuning-perturbation studies report that tuned models revert toward base-model behaviour, at the level of output distributions, sequence likelihoods or activation-space directions [31, 32, 33, 34]. At the token level, post-training mostly reorders candidates the base model already ranks highly [60, 30, 61]. To our knowledge (dated search 2026-10-21/22; evidence/), no prior work commits in advance to an algorithm-level forecast, from the base model's composition, of which alternative a content-free perturbation of a tuned model lands on, and scores it against the tuned model's own likelihood ranking and sampled tail." The run must report the rival result even if it is unfavourable. The tuned model's own top-k contains jailbroken landings [35], and its own subspace forecasts fine-tuning landings [36].
-- **E.** "Contemporaneous work reports that the behavioural effect of a fixed steering intervention need not survive quantisation even when output fidelity and direction similarity are preserved [2, 3]. Weight-only quantisation preserves steering directions [1], and joint 8-bit weight-activation quantisation disables patching-based circuit discovery [4]. To our knowledge (dated search), no verified full text separates activation from weight precision for activation-level interventions. Our 2x2 factorial does so for content-free nudges on a production FP8 W8A8 engine." If [2] or [3] turn out to quantise activations, write 'replicates ... in a new setting (content-free nudges, test-checked code-algorithm choice)'.
-- **E-deployment.** "FP8 W8A8 with dynamic per-token activation scales is reported to be accuracy-lossless [19]. Yet, like activation-side KV-cache quantisation, which removes refusals at near-unchanged perplexity [10], and compression flips at matched accuracy [18], [result] shows that nudgeability is a deployment property not captured by default-output fidelity." Present it as an instance of a known hazard class, not a new class.
-- **S.** "Site comparisons for noise-based diversity exist for narratives and test coverage [69, 70] and at text level [71]; we compare activation sites at matched per-position dose on a categorical, test-checked algorithm choice."
-- **F1/F2.** "Forking tokens and entrance decisions are established [44, 46, 48, 49]. A top-two logit margin is known to govern which decisions flip under small numerical perturbations [17, 54]. We use the twin model's teacher-forced margin between algorithm openings to bound the effect of temperature on the algorithm choice." This describes a diagnostic, not a discovery.
-- **K.** "Merging a fine-tuned model with its base restores output diversity [57, 85, 83], and pre/post-RLHF weight averaging trades alignment against forgetting [56]. We price these knobs on test-checked algorithm-level labels against base intent, enumerate-and-pick and plan noise."
+### Flag A (P1): NOT FIRED, narrowly
 
-### 2.3 Reviewer baselines this search implies
+No source localizes which algorithm or solution strategy a code LLM will use as a low-rank causal variable by interchange or DAS, and then checks the claim by scoring the generated programs. Each half exists on its own:
 
-- **Precision arms.** Use a weight-only FP8 W8A16 kernel vs an FP8 W8A8 kernel at identical weights, and add an activation-only W16A8 fake-quant arm. Report the engine's actual scheme: the released Qwen3-8B-FP8 checkpoint uses fine-grained block-128 FP8 [26], while vLLM FP8_DYNAMIC uses per-channel weight scales and dynamic per-token activation scales [27]. Unscaled casting is a different regime [11, 4].
-- **Numerics controls.** Add a kernel-swap arm at a fixed quantisation config [15], batch-invariant or fixed-batch execution [14, 12], weights-through-16-bit-kernels [16], and BF16 vs FP16 at the same weights [17].
-- **Fidelity metrics from the closest neighbours.** Report steered-output KL vs unsteered-output KL [3] and a signed intervention-fidelity gap with a first-order local-sensitivity predictor [2], so the run's effect can be compared with theirs.
-- **Landing rivals.** Compare q_lik (the teacher-forced ranking of the tuned model), q_tail (its sampled tail), the rebound/pre-training baseline [32], and token-level base top-k overlap [30].
-- **Knobs.** Sweep base/instruct weight interpolation over lambda [55, 56]. Add base merging [57], BACo [79], proxy tuning/EFT [88, 87] and prefix perturbation at the fork [43], all against a temperature baseline.
+- **DAS-based steering checked by generation, on a non-plan attribute.** CDAS: "While we adopt the core mechanism of DAS, distributed interchange intervention (DII) [...] we introduce a novel distribution matching objective tailored for the steering task by aligning intervened output distributions with counterfactual distributions" [15]. Its targets are refusal and a CoT backdoor.
+- **Algorithm choice in code, moved only by prompt cues** [16].
+- **Code attributes that are not the algorithm.**
+  - Causal Syntax Circuits: "Code models write Python when the prompt does not say which language to use" [17]. It uses patching, circuits and steering, read out at the next token.
+  - Concept Vectors: difference-in-means directions for coding habits [18].
+  - Rahman et al.: language and library [19].
+- **Algorithm identity found by DAS, but in toy networks**, validated against transfer learning rather than generation [57].
 
-## 3. Table 92e (paste-ready; same columns as 92d)
+None of these does DAS/interchange plus generation on a strategy or a code attribute, so the PARTLY clause is not met. The interpretation note is logged: "only one half" means both halves apply to the same object.
 
-| Row | Claim (one line) | Neighbour (authors, arXiv v1 year, venue status) | Verbatim quote | URL; section; version | Retrieved | Relation | What this run adds, or 'replication' |
-|---|---|---|---|---|---|---|---|
-| 92e-Ea | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Bhandari & Wade, 2026, arXiv preprint [1] | "We study only bitsandbytes weight-only quantization (INT8, NF4); activation quantization (W8A8, W4A4) and outlier-aware weight algorithms (GPTQ, AWQ, SmoothQuant, QuaRot) are excluded by design and may behave differently." | https://arxiv.org/html/2609.06473v1; Sec. 6 (Limitations); v1 | 2026-10-21 | adjacent; FLAG E partly (weight-only) [VERIFIED] | the activation-side arms (W16A8, W8A8) this neighbour excludes by design; 2x2 W8A8/W8A16/W16A8/W16A16 factorial with identical hook code, per-position doses and CRN slots; content-free random nudges; categorical test-checked algorithm labels; per-token absmax/FP8-scale readouts |
-| 92e-Eb | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Bhandari & Wade, 2026, arXiv preprint [1] | "Activations remain in FP16/BF16 throughout the forward pass. This isolates the primary comparison to weight quantization." | https://arxiv.org/html/2609.06473v1; Sec. 3.2 (Models and Quantization Schemes); v1 | 2026-10-21 | adjacent; FLAG E partly (weight-only) [VERIFIED] | an activation-precision factor at matched weights (W16A8 vs W16A16) on the same hooks |
-| 92e-Ec | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Bhandari & Wade, 2026, arXiv preprint [1] | "Despite this, steering vectors remain highly collinear with their FP16 siblings (cosine similarity 0.989-0.998 for INT8, 0.945-0.990 for NF4), confirming that the behavioral direction survives quantization even when the cost structure does not." | https://arxiv.org/html/2609.06473v1; Abstract; v1 | 2026-10-21 | adjacent (internal outcome: vector cosine) [VERIFIED] | a behavioural, categorical outcome at matched nudge (not vector cosine); direction is fixed (random nudges are not re-extracted per precision) |
-| 92e-Ed | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Bhandari & Wade, 2026, arXiv preprint [1] | "Steering vectors extracted independently per scheme (same contrast pairs, same resample) are nearly collinear with their FP16 siblings" | https://arxiv.org/html/2609.06473v1; Sec. 4.5; v1 | 2026-10-21 | adjacent (vectors recomputed per precision: C = 0.5) [VERIFIED] | the same nudge vector and CRN seed across precisions (no re-extraction) |
-| 92e-Ee | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Anonymous, 2026, ICLR 2027 desk-rejected submission (abstract) [2] | "Preserving standard model quality or direction-level representation similarity does not guarantee that the intervention effect is preserved." | https://api2.openreview.net/notes/search?term=Stable%20Directions%2C%20Different%20Effects%3A%20Intervention%2...; Abstract (OpenReview API record; keywords 'model quantization', 'cross-precision transfer'); - | 2026-10-21 | occupies the general claim (precision factor unstated); FLAG E unresolved-partly [VERIFIED-ABSTRACT] | if its full text varies weights only: the activation factor; if it includes activations: replication with content-free nudges on code-algorithm choice |
-| 92e-Ef | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Anonymous, 2026, ICLR 2027 desk-rejected submission (abstract) [2] | "Intervention effects can change even when directions remain strongly aligned" | https://api2.openreview.net/notes/search?term=Stable%20Directions%2C%20Different%20Effects%3A%20Intervention%2...; Abstract (OpenReview API record); - | 2026-10-21 | occupies the general claim; FLAG E unresolved-partly [VERIFIED-ABSTRACT] | a per-position dose and categorical-choice readout, and an attribution factorial |
-| 92e-Eg | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Anonymous, 2026, ICLR 2027 submission (abstract) [3] | "We study steering compatibility with the intervention layer, direction, and strength held fixed across full-precision and quantized models." | https://api2.openreview.net/notes/search?term=Activation%20Steering%20under%20Low-Bit%20Quantization%3A%20A%20...; Abstract (OpenReview API record; keywords 'Quantization', 'Activation Steering'); - | 2026-10-21 | occupies the general claim (scheme unstated; calibration/reconstruction language suggests weight PTQ); FLAG E unresolved-partly [VERIFIED-ABSTRACT] | per-token-scaled FP8 W8A8 production kernels vs weight-only arms; random (content-free) nudges, not a fixed steering vector |
-| 92e-Eh | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Anonymous, 2026, ICLR 2027 submission (abstract) [3] | "We show that ordinary output fidelity alone does not guarantee preservation of responses to the same intervention." | https://api2.openreview.net/notes/search?term=Activation%20Steering%20under%20Low-Bit%20Quantization%3A%20A%20...; Abstract (OpenReview API record); - | 2026-10-21 | occupies the general claim; FLAG E unresolved-partly [VERIFIED-ABSTRACT] | the same, plus test-checked algorithm labels instead of response/KL fidelity |
-| 92e-Ei | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Wang et al., 2025, arXiv preprint [4] | "We directly applied quantization from 32 bits to 8 bits to all weights and activations of the model Radford et al. (2019) in the ACDC Conmy et al. (2023) method, which is called Round-to-Nearest Quantization (RTN-Q), on the Indirect Object Identification (IOI) task Wang et al. (2022) and tested its performance." | https://arxiv.org/html/2510.23264v1; Sec. 2 (Direct Quantization Does Not Work on ACDC); v1 | 2026-10-21 | adjacent; FLAG E partly (weights and activations quantised jointly; circuit-recovery outcome) [VERIFIED] | weights and activations varied SEPARATELY; behavioural algorithm choice of an 8B instruct model instead of circuit-recovery AUC on GPT-2 |
-| 92e-Ej | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Wang et al., 2025, arXiv preprint [4] | "when precision is reduced from 32 bits to 8 bits, direct quantization (also called Round-to-Nearest Quantization, RTN-Q) significantly increases the minimum quantization step size, causing activation values below this threshold to be truncated to zero and ultimately rendering the automated circuit discovery method ineffective." | https://arxiv.org/html/2510.23264v1; Sec. 1 (Introduction); v1 | 2026-10-21 | adjacent; FLAG E partly [VERIFIED] | per-token-scaled FP8 (no fixed 2^-6 floor), so the underflow mechanism is tested rather than assumed; absmax/scale readouts |
-| 92e-Ek | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Wang et al., 2025, arXiv preprint [4] | "This means that if the difference between inference outputs before and after replacing activation values of selected edges is less than the minimum quantization step size, this difference will be truncated to zero." | https://arxiv.org/html/2510.23264v1; Sec. 2 (Numerical Underflow); v1 | 2026-10-21 | adjacent; FLAG E partly (mechanism is unscaled-format underflow) [VERIFIED] | measured per-position displacement after quantisation of the nudged state |
-| 92e-El | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Baligar, 2026, Computation (journal) [5] | "In matched float32/float64 experiments, at a descriptive 3 [...] floor, 13.0% and 51.2% of full-displacement interactions fell below the threshold" | https://api.semanticscholar.org/graph/v1/paper/DOI:10.3390/computation14090212?fields=title,abstract,venue,pub...; Abstract (Semantic Scholar API record; publisher page https://www.mdpi.com/2079-3197/14/9/212 returned HTTP 403); - | 2026-10-21 | adjacent; FLAG E partly (numerics precision floor; internal outcome; not activation quantisation) [VERIFIED-ABSTRACT] | 8-bit activation precision (not fp32/fp64) and a behavioural outcome |
-| 92e-Em | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Anonymous, 2026, ICLR 2027 submission (abstract) [6] | "On disagreeing inputs, we add these projections at their native magnitude to the quantized residual state, testing agreement with the original full-precision prediction regardless of correctness." | https://api2.openreview.net/notes/search?term=Quantization-Induced%20Decision%20Changes%20Have%20Regime-Depend...; Abstract (OpenReview API record); - | 2026-10-21 | adjacent (method-overlap: activation additions on quantised residual states as a repair) [VERIFIED-ABSTRACT] | nudges as the object of study (does precision change what a nudge does), not as a repair of flips |
-| 92e-En | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Anonymous, 2026, ICLR 2027 submission (abstract) [7] | "Targeted interventions link these changes to predictions: replacing selected quantized activations with their high-precision values can reverse naturally corrected answers" | https://api2.openreview.net/notes/search?term=When%20Quantization%20Helps%3A%20Corrective%20Computation%20in%2...; Abstract (OpenReview API record); - | 2026-10-21 | adjacent (weight-only GPTQ/AWQ/NF4; patching used to analyse quantisation) [VERIFIED-ABSTRACT] | activation-side precision; content-free nudges |
-| 92e-Eo | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Bonás et al., 2026, arXiv preprint [8] | "We explore 16-bit (BF16) and 4-bit (NF4) versions of smaller models to expose harmful tool-call compliance and estimate intervention directions." | https://arxiv.org/html/2610.20808v1; Sec. 1 (Introduction); v1 | 2026-10-21 | adjacent; FLAG E partly (weight-only NF4; directions transferred across precision) [VERIFIED] | the activation factor; the same intervention applied at both precisions |
-| 92e-Ep | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Bonás et al., 2026, arXiv preprint [8] | "Directions using NF4 labels act directly on the original BF16 model’s activations." | https://arxiv.org/html/2610.20808v1; Sec. 2.2 (Compression as behavioral supervision); v1 | 2026-10-21 | adjacent [VERIFIED] | same, with matched weights |
-| 92e-Eq | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Mishra et al., 2026, ICLR 2026 workshops [9] | "Noticeably, our theoretical claim does not cover quantization effects. However, we experiment with an INT4 quantized model and find that our empirical claims hold comfortably in this setting (§D)." | https://arxiv.org/html/2604.09839v2; Sec. 7 (Conclusion and Limitations; App. D); v2 | 2026-10-21 | context (new finding vs inherited rows 92b-b7c / 92c-C2-geod) [VERIFIED] | a behavioural test under activation quantisation |
-| 92e-Er | E-deployment: activation quantisation changes nudgeability while default output and accuracy are unchanged | Xu et al., 2026, arXiv preprint [10] | "we find that low-bit quantization can silently destroy safety alignment (Mistral-7B loses 15.2% of its refusals at only 1.03× perplexity" | https://arxiv.org/pdf/2606.09864v2; Abstract (PDF p. 1); v2 | 2026-10-21 | adjacent (activation-side KV-cache quantisation changes behaviour; no activation-level intervention) [VERIFIED] | nudgeability (response to a fixed content-free nudge) rather than default behaviour; W8A8 matmul activations rather than KV cache |
-| 92e-Es | E-attribution: activation vs weight precision; per-token absmax / FP8-scale readouts | Xu et al., 2026, arXiv preprint [10] | "where safety lives in non-outlier channels collaterally damaged by outlier-driven scale factors" | https://arxiv.org/pdf/2606.09864v2; Abstract (PDF p. 1); v2 | 2026-10-21 | adjacent (scale-factor mechanism analogous to per-token absmax readouts) [VERIFIED] | per-token absmax and FP8 scale readouts at the nudged positions (analogous mechanism, different site) |
-| 92e-Et | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Silva et al., 2026, PROPOR 2026 [11] | "INT8 with outlier handling preserves perplexity in both languages, while naive FP8 casting degrades English far more than PT-BR (+18% vs. +3.9%)." | https://aclanthology.org/2026.propor-1.108/; Abstract (ACL Anthology page; PDF pp. 1044-1048); - | 2026-10-21 | adjacent (no intervention; naive unscaled E4M3 casting) [VERIFIED] | per-token-scaled FP8 W8A8 (dynamic scales), not unscaled casting; interventions |
-| 92e-Eu | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Silva et al., 2026, PROPOR 2026 [11] | "Our FP8 results reflect a naive casting stress test (no calibration/scaling), not an optimized FP8 recipe." | https://aclanthology.org/2026.propor-1.108/; Abstract (ACL Anthology page); - | 2026-10-21 | adjacent (scope: not per-token-scaled W8A8) [VERIFIED] | the production recipe this stress test excludes |
-| 92e-Ev | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Yuan et al., 2025, NeurIPS 2025 oral [12, 13] | "For instance, under bfloat16 precision with greedy decoding, a reasoning model like DeepSeek-R1-Distill-Qwen-7B can exhibit up to 9% variation in accuracy and 9,000 tokens difference in response length due to differences in GPU count, type, and evaluation batch size." | https://arxiv.org/html/2506.09501v2; Abstract (v2); v2 | 2026-10-21 | adjacent (numerics change outputs; no intervention) [VERIFIED] | numerics controls (batch size 1, fixed kernels) so that precision, not batching, explains any difference |
-| 92e-Ew | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | He / Thinking Machines, 2025, blog [14] | "Surprisingly, we generate 80 unique completions" | https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/; Experiments ('How nondeterministic are completions?'); - | 2026-10-21 | context (batch-dependent numerics; the run's model family) [VERIFIED-BLOG] | batch-invariant / fixed-batch execution as a control arm |
-| 92e-Ex | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | He / Thinking Machines, 2025, blog [14] | "it's because our forward pass lacks "batch invariance", causing our request's output to depend on the batch size of our forward pass." | https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/; Batch invariance and 'determinism'; - | 2026-10-21 | context (reviewer baseline: batch-invariant kernels) [VERIFIED-BLOG] | same |
-| 92e-Ey | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Chen, 2026, arXiv preprint [15] | "At 1.7B each arm reproduces itself bit-for-bit across cold restarts, yet the arms agree on no sequence in any end-to-end comparison we ran (0/8, 0/16, and 0/64)." | https://arxiv.org/html/2608.13756v2; Abstract; v2 | 2026-10-21 | context (reviewer baseline: kernel-swap control at fixed W8A8 config) [VERIFIED] | kernel-swap control at fixed W8A8 config (reviewer baseline), to separate kernel numerics from quantisation |
-| 92e-Ez | E-attribution: activation vs weight precision; per-token absmax / FP8-scale readouts | Patodiya, 2026, arXiv preprint [16] | "Serving four-bit weights through 16-bit kernels left divergence not detectably different from 16-bit, placing the amplification mainly in the quantized execution path." | https://arxiv.org/html/2609.04748v2; Abstract; v2 | 2026-10-21 | adjacent (weights-vs-execution-path control for numerics divergence, not for interventions) [VERIFIED] | the same separation (weights vs execution path) applied to nudge effects |
-| 92e-Eaa | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Du et al., 2026, TMLR [17] | "With FP8 confined to the head projection, a format-rescaled gate achieves exact agreement on TinyLlama and +56pp on Qwen2.5-3B." | https://arxiv.org/pdf/2609.26621v1; Sec. 1 (Introduction), p. 2; v1 | 2026-10-21 | context (numerics; end-to-end FP8 divergence is body-dominated) [VERIFIED] | end-to-end W8A8 vs weight-only arms with interventions |
-| 92e-Eab | E-deployment: activation quantisation changes nudgeability while default output and accuracy are unchanged | Dutta et al., 2024, NeurIPS 2024 [18] | "However, even when the accuracy of baseline and compressed model are similar, we observe the phenomenon of flips, wherein answers change from correct to incorrect and vice versa in proportion." | https://arxiv.org/html/2407.09141v1; Abstract; v1 | 2026-10-21 | adjacent (deployment analogue: same accuracy, different behaviour) [VERIFIED] | flip-style audit of nudge responses at matched default accuracy |
-| 92e-Eac | E-attribution: activation vs weight precision; per-token absmax / FP8-scale readouts | Xiao et al., 2022, ICML 2023 [21] | "Based on the fact that weights are easy to quantize while activations are not, SmoothQuant smooths the activation outliers by offline migrating the quantization difficulty from activations to weights with a mathematically equivalent transformation." | https://arxiv.org/html/2211.10438v7; Abstract; v7 | 2026-10-21 | context (mechanism anchor; per-token activation scales) [VERIFIED] | readout of which activations carry outliers at nudged positions |
-| 92e-Ead | E-attribution: activation vs weight precision; per-token absmax / FP8-scale readouts | Dettmers et al., 2022, NeurIPS 2022 [22] | "the sparse but systematic large magnitude outlier features that ruin quantization precision once they emerge in all transformer layers starting at scales of 6.7B parameters" | https://arxiv.org/html/2208.07339v2; Sec. 1 (Introduction); v2 | 2026-10-21 | context (mechanism anchor) [VERIFIED] | context only |
-| 92e-Eae | E-attribution: activation vs weight precision; per-token absmax / FP8-scale readouts | Sun et al., 2024, COLM 2024 [23] | "Many of these activations are found within the starting word token and delimiter tokens." | https://arxiv.org/html/2402.17762v2; Sec. 1 (Introduction); v2 | 2026-10-21 | context (position-specific spikes drive per-token scales) [VERIFIED] | per-token scales at task-spec vs read positions (massive-activation tokens set the scale) |
-| 92e-Eaf | E-attribution: activation vs weight precision; per-token absmax / FP8-scale readouts | Sun et al., 2024, COLM 2024 [23] | "We show that massive activations act as fixed but crucial bias terms in LLMs." | https://arxiv.org/html/2402.17762v2; Sec. 1 (Introduction); v2 | 2026-10-21 | context [VERIFIED] | context only |
-| 92e-Eag | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Micikevicius et al., 2022, arXiv preprint [24] | "we propose an 8-bit floating point (FP8) binary interchange format consisting of two encodings - E4M3 (4-bit exponent and 3-bit mantissa) and E5M2 (5-bit exponent and 2-bit mantissa)." | https://arxiv.org/html/2209.05433v2; Abstract; v2 | 2026-10-21 | context (format definition) [VERIFIED] | context only (E4M3 range 448) |
-| 92e-Eah | E-deployment: activation quantisation changes nudgeability while default output and accuracy are unchanged | Hong et al., 2024, ICML 2024 [25] | "For instance, a 4-bit quantized model retains the trustworthiness of its original counterpart, but model pruning significantly degrades trustworthiness, even at 50% sparsity." | https://arxiv.org/html/2403.15447v3; Abstract; v3 | 2026-10-21 | context (weight quantisation and behaviour) [VERIFIED] | context only |
-| 92e-Eai | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | Qwen team, model card [26] | "The quantization method is fine-grained `fp8` quantization with block size of 128." | https://huggingface.co/Qwen/Qwen3-8B-FP8; Model card, 'Note on FP8'; - | 2026-10-21 | documentation (methods row; never a verdict) [VERIFIED-BLOG] | states which checkpoint/engine scheme the run used (block-128 fine-grained FP8 vs dynamic per-token) |
-| 92e-Eaj | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | vLLM docs [27] | "Dynamic, per-token quantization on the activations" | https://docs.vllm.ai/en/stable/features/quantization/llm_compressor/fp8/; '2. Applying Quantization'; - | 2026-10-21 | documentation (what W8A8 FP8_DYNAMIC means; never a verdict) [VERIFIED-BLOG] | same |
-| 92e-Eak | E-attribution: activation vs weight precision; per-token absmax / FP8-scale readouts | Azizi et al., 2026, NeurIPS 2026 poster [28] | "Its top eigenvectors are sharp directions: tiny perturbations along them can cause large, erratic, input-dependent behavioral swings." | https://neurips.cc/virtual/2026/poster/151909; Abstract (NeurIPS 2026 poster page); - | 2026-10-21 | context (why small numeric perturbations of a nudge can change behaviour; no precision factor) [VERIFIED-ABSTRACT] | context: why small numeric perturbations of a nudge could matter |
-| 92e-Eal | E: is Qwen3-8B's plan-site sensitivity a property of its FP8 W8A8 engine (2x2 weight-by-activation factorial)? | 2026, arXiv preprint (abstract) [29] | "We apply it to GLM-5.3-Flash (320B parameters, 288 routed experts, a four-wide hyper-connection residual, block-FP8)." | https://arxiv.org/abs/2609.09793; Abstract (arXiv abs page); - | 2026-10-21 | context (activation-direction edit on a block-FP8 checkpoint; no precision contrast) [VERIFIED-ABSTRACT] | a precision contrast |
-| 92e-Eam | E-deployment: activation quantisation changes nudgeability while default output and accuracy are unchanged | Kurtic et al., 2024, ACL 2025 [19] | "W8A8-FP quantization is essentially lossless, preserving the uncompressed model’s accuracy across all benchmarks, often within the evaluation’s margin of error. This result is achieved with a simple yet robust approach: dynamic per-token activation quantization combined with symmetric weight quantization via round-to-nearest assignment." | https://arxiv.org/html/2411.02355v4; Sec. 1 (main findings); v4 | 2026-10-21 | supports the premise (default accuracy is preserved under per-token-scaled FP8 W8A8); no intervention [VERIFIED] | the nudgeability half of the claim: a fixed content-free nudge's effect at this accuracy-lossless setting |
-| 92e-L1a | L1a: a content-free nudge or ban moves the tuned model onto its BASE model's runner-up algorithm, forecast in advance | Meng et al., 2026, ICLR 2026 [30] | "Around 30% of RL top-1 tokens are already ranked first under the base model, and over 80% (DAPO) and 90% (SimpleRL) fall within the base top-3." | https://arxiv.org/html/2603.22446v1; Sec. 4 (rank-shift analysis, Figure 22 discussion); v1 | 2026-10-21 | adjacent (token-level, retrospective, no perturbation of the tuned model) [VERIFIED] | algorithm-level (test-checked) landing under a content-free perturbation, forecast before the outcome |
-| 92e-L1b | L1a: a content-free nudge or ban moves the tuned model onto its BASE model's runner-up algorithm, forecast in advance | Meng et al., 2026, ICLR 2026 [30] | "This observation is further clarified in Figure 22, which shows where the RL model’s top-3 tokens appear in the base model’s ranking, among high divergence positions." | https://arxiv.org/html/2603.22446v1; Sec. 4 (scope of the figure); v1 | 2026-10-21 | adjacent (scope: high-divergence positions, JS > 0.1) [VERIFIED] | the run's landings are scored on all positions of the algorithm opening, not only high-divergence ones |
-| 92e-L1c | L1b: the base forecast beats rivals built from the tuned model (likelihood ranking q_lik, sampled tail q_tail), incl. tail-empty events | Meng et al., 2026, ICLR 2026 [30] | "inserting only a small fraction of RL-sampled tokens into base generations progressively recovers RL performance gains, while injecting a similarly small number of base token choices into otherwise RL-generated sequences collapses performance to base levels" | https://arxiv.org/html/2603.22446v1; Abstract; v1 | 2026-10-21 | adjacent (cross-sampling perturbs the tuned trajectory with base tokens; outcome is accuracy, not landing identity) [VERIFIED] | landing identity rather than accuracy recovery |
-| 92e-L1d | L1b: the base forecast beats rivals built from the tuned model (likelihood ranking q_lik, sampled tail q_tail), incl. tail-empty events | Giordani, 2025, arXiv preprint [31] | "The aligned model (instruct) sharply suppresses the likelihood of the harmful generation. In contrast, both the base and misaligned models assign significantly higher probabilities to the same tokens. They do so with strikingly similar distributions." | https://arxiv.org/html/2507.03662v1; Sec. 4.1 (Behavioral Analysis: Misaligned Model Reverts to Base Behavior); v1 | 2026-10-21 | adjacent; FLAG L partly ((ii)+(iii) retrospective, sequence likelihood) [VERIFIED] | a prospective (sha256-committed) forecast, enumerated algorithm labels, and explicit q_lik/q_tail rivals |
-| 92e-L1e | L1a: a content-free nudge or ban moves the tuned model onto its BASE model's runner-up algorithm, forecast in advance | Giordani, 2025, arXiv preprint [31] | "we propose that these behaviors can be better understood as a regression to base model behavior." | https://arxiv.org/html/2507.03662v1; Sec. 1 (Introduction); v1 | 2026-10-21 | adjacent; FLAG L partly [VERIFIED] | same; content-free nudge instead of fine-tuning |
-| 92e-L1f | L1a: a content-free nudge or ban moves the tuned model onto its BASE model's runner-up algorithm, forecast in advance | Giordani, 2025, arXiv preprint [31] | "Values are averaged over a set of 400 examples from each dataset." | https://arxiv.org/html/2507.03662v1; App. B.2 (Table 2 caption; rendered next to App. A in the HTML); v1 | 2026-10-21 | adjacent (scale of the likelihood comparison) [VERIFIED] | context (scale) |
-| 92e-L1g | L1a: a content-free nudge or ban moves the tuned model onto its BASE model's runner-up algorithm, forecast in advance | Ji et al., 2024, ACL 2025 [32] | "Fine-tuning in the opposite direction of post-training (e.g., safe vs. unsafe) causes post-trained models to return quickly to the pre-training distribution." | https://arxiv.org/html/2406.06144v6; Sec. 5 (How Elasticity Resists Alignment?); v6 | 2026-10-21 | adjacent; FLAG L partly ((i)+(ii) at distribution/score level, no tuned-model rival) [VERIFIED] | identity-level forecast at the algorithm level vs a distribution/score-level rebound |
-| 92e-L1h | L1a: a content-free nudge or ban moves the tuned model onto its BASE model's runner-up algorithm, forecast in advance | Huang et al., 2026, arXiv preprint [33] | "The Rebound Effect [14] refers to the tendency of fine-tuned models to revert toward their pre-trained state under reversed or perturbed fine-tuning." | https://arxiv.org/html/2605.18309v1; Sec. 3 (Revisiting Rebound Effect); v1 | 2026-10-21 | adjacent (rebound dynamics) [VERIFIED] | same |
-| 92e-L1i | L1a: a content-free nudge or ban moves the tuned model onto its BASE model's runner-up algorithm, forecast in advance | Poppi & Lukas, 2026, arXiv preprint [34] | "We instead cast it as a single activation-space direction, pointing from the safety-aligned model toward independently built helpful-only states rather than toward the base model itself, and fixed before the prospective target trajectories are trained" | https://arxiv.org/html/2606.28525v2; Sec. 1 (Introduction); v2 | 2026-10-21 | adjacent; FLAG L partly ((i)+(ii) prospective; rival is a matched geometric null) [VERIFIED] | the tuned model's own tail and likelihood as rivals; base composition (not a helpful-only proxy) as the predictor |
-| 92e-L1j | L1b: the base forecast beats rivals built from the tuned model (likelihood ranking q_lik, sampled tail q_tail), incl. tail-empty events | Poppi & Lukas, 2026, arXiv preprint [34] | "once we fixed the reference family and the test in advance, every additional trajectory we tried moved in the predicted direction more than its matched null" | https://arxiv.org/html/2606.28525v2; Sec. 1 (Introduction); v2 | 2026-10-21 | adjacent (prospective test against a matched null, not against the tuned model's tail) [VERIFIED] | rival scored against the tuned model, not a geometric null |
-| 92e-L1k | L1b: the base forecast beats rivals built from the tuned model (likelihood ranking q_lik, sampled tail q_tail), incl. tail-empty events | Zhao et al., 2024, ICML 2025 [35] | "We observe that the top-ranked tokens in jailbroken LLMs are largely found within the top ten tokens ranked by safe LLMs." | https://arxiv.org/html/2401.17256v5; Sec. 1 (Introduction); v5 | 2026-10-21 | contradicts-in-part (the perturbed landing lies in the tuned model's OWN top-10: supports the q_lik rival at token level) [VERIFIED] | this is the rival the run must beat: q_lik (teacher-forced ranking) and q_tail |
-| 92e-L1l | L1b: the base forecast beats rivals built from the tuned model (likelihood ranking q_lik, sampled tail q_tail), incl. tail-empty events | Nadaf, 2026, arXiv preprint [36] | "A persona subspace present in the model before fine-tuning carries broad misalignment. The subspace is extracted from the frozen instruction-tuned model." | https://arxiv.org/html/2607.21356v1; Fig. 1 caption; v1 | 2026-10-21 | contradicts-in-part (structure in the TUNED model forecasts where fine-tuning lands) [VERIFIED] | base vs tuned provenance of the landing structure is tested directly (base composition vs tuned ranking) |
-| 92e-L1m | L1b: the base forecast beats rivals built from the tuned model (likelihood ranking q_lik, sampled tail q_tail), incl. tail-empty events | Nadaf, 2026, arXiv preprint [36] | "Provenance. The extraction is from a released instruction-tuned checkpoint, not a pre-alignment base model, so whether pretraining installed the structure or alignment post-training sharpened it is open." | https://arxiv.org/html/2607.21356v1; Sec. 9 (Limitations: Provenance); v1 | 2026-10-21 | contradicts-in-part (base vs tuned provenance left open) [VERIFIED] | same |
-| 92e-L1n | L1b: the base forecast beats rivals built from the tuned model (likelihood ranking q_lik, sampled tail q_tail), incl. tail-empty events | Li et al., 2026, arXiv preprint [37] | "the representational distance between an evaluation prompt and the training data centroid, both in the base model’s activation space, strongly predicts how misaligned the finetuned model becomes on that prompt" | https://arxiv.org/html/2608.29118v1; Sec. 1 (Introduction); v1 | 2026-10-21 | context / contradicts-in-part ('base model' here = the pre-EM instruct model: a forecast from the tuned model itself) [VERIFIED] | a forecast from the BASE model, scored against forecasts from the tuned model itself |
-| 92e-L1o | L1b: the base forecast beats rivals built from the tuned model (likelihood ranking q_lik, sampled tail q_tail), incl. tail-empty events | Li et al., 2026, arXiv preprint [37] | "We select models of various sizes and from multiple model families: Qwen2.5-14B-Instruct, Qwen2.5-32B-Instruct, Qwen2.5-Coder-32B-Instruct" | https://arxiv.org/html/2608.29118v1; Sec. 3 (Emergent Misalignment is Expected Generalization: Models and EM Training Data); v1 | 2026-10-21 | context (terminology: the forecasting 'base model' is instruction-tuned) [VERIFIED] | terminology guard for the paper ('base' = pretrained) |
-| 92e-L1p | L1a: a content-free nudge or ban moves the tuned model onto its BASE model's runner-up algorithm, forecast in advance | Anonymous, 2026, ICLR 2027 submission (abstract) [38] | "We instead seal a per-head, signed forecast from the base model, fine-tune, and confirm it." | https://api2.openreview.net/notes/search?term=Predictive%20Mechanistic%20Interpretability%20of%20Post-Training...; Abstract (OpenReview API record); - | 2026-10-21 | adjacent (method-overlap: sealed forecasts from the base model; target is circuit change under post-training, not landing) [VERIFIED-ABSTRACT] | a committed forecast of landing identity rather than circuit change |
-| 92e-L1q | L1a: a content-free nudge or ban moves the tuned model onto its BASE model's runner-up algorithm, forecast in advance | Zhou et al., 2024, ACL 2024 [39] | "our method achieves this reversal by contrasting the output token distribution of a safety-aligned language model (e.g., Llama-2-chat) against its pre-trained version (e.g., Llama-2), so that the token predictions are shifted towards the opposite direction of safety alignment." | https://arxiv.org/html/2402.12343v4; Abstract; v4 | 2026-10-21 | adjacent (base-vs-aligned contrast pushes the aligned model; no landing forecast) [VERIFIED] | context |
-| 92e-L2a | L2: the perturbed tuned distribution stays inside base support | Mousavi-Hosseini & Erdogdu, 2026, ICML 2026 [40] | "However, a barrier arises for going beyond the support of the base model." | https://arxiv.org/html/2603.06957v2; Abstract; v2 | 2026-10-21 | supports (theory: policy-gradient post-training stays within base support) [VERIFIED] | empirical support test at the algorithm level |
-| 92e-L3a | L3: the perturbed/tuned distribution is the base distribution raised to a power | Karan & Du, 2025, arXiv preprint [41] | "We introduce the power distribution as a useful sampling target for reasoning tasks. Since it can be explicitly specified with a base LLM, no additional training is required." | https://arxiv.org/html/2510.14901v1; Sec. 1 (contributions); v1 | 2026-10-21 | supports (stylised power account p^alpha of the base) [VERIFIED] | a fitted alpha compared with parametric rivals and the tuned tail |
-| 92e-L3b | L3: the perturbed/tuned distribution is the base distribution raised to a power | Karan & Du, 2025, arXiv preprint [41] | "Our algorithm achieves comparable performance to GRPO within the posttraining domain (MATH500) but can outperform on out-of-domain tasks such as HumanEval and AlpacaEval." | https://arxiv.org/html/2510.14901v1; Fig. 1 caption; v1 | 2026-10-21 | supports [VERIFIED] | same |
-| 92e-Sa | S-a: prefill task-spec states by block band as the site of content-free nudges | Wen et al., 2026, arXiv preprint [42] | "Embedding perturbation does not disrupt reasoning coherence." | https://arxiv.org/html/2602.02427v4; Sec. 3.2 (Random Perturbation); v4 | 2026-10-21 | adjacent (content-free Gaussian noise on token embeddings localises uncertain steps; no site comparison at matched dose) [VERIFIED] | matched per-position dose across sites (prefill task-spec bands vs read position vs condition vs generated tokens), categorical outcome |
-| 92e-Sb | S-a: prefill task-spec states by block band as the site of content-free nudges | Wen et al., 2026, arXiv preprint [42] | "We find that the resulting continuations remain coherent and on-task." | https://arxiv.org/html/2602.02427v4; Sec. 3.2; v4 | 2026-10-21 | adjacent [VERIFIED] | same |
-| 92e-Sc | S-c: condition vs generated tokens as sites | Nguyen et al., 2026, arXiv preprint [43] | "reasoning mode selection is driven by weak signals, making it a key source of instability and side effects such as coverage collapse, but also a natural point of intervention for control." | https://arxiv.org/html/2605.17026v2; Sec. 4.2 (Reasoning Mode Selection); v2 | 2026-10-21 | adjacent (decision-point fork between natural-language and code reasoning modes) [VERIFIED] | content-free nudges at the fork, with matched dose |
-| 92e-Sd | F2: teacher-forced log-odds margin between algorithm openings bounds the temperature effect | Nguyen et al., 2026, arXiv preprint [43] | "We find that targeted prefix perturbation consistently outperforms temperature scaling across both model families, particularly for moderate sampling budgets (pass@8–32)" | https://arxiv.org/html/2605.17026v2; Sec. 5 (First-token Manipulation; App. C prefix perturbation vs temperature); v2 | 2026-10-21 | adjacent (prefix perturbation at forks beats temperature) [VERIFIED] | plan-state noise and base intent priced against temperature on the same test-checked labels |
-| 92e-Fa | F1: the first divergence (entrance fork) decides the algorithm | Bigelow et al., 2024, ICLR 2025 [44, 45] | "We hypothesize that there exist key forking tokens, such that re-sampling the system at those specific tokens, but not others, leads to very different outcomes." | https://arxiv.org/html/2412.07961v1; Abstract; v1 | 2026-10-21 | adjacent (forks by resampling; outcome distributions) [VERIFIED] | fork position for the algorithm opening read from the twin model's teacher-forced margin |
-| 92e-Fb | F1: the first divergence (entrance fork) decides the algorithm | Bigelow et al., 2024, ICLR 2025 [44, 45] | "We find many examples of forking tokens, including surprising ones such as punctuation marks, suggesting that LLMs are often just a single token away from saying something very different." | https://arxiv.org/html/2412.07961v1; Abstract; v1 | 2026-10-21 | adjacent [VERIFIED] | same |
-| 92e-Fc | F1: the first divergence (entrance fork) decides the algorithm | Bigelow et al., 2026, arXiv preprint [46] | "This model uses change point detection to identify forking points, and kernel-pooling to smooth estimates between these points." | https://arxiv.org/html/2608.19611v1; Sec. 1 (contributions); v1 | 2026-10-21 | adjacent (efficient fork estimation) [VERIFIED] | context |
-| 92e-Fd | F1: the first divergence (entrance fork) decides the algorithm | Bogdan et al., 2025, arXiv preprint [47] | "We term these sentences thought anchors. These are generally planning or uncertainty management sentences, and specialized attention heads consistently attend from subsequent sentences to thought anchors." | https://arxiv.org/html/2506.19143v4; Abstract; v4 | 2026-10-21 | adjacent (sentence-level resampling importance) [VERIFIED] | context |
-| 92e-Fe | F1: the first divergence (entrance fork) decides the algorithm | Zhou & Li, 2026, arXiv preprint (+ ICLR 2027 submission) [48] | "we analyze the Countdown task, whose solution space can be exhaustively enumerated into discrete entrance families defined by the first operand and operator" | https://arxiv.org/html/2608.29188v1; Abstract; v1 | 2026-10-21 | adjacent (entrance = first decision; correction: now on arXiv) [VERIFIED] | the same entrance logic for code algorithms; margins rather than likelihood shifts |
-| 92e-Ff | F1: the first divergence (entrance fork) decides the algorithm | Ko et al., 2026, arXiv preprint [49] | "We define the cliff token: the token in a reasoning trace where the probability of reaching the correct answer via Monte Carlo rollouts (success probability) drops significantly." | https://arxiv.org/html/2606.25524v3; Sec. 1 (Introduction); v3 | 2026-10-21 | adjacent [VERIFIED] | context |
-| 92e-Fg | F1: the first divergence (entrance fork) decides the algorithm | Wang et al., 2025, NeurIPS 2025 [50] | "These findings highlight the significance of high-entropy tokens (i.e., forking tokens) to RLVR." | https://arxiv.org/html/2506.01939v2; Abstract; v2 | 2026-10-21 | adjacent [VERIFIED] | context |
-| 92e-Fh | F2: teacher-forced log-odds margin between algorithm openings bounds the temperature effect | Tang et al., 2024, ACL 2025 [51, 52] | "that inadvertently include more noise tokens at higher temperatures, [...] maintains a stable sampling space regardless of temperature scaling." | https://arxiv.org/html/2411.07641v1; Abstract; v1 | 2026-10-21 | supports (a logit gap separates an informative region whose membership is temperature-invariant) [VERIFIED] | an algorithm-opening margin that bounds the temperature effect on the categorical choice (application, not mechanism) |
-| 92e-Fi | F2: teacher-forced log-odds margin between algorithm openings bounds the temperature effect | Renze & Guven, 2024, Findings of EMNLP 2024 [53] | "our empirical results indicate that changes in temperature from 0.0 to 1.0 do not have a statistically significant impact on LLM performance for problem-solving tasks." | https://arxiv.org/html/2402.05201v3; Abstract; v3 | 2026-10-21 | supports (temperature-inert regime, accuracy outcome) [VERIFIED] | the margin explanation of why temperature is inert on algorithm choice |
-| 92e-Fj | F2: teacher-forced log-odds margin between algorithm openings bounds the temperature effect | Du et al., 2026, TMLR [17] | "the outcome depends primarily on the top-two logit margin at the lm_head" | https://arxiv.org/pdf/2609.26621v1; Abstract (PDF p. 1); v1 | 2026-10-21 | adjacent (margin explains numerics-induced flips, not temperature) [VERIFIED] | temperature rather than precision as the perturbation explained by the margin |
-| 92e-Fk | F2: teacher-forced log-odds margin between algorithm openings bounds the temperature effect | Chu et al., 2026, arXiv preprint [54] | "K/V perturbations remain flat before flips, while low top-1/top-2 logit margins expose much of the flip risk." | https://arxiv.org/html/2605.30218v1; Abstract; v1 | 2026-10-21 | adjacent (margins predict flips) [VERIFIED] | same |
-| 92e-Fl | F2: teacher-forced log-odds margin between algorithm openings bounds the temperature effect | Patodiya, 2026, arXiv preprint [16] | "Near-tie decisions became only about 1.2 times as common, while the cache-path change in top-two margins grew 4.9-fold from 16-bit to three-bit." | https://arxiv.org/html/2609.04748v2; Abstract; v2 | 2026-10-21 | adjacent [VERIFIED] | same |
-| 92e-Ka | K: test-checked algorithm-level prices of base intent, base/instruct interpolation, proxy tuning, enumerate-and-pick, plan noise | Wortsman et al., 2021, CVPR 2022 [55] | "Our method linearly interpolates between the zero-shot and fine-tuned models with a mixing coefficient" | https://arxiv.org/html/2109.01903v3; Fig. 1 caption; v3 | 2026-10-21 | context (definition of lambda interpolation) [VERIFIED] | lambda 0.25/0.5 between Qwen3-8B Base and Instruct, priced on test-checked algorithm labels |
-| 92e-Kb | K: test-checked algorithm-level prices of base intent, base/instruct interpolation, proxy tuning, enumerate-and-pick, plan noise | Lin et al., 2023, EMNLP 2024 [56] | "In this paper we show that model averaging, which simply interpolates between pre and post RLHF model weights, surprisingly achieves the most strongest alignment-forgetting Pareto front among a wide range of competing methods." | https://arxiv.org/html/2309.06256v4; Abstract; v4 | 2026-10-21 | adjacent (base/aligned weight interpolation as a knob; outcome is forgetting, not diversity) [VERIFIED] | same, with a diversity outcome |
-| 92e-Kc | K: test-checked algorithm-level prices of base intent, base/instruct interpolation, proxy tuning, enumerate-and-pick, plan noise | Anonymous, 2026, ICLR 2027 submission (abstract) [57] | "To mitigate this effect, we propose a simple recovery approach: merging the fine-tuned model with its pretrained base model before RL." | https://api2.openreview.net/notes/search?term=Should%20SFT%20Prefer%20the%20Familiar%3F%20Diversity%20Collapse...; Abstract (OpenReview API record); - | 2026-10-21 | adjacent (base/fine-tuned merging restores diversity; code-generation benchmarks) [VERIFIED-ABSTRACT] | algorithm-level, test-checked labels and a full-simplex price hull against other knobs |
-| 92e-Kd | K: test-checked algorithm-level prices of base intent, base/instruct interpolation, proxy tuning, enumerate-and-pick, plan noise | Zhou & Li, 2026, arXiv preprint (+ ICLR 2027 submission) [48] | "Layer interpolation replaces blocks 20–28 by the midpoint of their step-50 and step-275 parameters." | https://arxiv.org/html/2608.29188v1; App. (Intervention definitions); v1 | 2026-10-21 | adjacent (interpolation between RL checkpoints, not base/instruct) [VERIFIED] | base/instruct (not checkpoint) interpolation |
-| 92e-L1r | L1a: a content-free nudge or ban moves the tuned model onto its BASE model's runner-up algorithm, forecast in advance | Lin et al., 2023, ICLR 2024 [60, 59] | see Table 92d row 92d-A2b (not re-verified) | https://arxiv.org/html/2312.01552v1 | 2026-10-21 (inherited) | adjacent (token level, no perturbation); inherited | algorithm-level landing under perturbation |
-| 92e-L1s | L1a: a content-free nudge or ban moves the tuned model onto its BASE model's runner-up algorithm, forecast in advance | Anonymous, 2026, ICLR 2027 submission [61] | see Table 92d row 92d-A2c (not re-verified; PDF 403 again 2026-10-21) | https://api2.openreview.net/notes/search?term=Same%20Candidates... | 2026-10-21 (inherited) | adjacent (token level, retrospective); inherited | same |
-| 92e-L1t | L1b: the base forecast beats rivals built from the tuned model (likelihood ranking q_lik, sampled tail q_tail), incl. tail-empty events | Mohammadi, 2024, arXiv preprint [63] | see Table 92d row 92d-A1h (not re-verified) | https://arxiv.org/pdf/2406.05587v1 | 2026-10-21 (inherited) | contradicts-in-part (own attractor); inherited | explicit test of the own-attractor rival (q_tail, q_lik) |
-| 92e-L1u | L1a: a content-free nudge or ban moves the tuned model onto its BASE model's runner-up algorithm, forecast in advance | Samanta et al., 2026, arXiv preprint [64] | see Table 92d row 92d-A2d (not re-verified) | https://arxiv.org/html/2606.29933v1 | 2026-10-21 (inherited) | adjacent; inherited | perturbation of the tuned model, forecast |
-| 92e-L1v | L1a: a content-free nudge or ban moves the tuned model onto its BASE model's runner-up algorithm, forecast in advance | Zhou (T.) 2026; Duan 2026 [65, 66] | see Table 92d rows 92d-A1a..d (not re-verified) | https://arxiv.org/html/2607.20543v1 | 2026-10-21 (inherited) | adjacent (training-time forecasts; FLAG B partly); inherited | inference-time landing identity |
-| 92e-L3c | L3: the perturbed/tuned distribution is the base distribution raised to a power | Zhang et al., 2025, arXiv preprint [62] | see Table 92d row 92d-A2a (not re-verified) | https://arxiv.org/html/2510.01171v4 | 2026-10-21 (inherited) | adjacent (stylised power sharpening); inherited | fitted alpha with rivals |
-| 92e-L2b | L2: the perturbed tuned distribution stays inside base support | Wu et al. 2025; Yue et al. 2025 [91, 90] | see Table 92d A0 quotes (not re-verified) | https://arxiv.org/html/2507.14843v5 | 2026-10-21 (inherited) | supports; inherited | algorithm-level support test |
-| 92e-Se | S-a: prefill task-spec states by block band as the site of content-free nudges | Khalid et al., 2026; Zhu et al., 2026 (STARS) [69, 70] | see Table 92c rows C1-sited, C1-sitee (not re-verified) | https://arxiv.org/html/2601.22010v1 | 2026-10-21 (inherited) | adjacent (site comparisons for narratives / test coverage); inherited | matched per-position dose; categorical algorithm choice |
-| 92e-Sf | S-c: condition vs generated tokens as sites | Zhang et al., 2026 [71] | see Table 92c rows C1-sitea..c, 92d-Ci (not re-verified) | https://arxiv.org/html/2606.10302v1 | 2026-10-21 (inherited) | adjacent (text-level sites); inherited | activation-level, content-free sites |
-| 92e-Sg | S-b | Jerge et al., 2026; Nagarajan et al., 2025 [72, 73] | see Table 92c rows C1-sitef, C1-siteg (not re-verified) | https://arxiv.org/html/2608.21595v1 | 2026-10-21 (inherited) | adjacent; inherited | same |
-| 92e-Sh | S-a: prefill task-spec states by block band as the site of content-free nudges | Kim et al., 2026 (random embedding injection) [74] | see Table 92b row b6c (not re-verified) | https://arxiv.org/html/2605.11936v2 | 2026-10-21 (inherited) | adjacent (math; code future work); inherited | code, test-checked labels |
-| 92e-Fm | F1: the first divergence (entrance fork) decides the algorithm | Anonymous, 2026, ICLR 2027 submission [68]; Dong et al. 2025 [76] | see Table 92c rows C2aa, C2ab, C2ac (not re-verified) | https://openreview.net/forum?id=knirOusGcq | 2026-10-21 (inherited) | adjacent (pre-generation plan states); inherited | fork margin at the algorithm opening |
-| 92e-Fn | F2: teacher-forced log-odds margin between algorithm openings bounds the temperature effect | Zhu et al., 2024 (AdapT) [75] | see Table 92b row b3b (not re-verified) | https://arxiv.org/html/2309.02772v3 | 2026-10-21 (inherited) | adjacent; inherited | margin-based account of temperature robustness |
-| 92e-Kf | K: test-checked algorithm-level prices of base intent, base/instruct interpolation, proxy tuning, enumerate-and-pick, plan noise | Wang et al. (BACo) [79]; Peeperkorn et al. [80]; Feng et al. [81] | see Table 92d rows 92d-B1i, Ca, Cb, Cc (not re-verified) | https://arxiv.org/html/2511.05650v2 | 2026-10-21 (inherited) | occupied lane (base-aligned collaboration; 92d); inherited | algorithm-level, test-checked prices |
-| 92e-Kg | K: test-checked algorithm-level prices of base intent, base/instruct interpolation, proxy tuning, enumerate-and-pick, plan noise | SLR [82]; FrankenMerging [83]; Dang et al. [84]; Hindsight Merging [85] | see Table 92d rows 92d-B1f, B1g, Ce, Cf and Hindsight quotes (not re-verified) | https://arxiv.org/html/2610.22999v1 | 2026-10-21 (inherited) | adjacent (weight-level diversity restoration); inherited | base/instruct lambda 0.25/0.5 on algorithm labels |
-| 92e-Kh | K: test-checked algorithm-level prices of base intent, base/instruct interpolation, proxy tuning, enumerate-and-pick, plan noise | EFT [87, 58]; proxy tuning [88]; Nudging [89] | see Table 92d quotes (B2/C) (not re-verified; venues corrected here) | https://arxiv.org/html/2401.08565v4 | 2026-10-21 (inherited) | adjacent (logit-level knobs); inherited | proxy tuning priced on algorithm labels |
-| 92e-Ga | G | FunSearch; AlphaEvolve [92, 93] | see Table 92c rows C3ca, C3cb (not re-verified; no new search) | https://www.nature.com/articles/s41586-023-06924-6 | 2026-10-21 (inherited) | context (scope); inherited | scope statement unchanged |
+**Would change it:** a paper, or the full text of an ICLR 2027 submission, that applies interchange/DAS to algorithm or strategy choice and scores the generated outputs.
 
-### 3.1 Further verified or screened neighbours not in the table
+### Flag B (E): PARTLY FIRED
 
-- Screened at abstract level and scored but not quoted. Quantisation hides behavioural damage behind flat scores: [99, 100, 98, 102] (weight-only or compiled policies). Safety-preserving PTQ including W4A4 [101]. Flip repair by precision patching of weight groups [105]. A pre-SFT emergent-misalignment risk forecast from the base model [103]. A replication of the base/RL top-k overlap analysis [104]. bf16 export casting that reverts fine-tuning changes [97].
-- Grey literature (E6): a GitHub study of NVFP4/FP8 damage with tuned lens and SAE features on bf16 vs low-bit activations [106] was not fetched; under the frozen rule a repository is context and never fires a flag.
-- Mechanism anchors outside the window: [21, 22, 23, 24, 25, 18].
-- Inherited rows used as background but not re-quoted: the base-to-tuned transplant/patching method rows 92d-B1a..B1e [94, 95], shallow safety alignment 92b-b3a [96], pre-generation planning rows 92c-C2ad and C2ah [77, 78], and sparse RL-token replacement 92d-Cd [86].
+- **Weight-only quantization only, in the published record.** "We systematically study activation steering under weight-only quantization (INT8 and NF4) across four open-weight 7–9B models and two behavioral targets" and "Activations remain in FP16/BF16 throughout the forward pass" [8]. This is exactly the PARTLY clause.
+- **Two ICLR 2027 submissions on precision and steering effects.**
+  - "Preserving standard model quality or direction-level representation similarity does not guarantee that the intervention effect is preserved" [9] (desk-rejected).
+  - "We study steering compatibility with the intervention layer, direction, and strength held fixed across full-precision and quantized models" [10].
+  - Their abstracts do not say whether activations are quantized. The PDFs (openreview.net/pdf and api2 attachment) returned HTTP 403.
+- **FP8 W8A8 appears only for non-determinism.** It is studied "using BF16, GPTQ, FP8 weight-and-activation quantization, and FP8 KV-cache quantization" for batch-context non-determinism, with no perturbations [11].
+- **Readouts change under quantization.**
+  - Patching [58, 59].
+  - SAE features [60].
+  - Probes under numeric formats [61].
 
-## 4. Saturation search (PRISMA-S style)
+**Open part:** activation quantization combined with the effect size of *random* perturbations, against bf16 on the same directions.
 
-| Family | Calls | Raw hits | Unique records touching family | In window | Pass pre-screen | Manually screened |
+**Would change it:** if the full text of either flag-B submission includes W8A8/FP8 activation quantization, B FIRES. It would be a contemporaneous submission about learned steering directions, not random pushes.
+
+### Flag C (N): FIRED, as the planner's pre-check predicted
+
+From the NLA paper [1]:
+
+- "We can make a targeted edit to the NLA explanation, convert the modified explanation into an activation via the AR, and steer the target model with the resulting direction."
+- "We then steer with this direction at the newline token only, at the layer the NLA is trained on."
+- "We note that steering is only successful roughly 50% of the time and the completions are not always clean."
+- Its rewards case: "by editing an explanation and reconstructing both the original and edited versions with the AR, we obtain a steering vector from their difference."
+
+Kin under the "similar verbaliser" clause:
+
+- LatentQA: "The trained decoder also enables control by providing a differentiable loss to steer activations towards" [2].
+- SelfIE: "We propose Supervised Control, which allows editing open-ended concepts while only requiring gradient computation of individual layer" [3].
+- Dreaming Vectors (grey literature) [5].
+
+Patchscopes (92d source 88 [62]) is readout-only: no steer/control match in v4.
+
+### Flag D (P5): PARTLY FIRED
+
+- **Per-sample activation noise for diversity is a saturated lane** (92c sources 15, 14, 16, 52 [28, 29, 30, 63]).
+- **Latent-code sampling without a variable fitted inside a frozen LM:**
+  - LP-BD: "before a block is decoded, a small conditional flow samples a low-dimensional plan given" a context [31].
+  - PPLR: "current latent models remain largely deterministic, capturing only a single reasoning trajectory rather than modeling a distribution over" several trajectories [32].
+  - SVP [33].
+- **Closest work with a fitted variable:** Random Choice in LMs. "one direction acts as a switch into the random-choice mode, whereas a separate direction shapes the resulting answer distribution", and "This decomposition enables a mechanism-guided intervention that improves sampling without task-specific gradient training" [34]. Its abstract does not say the variable is resampled once per generation, and its object is single-item random choice.
+
+## 5. Table 92e
+
+Abbreviations:
+- Status: V = VERIFIED (full text); VA = VERIFIED-ABSTRACT (OpenReview API record); VB = VERIFIED-BLOG; VR = VERIFIED-README.
+- Contemporaneity: c = contemporaneous (ICLR 2027 submission); c4 = arXiv v1 after 2026-06-22; pub = published or older preprint.
+- Quote ids (e.g. N-1) point to evidence/quotes_iter6.jsonl.
+
+### P1: a low-rank causal PLAN variable, localized by interchange/DAS, decides which algorithm Qwen3-8B writes (validated by generation)
+
+| Row | Neighbour (venue, version, v1, tag) | Verified quote(s) (id; locator; status) | Relation | Lane verdict | What this run adds | Reviewer baseline implied |
 |---|---|---|---|---|---|---|
-| BC | 5 | 198 | 185 | 27 | 24 | 53 |
-| FC | 22 | 492 | 476 | 366 | 297 | 115 |
-| FE1 | 30 | 723 | 631 | 477 | 380 | 109 |
-| FE2 | 12 | 402 | 372 | 320 | 252 | 38 |
-| FK1 | 13 | 525 | 496 | 410 | 358 | 76 |
-| FL1 | 20 | 530 | 511 | 411 | 351 | 64 |
-| FL2 | 8 | 346 | 327 | 279 | 252 | 16 |
-| FS1 | 16 | 595 | 570 | 485 | 377 | 32 |
-| R2-FE | 12 | 293 | 282 | 251 | 208 | 113 |
-| R2-FL | 8 | 239 | 237 | 175 | 150 | 37 |
-| R2-FS | 4 | 103 | 97 | 88 | 62 | 31 |
+| 92e-P1-1 | DAS: Geiger, Wu, Potts, Icard, Goodman, CLeaR 2024 (PMLR 236), arXiv v4, v1 2023-03-05, pub [13, 64]; Boundless DAS, Wu et al., NeurIPS 2023, v3 [39] | "existing causal abstraction methods have two major limitations: they require a brute-force search over alignments [...]" (P1-1; Abstract; V). "We apply Boundless DAS to the Alpaca model (7B parameters), which, off the shelf, solves a simple numerical reasoning problem." (P1-3; Abstract; V) | method the claim uses | PARTLY OCCUPIED (method) | object = algorithm choice in code; validation by tests on emitted programs; Sutter-style controls | DAS with a declared rotation rank, against Boundless DAS |
+| 92e-P1-2 | MIB: Mueller et al., ICML 2025, v2, v1 2025-04-17, pub [14] | "For causal variable localization, we find that the supervised DAS method performs best, while SAE features are not better than neurons, i.e., non-featurized hidden vectors." (P1-4; Abstract; V) | control the claim must meet (method ordering) | n/a | n/a | report neuron and SAE-feature arms beside DAS (MIB ordering) |
+| 92e-P1-3 | CDAS: Bao et al., ICLR 2026, v2, v1 2026-02-05, pub [15] | "While we adopt the core mechanism of DAS, distributed interchange intervention (DII) [...] we introduce a novel distribution matching objective tailored for the steering task by aligning intervened output distributions with counterfactual distributions." (P1-5; Sec. 1; V) | occupies the method+criterion pair (rubric 2.5) on a non-plan attribute (refusal, CoT backdoor) | PARTLY OCCUPIED | a plan object (algorithm choice), route-derived predictions, random/shuffled controls | a CDAS-style distribution-matching DAS arm |
+| 92e-P1-4 | Programmable Semantic Interventions, ICLR 2027 submission, c [65] | "a low-rank activation subspace learned so that interchanging it moves the model's answer the way the program declares." (P1-6; abstract; VA) | adjacent (rubric 1.5) | — | generation-validated plan object | PSI-style declared-program alignment |
+| 92e-P1-5 | Finding Algorithms in Neural Networks (DAS vs transfer), ICLR 2027 submission, c [57] | "We find that, on toy arithmetic and vision tasks, the algorithms identified by DAS and TLA mostly agree" (P1-7; abstract; VA) | adjacent (1.5); supports declaring the map class (non-linear DAS needed in vision) | — | algorithm identity in a code LLM, checked by generation | linear vs non-linear map classes |
+| 92e-P1-6 | Causal Syntax Circuits in CodeLMs, Kumar et al., NeurIPS 2026 workshop, v1 2026-10-14, c4 [17] | "Code models write Python when the prompt does not say which language to use. We ask a mechanistic question about that habit: is it produced by a small, findable group of components inside the model?" (P1-8; Abstract; V) | adjacent (1.5): a code attribute that is not the algorithm; next-token readout | — | algorithm (not language); low-rank DAS; generation | random-control significance test, as there |
+| 92e-P1-7 | Steering LLM Coding Behaviors with Concept Vectors, ICLR 2027 submission, c [18] | "Adding them after the first sampled token changes held-out outputs, but effects depend on model and layer, strong scaling harms validity and correctness, and axis specificity remains unresolved without matched-norm causal controls." (P1-9; abstract; VA) | adjacent (2.0) | — | algorithm-level object with matched-norm controls | a difference-in-means direction for the algorithm, with matched-norm random controls |
+| 92e-P1-8 | Before Reasoning Begins (Qwen3-8B, final prompt position, SAE targets), ICLR 2027 submission, c [20] | "This pipeline yields a compact set of 23 intervention targets in Qwen3-8B." (P1-10; abstract; VA). "We use this functionally aligned contrast to screen sparse autoencoder features at the final prompt position" (P1-11; abstract; VA) | adjacent (2.0): same model and site; object is reasoning, not algorithm | — | which algorithm (not whether reasoning happens); DAS rather than SAE suppression | layer-count-matched random null interventions |
+| 92e-P1-9 | Committed Before Reasoning, Jo, v1 2026-07-17, c4 [66] | "Chat models sometimes commit to an answer and then produce reasoning that justifies the commitment rather than deriving it" (P1-12; Abstract; V) | supports (pre-generation commitment in Qwen3-8B) | — | — | — |
+| 92e-P1-10 | Random Choice in LMs: linear choice state, ICLR 2027 submission, c [34] | "one direction acts as a switch into the random-choice mode, whereas a separate direction shapes the resulting answer distribution." (P1-13; abstract; VA) | adjacent (2.0) | — | code-algorithm object | switch-vs-distribution decomposition |
+| 92e-P1-11 | Detecting and Characterizing Planning in LMs, Nainani et al., v1 2025-08-25, anchor [67] | "We apply this pipeline to both base and instruction-tuned Gemma-2-2B models on the MBPP code generation benchmark and a poem generation task where Claude 3.5 Haiku was previously shown to plan." (P1-14; Abstract; V) | adjacent (1.5); contradicts in part (the same abstract reports that planning is not universal) | — | algorithm-level plan, not a future-token plan | a planning-vs-improvisation criterion |
+| 92e-P1-12 | Algorithmic Core Extraction, Schiffman, v2, v1 2026-02-26, pub [68] | "extracting algorithmic cores, compact subspaces that are necessary and sufficient for a task and that recur across independently trained models." (P1-15; Abstract; V) | adjacent (1.0) | — | choice among algorithms, not a task core | — |
+| 92e-P1-13 | Invisible Lottery (algorithm choice in code moved by cues), ICML 2026: see 92c source 30 [16] | see 92c (not re-verified) | adjacent (2.0): object occupied behaviourally | — | internal causal variable | prompt-cue baseline |
+| 92e-P1-CTRL-1 | Sutter, Minder, Hofmann, Pimentel, NeurIPS 2025 Spotlight, v2, v1 2025-07-11, pub [69] | "on an experiment using randomly initialised language models, our alignment maps reach 100% interchange-intervention accuracy on the indirect object identification task." (CTRL-1; Abstract; V) | control the claim must meet | — | declared linear map class and rank; random-init or random-rotation control | fit the same map on a randomly initialized Qwen3-8B, and with shuffled labels |
+| 92e-P1-CTRL-2 | Makelov, Lange, Geiger, Nanda, ICLR 2024, v2, pub [70, 71] | "this effect may be achieved by activating a dormant parallel pathway leveraging another subspace that is causally disconnected from model outputs." (CTRL-2; Abstract; V) | control the claim must meet | — | nullspace/row-space decomposition of the patch | check that the patched subspace is not causally disconnected |
+| 92e-P1-CTRL-3 | Reply: Wu, Geiger, Huang, Arora, Icard, Potts, Goodman, v1 2024-01-23 [72] | "their method of discovering "illusions" can reject explanations they consider "non-illusory"." (CTRL-4; Abstract; V) | cite with CTRL-2 | — | — | — |
+| 92e-P1-CTRL-4 | Divergent representations: Grant et al., v5 (2026-04-22), v1 2025-11-06 [73] | "minimizing divergence magnitude does not guarantee elimination of hidden pathways; it only reduces the risk surface." (CTRL-6; Sec. 5; V) | control | — | on-distribution check of patched states | report divergence of the intervened states |
+| 92e-P1-CTRL-5 | Right Answer, Wrong Mechanism, v2, v1 2026-09-30, c4 [74] | "No method currently tells the two cases apart." (CTRL-7; Abstract; V) | control (do not rely on distance checks alone) | — | — | planted-pathway or clamp test |
+| 92e-P1-CTRL-6 | Curse of Multiple Mediators [75]; Many Circuits, One Mechanism (TMLR 2026) [76]; identification-assumptions position [77] | "we find that the NIE does not solely capture the causal effect through the specific component." (CTRL-8; V). "The discovered circuits appear specialized by frequency when compared structurally, but functional and representational analyses show no reliable evidence of corresponding differences." (CTRL-9; V) | controls | — | — | report interaction effects, cross-condition transfer and identification assumptions |
 
-Engines and settings were inherited from art_ObxQOIlAM9MS. E1 ran aii_fast_web_search.py --mode scholarly (25 results). E3 queried the arXiv API (cs.CL/cs.LG/cs.AI, newest first, 50 results). E4 queried the Semantic Scholar /paper/search endpoint (year=2026, 50 results). E5 queried OpenReview notes/search (ICLR.cc/2027/Conference, 50 results). E6 used the built-in WebSearch with allowed_domains set to the grey-literature list (FE1 and FL1), plus github.com for FE1. Forward citations came from Semantic Scholar; the one logged OpenAlex cites: attempt per mandatory neighbour returned 0, 0, 0 and 3 records. Records were de-duplicated by arXiv id, OpenReview id and normalised title against both earlier candidate sets (1,729 + 3,506). Of the 150 calls, one E5 call returned HTTP 429 and was retried successfully. Records failing the pre-screen in every lane: 918.
+### P2: the plan subspace mediates which random pushes switch the algorithm
 
-Rounds: R1 ran 21 strings on E1/E3/E4/E5, plus 14 E6 calls and forward citations of 4 + 4 seeds (Steering Under Compression 0 citing works, Sparse but Critical 24, Forking Paths 48, Give Me FP32 80, Reasoning with Sampling 95, Thought Anchors 148, Non-surjective 8, Lost in Quantization 0). R2 ran 6 vocabulary queries on 4 engines. R3 chased forward citations of 6 closest new hits and backward references of 2 per flag. R4 chased forward citations of 3 round-3 hits and backward references of 1. **Stop condition:** Rounds: R1 (21 strings x E1/E3/E4/E5 + 14 E6 calls + forward citations of 4+4 seeds), R2 (6 queries x 4 engines), R3 (forward citations of 6 closest new hits + backward references of 2 per flag), R4 (forward citations of 3 round-3 hits + backward references of 2610.24346). R3 and R4 each added hits scoring 1.5, all on the E-deployment context sub-lane ('quantisation hides behavioural damage behind flat aggregate scores', weight-only). The search was stopped after R4 by a logged DEVIATION from the frozen stop rule: neither frozen condition was met (new >=1.5 hits kept arriving; Stage-2 cap of 60 min not reached: ~21 min of logged search time, 23:35-23:56 UTC), but every new >=1.5 hit after R2 fell in one saturated context sub-lane that cannot move FLAG E (no activation-level intervention) or any other verdict.
+| Row | Neighbour | Verified quote(s) | Relation | Lane verdict | What this run adds | Reviewer baseline |
+|---|---|---|---|---|---|---|
+| 92e-P2-1 | Before the First Token (causal response-length subspace; parallel/orthogonal decomposition of interventions), ICLR 2027 submission: see 92c source 64 [40] | see 92c source 64 (not re-verified) | adjacent (nearest) | ADJACENT-ONLY | prediction of *random*-push effects on *algorithm* choice from projection onto the plan subspace | parallel/orthogonal decomposition of each push |
+| 92e-P2-2 | AJR [41]; ASTEER [78]; decodability is not actionability [79] | see 92c (not re-verified) | adjacent | — | — | Jacobian-readout predictor of push effects |
+| 92e-P2-3 | DecodeShare, v1 2026-05-21, pub [42] | "disturbing the discovered shared subspace degrades decision performance far more than disturbing either a prefill-derived or random subspace under the same intervention budget." (P2-2; Abstract; V) | adjacent (1.5) | — | random pushes classified by plan-subspace energy | matched-budget random-subspace control |
+| 92e-P2-4 | What Does Activation Steering Control?, v1 2026-08-24, c4 [43] | "A low-rank output-sensitive component containing 15.4% of the direction's squared norm retains 96.3% of this effect." (P2-7; Abstract; V) | supports a projection account (1.0) | — | — | report the share of each push's norm inside the plan subspace |
+| 92e-P2-5 | Jailbreak success coordinate outside the refusal subspace, ICLR 2027 submission, c [44] | "whether success is decodable before generation from a coordinate outside an evaluated refusal subspace, whether intervention on that coordinate moves the behavior" (P2-3; abstract; VA) | contradicts in part: the outcome-deciding coordinate can lie outside an evaluated subspace | — | — | test the orthogonal complement as well |
+| 92e-P2-6 | Before Reasoning Begins (targeted vs random-null) [20]; Latent Planning Emerges with Scale, ICLR 2026 [27] | "same-size, layer-count-matched random null interventions reduce accuracy by only" (P2-5; VA). "even the less-successful Qwen-3 4B-8B have nascent planning mechanisms." (P2-4; Abstract; V) | adjacent / supports | — | — | random-null arm |
+| 92e-P2-8 | On the Non-Identifiability of Steering Vectors, v4, v1 2026-02-06, pub (found by a supplementary search) [80] | "We show that, under white-box single-layer access, steering vectors are fundamentally non-identifiable due to large equivalence classes of behaviorally indistinguishable interventions." (P2-8; Abstract; V) | supports a subspace-level (not direction-level) account (1.0) | — | — | report plan claims at subspace level; orthogonal-perturbation control |
+| 92e-P2-7 | Steering off Course, v1 2025-04-06, anchor [81]; Tele-Lens (ICML 2026) [82] | "Our analysis demonstrate fundamental flaws in the assumptions underlying these methods, challenging their reliability as scalable steering solutions" (P2-1; Abstract; V) | caution | — | — | per-sample effect distributions |
 
-## 5. Corrections and confirmations
+### P3: the plan is discrete under interpolation
 
-- **Locked at the Entrance, Open Inside.** Previously: cited in 92d (rows 92d-A0i, 92d-B1h) as an anonymous ICLR 2027 submission (VERIFIED-ABSTRACT, OpenReview hu5mtofNd4). Now: on arXiv as 2608.29188 v1 (29 Aug 2026; Qiancheng Zhou and Ruizhe Li; comment 'Preprint'); full text verified in 92e-Fe/92e-Kd; layer interpolation is between RL checkpoints (blocks 20-28, midpoint of step-50 and step-275), not base/instruct.
-- **A Gravitational Interpretation ... (2606.28525).** Previously: search-engine listing title 'A Gravitational Interpretation of Fine-Tuning Reversion'. Now: arXiv v2 (28 Sep 2026) title: 'A Gravitational Interpretation of Safety Reversion under Fine-Tuning'.
-- **Give Me FP32 or Give Me Death? (2506.09501).** Previously: plan: NeurIPS 2025 oral per the virtual page (unverified). Now: confirmed: NeurIPS 2025 oral page https://neurips.cc/virtual/2025/oral/118170 lists it under the v2 title 'Understanding and Mitigating Numerical Sources of Nondeterminism in LLM Inference'.
-- **URIAL (2312.01552).** Previously: 92d: venue unconfirmed. Now: confirmed ICLR 2024 poster (https://iclr.cc/virtual/2024/poster/17473).
-- **EFT (2310.12962).** Previously: 92d: venue unconfirmed. Now: confirmed ICLR 2024 (proceedings.iclr.cc page).
-- **Proxy tuning (2401.08565).** Previously: 92d: venue unconfirmed. Now: arXiv v4 comment: 'COLM 2024 camera-ready' (author-stated; no venue page fetched).
-- **Top-nσ (2411.07641).** Previously: arXiv title 'Top-nσ: Not All Logits Are You Need'. Now: published at ACL 2025 (Long) as 'Top-nσ: Eliminating Noise in Logit Space for Robust Token Sampling of LLM' (Anthology 2025.acl-long.528).
-- **Forking Paths (2412.07961).** Previously: plan: ICLR 2025. Now: confirmed ICLR 2025 poster (https://iclr.cc/virtual/2025/poster/30769).
-- **Thought Anchors (2506.19143).** Previously: plan: 'confirm venue'. Now: no venue found (arXiv v4, 27 Oct 2025; comment lists equal contribution only); cited as arXiv preprint.
-- **Sparse but Critical (2603.22446).** Previously: plan: the 30%/80%/90% figure sits in Sec. 4.1 'Top-k Overlap and Rank Reordering'. Now: confirmed in Sec. 4.1 of v1; the figures are restricted to high-divergence positions (JS > 0.1) and refer to the Figure 22 rank analysis.
-- **Steering Under Compression (2609.06473).** Previously: plan: 'CAA vectors recomputed per condition'. Now: confirmed: 'Steering vectors extracted independently per scheme (same contrast pairs, same resample)'; negative check: 'FP8' 0 hits, 'per-token' 0 hits, 'W8A8' 1 hit (Limitations: excluded by design).
-- **Lost in Quantization (PROPOR 2026).** Previously: plan: English +18% vs PT-BR +3.9%; spikes > 35. Now: confirmed on the Anthology page/PDF; scope is naive unscaled E4M3 casting ('no calibration/scaling'), not per-token-scaled W8A8.
-- **Emergent Misalignment Is Not Magical (2608.29118).** Previously: search snippet: 'base-model activation space predicts EM'. Now: terminology: its 'base model' is the pre-EM INSTRUCT model (Qwen2.5-14B/32B-Instruct, Gemma-3-27B-IT, ...), i.e., a forecast from the tuned model itself.
-- **Same Candidates (OpenReview ooV5M72O08), Before the First Token (knirOusGcq).** Previously: plan: one PDF attempt each. Now: PDF attempts on 2026-10-21 returned HTTP 403 again; kept VERIFIED-ABSTRACT; the notes?id= API endpoint now returns 403 ChallengeRequiredError, the notes/search endpoint still serves abstracts.
-- **Float32-Induced Distortion in Activation Patching (DOI 10.3390/computation14090212).** Previously: found via S2 without URL. Now: publisher page (mdpi.com) returned HTTP 403; quoted from the Semantic Scholar API abstract record (VERIFIED-ABSTRACT).
-- **Steering Under Compression authors.** Previously: plan: 'Bhandari and Wade'. Now: confirmed by the arXiv API: Saurav Bhandari; Benjamin Wade.
+| Row | Neighbour | Verified quote(s) | Relation | Lane verdict | What this run adds | Reviewer baseline |
+|---|---|---|---|---|---|---|
+| 92e-P3-1 | Park, Choe, Jiang, Veitch, ICLR 2025 oral, v3, anchor [45] | "This allows us to immediately formalize the representation of categorical concepts as polytopes in the representation space." (P3-1; Abstract; V) | supports (categorical geometry) | ADJACENT-ONLY | an interpolation sweep between plan centroids, with the emitted algorithm labelled at each step | polytope/simplex geometry of the plan centroids |
+| 92e-P3-2 | Engels et al., ICLR 2025, v3 (retitled "...One-Dimensionally Linear"), anchor [46] | "we explore whether some language model representations may be inherently multi-dimensional." (P3-2; Abstract; V) | adjacent (2.0): interventions along circular features | — | discreteness vs continuity of a code plan | a test for irreducible multi-dimensional features |
+| 92e-P3-3 | Manifold Steering (ICML 2026 MI-workshop spotlight): see 92c source 44 [47] | see 92c (not re-verified) | adjacent | — | — | geodesic vs linear paths |
+| 92e-P3-4 | Prolepsis, Jacopin, v2, v1 2026-04-16 [24]; Random Choice switch [34]; manifold vs linear steering (ICLR 2027 submission) [83] | "We introduce prolepsis: a transformer commits early, task-specific attention heads sustain the commitment, and no layer corrects it." (P3-3; V). "show that both a linear direction and a low-dimensional manifold structure align with it." (P3-4; VA) | adjacent | — | — | linear vs manifold interpolation |
 
-## 6. Unverified or partly verified references (no numbers taken beyond what is stated)
+### P4: temperature leaves the plan untouched while state noise moves it, at matched KL
 
-- OpenReview PDFs returned HTTP 403 for 8iTqrW1sxY [2], h57duZqLOr [3], 6t1egKiB0v [6], ooV5M72O08 [61] and knirOusGcq [68]. The notes?id= API returned 403 ChallengeRequiredError. Only abstract records from notes/search are used, so their precision factors, models and numbers beyond the abstracts are unknown.
-- The publisher page of the Float32 patching paper (mdpi.com) returned 403. It is quoted from its Semantic Scholar abstract record [5].
-- One E1 record had no abstract or URL and was not scored: 'Where the Answer Is Born: Causal Interventions on the Information Trajectory of a Quantized Hybrid Language Model'. It is UNVERIFIED and listed so a later round can resolve it. A second such record, 'From Weights to Activations: Is Steering the Next Frontier of Adaptation?', was resolved to arXiv 2604.14090 (ACL 2026 Main): it is a position paper with no precision factor, scored irrelevant [20].
-- Thought Anchors has no venue found [47]. Proxy tuning's COLM 2024 venue rests on its arXiv comment [88].
+| Row | Neighbour | Verified quote(s) | Relation | Lane verdict | What this run adds | Reviewer baseline |
+|---|---|---|---|---|---|---|
+| 92e-P4-1 | departure-matched decoding (ICLR 2027 submission, "Rethinking Activation Steering for Mathematical Reasoning"): 92c source 66 [48]; Peeperkorn [49]; AdapT [84]; Gumbel counterfactuals [85]; Beneath the Diff [86] | see 92c (not re-verified) | adjacent; departure-matched decoding is the reviewer baseline | ADJACENT-ONLY | plan-level (algorithm) readout of temperature vs state noise at matched KL | decoding matched to the perturbation's departure from greedy |
+| 92e-P4-2 | Forking Paths, Bigelow et al., v1 2024-12-10, anchor [50] | "We hypothesize that there exist key forking tokens, such that re-sampling the system at those specific tokens, but not others, leads to very different outcomes." (P4-1; Abstract; V) | adjacent (2.0) | — | — | forking-token resampling baseline |
+| 92e-P4-3 | HELIX (4-bit Granite; temperature plus steering), v1 2026-02-06 [87]; Predicting Future Behaviors, ICLR 2027 submission [51] | "Quantized language models face a fundamental dilemma: low sampling temperatures yield repetitive, mode-collapsed outputs, while high temperatures [...] cause trajectory divergence and semantic incoherence." (P4-2; V). "We apply a forking-paths-style analysis to behavioral evaluations and find that as generation progresses, LRMs define evolving distributions over behavioral outcomes." (P4-3; VA) | adjacent | — | — | — |
 
-## 7. Confidence, contradicting evidence, and what would change each verdict
+### P5: resampling the plan as a diversity knob (flag D)
 
-- **FLAG E: medium confidence.** The verdict rests on abstract-level text for the two closest candidates. Full texts showing W8A8/FP8-activation arms would turn PARTLY into FIRES, and Claim E would become a replication [2, 3]. Contradicting in part: numerics alone change outputs and margins [12, 17, 15, 14], so a W8A8 effect could be a kernel or batching artefact unless numerics are controlled. Weight-only steering directions survive quantisation [1], which argues against large weight-side effects.
-- **FLAG L: medium-high confidence.** It would FIRE if a paper commits to a base-model forecast of the landing identity and scores it against the tuned model's own ranking. The closest work is retrospective [31] or uses a geometric null [34]. Contradicting evidence favours the rival hypothesis that nudges walk the tuned model's own ladder [35, 36, 63]. Lee et al.'s mixed base-vs-instruct direction [67] warns that the base runner-up need not be the tuned model's runner-up.
-- **S/F/K: medium confidence.** These lanes are crowded [44, 48, 17, 54, 57, 79]. The handbook's base rate for unchecked lanes being occupied is 11/11, and this audit added contemporaneous occupants in E and F2. A screener-risk caveat applies: one agent scored everything, and the re-screen is a consistency check (kappa 0.791).
+| Row | Neighbour | Verified quote(s) | Relation | Lane verdict | What this run adds | Reviewer baseline |
+|---|---|---|---|---|---|---|
+| 92e-P5-1 | STARS (ICLR 2026), Noise Steering, REI, NC-GRPO, 2606.10302, Diversity Without Discovery: 92c sources 15, 14, 16, 52, 31, 63 [28, 29, 30, 63, 54, 88] | see 92c (not re-verified) | occupies the method family (activation noise for diversity) | PARTLY OCCUPIED | resampling a *fitted, causally localized* plan variable | matched-dose activation noise; text-level plan samplers (IFG, PlanSearch) [89, 90] |
+| 92e-P5-2 | Random Choice in LMs, ICLR 2027 submission, c [34] | "This decomposition enables a mechanism-guided intervention that improves sampling without task-specific gradient training." (P5-1; abstract; VA) | adjacent (2.0); closest to flag D | — | per-generation resampling for algorithm diversity | distribution-direction intervention |
+| 92e-P5-3 | LP-BD [31]; PPLR [32]; SVP [33] (ICLR 2027 submissions, c) | "before a block is decoded, a small conditional flow samples a low-dimensional plan given" (P5-2; VA). "which diversifies latent trajectories by randomly rescaling coefficients in the fixed SVD basis of a weight matrix." (P5-4; VA) | adjacent (flag D partly) | — | a frozen LM; the variable is fitted, not trained | — |
+| 92e-P5-4 | Latent Plan Transformer, v4, anchor (venue not stated in the arXiv record) [91] | "We introduce the Latent Plan Transformer (LPT), a novel model that leverages a latent variable to connect a Transformer-based trajectory generator and the final return." (P5-5; Abstract; V) | adjacent | — | — | — |
 
-## 8. Follow-up questions
+### N: reading and editing the plan in words with NLAs (flag C)
 
-- TOP (FLAG E partly fired at contemporaneous abstract level): once ICLR 2027 PDFs open (reviews due about end of October 2026), do OpenReview 8iTqrW1sxY ('Stable Directions, Different Effects') and h57duZqLOr ('Activation Steering under Low-Bit Quantization') include ACTIVATION quantisation (W8A8, FP8 activations, KV cache), or weights only? If they include activations, Claim E becomes a replication in a new setting (content-free nudges, code-algorithm choice).
-- Does PAHQ's failure mode (small patch effects truncated to zero under unscaled FP8/RTN) appear under per-token-scaled FP8 W8A8? The run's W16A8 arm with per-token absmax readouts can answer this directly.
-- In the run's own data, what fraction of nudge landings lie within the tuned model's own teacher-forced top-k (q_lik) or sampled tail (q_tail), compared with the base runner-up? Weak-to-strong jailbreaking predicts that the tuned model's own ranking already contains many landings.
-- Re-check Same Candidates (ooV5M72O08) and Before the First Token (knirOusGcq) when their PDFs open, and confirm whether Locked at the Entrance (now arXiv 2608.29188) compares its entrance-family coverage with the base model.
-- UNMAPPED citation numbers: the one-to-one assignment of the hypothesis's own reference numbers 88-91, 92/93/102, 98/99 and 81/82 to papers needs the hypothesis reference list (inherited/citation_map.json maps only the sets of inherited rows).
-- Which FP8 scheme did the iteration-4 engine actually use: block-128 fine-grained checkpoint scales or dynamic per-token activation scales? The attribution readout depends on it.
+| Row | Neighbour | Verified quote(s) | Relation | Lane verdict | What this run adds | Reviewer baseline |
+|---|---|---|---|---|---|---|
+| 92e-N-1 | Fraser-Taliente, Kantamneni, Ong et al., "Natural Language Autoencoders Produce Unsupervised Explanations of LLM Activations", Transformer Circuits, published May 7, 2026, pub [1] | "We can make a targeted edit to the NLA explanation, convert the modified explanation into an activation via the AR, and steer the target model with the resulting direction." (N-1; Planning in Poetry; V). "We note that steering is only successful roughly 50% of the time and the completions are not always clean." (N-3; V) | OCCUPIES the method (rubric 2.5) | OCCUPIED (method) | replication in a new setting: algorithm choice in code, Qwen2.5-7B-Instruct L20, text-only judges, an unrelated-word edit, a matched-norm random displacement | the paper's own newline-only steering protocol and success rate |
+| 92e-N-2 | same paper, Reasoning about Rewards [1] | "by editing an explanation and reconstructing both the original and edited versions with the AR, we obtain a steering vector from their difference." (N-4; V) | occupies | — | — | AR-difference steering vector, norm-matched |
+| 92e-N-3 | same paper, Method and Limitations [1] | "NLA explanations can contain claims about the target model's input context that are verifiably false." (N-5; V). "with the NLAs evaluated in this paper reaching 0.6-0.8 FVE" (N-6; V) | control the claim must meet (confabulation) | — | — | confabulation audit of plan claims |
+| 92e-N-4 | Released checkpoints: kitft README [92]; HF card [93]; nla_meta.yaml [94]; TransformerLens issue #1884 [95] | "Qwen2.5-7B-Instruct \| 20 / 28 \| 3584" (N-9; VR). "Each checkpoint ships an `nla_meta.yaml` sidecar [...] load those, never hardcode them." (N-11; VR). "In-distribution fve_nrm: 0.752" (N-13; VR) | design facts | — | — | load nla_meta.yaml injection settings |
+| 92e-N-5 | LatentQA, Pan, Chen, Steinhardt, ICLR 2026, v2 [2]; SelfIE, ICML 2024, PMLR 235 [3, 4] | "The trained decoder also enables control by providing a differentiable loss to steer activations towards" (N-15; V). "We propose Supervised Control, which allows editing open-ended concepts while only requiring gradient computation of individual layer." (N-17; V) | occupies the "similar verbaliser" clause of flag C (rubric 2.0 each) | — | — | decoder-loss steering arm |
+| 92e-N-6 | Activation Oracles, v2 [96]; Dreaming Vectors (LessWrong) [5] | "we study Activation Oracles (AOs): models trained to answer arbitrary natural-language questions about LLM activations." (N-19; V) | readout kin / steering kin (grey literature) | — | — | — |
+| 92e-N-7 | Sood, Substack, 2026-08-18, c4 [97]; Auditing the Auditor, ICLR 2027 submission, c [52] | "We audit two released NLA checkpoints and find that the readout reports what pressure was applied and what the model answered, but not whether the pressure changed that answer." (N-21; VB). "under preregistered controls: a wrong-activation (shuffled) control, a visible-text baseline, a blinded judge, and supervised readability probes." (N-22; VA) | control set the readout must meet | — | — | shuffled-activation control; visible-text baseline; blinded judge |
+| 92e-N-8 | Train the Model, Not the Reader, Dingeto, v2, v1 2026-07-22, c4 [6] | "On a released Qwen-2.5-7B verbalizer, explanations reconstruct well above chance while as few as [...] of their specific claims are ones the reconstruction depends on. The score therefore tracks the input's gist, not its specific" (N-24; Abstract; V) | contradicts in part: an edited claim may not move the AR output | — | measure the AR displacement caused by the edit before steering | claim-flip reconstruction test |
+| 92e-N-9 | Colombian identity with NLA, v1 2026-07-23, c4 [98] | "We use Natural Language Autoencoders (NLA) to verbalize residual-stream activations from layer 20 across four positional quartiles per prompt." (N-25; V) | readout replication on the same checkpoint | — | — | — |
+| 92e-N-10 | Community Qwen3-8B NLAs: nanoNLA [99, 100]; EasyNLA [101] | "This repo hosts the AV for Qwen3-8B @ layer 24." (N-26; VR). "On Qwen3-8B (layer 24) the default config reaches ~70% held-out FVE in ~3–4 hours on 4×H200." (N-28; VR) | corrects iteration 5's "NLA unavailable for Qwen3-8B" | — | — | an optional Qwen3-8B arm (unofficial; faithfulness disclaimer) |
+| 92e-N-11 | Planning or Improvisation?, Jacopin, v1 2026-09-16, c4 [7] | "C2 and C3 are not recovered by any probe: a census of every active feature finds no rhyme-anticipating enrichment at the newline" (N-29; Abstract; V) | contradicts in part (no newline-resident plan in small open models) | — | — | site sweep (newline vs final prompt token) |
+| 92e-N-12 | Measuring Activation Control [102]; Understanding Confabulation [103] | "this level of control can evade activation-based monitoring methods (including linear probes, natural language autoencoders, activation oracles, and the Jacobian lens), albeit imperfectly." (N-30; V) | context | — | — | — |
+
+### S: the plan in Gemma Scope 2 SAE and transcoder features
+
+| Row | Neighbour | Verified quote(s) | Relation | Lane verdict | What this run adds | Reviewer baseline |
+|---|---|---|---|---|---|---|
+| 92e-S-1 | Gemma Scope 2: announcement 22 Dec 2025 [104]; technical report [105]; HF card [106] | "every SAE trained on a PT model has a corresponding version finetuned for IT models" (S-1; VB). "we do not train IT SAEs from scratch: we initial [...] from the corresponding PT SAEs and finetune on the rollout-derived datasets." (S-3; V) | design facts | — | — | report the IT-vs-PT dictionary used |
+| 92e-S-2 | circuit-tracer README [25]; Qwen-3 transcoders (Hanna et al.) [26, 27] | "Gemma-3 PLTs (originally from GemmaScope-2) can be found here for models of size 270M, 1B, 4B, 12B, and 27B, PT and IT. These require using the `nnsight` backend." (S-5; VR). "Qwen-3 PLTs: for Qwen-3 0.6B, 1.7B, 4B, 8B, and 14B" (S-6; VR) | design fact: Qwen3-8B transcoders exist, so a reviewer may ask why S uses Gemma | — | — | run S on the Qwen3-8B PLTs, or justify Gemma |
+| 92e-S-3 | AxBench, v3, v1 2025-01-28 [22]; rebuttal, v1 2026-05-29 [23] | "For steering, we find that prompting outperforms all existing methods, followed by finetuning." (S-10; V). "We find that Sparse Autoencoders can, in fact, perform close to on par with the reference LoRA performance on the AxBench benchmark, when features are selected and labelled with our supervised pipeline." (S-12; V) | prior the claim must meet | — | — | difference-in-means and prompting arms |
+| 92e-S-4 | SAE-Steering, Fang et al., ACL 2026 Main, v2 [21]; Galichin et al. [107] | "To identify the few strategy-specific features from the vast pool of SAE features, we propose SAE-Steering, an efficient two-stage feature identification pipeline." (S-13; V). "We compare SAE-Steering with three representative control methods [...] Think Intervention (Wu et al., 2025), which inserts human-crafted instructions into the middle of the reasoning process" (S-13b; Sec. 4.1; V) | OCCUPIES the method on a non-code strategy (rubric 2.5) | PARTLY OCCUPIED | algorithm choice in code; Gemma Scope 2; transcoder attribution | SAE-Steering-style logit-recall feature selection |
+| 92e-S-5 | Do SAEs Identify Reasoning Features? (Gemma Scope 2), ICML 2026, v7 [53] | "use SAEs from the GemmaScope-2 release (McDougall et al., 2025), each with 16,384 features trained on residual stream activations." (S-15; V). "A small steering study yields minimal changes on the evaluated benchmarks." (S-16; V) | contradicts in part | — | — | token-injection falsification of candidate features |
+| 92e-S-6 | Prolepsis [24]; Latent Planning Emerges with Scale [27] | "Planning is invisible to six residual-stream methods; among those tested, only CLT-based steering succeeds." (S-17; V) | adjacent; counter-evidence to the AxBench prior for plans | — | — | CLT/PLT arm against residual difference-in-means |
+| 92e-S-7 | SAE Interventions are Unreliable [108]; variable roles in code LMs (ICLR 2027 submission) [109]; attribution-graph caveat [110] | "the clamp may block one visible route to a behavior without eliminating the behavior itself." (S-18; V). "residual probes outperform individual SAE features and tested lexical baselines" (S-19; VA). "we've found that our attribution graphs provide us with satisfying insight for about a quarter of the prompts we've tried" (S-20; V) | cautions | — | — | probe baseline; post-intervention recovery check |
+
+### E: FP8 W8A8 activation rounding inflates the apparent effect of activation perturbations (flag B)
+
+| Row | Neighbour | Verified quote(s) | Relation | Lane verdict | What this run adds | Reviewer baseline |
+|---|---|---|---|---|---|---|
+| 92e-E-1 | Steering Under Compression, Bhandari and Wade, v1 2026-09-06, c4 [8] | "Activations remain in FP16/BF16 throughout the forward pass." (E-2; Sec. 3; V). "demonstrating that compression can dominate the steering intervention." (E-4; V) | adjacent (1.5); flag B partly | ADJACENT-ONLY (published) | activation quantization; random perturbations; matched bf16 control | iso-effect comparison at matched behavioural effect |
+| 92e-E-2 | Stable Directions, Different Effects, ICLR 2027, desk rejected, c [9] | "Preserving standard model quality or direction-level representation similarity does not guarantee that the intervention effect is preserved." (E-5; VA). "Intervention effects can change even when directions remain strongly aligned" (E-6; VA) | partly occupies the general claim (contemporaneous) | PARTLY OCCUPIED (contemporaneous) | random pushes; FP8 W8A8 named; noise-floor account | a first-order local-sensitivity predictor |
+| 92e-E-3 | Activation Steering under Low-Bit Quantization, ICLR 2027 submission, c [10] | "We study steering compatibility with the intervention layer, direction, and strength held fixed across full-precision and quantized models." (E-7; VA) | adjacent (1.0) | — | — | hold layer, direction and strength fixed |
+| 92e-E-4 | Quantization Modulates Batch-Context Non-Determinism, ICLR 2027 submission, c [11] | "using BF16, GPTQ, FP8 weight-and-activation quantization, and FP8 KV-cache quantization." (E-9; VA) | mechanism neighbour (noise floor) | — | perturbation effect sizes against the FP8 noise floor | same-batch-context repeat runs |
+| 92e-E-5 | PRISM, v1 2026-10-14, c4 [111] | "we introduce PRISM, a framework for evaluating the transfer of activation interventions across precision, languages, and scales." (E-10; V) | adjacent (NF4) | — | — | — |
+| 92e-E-6 | Readouts under quantization: Findings ACL 2026 [58]; [59]; [60]; AACL 2025 [112]; TrustNLP 2026 [113] | "These results show that behavioral metrics alone are insufficient evidence that full-precision interpretability findings transfer to quantized models, motivating feature-level audits of compression." (E-13; V) | flag B partly (readouts, not perturbation effect sizes) | — | — | — |
+| 92e-E-7 | Precision-induced divergence: TMLR 2026 [114]; [115, 116]; [117]; [61] | "the same model, prompt, and decoding algorithm produce different outputs in BF16 versus FP16 on identical hardware." (E-17; V). "under bfloat16 precision with greedy decoding, a reasoning model like DeepSeek-R1-Distill-Qwen-7B can exhibit up to 9% variation in accuracy and 9,000 tokens difference in response length due to differences in GPU count, type, and evaluation batch size." (E-18; V) | supports the mechanism (rounding flips trajectories) | — | — | a zero-norm (unperturbed) re-run under the same engine |
+| 92e-E-8 | Mechanism sources: LLM.int8() [118]; SmoothQuant [119]; massive activations [120]; FP8 formats [121]; llm-compressor FP8_DYNAMIC [12] | "SmoothQuant smooths the activation outliers by offline migrating the quantization difficulty from activations to weights with a mathematically equivalent transformation." (E-21; V). "Static, per-channel quantization on the weights [...] Dynamic, per-token quantization on the activations" (E-24; VR) | mechanism background | — | — | per-token-scale ablation |
+
+## 6. Permitted wording (dated 2026-10-22; evidence: evidence/flags_iter6.json, evidence/quotes_iter6.jsonl)
+
+- **P1.**
+  - Permitted: "To our knowledge (search dated 2026-10-22), the first interchange/DAS localization of *which algorithm* a code LLM will write that is validated by scoring the generated programs, with Sutter-style map-class, random-initialization and shuffled-label controls."
+  - Forbidden: "first causal localization of a plan", "new method", and "first DAS-based steering" (CDAS [15]).
+  - Cite DAS [13], MIB [14], CDAS [15], Sutter [69], Makelov with the reply [70, 72], divergent representations [73], and the contemporaneous Before Reasoning Begins [20].
+- **P2.**
+  - Permitted: "we predict which random pushes switch the algorithm from their projection onto the plan subspace".
+  - Forbidden: "first causal planning subspace" (Before the First Token [40]).
+  - Frame the parallel/orthogonal decomposition as following [40].
+- **P3.**
+  - Permitted: "the plan behaves discretely under interpolation in our setting".
+  - Forbidden: "categorical concepts are discrete" as a new finding ([45]).
+- **P4.**
+  - Permitted: "at matched KL, temperature did not move the plan while state noise did".
+  - The departure-matched decoding baseline [48] must be run or named.
+  - Forbidden: "temperature is not the creativity knob" as a new claim ([49]).
+- **P5.**
+  - Permitted: "resampling a fitted, causally localized plan variable"; activation noise for diversity is prior art [28, 29, 30].
+  - Forbidden: "first latent diversity knob" and "new diversity method".
+- **N.**
+  - Permitted: "we replicate the NLA edit-and-steer protocol [1] on algorithm choice in code, with Qwen2.5-7B-Instruct and new controls".
+  - Forbidden: "first", "new method", "we introduce editing explanations to steer".
+- **S.**
+  - Permitted: "Gemma Scope 2 SAE/transcoder features for an algorithm-choice plan in code, compared against difference-in-means and prompting".
+  - Forbidden: "first SAE steering of strategies" ([21]).
+  - State why Gemma Scope 2 is used when Qwen-3 PLTs exist [25].
+- **E.**
+  - Permitted: "we find that activation-quantized (FP8 W8A8, dynamic per-token) inference inflates the apparent effect of random activation perturbations relative to bf16".
+  - Cite the weight-only [8] and contemporaneous [9, 10, 11] work.
+  - Forbidden: "first to show quantization changes steering effects".
+
+## 7. Reviewer baselines (implied by the neighbours)
+
+1. **P1.**
+   - DAS with a declared linear rotation and rank, fitted also on a randomly initialized model and with shuffled labels [69].
+   - Neuron and SAE-feature arms [14].
+   - A CDAS-style distribution-matching arm [15].
+   - A difference-in-means direction with matched-norm random controls [18].
+   - A prompt-cue baseline [16].
+2. **P2.**
+   - Parallel/orthogonal decomposition [40].
+   - A matched-budget random subspace [42].
+   - A test of the orthogonal complement [44].
+3. **N.**
+   - Shuffled-activation and visible-text controls, plus a blinded judge [52].
+   - A claim-flip reconstruction test [6].
+   - The paper's newline-only protocol [1].
+4. **S.**
+   - Difference-in-means and prompting [22].
+   - A supervised SAE pipeline [23].
+   - SAE-Steering feature selection [21].
+   - CLT/PLT steering [24].
+5. **E.**
+   - A bf16 re-run of the same directions.
+   - A zero-norm FP8 re-run (noise floor) [11, 114].
+   - A weight-only (W8A16) arm [8].
+   - A per-token-scale ablation [12].
+6. **P4/P5.**
+   - Departure-matched decoding [48].
+   - IFG and PlanSearch [89, 90].
+
+## 8. Departures (from the plan) and limitations
+
+1. **Single screener.** O/I/C calls rest on one judgment, with every decisive sentence logged. Borderline calls:
+   - CDAS's O = 0.5 for refusal;
+   - SAE-Steering's I = 1;
+   - E-row verdicts that rest on abstracts.
+2. **ICLR 2027 rows are abstract-only.** OpenReview PDFs and api2 attachments returned HTTP 403, and the forum HTML is a browser check. Flag B and flag D both hinge on such abstracts.
+3. **Forward citations are thin.** They come from Semantic Scholar only, and the NLA paper is not indexed there (E6 used instead), so recent follow-ups may be undercounted.
+4. **Inherited quotes were not re-verified.** Only versions were rechecked, for 8 flag-critical references.
+5. **The prior audits' tools were reused.** They were readable on disk although the plan assumed otherwise; they were copied into tools/ and adapted.
+6. **Round 3 was run.** It found no new hit at or above 1.5.
+7. **E6 timing.** E6 calls were logged within minutes of being made, with the logging time as the timestamp.
+   Three supplementary general-web searches outside the frozen strings (round SUPP in the search log) looked for full-text versions of the abstract-only flag-B and flag-D neighbours. None was found. They surfaced one more P2-adjacent paper [80].
+8. **No full-text checks for the method details in ICLR 2027 abstracts.** For example, whether "precision changes" includes activation quantization.
+
+## 9. Corrections (evidence/corrections_iter6.jsonl)
+
+- **NLA.**
+  - Citation and date: "Fraser-Taliente, Kantamneni, Ong et al.", published May 7, 2026 [1].
+  - The paper already edits and steers a plan, so N is a replication.
+  - 4 base models × (AV, AR) = 8 checkpoints [92].
+  - Qwen3-8B has no *official* NLA checkpoint, but community reimplementations exist at layer 24 [99, 101]. friendli.ai/models/ceselder/nanoNLA is a hosting listing of that AV.
+- **Gemma Scope 2.** Announced 22 Dec 2025; IT SAEs are initialized from the PT SAEs and finetuned [104, 105].
+- **circuit-tracer.**
+  - Gemma-3 PLTs come from GemmaScope-2 and need the nnsight backend.
+  - Qwen-3 PLTs, including 8B, are by Hanna et al. The card names no checkpoint; the ICLR 2026 paper that uses them calls its Qwen-3 models instruction-tuned [25, 26, 27].
+- **Sutter et al.** NeurIPS 2025 Spotlight. The phrase "any neural network can be mapped to any algorithm" does not occur in v2; use the 100% IIA sentence [69].
+- **Makelov et al.** ICLR 2024; the arXiv comment names a NeurIPS 2023 workshop [71].
+- **SelfIE.** ICML 2024, PMLR 235:7373-7388 [4].
+- **DAS.** CLeaR 2024, PMLR 236 [64].
+- **Engels et al.** The current title is "Not All Language Model Features Are One-Dimensionally Linear" [46].
+- **2506.09501.**
+  - v1 is titled "Give Me FP32 or Give Me Death? Challenges and Solutions for Reproducible Reasoning"; v2 is retitled.
+  - "up to 9% variation in accuracy" is verified [116, 115].
+- **2609.15504.** The current title is "Evaluating Losslessness in Speculative Decoding Under Finite-Precision Inference" (no row).
+- **Latent Plan Transformer.** Venue not stated in the arXiv record (v4) [91].
+- **AxBench.** Venue not verified here: the arXiv comment is empty.
+- **Inherited versions.** No newer arXiv versions for the 8 flag-critical inherited references.
+
+## 10. Confidence and what would change it
+
+- **High confidence (full-text quotes).**
+  - Flag C fired.
+  - 2609.06473 is weight-only.
+  - Gemma Scope 2 and circuit-tracer facts.
+  - DAS, MIB, Sutter and Makelov controls.
+- **Medium confidence.**
+  - Flag A not fired: the search is broad but single-screened, and code-interpretability work moves fast.
+  - Flag D partly fired: Random Choice's full text is unread.
+- **Low-to-medium confidence on flag B.** It rests on two ICLR 2027 abstracts whose quantization type is unknown. Reading their PDFs once OpenReview access works is the single most valuable follow-up.
+- **Contradicting evidence logged.**
+  - Planning may be absent or improvised in small open models [67, 7].
+  - NLA reconstructions track the gist rather than specific claims [6].
+  - SAE reasoning features may be token correlates [53].
+  - Steering reliability is questioned [81, 108].
+
+## 11. Follow-up questions
+
+1. **Flag B.** Do the ICLR 2027 submissions "Stable Directions, Different Effects" and "Activation Steering under Low-Bit Quantization" quantize activations (W8A8/FP8) or only weights? Their full texts decide whether flag B fires. Re-read them once the OpenReview PDFs are reachable.
+2. **N's causal arm.** On the released Qwen2.5-7B-Instruct L20 NLA, how far does the AR reconstruction move when only the algorithm name in an explanation is edited? The claim-dependence result [6] predicts a small move. Measure this before running the edit-and-steer arm.
+3. **Flag A and P1.** Would interchange/DAS on the Qwen3-8B final prompt position find a low-rank variable for algorithm choice? Where does it sit relative to the 23 SAE targets of the contemporaneous Before Reasoning Begins submission [20] and to the Qwen-3 PLTs [25]?
+
+
 
 ## Sources
 
-[1] [Steering Under Compression: Dose-Response, Capability Cost, and Failure Asymmetry in Quantized LLMs (arXiv 2609.06473v1)](https://arxiv.org/html/2609.06473v1) (Saurav Bhandari, Benjamin Wade; 2026) — Nearest FLAG E neighbour: CAA steering under bitsandbytes WEIGHT-ONLY INT8/NF4 on four 7-9B models; activations kept FP16/BF16; vectors recomputed per scheme stay collinear (cosine 0.989-0.998 INT8, 0.945-0.990 NF4); activation quantisation excluded by design.
+[1] [Natural Language Autoencoders Produce Unsupervised Explanations of LLM Activations](https://transformer-circuits.pub/2026/nla/index.html) (Kit Fraser-Taliente, Subhash Kantamneni, Euan Ong; 2026) — Decisive for flag C: edits an NLA explanation of a rhyme plan, reconstructs it with the AR and steers at the newline (about 50% success); a steering vector from the explanation difference in the rewards case; confabulation; FVE 0.6-0.8. (version: HTML (single version); venue: Transformer Circuits Thread (published May 7, 2026); status: VERIFIED; retrieved 2026-10-22; author list truncated to the first names shown by the source)
 
-> We study only bitsandbytes weight-only quantization (INT8, NF4); activation quantization (W8A8, W4A4) and outlier-aware weight algorithms (GPTQ, AWQ, SmoothQuant, QuaRot) are excluded by design and may behave differently.
+> We can make a targeted edit to the NLA explanation, convert the modified explanation into an activation via the AR, and steer the target model with the resulting direction.
 
-Locator: Sec. 6 (Limitations)
+Locator: Case Studies > Planning in Poetry (N-1; VERIFIED)
 
-> Despite this, steering vectors remain highly collinear with their FP16 siblings (cosine similarity 0.989-0.998 for INT8, 0.945-0.990 for NF4), confirming that the behavioral direction survives quantization even when the cost structure does not.
+> We then steer with this direction at the newline token only, at the layer the NLA is trained on.
 
-Locator: Abstract
+Locator: Case Studies > Planning in Poetry (N-2; VERIFIED)
 
-[2] [Stable Directions, Different Effects: Intervention Fidelity Across Model Precision (ICLR 2027 desk-rejected submission, OpenReview 8iTqrW1sxY; API record)](https://api2.openreview.net/notes/search?term=Stable%20Directions%2C%20Different%20Effects%3A%20Intervention%20Fidelity%20Across%20Model%20Precision&group=ICLR.cc/2027/Conference&limit=10) (2026) — Abstract-level (PDF HTTP 403): the effect of a steering intervention transferred to a quantized version can change while directions stay aligned; precision factor not stated; keywords 'model quantization', 'cross-precision transfer'.
+> We note that steering is only successful roughly 50% of the time and the completions are not always clean.
 
-> Steering directions can remain aligned across model precision changes while their functional effects drift; local functional sensitivity predicts and corrects this cross-precision fidelity gap.
+Locator: Case Studies > Planning in Poetry (results) (N-3; VERIFIED)
 
-Locator: TLDR field of the OpenReview API record
+> by editing an explanation and reconstructing both the original and edited versions with the AR, we obtain a steering vector from their difference.
 
-[3] [Activation Steering under Low-Bit Quantization: A Geometric Perspective on Degradation and Recovery (ICLR 2027 submission, OpenReview h57duZqLOr; API record)](https://api2.openreview.net/notes/search?term=Activation%20Steering%20under%20Low-Bit%20Quantization%3A%20A%20Geometric%20Perspective%20on%20Degradation%20and%20Recovery&group=ICLR.cc/2027/Conference&limit=10) (2026) — Abstract-level: same intervention layer/direction/strength across full-precision and quantized models; output fidelity does not guarantee preserved responses to the intervention; quantisation scheme not stated.
+Locator: Introduction (case-study overview: Reasoning about Rewards) (N-4; VERIFIED)
+
+[2] [LatentQA: Teaching LLMs to Decode Activations Into Natural Language](https://arxiv.org/html/2412.08686v2) (Alexander Pan, Lijie Chen, Jacob Steinhardt; 2024) — LatentQA (Pan, Chen, Steinhardt); cited in rows 92e-N-5. (version: v2; venue: ICLR 2026; project page at https://latentqa.github.io; status: VERIFIED; retrieved 2026-10-22)
+
+> The trained decoder also enables control by providing a differentiable loss to steer activations towards
+
+Locator: Sec. 4, 'Using the decoder for control' (N-15; VERIFIED)
+
+> we demonstrate that the decoder is precise enough to steer the target model to exhibit behaviors unseen during training.
+
+Locator: Abstract (N-16; VERIFIED)
+
+[3] [SelfIE: Self-Interpretation of Large Language Model Embeddings](https://arxiv.org/html/2403.10949v2) (Haozhe Chen, Carl Vondrick, Chengzhi Mao; 2024) — SelfIE (Chen, Vondrick, Mao); cited in rows 92e-N-5. (version: v2; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)
+
+> We propose Supervised Control, which allows editing open-ended concepts while only requiring gradient computation of individual layer.
+
+Locator: Abstract (N-17; VERIFIED)
+
+[4] [SelfIE: Self-Interpretation of Large Language Model Embeddings (PMLR 235 record)](https://proceedings.mlr.press/v235/chen24ao.html) (Haozhe Chen, Carl Vondrick, Chengzhi Mao; 2024) — Venue record: ICML 2024, PMLR 235:7373-7388. (version: proceedings; venue: ICML 2024; status: VERIFIED; retrieved 2026-10-22)
+
+> Proceedings of the 41st International Conference on Machine
+
+Locator: PMLR record (N-18; VERIFIED)
+
+[5] [Dreaming Vectors: Gradient-descented steering vectors from Activation Oracles and using them to Red-Team AOs (LessWrong)](https://www.lesswrong.com/posts/rdhyHtjf3LcZxuQPm/dreaming-vectors-gradient-descented-steering-vectors-from) (2026) — Grey-literature verbaliser-to-steering kin for flag C: steering vectors optimized against an Activation Oracle. (version: post; venue: LessWrong; status: VERIFIED-BLOG; retrieved 2026-10-22)
+
+> Dreaming Vectors: Gradient-descented steering vectors from Activation Oracles and using them to Red-Team AOs
+
+Locator: title (N-20; VERIFIED-BLOG)
+
+[6] [Train the Model, Not the Reader: Decodability Supervision for Verifiable Activation Explanations](https://arxiv.org/html/2607.20379v2) (Hiskias Dingeto; 2026) — Train the Model, Not the Reader (Dingeto); cited in rows 92e-N-8. (version: v2; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)
+
+> of their specific claims are ones the reconstruction depends on. The score therefore tracks the input
+
+Locator: Abstract (N-24; VERIFIED)
+
+[7] [Planning or Improvisation? Stress-Testing the Poetry Planning Site on Open Models and Open Cross-Layer Transcoders](https://arxiv.org/html/2609.18440v1) (Éric Jacopin; 2026) — Planning or Improvisation? (Jacopin); cited in rows 92e-N-11. (version: v1; venue: 17 pages, 3 figures, 8 tables. Code, data and analysis scripts: https://github.com/PCfVW/poetry-planning-site . An earlier version was submitted to the BlackboxNLP 2026 special track on reproducibility and reliability in interpretability analyses; this version adds a rerun composition-horizon experiment (36 runs, 8,640 sampled lines) and a transcoder-free activation-patching test; status: VERIFIED; retrieved 2026-10-22)
+
+> C2 and C3 are not recovered by any probe: a census of every active feature finds no rhyme-anticipating enrichment at the newline
+
+Locator: Abstract (N-29; VERIFIED)
+
+[8] [Steering Under Compression: Dose-Response, Capability Cost, and Failure Asymmetry in Quantized LLMs](https://arxiv.org/html/2609.06473v1) (Saurav Bhandari, Benjamin Wade; 2026) — Steering Under Compression (Bhandari, Wade); cited in rows 92e-E-1. (version: v1; venue: 17 pages, 5 figures; status: VERIFIED; retrieved 2026-10-22)
+
+> We systematically study activation steering under weight-only quantization (INT8 and NF4) across four open-weight
+
+Locator: Abstract (E-1; VERIFIED)
+
+> Activations remain in FP16/BF16 throughout the forward pass.
+
+Locator: Sec. 3 (deployment conditions) (E-2; VERIFIED)
+
+> we find that sentiment steering survives quantization intact.
+
+Locator: Abstract (E-3; VERIFIED)
+
+> demonstrating that compression can dominate the steering intervention.
+
+Locator: Abstract (E-4; VERIFIED)
+
+[9] [Stable Directions, Different Effects: Intervention Fidelity Across Model Precision (OpenReview forum 8iTqrW1sxY)](https://api2.openreview.net/notes/search?term=Stable%20Directions%2C%20Different%20Effects%3A%20Intervention%20Fidelity%20Across%20Model%20Precision&group=ICLR.cc/2027/Conference&limit=10) (2026) — ICLR 2027 Conference Desk Rejected Submission; contemporaneous. Cited in rows 92e-E-2. (version: submission; venue: ICLR 2027 Conference Desk Rejected Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)
+
+> Preserving standard model quality or direction-level representation similarity does not guarantee that the
+
+Locator: OpenReview abstract (forum 8iTqrW1sxY) (E-5; VERIFIED-ABSTRACT)
+
+> Intervention effects can change even when directions
+
+Locator: OpenReview abstract (E-6; VERIFIED-ABSTRACT)
+
+[10] [Activation Steering under Low-Bit Quantization: A Geometric Perspective on Degradation and Recovery (OpenReview forum h57duZqLOr)](https://api2.openreview.net/notes/search?term=Activation%20Steering%20under%20Low-Bit%20Quantization%3A%20A%20Geometric%20Perspective%20on%20Degradation%20and%20Recovery&group=ICLR.cc/2027/Conference&limit=10) (2026) — ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-E-3. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)
 
 > We study steering compatibility with the intervention layer, direction, and strength held fixed across full-precision and quantized models.
 
-Locator: Abstract (OpenReview API record; keywords 'Quantization', 'Activation Steering')
+Locator: OpenReview abstract (forum h57duZqLOr) (E-7; VERIFIED-ABSTRACT)
 
-[4] [PAHQ: Accelerating Automated Circuit Discovery through Mixed-Precision Inference Optimization (arXiv 2510.23264v1)](https://arxiv.org/html/2510.23264v1) (Xinhai Wang, Shu Yang, Liangyu Wang, Lin Zhang, Huanyi Xie, Lijie Hu, Di Wang; 2025) — 8-bit RTN quantisation of ALL weights and activations (FP32 baseline) collapses ACDC activation-patching circuit discovery (IOI/Greater-Than/Docstring, GPT-2-scale) via underflow and mantissa loss; the closest full-text FLAG E candidate (joint W+A, internal outcome).
+> We show that ordinary output fidelity alone does not guarantee
 
-> We directly applied quantization from 32 bits to 8 bits to all weights and activations of the model Radford et al. (2019) in the ACDC Conmy et al. (2023) method, which is called Round-to-Nearest Quantization (RTN-Q), on the Indirect Object Identification (IOI) task Wang et al. (2022) and tested its performance.
+Locator: OpenReview abstract (E-8; VERIFIED-ABSTRACT)
 
-Locator: Sec. 2 (Direct Quantization Does Not Work on ACDC)
+[11] [Quantization Modulates Batch-Context Non-Determinism in Greedy LLM Inference (OpenReview forum 9kskCmPMqd)](https://api2.openreview.net/notes/search?term=Quantization%20Modulates%20Batch-Context%20Non-Determinism%20in%20Greedy%20LLM%20Inference&group=ICLR.cc/2027/Conference&limit=10) (2026) — ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-E-4. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)
 
-> when precision is reduced from 32 bits to 8 bits, direct quantization (also called Round-to-Nearest Quantization, RTN-Q) significantly increases the minimum quantization step size, causing activation values below this threshold to be truncated to zero and ultimately rendering the automated circuit discovery method ineffective.
+> using BF16, GPTQ, FP8 weight-and-activation quantization, and FP8 KV-cache quantization.
 
-Locator: Sec. 1 (Introduction)
+Locator: OpenReview abstract (forum 9kskCmPMqd) (E-9; VERIFIED-ABSTRACT)
 
-[5] [Float32-Induced Distortion in Activation Patching: Precision Floors and Displacement-Dependent Endpoint-Curvature Error (Computation 2026; Semantic Scholar API record)](https://api.semanticscholar.org/graph/v1/paper/DOI:10.3390/computation14090212?fields=title,abstract,venue,publicationDate,authors,externalIds) (Yash Baligar; 2026) — fp32 vs fp64 numerics push many interaction-level patching estimates below a precision floor (GPT-2-medium, Pythia-410M); numerics, not activation quantisation.
-
-> floor, 13.0% and 51.2% of full-displacement interactions fell below the threshold
-
-Locator: Abstract (Semantic Scholar API record; publisher page https://www.mdpi.com/2079-3197/14/9/212 returned HTTP 403)
-
-[6] [Quantization-Induced Decision Changes Have Regime-Dependent Intervention Spectra (ICLR 2027 submission, OpenReview 6t1egKiB0v)](https://api2.openreview.net/notes/search?term=Quantization-Induced%20Decision%20Changes%20Have%20Regime-Dependent%20Intervention%20Spectra&group=ICLR.cc/2027/Conference&limit=10) (2026) — Activation additions on quantized residual states used to restore full-precision predictions (repair use of interventions).
-
-[7] [When Quantization Helps: Corrective Computation in Low-Bit Language Models (ICLR 2027 submission, OpenReview GYm4mg9yGQ)](https://api2.openreview.net/notes/search?term=When%20Quantization%20Helps%3A%20Corrective%20Computation%20in%20Low-Bit%20Language%20Models&group=ICLR.cc/2027/Conference&limit=10) (2026) — Weight-only GPTQ/AWQ/NF4; activation patching analyses quantisation-induced corrections.
-
-[8] [PRISM: Transfer and Limits of Activation Interventions in Tool-Calling Language Models (arXiv 2610.20808v1)](https://arxiv.org/html/2610.20808v1) (Giovana Kerche Bonás, Thales Sales Almeida, Marcelo da Silva Reis, Rodrigo Nogueira, Marcos Meideiros Raimundo; 2026) — Directions estimated with labels from NF4 copies act on BF16 models; weight-only precision transfer of interventions.
-
-> We explore 16-bit (BF16) and 4-bit (NF4) versions of smaller models to expose harmful tool-call compliance and estimate intervention directions.
-
-Locator: Sec. 1 (Introduction)
-
-[9] [Steered LLM Activations are Non-Surjective (arXiv 2604.09839v2)](https://arxiv.org/html/2604.09839v2) (Aayush Mishra, Daniel Khashabi, Anqi Liu; 2026) — Inherited 92b-b7c/92c-C2-geod; new finding quoted: its empirical claims hold on an INT4 model.
-
-> Noticeably, our theoretical claim does not cover quantization effects. However, we experiment with an INT4 quantized model and find that our empirical claims hold comfortably in this setting (§D).
-
-Locator: Sec. 7 (Conclusion and Limitations; App. D)
-
-[10] [Alignment Collapse Under KV Cache Quantization: Diagnosis and Mitigation (arXiv 2606.09864v2)](https://arxiv.org/pdf/2606.09864v2) (Bruce Changlong Xu, Adarsh Kumarappan, Mu Zhou; 2026) — Activation-side KV-cache quantisation silently removes refusals at ~flat perplexity; outlier-driven scale factors crush safety channels; no activation-level intervention.
-
-> where safety lives in non-outlier channels collaterally damaged by outlier-driven scale factors
-
-Locator: Abstract (PDF p. 1)
-
-[11] [Lost in Quantization: Activation Outliers Explain Language-Specific FP8 Sensitivity in Llama-3 (PROPOR 2026, ACL Anthology 2026.propor-1.108)](https://aclanthology.org/2026.propor-1.108/) (2026) — Naive unscaled E4M3 casting vs INT8 with outlier handling on Meta-Llama-3-8B; English +18% vs PT-BR +3.9% perplexity; no interventions; not per-token-scaled W8A8.
-
-> INT8 with outlier handling preserves perplexity in both languages, while naive FP8 casting degrades English far more than PT-BR (+18% vs. +3.9%).
-
-Locator: Abstract (ACL Anthology page; PDF pp. 1044-1048)
-
-> Our FP8 results reflect a naive casting stress test (no calibration/scaling), not an optimized FP8 recipe.
-
-Locator: Abstract (ACL Anthology page)
-
-[12] [Understanding and Mitigating Numerical Sources of Nondeterminism in LLM Inference (v1 title 'Give Me FP32 or Give Me Death?'; arXiv 2506.09501v2)](https://arxiv.org/html/2506.09501v2) (Jiayi Yuan, Hao Li, Xinheng Ding, Wenya Xie, Yu-Jhe Li, Wentian Zhao, Kun Wan, Jing Shi, Xia Hu, Zirui Liu; 2025) — BF16 numerics plus batch size/GPU count change accuracy by up to 9% and length by 9,000 tokens under greedy decoding; LayerCast.
-
-> For instance, under bfloat16 precision with greedy decoding, a reasoning model like DeepSeek-R1-Distill-Qwen-7B can exhibit up to 9% variation in accuracy and 9,000 tokens difference in response length due to differences in GPU count, type, and evaluation batch size.
-
-Locator: Abstract (v2)
-
-[13] [NeurIPS 2025 oral page: Understanding and Mitigating Numerical Sources of Nondeterminism in LLM Inference](https://neurips.cc/virtual/2025/oral/118170) (2025) — Venue confirmation (oral) for [12].
-
-[14] [Defeating Nondeterminism in LLM Inference (Thinking Machines Lab blog, Sep 10, 2025)](https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/) (Horace He; 2025) — Batch-invariance account of inference nondeterminism; 80 unique completions from 1000 temperature-0 samples of a Qwen3 model.
-
-> We use `Qwen/Qwen3-235B-A22B-Instruct-2507` and sample 1000 completions at temperature 0
-
-Locator: Experiments: How nondeterministic are completions?
-
-[15] [The Integer Alibi: Localizing Cross-Kernel Divergence in INT8-Quantized LLM Inference (arXiv 2608.13756v2)](https://arxiv.org/html/2608.13756v2) (Teng-Ruei Chen; 2026) — Swapping only the INT8 W8A8 GEMM kernel (CUTLASS vs Triton) in vLLM on Qwen3-1.7B/8B changes every sequence (0/8, 0/16, 0/64 agree); FP8 GEMM differences grow with reduction depth.
-
-> At 1.7B each arm reproduces itself bit-for-bit across cold restarts, yet the arms agree on no sequence in any end-to-end comparison we ran (0/8, 0/16, and 0/64).
-
-Locator: Abstract
-
-[16] [Same Request, Different Answer: Quantization Amplifies Cache-Induced Divergence in LLM Serving (arXiv 2609.04748v2)](https://arxiv.org/html/2609.04748v2) (Aditi Patodiya; 2026) — Quantised execution path (not rounded weights) amplifies cache-induced divergence; top-two margins; weights-through-16-bit-kernels control.
-
-> Serving four-bit weights through 16-bit kernels left divergence not detectably different from 16-bit, placing the amplification mainly in the quantized execution path.
-
-Locator: Abstract
-
-> Near-tie decisions became only about 1.2 times as common, while the cache-path change in top-two margins grew 4.9-fold from 16-bit to three-bit.
-
-Locator: Abstract
-
-[17] [Greedy Decoding Is Not Precision-Invariant: Cross-Precision Output Divergence in LLM Inference (TMLR 2026; arXiv 2609.26621v1)](https://arxiv.org/pdf/2609.26621v1) (Gaoyuan Du, Anam Nawaz Khan, Rex Zhou, Xiaoyang Liu, Deepayan Chakrabarti, Fnu Suya, Xueping Li; 2026) — BF16 vs FP16 change greedy outputs on 49-100% of prompts; outcome governed by the top-two logit margin at the lm_head; end-to-end FP8 divergence is body-dominated.
-
-> the outcome depends primarily on the top-two logit margin at the lm_head
-
-Locator: Abstract (PDF p. 1)
-
-[18] [Accuracy is Not All You Need (NeurIPS 2024; arXiv 2407.09141v1)](https://arxiv.org/html/2407.09141v1) (Abhinav Dutta, Sanjeev Krishnan, Nipun Kwatra, Ramachandran Ramjee; 2024) — Compressed models flip answers at matched accuracy: deployment analogue of 'same default, different behaviour'.
-
-> However, even when the accuracy of baseline and compressed model are similar, we observe the phenomenon of flips, wherein answers change from correct to incorrect and vice versa in proportion.
-
-Locator: Abstract
-
-[19] ['Give Me BF16 or Give Me Death'? Accuracy-Performance Trade-Offs in LLM Quantization (ACL 2025; arXiv 2411.02355v4)](https://arxiv.org/html/2411.02355v4) (Eldar Kurtic, Alexandre Marques, Shubhra Pandit, Mark Kurtz, Dan Alistarh; 2024) — Over 500,000 evaluations on Llama-3.1: FP8 W8A8 with dynamic per-token activation scales is accuracy-lossless (premise of 'same default accuracy').
-
-> W8A8-FP quantization is essentially lossless, preserving the uncompressed model’s accuracy across all benchmarks, often within the evaluation’s margin of error. This result is achieved with a simple yet robust approach: dynamic per-token activation quantization combined with symmetric weight quantization via round-to-nearest assignment.
-
-Locator: Sec. 1 (main findings)
-
-[20] [From Weights to Activations: Is Steering the Next Frontier of Adaptation? (ACL 2026; arXiv 2604.14090v1)](https://arxiv.org/html/2604.14090v1) (Simon Ostermann, Daniil Gurgurov, Tanja Baeumel, Michael A. Hedderich, Sebastian Lapuschkin, Wojciech Samek, Vera Schmitt; 2026) — Position paper: steering as a form of model adaptation; no precision factor (screened, irrelevant to FLAG E).
-
-[21] [SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Language Models (ICML 2023; arXiv 2211.10438v7)](https://arxiv.org/html/2211.10438v7) (Guangxuan Xiao, Ji Lin, Mickael Seznec, Hao Wu, Julien Demouth, Song Han; 2022) — W8A8 mechanism anchor: activations are hard to quantise because of outliers; per-token activation scales.
-
-> Based on the fact that weights are easy to quantize while activations are not, SmoothQuant smooths the activation outliers by offline migrating the quantization difficulty from activations to weights with a mathematically equivalent transformation.
-
-Locator: Abstract
-
-[22] [LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale (NeurIPS 2022; arXiv 2208.07339v2)](https://arxiv.org/html/2208.07339v2) (Tim Dettmers, Mike Lewis, Younes Belkada, Luke Zettlemoyer; 2022) — Emergent outlier features from 6.7B parameters ruin quantisation precision.
-
-> the sparse but systematic large magnitude outlier features that ruin quantization precision once they emerge in all transformer layers starting at scales of 6.7B parameters
-
-Locator: Sec. 1 (Introduction)
-
-[23] [Massive Activations in Large Language Models (COLM 2024; arXiv 2402.17762v2)](https://arxiv.org/html/2402.17762v2) (Mingjie Sun, Xinlei Chen, J. Zico Kolter, Zhuang Liu; 2024) — Massive activations sit at the starting and delimiter tokens and act as bias terms: position-specific spikes set per-token scales.
-
-> Many of these activations are found within the starting word token and delimiter tokens.
-
-Locator: Sec. 1 (Introduction)
-
-[24] [FP8 Formats for Deep Learning (arXiv 2209.05433v2)](https://arxiv.org/html/2209.05433v2) (Paulius Micikevicius, Dusan Stosic, Neil Burgess, Marius Cornea, Pradeep Dubey, Richard Grisenthwaite, Sangwon Ha, Alexander Heinecke, Patrick Judd, John Kamalu, Naveen Mellempudi, Stuart Oberman, Mohammad Shoeybi, Michael Siu, Hao Wu; 2022) — Definition of E4M3/E5M2.
-
-> we propose an 8-bit floating point (FP8) binary interchange format consisting of two encodings - E4M3 (4-bit exponent and 3-bit mantissa) and E5M2 (5-bit exponent and 2-bit mantissa).
-
-Locator: Abstract
-
-[25] [Decoding Compressed Trust: Scrutinizing the Trustworthiness of Efficient LLMs Under Compression (ICML 2024; arXiv 2403.15447v3)](https://arxiv.org/html/2403.15447v3) (Junyuan Hong, Jinhao Duan, Chenhui Zhang, Zhangheng Li, Chulin Xie, Kelsey Lieberman, James Diffenderfer, Brian Bartoldson, Ajay Jaiswal, Kaidi Xu, Bhavya Kailkhura, Dan Hendrycks, Dawn Song, Zhangyang Wang, Bo Li; 2024) — 4-bit weight quantisation retains trustworthiness while pruning degrades it.
-
-> For instance, a 4-bit quantized model retains the trustworthiness of its original counterpart, but model pruning significantly degrades trustworthiness, even at 50% sparsity.
-
-Locator: Abstract
-
-[26] [Qwen/Qwen3-8B-FP8 model card (Hugging Face)](https://huggingface.co/Qwen/Qwen3-8B-FP8) — Documents the released FP8 checkpoint: fine-grained fp8 quantisation with block size 128 (methods row only).
-
-> The quantization method is fine-grained `fp8` quantization with block size of 128.
-
-Locator: Model card, 'Note on FP8'
-
-[27] [vLLM documentation: FP8 W8A8 (llm-compressor FP8_DYNAMIC)](https://docs.vllm.ai/en/stable/features/quantization/llm_compressor/fp8/) — Documents W8A8 FP8_DYNAMIC: static per-channel weight scales, dynamic per-token activation scales (methods row only).
+[12] [llm-compressor examples/quantization_w8a8_fp8 README (vLLM project)](https://raw.githubusercontent.com/vllm-project/llm-compressor/main/examples/quantization_w8a8_fp8/README.md) (2024) — FP8_DYNAMIC scheme: static per-channel weight scales and dynamic per-token activation scales. (version: main; venue: GitHub (vLLM project); status: VERIFIED-README; retrieved 2026-10-22)
 
 > Dynamic, per-token quantization on the activations
 
-Locator: '2. Applying Quantization'
+Locator: 2) Apply Quantization (E-24; VERIFIED-README)
 
-[28] [The Sharp Directions Are Against You: Curvature Analysis of Activation Steering (NeurIPS 2026 poster page)](https://neurips.cc/virtual/2026/poster/151909) (Seyedarmin Azizi, Arya Fayyazi, Parsa Razmara, Erfan Baghaei Potraghloo, Souvik Kundu, Massoud Pedram; 2026) — Steering curvature: tiny perturbations along sharp directions cause large input-dependent behaviour swings (a mechanism by which small numeric perturbations of a nudge could matter).
+[13] [Finding Alignments Between Interpretable Causal Variables and Distributed Neural Representations](https://arxiv.org/html/2303.02536v4) (Atticus Geiger, Zhengxuan Wu, Christopher Potts, Thomas Icard, Noah D. Goodman; 2023) — DAS (Geiger, Wu, Potts, Icard, Goodman); cited in rows 92e-P1-1. (version: v4; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)
 
-> tiny perturbations along them can cause large, erratic, input-dependent behavioral swings
+> existing causal abstraction methods have two major limitations: they require a brute-force search over alignments between the high-level model and the low-level one, and they presuppose that variables in the high-level model will align with disjoint sets of neurons in the low-level one.
 
-Locator: Abstract (NeurIPS 2026 poster page)
+Locator: Abstract (P1-1; VERIFIED)
 
-[29] [How Fragile Is Safety Alignment at Frontier Scale? A Single-Direction Attack on a 320B MoE (arXiv 2609.09793)](https://arxiv.org/abs/2609.09793) (2026) — Directional ablation on a block-FP8 320B MoE checkpoint; no precision contrast.
+[14] [MIB: A Mechanistic Interpretability Benchmark](https://arxiv.org/html/2504.13151v2) (Aaron Mueller, Atticus Geiger, Sarah Wiegreffe, Dana Arad, Iván Arcuschin, Adam Belfki, Yik Siu Chan, Jaden Fiotto-Kaufman, Tal Haklay, Michael Hanna, Jing Huang, Rohan Gupta; 2025) — MIB (Mueller et al.); cited in rows 92e-P1-2. (version: v2; venue: Accepted to ICML 2025. Project website at https://mib-bench.github.io; status: VERIFIED; retrieved 2026-10-22; author list truncated to the first names shown by the source)
 
-> We apply it to GLM-5.3-Flash (320B parameters, 288 routed experts, a four-wide hyper-connection residual, block-FP8).
+> For causal variable localization, we find that the supervised DAS method performs best, while SAE features are not better than neurons, i.e., non-featurized hidden vectors.
 
-Locator: Abstract (arXiv abs page)
+Locator: Abstract (P1-4; VERIFIED)
 
-[30] [Sparse but Critical: A Token-Level Analysis of Distributional Shifts in RLVR Fine-Tuning of LLMs (ICLR 2026; arXiv 2603.22446v1)](https://arxiv.org/html/2603.22446v1) (Haoming Meng, Kexin Huang, Shaohang Wei, Chiyu Ma, Shuo Yang, Xue Wang, Guoyin Wang, Bolin Ding, Jingren Zhou; 2026) — At high-divergence positions ~30% of RL top-1 tokens are base top-1 and >80% (DAPO) / >90% (SimpleRL) are in the base top-3; cross-sampling with base tokens collapses RL gains.
+[15] [Faithful Bi-Directional Model Steering via Distribution Matching and Distributed Interchange Interventions](https://arxiv.org/html/2602.05234v2) (Yuntai Bao, Xuhong Zhang, Jintao Chen, Ge Su, Yuxiang Cai, Hao Peng, Bing Sun, Haiqin Weng, Liu Yan, Jianwei Yin; 2026) — CDAS (Bao et al.); cited in rows 92e-P1-3. (version: v2; venue: camera ready version; 55 pages, 25 figures; accepted for ICLR 2026 | Proceedings of the International Conference on Learning Representations (ICLR), 2026; status: VERIFIED; retrieved 2026-10-22)
 
-> Around 30% of RL top-1 tokens are already ranked first under the base model, and over 80% (DAPO) and 90% (SimpleRL) fall within the base top-3.
+> we introduce a novel distribution matching objective tailored for the steering task by aligning intervened output distributions with counterfactual distributions.
 
-Locator: Sec. 4 (rank-shift analysis, Figure 22 discussion)
+Locator: Sec. 1 Introduction (P1-5; VERIFIED)
 
-> inserting only a small fraction of RL-sampled tokens into base generations progressively recovers RL performance gains, while injecting a similarly small number of base token choices into otherwise RL-generated sequences collapses performance to base levels
+[16] [The Invisible Lottery: How Subtle Cues Steer Algorithm Choice in LLM Code Generation](https://arxiv.org/html/2606.04057v1) (2026) — Inherited from art_kjrCpQnPaniY Table 92b/92c source [30]; its quotes are cited by row id and were not re-fetched here. (version: v1; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
 
-Locator: Abstract
+[17] [Causal Syntax Circuits in CodeLMs: Budget and Probe Decide What Looks Localised](https://arxiv.org/html/2610.20683v1) (Harsh Kumar, Tanmay Shailesh Joshi, Rahul Maity, Anusa Saha; 2026) — Causal Syntax Circuits in CodeLMs (Kumar et al.); cited in rows 92e-P1-6. (version: v1; venue: Accepted at the NeurIPS 2026 Workshop on Linguistic Principles for Foundation Models (LP4FM). All four authors contributed equally; status: VERIFIED; retrieved 2026-10-22)
 
-[31] [Re-Emergent Misalignment: How Narrow Fine-Tuning Erodes Safety Alignment in LLMs (arXiv 2507.03662v1)](https://arxiv.org/html/2507.03662v1) (Jeremiah Giordani; 2025) — FLAG L partly: fine-tune-perturbed instruct model produces outputs the base model also rates likely while the instruct model suppresses them (retrospective, sequence likelihoods, 400 examples per dataset).
+> Code models write Python when the prompt does not say which language to use. We ask a mechanistic question about that habit: is it produced by a small, findable group of components inside the model?
 
-> The aligned model (instruct) sharply suppresses the likelihood of the harmful generation. In contrast, both the base and misaligned models assign significantly higher probabilities to the same tokens. They do so with strikingly similar distributions.
+Locator: Abstract (P1-8; VERIFIED)
 
-Locator: Sec. 4.1 (Behavioral Analysis: Misaligned Model Reverts to Base Behavior)
+[18] [Steering LLM Coding Behaviors with Concept Vectors (OpenReview forum sbVictHY9s)](https://api2.openreview.net/notes/search?term=Steering%20LLM%20Coding%20Behaviors%20with%20Concept%20Vectors&group=ICLR.cc/2027/Conference&limit=10) (2026) — ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-P1-7. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)
 
-> we propose that these behaviors can be better understood as a regression to base model behavior.
+> Adding them after the first sampled token changes held-out outputs, but effects depend on model and layer, strong scaling harms validity and correctness, and axis specificity remains unresolved without matched-norm causal
 
-Locator: Sec. 1 (Introduction)
+Locator: OpenReview abstract (forum sbVictHY9s) (P1-9; VERIFIED-ABSTRACT)
 
-[32] [Language Models Resist Alignment: Evidence From Data Compression (ACL 2025; arXiv 2406.06144v6)](https://arxiv.org/html/2406.06144v6) (Jiaming Ji, Kaile Wang, Tianyi Qiu, Boyuan Chen, Jiayi Zhou, Changye Li, Hantao Lou, Juntao Dai, Yunhuai Liu, Yaodong Yang; 2024) — Elasticity/rebound: reverse fine-tuning returns post-trained models quickly to the pre-training distribution.
+[19] [Steering Code LLMs with Activation Directions for Language and Library Control](https://arxiv.org/html/2603.23629v2) (2026) — Inherited from art_kjrCpQnPaniY Table 92b/92c source [45]; its quotes are cited by row id and were not re-fetched here. (version: v2; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
 
-> Fine-tuning in the opposite direction of post-training (e.g., safe vs. unsafe) causes post-trained models to return quickly to the pre-training distribution.
+[20] [Before Reasoning Begins: Temporal Contrast Reveals a Causal Target Across Reasoning Tasks (OpenReview forum vH3g2k4lPB)](https://api2.openreview.net/notes/search?term=Before%20Reasoning%20Begins%3A%20Temporal%20Contrast%20Reveals%20a%20Causal%20Target%20Across%20Reasoning%20Tasks&group=ICLR.cc/2027/Conference&limit=10) (2026) — ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-P1-8, 92e-P2-5. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)
 
-Locator: Sec. 5 (How Elasticity Resists Alignment?)
+> This pipeline yields a compact set of 23 intervention targets in Qwen3-8B.
 
-[33] [Alignment Dynamics in LLM Fine-Tuning (arXiv 2605.18309v1)](https://arxiv.org/html/2605.18309v1) (Yuhan Huang, Huanran Chen, Yinpeng Dong; 2026) — Rebound effect as a driving-vs-rebound force competition.
+Locator: OpenReview abstract (forum vH3g2k4lPB) (P1-10; VERIFIED-ABSTRACT)
 
-> The Rebound Effect [14] refers to the tendency of fine-tuned models to revert toward their pre-trained state under reversed or perturbed fine-tuning.
+> We use this functionally aligned contrast to screen sparse autoencoder features at the final prompt position
 
-Locator: Sec. 3 (Revisiting Rebound Effect)
+Locator: OpenReview abstract (P1-11; VERIFIED-ABSTRACT)
 
-[34] [A Gravitational Interpretation of Safety Reversion under Fine-Tuning (arXiv 2606.28525v2)](https://arxiv.org/html/2606.28525v2) (Samuele Poppi, Nils Lukas; 2026) — Prospective, pre-fixed direction toward base-descended helpful-only states; benign fine-tuning moves along it more than a matched null.
+> same-size, layer-count-matched random null interventions reduce accuracy by only
 
-> We instead cast it as a single activation-space direction, pointing from the safety-aligned model toward independently built helpful-only states rather than toward the base model itself, and fixed before the prospective target trajectories are trained
+Locator: OpenReview abstract (P2-5; VERIFIED-ABSTRACT)
 
-Locator: Sec. 1 (Introduction)
+[21] [Controllable LLM Reasoning via Sparse Autoencoder-Based Steering](https://arxiv.org/html/2601.03595v2) (Yi Fang, Wenjie Wang, Mingfeng Xue, Boyi Deng, Fengli Xu, Dayiheng Liu, Fuli Feng; 2026) — SAE-Steering (Fang et al.); cited in rows 92e-S-4. (version: v2; venue: Accepted to the ACL 2026 Main; status: VERIFIED; retrieved 2026-10-22)
 
-> once we fixed the reference family and the test in advance, every additional trajectory we tried moved in the predicted direction more than its matched null
+> To identify the few strategy-specific features from the vast pool of SAE features, we propose SAE-Steering, an efficient two-stage feature identification pipeline.
 
-Locator: Sec. 1 (Introduction)
+Locator: Abstract (S-13; VERIFIED)
 
-[35] [Weak-to-Strong Jailbreaking on Large Language Models (ICML 2025; arXiv 2401.17256v5)](https://arxiv.org/html/2401.17256v5) (Xuandong Zhao, Xianjun Yang, Tianyu Pang, Chao Du, Lei Li, Yu-Xiang Wang, William Yang Wang; 2024) — Rival-supporting: jailbroken models' top tokens lie within the safe (tuned) model's own top ten.
+> Think Intervention (Wu et al., 2025), which inserts human-crafted instructions into the middle of the reasoning process
 
-> We observe that the top-ranked tokens in jailbroken LLMs are largely found within the top ten tokens ranked by safe LLMs.
+Locator: Sec. 4.1, Baselines (S-13b; VERIFIED)
 
-Locator: Sec. 1 (Introduction)
+[22] [AxBench: Steering LLMs? Even Simple Baselines Outperform Sparse Autoencoders](https://arxiv.org/html/2501.17148v3) (Zhengxuan Wu, Aryaman Arora, Atticus Geiger, Zheng Wang, Jing Huang, Dan Jurafsky, Christopher D. Manning, Christopher Potts; 2025) — AxBench (Wu et al.); cited in rows 92e-S-3. (version: v3; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)
 
-[36] [Emergent Misalignment Recruits a Pre-existing Persona Subspace (arXiv 2607.21356v1)](https://arxiv.org/html/2607.21356v1) (Mohammed Suhail B Nadaf; 2026) — Rival-supporting: a subspace extracted from the frozen instruction-tuned model carries where fine-tuning lands.
+> For steering, we find that prompting outperforms all existing methods, followed by finetuning.
 
-> A persona subspace present in the model before fine-tuning carries broad misalignment. The subspace is extracted from the frozen instruction-tuned model.
+Locator: Abstract (S-10; VERIFIED)
 
-Locator: Fig. 1 caption
+> For concept detection, representation-based methods such as difference-in-means, perform the best. On both evaluations, SAEs are not competitive.
 
-> Provenance. The extraction is from a released instruction-tuned checkpoint, not a pre-alignment base model, so whether pretraining installed the structure or alignment post-training sharpened it is open.
+Locator: Abstract (S-11; VERIFIED)
 
-Locator: Sec. 9 (Limitations: Provenance)
+[23] [Steering LLMs? Actually, Sparse Autoencoders can outperform simple baselines](https://arxiv.org/html/2605.31183v1) (Mikkel Godsk Jørgensen, Lars Kai Hansen; 2026) — AxBench rebuttal (Jorgensen et al.); cited in rows 92e-S-3. (version: v1; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)
 
-[37] [Emergent Misalignment Is Not Magical (arXiv 2608.29118v1)](https://arxiv.org/html/2608.29118v1) (Mingxuan Li, Qirun Dai, Heran Wang, Chenhao Tan; 2026) — Per-prompt forecast of EM from the pre-EM model's representations; its 'base model' is the pre-fine-tune INSTRUCT model.
+> We find that Sparse Autoencoders can, in fact, perform close to on par with the reference LoRA performance on the AxBench benchmark, when features are selected and labelled with our supervised pipeline.
 
-> the representational distance between an evaluation prompt and the training data centroid, both in the base model’s activation space, strongly predicts how misaligned the finetuned model becomes on that prompt
+Locator: Abstract (S-12; VERIFIED)
 
-Locator: Sec. 1 (Introduction)
+[24] [What Is the Minimum Architecture for Prolepsis? Early Irrevocable Commitment Across Tasks in Small Transformers](https://arxiv.org/html/2604.15010v2) (Éric Jacopin; 2026) — Prolepsis (Jacopin); cited in rows 92e-P3-3, 92e-S-6. (version: v2; venue: v2: corrects three citations; reconciles main-text/appendix numbers (the two Llama sweeps now labeled); the effective last-token site differs from Anthropic's newline (position-specificity replicates, site identity does not); adds an erratum on a CLT encoder-hook mismatch (detection-side only); softens novelty, necessity, and depth claims per COLM 2026 reviews; defines prolepsis; status: VERIFIED; retrieved 2026-10-22)
 
-> We select models of various sizes and from multiple model families: Qwen2.5-14B-Instruct, Qwen2.5-32B-Instruct, Qwen2.5-Coder-32B-Instruct
+> We introduce prolepsis: a transformer commits early, task-specific attention heads sustain the commitment, and no layer corrects it.
 
-Locator: Sec. 3 (Emergent Misalignment is Expected Generalization: Models and EM Training Data)
+Locator: Abstract (P3-3; VERIFIED)
 
-[38] [Predictive Mechanistic Interpretability of Post-Training: A Priori Forecasts of Circuit Localization and Sign from the Base Model (ICLR 2027 submission, OpenReview BEcwcRFQdu)](https://api2.openreview.net/notes/search?term=Predictive%20Mechanistic%20Interpretability%20of%20Post-Training%3A%20A%20Priori%20Forecasts%20of%20Circuit%20Localization%20and%20Sign%20from%20the%20Base%20Model&group=ICLR.cc/2027/Conference&limit=10) (2026) — Sealed, pre-registered per-head forecasts from the base model of how post-training changes circuits (method overlap for committed forecasts).
+> Planning is invisible to six residual-stream methods; among those tested, only CLT-based steering succeeds.
 
-> We instead seal a per-head, signed forecast from the base model, fine-tune, and confirm it.
+Locator: Abstract (S-17; VERIFIED)
 
-Locator: Abstract (OpenReview API record)
+[25] [safety-research/circuit-tracer README](https://raw.githubusercontent.com/safety-research/circuit-tracer/main/README.md) (2026) — Gemma-3 PLTs from GemmaScope-2 (need the nnsight backend); Qwen-3 PLTs for 0.6B-14B, including 8B. (version: main; venue: GitHub; status: VERIFIED-README; retrieved 2026-10-22)
 
-[39] [Emulated Disalignment: Safety Alignment for Large Language Models May Backfire! (ACL 2024; arXiv 2402.12343v4)](https://arxiv.org/html/2402.12343v4) (Zhanhui Zhou, Jie Liu, Zhichen Dong, Jiaheng Liu, Chao Yang, Wanli Ouyang, Yu Qiao; 2024) — Contrasting aligned vs pre-trained token distributions pushes the aligned model toward harm (logit-level base/aligned knob).
+> here for models of size 270M, 1B, 4B, 12B, and 27B, PT and
 
-> our method achieves this reversal by contrasting the output token distribution of a safety-aligned language model (e.g., Llama-2-chat) against its pre-trained version (e.g., Llama-2), so that the token predictions are shifted towards the opposite direction of safety alignment.
+Locator: Supported transcoders (S-5; VERIFIED-README)
 
-Locator: Abstract
+[26] [mwhanna/qwen3-8b-transcoders (Hugging Face)](https://huggingface.co/mwhanna/qwen3-8b-transcoders) (2025) — Qwen-3 transcoder collection (0.6B-14B); the card does not name the exact checkpoint. (version: main; venue: Hugging Face; status: VERIFIED-README; retrieved 2026-10-22)
 
-[40] [Post-Training with Policy Gradients: Optimality and the Base Model Barrier (ICML 2026; arXiv 2603.06957v2)](https://arxiv.org/html/2603.06957v2) (Alireza Mousavi-Hosseini, Murat A. Erdogdu; 2026) — Theory: going beyond the base model's support is exponentially costly for outcome-reward policy gradient (supports L2).
+> Transcoders trained on Qwen-3 models from 0.6B to 14B
 
-> However, a barrier arises for going beyond the support of the base model.
+Locator: collection blurb (S-7; VERIFIED-README)
 
-Locator: Abstract
+[27] [Latent Planning Emerges with Scale](https://arxiv.org/html/2604.12493v1) (Michael Hanna, Emmanuel Ameisen; 2026) — Latent Planning Emerges with Scale (Hanna et al.); cited in rows 92e-P2-4, 92e-S-2. (version: v1; venue: ICLR 2026; status: VERIFIED; retrieved 2026-10-22)
 
-[41] [Reasoning with Sampling: Your Base Model is Smarter Than You Think (arXiv 2510.14901v1)](https://arxiv.org/html/2510.14901v1) (Aayush Karan, Yilun Du; 2025) — Power distribution p^alpha of the base model matches GRPO in-domain and beats it out of domain (supports L3's power account).
+> even the less-successful Qwen-3 4B-8B have nascent planning mechanisms.
 
-> We introduce the power distribution as a useful sampling target for reasoning tasks. Since it can be explicitly specified with a base LLM, no additional training is required.
+Locator: Abstract (P2-4; VERIFIED)
 
-Locator: Sec. 1 (contributions)
+> For our experiments, we use Hanna et al.
 
-> Our algorithm achieves comparable performance to GRPO within the posttraining domain (MATH500) but can outperform on out-of-domain tasks such as HumanEval and AlpacaEval.
+Locator: App. A.1, Qwen-3 Transcoders (S-8; VERIFIED)
 
-Locator: Fig. 1 caption
+> Note that although these models are instruction-tuned
 
-[42] [Uncertainty Localization in LLM Reasoning via Embedding Perturbations (arXiv 2602.02427v4)](https://arxiv.org/html/2602.02427v4) (Qihao Wen, Jiahao Wang, Yang Nan, Pengfei He, Ravi Tandon, Han Xu; 2026) — Content-free Gaussian perturbation of token embeddings localises uncertain reasoning steps; continuations stay coherent (no site comparison at matched dose).
+Locator: Sec. 4.1 Models and Data (S-9; VERIFIED)
 
-> Embedding perturbation does not disrupt reasoning coherence.
+[28] [Exploring Diverse Generation Paths via Inference-time Stiefel Activation Steering](https://arxiv.org/html/2601.22010v1) (2026) — Inherited from art_kjrCpQnPaniY Table 92b/92c source [15]; its quotes are cited by row id and were not re-fetched here. (version: v1; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
 
-Locator: Sec. 3.2 (Random Perturbation)
+[29] [Noise Steering for Controlled Text Generation: Improving Diversity and Reading-Level Fidelity in Arabic Educational Story Generation](https://arxiv.org/pdf/2604.03380v2) (2026) — Inherited from art_kjrCpQnPaniY Table 92b/92c source [14]; its quotes are cited by row id and were not re-fetched here. (version: v2; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
 
-> We find that the resulting continuations remain coherent and on-task.
+[30] [From Noise to Diversity: Random Embedding Injection in LLM Reasoning](https://arxiv.org/html/2605.11936v2) (2026) — Inherited from art_kjrCpQnPaniY Table 92b/92c source [16]; its quotes are cited by row id and were not re-fetched here. (version: v2; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
 
-Locator: Sec. 3.2
+[31] [Latent-Plan Block Diffusion: Sampling a Block-Level Intent for Few-Step Parallel Decoding (OpenReview forum IhQbFddkBp)](https://api2.openreview.net/notes/search?term=Latent-Plan%20Block%20Diffusion%3A%20Sampling%20a%20Block-Level%20Intent%20for%20Few-Step%20Parallel%20Decoding&group=ICLR.cc/2027/Conference&limit=10) (2026) — ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-P5-2. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)
 
-[43] [Why Do Reasoning Models Lose Coverage? The Role of Data and Forks in the Road (arXiv 2605.17026v2)](https://arxiv.org/html/2605.17026v2) (Ngoc-Hieu Nguyen, Parshin Shojaee, Phuc Minh Nguyen, Nan Zhang, Chandan K Reddy, Khoa D Doan, Rui Zhang; 2026) — Reasoning-mode forks (natural language vs code) are driven by weak signals; targeted prefix perturbation beats temperature scaling for coverage.
+> before a block is decoded, a small conditional flow samples a low-dimensional
 
-> reasoning mode selection is driven by weak signals, making it a key source of instability and side effects such as coverage collapse, but also a natural point of intervention for control.
+Locator: OpenReview abstract (forum IhQbFddkBp) (P5-2; VERIFIED-ABSTRACT)
 
-Locator: Sec. 4.2 (Reasoning Mode Selection)
+[32] [Parallelizable Probabilistic Latent Reasoning for Diverse Reasoning Trajectories (OpenReview forum CtluWEsiX7)](https://api2.openreview.net/notes/search?term=Parallelizable%20Probabilistic%20Latent%20Reasoning%20for%20Diverse%20Reasoning%20Trajectories&group=ICLR.cc/2027/Conference&limit=10) (2026) — ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-P5-3. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)
 
-> We find that targeted prefix perturbation consistently outperforms temperature scaling across both model families, particularly for moderate sampling budgets (pass@8–32)
+> current latent models remain largely deterministic, capturing only a single reasoning trajectory rather than modeling a distribution over
 
-Locator: Sec. 5 (First-token Manipulation; App. C prefix perturbation vs temperature)
+Locator: OpenReview abstract (forum CtluWEsiX7) (P5-3; VERIFIED-ABSTRACT)
 
-[44] [Forking Paths in Neural Text Generation (ICLR 2025; arXiv 2412.07961v1)](https://arxiv.org/html/2412.07961v1) (Eric Bigelow, Ari Holtzman, Hidenori Tanaka, Tomer Ullman; 2024) — Forking tokens found by resampling, including punctuation.
+[33] [Singular Value Perturbation: Unlocking RL Performance via Diverse Latent Reasoning (OpenReview forum oTt6XeccGk)](https://api2.openreview.net/notes/search?term=Singular%20Value%20Perturbation%3A%20Unlocking%20RL%20Performance%20via%20Diverse%20Latent%20Reasoning&group=ICLR.cc/2027/Conference&limit=10) (2026) — ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-P5-3. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)
+
+> which diversifies latent trajectories by randomly rescaling coefficients in the fixed SVD basis of a weight matrix.
+
+Locator: OpenReview abstract (forum oTt6XeccGk) (P5-4; VERIFIED-ABSTRACT)
+
+[34] [Random Choice in Language Models: A Linear Choice State and Low-Rank Sampling Control (OpenReview forum eZYeqPZlFr)](https://api2.openreview.net/notes/search?term=Random%20Choice%20in%20Language%20Models%3A%20A%20Linear%20Choice%20State%20and%20Low-Rank%20Sampling%20Control&group=ICLR.cc/2027/Conference&limit=10) (2026) — ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-P1-10, 92e-P5-1. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)
+
+> one direction acts as a switch into the random-choice mode, whereas a separate direction shapes the resulting answer distribution.
+
+Locator: OpenReview abstract (forum eZYeqPZlFr) (P1-13; VERIFIED-ABSTRACT)
+
+> This decomposition enables a mechanism-guided intervention that improves sampling without task-specific gradient training.
+
+Locator: OpenReview abstract (P5-1; VERIFIED-ABSTRACT)
+
+[35] [OpenAlex / Crossref scholarly search (via aii-web-tools aii_fast_web_search.py --mode scholarly)](https://api.openalex.org/works) (2026) — Engine E1 for lanes L1, L4 and L6 in round 1, and all lanes in round 2. (status: ENGINE; retrieved 2026-10-22)
+
+[36] [arXiv API (export.arxiv.org/api/query): version, v1 date, comment and journal-ref metadata](https://export.arxiv.org/api/query) (2026) — Engine E3 and the source of all version, v1-date and venue-comment lines (evidence/arxiv_meta.json). (status: ENGINE; retrieved 2026-10-22)
+
+[37] [Semantic Scholar Graph API (search, citations, references)](https://api.semanticscholar.org/graph/v1) (2026) — Engine E4 (year=2026 search) and snowballing (forward citations and backward references). (status: ENGINE; retrieved 2026-10-22)
+
+[38] [OpenReview API v2 notes/search (ICLR.cc/2027/Conference)](https://api2.openreview.net/notes/search) (2026) — Engine E5 and the locator of every VERIFIED-ABSTRACT ICLR 2027 row. (status: ENGINE; retrieved 2026-10-22)
+
+[39] [Interpretability at Scale: Identifying Causal Mechanisms in Alpaca](https://arxiv.org/html/2305.08809v3) (Zhengxuan Wu, Atticus Geiger, Thomas Icard, Christopher Potts, Noah D. Goodman; 2023) — Boundless DAS (Wu et al.); cited in rows 92e-P1-1. (version: v3; venue: NeurIPS 2023 with Author Corrections; status: VERIFIED; retrieved 2026-10-22)
+
+> We apply Boundless DAS to the Alpaca model (7B parameters), which, off the shelf, solves a simple numerical reasoning problem.
+
+Locator: Abstract (P1-3; VERIFIED)
+
+[40] [Before the First Token: A Shared Causal Subspace for Response-Length Planning in LLMs](https://api2.openreview.net/notes/search?term=Before%20the%20First%20Token%3A%20A%20Shared%20Causal%20Subspace%20for%20Response-Length%20Planning%20in%20LLMs&group=ICLR.cc/2027/Conference&limit=10) (2026) — Inherited from art_kjrCpQnPaniY Table 92b/92c source [64]; its quotes are cited by row id and were not re-fetched here. (status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
+
+[41] [AJR: Amortized Jacobian Readouts for Prompt-Adaptive Steering](https://api2.openreview.net/notes/search?term=AJR%3A%20Amortized%20Jacobian%20Readouts%20for%20Prompt-Adaptive%20Steering&group=ICLR.cc/2027/Conference&limit=10) (2026) — Inherited from art_kjrCpQnPaniY Table 92b/92c source [65]; its quotes are cited by row id and were not re-fetched here. (status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
+
+[42] [DecodeShare: Tracing the Shared Subspace of LLM Decode-Time Decisions](https://arxiv.org/html/2607.20469v1) (Zishan Shao, Lixun Zhang, Kangning Cui, Yixiao Wang, Ting Jiang, Hancheng Ye, Qinsi Wang, Zhixu Du, Yuzhe Fu, Fan Yang, Danyang Zhuo, Yiran Chen; 2026) — DecodeShare (Shao et al.); cited in rows 92e-P2-2. (version: v1; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22; author list truncated to the first names shown by the source)
+
+> disturbing the discovered shared subspace degrades decision performance far more than disturbing either a prefill-derived or random subspace under the same intervention budget.
+
+Locator: Abstract (P2-2; VERIFIED)
+
+[43] [What Does Activation Steering Control? Attribution Across Answer Encodings and Output-Sensitive Subspaces](https://arxiv.org/html/2608.22985v1) (Zhiwei Gao, Shaowen Peng, Shoko Wakamiya, Eiji Aramaki; 2026) — What Does Activation Steering Control? (Gao et al.); cited in rows 92e-P2-7. (version: v1; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)
+
+> A low-rank output-sensitive component containing 15.4% of the direction
+
+Locator: Abstract (P2-7; VERIFIED)
+
+[44] [A Jailbreak Success Coordinate Outside the Refusal Subspace: Decodable Before Generation, Reachable from the Input (OpenReview forum 4gvIW4C0bw)](https://api2.openreview.net/notes/search?term=A%20Jailbreak%20Success%20Coordinate%20Outside%20the%20Refusal%20Subspace&group=ICLR.cc/2027/Conference&limit=10) (2026) — ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-P2-3. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)
+
+> whether success is decodable before generation from a coordinate outside an evaluated refusal subspace, whether intervention on that coordinate moves the behavior
+
+Locator: OpenReview abstract (forum 4gvIW4C0bw) (P2-3; VERIFIED-ABSTRACT)
+
+[45] [The Geometry of Categorical and Hierarchical Concepts in Large Language Models](https://arxiv.org/html/2406.01506v3) (Kiho Park, Yo Joong Choe, Yibo Jiang, Victor Veitch; 2024) — Park, Choe, Jiang, Veitch; cited in rows 92e-P3-1. (version: v3; venue: Accepted for an oral presentation at ICLR 2025. Best Paper Award at the ICML 2024 Workshop on Mechanistic Interpretability. Code is available at https://github.com/KihoPark/LLM_Categorical_Hierarchical_Representations; status: VERIFIED; retrieved 2026-10-22)
+
+> This allows us to immediately formalize the representation of categorical concepts as polytopes in the representation space.
+
+Locator: Abstract (P3-1; VERIFIED)
+
+[46] [Not All Language Model Features Are One-Dimensionally Linear](https://arxiv.org/html/2405.14860v3) (Joshua Engels, Eric J. Michaud, Isaac Liao, Wes Gurnee, Max Tegmark; 2024) — Engels et al.; cited in rows 92e-P3-2. (version: v3; venue: Accepted to ICLR 2025. Code and data at https://github.com/JoshEngels/MultiDimensionalFeatures; status: VERIFIED; retrieved 2026-10-22)
+
+> we explore whether some language model representations may be inherently multi-dimensional.
+
+Locator: Abstract (P3-2; VERIFIED)
+
+[47] [Manifold Steering Reveals the Shared Geometry of Neural Network Representation and Behavior](https://arxiv.org/html/2605.05115v1) (2026) — Inherited from art_kjrCpQnPaniY Table 92b/92c source [44]; its quotes are cited by row id and were not re-fetched here. (version: v1; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
+
+[48] [Rethinking Activation Steering for Mathematical Reasoning: What Actually Drives Its Reasoning Gains?](https://api2.openreview.net/notes/search?term=Rethinking%20Activation%20Steering%20for%20Mathematical%20Reasoning&group=ICLR.cc/2027/Conference&limit=10) (2026) — Inherited from art_kjrCpQnPaniY Table 92b/92c source [66]; its quotes are cited by row id and were not re-fetched here. (status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
+
+[49] [Is Temperature the Creativity Parameter of Large Language Models?](https://arxiv.org/html/2405.00492v1) (2024) — Inherited from art_kjrCpQnPaniY Table 92b/92c source [25]; its quotes are cited by row id and were not re-fetched here. (version: v1; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
+
+[50] [Forking Paths in Neural Text Generation](https://arxiv.org/html/2412.07961v1) (Eric Bigelow, Ari Holtzman, Hidenori Tanaka, Tomer Ullman; 2024) — Forking Paths in Neural Text Generation (Bigelow et al.); cited in rows 92e-P4-1. (version: v1; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)
 
 > We hypothesize that there exist key forking tokens, such that re-sampling the system at those specific tokens, but not others, leads to very different outcomes.
 
-Locator: Abstract
+Locator: Abstract (P4-1; VERIFIED)
 
-> We find many examples of forking tokens, including surprising ones such as punctuation marks, suggesting that LLMs are often just a single token away from saying something very different.
+[51] [Predicting Future Behaviors in Reasoning Models Enables Better Steering (OpenReview forum 5tVsS1vVLC)](https://api2.openreview.net/notes/search?term=Predicting%20Future%20Behaviors%20in%20Reasoning%20Models%20Enables%20Better%20Steering&group=ICLR.cc/2027/Conference&limit=10) (2026) — ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-P4-3. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)
 
-Locator: Abstract
+> We apply a forking-paths-style analysis to behavioral evaluations and find that as generation progresses, LRMs define evolving distributions over behavioral outcomes.
 
-[45] [ICLR 2025 poster page: Forking Paths in Neural Text Generation](https://iclr.cc/virtual/2025/poster/30769) (2025) — Venue confirmation for [42].
+Locator: OpenReview abstract (forum 5tVsS1vVLC) (P4-3; VERIFIED-ABSTRACT)
 
-[46] [Forking Fast: Efficiently Estimating Uncertainty Dynamics in Text Generation (arXiv 2608.19611v1)](https://arxiv.org/html/2608.19611v1) (Eric Bigelow, Amir Zur, Satchel Grant, Tal Haklay, Can Rager, Owen Lewis, Thomas McGrath, Jack Merullo, Ekdeep Singh Lubana, Atticus Geiger; 2026) — Change-point detection of forking points from low-sample resampling.
+[52] [Auditing the Auditor: Ground-Truth Controls for Natural-Language Explanations of LLM Activations (OpenReview forum PKToLtvIZl)](https://api2.openreview.net/notes/search?term=Auditing%20the%20Auditor%3A%20Ground-Truth%20Controls%20for%20Natural-Language%20Explanations%20of%20LLM%20Activations&group=ICLR.cc/2027/Conference&limit=10) (2026) — ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-N-7. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)
 
-> This model uses change point detection to identify forking points, and kernel-pooling to smooth estimates between these points.
+> under preregistered controls: a wrong-activation (shuffled) control, a visible-text baseline, a blinded judge, and supervised readability probes.
 
-Locator: Sec. 1 (contributions)
+Locator: OpenReview abstract (forum PKToLtvIZl) (N-22; VERIFIED-ABSTRACT)
 
-[47] [Thought Anchors: Which LLM Reasoning Steps Matter? (arXiv 2506.19143v4)](https://arxiv.org/html/2506.19143v4) (Paul C. Bogdan, Uzay Macar, Neel Nanda, Arthur Conmy; 2025) — Sentence-level resampling importance: planning and uncertainty-management sentences anchor reasoning.
+> apparent successes on famous facts are indistinguishable from verbalizer prior-completion under a truthful-instruction control
 
-> We term these sentences thought anchors. These are generally planning or uncertainty management sentences, and specialized attention heads consistently attend from subsequent sentences to thought anchors.
+Locator: OpenReview abstract (N-23; VERIFIED-ABSTRACT)
 
-Locator: Abstract
+[53] [Do Sparse Autoencoders Identify Reasoning Features in Language Models?](https://arxiv.org/html/2601.05679v7) (George Ma, Zhongyuan Liang, Irene Y. Chen, Somayeh Sojoudi; 2026) — Do SAEs Identify Reasoning Features? (Ma et al.); cited in rows 92e-S-5. (version: v7; venue: In Forty-Third International Conference on Machine Learning (2026); status: VERIFIED; retrieved 2026-10-22)
 
-[48] [Locked at the Entrance, Open Inside: Where RLVR Narrows the Solution Space (arXiv 2608.29188v1)](https://arxiv.org/html/2608.29188v1) (Qiancheng Zhou, Ruizhe Li; 2026) — Entrance families (first operand and operator) in Countdown; RLVR contraction concentrated at the entrance; layer interpolation between RL checkpoints.
+> use SAEs from the GemmaScope-2 release (McDougall et al., 2025), each with 16,384 features trained on residual stream activations.
 
-> we analyze the Countdown task, whose solution space can be exhaustively enumerated into discrete entrance families defined by the first operand and operator
+Locator: Sec. 5.1 Experimental Setup (S-15; VERIFIED)
 
-Locator: Abstract
+> A small steering study yields minimal changes on the evaluated benchmarks.
 
-> Layer interpolation replaces blocks 20–28 by the midpoint of their step-50 and step-275 parameters.
+Locator: Abstract (S-16; VERIFIED)
 
-Locator: App. (Intervention definitions)
+[54] [Where You Inject Diversity Matters: A Unified Framework for Diverse Generation](https://arxiv.org/html/2606.10302v1) (2026) — Inherited from art_kjrCpQnPaniY Table 92b/92c source [31]; its quotes are cited by row id and were not re-fetched here. (version: v1; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
 
-[49] [Cliff Tokens: Analyzing Failure Trigger Tokens in LLM Mathematical Reasoning (arXiv 2606.25524v3)](https://arxiv.org/html/2606.25524v3) (Jaeyong Ko, Jinu Lee, Pilsung Kang, Yukyung Lee; 2026) — Rollout-defined failure-trigger tokens.
+[55] [Same Targets, Different Computation: How Post-Training Divides Work Across Model Layers](https://arxiv.org/html/2605.07284v2) (2026) — Inherited from art_ObxQOIlAM9MS Table 92d source [15]; its quotes are cited by row id and were not re-fetched here. (version: v2; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
 
-> We define the cliff token: the token in a reasoning trace where the probability of reaching the correct answer via Monte Carlo rollouts (success probability) drops significantly.
+[56] [Verbalized Sampling: How to Mitigate Mode Collapse and Unlock LLM Diversity](https://arxiv.org/html/2510.01171v4) (2025) — Inherited from art_ObxQOIlAM9MS Table 92d source [11]; its quotes are cited by row id and were not re-fetched here. (version: v4; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
 
-Locator: Sec. 1 (Introduction)
+[57] [Finding Algorithms in Neural Networks: Convergent Predictions Between Distributed Alignment Search and Speed of Transfer Learning (OpenReview forum aHSbJo4RHN)](https://api2.openreview.net/notes/search?term=Finding%20Algorithms%20in%20Neural%20Networks%3A%20Convergent%20Predictions%20Between%20Distributed%20Alignment%20Search%20and%20Speed%20of%20Transfer%20Learning&group=ICLR.cc/2027/Conference&limit=10) (2026) — ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-P1-5. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)
 
-[50] [Beyond the 80/20 Rule: High-Entropy Minority Tokens Drive Effective Reinforcement Learning for LLM Reasoning (NeurIPS 2025; arXiv 2506.01939v2)](https://arxiv.org/html/2506.01939v2) (Shenzhi Wang, Le Yu, Chang Gao, Chujie Zheng, Shixuan Liu, Rui Lu, Kai Dang, Xionghui Chen, Jianxin Yang, Zhenru Zhang, Yuqiong Liu, An Yang, Andrew Zhao, Yang Yue, Shiji Song, Bowen Yu, Gao Huang, Junyang Lin; 2025) — High-entropy 'forking' tokens carry RLVR's effect.
+> We find that, on toy arithmetic and vision tasks, the algorithms identified by DAS and TLA mostly agree
 
-> These findings highlight the significance of high-entropy tokens (i.e., forking tokens) to RLVR.
+Locator: OpenReview abstract (forum aHSbJo4RHN) (P1-7; VERIFIED-ABSTRACT)
 
-Locator: Abstract
+[58] [From Signal Degradation to Computation Collapse: Uncovering the Two Failure Modes of LLM Quantization](https://arxiv.org/html/2604.19884v1) (Chenxi Zhou, Pengfei Cao, Jiang Li, Bohan Yu, Jinyu Ye, Jun Zhao, Kang Liu; 2026) — From Signal Degradation to Computation Collapse (Zhou et al.); cited in rows 92e-E-6. (version: v1; venue: Accepted to Findings of ACL 2026; status: VERIFIED; retrieved 2026-10-22)
 
-[51] [Top-nσ: Not All Logits Are You Need (arXiv 2411.07641v1; ACL 2025 as 'Top-nσ: Eliminating Noise in Logit Space for Robust Token Sampling of LLM')](https://arxiv.org/html/2411.07641v1) (Chenxia Tang, Jianchun Liu, Hongli Xu, Liusheng Huang; 2024) — Logits split into a noisy and an informative region; the candidate set is stable regardless of temperature.
+> we employ causal activation patching Heimersheim and Nanda (2024) to assess the integrity of the information pathway.
 
-[52] [ACL Anthology 2025.acl-long.528 (Top-nσ, ACL 2025)](https://aclanthology.org/2025.acl-long.528/) (2025) — Venue/title confirmation for [49].
+Locator: Sec. 3.4 (E-11; VERIFIED)
 
-[53] [The Effect of Sampling Temperature on Problem Solving in Large Language Models (Findings of EMNLP 2024; arXiv 2402.05201v3)](https://arxiv.org/html/2402.05201v3) (Matthew Renze, Erhan Guven; 2024) — Temperature 0.0-1.0 has no statistically significant effect on problem-solving accuracy.
+[59] [The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally](https://arxiv.org/html/2609.01587v1) (Jundong Hu, Shekar Ramachandran; 2026) — The Structure of Quantization Damage (Hu, et al.); cited in rows 92e-E-6. (version: v1; venue: Preprint. Under review at a NeurIPS 2026 workshop. 11 pages, 4 figures, 8 tables; status: VERIFIED; retrieved 2026-10-22)
 
-> our empirical results indicate that changes in temperature from 0.0 to 1.0 do not have a statistically significant impact on LLM performance for problem-solving tasks.
+> None of them predicts which layers benefit from restored precision.
 
-Locator: Abstract
+Locator: Abstract (E-12; VERIFIED)
 
-[54] [MarginGate: Sparse Margin-Triggered Verification for Batch-Invariant LLM Inference (arXiv 2605.30218v1)](https://arxiv.org/html/2605.30218v1) (Kexin Chu, Yang Zhou, Wei Zhang; 2026) — Low top-1/top-2 logit margins expose flip risk under batch numerics.
+[60] [Perplexity Can Miss SAE Feature Damage Under Quantization](https://arxiv.org/html/2606.03002v2) (Evan Duan; 2026) — Perplexity Can Miss SAE Feature Damage Under Quantization (Duan); cited in rows 92e-E-6. (version: v2; venue: 12 Pages of Content, Submitted to TMLR; status: VERIFIED; retrieved 2026-10-22)
 
-> K/V perturbations remain flat before flips, while low top-1/top-2 logit margins expose much of the flip risk.
+> These results show that behavioral metrics alone are insufficient evidence that full-precision interpretability findings transfer to quantized models, motivating feature-level audits of compression.
 
-Locator: Abstract
+Locator: Abstract (E-13; VERIFIED)
 
-[55] [Robust fine-tuning of zero-shot models (WiSE-FT; CVPR 2022; arXiv 2109.01903v3)](https://arxiv.org/html/2109.01903v3) (Mitchell Wortsman, Gabriel Ilharco, Jong Wook Kim, Mike Li, Simon Kornblith, Rebecca Roelofs, Raphael Gontijo-Lopes, Hannaneh Hajishirzi, Ali Farhadi, Hongseok Namkoong, Ludwig Schmidt; 2021) — Definition of weight-space interpolation with a mixing coefficient.
+[61] [Same Probe, Different Numbers: Are Activation Probes Robust to Inference-Time Numerical Non-Determinism?](https://arxiv.org/html/2609.31796v1) (Alizishaan Khatri; 2026) — Same Probe, Different Numbers (Khatri); cited in rows 92e-E-7. (version: v1; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)
 
-> Our method linearly interpolates between the zero-shot and fine-tuned models with a mixing coefficient
+> Because common GPU kernels are not batch-invariant and floating-point formats round differently, the activations seen at deployment are not the ones the probe was trained on.
 
-Locator: Fig. 1 caption
+Locator: Abstract (E-16; VERIFIED)
 
-[56] [Mitigating the Alignment Tax of RLHF (EMNLP 2024; arXiv 2309.06256v4)](https://arxiv.org/html/2309.06256v4) (Yong Lin, Hangyu Lin, Wei Xiong, Shizhe Diao, Jianmeng Liu, Jipeng Zhang, Rui Pan, Haoxiang Wang, Wenbin Hu, Hanning Zhang, Hanze Dong, Renjie Pi, Han Zhao, Nan Jiang, Heng Ji, Yuan Yao, Tong Zhang; 2023) — Averaging pre- and post-RLHF weights gives the best alignment-forgetting Pareto front: direct base/aligned interpolation precedent.
+[62] [Patchscopes: A Unifying Framework for Inspecting Hidden Representations of Language Models](https://arxiv.org/html/2401.06102v4) (2024) — Inherited from art_ObxQOIlAM9MS Table 92d source [88]; its quotes are cited by row id and were not re-fetched here. (version: v4; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
 
-> In this paper we show that model averaging, which simply interpolates between pre and post RLHF model weights, surprisingly achieves the most strongest alignment-forgetting Pareto front among a wide range of competing methods.
+[63] [Perturb the Thought, Not the Pixels: Latent-Space Rollout Diversification for Reinforcement Learning of Vision-Language Models](https://arxiv.org/html/2608.21595v1) (2026) — Inherited from art_kjrCpQnPaniY Table 92b/92c source [52]; its quotes are cited by row id and were not re-fetched here. (version: v1; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
 
-Locator: Abstract
+[64] [Finding Alignments Between Interpretable Causal Variables and Distributed Neural Representations (PMLR 236 record)](https://proceedings.mlr.press/v236/geiger24a.html) (Atticus Geiger, Zhengxuan Wu, Christopher Potts, Thomas Icard, Noah Goodman; 2024) — Venue record for DAS: CLeaR 2024, PMLR 236. (version: proceedings; venue: CLeaR 2024; status: VERIFIED; retrieved 2026-10-22)
 
-[57] [Should SFT Prefer the Familiar? Diversity Collapse and Recovery via Model Merging (ICLR 2027 submission, OpenReview MYXgOex05m)](https://api2.openreview.net/notes/search?term=Should%20SFT%20Prefer%20the%20Familiar%3F%20Diversity%20Collapse%20and%20Recovery%20via%20Model%20Merging&group=ICLR.cc/2027/Conference&limit=10) (2026) — Merging the fine-tuned model with its pretrained base restores diversity across math and code benchmarks (closest K neighbour).
+> Finding Alignments Between Interpretable Causal Variables and Distributed Neural Representations
 
-> To mitigate this effect, we propose a simple recovery approach: merging the fine-tuned model with its pretrained base model before RL.
+Locator: PMLR record (P1-2; VERIFIED)
 
-Locator: Abstract (OpenReview API record)
+[65] [Programmable Semantic Interventions: Learning Causal Carriers from Behavioral Programs (OpenReview forum DLKIln4eAT)](https://api2.openreview.net/notes/search?term=Programmable%20Semantic%20Interventions%3A%20Learning%20Causal%20Carriers%20from%20Behavioral%20Programs&group=ICLR.cc/2027/Conference&limit=10) (2026) — ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-P1-4. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)
 
-[58] [ICLR 2024 proceedings page: An Emulator for Fine-tuning Large Language Models using Small Language Models](https://proceedings.iclr.cc/paper_files/paper/2024/hash/389e161125965c0f0ba50420fee45774-Abstract-Conference.html) (2024) — Venue confirmation for EFT [85].
+> a low-rank activation subspace learned so that interchanging it moves the model's answer the way the program declares.
 
-[59] [ICLR 2024 poster page: The Unlocking Spell on Base LLMs](https://iclr.cc/virtual/2024/poster/17473) (2024) — Venue confirmation for URIAL [58].
+Locator: OpenReview abstract (forum DLKIln4eAT) (P1-6; VERIFIED-ABSTRACT)
 
-[60] [The Unlocking Spell on Base LLMs: Rethinking Alignment via In-Context Learning (URIAL; arXiv 2312.01552v1)](https://arxiv.org/html/2312.01552v1) (Bill Yuchen Lin, Abhilasha Ravichander, Ximing Lu, Nouha Dziri, Melanie Sclar, Khyathi Chandu, Chandra Bhagavatula, Yejin Choi; 2023) — Inherited 92d-A2b: aligned top tokens mostly within the base top five (token level, no perturbation).
+[66] [Committed Before Reasoning: Behavioral Reproduction and Preliminary Activation-Level Evidence of Answer Pre-Commitment in an Open-Weight LLM](https://arxiv.org/html/2607.16451v1) (Heejin Jo; 2026) — Committed Before Reasoning (Jo); cited in rows 92e-P1-9. (version: v1; venue: 8 pages. Code, data, and all reported statistics: https://github.com/JO-HEEJIN/interview_mate/tree/docs/car-wash-repro/car_wash/paper_4; status: VERIFIED; retrieved 2026-10-22)
 
-[61] [Same Candidates, Stronger Reasoning: Rethinking What Post-Training Learns (ICLR 2027 submission, OpenReview ooV5M72O08)](https://api2.openreview.net/notes/search?term=Same%20Candidates%2C%20Stronger%20Reasoning%3A%20Rethinking%20What%20Post-Training%20Learns&group=ICLR.cc/2027/Conference&limit=10) (2026) — Inherited 92d-A2c (VERIFIED-ABSTRACT): 92.9% of post-training top-1 changes stay within the pretrained top-16.
+> Chat models sometimes commit to an answer and then produce reasoning that justifies the commitment rather than deriving it
 
-[62] [Verbalized Sampling: How to Mitigate Mode Collapse and Unlock LLM Diversity (arXiv 2510.01171v4)](https://arxiv.org/html/2510.01171v4) (2025) — Inherited 92d-A2a: App. D.3 power-transform sharpening under typicality bias (stylised).
+Locator: Abstract (P1-12; VERIFIED)
 
-[63] [Creativity Has Left the Chat: The Price of Debiasing Language Models (arXiv 2406.05587v1)](https://arxiv.org/pdf/2406.05587v1) (2024) — Inherited 92d-A1h: a perturbed aligned model returns to its OWN attractor (rival-supporting).
+[67] [Detecting and Characterizing Planning in Language Models](https://arxiv.org/html/2508.18098v1) (Jatin Nainani, Sankaran Vaidyanathan, Connor Watts, Andre N. Assis, Alice Rigg; 2025) — Detecting and Characterizing Planning (Nainani et al.); cited in rows 92e-P1-11. (version: v1; venue: 9 pages, 4 figures; status: VERIFIED; retrieved 2026-10-22)
 
-[64] [Samanta et al. 2026 (behaviour crystallization; arXiv 2606.29933v1)](https://arxiv.org/html/2606.29933v1) (2026) — Inherited 92d-A2d: SFT collapses behaviour onto a seed distribution present in the pretrained model.
+> We apply this pipeline to both base and instruction-tuned Gemma-2-2B models on the MBPP code generation benchmark and a poem generation task where Claude 3.5 Haiku was previously shown to plan.
 
-[65] [Zhou (T.) 2026 (training-time per-prompt forecasts from the base; arXiv 2607.20543v1)](https://arxiv.org/html/2607.20543v1) (2026) — Inherited 92d-A1a/b.
+Locator: Abstract (P1-14; VERIFIED)
 
-[66] [Duan 2026 (per-problem forecasts; arXiv 2610.04978v1)](https://arxiv.org/html/2610.04978v1) (2026) — Inherited 92d-A1c/d.
+[68] [Transformers converge to invariant algorithmic cores](https://arxiv.org/html/2602.22600v2) (Joshua S. Schiffman; 2026) — Algorithmic Core Extraction (Schiffman); cited in rows 92e-P1-12. (version: v2; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)
 
-[67] [How Diversely Can Language Models Solve Problems? (Lee et al., Findings of EMNLP 2025; arXiv 2503.00691v2)](https://arxiv.org/html/2503.00691v2) (2025) — Inherited 92d-A0a-c: base vs instruct algorithmic diversity is mixed in direction.
+> compact subspaces that are necessary and sufficient for a task and that recur across independently trained models.
 
-[68] [Before the First Token: A Shared Causal Subspace for Response-Length Planning in LLMs (ICLR 2027 submission, OpenReview knirOusGcq)](https://openreview.net/forum?id=knirOusGcq) (2026) — Inherited 92c-C2aa/C2ab: causal pre-generation plan subspace (abstract-level).
+Locator: Abstract (P1-15; VERIFIED)
 
-[69] [Khalid et al. 2026 (activation noise steering; BEA workshop @ ACL 2026; arXiv 2604.03380v2)](https://arxiv.org/pdf/2604.03380v2) (2026) — Inherited 92c-C1-sited / 92b-b6a: site comparison (embedding/attention) for noise-based diversity.
+[69] [The Non-Linear Representation Dilemma: Is Causal Abstraction Enough for Mechanistic Interpretability?](https://arxiv.org/html/2507.08802v2) (Denis Sutter, Julian Minder, Thomas Hofmann, Tiago Pimentel; 2025) — Sutter, Minder, Hofmann, Pimentel; cited in rows 92e-P1-CTRL-1. (version: v2; venue: NeurIPS 2025 (Spotlight); status: VERIFIED; retrieved 2026-10-22)
 
-[70] [Zhu et al. 2026 (STARS; ICLR 2026; arXiv 2601.22010v1)](https://arxiv.org/html/2601.22010v1) (2026) — Inherited 92c-C1-sitee / 92b-b6b: intra-layer site comparison for test-coverage diversity (App. B.3).
+> on an experiment using randomly initialised language models, our alignment maps reach 100% interchange-intervention accuracy on the indirect object identification task.
 
-[71] [Where You Inject Diversity Matters: A Unified Framework (arXiv 2606.10302v1)](https://arxiv.org/html/2606.10302v1) (2026) — Inherited 92c-C1-sitea..c / 92d-Ci: text-level injection-site framework.
+Locator: Abstract (CTRL-1; VERIFIED)
 
-[72] [Jerge et al. 2026 (prompt-state noise vs temperature; arXiv 2608.21595v1)](https://arxiv.org/html/2608.21595v1) (2026) — Inherited 92c-C1-sitef.
+[70] [Is This the Subspace You Are Looking for? An Interpretability Illusion for Subspace Activation Patching](https://arxiv.org/html/2311.17030v2) (Aleksandar Makelov, Georg Lange, Neel Nanda; 2023) — Makelov, Lange, Geiger, Nanda; cited in rows 92e-P1-CTRL-2. (version: v2; venue: NeurIPS 2023 Workshop on Attributing Model Behavior at Scale; status: VERIFIED; retrieved 2026-10-22)
 
-[73] [Nagarajan et al. 2025 (input-layer vs output-layer randomness; ICML 2025; arXiv 2504.15266v4)](https://arxiv.org/html/2504.15266v4) (2025) — Inherited 92c-C1-siteg.
+> this effect may be achieved by activating a
 
-[74] [From Noise to Diversity: Random Embedding Injection in LLM Reasoning (arXiv 2605.11936v2)](https://arxiv.org/html/2605.11936v2) (2026) — Inherited 92b-b6c: random embedding injection widens Pass@N on math; code left to future work.
+Locator: Abstract (CTRL-2; VERIFIED)
 
-[75] [Hot or Cold? Adaptive Temperature Sampling for Code Generation (AdapT; AAAI 2024; arXiv 2309.02772v3)](https://arxiv.org/html/2309.02772v3) (2023) — Inherited 92b-b3b.
+[71] [Is This the Subspace You Are Looking for? (ICLR 2024 poster page)](https://iclr.cc/virtual/2024/poster/19100) (Aleksandar Makelov, Georg Lange, Atticus Geiger, Neel Nanda; 2024) — Venue record: ICLR 2024 poster. (version: page; venue: ICLR 2024; status: VERIFIED; retrieved 2026-10-22)
 
-[76] [Emergent Response Planning in LLMs (ICML 2025; arXiv 2502.06258v3)](https://arxiv.org/html/2502.06258v3) (2025) — Inherited 92c-C2ac.
+> Is This the Subspace You Are Looking for? An Interpretability Illusion for Subspace Activation Patching
 
-[77] [Where's the Plan? Locating Latent Planning in Language Models (ICML 2026 MI workshop; arXiv 2605.07984v2)](https://arxiv.org/html/2605.07984v2) (2026) — Inherited 92c-C2ad.
+Locator: ICLR 2024 virtual poster page (CTRL-3; VERIFIED)
 
-[78] [From Brewing to Resolution: Tracing the Internal Lifecycle of Code Reasoning in LLMs (arXiv 2606.17648v3)](https://arxiv.org/html/2606.17648v3) (2026) — Inherited 92c-C2ah.
+[72] [A Reply to Makelov et al. (2023)'s "Interpretability Illusion" Arguments](https://arxiv.org/html/2401.12631v1) (Zhengxuan Wu, Atticus Geiger, Jing Huang, Aryaman Arora, Thomas Icard, Christopher Potts, Noah D. Goodman; 2024) — Wu, Geiger, Huang, Arora, Icard, Potts, Goodman (reply); cited in rows 92e-P1-CTRL-3. (version: v1; venue: 20 pages, 14 figures; status: VERIFIED; retrieved 2026-10-22)
 
-[79] [Base-Aligned Model Collaboration (BACo; ICML 2026; arXiv 2511.05650v2)](https://arxiv.org/html/2511.05650v2) (2025) — Inherited 92d-B1i/92d-Ca.
+> can reject explanations they consider
 
-[80] [Conformative decoding (Peeperkorn et al.; arXiv 2507.20956v1)](https://arxiv.org/html/2507.20956v1) (2025) — Inherited 92d-Cb.
+Locator: Abstract (CTRL-4; VERIFIED)
 
-[81] [Switch Generation (Feng et al.; arXiv 2510.09913v1)](https://arxiv.org/html/2510.09913v1) (2025) — Inherited 92d-Cc.
+> We then argue that the illusions Makelov et al. (2023) see in practice are artifacts of their training and evaluation paradigms.
 
-[82] [Selective Layer Restoration (Zhang et al.; arXiv 2602.06665v1)](https://arxiv.org/html/2602.06665v1) (2026) — Inherited 92d-B1f/92d-Eb.
+Locator: Abstract (CTRL-5; VERIFIED)
 
-[83] [Controlling the Diversity-Quality Trade-Off of LLMs by Merging Models Before and After Alignment (Sumita et al.; arXiv 2610.22999v1)](https://arxiv.org/html/2610.22999v1) (2026) — Inherited 92d-B1g/92d-Ce.
+[73] [Addressing divergent representations from causal interventions on neural networks](https://arxiv.org/html/2511.04638v5) (Satchel Grant, Simon Jerome Han, Alexa R. Tartaglini, Christopher Potts; 2025) — Grant et al., divergent representations; cited in rows 92e-P1-CTRL-4. (version: v5; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)
 
-[84] [Weight ensembling improves reasoning in language models (Dang et al.; COLM 2025; arXiv 2504.10478v4)](https://arxiv.org/html/2504.10478v4) (2025) — Inherited 92d-Cf (WiSE-FT with an early SFT checkpoint).
+> minimizing divergence magnitude does not guarantee elimination of hidden pathways; it only reduces the risk surface.
 
-[85] [Hindsight Merging: Diverse Data Generation with Language Models (PMLR v286)](https://proceedings.mlr.press/v286/veselovsky25a.html) (2025) — Inherited 92d quotes: +20-50% pass@10 on a coding benchmark from checkpoint interpolation.
+Locator: Sec. 5 (CTRL-6; VERIFIED)
 
-[86] [Zhang et al. 2026 (sparse RL-token replacement; arXiv 2610.24663v1)](https://arxiv.org/html/2610.24663v1) (2026) — Inherited 92d-Cd.
+[74] [Right Answer, Wrong Mechanism: Detecting Pernicious Divergence in Causal Interventions](https://arxiv.org/html/2609.39243v2) (Beiming Liu, Minjie Chen; 2026) — Right Answer, Wrong Mechanism (Liu, Chen); cited in rows 92e-P1-CTRL-5. (version: v2; venue: 13 pages, 1 figure, 6 tables. Beiming Liu and Minjie Chen contributed equally; status: VERIFIED; retrieved 2026-10-22)
 
-[87] [An Emulator for Fine-Tuning Large Language Models using Small Language Models (EFT; ICLR 2024; arXiv 2310.12962v1)](https://arxiv.org/html/2310.12962v1) (Eric Mitchell, Rafael Rafailov, Archit Sharma, Chelsea Finn, Christopher D. Manning; 2023) — Inherited 92d quote (B2/C).
+> No method currently tells the two cases apart.
 
-[88] [Tuning Language Models by Proxy (COLM 2024 per arXiv comment; arXiv 2401.08565v4)](https://arxiv.org/html/2401.08565v4) (Alisa Liu, Xiaochuang Han, Yizhong Wang, Yulia Tsvetkov, Yejin Choi, Noah A. Smith; 2024) — Inherited 92d quote (B2/C).
+Locator: Abstract (CTRL-7; VERIFIED)
 
-[89] [Nudging: Inference-time Alignment of LLMs via Guided Decoding (ACL 2025; arXiv 2410.09300v4)](https://arxiv.org/html/2410.09300v4) (Yu Fei, Yasaman Razeghi, Sameer Singh; 2024) — Inherited 92d quote (C/A2): base models are uncertain where alignment changes tokens.
+[75] [The Curse of Multiple Mediators: Hidden Interaction Effects in Activation Patching](https://arxiv.org/html/2606.27510v1) (Sankaran Vaidyanathan, David Arbour, Aaron Mueller, Scott Niekum, David Jensen; 2026) — The Curse of Multiple Mediators (Vaidyanathan et al.); cited in rows 92e-P1-CTRL-6. (version: v1; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)
 
-[90] [Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model? (NeurIPS 2025 oral; arXiv 2504.13837v5)](https://arxiv.org/html/2504.13837v5) (2025) — Inherited 92d-A0 quotes.
+> we find that the NIE does not solely capture the causal effect through the specific component.
 
-[91] [The Invisible Leash: Why RLVR May or May Not Escape Its Origin (arXiv 2507.14843v5)](https://arxiv.org/html/2507.14843v5) (2025) — Inherited 92d-A0 quotes (net support shrinkage).
+Locator: Abstract (CTRL-8; VERIFIED)
 
-[92] [Mathematical discoveries from program search with large language models (FunSearch; Nature 625, 2024)](https://www.nature.com/articles/s41586-023-06924-6) (2024) — Inherited 92c-C3ca.
+[76] [Many Circuits, One Mechanism: Input Variation and Evaluation Granularity in Circuit Discovery](https://arxiv.org/html/2606.06267v2) (Alireza Bayat Makou, Jingcheng Niu, Subhabrata Dutta, Iryna Gurevych; 2026) — Many Circuits, One Mechanism (Bayat Makou et al.); cited in rows 92e-P1-CTRL-6. (version: v2; venue: 101 pages, 44 figures | Transactions on Machine Learning Research, 2026; status: VERIFIED; retrieved 2026-10-22)
 
-[93] [AlphaEvolve (Novikov et al.; arXiv 2506.13131v1)](https://arxiv.org/html/2506.13131v1) (2025) — Inherited 92c-C3cb.
+> The discovered circuits appear specialized by frequency when compared structurally, but functional and representational analyses show no reliable evidence of corresponding
 
-[94] [Zhou (Y.) 2026 (cross-patching base states into a descendant; arXiv 2605.07284v2)](https://arxiv.org/html/2605.07284v2) (2026) — Inherited 92d-B1a/b.
+Locator: Abstract (CTRL-9; VERIFIED)
 
-[95] [Oozeer et al. 2025 (activation transfer between base and fine-tuned models; ICML 2025; arXiv 2503.04429v4)](https://arxiv.org/html/2503.04429v4) (2025) — Inherited 92d-B1c.
+[77] [Position: Mechanistic Interpretability Must Disclose Identification Assumptions for Causal Claims](https://arxiv.org/html/2605.08012v1) (Zezheng Lin, Fengming Liu; 2026) — Position: identification assumptions (Lin et al.); cited in rows 92e-P1-CTRL-6. (version: v1; venue: 10 pages, 2 figures. Submitted to NeurIPS 2026 (Position Track); status: VERIFIED; retrieved 2026-10-22)
 
-[96] [Safety Alignment Should Be Made More Than Just a Few Tokens Deep (Qi et al.; ICLR 2025; arXiv 2406.05946v1)](https://arxiv.org/html/2406.05946v1) (2024) — Inherited 92b-b3a.
+> A purposive audit of 10 papers across four methodological strands finds no dedicated identification-assumptions section
 
-[97] [Lost in the bf16 Cast: Exporting Ternary Language Models Can Revert Most Low-Learning-Rate Code Changes (arXiv 2610.07853)](https://arxiv.org/abs/2610.07853) (2026) — Screened (R2): bf16 export casting reverts fine-tuning changes (numerics context).
+Locator: Abstract (CTRL-10; VERIFIED)
 
-[98] [Measuring the Task Value of Precision Upgrades in Closed-Loop Agents (arXiv 2610.24346)](https://arxiv.org/abs/2610.24346) (2026) — Screened (R3): BF16 fallback actions in 4-bit-weight agents rescue and damage tasks in near-equal numbers.
+[78] [When is Your LLM Steerable?](https://arxiv.org/html/2606.11599v1) (2026) — Inherited from art_kjrCpQnPaniY Table 92b/92c source [21]; its quotes are cited by row id and were not re-fetched here. (version: v1; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
 
-[99] [Flat Score, Amplified Failures: How the Error Budget Masks Damage in Quantized LLM Agents (arXiv 2607.27275)](https://arxiv.org/abs/2607.27275) (2026) — Screened (R4): 4-bit weights look free on the score while amplifying existing failures.
+[79] [Interpretability without actionability: mechanistic methods cannot correct language model errors despite near-perfect internal representations](https://arxiv.org/html/2603.18353v1) (2026) — Inherited from art_kjrCpQnPaniY Table 92b/92c source [43]; its quotes are cited by row id and were not re-fetched here. (version: v1; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
 
-[100] [Displacement Is Not Direction: Evaluating Fidelity Metrics for Quantized LLM Deployment (arXiv 2606.19558)](https://arxiv.org/abs/2606.19558) (2026) — Screened (R4): KL fidelity metrics lose predictive power near baseline.
+[80] [On the Non-Identifiability of Steering Vectors in Large Language Models](https://arxiv.org/html/2602.06801v4) (Sohan Venkatesh, Ashish Mahendran Kurapath; 2026) — On the Non-Identifiability of Steering Vectors (Venkatesh et al.); cited in rows 92e-P2-8. (version: v4; venue: Code available at https://github.com/sohv/non-identifiability; status: VERIFIED; retrieved 2026-10-22)
 
-[101] [SafeQ: Safety Alignment Preserving Post-Training Quantization for Language Models (ICLR 2027 submission)](https://openreview.net/forum?id=70RbLmZVvW) (2026) — Screened (R2): safety-preserving PTQ for W4A16 and W4A4 (activation quantisation included; no interventions).
+> We show that, under white-box single-layer access, steering vectors are fundamentally non-identifiable due to large equivalence classes of behaviorally indistinguishable interventions.
 
-[102] [Better Fixed-State Fidelity Need Not Improve Closed-Loop Performance in Quantized Neural Policies (ICLR 2027 submission)](https://openreview.net/forum?id=5R8LqE51Hr) (2026) — Screened (R2): fidelity on fixed states does not predict closed-loop return of quantised policies.
+Locator: Abstract (P2-8; VERIFIED)
 
-[103] [AlignRadar: Forecasting Emergent-Misalignment Risk Before Fine-Tuning (ICLR 2027 submission)](https://openreview.net/forum?id=xmDdTDx241) (2026) — Screened (R1): dataset-level forecast of EM risk from the base model before SFT (FLAG-B type).
+[81] [Steering off Course: Reliability Challenges in Steering Language Models](https://arxiv.org/html/2504.04635v1) (Patrick Queiroz Da Silva, Hari Sethuraman, Dheeraj Rajagopal, Hannaneh Hajishirzi, Sachin Kumar; 2025) — Steering off Course (Da Silva et al.); cited in rows 92e-P2-1. (version: v1; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)
 
-[104] [Rebellious Student: Reversing Teacher Signals for Reasoning Exploration with Self-Distilled RLVR (arXiv 2605.10781v1)](https://arxiv.org/html/2605.10781v1) (2026) — Screened (R1): replicates the base/RL top-k overlap analysis at high-divergence positions.
+> Our analysis demonstrate fundamental flaws in the assumptions underlying these methods, challenging their reliability as scalable steering solutions
 
-[105] [QGATE: Counterexample-Guided Precision Patching of Quantized LLMs with Fail-Closed Slice Reporting (ICLR 2027 submission)](https://openreview.net/forum?id=Al2c9FzOI7) (2026) — Screened (R1): repairs quantisation flips by precision patching of weight groups (no activation-level intervention).
+Locator: Abstract (P2-1; VERIFIED)
 
-[106] [AARONKANG04/quantization-interpretability (GitHub repository)](https://github.com/AARONKANG04/quantization-interpretability) — E6 grey literature (not fetched): NVFP4/FP8 damage study with tuned lens and SAE features on bf16 vs low-bit activations; repositories never fire a flag.
+[82] [How Far Ahead Do LLMs Plan? Uncovering the Latent Horizon in Chain-of-Thought Reasoning](https://arxiv.org/html/2602.02103v2) (Liyan Xu, Mo Yu, Fandong Meng, Jie Zhou; 2026) — How Far Ahead Do LLMs Plan? (Xu et al.); cited in rows 92e-P2-6. (version: v2; venue: Accepted to ICML 2026; status: VERIFIED; retrieved 2026-10-22)
 
-[107] [arXiv API (id_list metadata and search_query)](https://export.arxiv.org/api/query) — Versions, v1 dates, titles, comments/journal_ref (evidence/arxiv_meta.json) and engine E3 of the saturation search.
+> we investigate the latent planning strength of LLMs, through our probing method, Tele-Lens, applying to hidden states across diverse task domains.
 
-[108] [Semantic Scholar Graph API (/paper/search, /citations, /references)](https://api.semanticscholar.org/graph/v1/paper/search) — Engine E4 and forward/backward citation chasing (FC/BC).
+Locator: Abstract (P2-6; VERIFIED)
 
-[109] [OpenReview API v2 notes/search (ICLR.cc/2027/Conference)](https://api2.openreview.net/notes/search) — Engine E5 and the abstract records quoted as VERIFIED-ABSTRACT; notes?id= and PDFs returned HTTP 403 on 2026-10-21/22.
+[83] [Representing and Steering a Hypothesized Consciousness Spectrum: Manifold-Guided vs. Linear Directions (OpenReview forum MN9X374VhG)](https://api2.openreview.net/notes/search?term=Representing%20and%20Steering%20a%20Hypothesized%20Consciousness%20Spectrum&group=ICLR.cc/2027/Conference&limit=10) (2026) — ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-P3-4. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)
+
+> show that both a linear direction and a low-dimensional manifold structure align with it.
+
+Locator: OpenReview abstract (forum MN9X374VhG) (P3-4; VERIFIED-ABSTRACT)
+
+[84] [Hot or Cold? Adaptive Temperature Sampling for Code Generation with Large Language Models](https://arxiv.org/html/2309.02772v3) (2023) — Inherited from art_kjrCpQnPaniY Table 92b/92c source [8]; its quotes are cited by row id and were not re-fetched here. (version: v3; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
+
+[85] [Gumbel Counterfactual Generation From Language Models](https://arxiv.org/html/2411.07180v5) (2024) — Inherited from art_kjrCpQnPaniY Table 92b/92c source [33]; its quotes are cited by row id and were not re-fetched here. (version: v5; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
+
+[86] [Beneath the Diff: Diagnosing and Mitigating Algorithmic Mode Collapse in Code-Level Autonomous Research Loops](https://arxiv.org/html/2609.00077v1) (2026) — Inherited from art_kjrCpQnPaniY Table 92b/92c source [29]; its quotes are cited by row id and were not re-fetched here. (version: v1; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
+
+[87] [Tethered Reasoning: Decoupling Entropy from Hallucination in Quantized LLMs via Manifold Steering](https://arxiv.org/html/2602.17691v1) (Craig Atkinson; 2026) — HELIX / Tethered Reasoning (Atkinson); cited in rows 92e-P4-2. (version: v1; venue: 16 pages, 6 tables; status: VERIFIED; retrieved 2026-10-22)
+
+> Quantized language models face a fundamental dilemma: low sampling temperatures yield repetitive, mode-collapsed outputs, while high temperatures
+
+Locator: Abstract (P4-2; VERIFIED)
+
+[88] [Diversity Without Discovery: Why Chain Perturbation Fails to Explore in Latent Test-Time Scaling](https://api2.openreview.net/notes/search?term=Diversity%20Without%20Discovery%3A%20Why%20Chain%20Perturbation%20Fails%20to%20Explore%20in%20Latent%20Test-Time%20Scaling&group=ICLR.cc/2027/Conference&limit=10) (2026) — Inherited from art_kjrCpQnPaniY Table 92b/92c source [63]; its quotes are cited by row id and were not re-fetched here. (status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
+
+[89] [Intent Factored Generation: Unleashing the Diversity in Your Language Model](https://arxiv.org/html/2506.09659v1) (2025) — Inherited from art_kjrCpQnPaniY Table 92b/92c source [26]; its quotes are cited by row id and were not re-fetched here. (version: v1; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
+
+[90] [Planning In Natural Language Improves LLM Search For Code Generation](https://arxiv.org/html/2409.03733v2) (2024) — Inherited from art_kjrCpQnPaniY Table 92b/92c source [27]; its quotes are cited by row id and were not re-fetched here. (version: v2; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)
+
+[91] [Latent Plan Transformer for Trajectory Abstraction: Planning as Latent Space Inference](https://arxiv.org/html/2402.04647v4) (Deqian Kong, Dehong Xu, Minglu Zhao, Bo Pang, Jianwen Xie, Andrew Lizarraga, Yuhao Huang, Sirui Xie, Ying Nian Wu; 2024) — Latent Plan Transformer (Kong et al.); cited in rows 92e-P5-4. (version: v4; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)
+
+> We introduce the Latent Plan Transformer (LPT), a novel model that leverages a latent variable to connect a Transformer-based trajectory generator and the final return.
+
+Locator: Abstract (P5-5; VERIFIED)
+
+[92] [kitft/natural_language_autoencoders README (released NLA checkpoints)](https://raw.githubusercontent.com/kitft/natural_language_autoencoders/main/README.md) (2026) — Lists the 8 released checkpoints (4 base models x AV/AR) with layers, and requires loading nla_meta.yaml. (version: main branch; venue: GitHub; status: VERIFIED-README; retrieved 2026-10-22)
+
+> Qwen2.5-7B-Instruct | 20 / 28 | 3584
+
+Locator: Released checkpoints table (N-9; VERIFIED-README)
+
+> Llama-3.3-70B-Instruct | 53 / 80 | 8192
+
+Locator: Released checkpoints table (N-10; VERIFIED-README)
+
+> Each checkpoint ships an `nla_meta.yaml` sidecar with the prompt template, injection token IDs, and scale factors that the model was trained with — load those, never hardcode them.
+
+Locator: below the checkpoints table (N-11; VERIFIED-README)
+
+[93] [kitft/nla-qwen2.5-7b-L20-av model card (Hugging Face)](https://huggingface.co/kitft/nla-qwen2.5-7b-L20-av) (2026) — Qwen2.5-7B-Instruct AV: extraction at the residual output of block 20; in-distribution fve_nrm 0.752. (version: main; venue: Hugging Face; status: VERIFIED-README; retrieved 2026-10-22)
+
+> Extraction layer: residual stream output of block
+
+Locator: model card (N-12; VERIFIED-README)
+
+[94] [nla_meta.yaml of kitft/nla-qwen2.5-7b-L20-av](https://huggingface.co/kitft/nla-qwen2.5-7b-L20-av/raw/main/nla_meta.yaml) (2026) — Sidecar metadata: extraction_layer_index 20, injection and MSE scales. (version: main; venue: Hugging Face; status: VERIFIED-README; retrieved 2026-10-22)
+
+> extraction_layer_index: 20
+
+Locator: training block (N-14; VERIFIED-README)
+
+[95] [TransformerLens issue #1884: NLA explain/reconstruct proposal](https://github.com/TransformerLensOrg/TransformerLens/issues/1884) (2026) — Tooling proposal for the Qwen2.5-7B NLA pair that lists edited-explanation steering as a non-goal. (version: issue; venue: GitHub; status: VERIFIED-README; retrieved 2026-10-22)
+
+> Edited-explanation steering or causal validation.
+
+Locator: Non-goals (N-32; VERIFIED-README)
+
+[96] [Activation Oracles: Training and Evaluating LLMs as General-Purpose Activation Explainers](https://arxiv.org/html/2512.15674v2) (Adam Karvonen, James Chua, Clément Dumas, Kit Fraser-Taliente, Subhash Kantamneni, Julian Minder, Euan Ong, Arnab Sen Sharma, Daniel Wen, Owain Evans, Samuel Marks; 2025) — Activation Oracles (Karvonen et al.); cited in rows 92e-N-6. (version: v2; venue: 36 pages; status: VERIFIED; retrieved 2026-10-22)
+
+> we study Activation Oracles (AOs): models trained to answer arbitrary natural-language questions about LLM activations.
+
+Locator: Sec. 1 Introduction (N-19; VERIFIED)
+
+[97] [Natural Language Autoencoders can verbalize influence but don't report whether it changed the outcome](https://jaisood.substack.com/p/natural-language-autoencoders-can) (Jai Sood; 2026) — Grey-literature audit of two released NLA checkpoints: the readout reports applied pressure and answer, not whether the pressure changed the answer. (version: post (Aug 18, 2026); venue: Substack; status: VERIFIED-BLOG; retrieved 2026-10-22)
+
+> We audit two released NLA checkpoints and find that the readout reports what pressure was applied and what the model answered, but not whether the pressure changed that answer.
+
+Locator: Introduction (N-21; VERIFIED-BLOG)
+
+[98] [Probing Latent Colombian Identity Inferences in Qwen2.5-7B with Natural Language Autoencoders](https://arxiv.org/html/2607.21774v1) (Pablo Santiago Potes Velasco, María del Mar García Matabanchoy, Óscar Julián Pérez Ladino, Jhoan Stevan Mosquera Ortiz, Nicolás Lozano Mazuera, Gilber Alexis Corrales Gallego; 2026) — Colombian identity with NLA (Potes Velasco et al.); cited in rows 92e-N-9. (version: v1; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)
+
+> We use Natural Language Autoencoders (NLA) to verbalize residual-stream activations from layer 20 across four positional quartiles per prompt.
+
+Locator: Abstract (N-25; VERIFIED)
+
+[99] [ceselder/nanoNLA (nanonla-l24-av-qwen3-8b) model card](https://huggingface.co/ceselder/nanoNLA) (2026) — Community NLA activation verbalizer for Qwen3-8B at layer 24 (Karvonen injection). (version: main; venue: Hugging Face; status: VERIFIED-README; retrieved 2026-10-22)
+
+[100] [ceselder/nanoNLA README](https://raw.githubusercontent.com/ceselder/nanoNLA/main/README.md) (2026) — Minimal NLA reimplementation; carries a faithfulness disclaimer and points users to another repository. (version: main; venue: GitHub; status: VERIFIED-README; retrieved 2026-10-22)
+
+> Faithfulness disclaimer — this is a perpetual work-in-progress.
+
+Locator: Faithfulness disclaimer (N-27; VERIFIED-README)
+
+[101] [syvb/EasyNLA README](https://raw.githubusercontent.com/syvb/EasyNLA/main/README.md) (2026) — NLA training codebase built on nanoNLA; reports ~70% held-out FVE on Qwen3-8B layer 24. (version: main; venue: GitHub; status: VERIFIED-README; retrieved 2026-10-22)
+
+> On Qwen3-8B (layer 24) the default config reaches
+
+Locator: Overview (N-28; VERIFIED-README)
+
+[102] [Measuring Activation Control in Large Language Models](https://arxiv.org/html/2608.21664v1) (Marek Mateusz Kowalski, Joshua Fonseca Rivera, Uzay Macar, David Demitri Africa; 2026) — Measuring Activation Control (Kowalski et al.); cited in rows 92e-N-12. (version: v1; venue: 19 figures, 4 tables. Code: https://github.com/mkobalski/activation-control. Data: https://huggingface.co/datasets/joshycodes/activation-control-battery; status: VERIFIED; retrieved 2026-10-22)
+
+> this level of control can evade activation-based monitoring methods (including linear probes, natural language autoencoders, activation oracles, and the Jacobian lens), albeit imperfectly.
+
+Locator: Abstract (N-30; VERIFIED)
+
+[103] [Understanding Confabulation and Rethinking Reconstruction in Activation Explanations](https://arxiv.org/html/2609.33702v1) (Gert Lek, Zixuan Xia, Pin-Yu Chen, Lydia Y. Chen; 2026) — Understanding Confabulation (Lek et al.); cited in rows 92e-N-12. (version: v1; venue: 18 pages, 9 figures; status: VERIFIED; retrieved 2026-10-22)
+
+> explanations become more useful for predicting model behavior while also increasingly introducing unsupported details and exhibiting writing defects.
+
+Locator: Abstract (N-31; VERIFIED)
+
+[104] [Announcing Gemma Scope 2 (LessWrong / AI Alignment Forum)](https://www.lesswrong.com/posts/YQro5LyYjDzZrBCdb/announcing-gemma-scope-2) (2025) — Release post dated 22 Dec 2025; every PT SAE has a version finetuned for IT models. (version: post; venue: LessWrong / AI Alignment Forum; status: VERIFIED-BLOG; retrieved 2026-10-22)
+
+> every SAE trained on a PT model has a corresponding version finetuned for IT models
+
+Locator: TLDR (S-1; VERIFIED-BLOG)
+
+> 22nd Dec 2025
+
+Locator: byline (S-2; VERIFIED-BLOG)
+
+[105] [Gemma Scope 2 Technical Paper (Google DeepMind)](https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/gemma-scope-2-helping-the-ai-safety-community-deepen-understanding-of-complex-language-model-behavior/Gemma_Scope_2_Technical_Paper.pdf) (2025) — IT SAEs are initialized from PT SAEs and finetuned on rollout-derived data. (version: PDF; venue: Google DeepMind technical report; status: VERIFIED; retrieved 2026-10-22)
+
+> from the corresponding PT SAEs and finetune on the rollout-derived datasets.
+
+Locator: training of IT SAEs (S-3; VERIFIED)
+
+[106] [google/gemma-scope-2-4b-it model card](https://huggingface.co/google/gemma-scope-2-4b-it) (2025) — Sites (resid_post, attn_out, mlp_out, transcoders) at 4 depths (25/50/65/85%) with several widths and L0 values. (version: main; venue: Hugging Face; status: VERIFIED-README; retrieved 2026-10-22)
+
+> contain SAEs at 4 different layers (25%, 50%, 65% and 85% depth) and a variety of widths & L0 values
+
+Locator: What is in this repo (S-4; VERIFIED-README)
+
+[107] [I Have Covered All the Bases Here: Interpreting Reasoning Features in Large Language Models via Sparse Autoencoders](https://arxiv.org/html/2503.18878v2) (Andrey Galichin, Alexey Dontsov, Polina Druzhinina, Anton Razzhigaev, Oleg Y. Rogov, Elena Tutubalina, Ivan Oseledets; 2025) — I Have Covered All the Bases Here (Galichin et al.); cited in rows 92e-S-4. (version: v2; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)
+
+> Through steering experiments, we demonstrate that amplifying these features increases performance on reasoning-intensive benchmarks
+
+Locator: Abstract (S-14; VERIFIED)
+
+[108] [SAE Interventions are Unreliable: Post-Intervention Recovery of Suppressed Behavior](https://arxiv.org/html/2606.18322v1) (Mingyue Cui, Linghui Shen, Xingyi Yang; 2026) — SAE Interventions are Unreliable (Cui et al.); cited in rows 92e-S-7. (version: v1; venue: Code: https://github.com/Mingyuee88/sae-post-intervention-recovery, Project page: https://mingyuee88.github.io/sae-post-intervention-recovery/; status: VERIFIED; retrieved 2026-10-22)
+
+> the clamp may block one visible route to a behavior without eliminating the behavior itself.
+
+Locator: Abstract (S-18; VERIFIED)
+
+[109] [Do LMs Know What Variables Do? Interpreting Code Representations via Variable Roles (OpenReview forum 2AiBLDA67W)](https://api2.openreview.net/notes/search?term=Do%20LMs%20Know%20What%20Variables%20Do%3F%20Interpreting%20Code%20Representations%20via%20Variable%20Roles&group=ICLR.cc/2027/Conference&limit=10) (2026) — ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-S-7. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)
+
+> residual probes outperform individual SAE features and tested lexical baselines
+
+Locator: OpenReview abstract (forum 2AiBLDA67W) (S-19; VERIFIED-ABSTRACT)
+
+[110] [On the Biology of a Large Language Model (Transformer Circuits)](https://transformer-circuits.pub/2025/attribution-graphs/biology.html) (2025) — Attribution-graph caveat: satisfying insight for about a quarter of the prompts tried. (version: HTML; venue: Transformer Circuits Thread; status: VERIFIED; retrieved 2026-10-22)
+
+> ve found that our attribution graphs provide us with satisfying insight for about a quarter of the prompts we
+
+Locator: Introduction (limitations) (S-20; VERIFIED)
+
+[111] [PRISM: Transfer and Limits of Activation Interventions in Tool-Calling Language Models](https://arxiv.org/html/2610.20808v1) (Giovana Kerche Bonás, Thales Sales Almeida, Marcelo da Silva Reis, Rodrigo Nogueira, Marcos Meideiros Raimundo; 2026) — PRISM (Bonas et al.); cited in rows 92e-E-5. (version: v1; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)
+
+> we introduce PRISM, a framework for evaluating the transfer of activation interventions across precision, languages, and scales.
+
+Locator: Abstract (E-10; VERIFIED)
+
+[112] [Interpreting the Effects of Quantization on LLMs](https://arxiv.org/html/2508.16785v3) (Manpreet Singh, Hassan Sajjad; 2025) — Interpreting the Effects of Quantization on LLMs (Singh, Sajjad); cited in rows 92e-E-6. (version: v3; venue: Accepted to AACL 2025 Main; status: VERIFIED; retrieved 2026-10-22)
+
+> Our findings reveal that the impact of quantization on model calibration is generally minor.
+
+Locator: Abstract (E-14; VERIFIED)
+
+[113] [Through a Compressed Lens: Investigating The Impact of Quantization on Factual Knowledge Recall](https://arxiv.org/html/2505.13963v3) (Qianli Wang, Mingyang Wang, Nils Feldhus, Simon Ostermann, Yuan Cao, Hinrich Schütze, Sebastian Möller, Vera Schmitt; 2025) — Through a Compressed Lens (Wang et al.); cited in rows 92e-E-6. (version: v3; venue: TrustNLP @ ACL 2026; camera-ready version; status: VERIFIED; retrieved 2026-10-22)
+
+> We show that quantization typically results in information loss within LLMs, consequently diminishing their capacity for FKR.
+
+Locator: Abstract (E-15; VERIFIED)
+
+[114] [Greedy Decoding Is Not Precision-Invariant: Cross-Precision Output Divergence in LLM Inference](https://arxiv.org/pdf/2609.26621v1) (Gaoyuan Du, Anam Nawaz Khan, Rex Zhou, Xiaoyang Liu, Deepayan Chakrabarti, Fnu Suya, Xueping Li; 2026) — Greedy Decoding Is Not Precision-Invariant (Du et al.); cited in rows 92e-E-7. (version: v1; venue: Accepted by Transactions on Machine Learning Research (TMLR), 2026 | Transactions on Machine Learning Research, 2026; status: VERIFIED; retrieved 2026-10-22)
+
+> different outputs in BF16 versus FP16 on identical hardware.
+
+Locator: Abstract (PDF; no arXiv HTML) (E-17; VERIFIED)
+
+[115] [Understanding and Mitigating Numerical Sources of Nondeterminism in LLM Inference](https://arxiv.org/html/2506.09501v2) (Jiayi Yuan, Hao Li, Xinheng Ding, Wenya Xie, Yu-Jhe Li, Wentian Zhao, Kun Wan, Jing Shi, Xia Hu, Zirui Liu; 2025) — Understanding and Mitigating Numerical Sources of Nondeterminism (Yuan et al.); cited in rows 92e-E-7. (version: v2; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)
+
+> under bfloat16 precision with greedy decoding, a reasoning model like DeepSeek-R1-Distill-Qwen-7B can exhibit up to 9% variation in accuracy and 9,000 tokens difference in response length due to differences in GPU count, type, and evaluation batch size.
+
+Locator: Abstract / Sec. 1 (E-18; VERIFIED)
+
+[116] [arXiv abs page 2506.09501v1: Give Me FP32 or Give Me Death? Challenges and Solutions for Reproducible Reasoning](https://arxiv.org/abs/2506.09501v1) (2025) — Confirms the v1 title and the 'up to 9%' abstract sentence. (version: v1; venue: arXiv; status: VERIFIED; retrieved 2026-10-22)
+
+> Give Me FP32 or Give Me Death? Challenges and Solutions for Reproducible Reasoning
+
+Locator: abs page v1 (E-19; VERIFIED)
+
+[117] [Hidden Reliability Risks in Large Language Models: Systematic Identification of Precision-Induced Output Disagreements](https://arxiv.org/html/2604.19790v1) (Yifei Wang, Tianlin Li, Xiaohan Zhang, Xiaoyu Zhang, Wei Ma, Mingfei Cheng, Li Pan; 2026) — Hidden Reliability Risks: Precision-Induced Output Disagreements (Wang et al.); cited in rows 92e-E-7. (version: v1; venue: 12 pages, 5 figures; status: VERIFIED; retrieved 2026-10-22)
+
+> Evaluations across five open-source models yield average detection success rates of 84.0% for bfloat16 vs. float16 and 99.5% for int16 vs. int8 transitions.
+
+Locator: Sec. 1 contributions (E-25; VERIFIED)
+
+[118] [LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale](https://arxiv.org/html/2208.07339v2) (Tim Dettmers, Mike Lewis, Younes Belkada, Luke Zettlemoyer; 2022) — LLM.int8() (Dettmers et al.); cited in rows 92e-E-8. (version: v2; venue: Published at NeurIPS 2022. Camera-ready version; status: VERIFIED; retrieved 2026-10-22)
+
+> the sparse but systematic large magnitude outlier features that ruin quantization precision once they emerge in all transformer layers starting at scales of 6.7B parameters.
+
+Locator: Abstract (E-20; VERIFIED)
+
+[119] [SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Language Models](https://arxiv.org/html/2211.10438v7) (Guangxuan Xiao, Ji Lin, Mickael Seznec, Hao Wu, Julien Demouth, Song Han; 2022) — SmoothQuant (Xiao et al.); cited in rows 92e-E-8. (version: v7; venue: ICML 2023. First two authors contributed equally to this work; status: VERIFIED; retrieved 2026-10-22)
+
+> SmoothQuant smooths the activation outliers by offline migrating the quantization difficulty from activations to weights with a mathematically equivalent transformation.
+
+Locator: Abstract (E-21; VERIFIED)
+
+[120] [Massive Activations in Large Language Models](https://arxiv.org/html/2402.17762v2) (Mingjie Sun, Xinlei Chen, J. Zico Kolter, Zhuang Liu; 2024) — Massive Activations (Sun et al.); cited in rows 92e-E-8. (version: v2; venue: First Conference on Language Modeling (COLM), 2024. Website at https://eric-mingjie.github.io/massive-activations/index.html; status: VERIFIED; retrieved 2026-10-22)
+
+> we find their values largely stay constant regardless of the input, and they function as indispensable bias terms in LLMs.
+
+Locator: Abstract (E-22; VERIFIED)
+
+[121] [FP8 Formats for Deep Learning](https://arxiv.org/html/2209.05433v2) (Paulius Micikevicius, Dusan Stosic, Neil Burgess, Marius Cornea, Pradeep Dubey, Richard Grisenthwaite, Sangwon Ha, Alexander Heinecke, Patrick Judd, John Kamalu, Naveen Mellempudi, Stuart Oberman; 2022) — FP8 Formats for Deep Learning (Micikevicius et al.); cited in rows 92e-E-8. (version: v2; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22; author list truncated to the first names shown by the source)
+
+> two encodings - E4M3 (4-bit exponent and 3-bit mantissa) and E5M2 (5-bit exponent and 2-bit mantissa).
+
+Locator: Abstract (E-23; VERIFIED)
 
 ## Verification
 
 Numbered citations resolve to unique listed sources. Passage checks test text occurrence, not claim truth or entailment. Author/year metadata and locators are not independently verified. Details: `research_verification.json`.
 
-- Source [1]: text found — We study only bitsandbytes weight-only quantization (INT8, NF4); activation quantization (W8A8, W4A4
-- Source [1]: text found — Despite this, steering vectors remain highly collinear with their FP16 siblings (cosine similarity 0
-- Source [2]: text found — Steering directions can remain aligned across model precision changes while their functional effects
-- Source [3]: text found — We study steering compatibility with the intervention layer, direction, and strength held fixed acro
-- Source [4]: text found — We directly applied quantization from 32 bits to 8 bits to all weights and activations of the model 
-- Source [4]: text found — when precision is reduced from 32 bits to 8 bits, direct quantization (also called Round-to-Nearest 
-- Source [5]: text found — floor, 13.0% and 51.2% of full-displacement interactions fell below the threshold
-- Source [8]: text found — We explore 16-bit (BF16) and 4-bit (NF4) versions of smaller models to expose harmful tool-call comp
-- Source [9]: text found — Noticeably, our theoretical claim does not cover quantization effects. However, we experiment with a
-- Source [10]: text found — where safety lives in non-outlier channels collaterally damaged by outlier-driven scale factors
-- Source [11]: text found — INT8 with outlier handling preserves perplexity in both languages, while naive FP8 casting degrades 
-- Source [11]: text found — Our FP8 results reflect a naive casting stress test (no calibration/scaling), not an optimized FP8 r
-- Source [12]: text found — For instance, under bfloat16 precision with greedy decoding, a reasoning model like DeepSeek-R1-Dist
-- Source [14]: text found — We use `Qwen/Qwen3-235B-A22B-Instruct-2507` and sample 1000 completions at temperature 0
-- Source [15]: text found — At 1.7B each arm reproduces itself bit-for-bit across cold restarts, yet the arms agree on no sequen
-- Source [16]: text found — Serving four-bit weights through 16-bit kernels left divergence not detectably different from 16-bit
-- Source [16]: text found — Near-tie decisions became only about 1.2 times as common, while the cache-path change in top-two mar
-- Source [17]: text found — the outcome depends primarily on the top-two logit margin at the lm_head
-- Source [18]: text found — However, even when the accuracy of baseline and compressed model are similar, we observe the phenome
-- Source [19]: text found — W8A8-FP quantization is essentially lossless, preserving the uncompressed model’s accuracy across al
-- Source [21]: text found — Based on the fact that weights are easy to quantize while activations are not, SmoothQuant smooths t
-- Source [22]: text found — the sparse but systematic large magnitude outlier features that ruin quantization precision once the
-- Source [23]: text found — Many of these activations are found within the starting word token and delimiter tokens.
-- Source [24]: text found — we propose an 8-bit floating point (FP8) binary interchange format consisting of two encodings - E4M
-- Source [25]: text found — For instance, a 4-bit quantized model retains the trustworthiness of its original counterpart, but m
-- Source [26]: text found — The quantization method is fine-grained `fp8` quantization with block size of 128.
-- Source [27]: text found — Dynamic, per-token quantization on the activations
-- Source [28]: text found — tiny perturbations along them can cause large, erratic, input-dependent behavioral swings
-- Source [29]: text found — We apply it to GLM-5.3-Flash (320B parameters, 288 routed experts, a four-wide hyper-connection resi
-- Source [30]: text found — Around 30% of RL top-1 tokens are already ranked first under the base model, and over 80% (DAPO) and
-- Source [30]: text found — inserting only a small fraction of RL-sampled tokens into base generations progressively recovers RL
-- Source [31]: text found — The aligned model (instruct) sharply suppresses the likelihood of the harmful generation. In contras
-- Source [31]: text found — we propose that these behaviors can be better understood as a regression to base model behavior.
-- Source [32]: text found — Fine-tuning in the opposite direction of post-training (e.g., safe vs. unsafe) causes post-trained m
-- Source [33]: text found — The Rebound Effect [14] refers to the tendency of fine-tuned models to revert toward their pre-train
-- Source [34]: text found — We instead cast it as a single activation-space direction, pointing from the safety-aligned model to
-- Source [34]: text found — once we fixed the reference family and the test in advance, every additional trajectory we tried mov
-- Source [35]: text found — We observe that the top-ranked tokens in jailbroken LLMs are largely found within the top ten tokens
-- Source [36]: text found — A persona subspace present in the model before fine-tuning carries broad misalignment. The subspace 
-- Source [36]: text found — Provenance. The extraction is from a released instruction-tuned checkpoint, not a pre-alignment base
-- Source [37]: text found — the representational distance between an evaluation prompt and the training data centroid, both in t
-- Source [37]: text found — We select models of various sizes and from multiple model families: Qwen2.5-14B-Instruct, Qwen2.5-32
-- Source [38]: text found — We instead seal a per-head, signed forecast from the base model, fine-tune, and confirm it.
-- Source [39]: text found — our method achieves this reversal by contrasting the output token distribution of a safety-aligned l
-- Source [40]: text found — However, a barrier arises for going beyond the support of the base model.
-- Source [41]: text found — We introduce the power distribution as a useful sampling target for reasoning tasks. Since it can be
-- Source [41]: text found — Our algorithm achieves comparable performance to GRPO within the posttraining domain (MATH500) but c
-- Source [42]: text found — Embedding perturbation does not disrupt reasoning coherence.
-- Source [42]: text found — We find that the resulting continuations remain coherent and on-task.
-- Source [43]: text found — reasoning mode selection is driven by weak signals, making it a key source of instability and side e
-- Source [43]: text found — We find that targeted prefix perturbation consistently outperforms temperature scaling across both m
-- Source [44]: text found — We hypothesize that there exist key forking tokens, such that re-sampling the system at those specif
-- Source [44]: text found — We find many examples of forking tokens, including surprising ones such as punctuation marks, sugges
-- Source [46]: text found — This model uses change point detection to identify forking points, and kernel-pooling to smooth esti
-- Source [47]: text found — We term these sentences thought anchors. These are generally planning or uncertainty management sent
-- Source [48]: text found — we analyze the Countdown task, whose solution space can be exhaustively enumerated into discrete ent
-- Source [48]: text found — Layer interpolation replaces blocks 20–28 by the midpoint of their step-50 and step-275 parameters.
-- Source [49]: text found — We define the cliff token: the token in a reasoning trace where the probability of reaching the corr
-- Source [50]: text found — These findings highlight the significance of high-entropy tokens (i.e., forking tokens) to RLVR.
-- Source [53]: text found — our empirical results indicate that changes in temperature from 0.0 to 1.0 do not have a statistical
-- Source [54]: text found — K/V perturbations remain flat before flips, while low top-1/top-2 logit margins expose much of the f
-- Source [55]: text found — Our method linearly interpolates between the zero-shot and fine-tuned models with a mixing coefficie
-- Source [56]: text found — In this paper we show that model averaging, which simply interpolates between pre and post RLHF mode
-- Source [57]: text found — To mitigate this effect, we propose a simple recovery approach: merging the fine-tuned model with it
+- Source [1]: text found — We can make a targeted edit to the NLA explanation, convert the modified explanation into an activat
+- Source [1]: text found — We then steer with this direction at the newline token only, at the layer the NLA is trained on.
+- Source [1]: text found — We note that steering is only successful roughly 50% of the time and the completions are not always 
+- Source [1]: text found — by editing an explanation and reconstructing both the original and edited versions with the AR, we o
+- Source [2]: text found — The trained decoder also enables control by providing a differentiable loss to steer activations tow
+- Source [2]: text found — we demonstrate that the decoder is precise enough to steer the target model to exhibit behaviors uns
+- Source [3]: text found — We propose Supervised Control, which allows editing open-ended concepts while only requiring gradien
+- Source [4]: text found — Proceedings of the 41st International Conference on Machine
+- Source [5]: text found — Dreaming Vectors: Gradient-descented steering vectors from Activation Oracles and using them to Red-
+- Source [6]: text found — of their specific claims are ones the reconstruction depends on. The score therefore tracks the inpu
+- Source [7]: text found — C2 and C3 are not recovered by any probe: a census of every active feature finds no rhyme-anticipati
+- Source [8]: text found — We systematically study activation steering under weight-only quantization (INT8 and NF4) across fou
+- Source [8]: text found — Activations remain in FP16/BF16 throughout the forward pass.
+- Source [8]: text found — we find that sentiment steering survives quantization intact.
+- Source [8]: text found — demonstrating that compression can dominate the steering intervention.
+- Source [9]: text found — Preserving standard model quality or direction-level representation similarity does not guarantee th
+- Source [9]: text found — Intervention effects can change even when directions
+- Source [10]: text found — We study steering compatibility with the intervention layer, direction, and strength held fixed acro
+- Source [10]: text found — We show that ordinary output fidelity alone does not guarantee
+- Source [11]: text found — using BF16, GPTQ, FP8 weight-and-activation quantization, and FP8 KV-cache quantization.
+- Source [12]: text found — Dynamic, per-token quantization on the activations
+- Source [13]: text found — existing causal abstraction methods have two major limitations: they require a brute-force search ov
+- Source [14]: text found — For causal variable localization, we find that the supervised DAS method performs best, while SAE fe
+- Source [15]: text found — we introduce a novel distribution matching objective tailored for the steering task by aligning inte
+- Source [17]: text found — Code models write Python when the prompt does not say which language to use. We ask a mechanistic qu
+- Source [18]: text found — Adding them after the first sampled token changes held-out outputs, but effects depend on model and 
+- Source [20]: text found — This pipeline yields a compact set of 23 intervention targets in Qwen3-8B.
+- Source [20]: text found — We use this functionally aligned contrast to screen sparse autoencoder features at the final prompt 
+- Source [20]: text found — same-size, layer-count-matched random null interventions reduce accuracy by only
+- Source [21]: text found — To identify the few strategy-specific features from the vast pool of SAE features, we propose SAE-St
+- Source [21]: text found — Think Intervention (Wu et al., 2025), which inserts human-crafted instructions into the middle of th
+- Source [22]: text found — For steering, we find that prompting outperforms all existing methods, followed by finetuning.
+- Source [22]: text found — For concept detection, representation-based methods such as difference-in-means, perform the best. O
+- Source [23]: text found — We find that Sparse Autoencoders can, in fact, perform close to on par with the reference LoRA perfo
+- Source [24]: text found — We introduce prolepsis: a transformer commits early, task-specific attention heads sustain the commi
+- Source [24]: text found — Planning is invisible to six residual-stream methods; among those tested, only CLT-based steering su
+- Source [25]: text found — here for models of size 270M, 1B, 4B, 12B, and 27B, PT and
+- Source [26]: text found — Transcoders trained on Qwen-3 models from 0.6B to 14B
+- Source [27]: text found — even the less-successful Qwen-3 4B-8B have nascent planning mechanisms.
+- Source [27]: text found — For our experiments, we use Hanna et al.
+- Source [27]: text found — Note that although these models are instruction-tuned
+- Source [31]: text found — before a block is decoded, a small conditional flow samples a low-dimensional
+- Source [32]: text found — current latent models remain largely deterministic, capturing only a single reasoning trajectory rat
+- Source [33]: text found — which diversifies latent trajectories by randomly rescaling coefficients in the fixed SVD basis of a
+- Source [34]: text found — one direction acts as a switch into the random-choice mode, whereas a separate direction shapes the 
+- Source [34]: text found — This decomposition enables a mechanism-guided intervention that improves sampling without task-speci
+- Source [39]: text found — We apply Boundless DAS to the Alpaca model (7B parameters), which, off the shelf, solves a simple nu
+- Source [42]: text found — disturbing the discovered shared subspace degrades decision performance far more than disturbing eit
+- Source [43]: text found — A low-rank output-sensitive component containing 15.4% of the direction
+- Source [44]: text found — whether success is decodable before generation from a coordinate outside an evaluated refusal subspa
+- Source [45]: text found — This allows us to immediately formalize the representation of categorical concepts as polytopes in t
+- Source [46]: text found — we explore whether some language model representations may be inherently multi-dimensional.
+- Source [50]: text found — We hypothesize that there exist key forking tokens, such that re-sampling the system at those specif
+- Source [51]: text found — We apply a forking-paths-style analysis to behavioral evaluations and find that as generation progre
+- Source [52]: text found — under preregistered controls: a wrong-activation (shuffled) control, a visible-text baseline, a blin
+- Source [52]: text found — apparent successes on famous facts are indistinguishable from verbalizer prior-completion under a tr
+- Source [53]: text found — use SAEs from the GemmaScope-2 release (McDougall et al., 2025), each with 16,384 features trained o
+- Source [53]: text found — A small steering study yields minimal changes on the evaluated benchmarks.
+- Source [57]: text found — We find that, on toy arithmetic and vision tasks, the algorithms identified by DAS and TLA mostly ag
+- Source [58]: text found — we employ causal activation patching Heimersheim and Nanda (2024) to assess the integrity of the inf
+- Source [59]: text found — None of them predicts which layers benefit from restored precision.
+- Source [60]: text found — These results show that behavioral metrics alone are insufficient evidence that full-precision inter
+- Source [61]: text found — Because common GPU kernels are not batch-invariant and floating-point formats round differently, the
+- Source [64]: text found — Finding Alignments Between Interpretable Causal Variables and Distributed Neural Representations
+- Source [65]: text found — a low-rank activation subspace learned so that interchanging it moves the model's answer the way the
+- Source [66]: text found — Chat models sometimes commit to an answer and then produce reasoning that justifies the commitment r
+- Source [67]: text found — We apply this pipeline to both base and instruction-tuned Gemma-2-2B models on the MBPP code generat
+- Source [68]: text found — compact subspaces that are necessary and sufficient for a task and that recur across independently t
+- Source [69]: text found — on an experiment using randomly initialised language models, our alignment maps reach 100% interchan
+- Source [70]: text found — this effect may be achieved by activating a
+- Source [71]: text found — Is This the Subspace You Are Looking for? An Interpretability Illusion for Subspace Activation Patch
+- Source [72]: text found — can reject explanations they consider
+- Source [72]: text found — We then argue that the illusions Makelov et al. (2023) see in practice are artifacts of their traini
+- Source [73]: text found — minimizing divergence magnitude does not guarantee elimination of hidden pathways; it only reduces t
+- Source [74]: text found — No method currently tells the two cases apart.
+- Source [75]: text found — we find that the NIE does not solely capture the causal effect through the specific component.
+- Source [76]: text found — The discovered circuits appear specialized by frequency when compared structurally, but functional a
+- Source [77]: text found — A purposive audit of 10 papers across four methodological strands finds no dedicated identification-
+- Source [80]: text found — We show that, under white-box single-layer access, steering vectors are fundamentally non-identifiab
+- Source [81]: text found — Our analysis demonstrate fundamental flaws in the assumptions underlying these methods, challenging 
+- Source [82]: text found — we investigate the latent planning strength of LLMs, through our probing method, Tele-Lens, applying
+- Source [83]: text found — show that both a linear direction and a low-dimensional manifold structure align with it.
+- Source [87]: text found — Quantized language models face a fundamental dilemma: low sampling temperatures yield repetitive, mo
+- Source [91]: text found — We introduce the Latent Plan Transformer (LPT), a novel model that leverages a latent variable to co
+- Source [92]: text found — Qwen2.5-7B-Instruct | 20 / 28 | 3584
+- Source [92]: text found — Llama-3.3-70B-Instruct | 53 / 80 | 8192
+- Source [92]: text found — Each checkpoint ships an `nla_meta.yaml` sidecar with the prompt template, injection token IDs, and 
+- Source [93]: text found — Extraction layer: residual stream output of block
+- Source [94]: text found — extraction_layer_index: 20
+- Source [95]: text found — Edited-explanation steering or causal validation.
+- Source [96]: text found — we study Activation Oracles (AOs): models trained to answer arbitrary natural-language questions abo
+- Source [97]: text found — We audit two released NLA checkpoints and find that the readout reports what pressure was applied an
+- Source [98]: text found — We use Natural Language Autoencoders (NLA) to verbalize residual-stream activations from layer 20 ac
+- Source [100]: text found — Faithfulness disclaimer — this is a perpetual work-in-progress.
+- Source [101]: text found — On Qwen3-8B (layer 24) the default config reaches
+- Source [102]: text found — this level of control can evade activation-based monitoring methods (including linear probes, natura
+- Source [103]: text found — explanations become more useful for predicting model behavior while also increasingly introducing un
+- Source [104]: text found — every SAE trained on a PT model has a corresponding version finetuned for IT models
+- Source [104]: text found — 22nd Dec 2025
+- Source [105]: text found — from the corresponding PT SAEs and finetune on the rollout-derived datasets.
+- Source [106]: text found — contain SAEs at 4 different layers (25%, 50%, 65% and 85% depth) and a variety of widths & L0 values
+- Source [107]: text found — Through steering experiments, we demonstrate that amplifying these features increases performance on
+- Source [108]: text found — the clamp may block one visible route to a behavior without eliminating the behavior itself.
+- Source [109]: text found — residual probes outperform individual SAE features and tested lexical baselines
+- Source [110]: text found — ve found that our attribution graphs provide us with satisfying insight for about a quarter of the p
+- Source [111]: text found — we introduce PRISM, a framework for evaluating the transfer of activation interventions across preci
+- Source [112]: text found — Our findings reveal that the impact of quantization on model calibration is generally minor.
+- Source [113]: text found — We show that quantization typically results in information loss within LLMs, consequently diminishin
+- Source [114]: text found — different outputs in BF16 versus FP16 on identical hardware.
+- Source [115]: text found — under bfloat16 precision with greedy decoding, a reasoning model like DeepSeek-R1-Distill-Qwen-7B ca
+- Source [116]: text found — Give Me FP32 or Give Me Death? Challenges and Solutions for Reproducible Reasoning
+- Source [117]: text found — Evaluations across five open-source models yield average detection success rates of 84.0% for bfloat
+- Source [118]: text found — the sparse but systematic large magnitude outlier features that ruin quantization precision once the
+- Source [119]: text found — SmoothQuant smooths the activation outliers by offline migrating the quantization difficulty from ac
+- Source [120]: text found — we find their values largely stay constant regardless of the input, and they function as indispensab
+- Source [121]: text found — two encodings - E4M3 (4-bit exponent and 3-bit mantissa) and E5M2 (5-bit exponent and 2-bit mantissa
 
 ## Follow-up Questions
 
-- TOP (FLAG E partly fired at contemporaneous abstract level): once ICLR 2027 PDFs open (reviews due about end of October 2026), do OpenReview 8iTqrW1sxY ('Stable Directions, Different Effects') and h57duZqLOr ('Activation Steering under Low-Bit Quantization') include ACTIVATION quantisation (W8A8, FP8 activations, KV cache), or weights only? If they include activations, Claim E becomes a replication in a new setting (content-free nudges, code-algorithm choice).
-- Does PAHQ's failure mode (small patch effects truncated to zero under unscaled FP8/RTN) appear under per-token-scaled FP8 W8A8? The run's W16A8 arm with per-token absmax readouts can answer this directly.
-- In the run's own data, what fraction of nudge landings lie within the tuned model's own teacher-forced top-k (q_lik) or sampled tail (q_tail), compared with the base runner-up? Weak-to-strong jailbreaking predicts that the tuned model's own ranking already contains many landings.
-- Re-check Same Candidates (ooV5M72O08) and Before the First Token (knirOusGcq) when their PDFs open, and confirm whether Locked at the Entrance (now arXiv 2608.29188) compares its entrance-family coverage with the base model.
-- UNMAPPED citation numbers: the one-to-one assignment of the hypothesis's own reference numbers 88-91, 92/93/102, 98/99 and 81/82 to papers needs the hypothesis reference list (inherited/citation_map.json maps only the sets of inherited rows).
-- Which FP8 scheme did the iteration-4 engine actually use: block-128 fine-grained checkpoint scales or dynamic per-token activation scales? The attribution readout depends on it.
+- Do the ICLR 2027 submissions 'Stable Directions, Different Effects' and 'Activation Steering under Low-Bit Quantization' quantize activations (W8A8/FP8) or only weights? Their full texts decide whether flag B fires.
+- On the released Qwen2.5-7B-Instruct L20 NLA, how far does the AR reconstruction move when only the algorithm name in an explanation is edited? The ~2% claim-dependence result predicts a small move, so this should be measured before the edit-and-steer arm.
+- Would interchange/DAS at Qwen3-8B's final prompt position find a low-rank variable for algorithm choice? How does it relate to the 23 SAE targets of 'Before Reasoning Begins' and to the Qwen-3 PLTs in circuit-tracer?
 
 ---
 *Generated by AI Inventor Pipeline*

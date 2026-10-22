@@ -1,135 +1,78 @@
 {
- "generated_utc": "2026-10-22T00:32:48Z",
- "search_window_utc": [
-  "2026-10-21T23:35:20Z",
-  "2026-10-21T23:56:15Z"
- ],
- "logged_calls": 150,
- "seed_lookup_calls_not_counted": 14,
- "calls_by_engine": {
-  "E5": 28,
-  "E3": 27,
-  "E4": 27,
-  "E1": 27,
-  "S2": 23,
-  "OpenAlex": 4,
-  "E6": 14
- },
- "raw_hits_total": 4446,
- "unique_after_dedup": 3798,
- "seen_in_iter4": 136,
- "seen_in_iter5": 550,
- "seen_in_either": 618,
- "in_window": 2925,
- "pass_prescreen_in_window": 2379,
- "prescreen_fail": 918,
- "manually_screened": 577,
- "scored": 61,
+ "raw_hits_identified": 2191,
+ "unique_after_dedup": 1820,
+ "in_window": 1401,
+ "keyword_pass_in_window": 605,
+ "scored_rows": 75,
+ "scored_unique_papers": 67,
  "scored_verdicts": {
-  "occupies": 5,
-  "adjacent": 52,
-  "irrelevant": 4
+  "occupies": 3,
+  "adjacent": 66,
+  "irrelevant": 6
  },
- "per_family": {
-  "BC": {
-   "calls": 5,
-   "raw_hits": 198,
-   "non_ok_calls": 0,
-   "unique_records_touching_family": 185,
-   "in_window": 27,
-   "pass_prescreen_in_window": 24,
-   "manually_screened": 53
-  },
-  "FC": {
-   "calls": 22,
-   "raw_hits": 492,
-   "non_ok_calls": 0,
-   "unique_records_touching_family": 476,
-   "in_window": 366,
-   "pass_prescreen_in_window": 297,
-   "manually_screened": 115
-  },
-  "FE1": {
-   "calls": 30,
-   "raw_hits": 723,
-   "non_ok_calls": 0,
-   "unique_records_touching_family": 631,
-   "in_window": 477,
-   "pass_prescreen_in_window": 380,
-   "manually_screened": 109
-  },
-  "FE2": {
-   "calls": 12,
-   "raw_hits": 402,
-   "non_ok_calls": 0,
-   "unique_records_touching_family": 372,
-   "in_window": 320,
-   "pass_prescreen_in_window": 252,
-   "manually_screened": 38
-  },
-  "FK1": {
-   "calls": 13,
-   "raw_hits": 525,
-   "non_ok_calls": 1,
-   "unique_records_touching_family": 496,
-   "in_window": 410,
-   "pass_prescreen_in_window": 358,
-   "manually_screened": 76
-  },
-  "FL1": {
-   "calls": 20,
-   "raw_hits": 530,
-   "non_ok_calls": 0,
-   "unique_records_touching_family": 511,
-   "in_window": 411,
-   "pass_prescreen_in_window": 351,
-   "manually_screened": 64
-  },
-  "FL2": {
-   "calls": 8,
-   "raw_hits": 346,
-   "non_ok_calls": 0,
-   "unique_records_touching_family": 327,
-   "in_window": 279,
-   "pass_prescreen_in_window": 252,
-   "manually_screened": 16
-  },
-  "FS1": {
-   "calls": 16,
-   "raw_hits": 595,
-   "non_ok_calls": 0,
-   "unique_records_touching_family": 570,
-   "in_window": 485,
-   "pass_prescreen_in_window": 377,
-   "manually_screened": 32
-  },
-  "R2-FE": {
-   "calls": 12,
-   "raw_hits": 293,
-   "non_ok_calls": 0,
-   "unique_records_touching_family": 282,
-   "in_window": 251,
-   "pass_prescreen_in_window": 208,
-   "manually_screened": 113
-  },
-  "R2-FL": {
-   "calls": 8,
-   "raw_hits": 239,
-   "non_ok_calls": 0,
-   "unique_records_touching_family": 237,
-   "in_window": 175,
-   "pass_prescreen_in_window": 150,
-   "manually_screened": 37
-  },
-  "R2-FS": {
-   "calls": 4,
-   "raw_hits": 103,
-   "non_ok_calls": 0,
-   "unique_records_touching_family": 97,
-   "in_window": 88,
-   "pass_prescreen_in_window": 62,
-   "manually_screened": 31
-  }
- },
- "stop_condition": "Rounds: R1 (21 strings x E1/E3/E4/E5 + 14 E6 calls + forward citations of 4+4 seeds), R2 (6 queries x 4 engines), R3 (forward citations of 6 closest new hits + backward references of 2 per flag), R4 (forward citations of 3 round-3 hits + backward references of 2610.24346). R3 and R4 each added hits scoring 1.5, all on the E-deployment context sub-lane ('quantisation hides behavioural damage behind flat aggregate scores', weight-only). The search was stopped after R4 by a logged DEVIATION from the frozen stop rule: neither frozen condition was met (new >=1.5 hits kept arriving; Stage-2 cap of 60 min not reached: ~21 min of logged search time, 23:35-23:56 UTC), but every new >=1.5 hit after R2 fell in one saturated context sub-lane that cannot move FLAG E (no activation-level intervention) or any other verdict."
+ "irrelevant_at_title_abstract": 561,
+ "excluded_at_keyword_prescreen": 790,
+ "occupying_rows": [
+  [
+   "2602.05234",
+   "P1",
+   2.5
+  ],
+  [
+   "nla",
+   "N",
+   2.5
+  ],
+  [
+   "2601.03595",
+   "S",
+   2.5
+  ]
+ ],
+ "new_hits_ge_1_5_after_round2": [
+  "2402.04647",
+  "2403.10949",
+  "2405.14860",
+  "2406.01506",
+  "2412.07961",
+  "2412.08686",
+  "2501.17148",
+  "2503.18878",
+  "2508.18098",
+  "2601.03595",
+  "2601.05679",
+  "2602.05234",
+  "2602.17691",
+  "2604.12493",
+  "2604.15010",
+  "2604.19790",
+  "2605.19537",
+  "2605.31183",
+  "2606.18322",
+  "2606.21023",
+  "2607.16451",
+  "2607.20469",
+  "2609.06473",
+  "2609.18440",
+  "2609.26621",
+  "2610.18121",
+  "2610.20683",
+  "2610.20808",
+  "lw_dreaming_vectors",
+  "nla",
+  "or:2AiBLDA67W",
+  "or:4gvIW4C0bw",
+  "or:5tVsS1vVLC",
+  "or:8iTqrW1sxY",
+  "or:9kskCmPMqd",
+  "or:CtluWEsiX7",
+  "or:DLKIln4eAT",
+  "or:IxSVZFIxAW",
+  "or:MN9X374VhG",
+  "or:aHSbJo4RHN",
+  "or:eZYeqPZlFr",
+  "or:oTt6XeccGk",
+  "or:sbVictHY9s",
+  "or:vH3g2k4lPB"
+ ]
 }

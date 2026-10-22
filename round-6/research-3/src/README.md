@@ -1,73 +1,64 @@
-# Prior work on base landings and 8-bit nudges (iteration-6 positioning audit, Table 92e)
+# Who already found the hidden plan? A dated positioning audit (Table 92e)
 
-This is a dated, quote-verified positioning and saturation audit of the iteration-6 claims of the AI Inventor run `run_aRfWvcSWjssb`:
+This audit places the iteration-6 claims of an automated research run against the published literature: P1-P5 (a causal "plan" variable for which algorithm Qwen3-8B writes), N (reading and editing that plan with natural language autoencoders), S (Gemma Scope 2 SAEs and transcoders) and E (FP8 W8A8 activation rounding). Each claim gets its nearest published neighbour and a verbatim, versioned quote checked against the source's own text.
 
-- **L**: landing identity, i.e. whether a content-free nudge sends the tuned model to its base model's runner-up algorithm.
-- **E**: whether an FP8 W8A8 engine explains the earlier plan-site sensitivity, tested with a 2x2 weight-by-activation precision factorial.
-- **S/F**: the site of content-free nudges, forks and margins.
-- **K**: diversity knobs (base intent, base/instruct interpolation, proxy tuning).
+It follows a protocol frozen before the first search call (sha256-stamped) and runs a 3-round saturation search over 7 lanes and 5 engines. It returns verdicts on four novelty flags: **A NOT FIRED (narrowly), B PARTLY FIRED, C FIRED, D PARTLY FIRED**. It extends Tables 92b/92c (art_kjrCpQnPaniY) and 92d (art_ObxQOIlAM9MS), whose rows are cited by id.
 
-The audit extends Tables 92b/92c (art_kjrCpQnPaniY) and 92d (art_ObxQOIlAM9MS) and produces a paste-ready **Table 92e** plus two frozen flag verdicts:
-
-- **FLAG E: PARTLY FIRED.** The closest full-text evidence is weight-only (Steering Under Compression) or joint weight+activation 8-bit quantisation of patching-based circuit discovery (PAHQ). Two contemporaneous ICLR 2027 submissions report, at abstract level, that steering effects are not preserved across precision; neither abstract says whether activations are quantised.
-- **FLAG L: PARTLY FIRED.** Reversion of fine-tune-perturbed tuned models toward base behaviour is published at distribution or likelihood level (Re-Emergent Misalignment, Language Models Resist Alignment, Gravitational Interpretation of Safety Reversion). No work forecasts the landing identity from the base model and scores the forecast against the tuned model's own tail or likelihood.
-
-Read `research_report.md` first. It holds the answer box, per-claim verdicts, permitted wording, reviewer baselines, Table 92e, PRISMA-S counts, corrections and follow-ups.
+Headline facts:
+- The NLA paper (7 May 2026) already edits an explanation of a plan and steers with it, so N is a replication.
+- Steering under quantization has been studied, in the arXiv record, only with weight-only quantization. Contemporaneous ICLR 2027 submissions show effects change across precision, but their abstracts do not name activation quantization.
+- DAS-based steering validated by generation exists only for non-plan attributes. Algorithm choice in code has been moved only by prompt cues.
+- SAE-feature steering of reasoning strategies is published (ACL 2026).
 
 ## Layout
 
 | Path | What it is |
 |---|---|
-| `research_report.md` | The report: answer box, verdicts, permitted wording, Table 92e, counts, corrections, confidence, follow-ups |
-| `reproducibility.md` | Every logged search call in order, every page fetched, verification steps and outcomes, deviations |
-| `evidence/protocol_iter6.json` (+ `.sha256`, `protocol_amendments_iter6.jsonl`) | Frozen protocol (claims, 6 families / 21 strings, engines, rubric, flags, stop rule), written before the first search call |
-| `evidence/search_log_iter6.jsonl` | One line per call (UTC, engine, family, query, params, status, n) |
-| `evidence/saturation_candidates_iter6.jsonl` | 3,798 unique records (de-duplicated against both earlier audits; seen-before flags) |
-| `evidence/screening_iter6.jsonl`, `evidence/manual_screen_iter6.json` | Window, keyword groups per lane, and machine/manual verdicts for every record |
-| `evidence/scored_hits_iter6.jsonl`, `evidence/saturation_hits_iter6.jsonl` | 61 scored hits with O/I/C axes, totals, relation and decisive row |
-| `evidence/flags_iter6.json` | FLAG E / FLAG L (and secondary S, K) definitions, verdicts, candidates, consequences for wording |
-| `evidence/quotes_iter6.jsonl` | 84 new quote records (row, URL, section, version, v1 date, venue evidence, status) |
-| `evidence/qa_second_pass_iter6.jsonl`, `evidence/passages_live_check_iter6.jsonl` | Live re-match of every quote (84/84) and literal check of every supporting passage (64/64) |
-| `evidence/rescreen_iter6.jsonl`, `evidence/rescreen_kappa_iter6.json` | Same-agent re-screen and Cohen's kappa |
-| `evidence/corrections_iter6.jsonl`, `evidence/saturation_counts_iter6.json`, `evidence/round2_queries_iter6.json` | Corrections log, PRISMA-S counts and stop condition, round-2 queries |
-| `evidence/arxiv_meta.json` | arXiv API metadata (versions, v1 dates, authors, comments) for every arXiv id used |
-| `inherited/` | Copies of the dependency audits' research_out/quotes/candidates (their `research_verification.json` copies are kept on the volume but not published, because they contain absolute dependency paths), `row_index.json` (key -> inherited rows), `citation_map.json` |
-| `tools/` | All scripts (adapted from the iteration-5 audit's tools where noted in each docstring) |
-| `cache/` | Fetched page texts used for verification, raw search-result lists, grep outputs, `sources_iter6.json`. Kept on the run volume; full paper texts are not published |
-| `logs/` | Background-job logs and the grep spec files |
+| `research_report.md` | The full report: summary, PRISMA-S method, verdict box, flags, Table 92e, permitted wording, reviewer baselines, departures, corrections, follow-ups |
+| `research_out.json` | Structured output (answer = report text; 120 numbered sources with literal supporting passages); saved by the pipeline |
+| `reproducibility.md` | What was actually run, in order, with timestamps, tools and env-var names |
+| `evidence/protocol_iter6.json`, `protocol_iter6.sha256` | Frozen protocol (lanes, 21 strings, engines, rubric, flags, stop rule) and its stamp |
+| `evidence/protocol_amendments_iter6.jsonl` | Timestamped amendments (flag-A interpretation note, tool reuse, stop-rule entries) |
+| `evidence/search_log_iter6.jsonl` | Every search call: UTC time, engine, string, hit count, top-20 ids (rounds R1, R2, R3, FC, BR) |
+| `evidence/round2_queries_iter6.json` | Round-2 strings with the hit that motivated each |
+| `evidence/saturation_candidates_iter6.jsonl` | De-duplicated candidates (see saturation_counts_iter6.json for raw and unique counts) |
+| `evidence/screening_iter6.jsonl` | Window flag, keyword lane groups and pre-screen score per candidate |
+| `evidence/saturation_hits_iter6.jsonl` | O/I/C scores with decisive sentences for every scored paper (see saturation_counts_iter6.json), plus a one-line verdict for every in-window record |
+| `evidence/saturation_counts_iter6.json` | PRISMA-style counts |
+| `evidence/quotes_iter6.jsonl` | 123 new verified quotes (source, URL, locator, version, v1 date, venue, status, check result) |
+| `evidence/qa_second_pass_iter6.jsonl` | Independent live fetch_grep re-match of every quote (123/123) |
+| `evidence/passages_live_check_iter6.jsonl` | Live literal check of the supporting passages in research_out.json (114/114) |
+| `evidence/flags_iter6.json` | Flag A-D verdicts, decisive sentences, quote ids, what would change them |
+| `evidence/corrections_iter6.jsonl` | 24 corrections and confirmations (NLA citation and date, Qwen3-8B community NLAs, venues, titles) |
+| `evidence/inherited_index.json` | Index of the 207 inherited 92b/92c/92d sources (cited by id, not re-verified) |
+| `evidence/arxiv_meta.json` | arXiv API metadata (latest version, v1 date, comment and journal-ref) for every arXiv id used |
+| `inherited/` | Copies of the two dependency outputs (research_out.json, research_verification.json) |
+| `tools/` | All scripts (search, screening, quote building, QA, scoring, rendering); `tools/quotes_spec_iter6.py` lists every new quote |
+| `cache/` | Fetched source texts, OpenReview records, raw search results, grep outputs. Text only; kept on the run's volume but excluded from the public repo (fetched copyrighted texts) |
+| `logs/` | Run logs of the background jobs |
 
 ## How to run
 
-Everything runs with the aii-web-tools interpreter (`PY=$(bash tools/skill_py.sh)`). Set `SEMANTIC_SCHOLAR_API_KEY` for the Semantic Scholar calls. The full ordered command list is in `reproducibility.md` section 6. Short version:
+See `reproducibility.md`. In short:
 
 ```bash
-PY=$(bash tools/skill_py.sh)
-$PY -I tools/sat_search_iter6.py                     # round 1 + forward citations
-$PY -I tools/sat_search_iter6.py --round2 evidence/round2_queries_iter6.json
-$PY -I tools/round3_citations_iter6.py && $PY -I tools/round4_citations_iter6.py
+PY=${AII_SKILLS_DIR}/.ability_client_venv/bin/python
+$PY -I tools/sat_search_iter6.py --round1 && $PY -I tools/sat_search_iter6.py --fc
+$PY -I tools/sat_search_iter6.py --round2 evidence/round2_queries_iter6.json && $PY -I tools/round3_iter6.py
 $PY -I tools/build_quotes_iter6.py && $PY -I tools/qa_second_pass_iter6.py
-$PY -I tools/write_scores_iter6.py && $PY -I tools/counts_iter6.py
+python3 -I tools/score_hits_iter6.py && python3 -I tools/write_flags_corrections_iter6.py
 $PY -I tools/render_report_iter6.py && $PY -I tools/check_passages_live_iter6.py
 ```
 
-Search results drift over time, so re-runs reproduce the method and the verified quotes but not the exact counts.
+`AII_SKILLS_DIR` is the `.claude/skills` directory of the AI Inventor checkout that holds the aii-web-tools skill and its interpreter. `tools/common.py` finds it by walking up from this directory, or reads it from the environment.
 
-## Kept artifacts
-
-`cache/` (about 16 MB of text: fetched page texts, raw search results, grep outputs) is plain text, so it is kept automatically and needs no manifest entry. It stays on this run's storage volume at that relative path and is the exact corpus the quotes were verified against. The publish step excludes the full paper texts (`cache/*.txt`) and grep outputs from the public repository (see the upload ignore patterns); `cache/index.jsonl` lists every URL so the corpus can be re-fetched.
+E4 calls need `SEMANTIC_SCHOLAR_API_KEY` in the environment; without it they fall back to anonymous calls and are logged as such.
 
 ## Restoring removed files
 
-Only one path is marked for deletion:
-
-- `tools/__pycache__/` (Python bytecode). Restore it with `python3 -m compileall -q tools`, or simply by running any script in `tools/`.
-
-To rebuild `cache/` if it is ever lost, re-fetch the pages listed in `cache/index.jsonl`:
-
-```bash
-PY=$(bash tools/skill_py.sh)
-python3 -c "import json;[print(json.loads(l)['key'], json.loads(l)['url']) for l in open('cache/index.jsonl')]" | \
-  while read k u; do $PY -I tools/fetch_texts.py --url "$k" "$u"; done
-```
-
-Live pages may have changed since retrieval (2026-10-21/22). The OpenReview PDFs and the mdpi.com page returned HTTP 403 at retrieval.
+- `tools/__pycache__/` is regenerable: `python3 -m compileall -q tools`.
+- `cache/` is not a manifest entry. It is text only, so it is kept automatically on the run's volume, but it is left out of the public repository (upload ignore pattern `(^|/)cache/`). To rebuild it if needed:
+  - arXiv texts: `$PY -I tools/arxiv_meta.py <ids> && $PY -I tools/fetch_texts.py <ids>`, with the ids in `evidence/arxiv_meta.json`;
+  - grey-literature pages: `$PY -I tools/fetch_texts.py --url <key> <url>`, with the keys and URLs in `evidence/quotes_iter6.jsonl` and `logs/fetch_urls_*.sh`;
+  - OpenReview records: `$PY -I tools/fetch_openreview_iter6.py <forum ids>`;
+  - raw search results: rerun the search commands above. Results drift over time.

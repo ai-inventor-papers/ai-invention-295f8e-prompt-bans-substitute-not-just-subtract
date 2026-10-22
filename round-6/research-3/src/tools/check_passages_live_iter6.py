@@ -1,7 +1,7 @@
 """Final QA for the structured output: re-fetch every source URL live (skill fetch core: html2text / PyMuPDF / raw JSON)
-and require each supporting passage to occur LITERALLY (whitespace-collapsed only) in the fetched text. Passages that fail
-are removed from cache/sources_iter6.json; every check is logged to evidence/passages_live_check_iter6.jsonl.
-Usage: python -I tools/check_passages_live_iter6.py
+and require each supporting passage to occur LITERALLY (whitespace-collapsed only) in the fetched text. Passages that
+fail are removed from cache/sources_iter6.json; every check is logged to evidence/passages_live_check_iter6.jsonl.
+Usage: python -I tools/check_passages_live.py
 """
 import json
 import re
@@ -25,7 +25,8 @@ def check(src):
                      "from_archive": r.get("from_archive"), "literal_match": ok, "checked_utc": now_utc()})
         if ok:
             keep.append(p)
-    return dict(src, supporting_passages=keep), logs
+    src = dict(src, supporting_passages=keep)
+    return src, logs
 
 
 def main():
@@ -40,7 +41,7 @@ def main():
     print(f"live literal check: {ok}/{len(logs)} passages kept")
     for l in logs:
         if not l["literal_match"]:
-            print("DROPPED:", l["index"], l["url"][:90], "| fetched:", l["fetched"], "|", l["passage"][:80])
+            print("DROPPED:", l["index"], l["url"], "| fetched:", l["fetched"], "|", l["passage"][:80])
 
 
 if __name__ == "__main__":
