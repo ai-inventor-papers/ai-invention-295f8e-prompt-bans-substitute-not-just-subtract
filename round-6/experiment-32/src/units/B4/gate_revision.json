@@ -1,0 +1,354 @@
+{
+ "unit": "B4",
+ "utc": "2026-10-21T12:56:10.487449Z",
+ "status": "gated",
+ "holdout": {
+  "n": 6,
+  "n_adjudicated": 6,
+  "combined_vs_adjudicated": 1.0,
+  "runtime_vs_adjudicated": 1.0,
+  "items": [
+   {
+    "id": "B4|W2|BASE|4|base",
+    "runtime": "binary_search",
+    "ast": "binary_search",
+    "combined": "binary_search",
+    "adjudicated": "binary_search",
+    "how": "two_judges_agree"
+   },
+   {
+    "id": "B4|W5|BASE|4|base",
+    "runtime": "binary_search",
+    "ast": "binary_search",
+    "combined": "binary_search",
+    "adjudicated": "binary_search",
+    "how": "two_judges_agree"
+   },
+   {
+    "id": "B4|W2|BASE|5|base",
+    "runtime": "binary_search",
+    "ast": "other",
+    "combined": "binary_search",
+    "adjudicated": "binary_search",
+    "how": "two_judges_agree"
+   },
+   {
+    "id": "B4|W3|BASE|5|base",
+    "runtime": "binary_search",
+    "ast": "binary_search",
+    "combined": "binary_search",
+    "adjudicated": "binary_search",
+    "how": "two_judges_agree"
+   },
+   {
+    "id": "B4|W4|BASE|5|base",
+    "runtime": "binary_search",
+    "ast": "other",
+    "combined": "binary_search",
+    "adjudicated": "binary_search",
+    "how": "two_judges_agree"
+   },
+   {
+    "id": "B4|W2|BASE|6|base",
+    "runtime": "float_sqrt",
+    "ast": "float_sqrt",
+    "combined": "float_sqrt",
+    "adjudicated": "float_sqrt",
+    "how": "two_judges_agree"
+   }
+  ]
+ },
+ "gold": {
+  "n": 26,
+  "n_references": 6,
+  "n_base_pilot": 10,
+  "n_gate_draw": 10,
+  "kappa_runtime_ast": 1.0,
+  "kappa_runtime_ast_all_items": 0.8826185101580136,
+  "n_traceable": 24,
+  "runtime_vs_adjudicated_all_items": 0.92,
+  "raw_agreement_runtime_ast": 1.0,
+  "ref_acc_runtime": 1.0,
+  "ref_acc_ast": 1.0,
+  "runtime_vs_adjudicated": 0.9583333333333334,
+  "ast_vs_adjudicated": 0.96,
+  "combined_vs_adjudicated": 0.96,
+  "n_adjudicated": 25,
+  "judges_on_references": 1.0,
+  "label_values": {
+   "binary_search": 14,
+   "newton": 2,
+   "bit_by_bit": 2,
+   "library_isqrt": 1,
+   "float_sqrt": 3,
+   "linear_scan": 2,
+   "other": 1,
+   "null": 1
+  }
+ },
+ "items": [
+  {
+   "id": "ref:binary_search",
+   "runtime": "binary_search",
+   "ast": "binary_search",
+   "adjudicated": "binary_search",
+   "how": "two_judges_agree",
+   "judge_a": "binary_search",
+   "judge_b": "binary_search",
+   "judge_c": null
+  },
+  {
+   "id": "ref:newton",
+   "runtime": "newton",
+   "ast": "newton",
+   "adjudicated": "newton",
+   "how": "two_judges_agree",
+   "judge_a": "newton",
+   "judge_b": "newton",
+   "judge_c": null
+  },
+  {
+   "id": "ref:bit_by_bit",
+   "runtime": "bit_by_bit",
+   "ast": "bit_by_bit",
+   "adjudicated": "bit_by_bit",
+   "how": "two_judges_agree",
+   "judge_a": "bit_by_bit",
+   "judge_b": "bit_by_bit",
+   "judge_c": null
+  },
+  {
+   "id": "ref:library_isqrt",
+   "runtime": "library_isqrt",
+   "ast": "library_isqrt",
+   "adjudicated": "library_isqrt",
+   "how": "two_judges_agree",
+   "judge_a": "library_isqrt",
+   "judge_b": "library_isqrt",
+   "judge_c": null
+  },
+  {
+   "id": "ref:float_sqrt",
+   "runtime": "float_sqrt",
+   "ast": "float_sqrt",
+   "adjudicated": "float_sqrt",
+   "how": "two_judges_agree",
+   "judge_a": "float_sqrt",
+   "judge_b": "float_sqrt",
+   "judge_c": null
+  },
+  {
+   "id": "ref:linear_scan",
+   "runtime": "linear_scan",
+   "ast": "linear_scan",
+   "adjudicated": "linear_scan",
+   "how": "two_judges_agree",
+   "judge_a": "linear_scan",
+   "judge_b": "linear_scan",
+   "judge_c": null
+  },
+  {
+   "id": "B4|W1|BASE|1|base",
+   "runtime": "float_sqrt",
+   "ast": "float_sqrt",
+   "adjudicated": "float_sqrt",
+   "how": "two_judges_agree",
+   "judge_a": "float_sqrt",
+   "judge_b": "float_sqrt",
+   "judge_c": null
+  },
+  {
+   "id": "B4|W2|BASE|1|base",
+   "runtime": "float_sqrt",
+   "ast": "float_sqrt",
+   "adjudicated": "float_sqrt",
+   "how": "two_judges_agree",
+   "judge_a": "float_sqrt",
+   "judge_b": "float_sqrt",
+   "judge_c": null
+  },
+  {
+   "id": "B4|W4|BASE|1|base",
+   "runtime": "binary_search",
+   "ast": "binary_search",
+   "adjudicated": "binary_search",
+   "how": "two_judges_agree",
+   "judge_a": "binary_search",
+   "judge_b": "binary_search",
+   "judge_c": null
+  },
+  {
+   "id": "B4|W5|BASE|1|base",
+   "runtime": "binary_search",
+   "ast": "binary_search",
+   "adjudicated": "binary_search",
+   "how": "two_judges_agree",
+   "judge_a": "binary_search",
+   "judge_b": "binary_search",
+   "judge_c": null
+  },
+  {
+   "id": "B4|W1|BASE|2|base",
+   "runtime": null,
+   "ast": "newton",
+   "adjudicated": "newton",
+   "how": "two_judges_agree",
+   "judge_a": "newton",
+   "judge_b": "newton",
+   "judge_c": null
+  },
+  {
+   "id": "B4|W3|BASE|2|base",
+   "runtime": "other",
+   "ast": "other",
+   "adjudicated": "other",
+   "how": "two_judges_agree",
+   "judge_a": "other",
+   "judge_b": "other",
+   "judge_c": null
+  },
+  {
+   "id": "B4|W5|BASE|2|base",
+   "runtime": "binary_search",
+   "ast": "binary_search",
+   "adjudicated": "binary_search",
+   "how": "two_judges_agree",
+   "judge_a": "binary_search",
+   "judge_b": "binary_search",
+   "judge_c": null
+  },
+  {
+   "id": "B4|W1|BASE|3|base",
+   "runtime": "linear_scan",
+   "ast": "linear_scan",
+   "adjudicated": "bit_by_bit",
+   "how": "majority_of_three",
+   "judge_a": "linear_scan",
+   "judge_b": "bit_by_bit",
+   "judge_c": "bit_by_bit"
+  },
+  {
+   "id": "B4|W3|BASE|3|base",
+   "runtime": null,
+   "ast": "binary_search",
+   "adjudicated": null,
+   "how": "no_majority",
+   "judge_a": "other",
+   "judge_b": "linear_scan",
+   "judge_c": "binary_search"
+  },
+  {
+   "id": "B4|W1|BASE|4|base",
+   "runtime": "linear_scan",
+   "ast": "linear_scan",
+   "adjudicated": "linear_scan",
+   "how": "two_judges_agree",
+   "judge_a": "linear_scan",
+   "judge_b": "linear_scan",
+   "judge_c": null
+  },
+  {
+   "id": "B4|W1|GATE|100|instruct",
+   "runtime": "binary_search",
+   "ast": "binary_search",
+   "adjudicated": "binary_search",
+   "how": "two_judges_agree",
+   "judge_a": "binary_search",
+   "judge_b": "binary_search",
+   "judge_c": null
+  },
+  {
+   "id": "B4|W2|GATE|100|instruct",
+   "runtime": "binary_search",
+   "ast": "binary_search",
+   "adjudicated": "binary_search",
+   "how": "two_judges_agree",
+   "judge_a": "binary_search",
+   "judge_b": "binary_search",
+   "judge_c": null
+  },
+  {
+   "id": "B4|W3|GATE|100|instruct",
+   "runtime": "binary_search",
+   "ast": "binary_search",
+   "adjudicated": "binary_search",
+   "how": "two_judges_agree",
+   "judge_a": "binary_search",
+   "judge_b": "binary_search",
+   "judge_c": null
+  },
+  {
+   "id": "B4|W4|GATE|100|instruct",
+   "runtime": "binary_search",
+   "ast": "binary_search",
+   "adjudicated": "binary_search",
+   "how": "two_judges_agree",
+   "judge_a": "binary_search",
+   "judge_b": "binary_search",
+   "judge_c": null
+  },
+  {
+   "id": "B4|W5|GATE|100|instruct",
+   "runtime": "binary_search",
+   "ast": "binary_search",
+   "adjudicated": "binary_search",
+   "how": "two_judges_agree",
+   "judge_a": "binary_search",
+   "judge_b": "binary_search",
+   "judge_c": null
+  },
+  {
+   "id": "B4|W1|GATE|101|instruct",
+   "runtime": "binary_search",
+   "ast": "binary_search",
+   "adjudicated": "binary_search",
+   "how": "two_judges_agree",
+   "judge_a": "binary_search",
+   "judge_b": "binary_search",
+   "judge_c": null
+  },
+  {
+   "id": "B4|W2|GATE|101|instruct",
+   "runtime": "binary_search",
+   "ast": "binary_search",
+   "adjudicated": "binary_search",
+   "how": "two_judges_agree",
+   "judge_a": "binary_search",
+   "judge_b": "binary_search",
+   "judge_c": null
+  },
+  {
+   "id": "B4|W3|GATE|101|instruct",
+   "runtime": "binary_search",
+   "ast": "binary_search",
+   "adjudicated": "binary_search",
+   "how": "two_judges_agree",
+   "judge_a": "binary_search",
+   "judge_b": "binary_search",
+   "judge_c": null
+  },
+  {
+   "id": "B4|W4|GATE|101|instruct",
+   "runtime": "binary_search",
+   "ast": "binary_search",
+   "adjudicated": "binary_search",
+   "how": "two_judges_agree",
+   "judge_a": "binary_search",
+   "judge_b": "binary_search",
+   "judge_c": null
+  },
+  {
+   "id": "B4|W5|GATE|101|instruct",
+   "runtime": "binary_search",
+   "ast": "binary_search",
+   "adjudicated": "binary_search",
+   "how": "two_judges_agree",
+   "judge_a": "binary_search",
+   "judge_b": "binary_search",
+   "judge_c": null
+  }
+ ],
+ "extra_mode_decision": null,
+ "judge_spend_running": 0.060336238400000006,
+ "revision_round": true
+}

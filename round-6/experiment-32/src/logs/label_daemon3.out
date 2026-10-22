@@ -1,0 +1,44 @@
+23:09:34|INFO   |labelled 48 (II7/TWIN...) in 16.7s; total 48; backlog 840
+23:09:44|INFO   |labelled 48 (II7/TWIN...) in 10.0s; total 96; backlog 792
+23:09:57|INFO   |labelled 48 (II8/TWIN...) in 12.8s; total 144; backlog 744
+23:10:09|INFO   |labelled 48 (B2/ESC_d1200483466_a4.0...) in 12.2s; total 192; backlog 696
+23:10:21|INFO   |labelled 48 (B3/ESC_d2710933458_a4.0...) in 12.3s; total 240; backlog 648
+Traceback (most recent call last):
+  File "./src/label5.py", line 104, in <module>
+    run_worker(follow=follow, stop_file=DATA_DIR / "STOP_LABELLER")
+  File "./src/label5.py", line 89, in run_worker
+    out = list(ex.map(label_row, part))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./src/label5.py", line 66, in label_row
+    L = label_code(u, code, cases=_TESTS[u])
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./src/unitlib.py", line 207, in label_code
+    tr = run_tests(code, cases if cases is not None else load_tests(u), mod.CHECKER)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./src/unitlib.py", line 86, in run_tests
+    lines = [json.loads(l) for l in pr.stdout.splitlines() if l.startswith("{")]
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/json/decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/json/decoder.py", line 354, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)

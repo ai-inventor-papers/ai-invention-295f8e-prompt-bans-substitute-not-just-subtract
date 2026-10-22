@@ -1,0 +1,22 @@
+entries:
+  - path: .venv/
+    delete: regenerable
+    source: "uv sync   # HF environment pinned in pyproject.toml / uv.lock (torch 2.8.0, transformers 4.57.6)"
+  - path: .venv_vllm/
+    delete: regenerable
+    source: "uv venv .venv_vllm --python 3.12 && uv pip install --python .venv_vllm/bin/python vllm==0.11.0 transformers==4.57.6 tokenizers==0.22.2"
+  - path: src/__pycache__/
+    delete: regenerable
+    source: "regenerated on import (python -m compileall src)"
+  - path: src/units/__pycache__/
+    delete: regenerable
+    source: "regenerated on import (python -m compileall src/units)"
+  - path: analysis/__pycache__/
+    delete: regenerable
+    source: "regenerated on import (python -m compileall analysis)"
+  - path: tests/__pycache__/
+    delete: regenerable
+    source: "regenerated when pytest imports the tests"
+  - path: vendor/exp27/src/__pycache__/
+    delete: regenerable
+    source: "regenerated when analysis/m_k.py imports the vendored hull code"

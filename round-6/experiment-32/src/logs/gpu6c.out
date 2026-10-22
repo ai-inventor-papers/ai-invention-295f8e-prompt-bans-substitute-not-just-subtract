@@ -1,0 +1,324 @@
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:06<00:26,  6.72s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:13<00:19,  6.57s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:19<00:12,  6.36s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:25<00:06,  6.24s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:27<00:00,  4.78s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:27<00:00,  5.51s/it]
+23:03:50|INFO   |Qwen/Qwen3-8B@b968826d9c46dd6066d109eabc6255188de91218 loaded in 29s; free VRAM 7.1/23.7 GB
+23:03:50|INFO   |=== task twin_hf|II7|None (always)
+./src/engine5.py:114: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  tok = torch.searchsorted(cdf, u[:, None].to(cdf.dtype)).squeeze(-1)
+23:04:08|INFO   |twin_hf II7/W1 ['TWIN', 'TWIN_EXTRA']: 17.6s, 184 steps
+23:04:24|INFO   |twin_hf II7/W2 ['TWIN', 'TWIN_EXTRA']: 15.9s, 192 steps
+23:04:38|INFO   |twin_hf II7/W3 ['TWIN', 'TWIN_EXTRA']: 14.7s, 176 steps
+23:04:53|INFO   |twin_hf II7/W4 ['TWIN', 'TWIN_EXTRA']: 14.6s, 176 steps
+23:05:08|INFO   |twin_hf II7/W5 ['TWIN', 'TWIN_EXTRA']: 15.3s, 184 steps
+23:05:09|INFO   |=== task twin_hf|II8|None (always)
+23:05:25|INFO   |twin_hf II8/W1 ['TWIN', 'TWIN_EXTRA']: 16.6s, 200 steps
+23:05:42|INFO   |twin_hf II8/W2 ['TWIN', 'TWIN_EXTRA']: 16.5s, 200 steps
+23:05:57|INFO   |twin_hf II8/W3 ['TWIN', 'TWIN_EXTRA']: 15.2s, 184 steps
+23:06:10|INFO   |twin_hf II8/W4 ['TWIN', 'TWIN_EXTRA']: 13.2s, 160 steps
+23:06:26|INFO   |twin_hf II8/W5 ['TWIN', 'TWIN_EXTRA']: 15.9s, 192 steps
+23:06:28|INFO   |=== task esc1|B2|[4.0] (commit ok True)
+23:06:35|INFO   |esc1 B2/W1 ['ESC_d3326458872_a4.0', 'ESC_d1694239123_a4.0', 'ESC_d891375341_a4.0', 'ESC_d3288448565_a4.0', 'ESC_d375182104_a4.0', 'ESC_d3496756054_a4.0', 'ESC_d1200483466_a4.0', 'ESC_d1607150856_a4.0', 'TWIN_EXTRA']: 6.1s, 64 steps
+23:06:49|INFO   |esc1 B2/W2 ['ESC_d3326458872_a4.0', 'ESC_d1694239123_a4.0', 'ESC_d891375341_a4.0', 'ESC_d3288448565_a4.0', 'ESC_d375182104_a4.0', 'ESC_d3496756054_a4.0', 'ESC_d1200483466_a4.0', 'ESC_d1607150856_a4.0', 'TWIN_EXTRA']: 13.9s, 160 steps
+23:06:59|INFO   |esc1 B2/W3 ['ESC_d3326458872_a4.0', 'ESC_d1694239123_a4.0', 'ESC_d891375341_a4.0', 'ESC_d3288448565_a4.0', 'ESC_d375182104_a4.0', 'ESC_d3496756054_a4.0', 'ESC_d1200483466_a4.0', 'ESC_d1607150856_a4.0', 'TWIN_EXTRA']: 9.9s, 112 steps
+23:07:07|INFO   |esc1 B2/W4 ['ESC_d3326458872_a4.0', 'ESC_d1694239123_a4.0', 'ESC_d891375341_a4.0', 'ESC_d3288448565_a4.0', 'ESC_d375182104_a4.0', 'ESC_d3496756054_a4.0', 'ESC_d1200483466_a4.0', 'ESC_d1607150856_a4.0', 'TWIN_EXTRA']: 8.0s, 88 steps
+23:07:13|INFO   |esc1 B2/W5 ['ESC_d3326458872_a4.0', 'ESC_d1694239123_a4.0', 'ESC_d891375341_a4.0', 'ESC_d3288448565_a4.0', 'ESC_d375182104_a4.0', 'ESC_d3496756054_a4.0', 'ESC_d1200483466_a4.0', 'ESC_d1607150856_a4.0', 'TWIN_EXTRA']: 6.0s, 64 steps
+23:07:15|INFO   |=== task esc1|B3|[4.0] (commit ok True)
+23:07:47|INFO   |esc1 B3/W1 ['ESC_d721089366_a4.0', 'ESC_d490184365_a4.0', 'ESC_d3117418593_a4.0', 'ESC_d955648199_a4.0', 'ESC_d2637101087_a4.0', 'ESC_d2423437587_a4.0', 'ESC_d2710933458_a4.0', 'ESC_d1992137047_a4.0', 'TWIN_EXTRA']: 31.2s, 360 steps
+23:08:28|INFO   |esc1 B3/W2 ['ESC_d721089366_a4.0', 'ESC_d490184365_a4.0', 'ESC_d3117418593_a4.0', 'ESC_d955648199_a4.0', 'ESC_d2637101087_a4.0', 'ESC_d2423437587_a4.0', 'ESC_d2710933458_a4.0', 'ESC_d1992137047_a4.0', 'TWIN_EXTRA']: 41.5s, 480 steps
+23:08:59|INFO   |esc1 B3/W3 ['ESC_d721089366_a4.0', 'ESC_d490184365_a4.0', 'ESC_d3117418593_a4.0', 'ESC_d955648199_a4.0', 'ESC_d2637101087_a4.0', 'ESC_d2423437587_a4.0', 'ESC_d2710933458_a4.0', 'ESC_d1992137047_a4.0', 'TWIN_EXTRA']: 31.2s, 360 steps
+23:09:32|INFO   |esc1 B3/W4 ['ESC_d721089366_a4.0', 'ESC_d490184365_a4.0', 'ESC_d3117418593_a4.0', 'ESC_d955648199_a4.0', 'ESC_d2637101087_a4.0', 'ESC_d2423437587_a4.0', 'ESC_d2710933458_a4.0', 'ESC_d1992137047_a4.0', 'TWIN_EXTRA']: 32.5s, 376 steps
+23:10:00|INFO   |esc1 B3/W5 ['ESC_d721089366_a4.0', 'ESC_d490184365_a4.0', 'ESC_d3117418593_a4.0', 'ESC_d955648199_a4.0', 'ESC_d2637101087_a4.0', 'ESC_d2423437587_a4.0', 'ESC_d2710933458_a4.0', 'ESC_d1992137047_a4.0', 'TWIN_EXTRA']: 27.8s, 320 steps
+23:10:02|INFO   |=== task esc1|B4|[4.0] (commit ok True)
+23:10:13|INFO   |esc1 B4/W1 ['ESC_d3965648355_a4.0', 'ESC_d2137788375_a4.0', 'ESC_d3336118898_a4.0', 'ESC_d3035513619_a4.0', 'ESC_d4049987367_a4.0', 'ESC_d3095145892_a4.0', 'ESC_d4213216961_a4.0', 'ESC_d1419059476_a4.0', 'TWIN_EXTRA']: 9.9s, 112 steps
+23:10:22|INFO   |esc1 B4/W2 ['ESC_d3965648355_a4.0', 'ESC_d2137788375_a4.0', 'ESC_d3336118898_a4.0', 'ESC_d3035513619_a4.0', 'ESC_d4049987367_a4.0', 'ESC_d3095145892_a4.0', 'ESC_d4213216961_a4.0', 'ESC_d1419059476_a4.0', 'TWIN_EXTRA']: 9.2s, 104 steps
+23:10:31|INFO   |esc1 B4/W3 ['ESC_d3965648355_a4.0', 'ESC_d2137788375_a4.0', 'ESC_d3336118898_a4.0', 'ESC_d3035513619_a4.0', 'ESC_d4049987367_a4.0', 'ESC_d3095145892_a4.0', 'ESC_d4213216961_a4.0', 'ESC_d1419059476_a4.0', 'TWIN_EXTRA']: 9.2s, 104 steps
+23:10:40|INFO   |esc1 B4/W4 ['ESC_d3965648355_a4.0', 'ESC_d2137788375_a4.0', 'ESC_d3336118898_a4.0', 'ESC_d3035513619_a4.0', 'ESC_d4049987367_a4.0', 'ESC_d3095145892_a4.0', 'ESC_d4213216961_a4.0', 'ESC_d1419059476_a4.0', 'TWIN_EXTRA']: 9.2s, 104 steps
+23:10:49|INFO   |esc1 B4/W5 ['ESC_d3965648355_a4.0', 'ESC_d2137788375_a4.0', 'ESC_d3336118898_a4.0', 'ESC_d3035513619_a4.0', 'ESC_d4049987367_a4.0', 'ESC_d3095145892_a4.0', 'ESC_d4213216961_a4.0', 'ESC_d1419059476_a4.0', 'TWIN_EXTRA']: 9.2s, 104 steps
+23:10:51|INFO   |=== task esc1|B7|[4.0] (commit ok True)
+23:11:01|INFO   |esc1 B7/W1 ['ESC_d4107095361_a4.0', 'ESC_d3470864576_a4.0', 'ESC_d2708872611_a4.0', 'ESC_d4116305247_a4.0', 'ESC_d4045731275_a4.0', 'ESC_d3707956823_a4.0', 'ESC_d103342868_a4.0', 'ESC_d1554923137_a4.0', 'TWIN_EXTRA']: 8.7s, 96 steps
+23:11:19|INFO   |esc1 B7/W2 ['ESC_d4107095361_a4.0', 'ESC_d3470864576_a4.0', 'ESC_d2708872611_a4.0', 'ESC_d4116305247_a4.0', 'ESC_d4045731275_a4.0', 'ESC_d3707956823_a4.0', 'ESC_d103342868_a4.0', 'ESC_d1554923137_a4.0', 'TWIN_EXTRA']: 17.9s, 208 steps
+23:11:37|INFO   |esc1 B7/W3 ['ESC_d4107095361_a4.0', 'ESC_d3470864576_a4.0', 'ESC_d2708872611_a4.0', 'ESC_d4116305247_a4.0', 'ESC_d4045731275_a4.0', 'ESC_d3707956823_a4.0', 'ESC_d103342868_a4.0', 'ESC_d1554923137_a4.0', 'TWIN_EXTRA']: 17.8s, 208 steps
+23:11:48|INFO   |esc1 B7/W4 ['ESC_d4107095361_a4.0', 'ESC_d3470864576_a4.0', 'ESC_d2708872611_a4.0', 'ESC_d4116305247_a4.0', 'ESC_d4045731275_a4.0', 'ESC_d3707956823_a4.0', 'ESC_d103342868_a4.0', 'ESC_d1554923137_a4.0', 'TWIN_EXTRA']: 11.3s, 128 steps
+23:12:11|INFO   |esc1 B7/W5 ['ESC_d4107095361_a4.0', 'ESC_d3470864576_a4.0', 'ESC_d2708872611_a4.0', 'ESC_d4116305247_a4.0', 'ESC_d4045731275_a4.0', 'ESC_d3707956823_a4.0', 'ESC_d103342868_a4.0', 'ESC_d1554923137_a4.0', 'TWIN_EXTRA']: 23.2s, 272 steps
+23:12:13|INFO   |=== task esc1|B1|[4.0] (commit ok True)
+23:12:19|INFO   |esc1 B1/W1 ['ESC_d3829022728_a4.0', 'ESC_d4007366274_a4.0', 'ESC_d2992214196_a4.0', 'ESC_d2163925180_a4.0', 'ESC_d1637223950_a4.0', 'ESC_d1728413870_a4.0', 'ESC_d1923821336_a4.0', 'ESC_d1101404850_a4.0', 'TWIN_EXTRA']: 5.1s, 48 steps
+23:12:26|INFO   |esc1 B1/W2 ['ESC_d3829022728_a4.0', 'ESC_d4007366274_a4.0', 'ESC_d2992214196_a4.0', 'ESC_d2163925180_a4.0', 'ESC_d1637223950_a4.0', 'ESC_d1728413870_a4.0', 'ESC_d1923821336_a4.0', 'ESC_d1101404850_a4.0', 'TWIN_EXTRA']: 7.4s, 80 steps
+23:12:31|INFO   |esc1 B1/W3 ['ESC_d3829022728_a4.0', 'ESC_d4007366274_a4.0', 'ESC_d2992214196_a4.0', 'ESC_d2163925180_a4.0', 'ESC_d1637223950_a4.0', 'ESC_d1728413870_a4.0', 'ESC_d1923821336_a4.0', 'ESC_d1101404850_a4.0', 'TWIN_EXTRA']: 4.7s, 48 steps
+23:12:36|INFO   |esc1 B1/W4 ['ESC_d3829022728_a4.0', 'ESC_d4007366274_a4.0', 'ESC_d2992214196_a4.0', 'ESC_d2163925180_a4.0', 'ESC_d1637223950_a4.0', 'ESC_d1728413870_a4.0', 'ESC_d1923821336_a4.0', 'ESC_d1101404850_a4.0', 'TWIN_EXTRA']: 4.7s, 48 steps
+23:12:42|INFO   |esc1 B1/W5 ['ESC_d3829022728_a4.0', 'ESC_d4007366274_a4.0', 'ESC_d2992214196_a4.0', 'ESC_d2163925180_a4.0', 'ESC_d1637223950_a4.0', 'ESC_d1728413870_a4.0', 'ESC_d1923821336_a4.0', 'ESC_d1101404850_a4.0', 'TWIN_EXTRA']: 6.0s, 64 steps
+23:12:43|INFO   |=== task esc1|B5|[4.0] (commit ok True)
+23:12:55|INFO   |esc1 B5/W1 ['ESC_d2311989156_a4.0', 'ESC_d945281122_a4.0', 'ESC_d361168422_a4.0', 'ESC_d533424702_a4.0', 'ESC_d34094204_a4.0', 'ESC_d1049881870_a4.0', 'ESC_d1910727286_a4.0', 'ESC_d1224408963_a4.0', 'TWIN_EXTRA']: 10.7s, 120 steps
+23:13:04|INFO   |esc1 B5/W2 ['ESC_d2311989156_a4.0', 'ESC_d945281122_a4.0', 'ESC_d361168422_a4.0', 'ESC_d533424702_a4.0', 'ESC_d34094204_a4.0', 'ESC_d1049881870_a4.0', 'ESC_d1910727286_a4.0', 'ESC_d1224408963_a4.0', 'TWIN_EXTRA']: 8.6s, 96 steps
+23:13:13|INFO   |esc1 B5/W3 ['ESC_d2311989156_a4.0', 'ESC_d945281122_a4.0', 'ESC_d361168422_a4.0', 'ESC_d533424702_a4.0', 'ESC_d34094204_a4.0', 'ESC_d1049881870_a4.0', 'ESC_d1910727286_a4.0', 'ESC_d1224408963_a4.0', 'TWIN_EXTRA']: 9.3s, 104 steps
+23:13:24|INFO   |esc1 B5/W4 ['ESC_d2311989156_a4.0', 'ESC_d945281122_a4.0', 'ESC_d361168422_a4.0', 'ESC_d533424702_a4.0', 'ESC_d34094204_a4.0', 'ESC_d1049881870_a4.0', 'ESC_d1910727286_a4.0', 'ESC_d1224408963_a4.0', 'TWIN_EXTRA']: 10.6s, 120 steps
+23:13:32|INFO   |esc1 B5/W5 ['ESC_d2311989156_a4.0', 'ESC_d945281122_a4.0', 'ESC_d361168422_a4.0', 'ESC_d533424702_a4.0', 'ESC_d34094204_a4.0', 'ESC_d1049881870_a4.0', 'ESC_d1910727286_a4.0', 'ESC_d1224408963_a4.0', 'TWIN_EXTRA']: 8.6s, 96 steps
+23:13:34|INFO   |=== task esc1|B6|[4.0] (commit ok True)
+23:13:44|INFO   |esc1 B6/W1 ['ESC_d1216640193_a4.0', 'ESC_d1625937670_a4.0', 'ESC_d1572683114_a4.0', 'ESC_d3753941086_a4.0', 'ESC_d3712025752_a4.0', 'ESC_d1856811091_a4.0', 'ESC_d2480647513_a4.0', 'ESC_d4083003917_a4.0', 'TWIN_EXTRA']: 9.4s, 104 steps
+23:13:54|INFO   |esc1 B6/W2 ['ESC_d1216640193_a4.0', 'ESC_d1625937670_a4.0', 'ESC_d1572683114_a4.0', 'ESC_d3753941086_a4.0', 'ESC_d3712025752_a4.0', 'ESC_d1856811091_a4.0', 'ESC_d2480647513_a4.0', 'ESC_d4083003917_a4.0', 'TWIN_EXTRA']: 9.9s, 112 steps
+23:14:03|INFO   |esc1 B6/W3 ['ESC_d1216640193_a4.0', 'ESC_d1625937670_a4.0', 'ESC_d1572683114_a4.0', 'ESC_d3753941086_a4.0', 'ESC_d3712025752_a4.0', 'ESC_d1856811091_a4.0', 'ESC_d2480647513_a4.0', 'ESC_d4083003917_a4.0', 'TWIN_EXTRA']: 9.3s, 104 steps
+23:14:13|INFO   |esc1 B6/W4 ['ESC_d1216640193_a4.0', 'ESC_d1625937670_a4.0', 'ESC_d1572683114_a4.0', 'ESC_d3753941086_a4.0', 'ESC_d3712025752_a4.0', 'ESC_d1856811091_a4.0', 'ESC_d2480647513_a4.0', 'ESC_d4083003917_a4.0', 'TWIN_EXTRA']: 9.3s, 104 steps
+23:14:21|INFO   |esc1 B6/W5 ['ESC_d1216640193_a4.0', 'ESC_d1625937670_a4.0', 'ESC_d1572683114_a4.0', 'ESC_d3753941086_a4.0', 'ESC_d3712025752_a4.0', 'ESC_d1856811091_a4.0', 'ESC_d2480647513_a4.0', 'ESC_d4083003917_a4.0', 'TWIN_EXTRA']: 8.6s, 96 steps
+23:14:32|INFO   |adjudicated 2 disagreements
+23:14:32|INFO   |=== task conf|B2|[4.0] (stage-1 labels complete)
+23:14:35|INFO   |B2: stage-1 passers needing confirmation: ['ESC_d375182104_a4.0', 'ESC_d1200483466_a4.0']
+23:14:40|INFO   |esc_conf B2/W1 ['ESC_d375182104_a4.0', 'ESC_d1200483466_a4.0', 'TWIN_EXTRA']: 5.4s, 64 steps
+23:14:46|INFO   |esc_conf B2/W2 ['ESC_d375182104_a4.0', 'ESC_d1200483466_a4.0', 'TWIN_EXTRA']: 5.4s, 64 steps
+23:14:51|INFO   |esc_conf B2/W3 ['ESC_d375182104_a4.0', 'ESC_d1200483466_a4.0', 'TWIN_EXTRA']: 5.4s, 64 steps
+23:14:57|INFO   |esc_conf B2/W4 ['ESC_d375182104_a4.0', 'ESC_d1200483466_a4.0', 'TWIN_EXTRA']: 5.4s, 64 steps
+23:15:02|INFO   |esc_conf B2/W5 ['ESC_d375182104_a4.0', 'ESC_d1200483466_a4.0', 'TWIN_EXTRA']: 5.4s, 64 steps
+23:15:09|INFO   |=== task pn|B2|4.0 (commit ok True)
+23:15:15|INFO   |pn_a4.0 B2/W1 ['PN_a4.0', 'TWIN_EXTRA']: 6.3s, 64 steps
+23:15:41|INFO   |pn_a4.0 B2/W2 ['PN_a4.0', 'TWIN_EXTRA']: 25.4s, 296 steps
+23:15:47|INFO   |pn_a4.0 B2/W3 ['PN_a4.0', 'TWIN_EXTRA']: 6.3s, 64 steps
+23:15:54|INFO   |pn_a4.0 B2/W4 ['PN_a4.0', 'TWIN_EXTRA']: 6.3s, 64 steps
+23:16:00|INFO   |pn_a4.0 B2/W5 ['PN_a4.0', 'TWIN_EXTRA']: 6.3s, 64 steps
+23:16:07|INFO   |=== task pn|B3|4.0 (commit ok True)
+23:16:42|INFO   |pn_a4.0 B3/W1 ['PN_a4.0', 'TWIN_EXTRA']: 34.9s, 400 steps
+23:17:14|INFO   |pn_a4.0 B3/W2 ['PN_a4.0', 'TWIN_EXTRA']: 32.1s, 368 steps
+23:17:43|INFO   |pn_a4.0 B3/W3 ['PN_a4.0', 'TWIN_EXTRA']: 28.4s, 320 steps
+23:18:14|INFO   |pn_a4.0 B3/W4 ['PN_a4.0', 'TWIN_EXTRA']: 31.1s, 352 steps
+23:18:47|INFO   |pn_a4.0 B3/W5 ['PN_a4.0', 'TWIN_EXTRA']: 32.9s, 376 steps
+23:19:10|INFO   |adjudicated 45 disagreements
+23:19:10|INFO   |=== task conf|B3|[4.0] (stage-1 labels complete)
+23:19:12|INFO   |B3: stage-1 passers needing confirmation: ['ESC_d2423437587_a4.0']
+23:19:40|INFO   |esc_conf B3/W1 ['ESC_d2423437587_a4.0', 'TWIN_EXTRA']: 26.8s, 320 steps
+23:20:06|INFO   |esc_conf B3/W2 ['ESC_d2423437587_a4.0', 'TWIN_EXTRA']: 26.8s, 320 steps
+23:20:37|INFO   |esc_conf B3/W3 ['ESC_d2423437587_a4.0', 'TWIN_EXTRA']: 30.2s, 360 steps
+23:21:05|INFO   |esc_conf B3/W4 ['ESC_d2423437587_a4.0', 'TWIN_EXTRA']: 28.2s, 328 steps
+23:21:29|INFO   |esc_conf B3/W5 ['ESC_d2423437587_a4.0', 'TWIN_EXTRA']: 24.2s, 288 steps
+23:21:30|INFO   |=== task qlik|II7|None (pending forced labels 0, final flag True)
+23:22:14|INFO   |q_lik II7: concat_sort: tok -1.136 raw -36.8 (n=10), heapq_merge: tok -1.534 raw -68.8 (n=10), backward_fill: tok -0.154 raw -7.4 (n=10); noise floor 0.29840850830078125
+23:22:14|INFO   |=== task qlik|II8|None (pending forced labels 0, final flag True)
+23:22:53|INFO   |q_lik II8: full_sort: tok -2.040 raw -88.4 (n=10), maxheap_k: tok -1.650 raw -79.2 (n=10), nsmallest: tok -2.030 raw -96.0 (n=10); noise floor 0.584228515625
+23:23:01|INFO   |adjudicated 27 disagreements
+23:23:01|INFO   |=== task conf|B4|[4.0] (stage-1 labels complete)
+23:23:05|INFO   |B4: stage-1 passers needing confirmation: ['ESC_d3965648355_a4.0', 'ESC_d2137788375_a4.0', 'ESC_d3336118898_a4.0', 'ESC_d4213216961_a4.0']
+23:23:14|INFO   |esc_conf B4/W1 ['ESC_d3965648355_a4.0', 'ESC_d2137788375_a4.0', 'ESC_d3336118898_a4.0', 'ESC_d4213216961_a4.0', 'TWIN_EXTRA']: 8.8s, 104 steps
+23:23:23|INFO   |esc_conf B4/W2 ['ESC_d3965648355_a4.0', 'ESC_d2137788375_a4.0', 'ESC_d3336118898_a4.0', 'ESC_d4213216961_a4.0', 'TWIN_EXTRA']: 8.8s, 104 steps
+23:23:32|INFO   |esc_conf B4/W3 ['ESC_d3965648355_a4.0', 'ESC_d2137788375_a4.0', 'ESC_d3336118898_a4.0', 'ESC_d4213216961_a4.0', 'TWIN_EXTRA']: 8.8s, 104 steps
+23:23:40|INFO   |esc_conf B4/W4 ['ESC_d3965648355_a4.0', 'ESC_d2137788375_a4.0', 'ESC_d3336118898_a4.0', 'ESC_d4213216961_a4.0', 'TWIN_EXTRA']: 8.8s, 104 steps
+23:23:49|INFO   |esc_conf B4/W5 ['ESC_d3965648355_a4.0', 'ESC_d2137788375_a4.0', 'ESC_d3336118898_a4.0', 'ESC_d4213216961_a4.0', 'TWIN_EXTRA']: 8.8s, 104 steps
+23:23:50|INFO   |=== task esc1|II8|[1.0, 2.0, 4.0] (commit ok True)
+23:24:08|INFO   |esc1 II8/W1 ['ESC_d2449601391_a1.0', 'ESC_d2019340364_a1.0', 'ESC_d680440705_a1.0', 'ESC_d150292635_a1.0', 'ESC_d2820834009_a1.0', 'ESC_d1438694585_a1.0', 'ESC_d3681701800_a1.0', 'ESC_d1464760928_a1.0', 'ESC_d2449601391_a2.0', 'ESC_d2019340364_a2.0']: 16.7s, 184 steps
+23:24:25|INFO   |esc1 II8/W1 ['ESC_d680440705_a2.0', 'ESC_d150292635_a2.0', 'ESC_d2820834009_a2.0', 'ESC_d1438694585_a2.0', 'ESC_d3681701800_a2.0', 'ESC_d1464760928_a2.0', 'ESC_d2449601391_a4.0', 'ESC_d2019340364_a4.0', 'ESC_d680440705_a4.0', 'ESC_d150292635_a4.0']: 17.8s, 200 steps
+23:24:42|INFO   |esc1 II8/W1 ['ESC_d2820834009_a4.0', 'ESC_d1438694585_a4.0', 'ESC_d3681701800_a4.0', 'ESC_d1464760928_a4.0', 'TWIN_EXTRA']: 16.9s, 200 steps
+23:25:00|INFO   |esc1 II8/W2 ['ESC_d2449601391_a1.0', 'ESC_d2019340364_a1.0', 'ESC_d680440705_a1.0', 'ESC_d150292635_a1.0', 'ESC_d2820834009_a1.0', 'ESC_d1438694585_a1.0', 'ESC_d3681701800_a1.0', 'ESC_d1464760928_a1.0', 'ESC_d2449601391_a2.0', 'ESC_d2019340364_a2.0']: 17.3s, 192 steps
+23:25:17|INFO   |esc1 II8/W2 ['ESC_d680440705_a2.0', 'ESC_d150292635_a2.0', 'ESC_d2820834009_a2.0', 'ESC_d1438694585_a2.0', 'ESC_d3681701800_a2.0', 'ESC_d1464760928_a2.0', 'ESC_d2449601391_a4.0', 'ESC_d2019340364_a4.0', 'ESC_d680440705_a4.0', 'ESC_d150292635_a4.0']: 17.2s, 192 steps
+23:25:35|INFO   |esc1 II8/W2 ['ESC_d2820834009_a4.0', 'ESC_d1438694585_a4.0', 'ESC_d3681701800_a4.0', 'ESC_d1464760928_a4.0', 'TWIN_EXTRA']: 18.3s, 216 steps
+23:25:53|INFO   |esc1 II8/W3 ['ESC_d2449601391_a1.0', 'ESC_d2019340364_a1.0', 'ESC_d680440705_a1.0', 'ESC_d150292635_a1.0', 'ESC_d2820834009_a1.0', 'ESC_d1438694585_a1.0', 'ESC_d3681701800_a1.0', 'ESC_d1464760928_a1.0', 'ESC_d2449601391_a2.0', 'ESC_d2019340364_a2.0']: 17.7s, 200 steps
+23:26:11|INFO   |esc1 II8/W3 ['ESC_d680440705_a2.0', 'ESC_d150292635_a2.0', 'ESC_d2820834009_a2.0', 'ESC_d1438694585_a2.0', 'ESC_d3681701800_a2.0', 'ESC_d1464760928_a2.0', 'ESC_d2449601391_a4.0', 'ESC_d2019340364_a4.0', 'ESC_d680440705_a4.0', 'ESC_d150292635_a4.0']: 18.3s, 208 steps
+23:26:27|INFO   |esc1 II8/W3 ['ESC_d2820834009_a4.0', 'ESC_d1438694585_a4.0', 'ESC_d3681701800_a4.0', 'ESC_d1464760928_a4.0', 'TWIN_EXTRA']: 16.2s, 192 steps
+23:26:44|INFO   |esc1 II8/W4 ['ESC_d2449601391_a1.0', 'ESC_d2019340364_a1.0', 'ESC_d680440705_a1.0', 'ESC_d150292635_a1.0', 'ESC_d2820834009_a1.0', 'ESC_d1438694585_a1.0', 'ESC_d3681701800_a1.0', 'ESC_d1464760928_a1.0', 'ESC_d2449601391_a2.0', 'ESC_d2019340364_a2.0']: 16.6s, 184 steps
+23:27:02|INFO   |esc1 II8/W4 ['ESC_d680440705_a2.0', 'ESC_d150292635_a2.0', 'ESC_d2820834009_a2.0', 'ESC_d1438694585_a2.0', 'ESC_d3681701800_a2.0', 'ESC_d1464760928_a2.0', 'ESC_d2449601391_a4.0', 'ESC_d2019340364_a4.0', 'ESC_d680440705_a4.0', 'ESC_d150292635_a4.0']: 17.8s, 200 steps
+23:27:18|INFO   |esc1 II8/W4 ['ESC_d2820834009_a4.0', 'ESC_d1438694585_a4.0', 'ESC_d3681701800_a4.0', 'ESC_d1464760928_a4.0', 'TWIN_EXTRA']: 16.3s, 192 steps
+23:27:35|INFO   |esc1 II8/W5 ['ESC_d2449601391_a1.0', 'ESC_d2019340364_a1.0', 'ESC_d680440705_a1.0', 'ESC_d150292635_a1.0', 'ESC_d2820834009_a1.0', 'ESC_d1438694585_a1.0', 'ESC_d3681701800_a1.0', 'ESC_d1464760928_a1.0', 'ESC_d2449601391_a2.0', 'ESC_d2019340364_a2.0']: 17.3s, 192 steps
+23:27:53|INFO   |esc1 II8/W5 ['ESC_d680440705_a2.0', 'ESC_d150292635_a2.0', 'ESC_d2820834009_a2.0', 'ESC_d1438694585_a2.0', 'ESC_d3681701800_a2.0', 'ESC_d1464760928_a2.0', 'ESC_d2449601391_a4.0', 'ESC_d2019340364_a4.0', 'ESC_d680440705_a4.0', 'ESC_d150292635_a4.0']: 17.1s, 192 steps
+23:28:08|INFO   |esc1 II8/W5 ['ESC_d2820834009_a4.0', 'ESC_d1438694585_a4.0', 'ESC_d3681701800_a4.0', 'ESC_d1464760928_a4.0', 'TWIN_EXTRA']: 15.0s, 176 steps
+23:28:09|INFO   |=== task pn|II8|2.0 (commit ok True)
+23:28:26|INFO   |pn_a2.0 II8/W1 ['PN_a2.0', 'TWIN_EXTRA']: 16.2s, 176 steps
+23:28:43|INFO   |pn_a2.0 II8/W2 ['PN_a2.0', 'TWIN_EXTRA']: 16.7s, 184 steps
+23:29:00|INFO   |pn_a2.0 II8/W3 ['PN_a2.0', 'TWIN_EXTRA']: 17.1s, 192 steps
+23:29:18|INFO   |pn_a2.0 II8/W4 ['PN_a2.0', 'TWIN_EXTRA']: 18.0s, 200 steps
+23:29:35|INFO   |pn_a2.0 II8/W5 ['PN_a2.0', 'TWIN_EXTRA']: 17.3s, 192 steps
+23:29:46|INFO   |adjudicated 36 disagreements
+23:29:46|INFO   |=== task conf|II8|[1.0, 2.0, 4.0] (stage-1 labels complete)
+23:29:51|INFO   |II8: stage-1 passers needing confirmation: ['ESC_d2820834009_a1.0', 'ESC_d3681701800_a1.0', 'ESC_d3681701800_a2.0', 'ESC_d1464760928_a2.0']
+23:30:09|INFO   |esc_conf II8/W1 ['ESC_d2820834009_a1.0', 'ESC_d3681701800_a1.0', 'ESC_d3681701800_a2.0', 'ESC_d1464760928_a2.0', 'TWIN_EXTRA']: 17.8s, 208 steps
+23:30:27|INFO   |esc_conf II8/W2 ['ESC_d2820834009_a1.0', 'ESC_d3681701800_a1.0', 'ESC_d3681701800_a2.0', 'ESC_d1464760928_a2.0', 'TWIN_EXTRA']: 17.1s, 200 steps
+23:30:43|INFO   |esc_conf II8/W3 ['ESC_d2820834009_a1.0', 'ESC_d3681701800_a1.0', 'ESC_d3681701800_a2.0', 'ESC_d1464760928_a2.0', 'TWIN_EXTRA']: 16.3s, 192 steps
+23:30:59|INFO   |esc_conf II8/W4 ['ESC_d2820834009_a1.0', 'ESC_d3681701800_a1.0', 'ESC_d3681701800_a2.0', 'ESC_d1464760928_a2.0', 'TWIN_EXTRA']: 16.5s, 192 steps
+23:31:17|INFO   |esc_conf II8/W5 ['ESC_d2820834009_a1.0', 'ESC_d3681701800_a1.0', 'ESC_d3681701800_a2.0', 'ESC_d1464760928_a2.0', 'TWIN_EXTRA']: 17.1s, 200 steps
+23:31:18|INFO   |=== task pn|II8|4.0 (commit ok True)
+23:31:37|INFO   |pn_a4.0 II8/W1 ['PN_a4.0', 'TWIN_EXTRA']: 18.0s, 200 steps
+23:31:58|INFO   |pn_a4.0 II8/W2 ['PN_a4.0', 'TWIN_EXTRA']: 21.4s, 240 steps
+23:32:16|INFO   |pn_a4.0 II8/W3 ['PN_a4.0', 'TWIN_EXTRA']: 17.8s, 200 steps
+23:32:33|INFO   |pn_a4.0 II8/W4 ['PN_a4.0', 'TWIN_EXTRA']: 17.3s, 192 steps
+23:32:49|INFO   |pn_a4.0 II8/W5 ['PN_a4.0', 'TWIN_EXTRA']: 15.3s, 168 steps
+23:32:50|INFO   |=== task gtn|II8|2.0 (commit ok True)
+23:33:08|INFO   |gtn II8/W1 a2.0: 16.9s, 200 steps, rel_err 0.0005885440041311085
+23:33:24|INFO   |gtn II8/W2 a2.0: 16.3s, 192 steps, rel_err 0.0006627388065680861
+23:33:39|INFO   |gtn II8/W3 a2.0: 15.5s, 184 steps, rel_err 0.0007113866740837693
+23:33:57|INFO   |gtn II8/W4 a2.0: 18.0s, 216 steps, rel_err 0.0006456265109591186
+23:34:13|INFO   |gtn II8/W5 a2.0: 16.1s, 192 steps, rel_err 0.0007179429521784186
+23:34:14|INFO   |=== task qlik|II7|rerun (pending forced labels 0, final flag True)
+23:34:57|INFO   |q_lik II7: concat_sort: tok -1.136 raw -36.8 (n=10), heapq_merge: tok -1.534 raw -68.8 (n=10), backward_fill: tok -0.154 raw -7.4 (n=10); noise floor 0.29840850830078125
+23:35:07|INFO   |adjudicated 37 disagreements
+23:35:07|INFO   |=== task conf|B7|[4.0] (stage-1 labels complete)
+23:35:10|INFO   |B7: stage-1 passers needing confirmation: []
+23:35:15|INFO   |adjudicated 10 disagreements
+23:35:15|INFO   |=== task conf|B1|[4.0] (stage-1 labels complete)
+23:35:19|INFO   |B1: stage-1 passers needing confirmation: []
+23:35:26|INFO   |adjudicated 25 disagreements
+23:35:26|INFO   |=== task conf|B5|[4.0] (stage-1 labels complete)
+23:35:28|INFO   |B5: stage-1 passers needing confirmation: ['ESC_d2311989156_a4.0', 'ESC_d945281122_a4.0', 'ESC_d34094204_a4.0']
+23:35:37|INFO   |esc_conf B5/W1 ['ESC_d2311989156_a4.0', 'ESC_d945281122_a4.0', 'ESC_d34094204_a4.0', 'TWIN_EXTRA']: 8.1s, 96 steps
+23:35:45|INFO   |esc_conf B5/W2 ['ESC_d2311989156_a4.0', 'ESC_d945281122_a4.0', 'ESC_d34094204_a4.0', 'TWIN_EXTRA']: 8.2s, 96 steps
+23:35:54|INFO   |esc_conf B5/W3 ['ESC_d2311989156_a4.0', 'ESC_d945281122_a4.0', 'ESC_d34094204_a4.0', 'TWIN_EXTRA']: 8.7s, 104 steps
+23:36:01|INFO   |esc_conf B5/W4 ['ESC_d2311989156_a4.0', 'ESC_d945281122_a4.0', 'ESC_d34094204_a4.0', 'TWIN_EXTRA']: 7.5s, 88 steps
+23:36:09|INFO   |esc_conf B5/W5 ['ESC_d2311989156_a4.0', 'ESC_d945281122_a4.0', 'ESC_d34094204_a4.0', 'TWIN_EXTRA']: 8.1s, 96 steps
+23:36:10|INFO   |=== task esc1|II7|[1.0, 2.0, 4.0] (commit ok True)
+23:36:30|INFO   |esc1 II7/W1 ['ESC_d3456647179_a1.0', 'ESC_d1755207156_a1.0', 'ESC_d1760525196_a1.0', 'ESC_d2804644817_a1.0', 'ESC_d2035782454_a1.0', 'ESC_d867039722_a1.0', 'ESC_d1708223496_a1.0', 'ESC_d556138917_a1.0', 'ESC_d3456647179_a2.0', 'ESC_d1755207156_a2.0']: 18.8s, 208 steps
+23:36:49|INFO   |esc1 II7/W1 ['ESC_d1760525196_a2.0', 'ESC_d2804644817_a2.0', 'ESC_d2035782454_a2.0', 'ESC_d867039722_a2.0', 'ESC_d1708223496_a2.0', 'ESC_d556138917_a2.0', 'ESC_d3456647179_a4.0', 'ESC_d1755207156_a4.0', 'ESC_d1760525196_a4.0', 'ESC_d2804644817_a4.0']: 18.7s, 208 steps
+23:37:08|INFO   |esc1 II7/W1 ['ESC_d2035782454_a4.0', 'ESC_d867039722_a4.0', 'ESC_d1708223496_a4.0', 'ESC_d556138917_a4.0', 'TWIN_EXTRA']: 19.1s, 224 steps
+23:37:27|INFO   |esc1 II7/W2 ['ESC_d3456647179_a1.0', 'ESC_d1755207156_a1.0', 'ESC_d1760525196_a1.0', 'ESC_d2804644817_a1.0', 'ESC_d2035782454_a1.0', 'ESC_d867039722_a1.0', 'ESC_d1708223496_a1.0', 'ESC_d556138917_a1.0', 'ESC_d3456647179_a2.0', 'ESC_d1755207156_a2.0']: 18.8s, 208 steps
+23:37:43|INFO   |esc1 II7/W2 ['ESC_d1760525196_a2.0', 'ESC_d2804644817_a2.0', 'ESC_d2035782454_a2.0', 'ESC_d867039722_a2.0', 'ESC_d1708223496_a2.0', 'ESC_d556138917_a2.0', 'ESC_d3456647179_a4.0', 'ESC_d1755207156_a4.0', 'ESC_d1760525196_a4.0', 'ESC_d2804644817_a4.0']: 15.9s, 176 steps
+23:38:02|INFO   |esc1 II7/W2 ['ESC_d2035782454_a4.0', 'ESC_d867039722_a4.0', 'ESC_d1708223496_a4.0', 'ESC_d556138917_a4.0', 'TWIN_EXTRA']: 19.1s, 224 steps
+23:38:19|INFO   |esc1 II7/W3 ['ESC_d3456647179_a1.0', 'ESC_d1755207156_a1.0', 'ESC_d1760525196_a1.0', 'ESC_d2804644817_a1.0', 'ESC_d2035782454_a1.0', 'ESC_d867039722_a1.0', 'ESC_d1708223496_a1.0', 'ESC_d556138917_a1.0', 'ESC_d3456647179_a2.0', 'ESC_d1755207156_a2.0']: 17.4s, 192 steps
+23:38:35|INFO   |esc1 II7/W3 ['ESC_d1760525196_a2.0', 'ESC_d2804644817_a2.0', 'ESC_d2035782454_a2.0', 'ESC_d867039722_a2.0', 'ESC_d1708223496_a2.0', 'ESC_d556138917_a2.0', 'ESC_d3456647179_a4.0', 'ESC_d1755207156_a4.0', 'ESC_d1760525196_a4.0', 'ESC_d2804644817_a4.0']: 16.0s, 176 steps
+23:38:50|INFO   |esc1 II7/W3 ['ESC_d2035782454_a4.0', 'ESC_d867039722_a4.0', 'ESC_d1708223496_a4.0', 'ESC_d556138917_a4.0', 'TWIN_EXTRA']: 14.4s, 168 steps
+23:39:06|INFO   |esc1 II7/W4 ['ESC_d3456647179_a1.0', 'ESC_d1755207156_a1.0', 'ESC_d1760525196_a1.0', 'ESC_d2804644817_a1.0', 'ESC_d2035782454_a1.0', 'ESC_d867039722_a1.0', 'ESC_d1708223496_a1.0', 'ESC_d556138917_a1.0', 'ESC_d3456647179_a2.0', 'ESC_d1755207156_a2.0']: 16.1s, 176 steps
+23:39:23|INFO   |esc1 II7/W4 ['ESC_d1760525196_a2.0', 'ESC_d2804644817_a2.0', 'ESC_d2035782454_a2.0', 'ESC_d867039722_a2.0', 'ESC_d1708223496_a2.0', 'ESC_d556138917_a2.0', 'ESC_d3456647179_a4.0', 'ESC_d1755207156_a4.0', 'ESC_d1760525196_a4.0', 'ESC_d2804644817_a4.0']: 17.3s, 192 steps
+23:39:43|INFO   |esc1 II7/W4 ['ESC_d2035782454_a4.0', 'ESC_d867039722_a4.0', 'ESC_d1708223496_a4.0', 'ESC_d556138917_a4.0', 'TWIN_EXTRA']: 19.8s, 232 steps
+23:39:44|ERROR  |task esc1|II7|[1.0, 2.0, 4.0]: CUDA OOM (CUDA out of memory. Tried to allocate 52.00 MiB. GPU 0 has a total capacity of 22.04 GiB of which 901.12 MiB is free. In); releasing contexts and retrying later
+23:39:46|INFO   |=== task pn|II7|2.0 (commit ok True)
+23:40:05|INFO   |pn_a2.0 II7/W1 ['PN_a2.0', 'TWIN_EXTRA']: 18.5s, 200 steps
+23:40:22|INFO   |pn_a2.0 II7/W2 ['PN_a2.0', 'TWIN_EXTRA']: 17.5s, 192 steps
+23:40:39|INFO   |pn_a2.0 II7/W3 ['PN_a2.0', 'TWIN_EXTRA']: 16.8s, 184 steps
+23:40:57|INFO   |pn_a2.0 II7/W4 ['PN_a2.0', 'TWIN_EXTRA']: 17.4s, 192 steps
+23:40:58|ERROR  |task pn|II7|2.0: CUDA OOM (CUDA out of memory. Tried to allocate 52.00 MiB. GPU 0 has a total capacity of 22.04 GiB of which 913.12 MiB is free. In); releasing contexts and retrying later
+23:40:59|INFO   |=== task pn|II7|4.0 (commit ok True)
+23:41:16|INFO   |pn_a4.0 II7/W1 ['PN_a4.0', 'TWIN_EXTRA']: 16.8s, 184 steps
+23:41:35|INFO   |pn_a4.0 II7/W2 ['PN_a4.0', 'TWIN_EXTRA']: 18.1s, 200 steps
+23:41:53|INFO   |pn_a4.0 II7/W3 ['PN_a4.0', 'TWIN_EXTRA']: 18.1s, 200 steps
+23:42:14|INFO   |pn_a4.0 II7/W4 ['PN_a4.0', 'TWIN_EXTRA']: 21.5s, 240 steps
+23:42:16|ERROR  |task pn|II7|4.0: CUDA OOM (CUDA out of memory. Tried to allocate 52.00 MiB. GPU 0 has a total capacity of 22.04 GiB of which 937.12 MiB is free. In); releasing contexts and retrying later
+23:42:17|INFO   |=== task gtn|II7|2.0 (commit ok True)
+23:42:37|INFO   |gtn II7/W1 a2.0: 19.4s, 232 steps, rel_err 0.0006100650643929839
+23:42:56|INFO   |gtn II7/W2 a2.0: 19.4s, 232 steps, rel_err 0.000767611782066524
+23:43:18|INFO   |gtn II7/W3 a2.0: 21.5s, 256 steps, rel_err 0.0006401654682122171
+23:43:39|INFO   |gtn II7/W4 a2.0: 20.9s, 248 steps, rel_err 0.0008139085839502513
+23:43:55|INFO   |gtn II7/W5 a2.0: 16.7s, 200 steps, rel_err 0.0006503118202090263
+23:43:56|INFO   |=== task esc1|II7|[1.0, 2.0, 4.0] (commit ok True)
+23:44:15|INFO   |esc1 II7/W5 ['ESC_d3456647179_a1.0', 'ESC_d1755207156_a1.0', 'ESC_d1760525196_a1.0', 'ESC_d2804644817_a1.0', 'ESC_d2035782454_a1.0', 'ESC_d867039722_a1.0', 'ESC_d1708223496_a1.0', 'ESC_d556138917_a1.0', 'ESC_d3456647179_a2.0', 'ESC_d1755207156_a2.0']: 17.5s, 192 steps
+23:44:32|INFO   |esc1 II7/W5 ['ESC_d1760525196_a2.0', 'ESC_d2804644817_a2.0', 'ESC_d2035782454_a2.0', 'ESC_d867039722_a2.0', 'ESC_d1708223496_a2.0', 'ESC_d556138917_a2.0', 'ESC_d3456647179_a4.0', 'ESC_d1755207156_a4.0', 'ESC_d1760525196_a4.0', 'ESC_d2804644817_a4.0']: 17.3s, 192 steps
+23:44:51|INFO   |esc1 II7/W5 ['ESC_d2035782454_a4.0', 'ESC_d867039722_a4.0', 'ESC_d1708223496_a4.0', 'ESC_d556138917_a4.0', 'TWIN_EXTRA']: 19.2s, 224 steps
+23:44:53|INFO   |=== task pn|II7|2.0 (commit ok True)
+23:45:12|INFO   |pn_a2.0 II7/W5 ['PN_a2.0', 'TWIN_EXTRA']: 18.2s, 200 steps
+23:45:19|INFO   |adjudicated 18 disagreements
+23:45:19|INFO   |=== task conf|II7|[1.0, 2.0, 4.0] (stage-1 labels complete)
+23:45:25|INFO   |II7: stage-1 passers needing confirmation: []
+23:45:26|INFO   |=== task pn|II7|4.0 (commit ok True)
+23:45:44|INFO   |pn_a4.0 II7/W5 ['PN_a4.0', 'TWIN_EXTRA']: 18.1s, 200 steps
+23:45:47|INFO   |adjudicated 2 disagreements
+23:45:47|INFO   |=== task conf|B6|[4.0] (stage-1 labels complete)
+23:45:50|INFO   |B6: stage-1 passers needing confirmation: ['ESC_d3753941086_a4.0', 'ESC_d3712025752_a4.0', 'ESC_d4083003917_a4.0']
+23:45:59|INFO   |esc_conf B6/W1 ['ESC_d3753941086_a4.0', 'ESC_d3712025752_a4.0', 'ESC_d4083003917_a4.0', 'TWIN_EXTRA']: 9.0s, 104 steps
+23:46:08|INFO   |esc_conf B6/W2 ['ESC_d3753941086_a4.0', 'ESC_d3712025752_a4.0', 'ESC_d4083003917_a4.0', 'TWIN_EXTRA']: 8.8s, 104 steps
+23:46:17|INFO   |esc_conf B6/W3 ['ESC_d3753941086_a4.0', 'ESC_d3712025752_a4.0', 'ESC_d4083003917_a4.0', 'TWIN_EXTRA']: 8.7s, 104 steps
+23:46:27|INFO   |esc_conf B6/W4 ['ESC_d3753941086_a4.0', 'ESC_d3712025752_a4.0', 'ESC_d4083003917_a4.0', 'TWIN_EXTRA']: 10.0s, 120 steps
+23:46:40|INFO   |esc_conf B6/W5 ['ESC_d3753941086_a4.0', 'ESC_d3712025752_a4.0', 'ESC_d4083003917_a4.0', 'TWIN_EXTRA']: 13.3s, 160 steps
+23:46:41|INFO   |=== task pn|B4|4.0 (commit ok True)
+23:46:52|INFO   |pn_a4.0 B4/W1 ['PN_a4.0', 'TWIN_EXTRA']: 10.8s, 120 steps
+23:47:02|INFO   |pn_a4.0 B4/W2 ['PN_a4.0', 'TWIN_EXTRA']: 9.4s, 104 steps
+23:47:12|INFO   |pn_a4.0 B4/W3 ['PN_a4.0', 'TWIN_EXTRA']: 10.1s, 112 steps
+23:47:21|INFO   |pn_a4.0 B4/W4 ['PN_a4.0', 'TWIN_EXTRA']: 9.4s, 104 steps
+23:47:31|INFO   |pn_a4.0 B4/W5 ['PN_a4.0', 'TWIN_EXTRA']: 10.1s, 112 steps
+23:47:32|INFO   |=== task pn|B7|4.0 (commit ok True)
+23:47:45|INFO   |pn_a4.0 B7/W1 ['PN_a4.0', 'TWIN_EXTRA']: 12.2s, 136 steps
+23:48:02|INFO   |pn_a4.0 B7/W2 ['PN_a4.0', 'TWIN_EXTRA']: 16.9s, 192 steps
+23:49:32|INFO   |pn_a4.0 B7/W3 ['PN_a4.0', 'TWIN_EXTRA']: 89.8s, 1024 steps
+23:49:51|INFO   |pn_a4.0 B7/W4 ['PN_a4.0', 'TWIN_EXTRA']: 18.9s, 216 steps
+23:50:14|INFO   |pn_a4.0 B7/W5 ['PN_a4.0', 'TWIN_EXTRA']: 22.9s, 264 steps
+23:50:15|INFO   |=== task pn|B1|4.0 (commit ok True)
+23:50:24|INFO   |pn_a4.0 B1/W1 ['PN_a4.0', 'TWIN_EXTRA']: 9.0s, 96 steps
+23:50:32|INFO   |pn_a4.0 B1/W2 ['PN_a4.0', 'TWIN_EXTRA']: 7.7s, 80 steps
+23:50:38|INFO   |pn_a4.0 B1/W3 ['PN_a4.0', 'TWIN_EXTRA']: 6.3s, 64 steps
+23:50:43|INFO   |pn_a4.0 B1/W4 ['PN_a4.0', 'TWIN_EXTRA']: 5.1s, 48 steps
+23:50:48|INFO   |pn_a4.0 B1/W5 ['PN_a4.0', 'TWIN_EXTRA']: 5.0s, 48 steps
+23:50:49|INFO   |=== task pn|B5|4.0 (commit ok True)
+23:50:58|INFO   |pn_a4.0 B5/W1 ['PN_a4.0', 'TWIN_EXTRA']: 8.3s, 88 steps
+23:51:08|INFO   |pn_a4.0 B5/W2 ['PN_a4.0', 'TWIN_EXTRA']: 9.6s, 104 steps
+23:51:17|INFO   |pn_a4.0 B5/W3 ['PN_a4.0', 'TWIN_EXTRA']: 9.6s, 104 steps
+23:51:26|INFO   |pn_a4.0 B5/W4 ['PN_a4.0', 'TWIN_EXTRA']: 8.9s, 96 steps
+23:51:35|INFO   |pn_a4.0 B5/W5 ['PN_a4.0', 'TWIN_EXTRA']: 9.0s, 96 steps
+23:51:36|INFO   |=== task pn|B6|4.0 (commit ok True)
+23:51:47|INFO   |pn_a4.0 B6/W1 ['PN_a4.0', 'TWIN_EXTRA']: 10.3s, 112 steps
+23:51:57|INFO   |pn_a4.0 B6/W2 ['PN_a4.0', 'TWIN_EXTRA']: 10.2s, 112 steps
+23:52:08|INFO   |pn_a4.0 B6/W3 ['PN_a4.0', 'TWIN_EXTRA']: 10.9s, 120 steps
+23:52:17|INFO   |pn_a4.0 B6/W4 ['PN_a4.0', 'TWIN_EXTRA']: 9.6s, 104 steps
+23:52:27|INFO   |pn_a4.0 B6/W5 ['PN_a4.0', 'TWIN_EXTRA']: 9.6s, 104 steps
+23:52:28|INFO   |=== task gtn|B2|2.0 (commit ok True)
+23:52:37|INFO   |gtn B2/W1 a2.0: 8.1s, 96 steps, rel_err 0.0006126394146122038
+23:52:41|INFO   |gtn B2/W2 a2.0: 4.8s, 56 steps, rel_err 0.0008359374478459358
+23:52:46|INFO   |gtn B2/W3 a2.0: 4.8s, 56 steps, rel_err 0.0006353530334308743
+23:52:51|INFO   |gtn B2/W4 a2.0: 4.9s, 56 steps, rel_err 0.0007224276196211576
+23:52:57|INFO   |gtn B2/W5 a2.0: 5.6s, 64 steps, rel_err 0.0006601196946576238
+23:52:58|INFO   |=== task gtn|B3|2.0 (commit ok True)
+23:53:25|INFO   |gtn B3/W1 a2.0: 26.8s, 320 steps, rel_err 0.0006912177195772529
+23:53:56|INFO   |gtn B3/W2 a2.0: 31.4s, 376 steps, rel_err 0.0007656043162569404
+23:54:22|INFO   |gtn B3/W3 a2.0: 26.0s, 312 steps, rel_err 0.0006636810139752924
+23:54:50|INFO   |gtn B3/W4 a2.0: 27.3s, 328 steps, rel_err 0.0007332199020311236
+23:55:15|INFO   |gtn B3/W5 a2.0: 25.3s, 304 steps, rel_err 0.0005761140491813421
+23:55:16|INFO   |=== task gtn|B4|2.0 (commit ok True)
+23:55:26|INFO   |gtn B4/W1 a2.0: 9.3s, 112 steps, rel_err 0.001090621342882514
+23:55:38|INFO   |gtn B4/W2 a2.0: 12.4s, 152 steps, rel_err 0.000615662953350693
+23:55:47|INFO   |gtn B4/W3 a2.0: 9.2s, 112 steps, rel_err 0.0007791403913870454
+23:55:56|INFO   |gtn B4/W4 a2.0: 8.6s, 104 steps, rel_err 0.0005905328434891999
+23:56:05|INFO   |gtn B4/W5 a2.0: 9.3s, 112 steps, rel_err 0.0008452832116745412
+23:56:06|INFO   |=== task gtn|B7|2.0 (commit ok True)
+23:56:32|INFO   |gtn B7/W1 a2.0: 25.8s, 312 steps, rel_err 0.0006247473647817969
+23:56:56|INFO   |gtn B7/W2 a2.0: 23.9s, 288 steps, rel_err 0.0008157000411301851
+23:57:22|INFO   |gtn B7/W3 a2.0: 25.8s, 312 steps, rel_err 0.0005388218560256064
+23:57:44|INFO   |gtn B7/W4 a2.0: 21.8s, 264 steps, rel_err 0.0006871663499623537
+23:58:08|INFO   |gtn B7/W5 a2.0: 24.0s, 288 steps, rel_err 0.0006614805315621197
+23:58:09|INFO   |=== task gtn|B1|2.0 (commit ok True)
+23:58:13|INFO   |gtn B1/W1 a2.0: 4.1s, 48 steps, rel_err 0.0006623590015806258
+23:58:17|INFO   |gtn B1/W2 a2.0: 4.2s, 48 steps, rel_err 0.0006950329407118261
+23:58:22|INFO   |gtn B1/W3 a2.0: 4.6s, 48 steps, rel_err 0.0006000177818350494
+23:58:26|INFO   |gtn B1/W4 a2.0: 4.1s, 48 steps, rel_err 0.0006328868330456316
+23:58:30|INFO   |gtn B1/W5 a2.0: 4.2s, 48 steps, rel_err 0.0006134177092462778
+23:58:31|INFO   |=== task gtn|B5|2.0 (commit ok True)
+23:58:39|INFO   |gtn B5/W1 a2.0: 7.4s, 88 steps, rel_err 0.0005092779756523669
+23:58:47|INFO   |gtn B5/W2 a2.0: 8.0s, 96 steps, rel_err 0.0005666470970027149
+23:58:55|INFO   |gtn B5/W3 a2.0: 8.0s, 96 steps, rel_err 0.0006305433926172554
+23:59:03|INFO   |gtn B5/W4 a2.0: 7.3s, 88 steps, rel_err 0.0010511837899684906
+23:59:10|INFO   |gtn B5/W5 a2.0: 7.3s, 88 steps, rel_err 0.0005681382608599961
+23:59:11|INFO   |=== task gtn|B6|2.0 (commit ok True)
+23:59:20|INFO   |gtn B6/W1 a2.0: 8.7s, 104 steps, rel_err 0.0005710500990971923
+23:59:29|INFO   |gtn B6/W2 a2.0: 8.6s, 104 steps, rel_err 0.0006015648250468075
+23:59:38|INFO   |gtn B6/W3 a2.0: 9.3s, 112 steps, rel_err 0.0006355237565003335
+23:59:47|INFO   |gtn B6/W4 a2.0: 9.2s, 112 steps, rel_err 0.0006323098205029964
+23:59:56|INFO   |gtn B6/W5 a2.0: 8.6s, 104 steps, rel_err 0.0007456686580553651
+23:59:56|INFO   |=== task twin_hf|B1|None (always)
+00:00:05|INFO   |twin_hf B1/W1 ['TWIN', 'TWIN_EXTRA']: 8.7s, 48 steps
+00:00:10|INFO   |twin_hf B1/W2 ['TWIN', 'TWIN_EXTRA']: 5.0s, 48 steps
+00:00:14|INFO   |twin_hf B1/W3 ['TWIN', 'TWIN_EXTRA']: 4.1s, 48 steps
+00:00:18|INFO   |twin_hf B1/W4 ['TWIN', 'TWIN_EXTRA']: 3.9s, 48 steps
+00:00:22|INFO   |twin_hf B1/W5 ['TWIN', 'TWIN_EXTRA']: 3.9s, 48 steps
+00:00:23|INFO   |=== task twin_hf|B2|None (always)
+00:00:28|INFO   |twin_hf B2/W1 ['TWIN', 'TWIN_EXTRA']: 5.2s, 64 steps
+00:00:33|INFO   |twin_hf B2/W2 ['TWIN', 'TWIN_EXTRA']: 5.2s, 64 steps
+00:00:39|INFO   |twin_hf B2/W3 ['TWIN', 'TWIN_EXTRA']: 5.2s, 64 steps
+00:00:44|INFO   |twin_hf B2/W4 ['TWIN', 'TWIN_EXTRA']: 5.2s, 64 steps
+00:00:49|INFO   |twin_hf B2/W5 ['TWIN', 'TWIN_EXTRA']: 5.2s, 64 steps
+00:00:49|INFO   |=== task twin_hf|B3|None (always)
+00:01:17|INFO   |twin_hf B3/W1 ['TWIN', 'TWIN_EXTRA']: 26.7s, 320 steps
+00:01:43|INFO   |twin_hf B3/W2 ['TWIN', 'TWIN_EXTRA']: 26.6s, 320 steps
+00:02:11|INFO   |twin_hf B3/W3 ['TWIN', 'TWIN_EXTRA']: 27.3s, 328 steps
+00:02:39|INFO   |twin_hf B3/W4 ['TWIN', 'TWIN_EXTRA']: 28.7s, 344 steps
+00:03:06|INFO   |twin_hf B3/W5 ['TWIN', 'TWIN_EXTRA']: 26.6s, 320 steps
+00:03:06|INFO   |=== task twin_hf|B4|None (always)
+00:03:15|INFO   |twin_hf B4/W1 ['TWIN', 'TWIN_EXTRA']: 8.4s, 104 steps
+00:03:23|INFO   |twin_hf B4/W2 ['TWIN', 'TWIN_EXTRA']: 8.4s, 104 steps
+00:03:32|INFO   |twin_hf B4/W3 ['TWIN', 'TWIN_EXTRA']: 8.4s, 104 steps
+00:03:40|INFO   |twin_hf B4/W4 ['TWIN', 'TWIN_EXTRA']: 8.4s, 104 steps
+00:03:49|INFO   |twin_hf B4/W5 ['TWIN', 'TWIN_EXTRA']: 8.4s, 104 steps
+00:03:49|INFO   |=== task twin_hf|B5|None (always)
+00:03:55|INFO   |twin_hf B5/W1 ['TWIN', 'TWIN_EXTRA']: 5.9s, 72 steps
+00:04:01|INFO   |twin_hf B5/W2 ['TWIN', 'TWIN_EXTRA']: 5.8s, 72 steps
+00:04:08|INFO   |twin_hf B5/W3 ['TWIN', 'TWIN_EXTRA']: 7.1s, 88 steps
+00:04:15|INFO   |twin_hf B5/W4 ['TWIN', 'TWIN_EXTRA']: 6.5s, 80 steps
+00:04:21|INFO   |twin_hf B5/W5 ['TWIN', 'TWIN_EXTRA']: 6.5s, 80 steps
+00:04:21|INFO   |=== task twin_hf|B6|None (always)
+00:04:30|INFO   |twin_hf B6/W1 ['TWIN', 'TWIN_EXTRA']: 8.5s, 104 steps
+00:04:39|INFO   |twin_hf B6/W2 ['TWIN', 'TWIN_EXTRA']: 8.5s, 104 steps
+00:04:47|INFO   |twin_hf B6/W3 ['TWIN', 'TWIN_EXTRA']: 8.4s, 104 steps
+00:04:50|INFO   |twin_hf B6/W4 ['TWIN', 'TWIN_EXTRA']: 2.6s, 32 steps
+00:04:52|INFO   |twin_hf B6/W5 ['TWIN', 'TWIN_EXTRA']: 2.6s, 32 steps
+00:04:53|INFO   |=== task twin_hf|B7|None (always)
+00:04:58|INFO   |twin_hf B7/W1 ['TWIN', 'TWIN_EXTRA']: 5.2s, 64 steps
+00:05:24|INFO   |twin_hf B7/W2 ['TWIN', 'TWIN_EXTRA']: 25.8s, 312 steps
+00:05:41|INFO   |twin_hf B7/W3 ['TWIN', 'TWIN_EXTRA']: 17.0s, 208 steps
+00:05:59|INFO   |twin_hf B7/W4 ['TWIN', 'TWIN_EXTRA']: 17.8s, 216 steps
+00:06:09|INFO   |twin_hf B7/W5 ['TWIN', 'TWIN_EXTRA']: 9.8s, 120 steps
+00:06:09|INFO   |all 50 tasks done after 3740s; waiting for new plan items

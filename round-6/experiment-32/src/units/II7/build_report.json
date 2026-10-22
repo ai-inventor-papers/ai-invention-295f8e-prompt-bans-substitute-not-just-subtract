@@ -1,0 +1,95 @@
+{
+ "unit": "II7",
+ "utc": "2026-10-21T23:28:15.635978Z",
+ "spec_banned_hits": [],
+ "n_cases": 69,
+ "kinds": {
+  "example": 6,
+  "random": 55,
+  "stress": 8
+ },
+ "oracle_disagreements": [],
+ "references_pass_all": {
+  "backward_fill": true,
+  "concat_sort": true,
+  "heapq_merge": true,
+  "forward_copy": true
+ },
+ "references_slow_cases": {
+  "backward_fill": [],
+  "concat_sort": [],
+  "heapq_merge": [],
+  "forward_copy": []
+ },
+ "max_ref_time_by_mode": {
+  "backward_fill": 0.074404,
+  "concat_sort": 0.071759,
+  "heapq_merge": 0.07148,
+  "forward_copy": 0.036465
+ },
+ "mutants": {
+  "mutant_0": {
+   "fails": true,
+   "first_fail": {
+    "i": 0,
+    "status": "wrong",
+    "case_id": "II7:ex0"
+   }
+  },
+  "mutant_1": {
+   "fails": true,
+   "first_fail": {
+    "i": 2,
+    "status": "wrong",
+    "case_id": "II7:ex2"
+   }
+  },
+  "mutant_2": {
+   "fails": true,
+   "first_fail": {
+    "i": 0,
+    "status": "wrong",
+    "case_id": "II7:ex0"
+   }
+  }
+ },
+ "excluded_by_limit": {
+  "insertion_shift": {
+   "fails_stress": true,
+   "first_fail": {
+    "i": 0,
+    "status": "timeout",
+    "case_id": "II7:stress0"
+   },
+   "time_first_case": 1.00011
+  }
+ },
+ "labellers_on_references": {
+  "backward_fill": {
+   "runtime": "backward_fill",
+   "ast": "backward_fill",
+   "ok": true
+  },
+  "concat_sort": {
+   "runtime": "concat_sort",
+   "ast": "concat_sort",
+   "ok": true
+  },
+  "heapq_merge": {
+   "runtime": "heapq_merge",
+   "ast": "heapq_merge",
+   "ok": true
+  },
+  "forward_copy": {
+   "runtime": "forward_copy",
+   "ast": "forward_copy",
+   "ok": true
+  }
+ },
+ "probes_run": true,
+ "probe_correct": {
+  "p600": null
+ },
+ "stage_i": "PROVISIONAL",
+ "seconds": 8.663597345352173
+}

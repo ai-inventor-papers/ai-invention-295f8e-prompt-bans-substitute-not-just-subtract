@@ -1,0 +1,133 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "iter6_landing_v1",
+ "description": "Panel-pooling schema of iteration 6 (landing_events.json + units.json); panel I and panel II must emit identical field names.",
+ "definitions": {
+  "event": {
+   "type": "object",
+   "required": [
+    "event_id",
+    "unit_id",
+    "set",
+    "nudge",
+    "content_free",
+    "alphas",
+    "cells_pooled",
+    "counts",
+    "n_offdefault_correct",
+    "other_correct",
+    "is_event",
+    "modal_landing",
+    "margin_pts",
+    "other_dominant",
+    "default",
+    "K",
+    "catalogue",
+    "r_u",
+    "qlik_top1",
+    "t_u",
+    "tail_empty",
+    "discordant",
+    "q_base",
+    "q_lik",
+    "q_lik_raw",
+    "q_tail",
+    "assoc",
+    "support",
+    "commit_sha256",
+    "iter5_origin"
+   ],
+   "properties": {
+    "set": {
+     "enum": [
+      "CONFIRMATION",
+      "SCREEN"
+     ]
+    },
+    "nudge": {
+     "enum": [
+      "ESC",
+      "PN",
+      "GTN",
+      "BINT"
+     ]
+    },
+    "modal_landing": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   }
+  },
+  "unit": {
+   "type": "object",
+   "required": [
+    "unit_id",
+    "panel",
+    "unit_kind",
+    "status",
+    "source_ids",
+    "flags",
+    "catalogue",
+    "K",
+    "default",
+    "default_share",
+    "twin",
+    "q_tail",
+    "t_u",
+    "tail_empty",
+    "q_lik",
+    "qlik_top1",
+    "fork_margin",
+    "base",
+    "q_base",
+    "r_u",
+    "discordant",
+    "support",
+    "m_candidates",
+    "escape",
+    "E_u_by_alpha",
+    "E_u",
+    "association_counts",
+    "commit",
+    "enrolment"
+   ],
+   "properties": {
+    "panel": {
+     "const": "II"
+    },
+    "unit_kind": {
+     "enum": [
+      "new_unit",
+      "iter5_screen"
+     ]
+    },
+    "status": {
+     "enum": [
+      "enrolled",
+      "excluded_prebuild",
+      "excluded_gate",
+      "not_enrolled_time",
+      "excluded_no_default"
+     ]
+    }
+   }
+  }
+ },
+ "type": "object",
+ "properties": {
+  "events": {
+   "type": "array",
+   "items": {
+    "$ref": "#/definitions/event"
+   }
+  },
+  "units": {
+   "type": "array",
+   "items": {
+    "$ref": "#/definitions/unit"
+   }
+  }
+ }
+}
