@@ -1,0 +1,9 @@
+<repo>/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+22:38:57|INFO   |google/gemma-3-4b-pt loaded in 28s; free VRAM 15.66/23.66 GB
+22:38:57|INFO   |few-shot stage A: 15 tasks ['T2', 'T03', 'T05', 'T10', 'T1', 'T06', 'T04', 'R1', 'T08', 'R3', 'T13', 'R6', 'T14', 'T11', 'R2']
+<repo>/src/engine.py:447: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  nxt = torch.searchsorted(cdf, Ut[:, step:step + 1]).squeeze(-1).clamp_(max=V - 1)
+22:40:58|INFO   |FS6:T2:A0: B=40 119.6s, 752 steps, finish {np.str_('plain_end'): np.int64(25), np.str_('stop'): np.int64(15)}
+22:43:00|INFO   |FS6:T2:A1: B=40 121.4s, 768 steps, finish {np.str_('length'): np.int64(1), np.str_('plain_end'): np.int64(32), np.str_('stop'): np.int64(7)}
+22:44:18|INFO   |FS6:T2:A2: B=20 78.2s, 768 steps, finish {np.str_('length'): np.int64(1), np.str_('plain_end'): np.int64(13), np.str_('stop'): np.int64(6)}

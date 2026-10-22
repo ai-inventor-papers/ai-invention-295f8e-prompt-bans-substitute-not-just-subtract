@@ -1,0 +1,8 @@
+def solve(intervals):
+    merged = []
+    for s, e in sorted(intervals):
+        if merged and s <= merged[-1][1]:
+            merged[-1][1] = max(merged[-1][1], e)
+        else:
+            merged.append([s, e])
+    return merged

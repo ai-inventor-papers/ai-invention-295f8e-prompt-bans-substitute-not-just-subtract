@@ -1,0 +1,83 @@
+{
+ "task_order": [
+  "R6",
+  "T04",
+  "T05",
+  "T10",
+  "T03",
+  "T11",
+  "T1",
+  "T2"
+ ],
+ "direction_seeds": [
+  63001,
+  63002,
+  63003,
+  63004,
+  63005,
+  63006,
+  63007,
+  63008
+ ],
+ "alpha": 2.0,
+ "fd_stage1_slots": [
+  0,
+  1
+ ],
+ "fd_confirm_slots": [
+  2,
+  3,
+  4,
+  5
+ ],
+ "pn_namespace": "iter6G-PN",
+ "pn_slots": [
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19
+ ],
+ "stage1_rule": "catalogue off-default CORRECT share >= twin T1.0 share + 0.20 AND pass >= 0.8 x twin T1.0",
+ "confirm_rule": "pooled N 30 keeps both + one-sided exact binomial p < 0.05 vs twin off-default rate (floor 0.01)",
+ "committed_prediction": {
+  "R6": {
+   "modal_landing": "binary_search",
+   "D": "linear_scan"
+  },
+  "T04": {
+   "modal_landing": "builtin",
+   "D": "naive"
+  },
+  "T05": {
+   "modal_landing": "brute_force",
+   "D": "hash_map"
+  },
+  "T10": {
+   "modal_landing": "bfs",
+   "D": "dfs"
+  },
+  "T03": {
+   "modal_landing": null,
+   "D": "full_sort"
+  },
+  "T11": {
+   "modal_landing": "quadratic_dp",
+   "D": "patience_bisect"
+  },
+  "T1": {
+   "modal_landing": "bfs",
+   "D": "dfs"
+  },
+  "T2": {
+   "modal_landing": "bf_spfa",
+   "D": "dijkstra"
+  }
+ },
+ "event_definition": "v6 (see protocol_G6.json)"
+}
