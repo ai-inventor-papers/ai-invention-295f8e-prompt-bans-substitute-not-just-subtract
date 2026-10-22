@@ -1,0 +1,22 @@
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:02,  1.69it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:01,  1.61it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:01<00:01,  1.54it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  1.61it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  2.28it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  1.92it/s]
+15:29:37|INFO   |Qwen/Qwen3-8B bf16 loaded: {'precision': 'bf16', 'cpu_embedding': False, 'free_vram_before_GB': 24.838, 'free_vram_after_GB': 8.302, 'total_vram_GB': 25.253, 'gpu': 'NVIDIA GeForce RTX 4090', 'load_seconds': 42.4}
+15:29:37|INFO   |=== stage mgen (['T2']) ===
+15:30:51|INFO   |stage mgen T2 done in 74s
+15:30:51|INFO   |=== stage mgen done in 74s ===
+15:30:51|INFO   |=== stage seed2 (['T2']) ===
+./src/das7.py:279: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  tot += float(out[objective][0])
+15:31:17|INFO   |[T2:MAIN_LY_s2] step 25: train C -2.053; val gain 14.365 (by k {1: 14.053, 2: 14.319, 4: 14.398, 8: 14.52, 16: 14.535}) 25s
+15:31:40|INFO   |[T2:MAIN_LY_s2] step 50: train C -1.747; val gain 14.695 (by k {1: 14.463, 2: 14.593, 4: 14.737, 8: 14.806, 16: 14.875}) 48s
+15:32:03|INFO   |[T2:MAIN_LY_s2] step 75: train C -1.734; val gain 14.801 (by k {1: 14.661, 2: 14.715, 4: 14.81, 8: 14.879, 16: 14.942}) 71s
+15:32:26|INFO   |[T2:MAIN_LY_s2] step 100: train C -1.664; val gain 14.821 (by k {1: 14.749, 2: 14.737, 4: 14.804, 8: 14.876, 16: 14.94}) 94s
+15:32:49|INFO   |[T2:MAIN_LY_s2] step 125: train C -1.629; val gain 14.844 (by k {1: 14.768, 2: 14.768, 4: 14.821, 8: 14.899, 16: 14.965}) 117s
+15:33:12|INFO   |[T2:MAIN_LY_s2] step 150: train C -1.645; val gain 14.849 (by k {1: 14.766, 2: 14.774, 4: 14.836, 8: 14.908, 16: 14.958}) 140s
+15:33:35|INFO   |[T2:MAIN_LY_s2] step 175: train C -1.657; val gain 14.865 (by k {1: 14.761, 2: 14.81, 4: 14.867, 8: 14.916, 16: 14.973}) 163s
+15:33:57|INFO   |[T2:MAIN_LY_s2] step 200: train C -1.611; val gain 14.815 (by k {1: 14.548, 2: 14.725, 4: 14.903, 8: 14.939, 16: 14.963}) 185s
+15:34:20|INFO   |[T2:MAIN_LY_s2] step 225: train C -1.685; val gain 14.898 (by k {1: 14.777, 2: 14.865, 4: 14.924, 8: 14.955, 16: 14.971}) 208s
+15:35:26|INFO   |stage seed2 T2 done in 275s
+15:35:26|INFO   |=== stage seed2 done in 275s ===

@@ -1,0 +1,72 @@
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:02,  1.60it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:01,  1.70it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:01<00:01,  1.66it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  1.91it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  2.66it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  2.15it/s]
+14:27:43|INFO   |Qwen/Qwen3-8B bf16 loaded: {'precision': 'bf16', 'cpu_embedding': False, 'free_vram_before_GB': 24.838, 'free_vram_after_GB': 8.302, 'total_vram_GB': 25.253, 'gpu': 'NVIDIA GeForce RTX 4090', 'load_seconds': 36.9}
+14:27:43|INFO   |=== stage fitly (['T2', 'T10']) ===
+./src/das7.py:279: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  tot += float(out[objective][0])
+14:28:11|INFO   |[T2:MAIN_LY] step 25: train C -1.787; val gain 14.619 (by k {1: 14.638, 2: 14.574, 4: 14.605, 8: 14.676, 16: 14.605}) 26s
+14:28:34|INFO   |[T2:MAIN_LY] step 50: train C -1.710; val gain 14.647 (by k {1: 14.616, 2: 14.515, 4: 14.584, 8: 14.741, 16: 14.78}) 49s
+14:28:57|INFO   |[T2:MAIN_LY] step 75: train C -1.662; val gain 14.673 (by k {1: 14.625, 2: 14.516, 4: 14.572, 8: 14.756, 16: 14.897}) 72s
+14:29:20|INFO   |[T2:MAIN_LY] step 100: train C -1.643; val gain 14.725 (by k {1: 14.68, 2: 14.591, 4: 14.641, 8: 14.789, 16: 14.923}) 95s
+14:29:42|INFO   |[T2:MAIN_LY] step 125: train C -1.614; val gain 14.751 (by k {1: 14.677, 2: 14.635, 4: 14.677, 8: 14.826, 16: 14.943}) 118s
+14:30:05|INFO   |[T2:MAIN_LY] step 150: train C -1.606; val gain 14.800 (by k {1: 14.736, 2: 14.687, 4: 14.761, 8: 14.873, 16: 14.944}) 141s
+14:30:28|INFO   |[T2:MAIN_LY] step 175: train C -1.603; val gain 14.824 (by k {1: 14.751, 2: 14.718, 4: 14.807, 8: 14.892, 16: 14.953}) 163s
+14:30:51|INFO   |[T2:MAIN_LY] step 200: train C -1.585; val gain 14.841 (by k {1: 14.759, 2: 14.759, 4: 14.82, 8: 14.914, 16: 14.954}) 186s
+14:31:13|INFO   |[T2:MAIN_LY] step 225: train C -1.626; val gain 14.857 (by k {1: 14.786, 2: 14.775, 4: 14.848, 8: 14.921, 16: 14.955}) 209s
+14:31:37|INFO   |[T2:PERM_LY] step 25: train C -2.900; val gain 13.231 (by k {1: 13.063, 2: 13.285, 4: 13.014, 8: 13.461, 16: 13.33}) 23s
+14:32:00|INFO   |[T2:PERM_LY] step 50: train C -2.339; val gain 13.869 (by k {1: 13.586, 2: 13.897, 4: 14.045, 8: 14.015, 16: 13.8}) 46s
+14:32:22|INFO   |[T2:PERM_LY] step 75: train C -1.792; val gain 13.931 (by k {1: 13.713, 2: 14.114, 4: 14.285, 8: 14.029, 16: 13.513}) 68s
+14:32:45|INFO   |[T2:PERM_LY] step 100: train C -1.993; val gain 14.206 (by k {1: 13.809, 2: 14.155, 4: 14.413, 8: 14.416, 16: 14.237}) 91s
+14:33:08|INFO   |[T2:PERM_LY] step 125: train C -2.309; val gain 14.129 (by k {1: 13.854, 2: 14.188, 4: 14.17, 8: 14.289, 16: 14.143}) 114s
+14:33:31|INFO   |[T2:PERM_LY] step 150: train C -1.768; val gain 14.275 (by k {1: 13.947, 2: 14.32, 4: 14.526, 8: 14.498, 16: 14.081}) 137s
+14:33:53|INFO   |[T2:PERM_LY] step 175: train C -1.840; val gain 14.284 (by k {1: 13.716, 2: 14.303, 4: 14.506, 8: 14.55, 16: 14.345}) 159s
+14:34:16|INFO   |[T2:PERM_LY] step 200: train C -1.697; val gain 14.394 (by k {1: 14.083, 2: 14.512, 4: 14.634, 8: 14.404, 16: 14.337}) 182s
+14:34:39|INFO   |[T2:PERM_LY] step 225: train C -2.121; val gain 14.420 (by k {1: 14.097, 2: 14.169, 4: 14.582, 8: 14.634, 16: 14.616}) 205s
+14:35:05|INFO   |[T2:RPOS_LY] step 25: train C -6.012; val gain 10.194 (by k {1: 4.271, 2: 9.429, 4: 10.833, 8: 12.747, 16: 13.688}) 25s
+14:35:28|INFO   |[T2:RPOS_LY] step 50: train C -2.880; val gain 11.308 (by k {1: 3.955, 2: 13.125, 4: 13.556, 8: 13.071, 16: 12.836}) 48s
+14:35:50|INFO   |[T2:RPOS_LY] step 75: train C -6.800; val gain 13.138 (by k {1: 6.754, 2: 14.405, 4: 14.754, 8: 14.886, 16: 14.893}) 71s
+14:36:13|INFO   |[T2:RPOS_LY] step 100: train C -2.565; val gain 13.801 (by k {1: 10.482, 2: 14.601, 4: 14.699, 8: 14.845, 16: 14.376}) 94s
+14:36:36|INFO   |[T2:RPOS_LY] step 125: train C -8.890; val gain 11.963 (by k {1: 5.994, 2: 14.313, 4: 14.048, 8: 13.057, 16: 12.403}) 116s
+14:36:58|INFO   |[T2:RPOS_LY] step 150: train C -2.460; val gain 13.700 (by k {1: 11.117, 2: 14.384, 4: 14.762, 8: 14.655, 16: 13.582}) 139s
+14:37:21|INFO   |[T2:RPOS_LY] step 175: train C -5.836; val gain 14.141 (by k {1: 11.762, 2: 14.51, 4: 14.791, 8: 14.805, 16: 14.838}) 162s
+14:37:44|INFO   |[T2:RPOS_LY] step 200: train C -1.832; val gain 13.591 (by k {1: 10.305, 2: 14.047, 4: 14.323, 8: 14.711, 16: 14.569}) 184s
+14:38:07|INFO   |[T2:RPOS_LY] step 225: train C -2.005; val gain 14.349 (by k {1: 12.132, 2: 14.849, 4: 14.91, 8: 14.912, 16: 14.94}) 207s
+14:38:30|INFO   |stage fitly T2 done in 646s
+14:38:52|INFO   |[T10:MAIN_LY] step 25: train C -2.121; val gain 24.324 (by k {1: 20.984, 2: 24.53, 4: 25.053, 8: 25.55, 16: 25.501}) 22s
+14:39:12|INFO   |[T10:MAIN_LY] step 50: train C -1.633; val gain 24.260 (by k {1: 20.949, 2: 25.207, 4: 24.964, 8: 25.137, 16: 25.042}) 42s
+14:39:32|INFO   |[T10:MAIN_LY] step 75: train C -2.657; val gain 24.696 (by k {1: 24.087, 2: 25.206, 4: 24.837, 8: 24.77, 16: 24.581}) 61s
+14:39:51|INFO   |[T10:MAIN_LY] step 100: train C -1.618; val gain 24.758 (by k {1: 25.329, 2: 25.066, 4: 24.658, 8: 24.495, 16: 24.244}) 81s
+14:40:11|INFO   |[T10:MAIN_LY] step 125: train C -1.507; val gain 24.708 (by k {1: 25.514, 2: 25.075, 4: 24.552, 8: 24.4, 16: 23.998}) 101s
+14:40:31|INFO   |[T10:MAIN_LY] step 150: train C -1.366; val gain 24.358 (by k {1: 25.24, 2: 24.799, 4: 24.181, 8: 23.92, 16: 23.649}) 120s
+14:40:51|INFO   |[T10:PERM_LY] step 25: train C -1.669; val gain 24.016 (by k {1: 19.126, 2: 25.408, 4: 25.394, 8: 25.282, 16: 24.873}) 20s
+14:41:10|INFO   |[T10:PERM_LY] step 50: train C -2.642; val gain 24.728 (by k {1: 23.475, 2: 25.166, 4: 25.121, 8: 25.025, 16: 24.852}) 39s
+14:41:30|INFO   |[T10:PERM_LY] step 75: train C -1.685; val gain 24.731 (by k {1: 25.059, 2: 24.949, 4: 24.841, 8: 24.534, 16: 24.273}) 59s
+14:41:50|INFO   |[T10:PERM_LY] step 100: train C -1.520; val gain 24.301 (by k {1: 25.047, 2: 24.532, 4: 24.367, 8: 24.013, 16: 23.547}) 79s
+14:42:09|INFO   |[T10:PERM_LY] step 125: train C -1.537; val gain 24.436 (by k {1: 25.361, 2: 24.88, 4: 24.704, 8: 23.917, 16: 23.319}) 98s
+14:42:29|INFO   |[T10:PERM_LY] step 150: train C -1.520; val gain 23.965 (by k {1: 25.103, 2: 24.491, 4: 24.193, 8: 23.356, 16: 22.682}) 118s
+14:42:29|INFO   |[T10:PERM_LY] early stop at step 150
+14:42:51|INFO   |[T10:RPOS_LY] step 25: train C -6.379; val gain 18.885 (by k {1: 7.937, 2: 15.541, 4: 21.798, 8: 24.421, 16: 24.727}) 22s
+14:43:11|INFO   |[T10:RPOS_LY] step 50: train C -4.333; val gain 20.359 (by k {1: 8.872, 2: 21.893, 4: 24.241, 8: 24.248, 16: 22.542}) 41s
+14:43:31|INFO   |[T10:RPOS_LY] step 75: train C -4.982; val gain 20.674 (by k {1: 10.596, 2: 23.136, 4: 24.434, 8: 23.709, 16: 21.498}) 61s
+14:43:51|INFO   |[T10:RPOS_LY] step 100: train C -4.820; val gain 19.737 (by k {1: 11.113, 2: 24.311, 4: 22.895, 8: 20.868, 16: 19.498}) 81s
+14:44:10|INFO   |[T10:RPOS_LY] step 125: train C -1.709; val gain 20.129 (by k {1: 14.032, 2: 24.434, 4: 22.497, 8: 20.461, 16: 19.22}) 100s
+14:44:30|INFO   |[T10:RPOS_LY] step 150: train C -1.693; val gain 18.289 (by k {1: 10.757, 2: 23.752, 4: 21.368, 8: 18.415, 16: 17.155}) 120s
+14:44:30|INFO   |[T10:RPOS_LY] early stop at step 150
+14:44:50|INFO   |stage fitly T10 done in 381s
+14:44:50|INFO   |=== stage fitly done in 1027s ===
+14:44:50|INFO   |=== stage tfeval (['T2', 'T10']) ===
+14:45:53|INFO   |stage tfeval T2 done in 63s
+14:46:37|INFO   |stage tfeval T10 done in 44s
+14:46:37|INFO   |=== stage tfeval done in 107s ===
+14:46:37|INFO   |=== stage gen (['T2', 'T10']) ===
+14:52:54|INFO   |T2 MAIN_LY: k* = 2 ({'recovery_by_k': {1: 0.7, 2: 1.1, 4: 0.9, 8: 0.9, 16: 0.5}, 'full_transfer_count': 10, 'base_count': 1})
+14:53:47|INFO   |stage gen T2 done in 430s
+14:58:04|INFO   |T10 MAIN_LY: k* = 1 ({'recovery_by_k': {1: 1.0588235294117647, 2: 1.3529411764705883, 4: 1.2352941176470589, 8: 1.7058823529411764, 16: 1.7058823529411764}, 'full_transfer_count': 17, 'base_count': 0})
+14:58:45|INFO   |stage gen T10 done in 298s
+14:58:45|INFO   |=== stage gen done in 728s ===
+14:58:45|INFO   |=== stage genpilot (['T2', 'T10']) ===
+15:00:35|INFO   |stage genpilot T2 done in 110s
+15:01:57|INFO   |stage genpilot T10 done in 83s
+15:01:58|INFO   |=== stage genpilot done in 192s ===
