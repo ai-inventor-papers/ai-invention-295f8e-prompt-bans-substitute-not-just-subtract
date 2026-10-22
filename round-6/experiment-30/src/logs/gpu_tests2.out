@@ -1,0 +1,9 @@
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+20:54:10|INFO   |hardware: {'gpu': 'NVIDIA L4', 'vram_gib': 22.04, 'compute_capability': '8.9', 'cpus': 5, 'ram_gb_container': 61.999996928, 'python': '3.12.14', 'torch': '2.8.0+cu128', 'transformers': '4.57.6', 'precision': 'W16A16', 'kernel': 'sdpa', 'cuda': '12.8', 'cudnn': 91002, 'utc': '2026-10-21T20:54:10.668497Z', 'note': 'VRAM >= 19.5 GiB: plain W16A16 on GPU (no CPU embedding offload needed)'}
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:08<00:33,  8.35s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:16<00:24,  8.29s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:24<00:16,  8.12s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:30<00:07,  7.44s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:33<00:00,  5.64s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:33<00:00,  6.67s/it]
+20:55:18|INFO   |Qwen/Qwen3-8B@b968826d loaded bf16 in 35s; free VRAM 7.1/23.7 GB
+./src/engine_w16.py:180: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  tok = torch.searchsorted(cdf, u[:, None].to(cdf.dtype)).squeeze(-1)
+20:55:38|INFO   |B0000:T03:W1:P0: 18.4s, 208 steps, arms ['SMOKE_S0_a2', 'SMOKE_S1E_a2', 'SMOKE_S1_a2', 'SMOKE_S2_a2', 'SMOKE_S3_a2', 'SMOKE_S4_a2', 'SMOKE_S5_a2']
+20:55:54|INFO   |B0001:T03:W1:P0: 15.8s, 208 steps, arms ['SMOKE_TOP5_a2', 'SMOKE_TWIN', 'TWIN_X']

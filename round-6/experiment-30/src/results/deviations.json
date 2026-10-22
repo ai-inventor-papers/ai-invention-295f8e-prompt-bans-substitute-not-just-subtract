@@ -1,0 +1,107 @@
+[
+ {
+  "id": "D_GPU",
+  "what": "NVIDIA L4 (22 GiB usable, compute 8.9) instead of the planned RTX A4500 20 GB",
+  "why": "pod hardware",
+  "consequence": "W16A16 kept (VRAM >= 19.5 GiB); no CPU embedding offload needed",
+  "utc": "2026-10-21T21:00:07.433319Z"
+ },
+ {
+  "id": "D_BATCH",
+  "what": "fixed batch shape B = 16 (T03/T10) and 12 (T2/T1) instead of the plan's starting 8/6",
+  "why": "memory probe at full length passed with peak 18.6/22.0 GiB (results/batch_probe.json); larger B halves GPU time",
+  "consequence": "B frozen in src/cfg.py before commit #1; U1 batch-composition invariance verified at B = 16",
+  "utc": "2026-10-21T21:00:07.448618Z"
+ },
+ {
+  "id": "D_U3_bf16",
+  "what": "U3: mean along-u displacement equals alpha x unit within 0.05% at every prefill site, but the max per-position relative error is 0.58-0.87% for S4, S5 and TOP5 (threshold 0.5%)",
+  "why": "the edit is exact in fp32; casting the edited residual to bf16 rounds every component (relative 2^-9); at S4 the displacement is only 1-6% of ||h||, so that rounding is up to ~0.9% of the displacement",
+  "consequence": "not a hook bug (alpha-0 identity U2 and the positive control U8 pass); reported, sampling proceeds",
+  "utc": "2026-10-21T21:00:07.463094Z"
+ },
+ {
+  "id": "D_U4",
+  "what": "U4 shadow fidelity: T10 min cos 0.9998 (pass), T03 min cos 0.69 over 19 steps (fail)",
+  "why": "the same pattern as exp20 in FP8 (T03 0.68, T1 0.996), diagnosed there as decode-path vs full-forward numerics rather than the shadow coupling",
+  "consequence": "S3's along-u target vs its shadow holds within 0.04% (U3) and S3 alpha 0 is byte-identical to the twin (U2); reported",
+  "utc": "2026-10-21T21:00:07.479032Z"
+ },
+ {
+  "id": "D_F2_ORDER",
+  "what": "F2 q_lik / thinking-on passes run AFTER the decisive sampling instead of in Step 5",
+  "why": "GPU queue order: they do not feed any committed set or direction",
+  "consequence": "prediction (v) and the F2 rule are committed before m is computed (stricter than the plan)",
+  "utc": "2026-10-21T21:00:07.495799Z"
+ },
+ {
+  "id": "D_SETS_TWIN",
+  "what": "the committed banned sets use earlier twin rows (exp19/24/27), not this artifact's twin",
+  "why": "this artifact's twin is a decisive cell sampled after commit #1",
+  "consequence": "results/banned_sets_check.json re-derives the sets with this twin added",
+  "utc": "2026-10-21T21:00:07.542811Z"
+ },
+ {
+  "id": "D_T1_MASKED",
+  "what": "T1 masked forced prompts (exp22) cover exp8's 6 modes (astar_gbfs, dijkstra names), not the 10-algorithm extended catalogue",
+  "why": "exp22 built T1 masked prompts on the exp8 catalogue",
+  "consequence": "T1 centroids and push directions use the 300 named prompts; masked T1 points are shown, not used for centroids",
+  "utc": "2026-10-21T21:00:07.561163Z"
+ },
+ {
+  "id": "D_U9_POSTHOC",
+  "what": "U9 (twin vs earlier bf16 twin rows) is computed post hoc from the P1 twin rows",
+  "why": "the twin rows are decisive rows sampled after commit #1",
+  "consequence": "reported in results/engine_checks.json",
+  "utc": "2026-10-21T21:00:07.580091Z"
+ },
+ {
+  "id": "D_PROGRESS_DEF",
+  "what": "push progress t = <s_push - s_twin, v>/<c_S - s_twin, v> is unstable when the twin is not on the banned side of v (T03 top-3 gives t = -83 at alpha 1)",
+  "why": "the twin prompt (a ban-shaped neutral sentence) sits off the forced-prompt manifold",
+  "consequence": "t is reported as committed; a second normalisation <s_push - s_twin, v>/||c_S - c_B|| is reported beside it (descriptive)",
+  "utc": "2026-10-21T21:00:07.597745Z"
+ },
+ {
+  "id": "D_INPUT_POSTCOMMIT",
+  "what": "inputs/exp27/results/pn_vs_dmd.json copied after commit #1",
+  "why": "needed only for the descriptive S3-vs-matched-decoding KL table",
+  "consequence": "hash in inputs/SHA256SUMS_post_commit1; no committed rule uses it",
+  "utc": "2026-10-21T22:14:35.618534Z"
+ },
+ {
+  "id": "D_GEOM_SPEED",
+  "what": "src/geometry.py changed between commit #1 and commit #2: vectorised k-NN graph and separability; MDS initialised at the classical-MDS solution with one SMACOF run instead of 8 random inits",
+  "why": "the committed version took 11 min per S-d pass on 5 CPU cores shared with the GPU job",
+  "consequence": "S-d is descriptive; CPU tests T6 re-verify the geometry (half-ring stress 0.0004); commit #2 records the new hash",
+  "utc": "2026-10-21T22:14:35.637380Z"
+ },
+ {
+  "id": "D_POSTC2_FIXES",
+  "what": "three fixes to src/analysis.py after commit #2 (recorded in commit #3): (1) the S-d extended-survivor count on T1 used the K=7 label, under which every extended survivor maps to other; it now uses label_ext (the edge test already did); (2) m_fork dropped forks at the first code token, although both continuations share the prompt and fence line there; now included; (3) the stable push-progress normalisation t-prime was added beside the committed t (descriptive)",
+  "why": "bugs found on reading the first full outputs",
+  "consequence": "S-a, S-b, S-c, F1 and the F2 primary m are unaffected",
+  "utc": "2026-10-21T23:09:21.625971Z"
+ },
+ {
+  "id": "D_F2_UNDEFINED",
+  "what": "F2 margin undefined on R3, R6, T04, T05, T06 and T08 (the default or the runner-up has fewer than 3 test-passing adherent forced programs; T06 hash_set supplemented with one label-verified non-adherent program)",
+  "why": "the plan fallback (generate up to 15 forced programs with vLLM) was not run for time",
+  "consequence": "q_lik reported for every algorithm with >= 3 programs; m defined on 9 of 15 tasks including all F2-decisive tasks (T2, T03, T1)",
+  "utc": "2026-10-21T23:44:19.973567Z"
+ },
+ {
+  "id": "D_UNIT_RATIO",
+  "what": "the ban-free / iteration-4 ban unit ratio is 0.81 (ratio of means) and 1.00 (mean of per-position ratios) on T03 blocks 12-23, not exp27 unit_ratio.json 1.39",
+  "why": "exp27 averaged its per-row ratio against exp17 FP8 norms with its own prompt/position set; not reconciled here",
+  "consequence": "descriptive only; no rule uses the ratio",
+  "utc": "2026-10-21T23:44:19.991811Z"
+ },
+ {
+  "id": "D_PATH_SCRUB",
+  "what": "src/cfg.py (DEP_DATASET default) and src/figures.py (house-style path) rewritten to environment variables after the run",
+  "why": "published files must not hold absolute server paths",
+  "consequence": "no computation changed; recorded as commit 5",
+  "utc": "2026-10-22T00:01:38.056938Z"
+ }
+]

@@ -1,0 +1,177 @@
+{
+ "T03": {
+  "counts": {
+   "by_source": {
+    "twin_exp19_fp8": {
+     "full_sort": 50
+    },
+    "twin_exp27_bf16": {
+     "full_sort": 49,
+     "quickselect": 1
+    },
+    "twin_exp24_bf16": {
+     "full_sort": 149,
+     "quickselect": 1
+    },
+    "twin_exp25_bf16_ECTWIN": {},
+    "base_exp24_bf16": {
+     "full_sort": 70,
+     "heapify_pop": 5,
+     "quickselect": 14,
+     "size_k_heap": 4,
+     "counting_sort": 2
+    },
+    "plan_noise_exp19_fp8": {
+     "full_sort": 123,
+     "size_k_heap": 16,
+     "quickselect": 45,
+     "heapify_pop": 1
+    },
+    "plan_noise_exp27_bf16": {
+     "full_sort": 81,
+     "quickselect": 16,
+     "size_k_heap": 2
+    }
+   },
+   "pooled": {
+    "full_sort": 522,
+    "size_k_heap": 22,
+    "heapify_pop": 6,
+    "quickselect": 77,
+    "median_of_medians": 0,
+    "counting_sort": 2
+   },
+   "base": {
+    "full_sort": 70,
+    "size_k_heap": 4,
+    "heapify_pop": 5,
+    "quickselect": 14,
+    "median_of_medians": 0,
+    "counting_sort": 2
+   }
+  },
+  "rank": [
+   "full_sort",
+   "quickselect",
+   "size_k_heap",
+   "heapify_pop",
+   "counting_sort",
+   "median_of_medians"
+  ]
+ },
+ "T10": {
+  "counts": {
+   "by_source": {
+    "twin_exp19_fp8": {
+     "union_find": 50
+    },
+    "twin_exp27_bf16": {
+     "union_find": 50
+    },
+    "twin_exp24_bf16": {
+     "union_find": 149,
+     "dfs": 1
+    },
+    "twin_exp25_bf16_ECTWIN": {},
+    "base_exp24_bf16": {
+     "dfs": 48,
+     "union_find": 22,
+     "bfs": 4,
+     "label_propagation": 1
+    },
+    "plan_noise_exp19_fp8": {
+     "union_find": 124,
+     "dfs": 44,
+     "bfs": 3
+    },
+    "plan_noise_exp27_bf16": {
+     "union_find": 98,
+     "dfs": 2
+    }
+   },
+   "pooled": {
+    "bfs": 7,
+    "dfs": 95,
+    "union_find": 493,
+    "label_propagation": 1
+   },
+   "base": {
+    "bfs": 4,
+    "dfs": 48,
+    "union_find": 22,
+    "label_propagation": 1
+   }
+  },
+  "rank": [
+   "union_find",
+   "dfs",
+   "bfs",
+   "label_propagation"
+  ]
+ },
+ "sets": {
+  "T03|TOP5": {
+   "banned": [
+    "full_sort",
+    "quickselect",
+    "size_k_heap",
+    "heapify_pop",
+    "counting_sort"
+   ],
+   "survivors": [
+    "median_of_medians"
+   ],
+   "rule": "5 most implemented of 6"
+  },
+  "T03|TOP3": {
+   "banned": [
+    "full_sort",
+    "quickselect",
+    "size_k_heap"
+   ],
+   "survivors": [
+    "heapify_pop",
+    "counting_sort",
+    "median_of_medians"
+   ],
+   "rule": "3 most implemented (added variant)"
+  },
+  "T10|TOP5": {
+   "banned": [
+    "union_find",
+    "dfs",
+    "bfs"
+   ],
+   "survivors": [
+    "label_propagation"
+   ],
+   "rule": "all but the least implemented of 4"
+  },
+  "T1|TOP5": {
+   "banned": [
+    "bfs",
+    "dfs",
+    "gbfs",
+    "iddfs",
+    "astar"
+   ],
+   "survivors_k7": [
+    "bibfs",
+    "idastar"
+   ],
+   "survivors_ext": [
+    "bibfs",
+    "idastar",
+    "dijkstra_unit",
+    "jps",
+    "biastar"
+   ],
+   "survivors": [
+    "bibfs",
+    "idastar"
+   ],
+   "rule": "exp9 literal TOP5 (bfs, dfs, gbfs, iddfs, astar)"
+  }
+ },
+ "note": "implemented = correct programs with that label; pooled over earlier twin rows, base-model programs and plan-noise rows (engine kept per source); ties by base count, then alphabetical"
+}

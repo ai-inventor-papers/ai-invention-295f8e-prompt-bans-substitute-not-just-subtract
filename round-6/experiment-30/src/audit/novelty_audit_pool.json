@@ -1,0 +1,3286 @@
+{
+ "utc": "2026-10-21T23:02:46.732352Z",
+ "n_pool_rows": 63,
+ "n_unique": 61,
+ "records": [
+  {
+   "id": "T03|00fd4d4a6044",
+   "task": "T03",
+   "code_sha256": "00fd4d4a60446b0f0200e760a9688e959413cd220ac9540723fe8d48540fffc9",
+   "arms": [
+    "TOP3_a2"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n    \n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n    \n    # Find the k-th smallest element\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.276
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.209
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a variation of counting sort by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest element. This approach is a direct adaptation of the counting sort principle to handle potentially large value ranges and duplicates efficiently.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest element, which is a variant of counting sort adapted to handle negative values and sparse keys using a dictionary. It does not use a fixed-size array for counting but the principle of counting occurrences and accumulating counts to find the k-th element is the same.",
+    "catalogue_label_if_miss": null,
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|020fbea1f428",
+   "task": "T03",
+   "code_sha256": "020fbea1f428332ed381ebf0c0d45dab71f996bf162751017d7a93f229efa018",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number in nums\n    freq = {}\n    for num in nums:\n        freq[num] = freq.get(num, 0) + 1\n\n    # Get a sorted list of unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Find the k-th smallest number\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.268
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.246
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.19
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a counting sort-like approach by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest. This is a variant of counting sort, which typically uses an array indexed by values, but here it uses a dictionary and then sorts the keys.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest, which is a direct implementation of counting sort over the value range. This matches the counting_sort catalogue algorithm exactly, just using a dictionary instead of an array for counts.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses frequency counting and then iterates through sorted unique keys to accumulate counts until reaching the k-th element, which is the exact mechanism of counting sort for selection problems.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|0b06112b841d",
+   "task": "T03",
+   "code_sha256": "0b06112b841d8f7698c4b203687426987f9792fefb70bac75ef7a9f977aa83ce",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count occurrences of each number\n    count = {}\n    for num in nums:\n        if num in count:\n            count[num] += 1\n        else:\n            count[num] = 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(count.keys())\n\n    # Find the k-th smallest number considering duplicates\n    current_count = 0\n    for num in sorted_nums:\n        current_count += count[num]\n        if current_count >= k:\n            return num\n\n    return None  # In case k is out of bounds, though the problem says k is valid\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.277
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.205
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a counting sort-like approach by first counting the occurrences of each number and then iterating through the sorted unique numbers to find the k-th smallest. This is a variant of counting sort, which typically uses an array indexed by values to store counts, but here it uses a dictionary and then sorts the keys.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts occurrences of each number and then iterates over the sorted unique keys to find the k-th smallest element, which is a direct implementation of counting sort adapted to the problem's value range. This matches the counting_sort algorithm in the catalogue exactly, just using a dictionary instead of an array for counting.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program counts occurrences of each value, sorts the unique keys, and accumulates counts until reaching k, which is the exact mechanism of counting sort for selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|0c14a9acea6f",
+   "task": "T03",
+   "code_sha256": "0c14a9acea6f19dfae4904857b9c1149a524a5bf89c54ecd0f686fce19c77068",
+   "arms": [
+    "TOP3_a2",
+    "TOP3_a2"
+   ],
+   "n_rows": 2,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Find the k-th smallest by accumulating counts\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.276
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.209
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a variation of counting sort by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest. This approach is a direct adaptation of the counting sort principle to handle potentially negative numbers and repeated values.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest by cumulative count, which is a variant of counting sort adapted to the problem's value range and duplicates. It does not use a fixed-size array for counting but a dictionary, making it a variant rather than a direct textbook counting sort implementation.",
+    "catalogue_label_if_miss": null,
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|0c3b13819dfc",
+   "task": "T03",
+   "code_sha256": "0c3b13819dfc802445eeafa0ad07353f4fcc6df3608a170e3c0ae1c6e3fde1b1",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    from collections import defaultdict\n\n    # Count the frequency of each number\n    freq = defaultdict(int)\n    for num in nums:\n        freq[num] += 1\n\n    # Create a sorted list of unique numbers\n    sorted_unique = sorted(freq.keys())\n\n    # Iterate through the sorted unique numbers and count how many elements are less than or equal to the current\n    count = 0\n    for num in sorted_unique:\n        count += freq[num]\n        if count >= k:\n            return num\n    return None  # This line is theoretically unreachable if k is valid\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.292
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.287
+    },
+    {
+     "source": "kodcode_algorithmic",
+     "mode_hint": "['counting_sort']",
+     "similarity": 0.217
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a variation of counting sort by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th element. This approach leverages the value range of the input, similar to counting sort, but avoids creating a full count array for the entire range if the unique values are sparse.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.8
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest element, which is a direct implementation of counting sort principles adapted to the problem constraints. This matches the counting_sort catalogue algorithm for selection by frequency counting and cumulative counting.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses frequency counting and cumulative summation to find the k-th smallest element, which is the core mechanism of counting sort for selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|0f8c7efdc404",
+   "task": "T03",
+   "code_sha256": "0f8c7efdc404b8127a248d34768c8f90286414eee115ff0f030a306059f47d2e",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number\n    freq = {}\n    for num in nums:\n        freq[num] = freq.get(num, 0) + 1\n\n    # Get a sorted list of unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Find the k-th smallest number by counting frequencies\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.268
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.246
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.19
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a counting sort-like approach by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest. This is a variant of counting sort, adapted for potentially negative numbers and a wider range by using a dictionary for frequencies.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest, which is a variant of counting sort adapted to the problem's value range and input constraints. It does not use a fixed-size counting array but a dictionary and sorting of keys, making it a known algorithm variant rather than a direct catalogue match.",
+    "catalogue_label_if_miss": null,
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|1200342b1b12",
+   "task": "T03",
+   "code_sha256": "1200342b1b128ba780e60f6e8e6964994f5ba4121cc720c90253a959b60a8ae1",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n    \n    # Sort the keys of the frequency dictionary\n    sorted_nums = sorted(freq.keys())\n    \n    # Find the k-th smallest number by iterating through the sorted keys\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.276
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.209
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a variation of counting sort by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest. This approach is a direct adaptation of the counting sort principle to handle potentially sparse or negative value ranges.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest element, which is a direct implementation of counting sort over the value range. This matches the counting_sort catalogue algorithm exactly, just using a dictionary instead of an array for counting.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses frequency counting and then iterates through sorted unique keys to accumulate counts until reaching the k-th element, which is the exact mechanism of counting sort for selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|14fe9cfc62d7",
+   "task": "T03",
+   "code_sha256": "14fe9cfc62d702b8f3dcf6ed8b02c3acda5efa6b2f39ddb0dd9e951515df7a16",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Find the k-th smallest by counting cumulative frequencies\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n    return None  # This line is theoretically unreachable if k is valid\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.277
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.205
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a counting sort-like approach by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest. This is a variant of counting sort, adapted for potentially negative numbers and a wider range by using a dictionary for frequencies.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest by cumulative frequency, which is a variant of counting sort adapted to handle negative values and sparse keys using a dictionary instead of an array. This approach is a known method for selection by frequency counting rather than sorting the entire list.",
+    "catalogue_label_if_miss": null,
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|1791b4c10cf5",
+   "task": "T03",
+   "code_sha256": "1791b4c10cf5830fde74248a7f68650cecaeee0aedf588f23f64c1ade8550c83",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Create a frequency dictionary to count occurrences of each number\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Traverse the sorted numbers to find the k-th smallest\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n    return None  # In case k exceeds the length of nums (should not happen per problem constraints)\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.277
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.205
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses a frequency map to count occurrences of each number and then iterates through the sorted unique keys to find the k-th smallest element. This approach is a variant of counting sort, adapted for a potentially sparse range of input values.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest, which is a direct implementation of counting sort over the value range. This matches the counting_sort catalogue algorithm for k-th smallest selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses frequency counting of values followed by iterating through sorted unique keys, which is the exact mechanism of counting sort for selection problems.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|18f4e24bd0ec",
+   "task": "T03",
+   "code_sha256": "18f4e24bd0ec33efba42f6a93a799c7034ec3162f071abaf988ea1ce3d5d0b18",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number using a dictionary\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Count how many numbers are less than the current number\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n    return None  # This line is theoretically unreachable if k is valid\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.277
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.205
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a counting sort-like approach by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest element. This is a variant of counting sort, adapted to handle potentially negative numbers and a wider range by using a dictionary for frequencies instead of a fixed-size array.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest by cumulative frequency, which is a variant of counting sort adapted to a dictionary and sorted keys rather than a fixed range array. It does not use a fixed-size frequency array over the entire value range but achieves the same counting and selection mechanism.",
+    "catalogue_label_if_miss": null,
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|1cc11f6c522d",
+   "task": "T03",
+   "code_sha256": "1cc11f6c522db617ada657ed49d2da15c1028662d2313d9f866c74210f5b1072",
+   "arms": [
+    "TOP3_a2"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number\n    freq = {}\n    for num in nums:\n        freq[num] = freq.get(num, 0) + 1\n    \n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n    \n    # Find the k-th smallest number by counting frequencies\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.268
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.246
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.19
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a variation of counting sort by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest. This approach is a direct adaptation of the counting sort principle to handle potentially large value ranges and duplicates efficiently.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest by cumulative frequency, which is a variant of counting sort adapted to arbitrary integer ranges using a dictionary instead of an array. It does not use a fixed-size counting array but the principle of counting occurrences and accumulating counts to select the k-th element is the same.",
+    "catalogue_label_if_miss": null,
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|2223e568c2ad",
+   "task": "T03",
+   "code_sha256": "2223e568c2addc66632ef263dc460b86b4583ef43b90cb33e4081f940d9e9724",
+   "arms": [
+    "S3_a2"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    counts = {}\n    for num in nums:\n        if num in counts:\n            counts[num] += 1\n        else:\n            counts[num] = 1\n    sorted_nums = sorted(counts.keys())\n    for num in sorted_nums:\n        if k <= counts[num]:\n            return num\n        else:\n            k -= counts[num]\n    return -1\n",
+   "neighbours": [
+    {
+     "source": "mercury",
+     "mode_hint": "kth-largest-element-in-an-array",
+     "similarity": 0.197
+    },
+    {
+     "source": "mercury",
+     "mode_hint": "kth-largest-element-in-an-array",
+     "similarity": 0.197
+    },
+    {
+     "source": "mercury",
+     "mode_hint": "kth-largest-element-in-an-array",
+     "similarity": 0.191
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a counting sort variant by first counting the occurrences of each number using a dictionary and then iterating through the sorted unique numbers to find the k-th smallest. This is a variation of counting sort that handles sparse value ranges more efficiently than a fixed-size array.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts occurrences of each distinct number and then iterates over the sorted keys to find the k-th smallest by cumulative count, which is a direct implementation of counting sort selection. This matches the counting_sort catalogue algorithm exactly, just using a dictionary instead of an array for counts.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses a counting-based approach by creating a frequency dictionary, sorting the unique keys, and then iterating through the sorted keys while decrementing k by the frequency count until k falls within the current value's frequency range.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|22d14f2cd1ad",
+   "task": "T03",
+   "code_sha256": "22d14f2cd1adf881da1a496cbda410888d834a853d9fd51cbac4624b92e25f39",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number\n    from collections import defaultdict\n\n    freq = defaultdict(int)\n    for num in nums:\n        freq[num] += 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Find the k-th smallest number by counting frequencies\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.291
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.286
+    },
+    {
+     "source": "kodcode_algorithmic",
+     "mode_hint": "['counting_sort']",
+     "similarity": 0.22
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a variation of counting sort by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest. This approach is a direct adaptation of the counting sort principle to solve the k-th smallest element problem.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest element, which is a direct implementation of counting sort principles adapted to the problem constraints. This matches the counting_sort catalogue algorithm for selection by frequency counting and cumulative counting.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses frequency counting and cumulative summation to find the k-th smallest element, which is the core mechanism of counting sort-based selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|280bfa997cc9",
+   "task": "T03",
+   "code_sha256": "280bfa997cc99cc34a245e442e099dbae14aa22c10ef3b58786d795429e57ea3",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    from collections import Counter\n\n    # Count the frequency of each number\n    count = Counter(nums)\n\n    # Get sorted list of unique numbers\n    sorted_unique = sorted(count.keys())\n\n    # Traverse the sorted unique numbers to find the k-th smallest\n    for num in sorted_unique:\n        if k <= count[num]:\n            return num\n        k -= count[num]\n\n    return None\n",
+   "neighbours": [
+    {
+     "source": "kodcode_algorithmic",
+     "mode_hint": "['heap', 'top_k_frequent']",
+     "similarity": 0.227
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.178
+    },
+    {
+     "source": "mercury",
+     "mode_hint": "kth-largest-element-in-an-array",
+     "similarity": 0.176
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses a counting-based approach by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest. This is a variant of counting sort, adapted to handle potentially negative numbers and a wider range by using a Counter and sorting unique keys.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts occurrences of each number and iterates over the sorted unique keys to find the k-th smallest element, which is a direct application of counting sort principles adapted to the problem constraints. It does not perform a full sort of the entire list but uses frequency counting and sorted keys traversal, a known variant of counting sort for selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|2d34959162c1",
+   "task": "T03",
+   "code_sha256": "2d34959162c1cf2e6b4ef3a9e38a022147401bad5525e5c3723878cf59a1e942",
+   "arms": [
+    "TOP3_a2"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Use a list to count the frequency of each number\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Find the k-th smallest element\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n    return None\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.277
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.205
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses a frequency map to count occurrences of each number and then iterates through the sorted unique numbers to find the k-th smallest element. This is a variant of counting sort, adapted to handle arbitrary integer ranges by using a dictionary instead of a fixed-size array.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest, which is a direct implementation of counting sort adapted to the problem constraints. This matches the counting_sort algorithm in the catalogue exactly, just using a dictionary instead of an array for counting.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses frequency counting of values followed by iterating through sorted unique keys, which is the exact mechanism of counting sort for selection problems.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|32b05d6a67be",
+   "task": "T03",
+   "code_sha256": "32b05d6a67bebf8321a09150a978f01ed73f0a956ca91f6b6506db4d5644aa50",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Use a frequency dictionary to count occurrences of each number\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Collect the sorted unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Find the k-th smallest number by counting frequencies\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n    return None  # Should not reach here if k is valid\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.277
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.205
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program first counts the frequency of each number and then iterates through the sorted unique numbers, accumulating counts until the k-th element is found. This approach is a variant of counting sort, adapted to find the k-th smallest element by leveraging frequency counts.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest by cumulative frequency, which is a variant of counting sort adapted to a dictionary and sorted keys rather than an array indexed by value. It does not use a fixed range array for counting but the principle of counting occurrences and accumulating counts to select the k-th element is the same.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|34e11ba5fae6",
+   "task": "T03",
+   "code_sha256": "34e11ba5fae621ae663b4492c40b080aad6a9f752d6b6b39cf8b2ece08bda59b",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number in nums\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Traverse the sorted numbers and count until we reach the k-th element\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n    return None  # This line is theoretically unreachable if k is valid\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.277
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.205
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a counting sort-like approach by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th element. This is a variant of counting sort, adapted to handle potentially negative numbers and a wider range by using a dictionary for frequencies and then sorting the keys.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest, which is a variant of counting sort adapted to the problem's value range and input constraints. It does not use a fixed-size array for counting but a dictionary, making it a variant rather than a direct textbook counting sort.",
+    "catalogue_label_if_miss": null,
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|372d5fca7466",
+   "task": "T03",
+   "code_sha256": "372d5fca7466a90f5be1c68669820d9a2b7600b9c42bf19fbffd0d6b223e5b76",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    from collections import Counter\n\n    # Count the frequency of each number\n    count = Counter(nums)\n    \n    # Sort the unique numbers\n    sorted_unique = sorted(count.keys())\n    \n    # Find the k-th smallest element by iterating through the sorted unique elements\n    for num in sorted_unique:\n        if k <= count[num]:\n            return num\n        k -= count[num]\n    \n    return None  # Should not reach here if k is valid\n",
+   "neighbours": [
+    {
+     "source": "kodcode_algorithmic",
+     "mode_hint": "['heap', 'top_k_frequent']",
+     "similarity": 0.227
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.178
+    },
+    {
+     "source": "mercury",
+     "mode_hint": "kth-largest-element-in-an-array",
+     "similarity": 0.176
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses a counting-based approach similar to counting sort by first counting the frequencies of each number. It then iterates through the sorted unique numbers, accumulating counts until the k-th element is found, which is a variation of the counting sort mechanism for selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program counts occurrences of each number and iterates over the sorted unique keys to find the k-th smallest element, which is a direct implementation of counting sort for selection. This matches the counting_sort catalogue algorithm exactly, just using a Counter and sorted keys instead of an explicit array over the value range.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses counting sort by creating a frequency counter of values, then iterates through sorted unique keys to find the k-th smallest element by accumulating frequencies.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|37afaeddea4b",
+   "task": "T03",
+   "code_sha256": "37afaeddea4b8686a001876f4261fdb040e487cd89a4178d2d465d99b8360134",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number using a dictionary\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Find the k-th smallest number by counting frequencies\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.276
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.209
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a variation of counting sort by first creating a frequency map of the numbers and then iterating through the sorted unique keys of the map. This approach effectively counts occurrences and finds the k-th smallest element, similar to how counting sort operates on a value range.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest by cumulative frequency, which is a variant of counting sort adapted to a dictionary and sorted keys rather than an array indexed by value. It does not use a fixed-size array for counting but the principle of counting occurrences and accumulating counts to select the k-th element matches counting sort.",
+    "catalogue_label_if_miss": null,
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|41ea8d01bd94",
+   "task": "T03",
+   "code_sha256": "41ea8d01bd94f10742b040906c44e3c01bcd7b19426be03c98ed8f8d2501927e",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number in nums using a dictionary\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers in ascending order\n    sorted_nums = sorted(freq.keys())\n\n    # Find the k-th smallest element by counting frequencies\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n    return None  # This line is theoretically unreachable if k is valid\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.277
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.205
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a counting sort-like approach by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest element. This is a variant of counting sort, adapted for potentially negative numbers and a wider range by using a dictionary for frequencies.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest element, which is a variant of counting sort adapted to handle negative values and sparse keys by using a dictionary instead of an array. This approach is functionally equivalent to counting sort but implemented with a dictionary and sorting keys explicitly.",
+    "catalogue_label_if_miss": null,
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|4afecb142640",
+   "task": "T03",
+   "code_sha256": "4afecb14264054b0c3ce23805dbff09afb3ee2328eb0d0de0c338561a9dce1d7",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number\n    freq = {}\n    for num in nums:\n        freq[num] = freq.get(num, 0) + 1\n    \n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n    \n    # Find the k-th smallest number considering frequencies\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.268
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.246
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.19
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a variation of counting sort by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest. This approach is a direct adaptation of the counting sort principle to handle potentially large value ranges and duplicates efficiently.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest element by cumulative frequency, which is a direct implementation of counting sort for selection. This matches the counting_sort catalogue algorithm exactly, just using a dictionary instead of an array for counting.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses frequency counting of values followed by iterating through sorted unique keys, which is the exact mechanism of counting sort for selection problems where we accumulate frequencies until reaching the k-th element.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|4b3ec8725cf9",
+   "task": "T03",
+   "code_sha256": "4b3ec8725cf934c0b6f6b5cf15c4456497b880e6f7bb16335a361ffb4a06cb50",
+   "arms": [
+    "TOP3_a2"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number\n    freq = {}\n    for num in nums:\n        freq[num] = freq.get(num, 0) + 1\n    \n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n    \n    # Find the k-th smallest by accumulating frequencies\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.268
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.246
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.19
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a variation of counting sort by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest. This approach is a direct adaptation of the counting sort principle to handle potentially large value ranges and duplicates efficiently.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest by cumulative frequency, which is a variant of counting sort adapted to the given value range and input format. It does not use a fixed-size array for counting but a dictionary, making it a variant rather than a direct catalogue implementation.",
+    "catalogue_label_if_miss": null,
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|4baf49b36b06",
+   "task": "T03",
+   "code_sha256": "4baf49b36b066d83563a6047fa4f4c63d473de12f4fa385471c5c84ba5928826",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count frequency of each number\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Find the k-th smallest number by counting frequencies\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n    return None\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.277
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.205
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a counting sort-like approach by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest. This is a variant of counting sort, which typically uses an array indexed by values to count occurrences.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest by cumulative frequency, which is a variant of counting sort adapted to handle negative values and sparse keys using a dictionary. It does not use a fixed-size array for counting but the principle of counting occurrences and accumulating counts to select the k-th element matches counting sort.",
+    "catalogue_label_if_miss": null,
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|4e1f9c78c113",
+   "task": "T03",
+   "code_sha256": "4e1f9c78c1138f3d3f27422e9d5bcbaa78d0e249da1ecd8a0073d59248cffbf4",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count frequency of each number\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Find the k-th smallest number\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.276
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.209
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program first counts the frequency of each number, then sorts the unique numbers, and finally iterates through the sorted unique numbers, accumulating counts until the k-th element is found. This is a variant of counting sort that handles arbitrary integer ranges by sorting the unique keys instead of using a fixed-size array for all possible values.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest, which is a variant of counting sort adapted to the problem's value range and input constraints. It does not use a fixed-size counting array but a dictionary and sorting of keys, making it a known counting-based selection method but not a textbook counting sort exactly.",
+    "catalogue_label_if_miss": null,
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|5136c78455fc",
+   "task": "T03",
+   "code_sha256": "5136c78455fcc682c642eea82538b487b44cafe7e9461f89a5aefc122a25bd28",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Find the k-th smallest number\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n    return None  # Should not reach here if k is valid\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.277
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.205
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a variation of counting sort by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest. This approach is a direct adaptation of the counting sort principle for finding the k-th element.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest, which is a variant of counting sort adapted to handle negative values and sparse keys using a dictionary instead of an array. This approach is a known method for selection by frequency counting and cumulative counting, differing only in data structure but not in fundamental algorithmic principle.",
+    "catalogue_label_if_miss": null,
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|51ec177269f2",
+   "task": "T03",
+   "code_sha256": "51ec177269f2ac265b66cf21cafe65bfaecfeeca95ab29e14b5a5bfe10fdc74f",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Create a frequency dictionary\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Count the number of elements until we reach the k-th smallest\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n\n    return None  # This line should never be reached if k is valid\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.277
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.205
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program first counts the frequency of each number, similar to the counting sort approach. It then sorts the unique keys and iterates through them, accumulating counts until the k-th element is found.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest element, which is a direct implementation of counting sort over the value range. This matches the counting_sort catalogue algorithm for k-th smallest selection exactly.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses frequency counting of values followed by iterating through sorted unique keys to accumulate counts until reaching the k-th element, which is the exact mechanism of counting sort for selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|55ef86119635",
+   "task": "T03",
+   "code_sha256": "55ef861196352c9be45f9b619c95cf62ff178a500e2db5459f588007ae7d2502",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    from collections import Counter\n\n    # Count the occurrences of each number\n    count = Counter(nums)\n    # Get sorted list of unique numbers\n    sorted_unique = sorted(count.keys())\n    \n    # Iterate to find the k-th smallest element\n    current_k = 0\n    for num in sorted_unique:\n        current_k += count[num]\n        if current_k >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.3
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.273
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.237
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses a frequency map (Counter) to count occurrences of each number and then iterates through the sorted unique keys to find the k-th element. This is a variant of counting sort, adapted for potentially negative numbers and a wider range by using a hash map instead of a fixed-size array.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts occurrences of each number and iterates over the sorted unique keys to find the k-th smallest element, which is a variant of counting sort adapted to the problem's value range and input constraints. It does not use a fixed-size counting array over the entire range but achieves the same effect by counting and sorting unique keys.",
+    "catalogue_label_if_miss": null,
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|5bdad2d7988f",
+   "task": "T03",
+   "code_sha256": "5bdad2d7988f96dc2d8da071f71ef98888483c7165275c97e6e8663085cfd0a0",
+   "arms": [
+    "TOP3_a2"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Build a frequency dictionary\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Count elements to find the k-th smallest\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.276
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.209
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program first counts the frequency of each number, then sorts the unique numbers, and finally iterates through the sorted unique numbers, accumulating counts until the k-th element is found. This is a variant of counting sort, adapted to handle potentially negative numbers and a wider range by using a dictionary for frequencies and sorting the keys.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest element, which is a variant of counting sort adapted to arbitrary integer ranges using a dictionary instead of an array. It does not use a fixed-size counting array but the principle of counting occurrences and accumulating counts to select the k-th element is the same.",
+    "catalogue_label_if_miss": null,
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|5cd069e96bfd",
+   "task": "T03",
+   "code_sha256": "5cd069e96bfdb713bcdedf3eb9fdc9dbcebe7ea40cd44a3736135b82a2b814c7",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Create a list of tuples (value, count) for frequency counting\n    freq = {}\n    for num in nums:\n        freq[num] = freq.get(num, 0) + 1\n\n    # Sort the unique values\n    sorted_values = sorted(freq.keys())\n\n    # Find the k-th smallest value by counting cumulative frequencies\n    count = 0\n    for val in sorted_values:\n        count += freq[val]\n        if count >= k:\n            return val\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.268
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.246
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.19
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": null,
+    "rationale": null,
+    "catalogue_label_if_miss": null,
+    "confidence": null
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique value and then iterates over the sorted unique values to find the k-th smallest by cumulative frequency, which is a variant of counting sort adapted to the problem's value range and input format. It does not use a fixed-size counting array over the entire value range but achieves the same effect by frequency counting and sorting unique keys.",
+    "catalogue_label_if_miss": null,
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|642725a9179e",
+   "task": "T03",
+   "code_sha256": "642725a9179e3a92c238829733dc5c33e1e6abe15424ae0c5afebc3f279b5b09",
+   "arms": [
+    "TOP3_a2"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number\n    from collections import Counter\n    counts = Counter(nums)\n    \n    # Sort the unique numbers\n    sorted_nums = sorted(counts.keys())\n    \n    # Find the k-th smallest element considering duplicates\n    for num in sorted_nums:\n        if k <= counts[num]:\n            return num\n        k -= counts[num]\n    return None\n",
+   "neighbours": [
+    {
+     "source": "kodcode_algorithmic",
+     "mode_hint": "['heap', 'top_k_frequent']",
+     "similarity": 0.227
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.178
+    },
+    {
+     "source": "mercury",
+     "mode_hint": "kth-largest-element-in-an-array",
+     "similarity": 0.176
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program first counts the occurrences of each number, similar to the counting sort approach. It then iterates through the sorted unique numbers, accumulating counts until the k-th element is found, which is a variation of how counting sort would determine the k-th element.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest element, which is a direct implementation of counting sort for selection. This matches the counting_sort catalogue algorithm exactly, just using a Counter and sorted keys instead of an explicit array over the entire range.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses counting via a frequency dictionary followed by iterating through sorted unique keys, which is a variant implementation of counting sort for selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|6950ae288309",
+   "task": "T03",
+   "code_sha256": "6950ae288309f0dd0623239c2fdfd12c03eb55b20ac8ca9e8a3084abb61a8834",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    from collections import Counter\n\n    # Count frequency of each number\n    freq = Counter(nums)\n\n    # Extract sorted unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Traverse sorted numbers and accumulate counts until reaching k-th element\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.3
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.273
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.237
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses a frequency counter and then iterates through sorted unique keys to find the k-th element, which is a variant of counting sort. It differs from a pure counting sort by not creating a full array of counts for the entire value range, but rather using a dictionary (Counter) and then sorting the keys.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest element, which is a direct implementation of counting sort over the value range. This matches the counting_sort catalogue algorithm exactly, just using a Counter and sorted keys instead of an array indexed by value.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses frequency counting and then iterates through sorted unique values to accumulate counts until reaching the k-th element, which is the exact mechanism of counting sort for selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|733e90cc1b91",
+   "task": "T03",
+   "code_sha256": "733e90cc1b9112d53a2148609e5ef401b6acd18e7a130e9e3bd5f4216336ce10",
+   "arms": [
+    "TOP3_a2"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Use a list to count occurrences of each number\n    count = {}\n    for num in nums:\n        if num in count:\n            count[num] += 1\n        else:\n            count[num] = 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(count.keys())\n\n    # Traverse sorted numbers to find the k-th smallest\n    current_count = 0\n    for num in sorted_nums:\n        current_count += count[num]\n        if current_count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.276
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.209
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses a counting-based approach to find the k-th smallest element. It first counts the occurrences of each number and then iterates through the sorted unique numbers, accumulating counts until the k-th element is found, which is a variant of counting sort.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts occurrences of each number and then iterates over the sorted unique keys to find the k-th smallest, which is a direct implementation of counting sort adapted to the given value range. This matches the counting_sort algorithm in the catalogue exactly, just using a dictionary instead of a fixed-size array.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses a counting-based approach where it first counts occurrences of each number, then sorts the unique keys, and finally accumulates counts to find the k-th smallest value, which is the essence of the counting sort algorithm for selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|7a6cda1a3710",
+   "task": "T03",
+   "code_sha256": "7a6cda1a3710285c8249365daec8600f72fa674fa55371a1a3b348a89c3be1aa",
+   "arms": [
+    "TOP3_a2"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Use a list to count the frequency of each number\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Traverse the sorted numbers to find the k-th smallest\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n    return None\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.277
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.205
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses a frequency map to count occurrences of each number and then iterates through the sorted unique numbers to find the k-th smallest. This is a variant of counting sort, adapted to handle arbitrary integer ranges by using a dictionary instead of a fixed-size array.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest, which is a direct implementation of counting sort adapted to the given value range. This matches the counting_sort catalogue algorithm for k-th smallest selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses frequency counting of values followed by a linear scan through sorted unique keys, which is the exact mechanism of counting sort for selection problems.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|7a7c9210c711",
+   "task": "T03",
+   "code_sha256": "7a7c9210c711b8f289a789b9e79445d1af198416bae3ef90306f3fd1dff424da",
+   "arms": [
+    "TOP3_a2"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    counts = {}\n    for num in nums:\n        counts[num] = counts.get(num, 0) + 1\n    sorted_nums = sorted(counts.keys())\n    for num in sorted_nums:\n        if k <= counts[num]:\n            return num\n        k -= counts[num]\n    return None\n",
+   "neighbours": [
+    {
+     "source": "kodcode_algorithmic",
+     "mode_hint": "['heap', 'top_k_frequent']",
+     "similarity": 0.172
+    },
+    {
+     "source": "mercury",
+     "mode_hint": "kth-largest-element-in-an-array",
+     "similarity": 0.161
+    },
+    {
+     "source": "mercury",
+     "mode_hint": "kth-largest-element-in-an-array",
+     "similarity": 0.147
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program first counts the occurrences of each number, similar to the counting phase of counting sort. It then sorts the unique numbers and iterates through them, accumulating counts until the k-th element is found.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts occurrences of each number and then iterates over the sorted unique keys to find the k-th smallest element, which is a direct implementation of counting sort for selection. This matches the counting_sort algorithm in the catalogue exactly, just implemented with a dictionary instead of an array for counts.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program counts frequency of each value, sorts the unique keys, then walks through the sorted keys while decrementing k by the count of each value until it finds the k-th smallest element.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|7d9a6f8c7693",
+   "task": "T03",
+   "code_sha256": "7d9a6f8c7693f1176390bbad019fa26794dc66f7c33dbd8bf30ecf40cfacc67f",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Find the k-th smallest number\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n    return None  # This line is theoretically unreachable for valid inputs\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.277
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.205
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a counting sort-like approach by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th element. This is a variant of counting sort, adapted to handle potentially negative numbers and a wider range by using a dictionary for frequencies and then sorting the keys.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest, which is a variant of counting sort adapted to a dictionary and sorting keys explicitly. It differs from classical counting sort by sorting keys explicitly rather than using an array indexed by value, but the core idea of counting occurrences and accumulating counts to find the k-th element is the same.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|834e2d9451ba",
+   "task": "T03",
+   "code_sha256": "834e2d9451ba296da6036cc1e82461556e980a2b17c8d1b972a7dc154880377d",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Use a frequency dictionary to count occurrences\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers to determine order\n    sorted_nums = sorted(freq.keys())\n\n    # Traverse the sorted list to find the k-th smallest value\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.276
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.209
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program first counts the frequency of each number, then sorts the unique numbers and iterates through them, accumulating counts until the k-th element is found. This is a variant of counting sort, adapted to handle arbitrary integer ranges by using a dictionary for frequencies and sorting only the unique keys.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest element, which is a direct implementation of counting sort over the value range. This matches the counting_sort catalogue algorithm exactly, just using a dictionary instead of an array for counting.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses frequency counting of values followed by iterating through sorted unique keys, which is the exact mechanism of counting sort for selection problems. It should have been labeled as counting_sort in the catalogue.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|84da8fec9d41",
+   "task": "T03",
+   "code_sha256": "84da8fec9d411cbb6fa98c8a5918a2bcd024c049e776a37a434a936855166198",
+   "arms": [
+    "TOP3_a2"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Create a frequency dictionary\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Find the k-th smallest number\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.276
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.209
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses a frequency map to count occurrences of each number and then iterates through the sorted unique keys to find the k-th smallest element. This is a variant of counting sort, adapted to handle potentially negative numbers and a wider range by using a dictionary instead of a fixed-size array.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest element, which is a variant of counting sort adapted to handle negative values and sparse keys by using a dictionary instead of an array. It does not perform a full sort of all elements but uses frequency counting and partial sorting of unique keys, matching the counting sort approach in essence.",
+    "catalogue_label_if_miss": null,
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|88716f5352ab",
+   "task": "T03",
+   "code_sha256": "88716f5352abea698b9373095742a0f76aaba635fe42758419f8409c147e9d2b",
+   "arms": [
+    "TOP3_a2"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count occurrences of each number\n    from collections import Counter\n    counts = Counter(nums)\n    \n    # Sort the unique numbers\n    sorted_nums = sorted(counts.keys())\n    \n    # Find the k-th smallest number by checking cumulative counts\n    current_count = 0\n    for num in sorted_nums:\n        current_count += counts[num]\n        if current_count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.3
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.273
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.237
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses a counting-based approach to find the k-th smallest element. It first counts the occurrences of each number and then iterates through the sorted unique numbers, accumulating counts until the k-th element is found, which is a variant of counting sort.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts occurrences of each number and then iterates over the sorted unique keys to find the k-th smallest by cumulative counts, which is a direct implementation of counting sort for selection. This matches the counting_sort catalogue algorithm exactly, just using a Counter and sorted keys instead of an array indexed by value.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses a Counter to count occurrences of each value, sorts the unique keys, and then accumulates counts until reaching the k-th element, which is the exact mechanism of counting sort for selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|90714542a960",
+   "task": "T03",
+   "code_sha256": "90714542a96092c8341acafc224b177cce2375c2416b22a956dde80047d2531d",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Create a sorted list of unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Traverse the sorted list to find the k-th smallest element\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n    return None  # This line is theoretically unreachable if k is valid\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.277
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.205
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a counting sort-like approach by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th element. This is a variant of counting sort, which typically uses an array indexed by values to store counts, but here it uses a dictionary and then sorts the keys.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest element, which is a variant of counting sort adapted to the problem's value range and input format. It does not use a fixed-size array for counting but a dictionary, making it a known counting-based selection method but not the textbook counting sort exactly.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|9394bd3dd37c",
+   "task": "T03",
+   "code_sha256": "9394bd3dd37c2d0c02a9ea11c3cf87ea0b8dad62221f4464f35db1423fcce816",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Create a frequency dictionary to count occurrences of each number\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the keys (unique numbers) in ascending order\n    sorted_nums = sorted(freq.keys())\n\n    # Traverse sorted numbers and count cumulative frequency to find k-th smallest\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n\n    return None  # This line is theoretically unreachable if k is valid\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.277
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.205
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a counting sort-like approach by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest element. This is a variant of counting sort, which typically uses an array indexed by values to store counts, but here it uses a dictionary and then sorts the keys.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest by cumulative frequency, which is a variant of counting sort adapted to handle negative values and sparse keys using a dictionary instead of an array. This approach is functionally equivalent to counting sort but implemented with a dictionary and sorting keys explicitly.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|9842d6bbe654",
+   "task": "T03",
+   "code_sha256": "9842d6bbe654292c74fc31c2b69983cd5f40c9d91fddc67cc58684f0072e8dc0",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Use a frequency dictionary to count occurrences of each number\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Find the k-th smallest element\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n\n    return None  # Should not reach here if k is valid\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.277
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.205
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program first counts the frequency of each number, then sorts the unique numbers and iterates through them, accumulating counts until the k-th element is found. This is a variant of counting sort, adapted to handle potentially negative numbers and a wider range by using a dictionary for frequencies instead of a fixed-size array.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest element, which is a variant of counting sort adapted to handle negative values and sparse keys by using a dictionary instead of an array. This approach is a known method for selection using frequency counts rather than sorting the entire list.",
+    "catalogue_label_if_miss": null,
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|9cd39efc9d3a",
+   "task": "T03",
+   "code_sha256": "9cd39efc9d3adbd80b35b644ec67de89fd617f96e3883d3661804f70436022ac",
+   "arms": [
+    "TOP3_a2"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Create a frequency dictionary\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n    \n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n    \n    # Find the k-th smallest element\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n    return None  # This line is theoretically unreachable if k is valid\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.277
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.205
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a counting sort-like approach by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest element. This is a variant of counting sort, which typically uses an array indexed by values to count occurrences, but here it uses a dictionary and then sorts the keys.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest element, which is a variant of counting sort adapted to handle negative values and sparse keys by using a dictionary instead of an array. This approach is functionally equivalent to counting sort but implemented with a dictionary and sorting keys explicitly.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|9d05c53dfa16",
+   "task": "T03",
+   "code_sha256": "9d05c53dfa16ef534bb71230e7c044faa76b85748ebc5d5848be6f08c87466fd",
+   "arms": [
+    "TOP3_a4",
+    "TOP3_a4"
+   ],
+   "n_rows": 2,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Find the k-th smallest number\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.276
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.209
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a counting sort variant by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest. This approach is a direct adaptation of the counting sort principle for finding the k-th element.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest element, which is a direct implementation of counting sort over the value range. This matches the counting_sort catalogue algorithm exactly, just using a dictionary instead of an array for counts.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses frequency counting of values followed by iterating through sorted unique keys, which is the counting sort algorithm adapted for selection rather than full sorting.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|9fd8e5b6fdad",
+   "task": "T03",
+   "code_sha256": "9fd8e5b6fdad22ca68c67aeed95696a9b339f0dc16a59a22909e4dcaee722120",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Create a frequency dictionary to count occurrences of each number\n    freq = {}\n    for num in nums:\n        freq[num] = freq.get(num, 0) + 1\n\n    # Sort the unique numbers to determine the order\n    sorted_nums = sorted(freq.keys())\n\n    # Iterate through the sorted numbers to find the k-th smallest\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n    return None  # This line is theoretically unreachable if k is valid\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.273
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.243
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.19
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a variation of counting sort by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest. This approach is fundamentally the same as counting sort but adapted for potentially sparse value ranges and without pre-allocating a full count array.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest, which is a variant of counting sort adapted to the problem's value range and input format. It does not use a fixed-size counting array over the entire range but achieves the same effect by frequency counting and sorting unique keys.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|a3d2d2ae287e",
+   "task": "T03",
+   "code_sha256": "a3d2d2ae287e89c13a40ab253f2e7a9b9bdb43d7240fd082a23ee700c88cd91a",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number using a dictionary\n    freq = {}\n    for num in nums:\n        freq[num] = freq.get(num, 0) + 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Traverse sorted numbers to find the k-th smallest\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n    return None  # This line is theoretically unreachable if k is valid\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.273
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.243
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.19
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a variation of counting sort by first creating a frequency map of the numbers and then iterating through the sorted unique keys of the map. This approach effectively counts occurrences and determines the k-th smallest element without explicitly creating a full count array, which is a common optimization for sparse value ranges.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest, which is a variant of counting sort adapted to the problem's value range and input constraints. It does not use a fixed-size counting array over the entire range but achieves the same effect by frequency counting and sorting unique keys.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|ad7b192e973d",
+   "task": "T03",
+   "code_sha256": "ad7b192e973d10728dac98128fa2aac0e02e2ead215a56b29b26a0c257d15a0a",
+   "arms": [
+    "TOP3_a2"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    counts = {}\n    for num in nums:\n        counts[num] = counts.get(num, 0) + 1\n    \n    sorted_nums = sorted(counts.keys())\n    current_count = 0\n    \n    for num in sorted_nums:\n        current_count += counts[num]\n        if current_count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.268
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.246
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.19
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a counting sort-like approach by first counting the occurrences of each number and then iterating through the sorted unique numbers to find the k-th smallest. This is a variant of counting sort, adapted for potentially negative numbers and a wider range by using a dictionary for counts.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts occurrences of each distinct number and then iterates over the sorted keys to find the k-th smallest by cumulative count, which is a direct implementation of counting sort over the value range. This matches the counting_sort catalogue algorithm exactly, just using a dictionary instead of an array for counts.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program counts frequency of each number, sorts the unique keys, then accumulates counts until reaching the k-th position, which is the counting sort algorithm for selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|aeb3113166a1",
+   "task": "T03",
+   "code_sha256": "aeb3113166a13156e20c93d1762db12cf6afc504af14202f65a74b99c78bca2b",
+   "arms": [
+    "TOP3_a2"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    counts = {}\n    for num in nums:\n        counts[num] = counts.get(num, 0) + 1\n    \n    sorted_keys = sorted(counts.keys())\n    for key in sorted_keys:\n        if k <= counts[key]:\n            return key\n        else:\n            k -= counts[key]\n    return None\n",
+   "neighbours": [
+    {
+     "source": "kodcode_algorithmic",
+     "mode_hint": "['heap', 'top_k_frequent']",
+     "similarity": 0.172
+    },
+    {
+     "source": "mercury",
+     "mode_hint": "kth-largest-element-in-an-array",
+     "similarity": 0.161
+    },
+    {
+     "source": "mercury",
+     "mode_hint": "kth-largest-element-in-an-array",
+     "similarity": 0.147
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a counting sort variant by first counting the occurrences of each number and then iterating through the sorted unique numbers to find the k-th smallest element. This approach is a direct application of the counting sort principle for selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts occurrences of each number and then iterates over the sorted unique keys to find the k-th smallest element, which is a direct implementation of counting sort for selection. This matches the counting_sort catalogue algorithm exactly, just implemented with a dictionary and sorting keys instead of an array over the fixed range.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program counts frequency of each value, sorts the unique keys, then walks through the sorted keys subtracting counts until it finds the k-th smallest element, which is the exact mechanism of counting sort for selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|b32c093356f9",
+   "task": "T03",
+   "code_sha256": "b32c093356f95d37a6b4e2f03611f67ad7cf96dacc47c86dcf57ba16cd8d876d",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number in nums\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Find the k-th smallest number\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.276
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.209
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a variation of counting sort by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest. This approach is a direct adaptation of the counting sort principle to handle potentially large value ranges and duplicates efficiently.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest element, which is a direct implementation of counting sort over the value range. This matches the counting_sort catalogue algorithm exactly, just implemented with a dictionary instead of an array for counts.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses frequency counting of values followed by iterating through sorted unique keys, which is the exact mechanism of counting sort for selection problems where we accumulate frequencies until reaching the k-th element.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|b6935f0bd9e3",
+   "task": "T03",
+   "code_sha256": "b6935f0bd9e3b96451e9a21ee63f9909783da99c443c05d94a9d92a7b6ba57f4",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Use a frequency dictionary to count occurrences\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique elements to determine order\n    sorted_nums = sorted(freq.keys())\n\n    # Count elements until we reach the k-th smallest\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n    return None  # Should not reach here if input is valid\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.277
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.205
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program first counts the frequency of each number, similar to the counting sort approach. It then iterates through the sorted unique keys, accumulating counts until the k-th element is found, which is a variation of how counting sort would be used to find the k-th element.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest, which is a direct implementation of counting sort over the value range. This matches the counting_sort catalogue algorithm exactly, just using a dictionary instead of an array for counts.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses a frequency dictionary to count occurrences of each value, sorts the unique keys, and then accumulates counts until reaching the k-th smallest element, which is the exact mechanism of counting sort for selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|beacfcdf8b9b",
+   "task": "T03",
+   "code_sha256": "beacfcdf8b9bf1881a4f15de0b3f9a9775ed194cb967d35485dc98481bebd15f",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count frequency of each number\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Find the k-th smallest element\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.276
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.209
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a variation of counting sort by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest element. This approach is a direct adaptation of the counting sort principle to handle potentially large value ranges and duplicates efficiently.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest element, which is a direct implementation of counting sort over the value range. This matches the counting_sort catalogue algorithm exactly, just using a dictionary instead of an array for counts.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses frequency counting of values followed by iterating through sorted unique keys, which is the exact mechanism of counting sort for selection problems where we accumulate frequencies until reaching the k-th element.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|bf1fc2b8c163",
+   "task": "T03",
+   "code_sha256": "bf1fc2b8c16313dbcde85c50704aadb7663c76a100ffcead5b63db37a7d1fadc",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number in nums\n    freq = {}\n    for num in nums:\n        freq[num] = freq.get(num, 0) + 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Find the k-th smallest number by counting frequencies\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.268
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.246
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.19
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a counting sort-like approach by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest. This is a variant of counting sort, adapted for a potentially sparse range of values and handling duplicates correctly.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest by cumulative frequency, which is a direct implementation of counting sort over the value range. Although it uses a dictionary instead of an array for counting, it is essentially the counting sort algorithm adapted to the input constraints.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses frequency counting and then iterates through sorted unique values to accumulate counts until reaching the k-th position, which is the exact mechanism of counting sort for selection problems.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|c2adb3e01a4b",
+   "task": "T03",
+   "code_sha256": "c2adb3e01a4bbfd613a3744f857ca8cb807f7de125e076a1a9eb4e3cbcae5c1b",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number\n    freq = {}\n    for num in nums:\n        freq[num] = freq.get(num, 0) + 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Find the k-th smallest number\n    current_count = 0\n    for num in sorted_nums:\n        current_count += freq[num]\n        if current_count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.268
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.246
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.19
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a variation of counting sort by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest. This approach is a direct adaptation of the counting sort principle for finding the k-th element.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest element, which is a variant of counting sort adapted to handle negative values and sparse keys using a dictionary. It does not use a fixed-size array for counting but the principle of counting occurrences and accumulating counts to find the k-th order statistic is the same.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|c995ff2adf98",
+   "task": "T03",
+   "code_sha256": "c995ff2adf9807d5529a616b7b426020978af4a56af772bfd089da30332e88d2",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Use a frequency dictionary to count occurrences of each number\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Create a sorted list of unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Traverse the sorted numbers and count how many elements we've passed\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n\n    # If k is out of bounds (should not happen given constraints)\n    return None\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.277
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.205
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program first counts the frequency of each number and then iterates through the sorted unique numbers, accumulating counts until the k-th element is found. This approach is a variant of counting sort, adapted to handle potentially negative numbers and a wider range by using a dictionary for frequencies instead of a fixed-size array.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest, which is a direct implementation of counting sort over the value range. This matches the counting_sort catalogue algorithm exactly, just using a dictionary instead of an array for counting.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses frequency counting of values followed by a linear scan through sorted unique keys, which is the exact mechanism of counting sort for selection problems where we accumulate counts until reaching the k-th element.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|d0d2ffc4b8b6",
+   "task": "T03",
+   "code_sha256": "d0d2ffc4b8b67090b537d1b65c607c043e6d5c2f8a9362b20ebc9dc2fec46be1",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count occurrences of each number\n    count = {}\n    for num in nums:\n        if num in count:\n            count[num] += 1\n        else:\n            count[num] = 1\n    \n    # Sort the unique numbers\n    sorted_nums = sorted(count.keys())\n    \n    # Find the k-th smallest number\n    for num in sorted_nums:\n        if count[num] >= k:\n            return num\n        else:\n            k -= count[num]\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.181
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.173
+    },
+    {
+     "source": "mercury",
+     "mode_hint": "kth-largest-element-in-an-array",
+     "similarity": 0.172
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a counting sort variant by first counting the occurrences of each number and then iterating through the sorted unique numbers to find the k-th smallest. This approach is a direct implementation of the counting sort principle for finding the k-th element.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts occurrences of each number and then iterates over the sorted unique keys to find the k-th smallest element, which is a direct implementation of counting sort adapted to the problem constraints. This matches the counting_sort algorithm in the catalogue exactly, just using a dictionary instead of an array for counting.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program counts occurrences of each value, sorts the unique keys, and then walks through the sorted keys while subtracting counts to find the k-th smallest element, which is the exact mechanism of counting sort for selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|d5d9c52e9e74",
+   "task": "T03",
+   "code_sha256": "d5d9c52e9e7491c8592be0cbe737a122da5efd510049d1a3f9e3b7c2a27ee5c7",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number\n    freq = {}\n    for num in nums:\n        freq[num] = freq.get(num, 0) + 1\n\n    # Get sorted list of unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Find the k-th smallest number\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n\n    return None  # Should not reach here if k is valid\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.273
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.243
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.19
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a counting sort-like approach by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th smallest. This is a variant of counting sort, which typically uses an array for counts, but here uses a dictionary and then sorts the keys.",
+    "catalogue_label_if_miss": null,
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest element, which is a direct implementation of counting sort over the value range. This matches the counting_sort catalogue algorithm exactly, just using a dictionary instead of an array for counting.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses frequency counting and then iterates through sorted unique keys to accumulate counts until reaching the k-th element, which is the exact mechanism of counting sort for selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|dfa0b06de1ff",
+   "task": "T03",
+   "code_sha256": "dfa0b06de1ff6d5082f535d0f1bd23b3d2e307e52ec9ac62bbbfa18d498520a6",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count the frequency of each number\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers to find the k-th smallest\n    sorted_nums = sorted(freq.keys())\n\n    # Traverse the sorted list to find the k-th smallest value\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.276
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.209
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program first counts the frequency of each number, similar to the counting sort approach. It then sorts the unique numbers and iterates through them, accumulating counts until the k-th element is found, which is a variation of how counting sort would determine the k-th element.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest element, which is a variant of counting sort adapted to handle negative values and sparse keys by using a dictionary instead of an array. This approach is functionally equivalent to counting sort but implemented with a dictionary and sorting keys explicitly.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|e3e5cfe7e87c",
+   "task": "T03",
+   "code_sha256": "e3e5cfe7e87ce8b497cda8cea95c0f68704304d897fb4c81c907e65bdbff29a3",
+   "arms": [
+    "S4_a8"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    counts = {}\n    for num in nums:\n        counts[num] = counts.get(num, 0) + 1\n    sorted_nums = sorted(counts.keys())\n    for i in range(len(sorted_nums)):\n        k -= counts[sorted_nums[i]]\n        if k <= 0:\n            return sorted_nums[i]\n",
+   "neighbours": [
+    {
+     "source": "mercury",
+     "mode_hint": "kth-largest-element-in-an-array",
+     "similarity": 0.181
+    },
+    {
+     "source": "mercury",
+     "mode_hint": "kth-largest-element-in-an-array",
+     "similarity": 0.181
+    },
+    {
+     "source": "mercury",
+     "mode_hint": "kth-largest-element-in-an-array",
+     "similarity": 0.176
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program first counts the occurrences of each number, then sorts the unique numbers, and finally iterates through the sorted unique numbers, accumulating counts until the k-th element is found. This is a variant of counting sort that handles sparse value ranges by using a dictionary and sorting the keys, rather than a fixed-size array.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts occurrences of each distinct number and then iterates over the sorted keys to find the k-th smallest element, which is a direct implementation of the counting sort selection method. This matches the counting_sort algorithm in the catalogue exactly, just using a dictionary instead of an array for counts.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program counts frequency of each number, sorts the unique keys, then accumulates counts until reaching the k-th position, which is the counting sort algorithm adapted for k-th smallest selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|e8b322fd9e31",
+   "task": "T03",
+   "code_sha256": "e8b322fd9e3140458eef5ef8d1f0fd38bccc1a869f5db8c60910ca4ee3af0cca",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Create a list of tuples (value, count) to track the frequency of each number\n    freq = {}\n    for num in nums:\n        freq[num] = freq.get(num, 0) + 1\n\n    # Sort the unique numbers in ascending order\n    sorted_nums = sorted(freq.keys())\n\n    # Traverse the sorted list to find the k-th smallest element\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.268
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.246
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.19
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a variation of counting sort by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th element. This approach is a direct adaptation of the counting sort principle to handle potentially large value ranges and repeated elements.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest element, which is a direct implementation of counting sort over the value range. This matches the counting_sort catalogue algorithm for k-th smallest selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses frequency counting of values followed by a linear scan through sorted unique values to accumulate counts until reaching the k-th element, which is the exact mechanism of counting sort for selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|ee7631eb78dd",
+   "task": "T03",
+   "code_sha256": "ee7631eb78dd8d1c98c835fad48cdfe95f49634c59b38fa5cd08bc103d93783e",
+   "arms": [
+    "TOP3_a2"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    counts = {}\n    for num in nums:\n        counts[num] = counts.get(num, 0) + 1\n    \n    sorted_keys = sorted(counts.keys())\n    count = 0\n    for key in sorted_keys:\n        count += counts[key]\n        if count >= k:\n            return key\n    return None\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.273
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.243
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.19
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a counting sort algorithm by first counting the occurrences of each number and then iterating through the sorted unique numbers to find the k-th smallest element. This is a direct implementation of the counting sort approach for finding the k-th smallest element.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts occurrences of each distinct number and then iterates over the sorted keys to find the k-th smallest by cumulative count, which is a variant of counting sort adapted to sparse keys using a dictionary. It does not use a fixed-size array over the entire range but the principle of counting frequencies and accumulating counts to select the k-th element matches counting sort.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "tiebreak": {
+    "model": "deepseek/deepseek-chat-v3.1",
+    "class": "LABELLER MISS",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program counts frequency of each number, sorts the unique keys, then accumulates frequencies until reaching the k-th smallest element, which is the counting sort algorithm for selection.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 1.0
+   },
+   "resolved_class": "LABELLER MISS"
+  },
+  {
+   "id": "T03|f64a9e958bf1",
+   "task": "T03",
+   "code_sha256": "f64a9e958bf1e90060d507ac84b1d3a726ec23503287e5fece0a8abb2793dc57",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Count frequencies of each number\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers\n    sorted_nums = sorted(freq.keys())\n\n    # Find the k-th smallest element\n    count = 0\n    for num in sorted_nums:\n        count += freq[num]\n        if count >= k:\n            return num\n    return None  # Should not reach here if k is valid\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.277
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.205
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program implements a counting sort-like approach by first counting the frequencies of each number and then iterating through the sorted unique numbers to find the k-th element. This is a variant of counting sort, which typically uses an array indexed by values to store counts, but here it uses a dictionary and then sorts the keys.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each number and then iterates over the sorted unique keys to find the k-th smallest element, which is a variant of counting sort adapted to the problem's value range and input constraints. It does not use a fixed-size array for counting but a dictionary, making it a variant rather than a direct textbook counting sort.",
+    "catalogue_label_if_miss": null,
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  },
+  {
+   "id": "T03|fbce314d1283",
+   "task": "T03",
+   "code_sha256": "fbce314d1283988bd9c1c29b2752f875fe4d44593be7ef7d51c08dd0a329d671",
+   "arms": [
+    "TOP3_a4"
+   ],
+   "n_rows": 1,
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "code": "def solve(nums, k):\n    # Create a frequency dictionary\n    freq = {}\n    for num in nums:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n\n    # Sort the unique numbers\n    sorted_unique = sorted(freq.keys())\n\n    # Count elements until we reach the k-th smallest\n    count = 0\n    for num in sorted_unique:\n        count += freq[num]\n        if count >= k:\n            return num\n    return None  # Should not reach here if k is valid\n",
+   "neighbours": [
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.281
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.277
+    },
+    {
+     "source": "xlcost_python",
+     "mode_hint": "['kth_smallest_largest']",
+     "similarity": 0.205
+    }
+   ],
+   "judge_A": {
+    "model": "google/gemini-2.5-flash-lite",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The program uses a frequency map to count occurrences of each number and then iterates through the sorted unique keys to find the k-th smallest element. This is a variant of counting sort, adapted for potentially negative numbers and a sparse value range by using a dictionary instead of a fixed-size array.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.9
+   },
+   "judge_B": {
+    "model": "openai/gpt-4.1-mini",
+    "class": "CATALOGUE VARIANT",
+    "closest_known_algorithm": "counting_sort",
+    "rationale": "The code counts frequencies of each unique number and then iterates over the sorted unique keys to find the k-th smallest, which is a variant of counting sort adapted to handle negative values and sparse keys by using a dictionary instead of an array. It does not use a direct array-based counting sort but the frequency counting and cumulative counting approach is fundamentally the same algorithmic idea.",
+    "catalogue_label_if_miss": "counting_sort",
+    "confidence": 0.95
+   },
+   "tiebreak": null,
+   "resolved_class": "CATALOGUE VARIANT"
+  }
+ ],
+ "judges": [
+  "google/gemini-2.5-flash-lite",
+  "openai/gpt-4.1-mini"
+ ],
+ "tiebreak": "deepseek/deepseek-chat-v3.1",
+ "budget": {
+  "total_usd": 0.09828655,
+  "stopped": false,
+  "reason": null
+ }
+}
