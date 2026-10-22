@@ -1,61 +1,115 @@
 #!/usr/bin/env python3
-"""Independent re-derivation of the Step-0 headlines (stdlib only: json, csv, math, random, statistics, hashlib,
-difflib, ast, os, pathlib). Imports NOTHING from the eval code. Reads the raw dependency files directly, recomputes
-each headline with its own implementation, compares it with the eval outputs, runs five placebos that must FAIL,
-verifies the commitments.log hash chain and that every frozen file predates every S3 output.
-Run: python3 -I audit/rederive.py   (writes audit/rederive_result.json and audit/placebos.json)
-"""
+"""Independent re-derivation of the iteration-6 record repair, standard library only, no code shared with src/.
 
-import ast
+Every family re-reads the dependency files (located through AII_DEPS_ROOT, by artifact id), recomputes the
+numbers with its own implementation and compares them with what eval.py wrote. Each family has a placebo that
+corrupts its input in a way that must make the check FAIL. Writes audit/rederive_report.json."""
+
 import csv
-import hashlib
 import json
 import math
 import os
 import random
 import statistics
+import sys
+from collections import Counter
 from pathlib import Path
 
 WS = Path(__file__).resolve().parent.parent
-# Same resolution as the eval code, re-implemented here: <AII_DEPS_ROOT>/<artifact_id> (default: sibling folders of
-# this artifact), per-artifact AII_DEP_<id>, or the unpublished paths.local.json {"deps": {id: folder}}.
-_LOC = json.loads((WS / "paths.local.json").read_text()) if (WS / "paths.local.json").exists() else {}
-_ROOT = Path(os.environ.get("AII_DEPS_ROOT", str(WS.parent)))
+ROOT = Path(os.environ.get("AII_DEPS_ROOT", str(WS.parent)))
+REPORT = Path(os.environ.get("AII_REPORT", str(WS / "inputs" / "report" / "current_report.md")))
+_IDS = {"D19": ("art_mWn-MQEnNelg", "iter_4/gen_art/gen_art_experiment_19"),
+        "D22": ("art_SHaWv77P1XCI", "iter_4/gen_art/gen_art_experiment_22"),
+        "D24": ("art_CcZLW-9NX00l", "iter_5/gen_art/gen_art_experiment_24"),
+        "PA": ("art_8WbrpoEFslk9", "iter_5/gen_art/gen_art_experiment_25"),
+        "PB": ("art_9a8LrIv2lHbV", "iter_5/gen_art/gen_art_experiment_26"),
+        "D27": ("art_jR6Pyy3W9xum", "iter_5/gen_art/gen_art_experiment_27"),
+        "GEM": ("art_hG0QPiaIPNhP", "iter_5/gen_art/gen_art_experiment_28"),
+        "EV4": ("art_mgek9PfVBNbh", "iter_5/gen_art/gen_art_evaluation_4")}
 
 
-def _dep(art_id):
-    env = os.environ.get("AII_DEP_" + "".join(c if c.isalnum() or c == "_" else "_" for c in art_id))
-    return Path(env or _LOC.get("deps", {}).get(art_id) or _ROOT / art_id)
+def _locate(nick):
+    aid, folder = _IDS[nick]
+    for c in (ROOT / aid, ROOT / folder.rsplit("/", 1)[-1], ROOT / folder, WS / "inputs" / aid):
+        if c.is_dir():
+            return c
+    return ROOT / aid
 
 
-E19, E25, E26, E27, E28, E24 = (_dep("art_mWn-MQEnNelg"), _dep("art_8WbrpoEFslk9"), _dep("art_9a8LrIv2lHbV"),
-                                _dep("art_jR6Pyy3W9xum"), _dep("art_hG0QPiaIPNhP"), _dep("art_CcZLW-9NX00l"))
-EVAL3 = WS / "inputs" / "eval3"  # vendored copy (inputs/SOURCES.json)
-BLOCKS = [str(b) for b in range(12, 24)]
-DECISIVE = ["T10", "T2", "T05", "T1", "T03"]
-ALL15 = DECISIVE + ["T04", "T06", "T08", "T11", "T13", "T14", "R1", "R2", "R3", "R6"]
-DEFAULT = {"T03": "full_sort", "T2": "dijkstra", "T05": "hash_map", "T10": "union_find", "T1": "bfs"}
+DEP = {k: _locate(k) for k in _IDS}
+CHECKS, PLACEBOS = [], []
+ND = statistics.NormalDist()
 
 
-def jl(p):
-    with open(p) as f:
-        for ln in f:
-            if ln.strip():
-                yield json.loads(ln)
+def dj(nick, rel):
+    return json.loads((DEP[nick] / rel).read_text())
 
 
-def dictish(x):
-    return x if isinstance(x, dict) else ast.literal_eval(x)
+def res(name):
+    return json.loads((WS / "results" / f"{name}.json").read_text())
 
 
-# ------------------------------------------------------------------------------------------------ stdlib statistics
-def ranks(xs):
-    order = sorted(range(len(xs)), key=lambda i: xs[i])
-    r = [0.0] * len(xs)
+def check(family, name, expected, got, tol=0.0, rel=False):
+    if isinstance(expected, (list, tuple)):
+        ok = len(expected) == len(got) and all(_close(a, b, tol, rel) for a, b in zip(expected, got))
+    else:
+        ok = _close(expected, got, tol, rel)
+    CHECKS.append({"family": family, "name": name, "expected": expected, "got": got, "pass": bool(ok)})
+    return ok
+
+
+def _close(a, b, tol, rel):
+    if isinstance(a, str) or isinstance(b, str) or a is None or b is None:
+        return a == b
+    if isinstance(a, bool) or isinstance(b, bool):
+        return bool(a) == bool(b)
+    if not (math.isfinite(a) and math.isfinite(b)):
+        return (math.isnan(a) and math.isnan(b)) or a == b
+    return abs(a - b) <= (tol * max(abs(a), 1e-12) if rel else tol) + 1e-12
+
+
+def placebo(name, family, result_bool, detail=""):
+    PLACEBOS.append({"name": name, "family": family, "check_result": bool(result_bool),
+                     "failed_as_required": not bool(result_bool), "detail": detail})
+
+
+# ----------------------------------------------------------------------------------- exact tests (own code)
+def hyper_pmf(a, r1, c1, n):
+    return math.comb(r1, a) * math.comb(n - r1, c1 - a) / math.comb(n, c1)
+
+
+def fisher_two_sided(k1, n1, k2, n2):
+    r1, n, c1 = n1, n1 + n2, k1 + k2
+    lo, hi = max(0, c1 - (n - r1)), min(r1, c1)
+    p_obs = hyper_pmf(k1, r1, c1, n)
+    return min(1.0, sum(hyper_pmf(a, r1, c1, n) for a in range(lo, hi + 1) if hyper_pmf(a, r1, c1, n) <= p_obs * (1 + 1e-7)))
+
+
+def fisher_less(k1, n1, k2, n2):
+    """P(K1 <= k1): group 1 has the lower event rate."""
+    r1, n, c1 = n1, n1 + n2, k1 + k2
+    lo = max(0, c1 - (n - r1))
+    return min(1.0, sum(hyper_pmf(a, r1, c1, n) for a in range(lo, k1 + 1)))
+
+
+def pb_sf(k, probs):
+    dist = [1.0]
+    for p in probs:
+        nd = [0.0] * (len(dist) + 1)
+        for i, v in enumerate(dist):
+            nd[i] += v * (1 - p)
+            nd[i + 1] += v * p
+        dist = nd
+    return sum(dist[k:])
+
+
+def ranks(v):
+    order = sorted(range(len(v)), key=lambda i: v[i])
+    r = [0.0] * len(v)
     i = 0
-    while i < len(xs):
+    while i < len(v):
         j = i
-        while j + 1 < len(xs) and xs[order[j + 1]] == xs[order[i]]:
+        while j + 1 < len(v) and v[order[j + 1]] == v[order[i]]:
             j += 1
         for k in range(i, j + 1):
             r[order[k]] = (i + j) / 2 + 1
@@ -64,407 +118,346 @@ def ranks(xs):
 
 
 def pearson(a, b):
-    ma, mb = statistics.fmean(a), statistics.fmean(b)
+    ma, mb = sum(a) / len(a), sum(b) / len(b)
     num = sum((x - ma) * (y - mb) for x, y in zip(a, b))
     den = math.sqrt(sum((x - ma) ** 2 for x in a) * sum((y - mb) ** 2 for y in b))
-    return num / den if den else float("nan")
+    return num / den if den > 0 else float("nan")
 
 
 def spearman(a, b):
     return pearson(ranks(a), ranks(b))
 
 
-def pb_upper(ps, k):
-    pmf = [1.0]
-    for p in ps:
-        new = [0.0] * (len(pmf) + 1)
-        for i, q in enumerate(pmf):
-            new[i] += q * (1 - p)
-            new[i + 1] += q * p
-        pmf = new
-    return sum(pmf[k:])
-
-
-def hyper(k, K, n, N):
-    return math.comb(K, k) * math.comb(N - K, n - k) / math.comb(N, n)
-
-
-def fisher2(a, b, c, d):
-    K, n, N = a + c, a + b, a + b + c + d
-    obs = hyper(a, K, n, N)
-    lo, hi = max(0, n + K - N), min(K, n)
-    return min(1.0, sum(hyper(k, K, n, N) for k in range(lo, hi + 1) if hyper(k, K, n, N) <= obs * (1 + 1e-7)))
-
-
-def binom_cdf(k, n, p):
-    return sum(math.comb(n, i) * p ** i * (1 - p) ** (n - i) for i in range(0, k + 1))
-
-
-def mcnemar(b, c):
-    n = b + c
-    return 1.0 if n == 0 else min(1.0, 2 * binom_cdf(min(b, c), n, 0.5))
-
-
-def wilcoxon_greater(d):
-    d = [x for x in d if x != 0]
-    r = ranks([abs(x) for x in d])
-    w = sum(ri for ri, x in zip(r, d) if x > 0)
-    n = len(d)
-    cnt = 0
-    for mask in range(2 ** n):
-        s = sum(r[i] for i in range(n) if mask >> i & 1)
-        cnt += s >= w - 1e-12
-    return cnt / 2 ** n
-
-
-def bw_ci(r, n):
+def fz_ci(r, n, kind):
     z = math.atanh(r)
-    h = statistics.NormalDist().inv_cdf(0.975) * math.sqrt((1 + r * r / 2) / (n - 3))
-    return math.tanh(z - h), math.tanh(z + h)
+    se = {"plain": 1 / math.sqrt(n - 3), "fieller": math.sqrt(1.06 / (n - 3)),
+          "bonett_wright": math.sqrt((1 + r * r / 2) / (n - 3))}[kind]
+    q = ND.inv_cdf(0.975)
+    return [math.tanh(z - q * se), math.tanh(z + q * se)]
 
 
-# ------------------------------------------------------------------------------------------------ checks
-CHECKS = []
+def perm_p(a, b, n_perm, seed):
+    rng = random.Random(seed)
+    obs = spearman(a, b)
+    ra, rb = ranks(a), ranks(b)
+    cnt = 0
+    for _ in range(n_perm):
+        rp = rb[:]
+        rng.shuffle(rp)
+        if pearson(ra, rp) >= obs - 1e-12:
+            cnt += 1
+    return (cnt + 1) / (n_perm + 1)
 
 
-def check(name, ours, theirs, tol):
-    ok = (ours is None and theirs is None) or (ours is not None and theirs is not None and abs(float(ours) - float(theirs)) <= tol)
-    CHECKS.append({"name": name, "rederived": ours, "eval": theirs, "tol": tol, "ok": bool(ok)})
+def kappa(a, b):
+    n = len(a)
+    po = sum(x == y for x, y in zip(a, b)) / n
+    cats = set(a) | set(b)
+    pe = sum((a.count(c) / n) * (b.count(c) / n) for c in cats)
+    return float("nan") if abs(1 - pe) < 1e-12 else (po - pe) / (1 - pe)
 
 
-# ------------------------------------------------------------------------------------------------ extra headlines
-BENCH_DIRS = {"T03": "T03_kth_smallest", "T04": "T04_substring_search", "T05": "T05_two_sum", "T06": "T06_find_duplicate",
-              "T08": "T08_fibonacci", "T10": "T10_connected_components", "T11": "T11_longest_increasing_subsequence",
-              "T13": "T13_merge_intervals", "T14": "T14_top_k_frequent", "R1": "R1_non_overlapping_intervals",
-              "R2": "R2_cycle_detection", "R3": "R3_topological_order", "R6": "R6_first_last_position"}
-PATH_CAT = {"T1": ["bfs", "dfs", "bibfs", "iddfs", "astar_gbfs", "dijkstra"], "T2": ["dijkstra", "bf_spfa", "bidijkstra", "floyd", "dial"]}
+def ac1(a, b, cats):
+    n, q = len(a), len(cats)
+    po = sum(x == y for x, y in zip(a, b)) / n
+    pe = sum(((a.count(c) + b.count(c)) / (2 * n)) * (1 - (a.count(c) + b.count(c)) / (2 * n)) for c in cats) / (q - 1)
+    return (po - pe) / (1 - pe)
 
 
-def binom_sf_ge(k, n, p):
-    return 1.0 - (binom_cdf(k - 1, n, p) if k > 0 else 0.0)
+def exact_rarefied_hill(counts, depth):
+    """Exact expectation of exp(Shannon) of a depth-sized subsample without replacement (multivariate hypergeometric)."""
+    c = [x for x in counts if x > 0]
+    n = sum(c)
+    if len(c) == 1:
+        return 1.0
+    tot = math.comb(n, depth)
+    acc = 0.0
+
+    def rec(i, left, prob_num, comp):
+        nonlocal acc
+        if i == len(c) - 1:
+            if left <= c[i]:
+                comp2 = comp + [left]
+                w = prob_num * math.comb(c[i], left)
+                h = -sum((x / depth) * math.log(x / depth) for x in comp2 if x > 0)
+                acc += w * math.exp(h)
+            return
+        for x in range(0, min(c[i], left) + 1):
+            rec(i + 1, left - x, prob_num * math.comb(c[i], x), comp + [x])
+    rec(0, depth, 1, [])
+    return acc / tot
 
 
-def cp_lower(k, n):
-    if k == 0:
-        return 0.0
-    lo, hi = 0.0, 1.0
-    for _ in range(80):  # P(X >= k | p) = 0.025
-        mid = (lo + hi) / 2
-        if binom_sf_ge(k, n, mid) < 0.025:
-            lo = mid
+# ----------------------------------------------------------------------------------- families
+def fam_dose():
+    r0 = res("0a")
+    rows = {r["task"]: r for r in r0["A1"]["rows"]}
+    du = {r["task"]: r for r in csv.DictReader((DEP["EV4"] / "tables/dose_units.csv").read_text().splitlines())}
+    units = dj("D22", "results/units.json")["per_task"]
+    ur = dj("D27", "results/unit_ratio.json")
+    for t in ["T1", "T2", "T03", "T05", "T06", "T10", "T14", "R6", "T04"]:
+        check("dose", f"ratio of means {t}: units.json vs dose_units.csv", float(du[t]["banfree_over_ban"]),
+              units[t]["ratio_mean_nfree_over_mean_n"], 0.005)
+    for t in ["T03", "T10", "T2", "T05", "T1", "T06"]:
+        check("dose", f"mean ratio {t}", ur[t]["banfree_over_ban_mean"], rows[t]["mean_ratio_knob_exp"], 1e-9)
+    # bracket inequality: bf16 alpha 2 dose >= 1 FP8 ban unit under both definitions on every decisive task
+    ok = all(2 * min(float(du[t]["banfree_over_ban"]), ur[t]["banfree_over_ban_mean"]) >= 1.0 for t in ["T03", "T10", "T2", "T05", "T1", "T06"])
+    check("dose", "bracket dose inequality on all six decisive tasks", True, ok)
+    # placebo: the conversion inverted (bf16 alpha-1 cell compared with FP8 alpha 1 expressed in bf16 units, 1/ratio)
+    inv_ok = all(1.0 >= 1.0 / min(float(du[t]["banfree_over_ban"]), ur[t]["banfree_over_ban_mean"]) for t in ["T03", "T10", "T2", "T05", "T1", "T06"])
+    placebo("dose ratios inverted (bracket inequality must fail on >= 1 task)", "dose", inv_ok)
+
+
+def engine_counts(rows_path, tasks, arms):
+    cnt = {}
+    with rows_path.open() as f:
+        for line in f:
+            r = json.loads(line)
+            if r.get("task") in tasks and r.get("arm") in arms:
+                cnt.setdefault((r["task"], r["arm"]), []).append((r.get("label"), bool(r.get("passed"))))
+    return cnt
+
+
+def fam_engine():
+    r0 = res("0a")["A2"]["per_task"]
+    tasks = ["T03", "T10", "T2", "T05", "T1", "T06"]
+    bf = engine_counts(DEP["D27"] / "data/labels.jsonl", tasks, {"TWIN", "PN_a1", "PN_a2"})
+    fp = engine_counts(DEP["D19"] / "data/labels.jsonl", tasks, {"TWIN", "PN_a1", "PN_a2"})
+    recomputed = {}
+    for t in tasks:
+        tw = Counter(l for l, p in bf[(t, "TWIN")] if p)
+        default = tw.most_common(1)[0][0]
+        for eng, src, key in (("bf16", bf, "bf16"), ("fp8", fp, "fp8")):
+            for arm, a in (("PN_a1", "1.0"), ("PN_a2", "2.0")):
+                rows = src[(t, arm)]
+                cor = [l for l, p in rows if p]
+                k_cor = sum(1 for l in cor if l != default)
+                k_att = sum(1 for l, p in rows if l not in (default, "invalid"))
+                recomputed[(t, eng, a)] = (k_cor, len(cor), k_att, len(rows))
+                rec = r0[t][key][a]
+                check("engine", f"{t} {eng} a{a} correct off-default", rec["cor_off"], k_cor)
+                check("engine", f"{t} {eng} a{a} n correct", rec["n_correct"], len(cor))
+                check("engine", f"{t} {eng} a{a} attempts off-default", rec["att_off"], k_att)
+    for t in ["T03", "T10", "T2", "T05", "T1"]:
+        kb, nb = recomputed[(t, "bf16", "2.0")][:2]
+        kf, nf = recomputed[(t, "fp8", "2.0")][:2]
+        check("engine", f"{t} Fisher two-sided a2 (correct-only)", r0[t]["cor"]["fisher_two_sided_matched_alpha"]["2.0"],
+              fisher_two_sided(kb, nb, kf, nf), 0.02, rel=True)
+        kf1, nf1 = recomputed[(t, "fp8", "1.0")][:2]
+        check("engine", f"{t} bracket one-sided p (correct-only)", r0[t]["cor"]["bracket"]["p_one_sided_less"],
+              fisher_less(kb, nb, kf1, nf1), 0.02, rel=True)
+    # placebo: engine labels swapped between bf16 and FP8 rows -> the FP8 > bf16 effect on T10 vanishes
+    kb, nb = recomputed[("T10", "fp8", "2.0")][:2]   # swapped
+    kf, nf = recomputed[("T10", "bf16", "2.0")][:2]
+    placebo("engine labels swapped (T10 alpha 2: bf16 lower than FP8 at p < 0.01 must fail)", "engine",
+            fisher_less(kb, nb, kf, nf) < 0.01, f"p {fisher_less(kb, nb, kf, nf):.3g}")
+
+
+def fam_landing():
+    r0 = res("0b")
+    a2 = dj("PA", "results/a2.json")
+    a2b = dj("PB", "results/a2_panel.json")
+    ea2 = dj("GEM", "results/e_a2.json")
+    scr = dj("D24", "results/screen_check.json")["r_t_vs_push_landing"]
+    br = dj("D24", "results/base_repertoire.json")["per_task"]
+    ex = dj("PA", "results/extra_arm_a.json")
+    sets = {
+        "FP8 screen": [(scr[t]["push_top1"], scr[t]["r_t"], 1 / len(br[t]["predicted_landing_composition"])) for t in ["T03", "T2", "T05", "T10", "T1"]],
+        "bf16 existing remeasure": [(ex[t]["landing"], br[t]["r_t"], 1 / len(br[t]["predicted_landing_composition"])) for t in ["T03", "T10"]],
+        "panel A": [(e["L"], e["r"], e["chance"]) for e in a2["events"]],
+        "panel B": [(e["push_landing"], e["r_u"], e["chance"]) for e in a2b["events"]],
+        "Gemma": [(e["landing"], e["r_u"], c) for e, c in zip(ea2["events"], ea2["chance"])]}
+    allev = []
+    for s, ev in sets.items():
+        h = sum(L == r for L, r, _ in ev)
+        check("landing", f"hits {s}", r0["tally"][s]["hits"], h)
+        check("landing", f"Poisson-binomial p {s}", r0["tally"][s]["pb_p"], pb_sf(h, [c for _, _, c in ev]), 1e-9)
+        allev += ev
+    h = sum(L == r for L, r, _ in allev)
+    check("landing", "hits total (17 of 21 expected)", 17, h)
+    check("landing", "Poisson-binomial p total", r0["tally"]["all"]["pb_p"], pb_sf(h, [c for _, _, c in allev]), 1e-9)
+    # confound subset from twin compositions
+    pa = {u["unit_id"]: u for u in dj("PA", "pooled_inputs.json")["units"]}
+    pb = {u["unit_id"]: u for u in dj("PB", "pooled_inputs.json")["records"]}
+    gp = dj("GEM", "results/predictors.json")["units"]
+    unc = []
+    for e in a2["events"]:
+        u = pa[e["unit"]]
+        if not any(v > 0 for k, v in u["twin"]["comp_correct"].items() if k != u["default"]):
+            unc.append((e["L"] == e["r"], e["chance"]))
+    for e in a2b["events"]:
+        u = pb[e["unit"]]
+        d = u["unit_facts"]["default"]
+        if not any(v > 0 for k, v in u["twin"]["correct_composition"].items() if k != d):
+            unc.append((e["push_landing"] == e["r_u"], e["chance"]))
+    for e, c in zip(ea2["events"], ea2["chance"]):
+        g = gp[e["unit"]]
+        if not any(v > 0 for k, v in g["default"]["correct_counts"].items() if k != g["D"]):
+            unc.append((e["landing"] == e["r_u"], c))
+    hu = sum(x for x, _ in unc)
+    check("landing", "unconfounded events (8 expected)", 8, len(unc))
+    check("landing", "unconfounded hits (5 expected)", 5, hu)
+    check("landing", "unconfounded pooled p", r0["confound"]["pooled"]["pb_p"], pb_sf(hu, [c for _, c in unc]), 1e-9)
+    # placebo: landings shuffled across events (within sets): the significant total tally must not survive
+    rng = random.Random(3)
+    sig = 0
+    for _ in range(200):
+        tot, probs = 0, []
+        for s, ev in sets.items():
+            Ls = [L for L, _, _ in ev]
+            rng.shuffle(Ls)
+            tot += sum(L == r for L, (_, r, _) in zip(Ls, ev))
+            probs += [c for _, _, c in ev]
+        sig += pb_sf(tot, probs) < 0.001
+    placebo("landings shuffled across events (tally p < 0.001 in most shuffles must fail)", "landing", sig > 100, f"{sig}/200 significant")
+
+
+def fam_movability():
+    r0 = res("0c")
+    core = [u for u in r0["units"] if u["core13"]]
+    pa = {u["unit_id"]: u for u in dj("PA", "pooled_inputs.json")["units"]}
+    pb = {u["unit_id"]: u for u in dj("PB", "pooled_inputs.json")["records"]}
+    x, y = [], []
+    for u in core:
+        if u["panel"] == "A":
+            x.append(pa[u["unit"]]["base"]["beta"]); y.append(pa[u["unit"]]["escape"]["E"])
         else:
-            hi = mid
-    return (lo + hi) / 2
+            x.append(pb[u["unit"]]["base"]["beta_u"]); y.append(pb[u["unit"]]["outcomes"]["E_u"])
+    rho = spearman(x, y)
+    check("movability", "rho(beta, E) over 13 units", r0["rho"], rho, 1e-9)
+    check("movability", "rho rounds to the recorded 0.15", 0.15, round(rho, 2))
+    for kind in ("plain", "fieller", "bonett_wright"):
+        check("movability", f"Fisher-z CI {kind}", r0["ci"][kind], fz_ci(rho, 13, kind), 1e-9)
+    check("movability", "permutation p (Monte Carlo 20,000)", r0["perm"]["p"], perm_p(x, y, 20000, 7), 0.02)
+    # power by an independent simulation: Gaussian copula, empirical margins, permutation test
+    rng = random.Random(11)
+    r = 2 * math.sin(math.pi * 0.6 / 6)
+    xs, ys = sorted(x), sorted(y)
+    reps, nperm, rej = 1500, 400, 0
+    for _ in range(reps):
+        a, b = [], []
+        for _ in range(13):
+            z1 = rng.gauss(0, 1)
+            z2 = r * z1 + math.sqrt(1 - r * r) * rng.gauss(0, 1)
+            a.append(xs[min(int(ND.cdf(z1) * 13), 12)])
+            b.append(ys[min(int(ND.cdf(z2) * 13), 12)])
+        if len(set(a)) < 2 or len(set(b)) < 2:
+            continue
+        ra, rb = ranks(a), ranks(b)
+        obs = pearson(ra, rb)
+        c = 0
+        for _ in range(nperm):
+            rp = rb[:]
+            rng.shuffle(rp)
+            c += pearson(ra, rp) >= obs - 1e-12
+        rej += (c + 1) / (nperm + 1) <= 0.05
+    check("movability", "power at rho 0.6 (+-0.03 Monte Carlo)", r0["power"]["0.6"]["power"], rej / reps, 0.03)
+    for k, v in r0["rivals"].items():
+        vals = [v["values"][u["unit"]] for u in core]
+        rr = spearman([v["sign"] * z for z in vals], y)
+        check("movability", f"rival {k} rho", v["rho_with_E"], rr, 1e-9)
+    # placebo: beta permuted across units must not reproduce the recorded rho
+    rng = random.Random(5)
+    hits = 0
+    for _ in range(200):
+        xp = x[:]
+        rng.shuffle(xp)
+        hits += abs(spearman(xp, y) - rho) < 0.005
+    placebo("beta permuted across units (recorded rho reproduced in most permutations must fail)", "movability", hits > 100, f"{hits}/200")
 
 
-def interp(x, xs, ys):
-    for (x0, y0), (x1, y1) in zip(zip(xs, ys), zip(xs[1:], ys[1:])):
-        if x0 <= x <= x1:
-            return y0 + (y1 - y0) * (x - x0) / (x1 - x0)
-    return ys[-1] if x > xs[-1] else ys[0]
+def fam_tables():
+    r0 = res("0d")
+    lit = dj("D27", "results/literal_cell.json")["per_T"]
+    for row in r0["D1"]:
+        ph = lit[row["cell"]]["phrasing"]
+        check("tables", f"phrasing clusters {row['cell']}", [ph[f"theta_{t}"]["n_clusters"] for t in ("0.7", "0.8", "0.9")],
+              [row[f"n_clusters_theta{t}"] for t in ("0.7", "0.8", "0.9")])
+    exp = {"LIT_T0.3": [2, 4, 8], "LIT_T0.7": [3, 3, 10], "LIT_T1.0": [2, 3, 9], "LIT_T1.3": [5, 7, 12]}
+    for k, v in exp.items():
+        check("tables", f"phrasing clusters {k} against the expected", v, [lit[k]["phrasing"][f"theta_{t}"]["n_clusters"] for t in ("0.7", "0.8", "0.9")])
+    pr = dj("D27", "results/prices.json")
+    for t, a, k, e in (("T10", "BINT", "P15", 0.005), ("T10", "BINT", "P20", 0.011), ("T2", "EAP", "P15", 0.103),
+                       ("T2", "EAP", "P20", 0.19), ("T03", "NOVELTY", "P20", 0.018)):
+        check("tables", f"{k} {a} {t}", e, round(pr[t][a][k], 3), 0.001)
+    pb = {u["unit_id"]: u for u in dj("PB", "pooled_inputs.json")["records"]}
+    for row in r0["D3"]:
+        o = pb[row["unit"]]["outcomes"]
+        c = {"twin": o["twin_cell"], "plan noise alpha 1": o["pn_cells"]["1.0"], "plan noise alpha 2": o["pn_cells"]["2.0"],
+             "temperature 1.3": o["t13_cell"]}[row["arm"]]
+        lc = c.get("labels_correct") or {}
+        d = pb[row["unit"]]["unit_facts"]["default"]
+        off = sum(v for k, v in lc.items() if k != d)
+        check("tables", f"panel B {row['unit']} {row['arm']} correct off-default", row["offdef_correct"], off)
+        n = sum(lc.values())
+        if n and len([v for v in lc.values() if v > 0]) <= 5:
+            check("tables", f"panel B {row['unit']} {row['arm']} Hill-1 (exact rarefaction vs Monte Carlo)", row["hill1_rarefied"],
+                  exact_rarefied_hill(list(lc.values()), min(25, n)), 0.02)
+    b3 = [r for r in r0["D3"] if r["unit"] == "B3"]
+    check("tables", "B3 T1.3 Prim 18/49", "18/49", f"{[r for r in b3 if r['arm'] == 'temperature 1.3'][0]['labels_correct'].get('prim_heap')}/49")
+    for rid, e in (("K0522", 2.87), ("K0523", 2.96), ("K0524", 2.92)):
+        got = [r for r in r0["D5"] if r["row_id"] == rid][0]["H1r25"]
+        check("tables", f"Table 126c {rid} Hill-1", e, round(got, 2), 0.005)
 
 
-def extra_checks(S, F_m, mpr, rmn, kk):
-    pa = {u["unit_id"]: u for u in json.loads((E25 / "pooled_inputs.json").read_text())["units"]}
-    pb = {r["unit_id"]: r for r in json.loads((E26 / "pooled_inputs.json").read_text())["records"]}
-    br = json.loads((E24 / "results" / "base_repertoire.json").read_text())["per_task"]
-    # (1) runtime merit for all 30 units from the raw per-reference timings
-    rows = [r for r in json.loads((WS / "retime" / "raw_times.json").read_text())["rows"] if r]
-    merit = {}
-    for u in F_m["units"]:
-        if u.startswith("A"):  # panel A unit (pooled_inputs also lists the existing tasks, without catalogues)
-            dflt, cat = pa[u]["default"], pa[u]["catalogue"]
-        elif u.startswith("B"):
-            dflt, cat = pb[u]["unit_facts"]["default"], pb[u]["unit_facts"]["catalogue"]
-        else:
-            dflt = br[u]["default"]
-            cat = PATH_CAT[u] if u in PATH_CAT else [c["mode"] for c in json.loads(
-                (E25 / "inputs" / "exp11" / "bench" / BENCH_DIRS[u] / "spec.json").read_text())["catalogue"]]
-        best = {}
-        for r in rows:
-            if r["unit"] == u and r.get("passes_all") and r.get("t_median") is not None:
-                best[r["mode"]] = min(best.get(r["mode"], float("inf")), statistics.median(r["repeats"]))
-        alts = [t for m, t in best.items() if m != dflt and m in cat]
-        merit[u] = math.log2(best[dflt] / min(alts)) if dflt in best and alts else None
-        check(f"runtime merit {u}", merit[u], F_m["units"][u]["runtime_merit"], 1e-9)
-    # (2) R6 rho on the 13 primary units, E from the raw pooled inputs
-    p13 = ["A1", "A2", "A3", "A4", "A5", "A7", "B1", "B2", "B3", "B4", "B5", "B6", "B7"]
-    E = {u: (pa[u]["escape"]["E"] if u in pa else pb[u]["outcomes"]["E_u"]) for u in p13}
-    r6 = spearman([merit[u] for u in p13], [E[u] for u in p13])
-    ev = next(x for x in S["0c"]["rivals"] if x["units"] == "primary13" and x["rival"] == "R6_runtime_merit")
-    check("R6 runtime merit rho n13", r6, ev["rho"], 0.005)
-    # (3) Fieller interval n13
-    beta = {u: (pa[u]["base"]["beta"] if u in pa else pb[u]["base"]["beta_u"]) for u in p13}
-    r13 = spearman([beta[u] for u in p13], [E[u] for u in p13])
-    h = statistics.NormalDist().inv_cdf(0.975) * math.sqrt(1.06 / 10)
-    ci = next(x for x in S["0c"]["ci"] if x["units"] == "primary13" and x["beta"] == "beta_iter5_committed")
-    check("Fieller lo n13", math.tanh(math.atanh(r13) - h), ci["fieller_95"][0], 0.005)
-    check("Fieller hi n13", math.tanh(math.atanh(r13) + h), ci["fieller_95"][1], 0.005)
-    # (4) dose-matched exact binomial p (correct off-default shares, linear interpolation over the 8-bit alpha grid)
-    sw = json.loads((E19 / "results" / "alpha_sweep.json").read_text())
-    grid = [0.0, 0.5, 1.0, 2.0, 4.0]
-    dm = {(x["task"], x["alpha_bf16"], x["definition"]): x for x in S["0a"]["dose_matched"]}
-    for t, a, dname in (("T10", 2.0, "D_mpr"), ("T10", 2.0, "D_rmn"), ("T2", 1.0, "D_rmn"), ("T2", 2.0, "D_rmn"),
-                        ("T03", 1.0, "D_rmn"), ("T1", 2.0, "D_mpr")):
-        ks = []
-        for g in grid:
-            e = next(x for x in sw[t]["sweep"] if float(x["alpha"]) == g)
-            ks.append((sum(v for m, v in e["correct_comp"].items() if m != DEFAULT[t]), int(e["n"])))
-        D = statistics.fmean(mpr[t]) if dname == "D_mpr" else rmn[t]
-        p8 = interp(a * D, grid, [k / n for k, n in ks])
-        p8lo = interp(a * D, grid, [cp_lower(k, n) for k, n in ks])
-        kb, nb = kk[(t, a)][0], kk[(t, a)][1]
-        check(f"dose-matched p {t} a{int(a)} {dname}", binom_cdf(kb, nb, p8), dm[(t, a, dname)]["p_binom_le_x"], 1e-6)
-        check(f"dose-matched conservative p {t} a{int(a)} {dname}", binom_cdf(kb, nb, p8lo), dm[(t, a, dname)]["p_binom_conservative"], 2e-3)
-    # (5) one power cell by an independent stdlib simulation (bivariate normal, n 13, rho 0.6)
-    rnd = random.Random(7013)
-    def sim(rho, n, m):
-        r = 2 * math.sin(math.pi * rho / 6)
-        out = []
-        for _ in range(m):
-            x = [rnd.gauss(0, 1) for _ in range(n)]
-            y = [r * xi + math.sqrt(1 - r * r) * rnd.gauss(0, 1) for xi in x]
-            out.append(spearman(x, y))
-        return out
-    null = sorted(sim(0.0, 13, 4000))
-    crit = null[int(math.ceil(0.95 * len(null))) - 1]
-    pw = statistics.fmean([r >= crit for r in sim(0.6, 13, 3000)])
-    evp = next(x for x in S["0c"]["power"]["rows"] if x["generator"] == "a" and x["n"] == 13 and x["rho"] == 0.6)
-    check("power bivariate normal n13 rho0.6 (MC, tol 0.04)", pw, evp["power"], 0.04)
-    # (6) no cached third-family judge response anywhere is NOVEL_ALGORITHM
-    nov = 0
-    for ln in (WS / "results" / "judge_cache.jsonl").read_text().splitlines():
-        raw = json.loads(ln).get("raw", "")
-        k = raw.find("{")
-        try:
-            cls = json.loads(raw[k: raw.rfind("}") + 1]).get("class", "") if k >= 0 else ""
-        except json.JSONDecodeError:
-            cls = ""
-        nov += cls.strip().upper() == "NOVEL_ALGORITHM"
-    check("judge responses classed NOVEL (all judges, both passes)", nov, 0, 0)
-    # (7) twin-minority rival: no event where t_u and the base runner-up disagree on a hit
-    a2 = json.loads((E25 / "results" / "a2_assoc_corrected.json").read_text())["events"]
-    b2 = json.loads((E26 / "results" / "a2_panel.json").read_text())["events"]
-    e2 = json.loads((E28 / "results" / "e_a2.json").read_text())["events"]
-    pr = json.loads((E28 / "results" / "predictors.json").read_text())["units"]
-    disc = defined = 0
-    for evs, twin in ((a2, lambda u: (pa[u]["twin"]["comp_correct"], pa[u]["default"], "L", "r")),
-                      (b2, lambda u: (pb[u]["twin"]["correct_composition"], pb[u]["unit_facts"]["default"], "push_landing", "r_u")),
-                      (e2, lambda u: (pr[u]["default"]["correct_counts"], pr[u]["default"]["D"], "landing", "r_u"))):
-        for x in evs:
-            comp, d, lk, rk = twin(x["unit"])
-            alts = sorted(((-int(v), k) for k, v in comp.items() if k not in (d, "other") and int(v) > 0))
-            if not alts:
-                continue
-            defined += 1
-            tu = alts[0][1]
-            disc += (tu == x[lk]) != (x[rk] == x[lk])
-    tws = [r for r in S["0b"]["twin_rival"] if r["scope"] in ("QWEN_NEW_A+B", "GEMMA")]
-    check("t_u defined events (new units + Gemma)", defined, sum(r["t_u_defined"] for r in tws), 0)
-    check("t_u vs base runner-up discordant hits (new units + Gemma)", disc,
-          sum(r["r_u_only_hits"] + r["t_u_only_hits"] for r in tws), 0)
+def fam_judges():
+    p = WS / "results" / "0f.json"
+    if not p.exists():
+        return
+    r0 = json.loads(p.read_text())
+    items = [i for i in r0["items"] if i["kind"] == "disputed_14" or i["kind"].startswith("control")]
+    items = [i for i in items if "judge_primary" in i]
+    cats = ["NOVEL_ALGORITHM", "KNOWN_OUTSIDE_CATALOGUE", "CATALOGUE_VARIANT", "DEGENERATE"]
+    tr = [i["truth"] for i in items]
+    pr = [i["judge_primary"] for i in items]
+    k = kappa(tr, pr)
+    f6 = r0["F6"]["judge_primary"]
+    check("judges", "kappa (4 class, 24 items)", f6["all_24"]["kappa_4class"], k, 1e-9)
+    check("judges", "AC1 (4 class, 24 items)", f6["all_24"]["ac1_4class"], ac1(tr, pr, cats), 1e-9)
+    core = [i for i in items if i["kind"] == "disputed_14"]
+    check("judges", "raw agreement on the 14", f6["disputed_14"]["raw_agree_4class"],
+          sum(i["truth"] == i["judge_primary"] for i in core) / len(core), 1e-9)
+    check("judges", "controls correct", f6["controls_correct"], sum(i["truth"] == i["judge_primary"] for i in items if i["kind"].startswith("control")))
+    check("judges", "novel calls on the 14", r0["readj_novel_k"], sum(i["judge_primary"] == "NOVEL_ALGORITHM" for i in core))
+    rng = random.Random(9)
+    ks = []
+    for _ in range(300):
+        pp = pr[:]
+        rng.shuffle(pp)
+        kk = kappa(tr, pp)
+        if math.isfinite(kk):
+            ks.append(kk)
+    mk = sum(ks) / len(ks)
+    placebo("judge verdicts shuffled (kappa reproduced within 0.05 must fail)", "judges", abs(mk - k) < 0.05, f"mean shuffled kappa {mk:.3f} vs {k:.3f}")
+
+
+def fam_corrections():
+    rep = REPORT.read_text()
+    c = json.loads((WS / "corrections.json").read_text())["corrections"] if (WS / "corrections.json").exists() else []
+    spans = []
+    for x in c:
+        n = rep.count(x["old_text"])
+        check("corrections", f"{x['id']} old_text is an exact unique substring", 1, n)
+        i = rep.find(x["old_text"])
+        spans.append((i, i + len(x["old_text"])))
+        check("corrections", f"{x['id']} marker", "iteration-6 correction", x["marker"])
+    spans.sort()
+    check("corrections", "old_text spans are disjoint", True, all(b[0] >= a[1] for a, b in zip(spans, spans[1:])))
 
 
 def main():
-    S = json.loads((WS / "results" / "s3_analyses.json").read_text())
-    F_m = json.loads((WS / "frozen" / "m_candidates.json").read_text())
-    # ---- A. dose: D_mpr and D_rmn from raw rows
-    mpr = {}
-    for r in jl(E27 / "data" / "samples_raw.jsonl"):
-        if r.get("arm") in ("PN_a1", "PN_a2") and r.get("unit_ratio_banfree_over_ban"):
-            vals = list(r["unit_ratio_banfree_over_ban"].values())
-            mpr.setdefault(r["task"], []).append(sum(vals) / len(vals))
-    s27, s19 = {}, {}
-    for r in jl(E27 / "data" / "realised.jsonl"):
-        if r.get("arm") in ("PN_a1", "PN_a2"):
-            tm = dictish(r["target_mean"])
-            for bl in BLOCKS:
-                s27.setdefault(r["task"], {}).setdefault(bl, []).append(float(tm[bl]) / float(r["alpha"]))
-    for r in jl(E19 / "data" / "realised.jsonl"):
-        if str(r.get("arm", "")).startswith("PN_a"):
-            tm = dictish(r["target_mean"])
-            for bl in BLOCKS:
-                if bl in tm:
-                    s19.setdefault(r["task"], {}).setdefault(bl, []).append(float(tm[bl]) / float(r["alpha"]))
-    ev_dose = {x["task"]: x for x in S["0a"]["dose"]["rows"] if "D_rmn" in x}
-    rmn, blockratio = {}, {}
-    for t in ALL15:
-        a27 = {bl: statistics.fmean(s27[t][bl]) for bl in BLOCKS}
-        a19 = {bl: statistics.fmean(s19[t][bl]) for bl in BLOCKS}
-        rmn[t] = sum(a27.values()) / sum(a19.values())
-        blockratio[t] = ({bl: a27[bl] / a19[bl] for bl in BLOCKS}, {bl: a19[bl] / sum(a19.values()) for bl in BLOCKS})
-        check(f"D_mpr {t}", statistics.fmean(mpr[t]), ev_dose[t]["D_mpr"], 0.005)
-        check(f"D_rmn {t}", rmn[t], ev_dose[t]["D_rmn"], 0.005)
-        ident = sum(blockratio[t][1][bl] * blockratio[t][0][bl] for bl in BLOCKS)
-        check(f"identity {t}", ident - rmn[t], 0.0, 1e-9)
-    # ---- B. engine contrast (correct-only shares) and Fisher p at alpha 2
-    cells = json.loads((E27 / "results" / "cells.json").read_text())
-    sw = json.loads((E19 / "results" / "alpha_sweep.json").read_text())
-    ev_con = {(x["task"], x["alpha"]): x for x in S["0a"]["contrast"]}
-    kk = {}
-    for t in DECISIVE:
-        for a in (1.0, 2.0):
-            c = cells[f"{t}|PN_a{int(a)}"]
-            kb = round(float(c["correct_only_off_default_share"]) * int(c["N"]))
-            e = next(x for x in sw[t]["sweep"] if float(x["alpha"]) == a)
-            k8 = sum(v for m, v in e["correct_comp"].items() if m != DEFAULT[t])
-            kk[(t, a)] = (kb, int(c["N"]), k8, int(e["n"]))
-            check(f"bf16 correct off-default {t} a{int(a)}", kb / int(c["N"]), ev_con[(t, a)]["bf16_share"], 0.005)
-            check(f"FP8 correct off-default {t} a{int(a)}", k8 / int(e["n"]), ev_con[(t, a)]["fp8_share_correct"], 0.005)
-            if a == 2.0:
-                p = fisher2(k8, int(e["n"]) - k8, kb, int(c["N"]) - kb)
-                q = ev_con[(t, a)]["fisher_p_correct_only"]
-                check(f"Fisher p {t} a2 (log10)", math.log10(p), math.log10(q), 0.05)
-    # ---- C. landing tallies from the raw result files
-    a2 = json.loads((E25 / "results" / "a2_assoc_corrected.json").read_text())
-    b2 = json.loads((E26 / "results" / "a2_panel.json").read_text())
-    e2 = json.loads((E28 / "results" / "e_a2.json").read_text())
-    sc = json.loads((E24 / "results" / "screen_check.json").read_text())["r_t_vs_push_landing"]
-    xa = json.loads((E25 / "results" / "extra_arm_a.json").read_text())
-    br = json.loads((E24 / "results" / "base_repertoire.json").read_text())["per_task"]
-    new = [(bool(x["hit"]), float(x["chance"]), x["unit"]) for x in a2["events"]] + \
-          [(bool(x["hit"]), float(x["chance"]), x["unit"]) for x in b2["events"]]
-    gem = [(x["r_u"] == x["landing"], float(ch), x["unit"]) for x, ch in zip(e2["events"], e2["chance"])]
-    T = S["0b"]["tallies"]
-    for name, evs in (("QWEN_NEW_A+B", new), ("GEMMA", gem)):
-        h = sum(x[0] for x in evs)
-        check(f"hits {name}", h, T[name]["hits"], 0)
-        check(f"Poisson-binomial p {name}", pb_upper([x[1] for x in evs], h), T[name]["p_poisson_binomial"], 1e-6)
-    check("FP8 screen hits", sum(bool(v["agree"]) for v in sc.values()), T["QWEN_FP8_SCREEN"]["hits"], 0)
-    bf = [(br[t]["r_t"] == xa[t]["landing"]) for t in ("T10", "T03")]
-    check("bf16 remeasure hits", sum(bf), T["QWEN_BF16_REMEASURE"]["hits"], 0)
-    check("all-event hits", sum(x[0] for x in new) + sum(x[0] for x in gem) + sum(bool(v["agree"]) for v in sc.values()) + sum(bf),
-          T["ALL21"]["hits"], 0)
-    # unconfounded subset: twin with no correct non-default program
-    pa = {u["unit_id"]: u for u in json.loads((E25 / "pooled_inputs.json").read_text())["units"]}
-    pb = {r["unit_id"]: r for r in json.loads((E26 / "pooled_inputs.json").read_text())["records"]}
-    pr = json.loads((E28 / "results" / "predictors.json").read_text())["units"]
-    def clean_twin(u, family):
-        if family == "gemma":
-            c, d = pr[u]["default"]["correct_counts"], pr[u]["default"]["D"]
-        elif u in pb:
-            c, d = pb[u]["twin"]["correct_composition"], pb[u]["unit_facts"]["default"]
-        else:
-            c, d = pa[u]["twin"]["comp_correct"], pa[u]["default"]
-        return not any(int(v) > 0 for k, v in c.items() if k not in (d, "other"))
-    un_q = [x for x in new if clean_twin(x[2], "qwen")]
-    un_g = [x for x in gem if clean_twin(x[2], "gemma")]
-    U = S["0b"]["unconfounded"]
-    for name, evs in (("QWEN_NEW_A+B", un_q), ("GEMMA", un_g), ("POOLED", un_q + un_g)):
-        h = sum(x[0] for x in evs)
-        check(f"unconfounded hits {name}", h, U[name]["hits"], 0)
-        check(f"unconfounded p {name}", pb_upper([x[1] for x in evs], h), U[name]["p_poisson_binomial"], 1e-6)
-    # ---- D. movability rho with the committed betas
-    beta = {u: pa[u]["base"]["beta"] for u in ("A1", "A2", "A3", "A4", "A5", "A7", "A8", "A9")}
-    beta.update({u: pb[u]["base"]["beta_u"] for u in ("B1", "B2", "B3", "B4", "B5", "B6", "B7")})
-    E = {u: pa[u]["escape"]["E"] for u in ("A1", "A2", "A3", "A4", "A5", "A7", "A8", "A9")}
-    E.update({u: pb[u]["outcomes"]["E_u"] for u in ("B1", "B2", "B3", "B4", "B5", "B6", "B7")})
-    p13 = ["A1", "A2", "A3", "A4", "A5", "A7", "B1", "B2", "B3", "B4", "B5", "B6", "B7"]
-    ci = {(x["units"], x["beta"]): x for x in S["0c"]["ci"]}
-    r13 = spearman([beta[u] for u in p13], [E[u] for u in p13])
-    r15 = spearman([beta[u] for u in beta], [E[u] for u in beta])
-    check("rho n13", r13, ci[("primary13", "beta_iter5_committed")]["rho"], 0.005)
-    check("rho n15", r15, ci[("with_A8_A9_15", "beta_iter5_committed")]["rho"], 0.005)
-    lo, hi = bw_ci(r13, 13)
-    check("Bonett-Wright lo n13", lo, ci[("primary13", "beta_iter5_committed")]["bonett_wright_95"][0], 0.005)
-    check("Bonett-Wright hi n13", hi, ci[("primary13", "beta_iter5_committed")]["bonett_wright_95"][1], 0.005)
-    # ---- E. phrasing, pn_vs_dmd, Gemma fill, novelty audit, Table 126c
-    L = json.loads((E27 / "results" / "literal_cell.json").read_text())["per_T"]
-    for k, ph in zip(("LIT_T0.3", "LIT_T0.7", "LIT_T1.0", "LIT_T1.3", "LIT_REP_T0.7"), S["0d"]["phrasing"]):
-        for th in ("0.7", "0.8", "0.9"):
-            raw = L[k]["phrasing"][f"theta_{th}"]
-            check(f"phrasing {k} theta {th}", raw["n_clusters"] if isinstance(raw, dict) else raw, ph[f"theta_{th}"], 0)
-    D = json.loads((E27 / "results" / "pn_vs_dmd.json").read_text())["per_task"]
-    b_ = sum(D[t]["alpha2"]["mcnemar_PN_vs_DMD"]["x_only"] for t in DECISIVE)
-    c_ = sum(D[t]["alpha2"]["mcnemar_PN_vs_DMD"]["y_only"] for t in DECISIVE)
-    t211 = {(x["task"], x["alpha"]): x for x in S["0e"]["t211"]}
-    check("PN-only alpha 2 pooled", b_, t211[("POOLED_D5", "alpha2")]["PN_only"], 0)
-    check("DMD-only alpha 2 pooled", c_, t211[("POOLED_D5", "alpha2")]["DMD_only"], 0)
-    check("McNemar p alpha 2 pooled", mcnemar(b_, c_), t211[("POOLED_D5", "alpha2")]["p_exact_recomputed"], 1e-9)
-    d7 = [x["q_base"] - x["q_assoc"] for x in e2["log_scores"]]
-    d6 = [x["q_base"] - x["q_assoc"] for x in e2["log_scores"] if x["q_assoc_defined"]]
-    gf = S["0e"]["gemma_fill"]
-    check("Gemma fill mean all 7", statistics.fmean(d7), gf[0]["mean"], 1e-9)
-    check("Gemma fill mean defined 6", statistics.fmean(d6), gf[1]["mean"], 1e-9)
-    check("Gemma fill Wilcoxon all 7", wilcoxon_greater(d7), gf[0]["wilcoxon_exact_p_one_sided"], 1e-9)
-    check("Gemma fill Wilcoxon defined 6", wilcoxon_greater(d6), gf[1]["wilcoxon_exact_p_one_sided"], 1e-9)
-    na = json.loads((E24 / "results" / "novelty_audit.json").read_text())
-    check("novelty items NOVEL (judges)", sum(1 for it in na["items"] if it["final_class"] == "NOVEL_ALGORITHM"), 14, 0)
-    check("novelty items NOVEL (manual)", sum(1 for it in na["items"] if "NOVEL" in str(it.get("manual_class", ""))), 0, 0)
-    rows = {r["row_id"]: r for r in csv.DictReader(open(EVAL3 / "tables" / "knob_table.csv"))}
-    for r in S["0d"]["t126c"]:
-        check(f"Table 126c {r['row_id']}", float(rows[r["row_id"]]["H1r25"]), r["H1r25"], 1e-9)
-    extra_checks(S, F_m, mpr, rmn, kk)
-    # ---- placebos (must FAIL to reproduce the effects)
-    rnd = random.Random(6012)
-    all_ev = [(x[0], x[1]) for x in new + gem] + [(True, 1 / 5), (True, 1 / 4), (True, 1 / 3), (True, 1 / 3), (True, 1 / 5)] + \
-             [(bf[0], 1 / 3), (bf[1], 1 / 5)]
-    p1 = []
-    for _ in range(200):
-        hits = [rnd.random() < ch for _, ch in all_ev]
-        p1.append(pb_upper([ch for _, ch in all_ev], sum(hits)))
-    p2, p2s = [], []
-    es = [E[u] for u in p13]
-    for _ in range(200):
-        perm = es[:]
-        rnd.shuffle(perm)
-        rr_ = spearman([beta[u] for u in p13], perm)
-        p2.append(abs(rr_))
-        p2s.append(rr_)
-    p3 = []
-    for (t, a), (kb, nb, k8, n8) in kk.items():
-        for _ in range(20):
-            pool = [1] * (kb + k8) + [0] * (nb + n8 - kb - k8)
-            rnd.shuffle(pool)
-            x, y = sum(pool[:n8]), sum(pool[n8:])
-            p3.append(fisher2(x, n8 - x, y, nb - y))
-    p4 = []
-    for _ in range(200):
-        p4.append(statistics.fmean([rnd.random() < ch for _, ch in all_ev]))
-    p5 = []
-    for t in DECISIVE:
-        rr, _ = blockratio[t]
-        for _ in range(100):
-            w = [rnd.gammavariate(1, 1) for _ in BLOCKS]
-            s = sum(w)
-            p5.append(abs(sum(wi / s * rr[bl] for wi, bl in zip(w, BLOCKS)) - rmn[t]) > 0.01)
-    plac = {"P1_landing_permuted_median_p": statistics.median(p1), "P1_fails_as_required": statistics.median(p1) > 0.2,
-            "P2_E_permuted_median_abs_rho": statistics.median(p2), "P2_E_permuted_median_signed_rho": statistics.median(p2s),
-            "P2_fails_as_required": statistics.median(p2) < 0.1,
-            "P2_signed_median_below_0.1": abs(statistics.median(p2s)) < 0.1,
-            "P2_note": "the plan's criterion (median |rho| below 0.1) cannot be met at n 13: under any permutation null the "
-                       "median |rho| is about 0.67/sqrt(n-1) = 0.19; the signed median is beside. P2 is uninformative here "
-                       "because the observed rho (0.15) is itself inside the null band.",
-            "P3_engine_permuted_median_fisher_p": statistics.median(p3), "P3_fails_as_required": statistics.median(p3) > 0.3,
-            "P4_random_t_u_hit_rate": statistics.fmean(p4), "P4_mean_chance": statistics.fmean([ch for _, ch in all_ev]),
-            "P4_fails_as_required": abs(statistics.fmean(p4) - statistics.fmean([ch for _, ch in all_ev])) < 0.05,
-            "P5_share_random_weights_breaking_identity": statistics.fmean(p5), "P5_fails_as_required": statistics.fmean(p5) > 0.5}
-    n_fail = sum(1 for k, v in plac.items() if k.endswith("fails_as_required") and v)
-    # ---- chain and mtimes
-    prev = hashlib.sha256(b"iter6_step0").hexdigest()
-    chain_ok = True
-    frozen_mt = []
-    for ln in (WS / "commitments.log").read_text().splitlines():
-        if not ln.strip():
-            continue
-        utc, f, sha, p, ch = ln.split(" | ")
-        fsha = hashlib.sha256((WS / f).read_bytes()).hexdigest()
-        chain_ok &= (p == prev and fsha == sha and hashlib.sha256((prev + sha).encode()).hexdigest() == ch)
-        prev = ch
-        frozen_mt.append(os.path.getmtime(WS / f))
-    s3_files = [WS / "results" / "s3_analyses.json"] + sorted((WS / "tables").glob("*.csv"))
-    s3_mt = [os.path.getmtime(p) for p in s3_files]
-    predate = max(frozen_mt) < min(s3_mt)
-    n_mis = sum(1 for c in CHECKS if not c["ok"])
-    res = {"n_checks": len(CHECKS), "n_mismatches": n_mis, "mismatches": [c for c in CHECKS if not c["ok"]],
-           "checks": CHECKS, "placebos_failing": n_fail, "n_placebos": 5, "chain_ok": bool(chain_ok),
-           "frozen_predate_s3": bool(predate), "frozen_max_mtime": max(frozen_mt), "s3_min_mtime": min(s3_mt)}
-    (WS / "audit" / "rederive_result.json").write_text(json.dumps(res, indent=1))
-    (WS / "audit" / "placebos.json").write_text(json.dumps(plac, indent=1))
-    print(f"checks {len(CHECKS)}, mismatches {n_mis}; placebos failing as required {n_fail}/5; chain {chain_ok}; frozen predate S3 {predate}")
-    for c in CHECKS:
-        if not c["ok"]:
-            print("MISMATCH", c)
+    for fam in (fam_dose, fam_engine, fam_landing, fam_movability, fam_tables, fam_judges, fam_corrections):
+        try:
+            fam()
+        except (KeyError, FileNotFoundError, ValueError, ZeroDivisionError) as e:
+            CHECKS.append({"family": fam.__name__, "name": "family crashed", "expected": None, "got": repr(e), "pass": False})
+    out = {"n_checks": len(CHECKS), "n_passed": sum(c["pass"] for c in CHECKS),
+           "n_placebos": len(PLACEBOS), "n_placebos_failed": sum(p["failed_as_required"] for p in PLACEBOS),
+           "failed_checks": [c for c in CHECKS if not c["pass"]], "placebos": PLACEBOS, "checks": CHECKS}
+    (WS / "audit" / "rederive_report.json").write_text(json.dumps(out, indent=1, default=str))
+    print(f"checks {out['n_passed']}/{out['n_checks']} passed; placebos failed as required {out['n_placebos_failed']}/{out['n_placebos']}")
+    for c in out["failed_checks"]:
+        print("FAILED:", c["family"], c["name"], c["expected"], c["got"])
 
 
 if __name__ == "__main__":
