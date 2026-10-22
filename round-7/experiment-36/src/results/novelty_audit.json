@@ -1,0 +1,1120 @@
+{
+ "utc": "2026-10-22T14:14:26.956027Z",
+ "corpus_code_solutions_per_dataset": {
+  "leetcodedataset": 2869,
+  "mercury": 439,
+  "llm_creativity": 0,
+  "thealgorithms_python": 1340,
+  "clrs_text": 0,
+  "humanevalplus": 164,
+  "enamel": 164,
+  "concreteness_norms": 0,
+  "kodcode_algorithmic": 2767,
+  "xlcost_python": 10494
+ },
+ "examples_per_dataset": {
+  "leetcodedataset": 2869,
+  "mercury": 440,
+  "llm_creativity": 225,
+  "thealgorithms_python": 1354,
+  "clrs_text": 2910,
+  "humanevalplus": 164,
+  "enamel": 164,
+  "concreteness_norms": 39954,
+  "kodcode_algorithmic": 2767,
+  "xlcost_python": 10622
+ },
+ "n_corpus": 18237,
+ "judges": [
+  "mistralai/mistral-medium-3.1",
+  "moonshotai/kimi-k2"
+ ],
+ "tie_judge": "deepseek/deepseek-chat-v3.1",
+ "n_audited": 5,
+ "audit_classes": {
+  "CATALOGUE_VARIANT": 5
+ },
+ "n_novel": 0,
+ "controls_judged_as_catalogue": "9/10",
+ "items": [
+  {
+   "kind": "audit",
+   "sha": "b3f1cfad86e8d592",
+   "task": "T03",
+   "arm": "D1_a2",
+   "label": "other",
+   "nearest": [
+    {
+     "jaccard": 0.2450980395078659,
+     "dataset": "kodcode_algorithmic"
+    },
+    {
+     "jaccard": 0.23134328424930573,
+     "dataset": "kodcode_algorithmic"
+    },
+    {
+     "jaccard": 0.22580644488334656,
+     "dataset": "xlcost_python"
+    }
+   ],
+   "judges": [
+    {
+     "model": "mistralai/mistral-medium-3.1",
+     "class": "LABELLER_MISS",
+     "name": "counting_sort",
+     "reason": "The program counts occurrences of each value and iterates through sorted unique values to find the k-th smallest, which matches the counting sort approach.",
+     "raw": "{\"class\": \"LABELLER_MISS\", \"name\": \"counting_sort\", \"reason\": \"The program counts occurrences of each value and iterates through sorted unique values to find the k-th smallest, which matches the counting sort approach.\"}",
+     "cost": 0.0006
+    },
+    {
+     "model": "moonshotai/kimi-k2",
+     "class": "CATALOGUE_VARIANT",
+     "name": "counting_sort_with_compression",
+     "reason": "Uses counting sort logic but compresses to unique values first, then walks sorted unique keys subtracting counts - a variant of counting_sort that avoids the full range array by using a hash map for frequency counting.",
+     "raw": "```json\n{\"class\": \"CATALOGUE_VARIANT\", \"name\": \"counting_sort_with_compression\", \"reason\": \"Uses counting sort logic but compresses to unique values first, then walks sorted unique keys subtracting counts - a variant of counting_sort that avoids the full range array by using a hash map for frequency counting.\"}\n```",
+     "cost": 0.00083075
+    },
+    {
+     "model": "deepseek/deepseek-chat-v3.1",
+     "class": "CATALOGUE_VARIANT",
+     "name": "counting_sort",
+     "reason": "The algorithm counts frequencies of each value, sorts the unique keys, and then walks through the sorted keys while decrementing k by the count until it finds the k-th smallest element, which is a variant of counting sort that handles duplicates efficiently.",
+     "raw": "{\"class\": \"CATALOGUE_VARIANT\", \"name\": \"counting_sort\", \"reason\": \"The algorithm counts frequencies of each value, sorts the unique keys, and then walks through the sorted keys while decrementing k by the count until it finds the k-th smallest element, which is a variant of counting sort that handles duplicates efficiently.\"}",
+     "cost": 0.0007799
+    }
+   ],
+   "judge_class": "CATALOGUE_VARIANT",
+   "manual_class": "CATALOGUE_VARIANT",
+   "final_class": "CATALOGUE_VARIANT"
+  },
+  {
+   "kind": "audit",
+   "sha": "f65ae995dab9fdb5",
+   "task": "T03",
+   "arm": "D1_a2",
+   "label": "other",
+   "nearest": [
+    {
+     "jaccard": 0.2551020383834839,
+     "dataset": "kodcode_algorithmic"
+    },
+    {
+     "jaccard": 0.23846153914928436,
+     "dataset": "kodcode_algorithmic"
+    },
+    {
+     "jaccard": 0.23178808391094208,
+     "dataset": "xlcost_python"
+    }
+   ],
+   "judges": [
+    {
+     "model": "mistralai/mistral-medium-3.1",
+     "class": "LABELLER_MISS",
+     "name": "counting_sort",
+     "reason": "The program counts occurrences of each value and iterates through sorted unique values to find the k-th smallest, which is a counting sort approach.",
+     "raw": "{\"class\": \"LABELLER_MISS\", \"name\": \"counting_sort\", \"reason\": \"The program counts occurrences of each value and iterates through sorted unique values to find the k-th smallest, which is a counting sort approach.\"}",
+     "cost": 0.0005988
+    },
+    {
+     "model": "moonshotai/kimi-k2",
+     "class": "CATALOGUE_VARIANT",
+     "name": "counting_sort_with_compression",
+     "reason": "Uses counting sort but compresses to unique values first, then walks sorted unique keys while subtracting counts - a variant of counting sort that handles duplicates by frequency accumulation rather than direct indexing.",
+     "raw": "```json\n{\"class\": \"CATALOGUE_VARIANT\", \"name\": \"counting_sort_with_compression\", \"reason\": \"Uses counting sort but compresses to unique values first, then walks sorted unique keys while subtracting counts - a variant of counting sort that handles duplicates by frequency accumulation rather than direct indexing.\"}\n```",
+     "cost": 0.00081927
+    },
+    {
+     "model": "deepseek/deepseek-chat-v3.1",
+     "class": "CATALOGUE_VARIANT",
+     "name": "counting_sort",
+     "reason": "It uses a frequency dictionary to count occurrences and then iterates through sorted unique keys to find the k-th element, which is a variant of counting sort that doesn't use the full value range.",
+     "raw": "{\"class\": \"CATALOGUE_VARIANT\", \"name\": \"counting_sort\", \"reason\": \"It uses a frequency dictionary to count occurrences and then iterates through sorted unique keys to find the k-th element, which is a variant of counting sort that doesn't use the full value range.\"}",
+     "cost": 0.00076065
+    }
+   ],
+   "judge_class": "CATALOGUE_VARIANT",
+   "manual_class": "CATALOGUE_VARIANT",
+   "final_class": "CATALOGUE_VARIANT"
+  },
+  {
+   "kind": "audit",
+   "sha": "56908a44b876615c",
+   "task": "T03",
+   "arm": "EAP",
+   "label": "other",
+   "nearest": [
+    {
+     "jaccard": 0.40186914801597595,
+     "dataset": "xlcost_python"
+    },
+    {
+     "jaccard": 0.37362638115882874,
+     "dataset": "kodcode_algorithmic"
+    },
+    {
+     "jaccard": 0.37362638115882874,
+     "dataset": "kodcode_algorithmic"
+    }
+   ],
+   "judges": [
+    {
+     "model": "mistralai/mistral-medium-3.1",
+     "class": "LABELLER_MISS",
+     "name": "counting_sort",
+     "reason": "The program counts occurrences of each value and iterates through sorted keys to find the k-th smallest, matching the counting sort approach.",
+     "raw": "{\"class\": \"LABELLER_MISS\", \"name\": \"counting_sort\", \"reason\": \"The program counts occurrences of each value and iterates through sorted keys to find the k-th smallest, matching the counting sort approach.\"}",
+     "cost": 0.00041136
+    },
+    {
+     "model": "moonshotai/kimi-k2",
+     "class": "CATALOGUE_VARIANT",
+     "name": "counting_sort_variant",
+     "reason": "Uses a hash map to count frequencies then iterates through sorted unique keys, which is a variant of counting sort using hash map instead of array index, combined with early termination on cumulative counts.",
+     "raw": "```json\n{\"class\": \"CATALOGUE_VARIANT\", \"name\": \"counting_sort_variant\", \"reason\": \"Uses a hash map to count frequencies then iterates through sorted unique keys, which is a variant of counting sort using hash map instead of array index, combined with early termination on cumulative counts.\"}\n```",
+     "cost": 0.00076284
+    },
+    {
+     "model": "deepseek/deepseek-chat-v3.1",
+     "class": "CATALOGUE_VARIANT",
+     "name": "counting_sort",
+     "reason": "The program counts frequencies of values and then iterates through sorted keys to find the k-th smallest, which is a variant of counting sort that doesn't use the full value range for counting.",
+     "raw": "{\"class\": \"CATALOGUE_VARIANT\", \"name\": \"counting_sort\", \"reason\": \"The program counts frequencies of values and then iterates through sorted keys to find the k-th smallest, which is a variant of counting sort that doesn't use the full value range for counting.\"}",
+     "cost": 0.0006974
+    }
+   ],
+   "judge_class": "CATALOGUE_VARIANT",
+   "manual_class": "CATALOGUE_VARIANT",
+   "final_class": "CATALOGUE_VARIANT"
+  },
+  {
+   "kind": "audit",
+   "sha": "54019c5134103020",
+   "task": "T03",
+   "arm": "EAP",
+   "label": "other",
+   "nearest": [
+    {
+     "jaccard": 0.21978022158145905,
+     "dataset": "kodcode_algorithmic"
+    },
+    {
+     "jaccard": 0.20408163964748383,
+     "dataset": "mercury"
+    },
+    {
+     "jaccard": 0.19230769574642181,
+     "dataset": "mercury"
+    }
+   ],
+   "judges": [
+    {
+     "model": "mistralai/mistral-medium-3.1",
+     "class": "LABELLER_MISS",
+     "name": "counting_sort",
+     "reason": "The program counts occurrences of each value and iterates through sorted unique values, accumulating counts until reaching the k-th smallest element, which matches the counting sort approach.",
+     "raw": "{\"class\": \"LABELLER_MISS\", \"name\": \"counting_sort\", \"reason\": \"The program counts occurrences of each value and iterates through sorted unique values, accumulating counts until reaching the k-th smallest element, which matches the counting sort approach.\"}",
+     "cost": 0.0005252
+    },
+    {
+     "model": "moonshotai/kimi-k2",
+     "class": "LABELLER_MISS",
+     "name": "counting_sort",
+     "reason": "The program counts occurrences of each value (frequency counting) then iterates through sorted unique values subtracting counts until k is covered, which is exactly the counting sort approach for selection.",
+     "raw": "```json\n{\"class\": \"LABELLER_MISS\", \"name\": \"counting_sort\", \"reason\": \"The program counts occurrences of each value (frequency counting) then iterates through sorted unique values subtracting counts until k is covered, which is exactly the counting sort approach for selection.\"}\n```",
+     "cost": 0.00069381
+    }
+   ],
+   "judge_class": "LABELLER_MISS",
+   "manual_class": "CATALOGUE_VARIANT",
+   "final_class": "CATALOGUE_VARIANT"
+  },
+  {
+   "kind": "audit",
+   "sha": "ab79cb14e32d07e1",
+   "task": "T03",
+   "arm": "E27:BINT",
+   "label": "other",
+   "nearest": [
+    {
+     "jaccard": 0.25773194432258606,
+     "dataset": "kodcode_algorithmic"
+    },
+    {
+     "jaccard": 0.24031007289886475,
+     "dataset": "kodcode_algorithmic"
+    },
+    {
+     "jaccard": 0.23140496015548706,
+     "dataset": "kodcode_algorithmic"
+    }
+   ],
+   "judges": [
+    {
+     "model": "mistralai/mistral-medium-3.1",
+     "class": "LABELLER_MISS",
+     "name": "counting_sort",
+     "reason": "The program counts occurrences of each value and iterates through sorted unique values to find the k-th smallest, matching the counting sort approach.",
+     "raw": "{\"class\": \"LABELLER_MISS\", \"name\": \"counting_sort\", \"reason\": \"The program counts occurrences of each value and iterates through sorted unique values to find the k-th smallest, matching the counting sort approach.\"}",
+     "cost": 0.0006064
+    },
+    {
+     "model": "moonshotai/kimi-k2",
+     "class": "CATALOGUE_VARIANT",
+     "name": "counting_sort_with_dict",
+     "reason": "Uses dictionary counting (like counting sort's frequency array) but with sorted unique keys instead of fixed range iteration, combining counting sort with partial sorting of unique values.",
+     "raw": "```json\n{\"class\": \"CATALOGUE_VARIANT\", \"name\": \"counting_sort_with_dict\", \"reason\": \"Uses dictionary counting (like counting sort's frequency array) but with sorted unique keys instead of fixed range iteration, combining counting sort with partial sorting of unique values.\"}\n```",
+     "cost": 0.00082031
+    },
+    {
+     "model": "deepseek/deepseek-chat-v3.1",
+     "class": "CATALOGUE_VARIANT",
+     "name": "counting_sort",
+     "reason": "It uses counting and then sorts the unique keys, which is a variant of counting sort that doesn't require the full value range.",
+     "raw": "{\"class\": \"CATALOGUE_VARIANT\", \"name\": \"counting_sort\", \"reason\": \"It uses counting and then sorts the unique keys, which is a variant of counting sort that doesn't require the full value range.\"}",
+     "cost": 0.0007469
+    }
+   ],
+   "judge_class": "CATALOGUE_VARIANT",
+   "manual_class": "CATALOGUE_VARIANT",
+   "final_class": "CATALOGUE_VARIANT"
+  },
+  {
+   "kind": "control",
+   "sha": "dea0acb3b8accac8",
+   "task": "T03",
+   "arm": "TWIN",
+   "label": "full_sort",
+   "nearest": [
+    {
+     "jaccard": 0.25,
+     "dataset": "xlcost_python"
+    },
+    {
+     "jaccard": 0.25,
+     "dataset": "xlcost_python"
+    },
+    {
+     "jaccard": 0.23076923191547394,
+     "dataset": "xlcost_python"
+    }
+   ],
+   "judges": [
+    {
+     "model": "mistralai/mistral-medium-3.1",
+     "class": "LABELLER_MISS",
+     "name": "full_sort",
+     "reason": "The program sorts the entire list and then indexes the k-1 position, which matches the full_sort algorithm.",
+     "raw": "{\"class\": \"LABELLER_MISS\", \"name\": \"full_sort\", \"reason\": \"The program sorts the entire list and then indexes the k-1 position, which matches the full_sort algorithm.\"}",
+     "cost": 0.0004556
+    },
+    {
+     "model": "moonshotai/kimi-k2",
+     "class": "LABELLER_MISS",
+     "name": "full_sort",
+     "reason": "The program uses Python's built-in sorted() function to sort the entire list and then indexes at position k-1, which is exactly the full_sort catalogue algorithm.",
+     "raw": "```json\n{\"class\": \"LABELLER_MISS\", \"name\": \"full_sort\", \"reason\": \"The program uses Python's built-in sorted() function to sort the entire list and then indexes at position k-1, which is exactly the full_sort catalogue algorithm.\"}\n```",
+     "cost": 0.0006259
+    }
+   ],
+   "judge_class": "LABELLER_MISS",
+   "manual_class": null,
+   "final_class": "LABELLER_MISS"
+  },
+  {
+   "kind": "control",
+   "sha": "b8740a250ed3a943",
+   "task": "T03",
+   "arm": "TWIN",
+   "label": "quickselect",
+   "nearest": [
+    {
+     "jaccard": 0.2980392277240753,
+     "dataset": "thealgorithms_python"
+    },
+    {
+     "jaccard": 0.27626457810401917,
+     "dataset": "mercury"
+    },
+    {
+     "jaccard": 0.26582279801368713,
+     "dataset": "mercury"
+    }
+   ],
+   "judges": [
+    {
+     "model": "mistralai/mistral-medium-3.1",
+     "class": "LABELLER_MISS",
+     "name": "quickselect",
+     "reason": "The program implements the quickselect algorithm as described in the catalogue.",
+     "raw": "{\"class\": \"LABELLER_MISS\", \"name\": \"quickselect\", \"reason\": \"The program implements the quickselect algorithm as described in the catalogue.\"}",
+     "cost": 0.0007412
+    },
+    {
+     "model": "moonshotai/kimi-k2",
+     "class": "UNPARSED",
+     "name": null,
+     "reason": "",
+     "raw": "",
+     "cost": 0.00143527
+    },
+    {
+     "model": "deepseek/deepseek-chat-v3.1",
+     "class": "LABELLER_MISS",
+     "name": "quickselect",
+     "reason": "The program implements the standard quickselect algorithm with a partition function that uses the last element as pivot and recursively searches only the partition containing the k-th element.",
+     "raw": "{\"class\": \"LABELLER_MISS\", \"name\": \"quickselect\", \"reason\": \"The program implements the standard quickselect algorithm with a partition function that uses the last element as pivot and recursively searches only the partition containing the k-th element.\"}",
+     "cost": 0.00097405
+    }
+   ],
+   "judge_class": "LABELLER_MISS",
+   "manual_class": null,
+   "final_class": "LABELLER_MISS"
+  },
+  {
+   "kind": "control",
+   "sha": "aaef86bfc0e35a8a",
+   "task": "T10",
+   "arm": "TWIN",
+   "label": "union_find",
+   "nearest": [
+    {
+     "jaccard": 0.2777777910232544,
+     "dataset": "mercury"
+    },
+    {
+     "jaccard": 0.21153846383094788,
+     "dataset": "mercury"
+    },
+    {
+     "jaccard": 0.15723270177841187,
+     "dataset": "xlcost_python"
+    }
+   ],
+   "judges": [
+    {
+     "model": "mistralai/mistral-medium-3.1",
+     "class": "LABELLER_MISS",
+     "name": "union_find",
+     "reason": "The program uses the union-find (disjoint set union) algorithm to count connected components.",
+     "raw": "{\"class\": \"LABELLER_MISS\", \"name\": \"union_find\", \"reason\": \"The program uses the union-find (disjoint set union) algorithm to count connected components.\"}",
+     "cost": 0.000512
+    },
+    {
+     "model": "moonshotai/kimi-k2",
+     "class": "LABELLER_MISS",
+     "name": "union_find",
+     "reason": "The program implements the standard union-find (disjoint set union) algorithm with path compression in find and union by setting parent directly, which matches the catalogue description exactly.",
+     "raw": "```json\n{\"class\": \"LABELLER_MISS\", \"name\": \"union_find\", \"reason\": \"The program implements the standard union-find (disjoint set union) algorithm with path compression in find and union by setting parent directly, which matches the catalogue description exactly.\"}\n```",
+     "cost": 0.00071197
+    }
+   ],
+   "judge_class": "LABELLER_MISS",
+   "manual_class": null,
+   "final_class": "LABELLER_MISS"
+  },
+  {
+   "kind": "control",
+   "sha": "eb44324b03a5a461",
+   "task": "T10",
+   "arm": "D1_a2",
+   "label": "dfs",
+   "nearest": [
+    {
+     "jaccard": 0.29050278663635254,
+     "dataset": "mercury"
+    },
+    {
+     "jaccard": 0.26543208956718445,
+     "dataset": "mercury"
+    },
+    {
+     "jaccard": 0.24840764701366425,
+     "dataset": "mercury"
+    }
+   ],
+   "judges": [
+    {
+     "model": "mistralai/mistral-medium-3.1",
+     "class": "LABELLER_MISS",
+     "name": "dfs",
+     "reason": "The program uses a standard depth-first search (DFS) to count connected components.",
+     "raw": "{\"class\": \"LABELLER_MISS\", \"name\": \"dfs\", \"reason\": \"The program uses a standard depth-first search (DFS) to count connected components.\"}",
+     "cost": 0.0005132
+    },
+    {
+     "model": "moonshotai/kimi-k2",
+     "class": "UNPARSED",
+     "name": null,
+     "reason": "",
+     "raw": "",
+     "cost": 0.00104311
+    },
+    {
+     "model": "deepseek/deepseek-chat-v3.1",
+     "class": "LABELLER_MISS",
+     "name": "dfs",
+     "reason": "The program uses a depth-first search (DFS) traversal from every unvisited node to count connected components, which matches the catalogue algorithm 'dfs'.",
+     "raw": "{\"class\": \"LABELLER_MISS\", \"name\": \"dfs\", \"reason\": \"The program uses a depth-first search (DFS) traversal from every unvisited node to count connected components, which matches the catalogue algorithm 'dfs'.\"}",
+     "cost": 0.0006589
+    }
+   ],
+   "judge_class": "LABELLER_MISS",
+   "manual_class": null,
+   "final_class": "LABELLER_MISS"
+  },
+  {
+   "kind": "control",
+   "sha": "d8b8fe04c893bc0d",
+   "task": "T2",
+   "arm": "TWIN",
+   "label": "dijkstra",
+   "nearest": [
+    {
+     "jaccard": 0.39823007583618164,
+     "dataset": "kodcode_algorithmic"
+    },
+    {
+     "jaccard": 0.34156379103660583,
+     "dataset": "kodcode_algorithmic"
+    },
+    {
+     "jaccard": 0.3290598392486572,
+     "dataset": "kodcode_algorithmic"
+    }
+   ],
+   "judges": [
+    {
+     "model": "mistralai/mistral-medium-3.1",
+     "class": "LABELLER_MISS",
+     "name": "dijkstra",
+     "reason": "The program implements Dijkstra's algorithm using a priority queue to find the shortest path in a directed weighted graph with non-negative weights.",
+     "raw": "{\"class\": \"LABELLER_MISS\", \"name\": \"dijkstra\", \"reason\": \"The program implements Dijkstra's algorithm using a priority queue to find the shortest path in a directed weighted graph with non-negative weights.\"}",
+     "cost": 0.0007392
+    },
+    {
+     "model": "moonshotai/kimi-k2",
+     "class": "LABELLER_MISS",
+     "name": "dijkstra",
+     "reason": "The program implements standard Dijkstra's algorithm with a binary heap priority queue, matching the catalogue entry 'dijkstra'.",
+     "raw": "```json\n{\"class\": \"LABELLER_MISS\", \"name\": \"dijkstra\", \"reason\": \"The program implements standard Dijkstra's algorithm with a binary heap priority queue, matching the catalogue entry 'dijkstra'.\"}\n```",
+     "cost": 0.00098545
+    }
+   ],
+   "judge_class": "LABELLER_MISS",
+   "manual_class": null,
+   "final_class": "LABELLER_MISS"
+  },
+  {
+   "kind": "control",
+   "sha": "c01daccaf3769cd5",
+   "task": "T2",
+   "arm": "D1_a2",
+   "label": "bf_spfa",
+   "nearest": [
+    {
+     "jaccard": 0.21198156476020813,
+     "dataset": "kodcode_algorithmic"
+    },
+    {
+     "jaccard": 0.19920319318771362,
+     "dataset": "kodcode_algorithmic"
+    },
+    {
+     "jaccard": 0.18772563338279724,
+     "dataset": "kodcode_algorithmic"
+    }
+   ],
+   "judges": [
+    {
+     "model": "mistralai/mistral-medium-3.1",
+     "class": "LABELLER_MISS",
+     "name": "bf_spfa",
+     "reason": "The program implements the Shortest Path Faster Algorithm (SPFA), a variant of Bellman-Ford using a queue.",
+     "raw": "{\"class\": \"LABELLER_MISS\", \"name\": \"bf_spfa\", \"reason\": \"The program implements the Shortest Path Faster Algorithm (SPFA), a variant of Bellman-Ford using a queue.\"}",
+     "cost": 0.0006856
+    },
+    {
+     "model": "moonshotai/kimi-k2",
+     "class": "CATALOGUE_VARIANT",
+     "name": "SPFA (Shortest Path Faster Algorithm)",
+     "reason": "The code uses a queue-based relaxation approach with a deque where nodes are re-enqueued when their distance improves, which is the classic SPFA variant of Bellman-Ford, not a simple BFS or Dijkstra's algorithm.",
+     "raw": "```json\n{\"class\": \"CATALOGUE_VARIANT\", \"name\": \"SPFA (Shortest Path Faster Algorithm)\", \"reason\": \"The code uses a queue-based relaxation approach with a deque where nodes are re-enqueued when their distance improves, which is the classic SPFA variant of Bellman-Ford, not a simple BFS or Dijkstra's algorithm.\"}\n```",
+     "cost": 0.00097343
+    },
+    {
+     "model": "deepseek/deepseek-chat-v3.1",
+     "class": "CATALOGUE_VARIANT",
+     "name": "SPFA",
+     "reason": "The program implements a variant of the Bellman-Ford algorithm using a queue for optimization, similar to SPFA (Shortest Path Faster Algorithm).",
+     "raw": "{\"class\": \"CATALOGUE_VARIANT\", \"name\": \"SPFA\", \"reason\": \"The program implements a variant of the Bellman-Ford algorithm using a queue for optimization, similar to SPFA (Shortest Path Faster Algorithm).\"}",
+     "cost": 0.0008591
+    }
+   ],
+   "judge_class": "CATALOGUE_VARIANT",
+   "manual_class": null,
+   "final_class": "CATALOGUE_VARIANT"
+  },
+  {
+   "kind": "control",
+   "sha": "1718ec75d45a8224",
+   "task": "T05",
+   "arm": "TWIN",
+   "label": "hash_map",
+   "nearest": [
+    {
+     "jaccard": 0.8333333134651184,
+     "dataset": "kodcode_algorithmic"
+    },
+    {
+     "jaccard": 0.529411792755127,
+     "dataset": "kodcode_algorithmic"
+    },
+    {
+     "jaccard": 0.41428571939468384,
+     "dataset": "kodcode_algorithmic"
+    }
+   ],
+   "judges": [
+    {
+     "model": "mistralai/mistral-medium-3.1",
+     "class": "LABELLER_MISS",
+     "name": "hash_map",
+     "reason": "The program uses a hash map to store seen values and their indices, checking for the complement in constant time.",
+     "raw": "{\"class\": \"LABELLER_MISS\", \"name\": \"hash_map\", \"reason\": \"The program uses a hash map to store seen values and their indices, checking for the complement in constant time.\"}",
+     "cost": 0.0004368
+    },
+    {
+     "model": "moonshotai/kimi-k2",
+     "class": "LABELLER_MISS",
+     "name": "hash_map",
+     "reason": "The program implements the exact hash_map algorithm from the catalogue: using a dictionary to store seen values and their indices, checking for complement on each iteration.",
+     "raw": "```json\n{\"class\": \"LABELLER_MISS\", \"name\": \"hash_map\", \"reason\": \"The program implements the exact hash_map algorithm from the catalogue: using a dictionary to store seen values and their indices, checking for complement on each iteration.\"}\n```",
+     "cost": 0.00059962
+    }
+   ],
+   "judge_class": "LABELLER_MISS",
+   "manual_class": null,
+   "final_class": "LABELLER_MISS"
+  },
+  {
+   "kind": "control",
+   "sha": "4375841b5253b142",
+   "task": "T05",
+   "arm": "BINT",
+   "label": "sort_two_pointers",
+   "nearest": [
+    {
+     "jaccard": 0.4051724076271057,
+     "dataset": "kodcode_algorithmic"
+    },
+    {
+     "jaccard": 0.3949579894542694,
+     "dataset": "kodcode_algorithmic"
+    },
+    {
+     "jaccard": 0.38596490025520325,
+     "dataset": "kodcode_algorithmic"
+    }
+   ],
+   "judges": [
+    {
+     "model": "mistralai/mistral-medium-3.1",
+     "class": "LABELLER_MISS",
+     "name": "sort_two_pointers",
+     "reason": "The program sorts the list with indices and uses two pointers to find the pair, matching the sort_two_pointers algorithm.",
+     "raw": "{\"class\": \"LABELLER_MISS\", \"name\": \"sort_two_pointers\", \"reason\": \"The program sorts the list with indices and uses two pointers to find the pair, matching the sort_two_pointers algorithm.\"}",
+     "cost": 0.0005644
+    },
+    {
+     "model": "moonshotai/kimi-k2",
+     "class": "LABELLER_MISS",
+     "name": "sort_two_pointers",
+     "reason": "The program sorts (value, index) pairs and uses two pointers moving inwards from both ends, which is exactly the sort_two_pointers catalogue algorithm.",
+     "raw": "```json\n{\"class\": \"LABELLER_MISS\", \"name\": \"sort_two_pointers\", \"reason\": \"The program sorts (value, index) pairs and uses two pointers moving inwards from both ends, which is exactly the sort_two_pointers catalogue algorithm.\"}\n```",
+     "cost": 0.00076897
+    }
+   ],
+   "judge_class": "LABELLER_MISS",
+   "manual_class": null,
+   "final_class": "LABELLER_MISS"
+  },
+  {
+   "kind": "control",
+   "sha": "0598f8e1237d5d7a",
+   "task": "T1",
+   "arm": "TWIN",
+   "label": "bfs",
+   "nearest": [
+    {
+     "jaccard": 0.3273809552192688,
+     "dataset": "kodcode_algorithmic"
+    },
+    {
+     "jaccard": 0.32011330127716064,
+     "dataset": "kodcode_algorithmic"
+    },
+    {
+     "jaccard": 0.3086053431034088,
+     "dataset": "kodcode_algorithmic"
+    }
+   ],
+   "judges": [
+    {
+     "model": "mistralai/mistral-medium-3.1",
+     "class": "LABELLER_MISS",
+     "name": "bfs",
+     "reason": "The program uses breadth-first search (BFS) to explore the grid and find a path.",
+     "raw": "{\"class\": \"LABELLER_MISS\", \"name\": \"bfs\", \"reason\": \"The program uses breadth-first search (BFS) to explore the grid and find a path.\"}",
+     "cost": 0.0008348
+    },
+    {
+     "model": "moonshotai/kimi-k2",
+     "class": "LABELLER_MISS",
+     "name": "bfs",
+     "reason": "This is standard breadth-first search (BFS) that stores the full path in queue nodes, which is a common BFS variant for path reconstruction.",
+     "raw": "```json\n{\"class\": \"LABELLER_MISS\", \"name\": \"bfs\", \"reason\": \"This is standard breadth-first search (BFS) that stores the full path in queue nodes, which is a common BFS variant for path reconstruction.\"}\n```",
+     "cost": 0.00115423
+    }
+   ],
+   "judge_class": "LABELLER_MISS",
+   "manual_class": null,
+   "final_class": "LABELLER_MISS"
+  },
+  {
+   "kind": "control",
+   "sha": "16ea919d090f49d0",
+   "task": "T1",
+   "arm": "D1_a2",
+   "label": "dfs",
+   "nearest": [
+    {
+     "jaccard": 0.23999999463558197,
+     "dataset": "kodcode_algorithmic"
+    },
+    {
+     "jaccard": 0.2398843914270401,
+     "dataset": "kodcode_algorithmic"
+    },
+    {
+     "jaccard": 0.22739726305007935,
+     "dataset": "kodcode_algorithmic"
+    }
+   ],
+   "judges": [
+    {
+     "model": "mistralai/mistral-medium-3.1",
+     "class": "LABELLER_MISS",
+     "name": "dfs",
+     "reason": "The program uses a depth-first search (DFS) algorithm to find a path in the grid.",
+     "raw": "{\"class\": \"LABELLER_MISS\", \"name\": \"dfs\", \"reason\": \"The program uses a depth-first search (DFS) algorithm to find a path in the grid.\"}",
+     "cost": 0.000828
+    },
+    {
+     "model": "moonshotai/kimi-k2",
+     "class": "UNPARSED",
+     "name": null,
+     "reason": "",
+     "raw": "",
+     "cost": 0.00147289
+    },
+    {
+     "model": "deepseek/deepseek-chat-v3.1",
+     "class": "LABELLER_MISS",
+     "name": "dfs",
+     "reason": "The program uses a depth-first search algorithm with recursion to explore paths until the goal is found.",
+     "raw": "{\"class\": \"LABELLER_MISS\", \"name\": \"dfs\", \"reason\": \"The program uses a depth-first search algorithm with recursion to explore paths until the goal is found.\"}",
+     "cost": 0.0010626
+    }
+   ],
+   "judge_class": "LABELLER_MISS",
+   "manual_class": null,
+   "final_class": "LABELLER_MISS"
+  }
+ ],
+ "nearest_known_descriptive": {
+  "T03|BINT": {
+   "n_distinct_correct_off_default": 5,
+   "median_max_jaccard": 0.2857142984867096,
+   "classes": {
+    "VARIANT": 5
+   },
+   "labels": {
+    "counting_sort": 1,
+    "quickselect": 2,
+    "size_k_heap": 1,
+    "other": 1
+   }
+  },
+  "T03|D1": {
+   "n_distinct_correct_off_default": 20,
+   "median_max_jaccard": 0.30405837297439575,
+   "classes": {
+    "VARIANT": 16,
+    "DISTANT": 4
+   },
+   "labels": {
+    "quickselect": 15,
+    "size_k_heap": 3,
+    "other": 2
+   }
+  },
+  "T03|EAP": {
+   "n_distinct_correct_off_default": 29,
+   "median_max_jaccard": 0.3100775182247162,
+   "classes": {
+    "VARIANT": 23,
+    "DISTANT": 6
+   },
+   "labels": {
+    "quickselect": 21,
+    "median_of_medians": 1,
+    "counting_sort": 4,
+    "heapify_pop": 1,
+    "other": 2
+   }
+  },
+  "T03|IFG_hot": {
+   "n_distinct_correct_off_default": 1,
+   "median_max_jaccard": 0.4375,
+   "classes": {
+    "VARIANT": 1
+   },
+   "labels": {
+    "heapify_pop": 1
+   }
+  },
+  "T03|T1.3": {
+   "n_distinct_correct_off_default": 1,
+   "median_max_jaccard": 0.3465346395969391,
+   "classes": {
+    "VARIANT": 1
+   },
+   "labels": {
+    "quickselect": 1
+   }
+  },
+  "T03|TOPK10": {
+   "n_distinct_correct_off_default": 1,
+   "median_max_jaccard": 0.2980392277240753,
+   "classes": {
+    "VARIANT": 1
+   },
+   "labels": {
+    "quickselect": 1
+   }
+  },
+  "T03|TWIN": {
+   "n_distinct_correct_off_default": 1,
+   "median_max_jaccard": 0.2980392277240753,
+   "classes": {
+    "VARIANT": 1
+   },
+   "labels": {
+    "quickselect": 1
+   }
+  },
+  "T05|BINT": {
+   "n_distinct_correct_off_default": 10,
+   "median_max_jaccard": 0.4051724076271057,
+   "classes": {
+    "VARIANT": 8,
+    "KNOWN-CLOSE": 2
+   },
+   "labels": {
+    "brute_force": 4,
+    "sort_two_pointers": 4,
+    "sort_binary_search": 2
+   }
+  },
+  "T05|D1": {
+   "n_distinct_correct_off_default": 1,
+   "median_max_jaccard": 0.2380952388048172,
+   "classes": {
+    "DISTANT": 1
+   },
+   "labels": {
+    "brute_force": 1
+   }
+  },
+  "T05|EAP": {
+   "n_distinct_correct_off_default": 7,
+   "median_max_jaccard": 0.3504273593425751,
+   "classes": {
+    "VARIANT": 4,
+    "KNOWN-CLOSE": 2,
+    "DISTANT": 1
+   },
+   "labels": {
+    "sort_two_pointers": 2,
+    "brute_force": 3,
+    "sort_binary_search": 2
+   }
+  },
+  "T1|BINT": {
+   "n_distinct_correct_off_default": 4,
+   "median_max_jaccard": 0.3526129126548767,
+   "classes": {
+    "VARIANT": 3,
+    "DISTANT": 1
+   },
+   "labels": {
+    "dfs": 4
+   }
+  },
+  "T1|D1": {
+   "n_distinct_correct_off_default": 4,
+   "median_max_jaccard": 0.22257758677005768,
+   "classes": {
+    "DISTANT": 4
+   },
+   "labels": {
+    "dfs": 4
+   }
+  },
+  "T1|EAP": {
+   "n_distinct_correct_off_default": 8,
+   "median_max_jaccard": 0.2804696410894394,
+   "classes": {
+    "VARIANT": 6,
+    "DISTANT": 2
+   },
+   "labels": {
+    "dfs": 2,
+    "dijkstra": 2,
+    "astar_gbfs": 3,
+    "bibfs": 1
+   }
+  },
+  "T10|BINT": {
+   "n_distinct_correct_off_default": 10,
+   "median_max_jaccard": 0.2843107730150223,
+   "classes": {
+    "VARIANT": 7,
+    "DISTANT": 3
+   },
+   "labels": {
+    "bfs": 3,
+    "dfs": 7
+   }
+  },
+  "T10|D1": {
+   "n_distinct_correct_off_default": 19,
+   "median_max_jaccard": 0.29050278663635254,
+   "classes": {
+    "VARIANT": 13,
+    "DISTANT": 6
+   },
+   "labels": {
+    "dfs": 18,
+    "bfs": 1
+   }
+  },
+  "T10|D2": {
+   "n_distinct_correct_off_default": 25,
+   "median_max_jaccard": 0.3048780560493469,
+   "classes": {
+    "VARIANT": 18,
+    "KNOWN-CLOSE": 1,
+    "DISTANT": 6
+   },
+   "labels": {
+    "dfs": 22,
+    "bfs": 3
+   }
+  },
+  "T10|D3": {
+   "n_distinct_correct_off_default": 36,
+   "median_max_jaccard": 0.29050278663635254,
+   "classes": {
+    "VARIANT": 27,
+    "DISTANT": 9
+   },
+   "labels": {
+    "dfs": 25,
+    "bfs": 11
+   }
+  },
+  "T10|D4": {
+   "n_distinct_correct_off_default": 1,
+   "median_max_jaccard": 0.31736525893211365,
+   "classes": {
+    "VARIANT": 1
+   },
+   "labels": {
+    "dfs": 1
+   }
+  },
+  "T10|D5": {
+   "n_distinct_correct_off_default": 13,
+   "median_max_jaccard": 0.29050278663635254,
+   "classes": {
+    "VARIANT": 10,
+    "DISTANT": 3
+   },
+   "labels": {
+    "dfs": 9,
+    "bfs": 4
+   }
+  },
+  "T10|EAP": {
+   "n_distinct_correct_off_default": 28,
+   "median_max_jaccard": 0.26946376264095306,
+   "classes": {
+    "VARIANT": 21,
+    "DISTANT": 7
+   },
+   "labels": {
+    "bfs": 13,
+    "dfs": 15
+   }
+  },
+  "T10|IFG_hot": {
+   "n_distinct_correct_off_default": 2,
+   "median_max_jaccard": 0.22193877398967743,
+   "classes": {
+    "DISTANT": 2
+   },
+   "labels": {
+    "dfs": 2
+   }
+  },
+  "T10|PREST": {
+   "n_distinct_correct_off_default": 14,
+   "median_max_jaccard": 0.286956787109375,
+   "classes": {
+    "DISTANT": 4,
+    "VARIANT": 10
+   },
+   "labels": {
+    "dfs": 11,
+    "bfs": 3
+   }
+  },
+  "T10|PSHUF": {
+   "n_distinct_correct_off_default": 3,
+   "median_max_jaccard": 0.3048780560493469,
+   "classes": {
+    "VARIANT": 3
+   },
+   "labels": {
+    "dfs": 3
+   }
+  },
+  "T10|PTOP": {
+   "n_distinct_correct_off_default": 13,
+   "median_max_jaccard": 0.29050278663635254,
+   "classes": {
+    "VARIANT": 10,
+    "DISTANT": 3
+   },
+   "labels": {
+    "dfs": 13
+   }
+  },
+  "T10|TWIN": {
+   "n_distinct_correct_off_default": 1,
+   "median_max_jaccard": 0.29050278663635254,
+   "classes": {
+    "VARIANT": 1
+   },
+   "labels": {
+    "dfs": 1
+   }
+  },
+  "T2|BINT": {
+   "n_distinct_correct_off_default": 6,
+   "median_max_jaccard": 0.22930866479873657,
+   "classes": {
+    "DISTANT": 4,
+    "VARIANT": 2
+   },
+   "labels": {
+    "bf_spfa": 6
+   }
+  },
+  "T2|D1": {
+   "n_distinct_correct_off_default": 19,
+   "median_max_jaccard": 0.21198156476020813,
+   "classes": {
+    "DISTANT": 14,
+    "VARIANT": 5
+   },
+   "labels": {
+    "bf_spfa": 19
+   }
+  },
+  "T2|D2": {
+   "n_distinct_correct_off_default": 27,
+   "median_max_jaccard": 0.21686747670173645,
+   "classes": {
+    "DISTANT": 23,
+    "VARIANT": 4
+   },
+   "labels": {
+    "bf_spfa": 27
+   }
+  },
+  "T2|D3": {
+   "n_distinct_correct_off_default": 13,
+   "median_max_jaccard": 0.21198156476020813,
+   "classes": {
+    "DISTANT": 10,
+    "VARIANT": 3
+   },
+   "labels": {
+    "bf_spfa": 13
+   }
+  },
+  "T2|D4": {
+   "n_distinct_correct_off_default": 5,
+   "median_max_jaccard": 0.19455252587795258,
+   "classes": {
+    "DISTANT": 5
+   },
+   "labels": {
+    "bf_spfa": 5
+   }
+  },
+  "T2|D5": {
+   "n_distinct_correct_off_default": 8,
+   "median_max_jaccard": 0.22944757342338562,
+   "classes": {
+    "DISTANT": 5,
+    "VARIANT": 3
+   },
+   "labels": {
+    "bf_spfa": 8
+   }
+  },
+  "T2|EAP": {
+   "n_distinct_correct_off_default": 19,
+   "median_max_jaccard": 0.22274881601333618,
+   "classes": {
+    "DISTANT": 13,
+    "VARIANT": 6
+   },
+   "labels": {
+    "bf_spfa": 10,
+    "floyd": 9
+   }
+  },
+  "T2|PTOP": {
+   "n_distinct_correct_off_default": 5,
+   "median_max_jaccard": 0.19157087802886963,
+   "classes": {
+    "DISTANT": 4,
+    "VARIANT": 1
+   },
+   "labels": {
+    "bf_spfa": 5
+   }
+  }
+ },
+ "costs": {
+  "total_usd": 0.029289880000000004,
+  "n_calls": 38,
+  "refusals": 0
+ },
+ "manual_note": "Manual pass (agent): all five correct 'other' programs on T03 are the same mechanism -- a hash-map frequency count, a sort of the distinct keys, then a walk of cumulative counts until k is covered. This is counting sort with key compression (equivalently a full sort of the distinct values with multiplicities): a CATALOGUE_VARIANT of counting_sort / full_sort, not a new algorithm. Nearest known solutions (max Jaccard 0.22-0.40, kodcode/xlcost) use the same frequency-then-sorted-keys pattern."
+}

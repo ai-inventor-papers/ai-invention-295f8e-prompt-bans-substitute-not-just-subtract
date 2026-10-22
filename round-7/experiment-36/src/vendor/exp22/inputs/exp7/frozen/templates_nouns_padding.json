@@ -1,0 +1,160 @@
+{
+ "templates": {
+  "prompt": "cap_first(segment) + blank line + SPEC (exp1 make_prompt); BASE0 = SPEC only",
+  "chat": "apply_chat_template(add_generation_prompt=True, enable_thinking=False); tail asserted",
+  "neutral_padding": "neutral segment + d x filler, d = ban tokens - neutral tokens (chat-formatted)",
+  "noun_rule": "rank by |tokens_ws(noun) - tokens(' ' + name)|, ties -> higher SUBTLEX frequency; first two unused nouns per slot (no reuse within a task); two-step slots get 'N1 or N2'",
+  "noun_exclusions": [
+   "ass",
+   "bucket",
+   "chain",
+   "edge",
+   "game",
+   "graph",
+   "grid",
+   "head",
+   "heap",
+   "key",
+   "line",
+   "link",
+   "list",
+   "map",
+   "maze",
+   "net",
+   "node",
+   "path",
+   "point",
+   "queue",
+   "ring",
+   "road",
+   "route",
+   "search",
+   "stack",
+   "step",
+   "street",
+   "table",
+   "track",
+   "train",
+   "tree",
+   "walk",
+   "way",
+   "web"
+  ]
+ },
+ "nouns": {
+  "t1": {
+   "bfs": {
+    "A": "man",
+    "B": "guy",
+    "name_tokens": 7
+   },
+   "dfs": {
+    "A": "house",
+    "B": "baby",
+    "name_tokens": 6
+   },
+   "bibfs": {
+    "A": "car",
+    "B": "mother",
+    "name_tokens": 3
+   },
+   "iddfs": {
+    "A": "room",
+    "B": "kid",
+    "name_tokens": 8
+   },
+   "astar_gbfs": {
+    "A": "school",
+    "B": "honey",
+    "name_tokens": 3
+   },
+   "dijkstra": {
+    "A": "door",
+    "B": "face",
+    "name_tokens": 4
+   },
+   "jps": {
+    "A": "hand",
+    "B": "phone",
+    "name_tokens": 3
+   },
+   "idastar": {
+    "A": "drink",
+    "B": "heart",
+    "name_tokens": 4
+   },
+   "nonce": {
+    "A": "water",
+    "B": "fire",
+    "name_tokens": 6
+   },
+   "two_step": {
+    "A": "office or dinner",
+    "B": "body or dog",
+    "name_tokens": 14
+   }
+  },
+  "t2": {
+   "dijkstra": {
+    "A": "man",
+    "B": "guy",
+    "name_tokens": 4
+   },
+   "bf_spfa": {
+    "A": "house",
+    "B": "baby",
+    "name_tokens": 7
+   },
+   "bidijkstra": {
+    "A": "car",
+    "B": "mother",
+    "name_tokens": 4
+   },
+   "floyd": {
+    "A": "room",
+    "B": "kid",
+    "name_tokens": 4
+   },
+   "dial": {
+    "A": "school",
+    "B": "honey",
+    "name_tokens": 6
+   },
+   "johnson": {
+    "A": "door",
+    "B": "face",
+    "name_tokens": 3
+   },
+   "yen": {
+    "A": "hand",
+    "B": "phone",
+    "name_tokens": 9
+   },
+   "nonce": {
+    "A": "drink",
+    "B": "heart",
+    "name_tokens": 6
+   },
+   "two_step": {
+    "A": "water or fire",
+    "B": "office or dinner",
+    "name_tokens": 12
+   }
+  }
+ },
+ "alignment": {
+  "filler": " .",
+  "failures": [],
+  "pairs": 190,
+  "candidates_tried": [
+   {
+    "filler": " .",
+    "n_fail": 0
+   }
+  ]
+ },
+ "spec_suffix_tokens": {
+  "t1": 229,
+  "t2": 186
+ }
+}
