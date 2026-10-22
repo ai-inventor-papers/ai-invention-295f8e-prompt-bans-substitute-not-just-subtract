@@ -1,0 +1,171 @@
+{
+ "protocol": "evidence/protocol_iter6.json (sha256 in evidence/protocol_iter6.sha256)",
+ "dated": "search 2026-10-21 23:34 UTC .. 2026-10-22 ~00:05 UTC; verification 2026-10-21/22",
+ "FLAG_E": {
+  "definition": "FIRES if a paper reports that ACTIVATION quantisation (FP8 or INT8 activations, any scale granularity; W8A8, W4A8, FP8 activations with per-token or per-tensor scales; FP8 KV-cache counts as activation-side) changes the behavioural effect, success rate or direction of an activation-level intervention (steering/activation addition, noise injection, patching, ablation, SAE-latent editing) relative to higher-precision activations on the same or matched weights. PARTLY FIRED if the varied factor is weight-only (INT8/NF4/INT4/GPTQ/AWQ), or the outcome is internal only (vector cosine, probe accuracy), or numerics change intervention outcomes only via batch/kernel nondeterminism. ADJACENT if numerics or quantisation change outputs with no intervention (nondeterminism, FP8 outlier sensitivity, flips).",
+  "verdict": "PARTLY FIRED",
+  "summary": "No verified full text isolates ACTIVATION quantisation and shows it changes the behavioural effect of an activation-level intervention at matched weights, so FLAG E does not FIRE. It is PARTLY FIRED three ways: (1) weight-only evidence (Steering Under Compression: bitsandbytes INT8/NF4, activations kept FP16/BF16; PRISM: NF4); (2) joint weight+activation 8-bit RTN quantisation breaks activation-patching circuit discovery (PAHQ; FP32 vs 8-bit, GPT-2-scale, circuit-recovery AUC); (3) two contemporaneous ICLR 2027 submissions report, at abstract level, that the SAME steering intervention changes its behavioural effect across precision/low-bit quantisation while output fidelity and direction similarity are preserved, without stating whether activations are quantised (OpenReview PDFs HTTP 403).",
+  "candidates": [
+   {
+    "id": "OR:8iTqrW1sxY",
+    "title": "Stable Directions, Different Effects: Intervention Fidelity Across Model Precision",
+    "claim_scored": "E",
+    "O": 1,
+    "I": 0.5,
+    "C": 1,
+    "total": 2.5,
+    "relation": "occupies the general claim; precision factor (weight vs activation) not stated in the abstract",
+    "decisive": "92e-Ee;92e-Ef",
+    "text_status": "VERIFIED-ABSTRACT",
+    "venue_or_date": "ICLR 2027 desk-rejected submission (contemporaneous)"
+   },
+   {
+    "id": "OR:h57duZqLOr",
+    "title": "Activation Steering under Low-Bit Quantization: A Geometric Perspective on Degradation and Recovery",
+    "claim_scored": "E",
+    "O": 1,
+    "I": 0.5,
+    "C": 1,
+    "total": 2.5,
+    "relation": "occupies the general claim; scheme not stated (calibration/reconstruction wording suggests weight PTQ)",
+    "decisive": "92e-Eg;92e-Eh",
+    "text_status": "VERIFIED-ABSTRACT",
+    "venue_or_date": "ICLR 2027 submission (contemporaneous); seen in iteration 5 under another question"
+   },
+   {
+    "id": "2510.23264",
+    "title": "PAHQ: Accelerating Automated Circuit Discovery through Mixed-Precision Inference Optimization",
+    "claim_scored": "E",
+    "O": 0.5,
+    "I": 0.5,
+    "C": 1,
+    "total": 2.0,
+    "relation": "adjacent; FLAG E partly (weights AND activations quantised together, FP32 vs 8-bit RTN; outcome = circuit-recovery AUC on GPT-2-scale models)",
+    "decisive": "92e-Ei;92e-Ej;92e-Ek",
+    "text_status": "VERIFIED",
+    "venue_or_date": "arXiv v1 2025-10-27; no venue"
+   },
+   {
+    "id": "2609.06473",
+    "title": "Steering Under Compression",
+    "claim_scored": "E",
+    "O": 1,
+    "I": 0.5,
+    "C": 0.5,
+    "total": 2.0,
+    "relation": "adjacent; FLAG E partly (weight-only bitsandbytes INT8/NF4, activations FP16/BF16; vectors recomputed per scheme)",
+    "decisive": "92e-Ea;92e-Eb;92e-Ec;92e-Ed",
+    "text_status": "VERIFIED",
+    "venue_or_date": "arXiv v1 2026-09-06; contemporaneous_4mo"
+   },
+   {
+    "id": "2610.20808",
+    "title": "PRISM: Transfer and Limits of Activation Interventions in Tool-Calling Language Models",
+    "claim_scored": "E",
+    "O": 1,
+    "I": 0.5,
+    "C": 0.5,
+    "total": 2.0,
+    "relation": "adjacent; FLAG E partly (weight-only NF4 copies supply labels; directions act on BF16)",
+    "decisive": "92e-Eo;92e-Ep",
+    "text_status": "VERIFIED",
+    "venue_or_date": "arXiv v1 2026-10-14; contemporaneous_4mo"
+   },
+   {
+    "id": "doi:10.3390/computation14090212",
+    "title": "Float32-Induced Distortion in Activation Patching",
+    "claim_scored": "E",
+    "O": 0.5,
+    "I": 0,
+    "C": 0.5,
+    "total": 1.0,
+    "relation": "adjacent (fp32 vs fp64 numerics change interaction-level patching estimates; internal outcome; not activation quantisation)",
+    "decisive": "92e-El",
+    "text_status": "VERIFIED-ABSTRACT",
+    "venue_or_date": "Computation (MDPI) 2026-09-09"
+   }
+  ],
+  "consequence_for_wording": "Claim E's 'deployment finding' must not be framed as new in its general form ('quantisation can change what a fixed activation intervention does although quality and direction similarity are preserved'): that is occupied (contemporaneous, abstract-level). Claim E may claim, dated and 'to our knowledge': the activation-vs-weight attribution (2x2 W8A8/W8A16/W16A8/W16A16 factorial on identical hook code), a per-token-scaled FP8 W8A8 production engine (not unscaled casting or RTN), content-free random nudges at matched per-position dose with CRN slots, a categorical test-checked algorithm-choice outcome, and per-token absmax/FP8-scale readouts. If the full texts of OR:8iTqrW1sxY or OR:h57duZqLOr show activation quantisation, Claim E becomes a replication in a new setting (content-free nudges, code algorithm choice)."
+ },
+ "FLAG_L": {
+  "definition": "FIRES if a paper (i) perturbs, steers, prompts against or fine-tunes a tuned model away from its default output, (ii) forecasts from the base model where it lands (identity or distribution, any granularity), and (iii) scores that forecast against a rival built from the tuned model itself (its own sampled tail, its own likelihood ranking of alternatives, or its pre-perturbation distribution). PARTLY FIRED if (i)+(ii) without (iii); or (ii)+(iii) retrospective rather than forecast; or token-level only with (i)-(iii). ADJACENT: candidate preservation under post-training without a perturbation (URIAL, Same Candidates, Sparse but Critical, crystallization), stylised accounts (power sharpening).",
+  "verdict": "PARTLY FIRED",
+  "summary": "No paper forecasts, from the base model, which enumerated alternative a perturbed TUNED model lands on and scores that forecast against the tuned model's own sampled tail or likelihood ranking, so FLAG L does not FIRE. It is PARTLY FIRED by fine-tuning-perturbation work on reversion toward base behaviour: Re-Emergent Misalignment ((ii)+(iii) retrospective, sequence likelihoods: the instruct model suppresses what base and misaligned models share), Language Models Resist Alignment and Alignment Dynamics ((i)+(ii) at distribution/score level, no tuned rival), and the Gravitational Interpretation of Safety Reversion ((i)+(ii) prospective, direction toward base-descended helpful-only states, rival = matched geometric null). Token-level candidate preservation remains adjacent (URIAL, Sparse but Critical, Same Candidates). Rival-supporting evidence exists: jailbroken landings lie in the safe model's own top-10 (Weak-to-Strong), and an EM persona subspace extracted from the frozen tuned model forecasts where fine-tuning lands (Nadaf 2026).",
+  "candidates": [
+   {
+    "id": "2507.03662",
+    "title": "Re-Emergent Misalignment",
+    "claim_scored": "L1b",
+    "O": 0.5,
+    "I": 0.5,
+    "C": 0.5,
+    "total": 1.5,
+    "relation": "adjacent; FLAG L partly ((ii)+(iii) retrospective: misaligned outputs carry base-like likelihoods that the instruct model suppresses)",
+    "decisive": "92e-L1d;92e-L1e;92e-L1f",
+    "text_status": "VERIFIED",
+    "venue_or_date": "arXiv v1 2025-07-04"
+   },
+   {
+    "id": "2406.06144",
+    "title": "Language Models Resist Alignment: Evidence From Data Compression",
+    "claim_scored": "L1a",
+    "O": 0.5,
+    "I": 0.5,
+    "C": 0,
+    "total": 1.0,
+    "relation": "adjacent; FLAG L partly ((i)+(ii) at distribution/score level; no tuned-model rival)",
+    "decisive": "92e-L1g",
+    "text_status": "VERIFIED",
+    "venue_or_date": "ACL 2025 Main"
+   },
+   {
+    "id": "2605.18309",
+    "title": "Alignment Dynamics in LLM Fine-Tuning",
+    "claim_scored": "L1a",
+    "O": 0.5,
+    "I": 0.5,
+    "C": 0,
+    "total": 1.0,
+    "relation": "adjacent (rebound dynamics)",
+    "decisive": "92e-L1h",
+    "text_status": "VERIFIED",
+    "venue_or_date": "arXiv v1 2026-05-18"
+   },
+   {
+    "id": "2606.28525",
+    "title": "A Gravitational Interpretation of Safety Reversion under Fine-Tuning",
+    "claim_scored": "L1a",
+    "O": 0.5,
+    "I": 0.5,
+    "C": 0.5,
+    "total": 1.5,
+    "relation": "adjacent; FLAG L partly ((i)+(ii) prospective, direction toward base-descended helpful-only states; rival is a matched geometric null)",
+    "decisive": "92e-L1i;92e-L1j",
+    "text_status": "VERIFIED",
+    "venue_or_date": "arXiv v1 2026-06-26 (v2 retitled)"
+   },
+   {
+    "id": "2603.22446",
+    "title": "Sparse but Critical",
+    "claim_scored": "L1a",
+    "O": 1,
+    "I": 1,
+    "C": 0,
+    "total": 2,
+    "relation": "adjacent (token-level, retrospective; no perturbation of the tuned model)",
+    "decisive": "92e-L1a;92e-L1b;92e-L1c",
+    "text_status": "VERIFIED",
+    "venue_or_date": "ICLR 2026"
+   }
+  ],
+  "consequence_for_wording": "Not a replication. The 92d A2 sentence is updated: reversion of fine-tune-perturbed tuned models toward base behaviour is reported at distribution/likelihood level (retrospective, or prospective against a geometric null), and candidate preservation is reported at token level; to our knowledge (dated search), no work commits in advance to an algorithm-level landing forecast from the base composition and scores it against the tuned model's own likelihood ranking (q_lik) and sampled tail (q_tail), including tail-empty events. 'First' is not licensed."
+ },
+ "FLAG_S_secondary": {
+  "verdict": "NOT FIRED",
+  "summary": "No paper compares sites (prefill task-spec states by layer band vs read position vs condition tokens vs generated tokens) for content-free perturbations at matched dose on a categorical solution choice. Closest: inherited site comparisons for narratives/test coverage (92c C1-site: Noise Steering, STARS App. B.3), Gaussian embedding perturbation for uncertainty localisation (2602.02427), prefix perturbation at reasoning-mode forks (2605.17026)."
+ },
+ "FLAG_K_secondary": {
+  "verdict": "NOT FIRED",
+  "summary": "No test-checked ALGORITHM-level code diversity under base/aligned interpolation, collaboration or proxy tuning. Closest: base-model merging restores policy diversity on code benchmarks (OR:MYXgOex05m, abstract), Hindsight Merging +20-50% pass@10 on code (92d), FrankenMerging lexical/semantic diversity (92d), BACo open-ended text (92d)."
+ }
+}

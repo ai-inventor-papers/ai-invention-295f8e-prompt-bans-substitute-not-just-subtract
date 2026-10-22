@@ -1,0 +1,368 @@
+{
+  "protocol_id": "iter5-positioning-audit-92d",
+  "frozen_utc": "2026-10-21T14:50:21Z",
+  "note": "Written before the first search call of this module. Query strings, engines, window, rubric, flags and stop rule below are frozen; any deviation is logged in evidence/search_log_iter5.jsonl with status 'deviation' and reported in research_report.md section 4. Amendment A1 (2026-10-21T14:59Z): the hand-typed frozen_utc '2026-10-21T15:00:00Z' was replaced by the file's actual write time (mtime 14:50:21Z), which precedes the first logged search call (14:51:23Z). No other field changed; old and new sha256 are in evidence/protocol_amendments.jsonl.",
+  "extends": "art_kjrCpQnPaniY (iteration-4 positioning audit; Tables 92b/92c)",
+  "claims": {
+    "A0": "Premise: post-training (instruction tuning / RL) narrowed an algorithm choice that the base model makes more evenly (code, algorithm level, test-checked).",
+    "A1": "Movability: whether the tuned model can be pushed off its default algorithm on a task follows the base model's own repertoire on that task (beta = base share spread).",
+    "A2": "Landing: where a push or ban of the tuned model lands is the base model's runner-up algorithm.",
+    "B1": "Transplant: writing base-model prefill states at the task-specification positions (blocks 12-23, lambda 0.25/0.5/1) into the instruct model's forward pass restores the base model's algorithm choice; controls: read position, blocks 0-11, blocks 24-35, matched-norm random displacement, cross-task patch.",
+    "B2_D": "De-sharpening push: pushing the instruct model along the base-minus-instruct activation direction (pre-registration's D) against isotropic pushes at matched norm.",
+    "C": "Knobs head-on: activation-level plan noise priced against text-level plan samplers, base-aligned collaboration (base model writes the intent, tuned model writes the code) and departure-matched decoding.",
+    "E": "Second family: gemma-3-4b pt vs it.",
+    "G": "Novelty boundary (cross-reference 92c C3c)."
+  },
+  "window": {
+    "verdict_window": "arXiv v1 (or first public posting) on or after 2026-01-01 and on or before the run date",
+    "anchors_outside_window": "2023-2025 anchors in lanes 1-5 are quoted as context and do not enter saturation counts",
+    "contemporaneity_tags": {
+      "contemporaneous_4mo": "v1 after 2026-06-21",
+      "iclr2027_rule": "peer-reviewed publication after 2026-07-17 counts as contemporaneous; arXiv-only papers are exempt; every ICLR 2027 submission is tagged contemporaneous"
+    }
+  },
+  "lanes": {
+    "L1": "base vs aligned diversity; RLVR boundary shrinkage (premise A0; background of A1/A2)",
+    "L2": "inference-time base-aligned collaboration (token/logit level)",
+    "L3": "base-to-tuned activation transfer, patching, transplants (B1; FLAG A)",
+    "L4": "reversibility of post-training sharpening (weight interpolation / extrapolation; B1, B2/D)",
+    "L5": "model diffing (crosscoders, activation-difference lenses)",
+    "L6": "text-level plan samplers vs activation noise (C; inherited from 92c)"
+  },
+  "engines": {
+    "E1": "OpenAlex/Crossref via aii_fast_web_search.py --mode scholarly --max-results 25",
+    "E3": "arXiv API https://export.arxiv.org/api/query, search_query = (all:term AND ...) AND (cat:cs.CL OR cat:cs.LG OR cat:cs.AI), sortBy=submittedDate, sortOrder=descending, max_results=50; fallback arxiv.org/search (logged) on HTTP 429",
+    "E4": "Semantic Scholar Graph API /graph/v1/paper/search, year=2026, fields=title,externalIds,publicationDate,venue,abstract, limit=50, header x-api-key from env SEMANTIC_SCHOLAR_API_KEY; backoff 3/6/12 s then skip and log 'rate-limited'",
+    "E5": "OpenReview API v2 https://api2.openreview.net/notes/search?term=...&group=ICLR.cc/2027/Conference&limit=50; fallback: WebSearch site:openreview.net 'ICLR 2027' + query (logged)",
+    "E6": "grey literature: Claude Code built-in WebSearch with allowed_domains lesswrong.com, alignmentforum.org, transformer-circuits.pub (families F4, F5, F7)",
+    "FC": "forward citations: Semantic Scholar /graph/v1/paper/arXiv:{id}/citations (filtered to publication date >= 2026-01-01 at screening) + OpenAlex works?filter=cites:{openalex_id} for the four nearest neighbours",
+    "BC": "backward citations: Semantic Scholar /graph/v1/paper/arXiv:{id}/references for the two closest hits per flag"
+  },
+  "query_families": [
+    {
+      "family": "F1",
+      "lane": "L1",
+      "queries": [
+        {
+          "q": "base model aligned diversity collapse code algorithm",
+          "e3_terms": [
+            "\"base model\"",
+            "diversity",
+            "code"
+          ]
+        },
+        {
+          "q": "instruction tuning algorithmic diversity code solutions base instruct",
+          "e3_terms": [
+            "\"instruction tuning\"",
+            "diversity",
+            "code"
+          ]
+        },
+        {
+          "q": "alignment narrows output distribution base model sharpening",
+          "e3_terms": [
+            "\"base model\"",
+            "alignment",
+            "diversity"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "F2",
+      "lane": "L1",
+      "flag": "B",
+      "queries": [
+        {
+          "q": "predict mode collapse per prompt from base model",
+          "e3_terms": [
+            "\"mode collapse\"",
+            "\"base model\""
+          ]
+        },
+        {
+          "q": "base model likelihood predicts post-training narrowing",
+          "e3_terms": [
+            "\"base model\"",
+            "likelihood",
+            "post-training"
+          ]
+        },
+        {
+          "q": "RLVR reasoning boundary per-problem base model pass@k",
+          "e3_terms": [
+            "RLVR",
+            "\"base model\"",
+            "boundary"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "F3",
+      "lane": "L2",
+      "queries": [
+        {
+          "q": "base aligned model collaboration diversity decoding",
+          "e3_terms": [
+            "\"base model\"",
+            "aligned",
+            "collaboration"
+          ]
+        },
+        {
+          "q": "base model guided decoding instruct diversity",
+          "e3_terms": [
+            "\"base model\"",
+            "decoding",
+            "diversity"
+          ]
+        },
+        {
+          "q": "base model plan aligned model completes generation",
+          "e3_terms": [
+            "\"base model\"",
+            "\"aligned model\"",
+            "generation"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "F4",
+      "lane": "L3",
+      "flag": "A",
+      "queries": [
+        {
+          "q": "activation patching base model into chat model",
+          "e3_terms": [
+            "\"activation patching\"",
+            "\"base model\""
+          ]
+        },
+        {
+          "q": "transplant hidden states base model fine-tuned model",
+          "e3_terms": [
+            "transplant",
+            "\"hidden states\""
+          ]
+        },
+        {
+          "q": "interpolate activations base and instruct model",
+          "e3_terms": [
+            "interpolation",
+            "activations",
+            "\"base model\""
+          ]
+        },
+        {
+          "q": "steering vector derived from base model applied to instruct model",
+          "e3_terms": [
+            "\"steering vector\"",
+            "\"base model\""
+          ]
+        }
+      ]
+    },
+    {
+      "family": "F5",
+      "lane": "L3/L4",
+      "flag": "A",
+      "queries": [
+        {
+          "q": "restore output diversity aligned model base model activations",
+          "e3_terms": [
+            "diversity",
+            "\"base model\"",
+            "activations"
+          ]
+        },
+        {
+          "q": "undo alignment sharpening activation steering diversity",
+          "e3_terms": [
+            "alignment",
+            "steering",
+            "diversity",
+            "activation"
+          ]
+        },
+        {
+          "q": "instruct minus base direction steering",
+          "e3_terms": [
+            "\"base model\"",
+            "instruct",
+            "steering",
+            "direction"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "F6",
+      "lane": "L4",
+      "queries": [
+        {
+          "q": "reverse post-training sharpening recover base distribution",
+          "e3_terms": [
+            "sharpening",
+            "post-training",
+            "\"base model\""
+          ]
+        },
+        {
+          "q": "weight interpolation base instruct model diversity pass@k",
+          "e3_terms": [
+            "interpolation",
+            "diversity",
+            "pass@k"
+          ]
+        },
+        {
+          "q": "extrapolate fine-tuned minus base weights diversity",
+          "e3_terms": [
+            "extrapolation",
+            "weights",
+            "alignment"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "F7",
+      "lane": "L5",
+      "queries": [
+        {
+          "q": "model diffing base chat crosscoder",
+          "e3_terms": [
+            "\"model diffing\""
+          ]
+        },
+        {
+          "q": "activation difference base finetuned model",
+          "e3_terms": [
+            "\"activation difference\"",
+            "fine-tuned"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "F8",
+      "lane": "L6",
+      "queries": [
+        {
+          "q": "intent-first generation plan sampling code diversity activation noise",
+          "e3_terms": [
+            "intent",
+            "plan",
+            "diversity",
+            "code"
+          ]
+        },
+        {
+          "q": "hidden-state noise injection diverse code solutions",
+          "e3_terms": [
+            "noise",
+            "\"hidden state\"",
+            "diversity",
+            "code"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "F9",
+      "lane": "L1",
+      "flag": "C",
+      "queries": [
+        {
+          "q": "test-checked algorithmic diversity base versus instruct code models",
+          "e3_terms": [
+            "algorithmic",
+            "diversity",
+            "instruct"
+          ]
+        },
+        {
+          "q": "functional correctness algorithm clusters base instruct code LLM",
+          "e3_terms": [
+            "algorithm",
+            "\"code generation\"",
+            "\"base model\""
+          ]
+        }
+      ]
+    }
+  ],
+  "e6_families": [
+    "F4",
+    "F5",
+    "F7"
+  ],
+  "citation_chasing": {
+    "forward_round1_s2_and_openalex": {
+      "BACo": "2511.05650",
+      "LeeAlgoDiv": "2503.00691",
+      "WardBacktracking": "2507.12638",
+      "ZhouPassKInversion": "2607.20543"
+    },
+    "forward_round1_s2_as_time_allows": {
+      "YangHoltzmanBF": "2506.17871",
+      "VerbalizedSampling": "2510.01171",
+      "ConformativeDecoding": "2507.20956",
+      "MinderCrosscoderBatchTopK": "2504.02922"
+    },
+    "backward": "references of the two closest hits per flag (chosen after screening)"
+  },
+  "dedup": "against inherited/saturation_candidates.jsonl (1,729 records) by arXiv id, OpenReview id, then normalised title; in-window records seen before that match lane 1-5 keywords are RE-SCREENED against the iteration-5 claims",
+  "prescreen_keyword_groups": {
+    "MODEL": "base|pretrained|pre-trained|aligned|instruct|chat|rlhf|rlvr|post-train",
+    "OUTCOME": "divers|collapse|mode|homogen|sharpen|boundary|pass@k|creativ",
+    "INTERVENTION": "patch|transplant|interpolat|steer|activation|hidden state|residual|kv cache|crosscoder|diff",
+    "DOMAIN": "code|program|algorithm|solution"
+  },
+  "screening": "rank in-window records by number of groups matched; manual title/abstract screen of the top 100; full text for every hit scoring >= 1.5 on its best claim",
+  "rubric": {
+    "scale": "each axis 1 / 0.5 / 0; total >= 2.5 occupies; 1-2 adjacent; < 1 irrelevant",
+    "A1": {
+      "O": "per-prompt or per-task outcome checked by execution or a mechanism label",
+      "I": "predictor computed from the base model's own outputs or likelihoods",
+      "C": "forecasts which prompts/tasks the tuned model narrows on or can be pushed off"
+    },
+    "A2": {
+      "O": "as A1",
+      "I": "the base model's ranking of alternatives",
+      "C": "forecasts where a perturbation or a ban of the tuned model lands"
+    },
+    "B1": {
+      "O": "diversity or identity of solutions/outputs",
+      "I": "base-model hidden states (residual, attention output, KV) written into the tuned model's forward pass",
+      "C": "controls by site, matched-norm random displacement, or cross-condition patch"
+    },
+    "B2_D": {
+      "O": "as B1",
+      "I": "a push along a base-minus-tuned activation direction",
+      "C": "against isotropic pushes at matched norm"
+    },
+    "C": {
+      "O": "algorithm-level diversity of correct code",
+      "I": "a text-level plan sampler or base-aligned collaboration",
+      "C": "priced against activation noise or decoding knobs"
+    }
+  },
+  "flags": {
+    "FLAG_A": "FIRES only if a paper writes base-model hidden states (residual, attention outputs or KV cache) into the forward pass of its tuned descendant at inference and reports a change in output or solution diversity. Logit/token mixing, weight interpolation, training, base-derived directions for other behaviours, and instruct-to-base transfer are adjacent.",
+    "FLAG_B": "FIRES if a paper predicts, per prompt or per task and from the base model's own distribution, either where post-training narrows or whether/where the tuned model can be steered. PARTLY FIRED if the prediction is per-problem but at training time or for correctness coverage only, or stylised without a per-task test.",
+    "FLAG_C": "FIRES if a paper measures algorithm-level diversity of test-checked code in a base model against its tuned descendant. PARTLY FIRED if the comparison exists but with an LLM-judge clustering, a single pair, or a mixed direction."
+  },
+  "stop_rule": "After all families and one forward-citation round, build up to 6 extra queries from the vocabulary of included hits (round 2). Stop when a round adds no new hit scoring >= 1.5 on any claim, or at the Stage-2 time cap (50 min of wall time). Report which condition stopped the search.",
+  "quote_rules": {
+    "verified": "verbatim match in the paper's own versioned text (arXiv HTML vN or PDF vN, ACL Anthology, PMLR, NeurIPS, OpenReview page) after whitespace/ligature/quote/dash/hyphenation normalisation",
+    "verified_abstract": "match only in an abstract record (arXiv abs page / API / OpenReview note); no numbers beyond the abstract",
+    "verified_blog": "match in the text of a grey-literature post (LessWrong / Alignment Forum / transformer-circuits.pub)",
+    "unverified": "no match or not fetchable; carries no number",
+    "version": "quote the latest version; record v1 date and any version where the quoted number or title differs"
+  },
+  "inherited_not_reverified": "the 112 quotes of art_kjrCpQnPaniY (inherited/quotes.jsonl) are cited by their 92b/92c row ids"
+}

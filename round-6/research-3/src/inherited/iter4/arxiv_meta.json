@@ -1,0 +1,1665 @@
+{
+ "2309.02772": {
+  "arxiv_id": "2309.02772",
+  "latest_version": "v3",
+  "v1_published": "2023-09-06T06:27:33Z",
+  "latest_updated": "2023-12-28T10:54:36Z",
+  "title": "Hot or Cold? Adaptive Temperature Sampling for Code Generation with Large Language Models",
+  "authors": [
+   "Yuqi Zhu",
+   "Jia Li",
+   "Ge Li",
+   "YunFei Zhao",
+   "Jia Li",
+   "Zhi Jin",
+   "Hong Mei"
+  ],
+  "comment": "This paper is accepted by AAAI 2024",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Recently, Large Language Models (LLMs) have shown impressive abilities in code generation. However, existing LLMs' decoding strategies are designed for Natural Language (NL) generation, overlooking the differences between NL and programming languages (PL). Due to this oversight, a better decoding strategy for code generation remains an open question. In this paper, we conduct the first systematic study to explore a decoding strategy specialized in code generation. With an analysis of loss distributions of code tokens, we find that code tokens can be divided into two categories: challenging tokens that are difficult to predict and confident tokens that can be easily inferred. Among them, the challenging tokens mainly appear at the beginning of a code block. Inspired by the above findings, we propose a simple yet effective method: Adaptive Temperature (AdapT) sampling, which dynamically adjusts the temperature coefficient when decoding different tokens. We apply a larger temperature when sampling for challenging tokens, allowing LLMs to explore diverse choices. We employ a smaller temperature for confident tokens avoiding the influence of tail randomness noises. We apply AdapT sampling to LLMs with different sizes and conduct evaluations on two popular datasets. Results show that AdapT sampling significantly outperforms state-of-the-art decoding strategy.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2404.00859": {
+  "arxiv_id": "2404.00859",
+  "latest_version": "v2",
+  "v1_published": "2024-04-01T02:01:28Z",
+  "latest_updated": "2024-08-01T21:21:28Z",
+  "title": "Do language models plan ahead for future tokens?",
+  "authors": [
+   "Wilson Wu",
+   "John X. Morris",
+   "Lionel Levine"
+  ],
+  "comment": "24 pages, 11 figures. Camera-ready for COLM 2024",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Do transformers \"think ahead\" during inference at a given position? It is known transformers prepare information in the hidden states of the forward pass at time step $t$ that is then used in future forward passes $t+τ$. We posit two explanations for this phenomenon: pre-caching, in which off-diagonal gradient terms present during training result in the model computing features at $t$ irrelevant to the present inference task but useful for the future, and breadcrumbs, in which features most relevant to time step $t$ are already the same as those that would most benefit inference at time $t+τ$. We test these hypotheses by training language models without propagating gradients to past timesteps, a scheme we formalize as myopic training. In a constructed synthetic data setting, we find clear evidence for pre-caching. In the autoregressive language modeling setting, our experiments are more suggestive of the breadcrumbs hypothesis, though pre-caching increases with model scale.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2605.07984": {
+  "arxiv_id": "2605.07984",
+  "latest_version": "v2",
+  "v1_published": "2026-05-08T16:44:21Z",
+  "latest_updated": "2026-06-11T21:00:41Z",
+  "title": "Where's the Plan? Locating Latent Planning in Language Models with Lightweight Mechanistic Interventions",
+  "authors": [
+   "Nicole Ma",
+   "Nick Rui"
+  ],
+  "comment": "13 pages, 20 figures, 3 tables. Accepted to Workshop on Mechanistic Interpretability @ ICML 2026",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "We study planning site formation in language models -- where internal representations of structurally-constrained future tokens form during the forward pass, and whether they causally drive generation. Using rhyming-couplet completion as a clean test of forward-looking constraint, we apply two lightweight methods (linear probing and activation patching) across Qwen3, Gemma-3, and Llama-3 at more than ten scales. Probing shows that future-rhyme information is linearly decodable at the line boundary, with signal that strengthens with scale in all three families. Activation patching reveals that only Gemma-3-27B causally relies on this encoding, exhibiting a handoff in which the causal driver migrates from the rhyme word to the line boundary around layer 30. Every other model we test conditions on the rhyme word throughout generation, with near-zero causal effect at the line boundary despite strong probe signal. We localize the Gemma-3-27B handoff to five attention heads through two-stage path patching that recover ~90% of the rhyme-routing capacity at the newline.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2604.03380": {
+  "arxiv_id": "2604.03380",
+  "latest_version": "v2",
+  "v1_published": "2026-04-03T18:19:18Z",
+  "latest_updated": "2026-05-02T22:39:40Z",
+  "title": "Noise Steering for Controlled Text Generation: Improving Diversity and Reading-Level Fidelity in Arabic Educational Story Generation",
+  "authors": [
+   "Haziq Mohammad Khalid",
+   "Salsabeel Shapsough",
+   "Imran Zualkernan"
+  ],
+  "comment": "Accepted to BEA @ ACL 26'",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Generating diverse, pedagogically valid stories for Arabic early-grade reading assessments requires balancing tight constraints on vocabulary, reading level, and narrative structure against the need to avoid repetitive plots that undermine assessment validity. We investigate noise steering, injecting calibrated Gaussian perturbations into the internal representations of transformer models at inference time, as a training-free diversity method evaluated across five small Arabic-centric language models (7-9B parameters). We compare four injection strategies against high-temperature sampling baselines, measuring diversity, quality, constraint adherence, and reading grade level. Residual stream noise consistently improves narrative diversity with minimal quality or constraint cost and preserves early-grade reading level across all Arabic-centric models. Attention entropy noise injection (AENI) stabilizes the otherwise unreliable attention-logit noise while recovering quality. High-temperature sampling inflates reading grade level and causes catastrophic collapse on several models. We find internal representation-level perturbation to be a more suitable diversity strategy than output-level stochasticity for constrained educational content generation.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2506.09659": {
+  "arxiv_id": "2506.09659",
+  "latest_version": "v1",
+  "v1_published": "2025-06-11T12:26:45Z",
+  "latest_updated": "2025-06-11T12:26:45Z",
+  "title": "Intent Factored Generation: Unleashing the Diversity in Your Language Model",
+  "authors": [
+   "Eltayeb Ahmed",
+   "Uljad Berdica",
+   "Martha Elliott",
+   "Danijela Horak",
+   "Jakob N. Foerster"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Obtaining multiple meaningfully diverse, high quality samples from Large Language Models for a fixed prompt remains an open challenge. Current methods for increasing diversity often only operate at the token-level, paraphrasing the same response. This is problematic because it leads to poor exploration on reasoning problems and to unengaging, repetitive conversational agents. To address this we propose Intent Factored Generation (IFG), factorising the sampling process into two stages. First, we sample a semantically dense intent, e.g., a summary or keywords. Second, we sample the final response conditioning on both the original prompt and the intent from the first stage. This allows us to use a higher temperature during the intent step to promote conceptual diversity, and a lower temperature during the final generation to ensure the outputs are coherent and self-consistent. Additionally, we find that prompting the model to explicitly state its intent for each step of the chain-of-thought before generating the step is beneficial for reasoning tasks. We demonstrate our method's effectiveness across a diverse set of tasks. We show this method improves both pass@k and Reinforcement Learning from Verifier Feedback on maths and code tasks. For instruction-tuning, we combine IFG with Direct Preference Optimisation to increase conversational diversity without sacrificing reward. Finally, we achieve higher diversity while maintaining the quality of generations on a general language modelling task, using a new dataset of reader comments and news articles that we collect and open-source. In summary, we present a simple method of increasing the sample diversity of LLMs while maintaining performance. This method can be implemented by changing the prompt and varying the temperature during generation, making it easy to integrate into many algorithms for gains across various applications.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2502.11027": {
+  "arxiv_id": "2502.11027",
+  "latest_version": "v5",
+  "v1_published": "2025-02-16T07:37:58Z",
+  "latest_updated": "2026-08-10T02:44:13Z",
+  "title": "On the Effect of Sampling Diversity in Scaling LLM Inference",
+  "authors": [
+   "Tianchun Wang",
+   "Zichuan Liu",
+   "Yuanzhou Chen",
+   "Jonathan Light",
+   "Weiyang Liu",
+   "Haifeng Chen",
+   "Xiang Zhang",
+   "Wei Cheng"
+  ],
+  "comment": "31 pages",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Large language model (LLM) scaling inference is key to unlocking greater performance, and leveraging diversity has proven an effective way to enhance it. Motivated by the observed relationship between solution accuracy and meaningful response diversity, we systematically study the effect of prompt diversity in scaling inference. We theoretically explain why diversified sampling improves Best-of-$N$ scaling, showing that responses generated from diverse prompts after Best-of-$N$ selection exhibit significantly lower error rates than those produced from stationary prompts. Building on this analysis, we derive a diversity-fidelity trade-off principle, that guides the design of sampling strategies introducing diversity. From this guidance, we instantiate a family of effective perturbation styles. We theoretically and empirically characterize \\textbf{when} diversified exploration remains effective, demonstrating that it works under a variety of conditions, and we further show that under majority voting, diversity may vanish. Finally, we systematically evaluate the effectiveness of sampling diversity and show that, when applied appropriately in different contexts, meaningful perturbations yield stronger, task-dependent gains as diversity increases. Overall, this work provides a systematic analysis that offers a theoretical and empirical foundation for understanding how sampling diversity affects LLM inference-time scaling.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2610.09571": {
+  "arxiv_id": "2610.09571",
+  "latest_version": "v2",
+  "v1_published": "2026-10-07T07:12:16Z",
+  "latest_updated": "2026-10-08T14:21:26Z",
+  "title": "How Do LLMs Change Predictions Under Negation?",
+  "authors": [
+   "Jongwook Yoon",
+   "Jongwon Lim",
+   "Sungjib Lim",
+   "Woojin Cho",
+   "Yohan Jo"
+  ],
+  "comment": "Under Review",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Negation is an essential feature of human language, yet large language models (LLMs) remain unreliable in processing it. We evaluate recent open-source and closed-source LLMs on our negation benchmark and find that, in 37-71% of cases, they repeat the same answer under negation (e.g., \"Madrid\" for \"What is not the capital of Spain?\"). To understand and address this brittleness, we mechanistically examine how models operate under negation. Our main finding is that specialized attention heads and MLP neurons jointly implement negation by (1) suppressing retrieval of the original answer (e.g., \"Madrid\") while (2) promoting a favored candidate within the answer category (e.g., \"Paris\"). This contrasts with accounts of human negation processing, in which information about the original answer helps to determine what should be excluded. Furthermore, we find that this difference from human processing is a key source of negation failures: the model's mechanism relies on suppressing the original answer rather than using it to determine what to exclude, so the model can repeat the original answer when suppression is too weak or when a bias toward particular answers prevents it from selecting an alternative. To address this weakness in the model's negation mechanism, we propose a training objective that requires larger shifts in answer preference for more confident original predictions, and show that it reduces negation failures with less degradation of general capabilities than standard fine-tuning baselines. Together, our results demonstrate how mechanistic analysis can reveal why a linguistic capability fails and guide training that targets the underlying limitation.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2606.17648": {
+  "arxiv_id": "2606.17648",
+  "latest_version": "v3",
+  "v1_published": "2026-06-16T08:06:50Z",
+  "latest_updated": "2026-10-11T03:37:01Z",
+  "title": "From Brewing to Resolution: Tracing the Internal Lifecycle of Code Reasoning in LLMs",
+  "authors": [
+   "Siyue Chen",
+   "Yifu Guo",
+   "Yuquan Lu",
+   "Zishan Xu",
+   "Jiaye Lin",
+   "Jianbo Lin",
+   "Siyu Zhang",
+   "Cheng Yang",
+   "Junxin Li",
+   "Yujia Li",
+   "Yu Huo",
+   "Ruixuan Wang"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Standard accuracy metrics cannot explain why LLMs handle variable tracking but fail on semantically equivalent loops. We study an internal lifecycle of code reasoning in which models first brew the answer, making it linearly recoverable many layers before it becomes self-decodable, and then diverge into one of four resolution outcomes: Resolved, Overprocessed, Misresolved, or Unresolved. Understanding this lifecycle matters because similar task accuracies can mask fundamentally different failure modes that surface-level evaluation cannot detect. We introduce a dual diagnostic framework pairing layer-wise linear probing with Context-Stripped Decoding (CSD) and apply it to six code-reasoning task families across 16 models spanning Qwen, Llama, and DeepSeek architectures. All four outcomes carry substantial mass in every task family: overall Resolved is only 41.5%, with multiple tasks below 30%. Controlled sweeps over structure, depth, and operators expose task-specific failure bottlenecks: Function Call Resolved plunges from 61.1% to 2.5% as call depth increases from one to three. Across architectures and scales, the brewing scaffold remains stable, with normalized brewing duration 24-42% across all 16 models, while resolution success varies with capability. This indicates that the scaffold is a stable empirical regularity across the tested decoder-only Transformer families, whereas resolution success covaries with capability, scale, and training. Code: https://github.com/euyis1019/llm-brewing",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2310.15916": {
+  "arxiv_id": "2310.15916",
+  "latest_version": "v1",
+  "v1_published": "2023-10-24T15:17:14Z",
+  "latest_updated": "2023-10-24T15:17:14Z",
+  "title": "In-Context Learning Creates Task Vectors",
+  "authors": [
+   "Roee Hendel",
+   "Mor Geva",
+   "Amir Globerson"
+  ],
+  "comment": "Accepted at Findings of EMNLP 2023",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "In-context learning (ICL) in Large Language Models (LLMs) has emerged as a powerful new learning paradigm. However, its underlying mechanism is still not well understood. In particular, it is challenging to map it to the \"standard\" machine learning framework, where one uses a training set $S$ to find a best-fitting function $f(x)$ in some hypothesis class. Here we make progress on this problem by showing that the functions learned by ICL often have a very simple structure: they correspond to the transformer LLM whose only inputs are the query $x$ and a single \"task vector\" calculated from the training set. Thus, ICL can be seen as compressing $S$ into a single task vector $\\boldsymbolθ(S)$ and then using this task vector to modulate the transformer to produce the output. We support the above claim via comprehensive experiments across a range of models and tasks.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2407.09007": {
+  "arxiv_id": "2407.09007",
+  "latest_version": "v2",
+  "v1_published": "2024-07-12T05:55:22Z",
+  "latest_updated": "2025-02-08T19:32:51Z",
+  "title": "Benchmarking Language Model Creativity: A Case Study on Code Generation",
+  "authors": [
+   "Yining Lu",
+   "Dixuan Wang",
+   "Tianjian Li",
+   "Dongwei Jiang",
+   "Sanjeev Khudanpur",
+   "Meng Jiang",
+   "Daniel Khashabi"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "As LLMs become increasingly prevalent, it is interesting to consider how ``creative'' these models can be. From cognitive science, creativity consists of at least two key characteristics: \\emph{convergent} thinking (purposefulness to achieve a given goal) and \\emph{divergent} thinking (adaptability to explore new environments or constraints) \\citep{runco2003critical}. In this work, we introduce a framework for quantifying LLM creativity that incorporates the two design ingredients: (1) We introduce DENIAL PROMPTING which pushes LLMs to develop more creative solutions to a given problem by incrementally imposing new constraints on the previous solution, compelling LLMs to adopt new strategies. (2) We define NEOGAUGE, a metric that quantifies both convergent and divergent thinking in the generated creative responses by LLMs. We test the proposed framework on Codeforces problems, which serve as both a natural dataset for coding tasks and a collection of prior human solutions. We quantify NEOGAUGE for various proprietary and open-source models and find that even the most creative model, GPT-4, still falls short of demonstrating human-like creativity. We also experiment with advanced reasoning strategies (MCTS, self-correction, etc.) and observe no significant improvement in creativity. As a by-product of our analysis, we release NEOCODER dataset for reproducing our results on future models.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2505.18949": {
+  "arxiv_id": "2505.18949",
+  "latest_version": "v1",
+  "v1_published": "2025-05-25T02:52:35Z",
+  "latest_updated": "2025-05-25T02:52:35Z",
+  "title": "The Price of Format: Diversity Collapse in LLMs",
+  "authors": [
+   "Longfei Yun",
+   "Chenyang An",
+   "Zilong Wang",
+   "Letian Peng",
+   "Jingbo Shang"
+  ],
+  "comment": "14 pages, 7 figures",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Instruction-tuned large language models (LLMs) employ structured templates, such as role markers and special tokens, to enforce format consistency during inference. However, we identify a critical limitation of such formatting: it induces a phenomenon we term diversity collapse, where the model generates semantically similar outputs for open-ended inputs, undermining creativity and variability. We systematically evaluate this effect across tasks like story completion and free-form generation, finding that (1) diversity collapse persists even under high-temperature sampling, and (2) structural tokens in templates significantly constrain the model's output space. To contextualize these findings, we fine-tune the same model using a range of structured prompts and then evaluate them across three axes: downstream task performance, alignment behavior, and output diversity. Our analysis shows that format consistency between fine-tuning and inference is crucial for structure-sensitive tasks (e.g., GSM8K, IFEval), but has marginal influence on knowledge-heavy tasks (e.g., MMLU, WebQuestions). In contrast, output diversity is primarily governed by the presence or absence of structural tokens, with minimal formatting yielding the most diverse outputs. These findings reveal that current prompting conventions, while beneficial for alignment, may inadvertently suppress output diversity, underscoring the need for diversity-aware prompt design and instruction tuning.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2310.11324": {
+  "arxiv_id": "2310.11324",
+  "latest_version": "v2",
+  "v1_published": "2023-10-17T15:03:30Z",
+  "latest_updated": "2024-07-01T22:28:01Z",
+  "title": "Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting",
+  "authors": [
+   "Melanie Sclar",
+   "Yejin Choi",
+   "Yulia Tsvetkov",
+   "Alane Suhr"
+  ],
+  "comment": "ICLR 2024 Camera Ready version. With respect to the original submission, we added text generation experiments, plots of entire accuracy distributions for each task + stdev computations, and prompt length correlation with spread analysis",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "As large language models (LLMs) are adopted as a fundamental component of language technologies, it is crucial to accurately characterize their performance. Because choices in prompt design can strongly influence model behavior, this design process is critical in effectively using any modern pre-trained generative language model. In this work, we focus on LLM sensitivity to a quintessential class of meaning-preserving design choices: prompt formatting. We find that several widely used open-source LLMs are extremely sensitive to subtle changes in prompt formatting in few-shot settings, with performance differences of up to 76 accuracy points when evaluated using LLaMA-2-13B. Sensitivity remains even when increasing model size, the number of few-shot examples, or performing instruction tuning. Our analysis suggests that work evaluating LLMs with prompting-based methods would benefit from reporting a range of performance across plausible prompt formats, instead of the currently-standard practice of reporting performance on a single format. We also show that format performance only weakly correlates between models, which puts into question the methodological validity of comparing models with an arbitrarily chosen, fixed prompt format. To facilitate systematic analysis we propose FormatSpread, an algorithm that rapidly evaluates a sampled set of plausible prompt formats for a given task, and reports the interval of expected performance without accessing model weights. Furthermore, we present a suite of analyses that characterize the nature of this sensitivity, including exploring the influence of particular atomic perturbations and the internal representation of particular formats.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2310.15213": {
+  "arxiv_id": "2310.15213",
+  "latest_version": "v2",
+  "v1_published": "2023-10-23T17:55:24Z",
+  "latest_updated": "2024-02-25T18:32:18Z",
+  "title": "Function Vectors in Large Language Models",
+  "authors": [
+   "Eric Todd",
+   "Millicent L. Li",
+   "Arnab Sen Sharma",
+   "Aaron Mueller",
+   "Byron C. Wallace",
+   "David Bau"
+  ],
+  "comment": "ICLR 2024. 52 pages, 30 figures, 23 tables. Code and data at https://functions.baulab.info",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "We report the presence of a simple neural mechanism that represents an input-output function as a vector within autoregressive transformer language models (LMs). Using causal mediation analysis on a diverse range of in-context-learning (ICL) tasks, we find that a small number attention heads transport a compact representation of the demonstrated task, which we call a function vector (FV). FVs are robust to changes in context, i.e., they trigger execution of the task on inputs such as zero-shot and natural text settings that do not resemble the ICL contexts from which they are collected. We test FVs across a range of tasks, models, and layers and find strong causal effects across settings in middle layers. We investigate the internal structure of FVs and find while that they often contain information that encodes the output space of the function, this information alone is not sufficient to reconstruct an FV. Finally, we test semantic vector composition in FVs, and find that to some extent they can be summed to create vectors that trigger new complex tasks. Our findings show that compact, causal internal vector representations of function abstractions can be explicitly extracted from LLMs. Our code and data are available at https://functions.baulab.info.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2605.11936": {
+  "arxiv_id": "2605.11936",
+  "latest_version": "v2",
+  "v1_published": "2026-05-12T10:47:20Z",
+  "latest_updated": "2026-07-23T01:23:29Z",
+  "title": "From Noise to Diversity: Random Embedding Injection in LLM Reasoning",
+  "authors": [
+   "Heejun Kim",
+   "Seungpil Lee",
+   "Jewon Yeom",
+   "Jaewon Sok",
+   "Seonghyeon Park",
+   "Jeongjae Park",
+   "Taesup Kim",
+   "Sundong Kim"
+  ],
+  "comment": "Under review, ICML 2026 Mechanistic Interpretability Workshop (Spotlight)",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Recent soft prompt research has tried to improve reasoning by inserting trained vectors into LLM inputs, yet whether the gain comes from the learned content or from the act of injection itself has not been carefully separated. We study Random Soft Prompts (RSPs), which drop the training step entirely and append a freshly drawn sequence of random embedding vectors to the input. Each RSP vector is sampled from an isotropic Gaussian fitted to the entrywise mean and variance of the pretrained embedding table; the sequence carries no learned content, and yet reaches accuracy comparable to optimized soft prompts on math reasoning benchmarks in several settings. The mechanism unfolds in two stages: because attention has to absorb a never-seen-before random position, the distribution over the first few generated tokens flattens and reasoning trajectories branch, and as generation continues this influence dilutes naturally so the response commits to a single completion. We show that during inference RSPs lift early-stage token diversity and, combined with temperature sampling, widen Pass@N, the probability that at least one out of N attempts is correct. Beyond inference, we carry the same effect into DAPO training and demonstrate practical gains. Our contributions are: (i) RSP isolates the simplest form of soft prompt -- training-free, freshly resampled -- providing a unified lens for the structural effect of injection that variants otherwise differing in training and form all share; (ii) a theoretical and empirical validation of the underlying mechanism; and (iii) an extension from inference to training.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2407.02209": {
+  "arxiv_id": "2407.02209",
+  "latest_version": "v1",
+  "v1_published": "2024-07-02T12:17:07Z",
+  "latest_updated": "2024-07-02T12:17:07Z",
+  "title": "Generative Monoculture in Large Language Models",
+  "authors": [
+   "Fan Wu",
+   "Emily Black",
+   "Varun Chandrasekaran"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "We introduce {\\em generative monoculture}, a behavior observed in large language models (LLMs) characterized by a significant narrowing of model output diversity relative to available training data for a given task: for example, generating only positive book reviews for books with a mixed reception. While in some cases, generative monoculture enhances performance (e.g., LLMs more often produce efficient code), the dangers are exacerbated in others (e.g., LLMs refuse to share diverse opinions). As LLMs are increasingly used in high-impact settings such as education and web search, careful maintenance of LLM output diversity is essential to ensure a variety of facts and perspectives are preserved over time. We experimentally demonstrate the prevalence of generative monoculture through analysis of book review and code generation tasks, and find that simple countermeasures such as altering sampling or prompting strategies are insufficient to mitigate the behavior. Moreover, our results suggest that the root causes of generative monoculture are likely embedded within the LLM's alignment processes, suggesting a need for developing fine-tuning paradigms that preserve or promote diversity.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2606.11599": {
+  "arxiv_id": "2606.11599",
+  "latest_version": "v1",
+  "v1_published": "2026-06-10T02:55:34Z",
+  "latest_updated": "2026-06-10T02:55:34Z",
+  "title": "When is Your LLM Steerable?",
+  "authors": [
+   "Chenrui Fan",
+   "Yize Cheng",
+   "Ming Li",
+   "Soheil Feizi",
+   "Tianyi Zhou"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Activation steering offers a lightweight approach to control language models' behavior at inference time, but whether it succeeds or fails heavily depends on the prompt, concept, model, and steering configuration. Finding the regime and boundaries of successful steering typically requires expensive grid searches and post-hoc evaluation of full autoregressive rollouts. In this work, we investigate whether steerability can be predicted from the model's internal states at the beginning of the generation process, e.g., after generating the first few tokens, and how to leverage such a predictor to improve steering success rate. To this end, we first introduce ASTEER, a testbed including 1.4M steered generations, spanning 150 concepts with each steering success/failure labeled. Leveraging this testbed, we analyze the model's early decoding dynamics by extracting features that compare hidden states before and after steering across layers and initial decoding steps. These features help us understand how steering's effects propagate along layers and token positions, which provide key information for steerability prediction. We then train a Gradient Boosting Decision Trees (GBDT) classifier on these features to predict whether an intervention will under-steer, succeed, or over-steer without requiring full rollout. Our predictor achieves around 0.7 macro-F1 score on unseen concepts, demonstrating that early hidden states encode substantial, structured information about eventual steering efficacy. We further leverage this steerability predictor as guidance for steering strength searching, achieving near-optimal performance with a small fraction of decoding cost.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2606.04057": {
+  "arxiv_id": "2606.04057",
+  "latest_version": "v1",
+  "v1_published": "2026-06-02T11:17:28Z",
+  "latest_updated": "2026-06-02T11:17:28Z",
+  "title": "The Invisible Lottery: How Subtle Cues Steer Algorithm Choice in LLM Code Generation",
+  "authors": [
+   "Akanksha Narula",
+   "Mofasshara Binte Rafique",
+   "Laurent Bindschaedler"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Large language models (LLMs) now generate substantial production code, often for tasks with multiple valid algorithmic solutions. Incidental prompt cues, meaning contextual words or metadata outside the task specification, can steer which algorithm the model selects, even when all outputs pass the same tests. Prompt sensitivity is well studied as a tool to improve output quality. Here, output policy means algorithm choice under fixed correctness. We define algorithm steering as cue-induced shifts in algorithm-family distributions and run 46,535 controlled experiments across 11 tasks, 19 cue types (18 channels plus a memoization semantic-vs-surface ablation that preserves meaning while changing typography and punctuation), and 15 model configurations. We find large, systematic shifts in algorithm-family distributions (up to 100 pp), largely consistent with cue semantics, including in applied tasks such as rate limiting. Direct algorithm naming is the most reliable mitigation we tested. Accidental context therefore creates an \"invisible lottery\" over performance, security, and maintainability.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2601.08070": {
+  "arxiv_id": "2601.08070",
+  "latest_version": "v1",
+  "v1_published": "2026-01-12T23:30:18Z",
+  "latest_updated": "2026-01-12T23:30:18Z",
+  "title": "Semantic Gravity Wells: Why Negative Constraints Backfire",
+  "authors": [
+   "Shailesh Rana"
+  ],
+  "comment": "10 pages, 8 figures. Code: https://github.com/gut-puncture",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Negative constraints (instructions of the form \"do not use word X\") represent a fundamental test of instruction-following capability in large language models. Despite their apparent simplicity, these constraints fail with striking regularity, and the conditions governing failure have remained poorly understood. This paper presents the first comprehensive mechanistic investigation of negative instruction failure. We introduce semantic pressure, a quantitative measure of the model's intrinsic probability of generating the forbidden token, and demonstrate that violation probability follows a tight logistic relationship with pressure ($p=σ(-2.40+2.27\\cdot P_0)$; $n=40{,}000$ samples; bootstrap $95%$ CI for slope: $[2.21,,2.33]$). Through layer-wise analysis using the logit lens technique, we establish that the suppression signal induced by negative instructions is present but systematically weaker in failures: the instruction reduces target probability by only 5.2 percentage points in failures versus 22.8 points in successes -- a $4.4\\times$ asymmetry. We trace this asymmetry to two mechanistically distinct failure modes. In priming failure (87.5% of violations), the instruction's explicit mention of the forbidden word paradoxically activates rather than suppresses the target representation. In override failure (12.5%), late-layer feed-forward networks generate contributions of $+0.39$ toward the target probability -- nearly $4\\times$ larger than in successes -- overwhelming earlier suppression signals. Activation patching confirms that layers 23--27 are causally responsible: replacing these layers' activations flips the sign of constraint effects. These findings reveal a fundamental tension in negative constraint design: the very act of naming a forbidden word primes the model to produce it.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2606.21619": {
+  "arxiv_id": "2606.21619",
+  "latest_version": "v1",
+  "v1_published": "2026-06-19T17:22:27Z",
+  "latest_updated": "2026-06-19T17:22:27Z",
+  "title": "The Alignment Problem in Constrained Code Generation",
+  "authors": [
+   "Matteo Biagiola",
+   "Jahrim Gabriele Cesario",
+   "Luca Di Grazia",
+   "George Zakhour",
+   "Guido Salvaneschi"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Large Language Models (LLMs) have demonstrated strong capabilities in code generation, but their outputs frequently contain syntax or type errors that result in compilation failures. Constrained decoding has been proposed as a solution to mitigate compilation errors by construction, improving functional correctness as a byproduct. However, previous works overlook a critical aspect of constrained decoding: the alignment between constrainer (e.g., types), language model and the target specification language (e.g., TypeScript). Misalignment is caused by the constrainer being incomplete--rejecting programs that belong to the target--or unsound--allowing programs that are not part of the target. The bias created by incompleteness distorts the language model distribution, and can be detrimental for code generation. We evaluate this hypothesis using seven language models, two target languages, two constrainers, enforcing types and syntax during decoding, and we study how language models react to varying levels of incompleteness. On three benchmarks, when the constrainer is incomplete, unconstrained decoding significantly outperforms constrained decoding in terms of functional correctness. Incompleteness pushes the model into low-probability regions of the program space, causing the generation to frequently time out, and reducing functional correctness by up to 97%. These contributions make the community aware of the negative effects of misalignment in constrained decoding, and provide quantitative insights on how to design constrainers that are beneficial for code generation systems with formal guarantees.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2606.14530": {
+  "arxiv_id": "2606.14530",
+  "latest_version": "v3",
+  "v1_published": "2026-06-12T15:06:15Z",
+  "latest_updated": "2026-07-16T10:01:41Z",
+  "title": "Code Correctness Is Linearly Decodable from LLM Hidden States Before Generation",
+  "authors": [
+   "Carlo Di Cicco"
+  ],
+  "comment": "7 pages, 4 tables. Code, data, and analysis scripts available at https://github.com/CarloDiCicco/ReasoningLab",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Large language models encode rich information in their hidden states. This work asks whether the correctness of code that Qwen3-4B-Instruct-2507 has not yet generated is already legible in its hidden states, evaluated on a set of 444 tasks from LiveCodeBench. The correctness of the model's first-attempt code is linearly decodable from the hidden state at the final prompt token, captured before any output token is generated, with a leakage-free held-out AUC of 0.881 +/- 0.008 across 50 outer splits. To assess whether this signal is explained by prompt length, each hidden state dimension is residualized with respect to its linear effect. The probe still achieves an AUC of 0.842 +/- 0.010, substantially above a logistic prompt-length baseline of 0.657 +/- 0.014, and none of the nonlinear models tested improves upon it. A companion question about whether self-repair leaves a geometric signature in the model's hidden states could not be answered, because successful repairs following a failed first attempt are too rare in this setting to support the analysis. The contribution is both empirical and methodological, providing evidence that pre-generation hidden states contain a robust signal of eventual code correctness, together with a confound-control diagnostic that quantifies how much of that signal survives adjustment for prompt length.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2609.00077": {
+  "arxiv_id": "2609.00077",
+  "latest_version": "v1",
+  "v1_published": "2026-08-31T08:11:19Z",
+  "latest_updated": "2026-08-31T08:11:19Z",
+  "title": "Beneath the Diff: Diagnosing and Mitigating Algorithmic Mode Collapse in Code-Level Autonomous Research Loops",
+  "authors": [
+   "Bowei He",
+   "Weixu Zhang",
+   "Yili Jin",
+   "Xue Liu"
+  ],
+  "comment": "Accepted by EMNLP 2026",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Code-level autonomous research loops (ARLs) have recently emerged as a concrete object of study in automated machine learning research. In such loops, an LLM agent proposes modifications to an experimental training pipeline, executes the modified pipeline, and retains edits that improve a verifiable in-loop metric. Although executable metrics may appear to provide a reliable signal of progress, it remains unclear whether repeated metric-driven code editing leads to genuine improvements that generalize beyond the loop. We provide a systematic diagnosis of this question. Across various experiment settings, we identify a robust failure mode that we call \\textbf{algorithmic mode collapse}. In this regime, surface-level edit diversity remains stable, but semantic and mechanism-level diversity collapse: the agent continues to edit different lines of code while repeatedly proposing the same kinds of algorithmic changes. This collapse is accompanied by a widening gap between in-loop metric gains and gains measured on independent held-out evaluations. We then propose Diversity-Aware Proposal Sampling (\\textsc{DAPS}), a lightweight mitigation that combines category-coverage reweighting, persistent edit memory, and a validation gate. Under a three-tier protocol separating the in-loop metric, the audit metric read by the gate, and a blind metric no loop component ever accesses, \\textsc{DAPS} reduces semantic-cluster decay of edits by $69.1\\%$ and improves relative faithfulness by $83.7\\%$ blind and $81.6\\%$ audited, while preserving in-loop optimization speed. We provide the code in Github \\href{https://github.com/BokwaiHo/arl-mode-collapse}{repository}.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2610.19157": {
+  "arxiv_id": "2610.19157",
+  "latest_version": "v1",
+  "v1_published": "2026-10-13T20:24:42Z",
+  "latest_updated": "2026-10-13T20:24:42Z",
+  "title": "DivAlgo: A systematic evaluation of algorithmic diversity for code generation models",
+  "authors": [
+   "Anubhav Jangra",
+   "Smaranda Muresan"
+  ],
+  "comment": "24 pages, 18 figures",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Code generation models are actively being used in professional and educational settings. However, the competence of large language models (LLMs) to generate algorithmically diverse code remains largely unknown. We propose the DivAlgo benchmark, a large-scale dataset constituting algorithmically diverse solutions to programming problems. We also introduce a lightweight similarity metric to enable large-scale evaluation. Our experiments across 24 modern code generation models found that uncontrolled model-generated code is significantly less diverse than human solutions (capturing ~31% of human diversity), and even the best diverse code generation strategy could achieve only ~70% of human diversity. Moreover, while it was possible to steer the models to generate solutions based on human strategies, they were unable to reproduce the diversity of the human solutions. These findings indicate the limitations of code generation models in capturing the algorithmic diversity humans exhibit, and that overexposure to model-generated code can narrow programmers' algorithmic vocabulary.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2409.03733": {
+  "arxiv_id": "2409.03733",
+  "latest_version": "v2",
+  "v1_published": "2024-09-05T17:44:49Z",
+  "latest_updated": "2024-10-18T23:53:07Z",
+  "title": "Planning In Natural Language Improves LLM Search For Code Generation",
+  "authors": [
+   "Evan Wang",
+   "Federico Cassano",
+   "Catherine Wu",
+   "Yunfeng Bai",
+   "Will Song",
+   "Vaskar Nath",
+   "Ziwen Han",
+   "Sean Hendryx",
+   "Summer Yue",
+   "Hugh Zhang"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "While scaling training compute has led to remarkable improvements in large language models (LLMs), scaling inference compute has not yet yielded analogous gains. We hypothesize that a core missing component is a lack of diverse LLM outputs, leading to inefficient search due to models repeatedly sampling highly similar, yet incorrect generations. We empirically demonstrate that this lack of diversity can be mitigated by searching over candidate plans for solving a problem in natural language. Based on this insight, we propose PlanSearch, a novel search algorithm which shows strong results across HumanEval+, MBPP+, and LiveCodeBench (a contamination-free benchmark for competitive coding). PlanSearch generates a diverse set of observations about the problem and then uses these observations to construct plans for solving the problem. By searching over plans in natural language rather than directly over code solutions, PlanSearch explores a significantly more diverse range of potential solutions compared to baseline search methods. Using PlanSearch on top of Claude 3.5 Sonnet achieves a state-of-the-art pass@200 of 77.0% on LiveCodeBench, outperforming both the best score achieved without search (pass@1 = 41.4%) and using standard repeated sampling (pass@200 = 60.6%). Finally, we show that, across all models, search algorithms, and benchmarks analyzed, we can accurately predict performance gains due to search as a direct function of the diversity over generated ideas. Code can be found at https://github.com/scaleapi/plansearch.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2406.05946": {
+  "arxiv_id": "2406.05946",
+  "latest_version": "v1",
+  "v1_published": "2024-06-10T00:35:23Z",
+  "latest_updated": "2024-06-10T00:35:23Z",
+  "title": "Safety Alignment Should Be Made More Than Just a Few Tokens Deep",
+  "authors": [
+   "Xiangyu Qi",
+   "Ashwinee Panda",
+   "Kaifeng Lyu",
+   "Xiao Ma",
+   "Subhrajit Roy",
+   "Ahmad Beirami",
+   "Prateek Mittal",
+   "Peter Henderson"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "The safety alignment of current Large Language Models (LLMs) is vulnerable. Relatively simple attacks, or even benign fine-tuning, can jailbreak aligned models. We argue that many of these vulnerabilities are related to a shared underlying issue: safety alignment can take shortcuts, wherein the alignment adapts a model's generative distribution primarily over only its very first few output tokens. We refer to this issue as shallow safety alignment. In this paper, we present case studies to explain why shallow safety alignment can exist and provide evidence that current aligned LLMs are subject to this issue. We also show how these findings help explain multiple recently discovered vulnerabilities in LLMs, including the susceptibility to adversarial suffix attacks, prefilling attacks, decoding parameter attacks, and fine-tuning attacks. Importantly, we discuss how this consolidated notion of shallow safety alignment sheds light on promising research directions for mitigating these vulnerabilities. For instance, we show that deepening the safety alignment beyond just the first few tokens can often meaningfully improve robustness against some common exploits. Finally, we design a regularized finetuning objective that makes the safety alignment more persistent against fine-tuning attacks by constraining updates on initial tokens. Overall, we advocate that future safety alignment should be made more than just a few tokens deep.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2410.14516": {
+  "arxiv_id": "2410.14516",
+  "latest_version": "v5",
+  "v1_published": "2024-10-18T14:55:14Z",
+  "latest_updated": "2025-03-28T15:40:49Z",
+  "title": "Do LLMs \"know\" internally when they follow instructions?",
+  "authors": [
+   "Juyeon Heo",
+   "Christina Heinze-Deml",
+   "Oussama Elachqar",
+   "Kwan Ho Ryan Chan",
+   "Shirley Ren",
+   "Udhay Nallasamy",
+   "Andy Miller",
+   "Jaya Narain"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Instruction-following is crucial for building AI agents with large language models (LLMs), as these models must adhere strictly to user-provided constraints and guidelines. However, LLMs often fail to follow even simple and clear instructions. To improve instruction-following behavior and prevent undesirable outputs, a deeper understanding of how LLMs' internal states relate to these outcomes is required. In this work, we investigate whether LLMs encode information in their representations that correlate with instruction-following success - a property we term knowing internally. Our analysis identifies a direction in the input embedding space, termed the instruction-following dimension, that predicts whether a response will comply with a given instruction. We find that this dimension generalizes well across unseen tasks but not across unseen instruction types. We demonstrate that modifying representations along this dimension improves instruction-following success rates compared to random changes, without compromising response quality. Further investigation reveals that this dimension is more closely related to the phrasing of prompts rather than the inherent difficulty of the task or instructions. This work provides insight into the internal workings of LLMs' instruction-following, paving the way for reliable LLM agents.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2608.12321": {
+  "arxiv_id": "2608.12321",
+  "latest_version": "v1",
+  "v1_published": "2026-05-29T01:42:07Z",
+  "latest_updated": "2026-05-29T01:42:07Z",
+  "title": "LLMs Know the Constraint But Do Not Use It: Activation Bottlenecks in Pragmatic Constraint Reasoning",
+  "authors": [
+   "Yubo Li",
+   "Ramayya Krishnan",
+   "Rema Padman"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "When a salient surface cue competes with an implicit feasibility constraint, LLMs often fail -- but aggregate accuracy conflates genuine constraint inference with conservative defaulting. We formalize the distinction as conditional constraint activation: the constraint is internally encoded (Knowledge) symmetrically across constraint-present and -absent prompts (Symmetry), yet only sometimes routed into the decision (Routing) and repairable by a donor activation (Repair). A quartet diagnostic over 14 models reveals two failure modes; probes on two open weights decode the constraint above $88\\%$, yet activation patching repairs one ($+6.4$ nats) and not the other ($-0.07$). On a mitigation frontier, no prompted intervention reaches the repair corner: all inflate conservative bias through a single mediation pathway -- prerequisite mention. Hidden-constraint failure is a routing problem, not a knowledge problem.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2607.05188": {
+  "arxiv_id": "2607.05188",
+  "latest_version": "v1",
+  "v1_published": "2026-07-06T15:08:26Z",
+  "latest_updated": "2026-07-06T15:08:26Z",
+  "title": "Latent Programming Horizons in Coding Agents",
+  "authors": [
+   "André Silva",
+   "Han Tu",
+   "Martin Monperrus"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "A coding agent solving a software-engineering task spends dozens of steps reasoning, editing code, and running tests, yet little is known about what the underlying language model internally represents about the program it is working on. We show that the residual streams of language models under coding agents linearly encode properties of the evolving program: a logistic-regression probe on hidden states is able to decode whether the current code parses, passes its test suite, reduces the number of failing tests, and introduces regressions, reaching AUC up to 0.83 for correctness across two models and two benchmarks. Our second finding is more surprising: these representations run ahead of the agent's own edits. Probes trained to predict the outcome of future edits (before they are materialized and written on disk) achieve performance above chance up to roughly 25 steps in advance. We call this the agent's latent programming horizon. As a proof of external validity, we show that the probes transfer across benchmarks without retraining. Our positive results open calls for more research in mechanistic interpretability of coding agents.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2405.21047": {
+  "arxiv_id": "2405.21047",
+  "latest_version": "v4",
+  "v1_published": "2024-05-31T17:39:15Z",
+  "latest_updated": "2026-09-02T22:42:53Z",
+  "title": "Grammar-Aligned Decoding",
+  "authors": [
+   "Kanghee Park",
+   "Jiayu Wang",
+   "Taylor Berg-Kirkpatrick",
+   "Nadia Polikarpova",
+   "Loris D'Antoni"
+  ],
+  "comment": "Accepted to NeurIPS 2024",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Large Language Models (LLMs) struggle with reliably generating highly structured outputs, such as program code, mathematical formulas, or well-formed markup. Constrained decoding approaches mitigate this problem by greedily restricting what tokens an LLM can output at each step to guarantee that the output matches a given constraint. Specifically, in grammar-constrained decoding (GCD), the LLM's output must follow a given grammar. In this paper, we demonstrate that GCD techniques (and in general constrained decoding techniques) can distort the LLM's distribution, leading to outputs that are grammatical but appear with likelihoods that are not proportional to the ones given by the LLM, and so ultimately are low-quality. We call the problem of aligning sampling with a grammar constraint, grammar-aligned decoding (GAD), and propose adaptive sampling with approximate expected futures (ASAp), a decoding algorithm that guarantees the output to be grammatical while provably producing outputs that match the conditional probability of the LLM's distribution conditioned on the given grammar constraint. Our algorithm uses prior sample outputs to soundly overapproximate the future grammaticality of different output prefixes. Our evaluation on code generation and structured NLP tasks shows how ASAp often produces outputs with higher likelihood (according to the LLM's distribution) than existing GCD techniques, while still enforcing the desired grammatical constraints.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2606.10302": {
+  "arxiv_id": "2606.10302",
+  "latest_version": "v1",
+  "v1_published": "2026-06-09T01:40:44Z",
+  "latest_updated": "2026-06-09T01:40:44Z",
+  "title": "Where You Inject Diversity Matters: A Unified Framework for Diverse Generation",
+  "authors": [
+   "Cheng Zhang",
+   "Rui Xin",
+   "Chudi Zhong"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Open-ended generation tasks often require a set of meaningfully different outputs, yet large language models often produce similar generations. Existing test-time diversity methods operate at different stages of generation with varying effectiveness, but it remains unclear what design choices lead to meaningful diversity in the output. We introduce a framework that characterizes test-time diverse generation methods by the diversity source introduced during generation and provide a transmission score for measuring how effectively variation in the source reaches the final output. Guided by this framework, we propose fully automated specification-level generation methods that first generate diverse intermediate specifications and then condition on them to produce final responses. Across five open-ended tasks and four backbone models, specification-level injection improves output diversity over test-time baselines while maintaining comparable quality. Our analysis shows that successful diversity injection depends on both the diversity of the sources and their transmission to the output, highlighting source design and source-to-output realization as two key levers for building more diverse generation systems.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2311.04897": {
+  "arxiv_id": "2311.04897",
+  "latest_version": "v1",
+  "v1_published": "2023-11-08T18:56:35Z",
+  "latest_updated": "2023-11-08T18:56:35Z",
+  "title": "Future Lens: Anticipating Subsequent Tokens from a Single Hidden State",
+  "authors": [
+   "Koyena Pal",
+   "Jiuding Sun",
+   "Andrew Yuan",
+   "Byron C. Wallace",
+   "David Bau"
+  ],
+  "comment": "Accepted at CoNLL 2023",
+  "journal_ref": "",
+  "doi": "10.18653/v1/2023.conll-1.37",
+  "abstract": "We conjecture that hidden state vectors corresponding to individual input tokens encode information sufficient to accurately predict several tokens ahead. More concretely, in this paper we ask: Given a hidden (internal) representation of a single token at position $t$ in an input, can we reliably anticipate the tokens that will appear at positions $\\geq t + 2$? To test this, we measure linear approximation and causal intervention methods in GPT-J-6B to evaluate the degree to which individual hidden states in the network contain signal rich enough to predict future hidden states and, ultimately, token outputs. We find that, at some layers, we can approximate a model's output with more than 48% accuracy with respect to its prediction of subsequent tokens through a single hidden state. Finally we present a \"Future Lens\" visualization that uses these methods to create a new view of transformer states.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2502.06258": {
+  "arxiv_id": "2502.06258",
+  "latest_version": "v3",
+  "v1_published": "2025-02-10T08:48:10Z",
+  "latest_updated": "2025-08-04T03:29:30Z",
+  "title": "Emergent Response Planning in LLMs",
+  "authors": [
+   "Zhichen Dong",
+   "Zhanhui Zhou",
+   "Zhixuan Liu",
+   "Chao Yang",
+   "Chaochao Lu"
+  ],
+  "comment": "Published at ICML 2025. Code available at: https://github.com/niconi19/Emergent-Response-Planning-in-LLMs",
+  "journal_ref": "Proceedings of the 42nd International Conference on Machine Learning (ICML 2025)",
+  "doi": "",
+  "abstract": "In this work, we argue that large language models (LLMs), though trained to predict only the next token, exhibit emergent planning behaviors: $\\textbf{their hidden representations encode future outputs beyond the next token}$. Through simple probing, we demonstrate that LLM prompt representations encode global attributes of their entire responses, including $\\textit{structure attributes}$ (e.g., response length, reasoning steps), $\\textit{content attributes}$ (e.g., character choices in storywriting, multiple-choice answers at the end of response), and $\\textit{behavior attributes}$ (e.g., answer confidence, factual consistency). In addition to identifying response planning, we explore how it scales with model size across tasks and how it evolves during generation. The findings that LLMs plan ahead for the future in their hidden representations suggest potential applications for improving transparency and generation control.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2504.05228": {
+  "arxiv_id": "2504.05228",
+  "latest_version": "v4",
+  "v1_published": "2025-04-07T16:14:23Z",
+  "latest_updated": "2025-08-09T18:33:13Z",
+  "title": "NoveltyBench: Evaluating Language Models for Humanlike Diversity",
+  "authors": [
+   "Yiming Zhang",
+   "Harshita Diddee",
+   "Susan Holm",
+   "Hanchen Liu",
+   "Xinyue Liu",
+   "Vinay Samuel",
+   "Barry Wang",
+   "Daphne Ippolito"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Language models have demonstrated remarkable capabilities on standard benchmarks, yet they struggle increasingly from mode collapse, the inability to generate diverse and novel outputs. Our work introduces NoveltyBench, a benchmark specifically designed to evaluate the ability of language models to produce multiple distinct and high-quality outputs. NoveltyBench utilizes prompts curated to elicit diverse answers and filtered real-world user queries. Evaluating 20 leading language models, we find that current state-of-the-art systems generate significantly less diversity than human writers. Notably, larger models within a family often exhibit less diversity than their smaller counterparts, challenging the notion that capability on standard benchmarks translates directly to generative utility. While prompting strategies like in-context regeneration can elicit diversity, our findings highlight a fundamental lack of distributional diversity in current models, reducing their utility for users seeking varied responses and suggesting the need for new training and evaluation paradigms that prioritize diversity alongside quality.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2404.02151": {
+  "arxiv_id": "2404.02151",
+  "latest_version": "v4",
+  "v1_published": "2024-04-02T17:58:27Z",
+  "latest_updated": "2025-04-17T18:55:45Z",
+  "title": "Jailbreaking Leading Safety-Aligned LLMs with Simple Adaptive Attacks",
+  "authors": [
+   "Maksym Andriushchenko",
+   "Francesco Croce",
+   "Nicolas Flammarion"
+  ],
+  "comment": "Accepted at ICLR 2025. Updates in the v3: GPT-4o and Claude 3.5 Sonnet results, improved writing. Updates in the v2: more models (Llama3, Phi-3, Nemotron-4-340B), jailbreak artifacts for all attacks are available, evaluation with different judges (Llama-3-70B and Llama Guard 2), more experiments (convergence plots, ablation on the suffix length for random search), examples of jailbroken generation",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "We show that even the most recent safety-aligned LLMs are not robust to simple adaptive jailbreaking attacks. First, we demonstrate how to successfully leverage access to logprobs for jailbreaking: we initially design an adversarial prompt template (sometimes adapted to the target LLM), and then we apply random search on a suffix to maximize a target logprob (e.g., of the token \"Sure\"), potentially with multiple restarts. In this way, we achieve 100% attack success rate -- according to GPT-4 as a judge -- on Vicuna-13B, Mistral-7B, Phi-3-Mini, Nemotron-4-340B, Llama-2-Chat-7B/13B/70B, Llama-3-Instruct-8B, Gemma-7B, GPT-3.5, GPT-4o, and R2D2 from HarmBench that was adversarially trained against the GCG attack. We also show how to jailbreak all Claude models -- that do not expose logprobs -- via either a transfer or prefilling attack with a 100% success rate. In addition, we show how to use random search on a restricted set of tokens for finding trojan strings in poisoned models -- a task that shares many similarities with jailbreaking -- which is the algorithm that brought us the first place in the SaTML'24 Trojan Detection Competition. The common theme behind these attacks is that adaptivity is crucial: different models are vulnerable to different prompting templates (e.g., R2D2 is very sensitive to in-context learning prompts), some models have unique vulnerabilities based on their APIs (e.g., prefilling for Claude), and in some settings, it is crucial to restrict the token search space based on prior knowledge (e.g., for trojan detection). For reproducibility purposes, we provide the code, logs, and jailbreak artifacts in the JailbreakBench format at https://github.com/tml-epfl/llm-adaptive-attacks.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2405.00492": {
+  "arxiv_id": "2405.00492",
+  "latest_version": "v1",
+  "v1_published": "2024-05-01T12:59:37Z",
+  "latest_updated": "2024-05-01T12:59:37Z",
+  "title": "Is Temperature the Creativity Parameter of Large Language Models?",
+  "authors": [
+   "Max Peeperkorn",
+   "Tom Kouwenhoven",
+   "Dan Brown",
+   "Anna Jordanous"
+  ],
+  "comment": "To be published in the Proceedings of the 15th International Conference on Computational Creativity (ICCC'24), 8 pages, 2 figures, 2 tables",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Large language models (LLMs) are applied to all sorts of creative tasks, and their outputs vary from beautiful, to peculiar, to pastiche, into plain plagiarism. The temperature parameter of an LLM regulates the amount of randomness, leading to more diverse outputs; therefore, it is often claimed to be the creativity parameter. Here, we investigate this claim using a narrative generation task with a predetermined fixed context, model and prompt. Specifically, we present an empirical analysis of the LLM output for different temperature values using four necessary conditions for creativity in narrative generation: novelty, typicality, cohesion, and coherence. We find that temperature is weakly correlated with novelty, and unsurprisingly, moderately correlated with incoherence, but there is no relationship with either cohesion or typicality. However, the influence of temperature on creativity is far more nuanced and weak than suggested by the \"creativity parameter\" claim; overall results suggest that the LLM generates slightly more novel outputs as temperatures get higher. Finally, we discuss ideas to allow more controlled LLM creativity, rather than relying on chance via changing the temperature parameter.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2603.18353": {
+  "arxiv_id": "2603.18353",
+  "latest_version": "v1",
+  "v1_published": "2026-03-18T23:31:05Z",
+  "latest_updated": "2026-03-18T23:31:05Z",
+  "title": "Interpretability without actionability: mechanistic methods cannot correct language model errors despite near-perfect internal representations",
+  "authors": [
+   "Sanjay Basu",
+   "Sadiq Y. Patel",
+   "Parth Sheth",
+   "Bhairavi Muralidharan",
+   "Namrata Elamaran",
+   "Aakriti Kinra",
+   "John Morgan",
+   "Rajaie Batniji"
+  ],
+  "comment": "27 pages, 5 figures, 10 tables. Code available at https://github.com/sanjaybasu/interpretability-triage",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Language models encode task-relevant knowledge in internal representations that far exceeds their output performance, but whether mechanistic interpretability methods can bridge this knowledge-action gap has not been systematically tested. We compared four mechanistic interpretability methods -- concept bottleneck steering (Steerling-8B), sparse autoencoder feature steering, logit lens with activation patching, and linear probing with truthfulness separator vector steering (Qwen 2.5 7B Instruct) -- for correcting false-negative triage errors using 400 physician-adjudicated clinical vignettes (144 hazards, 256 benign). Linear probes discriminated hazardous from benign cases with 98.2% AUROC, yet the model's output sensitivity was only 45.1%, a 53-percentage-point knowledge-action gap. Concept bottleneck steering corrected 20% of missed hazards but disrupted 53% of correct detections, indistinguishable from random perturbation (p=0.84). SAE feature steering produced zero effect despite 3,695 significant features. TSV steering at high strength corrected 24% of missed hazards while disrupting 6% of correct detections, but left 76% of errors uncorrected. Current mechanistic interpretability methods cannot reliably translate internal knowledge into corrected outputs, with implications for AI safety frameworks that assume interpretability enables effective error correction.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2605.08221": {
+  "arxiv_id": "2605.08221",
+  "latest_version": "v1",
+  "v1_published": "2026-05-06T13:58:55Z",
+  "latest_updated": "2026-05-06T13:58:55Z",
+  "title": "NoisyCoconut: Counterfactual Consensus via Latent Space Reasoning",
+  "authors": [
+   "Michael Jerge",
+   "David Evans"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "This paper presents NoisyCoconut, a novel inference-time method that enhances large language model (LLM) reliability by manipulating internal representations. Unlike fine-tuning methods that require extensive retraining, NoisyCoconut operates directly on model representations during inference and requires no retraining. Rather than training models to reason in latent space, we inject controlled noise into latent trajectories to generate diverse reasoning paths. Agreement among these paths provides a confidence signal, enabling models to abstain when uncertain. We demonstrate that this approach achieves effective coverage-accuracy tradeoffs across multiple reasoning benchmarks without requiring access to training data or modification of model parameters. This approach provides a practical pathway to improving the reliability of LLM outputs while maintaining compatibility with existing models. Our experiments show that unanimous agreement among noise-perturbed paths reduces error rates from 40-70% to below 15%, enabling models to exceed 95% accuracy on mathematical reasoning tasks through selective abstention.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2601.22010": {
+  "arxiv_id": "2601.22010",
+  "latest_version": "v1",
+  "v1_published": "2026-01-29T17:17:04Z",
+  "latest_updated": "2026-01-29T17:17:04Z",
+  "title": "Exploring Diverse Generation Paths via Inference-time Stiefel Activation Steering",
+  "authors": [
+   "Dongxuan Zhu",
+   "Ly Tran Ho Khanh",
+   "Andy Yat-Ming Cheung",
+   "Man-Chung Yue",
+   "Viet Anh Nguyen"
+  ],
+  "comment": "34 pages, 2 figures. Accepted for publication at ICLR 2026",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Language models often default to a narrow set of high-probability outputs, leaving their generation paths homogeneous and prone to mode collapse. Sampling-based strategies inject randomness but still struggle to guarantee diversity across multiple concurrent generation runs. We address this limitation by introducing STARS ($\\textbf{St}$iefel-based $\\textbf{A}$ctivation Steering for Diverse $\\textbf{R}$ea$\\textbf{S}$oning), a training-free, inference-time intervention method that transforms activation steering into an exploration engine. At each token, STARS collects the hidden activations of concurrent generation runs and optimizes multiple additive steering directions jointly on the Stiefel manifold. STARS maximizes the geometric volume of the steered activations, while the Stiefel manifold induces orthogonality of the steering interventions. This formulation explicitly promotes divergent activation vectors of concurrent generation runs, and implicitly promotes divergent generation trajectories. This manifold optimization formulation can be solved using a Riemannian gradient descent algorithm with convergence guarantees, but this algorithm is too time-consuming for real-time inference. To guarantee low latency, we further design a lightweight one-step update with an aggressive, closed-form stepsize. For test case generation and scientific discovery benchmarks, STARS consistently outperforms standard sampling methods, achieving greater diversity without sacrificing qualitative performance.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2511.08305": {
+  "arxiv_id": "2511.08305",
+  "latest_version": "v1",
+  "v1_published": "2025-11-11T14:35:41Z",
+  "latest_updated": "2025-11-11T14:35:41Z",
+  "title": "Test-time Diverse Reasoning by Riemannian Activation Steering",
+  "authors": [
+   "Ly Tran Ho Khanh",
+   "Dongxuan Zhu",
+   "Man-Chung Yue",
+   "Viet Anh Nguyen"
+  ],
+  "comment": "19 pages, 6 figures. Accepted for publication at AAAI 2026 (40th AAAI Conference on Artificial Intelligence)",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Best-of-$N$ reasoning improves the accuracy of language models in solving complex tasks by sampling multiple candidate solutions and then selecting the best one based on some criteria. A critical bottleneck for this strategy is the output diversity limit, which occurs when the model generates similar outputs despite stochastic sampling, and hence recites the same error. To address this lack of variance in reasoning paths, we propose a novel unsupervised activation steering strategy that simultaneously optimizes the steering vectors for multiple reasoning trajectories at test time. At any synchronization anchor along the batch generation process, we find the steering vectors that maximize the total volume spanned by all possible intervened activation subsets. We demonstrate that these steering vectors can be determined by solving a Riemannian optimization problem over the product of spheres with a log-determinant objective function. We then use a Riemannian block-coordinate descent algorithm with a well-tuned learning rate to obtain a stationary point of the problem, and we apply these steering vectors until the generation process reaches the subsequent synchronization anchor. Empirical evaluations on popular mathematical benchmarks demonstrate that our test-time Riemannian activation steering strategy outperforms vanilla sampling techniques in terms of generative diversity and solution accuracy.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2604.09839": {
+  "arxiv_id": "2604.09839",
+  "latest_version": "v2",
+  "v1_published": "2026-04-10T19:11:13Z",
+  "latest_updated": "2026-05-07T15:58:50Z",
+  "title": "Steered LLM Activations are Non-Surjective",
+  "authors": [
+   "Aayush Mishra",
+   "Daniel Khashabi",
+   "Anqi Liu"
+  ],
+  "comment": "10 pages main text. ICLR 2026 Workshops (Sci4DL, Re-Align)",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Activation steering is a popular white-box control technique that modifies model activations to elicit an abstract change in its behavior. It has also become a standard tool in interpretability (e.g., probing truthfulness, or translating activations into human-readable explanations) and safety research (e.g., jailbreakability). However, it is unclear whether steered behavior is realizable by any textual prompt. In this work, we cast this question as a surjectivity problem: for a fixed model, does every steered activation admit a preimage under the model's natural forward pass? Under practical assumptions, we prove that activation steering pushes the residual stream off the manifold of states reachable from discrete prompts. Almost surely, no prompt can reproduce the same internal behavior induced by steering. We also illustrate this finding empirically across three widely used LLMs. Our results establish a formal separation between white-box steerability and black-box prompting. We therefore caution against interpreting the ease and success of activation steering as evidence of prompt-based interpretability or vulnerability, and argue for evaluation protocols that explicitly decouple white-box and black-box interventions.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2604.27251": {
+  "arxiv_id": "2604.27251",
+  "latest_version": "v3",
+  "v1_published": "2026-04-29T22:55:40Z",
+  "latest_updated": "2026-09-06T16:07:12Z",
+  "title": "Compliance vs. Sensibility: On the Reasoning Controllability in Large Language Models",
+  "authors": [
+   "Xingwei Tan",
+   "Marco Valentino",
+   "Mahmud Elahi Akhter",
+   "Yuxiang Zhou",
+   "Maria Liakata",
+   "Nikolaos Aletras"
+  ],
+  "comment": "Accepted to the Findings of EMNLP 2026",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Large Language Models (LLMs) acquire reasoning capabilities through shared inference patterns in pre-training data, which are further elicited via Chain-of-Thought (CoT). However, whether fundamental reasoning patterns, such as induction, deduction, and abduction, can be decoupled from specific problem instances remains a critical challenge for model controllability. In this paper, we present the first systematic investigation of this problem through the lens of reasoning conflicts, an explicit tension between parametric and contextual information induced by mandating logical schemata that deviate from those expected for a target task. Our evaluation reveals that LLMs consistently prioritize sensibility over compliance, favoring task-appropriate reasoning patterns despite conflicting instructions. We further demonstrate that reasoning conflicts are internally detectable, as confidence scores drop during conflicting episodes. Probing reveals instruction decodability even without compliance, while CKA identifies geometric differences across models and spans. Leveraging these insights, we steer models towards compliance, increasing instruction following by up to 29%. Overall, our findings establish that while LLM reasoning is anchored to concrete instances, active mechanistic interventions can effectively decouple logical schemata from data, offering a path toward improved controllability, faithfulness, and generalizability.",
+  "retrieved_utc": "2026-10-21T06:57:38Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2605.28664": {
+  "arxiv_id": "2605.28664",
+  "latest_version": "v1",
+  "v1_published": "2026-05-27T15:59:45Z",
+  "latest_updated": "2026-05-27T15:59:45Z",
+  "title": "Activation Steering for Synthetic Data Generation: The Role of Diversity in Downstream Safety Detection",
+  "authors": [
+   "Vijeta Deshpande",
+   "Tootiya Giyahchi",
+   "Veena Padmanabhan",
+   "Leman Akoglu",
+   "Anna Rumshisky"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Safety detection models require examples of HHH (Helpful, Harmless, Honest)-violating outputs for robust generalization, however such examples are scarce. Activation Steering (AS) has emerged as a data-efficient method for generating target-concept-aligned responses. We investigate whether AS can generate high-quality training datasets for downstream classifiers, a question that remains untested. We present a two-fold study with intrinsic and extrinsic evaluation across $4$ concepts $\\times\\,2$ models $\\times\\,4$ steering methods. Intrinsically, beyond the field-standard rubric of steering success (concept alignment) and coherence, we introduce sample- and set-level diversity as a quality axis previously absent from the literature, and find that increasing steering strength reduces response diversity. Extrinsically, we replace HHH-violating examples in the available training data with steered generations and fine-tune detection classifiers. AS-generated data results in a better classifier than the prompting-generated data on $3$ of $4$ concepts. However, only $41$ of $136$ AS configurations outperform prompting, indicating that downstream utility lies in a narrow regime that jointly satisfies success, coherence, and diversity. The harmonic mean of these three axes correlates with downstream AUROC more consistently across concepts than success and coherence alone, providing a practical heuristic target for practitioners tuning AS hyperparameters. Together, our results highlight the potential of AS in synthetic data generation for improving safety detection and identify diversity as a critical, previously overlooked axis for tuning AS.",
+  "retrieved_utc": "2026-10-21T06:57:42Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2606.15092": {
+  "arxiv_id": "2606.15092",
+  "latest_version": "v1",
+  "v1_published": "2026-06-13T03:53:23Z",
+  "latest_updated": "2026-06-13T03:53:23Z",
+  "title": "High-Dimensional Random Projection for Activation Steering in Language Models",
+  "authors": [
+   "Minh-Hieu Pham",
+   "Bach Do",
+   "Laziz Abdullaev",
+   "Tan Minh Nguyen",
+   "Khoat Than"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Activation steering has emerged as a key methodology for controlling the behavior of large language models (LLMs). Existing difference-in-means based methods, however, are fundamentally limited: they capture only mean differences between class activations and fail to recover discriminative signals that naturally exist in the nonlinear feature subspace under the superposition hypothesis. Motivated by that, we propose High-Dimensional Random-projection for Activation Steering (HiDRA), a training-free approach that integrates seamlessly with existing activation steering methods. By performing activation addition in the projected high-dimensional space, HiDRA can provably capture a better discriminative structure beyond the reach of linear methods. Experiments across diverse LLM families and benchmarks demonstrate that HiDRA consistently outperforms baseline counterparts, achieving stronger behavioral control without significant computational overhead.",
+  "retrieved_utc": "2026-10-21T06:57:42Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2506.13131": {
+  "arxiv_id": "2506.13131",
+  "latest_version": "v1",
+  "v1_published": "2025-06-16T06:37:18Z",
+  "latest_updated": "2025-06-16T06:37:18Z",
+  "title": "AlphaEvolve: A coding agent for scientific and algorithmic discovery",
+  "authors": [
+   "Alexander Novikov",
+   "Ngân Vũ",
+   "Marvin Eisenberger",
+   "Emilien Dupont",
+   "Po-Sen Huang",
+   "Adam Zsolt Wagner",
+   "Sergey Shirobokov",
+   "Borislav Kozlovskii",
+   "Francisco J. R. Ruiz",
+   "Abbas Mehrabian",
+   "M. Pawan Kumar",
+   "Abigail See",
+   "Swarat Chaudhuri",
+   "George Holland",
+   "Alex Davies",
+   "Sebastian Nowozin",
+   "Pushmeet Kohli",
+   "Matej Balog"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "In this white paper, we present AlphaEvolve, an evolutionary coding agent that substantially enhances capabilities of state-of-the-art LLMs on highly challenging tasks such as tackling open scientific problems or optimizing critical pieces of computational infrastructure. AlphaEvolve orchestrates an autonomous pipeline of LLMs, whose task is to improve an algorithm by making direct changes to the code. Using an evolutionary approach, continuously receiving feedback from one or more evaluators, AlphaEvolve iteratively improves the algorithm, potentially leading to new scientific and practical discoveries. We demonstrate the broad applicability of this approach by applying it to a number of important computational problems. When applied to optimizing critical components of large-scale computational stacks at Google, AlphaEvolve developed a more efficient scheduling algorithm for data centers, found a functionally equivalent simplification in the circuit design of hardware accelerators, and accelerated the training of the LLM underpinning AlphaEvolve itself. Furthermore, AlphaEvolve discovered novel, provably correct algorithms that surpass state-of-the-art solutions on a spectrum of problems in mathematics and computer science, significantly expanding the scope of prior automated discovery methods (Romera-Paredes et al., 2023). Notably, AlphaEvolve developed a search algorithm that found a procedure to multiply two $4 \\times 4$ complex-valued matrices using $48$ scalar multiplications; offering the first improvement, after 56 years, over Strassen's algorithm in this setting. We believe AlphaEvolve and coding agents like it can have a significant impact in improving solutions of problems across many areas of science and computation.",
+  "retrieved_utc": "2026-10-21T06:57:42Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2604.01639": {
+  "arxiv_id": "2604.01639",
+  "latest_version": "v1",
+  "v1_published": "2026-04-02T05:30:20Z",
+  "latest_updated": "2026-04-02T05:30:20Z",
+  "title": "Fragile Reasoning: A Mechanistic Analysis of LLM Sensitivity to Meaning-Preserving Perturbations",
+  "authors": [
+   "Shou-Tzu Han",
+   "Rodrigue Rizk",
+   "KC Santosh"
+  ],
+  "comment": "Preprint. Under review at COLM 2026",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Large language models demonstrate strong performance on mathematical reasoning benchmarks, yet remain surprisingly fragile to meaning-preserving surface perturbations. We systematically evaluate three open-weight LLMs, Mistral-7B, Llama-3-8B, and Qwen2.5-7B, on 677 GSM8K problems paired with semantically equivalent variants generated through name substitution and number format paraphrasing. All three models exhibit substantial answer-flip rates (28.8%-45.1%), with number paraphrasing consistently more disruptive than name swaps. To trace the mechanistic basis of these failures, we introduce the Mechanistic Perturbation Diagnostics (MPD) framework, combining logit lens analysis, activation patching, component ablation, and the Cascading Amplification Index (CAI) into a unified diagnostic pipeline. CAI, a novel metric quantifying layer-wise divergence amplification, outperforms first divergence layer as a failure predictor for two of three architectures (AUC up to 0.679). Logit lens reveals that flipped samples diverge from correct predictions at significantly earlier layers than stable samples. Activation patching reveals a stark architectural divide in failure localizability: Llama-3 failures are recoverable by patching at specific layers (43/60 samples), while Mistral and Qwen failures are broadly distributed (3/60 and 0/60). Based on these diagnostic signals, we propose a mechanistic failure taxonomy (localized, distributed, and entangled) and validate it through targeted repair experiments: steering vectors and layer fine-tuning recover 12.2% of localized failures (Llama-3) but only 7.2% of entangled (Qwen) and 5.2% of distributed (Mistral) failures.",
+  "retrieved_utc": "2026-10-21T06:57:42Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2507.13874": {
+  "arxiv_id": "2507.13874",
+  "latest_version": "v2",
+  "v1_published": "2025-07-18T12:54:28Z",
+  "latest_updated": "2026-01-13T15:59:52Z",
+  "title": "Geometry of Knowledge Allows Extending Diversity Boundaries of Large Language Models",
+  "authors": [
+   "Mateusz Bystroński",
+   "Doheon Han",
+   "Nitesh V. Chawla",
+   "Tomasz Kajdanowicz"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Starting from the hypothesis that knowledge in semantic space is organized along structured manifolds, we argue that this geometric structure renders the space explorable. By traversing it and using the resulting continuous representations to condition an LLM's generation distribution, we can systematically expand the model's reachable semantic range. We introduce a framework that requires no modification of LLM parameters and operationalizes this idea by constructing a conditioning distribution from a small set of diverse anchor generations. This distribution conditions LLM's generation via an xRAG-style projector. Our experiments demonstrate that this manifold-based conditioning substantially increases generative diversity, with direct benefits for enhancing divergent thinking, a core facet of creativity, in language models.",
+  "retrieved_utc": "2026-10-21T06:57:42Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2602.04297": {
+  "arxiv_id": "2602.04297",
+  "latest_version": "v1",
+  "v1_published": "2026-02-04T07:59:28Z",
+  "latest_updated": "2026-02-04T07:59:28Z",
+  "title": "Revisiting Prompt Sensitivity in Large Language Models for Text Classification: The Role of Prompt Underspecification",
+  "authors": [
+   "Branislav Pecher",
+   "Michal Spiegel",
+   "Robert Belanec",
+   "Jan Cegin"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Large language models (LLMs) are widely used as zero-shot and few-shot classifiers, where task behaviour is largely controlled through prompting. A growing number of works have observed that LLMs are sensitive to prompt variations, with small changes leading to large changes in performance. However, in many cases, the investigation of sensitivity is performed using underspecified prompts that provide minimal task instructions and weakly constrain the model's output space. In this work, we argue that a significant portion of the observed prompt sensitivity can be attributed to prompt underspecification. We systematically study and compare the sensitivity of underspecified prompts and prompts that provide specific instructions. Utilising performance analysis, logit analysis, and linear probing, we find that underspecified prompts exhibit higher performance variance and lower logit values for relevant tokens, while instruction-prompts suffer less from such problems. However, linear probing analysis suggests that the effects of prompt underspecification have only a marginal impact on the internal LLM representations, instead emerging in the final layers. Overall, our findings highlight the need for more rigour when investigating and mitigating prompt sensitivity.",
+  "retrieved_utc": "2026-10-21T06:57:42Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2603.23629": {
+  "arxiv_id": "2603.23629",
+  "latest_version": "v2",
+  "v1_published": "2026-03-24T18:12:05Z",
+  "latest_updated": "2026-03-26T20:57:47Z",
+  "title": "Steering Code LLMs with Activation Directions for Language and Library Control",
+  "authors": [
+   "Md Mahbubur Rahman",
+   "Arjun Guha",
+   "Harshitha Menon"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Code LLMs often default to particular programming languages and libraries under neutral prompts. We investigate whether these preferences are encoded as approximately linear directions in activation space that can be manipulated at inference time. Using a difference-in-means method, we estimate layer-wise steering vectors for five language/library pairs and add them to model hidden states during generation. Across three open-weight code LLMs, these interventions substantially increase generation toward the target ecosystem under neutral prompts and often remain effective even when prompts explicitly request the opposite choice. Steering strength varies by model and target, with common ecosystems easier to induce than rarer alternatives, and overly strong interventions can reduce output quality. Overall, our results suggest that code-style preferences in LLMs are partly represented by compact, steerable structure in activation space.",
+  "retrieved_utc": "2026-10-21T06:57:42Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2608.07852": {
+  "arxiv_id": "2608.07852",
+  "latest_version": "v2",
+  "v1_published": "2026-08-08T01:49:30Z",
+  "latest_updated": "2026-08-14T15:45:59Z",
+  "title": "\"Many Are My Names\": The Anatomy of the Assistant and Its Personas via Sparse Autoencoders",
+  "authors": [
+   "Adelaide Danilov",
+   "Aria Nourbakhsh",
+   "Oleksandr Marchenko Breneur",
+   "Salima Lamsiyah"
+  ],
+  "comment": "38 pages, 9 tables, 4 figures, 2 listings",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "How a language model internally represents who is speaking, the Assistant, an assigned roleplay persona, or a narrated story character, remains underexplored. We study speaker representations using a dataset of user-expressed emotional text and corresponding model responses. We decompose three generation settings (Assistant, Roleplay, and Story) into sparse autoencoder features extracted at turn-boundary and pronoun-token positions and selected through a filtering pipeline for different depths. We characterize each surviving feature through its steering effects and activation distribution. Our main finding is that the Assistant and roleplay personas are not independent alternatives: personas retain the Assistant-associated feature core while progressively differentiating from it across layers, starting from operational machinery towards behavioral and stylistic features. Meanwhile, generated story characters lack the Assistant-associated core. Both Story and Roleplay can be distinguished from the Assistant with Immersive Simulation Mode. However, the Assistant can sometimes enter or slowly drift into it even in the default setting.",
+  "retrieved_utc": "2026-10-21T06:57:42Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2605.05115": {
+  "arxiv_id": "2605.05115",
+  "latest_version": "v1",
+  "v1_published": "2026-05-06T16:46:03Z",
+  "latest_updated": "2026-05-06T16:46:03Z",
+  "title": "Manifold Steering Reveals the Shared Geometry of Neural Network Representation and Behavior",
+  "authors": [
+   "Daniel Wurgaft",
+   "Can Rager",
+   "Matthew Kowal",
+   "Vasudev Shyam",
+   "Sheridan Feucht",
+   "Usha Bhalla",
+   "Tal Haklay",
+   "Eric Bigelow",
+   "Raphael Sarfati",
+   "Thomas McGrath",
+   "Owen Lewis",
+   "Jack Merullo",
+   "Noah Goodman",
+   "Thomas Fel",
+   "Atticus Geiger",
+   "Ekdeep Singh Lubana"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Neural representations carry rich geometric structure; but does that structure causally shape behavior? To address this question, we intervene along paths through activation space defined by different geometries, and measure the behavioral trajectories they induce. In particular, we test whether interventions that respect the geometry of activation space will yield behaviors close to those the model exhibits naturally. Concretely, we first fit an activation manifold $M_h$ to representations and a behavior manifold $M_y$ to output probability distributions. We then test the link $M_h \\leftrightarrow M_y$ via interventions: we find that steering along $M_h$, which we term manifold steering, yields behavioral trajectories that follow $M_y$, while linear steering -- which assumes a Euclidean geometry -- cuts through off-manifold regions and hence produces unnatural outputs. Moreover, optimizing interventions in activation space to produce paths along $M_y$ recovers activation trajectories that trace the curvature of $M_h$. We demonstrate this bidirectional relationship between the geometry of representation and behavior across tasks and modalities. In language models, we use reasoning tasks with cyclic and sequential geometries as well as in-context learning tasks with more complex graph geometries. In a video world model, we use a task with geometry corresponding to physical dynamics. Overall, our work shows that geometry in neural representation is not merely incidental, but is in fact the proper object for enabling principled control via intervention on internals. This recasts the core problem of steering from finding the right direction to finding the right geometry.",
+  "retrieved_utc": "2026-10-21T06:57:42Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2605.30789": {
+  "arxiv_id": "2605.30789",
+  "latest_version": "v3",
+  "v1_published": "2026-05-29T03:25:56Z",
+  "latest_updated": "2026-07-24T12:12:16Z",
+  "title": "Smaller Models are Natural Explorers for Policy-Level Diversity in GRPO",
+  "authors": [
+   "Yiran Xu",
+   "Yiming Ren",
+   "Zicheng Lin",
+   "Chufan Shi",
+   "Yukang Chen",
+   "Dingdong Wang",
+   "Tianhe Wu",
+   "Junjie Wang",
+   "Yujiu Yang",
+   "Yu Qiao",
+   "Ruihang Chu"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "We identify a new dimension for enhancing rollout diversity in Group Relative Policy Optimization (GRPO) for LLMs. While GRPO relies on diverse rollouts, prevailing strategies primarily increase diversity by injecting more token-level randomness, which may introduce step-wise noise and lead to incoherent trajectories. We uncover that smaller models within the same model family inherently exhibit higher policy-level diversity, indicated by their superior pass@k relative to larger counterparts as sample counts increase. Unlike token-level noise, this diversity is temporally correlated, preserves logical consistency, and provides structured exploration signals for gradient estimation. We thus propose S2L-PO (Small-to-Large Policy Optimization), a framework that leverages fixed small models as natural explorers to train larger models. To balance exploration and exploitation, we design a progressive annealing strategy that transitions from offline small-model rollouts to the large learner's own sampling. This shift elegantly avoids mid-training performance drops caused by the small model's capacity limits, achieving faster convergence and unlocking a higher performance ceiling. S2L-PO improves accuracy on diverse mathematical reasoning benchmarks (e.g., +8.8% on AIME 24 using a 1.7B explorer to guide the 8B model) while reducing rollout compute.",
+  "retrieved_utc": "2026-10-21T06:57:42Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2605.03052": {
+  "arxiv_id": "2605.03052",
+  "latest_version": "v2",
+  "v1_published": "2026-05-04T18:17:05Z",
+  "latest_updated": "2026-05-29T18:13:59Z",
+  "title": "How Language Models Process Negation",
+  "authors": [
+   "Zhejian Zhou",
+   "Tianyi Zhou",
+   "Robin Jia",
+   "Jonathan May"
+  ],
+  "comment": "ICML 2026",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "We study how Large Language Models (LLMs) process negation mechanistically. First, we establish that even though open-weight models often provide wrong answers to questions involving negation, they do possess internal components that process negation correctly. Their poor accuracy is due to late-layer attention behavior that promotes simple shortcuts; ablating those attention modules greatly improves accuracy on negation-related questions. Second, we uncover how models process negation. We consider two hypotheses: models could use attention heads that attend to the phrase being negated and suppress related concepts, or they could directly construct a representation of the entire negative phrase (e.g., representing \"not gas\" as a vector that promotes liquids and solids). We apply a range of observational and causal interpretability techniques on Mistral-7B and Llama-3.1-8B to show that models implement both mechanisms, with the \"constructive\" mechanism being more prominent. Combined, our work deepens the understanding of LLMs' internals, highlighting construction-dominant computations and the coexistence of competing mechanisms within LLMs.",
+  "retrieved_utc": "2026-10-21T06:57:42Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2604.18389": {
+  "arxiv_id": "2604.18389",
+  "latest_version": "v1",
+  "v1_published": "2026-04-20T15:13:33Z",
+  "latest_updated": "2026-04-20T15:13:33Z",
+  "title": "Understanding the Prompt Sensitivity",
+  "authors": [
+   "Yang Liu",
+   "Chenhui Chu"
+  ],
+  "comment": "27 pages, 16 figures",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Prompt sensitivity, which refers to how strongly the output of a large language model (LLM) depends on the exact wording of its input prompt, raises concerns among users about the LLM's stability and reliability. In this work, we consider LLMs as multivariate functions and perform a first-order Taylor expansion, thereby analyzing the relationship between meaning-preserving prompts, their gradients, and the log probabilities of the model's next token. We derive an upper bound on the difference between log probabilities using the Cauchy-Schwarz inequality. We show that LLMs do not internally cluster similar inputs like smaller neural networks do, but instead disperse them. This dispersing behavior leads to an excessively high upper bound on the difference of log probabilities between two meaning-preserving prompts, making it difficult to effectively reduce to 0. In our analysis, we also show which types of meaning-preserving prompt variants are more likely to introduce prompt sensitivity risks in LLMs. In addition, we demonstrate that the upper bound is strongly correlated with an existing prompt sensitivity metric, PromptSensiScore. Moreover, by analyzing the logit variance, we find that prompt templates typically exert a greater influence on logits than the questions themselves. Overall, our results provide a general interpretation for why current LLMs can be highly sensitive to prompts with the same meaning, offering crucial evidence for understanding the prompt sensitivity of LLMs. Code for experiments is available at https://github.com/ku-nlp/Understanding_the_Prompt_Sensitivity.",
+  "retrieved_utc": "2026-10-21T06:57:42Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2604.07192": {
+  "arxiv_id": "2604.07192",
+  "latest_version": "v2",
+  "v1_published": "2026-04-08T15:18:33Z",
+  "latest_updated": "2026-04-22T02:54:54Z",
+  "title": "Compact Constraint Encoding for LLM Code Generation: An Empirical Study of Token Economics and Constraint Compliance",
+  "authors": [
+   "Hanzhang Tang"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "LLMs used for code generation are typically guided by engineering constraints--technology choices, dependency restrictions, and architectural patterns--expressed in verbose natural language. We investigate whether compact, structured constraint headers can reduce prompt token consumption without degrading constraint compliance. Across six experimental rounds spanning 11 models, 16 benchmark tasks, and over 830 LLM invocations, we find that compact headers reduce constraint-portion tokens by approximately 71% and full-prompt tokens by 25--30%, replicated across three independent rounds. However, we detect no statistically significant differences in constraint satisfaction rate (CSR) across three encoding forms or four propagation modes; observed effect sizes are negligible (Cliff's $δ$ < 0.01, 95% CI spanning $\\pm$2.6 percentage points). This null pattern holds across two models from different capability tiers. A supplementary experiment with four non-CSS tasks provides additional cross-domain support for the encoding null result. The largest observed sources of compliance variance are constraint type ($Δ$ = 9 percentage points between normal and counter-intuitive constraints) and task domain: counter-intuitive constraints opposing model defaults fail at 10--100%, while conventional constraints achieve 99%+ compliance regardless of encoding. Model self-assessments systematically overestimate compliance relative to rule-based scoring, revealing a gap between constraint understanding and execution. Under the tested conditions, the primary benefit of compact constraint encoding is token reduction rather than compliance improvement, and engineering effort toward compliance is better directed at constraint design than prompt formatting.",
+  "retrieved_utc": "2026-10-21T06:57:42Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2607.05615": {
+  "arxiv_id": "2607.05615",
+  "latest_version": "v2",
+  "v1_published": "2026-07-06T20:25:27Z",
+  "latest_updated": "2026-10-09T16:46:30Z",
+  "title": "A Coin Flip Per Token: Bernoulli Sparse Steering of Large Language Models",
+  "authors": [
+   "Nima Eshraghi",
+   "Lovedeep Gondara",
+   "Yuqing Huang",
+   "Sagarika Suresh",
+   "Leizer Teran",
+   "Jithin Pradeep",
+   "Xiaotong Xu",
+   "Fanny Chevalier"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Activation steering via sparse autoencoders (SAEs) enables behavioral control of large language models without task-specific fine-tuning, but standard methods apply the steering signal at every generated token, incurring constant per-token perturbation that risks degrading fluency. We ask: is dense intervention necessary? We introduce Stochastic Token Steering (STS), which gates each token independently with probability $p$, and Stochastic Block Steering (SBS), which gates a leading window once per sequence; neither requires a reward model or learned gating policy. Across two model families and two behavioral tasks, steering only a fraction of tokens recovers most of the behavioral effect of dense steering while incurring less fluency degradation. Across our experimental settings, we further find that the best-performing steering magnitude consistently rises as the intervention ratio falls.",
+  "retrieved_utc": "2026-10-21T06:57:42Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2604.12493": {
+  "arxiv_id": "2604.12493",
+  "latest_version": "v1",
+  "v1_published": "2026-04-14T09:18:53Z",
+  "latest_updated": "2026-04-14T09:18:53Z",
+  "title": "Latent Planning Emerges with Scale",
+  "authors": [
+   "Michael Hanna",
+   "Emmanuel Ameisen"
+  ],
+  "comment": "ICLR 2026",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "LLMs can perform seemingly planning-intensive tasks, like writing coherent stories or functioning code, without explicitly verbalizing a plan; however, the extent to which they implicitly plan is unknown. In this paper, we define latent planning as occurring when LLMs possess internal planning representations that (1) cause the generation of a specific future token or concept, and (2) shape preceding context to license said future token or concept. We study the Qwen-3 family (0.6B-14B) on simple planning tasks, finding that latent planning ability increases with scale. Models that plan possess features that represent a planned-for word like \"accountant\", and cause them to output \"an\" rather than \"a\"; moreover, even the less-successful Qwen-3 4B-8B have nascent planning mechanisms. On the more complex task of completing rhyming couplets, we find that models often identify a rhyme ahead of time, but even large models seldom plan far ahead. However, we can elicit some planning that increases with scale when steering models towards planned words in prose. In sum, we offer a framework for measuring planning and mechanistic evidence of how models' planning abilities grow with scale.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2411.07180": {
+  "arxiv_id": "2411.07180",
+  "latest_version": "v5",
+  "v1_published": "2024-11-11T17:57:30Z",
+  "latest_updated": "2025-03-06T15:26:56Z",
+  "title": "Gumbel Counterfactual Generation From Language Models",
+  "authors": [
+   "Shauli Ravfogel",
+   "Anej Svete",
+   "Vésteinn Snæbjarnarson",
+   "Ryan Cotterell"
+  ],
+  "comment": "Accepted in ICLR 2025",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Understanding and manipulating the causal generation mechanisms in language models is essential for controlling their behavior. Previous work has primarily relied on techniques such as representation surgery -- e.g., model ablations or manipulation of linear subspaces tied to specific concepts -- to \\emph{intervene} on these models. To understand the impact of interventions precisely, it is useful to examine \\emph{counterfactuals} -- e.g., how a given sentence would have appeared had it been generated by the model following a specific intervention. We highlight that counterfactual reasoning is conceptually distinct from interventions, as articulated in Pearl's causal hierarchy. Based on this observation, we propose a framework for generating true string counterfactuals by reformulating language models as a structural equation model using the Gumbel-max trick, which we called Gumbel counterfactual generation. This reformulation allows us to model the joint distribution over original strings and their counterfactuals resulting from the same instantiation of the sampling noise. We develop an algorithm based on hindsight Gumbel sampling that allows us to infer the latent noise variables and generate counterfactuals of observed strings. Our experiments demonstrate that the approach produces meaningful counterfactuals while at the same time showing that commonly used intervention techniques have considerable undesired side effects.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2504.15266": {
+  "arxiv_id": "2504.15266",
+  "latest_version": "v4",
+  "v1_published": "2025-04-21T17:47:46Z",
+  "latest_updated": "2025-08-28T19:09:57Z",
+  "title": "Roll the dice & look before you leap: Going beyond the creative limits of next-token prediction",
+  "authors": [
+   "Vaishnavh Nagarajan",
+   "Chen Henry Wu",
+   "Charles Ding",
+   "Aditi Raghunathan"
+  ],
+  "comment": "ICML 2025 (oral)",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "We design a suite of minimal algorithmic tasks that are a loose abstraction of open-ended real-world tasks. This allows us to cleanly and controllably quantify the creative limits of the present-day language model. Much like real-world tasks that require a creative, far-sighted leap of thought, our tasks require an implicit, open-ended stochastic planning step that either (a) discovers new connections in an abstract knowledge graph (like in wordplay, drawing analogies, or research) or (b) constructs new patterns (like in designing math problems or new proteins). In these tasks, we empirically and conceptually argue how next-token learning is myopic; multi-token approaches, namely teacherless training and diffusion models, comparatively excel in producing diverse and original output. Secondly, to elicit randomness without hurting coherence, we find that injecting noise at the input layer (dubbed seed-conditioning) works surprisingly as well as (and in some conditions, better than) temperature sampling from the output layer. Thus, our work offers a principled, minimal test-bed for analyzing open-ended creative skills, and offers new arguments for going beyond next-token learning and temperature sampling. We make part of the code available under https://github.com/chenwu98/algorithmic-creativity",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2608.14669": {
+  "arxiv_id": "2608.14669",
+  "latest_version": "v1",
+  "v1_published": "2026-08-02T18:49:03Z",
+  "latest_updated": "2026-08-02T18:49:03Z",
+  "title": "Beyond Correctness: Toward Automated Novelty Verification with Lean 4",
+  "authors": [
+   "Ayrton Porto"
+  ],
+  "comment": "20 pages. Preliminary version; a large-scale quantitative evaluation (N theorems x M models) is left to future work. Comments welcome. Code: https://github.com/ayrtonporto/avid-journal",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Artificial intelligence systems applied to mathematics verify correctness but not novelty: an automatically generated theorem can compile in Lean without errors and yet be an already known result. This article presents AViD Journal, a pipeline that receives a LaTeX article, formalizes its statements in Lean 4, and issues a novelty verdict through a decision tree over three dimensions: prior existence in a formal corpus (Mathlib) and an informal one (TheoremSearch and Matlas, with temporal filter and LLM judge), non-triviality via automatic tactics, and structural distance between proofs measured as Jaccard distance over premise sets. Evaluation on papers withdrawn from arXiv due to declared duplication produced a result more informative than any performance measure: the identification of three obstacles that limit the approach regardless of this implementation. First, successful compilation of a Lean file does not guarantee semantic fidelity. Second, the recall ceiling is imposed by the coverage of theorem indices, not by the similarity metric. Third, arXiv removes the source code of articles upon withdrawal, compromising the reproducibility of any benchmark built upon them.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2608.30047": {
+  "arxiv_id": "2608.30047",
+  "latest_version": "v1",
+  "v1_published": "2026-08-30T21:21:08Z",
+  "latest_updated": "2026-08-30T21:21:08Z",
+  "title": "Can LLM Agents Discover? Evaluating Creativity on ML Engineering Tasks",
+  "authors": [
+   "Shitanshu Bhushan",
+   "Yunxiang Zhang",
+   "Lu Wang"
+  ],
+  "comment": "COLM 2026",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Recent AI systems promise autonomous scientific discovery, claiming to discover algorithms and produce research papers, yet understanding whether they exhibit creativity, the capacity to produce solutions that are both novel and useful, remains an open question. We present a framework for evaluating multi-turn LLM research agents' creativity using ML engineering tasks as a testbed, through three dimensions: P-Creativity (psychological novelty: novel relative to the agent's own prior solutions within a run), H-Creativity (historical novelty: novel relative to the corpus of human solutions), and Usefulness (task performance). Evaluating two agent frameworks, AIDE and AIRA-Dojo, on 10 Kaggle-style machine learning tasks from MLE-Bench, we develop an LLM-as-a-Judge pipeline and verify its strong correlation with human creativity judgments, providing a reliable automated metric for P-Creativity evaluation at scale. Applying this pipeline to agent trajectories, we find: (1) all agents exhibit declining P-Creativity as they transition from exploration to exploitation; (2) LLMs exhibit greater H-Creativity than medal-winning humans, yet achieve lower performance. Our findings reveal that current agents can explore novel regions of the solution space but lack the capacity to convert this novelty into improved task performance.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2610.02438": {
+  "arxiv_id": "2610.02438",
+  "latest_version": "v1",
+  "v1_published": "2026-10-01T20:04:14Z",
+  "latest_updated": "2026-10-01T20:04:14Z",
+  "title": "Are you Synthesizing or Recalling? Evaluating LLMs on Algorithmic Code Retrieval",
+  "authors": [
+   "Nickil Maveli",
+   "Antonio Vergari",
+   "Shay B. Cohen"
+  ],
+  "comment": "30 pages (preprint)",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Large language models (LLMs) have demonstrated strong performance in code generation, where success depends on both recalling relevant algorithmic knowledge and reasoning about how to apply it. However, existing LLM pipelines are opaque, with no explicit separation between these two components. We argue that for well-known algorithms whose canonical implementations are widely accessible in pretraining corpora, code generation is better measured as \\textit{parametric code retrieval}: reproducing a named algorithm from internalised knowledge rather than synthesizing a novel one. We introduce AlgoREval, a benchmark of 599 problems spanning classical 77 algorithms across 14 domains, 7 programming languages, and 4 graph-input representations to evaluate this capability in isolation, and assess 15 models (7B--34B parameters) in a zero-shot setting. We find substantial variation in retrieval accuracy across languages and input representations, even for widely documented algorithms and show that prompt augmentation with retrieved code snippets or structured algorithmic hints improve accuracy on complex algorithms, while SFT achieves broader language gains and GRPO achieves larger per-language gains on specific languages. Together, our results establish parametric code retrieval as a distinct, measurable capability and caution against deploying AI-generated algorithmic code without systematic validation.\\footnote{Code and dataset are available at https://github.com/Nickil21/AlgoREval",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2602.07080": {
+  "arxiv_id": "2602.07080",
+  "latest_version": "v1",
+  "v1_published": "2026-02-06T03:49:15Z",
+  "latest_updated": "2026-02-06T03:49:15Z",
+  "title": "CodeCircuit: Toward Inferring LLM-Generated Code Correctness via Attribution Graphs",
+  "authors": [
+   "Yicheng He",
+   "Zheng Zhao",
+   "Zhou Kaiyu",
+   "Bryan Dai",
+   "Jie Fu",
+   "Yonghui Yang"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Current paradigms for code verification rely heavily on external mechanisms-such as execution-based unit tests or auxiliary LLM judges-which are often labor-intensive or limited by the judging model's own capabilities. This raises a fundamental, yet unexplored question: Can an LLM's functional correctness be assessed purely from its internal computational structure? Our primary objective is to investigate whether the model's neural dynamics encode internally decodable signals that are predictive of logical validity during code generation. Inspired by mechanistic interpretability, we propose to treat code verification as a mechanistic diagnostic task, mapping the model's explicit algorithmic trajectory into line-level attribution graphs. By decomposing complex residual flows, we aim to identify the structural signatures that distinguish sound reasoning from logical failure within the model's internal circuits. Analysis across Python, C++, and Java confirms that intrinsic correctness signals are robust across diverse syntaxes. Topological features from these internal graphs predict correctness more reliably than surface heuristics and enable targeted causal interventions to fix erroneous logic. These findings establish internal introspection as a decodable property for verifying generated code. Our code is at https:// github.com/bruno686/CodeCircuit.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2503.00691": {
+  "arxiv_id": "2503.00691",
+  "latest_version": "v2",
+  "v1_published": "2025-03-02T02:04:58Z",
+  "latest_updated": "2025-03-07T05:38:47Z",
+  "title": "How Diversely Can Language Models Solve Problems? Exploring the Algorithmic Diversity of Model-Generated Code",
+  "authors": [
+   "Seonghyeon Lee",
+   "Heejae Chon",
+   "Joonwon Jang",
+   "Dongha Lee",
+   "Hwanjo Yu"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Language models (LMs) have exhibited impressive abilities in generating code from natural language requirements. In this work, we highlight the diversity of code generated by LMs as a critical criterion for evaluating their code generation capabilities. There is a lack of studies focused on assessing the diversity of generated code, which overlooks its importance in code LMs. Therefore, we propose a systematic approach to evaluate code diversity, introducing various metrics with inter-code similarity. Specifically, we introduce code clustering methods that leverages LMs' capabilities in code understanding and reasoning, resulting in a set of metrics that represent the number of algorithms in model-generated solutions. We extensively investigate the property of model-generated solutions by contrasting them with human-written ones and quantifying the impact of various factors on code diversity: model size, temperature, instruction tuning, and problem complexity. Our analysis demonstrates that model-generated solutions exhibit low algorithmic diversity, which was neglected by the research community. Moreover, we explore methods to increase code diversity by combining solutions from different models and increasing sampling temperatures. Our findings highlight that code diversity can be enhanced with the help of heterogeneous models and setting temperature beyond 1.0 that has not been fully explored due to the functional correctness degradation. To facilitate our research direction, we publicly share our code and datasets through open-source repositories.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2507.06463": {
+  "arxiv_id": "2507.06463",
+  "latest_version": "v2",
+  "v1_published": "2025-07-09T00:46:30Z",
+  "latest_updated": "2025-08-28T14:22:23Z",
+  "title": "Evaluating Efficiency and Novelty of LLM-Generated Code for Graph Analysis",
+  "authors": [
+   "Atieh Barati Nia",
+   "Mohammad Dindoost",
+   "David A. Bader"
+  ],
+  "comment": "7 pages, v2: minor revision to match final paper published in the The 29th Annual IEEE High Performance Extreme Computing Conference (HPEC), Virtual, September 15-19, 2025. Outstanding Student Paper Award",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Large Language Models (LLMs) are increasingly used to automate software development, yet most prior evaluations focus on functional correctness or high-level languages such as Python. As one of the first systematic explorations of LLM-assisted software performance engineering, we present a comprehensive study of LLMs' ability to generate efficient C implementations of graph-analysis routines -- code that must satisfy stringent runtime and memory constraints. This emerging field of LLM-assisted algorithm engineering holds significant promise, as these models may possess the capability to design novel approaches that improve existing algorithms and their implementations. Eight state-of-the-art models (OpenAI ChatGPT o3 and o4-mini-high, Anthropic Claude 4 Sonnet and Sonnet Extended, Google Gemini 2.5 Flash and Pro, xAI Grok 3-Think, and DeepSeek DeepThink R1) are benchmarked using two distinct approaches. The first approach evaluates the ability of LLMs to generate algorithms that outperform existing benchmarks. The second approach assesses their capability to generate graph algorithms for integration into performance-critical systems. The results show that Claude Sonnet 4 Extended achieves superior performance in ready-to-use code generation and efficiency, outperforming human-written baselines in triangle counting. Although our findings demonstrate that contemporary LLMs excel in optimizing and integrating established algorithms, the potential for these models to eventually invent transformative algorithmic techniques represents a compelling frontier for future research. We provide prompts, generated code, and measurement scripts to promote reproducible research in this rapidly evolving domain. All of the source code is available on GitHub at https://github.com/Bader-Research/LLM-triangle-counting/.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2606.29604": {
+  "arxiv_id": "2606.29604",
+  "latest_version": "v1",
+  "v1_published": "2026-06-28T21:02:34Z",
+  "latest_updated": "2026-06-28T21:02:34Z",
+  "title": "Mechanistically Eliciting Latent Behaviors in Language Models",
+  "authors": [
+   "Andrew Mack",
+   "Nina Panickssery",
+   "Alexander Matt Turner"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "We aim to discover diverse, generalizable perturbations of LLM internals that can surface hidden behavioral modes. Such perturbations could help reshape model behavior and systematically evaluate potential risks. We introduce Causal Perturbative Elicitation (CPE), an unsupervised method for discovering interpretable low-rank adapters (LoRAs) that can elicit these latent behaviors. CPE decomposes the computations of a deep transformer slice using a heuristic tensor-decomposition-based algorithm. CPE exhibits remarkable data efficiency, learning a large number of interpretable LoRAs from a single example. Even though CPE is unsupervised, we find that in some cases it can be competitive with supervised elicitation methods via brute-force enumerative search over weight space. For instance, CPE performs similarly to matched-wall-clock-time GRPO on the Countdown task for Qwen3-8B (85% vs 87%), demonstrating that CPE can efficiently elicit complex multi-token behaviors. Since CPE is unsupervised, it can also surface hidden failure modes, such as sandbagging, restoring 85% of locked BigCodeBench performance on a password-locked version of Llama3-70B introduced by Taylor et al. (2025). Additionally, since CPE explores behaviors in weight-space rather than token-space it can potentially ameliorate exploration hacking, a misalignment failure which may arise in sufficiently self-aware AI models (Ngo, 2022). In fact, we find that CPE virtually eliminates alignment-faking (Greenblatt et al., 2024) behavior in a Llama3-70B-based model organism developed by Hughes et al. (2025). Finally, we find that CPE can be used to initialize GPT-OSS-20B in an aligned basin when running GRPO on an environment prone to reward-hacking. By providing a data-efficient method to systematically explore the space of latent model behaviors, CPE yields a powerful tool for aligning AI systems and evaluating their safety.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2610.25133": {
+  "arxiv_id": "2610.25133",
+  "latest_version": "v1",
+  "v1_published": "2026-10-18T09:32:50Z",
+  "latest_updated": "2026-10-18T09:32:50Z",
+  "title": "Many Repairs, One Direction: Steering Code Models Toward Safer Cryptographic API Use",
+  "authors": [
+   "Tianhe Lu",
+   "Sakuna Harinda Jayasundara",
+   "Eric Spero",
+   "Ewan Tempero",
+   "Robert Biddle",
+   "Giovanni Russello"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Cryptographic API misuse in large language model-generated code can compromise software security. While many existing approaches improve code security by modifying model parameters or inputs, how representation changes associated with different cryptographic API repairs can support a shared intervention for safer code generation remains underexplored. To investigate this, we construct 48,000 matched program pairs across four programming languages and ten cryptographic API misuse categories. Each pair changes a specified API decision while preserving the programming task. Subtracting the misuse program's internal representation from its secure counterpart's gives a repair vector. Across five models, comparisons of mean repair vectors reveal stronger organization by misuse category than by language. These category-specific patterns also support a shared intervention. We introduce CrypSteer, which extracts a shared direction by normalizing repair differences and selecting a principal component aligned with repairs across misuse categories. With model weights fixed, adding one shared direction per model to its internal activations during generation improves aggregate target security rates by 5.28--15.00 percentage points over unsteered generation across languages and misuse categories. These findings connect the shared structure of cryptographic repair representations to a reusable intervention for safer code generation.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2602.02103": {
+  "arxiv_id": "2602.02103",
+  "latest_version": "v2",
+  "v1_published": "2026-02-02T13:46:56Z",
+  "latest_updated": "2026-05-28T09:17:14Z",
+  "title": "How Far Ahead Do LLMs Plan? Uncovering the Latent Horizon in Chain-of-Thought Reasoning",
+  "authors": [
+   "Liyan Xu",
+   "Mo Yu",
+   "Fandong Meng",
+   "Jie Zhou"
+  ],
+  "comment": "Accepted to ICML 2026",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Chain-of-thought (CoT) reasoning has become a central mechanism for eliciting multi-step reasoning in Large Language Models (LLMs). Yet recent evidence presents a tension: hidden states appear to already encode future reasoning before CoT fully unfolds, while explicit steps still remain crucial for tasks requiring compositional computation. To deepen the understanding between LLM's internal states and its verbalized reasoning trajectories, we investigate the latent planning strength of LLMs, through our probing method, Tele-Lens, applying to hidden states across diverse task domains. Our empirical results indicate that LLMs exhibit a myopic horizon, primarily conducting incremental transitions without precise global planning. Leveraging this characteristic, we propose a hypothesis on enhancing uncertainty estimation of CoT, which we validate that a sparse set of pivot positions can effectively represent the uncertainty of the entire path. We further underscore the significance of exploiting CoT dynamics, and demonstrate that automatic recognition of CoT bypass can be achieved without performance degradation. Our code, data and models are released at https://github.com/lxucs/tele-lens.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2605.11128": {
+  "arxiv_id": "2605.11128",
+  "latest_version": "v1",
+  "v1_published": "2026-05-11T18:36:30Z",
+  "latest_updated": "2026-05-11T18:36:30Z",
+  "title": "Sampling More, Getting Less: Calibration is the Diversity Bottleneck in LLMs",
+  "authors": [
+   "Amin Banayeeanzade",
+   "Qingchuan Yang",
+   "Dhruv Tarsadiya",
+   "Fatemeh Bahrani",
+   "Leonardo Blas",
+   "Alfy Samuel",
+   "Robin Jia",
+   "Meisam Razaviyayn",
+   "Sai Praneeth Karimireddy"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Diversity is essential for language-model applications ranging from creative generation to scientific discovery, yet modern LLMs often collapse into a narrow subset of plausible outputs. While prior work has developed benchmarks for measuring this lack of diversity, less is known about how the step-by-step probability distributions at inference time cause the problem. We introduce a validity--diversity framework that attributes diversity collapse to how an LLM allocates probability mass across valid and invalid continuations during decoding. This framework decomposes the bottleneck into two complementary forms of miscalibration. First, order calibration: valid tokens are not reliably ranked above invalid tokens, so rank-based cutoff rules must trade off between recovering valid continuations and admitting invalid ones. Second, shape calibration: probability mass is overly concentrated only on few valid continuations while having a heavy-tail of mixed valid and invalid tokens, so maintaining high validity limits diversity. We formalize both mechanisms and show that local failures compound across decoding steps, producing strong sequence-level losses in diversity. Empirically, we develop controlled diagnostics for probing these bottlenecks, including tasks with exactly known valid sets and oracle cutoff baselines. Across 14 language models spanning multiple families and scales, we find that diversity collapse is not merely a limitation of particular sampling heuristics, but a consequence of order and shape miscalibration in the LLM distribution.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2603.09701": {
+  "arxiv_id": "2603.09701",
+  "latest_version": "v2",
+  "v1_published": "2026-03-10T14:12:18Z",
+  "latest_updated": "2026-03-30T14:44:56Z",
+  "title": "An Empirical Study of Interaction Smells in Multi-Turn Human-LLM Collaborative Code Generation",
+  "authors": [
+   "Binquan Zhang",
+   "Li Zhang",
+   "Lin Shi",
+   "Song Wang",
+   "Yuwei Qian",
+   "Linhui Zhao",
+   "Fang Liu",
+   "An Fu",
+   "Yida Ye"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Large Language Models (LLMs) have revolutionized code generation, evolving from static tools into dynamic conversational interfaces that facilitate complex, multi-turn collaborative programming. While LLMs exhibit remarkable proficiency in generating standalone code snippets, they often struggle to maintain contextual consistency during extended interactions, creating significant obstacles in the collaboration process. Existing benchmarks primarily emphasize the functional correctness of the final output, overlooking latent quality issues within the interaction process itself, which we term Interaction Smells. In this paper, we conduct an empirical study on sampled real-word user-LLM interactions from WildChat and LMSYS-Chat-1M datasets to systematically investigate Interaction Smells in human-LLM code generation tasks from the perspectives of phenomena, distribution, and mitigation. First, we establish the first taxonomy of Interaction Smells by manually performing open card sorting on real-world interaction logs. This taxonomy categorizes Interaction Smells into three primary categories, i.e., User Intent Quality, Historical Instruction Compliance, and Historical Response Violation, comprising nine specific subcategories. Next, we quantitatively evaluate six mainstream LLMs (i.e., GPT-4o, DeepSeek-Chat, Gemini 2.5, Qwen2.5-32B, Qwen2.5-72B, and Qwen3-235B-a22b) to analyze the distribution of Interaction Smells across different models. Finally, we propose Invariant-aware Constraint Evolution (InCE), a multi-agent framework designed to improve multi-turn interaction quality through explicit extraction of global invariants and pre-generation quality audits. Experimental results on the extended WildBench benchmark demonstrate that this lightweight mitigation approach significantly improves the Task Success Rate and effectively suppresses the occurrence of Interaction Smells.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2606.08251": {
+  "arxiv_id": "2606.08251",
+  "latest_version": "v3",
+  "v1_published": "2026-06-06T16:39:28Z",
+  "latest_updated": "2026-08-10T16:28:27Z",
+  "title": "Contemporary AI lacks the imagination to diverge or negate in science",
+  "authors": [
+   "Honglin Bao",
+   "Siyang Wu",
+   "Xiao Liu",
+   "Sida Li",
+   "Shiyun Cao",
+   "James A. Evans"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Bold claims that AI will accelerate scientific discovery have raced ahead of evidence from working scientists, yet large-scale, scientist-in-the-loop evidence is scarce. Here we mount the largest evaluation to date, inviting authors of 121,640 recent preprints in biology, medicine, chemistry, and social science to judge large language model (LLM)-generated ideas derived from their own papers. 6,749 representative scientists returned 25,139 rating sets on novelty, feasibility, probability of being true, and favorability of adoption. Three patterns emerge. First, non-reasoning LLMs collapse into a narrow \"hivemind\" of similar ideas while reasoning models explore a wider hypothesis space, but no model spontaneously proposes null hypotheses, a move humans make more freely. Second, scientists reward ideas resembling their own and prize probability over novelty, though social scientists tolerate risk more than life scientists; senior social scientists are the harshest critics, and their skepticism is earned, as LLMs falter most in pluralistic fields demanding context-aware interpretation and evolving theories. Third, automated evaluators, including LLM-as-a-judge and state-of-the-art (SOTA) models, agree weakly with expert judgment. Retrieval augmentation and scientist persona prompting yield marginal gains. A Qwen3-14B reward model we post-trained on human ratings captures nuances of taste, beats SOTA models by up to 27%, and closes the gap to the consistency of human peer reviewers. An analysis of 39 million papers from 2010 to 2025 links survey findings to macro-level patterns: following ChatGPT's release, null claims are sharply suppressed and ideas contract. Agent-based simulations further suggest that saturated fields should especially prize human uniqueness. For all the hype, today's AI for science remains a collaborator whose imagination and judgment benefit from human grounding.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2610.01382": {
+  "arxiv_id": "2610.01382",
+  "latest_version": "v1",
+  "v1_published": "2026-10-01T09:48:48Z",
+  "latest_updated": "2026-10-01T09:48:48Z",
+  "title": "Gacha Decoding: Eliciting Diverse Generations Through Instruction Following",
+  "authors": [
+   "Scott Geng",
+   "Yufei Zhang",
+   "Joseph Lee",
+   "Jerry Li",
+   "Marjan Ghazvininejad",
+   "Pang Wei Koh"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "We introduce Gacha Decoding, an inference-time method for eliciting diverse language model generations that scales with model capability. Across open-ended domains (in-the-wild chat, creative writing, planning for image generation, and protein design), Gacha Decoding significantly outperforms existing generation diversity approaches at equal quality (up to 2.4x Vendi over the next-best prior approach), reaching the same number of high-quality modes with over an order of magnitude fewer samples (11.0x) and discovering novel modes that no other approach surfaces. Our key insight is to treat diversity as an instruction-following problem: rather than relying on the LM's token entropy, we combine its instruction-following capability with randomness from an external RNG tool to scalably identify and realize distinct modes of the response space. This approach of \"planning with dice\" enables Gacha to invert the long-observed tension between diversity and model capability. As the underlying LM becomes a better instruction follower, diversity under Gacha Decoding consistently improves--even as its token entropy and diversity under prior approaches decline. Together, our results highlight that instruction following, rather than token entropy alone, can drive generation diversity.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2602.20408": {
+  "arxiv_id": "2602.20408",
+  "latest_version": "v1",
+  "v1_published": "2026-02-23T23:10:47Z",
+  "latest_updated": "2026-02-23T23:10:47Z",
+  "title": "Examining and Addressing Barriers to Diversity in LLM-Generated Ideas",
+  "authors": [
+   "Yuting Deng",
+   "Melanie Brucks",
+   "Olivier Toubia"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Ideas generated by independent samples of humans tend to be more diverse than ideas generated from independent LLM samples, raising concerns that widespread reliance on LLMs could homogenize ideation and undermine innovation at a societal level. Drawing on cognitive psychology, we identify (both theoretically and empirically) two mechanisms undermining LLM idea diversity. First, at the individual level, LLMs exhibit fixation just as humans do, where early outputs constrain subsequent ideation. Second, at the collective level, LLMs aggregate knowledge into a unified distribution rather than exhibiting the knowledge partitioning inherent to human populations, where each person occupies a distinct region of the knowledge space. Through four studies, we demonstrate that targeted prompting interventions can address each mechanism independently: Chain-of-Thought (CoT) prompting reduces fixation by encouraging structured reasoning (only in LLMs, not humans), while ordinary personas (versus \"creative entrepreneurs\" such as Steve Jobs) improve knowledge partitioning by serving as diverse sampling cues, anchoring generation in distinct regions of the semantic space. Combining both approaches produces the highest idea diversity, outperforming humans. These findings offer a theoretically grounded framework for understanding LLM idea diversity and practical strategies for human-AI collaborations that leverage AI's efficiency without compromising the diversity essential to a healthy innovation ecosystem.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2606.24952": {
+  "arxiv_id": "2606.24952",
+  "latest_version": "v1",
+  "v1_published": "2026-06-23T08:07:51Z",
+  "latest_updated": "2026-06-23T08:07:51Z",
+  "title": "Perfect Detection, Failed Control: The Geometry of Knowing vs. Steering in Language Models",
+  "authors": [
+   "Cosimo Galeone",
+   "Anna Ettorre",
+   "Minsu Park",
+   "Giuseppe Ettorre",
+   "Daniele Ligorio"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "A central aspiration of mechanistic interpretability is controllability: if we know where a behavior is represented in a model's activations, we should be able to modify it. This rests on a hidden premise -- that the direction which detects a behavior and the direction which controls it are the same, or close. We test this geometrically: what is the angle between the direction that best detects a behavior and the one that best causes it? If detection implies control the cosine is near 1; otherwise it quantifies a detection-intervention gap. On Gemma 2-2B-it, output format (clean JSON vs markdown fencing) collapses both roles onto one axis. Hallucination does not: the model detects fake entities with perfect linear separability (AUC = 1.000 from layer 5), yet that direction sits at cos = 0.12 (about 83 degrees) from the direction producing a refusal -- a small, reproducible alignment, far from the cos = 1 that \"detection is control\" would require. A detector built from activations, with no chosen tokens, likewise fails to align (cos = -0.06). The gap generalizes: across four models from three families and two scales (1B-9B), cos stays in [0.12, 0.20], identical before and after instruction tuning (0.1197 vs 0.1200), placing its origin in pretraining. A 15-degree rotation toward the refusal direction partially bridges it -- 73% and 60% refusal on two held-out fake-entity categories at 1.8% false positives. We then ask whether this cosine predicts steerability, and it does not: detection is a high-dimensional class, not a single direction, and what separates the steerable case is functional, not readable from a static angle. The cosine is a weight-computable signature of the dissociation between knowing and steering, not a predictor of it.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2605.29737": {
+  "arxiv_id": "2605.29737",
+  "latest_version": "v1",
+  "v1_published": "2026-05-28T10:30:28Z",
+  "latest_updated": "2026-05-28T10:30:28Z",
+  "title": "Minimal Prompt Perturbations Lead to Code Vulnerabilities: Prompt Fragility and Hidden-State Signals in Coding LLMs",
+  "authors": [
+   "Alexander Sternfeld",
+   "Andrei Kucharavy",
+   "Ljiljana Dolamic"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "LLM-based coding assistants are seeing rapid adoption, offering substantial gains in developer productivity. As organizations increasingly ship code these agents produce, the security of that code becomes critical. Prior work has shown that minor prompt perturbations degrade the functional correctness of LLM-generated code, but whether they also compromise code security has remained unstudied. We apply token-level mutations to prompts across three models and five programming languages, and show that mutations as small as a single-character change can flip generated code from secure to vulnerable. Probing the models' hidden states reveals that this fragility is partially encoded in prompt representations, but unevenly so. Input-handling vulnerabilities, where the model omits validation or sanitization, are more predictable (mean AUC 0.753) than secure-defaults vulnerabilities, where insecure code stems from one local choice such as a weak algorithm or unsafe parameter (mean AUC 0.674). These results show that the threat model for LLM-assisted coding extends beyond prompt injection to ordinary prompt variation, and indicate that input-handling flaws can be caught before generation while secure-defaults flaws require intervention during decoding.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2608.21595": {
+  "arxiv_id": "2608.21595",
+  "latest_version": "v1",
+  "v1_published": "2026-08-21T19:56:50Z",
+  "latest_updated": "2026-08-21T19:56:50Z",
+  "title": "Perturb the Thought, Not the Pixels: Latent-Space Rollout Diversification for Reinforcement Learning of Vision-Language Models",
+  "authors": [
+   "Michael Jerge",
+   "Joseph Pelczar",
+   "Justin Downes"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Reinforcement learning with verifiable rewards (RLVR) improves the reasoning ability of vision-language models (VLMs), and diversifying the rollouts within each optimization group amplifies its gains. Existing approaches diversify through decoding temperature or pixel-space image distortion; we ask whether the perturbation belongs in the model's latent space instead. We introduce Noise-Contrastive GRPO (NC-GRPO), which injects scale-calibrated Gaussian noise into the last hidden layer of the prompt-encoding pass for half of each rollout group, branching those rollouts from a displaced departure state. Branches that reach the answer despite the displacement are reinforced over those derailed by it, converting sensitivity at the branch point into policy-gradient signal; the objective, reward, and inference protocol are untouched. On Qwen2.5-VL-7B trained on Geometry3K, NC-GRPO significantly improves out-of-domain mathematical reasoning over vanilla GRPO across five held-out benchmarks (pooled McNemar $p \\le 0.001$) while also improving in-domain accuracy and hallucination robustness -- the latter an axis on which image-space noise regresses even while posting a larger OOD average on perception-heavy benchmarks. Mechanism ablations indicate that independent stochastic diversity, not noise budget or direction, is the active ingredient, and a noise-scale study exposes a dial between reasoning specialization and general capability. NC-GRPO is designed to be modality-agnostic and integrates into a standard RLVR pipeline as a ~50-line change to the inference engine.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2608.02657": {
+  "arxiv_id": "2608.02657",
+  "latest_version": "v2",
+  "v1_published": "2026-08-01T12:00:33Z",
+  "latest_updated": "2026-08-24T05:25:37Z",
+  "title": "Your Agentic LLMs Secretly Encode Indirect Prompt-Injection Exposure in Hidden States",
+  "authors": [
+   "Jianshuo Dong",
+   "Yiming Liu",
+   "Maosen Zhang",
+   "Nan Deng",
+   "Peng Xu",
+   "Xiaoping Zhang",
+   "Tianwei Zhang",
+   "Jie Zhang",
+   "Han Qiu"
+  ],
+  "comment": "v2. Compared to v1, we include the Kimi-K3 model's results and conduct a series of new experiments on understanding probe generalization",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Agentic LLMs are vulnerable to indirect prompt injection (IPI) attacks, e.g., malicious side-tasks hidden in external tool results. While many efforts have sought to address this threat, little is known about the internals of agentic LLMs when they are exposed to IPI attacks. For simplicity, we refer to this condition as IPI exposure. In this paper, we study IPI exposure from three perspectives. (1) Probing: Across eight models, including the 753B-parameter GLM-5.2 and the 2.8T-parameter Kimi-K3, simple linear probes trained on pre-generation hidden states can predict LLMs' IPI exposure. These probes achieve 0.90+ AUROC on unseen attacks, agent instructions, and task suites; they remain robustly predictive under adaptive attacks and in cross-lingual settings. (2) Defense: We reveal and diagnose a knowledge-action gap: post-trained LLMs encode signals predictive of IPI exposure, yet do not reliably bind these signals to safe agentic actions. We therefore introduce a probe-gated reasoning-based defense to bridge this gap at test time. On difficult AgentDojo settings, it substantially reduces attack success rate, e.g., from 34.6% to 0% on Qwen3.5-27B, and better preserves clean-task utility than the baselines. (3) Explanation: We introduce an analysis framework that identifies natural-language explanations strongly correlated with probe-captured signals. The resulting profiles differ across models: latent signals can align with either direct IPI-exposure sensing or indirect operational cues. Code is available at https://github.com/jianshuod/IPI-exposure-signal.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2609.14151": {
+  "arxiv_id": "2609.14151",
+  "latest_version": "v1",
+  "v1_published": "2026-09-12T21:06:55Z",
+  "latest_updated": "2026-09-12T21:06:55Z",
+  "title": "Signatures of Steerability in Activation Space of Language Models",
+  "authors": [
+   "Prajjwal Bhattarai",
+   "Tuka Alhanai"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Steering language models using a set of contrastive representations has been a canonical and computationally efficient method for controlling model behavior. Despite this success in controlling certain model behaviors, the effectiveness of activation steering varies markedly across concepts; the generalization properties of steering vectors are often considered a function of the dataset used to construct them. We make this dataset-dependence claim more rigorous and show that simple separation metrics strongly correlate with the downstream steerability of language models across diverse settings, even after controlling for layers and dataset effects. Beyond prediction, we provide evidence from a synthetic superposition experiment that separation metrics are strongly correlated with alignment between the empirical and true feature direction. Our results suggest that simple separability statistics can serve as practical diagnostics for when steering vectors are likely to work.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2607.13077": {
+  "arxiv_id": "2607.13077",
+  "latest_version": "v3",
+  "v1_published": "2026-07-12T21:01:06Z",
+  "latest_updated": "2026-09-29T18:58:21Z",
+  "title": "The Hitchhiker's Guide to Monoculture: AI Homogenizes Syntax, Not (Necessarily) Semantics",
+  "authors": [
+   "Gordon Burtch"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Large language models (LLMs) have been widely reported to homogenize human expression and thought. However, I argue that convergence in language need not imply convergence in ideas, and existing evidence rarely distinguishes between the two. I demonstrate this through a study of software development, where AI assistants have diffused fastest and where syntax can be readily separated from semantics (conceptual approach or intent). Using Kaggle contest submissions from 2019 to mid-2026, I first document convergence toward the random seed value 42, consistent with LLMs reinforcing a longstanding programming-culture convention associated with Douglas Adams' comedy novel The Hitchhiker's Guide to the Galaxy. I then measure homogenization in code syntax and approach more generally, quantifying within-contest code submission similarity using term-frequency-inverse-document-frequency (TF-IDF) n-gram representations, which capture surface syntax, and Voyage code-3 retrieval embeddings, which capture intent and approach. Submissions have become more alike in literal syntax, but I find no evidence of homogenization in approach or intent. I conclude that shared AI tools are homogenizing how Kaggle contestants express their solutions, not the problem-solving strategies they employ.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2608.09351": {
+  "arxiv_id": "2608.09351",
+  "latest_version": "v2",
+  "v1_published": "2026-08-10T09:31:48Z",
+  "latest_updated": "2026-10-19T13:05:00Z",
+  "title": "Test-Time Augmentation for LLMs: Where to Inject Diversity at Inference Time",
+  "authors": [
+   "Nikita Kozodoi",
+   "Zainab Afolabi",
+   "Jack Butler"
+  ],
+  "comment": "Published at: - NeurIPS 2026 Workshop on Linguistic Principles for Foundation Models - COLM 2026 Workshop on Efficient Reasoning",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Aggregating several LLM responses to the same question can improve accuracy, but every method that does so must decide where the responses should differ. Established test-time scaling methods such as self-consistency vary only the reasoning path, resampling from a fixed input. The input modification offers several further options: the wording of the question can be rephrased, the spelling can be perturbed, and the accompanying images can be transformed. We study Test-Time Augmentation (TTA), which aggregates predictions across transformed versions of the input, and use it to ask where diversity is best injected. Comparing these options across six benchmarks at a matched number of inference calls, we find that where the diversity comes from matters more than how much of it there is. Meaning-preserving paraphrases of the input yield the largest accuracy gains (+1.80 pp over a single call) and reach peak accuracy with the fewest samples. Yet, they are not the most diverse: character-level noise makes the responses disagree far more often (37.8% versus 27.4%) while gaining less accuracy, and perturbing two modalities at once falls below the single-call baseline. Not all diversity is equally useful: perturbations that keep the meaning intact produce disagreement that aggregation can use, while those that corrupt it produce disagreement that is wrong. Overall, our results suggest that for mid-tier LLMs such as Claude Haiku, varying how a question is phrased is a better use of an inference call than varying the reasoning path. Our TTA implementation is available at github.com/aws-samples/sample-genai-reflection-for-bedrock.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2607.05316": {
+  "arxiv_id": "2607.05316",
+  "latest_version": "v1",
+  "v1_published": "2026-07-06T16:56:04Z",
+  "latest_updated": "2026-07-06T16:56:04Z",
+  "title": "How Much is Left? LLMs Linearly Encode Their Remaining Output Length",
+  "authors": [
+   "Mohamed Amine Merzouk",
+   "Dmitri Carpov",
+   "Mirko Bronzi",
+   "Damiano Fornasiere",
+   "Adam Oberman"
+  ],
+  "comment": "21 pages, 9 figures",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Large language models generate one token at a time, yet their responses show remarkably consistent length structure: step-by-step solutions converge in predictable token counts, retrievals stop after a few sentences, retractions extend responses by measurable amounts. We ask whether the model carries an internal estimate of how much response remains. Training minimal-capacity linear probes on frozen hidden states of three open-weight 7-8B models across seven completion-style datasets, we find three converging pieces of evidence. First, total response length is linearly decodable from the prompt's last hidden state alone, before any output is emitted. Second, probe directions trained on natural-language datasets transfer broadly, including to controlled synthetic completions never seen in training, outperforming a statistical baseline; the converse direction generally fails, and this asymmetry is itself informative. Third, on curated high-loss completions, the probe's per-position estimate shifts upward at the moment the model retracts and restarts a partial solution, a directional behavior no position-only predictor can reproduce (qualitative, not aggregate). We frame this as approximate estimation of remaining generation length, distinct from exact-counting impossibility results for transformers, and interpret it as evidence that LLMs maintain a plan-like internal representation of output length (decodable, not necessarily used causally).",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2607.10296": {
+  "arxiv_id": "2607.10296",
+  "latest_version": "v1",
+  "v1_published": "2026-07-11T12:47:27Z",
+  "latest_updated": "2026-07-11T12:47:27Z",
+  "title": "SPARK: Susceptibility-Guided Profiling and Steering of Latent Reasoning States in Large Language Models",
+  "authors": [
+   "Dongxu Zhang",
+   "Yiding Sun",
+   "Zihao Guo",
+   "Xiangyang Yang",
+   "Kai Tang",
+   "Lin Chen",
+   "Cheng Tan",
+   "Jihua Zhu"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Reasoning failures in large language models (LLMs) are usually evaluated from final answers, but a wrong answer does not reveal why the model failed. The same incorrect output may reflect missing capability, an unstable reasoning trajectory, or a failure to activate a reasoning state that is already available in the frozen model. Existing prompting and benchmark-based evaluation methods mostly operate at the output level, while generic activation-steering methods typically apply global directions without diagnosing which examples require intervention. In this paper, we introduce SPARK, which uses hidden-state response to diagnose whether a model internally enters an effective reasoning state and to guide lightweight test-time steering. The key observation is that raw hidden-state susceptibility is strongly confounded by prompt length, especially in programmatic and algorithmic reasoning where harder serialized instances naturally become longer. SPARK therefore uses length-controlled susceptibility to separate input-scale effects from residual reasoning activation, and combines this signal with cross-layer coordination to select reasoning-active anchors and under-activated hard examples. We use FRONTIER-4.5K as a controlled programmatic reasoning suite for latent profiling and difficulty-aware analysis, and evaluate SPARK-Steering on GSM8K and MATH-500 with forward-only benchmark profiling. Our method improves Qwen3 series models consistently; on MATH-500, accuracy rises from 82.0% to 84.6% for Qwen3-4B and from 82.4% to 85.6% for Qwen3-8B. These results suggest that susceptibility can serve not only as a diagnostic signal for reasoning failures, but also as a practical guide for targeted test-time intervention.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2604.13006": {
+  "arxiv_id": "2604.13006",
+  "latest_version": "v2",
+  "v1_published": "2026-04-14T17:40:01Z",
+  "latest_updated": "2026-04-27T17:56:40Z",
+  "title": "One Token Away from Collapse: The Fragility of Instruction-Tuned Helpfulness",
+  "authors": [
+   "Erfan Baghaei Potraghloo",
+   "Seyedarmin Azizi",
+   "Souvik Kundu",
+   "Massoud Pedram"
+  ],
+  "comment": "",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Instruction-tuned large language models produce helpful, structured responses, but how robust is this helpfulness under trivial constraints? We show that simple lexical constraints (banning a single punctuation character or common word) cause instruction-tuned LLMs to collapse their responses, losing 14--48\\% of comprehensiveness across seven models spanning five families (7B--70B, open- and closed-weight). A blinded human evaluation with 10 STEM-trained evaluators confirms genuine content loss, with information criteria degrading $1.5$--$2.3\\times$ more than surface criteria, a finding corroborated by over 4,100 automated pairwise comparisons (77--100\\% baseline preference) across three LLM judges from two model families. Diagnostic analysis identifies this as a \\emph{planning failure}: two-pass generation recovers 59--96\\% of response length, and linear probes on prompt representations predict response length with $R^2 = 0.51$--$0.94$ before generation begins. The same probes yield negative $R^2$ on base models, confirming that instruction tuning introduces the representational structure underlying the collapse. Base models show no systematic degradation under identical constraints, demonstrating that instruction tuning couples task competence to narrow surface-form templates. The effect extends to realistic deployment constraints (preamble suppression, corporate tone guidelines, legal compliance hedging, accessibility requirements) causing comparable degradation ($-$22\\% to $-$34\\%), with suppressing the conversational opener alone (``Certainly!'') causing 40\\% collapse on our most fragile model despite restricting only the opening tokens. We further show that standard independent LLM-as-judge evaluation detects only a 3.5\\% quality drop where pairwise evaluation reveals 23\\%, exposing a methodological blind spot in current evaluation practice.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2604.24927": {
+  "arxiv_id": "2604.24927",
+  "latest_version": "v2",
+  "v1_published": "2026-04-27T19:08:13Z",
+  "latest_updated": "2026-07-21T16:13:16Z",
+  "title": "Large Language Models Explore by Latent Distilling",
+  "authors": [
+   "Yuanhao Zeng",
+   "Ao Lu",
+   "Lufei Li",
+   "Zheng Zhang",
+   "Yexin Li",
+   "Kan Ren"
+  ],
+  "comment": "25 pages, 5 figures. Accepted in ICML 2026",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Generating diverse responses is crucial for test-time scaling of large language models (LLMs), yet standard stochastic sampling mostly yields surface-level lexical variation, limiting semantic exploration. In this paper, we propose Exploratory Sampling (ESamp), a decoding approach that explicitly encourages semantic diversity during generation. ESamp is motivated by the well-known observation that neural networks tend to make lower-error predictions on inputs similar to those encountered before, and incur higher prediction error on novel ones. Building on this property, we train a lightweight Distiller at test time to predict deep-layer hidden representations of the LLM from its shallow-layer representations to model the LLM's depth-wise representation transitions. During decoding, the Distiller continuously adapts to the mappings induced by the current generation context. ESamp uses the prediction error as a novelty signal to reweight candidate token extensions conditioned on the current prefix, thereby biasing decoding toward less-explored semantic patterns. ESamp is implemented with an asynchronous training--inference pipeline, with less than 5% worst case overhead (1.2% in the optimized release). Empirical results show that ESamp significantly boosts the Pass@k efficiency of reasoning models, showing superior or comparable performance to strong stochastic and heuristic baselines. Notably, ESamp achieves robust generalization across mathematics, science, and code generation benchmarks and breaks the trade-off between diversity and coherence in creative writing. Our code has released at: https://github.com/LinesHogan/tLLM.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ },
+ "2608.30345": {
+  "arxiv_id": "2608.30345",
+  "latest_version": "v1",
+  "v1_published": "2026-08-31T07:01:36Z",
+  "latest_updated": "2026-08-31T07:01:36Z",
+  "title": "Answer Probing-Guided Search for Diverse Solution Exploration of LLMs",
+  "authors": [
+   "Yi Fang",
+   "Que Shen",
+   "Chengpeng Li",
+   "Boyi Deng",
+   "Wei Shi",
+   "Wenjie Wang",
+   "Fuli Feng",
+   "Fengli Xu",
+   "Dayiheng Liu"
+  ],
+  "comment": "Accepted to the EMNLP 2026 Main",
+  "journal_ref": "",
+  "doi": "",
+  "abstract": "Generating multiple diverse and high-quality solutions is valuable for many applications, such as code-test generation and drug discovery. However, Large Language Models (LLMs) tend to converge on a single high-confidence solution during inference, limiting exploration of alternative valid solution paths. Existing test-time methods promote diversity through tree-like search and prune semantically similar branches using response-level semantic embeddings. However, we find that such embeddings are easily confounded by linguistic and stylistic similarities, making it difficult to distinguish genuinely distinct solution paths. To address this, we introduce Answer Probing, which probes the potential answer an LLM would reach from an intermediate reasoning path. We demonstrate that the hidden states of probed answers more effectively differentiate distinct solution paths than semantic embeddings, and the perplexity of probed answers serves as a practical proxy for reasoning correctness. Based on these findings, we propose Answer Probing-Guided Tree Search (APTS), which guides the tree search by the probed answers' hidden state similarity and perplexity. Experiments on three reasoning tasks across two LLMs show that APTS consistently enhances solution diversity, demonstrating its effectiveness and robustness.",
+  "retrieved_utc": "2026-10-21T07:32:00Z",
+  "source": "export.arxiv.org/api/query?id_list="
+ }
+}
