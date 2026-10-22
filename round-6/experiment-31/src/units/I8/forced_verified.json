@@ -1,0 +1,380 @@
+{
+ "unit": "I8",
+ "utc": "2026-10-21T22:02:35.478698Z",
+ "programs": {
+  "cyclic_placement": [
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    for i in range(n):\n        while 1 <= nums[i] <= n and nums[nums[i] - 1] != nums[i]:\n            nums[nums[i] - 1], nums[i] = (nums[i], nums[nums[i] - 1])\n    for i in range(n):\n        if nums[i] != i + 1:\n            return i + 1\n    return n + 1",
+    "orig_key": "I8|F1|FORCED_cyclic_placement|0|instruct|vllm",
+    "slot": 0,
+    "template": "F1"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    for i in range(n):\n        while 1 <= nums[i] <= n and nums[nums[i] - 1] != nums[i]:\n            nums[nums[i] - 1], nums[i] = (nums[i], nums[nums[i] - 1])\n    for i in range(n):\n        if nums[i] != i + 1:\n            return i + 1\n    return n + 1",
+    "orig_key": "I8|F2|FORCED_cyclic_placement|0|instruct|vllm",
+    "slot": 0,
+    "template": "F2"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    for i in range(n):\n        while 1 <= nums[i] <= n and nums[nums[i] - 1] != nums[i]:\n            nums[nums[i] - 1], nums[i] = (nums[i], nums[nums[i] - 1])\n    for i in range(n):\n        if nums[i] != i + 1:\n            return i + 1\n    return n + 1",
+    "orig_key": "I8|F3|FORCED_cyclic_placement|0|instruct|vllm",
+    "slot": 0,
+    "template": "F3"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    for i in range(n):\n        while 1 <= nums[i] <= n and nums[nums[i] - 1] != nums[i]:\n            nums[nums[i] - 1], nums[i] = (nums[i], nums[nums[i] - 1])\n    for i in range(n):\n        if nums[i] != i + 1:\n            return i + 1\n    return n + 1",
+    "orig_key": "I8|F4|FORCED_cyclic_placement|0|instruct|vllm",
+    "slot": 0,
+    "template": "F4"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    for i in range(n):\n        while 1 <= nums[i] <= n and nums[nums[i] - 1] != nums[i]:\n            nums[nums[i] - 1], nums[i] = (nums[i], nums[nums[i] - 1])\n    for i in range(n):\n        if nums[i] != i + 1:\n            return i + 1\n    return n + 1",
+    "orig_key": "I8|F5|FORCED_cyclic_placement|0|instruct|vllm",
+    "slot": 0,
+    "template": "F5"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    for i in range(n):\n        while 1 <= nums[i] <= n and nums[nums[i] - 1] != nums[i]:\n            nums[nums[i] - 1], nums[i] = (nums[i], nums[nums[i] - 1])\n    for i in range(n):\n        if nums[i] != i + 1:\n            return i + 1\n    return n + 1",
+    "orig_key": "I8|F1|FORCED_cyclic_placement|1|instruct|vllm",
+    "slot": 1,
+    "template": "F1"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    for i in range(n):\n        while 1 <= nums[i] <= n and nums[nums[i] - 1] != nums[i]:\n            nums[nums[i] - 1], nums[i] = (nums[i], nums[nums[i] - 1])\n    for i in range(n):\n        if nums[i] != i + 1:\n            return i + 1\n    return n + 1",
+    "orig_key": "I8|F2|FORCED_cyclic_placement|1|instruct|vllm",
+    "slot": 1,
+    "template": "F2"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    for i in range(n):\n        while 1 <= nums[i] <= n and nums[nums[i] - 1] != nums[i]:\n            nums[nums[i] - 1], nums[i] = (nums[i], nums[nums[i] - 1])\n    for i in range(n):\n        if nums[i] != i + 1:\n            return i + 1\n    return n + 1",
+    "orig_key": "I8|F3|FORCED_cyclic_placement|1|instruct|vllm",
+    "slot": 1,
+    "template": "F3"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    for i in range(n):\n        while 1 <= nums[i] <= n and nums[nums[i] - 1] != nums[i]:\n            nums[nums[i] - 1], nums[i] = (nums[i], nums[nums[i] - 1])\n    for i in range(n):\n        if nums[i] != i + 1:\n            return i + 1\n    return n + 1",
+    "orig_key": "I8|F4|FORCED_cyclic_placement|1|instruct|vllm",
+    "slot": 1,
+    "template": "F4"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    for i in range(n):\n        while 1 <= nums[i] <= n and nums[nums[i] - 1] != nums[i]:\n            nums[nums[i] - 1], nums[i] = (nums[i], nums[nums[i] - 1])\n    for i in range(n):\n        if nums[i] != i + 1:\n            return i + 1\n    return n + 1",
+    "orig_key": "I8|F5|FORCED_cyclic_placement|1|instruct|vllm",
+    "slot": 1,
+    "template": "F5"
+   }
+  ],
+  "sign_marking": [
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    for i in range(n):\n        if nums[i] <= 0 or nums[i] > n:\n            nums[i] = n + 1\n    for i in range(n):\n        num = abs(nums[i])\n        if num <= n and nums[num - 1] > 0:\n            nums[num - 1] *= -1\n    for i in range(n):\n        if nums[i] > 0:\n            return i + 1\n    return n + 1",
+    "orig_key": "I8|F1|FORCED_sign_marking|0|instruct|vllm",
+    "slot": 0,
+    "template": "F1"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    for i in range(n):\n        if nums[i] <= 0 or nums[i] > n:\n            nums[i] = n + 1\n    for i in range(n):\n        val = abs(nums[i])\n        if val <= n:\n            nums[val - 1] = -abs(nums[val - 1])\n    for i in range(n):\n        if nums[i] > 0:\n            return i + 1\n    return n + 1",
+    "orig_key": "I8|F2|FORCED_sign_marking|0|instruct|vllm",
+    "slot": 0,
+    "template": "F2"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    for i in range(n):\n        if nums[i] <= 0 or nums[i] > n:\n            nums[i] = n + 1\n    for i in range(n):\n        val = abs(nums[i])\n        if val <= n:\n            nums[val - 1] = -abs(nums[val - 1])\n    for i in range(n):\n        if nums[i] > 0:\n            return i + 1\n    return n + 1",
+    "orig_key": "I8|F3|FORCED_sign_marking|0|instruct|vllm",
+    "slot": 0,
+    "template": "F3"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    for i in range(n):\n        if nums[i] <= 0 or nums[i] > n:\n            nums[i] = n + 1\n    for i in range(n):\n        val = abs(nums[i])\n        if val <= n:\n            nums[val - 1] = -abs(nums[val - 1])\n    for i in range(n):\n        if nums[i] > 0:\n            return i + 1\n    return n + 1",
+    "orig_key": "I8|F4|FORCED_sign_marking|0|instruct|vllm",
+    "slot": 0,
+    "template": "F4"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    for i in range(n):\n        if nums[i] <= 0 or nums[i] > n:\n            nums[i] = n + 1\n    for i in range(n):\n        val = abs(nums[i])\n        if val <= n:\n            nums[val - 1] = -abs(nums[val - 1])\n    for i in range(n):\n        if nums[i] > 0:\n            return i + 1\n    return n + 1",
+    "orig_key": "I8|F5|FORCED_sign_marking|0|instruct|vllm",
+    "slot": 0,
+    "template": "F5"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    for i in range(n):\n        if nums[i] <= 0 or nums[i] > n:\n            nums[i] = n + 1\n    for i in range(n):\n        val = abs(nums[i])\n        if val <= n and nums[val - 1] > 0:\n            nums[val - 1] = -nums[val - 1]\n    for i in range(n):\n        if nums[i] > 0:\n            return i + 1\n    return n + 1",
+    "orig_key": "I8|F1|FORCED_sign_marking|1|instruct|vllm",
+    "slot": 1,
+    "template": "F1"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    for i in range(n):\n        if nums[i] <= 0 or nums[i] > n:\n            nums[i] = n + 1\n    for i in range(n):\n        val = abs(nums[i])\n        if val <= n:\n            nums[val - 1] = -abs(nums[val - 1])\n    for i in range(n):\n        if nums[i] > 0:\n            return i + 1\n    return n + 1",
+    "orig_key": "I8|F2|FORCED_sign_marking|1|instruct|vllm",
+    "slot": 1,
+    "template": "F2"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    for i in range(n):\n        if nums[i] <= 0 or nums[i] > n:\n            nums[i] = n + 1\n    for i in range(n):\n        val = abs(nums[i])\n        if val <= n and nums[val - 1] > 0:\n            nums[val - 1] = -nums[val - 1]\n    for i in range(n):\n        if nums[i] > 0:\n            return i + 1\n    return n + 1",
+    "orig_key": "I8|F3|FORCED_sign_marking|1|instruct|vllm",
+    "slot": 1,
+    "template": "F3"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    for i in range(n):\n        if nums[i] <= 0 or nums[i] > n:\n            nums[i] = n + 1\n    for i in range(n):\n        val = abs(nums[i])\n        if val <= n:\n            nums[val - 1] = -abs(nums[val - 1])\n    for i in range(n):\n        if nums[i] > 0:\n            return i + 1\n    return n + 1",
+    "orig_key": "I8|F4|FORCED_sign_marking|1|instruct|vllm",
+    "slot": 1,
+    "template": "F4"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    for i in range(n):\n        if nums[i] <= 0 or nums[i] > n:\n            nums[i] = n + 1\n    for i in range(n):\n        val = abs(nums[i])\n        if val <= n:\n            nums[val - 1] = -abs(nums[val - 1])\n    for i in range(n):\n        if nums[i] > 0:\n            return i + 1\n    return n + 1",
+    "orig_key": "I8|F5|FORCED_sign_marking|1|instruct|vllm",
+    "slot": 1,
+    "template": "F5"
+   }
+  ],
+  "hash_set_scan": [
+   {
+    "code": "def solve(nums):\n    h1 = set(nums)\n    x = 1\n    while True:\n        if x not in h1:\n            return x\n        x += 1",
+    "orig_key": "I8|F1|FORCED_hash_set_scan|0|instruct|vllm",
+    "slot": 0,
+    "template": "F1"
+   },
+   {
+    "code": "def solve(nums):\n    h1 = set(nums)\n    x = 1\n    while True:\n        if x not in h1:\n            return x\n        x += 1",
+    "orig_key": "I8|F2|FORCED_hash_set_scan|0|instruct|vllm",
+    "slot": 0,
+    "template": "F2"
+   },
+   {
+    "code": "def solve(nums):\n    h1 = set(nums)\n    x = 1\n    while True:\n        if x not in h1:\n            return x\n        x += 1",
+    "orig_key": "I8|F3|FORCED_hash_set_scan|0|instruct|vllm",
+    "slot": 0,
+    "template": "F3"
+   },
+   {
+    "code": "def solve(nums):\n    h1 = set(nums)\n    x = 1\n    while True:\n        if x not in h1:\n            return x\n        x += 1",
+    "orig_key": "I8|F4|FORCED_hash_set_scan|0|instruct|vllm",
+    "slot": 0,
+    "template": "F4"
+   },
+   {
+    "code": "def solve(nums):\n    h1 = set(nums)\n    x = 1\n    while True:\n        if x not in h1:\n            return x\n        x += 1",
+    "orig_key": "I8|F5|FORCED_hash_set_scan|0|instruct|vllm",
+    "slot": 0,
+    "template": "F5"
+   },
+   {
+    "code": "def solve(nums):\n    h1 = set(nums)\n    x = 1\n    while True:\n        if x not in h1:\n            return x\n        x += 1",
+    "orig_key": "I8|F1|FORCED_hash_set_scan|1|instruct|vllm",
+    "slot": 1,
+    "template": "F1"
+   },
+   {
+    "code": "def solve(nums):\n    h1 = set(nums)\n    x = 1\n    while True:\n        if x not in h1:\n            return x\n        x += 1",
+    "orig_key": "I8|F2|FORCED_hash_set_scan|1|instruct|vllm",
+    "slot": 1,
+    "template": "F2"
+   },
+   {
+    "code": "def solve(nums):\n    h1 = set(nums)\n    x = 1\n    while True:\n        if x not in h1:\n            return x\n        x += 1",
+    "orig_key": "I8|F3|FORCED_hash_set_scan|1|instruct|vllm",
+    "slot": 1,
+    "template": "F3"
+   },
+   {
+    "code": "def solve(nums):\n    h1 = set(nums)\n    x = 1\n    while True:\n        if x not in h1:\n            return x\n        x += 1",
+    "orig_key": "I8|F4|FORCED_hash_set_scan|1|instruct|vllm",
+    "slot": 1,
+    "template": "F4"
+   },
+   {
+    "code": "def solve(nums):\n    h1 = set(nums)\n    x = 1\n    while True:\n        if x not in h1:\n            return x\n        x += 1",
+    "orig_key": "I8|F5|FORCED_hash_set_scan|1|instruct|vllm",
+    "slot": 1,
+    "template": "F5"
+   }
+  ],
+  "sort_scan": [
+   {
+    "code": "def solve(nums):\n    nums.sort()\n    expected = 1\n    for num in nums:\n        if num == expected:\n            expected += 1\n    return expected",
+    "orig_key": "I8|F1|FORCED_sort_scan|0|instruct|vllm",
+    "slot": 0,
+    "template": "F1"
+   },
+   {
+    "code": "def solve(nums):\n    nums.sort()\n    expected = 1\n    for num in nums:\n        if num == expected:\n            expected += 1\n    return expected",
+    "orig_key": "I8|F2|FORCED_sort_scan|0|instruct|vllm",
+    "slot": 0,
+    "template": "F2"
+   },
+   {
+    "code": "def solve(nums):\n    nums.sort()\n    res = 1\n    for num in nums:\n        if num == res:\n            res += 1\n    return res",
+    "orig_key": "I8|F3|FORCED_sort_scan|0|instruct|vllm",
+    "slot": 0,
+    "template": "F3"
+   },
+   {
+    "code": "def solve(nums):\n    nums.sort()\n    expected = 1\n    for num in nums:\n        if num == expected:\n            expected += 1\n    return expected",
+    "orig_key": "I8|F4|FORCED_sort_scan|0|instruct|vllm",
+    "slot": 0,
+    "template": "F4"
+   },
+   {
+    "code": "def solve(nums):\n    nums.sort()\n    expected = 1\n    for num in nums:\n        if num == expected:\n            expected += 1\n    return expected",
+    "orig_key": "I8|F5|FORCED_sort_scan|0|instruct|vllm",
+    "slot": 0,
+    "template": "F5"
+   },
+   {
+    "code": "def solve(nums):\n    nums.sort()\n    res = 1\n    for num in nums:\n        if num == res:\n            res += 1\n    return res",
+    "orig_key": "I8|F1|FORCED_sort_scan|1|instruct|vllm",
+    "slot": 1,
+    "template": "F1"
+   },
+   {
+    "code": "def solve(nums):\n    nums.sort()\n    res = 1\n    for num in nums:\n        if num == res:\n            res += 1\n    return res",
+    "orig_key": "I8|F2|FORCED_sort_scan|1|instruct|vllm",
+    "slot": 1,
+    "template": "F2"
+   },
+   {
+    "code": "def solve(nums):\n    nums.sort()\n    res = 1\n    for num in nums:\n        if num == res:\n            res += 1\n    return res",
+    "orig_key": "I8|F3|FORCED_sort_scan|1|instruct|vllm",
+    "slot": 1,
+    "template": "F3"
+   },
+   {
+    "code": "def solve(nums):\n    nums.sort()\n    res = 1\n    for num in nums:\n        if num == res:\n            res += 1\n    return res",
+    "orig_key": "I8|F4|FORCED_sort_scan|1|instruct|vllm",
+    "slot": 1,
+    "template": "F4"
+   },
+   {
+    "code": "def solve(nums):\n    nums.sort()\n    expected = 1\n    for num in nums:\n        if num == expected:\n            expected += 1\n    return expected",
+    "orig_key": "I8|F5|FORCED_sort_scan|1|instruct|vllm",
+    "slot": 1,
+    "template": "F5"
+   }
+  ],
+  "presence_array": [
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    present = [False] * (n + 2)\n    for num in nums:\n        if 1 <= num <= n + 1:\n            present[num] = True\n    for i in range(1, n + 2):\n        if not present[i]:\n            return i\n    return n + 1",
+    "orig_key": "I8|F1|FORCED_presence_array|0|instruct|vllm",
+    "slot": 0,
+    "template": "F1"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    present = [False] * (n + 2)\n    for num in nums:\n        if 1 <= num <= n + 1:\n            present[num] = True\n    for i in range(1, n + 2):\n        if not present[i]:\n            return i\n    return n + 1",
+    "orig_key": "I8|F2|FORCED_presence_array|0|instruct|vllm",
+    "slot": 0,
+    "template": "F2"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    present = [False] * (n + 2)\n    for num in nums:\n        if 1 <= num <= n + 1:\n            present[num] = True\n    for i in range(1, n + 2):\n        if not present[i]:\n            return i\n    return n + 1",
+    "orig_key": "I8|F3|FORCED_presence_array|0|instruct|vllm",
+    "slot": 0,
+    "template": "F3"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    present = [False] * (n + 2)\n    for num in nums:\n        if 1 <= num <= n + 1:\n            present[num] = True\n    for i in range(1, n + 2):\n        if not present[i]:\n            return i\n    return n + 1",
+    "orig_key": "I8|F4|FORCED_presence_array|0|instruct|vllm",
+    "slot": 0,
+    "template": "F4"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    present = [False] * (n + 2)\n    for num in nums:\n        if 1 <= num <= n + 1:\n            present[num] = True\n    for i in range(1, n + 2):\n        if not present[i]:\n            return i\n    return n + 1",
+    "orig_key": "I8|F5|FORCED_presence_array|0|instruct|vllm",
+    "slot": 0,
+    "template": "F5"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    present = [False] * (n + 2)\n    for num in nums:\n        if 1 <= num <= n + 1:\n            present[num] = True\n    for i in range(1, n + 2):\n        if not present[i]:\n            return i\n    return n + 1",
+    "orig_key": "I8|F1|FORCED_presence_array|1|instruct|vllm",
+    "slot": 1,
+    "template": "F1"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    present = [False] * (n + 2)\n    for num in nums:\n        if 1 <= num <= n + 1:\n            present[num] = True\n    for i in range(1, n + 2):\n        if not present[i]:\n            return i\n    return n + 1",
+    "orig_key": "I8|F2|FORCED_presence_array|1|instruct|vllm",
+    "slot": 1,
+    "template": "F2"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    present = [False] * (n + 2)\n    for num in nums:\n        if 1 <= num <= n + 1:\n            present[num] = True\n    for i in range(1, n + 2):\n        if not present[i]:\n            return i\n    return n + 1",
+    "orig_key": "I8|F3|FORCED_presence_array|1|instruct|vllm",
+    "slot": 1,
+    "template": "F3"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    present = [False] * (n + 2)\n    for num in nums:\n        if 1 <= num <= n + 1:\n            present[num] = True\n    for i in range(1, n + 2):\n        if not present[i]:\n            return i\n    return n + 1",
+    "orig_key": "I8|F4|FORCED_presence_array|1|instruct|vllm",
+    "slot": 1,
+    "template": "F4"
+   },
+   {
+    "code": "def solve(nums):\n    n = len(nums)\n    present = [False] * (n + 2)\n    for num in nums:\n        if 1 <= num <= n + 1:\n            present[num] = True\n    for i in range(1, n + 2):\n        if not present[i]:\n            return i\n    return n + 1",
+    "orig_key": "I8|F5|FORCED_presence_array|1|instruct|vllm",
+    "slot": 1,
+    "template": "F5"
+   }
+  ]
+ },
+ "counts": {
+  "cyclic_placement": {
+   "attempts": 25,
+   "orig_pass_and_label": 25,
+   "verified": 25,
+   "kept": 10,
+   "reasons": {
+    "orig_fail": 0,
+    "scrub_error": 0,
+    "scrubbed_fail": 0,
+    "ok": 25
+   }
+  },
+  "sign_marking": {
+   "attempts": 25,
+   "orig_pass_and_label": 24,
+   "verified": 24,
+   "kept": 10,
+   "reasons": {
+    "orig_fail": 1,
+    "scrub_error": 0,
+    "scrubbed_fail": 0,
+    "ok": 24
+   }
+  },
+  "hash_set_scan": {
+   "attempts": 25,
+   "orig_pass_and_label": 25,
+   "verified": 25,
+   "kept": 10,
+   "reasons": {
+    "orig_fail": 0,
+    "scrub_error": 0,
+    "scrubbed_fail": 0,
+    "ok": 25
+   }
+  },
+  "sort_scan": {
+   "attempts": 25,
+   "orig_pass_and_label": 25,
+   "verified": 25,
+   "kept": 10,
+   "reasons": {
+    "orig_fail": 0,
+    "scrub_error": 0,
+    "scrubbed_fail": 0,
+    "ok": 25
+   }
+  },
+  "presence_array": {
+   "attempts": 25,
+   "orig_pass_and_label": 25,
+   "verified": 25,
+   "kept": 10,
+   "reasons": {
+    "orig_fail": 0,
+    "scrub_error": 0,
+    "scrubbed_fail": 0,
+    "ok": 25
+   }
+  }
+ },
+ "flags": {},
+ "sha256": "3fec58bc276a73513024e63d39085a68c809d1bed318a931845228bba77b57f9"
+}

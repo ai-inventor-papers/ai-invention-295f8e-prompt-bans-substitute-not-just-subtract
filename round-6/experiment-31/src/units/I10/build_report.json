@@ -1,0 +1,96 @@
+{
+ "unit": "I10",
+ "utc": "2026-10-21T21:07:35.290013Z",
+ "spec_banned_hits": [],
+ "n_cases": 59,
+ "kinds": {
+  "example": 2,
+  "random": 51,
+  "stress": 6
+ },
+ "oracle_disagreements": [],
+ "references_pass_all": {
+  "running_min": true,
+  "max_subarray_diffs": true,
+  "suffix_max": true,
+  "state_dp": true
+ },
+ "references_slow_cases": {
+  "running_min": [],
+  "max_subarray_diffs": [],
+  "suffix_max": [],
+  "state_dp": []
+ },
+ "max_ref_time_by_mode": {
+  "running_min": 0.003215,
+  "max_subarray_diffs": 0.02684,
+  "suffix_max": 0.005124,
+  "state_dp": 0.021173
+ },
+ "mutants": {
+  "mutant_0": {
+   "fails": true,
+   "first_fail": {
+    "i": 0,
+    "status": "wrong",
+    "case_id": "I10:ex0"
+   }
+  },
+  "mutant_1": {
+   "fails": true,
+   "first_fail": {
+    "i": 0,
+    "status": "wrong",
+    "case_id": "I10:ex0"
+   }
+  },
+  "mutant_2": {
+   "fails": true,
+   "first_fail": {
+    "i": 0,
+    "status": "wrong",
+    "case_id": "I10:ex0"
+   }
+  }
+ },
+ "excluded_by_limit": {
+  "pair_scan": {
+   "fails_stress": true,
+   "first_fail": {
+    "i": 0,
+    "status": "timeout",
+    "case_id": "I10:stress0"
+   },
+   "time_first_case": 1.000044
+  }
+ },
+ "labellers_on_references": {
+  "running_min": {
+   "runtime": "running_min",
+   "ast": "running_min",
+   "ok": true
+  },
+  "max_subarray_diffs": {
+   "runtime": "max_subarray_diffs",
+   "ast": "max_subarray_diffs",
+   "ok": true
+  },
+  "suffix_max": {
+   "runtime": "suffix_max",
+   "ast": "suffix_max",
+   "ok": true
+  },
+  "state_dp": {
+   "runtime": "state_dp",
+   "ast": "state_dp",
+   "ok": true
+  }
+ },
+ "probes_run": true,
+ "probe_correct": {
+  "p200": true,
+  "p400": true
+ },
+ "stage_i": "PROVISIONAL",
+ "seconds": 5.752731800079346
+}

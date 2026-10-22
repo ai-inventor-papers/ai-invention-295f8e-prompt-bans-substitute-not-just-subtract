@@ -1,0 +1,96 @@
+{
+ "unit": "I6",
+ "utc": "2026-10-21T21:07:17.136517Z",
+ "spec_banned_hits": [],
+ "n_cases": 59,
+ "kinds": {
+  "example": 2,
+  "random": 51,
+  "stress": 6
+ },
+ "oracle_disagreements": [],
+ "references_pass_all": {
+  "dutch_flag": true,
+  "counting_overwrite": true,
+  "builtin_sort": true,
+  "two_pass_partition": true
+ },
+ "references_slow_cases": {
+  "dutch_flag": [],
+  "counting_overwrite": [],
+  "builtin_sort": [],
+  "two_pass_partition": []
+ },
+ "max_ref_time_by_mode": {
+  "dutch_flag": 0.016462,
+  "counting_overwrite": 0.015047,
+  "builtin_sort": 0.005088,
+  "two_pass_partition": 0.017051
+ },
+ "mutants": {
+  "mutant_0": {
+   "fails": true,
+   "first_fail": {
+    "i": 1,
+    "status": "wrong",
+    "case_id": "I6:ex1"
+   }
+  },
+  "mutant_1": {
+   "fails": true,
+   "first_fail": {
+    "i": 0,
+    "status": "wrong",
+    "case_id": "I6:ex0"
+   }
+  },
+  "mutant_2": {
+   "fails": true,
+   "first_fail": {
+    "i": 0,
+    "status": "wrong",
+    "case_id": "I6:ex0"
+   }
+  }
+ },
+ "excluded_by_limit": {
+  "quadratic_exchange_sort": {
+   "fails_stress": true,
+   "first_fail": {
+    "i": 0,
+    "status": "timeout",
+    "case_id": "I6:stress0"
+   },
+   "time_first_case": 1.000051
+  }
+ },
+ "labellers_on_references": {
+  "dutch_flag": {
+   "runtime": "dutch_flag",
+   "ast": "dutch_flag",
+   "ok": true
+  },
+  "counting_overwrite": {
+   "runtime": "counting_overwrite",
+   "ast": "counting_overwrite",
+   "ok": true
+  },
+  "builtin_sort": {
+   "runtime": "builtin_sort",
+   "ast": "builtin_sort",
+   "ok": true
+  },
+  "two_pass_partition": {
+   "runtime": "two_pass_partition",
+   "ast": "two_pass_partition",
+   "ok": true
+  }
+ },
+ "probes_run": true,
+ "probe_correct": {
+  "p150": true,
+  "p300": true
+ },
+ "stage_i": "PROVISIONAL",
+ "seconds": 9.751658201217651
+}

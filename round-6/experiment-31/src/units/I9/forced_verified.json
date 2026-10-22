@@ -1,0 +1,296 @@
+{
+ "unit": "I9",
+ "utc": "2026-10-21T22:03:02.975219Z",
+ "programs": {
+  "hash_count": [
+   {
+    "code": "from collections import Counter\n\ndef solve(nums1, nums2):\n    h1 = Counter(nums1)\n    h2 = Counter(nums2)\n    result = []\n    for num in h1:\n        if num in h2:\n            result.extend([num] * min(h1[num], h2[num]))\n    return result",
+    "orig_key": "I9|F1|FORCED_hash_count|0|instruct|vllm",
+    "slot": 0,
+    "template": "F1"
+   },
+   {
+    "code": "from collections import Counter\n\ndef solve(nums1, nums2):\n    h1 = Counter(nums1)\n    h2 = Counter(nums2)\n    result = []\n    for num in h1:\n        if num in h2:\n            result.extend([num] * min(h1[num], h2[num]))\n    return result",
+    "orig_key": "I9|F2|FORCED_hash_count|0|instruct|vllm",
+    "slot": 0,
+    "template": "F2"
+   },
+   {
+    "code": "from collections import Counter\n\ndef solve(nums1, nums2):\n    h1 = Counter(nums1)\n    h2 = Counter(nums2)\n    result = []\n    for num in h1:\n        if num in h2:\n            h3 = min(h1[num], h2[num])\n            result.extend([num] * h3)\n    return result",
+    "orig_key": "I9|F3|FORCED_hash_count|0|instruct|vllm",
+    "slot": 0,
+    "template": "F3"
+   },
+   {
+    "code": "from collections import Counter\n\ndef solve(nums1, nums2):\n    h1 = Counter(nums1)\n    h2 = Counter(nums2)\n    result = []\n    for num in h1:\n        if num in h2:\n            h3 = min(h1[num], h2[num])\n            result.extend([num] * h3)\n    return result",
+    "orig_key": "I9|F4|FORCED_hash_count|0|instruct|vllm",
+    "slot": 0,
+    "template": "F4"
+   },
+   {
+    "code": "from collections import Counter\n\ndef solve(nums1, nums2):\n    h1 = Counter(nums1)\n    h2 = Counter(nums2)\n    result = []\n    for num in h1:\n        if num in h2:\n            h3 = min(h1[num], h2[num])\n            result.extend([num] * h3)\n    return result",
+    "orig_key": "I9|F5|FORCED_hash_count|0|instruct|vllm",
+    "slot": 0,
+    "template": "F5"
+   },
+   {
+    "code": "from collections import Counter\n\ndef solve(nums1, nums2):\n    h1 = Counter(nums1)\n    h2 = Counter(nums2)\n    result = []\n    for num in h1:\n        if num in h2:\n            result.extend([num] * min(h1[num], h2[num]))\n    return result",
+    "orig_key": "I9|F1|FORCED_hash_count|1|instruct|vllm",
+    "slot": 1,
+    "template": "F1"
+   },
+   {
+    "code": "from collections import Counter\n\ndef solve(nums1, nums2):\n    h1 = Counter(nums1)\n    h2 = Counter(nums2)\n    result = []\n    for num in h1:\n        if num in h2:\n            result.extend([num] * min(h1[num], h2[num]))\n    return result",
+    "orig_key": "I9|F2|FORCED_hash_count|1|instruct|vllm",
+    "slot": 1,
+    "template": "F2"
+   },
+   {
+    "code": "from collections import Counter\n\ndef solve(nums1, nums2):\n    h1 = Counter(nums1)\n    h2 = Counter(nums2)\n    result = []\n    for num in h1:\n        if num in h2:\n            result.extend([num] * min(h1[num], h2[num]))\n    return result",
+    "orig_key": "I9|F3|FORCED_hash_count|1|instruct|vllm",
+    "slot": 1,
+    "template": "F3"
+   },
+   {
+    "code": "from collections import Counter\n\ndef solve(nums1, nums2):\n    h1 = Counter(nums1)\n    h2 = Counter(nums2)\n    result = []\n    for num in nums1:\n        if h2[num] > 0:\n            result.append(num)\n            h2[num] -= 1\n    return result",
+    "orig_key": "I9|F4|FORCED_hash_count|1|instruct|vllm",
+    "slot": 1,
+    "template": "F4"
+   },
+   {
+    "code": "from collections import Counter\n\ndef solve(nums1, nums2):\n    h1 = Counter(nums1)\n    h2 = Counter(nums2)\n    result = []\n    for num in h1:\n        if num in h2:\n            h3 = min(h1[num], h2[num])\n            result.extend([num] * h3)\n    return result",
+    "orig_key": "I9|F5|FORCED_hash_count|1|instruct|vllm",
+    "slot": 1,
+    "template": "F5"
+   }
+  ],
+  "sort_two_index": [
+   {
+    "code": "def solve(nums1, nums2):\n    nums1.sort()\n    nums2.sort()\n    i = j = 0\n    result = []\n    while i < len(nums1) and j < len(nums2):\n        if nums1[i] == nums2[j]:\n            result.append(nums1[i])\n            i += 1\n            j += 1\n        elif nums1[i] < nums2[j]:\n            i += 1\n        else:\n            j += 1\n    return result",
+    "orig_key": "I9|F1|FORCED_sort_two_index|0|instruct|vllm",
+    "slot": 0,
+    "template": "F1"
+   },
+   {
+    "code": "def solve(nums1, nums2):\n    nums1.sort()\n    nums2.sort()\n    i = j = 0\n    result = []\n    while i < len(nums1) and j < len(nums2):\n        if nums1[i] == nums2[j]:\n            result.append(nums1[i])\n            i += 1\n            j += 1\n        elif nums1[i] < nums2[j]:\n            i += 1\n        else:\n            j += 1\n    return result",
+    "orig_key": "I9|F2|FORCED_sort_two_index|0|instruct|vllm",
+    "slot": 0,
+    "template": "F2"
+   },
+   {
+    "code": "def solve(nums1, nums2):\n    nums1.sort()\n    nums2.sort()\n    i = j = 0\n    result = []\n    while i < len(nums1) and j < len(nums2):\n        if nums1[i] == nums2[j]:\n            result.append(nums1[i])\n            i += 1\n            j += 1\n        elif nums1[i] < nums2[j]:\n            i += 1\n        else:\n            j += 1\n    return result",
+    "orig_key": "I9|F3|FORCED_sort_two_index|0|instruct|vllm",
+    "slot": 0,
+    "template": "F3"
+   },
+   {
+    "code": "def solve(nums1, nums2):\n    nums1.sort()\n    nums2.sort()\n    i = j = 0\n    result = []\n    while i < len(nums1) and j < len(nums2):\n        if nums1[i] == nums2[j]:\n            result.append(nums1[i])\n            i += 1\n            j += 1\n        elif nums1[i] < nums2[j]:\n            i += 1\n        else:\n            j += 1\n    return result",
+    "orig_key": "I9|F4|FORCED_sort_two_index|0|instruct|vllm",
+    "slot": 0,
+    "template": "F4"
+   },
+   {
+    "code": "def solve(nums1, nums2):\n    nums1.sort()\n    nums2.sort()\n    i = j = 0\n    result = []\n    while i < len(nums1) and j < len(nums2):\n        if nums1[i] == nums2[j]:\n            result.append(nums1[i])\n            i += 1\n            j += 1\n        elif nums1[i] < nums2[j]:\n            i += 1\n        else:\n            j += 1\n    return result",
+    "orig_key": "I9|F5|FORCED_sort_two_index|0|instruct|vllm",
+    "slot": 0,
+    "template": "F5"
+   },
+   {
+    "code": "def solve(nums1, nums2):\n    nums1.sort()\n    nums2.sort()\n    i = j = 0\n    result = []\n    while i < len(nums1) and j < len(nums2):\n        if nums1[i] == nums2[j]:\n            result.append(nums1[i])\n            i += 1\n            j += 1\n        elif nums1[i] < nums2[j]:\n            i += 1\n        else:\n            j += 1\n    return result",
+    "orig_key": "I9|F1|FORCED_sort_two_index|1|instruct|vllm",
+    "slot": 1,
+    "template": "F1"
+   },
+   {
+    "code": "def solve(nums1, nums2):\n    nums1.sort()\n    nums2.sort()\n    i = j = 0\n    result = []\n    while i < len(nums1) and j < len(nums2):\n        if nums1[i] == nums2[j]:\n            result.append(nums1[i])\n            i += 1\n            j += 1\n        elif nums1[i] < nums2[j]:\n            i += 1\n        else:\n            j += 1\n    return result",
+    "orig_key": "I9|F2|FORCED_sort_two_index|1|instruct|vllm",
+    "slot": 1,
+    "template": "F2"
+   },
+   {
+    "code": "def solve(nums1, nums2):\n    nums1.sort()\n    nums2.sort()\n    i = j = 0\n    result = []\n    while i < len(nums1) and j < len(nums2):\n        if nums1[i] == nums2[j]:\n            result.append(nums1[i])\n            i += 1\n            j += 1\n        elif nums1[i] < nums2[j]:\n            i += 1\n        else:\n            j += 1\n    return result",
+    "orig_key": "I9|F3|FORCED_sort_two_index|1|instruct|vllm",
+    "slot": 1,
+    "template": "F3"
+   },
+   {
+    "code": "def solve(nums1, nums2):\n    nums1.sort()\n    nums2.sort()\n    i = j = 0\n    result = []\n    while i < len(nums1) and j < len(nums2):\n        if nums1[i] == nums2[j]:\n            result.append(nums1[i])\n            i += 1\n            j += 1\n        elif nums1[i] < nums2[j]:\n            i += 1\n        else:\n            j += 1\n    return result",
+    "orig_key": "I9|F4|FORCED_sort_two_index|1|instruct|vllm",
+    "slot": 1,
+    "template": "F4"
+   },
+   {
+    "code": "def solve(nums1, nums2):\n    nums1.sort()\n    nums2.sort()\n    i = j = 0\n    result = []\n    while i < len(nums1) and j < len(nums2):\n        if nums1[i] == nums2[j]:\n            result.append(nums1[i])\n            i += 1\n            j += 1\n        elif nums1[i] < nums2[j]:\n            i += 1\n        else:\n            j += 1\n    return result",
+    "orig_key": "I9|F5|FORCED_sort_two_index|1|instruct|vllm",
+    "slot": 1,
+    "template": "F5"
+   }
+  ],
+  "sort_binary_search": [
+   {
+    "code": "import bisect\n\ndef solve(nums1, nums2):\n    nums1.sort()\n    h1 = sorted(nums2)\n    result = []\n    for num in nums1:\n        idx = bisect.bisect_left(h1, num)\n        if idx < len(h1) and h1[idx] == num:\n            result.append(num)\n            h1.pop(idx)\n    return result",
+    "orig_key": "I9|F2|FORCED_sort_binary_search|0|instruct|vllm",
+    "slot": 0,
+    "template": "F2"
+   },
+   {
+    "code": "import bisect\n\ndef solve(nums1, nums2):\n    nums1.sort()\n    h1 = sorted(nums2)\n    result = []\n    for num in nums1:\n        idx = bisect.bisect_left(h1, num)\n        if idx < len(h1) and h1[idx] == num:\n            result.append(num)\n            h1.pop(idx)\n    return result",
+    "orig_key": "I9|F1|FORCED_sort_binary_search|1|instruct|vllm",
+    "slot": 1,
+    "template": "F1"
+   },
+   {
+    "code": "import bisect\n\ndef solve(nums1, nums2):\n    nums1.sort()\n    h1 = sorted(nums2)\n    result = []\n    for num in nums1:\n        idx = bisect.bisect_left(h1, num)\n        if idx < len(h1) and h1[idx] == num:\n            result.append(num)\n            h1.pop(idx)\n    return result",
+    "orig_key": "I9|F2|FORCED_sort_binary_search|1|instruct|vllm",
+    "slot": 1,
+    "template": "F2"
+   },
+   {
+    "code": "import bisect\n\ndef solve(nums1, nums2):\n    nums1.sort()\n    nums2.sort()\n    result = []\n    for num in nums2:\n        idx = bisect.bisect_left(nums1, num)\n        if idx < len(nums1) and nums1[idx] == num:\n            result.append(num)\n            nums1.pop(idx)\n    return result",
+    "orig_key": "I9|F5|FORCED_sort_binary_search|1|instruct|vllm",
+    "slot": 1,
+    "template": "F5"
+   },
+   {
+    "code": "import bisect\n\ndef solve(nums1, nums2):\n    nums1.sort()\n    nums2.sort()\n    result = []\n    for num in nums2:\n        index = bisect.bisect_left(nums1, num)\n        if index < len(nums1) and nums1[index] == num:\n            result.append(num)\n            nums1.pop(index)\n    return result",
+    "orig_key": "I9|F5|FORCED_sort_binary_search|2|instruct|vllm",
+    "slot": 2,
+    "template": "F5"
+   },
+   {
+    "code": "import bisect\n\ndef solve(nums1, nums2):\n    nums1.sort()\n    h1 = sorted(nums2)\n    result = []\n    for num in nums1:\n        idx = bisect.bisect_left(h1, num)\n        if idx < len(h1) and h1[idx] == num:\n            result.append(num)\n            h1.pop(idx)\n    return result",
+    "orig_key": "I9|F2|FORCED_sort_binary_search|3|instruct|vllm",
+    "slot": 3,
+    "template": "F2"
+   },
+   {
+    "code": "import bisect\n\ndef solve(nums1, nums2):\n    nums1.sort()\n    h1 = sorted(nums2)\n    result = []\n    for num in nums1:\n        idx = bisect.bisect_left(h1, num)\n        if idx < len(h1) and h1[idx] == num:\n            result.append(num)\n            h1.pop(idx)\n    return result",
+    "orig_key": "I9|F5|FORCED_sort_binary_search|3|instruct|vllm",
+    "slot": 3,
+    "template": "F5"
+   },
+   {
+    "code": "import bisect\n\ndef solve(nums1, nums2):\n    h1 = sorted(nums2)\n    freq_nums2 = {}\n    for num in nums2:\n        freq_nums2[num] = freq_nums2.get(num, 0) + 1\n    result = []\n    for num in nums1:\n        left = bisect.bisect_left(h1, num)\n        right = bisect.bisect_right(h1, num)\n        count_in_nums2 = right - left\n        if count_in_nums2 > 0 and freq_nums2.get(num, 0) > 0:\n            result.append(num)\n            freq_nums2[num] -= 1\n    return result",
+    "orig_key": "I9|F1|FORCED_sort_binary_search|4|instruct|vllm",
+    "slot": 4,
+    "template": "F1"
+   }
+  ],
+  "count_array": [
+   {
+    "code": "def solve(nums1, nums2):\n    max_val = max(max(nums1), max(nums2))\n    h1 = [0] * (max_val + 1)\n    for num in nums1:\n        h1[num] += 1\n    result = []\n    for num in nums2:\n        if h1[num] > 0:\n            result.append(num)\n            h1[num] -= 1\n    return result",
+    "orig_key": "I9|F1|FORCED_count_array|0|instruct|vllm",
+    "slot": 0,
+    "template": "F1"
+   },
+   {
+    "code": "def solve(nums1, nums2):\n    max_val = max(nums1 + nums2) if nums1 or nums2 else 0\n    h1 = [0] * (max_val + 1)\n    for num in nums1:\n        h1[num] += 1\n    result = []\n    for num in nums2:\n        if h1[num] > 0:\n            result.append(num)\n            h1[num] -= 1\n    return result",
+    "orig_key": "I9|F2|FORCED_count_array|0|instruct|vllm",
+    "slot": 0,
+    "template": "F2"
+   },
+   {
+    "code": "def solve(nums1, nums2):\n    max_val = max(max(nums1), max(nums2))\n    h1 = [0] * (max_val + 1)\n    for num in nums1:\n        h1[num] += 1\n    result = []\n    for num in nums2:\n        if h1[num] > 0:\n            result.append(num)\n            h1[num] -= 1\n    return result",
+    "orig_key": "I9|F3|FORCED_count_array|0|instruct|vllm",
+    "slot": 0,
+    "template": "F3"
+   },
+   {
+    "code": "def solve(nums1, nums2):\n    max_val = max(nums1 + nums2) if nums1 or nums2 else 0\n    h1 = [0] * (max_val + 1)\n    for num in nums1:\n        h1[num] += 1\n    result = []\n    for num in nums2:\n        if h1[num] > 0:\n            result.append(num)\n            h1[num] -= 1\n    return result",
+    "orig_key": "I9|F4|FORCED_count_array|0|instruct|vllm",
+    "slot": 0,
+    "template": "F4"
+   },
+   {
+    "code": "def solve(nums1, nums2):\n    max_val = max(max(nums1), max(nums2))\n    h1 = [0] * (max_val + 1)\n    for num in nums1:\n        h1[num] += 1\n    result = []\n    for num in nums2:\n        if h1[num] > 0:\n            result.append(num)\n            h1[num] -= 1\n    return result",
+    "orig_key": "I9|F5|FORCED_count_array|0|instruct|vllm",
+    "slot": 0,
+    "template": "F5"
+   },
+   {
+    "code": "def solve(nums1, nums2):\n    max_val = max(max(nums1), max(nums2))\n    h1 = [0] * (max_val + 1)\n    for num in nums1:\n        h1[num] += 1\n    result = []\n    for num in nums2:\n        if h1[num] > 0:\n            result.append(num)\n            h1[num] -= 1\n    return result",
+    "orig_key": "I9|F1|FORCED_count_array|1|instruct|vllm",
+    "slot": 1,
+    "template": "F1"
+   },
+   {
+    "code": "def solve(nums1, nums2):\n    max_val = max(nums1 + nums2) if nums1 and nums2 else 0\n    h1 = [0] * (max_val + 1)\n    for num in nums1:\n        h1[num] += 1\n    result = []\n    for num in nums2:\n        if h1[num] > 0:\n            result.append(num)\n            h1[num] -= 1\n    return result",
+    "orig_key": "I9|F2|FORCED_count_array|1|instruct|vllm",
+    "slot": 1,
+    "template": "F2"
+   },
+   {
+    "code": "def solve(nums1, nums2):\n    max_val = max(nums1 + nums2) if nums1 or nums2 else 0\n    h1 = [0] * (max_val + 1)\n    for num in nums1:\n        h1[num] += 1\n    result = []\n    for num in nums2:\n        if h1[num] > 0:\n            result.append(num)\n            h1[num] -= 1\n    return result",
+    "orig_key": "I9|F3|FORCED_count_array|1|instruct|vllm",
+    "slot": 1,
+    "template": "F3"
+   },
+   {
+    "code": "def solve(nums1, nums2):\n    max_val = max(nums1 + nums2) if nums1 or nums2 else 0\n    h1 = [0] * (max_val + 1)\n    for num in nums1:\n        h1[num] += 1\n    result = []\n    for num in nums2:\n        if h1[num] > 0:\n            result.append(num)\n            h1[num] -= 1\n    return result",
+    "orig_key": "I9|F4|FORCED_count_array|1|instruct|vllm",
+    "slot": 1,
+    "template": "F4"
+   },
+   {
+    "code": "def solve(nums1, nums2):\n    max_val = max(nums1 + nums2) if nums1 or nums2 else 0\n    h1 = [0] * (max_val + 1)\n    for num in nums1:\n        h1[num] += 1\n    result = []\n    for num in nums2:\n        if h1[num] > 0:\n            result.append(num)\n            h1[num] -= 1\n    return result",
+    "orig_key": "I9|F5|FORCED_count_array|1|instruct|vllm",
+    "slot": 1,
+    "template": "F5"
+   }
+  ]
+ },
+ "counts": {
+  "hash_count": {
+   "attempts": 25,
+   "orig_pass_and_label": 25,
+   "verified": 25,
+   "kept": 10,
+   "reasons": {
+    "orig_fail": 0,
+    "scrub_error": 0,
+    "scrubbed_fail": 0,
+    "ok": 25
+   }
+  },
+  "sort_two_index": {
+   "attempts": 25,
+   "orig_pass_and_label": 25,
+   "verified": 25,
+   "kept": 10,
+   "reasons": {
+    "orig_fail": 0,
+    "scrub_error": 0,
+    "scrubbed_fail": 0,
+    "ok": 25
+   }
+  },
+  "sort_binary_search": {
+   "attempts": 25,
+   "orig_pass_and_label": 8,
+   "verified": 8,
+   "kept": 8,
+   "reasons": {
+    "orig_fail": 17,
+    "scrub_error": 0,
+    "scrubbed_fail": 0,
+    "ok": 8
+   }
+  },
+  "count_array": {
+   "attempts": 25,
+   "orig_pass_and_label": 25,
+   "verified": 25,
+   "kept": 10,
+   "reasons": {
+    "orig_fail": 0,
+    "scrub_error": 0,
+    "scrubbed_fail": 0,
+    "ok": 25
+   }
+  }
+ },
+ "flags": {
+  "sort_binary_search": "FEWER_THAN_10"
+ },
+ "sha256": "74e600246b692088d7eddc7ad2ee7ee0da7ba7ae106d5230b1371c3ed0198153"
+}

@@ -1,0 +1,250 @@
+{
+ "unit": "I1",
+ "utc": "2026-10-21T22:00:35.373334Z",
+ "programs": {
+  "set_start_walk": [
+   {
+    "code": "def solve(h3):\n    h2 = set(h3)\n    max_len = 0\n    for h1 in h2:\n        if h1 - 1 not in h2:\n            current = h1\n            current_len = 1\n            while current + 1 in h2:\n                current += 1\n                current_len += 1\n            max_len = max(max_len, current_len)\n    return max_len",
+    "orig_key": "I1|F1|FORCED_set_start_walk|0|instruct|vllm",
+    "slot": 0,
+    "template": "F1"
+   },
+   {
+    "code": "def solve(h3):\n    h2 = set(h3)\n    max_length = 0\n    for h1 in h2:\n        if h1 - 1 not in h2:\n            current = h1\n            current_length = 1\n            while current + 1 in h2:\n                current += 1\n                current_length += 1\n            max_length = max(max_length, current_length)\n    return max_length",
+    "orig_key": "I1|F2|FORCED_set_start_walk|0|instruct|vllm",
+    "slot": 0,
+    "template": "F2"
+   },
+   {
+    "code": "def solve(h5):\n    h4 = set(h5)\n    h2 = 0\n    for h3 in h4:\n        if h3 - 1 not in h4:\n            current = h3\n            h1 = 1\n            while current + 1 in h4:\n                current += 1\n                h1 += 1\n            h2 = max(h2, h1)\n    return h2",
+    "orig_key": "I1|F3|FORCED_set_start_walk|0|instruct|vllm",
+    "slot": 0,
+    "template": "F3"
+   },
+   {
+    "code": "def solve(h5):\n    h4 = set(h5)\n    h2 = 0\n    for h3 in h4:\n        if h3 - 1 not in h4:\n            current = h3\n            h1 = 1\n            while current + 1 in h4:\n                current += 1\n                h1 += 1\n            h2 = max(h2, h1)\n    return h2",
+    "orig_key": "I1|F4|FORCED_set_start_walk|0|instruct|vllm",
+    "slot": 0,
+    "template": "F4"
+   },
+   {
+    "code": "def solve(h3):\n    h2 = set(h3)\n    max_length = 0\n    for h1 in h2:\n        if h1 - 1 not in h2:\n            current = h1\n            current_length = 1\n            while current + 1 in h2:\n                current += 1\n                current_length += 1\n            max_length = max(max_length, current_length)\n    return max_length",
+    "orig_key": "I1|F5|FORCED_set_start_walk|0|instruct|vllm",
+    "slot": 0,
+    "template": "F5"
+   },
+   {
+    "code": "def solve(h4):\n    h3 = set(h4)\n    max_length = 0\n    for h2 in h3:\n        if h2 - 1 not in h3:\n            h1 = h2\n            current_length = 1\n            while h1 + 1 in h3:\n                h1 += 1\n                current_length += 1\n            max_length = max(max_length, current_length)\n    return max_length",
+    "orig_key": "I1|F1|FORCED_set_start_walk|1|instruct|vllm",
+    "slot": 1,
+    "template": "F1"
+   },
+   {
+    "code": "def solve(h3):\n    h2 = set(h3)\n    max_length = 0\n    for h1 in h2:\n        if h1 - 1 not in h2:\n            current = h1\n            current_length = 1\n            while current + 1 in h2:\n                current += 1\n                current_length += 1\n            max_length = max(max_length, current_length)\n    return max_length",
+    "orig_key": "I1|F2|FORCED_set_start_walk|1|instruct|vllm",
+    "slot": 1,
+    "template": "F2"
+   },
+   {
+    "code": "def solve(h5):\n    h4 = set(h5)\n    h2 = 0\n    for h3 in h4:\n        if h3 - 1 not in h4:\n            current = h3\n            h1 = 1\n            while current + 1 in h4:\n                current += 1\n                h1 += 1\n            h2 = max(h2, h1)\n    return h2",
+    "orig_key": "I1|F3|FORCED_set_start_walk|1|instruct|vllm",
+    "slot": 1,
+    "template": "F3"
+   },
+   {
+    "code": "def solve(h5):\n    h4 = set(h5)\n    h2 = 0\n    for h3 in h4:\n        if h3 - 1 not in h4:\n            current = h3\n            h1 = 1\n            while current + 1 in h4:\n                current += 1\n                h1 += 1\n            h2 = max(h2, h1)\n    return h2",
+    "orig_key": "I1|F4|FORCED_set_start_walk|1|instruct|vllm",
+    "slot": 1,
+    "template": "F4"
+   },
+   {
+    "code": "def solve(h5):\n    h4 = set(h5)\n    h2 = 0\n    for h3 in h4:\n        if h3 - 1 not in h4:\n            current = h3\n            h1 = 1\n            while current + 1 in h4:\n                current += 1\n                h1 += 1\n            h2 = max(h2, h1)\n    return h2",
+    "orig_key": "I1|F5|FORCED_set_start_walk|1|instruct|vllm",
+    "slot": 1,
+    "template": "F5"
+   }
+  ],
+  "set_remove_expand": [],
+  "sort_scan": [
+   {
+    "code": "def solve(nums):\n    if not nums:\n        return 0\n    num_set = set(nums)\n    max_run = 0\n    h1 = sorted(num_set)\n    for num in h1:\n        if num - 1 in num_set:\n            continue\n        current_run = 1\n        next_num = num + 1\n        while next_num in num_set:\n            current_run += 1\n            next_num += 1\n        max_run = max(max_run, current_run)\n    return max_run",
+    "orig_key": "I1|F1|FORCED_sort_scan|0|instruct|vllm",
+    "slot": 0,
+    "template": "F1"
+   },
+   {
+    "code": "def solve(nums):\n    if not nums:\n        return 0\n    unique_nums = list(set(nums))\n    unique_nums.sort()\n    max_run = 1\n    current_run = 1\n    for i in range(1, len(unique_nums)):\n        if unique_nums[i] == unique_nums[i - 1] + 1:\n            current_run += 1\n            max_run = max(max_run, current_run)\n        else:\n            current_run = 1\n    return max_run",
+    "orig_key": "I1|F4|FORCED_sort_scan|0|instruct|vllm",
+    "slot": 0,
+    "template": "F4"
+   },
+   {
+    "code": "def solve(nums):\n    if not nums:\n        return 0\n    unique_nums = sorted(set(nums))\n    max_run = 1\n    current_run = 1\n    for i in range(1, len(unique_nums)):\n        if unique_nums[i] == unique_nums[i - 1] + 1:\n            current_run += 1\n            max_run = max(max_run, current_run)\n        else:\n            current_run = 1\n    return max_run",
+    "orig_key": "I1|F1|FORCED_sort_scan|1|instruct|vllm",
+    "slot": 1,
+    "template": "F1"
+   },
+   {
+    "code": "def solve(nums):\n    if not nums:\n        return 0\n    unique_nums = sorted(set(nums))\n    max_run = 1\n    current_run = 1\n    for i in range(1, len(unique_nums)):\n        if unique_nums[i] == unique_nums[i - 1] + 1:\n            current_run += 1\n            max_run = max(max_run, current_run)\n        else:\n            current_run = 1\n    return max_run",
+    "orig_key": "I1|F2|FORCED_sort_scan|1|instruct|vllm",
+    "slot": 1,
+    "template": "F2"
+   },
+   {
+    "code": "def solve(nums):\n    if not nums:\n        return 0\n    unique_nums = list(set(nums))\n    unique_nums.sort()\n    max_run = 1\n    current_run = 1\n    for i in range(1, len(unique_nums)):\n        if unique_nums[i] == unique_nums[i - 1] + 1:\n            current_run += 1\n            max_run = max(max_run, current_run)\n        else:\n            current_run = 1\n    return max_run",
+    "orig_key": "I1|F2|FORCED_sort_scan|3|instruct|vllm",
+    "slot": 3,
+    "template": "F2"
+   },
+   {
+    "code": "def solve(nums):\n    if not nums:\n        return 0\n    unique_nums = list(set(nums))\n    unique_nums.sort()\n    max_run = 1\n    current_run = 1\n    for i in range(1, len(unique_nums)):\n        if unique_nums[i] == unique_nums[i - 1] + 1:\n            current_run += 1\n            max_run = max(max_run, current_run)\n        else:\n            current_run = 1\n    return max_run",
+    "orig_key": "I1|F4|FORCED_sort_scan|3|instruct|vllm",
+    "slot": 3,
+    "template": "F4"
+   },
+   {
+    "code": "def solve(nums):\n    if not nums:\n        return 0\n    unique_nums = list(set(nums))\n    unique_nums.sort()\n    max_run = 1\n    current_run = 1\n    for i in range(1, len(unique_nums)):\n        if unique_nums[i] == unique_nums[i - 1] + 1:\n            current_run += 1\n            max_run = max(max_run, current_run)\n        else:\n            current_run = 1\n    return max_run",
+    "orig_key": "I1|F1|FORCED_sort_scan|4|instruct|vllm",
+    "slot": 4,
+    "template": "F1"
+   },
+   {
+    "code": "def solve(nums):\n    if not nums:\n        return 0\n    unique_nums = list(set(nums))\n    unique_nums.sort()\n    max_run = 1\n    current_run = 1\n    for i in range(1, len(unique_nums)):\n        if unique_nums[i] == unique_nums[i - 1] + 1:\n            current_run += 1\n            max_run = max(max_run, current_run)\n        else:\n            current_run = 1\n    return max_run",
+    "orig_key": "I1|F4|FORCED_sort_scan|4|instruct|vllm",
+    "slot": 4,
+    "template": "F4"
+   }
+  ],
+  "boundary_map": [],
+  "union_find": [
+   {
+    "code": "def solve(nums):\n    if not nums:\n        return 0\n    parent = {}\n    size = {}\n\n    def h1(x):\n        if parent[x] != x:\n            parent[x] = h1(parent[x])\n        return parent[x]\n\n    def h2(x, y):\n        root_x = h1(x)\n        root_y = h1(y)\n        if root_x != root_y:\n            if size[root_x] < size[root_y]:\n                root_x, root_y = (root_y, root_x)\n            parent[root_y] = root_x\n            size[root_x] += size[root_y]\n    unique_nums = set(nums)\n    for num in unique_nums:\n        parent[num] = num\n        size[num] = 1\n    max_component = 0\n    for num in unique_nums:\n        if num + 1 in unique_nums:\n            h2(num, num + 1)\n    for num in unique_nums:\n        root = h1(num)\n        max_component = max(max_component, size[root])\n    return max_component",
+    "orig_key": "I1|F1|FORCED_union_find|0|instruct|vllm",
+    "slot": 0,
+    "template": "F1"
+   },
+   {
+    "code": "def solve(nums):\n    if not nums:\n        return 0\n    parent = {}\n    size = {}\n\n    def h1(x):\n        if parent[x] != x:\n            parent[x] = h1(parent[x])\n        return parent[x]\n\n    def h2(x, y):\n        root_x = h1(x)\n        root_y = h1(y)\n        if root_x != root_y:\n            if size[root_x] < size[root_y]:\n                root_x, root_y = (root_y, root_x)\n            parent[root_y] = root_x\n            size[root_x] += size[root_y]\n    unique_nums = set(nums)\n    for num in unique_nums:\n        parent[num] = num\n        size[num] = 1\n    for num in unique_nums:\n        if num + 1 in unique_nums:\n            h2(num, num + 1)\n    return max(size.values())",
+    "orig_key": "I1|F3|FORCED_union_find|0|instruct|vllm",
+    "slot": 0,
+    "template": "F3"
+   },
+   {
+    "code": "def solve(nums):\n    if not nums:\n        return 0\n    from collections import defaultdict\n    parent = {}\n    size = {}\n\n    def h1(x):\n        if parent[x] != x:\n            parent[x] = h1(parent[x])\n        return parent[x]\n\n    def h2(x, y):\n        root_x = h1(x)\n        root_y = h1(y)\n        if root_x != root_y:\n            if size[root_x] < size[root_y]:\n                root_x, root_y = (root_y, root_x)\n            parent[root_y] = root_x\n            size[root_x] += size[root_y]\n    unique_nums = set(nums)\n    for num in unique_nums:\n        parent[num] = num\n        size[num] = 1\n    for num in unique_nums:\n        if num + 1 in unique_nums:\n            h2(num, num + 1)\n    return max(size.values())",
+    "orig_key": "I1|F4|FORCED_union_find|0|instruct|vllm",
+    "slot": 0,
+    "template": "F4"
+   },
+   {
+    "code": "def solve(nums):\n    if not nums:\n        return 0\n    from collections import Counter\n    parent = {}\n    size = {}\n\n    def h1(x):\n        if parent[x] != x:\n            parent[x] = h1(parent[x])\n        return parent[x]\n\n    def h2(x, y):\n        root_x = h1(x)\n        root_y = h1(y)\n        if root_x != root_y:\n            if size[root_x] < size[root_y]:\n                root_x, root_y = (root_y, root_x)\n            parent[root_y] = root_x\n            size[root_x] += size[root_y]\n    num_counts = Counter(nums)\n    unique_nums = set(num_counts.keys())\n    for num in unique_nums:\n        parent[num] = num\n        size[num] = 1\n    for num in unique_nums:\n        if num + 1 in unique_nums:\n            h2(num, num + 1)\n    max_component = max(size.values()) if size else 0\n    return max_component",
+    "orig_key": "I1|F5|FORCED_union_find|0|instruct|vllm",
+    "slot": 0,
+    "template": "F5"
+   },
+   {
+    "code": "def solve(nums):\n    if not nums:\n        return 0\n    from collections import Counter\n    parent = {}\n    size = {}\n\n    def h1(x):\n        if parent[x] != x:\n            parent[x] = h1(parent[x])\n        return parent[x]\n\n    def h2(x, y):\n        px = h1(x)\n        py = h1(y)\n        if px != py:\n            if size[px] < size[py]:\n                px, py = (py, px)\n            parent[py] = px\n            size[px] += size[py]\n    count = Counter(nums)\n    unique_nums = list(count.keys())\n    for num in unique_nums:\n        parent[num] = num\n        size[num] = 1\n    for num in unique_nums:\n        if num + 1 in parent:\n            h2(num, num + 1)\n    max_size = 0\n    for num in unique_nums:\n        if h1(num) == num:\n            max_size = max(max_size, size[num])\n    return max_size",
+    "orig_key": "I1|F1|FORCED_union_find|1|instruct|vllm",
+    "slot": 1,
+    "template": "F1"
+   },
+   {
+    "code": "def solve(nums):\n    if not nums:\n        return 0\n    h2 = set(nums)\n    parent = {}\n    size = {}\n\n    def h1(x):\n        if parent[x] != x:\n            parent[x] = h1(parent[x])\n        return parent[x]\n\n    def h3(x, y):\n        root_x = h1(x)\n        root_y = h1(y)\n        if root_x != root_y:\n            if size[root_x] < size[root_y]:\n                root_x, root_y = (root_y, root_x)\n            parent[root_y] = root_x\n            size[root_x] += size[root_y]\n    for num in h2:\n        parent[num] = num\n        size[num] = 1\n    for num in h2:\n        if num + 1 in h2:\n            h3(num, num + 1)\n    return max(size.values(), default=0)",
+    "orig_key": "I1|F4|FORCED_union_find|1|instruct|vllm",
+    "slot": 1,
+    "template": "F4"
+   },
+   {
+    "code": "def solve(nums):\n    if not nums:\n        return 0\n    parent = {}\n    size = {}\n\n    def h1(x):\n        if parent[x] != x:\n            parent[x] = h1(parent[x])\n        return parent[x]\n\n    def h2(x, y):\n        x_root = h1(x)\n        y_root = h1(y)\n        if x_root == y_root:\n            return\n        if size[x_root] < size[y_root]:\n            x_root, y_root = (y_root, x_root)\n        parent[y_root] = x_root\n        size[x_root] += size[y_root]\n    unique_nums = set(nums)\n    for num in unique_nums:\n        parent[num] = num\n        size[num] = 1\n    for num in unique_nums:\n        if num + 1 in unique_nums:\n            h2(num, num + 1)\n    return max(size.values())",
+    "orig_key": "I1|F5|FORCED_union_find|1|instruct|vllm",
+    "slot": 1,
+    "template": "F5"
+   },
+   {
+    "code": "def solve(nums):\n    if not nums:\n        return 0\n    parent = {}\n    size = {}\n\n    def h1(x):\n        if parent[x] != x:\n            parent[x] = h1(parent[x])\n        return parent[x]\n\n    def h2(x, y):\n        rootX = h1(x)\n        rootY = h1(y)\n        if rootX != rootY:\n            if size[rootX] < size[rootY]:\n                rootX, rootY = (rootY, rootX)\n            parent[rootY] = rootX\n            size[rootX] += size[rootY]\n    unique_nums = set(nums)\n    for num in unique_nums:\n        parent[num] = num\n        size[num] = 1\n    for num in unique_nums:\n        if num + 1 in unique_nums:\n            h2(num, num + 1)\n    return max(size.values())",
+    "orig_key": "I1|F1|FORCED_union_find|2|instruct|vllm",
+    "slot": 2,
+    "template": "F1"
+   },
+   {
+    "code": "def solve(nums):\n    if not nums:\n        return 0\n    parent = {}\n    size = {}\n\n    def h1(x):\n        if parent[x] != x:\n            parent[x] = h1(parent[x])\n        return parent[x]\n\n    def h2(x, y):\n        rootX = h1(x)\n        rootY = h1(y)\n        if rootX != rootY:\n            if size[rootX] < size[rootY]:\n                parent[rootX] = rootY\n                size[rootY] += size[rootX]\n            else:\n                parent[rootY] = rootX\n                size[rootX] += size[rootY]\n    unique_nums = set(nums)\n    for num in unique_nums:\n        parent[num] = num\n        size[num] = 1\n    max_size = 0\n    for num in unique_nums:\n        if num + 1 in unique_nums:\n            h2(num, num + 1)\n    for num in unique_nums:\n        root = h1(num)\n        max_size = max(max_size, size[root])\n    return max_size",
+    "orig_key": "I1|F4|FORCED_union_find|2|instruct|vllm",
+    "slot": 2,
+    "template": "F4"
+   },
+   {
+    "code": "def solve(nums):\n    if not nums:\n        return 0\n    value_to_index = {}\n    for i, num in enumerate(nums):\n        if num not in value_to_index:\n            value_to_index[num] = i\n    parent = {}\n    size = {}\n\n    def h1(x):\n        if parent[x] != x:\n            parent[x] = h1(parent[x])\n        return parent[x]\n\n    def h2(x, y):\n        fx = h1(x)\n        fy = h1(y)\n        if fx == fy:\n            return\n        if size[fx] < size[fy]:\n            parent[fx] = fy\n            size[fy] += size[fx]\n        else:\n            parent[fy] = fx\n            size[fx] += size[fy]\n    for num in value_to_index:\n        parent[num] = num\n        size[num] = 1\n    for num in value_to_index:\n        if num + 1 in value_to_index:\n            h2(num, num + 1)\n    return max(size.values())",
+    "orig_key": "I1|F5|FORCED_union_find|2|instruct|vllm",
+    "slot": 2,
+    "template": "F5"
+   }
+  ]
+ },
+ "counts": {
+  "set_start_walk": {
+   "attempts": 25,
+   "orig_pass_and_label": 25,
+   "verified": 25,
+   "kept": 10,
+   "reasons": {
+    "orig_fail": 0,
+    "scrub_error": 0,
+    "scrubbed_fail": 0,
+    "ok": 25
+   }
+  },
+  "set_remove_expand": {
+   "attempts": 25,
+   "orig_pass_and_label": 0,
+   "verified": 0,
+   "kept": 0,
+   "reasons": {
+    "orig_fail": 25,
+    "scrub_error": 0,
+    "scrubbed_fail": 0,
+    "ok": 0
+   }
+  },
+  "sort_scan": {
+   "attempts": 25,
+   "orig_pass_and_label": 8,
+   "verified": 8,
+   "kept": 8,
+   "reasons": {
+    "orig_fail": 17,
+    "scrub_error": 0,
+    "scrubbed_fail": 0,
+    "ok": 8
+   }
+  },
+  "boundary_map": {
+   "attempts": 25,
+   "orig_pass_and_label": 0,
+   "verified": 0,
+   "kept": 0,
+   "reasons": {
+    "orig_fail": 25,
+    "scrub_error": 0,
+    "scrubbed_fail": 0,
+    "ok": 0
+   }
+  },
+  "union_find": {
+   "attempts": 25,
+   "orig_pass_and_label": 19,
+   "verified": 19,
+   "kept": 10,
+   "reasons": {
+    "orig_fail": 6,
+    "scrub_error": 0,
+    "scrubbed_fail": 0,
+    "ok": 19
+   }
+  }
+ },
+ "flags": {
+  "set_remove_expand": "UNDEFINED_LT3",
+  "sort_scan": "FEWER_THAN_10",
+  "boundary_map": "UNDEFINED_LT3"
+ },
+ "sha256": "48f54b4f3f8e378d6d96979ec7547460287d85ae03df9af3d183537e1a52d10f"
+}

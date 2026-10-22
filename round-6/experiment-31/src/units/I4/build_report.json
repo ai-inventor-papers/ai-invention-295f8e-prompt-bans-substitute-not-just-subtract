@@ -1,0 +1,96 @@
+{
+ "unit": "I4",
+ "utc": "2026-10-21T21:06:52.283086Z",
+ "spec_banned_hits": [],
+ "n_cases": 59,
+ "kinds": {
+  "example": 2,
+  "random": 51,
+  "stress": 6
+ },
+ "oracle_disagreements": [],
+ "references_pass_all": {
+  "sort_scan": true,
+  "counting_levels": true,
+  "binary_search_h": true,
+  "heap_pop": true
+ },
+ "references_slow_cases": {
+  "sort_scan": [],
+  "counting_levels": [],
+  "binary_search_h": [],
+  "heap_pop": []
+ },
+ "max_ref_time_by_mode": {
+  "sort_scan": 0.015761,
+  "counting_levels": 0.008094,
+  "binary_search_h": 0.047352,
+  "heap_pop": 0.032556
+ },
+ "mutants": {
+  "mutant_0": {
+   "fails": true,
+   "first_fail": {
+    "i": 0,
+    "status": "wrong",
+    "case_id": "I4:ex0"
+   }
+  },
+  "mutant_1": {
+   "fails": true,
+   "first_fail": {
+    "i": 0,
+    "status": "wrong",
+    "case_id": "I4:ex0"
+   }
+  },
+  "mutant_2": {
+   "fails": true,
+   "first_fail": {
+    "i": 3,
+    "status": "wrong",
+    "case_id": "I4:edge1"
+   }
+  }
+ },
+ "excluded_by_limit": {
+  "quadratic_h_scan": {
+   "fails_stress": true,
+   "first_fail": {
+    "i": 0,
+    "status": "timeout",
+    "case_id": "I4:stress0"
+   },
+   "time_first_case": 1.000059
+  }
+ },
+ "labellers_on_references": {
+  "sort_scan": {
+   "runtime": "sort_scan",
+   "ast": "sort_scan",
+   "ok": true
+  },
+  "counting_levels": {
+   "runtime": "counting_levels",
+   "ast": "counting_levels",
+   "ok": true
+  },
+  "binary_search_h": {
+   "runtime": "binary_search_h",
+   "ast": "binary_search_h",
+   "ok": true
+  },
+  "heap_pop": {
+   "runtime": "heap_pop",
+   "ast": "heap_pop",
+   "ok": true
+  }
+ },
+ "probes_run": true,
+ "probe_correct": {
+  "p200": true,
+  "p400": true
+ },
+ "stage_i": "PROVISIONAL",
+ "seconds": 5.658502817153931
+}

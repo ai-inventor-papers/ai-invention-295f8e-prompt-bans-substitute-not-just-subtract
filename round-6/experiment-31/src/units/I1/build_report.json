@@ -1,0 +1,104 @@
+{
+ "unit": "I1",
+ "utc": "2026-10-21T20:38:21.021634Z",
+ "spec_banned_hits": [],
+ "n_cases": 61,
+ "kinds": {
+  "example": 2,
+  "random": 53,
+  "stress": 6
+ },
+ "oracle_disagreements": [],
+ "references_pass_all": {
+  "set_start_walk": true,
+  "set_remove_expand": true,
+  "sort_scan": true,
+  "boundary_map": true,
+  "union_find": true
+ },
+ "references_slow_cases": {
+  "set_start_walk": [],
+  "set_remove_expand": [],
+  "sort_scan": [],
+  "boundary_map": [],
+  "union_find": []
+ },
+ "max_ref_time_by_mode": {
+  "set_start_walk": 0.006659,
+  "set_remove_expand": 0.004243,
+  "sort_scan": 0.013137,
+  "boundary_map": 0.012309,
+  "union_find": 0.023546
+ },
+ "mutants": {
+  "mutant_0": {
+   "fails": true,
+   "first_fail": {
+    "i": 0,
+    "status": "wrong",
+    "case_id": "I1:ex0"
+   }
+  },
+  "mutant_1": {
+   "fails": true,
+   "first_fail": {
+    "i": 14,
+    "status": "wrong",
+    "case_id": "I1:rand7"
+   }
+  },
+  "mutant_2": {
+   "fails": true,
+   "first_fail": {
+    "i": 0,
+    "status": "wrong",
+    "case_id": "I1:ex0"
+   }
+  }
+ },
+ "excluded_by_limit": {
+  "list_membership_scan": {
+   "fails_stress": true,
+   "first_fail": {
+    "i": 0,
+    "status": "timeout",
+    "case_id": "I1:stress0"
+   },
+   "time_first_case": 1.0002
+  }
+ },
+ "labellers_on_references": {
+  "set_start_walk": {
+   "runtime": "set_start_walk",
+   "ast": "set_start_walk",
+   "ok": true
+  },
+  "set_remove_expand": {
+   "runtime": "set_remove_expand",
+   "ast": "set_remove_expand",
+   "ok": true
+  },
+  "sort_scan": {
+   "runtime": "sort_scan",
+   "ast": "sort_scan",
+   "ok": true
+  },
+  "boundary_map": {
+   "runtime": "boundary_map",
+   "ast": "boundary_map",
+   "ok": true
+  },
+  "union_find": {
+   "runtime": "union_find",
+   "ast": "union_find",
+   "ok": true
+  }
+ },
+ "probes_run": true,
+ "probe_correct": {
+  "p200": true,
+  "p400": true
+ },
+ "stage_i": "PROVISIONAL",
+ "seconds": 3.831972599029541
+}

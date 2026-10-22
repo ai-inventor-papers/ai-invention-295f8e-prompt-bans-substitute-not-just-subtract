@@ -1,0 +1,174 @@
+{
+ "unit": "I5",
+ "unit_kind": "new",
+ "utc_computed": "2026-10-21T22:20:51.537664Z",
+ "catalogue": [
+  "min_heap_ends",
+  "two_sorted_lists",
+  "sweep_events",
+  "difference_array"
+ ],
+ "K": 4,
+ "default": "two_sorted_lists",
+ "default_share_correct": 0.9194139194139194,
+ "default_source": "twin_300",
+ "hf50_default": "two_sorted_lists",
+ "n_twin_rows": 300,
+ "twin_counts": {
+  "hf": 50,
+  "vllm_t10": 150,
+  "vllm_t13": 100
+ },
+ "twin_correct_comp": {
+  "two_sorted_lists": 251,
+  "min_heap_ends": 22
+ },
+ "q_tail": {
+  "min_heap_ends": 0.8846153846153846,
+  "sweep_events": 0.038461538461538464,
+  "difference_array": 0.038461538461538464,
+  "other": 0.038461538461538464
+ },
+ "q_tail_hf_only": {
+  "min_heap_ends": 0.5714285714285714,
+  "sweep_events": 0.14285714285714285,
+  "difference_array": 0.14285714285714285,
+  "other": 0.14285714285714285
+ },
+ "t_u": "min_heap_ends",
+ "tail_empty": false,
+ "tail_counts": {
+  "min_heap_ends": 22
+ },
+ "q_base": {
+  "min_heap_ends": 0.36363636363636365,
+  "sweep_events": 0.5151515151515151,
+  "difference_array": 0.09090909090909091,
+  "other": 0.030303030303030304
+ },
+ "r_u": "sweep_events",
+ "base_counts_used": {
+  "min_heap_ends": 11,
+  "sweep_events": 16,
+  "two_sorted_lists": 18,
+  "difference_array": 2
+ },
+ "base_correct_n": 47,
+ "base_support": {
+  "min_heap_ends": {
+   "chat_valid": 17,
+   "chat_correct": 9,
+   "plain_valid": 7,
+   "plain_correct": 2,
+   "total_valid": 24,
+   "total_correct": 11
+  },
+  "two_sorted_lists": {
+   "chat_valid": 20,
+   "chat_correct": 11,
+   "plain_valid": 12,
+   "plain_correct": 7,
+   "total_valid": 32,
+   "total_correct": 18
+  },
+  "sweep_events": {
+   "chat_valid": 14,
+   "chat_correct": 11,
+   "plain_valid": 10,
+   "plain_correct": 5,
+   "total_valid": 24,
+   "total_correct": 16
+  },
+  "difference_array": {
+   "chat_valid": 1,
+   "chat_correct": 1,
+   "plain_valid": 2,
+   "plain_correct": 1,
+   "total_valid": 3,
+   "total_correct": 2
+  },
+  "other": {
+   "chat_valid": 15,
+   "chat_correct": 0,
+   "plain_valid": 51,
+   "plain_correct": 0,
+   "total_valid": 66,
+   "total_correct": 0
+  }
+ },
+ "pilot_runner_up": "min_heap_ends",
+ "q_lik": {
+  "min_heap_ends": 0.3993546298199072,
+  "sweep_events": 0.2673120368467594,
+  "difference_array": 0.3333333333333333
+ },
+ "q_lik_raw": {
+  "min_heap_ends": 0.6666666638118467,
+  "sweep_events": 2.8548199856553766e-09,
+  "difference_array": 0.3333333333333333
+ },
+ "q_lik_top1": "min_heap_ends",
+ "q_lik_scores_raw": {
+  "min_heap_ends": -46.24881257994583,
+  "sweep_events": -65.5176045156916,
+  "difference_array": null
+ },
+ "q_lik_scores_norm": {
+  "min_heap_ends": -0.9635169287488712,
+  "sweep_events": -1.364950094076908,
+  "difference_array": null
+ },
+ "q_lik_n_programs": {
+  "min_heap_ends": 10,
+  "two_sorted_lists": 10,
+  "sweep_events": 10,
+  "difference_array": 2
+ },
+ "fork_margin": -66.66336460749133,
+ "discordant": true,
+ "predicted_landing": "sweep_events",
+ "M": {
+  "beta": 0.6170212765957447,
+  "replacement": false,
+  "runtime_merit": -0.2193812002569357,
+  "twin_modal_share": 0.9194139194139194,
+  "K": 4,
+  "m": -66.66336460749133
+ },
+ "hf_twin": {
+  "n_attempts": 50,
+  "pass_rate": 0.98,
+  "k_off": 3,
+  "off_share": 0.06,
+  "n_rows": 50
+ },
+ "p0": 0.06862745098039216,
+ "engine_check": {
+  "unit": "I5",
+  "js_observed": 0.04537571251815058,
+  "null_q95": 0.04659853754708524,
+  "null_mean": 0.015395023080495653,
+  "inside_null": true,
+  "n_hf": 50,
+  "n_vllm": 50,
+  "comp_hf": {
+   "two_sorted_lists": 46,
+   "min_heap_ends": 3,
+   "FAIL": 1
+  },
+  "comp_vllm": {
+   "two_sorted_lists": 42,
+   "FAIL": 7,
+   "min_heap_ends": 1
+  }
+ },
+ "flags": [],
+ "forced_flags": {
+  "difference_array": "UNDEFINED_LT3"
+ },
+ "inputs": {
+  "forced_verified_sha256": "49c5d7d5be793ab3a5cf22ea31a311dadfb5e661a2ca51c95fd4fd5bcb1f87ea",
+  "qlik_sha256": "4b66cb6d0c7de9382877ab497dc8d4fe66665ee93f9cca78fdb4073fba9b5f14",
+  "gate_sha256": "22721123e0978d010dcb1891df7aaf188b36d813418b8459cd19e1bf66e9c799"
+ }
+}

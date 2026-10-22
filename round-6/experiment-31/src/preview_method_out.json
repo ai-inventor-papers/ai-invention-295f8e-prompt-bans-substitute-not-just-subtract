@@ -1,0 +1,215 @@
+{
+  "metadata": {
+    "method_name": "Panel I (iteration 6, Step 3): base-model forecasts of where content-free nudges land",
+    "schema_events": "iter6_landing_v1",
+    "models": {
+      "instruct": "Qwen/Qwen3-8B@b968826d",
+      "base": "Qwen/Qwen3-8B-Base@49e3418f"
+    },
+    "precision": "W16A16 bf16",
+    "pool_l1": {
+      "n_units": 10,
+      "n_events": 7,
+      "note": "no inferential pass"
+    },
+    "deviations": [
+      "g6_batch1_teacher_forcing",
+      "models_shared_cache",
+      "gpu_l4"
+    ]
+  },
+  "datasets": [
+    {
+      "dataset": "panelI_units",
+      "examples": [
+        {
+          "input": "Task: write a Python function solve(nums) that returns the length of the longest run of consecutive integers whose values all occur in nums. The argument nums is a list of at most 30000 ints, and ever...",
+          "output": "no landing",
+          "predict_base": "sort_scan",
+          "predict_qlik": "sort_scan",
+          "predict_tail": "none",
+          "metadata_unit": "I1",
+          "metadata_default": "set_start_walk",
+          "metadata_K": 5,
+          "metadata_E_u": 0.0,
+          "metadata_E_u_by_alpha": "{\"1.0\": 0.0, \"2.0\": 0.0, \"4.0\": 0.0}",
+          "metadata_tail_empty": true,
+          "metadata_discordant": false,
+          "metadata_flags": "[]",
+          "metadata_M": "{\"beta\": 0.26666666666666666, \"replacement\": false, \"runtime_merit\": 0.1085194463156507, \"twin_modal_share\": 1.0, \"K\": 5, \"m\": -92.4920304504857}",
+          "metadata_pooled_landing_counts": "{\"set_remove_expand\": 0, \"sort_scan\": 1, \"boundary_map\": 0, \"union_find\": 0}",
+          "metadata_gate": "{\"file\": \"gate.json\", \"status\": \"gated\", \"kappa_runtime_ast\": 0.9228395061728395, \"raw_agreement_runtime_ast\": 0.96, \"runtime_vs_adjudicated\": 0.96, \"combined_vs_adjudicated\": 1.0, \"ref_acc_runtime\": ...",
+          "metadata_commit_sha256": "d641b203fecff26bb8117eb5ef895348991436c6faac21acaafda03fd63ede83"
+        },
+        {
+          "input": "Task: write a Python function solve(strs) that groups together the words that are anagrams of one another. The argument strs is a list of between 1 and 20000 strings; each string has length 0 to 30 an...",
+          "output": "count_key",
+          "predict_base": "count_key",
+          "predict_qlik": "count_key",
+          "predict_tail": "sort_then_group",
+          "metadata_unit": "I2",
+          "metadata_default": "sorted_key",
+          "metadata_K": 4,
+          "metadata_E_u": 0.041666666666666664,
+          "metadata_E_u_by_alpha": "{\"1.0\": 0.0, \"2.0\": 0.0, \"4.0\": 0.125}",
+          "metadata_tail_empty": false,
+          "metadata_discordant": false,
+          "metadata_flags": "[]",
+          "metadata_M": "{\"beta\": 0.0759493670886076, \"replacement\": false, \"runtime_merit\": 0.014967200520436617, \"twin_modal_share\": 0.9966666666666667, \"K\": 4, \"m\": 4.106511654711514}",
+          "metadata_pooled_landing_counts": "{\"count_key\": 11, \"prime_product\": 0, \"sort_then_group\": 0}",
+          "metadata_gate": "{\"file\": \"gate.json\", \"status\": \"gated\", \"kappa_runtime_ast\": 1.0, \"raw_agreement_runtime_ast\": 1.0, \"runtime_vs_adjudicated\": 0.9565217391304348, \"combined_vs_adjudicated\": 0.9583333333333334, \"ref_a...",
+          "metadata_commit_sha256": "758b3fab3bf53cd5baa355c155c18d2170561d0be49ad66f58cacfe740158f91"
+        },
+        {
+          "input": "Task: write a Python function solve(n) that decides whether n is a happy number. The argument n is an int with 1 <= n <= 2**31 - 1. Starting from n, repeatedly replace the current number by the sum of...",
+          "output": "no landing",
+          "predict_base": "known_loop",
+          "predict_qlik": "floyd",
+          "predict_tail": "none",
+          "metadata_unit": "I3",
+          "metadata_default": "seen_set",
+          "metadata_K": 4,
+          "metadata_E_u": 0.0,
+          "metadata_E_u_by_alpha": "{\"1.0\": 0.0, \"2.0\": 0.0, \"4.0\": 0.0}",
+          "metadata_tail_empty": true,
+          "metadata_discordant": true,
+          "metadata_flags": "[]",
+          "metadata_M": "{\"beta\": 0.031578947368421054, \"replacement\": false, \"runtime_merit\": 1.7548875021634684, \"twin_modal_share\": 1.0, \"K\": 4, \"m\": null}",
+          "metadata_pooled_landing_counts": "{\"floyd\": 0, \"known_loop\": 0, \"step_cap\": 0}",
+          "metadata_gate": "{\"file\": \"gate.json\", \"status\": \"gated\", \"kappa_runtime_ast\": 1.0, \"raw_agreement_runtime_ast\": 1.0, \"runtime_vs_adjudicated\": 0.9583333333333334, \"combined_vs_adjudicated\": 0.9583333333333334, \"ref_a...",
+          "metadata_commit_sha256": "2f9e5ecfc449fb91c190cf434b730525ef515b3335ef6843d1c9f8477e920995"
+        }
+      ]
+    },
+    {
+      "dataset": "panelI_events",
+      "examples": [
+        {
+          "input": "unit I1 (longest-consecutive-sequence), nudge type ESC: where do the correct off-default programs land? default set_start_walk",
+          "output": "no event",
+          "predict_base": "sort_scan",
+          "predict_qlik": "sort_scan",
+          "predict_tail": "none",
+          "metadata_unit": "I1",
+          "metadata_nudge_type": "ESC",
+          "metadata_exists": false,
+          "metadata_clear_landing": false,
+          "metadata_margin": 0.0,
+          "metadata_counts": "{\"set_remove_expand\": 0, \"sort_scan\": 0, \"boundary_map\": 0, \"union_find\": 0}",
+          "metadata_n_other_correct": 0,
+          "metadata_tail_empty": true,
+          "metadata_discordant": false,
+          "metadata_pass_rate": 0.96875,
+          "metadata_twin_pass_rate": 1.0,
+          "metadata_q_base": "{\"set_remove_expand\": 0.09523809523809523, \"sort_scan\": 0.7142857142857143, \"boundary_map\": 0.09523809523809523, \"union_find\": 0.047619047619047616, \"other\": 0.047619047619047616}",
+          "metadata_q_lik": "{\"set_remove_expand\": 0.25, \"sort_scan\": 0.40007167385774517, \"boundary_map\": 0.25, \"union_find\": 0.09992832614225483}",
+          "metadata_q_tail": "{\"set_remove_expand\": 0.2, \"sort_scan\": 0.2, \"boundary_map\": 0.2, \"union_find\": 0.2, \"other\": 0.2}"
+        },
+        {
+          "input": "unit I1 (longest-consecutive-sequence), nudge type PN: where do the correct off-default programs land? default set_start_walk",
+          "output": "no event",
+          "predict_base": "sort_scan",
+          "predict_qlik": "sort_scan",
+          "predict_tail": "none",
+          "metadata_unit": "I1",
+          "metadata_nudge_type": "PN",
+          "metadata_exists": false,
+          "metadata_clear_landing": false,
+          "metadata_margin": 1.0,
+          "metadata_counts": "{\"set_remove_expand\": 0, \"sort_scan\": 1, \"boundary_map\": 0, \"union_find\": 0}",
+          "metadata_n_other_correct": 0,
+          "metadata_tail_empty": true,
+          "metadata_discordant": false,
+          "metadata_pass_rate": 0.96,
+          "metadata_twin_pass_rate": 1.0,
+          "metadata_q_base": "{\"set_remove_expand\": 0.09523809523809523, \"sort_scan\": 0.7142857142857143, \"boundary_map\": 0.09523809523809523, \"union_find\": 0.047619047619047616, \"other\": 0.047619047619047616}",
+          "metadata_q_lik": "{\"set_remove_expand\": 0.25, \"sort_scan\": 0.40007167385774517, \"boundary_map\": 0.25, \"union_find\": 0.09992832614225483}",
+          "metadata_q_tail": "{\"set_remove_expand\": 0.2, \"sort_scan\": 0.2, \"boundary_map\": 0.2, \"union_find\": 0.2, \"other\": 0.2}"
+        },
+        {
+          "input": "unit I1 (longest-consecutive-sequence), nudge type GTN: where do the correct off-default programs land? default set_start_walk",
+          "output": "no event",
+          "predict_base": "sort_scan",
+          "predict_qlik": "sort_scan",
+          "predict_tail": "none",
+          "metadata_unit": "I1",
+          "metadata_nudge_type": "GTN",
+          "metadata_exists": false,
+          "metadata_clear_landing": false,
+          "metadata_margin": 0.0,
+          "metadata_counts": "{\"set_remove_expand\": 0, \"sort_scan\": 0, \"boundary_map\": 0, \"union_find\": 0}",
+          "metadata_n_other_correct": 0,
+          "metadata_tail_empty": true,
+          "metadata_discordant": false,
+          "metadata_pass_rate": null,
+          "metadata_twin_pass_rate": 1.0,
+          "metadata_q_base": "{\"set_remove_expand\": 0.09523809523809523, \"sort_scan\": 0.7142857142857143, \"boundary_map\": 0.09523809523809523, \"union_find\": 0.047619047619047616, \"other\": 0.047619047619047616}",
+          "metadata_q_lik": "{\"set_remove_expand\": 0.25, \"sort_scan\": 0.40007167385774517, \"boundary_map\": 0.25, \"union_find\": 0.09992832614225483}",
+          "metadata_q_tail": "{\"set_remove_expand\": 0.2, \"sort_scan\": 0.2, \"boundary_map\": 0.2, \"union_find\": 0.2, \"other\": 0.2}"
+        }
+      ]
+    },
+    {
+      "dataset": "panelI_cells",
+      "examples": [
+        {
+          "input": "unit I1 cell ESC_d2626019309_a1 (ESC)",
+          "output": "{\"set_start_walk\": 8}",
+          "predict_base": "sort_scan",
+          "predict_qlik": "sort_scan",
+          "predict_tail": "none",
+          "metadata_unit": "I1",
+          "metadata_type": "ESC",
+          "metadata_arm": "ESC_d2626019309_a1",
+          "metadata_alpha": 1.0,
+          "metadata_direction_index": 0,
+          "metadata_n_attempts": 10,
+          "metadata_pass_rate": 0.8,
+          "metadata_off_share": 0.0,
+          "metadata_stage1_pass": false,
+          "metadata_confirmed": false,
+          "metadata_gated_for_landing": true,
+          "metadata_modal_off_default": "none"
+        },
+        {
+          "input": "unit I1 cell ESC_d3136052939_a1 (ESC)",
+          "output": "{\"set_start_walk\": 10}",
+          "predict_base": "sort_scan",
+          "predict_qlik": "sort_scan",
+          "predict_tail": "none",
+          "metadata_unit": "I1",
+          "metadata_type": "ESC",
+          "metadata_arm": "ESC_d3136052939_a1",
+          "metadata_alpha": 1.0,
+          "metadata_direction_index": 1,
+          "metadata_n_attempts": 10,
+          "metadata_pass_rate": 1.0,
+          "metadata_off_share": 0.0,
+          "metadata_stage1_pass": false,
+          "metadata_confirmed": false,
+          "metadata_gated_for_landing": true,
+          "metadata_modal_off_default": "none"
+        },
+        {
+          "input": "unit I1 cell ESC_d350513277_a1 (ESC)",
+          "output": "{\"set_start_walk\": 10}",
+          "predict_base": "sort_scan",
+          "predict_qlik": "sort_scan",
+          "predict_tail": "none",
+          "metadata_unit": "I1",
+          "metadata_type": "ESC",
+          "metadata_arm": "ESC_d350513277_a1",
+          "metadata_alpha": 1.0,
+          "metadata_direction_index": 2,
+          "metadata_n_attempts": 10,
+          "metadata_pass_rate": 1.0,
+          "metadata_off_share": 0.0,
+          "metadata_stage1_pass": false,
+          "metadata_confirmed": false,
+          "metadata_gated_for_landing": true,
+          "metadata_modal_off_default": "none"
+        }
+      ]
+    }
+  ]
+}
