@@ -1,0 +1,97 @@
+{
+ "edits": [
+  {
+   "id": "C8-g01",
+   "item": "0g",
+   "section": "7.3.10",
+   "kind": "section_insert",
+   "old_text": "\n\n## 7.4 Where the algorithm is decided in generation (Qwen3-8B)",
+   "new_text": "\n\n### 7.3.10 Not run and deviations\n\nThe DAS experiment's deviation log records what was not run and what departed from the plan; the four that bear on the claims above are quoted verbatim from `results/deviations.json` (iteration-8 correction: new subsection).\n\n- **D-drop.** \"Drop order applied: plan resampling (1) and the T1 extension (2: T1 DAS and the literal top-five placement on T1) were not run; M's top-k placement uses T2's leave-one-survivor bans only.\"\n- **D-tfsets.** \"Held-out teacher-forced evaluation scores held-out PROMPT pairs with the training target program sets (no separate held-out target sets).\"\n- **D-targets.** \"Distinct 48-token openings are few (the model repeats openings), so the default pool was extended to TRAIN-family padding-twin samples (commit1_<task>_v2 amendment); validation target sets are filled from training programs where < 8 distinct programs exist; T10 dfs has 3 distinct programs, T03 heapify_pop 1 and full_sort 2 (T03 short-program fallback: >= 16 tokens).\"\n- **D-cap.** \"Generation caps are exp30's 384 (bench) / 512 (T2) tokens, not 1,024/1,536: engine-check comparability with exp30 and the time budget; truncations are counted per cell (results/cells.json, n_length).\"\n\nTwo further deviations are used above: D-randinit (the committed untrained-network comparison against the diverged fit, replaced post hoc by the matched likelihood fit; Section 7.3.5) and D-C-k (forced sources were generated at ranks 1, 4 and 16 only, so the routing claim is scored at rank 16 and rank 2 is untested for forced sources; Table 297b). Plan resampling and the literal top-five placement in the fitted coordinates on the grid task remain open items (Sections 7.10 and 7.11).\n\n## 7.4 Where the algorithm is decided in generation (Qwen3-8B)",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-g02",
+   "item": "0g",
+   "section": "7.10",
+   "kind": "prose",
+   "old_text": "which closes the push route for that question at the doses tried.",
+   "new_text": "which closes the push route for that question at the doses tried.\n\n**Not run.** Plan resampling and the DAS-coordinate top-five placement on the grid task (the T1 extension) were dropped by the DAS experiment's committed drop order (deviation D-drop, Section 7.3.10); the untrained-network control ran on shortest path only (iteration-8 correction).",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-g03",
+   "item": "0g",
+   "section": "7.11",
+   "kind": "prose",
+   "old_text": "so a search on a task whose catalogue already covers the known techniques, where a correct program outside it would be new, is the remaining route to a novel algorithm.",
+   "new_text": "so a search on a task whose catalogue already covers the known techniques, where a correct program outside it would be new, is the remaining route to a novel algorithm. Two items not run in iteration 7 carry forward: plan resampling and the DAS-coordinate top-five placement on the grid task (Section 7.3.10) (iteration-8 correction).",
+   "why": "",
+   "value_names": []
+  }
+ ],
+ "verdict": "NEW (7.3.10)",
+ "quoted": {
+  "D-drop": "Drop order applied: plan resampling (1) and the T1 extension (2: T1 DAS and the literal top-five placement on T1) were not run; M's top-k placement uses T2's leave-one-survivor bans only.",
+  "D-tfsets": "Held-out teacher-forced evaluation scores held-out PROMPT pairs with the training target program sets (no separate held-out target sets).",
+  "D-targets": "Distinct 48-token openings are few (the model repeats openings), so the default pool was extended to TRAIN-family padding-twin samples (commit1_<task>_v2 amendment); validation target sets are filled from training programs where < 8 distinct programs exist; T10 dfs has 3 distinct programs, T03 heapify_pop 1 and full_sort 2 (T03 short-program fallback: >= 16 tokens).",
+  "D-cap": "Generation caps are exp30's 384 (bench) / 512 (T2) tokens, not 1,024/1,536: engine-check comparability with exp30 and the time budget; truncations are counted per cell (results/cells.json, n_length)."
+ },
+ "values": [
+  {
+   "name": "exp33 deviation D-drop quoted verbatim",
+   "item": "0g",
+   "recorded": null,
+   "recomputed": "Drop order applied: plan resampling (1) and the T1 extension (2: T1 DAS and the ...",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "art_veI9l_Rb9wDY:results/deviations.json#D-drop"
+  },
+  {
+   "name": "exp33 deviation D-tfsets quoted verbatim",
+   "item": "0g",
+   "recorded": null,
+   "recomputed": "Held-out teacher-forced evaluation scores held-out PROMPT pairs with the trainin...",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "art_veI9l_Rb9wDY:results/deviations.json#D-tfsets"
+  },
+  {
+   "name": "exp33 deviation D-targets quoted verbatim",
+   "item": "0g",
+   "recorded": null,
+   "recomputed": "Distinct 48-token openings are few (the model repeats openings), so the default ...",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "art_veI9l_Rb9wDY:results/deviations.json#D-targets"
+  },
+  {
+   "name": "exp33 deviation D-cap quoted verbatim",
+   "item": "0g",
+   "recorded": null,
+   "recomputed": "Generation caps are exp30's 384 (bench) / 512 (T2) tokens, not 1,024/1,536: engi...",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "art_veI9l_Rb9wDY:results/deviations.json#D-cap"
+  },
+  {
+   "name": "exp33 deviation D-randinit quoted verbatim",
+   "item": "0g",
+   "recorded": null,
+   "recomputed": "The committed random-init control (contrastive objective, results/randinit_T2.js...",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "art_veI9l_Rb9wDY:results/deviations.json#D-randinit"
+  },
+  {
+   "name": "exp33 deviation D-C-k quoted verbatim",
+   "item": "0g",
+   "recorded": null,
+   "recomputed": "C is scored at k = 16 when P1's k (2 on T2, 16 on T10) has no forced-source DAS ...",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "art_veI9l_Rb9wDY:results/deviations.json#D-C-k"
+  }
+ ]
+}
