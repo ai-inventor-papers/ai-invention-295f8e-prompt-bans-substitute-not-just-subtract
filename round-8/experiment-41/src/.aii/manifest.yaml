@@ -1,0 +1,20 @@
+entries:
+  - path: .venv/
+    delete: regenerable
+    source: "uv venv .venv --python=3.12 && uv pip install --python .venv/bin/python -r pyproject.toml"
+  - path: cache/
+    delete: regenerable
+    source: ".venv/bin/python method.py --stages circuit:C1forced,circuit:C2a,circuit:C1nat,circuit:C1mix,f4b:C1forced,f4b:C2a,f4b:C1nat,commit1:C1forced+C2a"
+  - path: "**/__pycache__/"
+    delete: regenerable
+    source: "python -m compileall src audit inputs (recreated automatically on import)"
+  - path: results/
+    keep: circuit, validation, generation and audit results of this run (GPU-hours of patching rows); read by later steps
+  - path: data/
+    keep: raw validation rows, generated programs and their labels; irreproducible without the GPU stages
+  - path: figures/
+    keep: figures for the paper
+  - path: predictions/
+    keep: pre-registration commits (hash chain) and hardware record
+  - path: inputs/
+    keep: read-only copies of the prior artifacts this experiment depends on (text files)

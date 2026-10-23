@@ -1,0 +1,100 @@
+{
+ "name": "commit2",
+ "utc": "2026-10-23T02:54:04.230430Z",
+ "prev": "c6654bbc5fc265bab33ab56c298fba8ba596d737df7024f12bd563efb040f4da",
+ "sha256": "47939349ec17666fa03f4bb1776f8ba2a2a3268687f3452bc951f3225df80373",
+ "payload": {
+  "C1forced": {
+   "contrast": "C1forced",
+   "unit": "B3",
+   "arms": [
+    "TWIN",
+    "TOP5",
+    "RAND5"
+   ],
+   "top5": [
+    "mlp|L0|H-1|COND",
+    "head|L33|H14|DEC",
+    "mlp|L35|H-1|DEC",
+    "head|L34|H28|DEC",
+    "mlp|L27|H-1|DEC"
+   ],
+   "gen_top5": [
+    "head|L33|H14|DEC",
+    "mlp|L35|H-1|DEC",
+    "head|L34|H28|DEC",
+    "mlp|L27|H-1|DEC",
+    "head|L29|H6|DEC"
+   ],
+   "rand5": [
+    "head|L31|H9|DEC",
+    "mlp|L26|H-1|DEC",
+    "head|L34|H0|DEC",
+    "mlp|L22|H-1|DEC",
+    "head|L28|H8|DEC"
+   ],
+   "rand5_factors": [
+    1.0,
+    2.6341089748685316,
+    1.0,
+    5.2330656719999,
+    1.0
+   ],
+   "operation": "STEER toward the minority (own + 2 x (minority-class mean - default-class mean)) on all five nodes at once",
+   "slots": "W1-W5 x 6 CRN slots",
+   "keys": "('iter7T', 'B3', w, k)",
+   "conditions": {
+    "PREFILL": "prompt + opening prefilled for every arm; uniforms offset by the opening length",
+    "FREE": "no prefill; OPEN/DEC edits fire only while the generated prefix equals the opening (implemented exactly by teacher-forcing the edited opening and sampling with the slot's uniforms until the first divergence)"
+   },
+   "max_new": 1024,
+   "target": "correct prim_heap or prim_array"
+  },
+  "C2a": {
+   "contrast": "C2a",
+   "unit": "T10",
+   "arms": [
+    "TWIN",
+    "TOP5",
+    "RAND5"
+   ],
+   "top5": [
+    "mlp|L27|H-1|DEC",
+    "mlp|L26|H-1|DEC",
+    "mlp|L32|H-1|DEC",
+    "mlp|L30|H-1|DEC",
+    "head|L23|H10|DEC"
+   ],
+   "gen_top5": [
+    "mlp|L27|H-1|DEC",
+    "mlp|L26|H-1|DEC",
+    "mlp|L32|H-1|DEC",
+    "mlp|L30|H-1|DEC",
+    "head|L23|H10|DEC"
+   ],
+   "rand5": [
+    "mlp|L34|H-1|DEC",
+    "mlp|L24|H-1|DEC",
+    "mlp|L29|H-1|DEC",
+    "mlp|L33|H-1|DEC",
+    "head|L27|H7|DEC"
+   ],
+   "rand5_factors": [
+    0.8372060310246691,
+    2.057357134107186,
+    1.750749915954497,
+    0.8075874161218097,
+    1.0
+   ],
+   "operation": "STEER toward the minority (own + 2 x (minority-class mean - default-class mean)) on all five nodes at once",
+   "slots": "W1-W5 x 6 CRN slots",
+   "keys": "('iter8K3', 'T10', w, k)",
+   "conditions": {
+    "PREFILL": "prompt + opening prefilled for every arm; uniforms offset by the opening length",
+    "FREE": "no prefill; OPEN/DEC edits fire only while the generated prefix equals the opening (implemented exactly by teacher-forcing the edited opening and sampling with the slot's uniforms until the first divergence)"
+   },
+   "max_new": 1024,
+   "target": "correct dfs"
+  }
+ }
+}
