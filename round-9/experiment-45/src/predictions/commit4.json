@@ -1,0 +1,29 @@
+{
+ "label": "commit #4 (amendment after the final analysis; no effect on any number)",
+ "utc": "2026-10-23T12:54:55.076293Z",
+ "changes": {
+  "src/common.py": {
+   "commit1a": "63048d44fb8a6881fe0bbbf11784b9948ba0e43ee3d88808e95b3dfac74069e6",
+   "now": "eb108a77462fb6160f0acc9b61db1daea758d71de1ef2dfea3e4ed1e07b41a65",
+   "what": "DEP_DEFAULT_PATHS are now relative to the runs folder (RUNS_DIR, overridable by TP_RUNS_DIR) instead of absolute server paths; the resolved SRC_PATHS are identical (asserted)"
+  },
+  "src/figures_v9.py": {
+   "now": "b9a9154c9e452eae0bb6723936a91708b64e3ff223408315cb9beaf718d78e22",
+   "what": "skill folder found by $AII_DATA_FIG_GEN_SCRIPTS or an upward search, not an absolute path; F4 redrawn with both instruments"
+  },
+  "run_final.sh": {
+   "now": "fb28fc58fa3c05d130fb098fa6687d598fe76b421473ce0710137e0bda11583d",
+   "what": "aii-json skill folder from $AII_JSON_SKILL"
+  },
+  "results/*.json, results/positioning_raw/*.md, logs/*": {
+   "what": "absolute server paths replaced by '.', '<runs>/', '<aii>/' and '<scratch>' (publishing rule); no value changed"
+  }
+ },
+ "resolved_inputs": {
+  "iter8": "<runs>/run_0oWBKrKEGsmU/3_invention_loop/iter_8/gen_art/gen_art_experiment_44",
+  "exp9": "<runs>/run_aRfWvcSWjssb/3_invention_loop/iter_2/gen_art/gen_art_experiment_9",
+  "exp31": "<runs>/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_31",
+  "exp2": "<runs>/run_4VFKidE1bxPG/3_invention_loop/iter_1/gen_art/gen_art_experiment_2",
+  "dataset": "<runs>/run_4VFKidE1bxPG/3_invention_loop/iter_1/gen_art/gen_art_dataset_1"
+ }
+}

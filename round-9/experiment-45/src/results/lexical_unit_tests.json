@@ -1,0 +1,342 @@
+{
+ "n": 30,
+ "n_ok": 30,
+ "cases": [
+  {
+   "code": "pass",
+   "banned": [
+    "bfs"
+   ],
+   "L1": false,
+   "L2": false,
+   "expect_L1": false,
+   "expect_L2": false,
+   "ok": true
+  },
+  {
+   "code": "# not BFS",
+   "banned": [
+    "bfs"
+   ],
+   "L1": false,
+   "L2": true,
+   "expect_L1": false,
+   "expect_L2": true,
+   "ok": true
+  },
+  {
+   "code": "# Breadth-First search over the grid",
+   "banned": [
+    "bfs"
+   ],
+   "L1": false,
+   "L2": false,
+   "expect_L1": false,
+   "expect_L2": false,
+   "ok": true
+  },
+  {
+   "code": "a_star = 1",
+   "banned": [
+    "astar"
+   ],
+   "L1": false,
+   "L2": false,
+   "expect_L1": false,
+   "expect_L2": false,
+   "ok": true
+  },
+  {
+   "code": "# greedy choice of the next cell",
+   "banned": [
+    "gbfs"
+   ],
+   "L1": false,
+   "L2": true,
+   "expect_L1": false,
+   "expect_L2": true,
+   "ok": true
+  },
+  {
+   "code": "# bidirectional wave",
+   "banned": [
+    "bibfs"
+   ],
+   "L1": false,
+   "L2": true,
+   "expect_L1": false,
+   "expect_L2": true,
+   "ok": true
+  },
+  {
+   "code": "# wavefront expansion from the goal",
+   "banned": [
+    "bfs",
+    "dfs"
+   ],
+   "L1": true,
+   "L2": true,
+   "expect_L1": true,
+   "expect_L2": true,
+   "ok": true
+  },
+  {
+   "code": "# Use BFS to find the path",
+   "banned": [
+    "bfs"
+   ],
+   "L1": false,
+   "L2": false,
+   "expect_L1": false,
+   "expect_L2": false,
+   "ok": true
+  },
+  {
+   "code": "# Instead of BFS we flood with a wavefront",
+   "banned": [
+    "bfs"
+   ],
+   "L1": false,
+   "L2": true,
+   "expect_L1": false,
+   "expect_L2": true,
+   "ok": true
+  },
+  {
+   "code": "# This is a DFS approach",
+   "banned": [
+    "dfs"
+   ],
+   "L1": false,
+   "L2": false,
+   "expect_L1": false,
+   "expect_L2": false,
+   "ok": true
+  },
+  {
+   "code": "# avoid depth-first search entirely",
+   "banned": [
+    "dfs"
+   ],
+   "L1": false,
+   "L2": true,
+   "expect_L1": false,
+   "expect_L2": true,
+   "ok": true
+  },
+  {
+   "code": "stack = []",
+   "banned": [
+    "dfs"
+   ],
+   "L1": true,
+   "L2": true,
+   "expect_L1": true,
+   "expect_L2": true,
+   "ok": true
+  },
+  {
+   "code": "\"\"\"Implements A* search.\"\"\"",
+   "banned": [
+    "astar"
+   ],
+   "L1": false,
+   "L2": false,
+   "expect_L1": false,
+   "expect_L2": false,
+   "ok": true
+  },
+  {
+   "code": "\"\"\"Does not use A*.\"\"\"",
+   "banned": [
+    "astar"
+   ],
+   "L1": false,
+   "L2": true,
+   "expect_L1": false,
+   "expect_L2": true,
+   "ok": true
+  },
+  {
+   "code": "def dfsHelper(x):",
+   "banned": [
+    "dfs"
+   ],
+   "L1": false,
+   "L2": false,
+   "expect_L1": false,
+   "expect_L2": false,
+   "ok": true
+  },
+  {
+   "code": "breadthFirst = 2",
+   "banned": [
+    "bfs"
+   ],
+   "L1": false,
+   "L2": false,
+   "expect_L1": false,
+   "expect_L2": false,
+   "ok": true
+  },
+  {
+   "code": "# iterative deepening without a heuristic",
+   "banned": [
+    "iddfs"
+   ],
+   "L1": false,
+   "L2": true,
+   "expect_L1": false,
+   "expect_L2": true,
+   "ok": true
+  },
+  {
+   "code": "# perform iterative deepening",
+   "banned": [
+    "iddfs"
+   ],
+   "L1": false,
+   "L2": false,
+   "expect_L1": false,
+   "expect_L2": false,
+   "ok": true
+  },
+  {
+   "code": "# rather than A* we use random priorities",
+   "banned": [
+    "astar"
+   ],
+   "L1": false,
+   "L2": true,
+   "expect_L1": false,
+   "expect_L2": true,
+   "ok": true
+  },
+  {
+   "code": "# banned: BFS, DFS",
+   "banned": [
+    "bfs",
+    "dfs"
+   ],
+   "L1": false,
+   "L2": true,
+   "expect_L1": false,
+   "expect_L2": true,
+   "ok": true
+  },
+  {
+   "code": "# based on depth-first search",
+   "banned": [
+    "dfs"
+   ],
+   "L1": false,
+   "L2": false,
+   "expect_L1": false,
+   "expect_L2": false,
+   "ok": true
+  },
+  {
+   "code": "# random walk",
+   "banned": [
+    "bfs",
+    "dfs",
+    "iddfs",
+    "astar",
+    "gbfs"
+   ],
+   "L1": true,
+   "L2": true,
+   "expect_L1": true,
+   "expect_L2": true,
+   "ok": true
+  },
+  {
+   "code": "# unit-weight Dijkstra",
+   "banned": [
+    "bfs"
+   ],
+   "L1": true,
+   "L2": true,
+   "expect_L1": true,
+   "expect_L2": true,
+   "ok": true
+  },
+  {
+   "code": "# Dijkstra's algorithm",
+   "banned": [
+    "dijkstra_unit"
+   ],
+   "L1": false,
+   "L2": false,
+   "expect_L1": false,
+   "expect_L2": false,
+   "ok": true
+  },
+  {
+   "code": "# without using greedy best-first search",
+   "banned": [
+    "gbfs"
+   ],
+   "L1": false,
+   "L2": true,
+   "expect_L1": false,
+   "expect_L2": true,
+   "ok": true
+  },
+  {
+   "code": "gbfs_heap = []",
+   "banned": [
+    "gbfs"
+   ],
+   "L1": true,
+   "L2": false,
+   "expect_L1": true,
+   "expect_L2": false,
+   "ok": true
+  },
+  {
+   "code": "# explore cells via BFS-like waves",
+   "banned": [
+    "bfs"
+   ],
+   "L1": false,
+   "L2": false,
+   "expect_L1": false,
+   "expect_L2": false,
+   "ok": true
+  },
+  {
+   "code": "# first in first out queue",
+   "banned": [
+    "bfs"
+   ],
+   "L1": true,
+   "L2": true,
+   "expect_L1": true,
+   "expect_L2": true,
+   "ok": true
+  },
+  {
+   "code": "# no DFS here",
+   "banned": [
+    "dfs"
+   ],
+   "L1": false,
+   "L2": true,
+   "expect_L1": false,
+   "expect_L2": true,
+   "ok": true
+  },
+  {
+   "code": "# jump point search approach",
+   "banned": [
+    "jps"
+   ],
+   "L1": false,
+   "L2": false,
+   "expect_L1": false,
+   "expect_L2": false,
+   "ok": true
+  }
+ ]
+}

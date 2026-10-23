@@ -1,0 +1,114 @@
+{
+ "search_utc": "2026-10-23T11:05:00Z",
+ "tool": "aii-web-tools aii_fast_web_search.py (scholarly via OpenAlex/Crossref + general) and aii_fast_web_fetch.py (arXiv abstract pages); verbatim quotes are copied from the fetched abstracts",
+ "queries": [
+  {
+   "i": 1,
+   "query": "denial prompting NeoCoder creativity code generation NAACL 2025",
+   "scholarly_file": "results/positioning_raw/q1_scholarly.txt",
+   "general_file": "results/positioning_raw/q1_general.txt"
+  },
+  {
+   "i": 2,
+   "query": "Compact Constraint Encoding for LLM Code Generation implementation priors counter-intuitive constraints",
+   "scholarly_file": "results/positioning_raw/q2_scholarly.txt",
+   "general_file": "results/positioning_raw/q2_general.txt"
+  },
+  {
+   "i": 3,
+   "query": "The Invisible Lottery subtle cues steer algorithm choice LLM code generation",
+   "scholarly_file": "results/positioning_raw/q3_scholarly.txt",
+   "general_file": "results/positioning_raw/q3_general.txt"
+  },
+  {
+   "i": 4,
+   "query": "Semantic Gravity Wells language models negative constraints",
+   "scholarly_file": "results/positioning_raw/q4_scholarly.txt",
+   "general_file": "results/positioning_raw/q4_general.txt"
+  },
+  {
+   "i": 5,
+   "query": "white bear effect language models instructed not to mention",
+   "scholarly_file": "results/positioning_raw/q5_scholarly.txt",
+   "general_file": "results/positioning_raw/q5_general.txt"
+  },
+  {
+   "i": 6,
+   "query": "IFEvalCode controlled code generation instruction following naming constraints",
+   "scholarly_file": "results/positioning_raw/q6_scholarly.txt",
+   "general_file": "results/positioning_raw/q6_general.txt"
+  },
+  {
+   "i": 7,
+   "query": "specification gaming constraint circumvention code language models renaming banned",
+   "scholarly_file": "results/positioning_raw/q7_scholarly.txt",
+   "general_file": "results/positioning_raw/q7_general.txt"
+  }
+ ],
+ "items": [
+  {
+   "title": "Benchmarking Language Model Creativity: A Case Study on Code Generation (NeoCoder; denial prompting; NAACL 2025)",
+   "id": "arXiv:2407.09007",
+   "query": 1,
+   "verdict": "adjacent",
+   "quote": "We introduce DENIAL PROMPTING which pushes LLMs to develop more creative solutions to a given problem by incrementally imposing new constraints on the previous solution, compelling LLMs to adopt new strategies.",
+   "quote_verified_in_fetched_abstract": true,
+   "relation": "technique-level bans to elicit new strategies, scored behaviourally; no execution-order check of whether a banned technique returns under a new name"
+  },
+  {
+   "title": "Compact Constraint Encoding for LLM Code Generation (Tang 2026)",
+   "id": "arXiv:2604.07192",
+   "query": 2,
+   "verdict": "adjacent",
+   "quote": "counter-intuitive constraints opposing model defaults fail at 10--100%, while conventional constraints achieve 99%+ compliance regardless of encoding.",
+   "quote_verified_in_fetched_abstract": true,
+   "relation": "rule-based constraint compliance by constraint type (implementation priors); not mechanism-level vs name-level compliance"
+  },
+  {
+   "title": "The Invisible Lottery: How Subtle Cues Steer Algorithm Choice in LLM Code Generation",
+   "id": "arXiv:2606.04057",
+   "query": 3,
+   "verdict": "adjacent",
+   "quote": "Incidental prompt cues, meaning contextual words or metadata outside the task specification, can steer which algorithm the model selects, even when all outputs pass the same tests.",
+   "quote_verified_in_fetched_abstract": true,
+   "relation": "algorithm-family shifts under incidental cues; no prohibitions, no runtime expansion-order audit"
+  },
+  {
+   "title": "Semantic Gravity Wells: Why Negative Constraints Backfire",
+   "id": "arXiv:2601.08070",
+   "query": 4,
+   "verdict": "adjacent",
+   "quote": "Negative constraints (instructions of the form \"do not use word X\") represent a fundamental test of instruction-following capability in large language models. Despite their apparent simplicity, these constraints fail with striking regularity",
+   "quote_verified_in_fetched_abstract": true,
+   "relation": "word-level negative constraints and their internal suppression; ours are algorithm-level bans where the WORD can be avoided while the mechanism returns"
+  },
+  {
+   "title": "Don't Think of the White Bear: Ironic Negation in Transformer Models Under Cognitive Load",
+   "id": "arXiv:2511.12381",
+   "query": 5,
+   "verdict": "adjacent",
+   "quote": "suppressing a concept requires internally activating it, which may prime rebound instead of avoidance.",
+   "quote_verified_in_fetched_abstract": true,
+   "relation": "ironic rebound of a negated concept in text; ours measures rebound of a negated ALGORITHM in executed behaviour"
+  },
+  {
+   "title": "IFEvalCode: Controlled Code Generation",
+   "id": "arXiv:2507.22462",
+   "query": 6,
+   "verdict": "adjacent",
+   "quote": "IFEvalCode decouples evaluation into two metrics: correctness (Corr.) and instruction-following (Instr.)",
+   "quote_verified_in_fetched_abstract": true,
+   "relation": "programmatic checkers for code constraints incl. naming; a name checker cannot see a renamed mechanism, which is what the tracer adds"
+  },
+  {
+   "title": "(query 7: specification gaming / renaming in code models)",
+   "id": null,
+   "query": 7,
+   "verdict": "irrelevant",
+   "quote": null,
+   "relation": "no scholarly or general hit studied lexical vs mechanistic compliance with algorithm bans; top hits were safety-bypass and peer-review gaming papers (results/positioning_raw/q7_*.txt)"
+  }
+ ],
+ "occupying_found": 0,
+ "permitted_wording_rule": "the claim 'name-blind runtime audit shows bans are obeyed on names, not mechanisms' may be worded as new ONLY if N1-N3 hold (see results/headlines.json); otherwise only the descriptive measurement is reported"
+}

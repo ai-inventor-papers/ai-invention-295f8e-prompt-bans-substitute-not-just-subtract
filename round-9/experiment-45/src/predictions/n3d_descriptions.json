@@ -1,0 +1,96 @@
+{
+ "utc": "2026-10-23T10:29:58.380883Z",
+ "descriptions": {
+  "bfs": "a search that explores cells in rings of increasing step count from the start, keeping discovered cells in a first-in-first-out line",
+  "dfs": "a search that follows one branch as far as it can go before backing up to the last fork, keeping discovered cells in a last-in-first-out pile",
+  "iddfs": "a search that repeats a branch-following search from the start with a step limit that grows by one each round",
+  "astar": "a search that always expands the open cell with the smallest sum of steps taken so far plus an estimate of the steps remaining to the goal",
+  "gbfs": "a search that always expands the open cell with the smallest estimate of the steps remaining to the goal, ignoring the steps taken so far"
+ },
+ "checks": {
+  "bfs": {
+   "text": "a search that explores cells in rings of increasing step count from the start, keeping discovered cells in a first-in-first-out line",
+   "alias_hits_any_of_10": [],
+   "n": 20,
+   "named_correctly_content": 20,
+   "rate": 1.0,
+   "answers": [
+    "Breadth-First Search",
+    "Breadth-First Search",
+    "Breadth-First Search",
+    "Breadth-First Search",
+    "Breadth-First Search",
+    "Breadth-First Search"
+   ]
+  },
+  "dfs": {
+   "text": "a search that follows one branch as far as it can go before backing up to the last fork, keeping discovered cells in a last-in-first-out pile",
+   "alias_hits_any_of_10": [],
+   "n": 20,
+   "named_correctly_content": 20,
+   "rate": 1.0,
+   "answers": [
+    "Depth-First Search",
+    "Depth-First Search",
+    "Depth-First Search",
+    "Depth-First Search",
+    "Depth-First Search",
+    "Depth-First Search"
+   ]
+  },
+  "iddfs": {
+   "text": "a search that repeats a branch-following search from the start with a step limit that grows by one each round",
+   "alias_hits_any_of_10": [],
+   "n": 20,
+   "named_correctly_content": 20,
+   "rate": 1.0,
+   "answers": [
+    "Iterative Deepening",
+    "Iterative Deepening Depth-First Search",
+    "Iterative Deepening Depth-First Search",
+    "Iterative Deepening Depth-First Search",
+    "Iterative deepening depth-first search",
+    "Iterative Deepening Depth-First Search"
+   ]
+  },
+  "astar": {
+   "text": "a search that always expands the open cell with the smallest sum of steps taken so far plus an estimate of the steps remaining to the goal",
+   "alias_hits_any_of_10": [],
+   "n": 20,
+   "named_correctly_content": 20,
+   "rate": 1.0,
+   "answers": [
+    "A*",
+    "A* (A-star)",
+    "A*",
+    "A*",
+    "A*",
+    "A* (A-Star)"
+   ]
+  },
+  "gbfs": {
+   "text": "a search that always expands the open cell with the smallest estimate of the steps remaining to the goal, ignoring the steps taken so far",
+   "alias_hits_any_of_10": [],
+   "n": 20,
+   "named_correctly_content": 20,
+   "rate": 1.0,
+   "answers": [
+    "Greedy Best-First Search",
+    "Greedy Best-First Search",
+    "Greedy Best-First Search",
+    "Greedy Best-First Search",
+    "Greedy Best-First Search",
+    "Greedy Best-First Search"
+   ]
+  }
+ },
+ "passed": {
+  "bfs": true,
+  "dfs": true,
+  "iddfs": true,
+  "astar": true,
+  "gbfs": true
+ },
+ "rewrites": 0,
+ "rule": "zero L1 matches against all ten algorithms' aliases AND Qwen3-32B (/no_think, max_tokens 64, 20 queries) names it correctly >= 0.8 (L1 regex of the intended algorithm on the answer)"
+}

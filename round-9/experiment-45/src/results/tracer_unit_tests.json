@@ -1,0 +1,201 @@
+{
+ "utc": "2026-10-23T11:35:29.881195Z",
+ "programs": [
+  {
+   "test": "mut_bfs_popleft_to_pop",
+   "expected": "DFS",
+   "class": "DFS",
+   "fine": "DFS",
+   "reason": null,
+   "ok": true
+  },
+  {
+   "test": "mut_bfs_heap_manhattan",
+   "expected": "HEUR",
+   "class": "HEUR",
+   "fine": "HEUR-f",
+   "reason": null,
+   "ok": true
+  },
+  {
+   "test": "mut_bfs_grid_copy",
+   "expected": "BFS",
+   "class": "BFS",
+   "fine": "BFS",
+   "reason": null,
+   "ok": true
+  },
+  {
+   "test": "sandbox_infinite_loop",
+   "expected": "UNTRACEABLE",
+   "class": "UNTRACEABLE",
+   "fine": "UNTRACEABLE",
+   "reason": "only 0 informative probes",
+   "ok": true
+  },
+  {
+   "test": "sandbox_memory_bomb",
+   "expected": "UNTRACEABLE",
+   "class": "UNTRACEABLE",
+   "fine": "UNTRACEABLE",
+   "reason": "crash on > 20 probes",
+   "ok": true
+  },
+  {
+   "test": "sandbox_os_import",
+   "expected": "UNTRACEABLE",
+   "class": "UNTRACEABLE",
+   "fine": "UNTRACEABLE",
+   "reason": "forbidden_import",
+   "ok": true
+  },
+  {
+   "test": "renamed_astar_fg",
+   "expected": "HEUR",
+   "class": "HEUR",
+   "fine": "HEUR-f",
+   "reason": null,
+   "ok": true
+  },
+  {
+   "test": "renamed_bfs_deque_parent",
+   "expected": "BFS",
+   "class": "BFS",
+   "fine": "BFS",
+   "reason": null,
+   "ok": true
+  },
+  {
+   "test": "renamed_bfs_listpop_pathcarry",
+   "expected": "BFS",
+   "class": "BFS",
+   "fine": "BFS",
+   "reason": null,
+   "ok": true
+  },
+  {
+   "test": "renamed_bibfs_deques",
+   "expected": "BIDIR",
+   "class": "BIDIR",
+   "fine": "BIDIR-BFS",
+   "reason": null,
+   "ok": true
+  },
+  {
+   "test": "renamed_bibfs_sets",
+   "expected": "BIDIR",
+   "class": "BIDIR",
+   "fine": "BIDIR-BFS",
+   "reason": null,
+   "ok": true
+  },
+  {
+   "test": "renamed_dfs_recursive",
+   "expected": "DFS",
+   "class": "OTHER",
+   "fine": "OTHER-unknown",
+   "reason": null,
+   "ok": false
+  },
+  {
+   "test": "renamed_dfs_stack",
+   "expected": "DFS",
+   "class": "DFS",
+   "fine": "DFS",
+   "reason": null,
+   "ok": true
+  },
+  {
+   "test": "renamed_dijkstra_counter",
+   "expected": "BFS",
+   "class": "BFS",
+   "fine": "BFS",
+   "reason": null,
+   "ok": true
+  },
+  {
+   "test": "renamed_dijkstra_lazy",
+   "expected": "BFS",
+   "class": "BFS",
+   "fine": "BFS",
+   "reason": null,
+   "ok": true
+  },
+  {
+   "test": "renamed_gbfs_counter",
+   "expected": "HEUR",
+   "class": "HEUR",
+   "fine": "HEUR-h",
+   "reason": null,
+   "ok": true
+  },
+  {
+   "test": "renamed_idastar",
+   "expected": "ID",
+   "class": "DFS",
+   "fine": "DFS-revisit",
+   "reason": null,
+   "ok": false
+  },
+  {
+   "test": "renamed_iddfs_iterative",
+   "expected": "ID",
+   "class": "ID",
+   "fine": "ID-depth",
+   "reason": null,
+   "ok": true
+  },
+  {
+   "test": "renamed_iddfs_recursive",
+   "expected": "ID",
+   "class": "ID",
+   "fine": "ID-depth",
+   "reason": null,
+   "ok": true
+  },
+  {
+   "test": "renamed_jps4",
+   "expected": "HEUR",
+   "class": "HEUR",
+   "fine": "HEUR-jump",
+   "reason": null,
+   "ok": true
+  },
+  {
+   "test": "renamed_dfs_stack_check",
+   "expected": "DFS",
+   "class": "DFS",
+   "fine": "DFS",
+   "reason": null,
+   "ok": true
+  }
+ ],
+ "no_double_count": {
+  "pop_events": 108,
+  "popleft_calls": 108,
+  "kinds": {
+   "deque.popleft": 108
+  },
+  "passed": true
+ },
+ "determinism": {
+  "identical_E": true,
+  "passed": true
+ },
+ "clrs_order_stats": {
+  "bfs": {
+   "n": 20,
+   "pi_match": 12,
+   "stat_min": 0.0
+  },
+  "dfs": {
+   "n": 20,
+   "pi_match": 20,
+   "stat_min": 1.0
+  },
+  "passed": false
+ },
+ "n_ok": 19,
+ "n": 21,
+ "all_passed": false
+}
