@@ -1,0 +1,17 @@
+04:10:08|INFO   |=== stage adjudicate ['ban', 'C6']
+04:10:09|INFO   |evaluate_unique: 29 unique, 29 to run
+04:10:25|INFO   |sandbox: 29/29
+04:10:26|INFO   |judge deepseek/deepseek-chat-v3.1 [labeller]: 17 new calls (0 cached)
+04:10:36|INFO   |labelled C6 ban: 50 rows; label_raw {'other': 12, 'invalid': 21, 'dfs': 8, 'gbfs': 2, 'dijkstra_unit': 5, 'bfs': 2}
+04:10:36|INFO   |judge deepseek/deepseek-chat-v3.1 [adj:C6:ban]: 6 new calls (13 cached)
+04:10:46|INFO   |judge moonshotai/kimi-k2 [adj:C6:ban]: 19 new calls (0 cached)
+04:12:01|WARNING|judge moonshotai/kimi-k2 attempt 0: TimeoutError
+04:12:01|WARNING|judge moonshotai/kimi-k2 attempt 0: TimeoutError
+04:12:01|WARNING|judge moonshotai/kimi-k2 attempt 0: TimeoutError
+04:13:19|WARNING|judge moonshotai/kimi-k2 attempt 1: TimeoutError
+04:13:26|INFO   |judge mistralai/mistral-medium-3.1 [adj3:C6:ban]: 3 new calls (0 cached)
+04:13:27|WARNING|[C6:ban] audit disagreement 1/2 > 10% -> adjudicating all ban rows
+04:13:27|INFO   |judge deepseek/deepseek-chat-v3.1 [adj:C6:ban:extended]: 6 new calls (4 cached)
+04:13:34|INFO   |judge moonshotai/kimi-k2 [adj:C6:ban:extended]: 10 new calls (0 cached)
+04:14:50|WARNING|judge moonshotai/kimi-k2 attempt 0: TimeoutError
+04:14:55|INFO   |adjudicated C6 ban: {'n_adjudicated': 19, 'reasons': {'candidate_survivor': 16, 'review_class:other': 1, 'audit_in_banned': 2}, 'audit_n': 2, 'audit_disagree': 1, 'audit_disagreement_rate': 0.5, 'label_changes': 1, 'sources': {'judges_agree': 16, 'third_judge_majority': 3}, 'extended': 10}

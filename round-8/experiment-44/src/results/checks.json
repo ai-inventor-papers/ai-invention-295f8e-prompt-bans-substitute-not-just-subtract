@@ -1,0 +1,81 @@
+{
+ "C1_baseline_bfs_share": 1.0,
+ "C1_baseline_ge_95pct_bfs": true,
+ "C9_carried_baseline": "BFS 100/100 (iteration 2 baseline)",
+ "C2_baseline_counts": {
+  "bfs": 77,
+  "dfs": 20,
+  "other": 3
+ },
+ "C2_baseline_pass_rate": 0.05,
+ "C2_vs_art_-QPYRaFERCBX_fisher": {
+  "table": [
+   [
+    77,
+    20
+   ],
+   [
+    77,
+    20
+   ]
+  ],
+  "odds_ratio": 1.0,
+  "p": 1.0,
+  "note": "non-blocking; cross-engine differences = kernel sensitivity"
+ },
+ "openrouter_first_rows_valid": {
+  "C1": 10,
+  "C2": 10,
+  "C3": 10,
+  "C4": 10,
+  "C5": 10,
+  "C6": 5,
+  "C7": 10,
+  "C8": 10
+ },
+ "T9_continuity": "not reproducible: states absent (ITER7 exp34 cache/states/top5_T1_states.npz is not on the run volume)",
+ "T10_note": "the full quantisation check (300 forced prompts at bf16/int8/nf4) replaced the 20-prompt dry run",
+ "carried": {
+  "C9": {
+   "n": 100,
+   "composition": {
+    "dfs": 36,
+    "bfs": 63,
+    "iddfs": 1
+   },
+   "n_correct_survivors": 0,
+   "pass_rate": 0.68,
+   "banned_set": [
+    "astar",
+    "bfs",
+    "dfs",
+    "gbfs",
+    "iddfs"
+   ],
+   "banned_share": 1.0,
+   "source": "art_IVZc3TWCeE9f TOP5 rows"
+  },
+  "C10": {
+   "n": 50,
+   "composition": {
+    "dfs": 9,
+    "bfs": 41
+   },
+   "correct": {
+    "dfs": 9,
+    "bfs": 10
+   },
+   "n_correct_survivors": 0,
+   "pass_rate": 0.38,
+   "banned_share": 1.0,
+   "banned_set": [
+    "bfs",
+    "dfs",
+    "gbfs",
+    "iddfs",
+    "astar"
+   ],
+   "source": "art_zNyBP6zieI5u (ITER6 exp31) results/top5.json"
+  }
+ }
+}
