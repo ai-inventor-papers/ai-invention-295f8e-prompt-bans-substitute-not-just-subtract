@@ -1,0 +1,56 @@
+01:10:43|INFO   |stage gpu1 start
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+01:11:27|INFO   |google/gemma-3-4b-it loaded in 12s; free VRAM 16.99/25.25 GB
+./src/engine.py:474: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  nxt = torch.searchsorted(cdf, Ut[:, step:step + 1]).squeeze(-1).clamp_(max=V - 1)
+01:11:31|INFO   |U1a:0: 2/25 rows 2.9s, 96 steps, {'length': 2}
+01:11:33|INFO   |U1b:0: 2/25 rows 2.2s, 96 steps, {'length': 2}
+01:11:38|INFO   |GPU tests: {"U1_crn_determinism": true, "U2_identity": {"das_lam0": true, "das_target_own_coords": true, "full_exchange_source_eq_base": true}, "U3p_decode_vs_prefill": false, "U4p_row_mask": true}
+01:11:45|INFO   |ENG:W1:0: 20/25 rows 6.1s, 304 steps, {'stop': 20}
+01:11:45|INFO   |engine W1: 20 rows in 6.1s
+01:11:51|INFO   |ENG:W2:0: 20/25 rows 6.1s, 304 steps, {'stop': 20}
+01:11:51|INFO   |engine W2: 20 rows in 6.1s
+01:11:57|INFO   |ENG:W3:0: 20/25 rows 6.7s, 320 steps, {'stop': 19, 'fence': 1}
+01:11:57|INFO   |engine W3: 20 rows in 6.7s
+01:12:05|INFO   |ENG:W4:0: 20/25 rows 7.7s, 384 steps, {'stop': 20}
+01:12:05|INFO   |engine W4: 20 rows in 7.7s
+01:12:12|INFO   |ENG:W5:0: 20/25 rows 6.4s, 320 steps, {'stop': 20}
+01:12:12|INFO   |engine W5: 20 rows in 6.4s
+01:12:18|INFO   |tf: states recomputed (max |dh| 384, rel 0.0131, max |dy| 0.734)
+01:12:22|INFO   |tf: DiM bfs: target 13.262, beta 1379.7, dy 13.257, matched True, monotone True
+01:12:25|INFO   |tf: DiM dfs: target -5.286, beta -838.5, dy -5.279, matched True, monotone True
+01:12:34|INFO   |tf: 3a/3b done (23s); P-twin pred attempted 0.232, G1a pred correct 0.021
+01:12:40|INFO   |dorm: forward recovery seed0 k1 2.037, k2 2.364, k4 2.542, k8 2.789
+01:12:46|INFO   |dorm k1: retention64 0.280, residual64 0.508, frac_in 0.103
+01:12:52|INFO   |dorm k2: retention64 0.235, residual64 0.522, frac_in 0.068
+01:12:57|INFO   |dorm k4: retention64 0.206, residual64 0.539, frac_in 0.049
+01:13:03|INFO   |dorm k8: retention64 0.177, residual64 0.546, frac_in 0.040
+01:13:05|INFO   |dorm: natural variance shares (this engine) k1 0.00088 (p95 0.00096), k2 0.00110 (p95 0.00176), k4 0.00182 (p95 0.00267), k8 0.00530 (p95 0.00479); iter7 repro max diff 1.07e-09
+01:13:12|INFO   |rev k1: held dm_das -4.010 vs full -2.623 (rec 1.5284810279725467); haar mean -0.010
+01:13:19|INFO   |rev k2: held dm_das -4.571 vs full -2.623 (rec 1.742381325689472); haar mean -0.013
+01:13:26|INFO   |rev k4: held dm_das -5.582 vs full -2.623 (rec 2.127855111676886); haar mean -0.017
+01:13:32|INFO   |rev k8: held dm_das -6.259 vs full -2.623 (rec 2.38564242017282); haar mean -0.030
+01:13:33|INFO   |commit1 8c29d3790382 (TF stage 81s)
+01:13:37|INFO   |G1:G1a:0: 25/25 rows 4.3s, 208 steps, {'stop': 25}
+01:13:43|INFO   |G1:G1a:1: 25/25 rows 5.5s, 272 steps, {'stop': 25}
+01:13:49|INFO   |G1:G1b:0: 25/25 rows 6.1s, 304 steps, {'stop': 24, 'fence': 1}
+01:13:55|INFO   |G1:G1b:1: 25/25 rows 6.2s, 304 steps, {'fence': 3, 'stop': 22}
+01:14:01|INFO   |G1:G1c:0: 25/25 rows 6.5s, 320 steps, {'stop': 25}
+01:14:08|INFO   |G1:G1c:1: 25/25 rows 6.5s, 320 steps, {'stop': 25}
+01:14:15|INFO   |G1:P-DAS-dfs:W1:0: 10/25 rows 6.7s, 320 steps, {'stop': 9, 'fence': 1}
+01:14:21|INFO   |G1:P-DAS-dfs:W2:0: 10/25 rows 6.4s, 304 steps, {'stop': 10}
+01:14:27|INFO   |G1:P-DAS-dfs:W3:0: 10/25 rows 6.5s, 320 steps, {'stop': 9, 'fence': 1}
+01:14:35|INFO   |G1:P-DAS-dfs:W4:0: 10/25 rows 7.4s, 368 steps, {'stop': 10}
+01:14:41|INFO   |G1:P-DAS-dfs:W5:0: 10/25 rows 6.5s, 320 steps, {'stop': 9, 'fence': 1}
+01:14:47|INFO   |G1:G1d:0: 25/25 rows 5.6s, 272 steps, {'stop': 25}
+01:14:53|INFO   |G1:G1d:1: 25/25 rows 5.7s, 272 steps, {'stop': 25}
+01:14:59|INFO   |FTW:W1:0: 10/25 rows 6.7s, 336 steps, {'stop': 10}
+01:15:06|INFO   |FTW:W2:0: 10/25 rows 6.8s, 336 steps, {'stop': 10}
+01:15:13|INFO   |FTW:W3:0: 10/25 rows 7.0s, 352 steps, {'stop': 8, 'fence': 2}
+01:15:22|INFO   |FTW:W4:0: 25/25 rows 8.6s, 432 steps, {'stop': 24, 'fence': 1}
+01:15:29|INFO   |FTW:W5:0: 25/25 rows 6.8s, 336 steps, {'stop': 21, 'fence': 4}
+01:15:33|INFO   |REV:0: 25/25 rows 4.4s, 208 steps, {'stop': 25}
+01:15:39|INFO   |REV:1: 25/25 rows 5.6s, 272 steps, {'stop': 25}
+01:15:43|INFO   |REV:2: 10/25 rows 3.7s, 176 steps, {'stop': 10}
+01:15:43|INFO   |stage gpu1 done in 300s

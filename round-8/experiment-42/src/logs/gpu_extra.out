@@ -1,0 +1,21 @@
+01:30:18|INFO   |stage gpu_extra start
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+01:31:15|INFO   |google/gemma-3-4b-it loaded in 14s; free VRAM 16.99/25.25 GB
+./src/engine.py:474: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  nxt = torch.searchsorted(cdf, Ut[:, step:step + 1]).squeeze(-1).clamp_(max=V - 1)
+01:31:23|INFO   |G1e:F1:3:0: 25/25 rows 7.4s, 320 steps, {'stop': 25}
+01:31:31|INFO   |G1e:F1:3:1: 25/25 rows 7.4s, 368 steps, {'stop': 23, 'fence': 2}
+01:31:37|INFO   |G1e:F2:3:0: 25/25 rows 6.4s, 320 steps, {'stop': 25}
+01:31:44|INFO   |G1e:F2:3:1: 25/25 rows 6.4s, 320 steps, {'stop': 24, 'fence': 1}
+01:31:50|INFO   |G1e:F3:3:0: 25/25 rows 6.7s, 336 steps, {'stop': 24, 'fence': 1}
+01:31:57|INFO   |G1e:F3:3:1: 25/25 rows 6.4s, 320 steps, {'stop': 24, 'fence': 1}
+01:32:03|INFO   |G1e:F4:3:0: 25/25 rows 6.4s, 320 steps, {'stop': 22, 'fence': 3}
+01:32:10|INFO   |G1e:F4:3:1: 25/25 rows 6.5s, 320 steps, {'stop': 25}
+01:32:16|INFO   |G1e:F5:0:0: 25/25 rows 6.5s, 320 steps, {'stop': 25}
+01:32:23|INFO   |G1e:F5:0:1: 25/25 rows 6.6s, 320 steps, {'stop': 24, 'fence': 1}
+01:32:29|INFO   |G1e:F5:1:0: 25/25 rows 6.5s, 320 steps, {'stop': 25}
+01:32:36|INFO   |G1e:F5:1:1: 25/25 rows 6.5s, 320 steps, {'stop': 24, 'fence': 1}
+01:32:42|INFO   |G1e:F5:2:0: 25/25 rows 6.5s, 320 steps, {'stop': 25}
+01:32:49|INFO   |G1e:F5:2:1: 25/25 rows 6.4s, 320 steps, {'stop': 25}
+01:32:49|INFO   |stage gpu_extra done in 151s

@@ -1,0 +1,35 @@
+{
+ "n_correct_programs_all_arms": 1450,
+ "n_correct_other": 1,
+ "counts": {
+  "NOVEL_ALGORITHM": 0,
+  "CATALOGUE_VARIANT": 1,
+  "LABELLER_MISS": 0,
+  "DEGENERATE": 0,
+  "disputed": 0
+ },
+ "items": [
+  {
+   "row_id": "s3|R6|W3|twin|25",
+   "task": "R6",
+   "arm": "twin",
+   "judge_a": "DEGENERATE",
+   "judge_b": "CATALOGUE_VARIANT",
+   "judge_c": "CATALOGUE_VARIANT",
+   "final": "CATALOGUE_VARIANT",
+   "nearest_known": {
+    "ratio": 0.19555555555555557,
+    "source": "mercury",
+    "n_corpus": 22
+   },
+   "code_head": "def solve(nums, target):\n    try:\n        first = nums.index(target)\n        last = len(nums) - 1 - nums[::-1].index(target)\n        return [first, last]\n    except ValueError:\n        return [-1, -1]\n"
+  }
+ ],
+ "judges": [
+  "google/gemini-2.5-flash",
+  "deepseek/deepseek-chat",
+  "openai/gpt-4.1-mini"
+ ],
+ "novel_claim": "none (count 0; rule-of-three upper bound 3/n = 0.0021 over 1450 correct programs)",
+ "budget_stopped": false
+}
