@@ -1,0 +1,578 @@
+{
+ "gates": {
+  "E1_labels_equal": true,
+  "E2_multiset_equal_forced_set": true,
+  "E2_order_equal_forced_set": true,
+  "E2_template_field_consistent": true,
+  "E3_detail": {
+   "k15": {
+    "max_abs_diff": 0.0,
+    "classes_match": true,
+    "g": {
+     "bibfs": 10.88548471365572,
+     "dijkstra_unit": 21.590979351337932,
+     "idastar": 13.245712821373619,
+     "jps": 15.872428763642265,
+     "biastar": 11.564123771399029
+    },
+    "classes": {
+     "bibfs": "EDGE",
+     "dijkstra_unit": "OPPOSITE",
+     "idastar": "MIDDLE",
+     "jps": "OPPOSITE",
+     "biastar": "EDGE"
+    }
+   },
+   "k10": {
+    "max_abs_diff": 0.0,
+    "classes_match": true,
+    "g": {
+     "bibfs": 13.163169695136574,
+     "dijkstra_unit": 25.761824282931162,
+     "idastar": 14.439573584206562,
+     "jps": 20.502533062921593,
+     "biastar": 13.496265404626472
+    },
+    "classes": {
+     "bibfs": "EDGE",
+     "dijkstra_unit": "OPPOSITE",
+     "idastar": "MIDDLE",
+     "jps": "OPPOSITE",
+     "biastar": "EDGE"
+    }
+   }
+  },
+  "E3_g_matches_M1": true,
+  "E4_spearman_vs_stored_k15": 1.0,
+  "E4_max_rel_diff": 1.351648759160641e-14,
+  "E4_components_before_join": 1,
+  "E4_pass": true,
+  "hard_gates_pass": true
+ },
+ "flags": [],
+ "primary_vectors": {
+  "bibfs": [
+   1,
+   1,
+   1
+  ],
+  "dijkstra_unit": [
+   0,
+   0,
+   0
+  ],
+  "idastar": [
+   1,
+   2,
+   3
+  ],
+  "jps": [
+   0,
+   0,
+   0
+  ],
+  "biastar": [
+   1,
+   1,
+   1
+  ]
+ },
+ "primary_vectors_match_commit": true,
+ "overlap_rows": [
+  {
+   "algorithm": "bibfs",
+   "alias_index": 0,
+   "alias": "bidirectional BFS",
+   "primary": 1,
+   "detectors": [
+    "D1_bfs"
+   ],
+   "secondary": 0.5,
+   "secondary_argmax_banned_alias": "BFS",
+   "content_tokens": [
+    "bfs",
+    "bidirectional"
+   ]
+  },
+  {
+   "algorithm": "bibfs",
+   "alias_index": 1,
+   "alias": "bidirectional breadth-first search",
+   "primary": 1,
+   "detectors": [
+    "D2_breadth_first"
+   ],
+   "secondary": 0.666666666667,
+   "secondary_argmax_banned_alias": "a breadth-first search",
+   "content_tokens": [
+    "bidirectional",
+    "breadth",
+    "first"
+   ]
+  },
+  {
+   "algorithm": "bibfs",
+   "alias_index": 2,
+   "alias": "a breadth-first search run from both start and goal",
+   "primary": 1,
+   "detectors": [
+    "D2_breadth_first"
+   ],
+   "secondary": 0.5,
+   "secondary_argmax_banned_alias": "a breadth-first search",
+   "content_tokens": [
+    "breadth",
+    "first",
+    "goal",
+    "start"
+   ]
+  },
+  {
+   "algorithm": "dijkstra_unit",
+   "alias_index": 0,
+   "alias": "unit-weight Dijkstra",
+   "primary": 0,
+   "detectors": [],
+   "secondary": 0.0,
+   "secondary_argmax_banned_alias": "",
+   "content_tokens": [
+    "dijkstra",
+    "unit",
+    "weight"
+   ]
+  },
+  {
+   "algorithm": "dijkstra_unit",
+   "alias_index": 1,
+   "alias": "Dijkstra's algorithm with unit edge weights",
+   "primary": 0,
+   "detectors": [],
+   "secondary": 0.0,
+   "secondary_argmax_banned_alias": "",
+   "content_tokens": [
+    "dijkstra",
+    "edge",
+    "unit",
+    "weights"
+   ]
+  },
+  {
+   "algorithm": "dijkstra_unit",
+   "alias_index": 2,
+   "alias": "a priority-queue Dijkstra search",
+   "primary": 0,
+   "detectors": [],
+   "secondary": 0.0,
+   "secondary_argmax_banned_alias": "",
+   "content_tokens": [
+    "dijkstra",
+    "priority",
+    "queue"
+   ]
+  },
+  {
+   "algorithm": "idastar",
+   "alias_index": 0,
+   "alias": "IDA* search",
+   "primary": 1,
+   "detectors": [
+    "D7_astar"
+   ],
+   "secondary": 0.0,
+   "secondary_argmax_banned_alias": "",
+   "content_tokens": [
+    "ida*"
+   ]
+  },
+  {
+   "algorithm": "idastar",
+   "alias_index": 1,
+   "alias": "iterative deepening A* (IDA*)",
+   "primary": 2,
+   "detectors": [
+    "D6_iterative_deepening",
+    "D7_astar"
+   ],
+   "secondary": 0.333333333333,
+   "secondary_argmax_banned_alias": "iterative deepening DFS (IDDFS)",
+   "content_tokens": [
+    "a*",
+    "deepening",
+    "ida*",
+    "iterative"
+   ]
+  },
+  {
+   "algorithm": "idastar",
+   "alias_index": 2,
+   "alias": "IDA* with a Manhattan heuristic",
+   "primary": 3,
+   "detectors": [
+    "D7_astar",
+    "D10_manhattan",
+    "D11_heuristic"
+   ],
+   "secondary": 0.4,
+   "secondary_argmax_banned_alias": "A* search with a Manhattan-distance heuristic",
+   "content_tokens": [
+    "heuristic",
+    "ida*",
+    "manhattan"
+   ]
+  },
+  {
+   "algorithm": "jps",
+   "alias_index": 0,
+   "alias": "jump point search",
+   "primary": 0,
+   "detectors": [],
+   "secondary": 0.0,
+   "secondary_argmax_banned_alias": "",
+   "content_tokens": [
+    "jump",
+    "point"
+   ]
+  },
+  {
+   "algorithm": "jps",
+   "alias_index": 1,
+   "alias": "JPS",
+   "primary": 0,
+   "detectors": [],
+   "secondary": 0.0,
+   "secondary_argmax_banned_alias": "",
+   "content_tokens": [
+    "jps"
+   ]
+  },
+  {
+   "algorithm": "jps",
+   "alias_index": 2,
+   "alias": "jump point search (JPS) on a uniform-cost grid",
+   "primary": 0,
+   "detectors": [],
+   "secondary": 0.0,
+   "secondary_argmax_banned_alias": "",
+   "content_tokens": [
+    "cost",
+    "grid",
+    "jps",
+    "jump",
+    "point",
+    "uniform"
+   ]
+  },
+  {
+   "algorithm": "biastar",
+   "alias_index": 0,
+   "alias": "bidirectional A* search",
+   "primary": 1,
+   "detectors": [
+    "D7_astar"
+   ],
+   "secondary": 0.5,
+   "secondary_argmax_banned_alias": "A* search",
+   "content_tokens": [
+    "a*",
+    "bidirectional"
+   ]
+  },
+  {
+   "algorithm": "biastar",
+   "alias_index": 1,
+   "alias": "bidirectional A*",
+   "primary": 1,
+   "detectors": [
+    "D7_astar"
+   ],
+   "secondary": 0.5,
+   "secondary_argmax_banned_alias": "A* search",
+   "content_tokens": [
+    "a*",
+    "bidirectional"
+   ]
+  },
+  {
+   "algorithm": "biastar",
+   "alias_index": 2,
+   "alias": "A* run from both start and goal at once",
+   "primary": 1,
+   "detectors": [
+    "D7_astar"
+   ],
+   "secondary": 0.333333333333,
+   "secondary_argmax_banned_alias": "A* search",
+   "content_tokens": [
+    "a*",
+    "goal",
+    "start"
+   ]
+  }
+ ],
+ "primary_multiset": {
+  "0": 6,
+  "1": 7,
+  "2": 1,
+  "3": 1
+ },
+ "L": 31,
+ "null_sizes": {
+  "primary_exact": 360360,
+  "binary_exact": 5005,
+  "secondary_distinct": 5405400,
+  "secondary_method": "monte_carlo_200000"
+ },
+ "per_k": {
+  "k15": {
+   "g_alias": {
+    "bibfs|0": 12.444584568347366,
+    "bibfs|1": 10.998438551648311,
+    "bibfs|2": 9.213431020971484,
+    "dijkstra_unit|0": 22.500209212955827,
+    "dijkstra_unit|1": 24.182360604637292,
+    "dijkstra_unit|2": 18.09036823642067,
+    "idastar|0": 11.835873916306857,
+    "idastar|1": 15.551916628755789,
+    "idastar|2": 12.349347919058214,
+    "jps|0": 14.194334382228584,
+    "jps|1": 14.619110036969898,
+    "jps|2": 18.803841871728316,
+    "biastar|0": 10.985208587165816,
+    "biastar|1": 11.394074108223867,
+    "biastar|2": 12.313088618807402
+   },
+   "g_algorithm": {
+    "bibfs": 10.88548471365572,
+    "dijkstra_unit": 21.590979351337932,
+    "idastar": 13.245712821373619,
+    "jps": 15.872428763642265,
+    "biastar": 11.564123771399029
+   },
+   "rho_primary": -0.6068480408008414,
+   "primary_p_lower": 0.009324009324009324,
+   "primary_p_two_sided": 0.018648018648018648,
+   "primary_n_null": 360360,
+   "rho_secondary": -0.7650830489974457,
+   "secondary_p_lower": 0.00083,
+   "secondary_p_two_sided": 0.001645,
+   "secondary_n_null": 200000,
+   "rho_binary": -0.78742598543589,
+   "binary_p_lower": 0.0007992007992007992,
+   "binary_p_two_sided": 0.0015984015984015984,
+   "binary_n_null": 5005,
+   "ci95_primary": [
+    -0.7083145942466413,
+    -0.5873352420612645
+   ],
+   "ci95_secondary": [
+    -0.8050500739450736,
+    -0.7345844025790776
+   ],
+   "ci95_5centroid": [
+    -0.6324555320336759,
+    -0.6324555320336759
+   ],
+   "boot_frac_rho_primary_le_-0.6": 0.8435,
+   "five_centroid_primary": {
+    "rho": -0.6324555320336759,
+    "p_lower": 0.13333333333333333,
+    "p_two_sided": 0.26666666666666666,
+    "n_perm": 120,
+    "floor_lower": 0.03333333333333333,
+    "floor_nominal": 0.008333333333333333
+   },
+   "five_centroid_secondary": {
+    "rho": -0.9746794344808964,
+    "p_lower": 0.016666666666666666,
+    "p_two_sided": 0.03333333333333333,
+    "n_perm": 120,
+    "floor_lower": 0.016666666666666666,
+    "floor_nominal": 0.008333333333333333
+   },
+   "stratified_secondary": {
+    "stat": -0.12200846792814624,
+    "n_algorithms_used": 3,
+    "n_constant_skipped": 2,
+    "n_arrangements_nominal": 7776,
+    "n_arrangements_effective": 216,
+    "floor_effective": 0.004629629629629629,
+    "p_lower": 0.46296296296296297,
+    "p_upper": 0.6111111111111112,
+    "p_two_sided": 0.9259259259259259,
+    "beta": 2.360070051445393,
+    "beta_p_lower": 0.5740740740740741,
+    "beta_p_two_sided": 0.7777777777777778,
+    "null_mean": 7.310110450206793e-18,
+    "null_sd": 0.4082482904638631
+   },
+   "stratified_primary": {
+    "stat": 0.5,
+    "n_algorithms_used": 1,
+    "n_constant_skipped": 4,
+    "n_arrangements_nominal": 7776,
+    "n_arrangements_effective": 6,
+    "floor_effective": 0.16666666666666666,
+    "p_lower": 0.8333333333333334,
+    "p_upper": 0.5,
+    "p_two_sided": 1.0,
+    "beta": 0.25673700137567845,
+    "beta_p_lower": 0.6666666666666666,
+    "beta_p_two_sided": 1.0,
+    "null_mean": 0.0,
+    "null_sd": 0.7071067811865476
+   },
+   "mds_stress1": 0.1805598993496016
+  },
+  "k10": {
+   "g_alias": {
+    "bibfs|0": 16.111040425487833,
+    "bibfs|1": 13.100935016530254,
+    "bibfs|2": 10.27753364339164,
+    "dijkstra_unit|0": 23.736671257239607,
+    "dijkstra_unit|1": 29.22572861082468,
+    "dijkstra_unit|2": 20.917743244717002,
+    "idastar|0": 12.715307813381795,
+    "idastar|1": 17.536758400080835,
+    "idastar|2": 13.066654539157055,
+    "jps|0": 17.906917410787855,
+    "jps|1": 19.825524502640498,
+    "jps|2": 23.775157275336422,
+    "biastar|0": 13.09293989099402,
+    "biastar|1": 13.832016364630642,
+    "biastar|2": 13.563839958254754
+   },
+   "g_algorithm": {
+    "bibfs": 13.163169695136574,
+    "dijkstra_unit": 25.761824282931162,
+    "idastar": 14.439573584206562,
+    "jps": 20.502533062921593,
+    "biastar": 13.496265404626472
+   },
+   "rho_primary": -0.766852990465372,
+   "primary_p_lower": 0.0006715506715506716,
+   "primary_p_two_sided": 0.001343101343101343,
+   "primary_n_null": 360360,
+   "rho_secondary": -0.6451819741545625,
+   "secondary_p_lower": 0.00599,
+   "secondary_p_two_sided": 0.01154,
+   "secondary_n_null": 200000,
+   "rho_binary": -0.8504200642707612,
+   "binary_p_lower": 0.0001998001998001998,
+   "binary_p_two_sided": 0.0003996003996003996,
+   "binary_n_null": 5005,
+   "ci95_primary": [
+    -0.766852990465372,
+    -0.6458736382799952
+   ],
+   "ci95_secondary": [
+    -0.7688894323257913,
+    -0.6052149492069347
+   ],
+   "ci95_5centroid": [
+    -0.7905694150420948,
+    -0.6324555320336759
+   ],
+   "boot_frac_rho_primary_le_-0.6": 1.0,
+   "five_centroid_primary": {
+    "rho": -0.6324555320336759,
+    "p_lower": 0.13333333333333333,
+    "p_two_sided": 0.26666666666666666,
+    "n_perm": 120,
+    "floor_lower": 0.03333333333333333,
+    "floor_nominal": 0.008333333333333333
+   },
+   "five_centroid_secondary": {
+    "rho": -0.9746794344808964,
+    "p_lower": 0.016666666666666666,
+    "p_two_sided": 0.03333333333333333,
+    "n_perm": 120,
+    "floor_lower": 0.016666666666666666,
+    "floor_nominal": 0.008333333333333333
+   },
+   "stratified_secondary": {
+    "stat": 0.16666666666666666,
+    "n_algorithms_used": 3,
+    "n_constant_skipped": 2,
+    "n_arrangements_nominal": 7776,
+    "n_arrangements_effective": 216,
+    "floor_effective": 0.004629629629629629,
+    "p_lower": 0.7222222222222222,
+    "p_upper": 0.3888888888888889,
+    "p_two_sided": 0.7777777777777778,
+    "beta": 3.581320721620813,
+    "beta_p_lower": 0.6481481481481481,
+    "beta_p_two_sided": 0.7037037037037037,
+    "null_mean": 7.310110450206793e-18,
+    "null_sd": 0.4082482904638631
+   },
+   "stratified_primary": {
+    "stat": 0.5,
+    "n_algorithms_used": 1,
+    "n_constant_skipped": 4,
+    "n_arrangements_nominal": 7776,
+    "n_arrangements_effective": 6,
+    "floor_effective": 0.16666666666666666,
+    "p_lower": 0.8333333333333334,
+    "p_upper": 0.5,
+    "p_two_sided": 1.0,
+    "beta": 0.1756733628876299,
+    "beta_p_lower": 0.6666666666666666,
+    "beta_p_two_sided": 1.0,
+    "null_mean": 0.0,
+    "null_sd": 0.7071067811865476
+   }
+  }
+ },
+ "placebos": {
+  "P1_shuffled_alias_labels": {
+   "n": 1000,
+   "rho_mean": -0.010357393570967413,
+   "rho_sd": 0.26615486904464897,
+   "share_p_lt_0.05": 0.048,
+   "fails_as_required": true
+  },
+  "P2_random_overlap_vector": {
+   "n": 1000,
+   "share_p_lt_0.05": 0.05,
+   "p_deciles": [
+    0.096,
+    0.197,
+    0.298,
+    0.387,
+    0.487,
+    0.589,
+    0.695,
+    0.813,
+    0.91
+   ],
+   "fails_as_required": true
+  },
+  "P3_within_algorithm_shuffles": {
+   "n": 1000,
+   "stat_mean": 0.007350852961085882,
+   "stat_sd": 0.41586515533019086,
+   "fails_as_required": true
+  },
+  "C1_planted": {
+   "seed0_rho": -0.9151502608861564,
+   "seed0_p_lower": 2.775002775002775e-06,
+   "seed0_succeeds": true,
+   "power_200_seeds": 1.0
+  }
+ },
+ "verdict": {
+  "code": "CONFOUNDED",
+  "sentence": "g follows alias overlap across algorithms (rho -0.61, p 0.00932), but the pattern is carried by algorithm identity; on this manifold names and mechanisms are confounded, and TP-G's name-free manifolds decide",
+  "rule_inputs": {
+   "rho_k15_primary": -0.6068480408008414,
+   "p_k15_primary": 0.009324009324009324,
+   "stratified_secondary_p": 0.46296296296296297
+  }
+ },
+ "figure": [
+  "figures/alias_overlap.pdf",
+  "figures/alias_overlap.png"
+ ],
+ "seconds": 18.1,
+ "code_matches_commit": false
+}

@@ -1,0 +1,124 @@
+{
+  "commit": "S0-0e alias-overlap test",
+  "utc": "2026-10-23T09:53:57.132327+00:00",
+  "plan": "gen_plan_evaluation_1_idx1, item 0e",
+  "question": "Is iteration 8's 'opposite' landing (unit-weight Dijkstra farthest from the banned five) a property of the alias-named manifold of 300 forced prompts?",
+  "inputs": {
+    "geo": "art_R-HSmXq2t97f:cache/states/geo_C6_nf4.npz",
+    "smean": "art_R-HSmXq2t97f:cache/states/smean_C6_nf4.npz",
+    "alias_table": "art_R-HSmXq2t97f:src/common.py#ALIAS_TABLE",
+    "short_forms": "art_R-HSmXq2t97f:src/common.py#SHORT_FORMS",
+    "geometry_M1": "art_R-HSmXq2t97f:results/geometry_M1.json#M1"
+  },
+  "input_sha256": {
+    "geo_C6_nf4.npz": "6fc240fffcfc16a68aed18ba8af4aab050b0b36c92106be0629f68bba55a8e4f",
+    "common.py": "dc3a7a26af140cbcdf8bc335aee7f0a0048737dcf2caca2afb416e5e86efdcd0",
+    "prompts_tp.py": "afa000a8406a5471c3316f9d14161c1cf4d335a4dcd14f52bdf9778c1c1e5c9e",
+    "geometry_M1.json": "12761d7d18bf83a8234bea97963d82ba569ccc0be9a648042ec7c9d84dc8c554"
+  },
+  "detectors_case_insensitive": {
+    "D1_bfs": "\\bbfs\\b",
+    "D2_breadth_first": "breadth[-_ ]?first",
+    "D3_dfs": "\\bdfs\\b",
+    "D4_depth_first": "depth[-_ ]?first",
+    "D5_iddfs": "\\biddfs\\b",
+    "D6_iterative_deepening": "iterative[-_ ]?deepening",
+    "D7_astar": "a\\*|a[-_ ]?star|astar",
+    "D8_greedy": "greedy",
+    "D9_best_first": "best[-_ ]?first",
+    "D10_manhattan": "manhattan",
+    "D11_heuristic": "heuristic"
+  },
+  "primary_overlap": "number of distinct detectors D1-D11 matching the alias string",
+  "expected_primary_vectors_alias_0_1_2": {
+    "bibfs": [
+      1,
+      1,
+      1
+    ],
+    "dijkstra_unit": [
+      0,
+      0,
+      0
+    ],
+    "idastar": [
+      1,
+      2,
+      3
+    ],
+    "jps": [
+      0,
+      0,
+      0
+    ],
+    "biastar": [
+      1,
+      1,
+      1
+    ]
+  },
+  "expected_primary_multiset": {
+    "0": 6,
+    "1": 7,
+    "2": 1,
+    "3": 1
+  },
+  "secondary_overlap": "max content-token Jaccard with any of the 15 banned aliases; tokens = lowercase split on [^a-z0-9*]",
+  "stopwords": [
+    "a",
+    "algorithm",
+    "an",
+    "and",
+    "at",
+    "both",
+    "from",
+    "of",
+    "on",
+    "once",
+    "run",
+    "s",
+    "search",
+    "the",
+    "to",
+    "with"
+  ],
+  "tertiary_overlap": "optional Qwen3 BPE token-set Jaccard; run only if the tokenizer is already cached offline",
+  "g_definition": "g(alg, alias) = min over banned b of mean geodesic between the 10 points of (alg, alias) and the 30 points of b; algorithm-level g as in geometry.py",
+  "k": {
+    "primary": 15,
+    "secondary": 10
+  },
+  "statistics": [
+    "Spearman (average ranks) of alias-level g against the primary overlap over 15 alias sets; exact one-sided lower-tail p over all 360,360 distinct assignments of the overlap multiset; two-sided p reported",
+    "same with the secondary overlap (exact if <= 2e6 distinct arrangements, else 200,000 Monte Carlo draws)",
+    "same with binary any-overlap (sensitivity)",
+    "5-centroid Spearman of algorithm g against mean primary overlap; exact p over 5! = 120 permutations; attainable floor printed (4/120 = 0.033 for the tied vector (1, 1, 2, 0, 0))",
+    "within-algorithm stratified test: mean over algorithms with non-constant secondary overlap of the 3-point Spearman; exact null over (3!)^5 = 7,776 within-algorithm relabelings (effective 6^m); also primary",
+    "fixed-effects OLS g = alpha_algorithm + beta * overlap_secondary; beta's stratified-permutation p",
+    "95% intervals from 2,000 cluster-bootstrap resamples of the 10 templates, geodesics held fixed"
+  ],
+  "gates": {
+    "E1": "smean algorithm[kind == forced] equals geo labels (hard)",
+    "E2": "multiset (algorithm, group // 3, group % 3) equals forced_set() (hard); order recorded",
+    "E3": "algorithm-level g from stored geo_k15/geo_k10 matches geometry_M1.json to 1e-9, classes match (hard)",
+    "E4": "independent kNN geodesics from smean block 31 (float64, raw coordinates): Spearman with stored geo_k15 >= 0.999 (cross-check; < 0.99 flags 'geodesics not independently reproduced')"
+  },
+  "placebos_must_fail": {
+    "P1": "1,000 random reassignments of the 300 point labels: rho centred near 0, share p < 0.05 at most 0.10",
+    "P2": "1,000 random permutations of the overlap multiset: share p < 0.05 at most 0.10",
+    "P3": "within-algorithm shuffles: stratified statistic centred near 0"
+  },
+  "planted_control_must_succeed": "g = 12 - 2 * overlap + N(0, 0.5): rho <= -0.6 with p < 0.05",
+  "verdict_rules": {
+    "rho_k15 <= -0.6 and stratified p < 0.05": "names move the geometry even with the algorithm held fixed",
+    "rho_k15 <= -0.6 and stratified p >= 0.05": "g follows alias overlap across algorithms (rho, p), but the pattern is carried by algorithm identity; on this manifold names and mechanisms are confounded, and TP-G's name-free manifolds decide",
+    "rho_k15 > -0.6": "iteration 8's geodesics do not track alias overlap at the committed strength (rho)",
+    "rescoring": "report every outcome; never re-score"
+  },
+  "non_blind_expectation": "Iteration 8's algorithm-level g (bidirectional BFS 10.9, bidirectional A* 11.6, IDA* 13.3, JPS 15.9, unit Dijkstra 21.6) is public. If each alias carries its algorithm's g, the 15-point Spearman with count overlap is about -0.70, the 5-centroid one about -0.63, and with binary any-overlap about -0.87. Only the within-algorithm statistic and the bootstrap interval are genuinely unseen.",
+  "code_sha256": {
+    "src/alias_geometry.py": "113911b9c23670ccc602554ee8f7bce82d46aec963ae350a96e1c26b98e1a4f7",
+    "src/stage_0e.py": "3701466951db2a7786bc8e3edce219b8c0db3bdeb0229948fdbad8f22bb299a0"
+  },
+  "seed": 20261023
+}

@@ -1,0 +1,965 @@
+{
+  "metadata": {
+    "evaluation_name": "Iteration-9 Step 0: repair of the iteration-8 research record",
+    "plan_id": "gen_plan_evaluation_1_idx1",
+    "utc": "2026-10-23T10:58:38.144803+00:00",
+    "report_sha256": "8b3804f3ecbfedd4c1d54586edd56fe02aaa5c81e4570f4a3aa171ad0cbd7438",
+    "sections": {
+      "0a": {
+        "edits": [
+          "S0-0a-01",
+          "S0-0a-02",
+          "S0-0a-03"
+        ],
+        "values": [
+          "0a.L0.abl.mean_d",
+          "0a.L0.abl.pair",
+          "0a.L0.abl.heldout"
+        ],
+        "verdict": "ANSWERED",
+        "metrics": {
+          "identity_check_pass": true,
+          "n_exact_zero_heldout_nodes": 1,
+          "cond_span_matches_heldout": {
+            "per_heldout_prompt": {
+              "F11|forced|pad": 0,
+              "F11|forced": 0,
+              "F12|forced|pad": 0,
+              "F12|forced": 0,
+              "F13|forced|pad": 0,
+              "F13|forced": 0,
+              "F14|forced|pad": 0,
+              "F14|forced": 0,
+              "F15|forced|pad": 0,
+              "F15|forced": 0
+            },
+            "n_heldout_with_any_match": 0,
+            "n_heldout": 10,
+            "pair_templates": [
+              "F1",
+              "F10",
+              "F2"
+            ],
+            "heldout_templates": [
+              "F11",
+              "F12",
+              "F13"
+            ]
+          },
+          "replication": {
+            "heldout_rows_all_node_and_random_entries_zero": 20,
+            "of": 20
+          },
+          "cause_evidence": "replicated",
+          "code_quotes": {
+            "482": "if cl == \"COND\" and p[\"template\"] != ref[\"template\"]:",
+            "485": "if len(ps) != len(ref[\"pos\"][cl]):",
+            "488": "self.c[key] = torch.stack(vals).mean(0) if vals else None       # CPU; edits copy to the GPU"
+          },
+          "C2a_top10_has_COND": false,
+          "bands": {
+            "line": 55,
+            "text": "BANDS = {\"DEC\": (0.38, 0.68), \"COND\": (0.21, 0.51), \"depth\": (0.45, 0.80)}",
+            "values": {
+              "DEC": [
+                0.38,
+                0.68
+              ],
+              "COND": [
+                0.21,
+                0.51
+              ],
+              "depth": [
+                0.45,
+                0.8
+              ]
+            }
+          },
+          "zero_heldout": [
+            {
+              "contrast": "C1forced",
+              "mode": "ablate",
+              "node": "mlp|L0|H-1|COND"
+            },
+            {
+              "contrast": "C1forced",
+              "mode": "steer",
+              "node": "mlp|L0|H-1|COND"
+            }
+          ]
+        }
+      },
+      "0b": {
+        "edits": [
+          "S0-0b-01",
+          "S0-0b-02",
+          "S0-0b-03"
+        ],
+        "values": [
+          "0b.T10.verdict",
+          "0b.GRID.verdict",
+          "0b.band.verdict"
+        ],
+        "verdict": "ANSWERED",
+        "metrics": {
+          "mcnemar_exact_two_sided": 0.0625,
+          "pooled_rule_V0_parts": {
+            "tf_recovery": true,
+            "gen_recovery": true,
+            "pass_ratio": false,
+            "mcnemar_das_gt_rand": true
+          },
+          "occurrences_by_class_before": {
+            "pre-iteration-8 other": 6,
+            "pre-iteration-8 full-state": 2,
+            "pre-iteration-8 counting sort": 4,
+            "pre-iteration-8 DAS-fork-DFS": 1,
+            "counting sort": 2,
+            "other": 1,
+            "DAS-fork-DFS": 6,
+            "DAS-fork-BFS": 2,
+            "circuit top-five": 5
+          }
+        }
+      },
+      "0c": {
+        "edits": [
+          "S0-0c-01",
+          "S0-0c-02",
+          "S0-0c-03"
+        ],
+        "values": [
+          "0c.G.hits",
+          "0c.G.n",
+          "0c.G.above"
+        ],
+        "verdict": "ANSWERED",
+        "metrics": {
+          "entropy_rows": [
+            {
+              "unit": "G",
+              "task": "Gemma grid path",
+              "n_twin_reaching_fork": 44,
+              "share_above_q90": 1.0,
+              "q90_nats": 0.00242,
+              "argmax_entropy_hits_first64": 44,
+              "median_fork_entropy_nats": 0.806262980255997,
+              "n_samples_with_entropy": 44
+            },
+            {
+              "unit": "B3",
+              "task": "minimum spanning tree",
+              "n_twin_reaching_fork": 39,
+              "share_above_q90": 1.0,
+              "q90_nats": 0.05027799999999987,
+              "argmax_entropy_hits_first64": 32,
+              "median_fork_entropy_nats": 0.6449912175415067,
+              "n_samples_with_entropy": 39
+            },
+            {
+              "unit": "B6",
+              "task": "valid anagram",
+              "n_twin_reaching_fork": 39,
+              "share_above_q90": 1.0,
+              "q90_nats": 0.00028,
+              "argmax_entropy_hits_first64": 21,
+              "median_fork_entropy_nats": 0.6360441216419614,
+              "n_samples_with_entropy": 39
+            }
+          ],
+          "law_rows": [
+            {
+              "unit": "A3",
+              "law": 0.028558542786951323,
+              "flat_B0": 0.05499999999999999,
+              "tempering_B1": 0.0704923718451624,
+              "single_fork_B2": 0.03844962593177365,
+              "entropy_BH": 0.03713031995225832,
+              "H_bits": 3.6452374062367866e-06,
+              "pass": true
+            },
+            {
+              "unit": "B6",
+              "law": 0.05419980255371672,
+              "flat_B0": 0.02999999999999999,
+              "tempering_B1": 0.0910034879001197,
+              "single_fork_B2": 0.0536709313713416,
+              "entropy_BH": 0.07126783477135913,
+              "H_bits": 2.819545841418891e-08,
+              "pass": true
+            },
+            {
+              "unit": "B3",
+              "law": 0.04306645989766199,
+              "flat_B0": 0.0925,
+              "tempering_B1": 0.05781591243771803,
+              "single_fork_B2": 0.04306645989766199,
+              "entropy_BH": 0.04482330150472155,
+              "H_bits": 0.0041578020810585595,
+              "pass": true
+            }
+          ]
+        }
+      },
+      "0d": {
+        "edits": [
+          "S0-0d-01",
+          "S0-0d-02",
+          "S0-0d-03"
+        ],
+        "values": [],
+        "verdict": "ANSWERED",
+        "metrics": {
+          "status_counts": {
+            "VERIFIED": 8,
+            "VERIFIED-ABSTRACT": 3
+          },
+          "n_venue_or_version_corrections": 3,
+          "live": [
+            {
+              "key": "cantarero",
+              "ref": 142,
+              "title": "The RLVR Policy Shift Is Sparse and Predictable from the Base Model",
+              "authors": "Cantarero, Garcia, Marín, Tiene, Orús",
+              "files": [
+                "cantarero_172378",
+                "cantarero_164442"
+              ],
+              "url": "https://neurips.cc/virtual/2026/172378 ; https://neurips.cc/virtual/2026/164442",
+              "claims": [
+                "base sub-arm",
+                "fork dosing"
+              ],
+              "record_venue": "NeurIPS 2026 workshop (temperature-law positioning)",
+              "venue_found": "two NeurIPS 2026 workshop posters: 'Transitioning from Pre-training to Post-training' (172378) and 'ELLIS Workshop on the Foundations of LLM Post-Training in Changing Environments' (164442); no main-t...",
+              "status": "VERIFIED",
+              "venue_verified": true,
+              "quote": "per-position Jensen--Shannon divergence between the two policies is 18.4--57.1$\\times$ higher inside this fork set than outside",
+              "checked_utc": "2026-10-23T09:42:13Z",
+              "tool": "aii-web-tools aii_fast_web_fetch.py grep",
+              "raw": [
+                "audit/web/cantarero_172378.txt",
+                "audit/web/cantarero_164442.txt"
+              ],
+              "record_check": "confirmed"
+            },
+            {
+              "key": "sparse_but_critical",
+              "ref": 143,
+              "title": "Sparse but Critical: A Token-Level Analysis of Distributional Shifts in RLVR Fine-Tuning of LLMs",
+              "authors": "Meng et al. (Qwen Pilot Team)",
+              "files": [
+                "sparse_but_critical"
+              ],
+              "url": "https://arxiv.org/abs/2603.22446",
+              "claims": [
+                "base sub-arm"
+              ],
+              "record_venue": "ICLR 2026",
+              "venue_found": "ICLR 2026 (arXiv comment); arXiv v1, 2026-03-23",
+              "status": "VERIFIED",
+              "venue_verified": true,
+              "quote": "Published as a conference paper at the International Conference on Learning Representations (ICLR 2026)",
+              "checked_utc": "2026-10-23T09:42:13Z",
+              "tool": "aii-web-tools aii_fast_web_fetch.py grep",
+              "raw": [
+                "audit/web/sparse_but_critical.txt"
+              ],
+              "record_check": "confirmed"
+            },
+            {
+              "key": "self_distillation",
+              "ref": 144,
+              "title": "Embarrassingly Simple Self-Distillation Improves Code Generation",
+              "authors": "Zhang et al. (Apple)",
+              "files": [
+                "self_distillation",
+                "self_distillation_html"
+              ],
+              "url": "https://arxiv.org/abs/2604.01193",
+              "claims": [
+                "fork dosing",
+                "temperature law"
+              ],
+              "record_venue": "not in the record",
+              "venue_found": "arXiv preprint, v2 (2026-06-24); no venue stated",
+              "status": "VERIFIED",
+              "venue_verified": false,
+              "quote": "code generation mixes precision-bound locks and exploration-bound forks",
+              "checked_utc": "2026-10-23T09:42:13Z",
+              "tool": "aii-web-tools aii_fast_web_fetch.py grep",
+              "raw": [
+                "audit/web/self_distillation.txt",
+                "audit/web/self_distillation_html.txt"
+              ],
+              "record_check": "new"
+            }
+          ],
+          "n_carried_rows": 51
+        }
+      },
+      "0e": {
+        "edits": [
+          "S0-0e-01",
+          "S0-0e-02",
+          "S0-0e-03"
+        ],
+        "values": [
+          "0e.k15.rho_primary",
+          "0e.k15.p_primary",
+          "0e.k15.ci_lo"
+        ],
+        "verdict": "g follows alias overlap across algorithms (rho -0.61, p 0.00932), but the pattern is carried by algorithm identity; on this manifold names and mechanisms are confounded, and TP-G's name-free manifolds...",
+        "metrics": {
+          "gates": {
+            "E1_labels_equal": true,
+            "E2_multiset_equal_forced_set": true,
+            "E2_order_equal_forced_set": true,
+            "E2_template_field_consistent": true,
+            "E3_detail": {
+              "k15": {
+                "max_abs_diff": 0.0,
+                "classes_match": true,
+                "g": {
+                  "bibfs": 10.88548471365572,
+                  "dijkstra_unit": 21.590979351337932,
+                  "idastar": 13.245712821373619,
+                  "jps": 15.872428763642265,
+                  "biastar": 11.564123771399029
+                },
+                "classes": {
+                  "bibfs": "EDGE",
+                  "dijkstra_unit": "OPPOSITE",
+                  "idastar": "MIDDLE",
+                  "jps": "OPPOSITE",
+                  "biastar": "EDGE"
+                }
+              },
+              "k10": {
+                "max_abs_diff": 0.0,
+                "classes_match": true,
+                "g": {
+                  "bibfs": 13.163169695136574,
+                  "dijkstra_unit": 25.761824282931162,
+                  "idastar": 14.439573584206562,
+                  "jps": 20.502533062921593,
+                  "biastar": 13.496265404626472
+                },
+                "classes": {
+                  "bibfs": "EDGE",
+                  "dijkstra_unit": "OPPOSITE",
+                  "idastar": "MIDDLE",
+                  "jps": "OPPOSITE",
+                  "biastar": "EDGE"
+                }
+              }
+            },
+            "E3_g_matches_M1": true,
+            "E4_spearman_vs_stored_k15": 1.0,
+            "E4_max_rel_diff": 1.351648759160641e-14,
+            "E4_components_before_join": 1,
+            "E4_pass": true,
+            "hard_gates_pass": true
+          },
+          "verdict": {
+            "code": "CONFOUNDED",
+            "sentence": "g follows alias overlap across algorithms (rho -0.61, p 0.00932), but the pattern is carried by algorithm identity; on this manifold names and mechanisms are confounded, and TP-G's name-free manifolds...",
+            "rule_inputs": {
+              "rho_k15_primary": -0.6068480408008414,
+              "p_k15_primary": 0.009324009324009324,
+              "stratified_secondary_p": 0.46296296296296297
+            }
+          },
+          "placebos": {
+            "P1_shuffled_alias_labels": {
+              "n": 1000,
+              "rho_mean": -0.010357393570967413,
+              "rho_sd": 0.26615486904464897,
+              "share_p_lt_0.05": 0.048,
+              "fails_as_required": true
+            },
+            "P2_random_overlap_vector": {
+              "n": 1000,
+              "share_p_lt_0.05": 0.05,
+              "p_deciles": [
+                0.096,
+                0.197,
+                0.298
+              ],
+              "fails_as_required": true
+            },
+            "P3_within_algorithm_shuffles": {
+              "n": 1000,
+              "stat_mean": 0.007350852961085882,
+              "stat_sd": 0.41586515533019086,
+              "fails_as_required": true
+            },
+            "C1_planted": {
+              "seed0_rho": -0.9151502608861564,
+              "seed0_p_lower": 2.775002775002775e-06,
+              "seed0_succeeds": true,
+              "power_200_seeds": 1.0
+            }
+          },
+          "null_sizes": {
+            "primary_exact": 360360,
+            "binary_exact": 5005,
+            "secondary_distinct": 5405400,
+            "secondary_method": "monte_carlo_200000"
+          },
+          "flags": [],
+          "per_k": {
+            "k15": {
+              "g_algorithm": {
+                "bibfs": 10.88548471365572,
+                "dijkstra_unit": 21.590979351337932,
+                "idastar": 13.245712821373619,
+                "jps": 15.872428763642265,
+                "biastar": 11.564123771399029
+              },
+              "rho_primary": -0.6068480408008414,
+              "primary_p_lower": 0.009324009324009324,
+              "primary_p_two_sided": 0.018648018648018648,
+              "primary_n_null": 360360,
+              "rho_secondary": -0.7650830489974457,
+              "secondary_p_lower": 0.00083,
+              "secondary_p_two_sided": 0.001645,
+              "secondary_n_null": 200000,
+              "rho_binary": -0.78742598543589,
+              "binary_p_lower": 0.0007992007992007992,
+              "binary_p_two_sided": 0.0015984015984015984,
+              "binary_n_null": 5005,
+              "ci95_primary": [
+                -0.7083145942466413,
+                -0.5873352420612645
+              ],
+              "ci95_secondary": [
+                -0.8050500739450736,
+                -0.7345844025790776
+              ],
+              "ci95_5centroid": [
+                -0.6324555320336759,
+                -0.6324555320336759
+              ],
+              "boot_frac_rho_primary_le_-0.6": 0.8435,
+              "five_centroid_primary": {
+                "rho": -0.6324555320336759,
+                "p_lower": 0.13333333333333333,
+                "p_two_sided": 0.26666666666666666,
+                "n_perm": 120,
+                "floor_lower": 0.03333333333333333,
+                "floor_nominal": 0.008333333333333333
+              },
+              "five_centroid_secondary": {
+                "rho": -0.9746794344808964,
+                "p_lower": 0.016666666666666666,
+                "p_two_sided": 0.03333333333333333,
+                "n_perm": 120,
+                "floor_lower": 0.016666666666666666,
+                "floor_nominal": 0.008333333333333333
+              },
+              "stratified_secondary": {
+                "stat": -0.12200846792814624,
+                "n_algorithms_used": 3,
+                "n_constant_skipped": 2,
+                "n_arrangements_nominal": 7776,
+                "n_arrangements_effective": 216,
+                "floor_effective": 0.004629629629629629,
+                "p_lower": 0.46296296296296297,
+                "p_upper": 0.6111111111111112,
+                "p_two_sided": 0.9259259259259259,
+                "beta": 2.360070051445393,
+                "beta_p_lower": 0.5740740740740741,
+                "beta_p_two_sided": 0.7777777777777778,
+                "null_mean": 7.310110450206793e-18,
+                "null_sd": 0.4082482904638631
+              },
+              "stratified_primary": {
+                "stat": 0.5,
+                "n_algorithms_used": 1,
+                "n_constant_skipped": 4,
+                "n_arrangements_nominal": 7776,
+                "n_arrangements_effective": 6,
+                "floor_effective": 0.16666666666666666,
+                "p_lower": 0.8333333333333334,
+                "p_upper": 0.5,
+                "p_two_sided": 1.0,
+                "beta": 0.25673700137567845,
+                "beta_p_lower": 0.6666666666666666,
+                "beta_p_two_sided": 1.0,
+                "null_mean": 0.0,
+                "null_sd": 0.7071067811865476
+              },
+              "mds_stress1": 0.1805598993496016
+            },
+            "k10": {
+              "g_algorithm": {
+                "bibfs": 13.163169695136574,
+                "dijkstra_unit": 25.761824282931162,
+                "idastar": 14.439573584206562,
+                "jps": 20.502533062921593,
+                "biastar": 13.496265404626472
+              },
+              "rho_primary": -0.766852990465372,
+              "primary_p_lower": 0.0006715506715506716,
+              "primary_p_two_sided": 0.001343101343101343,
+              "primary_n_null": 360360,
+              "rho_secondary": -0.6451819741545625,
+              "secondary_p_lower": 0.00599,
+              "secondary_p_two_sided": 0.01154,
+              "secondary_n_null": 200000,
+              "rho_binary": -0.8504200642707612,
+              "binary_p_lower": 0.0001998001998001998,
+              "binary_p_two_sided": 0.0003996003996003996,
+              "binary_n_null": 5005,
+              "ci95_primary": [
+                -0.766852990465372,
+                -0.6458736382799952
+              ],
+              "ci95_secondary": [
+                -0.7688894323257913,
+                -0.6052149492069347
+              ],
+              "ci95_5centroid": [
+                -0.7905694150420948,
+                -0.6324555320336759
+              ],
+              "boot_frac_rho_primary_le_-0.6": 1.0,
+              "five_centroid_primary": {
+                "rho": -0.6324555320336759,
+                "p_lower": 0.13333333333333333,
+                "p_two_sided": 0.26666666666666666,
+                "n_perm": 120,
+                "floor_lower": 0.03333333333333333,
+                "floor_nominal": 0.008333333333333333
+              },
+              "five_centroid_secondary": {
+                "rho": -0.9746794344808964,
+                "p_lower": 0.016666666666666666,
+                "p_two_sided": 0.03333333333333333,
+                "n_perm": 120,
+                "floor_lower": 0.016666666666666666,
+                "floor_nominal": 0.008333333333333333
+              },
+              "stratified_secondary": {
+                "stat": 0.16666666666666666,
+                "n_algorithms_used": 3,
+                "n_constant_skipped": 2,
+                "n_arrangements_nominal": 7776,
+                "n_arrangements_effective": 216,
+                "floor_effective": 0.004629629629629629,
+                "p_lower": 0.7222222222222222,
+                "p_upper": 0.3888888888888889,
+                "p_two_sided": 0.7777777777777778,
+                "beta": 3.581320721620813,
+                "beta_p_lower": 0.6481481481481481,
+                "beta_p_two_sided": 0.7037037037037037,
+                "null_mean": 7.310110450206793e-18,
+                "null_sd": 0.4082482904638631
+              },
+              "stratified_primary": {
+                "stat": 0.5,
+                "n_algorithms_used": 1,
+                "n_constant_skipped": 4,
+                "n_arrangements_nominal": 7776,
+                "n_arrangements_effective": 6,
+                "floor_effective": 0.16666666666666666,
+                "p_lower": 0.8333333333333334,
+                "p_upper": 0.5,
+                "p_two_sided": 1.0,
+                "beta": 0.1756733628876299,
+                "beta_p_lower": 0.6666666666666666,
+                "beta_p_two_sided": 1.0,
+                "null_mean": 0.0,
+                "null_sd": 0.7071067811865476
+              }
+            }
+          }
+        }
+      },
+      "0f": {
+        "edits": [
+          "S0-0f-01"
+        ],
+        "values": [
+          "0f.G.globalT.diff",
+          "0f.G.globalT.p",
+          "0f.G.EDT.p"
+        ],
+        "verdict": "ANSWERED",
+        "metrics": {
+          "presence": {
+            "T10": [
+              "A0",
+              "A1",
+              "A10"
+            ],
+            "B3": [
+              "A0",
+              "A1",
+              "A10"
+            ],
+            "A3": [
+              "A0",
+              "A1",
+              "A10"
+            ],
+            "B6": [
+              "A0",
+              "A1",
+              "A10"
+            ],
+            "G": [
+              "A0",
+              "A1",
+              "A10"
+            ]
+          },
+          "family_status_G": {
+            "global_T": {
+              "arms_present": [
+                "A1",
+                "A3g"
+              ],
+              "arms_within_cost": [
+                "A1"
+              ],
+              "status": "run arm",
+              "why": "run within the 5-point pass-cost rule",
+              "mean_diff": 0.0822267814555317,
+              "p_one_sided": 0.2288855572213893,
+              "lb_97_5": -0.07572685402119736
+            },
+            "min_p": {
+              "arms_present": [],
+              "arms_within_cost": [],
+              "status": "twin-level fallback",
+              "why": "not run on Gemma",
+              "mean_diff": 0.3355997239089639,
+              "p_one_sided": 0.01649175412293853,
+              "lb_97_5": 0.04797085057161394
+            },
+            "EDT": {
+              "arms_present": [
+                "A5"
+              ],
+              "arms_within_cost": [],
+              "status": "twin-level fallback",
+              "why": "run, but pass cost above 5 points on the full slot set",
+              "mean_diff": 0.3250462611686596,
+              "p_one_sided": 0.022988505747126436,
+              "lb_97_5": 0.014633051385541591
+            },
+            "AdapT": {
+              "arms_present": [],
+              "arms_within_cost": [],
+              "status": "twin-level fallback",
+              "why": "not run on Gemma",
+              "mean_diff": 0.3355997239089639,
+              "p_one_sided": 0.01649175412293853,
+              "lb_97_5": 0.04797085057161394
+            }
+          },
+          "comp_families_line": 32,
+          "fallback_docstring_line": 175,
+          "missing": {
+            "T10": [],
+            "B3": [],
+            "A3": [
+              "A4",
+              "A6"
+            ],
+            "B6": [
+              "A4",
+              "A6"
+            ],
+            "G": [
+              "A2",
+              "A4",
+              "A6"
+            ]
+          }
+        }
+      },
+      "0g": {
+        "edits": [
+          "S0-0g-01",
+          "S0-0g-02",
+          "S0-0g-03"
+        ],
+        "values": [],
+        "verdict": "ANSWERED",
+        "metrics": {
+          "markers": [
+            {
+              "id": "fig_forkdose_states",
+              "art": "art_vnyi0Fm5SyNH",
+              "files": [
+                "figures/F8_activation_geometry"
+              ],
+              "n_fields": 6,
+              "sha256": {
+                "figures/F8_activation_geometry.png": "990cf532f35af4e87be4060636d3057b4c22517ae6ac748b7a76cf1cb3908a3f",
+                "figures/F8_activation_geometry.pdf": "ea716fbdbab3635c6d5fb8e09ae02d429666fb77160d21c2949fa12222c7f4a9"
+              }
+            },
+            {
+              "id": "fig_das_handle_coords",
+              "art": "art_e-_q5mSJGrSb",
+              "files": [
+                "figures/F3_geometry_T10",
+                "figures/F3_geometry_GRID"
+              ],
+              "n_fields": 6,
+              "sha256": {
+                "figures/F3_geometry_T10.png": "c6258727da48f3bdf93236080e8c0d59fe84aa2f82abdbbb003b0ed29def0c64",
+                "figures/F3_geometry_T10.pdf": "db2f065e934e6c1557ca415dec3ee9a0f265d78e607949cabc3126d3cef6e0a2",
+                "figures/F3_geometry_GRID.png": "93e5eedbc52b77e16e036f463414b7d57e485b84e0acb083b8aa76841cccbadd",
+                "figures/F3_geometry_GRID.pdf": "76d638fe58368ee1dbc5dcf503da591ab5167ab79e94e4c02e43cf8bcb3384a0"
+              }
+            },
+            {
+              "id": "fig_das_handle_axis",
+              "art": "art_e-_q5mSJGrSb",
+              "files": [
+                "figures/F3b_handle_axis_T10",
+                "figures/F3b_handle_axis_GRID"
+              ],
+              "n_fields": 6,
+              "sha256": {
+                "figures/F3b_handle_axis_T10.png": "16b03f0eac08d978667e6c794237eba542a9ddc0dc00070bdda3850cb36d7935",
+                "figures/F3b_handle_axis_T10.pdf": "326d51ac2f5089bf4bf865a4c7d567166337504f46197031cfa7914d9d9b61a0",
+                "figures/F3b_handle_axis_GRID.png": "53675d36ace6d57d4b994a4ad39c67b228b9ee0a13df3e2ef15a6e2208e3a708",
+                "figures/F3b_handle_axis_GRID.pdf": "eb9444236b7ef69afcccdeb3faf10c71d2efd0f130ccf9677b171e5b3c2151d0"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "flags": [],
+    "outputs": [
+      "corrections.json",
+      "report_corrected.md",
+      "report.diff"
+    ]
+  },
+  "metrics_agg": {
+    "items_answered": 7,
+    "items_total": 7,
+    "n_edits": 49,
+    "apply_test_pass": 1,
+    "lint_before_unallowed": 28,
+    "lint_before_total": 36,
+    "lint_after_unallowed": 0,
+    "values_total": 298,
+    "values_match": 147,
+    "values_corrected": 0,
+    "values_new": 151,
+    "values_carried": 0,
+    "circuit_identity_check_pass": 1,
+    "circuit_n_exact_zero_heldout_nodes": 1,
+    "circuit_cond_span_matches_heldout": 0,
+    "circuit_L0_pair_mean_ablate": 8.144148281097412,
+    "circuit_L0_pair_mean_steer": 7.407574213027954,
+    "circuit_natural_heldout_ablate": 0.28175117492675783,
+    "circuit_natural_heldout_p": 0.03125,
+    "das_T10_bfs_written": 29,
+    "das_T10_bfs_correct": 5,
+    "das_T10_bfs_mcnemar_p": 0.0625,
+    "das_n_29of30_occurrences": 29,
+    "entropy_n_twin_samples_above_q90": 209,
+    "law_units_pass": 5,
+    "law_sign_test_p_vs_flat": 0.34375,
+    "positioning_rows": 65,
+    "positioning_live_verified": 8,
+    "positioning_live_verified_abstract": 3,
+    "positioning_live_not_found": 0,
+    "n_venue_or_version_corrections": 3,
+    "alias_gate_E1": 1,
+    "alias_gate_E2": 1,
+    "alias_gate_E3": 1,
+    "alias_gate_E4_spearman": 1.0,
+    "alias_rho_k15": -0.6068480408008414,
+    "alias_p_k15": 0.009324009324009324,
+    "alias_rho_k15_ci_low": -0.7083145942466413,
+    "alias_rho_k15_ci_high": -0.5873352420612645,
+    "alias_rho_k10": -0.766852990465372,
+    "alias_p_k10": 0.0006715506715506716,
+    "alias_rho_k15_secondary": -0.7650830489974457,
+    "alias_p_k15_secondary": 0.00083,
+    "alias_rho_5centroid": -0.6324555320336759,
+    "alias_p_5centroid": 0.13333333333333333,
+    "alias_5centroid_floor": 0.03333333333333333,
+    "alias_stratified_stat": -0.12200846792814624,
+    "alias_stratified_p": 0.46296296296296297,
+    "alias_fe_beta": 2.360070051445393,
+    "alias_fe_beta_p_two_sided": 0.7777777777777778,
+    "alias_placebo_P1_reject_rate": 0.048,
+    "alias_placebo_P2_reject_rate": 0.05,
+    "alias_placebo_P3_mean": 0.007350852961085882,
+    "alias_planted_control_pass": 1,
+    "alias_bpe_rho_k15": -0.7680054866576357,
+    "alias_bpe_stratified_k15": -0.5,
+    "alias_bpe_stratified_p_k15": 0.0573559670781893,
+    "alias_bpe_stratified_p_k10": 0.11188271604938271,
+    "alias_verdict_confounded": 1,
+    "gemma_families_twin_fallback": 3,
+    "figure_markers_added": 7,
+    "figure_caption_fields_complete": 8,
+    "audit_n_checks": 400,
+    "audit_n_mismatches": 0,
+    "audit_placebos_failed": 4,
+    "audit_raw_headlines_all_match": 1,
+    "audit_raw_headline_placebos_failed": 4
+  },
+  "datasets": [
+    {
+      "dataset": "corrections",
+      "examples": [
+        {
+          "input": "0a.L0.abl.mean_d <- art_18XvfcJJZi1O:results/summary.json#validation.C1forced.per_node.ablate[node=mlp|L0|H-1|COND].mean_d",
+          "output": "5.43",
+          "metadata_item": "0a",
+          "metadata_status": "MATCH",
+          "metadata_recorded": "5.43",
+          "metadata_recomputed": 5.429432187398,
+          "metadata_tolerance": "last printed digit",
+          "predict_recorded": "5.43",
+          "predict_recomputed": "5.43",
+          "eval_match": 1.0
+        },
+        {
+          "input": "0a.L0.abl.pair <- art_18XvfcJJZi1O:results/summary.json#validation.C1forced.per_node.ablate[node=mlp|L0|H-1|COND].mean_d_pair_prompts",
+          "output": "8.14",
+          "metadata_item": "0a",
+          "metadata_status": "NEW",
+          "metadata_recorded": null,
+          "metadata_recomputed": 8.144148281097,
+          "metadata_tolerance": "printed precision",
+          "predict_recorded": "None",
+          "predict_recomputed": "8.14",
+          "eval_match": 0.0
+        },
+        {
+          "input": "0a.L0.abl.heldout <- art_18XvfcJJZi1O:results/summary.json#validation.C1forced.per_node.ablate[node=mlp|L0|H-1|COND].mean_d_heldout",
+          "output": "0.00",
+          "metadata_item": "0a",
+          "metadata_status": "NEW",
+          "metadata_recorded": null,
+          "metadata_recomputed": 0.0,
+          "metadata_tolerance": "printed precision",
+          "predict_recorded": "None",
+          "predict_recomputed": "0.00",
+          "eval_match": 0.0
+        }
+      ]
+    },
+    {
+      "dataset": "report_edits",
+      "examples": [
+        {
+          "input": "**Table 395.** Validation of the top 10 nodes against 50 matched random components (minimum spanning tree, forced Prim; 30 prompts, 10 held out). Effects are mean metric changes in nats; p-values are ...",
+          "output": "**Table 395.** Validation of the top 10 nodes against 50 matched random components (minimum spanning tree, forced Prim; 30 prompts, 10 held out). Effects are mean metric changes in nats; p-values are ...",
+          "predict_s0": "**Table 395.** Validation of the top 10 nodes against 50 matched random components (minimum spanning tree, forced Prim; 30 prompts, 10 held out). Effects are mean metric changes in nats; p-values are ...",
+          "metadata_id": "S0-0a-01",
+          "metadata_item": "0a",
+          "metadata_section": "8.5",
+          "metadata_rationale": "Table 395 gains the held-out columns; the layer-0 condition node's exact-zero held-out effect is an unapplied edit (MeanCache template filter), not a held-out failure",
+          "metadata_line_hint": 8772,
+          "metadata_values": [
+            "0a.T395.mlp|L0|H-1|COND.abl",
+            "0a.T395.mlp|L0|H-1|COND.abl_p",
+            "0a.T395.mlp|L0|H-1|COND.ste"
+          ],
+          "eval_n_values": 92.0,
+          "eval_old_text_unique": 1.0
+        },
+        {
+          "input": "**Table 396.** Validation of the top 10 nodes on connected components (40 prompts, 10 held out).\n\n| Node | Ablation effect | Ablation p | Steering effect | Steering p | Both pass |\n|-|-|-|-|-|-|\n| MLP...",
+          "output": "**Table 396.** Validation of the top 10 nodes on connected components (40 prompts, 10 held out). Held-out columns as in Table 395; no node here sits at the condition span, and every held-out edit was ...",
+          "predict_s0": "**Table 396.** Validation of the top 10 nodes on connected components (40 prompts, 10 held out). Held-out columns as in Table 395; no node here sits at the condition span, and every held-out edit was ...",
+          "metadata_id": "S0-0a-02",
+          "metadata_item": "0a",
+          "metadata_section": "8.5",
+          "metadata_rationale": "Table 396 gains the held-out columns (connected components)",
+          "metadata_line_hint": 8787,
+          "metadata_values": [
+            "0a.T396.mlp|L27|H-1|DEC.abl",
+            "0a.T396.mlp|L27|H-1|DEC.abl_p",
+            "0a.T396.mlp|L27|H-1|DEC.ste"
+          ],
+          "eval_n_values": 82.0,
+          "eval_old_text_unique": 1.0
+        },
+        {
+          "input": "The committed composition depends on the attribution screen, which missed Qwen3-8B's largest node; with the exhaustive sweep, the condition share of the primary contrast rises to 0.17 and the picture ...",
+          "output": "The committed composition depends on the attribution screen, which missed Qwen3-8B's largest node; with the exhaustive sweep, the condition share of the primary contrast rises to 0.17, still below Gem...",
+          "predict_s0": "The committed composition depends on the attribution screen, which missed Qwen3-8B's largest node; with the exhaustive sweep, the condition share of the primary contrast rises to 0.17, still below Gem...",
+          "metadata_id": "S0-0a-03",
+          "metadata_item": "0a",
+          "metadata_section": "8.5",
+          "metadata_rationale": "The post hoc sweep was read as a qualitative match; recomputed, it still misses both committed bands",
+          "metadata_line_hint": 8865,
+          "metadata_values": [
+            "0a.motif.sweep_cond",
+            "0a.band.cond.lo",
+            "0a.band.cond.hi"
+          ],
+          "eval_n_values": 9.0,
+          "eval_old_text_unique": 1.0
+        }
+      ]
+    },
+    {
+      "dataset": "circuit_heldout",
+      "examples": [
+        {
+          "input": "C1forced ablate mlp|L0|H-1|COND",
+          "output": "held-out mean 0.0000",
+          "predict_s0": "held-out mean 0.0000",
+          "metadata_label": "MLP, layer 0, condition span",
+          "metadata_n": 30,
+          "metadata_n_heldout": 10,
+          "eval_mean_d": 5.429432187398275,
+          "eval_mean_d_pair_prompts": 8.144148281097412,
+          "eval_mean_d_heldout": 0.0,
+          "eval_p_sign_flip_heldout": 1.0,
+          "eval_p_holm_20": 3.814697265625e-06,
+          "eval_identity_pass": 1.0,
+          "eval_n_exact_zero_heldout": 10.0
+        },
+        {
+          "input": "C1forced ablate head|L33|H14|DEC",
+          "output": "held-out mean 2.0167",
+          "predict_s0": "held-out mean 2.0167",
+          "metadata_label": "Head 14 of layer 33, fork",
+          "metadata_n": 30,
+          "metadata_n_heldout": 10,
+          "eval_mean_d": 2.0496805127461752,
+          "eval_mean_d_pair_prompts": 2.0661631565093996,
+          "eval_mean_d_heldout": 2.0167152252197265,
+          "eval_p_sign_flip_heldout": 0.0009765625,
+          "eval_p_holm_20": 1.862645149230957e-08,
+          "eval_identity_pass": 1.0,
+          "eval_n_exact_zero_heldout": 0.0
+        },
+        {
+          "input": "C1forced ablate mlp|L35|H-1|DEC",
+          "output": "held-out mean -2.5465",
+          "predict_s0": "held-out mean -2.5465",
+          "metadata_label": "MLP, layer 35, fork",
+          "metadata_n": 30,
+          "metadata_n_heldout": 10,
+          "eval_mean_d": -2.638116715749104,
+          "eval_mean_d_pair_prompts": -2.683938629150391,
+          "eval_mean_d_heldout": -2.5464728889465333,
+          "eval_p_sign_flip_heldout": 1.0,
+          "eval_p_holm_20": 1.0,
+          "eval_identity_pass": 1.0,
+          "eval_n_exact_zero_heldout": 0.0
+        }
+      ]
+    }
+  ]
+}
