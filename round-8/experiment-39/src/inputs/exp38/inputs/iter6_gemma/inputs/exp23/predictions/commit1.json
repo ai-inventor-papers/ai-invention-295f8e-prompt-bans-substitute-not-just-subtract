@@ -1,0 +1,969 @@
+{
+ "model": "google/gemma-3-4b-it",
+ "revision": "093f9f388b31de276ce2de164bdc2081324b9767",
+ "weights": {
+  "repo": "google/gemma-3-4b-it",
+  "revision": "093f9f388b31de276ce2de164bdc2081324b9767",
+  "files": {
+   "model-00001-of-00002.safetensors": {
+    "blob_sha256": "eb5fd5e97ddd07b56778733e9653c07312529cb00980a318fc3e1c4e3b5a8f1f",
+    "repo_lfs_sha256": "eb5fd5e97ddd07b56778733e9653c07312529cb00980a318fc3e1c4e3b5a8f1f",
+    "match": true
+   },
+   "model-00002-of-00002.safetensors": {
+    "blob_sha256": "fdde0e5aa5ced0fa203b3d50f4ab78168b7e3a3e08c6349f5cc9326666e1bb13",
+    "repo_lfs_sha256": "fdde0e5aa5ced0fa203b3d50f4ab78168b7e3a3e08c6349f5cc9326666e1bb13",
+    "match": true
+   }
+  },
+  "all_match": true
+ },
+ "precision": "bf16 sdpa",
+ "pilot": {
+  "T1": {
+   "n": 10,
+   "pass_rate": 0.9,
+   "correct_labels": {
+    "bfs": 4,
+    "dfs": 5
+   },
+   "D_g": "dfs",
+   "X_q": "bfs",
+   "modal_correct_any": "dfs",
+   "flag": null,
+   "rebuild_twin": true,
+   "labels_all": {
+    "bfs": 5,
+    "dfs": 5
+   }
+  },
+  "T2": {
+   "n": 10,
+   "pass_rate": 1.0,
+   "correct_labels": {
+    "dijkstra": 10
+   },
+   "D_g": "dijkstra",
+   "X_q": "dijkstra",
+   "modal_correct_any": "dijkstra",
+   "flag": null,
+   "rebuild_twin": false,
+   "labels_all": {
+    "dijkstra": 10
+   }
+  },
+  "T03": {
+   "n": 10,
+   "pass_rate": 1.0,
+   "correct_labels": {
+    "full_sort": 10
+   },
+   "D_g": "full_sort",
+   "X_q": "full_sort",
+   "modal_correct_any": "full_sort",
+   "flag": null,
+   "rebuild_twin": false,
+   "labels_all": {
+    "full_sort": 10
+   }
+  },
+  "T04": {
+   "n": 10,
+   "pass_rate": 1.0,
+   "correct_labels": {
+    "naive": 9,
+    "builtin": 1
+   },
+   "D_g": "naive",
+   "X_q": "naive",
+   "modal_correct_any": "naive",
+   "flag": null,
+   "rebuild_twin": false,
+   "labels_all": {
+    "naive": 9,
+    "builtin": 1
+   }
+  },
+  "T06": {
+   "n": 10,
+   "pass_rate": 1.0,
+   "correct_labels": {
+    "hash_set": 10
+   },
+   "D_g": "hash_set",
+   "X_q": "hash_set",
+   "modal_correct_any": "hash_set",
+   "flag": null,
+   "rebuild_twin": false,
+   "labels_all": {
+    "hash_set": 10
+   }
+  },
+  "T05": {
+   "n": 10,
+   "pass_rate": 1.0,
+   "correct_labels": {
+    "hash_map": 10
+   },
+   "D_g": "hash_map",
+   "X_q": "hash_map",
+   "modal_correct_any": "hash_map",
+   "flag": null,
+   "rebuild_twin": false,
+   "labels_all": {
+    "hash_map": 10
+   }
+  },
+  "T10": {
+   "n": 10,
+   "pass_rate": 1.0,
+   "correct_labels": {
+    "dfs": 10
+   },
+   "D_g": "dfs",
+   "X_q": "union_find",
+   "modal_correct_any": "dfs",
+   "flag": null,
+   "rebuild_twin": true,
+   "labels_all": {
+    "dfs": 10
+   }
+  },
+  "R1": {
+   "n": 10,
+   "pass_rate": 1.0,
+   "correct_labels": {
+    "greedy_end": 10
+   },
+   "D_g": "greedy_end",
+   "X_q": "greedy_end",
+   "modal_correct_any": "greedy_end",
+   "flag": null,
+   "rebuild_twin": false,
+   "labels_all": {
+    "greedy_end": 10
+   }
+  },
+  "T08": {
+   "n": 10,
+   "pass_rate": 1.0,
+   "correct_labels": {
+    "iteration": 10
+   },
+   "D_g": "iteration",
+   "X_q": "iteration",
+   "modal_correct_any": "iteration",
+   "flag": null,
+   "rebuild_twin": false,
+   "labels_all": {
+    "iteration": 10
+   }
+  },
+  "R3": {
+   "n": 10,
+   "pass_rate": 1.0,
+   "correct_labels": {
+    "kahn": 10
+   },
+   "D_g": "kahn",
+   "X_q": "kahn",
+   "modal_correct_any": "kahn",
+   "flag": null,
+   "rebuild_twin": false,
+   "labels_all": {
+    "kahn": 10
+   }
+  },
+  "T13": {
+   "n": 10,
+   "pass_rate": 1.0,
+   "correct_labels": {
+    "sort_sweep": 10
+   },
+   "D_g": "sort_sweep",
+   "X_q": "sort_sweep",
+   "modal_correct_any": "sort_sweep",
+   "flag": null,
+   "rebuild_twin": false,
+   "labels_all": {
+    "sort_sweep": 10
+   }
+  },
+  "R6": {
+   "n": 10,
+   "pass_rate": 1.0,
+   "correct_labels": {
+    "linear_scan": 9,
+    "binary_search": 1
+   },
+   "D_g": "binary_search",
+   "X_q": "binary_search",
+   "modal_correct_any": "linear_scan",
+   "flag": "offcatalogue_modal_default:linear_scan",
+   "rebuild_twin": false,
+   "labels_all": {
+    "linear_scan": 9,
+    "binary_search": 1
+   }
+  },
+  "T14": {
+   "n": 10,
+   "pass_rate": 1.0,
+   "correct_labels": {
+    "sort_by_count": 10
+   },
+   "D_g": "sort_by_count",
+   "X_q": "sort_by_count",
+   "modal_correct_any": "sort_by_count",
+   "flag": null,
+   "rebuild_twin": false,
+   "labels_all": {
+    "sort_by_count": 10
+   }
+  },
+  "T11": {
+   "n": 10,
+   "pass_rate": 1.0,
+   "correct_labels": {
+    "patience_bisect": 10
+   },
+   "D_g": "patience_bisect",
+   "X_q": "quadratic_dp",
+   "modal_correct_any": "patience_bisect",
+   "flag": null,
+   "rebuild_twin": true,
+   "labels_all": {
+    "patience_bisect": 10
+   }
+  },
+  "R2": {
+   "n": 10,
+   "pass_rate": 1.0,
+   "correct_labels": {
+    "dfs_parent": 10
+   },
+   "D_g": "dfs_parent",
+   "X_q": "dfs_parent",
+   "modal_correct_any": "dfs_parent",
+   "flag": null,
+   "rebuild_twin": false,
+   "labels_all": {
+    "dfs_parent": 10
+   }
+  }
+ },
+ "pilot_rule": {
+  "n_tasks_pass_lt_0.6": 0,
+  "switch_to_fallback": false,
+  "rule": "fallback model iff pass < 0.6 on > 7 of 15 tasks"
+ },
+ "caps": {
+  "bench": {
+   "p99": 202.0,
+   "cap": 640,
+   "default": 1024
+  },
+  "path": {
+   "p99": 337.39,
+   "cap": 640,
+   "default": 1536
+  }
+ },
+ "B": {
+  "T1": 36,
+  "T2": 36,
+  "T03": 36,
+  "T04": 36,
+  "T06": 36,
+  "T05": 36,
+  "T10": 36,
+  "R1": 36,
+  "T08": 36,
+  "R3": 36,
+  "T13": 36,
+  "R6": 36,
+  "T14": 36,
+  "T11": 36,
+  "R2": 36
+ },
+ "twins": {
+  "T1|W1": {
+   "noun": "house",
+   "pad": 6,
+   "P": 248,
+   "spec_start": 19,
+   "spec_end": 243,
+   "noun_source": "frozen",
+   "prompt_sha256": "7665ba7514c938240f83d3503ec5e2aec88e73ef5e6f90bad9024909c14849c6"
+  },
+  "T1|W2": {
+   "noun": "house",
+   "pad": 5,
+   "P": 247,
+   "spec_start": 18,
+   "spec_end": 242,
+   "noun_source": "frozen",
+   "prompt_sha256": "1f22ac5e38e7d19a3c55a49e755740e6b34c283dcc0c5c56415fc0b2f7925cd5"
+  },
+  "T1|W3": {
+   "noun": "house",
+   "pad": 6,
+   "P": 244,
+   "spec_start": 15,
+   "spec_end": 239,
+   "noun_source": "frozen",
+   "prompt_sha256": "e7348f7c7d112d16387d4245a37fe3b0e9ecb7142ef39e6102647f2b7f204506"
+  },
+  "T1|W4": {
+   "noun": "house",
+   "pad": 6,
+   "P": 246,
+   "spec_start": 17,
+   "spec_end": 241,
+   "noun_source": "frozen",
+   "prompt_sha256": "205056b110bb1e65dff7b4795247b4964182a322ec1b8fa4471a83fdaefcb2ed"
+  },
+  "T1|W5": {
+   "noun": "house",
+   "pad": 5,
+   "P": 249,
+   "spec_start": 20,
+   "spec_end": 244,
+   "noun_source": "frozen",
+   "prompt_sha256": "f192afc4279ecf779da2806b80a0fccaebd95eedf2438a732683cc278999c14e"
+  },
+  "T2|W1": {
+   "noun": "man",
+   "pad": 3,
+   "P": 200,
+   "spec_start": 16,
+   "spec_end": 195,
+   "noun_source": "frozen",
+   "prompt_sha256": "ecb754cb3868ca976bbdd87f8f033835eefaf3bef51137f0928586dacc21552d"
+  },
+  "T2|W2": {
+   "noun": "man",
+   "pad": 3,
+   "P": 200,
+   "spec_start": 16,
+   "spec_end": 195,
+   "noun_source": "frozen",
+   "prompt_sha256": "787d8e7eab961eb603a4df11ee1c17117b4573248d78e92b657afb71bef8a7ff"
+  },
+  "T2|W3": {
+   "noun": "man",
+   "pad": 3,
+   "P": 196,
+   "spec_start": 12,
+   "spec_end": 191,
+   "noun_source": "frozen",
+   "prompt_sha256": "cec3aba21bf7626335467674e9ca11a958a182f65570fd59c201624f414f8c4b"
+  },
+  "T2|W4": {
+   "noun": "man",
+   "pad": 5,
+   "P": 200,
+   "spec_start": 16,
+   "spec_end": 195,
+   "noun_source": "frozen",
+   "prompt_sha256": "d388683c8aef7381c5052e4ba3870f02c765e4ad1df6f617a43492853d49def8"
+  },
+  "T2|W5": {
+   "noun": "man",
+   "pad": 3,
+   "P": 202,
+   "spec_start": 18,
+   "spec_end": 197,
+   "noun_source": "frozen",
+   "prompt_sha256": "7a569da17ffdabffcf05af45f755ddeac5f0b6d7e1a6793bed4f8fac24e9bb3f"
+  },
+  "T03|W1": {
+   "noun": "man",
+   "pad": 2,
+   "P": 191,
+   "spec_start": 15,
+   "spec_end": 186,
+   "noun_source": "frozen",
+   "prompt_sha256": "ba69c58c4d99d1bdfb5e8f9ef738d630151a9dfc8c04066b6c25e9ae9777a40f"
+  },
+  "T03|W2": {
+   "noun": "man",
+   "pad": 2,
+   "P": 191,
+   "spec_start": 15,
+   "spec_end": 186,
+   "noun_source": "frozen",
+   "prompt_sha256": "b58bd54d698b93934b18569af0ab4330328276dc9e02a4eb0b566069006cf179"
+  },
+  "T03|W3": {
+   "noun": "man",
+   "pad": 2,
+   "P": 187,
+   "spec_start": 11,
+   "spec_end": 182,
+   "noun_source": "frozen",
+   "prompt_sha256": "f3b9c7be41f9fb3226ad44a3e198a4843ffc57a56dc55883e4c8d0ccb97978b6"
+  },
+  "T03|W4": {
+   "noun": "man",
+   "pad": 2,
+   "P": 189,
+   "spec_start": 13,
+   "spec_end": 184,
+   "noun_source": "frozen",
+   "prompt_sha256": "1b4e2ec12a1ed6c20b8f67cdd275cc372d2592982efcf8853f9e9a38198e9a94"
+  },
+  "T03|W5": {
+   "noun": "man",
+   "pad": 2,
+   "P": 193,
+   "spec_start": 17,
+   "spec_end": 188,
+   "noun_source": "frozen",
+   "prompt_sha256": "af85dcfdb54d44fc72075e6838b49d7c69771740449773eafa6d6f46f1df2a97"
+  },
+  "T04|W1": {
+   "noun": "bank",
+   "pad": 5,
+   "P": 159,
+   "spec_start": 18,
+   "spec_end": 154,
+   "noun_source": "frozen",
+   "prompt_sha256": "902f9dc91451233c807466692066a1ef685139fde581f5cc29e8c9a5659352e6"
+  },
+  "T04|W2": {
+   "noun": "bank",
+   "pad": 5,
+   "P": 159,
+   "spec_start": 18,
+   "spec_end": 154,
+   "noun_source": "frozen",
+   "prompt_sha256": "b4cbac34abda2efb99f59c46ecf24e125563b23e2ebac0330ae3a717a396f5d4"
+  },
+  "T04|W3": {
+   "noun": "bank",
+   "pad": 5,
+   "P": 155,
+   "spec_start": 14,
+   "spec_end": 150,
+   "noun_source": "frozen",
+   "prompt_sha256": "0dd5704785f9c5caee79ca3001160be4029637d903320732dcb4e7b200bf3135"
+  },
+  "T04|W4": {
+   "noun": "bank",
+   "pad": 5,
+   "P": 157,
+   "spec_start": 16,
+   "spec_end": 152,
+   "noun_source": "frozen",
+   "prompt_sha256": "817384a277ed79daa778d7e4d81c4c3decbb8bc1322fe5f9f1a90d9df5328af6"
+  },
+  "T04|W5": {
+   "noun": "bank",
+   "pad": 5,
+   "P": 161,
+   "spec_start": 20,
+   "spec_end": 156,
+   "noun_source": "frozen",
+   "prompt_sha256": "a75cac89bd8c68672cb6bdb057e0997009ec68c3eb036449d852051ac0d97e56"
+  },
+  "T06|W1": {
+   "noun": "fire",
+   "pad": 5,
+   "P": 142,
+   "spec_start": 18,
+   "spec_end": 137,
+   "noun_source": "frozen",
+   "prompt_sha256": "7480cb14d66eae7f72c3fabebfbc917fb9c183886cc689b116185faf72e39295"
+  },
+  "T06|W2": {
+   "noun": "fire",
+   "pad": 5,
+   "P": 142,
+   "spec_start": 18,
+   "spec_end": 137,
+   "noun_source": "frozen",
+   "prompt_sha256": "a5158541f48a03ab13c52c2d8a7709587a1b39bb1677ab085b3b6fcb13942b99"
+  },
+  "T06|W3": {
+   "noun": "fire",
+   "pad": 5,
+   "P": 138,
+   "spec_start": 14,
+   "spec_end": 133,
+   "noun_source": "frozen",
+   "prompt_sha256": "2f017b4fbd0e02bd8dab47c60c46e542356a60ee74002e65de565596c0580ff2"
+  },
+  "T06|W4": {
+   "noun": "fire",
+   "pad": 5,
+   "P": 140,
+   "spec_start": 16,
+   "spec_end": 135,
+   "noun_source": "frozen",
+   "prompt_sha256": "f6ba9593db99756639cdbd2e0e0e2e5a81e4769920bc85e137b07119ca44ca1f"
+  },
+  "T06|W5": {
+   "noun": "fire",
+   "pad": 5,
+   "P": 144,
+   "spec_start": 20,
+   "spec_end": 139,
+   "noun_source": "frozen",
+   "prompt_sha256": "3535237765156a43055fcded3a79d9c343afcf0365d009ee2c0c5448ba5b69b9"
+  },
+  "T05|W1": {
+   "noun": "face",
+   "pad": 5,
+   "P": 178,
+   "spec_start": 18,
+   "spec_end": 173,
+   "noun_source": "frozen",
+   "prompt_sha256": "eb0e6dfccf7a8098494775efc223ba78033633ffb36dc4ad66714a43abc98dc4"
+  },
+  "T05|W2": {
+   "noun": "face",
+   "pad": 5,
+   "P": 178,
+   "spec_start": 18,
+   "spec_end": 173,
+   "noun_source": "frozen",
+   "prompt_sha256": "f08818cf441e7623ff09eea55691a5d12e8b28b43a37690248ba5fa5454a4657"
+  },
+  "T05|W3": {
+   "noun": "face",
+   "pad": 5,
+   "P": 174,
+   "spec_start": 14,
+   "spec_end": 169,
+   "noun_source": "frozen",
+   "prompt_sha256": "6ef182199e5abdb3552d4e8753b22db3f14abdfbe05df1854333d2ebaf1a1b88"
+  },
+  "T05|W4": {
+   "noun": "face",
+   "pad": 5,
+   "P": 176,
+   "spec_start": 16,
+   "spec_end": 171,
+   "noun_source": "frozen",
+   "prompt_sha256": "0881478554bd8a03e11032b65ba7c8dbd3ffae11704ad109b7bdb037be6289a6"
+  },
+  "T05|W5": {
+   "noun": "face",
+   "pad": 5,
+   "P": 180,
+   "spec_start": 20,
+   "spec_end": 175,
+   "noun_source": "frozen",
+   "prompt_sha256": "c0546b1479caafc8bd4fc82412243098f7b53a0c80bc6dd1e58f532e3641388d"
+  },
+  "T10|W1": {
+   "noun": "building",
+   "pad": 6,
+   "P": 171,
+   "spec_start": 19,
+   "spec_end": 166,
+   "noun_source": "frozen",
+   "prompt_sha256": "ec0078681b715af8e4be4f26137c2f6606ffc1d4576f68d87eb4f6722a03b22d"
+  },
+  "T10|W2": {
+   "noun": "building",
+   "pad": 5,
+   "P": 170,
+   "spec_start": 18,
+   "spec_end": 165,
+   "noun_source": "frozen",
+   "prompt_sha256": "a549e61d3092b6323ff09d874ffa1e213af299e67864a6817837c1bc54322a74"
+  },
+  "T10|W3": {
+   "noun": "building",
+   "pad": 6,
+   "P": 167,
+   "spec_start": 15,
+   "spec_end": 162,
+   "noun_source": "frozen",
+   "prompt_sha256": "bb49f6a63c00fdf1043a9696cc72c6cc1f2e8e1fd4b1acbef83776b4203a064b"
+  },
+  "T10|W4": {
+   "noun": "building",
+   "pad": 6,
+   "P": 169,
+   "spec_start": 17,
+   "spec_end": 164,
+   "noun_source": "frozen",
+   "prompt_sha256": "59388cde08b3c6c6a702fb68a7fd80394a33abaf6b7eafbd9ab0d61582aa2b78"
+  },
+  "T10|W5": {
+   "noun": "building",
+   "pad": 5,
+   "P": 172,
+   "spec_start": 20,
+   "spec_end": 167,
+   "noun_source": "frozen",
+   "prompt_sha256": "86f4e88bd48815540fe132e8c156dfbca559951c68d258fd97eebbf0c15951ae"
+  },
+  "R1|W1": {
+   "noun": "hat",
+   "pad": 5,
+   "P": 172,
+   "spec_start": 18,
+   "spec_end": 167,
+   "noun_source": "frozen",
+   "prompt_sha256": "356d50eb59815242fa4c9ec7f77ad934cdcbbd5744a29f06c907aa1e726a22df"
+  },
+  "R1|W2": {
+   "noun": "hat",
+   "pad": 5,
+   "P": 172,
+   "spec_start": 18,
+   "spec_end": 167,
+   "noun_source": "frozen",
+   "prompt_sha256": "cb1b3ff160a71d7bc8e773acaa6d198f5b2d41eee301d04c6f5a57ec23eced38"
+  },
+  "R1|W3": {
+   "noun": "hat",
+   "pad": 5,
+   "P": 168,
+   "spec_start": 14,
+   "spec_end": 163,
+   "noun_source": "frozen",
+   "prompt_sha256": "6470ed9ff2ea4a16b8337462296b2ba4ec3d2d57a05fea6b506b83bf89a95da0"
+  },
+  "R1|W4": {
+   "noun": "hat",
+   "pad": 5,
+   "P": 170,
+   "spec_start": 16,
+   "spec_end": 165,
+   "noun_source": "frozen",
+   "prompt_sha256": "5992f625614a7eb5506b0ade732a6f0ba8edd5f98feaedaa106ecd5d53cef039"
+  },
+  "R1|W5": {
+   "noun": "hat",
+   "pad": 5,
+   "P": 174,
+   "spec_start": 20,
+   "spec_end": 169,
+   "noun_source": "frozen",
+   "prompt_sha256": "40fab93ffd59cc98812a258869cdef37ab95784579a597fc442fc102f149841e"
+  },
+  "T08|W1": {
+   "noun": "bag",
+   "pad": 3,
+   "P": 164,
+   "spec_start": 16,
+   "spec_end": 159,
+   "noun_source": "frozen",
+   "prompt_sha256": "bb3def3dc937575374d8223b36d21a27ce9e7e70a3171245b565b06dc9357986"
+  },
+  "T08|W2": {
+   "noun": "bag",
+   "pad": 3,
+   "P": 164,
+   "spec_start": 16,
+   "spec_end": 159,
+   "noun_source": "frozen",
+   "prompt_sha256": "797f82f510e73e8433684cf3db50895ec432d6aa6773d4c8fbcfc124cee333d6"
+  },
+  "T08|W3": {
+   "noun": "bag",
+   "pad": 3,
+   "P": 160,
+   "spec_start": 12,
+   "spec_end": 155,
+   "noun_source": "frozen",
+   "prompt_sha256": "5c94cc56e92a5bb712246efa40b0c0046b2e69639d85e208cec170831d5b72f4"
+  },
+  "T08|W4": {
+   "noun": "bag",
+   "pad": 3,
+   "P": 162,
+   "spec_start": 14,
+   "spec_end": 157,
+   "noun_source": "frozen",
+   "prompt_sha256": "e6c63c0838d5d341dcbdc05fba01777155809fde444b11b3464569c1f78309e3"
+  },
+  "T08|W5": {
+   "noun": "bag",
+   "pad": 3,
+   "P": 166,
+   "spec_start": 18,
+   "spec_end": 161,
+   "noun_source": "frozen",
+   "prompt_sha256": "09a99ab38604b117c87a3740bffa94055cc677350cdc4c2e4df7bc7f5228c63f"
+  },
+  "R3|W1": {
+   "noun": "leg",
+   "pad": 6,
+   "P": 175,
+   "spec_start": 19,
+   "spec_end": 170,
+   "noun_source": "frozen",
+   "prompt_sha256": "d17f0a03320a6ddfab4bc3df06a3edb02aa9931912905a36a2fa64766384bffa"
+  },
+  "R3|W2": {
+   "noun": "leg",
+   "pad": 6,
+   "P": 175,
+   "spec_start": 19,
+   "spec_end": 170,
+   "noun_source": "frozen",
+   "prompt_sha256": "dd785d8e74b1fb6b708e577a50826efdbcaa6117309eb0a7b8e9923bef16e68e"
+  },
+  "R3|W3": {
+   "noun": "leg",
+   "pad": 6,
+   "P": 171,
+   "spec_start": 15,
+   "spec_end": 166,
+   "noun_source": "frozen",
+   "prompt_sha256": "0f0d19ac1b2442627f2fba03f312223f453923e81127ba0736427d8bfd7c3957"
+  },
+  "R3|W4": {
+   "noun": "leg",
+   "pad": 7,
+   "P": 174,
+   "spec_start": 18,
+   "spec_end": 169,
+   "noun_source": "frozen",
+   "prompt_sha256": "487b27c3a616abe07310c268e4f60be67640dffbaab1532e02291d359b5a2915"
+  },
+  "R3|W5": {
+   "noun": "leg",
+   "pad": 6,
+   "P": 177,
+   "spec_start": 21,
+   "spec_end": 172,
+   "noun_source": "frozen",
+   "prompt_sha256": "b4980c5a40e70c94aceda569cc2b2b78a5df2e4e0baecc466fa5db822e3ac780"
+  },
+  "T13|W1": {
+   "noun": "tape",
+   "pad": 4,
+   "P": 182,
+   "spec_start": 17,
+   "spec_end": 177,
+   "noun_source": "frozen",
+   "prompt_sha256": "5961954b66ce2d612ce38c2377a9829c9310b2151b96098f268da03a66274269"
+  },
+  "T13|W2": {
+   "noun": "tape",
+   "pad": 4,
+   "P": 182,
+   "spec_start": 17,
+   "spec_end": 177,
+   "noun_source": "frozen",
+   "prompt_sha256": "3dfd902e0bdb4d538f43b7011d2fb213383719f1ba3a3a4a0c604086e4702cc2"
+  },
+  "T13|W3": {
+   "noun": "tape",
+   "pad": 4,
+   "P": 178,
+   "spec_start": 13,
+   "spec_end": 173,
+   "noun_source": "frozen",
+   "prompt_sha256": "c7b2dc001b4fc24289af898a4106ad28eb2c49193170fba00a5a9ee72aa2d010"
+  },
+  "T13|W4": {
+   "noun": "tape",
+   "pad": 4,
+   "P": 180,
+   "spec_start": 15,
+   "spec_end": 175,
+   "noun_source": "frozen",
+   "prompt_sha256": "1292687a05cba2c643211024c5911b073b01dcecfe3c79fcebd17b2f28c5bd9d"
+  },
+  "T13|W5": {
+   "noun": "tape",
+   "pad": 4,
+   "P": 184,
+   "spec_start": 19,
+   "spec_end": 179,
+   "noun_source": "frozen",
+   "prompt_sha256": "c0e1c8af0e544c0978ebeffe104d5022243b7ebfd27a43b426b1fbbaa180d7c2"
+  },
+  "R6|W1": {
+   "noun": "chair",
+   "pad": 5,
+   "P": 159,
+   "spec_start": 18,
+   "spec_end": 154,
+   "noun_source": "frozen",
+   "prompt_sha256": "18c2c3abc77b3fc12c10ce2dac183d08ff91f5a8917ed8d89f339d81d1da1cf9"
+  },
+  "R6|W2": {
+   "noun": "chair",
+   "pad": 5,
+   "P": 159,
+   "spec_start": 18,
+   "spec_end": 154,
+   "noun_source": "frozen",
+   "prompt_sha256": "aa2b53e6e2615807ea048e66cda195a4e60a2505dcdb7cc35ee309a7a2684329"
+  },
+  "R6|W3": {
+   "noun": "chair",
+   "pad": 5,
+   "P": 155,
+   "spec_start": 14,
+   "spec_end": 150,
+   "noun_source": "frozen",
+   "prompt_sha256": "55dbcfa5959b6a7d6aeb2e89484c6600b2d20d877c1281520bdddade7192b13e"
+  },
+  "R6|W4": {
+   "noun": "chair",
+   "pad": 5,
+   "P": 157,
+   "spec_start": 16,
+   "spec_end": 152,
+   "noun_source": "frozen",
+   "prompt_sha256": "c0d78576a5caff40c97e99b4928eafa50a262414345b8e1bfc61ce2a53a9b256"
+  },
+  "R6|W5": {
+   "noun": "chair",
+   "pad": 5,
+   "P": 161,
+   "spec_start": 20,
+   "spec_end": 156,
+   "noun_source": "frozen",
+   "prompt_sha256": "c31cba4841be9c6d7ddcdc760b27d520aa369d65f717d0b7180f0f4f10428388"
+  },
+  "T14|W1": {
+   "noun": "picture",
+   "pad": 2,
+   "P": 167,
+   "spec_start": 15,
+   "spec_end": 162,
+   "noun_source": "frozen",
+   "prompt_sha256": "c975737d569a8209e3c3f73fb6264cc68bcaf664a29807f8211bae45f59a0862"
+  },
+  "T14|W2": {
+   "noun": "picture",
+   "pad": 2,
+   "P": 167,
+   "spec_start": 15,
+   "spec_end": 162,
+   "noun_source": "frozen",
+   "prompt_sha256": "f42b3a47d9fa636d4cddd1563f93808a3fa0c9ddae2d9c91524dc258f0664cb7"
+  },
+  "T14|W3": {
+   "noun": "picture",
+   "pad": 2,
+   "P": 163,
+   "spec_start": 11,
+   "spec_end": 158,
+   "noun_source": "frozen",
+   "prompt_sha256": "50fa3212c9a4e60ac78bc222f26b983063a09cc91a1352559f3ff2e0821f5e06"
+  },
+  "T14|W4": {
+   "noun": "picture",
+   "pad": 2,
+   "P": 165,
+   "spec_start": 13,
+   "spec_end": 160,
+   "noun_source": "frozen",
+   "prompt_sha256": "a2e5a192fdb03107a87269dced762dd7fcf350cef350bc9aa29ca5039ac0f665"
+  },
+  "T14|W5": {
+   "noun": "picture",
+   "pad": 2,
+   "P": 169,
+   "spec_start": 17,
+   "spec_end": 164,
+   "noun_source": "frozen",
+   "prompt_sha256": "ac1923d1b791ab453bb536823580347a10664b1e6033831a3c84452b4f513caf"
+  },
+  "T11|W1": {
+   "noun": "wall",
+   "pad": 4,
+   "P": 148,
+   "spec_start": 17,
+   "spec_end": 143,
+   "noun_source": "frozen",
+   "prompt_sha256": "f00876388cabc26ca1435b870d1e8b2bbef3f485bde8c4f3a12e05969704374b"
+  },
+  "T11|W2": {
+   "noun": "wall",
+   "pad": 4,
+   "P": 148,
+   "spec_start": 17,
+   "spec_end": 143,
+   "noun_source": "frozen",
+   "prompt_sha256": "0056fa562dfd5608b28cbf2968181ba9b9e36be82ef9ed1fe649013208e14cf1"
+  },
+  "T11|W3": {
+   "noun": "wall",
+   "pad": 4,
+   "P": 144,
+   "spec_start": 13,
+   "spec_end": 139,
+   "noun_source": "frozen",
+   "prompt_sha256": "a6547550940460779c22cd5fb97b15186d9e2deb1e2c6b2d72d5e2e4c414d17f"
+  },
+  "T11|W4": {
+   "noun": "wall",
+   "pad": 5,
+   "P": 147,
+   "spec_start": 16,
+   "spec_end": 142,
+   "noun_source": "frozen",
+   "prompt_sha256": "1218c12522f4308cc6c1cf9f3fc641ebcad44a29268a217dc34b5b3c4b2e84b7"
+  },
+  "T11|W5": {
+   "noun": "wall",
+   "pad": 4,
+   "P": 150,
+   "spec_start": 19,
+   "spec_end": 145,
+   "noun_source": "frozen",
+   "prompt_sha256": "8761f613ad3e45bd5dc4768deca54198942b8352bdb3a888273fe64ba8656cc1"
+  },
+  "R2|W1": {
+   "noun": "pants",
+   "pad": 3,
+   "P": 169,
+   "spec_start": 16,
+   "spec_end": 164,
+   "noun_source": "frozen",
+   "prompt_sha256": "1f02471334cbcea0531ca17a1dd00f38d9f7d2e32007ec4a2be01d2810a235d2"
+  },
+  "R2|W2": {
+   "noun": "pants",
+   "pad": 3,
+   "P": 169,
+   "spec_start": 16,
+   "spec_end": 164,
+   "noun_source": "frozen",
+   "prompt_sha256": "6037d703a84b52e17f5de6223903f2bb2361c6d57cc0a22779212f109d5434a3"
+  },
+  "R2|W3": {
+   "noun": "pants",
+   "pad": 3,
+   "P": 165,
+   "spec_start": 12,
+   "spec_end": 160,
+   "noun_source": "frozen",
+   "prompt_sha256": "aa6468afd1ec2521390f159f7684570c53ce9b0a1f627d2585ff305f30c9e066"
+  },
+  "R2|W4": {
+   "noun": "pants",
+   "pad": 2,
+   "P": 167,
+   "spec_start": 14,
+   "spec_end": 162,
+   "noun_source": "frozen",
+   "prompt_sha256": "7f71b288225a1a946c40868b79a9d798702314a0b20e7e94514f2f3861c1b711"
+  },
+  "R2|W5": {
+   "noun": "pants",
+   "pad": 3,
+   "P": 171,
+   "spec_start": 18,
+   "spec_end": 166,
+   "noun_source": "frozen",
+   "prompt_sha256": "243ee7d9edf646eb0ba08695d9d9a9a6985c83904bb04fd133f3251a28054355"
+  }
+ },
+ "default_rule": "D_g = modal correct label in the pilot (ties -> X_q; < 3 correct -> X_q, flagged); if D_g != X_q the task's twin is rebuilt for ban_len(D_g); after the twin N=50, D = its modal correct label (used for all analyses and the ban if it differs; logged)",
+ "unit": "outlier-excluded ban-free unit (src/units.py; deviation D3)",
+ "qwen_ratio_sha256": "c451b3fcd49b39debd975854b05f25ac68c997e8ae2e712e411c7189147541f9"
+}

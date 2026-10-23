@@ -1,0 +1,110 @@
+[
+ {
+  "id": "D01_gpu",
+  "severity": "major",
+  "text": "NVIDIA L4 (23 GB, ~300 GB/s) instead of the planned RTX A4500 (20 GB); decode runs at ~150-170 ms/step at batch 25-50, so the GPU cap binds earlier",
+  "utc": "2026-10-23T01:19:59.843033Z"
+ },
+ {
+  "id": "D02_commit0_late",
+  "severity": "minor",
+  "text": "COMMIT #0 (protocol.json) was written after the Stage 0 twins had started; all thresholds/arms were fixed in cfg8.py before any twin row; analysis_k1.py is committed at COMMIT #1 (before any Stage 3 sample) instead of #0",
+  "utc": "2026-10-23T01:19:59.857029Z"
+ },
+ {
+  "id": "D03_a3_twin_b1",
+  "severity": "minor",
+  "text": "16 A3 twin rows were generated at batch size 1 after an OOM-handler bug (fixed); they are valid T = 1 samples of their slot streams but carry batch-1 kernel numerics",
+  "utc": "2026-10-23T01:19:59.871967Z"
+ },
+ {
+  "id": "D04_commit0_live_files",
+  "severity": "minor",
+  "text": "COMMIT #0 hashed live code files. Four were edited afterwards for engineering reasons: cfg8.py (batch sizes only), predict8.py (dist_topk accepts saved top logits), stages8.py (token strings stored) and engine8.py (an optional ban mask at dosed steps, used only by the COMMIT #3 amendment; snapshotted in COMMIT #3). No threshold, arm, dose rule or analysis rule changed (protocol.json verifies). From COMMIT #1 on every committed file is snapshotted under predictions/snapshots/<commit>/.",
+  "utc": "2026-10-23T01:35:46.428846Z"
+ },
+ {
+  "id": "D05_phat_plugin",
+  "severity": "major",
+  "text": "Pseudo-count 0.5 per class over the full class set (5-12 classes) would move every composed share 0.08-0.38 toward uniform (twin T10 predicted 8% off-default at T = 1 although 0/50) and make no G token committal (10/10 -> 0.66 < 0.8). Composition, Pfail and Pcorrect use plug-in frequencies; the committal rule (max >= 0.8) uses the plan pseudo-count 0.5 per class over the classes observed at that node. Decided before COMMIT #1.",
+  "utc": "2026-10-23T01:41:01.788696Z"
+ },
+ {
+  "id": "D06_t10_def_routing",
+  "severity": "minor",
+  "text": "T10 index-10 token \" def\" is routed through n11 (second dose at index 11 and two-token composition) although its T = 1 map reads union_find 10/10 (because \" find\" follows 97% of the time at T = 1): n11 = n10 + \" def\" is the pre-registered second decision and the plan names the n11 branch as the fallback carrying \" dfs\"/\" bfs\". Engine and prediction use the same committed token list (commit1 units.T10.second_dose_tokens).",
+  "utc": "2026-10-23T01:41:01.816132Z"
+ },
+ {
+  "id": "D07_drop_order",
+  "severity": "major",
+  "text": "GPU budget on the power-capped L4: A12/A13 (plan-noise and base-intent comparator rows) are not run or reused on any unit (drop order 2); A4 min-p and A6 AdapT are dropped on A3 and B6 (drop orders 1-2) but run on T10 and B3 (the decisive units)",
+  "utc": "2026-10-23T01:58:17.769346Z"
+ },
+ {
+  "id": "D08_locator_after_commit1",
+  "severity": "minor",
+  "text": "The blind locator (Stage 1) ran after COMMIT #1 (the plan lists its verdict inside COMMIT #1); it reads only twin base paths and does not feed any prediction. Stage 1b (B6 second decision) was not run; B6 is scored with its one-token node.",
+  "utc": "2026-10-23T02:18:39.520759Z"
+ },
+ {
+  "id": "D09_t03_dict_counting",
+  "severity": "minor",
+  "text": "The T03 labeller extension to the dictionary form of counting sort was not done (the art_veI9l_Rb9wDY rows are not on this volume); T03 is a boundary unit scored only by the window arm.",
+  "utc": "2026-10-23T02:18:39.537547Z"
+ },
+ {
+  "id": "D10_no_fallback_position",
+  "severity": "minor",
+  "text": "The fallback decision-position rule for slots that leave every canonical opening is not implemented in the engine: such slots are scored at T = 1 everywhere, stay in the denominator and count as not dosed (the plan's final fallback). Their share is reported as reached_decision.",
+  "utc": "2026-10-23T02:18:39.554088Z"
+ },
+ {
+  "id": "D11_f8_centroids",
+  "severity": "minor",
+  "text": "F8 nearest-centroid check uses centroids from the class-forced A11 slots (forced committal tokens) instead of Stage 2 forced-token continuations, whose hidden states were not captured (continuation rows are stored light).",
+  "utc": "2026-10-23T02:18:39.569060Z"
+ },
+ {
+  "id": "D12_adjudication",
+  "severity": "minor",
+  "text": "Rows whose frozen label is 'disputed' or an unresolved runtime/AST disagreement were adjudicated by two blind judges (deepseek-chat-v3.1, gemini-2.5-flash) with a kimi-k2 tiebreak: twin and token-map rows before COMMIT #1 (153 rows, USD 0.065), Stage 3/4 rows after; adjudicated labels are primary (results/adjudication.json).",
+  "utc": "2026-10-23T02:18:39.584096Z"
+ },
+ {
+  "id": "D13_no_identity_shortcut",
+  "severity": "minor",
+  "text": "U2 failed (17/20 byte-identical when the batch shape differs), so the identity shortcut is off and every arm slot is generated; each Qwen arm runs alone in batches of the twin's size and order.",
+  "utc": "2026-10-23T02:18:39.599330Z"
+ },
+ {
+  "id": "D14_adapt_whitespace",
+  "severity": "minor",
+  "text": "AdapT-style arm: after a newline that ends a line ending in ':', T 2.0 applies until the first token with non-whitespace content (whether a token is whitespace is known only after sampling), so pure-indentation tokens in between also get T 2.0.",
+  "utc": "2026-10-23T02:18:39.631236Z"
+ },
+ {
+  "id": "D16_max_new",
+  "severity": "minor",
+  "text": "max_new kept at the source artifacts' values (T10 384, B3 768, A3 640, B6 384, T1 640, T2 512, T03 384, G 1024) instead of 1024 everywhere; programs that hit the cap are counted as generated (finish_reason 'length').",
+  "utc": "2026-10-23T02:18:39.648491Z"
+ },
+ {
+  "id": "D17_batch_numerics",
+  "severity": "minor",
+  "text": "Qwen twins and arms use left-padded mixed-template batches (Gemma: one template per batch); batch-composition kernel sensitivity was measured: U1 batch 1 3/3, batch 8 5/8 byte-identical; U2a 17/20.",
+  "utc": "2026-10-23T02:18:39.664185Z"
+ },
+ {
+  "id": "D18_ci_sign_fix",
+  "severity": "minor",
+  "text": "Post-commit correction in analysis_k1.py (committed at #1): the reported 95% CI of the pass cost carried the wrong sign ([-hi, -lo] of a difference that is already twin minus arm); it is now [lo, hi]. Point estimates, tests and every verdict rule are unchanged.",
+  "utc": "2026-10-23T03:08:03.575332Z"
+ },
+ {
+  "id": "D19_amendment_filtered_dose",
+  "severity": "minor",
+  "text": "Amendment (COMMIT #3, 03:29:58 UTC, after the primary T10/B3/G Stage 3 results were seen and before any of its own samples): the pass-filtered fork dose A9f/A10f on T10 and G removes the tokens whose committed Stage 2 Pfail >= 0.5 from the top-20 at the dosed step(s), with doses from the committed dose rules on the filtered composition. It is reported separately and never replaces A9/A10.",
+  "utc": "2026-10-23T03:31:07.069115Z"
+ }
+]
