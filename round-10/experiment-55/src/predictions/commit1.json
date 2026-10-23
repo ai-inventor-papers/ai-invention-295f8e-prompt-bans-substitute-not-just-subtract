@@ -1,0 +1,218 @@
+{
+ "label": "COMMIT1 (before any new state is read)",
+ "frames_json_sha256": "c3d1c8847cbfb84771c977e0f53f0bb044f473427ead8260919072b8554664c1",
+ "state_items_sha256": "39332764e7fc0ef7f43aed5593b6888c81ab66d113b614298606c8282a5cbf78",
+ "design_sha256": "788912707c38efac8ef9da980536baeb8c8a10022f83f2c934ca4d396d6e719b",
+ "program_lists": {
+  "factorial_by_cell": {
+   "LEV_DEQ": 16,
+   "LEV_HEAP": 16,
+   "LEV_ARR": 16,
+   "DFS_STK": 10,
+   "DFS_DEQ": 16,
+   "DFS_HEAP": 16,
+   "HEU_HEAP": 16,
+   "HEU_SLIST": 16,
+   "HEU_ARR": 10,
+   "RLX_ARR": 16,
+   "RLX_STK": 16,
+   "RND_HEAP": 14,
+   "RND_SET": 11,
+   "CRD_HEAP": 16,
+   "CRD_SLIST": 16
+  },
+  "factorial_ids_sha256": "0dd37569b871238915dd6d596d534cf5a7d2ad069f8f94f70d49e8f492bf800a",
+  "probe_n": 16,
+  "topups": {
+   "biastar": 5,
+   "bibfs": 7,
+   "iddfs": 10,
+   "jps": 1
+  },
+  "f0_classes": [
+   "bfs",
+   "dfs",
+   "iddfs",
+   "astar",
+   "gbfs",
+   "dijkstra_unit",
+   "idastar",
+   "bibfs"
+  ],
+  "survivor_families": [
+   "BF-RLX",
+   "CK-CRD",
+   "FL-RLX",
+   "MX-DFS",
+   "MX-OTHER",
+   "RC-RND",
+   "RP-RND",
+   "SP-OTHER",
+   "UD-LEV"
+  ],
+  "n_survivors": 114,
+  "n_covert": 30
+ },
+ "readout": {
+  "R": "R1 (mean block output over code tokens, neutral-twin context, enable_thinking=False)",
+  "blocks": {
+   "8b": 17,
+   "32b": 33
+  },
+  "k_primary": 15,
+  "k_second": 10,
+  "distance": "Euclidean kNN graph on raw float R1, symmetrised, components joined; Dijkstra geodesics",
+  "placement": "d(x, j) = min over x's k nearest frame points i of (||x - i|| + geo(i, j)) (E46 stage_analysis.oos)"
+ },
+ "frames": {
+  "F0": "iteration-9 PRIMARY M-code programs (cached states) + accepted top-ups; algorithm labels; classes >= 10 programs: bfs, dfs, iddfs, astar, gbfs, dijkstra_unit, idastar, bibfs",
+  "F1": "F0 + the 15 G1 factorial cells (PROBE excluded, placed instead); LEV_DEQ->bfs, DFS_STK->dfs, LEV_HEAP->dijkstra_unit, HEU_HEAP->astar/gbfs by key (+ in the first heap-key term), others factorial-other",
+  "S_disc(f)": "F1 minus every program whose measured container is c_f (graph rebuilt)",
+  "S_cont(f)": "F1 restricted to container c_f (graph rebuilt)",
+  "non_banned_median_set_F0": [
+   "dijkstra_unit",
+   "idastar",
+   "bibfs"
+  ],
+  "F7_deviation": "jps (1) and biastar (7) below 10 after 120 attempts each: F0 has 3 non-banned classes; the F1 mechanism median uses the RLX, RND, CRD cells plus the non-banned catalogue classes as references"
+ },
+ "g1": {
+  "statistics": "rho_d = partial Spearman(D, D_disc | D_cont); rho_c = partial Spearman(D, D_cont | D_disc); *_full add D_surf, D_len, D_disp; Kendall tau-a zero-order",
+  "inference": "B = 1000 bootstrap of programs within cells (graph rebuilt); restricted permutations exact (disc within container; cont within discipline); Holm over 2 models; noise ceiling 100 split-halves",
+  "baselines": [
+   "block-0 R1",
+   "TF-IDF identifier-normalised tokens (1-2 grams)",
+   "AST node-type 4-gram counts (L2-normalised)"
+  ],
+  "verdict": "SUPPORTED if rho_d >= 0.3, Holm within-container p < 0.05 and P_boot(rho_d > rho_c) >= 0.95; DISCONFIRMED if rho_d <= 0.1 on both models; INTERMEDIATE otherwise; FRAGILE if full-control or cross-validated result flips the verdict",
+  "sensitivities": [
+   "k10",
+   "euclid_centroid",
+   "crossval_euclid_centroid",
+   "readout R1g/R2",
+   "blocks L-2..L+2",
+   "exclude_reassigned",
+   "exclude_disputed",
+   "add_PROBE_cell",
+   "frame_F1",
+   "program_level"
+  ],
+  "dropped_before_data": [
+   "D_beh graded sensitivity (F5 drop order: dropped for time)"
+  ]
+ },
+ "g2": {
+  "predictions": {
+   "UD-LEV": "EDGE on F0 and F1; nearest banned discipline LEV; EDGE on S_disc; Delta_UD > 0 (p < 0.05)",
+   "BF-RLX": "OPPOSITE on F0 and F1; nearest S_cont cell RLX_ARR; Delta > 0",
+   "BF-LEV": "0 programs measured LEV -> the sharp discriminating test is unavailable (descriptive)",
+   "covert": ">= 0.8 nearest banned on F0 and F1",
+   "descriptive": "CK at CRD cells, RP/RC at RND, SP at LEV x SET (cell dropped, < 10), MX described",
+   "disconfirming": "UD OPPOSITE on S_disc"
+  },
+  "verdict": "SUPPORTED if UD, BF and covert predictions all hold; PARTIAL if UD or BF holds; DISCONFIRMED if UD OPPOSITE on S_disc (8B primary, 32B replication)",
+  "family_class_rule": "EDGE / OPPOSITE if > 50% of the family's programs are in that class, else MIXED"
+ },
+ "placebos": [
+  "discipline labels shuffled across all cells (expect |rho_d| small, p > 0.05)",
+  "container labels shuffled",
+  "Gaussian random states with matched norms",
+  "survivor family labels permuted"
+ ],
+ "t4_synthetic": {
+  "cells": [
+   "LEV_DEQ",
+   "LEV_HEAP",
+   "LEV_ARR",
+   "DFS_STK",
+   "DFS_DEQ",
+   "DFS_HEAP",
+   "HEU_HEAP",
+   "HEU_SLIST",
+   "HEU_ARR",
+   "RLX_ARR",
+   "RLX_STK",
+   "RND_HEAP",
+   "RND_SET",
+   "CRD_HEAP",
+   "CRD_SLIST"
+  ],
+  "counts": {
+   "LEV_DEQ": 16,
+   "LEV_HEAP": 16,
+   "LEV_ARR": 16,
+   "DFS_STK": 10,
+   "DFS_DEQ": 16,
+   "DFS_HEAP": 16,
+   "HEU_HEAP": 16,
+   "HEU_SLIST": 16,
+   "HEU_ARR": 10,
+   "RLX_ARR": 16,
+   "RLX_STK": 16,
+   "RND_HEAP": 14,
+   "RND_SET": 11,
+   "CRD_HEAP": 16,
+   "CRD_SLIST": 16
+  },
+  "restricted_perms": {
+   "exact": true,
+   "total": 5760
+  },
+  "dim": 256,
+  "type1": {
+   "a": 0.0,
+   "b": 1.5,
+   "s": 0.5,
+   "n_datasets": 200,
+   "reject_rate_restricted": 0.055,
+   "reject_rate_naive_full_matrix": 0.005,
+   "pass": true,
+   "rho_d_mean_under_null": -0.04021095184259723
+  },
+  "power": {
+   "calibration_mean_rho_by_a": {
+    "0.3": -0.024589617781110035,
+    "0.5": 0.03179841669962561,
+    "0.7": 0.16496453025899246,
+    "0.9": 0.3454473959379382,
+    "1.2": 0.4974005437290694,
+    "1.6": 0.5178997432504261
+   },
+   "a": 0.9,
+   "mean_rho_d": 0.33662549331467256,
+   "n_datasets": 200,
+   "power_rho_ge_0.3_and_p_lt_0.05": 0.635,
+   "power_p_lt_0.05_only": 0.88,
+   "known_limitation": false
+  },
+  "bootstrap_coverage": {
+   "n_runs": 50,
+   "B": 100,
+   "truth_proxy": 0.33662549331467256,
+   "coverage": 0.56
+  },
+  "crossval_noise": {
+   "plain_euclid_sq_mean": 0.14056757667955597,
+   "crossval_sq_mean": 0.0022812293851756193,
+   "crossval_sq_sd": 0.012157186328997871
+  },
+  "utc": "2026-10-23T20:18:53.531253Z"
+ },
+ "t4_known_limitations": [
+  "bootstrap percentile CI covered the across-dataset mean planted value in 0.56 of 50 runs (the within-cell bootstrap cannot see cell-structure variability; per-dataset population value not computed): P_boot criteria are read with this caveat; thresholds unchanged"
+ ],
+ "inputs": {
+  "SHA256SUMS": "566b327e80bb6e66c46011255701e3af71b885afadebdc8a95f52919513bef0b",
+  "LARGE_INPUTS": "a35bfd4cdfbb31fa8d01905eb858f3541ffc45e57d1ed53f0a15de5487d90917"
+ },
+ "code_sha256": {
+  "analysis_g2.py": "bff4e8477bfbd7b4c4f1bf9a12e43c6d27987bdb6bc7aa528dcb5148a9ce3191",
+  "run_analysis.py": "7f56cff661d9e8b4263f8d763bb9300adff30a44f2fa20ab3b46817610d9ecb2",
+  "geometry.py": "013ced7f8a63df972879c61ab4e042c7b97aa1cf26237f807092a78717e9d7fd",
+  "landing.py": "480ecb69e4aaf080e15dc6fe18f7c74e2e35e097b4a3ae2d70ec009ab8ab5ced",
+  "states10.py": "4255503f13d62e9667ad94049d7a9ebd2032074c8df0d1c04a2db3833317cb0f",
+  "stage_mcode.py": "a651aba700b9700ce591d8326a443dd160cd399ec510f5818f47069b9a15e931",
+  "states.py": "ad1253577c6a9aa0c64f2abe47993e91b8ba0540a8abe1a75332249137d267f9"
+ },
+ "utc": "2026-10-23T20:21:08.070790Z"
+}

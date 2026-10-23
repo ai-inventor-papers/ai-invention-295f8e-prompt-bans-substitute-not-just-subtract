@@ -1,0 +1,295 @@
+{
+ "amendment": "round 2 (last round): reworded instruction (instruction_round3) + EDGE_HINT2 inside the instruction paragraph; tail reminder dropped",
+ "edge_hint2": "Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start].",
+ "cells_short_after_round1": {
+  "LEV_DEQ": 7,
+  "LEV_HEAP": 10,
+  "LEV_SET": 3,
+  "LEV_ARR": 5,
+  "DFS_DEQ": 4,
+  "DFS_HEAP": 11,
+  "HEU_HEAP": 9,
+  "HEU_SLIST": 8,
+  "HEU_ARR": 7,
+  "RLX_ARR": 11,
+  "RLX_STK": 5,
+  "RLX_HEAP": 2,
+  "RND_HEAP": 4,
+  "RND_SET": 0,
+  "CRD_SLIST": 10
+ },
+ "prompts": [
+  {
+   "cell": "LEV_DEQ",
+   "template": 0,
+   "prompt_sha256": "006422cf8213165253e7e0a959ccd2531a39d5a0cb3ce8f283b4a2c60b242b75",
+   "segment": "Design constraint for the search: Process cells strictly in the order they were discovered, using collections.deque with popleft(). Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "LEV_DEQ",
+   "template": 1,
+   "prompt_sha256": "1a7189436bec0e051dd3263457cd11b7a4f9661527b591cf0c239c4fd7888e83",
+   "segment": "Use exactly this exploration strategy. Process cells strictly in the order they were discovered, using collections.deque with popleft(). Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "LEV_DEQ",
+   "template": 2,
+   "prompt_sha256": "a8a9ad941689d77ba14b0c5f37ceac35e90bfda29238f79dfac526102819e1b3",
+   "segment": "Process cells strictly in the order they were discovered, using collections.deque with popleft(). Do not combine it with any other search technique. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "LEV_HEAP",
+   "template": 0,
+   "prompt_sha256": "41a1ad2f8c448b8524f857cf742940803d0866be39f46e0e10cee06d0a9aa42e",
+   "segment": "Design constraint for the search: Use heapq with entries (steps_from_start, counter, cell); pop the smallest entry each time. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "LEV_HEAP",
+   "template": 1,
+   "prompt_sha256": "467ebb23cf50cda86189954d12bafd1bdda9a4689870011bbd07d97f9a4d2936",
+   "segment": "Use exactly this exploration strategy. Use heapq with entries (steps_from_start, counter, cell); pop the smallest entry each time. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "LEV_HEAP",
+   "template": 2,
+   "prompt_sha256": "ed7afd009a356d16688fe1551faa3cf0f6f66b65f16f8b8a759313ab1d7c461a",
+   "segment": "Use heapq with entries (steps_from_start, counter, cell); pop the smallest entry each time. Do not combine it with any other search technique. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "LEV_SET",
+   "template": 0,
+   "prompt_sha256": "cb247a85fa0e64d9410c341921e26481397bbeb74ac21e5f01bb662cb2c534ab",
+   "segment": "Design constraint for the search: Advance a whole ring of cells at a time: the frontier is a set of cells at distance d, and the next frontier is the set of their new free neighbours at distance d + 1. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "LEV_SET",
+   "template": 1,
+   "prompt_sha256": "d8cd327febc81c4dfa91197b8c7266d1f52729e214499fbaf542bf03d8675594",
+   "segment": "Use exactly this exploration strategy. Advance a whole ring of cells at a time: the frontier is a set of cells at distance d, and the next frontier is the set of their new free neighbours at distance d + 1. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "LEV_SET",
+   "template": 2,
+   "prompt_sha256": "318e4b3cee2e5454d2b1fde60ac92953b30efa36366474ed8fd79bae8a142226",
+   "segment": "Advance a whole ring of cells at a time: the frontier is a set of cells at distance d, and the next frontier is the set of their new free neighbours at distance d + 1. Do not combine it with any other search technique. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "LEV_ARR",
+   "template": 0,
+   "prompt_sha256": "ec06198a6a0a5abeab81e324d6adc2fd433bc31387122c9005896201ad823c21",
+   "segment": "Design constraint for the search: Label distances on a 2-D list: on pass d, look at every cell of the grid and, for each cell labelled d, label its unlabelled free neighbours d + 1; no frontier container at all. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "LEV_ARR",
+   "template": 1,
+   "prompt_sha256": "ea4a0a3c09b106e0d8c221500404d7c33897a5af325814efda2f55d852633e89",
+   "segment": "Use exactly this exploration strategy. Label distances on a 2-D list: on pass d, look at every cell of the grid and, for each cell labelled d, label its unlabelled free neighbours d + 1; no frontier container at all. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "LEV_ARR",
+   "template": 2,
+   "prompt_sha256": "251994eaeaa949dad4489d44ebd8e6b40417ab2ef349e015f69e14a356249f04",
+   "segment": "Label distances on a 2-D list: on pass d, look at every cell of the grid and, for each cell labelled d, label its unlabelled free neighbours d + 1; no frontier container at all. Do not combine it with any other search technique. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "DFS_DEQ",
+   "template": 0,
+   "prompt_sha256": "4cae77b1a279745e2b9c9ada218190020999b5c4fa444278dadf8332d28eab50",
+   "segment": "Design constraint for the search: Use collections.deque as a last-in-first-out structure: append() to add and pop() to remove, never popleft(). Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "DFS_DEQ",
+   "template": 1,
+   "prompt_sha256": "f4c3cb0add577732df75fa6c4ddbae7c03b18789f65e5d9b5da4cae08958ec64",
+   "segment": "Use exactly this exploration strategy. Use collections.deque as a last-in-first-out structure: append() to add and pop() to remove, never popleft(). Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "DFS_DEQ",
+   "template": 2,
+   "prompt_sha256": "eb9a5486b590b61172eed01aa8a0061625a5a005b1dc8ca8d5f250cea803795d",
+   "segment": "Use collections.deque as a last-in-first-out structure: append() to add and pop() to remove, never popleft(). Do not combine it with any other search technique. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "DFS_HEAP",
+   "template": 0,
+   "prompt_sha256": "7c259245f67cb6e62be000fb469a63ec25a1ae1f89d368c7cf6156b56648f13f",
+   "segment": "Design constraint for the search: Use heapq with entries (-counter, cell) where counter increases with every push, so the newest cell comes out first. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "DFS_HEAP",
+   "template": 1,
+   "prompt_sha256": "0c9f305ee052a0b6dd409a3afdab71455702b10e510309c2b93d099ca8a8ea50",
+   "segment": "Use exactly this exploration strategy. Use heapq with entries (-counter, cell) where counter increases with every push, so the newest cell comes out first. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "DFS_HEAP",
+   "template": 2,
+   "prompt_sha256": "d8687e6789bdd15540a84320bb447edf384d502884ef4b92ad91b6ba807c1085",
+   "segment": "Use heapq with entries (-counter, cell) where counter increases with every push, so the newest cell comes out first. Do not combine it with any other search technique. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "HEU_HEAP",
+   "template": 0,
+   "prompt_sha256": "062442e3228e4a92d75db807c78f72d86dc3e9bd0d8b1109e6f3560c0933dcc3",
+   "segment": "Design constraint for the search: Use heapq with entries whose first element is the Manhattan distance to the goal (you may add the steps so far) and pop the smallest entry each time. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "HEU_HEAP",
+   "template": 1,
+   "prompt_sha256": "483293644a73b20f692ddb262bf94634ba7f0da41e247f8d231bac7cbbf73277",
+   "segment": "Use exactly this exploration strategy. Use heapq with entries whose first element is the Manhattan distance to the goal (you may add the steps so far) and pop the smallest entry each time. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "HEU_HEAP",
+   "template": 2,
+   "prompt_sha256": "db12417488c7efba8e1c1cd0bcd8b336bb834b872cf487b57e60b1ca81f2e3df",
+   "segment": "Use heapq with entries whose first element is the Manhattan distance to the goal (you may add the steps so far) and pop the smallest entry each time. Do not combine it with any other search technique. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "HEU_SLIST",
+   "template": 0,
+   "prompt_sha256": "c1baca2c2c0a83d2672dd6935334e71b43e15fdf24174dc706a3e87317744b6e",
+   "segment": "Design constraint for the search: Maintain a Python list in ascending order of the Manhattan distance to the goal using bisect.insort, and remove the first element each step. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "HEU_SLIST",
+   "template": 1,
+   "prompt_sha256": "b78da5f2ad925d5145e1a4c44bd66b5f75c49e787eb6039ea1f918afb6f0bf02",
+   "segment": "Use exactly this exploration strategy. Maintain a Python list in ascending order of the Manhattan distance to the goal using bisect.insort, and remove the first element each step. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "HEU_SLIST",
+   "template": 2,
+   "prompt_sha256": "b071cecc5c7bea390bbc150e68fee149ce80d4bcde1ea0dcedb0aadf2d7c538a",
+   "segment": "Maintain a Python list in ascending order of the Manhattan distance to the goal using bisect.insort, and remove the first element each step. Do not combine it with any other search technique. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "HEU_ARR",
+   "template": 0,
+   "prompt_sha256": "fcd9ee4f3bdf650ccdae539cca45a4650367ac614c4e6898d004b1029dbc355a",
+   "segment": "Design constraint for the search: Without any frontier container, keep 2-D boolean arrays of open and closed cells and, each step, scan every cell to find the open one nearest to the goal by Manhattan distance. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "HEU_ARR",
+   "template": 1,
+   "prompt_sha256": "c7efa167aa688a2130f2c639170daecf47128c6a857ae59079cef0070367a537",
+   "segment": "Use exactly this exploration strategy. Without any frontier container, keep 2-D boolean arrays of open and closed cells and, each step, scan every cell to find the open one nearest to the goal by Manhattan distance. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "HEU_ARR",
+   "template": 2,
+   "prompt_sha256": "ef579052266674dc88a0c2995293d4f138ea6b46b533a07ffd4a56f1981fca96",
+   "segment": "Without any frontier container, keep 2-D boolean arrays of open and closed cells and, each step, scan every cell to find the open one nearest to the goal by Manhattan distance. Do not combine it with any other search technique. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "RLX_ARR",
+   "template": 0,
+   "prompt_sha256": "436343625fbb3403fd137c30f7d969011603e0f8fbdeee2adf95cce3550163ea",
+   "segment": "Design constraint for the search: Compute distances by repeated full passes over a 2-D array (row by row, column by column), lowering each free cell's value to one more than its smallest neighbour, until a pass makes no change. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "RLX_ARR",
+   "template": 1,
+   "prompt_sha256": "3a6f6ce22cb6f2a1977bb717db1998e76c7b3d68453c620ad83095f33bf4f500",
+   "segment": "Use exactly this exploration strategy. Compute distances by repeated full passes over a 2-D array (row by row, column by column), lowering each free cell's value to one more than its smallest neighbour, until a pass makes no change. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "RLX_ARR",
+   "template": 2,
+   "prompt_sha256": "ca566651501e4cb7a28d971b1ac250f2d4b608dddf703ab884d3f80fcd7be776",
+   "segment": "Compute distances by repeated full passes over a 2-D array (row by row, column by column), lowering each free cell's value to one more than its smallest neighbour, until a pass makes no change. Do not combine it with any other search technique. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "RLX_STK",
+   "template": 0,
+   "prompt_sha256": "413eed3d7291ad2a45087127c39393d1d77314c09aac13d7542830376f5a4db5",
+   "segment": "Design constraint for the search: Use a Python list as a last-in-first-out worklist of cells to re-examine; a cell is pushed every time its distance label drops, including cells that were already popped before. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "RLX_STK",
+   "template": 1,
+   "prompt_sha256": "a8d59b59e436088ec42945b7441086c561c3c76b51524ce6763e17d6672bbc02",
+   "segment": "Use exactly this exploration strategy. Use a Python list as a last-in-first-out worklist of cells to re-examine; a cell is pushed every time its distance label drops, including cells that were already popped before. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "RLX_STK",
+   "template": 2,
+   "prompt_sha256": "0032222f9cb12b483e020b2ea942d1b00014252ae69331a883f4ca64be1701db",
+   "segment": "Use a Python list as a last-in-first-out worklist of cells to re-examine; a cell is pushed every time its distance label drops, including cells that were already popped before. Do not combine it with any other search technique. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "RLX_HEAP",
+   "template": 0,
+   "prompt_sha256": "0d544624a6ca4c96e7e3217b42eca06633f7ebcc7938b2c6dd4044294b06e774",
+   "segment": "Design constraint for the search: Use heapq as a worklist ordered by the tuple (row, col); every time a cell's distance label drops, push it again, including cells that were already popped before. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "RLX_HEAP",
+   "template": 1,
+   "prompt_sha256": "ca930fb9a682c77c12fd2c0f52f5c53f6021986d7d4320966d11aec251e89adc",
+   "segment": "Use exactly this exploration strategy. Use heapq as a worklist ordered by the tuple (row, col); every time a cell's distance label drops, push it again, including cells that were already popped before. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "RLX_HEAP",
+   "template": 2,
+   "prompt_sha256": "d6f54b9c58e4d3857cc4854966318e00d04f2b4d9c7ca8458471c81b799c03b9",
+   "segment": "Use heapq as a worklist ordered by the tuple (row, col); every time a cell's distance label drops, push it again, including cells that were already popped before. Do not combine it with any other search technique. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "RND_HEAP",
+   "template": 0,
+   "prompt_sha256": "01611c07188b342c2b71c7d8ee100bf9bd24f003f78e9571e67b2f1cc7f48ba9",
+   "segment": "Design constraint for the search: Use heapq with entries (random.random(), cell) so that frontier cells come out in random order. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "RND_HEAP",
+   "template": 1,
+   "prompt_sha256": "ada82e31814b81e33728fededce13c6c146fa230e535de4c751c5068847e6780",
+   "segment": "Use exactly this exploration strategy. Use heapq with entries (random.random(), cell) so that frontier cells come out in random order. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "RND_HEAP",
+   "template": 2,
+   "prompt_sha256": "1a596190b5228af0181e3f4aa580adc671b62db651c2c8457253689dcff03b90",
+   "segment": "Use heapq with entries (random.random(), cell) so that frontier cells come out in random order. Do not combine it with any other search technique. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "RND_SET",
+   "template": 0,
+   "prompt_sha256": "55fbd51a726c1fd476ca7a759f7f04f63e957ba6d8c3a0919ea5048da07ab302",
+   "segment": "Design constraint for the search: Hold the frontier in a set and, each step, take a uniformly random member with random.choice(tuple(frontier)). Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "RND_SET",
+   "template": 1,
+   "prompt_sha256": "d6b31e1a51c36dbf460036b4dd7dc6be048d2f95499ca322af0c72cb6a582ecb",
+   "segment": "Use exactly this exploration strategy. Hold the frontier in a set and, each step, take a uniformly random member with random.choice(tuple(frontier)). Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "RND_SET",
+   "template": 2,
+   "prompt_sha256": "6f31710b30422e04d3666f8dab82f7b052902b1b7d501ecbbe18b979b994581d",
+   "segment": "Hold the frontier in a set and, each step, take a uniformly random member with random.choice(tuple(frontier)). Do not combine it with any other search technique. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "CRD_SLIST",
+   "template": 0,
+   "prompt_sha256": "02e5fe7cfe33695e4fc81d4fef2e93908c043e007c4da98241770756aab08849",
+   "segment": "Design constraint for the search: Keep the frontier in a list sorted with bisect.insort by (row, col) and always remove the first element, whatever the goal is. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "CRD_SLIST",
+   "template": 1,
+   "prompt_sha256": "9e07d893794dfcfde76045c27a2568abb9bdc0b061cc508b14e02b4faf0231f6",
+   "segment": "Use exactly this exploration strategy. Keep the frontier in a list sorted with bisect.insort by (row, col) and always remove the first element, whatever the goal is. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  },
+  {
+   "cell": "CRD_SLIST",
+   "template": 2,
+   "prompt_sha256": "79cbd959a17de68a034f36c97370f67ddbbfd8b89cf431704076842aba992cd8",
+   "segment": "Keep the frontier in a list sorted with bisect.insort by (row, col) and always remove the first element, whatever the goal is. Do not combine it with any other search technique. Handle the edge cases first, in this order: if start or goal is a wall, return []; otherwise, if start equals goal, return [start]."
+  }
+ ],
+ "forbidden_hits": [],
+ "utc": "2026-10-23T19:51:49.372542Z"
+}

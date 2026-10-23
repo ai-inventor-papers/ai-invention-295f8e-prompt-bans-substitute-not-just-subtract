@@ -1,0 +1,4409 @@
+{
+ "task": "t1",
+ "algorithms": [
+  "bfs",
+  "dfs",
+  "bibfs",
+  "iddfs",
+  "astar",
+  "gbfs",
+  "idastar"
+ ],
+ "K": 7,
+ "set_size": 4,
+ "L_base_raw": {
+  "bfs": 0.6255773537797924,
+  "dfs": -0.4947944522789802,
+  "bibfs": -46.99982659030004,
+  "iddfs": -30.86786632154911,
+  "astar": -30.809272417200752,
+  "gbfs": -18.475216464850728,
+  "idastar": -129.02039650853828
+ },
+ "L_base_corrected": {
+  "bfs": 0.6255773537797924,
+  "dfs": -0.4947944522789802,
+  "bibfs": -47.644183606690554,
+  "iddfs": -30.94582786301882,
+  "astar": -32.10025659851632,
+  "gbfs": -18.60874785747525,
+  "idastar": -129.1257570241961
+ },
+ "sets": {
+  "TOP": [
+   "bfs",
+   "dfs",
+   "gbfs",
+   "iddfs"
+  ],
+  "ARC": [
+   "bfs",
+   "bibfs",
+   "astar",
+   "gbfs"
+  ],
+  "SCATTER": [
+   "bfs",
+   "dfs",
+   "gbfs",
+   "idastar"
+  ],
+  "TOP5": [
+   "bfs",
+   "dfs",
+   "gbfs",
+   "iddfs",
+   "astar"
+  ]
+ },
+ "seriation_path": [
+  "gbfs",
+  "astar",
+  "bfs",
+  "bibfs",
+  "idastar",
+  "iddfs",
+  "dfs"
+ ],
+ "Dbar": [
+  [
+   0.01940347065673259,
+   1.3676611805329788,
+   0.01842547808886691,
+   1.1200223799920819,
+   0.7282122741905867,
+   0.7313040851838355,
+   0.9345263689448701
+  ],
+  [
+   1.3676611805329788,
+   0.8153211003619971,
+   1.3672666154861983,
+   0.5991676856844326,
+   1.0493032734964485,
+   1.1097341859411176,
+   1.0603750555163218
+  ],
+  [
+   0.01842547808886691,
+   1.3672666154861985,
+   0.01858175150127341,
+   1.1197012904088757,
+   0.7279095165414049,
+   0.7302074194892018,
+   0.9339675757528163
+  ],
+  [
+   1.1200223799920817,
+   0.5991676856844326,
+   1.1197012904088754,
+   0.56704484152876,
+   1.277744135723668,
+   1.1002708885337804,
+   0.9920707019473958
+  ],
+  [
+   0.7282122741905865,
+   1.0493032734964483,
+   0.7279095165414049,
+   1.277744135723668,
+   0.013299839639281316,
+   0.194802582785796,
+   1.0217138567302166
+  ],
+  [
+   0.7313040851838355,
+   1.1097341859411176,
+   0.7302074194892016,
+   1.1002708885337804,
+   0.194802582785796,
+   0.32182011067683985,
+   1.0048765681146214
+  ],
+  [
+   0.9345263689448701,
+   1.0603750555163218,
+   0.9339675757528163,
+   0.9920707019473957,
+   1.0217138567302166,
+   1.0048765681146214,
+   0.5473836251085401
+  ]
+ ],
+ "median_offdiag": 1.0048765681146214,
+ "edge_opposite": {
+  "TOP": {
+   "survivors": [
+    "bibfs",
+    "astar",
+    "idastar"
+   ],
+   "d_min": {
+    "bibfs": 0.01842547808886691,
+    "astar": 0.194802582785796,
+    "idastar": 0.9345263689448701
+   },
+   "d_mean": {
+    "bibfs": 0.8089002008682857,
+    "astar": 0.8125155665491247,
+    "idastar": 0.9979621736308023
+   },
+   "EDGE": [
+    "bibfs",
+    "astar"
+   ],
+   "OPPOSITE": [
+    "idastar",
+    "astar"
+   ],
+   "order_near_to_far": [
+    "bibfs",
+    "astar",
+    "idastar"
+   ]
+  },
+  "ARC": {
+   "survivors": [
+    "dfs",
+    "iddfs",
+    "idastar"
+   ],
+   "d_min": {
+    "dfs": 1.0493032734964485,
+    "iddfs": 1.1002708885337804,
+    "idastar": 0.9339675757528163
+   },
+   "d_mean": {
+    "dfs": 1.2234913138641859,
+    "iddfs": 1.1544346736646014,
+    "idastar": 0.9737710923856311
+   },
+   "EDGE": [
+    "idastar",
+    "dfs"
+   ],
+   "OPPOSITE": [
+    "iddfs",
+    "dfs"
+   ],
+   "order_near_to_far": [
+    "idastar",
+    "dfs",
+    "iddfs"
+   ]
+  },
+  "SCATTER": {
+   "survivors": [
+    "bibfs",
+    "iddfs",
+    "astar"
+   ],
+   "d_min": {
+    "bibfs": 0.01842547808886691,
+    "iddfs": 0.5991676856844326,
+    "astar": 0.194802582785796
+   },
+   "d_mean": {
+    "bibfs": 0.7624667722042708,
+    "iddfs": 0.9528829140394226,
+    "astar": 0.7485079968007619
+   },
+   "EDGE": [
+    "bibfs",
+    "astar"
+   ],
+   "OPPOSITE": [
+    "iddfs",
+    "astar"
+   ],
+   "order_near_to_far": [
+    "bibfs",
+    "astar",
+    "iddfs"
+   ]
+  },
+  "TOP5": {
+   "survivors": [
+    "bibfs",
+    "idastar"
+   ],
+   "d_min": {
+    "bibfs": 0.01842547808886691,
+    "idastar": 0.9345263689448701
+   },
+   "d_mean": {
+    "bibfs": 0.7927020640029095,
+    "idastar": 1.002712510250685
+   },
+   "EDGE": [
+    "bibfs"
+   ],
+   "OPPOSITE": [
+    "idastar"
+   ],
+   "order_near_to_far": [
+    "bibfs",
+    "idastar"
+   ]
+  }
+ },
+ "settings": [
+  {
+   "layer": 20,
+   "position": "g16"
+  },
+  {
+   "layer": 20,
+   "position": "pre"
+  },
+  {
+   "layer": 21,
+   "position": "g16"
+  },
+  {
+   "layer": 21,
+   "position": "pre"
+  },
+  {
+   "layer": 22,
+   "position": "g16"
+  },
+  {
+   "layer": 22,
+   "position": "pre"
+  },
+  {
+   "layer": 23,
+   "position": "g16"
+  },
+  {
+   "layer": 23,
+   "position": "pre"
+  },
+  {
+   "layer": 24,
+   "position": "g16"
+  },
+  {
+   "layer": 24,
+   "position": "pre"
+  },
+  {
+   "layer": 25,
+   "position": "g16"
+  },
+  {
+   "layer": 25,
+   "position": "pre"
+  },
+  {
+   "layer": 26,
+   "position": "g16"
+  },
+  {
+   "layer": 26,
+   "position": "pre"
+  },
+  {
+   "layer": 27,
+   "position": "g16"
+  },
+  {
+   "layer": 27,
+   "position": "pre"
+  },
+  {
+   "layer": 28,
+   "position": "g16"
+  },
+  {
+   "layer": 28,
+   "position": "pre"
+  }
+ ],
+ "graph_info": [
+  {
+   "layer": 20,
+   "position": "g16",
+   "k": 10,
+   "n": 182,
+   "bridges": 2,
+   "connected_without_bridges": false,
+   "n_points": 182
+  },
+  {
+   "layer": 20,
+   "position": "pre",
+   "k": 10,
+   "n": 182,
+   "bridges": 4,
+   "connected_without_bridges": false,
+   "n_points": 182
+  },
+  {
+   "layer": 21,
+   "position": "g16",
+   "k": 10,
+   "n": 182,
+   "bridges": 4,
+   "connected_without_bridges": false,
+   "n_points": 182
+  },
+  {
+   "layer": 21,
+   "position": "pre",
+   "k": 10,
+   "n": 182,
+   "bridges": 4,
+   "connected_without_bridges": false,
+   "n_points": 182
+  },
+  {
+   "layer": 22,
+   "position": "g16",
+   "k": 10,
+   "n": 182,
+   "bridges": 4,
+   "connected_without_bridges": false,
+   "n_points": 182
+  },
+  {
+   "layer": 22,
+   "position": "pre",
+   "k": 10,
+   "n": 182,
+   "bridges": 5,
+   "connected_without_bridges": false,
+   "n_points": 182
+  },
+  {
+   "layer": 23,
+   "position": "g16",
+   "k": 10,
+   "n": 182,
+   "bridges": 2,
+   "connected_without_bridges": false,
+   "n_points": 182
+  },
+  {
+   "layer": 23,
+   "position": "pre",
+   "k": 10,
+   "n": 182,
+   "bridges": 5,
+   "connected_without_bridges": false,
+   "n_points": 182
+  },
+  {
+   "layer": 24,
+   "position": "g16",
+   "k": 10,
+   "n": 182,
+   "bridges": 2,
+   "connected_without_bridges": false,
+   "n_points": 182
+  },
+  {
+   "layer": 24,
+   "position": "pre",
+   "k": 10,
+   "n": 182,
+   "bridges": 5,
+   "connected_without_bridges": false,
+   "n_points": 182
+  },
+  {
+   "layer": 25,
+   "position": "g16",
+   "k": 10,
+   "n": 182,
+   "bridges": 2,
+   "connected_without_bridges": false,
+   "n_points": 182
+  },
+  {
+   "layer": 25,
+   "position": "pre",
+   "k": 10,
+   "n": 182,
+   "bridges": 5,
+   "connected_without_bridges": false,
+   "n_points": 182
+  },
+  {
+   "layer": 26,
+   "position": "g16",
+   "k": 10,
+   "n": 182,
+   "bridges": 3,
+   "connected_without_bridges": false,
+   "n_points": 182
+  },
+  {
+   "layer": 26,
+   "position": "pre",
+   "k": 10,
+   "n": 182,
+   "bridges": 5,
+   "connected_without_bridges": false,
+   "n_points": 182
+  },
+  {
+   "layer": 27,
+   "position": "g16",
+   "k": 10,
+   "n": 182,
+   "bridges": 2,
+   "connected_without_bridges": false,
+   "n_points": 182
+  },
+  {
+   "layer": 27,
+   "position": "pre",
+   "k": 10,
+   "n": 182,
+   "bridges": 5,
+   "connected_without_bridges": false,
+   "n_points": 182
+  },
+  {
+   "layer": 28,
+   "position": "g16",
+   "k": 10,
+   "n": 182,
+   "bridges": 2,
+   "connected_without_bridges": false,
+   "n_points": 182
+  },
+  {
+   "layer": 28,
+   "position": "pre",
+   "k": 10,
+   "n": 182,
+   "bridges": 5,
+   "connected_without_bridges": false,
+   "n_points": 182
+  }
+ ],
+ "stability": {
+  "per_setting": [
+   {
+    "k": 5,
+    "layer": 20,
+    "position": "g16",
+    "ARC": [
+     "dfs",
+     "iddfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "iddfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "astar"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "astar"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 5,
+    "layer": 20,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "astar"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "astar"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 5,
+    "layer": 21,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "iddfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "astar"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "astar"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 5,
+    "layer": 21,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "astar"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "astar"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 5,
+    "layer": 22,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "iddfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "astar"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "astar"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 5,
+    "layer": 22,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "astar",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "astar"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "astar"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 5,
+    "layer": 23,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "iddfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "astar"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "astar"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 5,
+    "layer": 23,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "iddfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 5,
+    "layer": 24,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "iddfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "astar"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "astar"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 5,
+    "layer": 24,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "astar"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "iddfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "astar"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "iddfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 5,
+    "layer": 25,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "iddfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "iddfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "iddfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 5,
+    "layer": 25,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 5,
+    "layer": 26,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "iddfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "bibfs",
+     "iddfs",
+     "gbfs"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 5,
+    "layer": 26,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "astar"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "astar"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 5,
+    "layer": 27,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "iddfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "astar",
+     "gbfs"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "iddfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "iddfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 5,
+    "layer": 27,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 5,
+    "layer": 28,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "iddfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "bibfs",
+     "iddfs",
+     "gbfs"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "astar"
+     ],
+     "ARC": [
+      "dfs",
+      "idastar"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "astar"
+     ],
+     "ARC": [
+      "iddfs",
+      "idastar"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 5,
+    "layer": 28,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 10,
+    "layer": 20,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "gbfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 10,
+    "layer": 20,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "dfs",
+     "bibfs",
+     "iddfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 10,
+    "layer": 21,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "iddfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 10,
+    "layer": 21,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "dfs",
+     "bibfs",
+     "iddfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 10,
+    "layer": 22,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "iddfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 10,
+    "layer": 22,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "astar",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 10,
+    "layer": 23,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "astar",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "astar"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "astar"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 10,
+    "layer": 23,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "iddfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 10,
+    "layer": 24,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "iddfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "astar",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 10,
+    "layer": 24,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "dfs",
+     "bibfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 10,
+    "layer": 25,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "iddfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "astar",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 10,
+    "layer": 25,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 10,
+    "layer": 26,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "dfs",
+     "bibfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "astar",
+     "gbfs"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "iddfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "iddfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 10,
+    "layer": 26,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 10,
+    "layer": 27,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "iddfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "iddfs",
+     "astar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "iddfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "iddfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 10,
+    "layer": 27,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 10,
+    "layer": 28,
+    "position": "g16",
+    "ARC": [
+     "dfs",
+     "iddfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "astar",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "astar"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "iddfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "astar"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "iddfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 10,
+    "layer": 28,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "dfs",
+     "bibfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 15,
+    "layer": 20,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "gbfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 15,
+    "layer": 20,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 15,
+    "layer": 21,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "gbfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 15,
+    "layer": 21,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "dfs",
+     "bibfs",
+     "iddfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 15,
+    "layer": 22,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "gbfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 15,
+    "layer": 22,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 15,
+    "layer": 23,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "gbfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 15,
+    "layer": 23,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 15,
+    "layer": 24,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "gbfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "astar",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 15,
+    "layer": 24,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 15,
+    "layer": 25,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "iddfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "iddfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "iddfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 15,
+    "layer": 25,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 15,
+    "layer": 26,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "iddfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "bfs",
+     "iddfs",
+     "astar",
+     "gbfs"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "iddfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "iddfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 15,
+    "layer": 26,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 15,
+    "layer": 27,
+    "position": "g16",
+    "ARC": [
+     "dfs",
+     "iddfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "astar",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "astar"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "astar"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 15,
+    "layer": 27,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 15,
+    "layer": 28,
+    "position": "g16",
+    "ARC": [
+     "dfs",
+     "iddfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "iddfs",
+     "astar",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "astar"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "iddfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "astar"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "iddfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 15,
+    "layer": 28,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 20,
+    "layer": 20,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "gbfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 20,
+    "layer": 20,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "iddfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 20,
+    "layer": 21,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "gbfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 20,
+    "layer": 21,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "dfs",
+     "bibfs",
+     "iddfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 20,
+    "layer": 22,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "gbfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 20,
+    "layer": 22,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "dfs",
+     "bibfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 20,
+    "layer": 23,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "gbfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 20,
+    "layer": 23,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 20,
+    "layer": 24,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "gbfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "iddfs",
+     "astar",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 20,
+    "layer": 24,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 20,
+    "layer": 25,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "iddfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "bibfs",
+     "iddfs",
+     "gbfs"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 20,
+    "layer": 25,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 20,
+    "layer": 26,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "iddfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "bfs",
+     "iddfs",
+     "astar",
+     "gbfs"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 20,
+    "layer": 26,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 20,
+    "layer": 27,
+    "position": "g16",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "iddfs",
+     "idastar"
+    ],
+    "SCATTER": [
+     "dfs",
+     "bibfs",
+     "iddfs",
+     "gbfs"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "idastar"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "astar"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "astar",
+      "idastar"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "astar"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 20,
+    "layer": 27,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 20,
+    "layer": 28,
+    "position": "g16",
+    "ARC": [
+     "dfs",
+     "iddfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "astar",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "bibfs",
+      "astar"
+     ],
+     "ARC": [
+      "dfs",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "bibfs",
+      "iddfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "astar"
+     ],
+     "ARC": [
+      "idastar",
+      "iddfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "iddfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   },
+   {
+    "k": 20,
+    "layer": 28,
+    "position": "pre",
+    "ARC": [
+     "bfs",
+     "bibfs",
+     "astar",
+     "gbfs"
+    ],
+    "SCATTER": [
+     "bfs",
+     "dfs",
+     "gbfs",
+     "idastar"
+    ],
+    "EDGE": {
+     "TOP": [
+      "astar",
+      "bibfs"
+     ],
+     "ARC": [
+      "iddfs",
+      "dfs"
+     ],
+     "SCATTER": [
+      "astar",
+      "bibfs"
+     ],
+     "TOP5": [
+      "bibfs"
+     ]
+    },
+    "OPPOSITE": {
+     "TOP": [
+      "idastar",
+      "bibfs"
+     ],
+     "ARC": [
+      "idastar",
+      "dfs"
+     ],
+     "SCATTER": [
+      "iddfs",
+      "bibfs"
+     ],
+     "TOP5": [
+      "idastar"
+     ]
+    }
+   }
+  ],
+  "bootstrap": {
+   "n": 200,
+   "ARC_same": 1.0,
+   "SCATTER_same": 0.235,
+   "EDGE_OPPOSITE_same": {
+    "TOP": {
+     "EDGE": 0.47,
+     "OPPOSITE": 0.47
+    },
+    "ARC": {
+     "EDGE": 0.405,
+     "OPPOSITE": 0.405
+    },
+    "SCATTER": {
+     "EDGE": 0.47,
+     "OPPOSITE": 0.47
+    },
+    "TOP5": {
+     "EDGE": 1.0,
+     "OPPOSITE": 1.0
+    }
+   }
+  }
+ },
+ "context_sensitivity": {
+  "forced": {
+   "Dbar": [
+    [
+     0.020801847606339654,
+     1.384136499062968,
+     0.14211438221133202,
+     1.319512203956669,
+     0.846050392839158,
+     0.9613235846244221,
+     0.9932727540221022
+    ],
+    [
+     1.384136499062968,
+     0.6558595762970474,
+     1.285775915084002,
+     0.48077563011929614,
+     1.0686026401764166,
+     1.0952478599413147,
+     1.0261242738526382
+    ],
+    [
+     0.14211438221133205,
+     1.2857759150840022,
+     0.025569837157292278,
+     1.2444839395873109,
+     0.8235413886548326,
+     0.8567826316565497,
+     0.8807350272224004
+    ],
+    [
+     1.3195122039566693,
+     0.48077563011929614,
+     1.2444839395873109,
+     0.4550444572489779,
+     1.118259482668858,
+     1.0186466773493699,
+     0.918047245508017
+    ],
+    [
+     0.846050392839158,
+     1.0686026401764166,
+     0.8235413886548326,
+     1.118259482668858,
+     0.012980518358332242,
+     0.33663164407692087,
+     0.8868208697882032
+    ],
+    [
+     0.9613235846244224,
+     1.0952478599413147,
+     0.8567826316565497,
+     1.0186466773493699,
+     0.3366316440769208,
+     0.27822608220849165,
+     0.8919243286567108
+    ],
+    [
+     0.9932727540221022,
+     1.0261242738526382,
+     0.8807350272224007,
+     0.918047245508017,
+     0.8868208697882032,
+     0.8919243286567108,
+     0.5020709856913396
+    ]
+   ],
+   "ARC": [
+    "bfs",
+    "bibfs",
+    "astar",
+    "gbfs"
+   ],
+   "SCATTER": [
+    "bfs",
+    "dfs",
+    "gbfs",
+    "idastar"
+   ],
+   "EDGE": {
+    "TOP": [
+     "bibfs",
+     "astar"
+    ],
+    "ARC": [
+     "idastar",
+     "iddfs"
+    ],
+    "SCATTER": [
+     "bibfs",
+     "astar"
+    ],
+    "TOP5": [
+     "bibfs"
+    ]
+   },
+   "jaccard": {
+    "ARC": 1.0,
+    "SCATTER": 1.0
+   },
+   "EDGE_same": {
+    "TOP": true,
+    "ARC": false,
+    "SCATTER": true,
+    "TOP5": true
+   }
+  },
+  "R_forced_prompts": {
+   "Dbar": [
+    [
+     1.199090901394558,
+     1.1377890539005988,
+     0.9206709297520917,
+     0.8572652619788073,
+     1.0622849187190788,
+     1.0000000000000002,
+     1.369277846601543
+    ],
+    [
+     1.1377890539005988,
+     1.1789105443568093,
+     0.8961644303484129,
+     0.8527822009578669,
+     1.0536210770869197,
+     1.0164341938307544,
+     1.3945618939332436
+    ],
+    [
+     0.9206709297520917,
+     0.896164430348413,
+     0.47562021293581114,
+     0.5909151450821315,
+     0.8563394303285518,
+     0.8162797651803794,
+     1.0989381975555284
+    ],
+    [
+     0.8572652619788073,
+     0.8527822009578669,
+     0.5909151450821315,
+     0.4836336487871111,
+     0.8635296905445967,
+     0.7723617765215653,
+     1.0
+    ],
+    [
+     1.0622849187190788,
+     1.0536210770869197,
+     0.8563394303285519,
+     0.8635296905445967,
+     1.1175435001449587,
+     0.99773790784258,
+     1.337286843684272
+    ],
+    [
+     1.0,
+     1.0164341938307544,
+     0.8162797651803793,
+     0.7723617765215653,
+     0.9977379078425799,
+     1.0003593559186028,
+     1.323190908026217
+    ],
+    [
+     1.3692778466015434,
+     1.3945618939332436,
+     1.0989381975555281,
+     1.0,
+     1.3372868436842722,
+     1.3231909080262172,
+     0.32392825206118636
+    ]
+   ],
+   "ARC": [
+    "dfs",
+    "bibfs",
+    "iddfs",
+    "astar"
+   ],
+   "SCATTER": [
+    "bfs",
+    "dfs",
+    "astar",
+    "idastar"
+   ],
+   "EDGE": {
+    "TOP": [
+     "bibfs",
+     "astar"
+    ],
+    "ARC": [
+     "iddfs",
+     "dfs"
+    ],
+    "SCATTER": [
+     "iddfs",
+     "bibfs"
+    ],
+    "TOP5": [
+     "bibfs"
+    ]
+   },
+   "k": 5,
+   "note": "R = last prompt token of the 10 forced prompts per algorithm (carries the name)",
+   "jaccard": {
+    "ARC": 0.3333333333333333,
+    "SCATTER": 0.6
+   },
+   "EDGE_same": {
+    "TOP": true,
+    "ARC": false,
+    "SCATTER": false,
+    "TOP5": true
+   }
+  }
+ },
+ "held_karp_vs_bruteforce": {
+  "K": 7,
+  "held_karp": 3.466646298449894,
+  "brute_force": 3.466646298449894,
+  "match": true
+ }
+}

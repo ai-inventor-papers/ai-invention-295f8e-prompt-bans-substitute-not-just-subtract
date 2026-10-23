@@ -1,0 +1,14 @@
+entries:
+  - path: cache/states/
+    keep: Qwen3-8B bf16 and Qwen3-32B NF4 R1/R1g/R2 states of all 412 programs (GPU extraction, input of every G1/G2 number)
+  - path: cache/e46_states/
+    keep: bit-identical reduced copies of iteration 9 cached states read by every F0 / F1 analysis (originals exceed the publish limit)
+  - path: .venv/
+    delete: regenerable
+    source: "uv venv .venv --python=3.12 && uv pip install --python .venv/bin/python -r requirements.lock.txt"
+  - path: src/__pycache__/
+    delete: regenerable
+    source: "python -m compileall src"
+  - path: vendor/exp9/tasks/__pycache__/
+    delete: regenerable
+    source: "python -m compileall vendor"

@@ -1,0 +1,65 @@
+{
+ "queries": [
+  "Manifold Steering arXiv 2605.05115 geodesic activation manifold",
+  "Schütt Kipnis Diedrichsen Kriegeskorte Statistical inference on representational geometries eLife 2023 rsatoolbox",
+  "Hewitt Liang 2019 Designing and Interpreting Probes with Control Tasks selectivity",
+  "Towards Understanding What Code Language Models Learned arXiv 2306.11943 semantic equivalence syntactic similarity",
+  "Guillot Rousset Dismantling the Mantel tests partial Mantel restricted permutation Methods in Ecology and Evolution 2013",
+  "LLM internal representations algorithm identity code semantics vs syntax probing 2026"
+ ],
+ "entries": [
+  {
+   "work": "Wurgaft et al., Manifold Steering Reveals the Shared Geometry of Neural Network Representation and Behavior (arXiv 2605.05115, ICML 2026)",
+   "url": "https://arxiv.org/abs/2605.05115",
+   "verdict": "adjacent",
+   "one_line": "Fits an activation manifold and tests a CAUSAL link to a behaviour manifold by steering; TP-G2 is a correlational placement test on a kNN-geodesic map of code states with a factorial mechanism-vs-surface decoupling and no intervention.",
+   "quote": "we find that steering along $M_h$, which we term manifold steering, yields behavioral trajectories that follow $M_y$"
+  },
+  {
+   "work": "Schutt, Kipnis, Diedrichsen and Kriegeskorte, Statistical inference on representational geometries (eLife 2023; arXiv 2112.09200)",
+   "url": "https://arxiv.org/abs/2112.09200",
+   "verdict": "adjacent (method source)",
+   "one_line": "Two-factor cross-validation + bootstrap for RSA model comparison; TP-G2 bootstraps programs within cells (graph rebuilt) and reports a split-half cross-validated centroid distance as a sensitivity.",
+   "quote": "Our inference methods combine novel 2-factor extensions of crossvalidation (to prevent overfitting to either subjects or conditions from inflating our estimates of model accuracy) and bootstrapping"
+  },
+  {
+   "work": "Hewitt and Liang, Designing and Interpreting Probes with Control Tasks (EMNLP 2019; arXiv 1909.03368)",
+   "url": "https://arxiv.org/abs/1909.03368",
+   "verdict": "adjacent (method source)",
+   "one_line": "Selectivity = real-task minus control-task performance; TP-G2 runs lexical baselines (block-0 state, TF-IDF tokens, AST n-grams) through the identical RSA pipeline and reports selectivity = rho_d(model) - rho_d(baseline), which is negative here.",
+   "quote": "a good probe, (one that reflects the representation), should be selective, achieving high linguistic task accuracy and low control task accuracy"
+  },
+  {
+   "work": "Ahmed, Yu, Huang, Wang, Devanbu and Sagae, Towards Understanding What Code Language Models Learned (arXiv 2306.11943; cited in the plan as 'Ma et al.')",
+   "url": "https://arxiv.org/abs/2306.11943",
+   "verdict": "adjacent (contrasting result)",
+   "one_line": "Reports that code models capture computational semantics beyond surface form; TP-G2 finds that for search-algorithm DISCIPLINE the Qwen3 program map at the frozen M-code readout follows code surface (container, AST shingles, length) and carries no more discipline information than lexical baselines.",
+   "quote": "we investigate their ability to capture semantics of code beyond superficial frequency and co-occurrence"
+  },
+  {
+   "work": "Guillot and Rousset, Dismantling the Mantel tests (Methods Ecol. Evol. 2013; arXiv 1112.0651)",
+   "url": "https://arxiv.org/abs/1112.0651",
+   "verdict": "adjacent (method source)",
+   "one_line": "Partial Mantel tests with full label permutation are not valid when variables are structured; TP-G2 permutes discipline labels only within container (and container within discipline), with type-I rate 0.055 in its synthetic check (T4).",
+   "quote": "We show that contrarily to a widely shared belief, partial Mantel tests are not valid in this case, and their bias remains close to that of the simple Mantel test."
+  },
+  {
+   "work": "Neuron-Guided Interpretation of Code LLMs: Where, Why, and How? (arXiv 2512.19980)",
+   "url": "https://arxiv.org/abs/2512.19980",
+   "verdict": "adjacent",
+   "one_line": "RSA semantic probe + AST syntactic probe; reports middle-layer 'concept layers'. TP-G2's frozen readout sits at middle depth (8B block 17/36, 32B block 33/64) yet its cell geometry for algorithm discipline is dominated by surface; the nearby blocks L-2..L+2 give the same picture.",
+   "quote": "lower layers mainly encode language-specific syntax, while middle layers capture semantic abstractions shared across languages, emerging as concept layers"
+  },
+  {
+   "work": "Jin and Rinard, Emergent Representations of Program Semantics in Language Models Trained on Programs (arXiv 2305.11169)",
+   "url": "https://arxiv.org/abs/2305.11169",
+   "verdict": "adjacent",
+   "one_line": "Probes recover program states in a grid-world language with an interventional baseline; TP-G2 is about algorithm-level discipline in natural Python search code and is correlational.",
+   "quote": "a novel interventional baseline that disambiguates what is represented by the LM as opposed to learned by the probe"
+  }
+ ],
+ "occupies": [],
+ "note": "No found work runs a factorial discipline x container decoupling of LLM program representations with restricted-permutation RSA; the closest (2306.11943, 2512.19980) report semantic organisation that TP-G2 does not find for algorithm discipline at this readout.",
+ "raw_greps": "results/positioning_raw/*.txt",
+ "utc": "2026-10-23T20:53:17.469363Z"
+}

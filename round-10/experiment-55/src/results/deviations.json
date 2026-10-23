@@ -1,0 +1,82 @@
+[
+ {
+  "code": "D1-commit0-split",
+  "text": "COMMIT #0 was split: #0a (cells, prompts, decoding, budget, acceptance rule) before any generation; #0b (instrument code sha256 + gate results) after round-0 generation but before any program was classified or accepted. No program was classified before #0b.",
+  "utc": "2026-10-23T19:22:47.842907Z"
+ },
+ {
+  "code": "D2-instrument-gate",
+  "text": "Instrument gate after 3 revision rounds (plan allows 2; the third only changed the two-ended and goal-pair rules): 18/18 planted cell references and 13/15 catalogue references correct, both mutation tests correct. Misses: jps4 read DFS (its recursive jump calls form the expansion record) and biastar read HEU (its forward side wins f-ties so it behaves as forward A* on the probes). JPS / BiA* top-ups are hand-read as the plan already requires (F3), never decided by the instrument.",
+  "utc": "2026-10-23T19:22:47.858076Z"
+ },
+ {
+  "code": "D3-container-runtime",
+  "text": "Container is read from the runtime selection operation of each expansion (pop/popleft/heappop/set.remove/sorted-list pop/self-recursive call/no frontier object), with an AST hint recorded as a cross-check, instead of a pure AST rule.",
+  "utc": "2026-10-23T19:22:47.871827Z"
+ },
+ {
+  "code": "D4-catalogue-refs",
+  "text": "Only 15 catalogue references exist in the vendored exp9 t1_grid/references (the plan says 25); the gate uses those 15.",
+  "utc": "2026-10-23T19:22:47.886767Z"
+ },
+ {
+  "code": "D5-edge-hint",
+  "text": "Rounds >= 1 append one sentence to every prompt (all cells): \"Check whether start or goal is a wall before handling the case start == goal.\" Round 0 lost 61% of programs to that single frozen-suite edge case. Committed as COMMIT0c before any round-1 call; round is recorded per program and balanced by running round 1 for every cell.",
+  "utc": "2026-10-23T19:34:00.880999Z"
+ },
+ {
+  "code": "D6-topup-hint",
+  "text": "New v10 named top-ups (jps, iddfs, biastar) use iteration 9 forced prompts (algorithm named; code scrubbed afterwards) plus the COMMIT0c edge-case reminder; iteration 9 top-ups failed the frozen suite at 75-87% on the same edge case.",
+  "utc": "2026-10-23T19:45:17.254342Z"
+ },
+ {
+  "code": "D7-edge-hint2",
+  "text": "Round 1 tail reminder did not change the failure (the model kept returning [start] for start == goal on a wall); round 2 (the last allowed round, reworded instructions) puts the edge-case order inside the instruction paragraph (COMMIT0d, before any round-2 call), only for cells below 12 accepted.",
+  "utc": "2026-10-23T19:51:49.426357Z"
+ },
+ {
+  "code": "D8-F7-nonbanned",
+  "text": "JPS (1 accepted of 120 attempts) and BiA* (7 incl. 2 PRIMARY, 120 attempts) stay below 10: F0 uses 3 non-banned classes (dijkstra_unit, idastar, bibfs); F1 mechanism medians add the RLX, RND, CRD cells (plan F7).",
+  "utc": "2026-10-23T20:21:08.122414Z"
+ },
+ {
+  "code": "D9-cells-dropped",
+  "text": "LEV_SET (4) and RLX_HEAP (4) reached fewer than 10 programs after 3 rounds (60 calls each) and are dropped (F2 step 3); the local Qwen3-8B second generator (F2 step 2) was not run for time. 15 G1 cells remain, bipartite design connected, every discipline in >= 2 containers.",
+  "utc": "2026-10-23T20:21:08.180849Z"
+ },
+ {
+  "code": "D10-rlx-stk-dispute",
+  "text": "19 RLX_STK programs re-push improved cells at runtime (re-expansion after re-insertion on 10-39 probes) but compare 'new_dist < dist[nb]', which the frozen AST relaxation pattern (subscripts on both sides) misses, so the instrument read DFS. Hand reads (authoritative for RLX) assign RLX/STK; they are flagged 'disputed' and a G1 sensitivity excludes all disputed programs. Hand-read vs instrument agreement: 136/158 = 0.86 overall (0.98 without this pattern gap), below the 0.90 T2 target.",
+  "utc": "2026-10-23T20:21:08.195737Z"
+ },
+ {
+  "code": "D11-DBEH-dropped",
+  "text": "D_beh graded sensitivity dropped (F5 drop order) before COMMIT1.",
+  "utc": "2026-10-23T20:21:08.224663Z"
+ },
+ {
+  "code": "D12-states-recomputed-surv",
+  "text": "iteration-8 SURV programs get fresh states from the gate-validated engine instead of reusing E46 cached states (equivalent: cosine >= 0.99999 in the reproduction gate).",
+  "utc": "2026-10-23T20:21:08.239965Z"
+ },
+ {
+  "code": "D13-judges",
+  "text": "No LLM judge reached 9/10 on the 10 planted controls (deepseek-chat-v3.1 8/10, kimi-k2 6/10 incl. empty answers, mistral-medium-3.1 7/10; all misread the coordinate-keyed CRD references). Per plan F4 the judges are dropped and the executor's hand reads decide RLX / RND / CRD and the novelty audit.",
+  "utc": "2026-10-23T20:43:06.064225Z"
+ },
+ {
+  "code": "D14-optional-dropped",
+  "text": "Optional human-author placement check (1.9) dropped first (F5). T7 checkpoint/kill/resume test not run for time (the resume path in src/states10.py exists but was not exercised). Staged scaling was 10 calls -> full rounds for generation and 5 programs (reproduction gate) -> all 412 for states (no separate 50/100 stages).",
+  "utc": "2026-10-23T21:18:27.624319Z"
+ },
+ {
+  "code": "D15-hardware-json-late",
+  "text": "predictions/hardware.json was written at the end of the run (environment unchanged since Stage 0: same venv, same GPU).",
+  "utc": "2026-10-23T21:18:27.641637Z"
+ },
+ {
+  "code": "D16-portability",
+  "text": "Finalisation: prior artifacts are read through relative sibling-folder constants named by artifact id (environment-overridable) instead of absolute server paths; iteration 9's cached states are read from bit-identical reduced copies shipped in cache/e46_states (PRIMARY + SURV rows, blocks L-2..L+2; audit/rederive.py output identical); inputs/e46/src/tpg.py had its 5 unused absolute defaults replaced (inputs/PORTABILITY_EDITS.md). No analysis number changed.",
+  "utc": "2026-10-23T22:10:14.368773Z"
+ }
+]
