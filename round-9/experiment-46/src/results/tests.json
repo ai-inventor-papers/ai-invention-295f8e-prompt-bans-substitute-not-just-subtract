@@ -1,0 +1,203 @@
+{
+ "U1_hook_exactness": {
+  "checks": [
+   {
+    "blocks": [
+     0,
+     24,
+     46
+    ],
+    "max_abs_diff": 0.0,
+    "pass": true
+   },
+   {
+    "blocks": [
+     0,
+     24,
+     46
+    ],
+    "max_abs_diff": 0.0,
+    "pass": true
+   },
+   {
+    "blocks": [
+     0,
+     24,
+     46
+    ],
+    "max_abs_diff": 0.0,
+    "pass": true
+   },
+   {
+    "blocks": [
+     0,
+     24,
+     46
+    ],
+    "max_abs_diff": 0.0,
+    "pass": true
+   },
+   {
+    "blocks": [
+     0,
+     14,
+     27
+    ],
+    "max_abs_diff": 0.0,
+    "pass": true
+   },
+   {
+    "blocks": [
+     0,
+     14,
+     27
+    ],
+    "max_abs_diff": 0.0,
+    "pass": true
+   },
+   {
+    "blocks": [
+     0,
+     14,
+     27
+    ],
+    "max_abs_diff": 0.0,
+    "pass": true
+   }
+  ],
+  "pass": true
+ },
+ "U2_spec_span": {
+  "mname_span_checks": [
+   {
+    "span_equal": true,
+    "prefix_equal": true,
+    "n_tokens": 240,
+    "n_span": 220,
+    "decoded_equals_spec": true
+   },
+   {
+    "span_equal": true,
+    "prefix_equal": true,
+    "n_tokens": 234,
+    "n_span": 220,
+    "decoded_equals_spec": true
+   },
+   {
+    "span_equal": true,
+    "prefix_equal": true,
+    "n_tokens": 237,
+    "n_span": 220,
+    "decoded_equals_spec": true
+   }
+  ],
+  "pass": true,
+  "note": "every S-mean family asserts decoded span == SPEC and identical span/prefix with the thinking switch off (stage_states.smean_family); M-lex asserts identical SPEC ids"
+ },
+ "U3_code_span": {
+  "n_programs": 341,
+  "r2_rules": {
+   "after_popleft_call": 107,
+   "after_pop_call": 32,
+   "recursive_neighbour_loop_body": 43,
+   "solve_first_statement": 20,
+   "after_heappop_call": 139
+  },
+  "pass": true,
+  "note": "every program asserts that the overlapping code-span tokens decode to the code; R3 is the 16th code token"
+ },
+ "U4_scrubber": {
+  "planted": {
+   "clean": true,
+   "passes": true,
+   "rename_map": {
+    "bfs": "fn_1"
+   },
+   "dump_equal": true
+  },
+  "n_pass": 449,
+  "n_checked": 470,
+  "pass": true
+ },
+ "U5_tracer": {
+  "g_tracer": "13/15",
+  "planted": {
+   "bfs_as_stack_reads_lifo": true,
+   "dijkstra_with_manhattan_sets_heuristic": true,
+   "flags": {
+    "bfs_as_stack": {
+     "fifo": false,
+     "lifo_or_recursion": true,
+     "heap": false,
+     "two_frontiers": false,
+     "restarts": false,
+     "heuristic_key": false
+    },
+    "dijkstra_with_manhattan": {
+     "fifo": false,
+     "lifo_or_recursion": false,
+     "heap": true,
+     "two_frontiers": false,
+     "restarts": false,
+     "heuristic_key": true
+    }
+   }
+  },
+  "pass": true,
+  "failing_references": [
+   "biastar.py",
+   "idastar.py"
+  ]
+ },
+ "U6_planted_lexical": {
+  "spearman_planted": -0.8874119674649423,
+  "mean_spearman_shuffled": 0.011097680273399453,
+  "pass": true,
+  "note": "iteration 8's t8 synthetic ring was not re-run here"
+ },
+ "U7_out_of_sample": {
+  "held_out_own_cluster_share": 1.0,
+  "graph_node_max_abs_diff": 7.105427357601002e-15,
+  "pass": true
+ },
+ "U8_landing_placebo": {
+  "random_survivor_labels_share_NEITHER": 0.9333333333333333,
+  "exact_U_null_matches_landing_py": true,
+  "pass": true
+ },
+ "U9_twins": {
+  "checks": {
+   "identical_token_counts": true,
+   "identical_spec_ids": true
+  },
+  "n_pairs": 300,
+  "pass": true
+ },
+ "U10_openrouter": {
+  "key_checks_logged": 5,
+  "costs": {
+   "total_usd": 0.093709,
+   "by_purpose": {
+    "naming_gate": 0.008386,
+    "topups": 0.085323
+   },
+   "n_calls": 1440,
+   "budget_refusals": 0,
+   "updated_utc": "2026-10-23T12:59:22.949720Z"
+  },
+  "pass": true,
+  "note": "provider and usage.cost recorded on every row; the simulated-403 dry run was not repeated here (iteration 8's sample_or stop logic is reused; no 403 occurred)"
+ },
+ "U11_commitments": {
+  "chain_ok": true,
+  "problems": [],
+  "labels": [
+   "COMMIT0",
+   "COMMIT1a",
+   "COMMIT1b",
+   "COMMIT1b-r1",
+   "COMMIT2"
+  ],
+  "pass": true
+ }
+}
