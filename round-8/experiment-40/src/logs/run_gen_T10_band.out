@@ -1,0 +1,42 @@
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:01,  2.05it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:01,  1.56it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:01<00:01,  1.45it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  1.47it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  1.98it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  1.76it/s]
+03:35:29|INFO   |loaded qwen (random_init=False): {'family': 'qwen', 'model_id': 'Qwen/Qwen3-8B', 'revision': 'b968826d9c46dd6066d109eabc6255188de91218', 'random_init': False, 'precision': 'bf16 (sdpa); logits fp32; sampler float64', 'gpu': 'NVIDIA L4', 'free_vram_after_GB': 8.31, 'total_vram_GB': 23.66, 'cpu_embedding': True, 'load_seconds': 39.0}
+03:35:39|INFO   |T10: 449 generation rows over 18 cells
+./src/engine8.py:397: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  nxt = torch.searchsorted(cdf, U[:, step][:, None]).squeeze(-1).clamp_(max=probs.shape[-1] - 1)
+03:35:54|INFO   |T10-pilot: +16 rows (15.3s, 168 steps); total 16/30
+03:36:08|INFO   |T10-pilot: +14 rows (13.9s, 160 steps); total 30/30
+03:36:22|INFO   |T10-gen: +16 rows (13.8s, 160 steps); total 16/419
+03:36:33|INFO   |T10-gen: +2 rows (11.2s, 144 steps); total 18/419
+03:36:46|INFO   |T10-gen: +12 rows (13.3s, 160 steps); total 30/419
+03:37:00|INFO   |T10-gen: +16 rows (13.7s, 160 steps); total 46/419
+03:37:12|INFO   |T10-gen: +2 rows (11.7s, 152 steps); total 48/419
+03:37:25|INFO   |T10-gen: +16 rows (13.7s, 160 steps); total 64/419
+03:37:39|INFO   |T10-gen: +14 rows (13.5s, 160 steps); total 78/419
+03:37:53|INFO   |T10-gen: +16 rows (13.7s, 160 steps); total 94/419
+03:38:05|INFO   |T10-gen: +5 rows (12.6s, 160 steps); total 99/419
+03:38:19|INFO   |T10-gen: +15 rows (13.6s, 160 steps); total 114/419
+03:38:32|INFO   |T10-gen: +6 rows (12.8s, 160 steps); total 120/419
+03:38:43|INFO   |T10-gen: +16 rows (11.3s, 128 steps); total 136/419
+03:38:59|INFO   |T10-gen: +16 rows (16.2s, 192 steps); total 152/419
+03:39:12|INFO   |T10-gen: +16 rows (12.6s, 144 steps); total 168/419
+03:39:25|INFO   |T10-gen: +16 rows (12.6s, 144 steps); total 184/419
+03:39:38|INFO   |T10-gen: +16 rows (13.8s, 160 steps); total 200/419
+03:39:52|INFO   |T10-gen: +16 rows (13.8s, 160 steps); total 216/419
+03:40:08|INFO   |T10-gen: +16 rows (16.2s, 192 steps); total 232/419
+03:40:21|INFO   |T10-gen: +16 rows (12.5s, 144 steps); total 248/419
+03:40:35|INFO   |T10-gen: +16 rows (13.8s, 160 steps); total 264/419
+03:40:51|INFO   |T10-gen: +16 rows (16.2s, 192 steps); total 280/419
+03:41:05|INFO   |T10-gen: +16 rows (13.8s, 160 steps); total 296/419
+03:41:18|INFO   |T10-gen: +7 rows (12.9s, 160 steps); total 303/419
+03:41:34|INFO   |T10-gen: +16 rows (16.2s, 192 steps); total 319/419
+03:41:47|INFO   |T10-gen: +16 rows (13.1s, 152 steps); total 335/419
+03:42:01|INFO   |T10-gen: +16 rows (13.8s, 160 steps); total 351/419
+03:42:17|INFO   |T10-gen: +16 rows (16.3s, 192 steps); total 367/419
+03:42:33|INFO   |T10-gen: +16 rows (16.3s, 192 steps); total 383/419
+03:42:45|INFO   |T10-gen: +16 rows (11.3s, 128 steps); total 399/419
+03:42:59|INFO   |T10-gen: +16 rows (13.8s, 160 steps); total 415/419
+03:43:09|INFO   |T10-gen: +4 rows (10.1s, 128 steps); total 419/419
+03:43:14|INFO   |label worker keeps running in the background (follows the done flag)
+03:43:14|INFO   |generation done

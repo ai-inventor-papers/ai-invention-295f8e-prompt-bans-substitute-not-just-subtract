@@ -1,0 +1,51 @@
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:02,  1.83it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.42it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.37it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  1.42it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  1.93it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  1.68it/s]
+03:00:29|INFO   |loaded qwen (random_init=False): {'family': 'qwen', 'model_id': 'Qwen/Qwen3-8B', 'revision': 'b968826d9c46dd6066d109eabc6255188de91218', 'random_init': False, 'precision': 'bf16 (sdpa); logits fp32; sampler float64', 'gpu': 'NVIDIA L4', 'free_vram_after_GB': 8.31, 'total_vram_GB': 23.66, 'cpu_embedding': True, 'load_seconds': 41.7}
+03:00:54|INFO   |BandSite: 155 bases, 74 sources, T 165, spec 145 (25s)
+03:01:02|INFO   |U4: {'zero_rank_vs_full_recompute_max_abs_logP_class': 0.12498855590820312, 'full_state_flip_to_source_class_share_held96': 0.5833333333333334, 'pass_flip_0.9': False, 'mean_delta_full': 18.18716738621394}
+./src/das8.py:505: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  hist.append({"step": step, "k": k, "loss": float(loss)})
+03:01:09|INFO   |[probe] step 3 loss 8.3102 val KL 7.6663 (7s)
+03:01:10|INFO   |band timing: 2.22s/step, eval16 0.80s; est per fit 10.8 min; remaining 32.8 min
+03:01:10|WARNING|DEVIATION band_steps: band fits run 109 steps (timing 2.22 s/step; same budget for every band fit, controls included)
+03:01:36|INFO   |[band s0] step 20 loss 3.9665 val KL 5.0317 (26s)
+03:02:02|INFO   |[band s0] step 40 loss 1.5379 val KL 3.6521 (52s)
+03:02:27|INFO   |[band s0] step 60 loss 0.3236 val KL 2.3526 (77s)
+03:02:54|INFO   |[band s0] step 80 loss 0.4157 val KL 1.8694 (104s)
+03:03:20|INFO   |[band s0] step 100 loss 0.2172 val KL 1.7295 (130s)
+03:03:35|INFO   |[band s0] step 109 loss 0.3004 val KL 1.6893 (145s)
+03:04:01|INFO   |[band s1] step 20 loss 2.0822 val KL 5.0597 (26s)
+03:04:27|INFO   |[band s1] step 40 loss 3.1558 val KL 3.6979 (52s)
+03:04:53|INFO   |[band s1] step 60 loss 0.7071 val KL 1.9774 (78s)
+03:05:19|INFO   |[band s1] step 80 loss 0.2523 val KL 1.4929 (104s)
+03:05:45|INFO   |[band s1] step 100 loss 0.5841 val KL 1.2970 (130s)
+03:06:00|INFO   |[band s1] step 109 loss 0.2056 val KL 1.2507 (145s)
+03:06:36|INFO   |band k* = 2; recovery 0.818959264762952
+03:07:02|INFO   |[band c2 pi1] step 20 loss 0.0005 val KL 0.1081 (26s)
+03:07:28|INFO   |[band c2 pi1] step 40 loss 0.0317 val KL 0.0007 (52s)
+03:07:54|INFO   |[band c2 pi1] step 60 loss 0.0004 val KL 0.0005 (78s)
+03:08:21|INFO   |[band c2 pi1] step 80 loss 0.0005 val KL 0.0005 (104s)
+03:08:47|INFO   |[band c2 pi1] step 100 loss 0.0004 val KL 0.0005 (131s)
+03:09:02|INFO   |[band c2 pi1] step 109 loss 0.0005 val KL 0.0005 (146s)
+03:09:07|INFO   |band c2 pi1: ratio 0.712582658794137
+03:09:33|INFO   |[band c2 pi2] step 20 loss 7.4556 val KL 7.8899 (26s)
+03:09:59|INFO   |[band c2 pi2] step 40 loss 2.5852 val KL 4.8607 (52s)
+03:10:25|INFO   |[band c2 pi2] step 60 loss 0.0286 val KL 2.0224 (78s)
+03:10:51|INFO   |[band c2 pi2] step 80 loss 0.0134 val KL 1.2962 (104s)
+03:11:17|INFO   |[band c2 pi2] step 100 loss 0.0078 val KL 1.0680 (130s)
+03:11:32|INFO   |[band c2 pi2] step 109 loss 0.0090 val KL 0.9959 (145s)
+03:11:37|INFO   |band c2 pi2: ratio 0.7878655394143029
+03:12:02|INFO   |[band c2 prompt] step 20 loss 3.9561 val KL 0.8493 (25s)
+03:12:28|INFO   |[band c2 prompt] step 40 loss 3.3827 val KL 0.8140 (51s)
+03:12:53|INFO   |[band c2 prompt] step 60 loss 2.3566 val KL 1.5293 (76s)
+03:13:19|INFO   |[band c2 prompt] step 80 loss 0.5855 val KL 1.5539 (102s)
+03:13:45|INFO   |[band c2 prompt] step 100 loss 0.9486 val KL 1.3027 (128s)
+03:13:45|INFO   |[band c2 prompt] stop at step 100 (best 40)
+03:13:50|INFO   |band c2 prompt: ratio 0.72260715621083
+03:17:30|INFO   |band c1 k1: {'median': 0.0028899296373977525, 'p95': 0.007096142562965233, 'max': 0.013380889640748543, 'n': 50, 'pass': True}
+03:21:19|INFO   |band c1 k2: {'median': 0.0025334302635193324, 'p95': 0.008343748792557136, 'max': 0.011085719544487059, 'n': 50, 'pass': True}
+03:22:04|INFO   |band c1 k4: {'median': 0.004036290071026516, 'p95': 0.012909069925091502, 'max': 0.016745112147033506, 'n': 10, 'pass': True}
+03:22:48|INFO   |band c1 k8: {'median': 0.0016006978760149523, 'p95': 0.016393940010103254, 'max': 0.017106274013948895, 'n': 10, 'pass': True}
+03:29:53|INFO   |band done

@@ -1,0 +1,101 @@
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+02:39:35|INFO   |loaded gemma (random_init=False): {'family': 'gemma', 'model_id': 'google/gemma-3-4b-it', 'revision': '093f9f388b31de276ce2de164bdc2081324b9767', 'random_init': False, 'precision': 'bf16 (sdpa); logits fp32; sampler float64', 'gpu': 'NVIDIA L4', 'free_vram_after_GB': 15.64, 'total_vram_GB': 23.66, 'cpu_embedding': False, 'load_seconds': 15.9}
+./src/engine8.py:397: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  nxt = torch.searchsorted(cdf, U[:, step][:, None]).squeeze(-1).clamp_(max=probs.shape[-1] - 1)
+02:40:08|INFO   |tokmap GRID: 'stack' mass 0.558 -> {'dfs': 9, 'disputed': 1} => dfs
+02:40:32|INFO   |tokmap GRID: 'open' mass 0.059 -> {'bfs': 9, 'disputed': 1} => bfs
+02:44:29|INFO   |S3 GRID: classes ['bfs', 'dfs']; adherence {"bfs": 1.0, "dfs": 0.997, "astar_gbfs": 0.0, "iddfs": 0.0}
+02:44:29|WARNING|DEVIATION GRID_two_class: GRID has 2 adherent classes ['bfs', 'dfs']; c2 cyclic derangements replaced by the prompt-level balanced shuffle (F2/F3)
+02:46:03|INFO   |DecSite: 207 prompts, 160 bases cached (Lmax 280) in 94s
+02:46:03|INFO   |GRID: 612 train / 112 held pairs; excluded sources 0
+./src/das8.py:302: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  loss = kl(T, self.cmap.probs(lg)).mean()
+02:46:08|INFO   |unit tests GRID: {'U1_max_abs_logit_diff': 0.0, 'U2_max_abs_logP_class_diff_kv_vs_full': 0.0999298095703125, 'U3_max_abs_logP_class_diff_fullstate_edit': 0.1226806640625, 'U2_pass_0.3': True, 'U9': {'kl_random_init_map': 1.1766524252792199, 'kl_after_20_steps': 0.24771971286584935, 'reduction': 0.789470783772816}, 'U7_memory_peak_GB': 9.48}
+02:46:09|INFO   |scan GRID L0: no full-state effect (0.063)
+02:46:10|INFO   |scan GRID L2: no full-state effect (0.016)
+02:46:11|INFO   |scan GRID L4: no full-state effect (-0.017)
+02:46:12|INFO   |scan GRID L6: no full-state effect (0.052)
+02:46:30|INFO   |scan GRID L8: no full-state effect (0.080)
+02:46:42|INFO   |scan GRID L10: no full-state effect (-0.007)
+02:46:44|INFO   |scan GRID L12: no full-state effect (0.147)
+02:46:58|INFO   |scan GRID L14: no full-state effect (0.309)
+02:47:50|INFO   |scan GRID L16: {'cv_recovery_by_fold': [2.659576789065597, 2.254772411078302], 'cv_median_recovery': 2.4571746000719497, 'full_state_mean_delta_held96': 2.6858205795288086, 'full_state_flip_share_held96': 1.0} (102s)
+02:48:18|INFO   |scan GRID L18: {'cv_recovery_by_fold': [2.2715719912495542, 1.991301208042367], 'cv_median_recovery': 2.1314365996459608, 'full_state_mean_delta_held96': 3.402842879295349, 'full_state_flip_share_held96': 1.0} (131s)
+02:48:44|INFO   |scan GRID L20: {'cv_recovery_by_fold': [1.6357307097133738, 1.4372564130091023], 'cv_median_recovery': 1.536493561361238, 'full_state_mean_delta_held96': 5.2151163419087725, 'full_state_flip_share_held96': 1.0} (156s)
+02:49:08|INFO   |scan GRID L22: {'cv_recovery_by_fold': [1.3551803886569362, 1.2284942675811867], 'cv_median_recovery': 1.2918373281190614, 'full_state_mean_delta_held96': 6.946402827898662, 'full_state_flip_share_held96': 1.0} (181s)
+02:49:32|INFO   |scan GRID L24: {'cv_recovery_by_fold': [1.3449158006733644, 1.2086346027033872], 'cv_median_recovery': 1.2767752016883758, 'full_state_mean_delta_held96': 7.233983715375264, 'full_state_flip_share_held96': 1.0} (204s)
+02:49:52|INFO   |scan GRID L26: {'cv_recovery_by_fold': [1.279768556168418, 1.1561844915441464], 'cv_median_recovery': 1.217976523856282, 'full_state_mean_delta_held96': 8.697238008181253, 'full_state_flip_share_held96': 1.0} (224s)
+02:50:11|INFO   |scan GRID L28: {'cv_recovery_by_fold': [1.4361959861057252, 1.3015598028886821], 'cv_median_recovery': 1.3688778944972038, 'full_state_mean_delta_held96': 8.575023492177328, 'full_state_flip_share_held96': 1.0} (243s)
+02:50:26|INFO   |scan GRID L30: {'cv_recovery_by_fold': [1.4841356852381793, 1.3333917094558807], 'cv_median_recovery': 1.4087636973470299, 'full_state_mean_delta_held96': 8.159058213233948, 'full_state_flip_share_held96': 1.0} (259s)
+02:50:39|INFO   |scan GRID L32: {'cv_recovery_by_fold': [1.443131047110587, 1.3215287686078732], 'cv_median_recovery': 1.38232990785923, 'full_state_mean_delta_held96': 8.457679986953735, 'full_state_flip_share_held96': 1.0} (271s)
+02:50:39|INFO   |GRID: L* = 16 (readout-proximal False)
+02:50:46|INFO   |[GRID L16 s0] step 20 loss 0.3368 val KL 0.1290 (7s)
+02:50:53|INFO   |[GRID L16 s0] step 40 loss 0.0038 val KL 0.0269 (14s)
+02:51:00|INFO   |[GRID L16 s0] step 60 loss 0.0144 val KL 0.0122 (20s)
+02:51:06|INFO   |[GRID L16 s0] step 80 loss 0.0007 val KL 0.0082 (27s)
+02:51:13|INFO   |[GRID L16 s0] step 100 loss 0.0019 val KL 0.0053 (34s)
+02:51:21|INFO   |[GRID L16 s0] step 120 loss 0.0110 val KL 0.0036 (41s)
+02:51:28|INFO   |[GRID L16 s0] step 140 loss 0.0003 val KL 0.0024 (49s)
+02:51:35|INFO   |[GRID L16 s0] step 160 loss 0.0013 val KL 0.0020 (56s)
+02:51:42|INFO   |[GRID L16 s0] step 180 loss 0.0001 val KL 0.0017 (63s)
+02:51:49|INFO   |[GRID L16 s0] step 200 loss 0.0001 val KL 0.0015 (69s)
+02:51:56|INFO   |[GRID L16 s0] step 220 loss 0.0025 val KL 0.0013 (76s)
+02:52:03|INFO   |[GRID L16 s0] step 240 loss 0.0023 val KL 0.0011 (84s)
+02:52:10|INFO   |[GRID L16 s1] step 20 loss 0.4380 val KL 0.1188 (7s)
+02:52:17|INFO   |[GRID L16 s1] step 40 loss 0.0307 val KL 0.0147 (14s)
+02:52:24|INFO   |[GRID L16 s1] step 60 loss 0.0004 val KL 0.0065 (21s)
+02:52:31|INFO   |[GRID L16 s1] step 80 loss 0.0002 val KL 0.0038 (28s)
+02:52:38|INFO   |[GRID L16 s1] step 100 loss 0.0070 val KL 0.0028 (35s)
+02:52:45|INFO   |[GRID L16 s1] step 120 loss 0.0044 val KL 0.0021 (42s)
+02:52:52|INFO   |[GRID L16 s1] step 140 loss 0.0073 val KL 0.0019 (48s)
+02:52:59|INFO   |[GRID L16 s1] step 160 loss 0.0006 val KL 0.0017 (55s)
+02:53:05|INFO   |[GRID L16 s1] step 180 loss 0.0017 val KL 0.0014 (62s)
+02:53:12|INFO   |[GRID L16 s1] step 200 loss 0.0027 val KL 0.0012 (69s)
+02:53:19|INFO   |[GRID L16 s1] step 220 loss 0.0017 val KL 0.0011 (76s)
+02:53:26|INFO   |[GRID L16 s1] step 240 loss 0.0018 val KL 0.0009 (83s)
+02:53:33|INFO   |[GRID L16 s2] step 20 loss 0.0146 val KL 0.1281 (7s)
+02:53:40|INFO   |[GRID L16 s2] step 40 loss 0.0000 val KL 0.0287 (14s)
+02:53:47|INFO   |[GRID L16 s2] step 60 loss 0.0041 val KL 0.0123 (21s)
+02:53:54|INFO   |[GRID L16 s2] step 80 loss 0.0065 val KL 0.0088 (28s)
+02:54:01|INFO   |[GRID L16 s2] step 100 loss 0.0095 val KL 0.0058 (35s)
+02:54:08|INFO   |[GRID L16 s2] step 120 loss 0.0046 val KL 0.0041 (42s)
+02:54:15|INFO   |[GRID L16 s2] step 140 loss 0.0023 val KL 0.0035 (49s)
+02:54:22|INFO   |[GRID L16 s2] step 160 loss 0.0013 val KL 0.0028 (56s)
+02:54:29|INFO   |[GRID L16 s2] step 180 loss 0.0001 val KL 0.0027 (63s)
+02:54:36|INFO   |[GRID L16 s2] step 200 loss 0.0013 val KL 0.0025 (70s)
+02:54:42|INFO   |[GRID L16 s2] step 220 loss 0.0001 val KL 0.0023 (76s)
+02:54:49|INFO   |[GRID L16 s2] step 240 loss 0.0000 val KL 0.0021 (83s)
+02:54:53|INFO   |[GRID r1only] step 20 loss 0.4437 val KL 0.1703 (4s)
+02:54:57|INFO   |[GRID r1only] step 40 loss 0.1452 val KL 0.0096 (8s)
+02:55:01|INFO   |[GRID r1only] step 60 loss 0.0049 val KL 0.0058 (12s)
+02:55:04|INFO   |[GRID r1only] step 80 loss 0.0017 val KL 0.0047 (15s)
+02:55:08|INFO   |[GRID r1only] step 100 loss 0.0019 val KL 0.0039 (19s)
+02:55:11|INFO   |[GRID r1only] step 120 loss 0.0007 val KL 0.0028 (22s)
+02:55:15|INFO   |[GRID r1only] step 140 loss 0.0007 val KL 0.0022 (26s)
+02:55:18|INFO   |[GRID r1only] step 160 loss 0.0038 val KL 0.0017 (29s)
+02:55:22|INFO   |[GRID r1only] step 180 loss 0.0006 val KL 0.0015 (33s)
+02:55:25|INFO   |[GRID r1only] step 200 loss 0.0004 val KL 0.0013 (36s)
+02:55:28|INFO   |[GRID r1only] step 220 loss 0.0004 val KL 0.0011 (39s)
+02:55:32|INFO   |[GRID r1only] step 240 loss 0.0014 val KL 0.0010 (43s)
+02:55:41|INFO   |GRID: k* = 4; recovery 3.069 CI [2.848153387814114, 3.414707445791311]
+02:56:15|INFO   |c1 GRID k1: {'median': 0.014096113001979526, 'p95': 0.02678617655582293, 'max': 0.0506597983896844, 'n': 50, 'pass': True}
+02:56:50|INFO   |c1 GRID k2: {'median': 0.015481018017032087, 'p95': 0.029700287574598867, 'max': 0.03896761044675923, 'n': 50, 'pass': True}
+02:57:23|INFO   |c1 GRID k4: {'median': 0.01340759955959319, 'p95': 0.0325785703797718, 'max': 0.04821330214038901, 'n': 50, 'pass': True}
+02:57:56|INFO   |c1 GRID k8: {'median': 0.02340242822601586, 'p95': 0.05061840921185263, 'max': 0.05194594269496065, 'n': 50, 'pass': True}
+Traceback (most recent call last):
+  File "./src/run_dec.py", line 655, in <module>
+    main()
+  File "./src/run_dec.py", line 651, in main
+    stage_dec(a.unit, quick=a.quick, force_L=a.force_L)
+  File "./src/run_dec.py", line 363, in stage_dec
+    c2 = label_controls(site, P, L, train, held, full_h, classes, cls, main, kstar, fams_tr, quick, true_d)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./src/run_dec.py", line 517, in label_controls
+    f = site.fit(L, tp, vp, seed=sd, pair_targets=ptg, steps=FIT_STEPS if not quick else 40,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./src/das8.py", line 284, in fit
+    for step in range(1, steps + 1):
+                        ^^^^^^^^
+IndexError: list index out of range

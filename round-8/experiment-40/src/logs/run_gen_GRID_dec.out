@@ -1,0 +1,25 @@
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+03:54:20|INFO   |loaded gemma (random_init=False): {'family': 'gemma', 'model_id': 'google/gemma-3-4b-it', 'revision': '093f9f388b31de276ce2de164bdc2081324b9767', 'random_init': False, 'precision': 'bf16 (sdpa); logits fp32; sampler float64', 'gpu': 'NVIDIA L4', 'free_vram_after_GB': 15.64, 'total_vram_GB': 23.66, 'cpu_embedding': False, 'load_seconds': 17.3}
+03:54:23|INFO   |GRID: 260 generation rows over 10 cells
+./src/engine8.py:397: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  nxt = torch.searchsorted(cdf, U[:, step][:, None]).squeeze(-1).clamp_(max=probs.shape[-1] - 1)
+03:54:40|INFO   |GRID-pilot: +16 rows (17.5s, 304 steps); total 16/40
+03:54:55|INFO   |GRID-pilot: +12 rows (14.9s, 288 steps); total 28/40
+03:55:14|INFO   |GRID-pilot: +12 rows (18.7s, 360 steps); total 40/40
+03:55:30|INFO   |GRID-gen: +16 rows (15.7s, 296 steps); total 16/220
+03:55:45|INFO   |GRID-gen: +16 rows (15.3s, 288 steps); total 32/220
+03:56:01|INFO   |GRID-gen: +16 rows (15.8s, 296 steps); total 48/220
+03:56:17|INFO   |GRID-gen: +16 rows (15.9s, 296 steps); total 64/220
+03:56:33|INFO   |GRID-gen: +16 rows (15.8s, 296 steps); total 80/220
+03:56:48|INFO   |GRID-gen: +16 rows (15.4s, 288 steps); total 96/220
+03:57:03|INFO   |GRID-gen: +16 rows (14.2s, 264 steps); total 112/220
+03:57:15|INFO   |GRID-gen: +5 rows (12.2s, 240 steps); total 117/220
+03:57:33|INFO   |GRID-gen: +16 rows (17.9s, 336 steps); total 133/220
+03:57:51|INFO   |GRID-gen: +16 rows (18.3s, 344 steps); total 149/220
+03:58:09|INFO   |GRID-gen: +16 rows (17.9s, 336 steps); total 165/220
+03:58:21|INFO   |GRID-gen: +16 rows (11.8s, 216 steps); total 181/220
+03:58:36|INFO   |GRID-gen: +16 rows (15.8s, 296 steps); total 197/220
+03:58:55|INFO   |GRID-gen: +16 rows (18.5s, 344 steps); total 213/220
+03:59:13|INFO   |GRID-gen: +7 rows (17.8s, 344 steps); total 220/220
+03:59:17|INFO   |generation done

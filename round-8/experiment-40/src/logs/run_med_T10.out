@@ -1,0 +1,13 @@
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:02,  1.87it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.45it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.39it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  1.49it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  2.00it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  1.74it/s]
+04:08:07|INFO   |loaded qwen (random_init=False): {'family': 'qwen', 'model_id': 'Qwen/Qwen3-8B', 'revision': 'b968826d9c46dd6066d109eabc6255188de91218', 'random_init': False, 'precision': 'bf16 (sdpa); logits fp32; sampler float64', 'gpu': 'NVIDIA L4', 'free_vram_after_GB': 8.31, 'total_vram_GB': 23.66, 'cpu_embedding': True, 'load_seconds': 36.8}
+04:08:32|INFO   |predictor for 40 directions in 20s
+04:08:40|INFO   |mediation Spearman pooled: {'rho': 0.39147708195720493, 'p_one_sided': 0.006099390060993901, 'n': 40}
+Traceback (most recent call last):
+  File "./src/run_med.py", line 283, in <module>
+    main()
+  File "./src/run_med.py", line 185, in main
+    ht = torch.stack([clean[w][l] for l in bl])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 28.00 MiB. GPU 0 has a total capacity of 22.04 GiB of which 463.12 MiB is free. Including non-PyTorch memory, this process has 21.58 GiB memory in use. 21.38 GiB allowed; Of the allocated memory 21.31 GiB is allocated by PyTorch, and 38.81 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
