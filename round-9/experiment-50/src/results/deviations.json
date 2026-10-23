@@ -1,0 +1,92 @@
+[
+ {
+  "id": "b3_repro_tolerance",
+  "severity": "minor",
+  "text": "6.1 reproduction |diff| 0.09614 > 1e-3 (> 0.05)",
+  "utc": "2026-10-23T14:04:27.078561Z"
+ },
+ {
+  "id": "b3_repro_code_changed",
+  "severity": "major",
+  "text": "6.1 debug: the vendored exp41 src/k3circuit.py and src/k3engine.py were last modified at 03:42:39Z, after data/validation_rows_C1forced.jsonl was written (02:38:29Z), so the 'unchanged vendored path' is not the code that produced the target 8.29053352355957. The ids and position classes are verified independently: the exp41 clean margins reproduce with 0.0 difference (S1, B3 and T10). Reproduced d = 8.3867 (|diff| 0.096 > 0.05); the held-out rerun proceeds with the final vendored code and the value is reported with this offset.",
+  "utc": "2026-10-23T14:12:20.661546Z"
+ },
+ {
+  "id": "engine_check_base_subarm_gpu",
+  "severity": "minor",
+  "text": "G1 engine check vs iteration-8 base_subarm margins misses 0.05 on some templates (instruct: exact 0.25/0.5-nat bf16 logit steps on 2-4 of 5 templates; base: up to 0.17 nats). base_subarm was computed by engine8 on a different card (its loader notes a 20 GB GPU and a CPU embedding table), while exp41 (L4, same as here) reproduces exactly (max |diff| 0.0 on all 40 B2 prompts). Reproduction offsets are recorded per template in results/capture_*.json; no engine is mixed.",
+  "utc": "2026-10-23T14:12:20.745228Z"
+ },
+ {
+  "id": "b2_confirmation_rs36",
+  "severity": "major",
+  "text": "Confirmation signal 'RS-fork(36) closes about 1.0 of the gap' failed on the first prompts (B3 0.44-0.58, T10 -0.42 to 0.50). The identity check passes (all components patched = RS-fork(36) within 0.06), so the patch is not broken: RS-fork(36) swaps the residual but keeps the INSTRUCT final norm and unembedding, which themselves carry a large part of the gap (readout change). Debugged rather than stopped: a CPU readout decomposition (analysis9.readout_decomposition) is added and every share is also reported relative to RS-fork(36) (labelled supplementary).",
+  "utc": "2026-10-23T14:12:20.789764Z"
+ },
+ {
+  "id": "b2_v2_fixed_shapes",
+  "severity": "major",
+  "text": "First B2 pass (v1, archived in results/v1_variable_batch/) used variable last-chunk batch shapes and full-forward caches: self-patch |dm| up to 0.22 and batched-vs-single dm differences up to 0.21 nats (G2/G4 failed). Per the fallback, the primary rerun (v2) uses a fixed batch shape (40 one-token rows, 8 full-forward rows, padded) and fork values captured on the same one-token path (onetok_capture) for both models; anchors m_I and m_B are the one-token-path margins.",
+  "utc": "2026-10-23T14:12:20.830459Z"
+ },
+ {
+  "id": "b3_separate_load",
+  "severity": "minor",
+  "text": "S6 (B3) runs in its own instruct load (b3_9.py gpu) rather than inside S3's load.",
+  "utc": "2026-10-23T14:12:20.870439Z"
+ },
+ {
+  "id": "analysis_sha_commit0b",
+  "severity": "minor",
+  "text": "analysis9.py was written after COMMIT #0; its sha256 is committed in commit0b before any verdict is computed. Verdict rules and thresholds are in COMMIT #0.",
+  "utc": "2026-10-23T14:12:20.912225Z"
+ },
+ {
+  "id": "fpd_fork_only",
+  "severity": "minor",
+  "text": "FPD is applied at the counterfactual fork token only (base logits at that one position), not at every entropy-gated position as in Cantarero et al. (plan departure f).",
+  "utc": "2026-10-23T15:42:26.625056Z"
+ },
+ {
+  "id": "gen_fork_kv",
+  "severity": "minor",
+  "text": "In generation, FSTACK / RAND patches act on the fork position's forward pass, so the K/V cached at that position carry the patch; every later position is computed by the unpatched instruct model. FPD rows keep the instruct K/V at the fork and only replace its sampling distribution.",
+  "utc": "2026-10-23T15:42:26.648415Z"
+ },
+ {
+  "id": "gen_prompts_slots",
+  "severity": "minor",
+  "text": "Generation uses, per template, the first B2 prompt of that template (cached base values exist only for the B2 prompts) x 6 CRN slots (seeds 9101-9130), 30 programs per arm and unit.",
+  "utc": "2026-10-23T15:42:26.667653Z"
+ },
+ {
+  "id": "random_set_repeat",
+  "severity": "minor",
+  "text": "When a type's candidate pool is exhausted (MLP pools hold 3-5 components), the no-repeat rule falls back to the full pool, so a few random sets contain a repeated MLP (e.g. T10 set 13 has MLP L31 twice) and patch 9 distinct components; distinct-draw counts are in random_sets.json.",
+  "utc": "2026-10-23T15:42:26.686266Z"
+ },
+ {
+  "id": "self_patch_g2",
+  "severity": "minor",
+  "text": "G2 (self-patch |dm| <= 0.02) still fails in v2 (max 0.11 MST, 0.15 CC; mean share 0.003 / 0.001): head writes are cached in bf16, so setting a head's write to its own cached value re-rounds it; MLP and attention-output patches are exact (identity ALL_attn - RS36 = 0.0). G4 (batched vs single) passes exactly (0.0).",
+  "utc": "2026-10-23T15:42:26.722568Z"
+ },
+ {
+  "id": "gemma_t04_r6_prompts",
+  "severity": "minor",
+  "text": "G-T04 and G-R6 have 5 prompts each (prompts8 holds only the W1-W5 twins, no noun variants), so their CIs are crude (plan departure b).",
+  "utc": "2026-10-23T15:42:26.742567Z"
+ },
+ {
+  "id": "llama_onpolicy",
+  "severity": "major",
+  "text": "L-GRID: every prompt fails the committed on-policy rule (instruct log P(opening) about -13.6 < -5 over the 52-token opening), so Llama is reported descriptively and excluded from the B1 verdict; L-SP (shortest path) was not run (second in the drop order).",
+  "utc": "2026-10-23T15:42:26.763713Z"
+ },
+ {
+  "id": "token_maps_unmapped",
+  "severity": "minor",
+  "text": "Token maps for unmapped base fork tokens (forced instruct continuations) were not built; the unmapped base mass is reported (G-GRID 0.66, G-T04 0.16, G-R6 0.31/0.34).",
+  "utc": "2026-10-23T15:42:26.782682Z"
+ }
+]

@@ -1,0 +1,95 @@
+{
+ "analysis9_sha256": "b8bd9e9b9bab6f1d7f6e605a4e8f382850dfa7967f9989fdacb033bb186f5763",
+ "code_sha256": {
+  "analysis9.py": "b8bd9e9b9bab6f1d7f6e605a4e8f382850dfa7967f9989fdacb033bb186f5763",
+  "b1_9.py": "e4b026db7c4803e77c93177de62e138248883ec554cfedfe71b2decfdac6389e",
+  "b3_9.py": "cd7b1273f2f151cef835d60eacb478804a4008a81b5701682f95386e7cded396",
+  "cfg9.py": "07eca0fb14b4392e75a4f6caab30d62a3b77f6fb42acc1822938aeec4de79929",
+  "cmap9.py": "3a6e0c0f9ee9ab6bc2e912a5e99bb0707193cf801a3ad116e2daa4d7290130c2",
+  "commit9.py": "fe14a08fd7c65ac443e280195f61880c5f96a67e6e18eab1d663264c54328636",
+  "download_models.py": "ebef3c996f7875a5bc39150ba33a5203498576a4605752c68b8f23000ff373ae",
+  "meancache_aligned.py": "f45d2792d004de8f3c1dbe0c6b2cc4414a514ec51164831c412206ee959a07a9",
+  "s0_preflight.py": "9c8d7d7fafd5afe8263e82897c14df3fe906ecde62238a6bf3b94aa0b4c9fe48",
+  "stats9.py": "457793b01b9e1569495259e00995de5b3b727078b7ae37f8f386dc4568812b83",
+  "tests_cpu9.py": "d7ed8fd1739ce663c6a36e1e58a569d3ccb603f06e39368868164637eeb21679",
+  "units9.py": "9ac2fe389b803b9ec15ad4115797f0544f61fff88d6d93b271f9fe9644721440"
+ },
+ "rules": {
+  "B1": {
+   "P1": "margin gain (instruct minus base, chat template unless the template-primary rule switches the unit) >= 2 nats on every near-collapsed fork (instruct mean P(D class) >= 0.85) in Gemma and Llama",
+   "P2": "|mean phrasing entropy change H_base - H_instr| < 0.5 nats on every unit",
+   "P3": "JS_fork / JS_entropy-matched >= 1.3 on at least half the units AND JS_random / JS_phrasing <= 1.3 on every unit",
+   "P4": "the instruct argmax token at the fork is not the base argmax on a majority of prompts, in at least half the units",
+   "PASS": "P1-P4 hold",
+   "DISCONFIRMED": "gain < 1 nat on the near-collapsed forks; if no fork qualifies, mean gain < 1 nat over all Gemma units",
+   "PARTIAL": "otherwise"
+  },
+  "B2": {
+   "share": "share(X) = sum_p (m_I,p - m_X,p) / sum_p (m_I,p - m_B,p)",
+   "Q1": "share(FSTACK) >= 0.5 on B3 and on T10",
+   "Q2": "median share of the 50 matched random sets <= 0.15, and FSTACK above their 95th percentile, on each unit",
+   "Q3": "share(SPEC set) <= 0.15 (each unit)",
+   "SUPPORTED": "Q1-Q3 on both units",
+   "DISCONFIRMED": "share(FSTACK) <= 0.2 on both units",
+   "PARTIAL": "otherwise",
+   "localisation": "'written upstream' if RS-prefix(23) >= 0.5; 'written at the fork by other late components' if RS-fork(36) - RS-fork(23) >= 0.5 and share(FSTACK) <= 0.2; otherwise 'distributed'"
+  },
+  "B3": "no threshold; reported whatever it shows",
+  "template_primary": {
+   "llama": "if the Llama-3.1-8B embedding row norm of any of <|start_header_id|>, <|end_header_id|>, <|eot_id|> is < 0.1 x the median row norm, template-free is primary for Llama",
+   "gemma": "if the pt model's mass on D or A at the fork under the chat template is < 0.01 (mean over prompts), template-free is primary for that unit"
+  },
+  "near_collapse": "instruct teacher-forced P(D class) at the fork, averaged over prompts, >= 0.85",
+  "fork_set_quantile": 0.9,
+  "on_policy": "drop a prompt whose instruct log P(opening) < -5.0 nats (instruct model only)",
+  "random_sets": {
+   "pool": "same component type at the fork, layers 20-35, not in FSTACK",
+   "tolerance": [
+    0.7,
+    1.43
+   ],
+   "widened_if_lt_3_candidates": [
+    0.5,
+    2.0
+   ],
+   "n_sets": 50,
+   "seed": "90901 + unit index (B3 0, T10 1)",
+   "draw": "with replacement across sets, no repeats within a set",
+   "variants": "R-pure (pool also excludes every exp41 top-15 DEC node); R-scaled (deltas rescaled to the FSTACK node's norm; sensitivity only)",
+   "spec_sets": "20 sets, same rule at SPEC positions, layers 4-24, seed 90901 + 100 + unit index"
+  },
+  "rs_layers": [
+   4,
+   8,
+   12,
+   16,
+   20,
+   23,
+   26,
+   30
+  ],
+  "b3": {
+   "target_d": 8.29053352355957,
+   "tol_exact": 0.001,
+   "tol_gpu_logged": 0.05,
+   "steer_dose": 2.0,
+   "steer_dose_sensitivity_posthoc": 0.5
+  }
+ },
+ "thresholds": {
+  "B1_P1_gain": 2.0,
+  "B1_P2_dH": 0.5,
+  "B1_P3_fork_vs_matched": 1.3,
+  "B1_P3_random_vs_phrasing": 1.3,
+  "B1_disconfirm_gain": 1.0,
+  "B2_Q1_share": 0.5,
+  "B2_Q2_median_random": 0.15,
+  "B2_Q2_pctile": 95,
+  "B2_Q3_spec": 0.15,
+  "B2_disconfirm_share": 0.2,
+  "B2_upstream_rs_prefix23": 0.5,
+  "B2_late_rs_gap": 0.5
+ },
+ "commit_name": "commit0b",
+ "utc": "2026-10-23T14:18:54.940829Z"
+}
