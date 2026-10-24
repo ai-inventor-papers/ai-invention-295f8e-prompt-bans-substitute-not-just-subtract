@@ -1,0 +1,42 @@
+{
+ "utc": "2026-10-24T21:29:24Z",
+ "queries": [
+  {
+   "query": "arXiv 2604.00018 high-entropy branching decoding",
+   "utc": "2026-10-24T21:17Z",
+   "work": "HN-decode (He, Liu, Roth et al., arXiv 2604.00018)",
+   "quote": "branches only at those points while maintaining a pool of partial rollouts (search-tool summary)",
+   "verdict": "adjacent: entropy-guided branching for reasoning decoding, no evaluator-driven program search, no matched-call comparison against temperature"
+  },
+  {
+   "query": "Forking Paths in Neural Text Generation forking tokens uncertainty",
+   "utc": "2026-10-24T21:17Z",
+   "work": "Forking Paths (Bigelow, Holtzman, Tanaka, Ullman; ICLR 2025)",
+   "quote": "individual forking tokens exist which, if generated, produce dramatic differences in subsequent text",
+   "verdict": "adjacent: analysis of forking tokens by swapping top-K alternatives; DTB uses the same intervention as a mutation operator inside an evaluator loop"
+  },
+  {
+   "query": "Beyond the 80/20 Rule high-entropy minority tokens reinforcement learning reasoning",
+   "utc": "2026-10-24T21:17Z",
+   "work": "Beyond the 80/20 Rule (Wang et al., NeurIPS 2025)",
+   "quote": "Only a small fraction (approximately 20%) of tokens exhibit high entropy, and these tokens semantically act as critical forks",
+   "verdict": "adjacent (RL training, not sampling-time branching)"
+  },
+  {
+   "query": "BehaveSim behavioral similarity LLM heuristic design FunSearch EoH diversity ICLR 2026",
+   "utc": "2026-10-24T21:17Z",
+   "work": "BehaveSim (Zhang & Lu, ICLR 2026, arXiv 2603.02787)",
+   "quote": "problem-solving trajectories ... compared with dynamic time warping (search-tool summary)",
+   "verdict": "adjacent: behaviour-level similarity for AAD; our decision-agreement clusters are a fixed-probe analogue, used here as a measurement, not as a search objective"
+  }
+ ],
+ "carried_from_plan_domain_reading": {
+  "FunSearch / EoH / ReEvo / HSEvo / MCTS-AHD / LLM4AD": "occupy evaluator-driven AHD on online bin packing; corpus entries at pinned commits",
+  "2407.10873 (Zhang et al.)": "occupies the RandSample / EPS comparison; our NS arm is its analogue",
+  "2501.11411 (Beyond the Hype)": "adjacent: generalisation of LLM heuristics; motivates H-SHIFT/H-W10k",
+  "2510.27353 (Herrmann & Pallez)": "occupies the ab principle that 22/30 audited representatives reduce to",
+  "RefineEvo 2607.11358": "adjacent: planner/reflection operators; bin-packing code not retrievable",
+  "ROSE 2601.05053, ADR 2510.10207, AdapT, Fork-Patched Decoding, DivAlgo, Beneath the Diff, 2604.01193": "not re-searched in this artifact (time); per the plan's reading none prices token-level branching as a mutation operator inside evaluator-driven program search against temperature at matched calls"
+ },
+ "corpus_search": "results/corpus_search.json (7 queries, 2026-10-24T18:39Z)"
+}

@@ -1,0 +1,18 @@
+{
+ "title": "NOV-B1 commit #4: V5 founder-reversion protocol (before the first V5 call)",
+ "code_sha256": {
+  "src/v5.py": "86d50f969c10c4ec726b5b20734379d802c997df4d91e446f8104f69ad264ae9"
+ },
+ "n_founders": 40,
+ "n_continuations": 20,
+ "max_positions": 3,
+ "founder_rule": "leader clustering (>= 0.95) in call order per arm-seed over valid offspring among calls 1..C_s; founder = new leader with F below every prompt parent; first 40 pooled by (round, arm order T1.0,T1.6,DTB,RPB,IDEA, call_id, seed)",
+ "birth_rule": "completion positions inside the kept body where the realised token != argmax and top-20 entropy >= the founder's own 90th percentile; first <= 3",
+ "control_rule": "same number of positions drawn uniformly (rng [20261031, founder]) from the other non-argmax body positions",
+ "continuation": "prompt + completion[:p] + argmax token; n = 20 at T 1.0, top_p 1, max_tokens 512 - p - 1, same stops, seed = hash(20261031, founder, p)",
+ "reversion": "continuation's P1 vector agrees >= 0.95 with either prompt parent; invalid continuations counted separately",
+ "reports": "per-position reversion rates; per-founder max birth vs control (two-sided sign test); share of founders with a birth position whose reversion >= 0.5, by arm",
+ "status": "descriptive",
+ "commit": 4,
+ "utc": "2026-10-24T20:39:36Z"
+}

@@ -1,0 +1,71 @@
+{
+ "utc": "2026-10-24T18:11:31Z",
+ "file": "data/probes/P1.json",
+ "file_sha256": "c13ed7bc93fb5bed2e785419429f4091021b73647ebacea70216a1b9ea89baaa",
+ "states_sha256": "e138cbf4b905950394486bb633ffde31724146a76b2fe89db0592e09ec3aff5b",
+ "n_states": 2000,
+ "n_trace": 1000,
+ "n_uniform": 1000,
+ "trace_states_per_ref": {
+  "BF": 170,
+  "FF": 158,
+  "WF": 170,
+  "AWF": 158,
+  "c12": 174,
+  "c14": 170
+ },
+ "self_agreement": {
+  "BF": {
+   "n_states": 170,
+   "agree": 1.0
+  },
+  "FF": {
+   "n_states": 158,
+   "agree": 1.0
+  },
+  "WF": {
+   "n_states": 170,
+   "agree": 1.0
+  },
+  "AWF": {
+   "n_states": 158,
+   "agree": 1.0
+  },
+  "c12": {
+   "n_states": 174,
+   "agree": 1.0
+  },
+  "c14": {
+   "n_states": 170,
+   "agree": 1.0
+  }
+ },
+ "reference_pair_agreement": {
+  "BF~FF": 0.449,
+  "BF~WF": 0.3105,
+  "BF~AWF": 0.374,
+  "BF~c12": 0.7295,
+  "BF~c14": 0.4055,
+  "FF~WF": 0.4215,
+  "FF~AWF": 0.4275,
+  "FF~c12": 0.468,
+  "FF~c14": 0.234,
+  "WF~AWF": 0.4195,
+  "WF~c12": 0.2905,
+  "WF~c14": 0.2555,
+  "AWF~c12": 0.3125,
+  "AWF~c14": 0.2625,
+  "c12~c14": 0.418
+ },
+ "self_check_pass": true,
+ "c14_note": "c14's in-place score[1:] -= score[:-1] is index-dependent and can open a later empty bin, so its rebuilt arrays are not exact; its self-agreement is reported, not required",
+ "secs": 6.6511242389678955,
+ "rebuild_identical_sha256": true,
+ "tests": {
+  "renamed_bf_vs_bf": 1.0,
+  "bf_vs_wf": 0.3105,
+  "err_vs_err": 0.0,
+  "state_format_capacity_last": true,
+  "pass": true
+ }
+}

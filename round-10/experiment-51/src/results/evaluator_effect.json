@@ -1,0 +1,54 @@
+{
+ "T1.0": {
+  "0": {
+   "calls": 1000,
+   "valid": 905,
+   "D": 29,
+   "best_F": 0.9737322515212985,
+   "best_pid": "main-0-T1.0-694",
+   "best_code": "def priority(item, bins):\n    valid_bins = bins >= item\n    scores = np.zeros_like(bins, dtype=np.float64)\n    valid_indices = np.where(valid_bins)[0]\n    if len(valid_indices) > 0:\n        remaining_capacity = bins[valid_indices] - item\n        scores[valid_indices] = 1.0 / (remaining_capacity + 1e-8) - 0.1 * remaining_capacity\n        # Bonus for bins with remaining space closest to item size\n        closest = np.isclose(remaining_capacity, item)\n        scores[closest] += 15.0\n        # Bonus for bins where remaining space is a multiple of the item size\n        multiples = np.isclose(remaining_capacity, np.round(remaining_capacity / item) * item)\n        scores[multiples] += 8.0\n        # Bonus for bins with high utilization (closer to full capacity)\n        utilization = 1.0 - (remaining_capacity / bins[valid_indices])\n        scores[valid_indices] += 0.7 * utilization\n        # Bonus for bins with minimal remaining capacity (closer to full)\n        scores[valid_indices] += 0.3 * (1.0 / (remaining_capacity + 1e-8))\n        # Bonus for bins that have been used before (encourages compact packing)\n        used_bins = np.where(bins < 1.0 - 1e-8)[0]\n        used_valid = np.isin(valid_indices, used_bins)\n        scores[valid_indices][used_valid] += 5.0\n        # Penalty for bins with very large remaining capacity (wasted space)\n        large_capacity = remaining_capacity > 0.5 * item\n        scores[large_capacity] -= 2.0\n        # Penalize fragmentation by checking if remaining capacity is small but not a multiple\n        fragmented = (remaining_capacity < 0.5 * item) & np.logical_not(np.isclose(remaining_capacity, np.round(remaining_capacity / item) * item))\n        scores[fragmented] -= 3.0\n    return scores\n",
+   "best_heldout": {
+    "H-FSW5k": 3.752892645135333,
+    "H-OR3": 5.21868787276342
+   }
+  },
+  "1": {
+   "calls": 1000,
+   "valid": 978,
+   "D": 77,
+   "best_F": 0.9776673427991882,
+   "best_pid": "main-1-T1.0-951",
+   "best_code": "def priority(item, bins):\n    valid_bins = bins >= item\n    remaining = bins - item\n    # Use a more sophisticated scoring function:\n    # 1. Prefer bins with more remaining space (higher utilization)\n    # 2. Prioritize lower waste (higher utilization)\n    # 3. Penalize fragmentation (using remainder)\n    # 4. Favor bins that can fit the item with minimal leftover space\n    # 5. Introduce a balance between space and fragmentation for better performance\n    # 6. Add a small penalty for bins that are not fully used (to avoid leaving gaps)\n    # 7. Consider the ratio of remaining space to item size for better fit\n    # 8. Use a more refined weight system for better priority calculation\n    score = -remaining * 0.4\n    score -= (1 - (remaining / bins)) * 0.3\n    score -= (remaining % item) * 0.15\n    score += (remaining - (remaining % item)) * 0.25\n    score += (remaining / item) * 0.05\n    score -= (1 - (remaining / bins)) * 0.05\n    # Add a new term: Favor bins with a better fit-to-size ratio\n    score += (remaining / item - 1) * 0.05\n    return np.where(valid_bins, score, -np.inf)\n",
+   "best_heldout": {
+    "H-FSW5k": 4.125163497333747,
+    "H-OR3": 5.21868787276342
+   }
+  }
+ },
+ "NS": {
+  "0": {
+   "calls": 1000,
+   "valid": 1000,
+   "D": 5,
+   "best_F": 1.0,
+   "best_pid": "ns-0-NS-25",
+   "best_code": "def priority(item, bins):\n    return -(bins - item) ** 2\n",
+   "best_heldout": {
+    "H-FSW5k": 3.984304255961367,
+    "H-OR3": 5.367793240556666
+   }
+  },
+  "1": {
+   "calls": 1000,
+   "valid": 1000,
+   "D": 6,
+   "best_F": 1.0,
+   "best_pid": "ns-1-NS-89",
+   "best_code": "def priority(item, bins):\n    return -(bins - item) ** 2\n",
+   "best_heldout": {
+    "H-FSW5k": 3.984304255961367,
+    "H-OR3": 5.367793240556666
+   }
+  }
+ }
+}
