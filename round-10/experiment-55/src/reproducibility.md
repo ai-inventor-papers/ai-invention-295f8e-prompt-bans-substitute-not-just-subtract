@@ -1,178 +1,151 @@
-# Reproducing TP-G2 (iteration 10, `gen_plan_experiment_5_idx5`)
+# Reproducing TP-G2 (iteration 10)
 
-This file records what was actually run, in the order it was run.
-
-All paths here are relative to this artifact's folder. The folder needs no other repository folder except in the two
-optional cases in §3.2. Every expensive or non-deterministic intermediate ships with it:
-
-- the generated programs;
-- the instrument and sandbox caches;
-- the hand reads;
-- the model states.
+This file records exactly what was run, in order, on the machine that produced the results. Every path is relative to
+this folder.
 
 ## 1. Get the artifact
 
-The workspace is published as one folder of a public GitHub repository:
-
 ```bash
-git clone <the run's repository URL>
-cd <repository>/<this artifact's folder>        # the folder that contains this file, method.py and src/
+git clone <the published repository URL>
+cd <repository>/<this artifact's folder>        # the folder that holds method.py and this file
 ```
 
-Prior artifacts are published as **sibling folders named by artifact id**. Code reads each one through one constant in
-`src/tpg2.py`, overridable by an environment variable:
+Prior artifacts are read through one relative constant, `DEPS_DIR`, defined in `src/v10.py` and
+`scripts/setup_inputs.py`. It defaults to the parent folder (`..`), where the repository publishes every artifact as a
+sibling folder named by its artifact id:
 
-| artifact | id | environment variable (default) |
-|---|---|---|
-| iteration-9 TP-G | `art_VVA3P0ocZNA2` | `TPG2_E46` (`../art_VVA3P0ocZNA2`) |
-| iteration-9 TP-B | `art_8nXdw3_lDAll` | `TPG2_E45` (`../art_8nXdw3_lDAll`) |
-| iteration-8 screen | `art_R-HSmXq2t97f` | `TPG2_E44` (`../art_R-HSmXq2t97f`) |
-| declared dataset | `art_j3Rm_lr2nzR6` | `TPG2_DS` (`../art_j3Rm_lr2nzR6`) |
+| artifact id | what is read |
+|---|---|
+| `art_VVA3P0ocZNA2` | iteration 9 gen_art_experiment_46: readout code, geometry/landing code, M-code sets, frozen states `cache/states/mcode_{8b,32b}.npz` |
+| `art_8nXdw3_lDAll` | iteration 9 gen_art_experiment_45: tracer, probes, survivors, manual reads, retrace rows |
+| `art_R-HSmXq2t97f` | iteration 8 gen_art_experiment_44: C6 baseline / ban / confirm rows |
+| `art_IVZc3TWCeE9f` | iteration 2 gen_art_experiment_9: references and labeller (cross-check) |
+| `art_D6Z0Snf09sFL` | iteration 1 gen_art_experiment_2: 41-case suite (cross-check) |
+| `art_j3Rm_lr2nzR6` | declared dependency: `full_data_out.json` (IDF corpus for S5) |
 
-`TPG2_DEPS_DIR` moves all four at once. No user-uploaded file was used.
+Use `TPG_DEPS_DIR=<folder>` to point at another parent, or `TPG_DEP_<id>` to point at one artifact (with `-` written
+as `_`, e.g. `TPG_DEP_art_R_HSmXq2t97f`).
 
-## 2. System, Python and libraries
+- `scripts/setup_inputs.py` copied the small inputs into `inputs/`, `src/` and `vendor/`, so those copies ship here
+  with sha256 in `inputs_manifest.json`.
+- The 0.6 GB frozen state caches of `art_VVA3P0ocZNA2` and the dependency's `full_data_out.json` were read in place.
+  Their sha256 is in `inputs_manifest.json` under `in_place`.
+- No user-uploaded file was used. The run's `user_uploads` folder is private and is not published.
 
-What the run used:
+## 2. System, Python and packages
 
-- **Hardware:** NVIDIA GeForce RTX 4090, 24 GB VRAM. Driver 595.91.07, CUDA 13.2 driver; the torch wheels are cu128.
-- **Container:** Debian GNU/Linux 12 (bookworm), Linux 6.8. CPU quota of 7 cores (AMD Ryzen 9 7950X); RAM limit 42 GB.
-  Ubuntu 22.04 or 24.04 with a recent NVIDIA driver works the same.
-- **Python:** 3.12.14 via `uv`.
-- **Sandbox interpreter:** the test harness and tracer run candidate programs with a stdlib-only CPython 3.12, always
-  with `-I -S`.
-  - The harness (`vendor/exp9/tasks/harness.py`) takes `$SANDBOX_PYTHON`, else the system `python3.12` (the run used
-    `/usr/local/bin/python3.12`), else the current interpreter.
-  - The tracer (`src/orderclass.py`, `src/instrument.py`) takes the system `python3.12`, else the current
-    interpreter.
-  - No other system packages are needed.
+- OS: Debian GNU/Linux 12 (bookworm) container on Linux 6.8. Any recent Ubuntu works.
+- Python 3.12.14 at `/usr/local/bin/python3.12`. The vendored hidden-test and tracer sandboxes run candidate programs
+  with a stdlib-only CPython 3.12 (`-I -S`). They use `/usr/local/bin/python3.12` or `/usr/bin/python3.12` if present,
+  else `python3.12` on PATH. `SANDBOX_PYTHON=<interpreter>` overrides this for `vendor/exp9/tasks/harness.py`.
+- uv (any recent version) creates the venv:
 
 ```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh          # if uv is missing
-bash restore.sh                                          # = uv venv .venv --python=3.12 && uv pip install -r requirements.lock.txt
+uv venv .venv --python=3.12
+uv pip install --python .venv/bin/python -r requirements.lock.txt      # 70 exact pins, identical to pyproject.toml
 ```
 
-The `.venv` was created this way. `pyproject.toml` pins all 70 packages to exactly the versions in `.venv`, from
-`uv pip freeze --python .venv/bin/python`; uv venvs ship no `pip`. `requirements.lock.txt` holds the identical list.
-The pins are the same as iteration 9's, and the reproduction gate depends on them: `torch==2.8.0` (cu128),
-`transformers==4.57.6`, `bitsandbytes==0.50.2`, `numpy==2.2.6`, `scipy==1.18.1`, `scikit-learn==1.9.1`,
-`accelerate==1.15.0` and `huggingface-hub==0.36.2`.
+Key pins (all in `pyproject.toml` / `requirements.lock.txt`):
 
-## 3. Downloads, environment variables and keys (names only)
+| package | version |
+|---|---|
+| torch | 2.8.0 (cu128 wheel) |
+| transformers | 4.57.6 |
+| accelerate | 1.15.0 |
+| bitsandbytes | 0.50.2 |
+| numpy | 2.2.6 |
+| scipy | 1.18.1 |
+| scikit-learn | 1.9.1 |
+| matplotlib | 3.11.2 |
+| aiohttp | 3.14.5 |
+| loguru | 0.7.3 |
+| huggingface-hub | 0.36.2 |
 
-### 3.1 Models
+## 3. Downloads, environment variables, keys
 
-The models download automatically on first use, or up front with `bash restore.sh --models`:
+Environment variables (names only):
 
-- `Qwen/Qwen3-8B`, revision `b968826d9c46dd6066d109eabc6255188de91218`: bf16, truncated to 20 blocks, about 9 GB VRAM.
-- `unsloth/Qwen3-32B-bnb-4bit`, revision `7f721e74a6a8cc9ee352f7e49303a2c1705f9083`: NF4, truncated to 36 blocks,
-  about 10 GB VRAM.
+| variable | purpose |
+|---|---|
+| `OPENROUTER_BASE_URL`, `OPENROUTER_API_KEY` | generation (`src/gen.py`); only needed to regenerate programs |
+| `HF_HOME` / `HF_HUB_CACHE` | where the model shards go (optional) |
+| `HF_TOKEN` | optional |
+| `TPG_DEPS_DIR` / `TPG_DEP_<id>` | prior artifacts (section 1) |
+| `AII_DATA_FIG_GEN_SCRIPTS` | optional: folder of the aii-data-fig-gen `chart_style.py` for the house style; without it the figures use plain matplotlib |
 
-`HF_HOME` is optional and sets where the weights are cached.
+Models (pinned revisions):
 
-### 3.2 API keys and sibling artifacts
+```bash
+.venv/bin/python scripts/download_full.py
+# Qwen/Qwen3-8B@b968826d9c46dd6066d109eabc6255188de91218 (bf16; blocks 0-26 are used)
+# unsloth/Qwen3-32B-bnb-4bit@7f721e74a6a8cc9ee352f7e49303a2c1705f9083 (NF4; blocks 0-39 are used)
+```
 
-- **`OPENROUTER_BASE_URL`, `OPENROUTER_API_KEY`:** needed only to regenerate programs (`src/gen_or.py`) or to rerun the
-  judge gate (`src/judges.py`). The analysis does not need them.
-- **Sibling artifacts:** needed only for two things:
-  - re-copying `inputs/` from the original artifacts; `inputs/` already holds verified copies, see
-    `inputs/SHA256SUMS`;
-  - the novelty-audit known-solution pool, which reads `art_j3Rm_lr2nzR6/full_data_out.json` through `TPG2_DS`.
+## 4. What was run, in order
 
-### 3.3 Iteration 9's cached states
+The hardware was an NVIDIA RTX 2000 Ada Generation (16 GB VRAM), 6 CPUs (cgroup quota) and 28 GB RAM (cgroup limit).
+Set `OMP_NUM_THREADS=1` (`src/analysis.py`, `src/outputs.py` and `src/figures.py` set it themselves): multithreaded
+BLAS on a 6-CPU box made the first G1 attempt about 40x slower.
 
-The original files are `art_VVA3P0ocZNA2/cache/states/mcode_{8b,32b}.npz` (200 MB and 369 MB). They are over the
-100 MB publish limit.
-
-`cache/e46_states/` ships **bit-identical reduced copies** instead:
-
-- the PRIMARY and SURV rows only;
-- blocks L-2 .. L+2;
-- all four readouts;
-- the frozen `geo_*_mcode_PRIMARY_R1_k{10,15}.npz` files.
-
-Provenance and sha256 are in `cache/e46_states/README.json`. `src/tpg2.py` uses these copies when they are present.
-`audit/rederive.py` gives the same output from them as from the originals (0 mismatches, identical JSON).
-
-## 4. Commands, in the order they were run
-
-The entry point `python method.py <stage>` runs the same commands in the same order (`python method.py all`). Times are
-for the hardware in §2.
-
-| # | command | what it does | runtime |
+| # | command | what it does | wall time |
 |---|---|---|---|
-| 1 | `python src/gen_or.py cells` | cell table, prompts, forbidden-word audit, **COMMIT0a** (`commitments.log`, genesis sha256('iter10_tpg2')) | seconds |
-| 2 | `python src/gen_or.py gen 0 LEV_DEQ --limit 5`; `python src/gen_or.py gen 0 RLX_ARR --limit 5` | 10-call smoke test | 20 s |
-| 3 | `python src/gen_or.py gen 0` | round 0, all 18 cells x 20 | 7.5 min |
-| 4 | `python src/gate_instrument.py` (4 runs; the instrument was revised 3 times, deviation D2) → `predictions/commit0b_instrument_gate.json`, **COMMIT0b** | instrument gate | 1.5 min / run |
-| 5 | `python src/states10.py gate 8b`; `python src/states10.py gate 32b` | reproduction gate (GPU) | 0.5 min / 1.5 min |
-| 6 | `python src/accept.py factorial` | acceptance; rerun after every round, cached by sha256 | 3 min / round |
-| 7 | **COMMIT0c**, then `python src/gen_or.py gen 1` | edge-case amendment, then round 1 for all cells | 12 min |
-| 8 | `python src/stage_sets.py topups`, `... survivors`, `... covert` | top-up re-adjudication, survivors, covert set | 5 min |
-| 9 | `python src/gen_or.py topup jps 0 30`, `... iddfs 0 30`, `... biastar 0 30`, then `... jps 1 30`, `... biastar 1 30` | named top-ups | 3 min |
-| 10 | **COMMIT0d**, then `python src/gen_or.py gen 2 LEV_DEQ,LEV_HEAP,LEV_SET,LEV_ARR,DFS_DEQ,DFS_HEAP,HEU_HEAP,HEU_SLIST,HEU_ARR,RLX_ARR,RLX_STK,RLX_HEAP,RND_HEAP,RND_SET,CRD_SLIST` | round 2 (reworded, in-paragraph edge-case order) | 9 min |
-| 11 | hand reads with `python src/handread.py show ...` and `python src/handread.py record <reads.json>` | written to `data/hand_reads.jsonl` | about 40 min |
-| 12 | `python src/stage_sets.py primary`; `python src/measure_primary.py` | measure the iteration-9 PRIMARY programs | 2 min |
-| 13 | `python src/build_frames.py`; `python src/synth_t4.py` | frames and design check; T4 | 0.5 min; 4 min |
-| 14 | **COMMIT1** (payload `predictions/commit1.json`) | frames, code hashes, predictions, T4 | seconds |
-| 15 | `python src/states10.py extract 8b`; `python src/states10.py extract 32b` | 412 programs per model (GPU) | 70 s + 16 s load; 155 s + 84 s load |
-| 16 | `python src/run_analysis.py 8b --boot 1000`; `python src/run_analysis.py 32b --boot 1000` | G1 and G2 | about 7 min / model |
-| 17 | `python src/judges.py` | judge gate; no judge passed | 1 min |
-| 18 | `python -I audit/rederive.py 8b 32b` | independent re-derivation 1 | 2 min |
-| 19 | `python src/figures.py both` | figures | 4 min |
-| 20 | `python src/t3_t9_checks.py`; `python src/make_outputs.py`; `python src/add_topup_preds.py` | checks and outputs | 1 min; 10 min; 4 min |
-| 21 | `python src/explore_confusion.py`; `python src/explore_dbeh.py`; `python src/synth_t4b.py` | exploratory, after COMMIT1 | 1 min; 6 min; 2 min |
-| 22 | `python -I audit/rederive2.py 8b 32b` | independent re-derivation 2, with placebos | about 6 min |
-| 23 | aii-json `aii_json_validate_schema.py --format exp_gen_sol_out --file method_out.json` and `aii_json_format_mini_preview.py --input method_out.json` | validation and full / mini / preview variants | seconds |
+| 1 | `python3 scripts/setup_inputs.py` | copy inputs, sha256, 25 cross-checks (all equal) | 1 min |
+| 2 | `.venv/bin/python src/gen.py smoke` | 2 OpenRouter calls: thinking off (1 reasoning token), provider DeepInfra, usage.cost present | 1 min |
+| 3 | `.venv/bin/python src/gen.py pilot` | 72-call feasibility pilot, tagged `pilot` and excluded everywhere | 3 min |
+| 4 | `.venv/bin/python tests/test_verifiers.py` | T5 verifier unit tests: 34/34 (`results/verifier_unit_tests.json`) | 2 min |
+| 5 | COMMIT1a | `predictions/commit1.json` written and chained with `v10.commit(...)` from a Python one-liner; payloads + `commitments.log` ship here | — |
+| 6 | `.venv/bin/python src/gen.py main --deadline-min 75` | wave A (12 per cell, 20 per top-up class) and wave B (to 12 verified, caps 48/100) with one repair turn | about 30 min |
+| 7 | `.venv/bin/python src/r0.py` | R0 gate: unit-weight Dijkstra g/median 0.6296 (8B) and 0.6725 (32B), 113/113 placements, 15/15 EDGE (`results/r0_reproduction.json`) | 1 min |
+| 8 | `.venv/bin/python src/assemble.py`, then COMMIT1b (`predictions/commit1b.json`) | 351 placed programs (`data/placed_programs.jsonl`) | 1 min |
+| 9 | `.venv/bin/python src/extract.py 8b repro placed refs` | hook check 0.0; reproduction min cosine 0.99981 | 3 min |
+| 10 | `.venv/bin/python src/extract.py 32b repro placed refs` | min cosine 0.99990 | 8 min |
+| 11 | hand reads with `scripts/hand_sheet.py <cell>` and `scripts/hand_record.py '<uid>\|ACCEPT\|<reason>'` | 139 rows in `data/hand_reads_v10.jsonl` | about 25 min |
+| 12 | `.venv/bin/python src/gen.py paraphrase --deadline-min 25` | top-up fallback: JPS 12/12 and BiA* 6/12 are paraphrases | 2 min |
+| 13 | COMMIT1c (`predictions/commit1c.json`), then `.venv/bin/python src/freeze.py factorial` | 287 programs, context variant i mod 5, reliability copy (i+1) mod 5 | 1 min |
+| 14 | `scripts/run_states.sh` | 8B factorial + ctx2 (0.42 s/program), RANDNET (seed 0), 32B factorial (2.9 s/program) | 20 min |
+| 15 | `.venv/bin/python scripts/order_matrix.py` | measured expansion-order matrix (S7) | 15 min |
+| 16 | `.venv/bin/python src/freeze.py topups`, then `scripts/run_states_topups.sh` | 48 top-ups, 32B and 8B states | 8 min |
+| 17 | `.venv/bin/python tests/test_analysis.py` | T7 synthetic G1 checks (null rejection 3.5%) and T8 placement checks: pass | 10 min |
+| 18 | `.venv/bin/python src/analysis.py g1 8b` and `g1 32b` (run in parallel) | G1 with all sensitivities | 1 min each |
+| 19 | `.venv/bin/python src/analysis.py g2 8b` and `g2 32b` | G2 with frame LOO | about 3 min each |
+| 20 | `.venv/bin/python src/analysis.py robust 8b 32b` | 12-cell robustness grid | about 35 min |
+| 21 | `.venv/bin/python src/outputs.py` | placebos, G1 verdict, verification summary, hardware, `method_out.json` | 6 min |
+| 22 | `.venv/bin/python src/figures.py` | F1–F8 (PDF + PNG) | 3 min |
+| 23 | `python3 -I audit/rederive.py` and `python3 -I audit/rederive_g2.py` | stdlib re-derivations: 0 mismatches; placebos fail as required | 1 min |
+| 24 | aii-json `aii_json_format_mini_preview.py --input method_out.json` and the `exp_gen_sol_out` validation | full / mini / preview; all pass | 1 min |
 
-Notes on the commit steps and the hand reads:
+Steps 18–24 can be rerun from the shipped `data/` and `cache/states_v10/` with
+`.venv/bin/python method.py all-analysis`. `method.py` lists every stage. `cache/states_v10/` stays on the run volume
+(its files are ≥ 100 MB); rebuild it with steps 9, 10, 14 and 16.
 
-- Commits COMMIT0a-0d and COMMIT1 are written by `tpg2.commit(payload, label, note)`. The steps marked in bold were
-  run as short inline Python calls of that function. `results/t9_commitments.json` verifies the chain and the
-  timestamps.
-- Hand reads are the executor's reads of the scrubbed code, stored with a rationale per program. They cannot be
-  regenerated mechanically; `data/hand_reads.jsonl` is the record.
+### Seeds and determinism
 
-**Seeds and determinism**
-
-- **Generation:** OpenRouter seed = slot + 1, but provider sampling is not bit-reproducible. Re-generating gives
-  different programs; reproduce from the shipped `data/raw_factorial.jsonl` and `data/raw_topups_v10.jsonl`.
-- **Fixed seeds:** bootstrap resample s uses seed s (0-999); noise-ceiling splits seed 0; T4 datasets seeds 1000+;
-  covert stratification seed 0; context variants are seeded round-robin by cell / class / family name.
-- **Exact enumeration:** permutation nulls are exact (5,760 within-container discipline permutations; 1,728
-  within-discipline container permutations).
-- **Re-running from the shipped states:** with `cache/states/tpg2_*.npz` (kept, about 120 MB), steps 16-22 reproduce
-  every number exactly.
-- **Re-extracting states:** step 15 gives cosine >= 0.99999 against the shipped arrays. That is the reproduction-gate
-  tolerance, and NF4 / bf16 kernels can differ by GPU.
+- **Generation** uses `seed = int(sha256(f"{cell}|{slot}|{wave}")[:8], 16)`, T 1.0 and top_p 1.0. OpenRouter does not
+  guarantee bitwise determinism, so regenerating will not reproduce the same programs. The frozen programs are in
+  `data/programs_v10.jsonl` and `data/factorial_set.jsonl`; analyses run on them.
+- **States are deterministic** given the programs, up to GPU bf16 numerics: the cosine against iteration 9's RTX 5090
+  states is 0.9998–0.99999.
+- **Statistics** use fixed seeds:
+  - G1 bootstrap seed 0; permutations seeds 1 and 2; cell-cluster bootstrap seed 3; sensitivities seed 7; crossed
+    core seed 11;
+  - S2 bootstrap seed 5;
+  - G2 family bootstrap `hash(family) % 1000`. Python's string hash is salted per process, so these CIs can vary
+    slightly between runs; the point estimates do not;
+  - placebos seed 13; family-shuffle placebo seed 3.
+- **Costs:** OpenRouter spend was USD 0.251 for 1,138 calls (`results/costs_v10.json`).
 
 ## 5. What you should get
 
-| number | value (8B / 32B) | file |
-|---|---|---|
-| reproduction gate: min cosine, g(UD) | 0.999992 / 0.999999; 7.6744 / 16.6484 (exact) | `results/repro_gate.json` |
-| instrument gate | 18/18 planted, 13/15 catalogue, 2/2 mutations | `results/instrument_gate.json` |
-| G1 cells / programs | 15 cells, 221 programs (+16 PROBE) | `data/frames.json`, `results/design.json` |
-| rho_d (discipline given container), exact within-container p | 0.104, p = 0.053 / 0.090, p = 0.024 | `results/g1_*.json` (`point_model`, `perm`) |
-| rho_c (container given discipline) | 0.462 / 0.592 | `results/g1_*.json` |
-| rho_d with surface / length / dispersion controls | 0.028 / 0.044 | `results/g1_*.json` |
-| noise ceiling (Spearman-Brown) | 0.94 / 0.97 | `results/g1_*.json` |
-| baseline rho_d (block 0 / TF-IDF / AST) | 0.146, 0.188, 0.195 / 0.111, 0.188, 0.195 | `results/g1_*.json` |
-| G1 verdict | NOT SUPPORTED (8B INTERMEDIATE and FRAGILE, 32B LOW) | `results/verdicts.json` |
-| LOO nearest-cell accuracy: model / TF-IDF / AST | 0.70 / 0.66 / 0.43 (8B); 0.79 (32B) | `results/t5_placement.json` |
-| Delta(UD-LEV), Delta(BF-RLX) at k = 15 (descriptive: within-container permutation p = 0.33-0.57; norm-matched Gaussian placebo gives similar magnitudes) | -6.49, -8.88 / -20.74, -34.88 | `results/g2_*.json`, `audit/rederive2.json` |
-| PROBE nearest cell | RLX_STK 15/16 (both models) | `results/g2_*.json` (`probe`) |
-| covert share, nearest banned: F0 / F1 (the F1 share is not diagnostic on 32B: the Gaussian placebo gives 1.0) | 0.87, 0.77 / 0.97, 0.90 | `results/g2_*.json` (`covert`) |
-| G2 verdict | NOT SUPPORTED as preregistered (both models, k = 15 and 10) | `results/verdicts.json` |
-| independent re-derivations | 0 mismatches | `audit/rederive.json`, `audit/rederive2.json` |
-| OpenRouter spend | USD 0.170, 1,230 calls | `results/costs.json` |
+| file | number |
+|---|---|
+| `results/g1_8b.json` | primary ρ_dc 0.226 [0.186, 0.265], ρ_cd 0.300 [0.251, 0.351], δ −0.074 [−0.133, −0.018]; crossed core ρ_dc 0.280; E0 0.169; RANDNET 0.072; noise ceiling 0.944 |
+| `results/g1_32b.json` | ρ_dc 0.285 [0.252, 0.321], ρ_cd 0.414 [0.363, 0.462], δ −0.129 [−0.193, −0.060]; crossed core ρ_dc 0.336, ρ_cd 0.545 |
+| `results/g1_verdict.json` | INDETERMINATE on both models |
+| `results/g2_8b.json` / `g2_32b.json` | class LOO 0.68 / 0.83; P-COV banned-nearest 0.993 / 0.978; F-BF nearest RELAX 30/32 / 31/32; F-BF r_F 0.86 (EDGE) / 1.03 (OPPOSITE, robust); F-UD r_F 0.90 / 0.98 |
+| `results/robustness.json` | P-COV 12/12 cells; P-BF 8/12; P-UD full-frame EDGE 12/12 with the full rule met in 6/12 |
+| `results/rederive.json` | 0 mismatches against G1 and r_F |
+| `results/rederive_g2.json` | independent shares; the 8B P-UD contrast is non-specific (placebo median 1.0) |
+| `figures/F1`–`F8` | the paper's geometry, bar, violin, layer and heatmap figures |
 
-The paper's G1 / G2 results paragraphs and its geometry figures use these numbers and the files in `figures/`:
-
-- `g1_forest`;
-- `rdm_heatmaps_*`;
-- `pca_F1_*`, `isomap_F1_*` and `mds_F1_*`;
-- `F0_counts_placed_*`;
-- `subframes_UD_BF_*`.
-
-The run left the paper's section numbers to the paper step.
+The README's Results section is the paper-facing summary. `results/deviations.json` lists every departure from the
+plan.

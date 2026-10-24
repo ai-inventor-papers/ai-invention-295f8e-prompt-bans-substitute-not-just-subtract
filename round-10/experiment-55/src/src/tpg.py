@@ -23,14 +23,13 @@ UDIJ = "dijkstra_unit"
 assert set(B5) | set(NB5) == set(CANON_ORDER)
 
 # ---------------------------------------------------------------------------------------------- prior artifacts
-# [iteration 10 portability edit: the absolute server defaults of iteration 9 were replaced by sibling folders named
-#  by artifact id; these five constants are not used by the iteration-10 pipeline]
-RUN0 = ROOT.parent
-E44 = Path(os.environ.get("TPG_E44", str(RUN0 / "art_R-HSmXq2t97f")))
-EXP9 = Path(os.environ.get("TPG_EXP9", str(RUN0 / "art_IVZc3TWCeE9f")))
-EXP2 = Path(os.environ.get("TPG_EXP2", str(RUN0 / "art_D6Z0Snf09sFL")))
-EXP8 = Path(os.environ.get("TPG_EXP8", str(RUN0 / "art_8_ULPE8jJQc_")))
-DSET = Path(os.environ.get("TPG_DSET", str(RUN0 / "art_j3Rm_lr2nzR6")))
+# iteration-10 edit (paths only): prior artifacts default to sibling folders named by artifact id
+_DEPS = Path(os.environ.get("TPG_DEPS_DIR", str(ROOT.parent)))
+E44 = Path(os.environ.get("TPG_E44", str(_DEPS / "art_R-HSmXq2t97f")))
+EXP9 = Path(os.environ.get("TPG_EXP9", str(_DEPS / "art_IVZc3TWCeE9f")))
+EXP2 = Path(os.environ.get("TPG_EXP2", str(_DEPS / "art_D6Z0Snf09sFL")))
+EXP8 = Path(os.environ.get("TPG_EXP8", str(_DEPS / "art_8_ULPE8jJQc_")))
+DSET = Path(os.environ.get("TPG_DSET", str(_DEPS / "art_j3Rm_lr2nzR6")))
 ARTIFACT_IDS = {"E44": "art_R-HSmXq2t97f", "EXP9": "art_IVZc3TWCeE9f", "EXP2": "art_D6Z0Snf09sFL",
                 "EXP8": "art_8_ULPE8jJQc_", "DSET": "art_j3Rm_lr2nzR6"}
 

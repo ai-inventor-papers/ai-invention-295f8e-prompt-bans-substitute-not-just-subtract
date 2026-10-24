@@ -1,82 +1,102 @@
 [
  {
-  "code": "D1-commit0-split",
-  "text": "COMMIT #0 was split: #0a (cells, prompts, decoding, budget, acceptance rule) before any generation; #0b (instrument code sha256 + gate results) after round-0 generation but before any program was classified or accepted. No program was classified before #0b.",
-  "utc": "2026-10-23T19:22:47.842907Z"
+  "code": "D-commit-split",
+  "text": "Commit #1 split into #1a (cells, prompts, verifiers, all G1/G2 rules and predictions, before wave A), #1b (placed-program family lists with uids and code sha256, before any placed-program state) and #1c (sha256 of g1.py / g2.py / figures.py, before any G1/G2 output on real data and before the factorial freeze is analysed).",
+  "utc": "2026-10-24T18:24:45.643259Z"
  },
  {
-  "code": "D2-instrument-gate",
-  "text": "Instrument gate after 3 revision rounds (plan allows 2; the third only changed the two-ended and goal-pair rules): 18/18 planted cell references and 13/15 catalogue references correct, both mutation tests correct. Misses: jps4 read DFS (its recursive jump calls form the expansion record) and biastar read HEU (its forward side wins f-ties so it behaves as forward A* on the probes). JPS / BiA* top-ups are hand-read as the plan already requires (F3), never decided by the instrument.",
-  "utc": "2026-10-23T19:22:47.858076Z"
+  "code": "D-covert-count",
+  "text": "F-COV has 136 programs (five-name ban, 9 non-C6 configurations) instead of ~294; the 98 covert programs of the iteration-2 single/multi-name bans are placed as F-COVX (descriptive).",
+  "utc": "2026-10-24T18:24:45.663277Z"
  },
  {
-  "code": "D3-container-runtime",
-  "text": "Container is read from the runtime selection operation of each expansion (pop/popleft/heappop/set.remove/sorted-list pop/self-recursive call/no frontier object), with an AST hint recorded as a cross-check, instead of a pure AST rule.",
-  "utc": "2026-10-23T19:22:47.871827Z"
+  "code": "D-hardware",
+  "text": "Ran on an RTX 2000 Ada 16 GB with 6 CPUs and 28 GB RAM (plan: RTX A4500). Qwen3-8B keeps 27 blocks (extraction blocks 9-25 odd + 26), Qwen3-32B NF4 keeps 40 blocks (21, 25, 29, 31, 33, 35, 37, 39); primary blocks 17 / 33 unchanged.",
+  "utc": "2026-10-24T22:10:59.976212Z"
  },
  {
-  "code": "D4-catalogue-refs",
-  "text": "Only 15 catalogue references exist in the vendored exp9 t1_grid/references (the plan says 25); the gate uses those 15.",
-  "utc": "2026-10-23T19:22:47.886767Z"
+  "code": "D-hf-cache",
+  "text": "HF_HOME was not overridden (run rule: the shared cache is pre-set); the plan's HF_HOME=./hf_cache was not used, so no hf_cache/ exists in the workspace.",
+  "utc": "2026-10-24T22:11:00.014401Z"
  },
  {
-  "code": "D5-edge-hint",
-  "text": "Rounds >= 1 append one sentence to every prompt (all cells): \"Check whether start or goal is a wall before handling the case start == goal.\" Round 0 lost 61% of programs to that single frozen-suite edge case. Committed as COMMIT0c before any round-1 call; round is recorded per program and balanced by running round 1 for every cell.",
-  "utc": "2026-10-23T19:34:00.880999Z"
+  "code": "D-inputs-inplace",
+  "text": "exp46 frozen state caches (cache/states/mcode_8b.npz, mcode_32b.npz, geo_*_k15/k10.npz; 0.6 GB) and the dependency's full_data_out.json (96 MB) are read in place; their sha256 is in inputs_manifest.json (in_place). Everything else is copied into inputs/ or src/ / vendor/.",
+  "utc": "2026-10-24T22:11:00.029421Z"
  },
  {
-  "code": "D6-topup-hint",
-  "text": "New v10 named top-ups (jps, iddfs, biastar) use iteration 9 forced prompts (algorithm named; code scrubbed afterwards) plus the COMMIT0c edge-case reminder; iteration 9 top-ups failed the frozen suite at 75-87% on the same edge case.",
-  "utc": "2026-10-23T19:45:17.254342Z"
+  "code": "D-repro-cosine",
+  "text": "State reproduction of 10 cached iteration-9 programs: hook check exact (max abs diff 0) and n_code_tokens 10/10 equal, but min cosine 0.99981 (8B) / 0.99990 (32B) against the 0.9999 threshold (mean 0.99996 / 0.99998): iteration 9 ran on an RTX 5090, this round on an RTX 2000 Ada (bf16 kernel numerics). Catalogue states are still taken from the iteration-9 cache.",
+  "utc": "2026-10-24T22:11:00.045451Z"
  },
  {
-  "code": "D7-edge-hint2",
-  "text": "Round 1 tail reminder did not change the failure (the model kept returning [start] for start == goal on a wall); round 2 (the last allowed round, reworded instructions) puts the edge-case order inside the instruction paragraph (COMMIT0d, before any round-2 call), only for cells below 12 accepted.",
-  "utc": "2026-10-23T19:51:49.426357Z"
+  "code": "D-F7-grid2d",
+  "text": "Amendment in COMMIT1a (before wave A): the tracer reads the planted scan-derived GRID2D programs of BFSO, HEUR and COST as OTHER / DFS, so GRID2D discipline checks use the AST signature + a hand read.",
+  "utc": "2026-10-24T22:11:00.063163Z"
  },
  {
-  "code": "D8-F7-nonbanned",
-  "text": "JPS (1 accepted of 120 attempts) and BiA* (7 incl. 2 PRIMARY, 120 attempts) stay below 10: F0 uses 3 non-banned classes (dijkstra_unit, idastar, bibfs); F1 mechanism medians add the RLX, RND, CRD cells (plan F7).",
-  "utc": "2026-10-23T20:21:08.122414Z"
+  "code": "D-relax-container",
+  "text": "RELAX cells have no frontier; their container check is the structure swept every round (2-D arrays / explicit edge list / set of cells) inside a repeat loop, with no deque, heap, popleft, pop(0) or insort.",
+  "utc": "2026-10-24T22:11:00.161912Z"
  },
  {
-  "code": "D9-cells-dropped",
-  "text": "LEV_SET (4) and RLX_HEAP (4) reached fewer than 10 programs after 3 rounds (60 calls each) and are dropped (F2 step 3); the local Qwen3-8B second generator (F2 step 2) was not run for time. 15 G1 cells remain, bipartite design connected, every discipline in >= 2 containers.",
-  "utc": "2026-10-23T20:21:08.180849Z"
+  "code": "D-no-think",
+  "text": "Thinking off via reasoning.enabled=false plus the Qwen3 '/no_think' suffix (DeepInfra ignores the flag alone; iteration-9 D10); smoke test confirmed 1 reasoning token.",
+  "utc": "2026-10-24T22:11:00.183257Z"
  },
  {
-  "code": "D10-rlx-stk-dispute",
-  "text": "19 RLX_STK programs re-push improved cells at runtime (re-expansion after re-insertion on 10-39 probes) but compare 'new_dist < dist[nb]', which the frozen AST relaxation pattern (subscripts on both sides) misses, so the instrument read DFS. Hand reads (authoritative for RLX) assign RLX/STK; they are flagged 'disputed' and a G1 sensitivity excludes all disputed programs. Hand-read vs instrument agreement: 136/158 = 0.86 overall (0.98 without this pattern gap), below the 0.90 T2 target.",
-  "utc": "2026-10-23T20:21:08.195737Z"
+  "code": "D-topup-paraphrase",
+  "text": "Top-ups: bibfs 12 and iddfs 12 generated; biastar 6 generated + 6 paraphrases; jps 0 of ~100 generated attempts verified, so all 12 JPS programs are paraphrases of the S3 reference jps4.py (no 50% cap for S3-seeded top-ups). JPS placement and frame evidence is therefore reference-derived, low independence.",
+  "utc": "2026-10-24T22:11:00.215418Z"
  },
  {
-  "code": "D11-DBEH-dropped",
-  "text": "D_beh graded sensitivity dropped (F5 drop order) before COMMIT1.",
-  "utc": "2026-10-23T20:21:08.224663Z"
+  "code": "D-relax-set-11",
+  "text": "RELAX-SET reached 11 verified programs at freeze (one hand-read REJECT); above the 10 floor, N flagged.",
+  "utc": "2026-10-24T22:11:00.231705Z"
  },
  {
-  "code": "D12-states-recomputed-surv",
-  "text": "iteration-8 SURV programs get fresh states from the gate-validated engine instead of reusing E46 cached states (equivalent: cosine >= 0.99999 in the reproduction gate).",
-  "utc": "2026-10-23T20:21:08.239965Z"
+  "code": "D-hand-read-depth",
+  "text": "Hand reads (139 rows in data/hand_reads_v10.jsonl): full programs for the first batches of every hand-read cell; later programs of highly uniform cells (GRID2D, BFSO-SET, IDDFS, BiBFS, BiA*) on their selection-rule / structure lines plus a container grep; JPS paraphrases 3 in full and 9 by jump-helper structure plus heap-push counts equal to the reference. Reasons are recorded per row.",
+  "utc": "2026-10-24T22:11:00.246667Z"
  },
  {
-  "code": "D13-judges",
-  "text": "No LLM judge reached 9/10 on the 10 planted controls (deepseek-chat-v3.1 8/10, kimi-k2 6/10 incl. empty answers, mistral-medium-3.1 7/10; all misread the coordinate-keyed CRD references). Per plan F4 the judges are dropped and the executor's hand reads decide RLX / RND / CRD and the novelty audit.",
-  "utc": "2026-10-23T20:43:06.064225Z"
+  "code": "D-boot-counts",
+  "text": "Primary, crossed-core and cell-cluster bootstraps use 1,000 resamples and 2,000 restricted permutations as committed; the sensitivity variants (S3-S7, S10) use 200 program-bootstrap resamples and S2 semi-partial CIs 100, for time (the box was CPU-bound).",
+  "utc": "2026-10-24T22:11:00.264056Z"
  },
  {
-  "code": "D14-optional-dropped",
-  "text": "Optional human-author placement check (1.9) dropped first (F5). T7 checkpoint/kill/resume test not run for time (the resume path in src/states10.py exists but was not exercised). Staged scaling was 10 calls -> full rounds for generation and 5 programs (reproduction gate) -> all 412 for states (no separate 50/100 stages).",
-  "utc": "2026-10-23T21:18:27.624319Z"
+  "code": "D-runtime",
+  "text": "A first full G1 run was killed after BLAS oversubscription (load 14 on 6 CPUs) and rerun with one BLAS thread per process; results come from the rerun (same code, same seeds).",
+  "utc": "2026-10-24T22:11:00.281984Z"
  },
  {
-  "code": "D15-hardware-json-late",
-  "text": "predictions/hardware.json was written at the end of the run (environment unchanged since Stage 0: same venv, same GPU).",
-  "utc": "2026-10-23T21:18:27.641637Z"
+  "code": "D-T7",
+  "text": "T7 synthetic 'discipline-only' states encode the committed D_disc geometry (COST half-way from BFSO) and use noise 0.6; with independent discipline means the tie structure of D_disc caps rho_dc below 0.5.",
+  "utc": "2026-10-24T22:11:00.314009Z"
  },
  {
-  "code": "D16-portability",
-  "text": "Finalisation: prior artifacts are read through relative sibling-folder constants named by artifact id (environment-overridable) instead of absolute server paths; iteration 9's cached states are read from bit-identical reduced copies shipped in cache/e46_states (PRIMARY + SURV rows, blocks L-2..L+2; audit/rederive.py output identical); inputs/e46/src/tpg.py had its 5 unused absolute defaults replaced (inputs/PORTABILITY_EDITS.md). No analysis number changed.",
-  "utc": "2026-10-23T22:10:14.368773Z"
+  "code": "D-family-counts",
+  "text": "F-RF has 14 programs (iteration-8 randomized-DFS rows counted as random frontiers) and F-OTH 8 (plan: 13 and 10).",
+  "utc": "2026-10-24T22:11:00.332870Z"
+ },
+ {
+  "code": "D-catalogue-mix",
+  "text": "Frame catalogue = 129 iteration-9 M-code PRIMARY programs (frozen states, other GPU) + 48 frozen top-ups (this round); bibfs/iddfs/biastar classes mix both sources.",
+  "utc": "2026-10-24T22:11:00.350947Z"
+ },
+ {
+  "code": "D-positioning",
+  "text": "results/positioning.json is a title-level screen of 6 dated OpenAlex scholarly queries (top results, verdicts occupies/adjacent/irrelevant); verbatim quotes were not fetched (time), so verdicts are provisional.",
+  "utc": "2026-10-24T22:11:00.369550Z"
+ },
+ {
+  "code": "D-g1-post-commit",
+  "text": "src/g1.py differs from its COMMIT1c hash only by two lines in synthetic_states (the T7 test generator places COST half-way from BFSO); removing them reproduces the committed sha256 exactly (checked). All statistics functions are as committed; g2.py, r0.py, extract.py, assemble.py, freeze.py and tests/test_analysis.py match their committed hashes.",
+  "utc": "2026-10-24T22:26:15.749315Z"
+ },
+ {
+  "code": "D-driver-not-committed",
+  "text": "src/analysis.py (G1/G2 drivers: frame assembly, sensitivity list, subframe filters) was written after COMMIT1c and before any G1/G2 output, implementing COMMIT1a's rules, but was not hash-committed. After a first quick G1 run (whose numbers equal the final ones) only worker counts, BLAS threads and sensitivity bootstrap counts changed. src/figures.py and src/outputs.py were written after the G1/G2 outputs (presentation only), so the planned COMMIT1d did not happen.",
+  "utc": "2026-10-24T22:26:15.767043Z"
  }
 ]

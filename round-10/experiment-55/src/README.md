@@ -1,290 +1,242 @@
-# TP-G2: does the LLM's map of path-search programs follow mechanism or code surface?
+# TP-G2: do code-LM program maps track search behaviour or storage style?
 
-Iteration 10 of the AI Inventor "LLM creativity" run (plan `gen_plan_experiment_5_idx5`, claims G1 and G2). Earlier
-iterations built a map of how Qwen3 represents grid path-search programs. On that map, the programs a model writes when
-the five favourite algorithms are banned ("survivors") land next to the banned ones. But the map also tracked code
-surface and length about as strongly as behaviour ("behaviour given surface 0.11 / 0.32 / 0.47" in iteration 9).
+Iteration 10 of the TP-G line (plan `gen_plan_experiment_5_idx5`; it continues iteration 9's `art_VVA3P0ocZNA2` /
+`art_8nXdw3_lDAll`). The question is whether the program-state geometry that earlier rounds read as "the path-search
+manifold" separates programs by **expansion discipline** (FIFO order, LIFO order, goal-heuristic order, path-cost
+order, relaxation rounds, random order) once **storage container** (deque, list, recursion, heapq, 2-D arrays, set) is
+held fixed by design. A second question is where the survivor families of the five-name ban land on a frame built
+from that factorial.
 
-This artifact separates the two factors by construction. It builds a **factorial set of verified, name-scrubbed
-programs** that crosses two things:
+## What was done
 
-- the measured **expansion discipline**: level order (LEV), depth-first (DFS), goal heuristic (HEU), relaxation
-  (RLX), random (RND), coordinate key (CRD);
-- the **frontier container**: deque (DEQ), stack or recursion (STK), heap (HEAP), 2-D arrays (ARR), set (SET),
-  sorted list (SLIST).
+1. **Factorial program set (G1 stimuli).** Qwen3-32B (OpenRouter, DeepInfra, thinking off, T 1.0) wrote grid path
+   programs for 24 implementable discipline x container cells. Each prompt has three wordings, describes the
+   mechanics step by step and names no algorithm (lint: 0 hits over 144 prompts). Every program passed:
+   - the 48-case and 41-case hidden suites;
+   - an AST container check;
+   - a discipline check: the iteration-9 tracer for BFSO/DFSO/HEUR/COST, a two-seed runtime check for RAND, and
+     an AST repeat-sweep check plus a ≥ 2-pass runtime check for RELAX. GRID2D cells used AST checks plus a hand
+     read (amendment F7, committed before wave A);
+   - name scrubbing (`programs.scrub`) followed by a re-run of the 48-case suite.
 
-Each program is read with iteration 9's frozen readout: R1, the mean block output over the code tokens, at Qwen3-8B
-bf16 block 17 and Qwen3-32B NF4 block 33. On that readout the artifact asks two questions:
+   Failed programs got one repair turn. The freeze took the first 12 verified programs per cell in completion
+   order, 287 programs in all (RELAX-SET has 11). Top-ups (12 each) were frozen for bidirectional BFS, IDDFS and
+   bidirectional A*. All 12 JPS top-ups are paraphrases of the reference `jps4.py`.
+2. **States.** Each program was teacher-forced under iteration 9's neutral-twin contexts (W1–W5), using iteration 9's
+   frozen readout code (`stage_mcode.build` / `forward_readouts`, unchanged) and its exact truncated decoder:
+   - Qwen3-8B bf16 (block 17) and Qwen3-32B NF4 (block 33);
+   - readouts R1, R1g, R2 and R3;
+   - baselines: E0 (mean input embedding over the code tokens) and RANDNET (random-init truncated Qwen3-8B).
 
-- **G1:** is the cell geometry organised by discipline once container is held fixed?
-- **G2:** where do the survivor families, the covert BFS/DFS programs and a textbook-relaxation surface probe land when
-  each is placed alone on the frozen graph?
+   Checks:
+   - the hook check is exact;
+   - re-extracting 10 cached iteration-9 programs gives cosine ≥ 0.9998 and equal token counts;
+   - the R0 gate reproduces iteration 9's frames bit for bit: unit-weight Dijkstra g/median is 0.6296 (8B) and
+     0.6725 (32B), and 113/113 placements match.
+3. **G1:** partial Spearman of the program-state RDM with the discipline RDM given container (ρ_dc), and the reverse
+   (ρ_cd).
+   - Inference: a program bootstrap (1,000 resamples) and restricted permutations within strata (2,000). Discipline
+     labels are permuted within container strata and container labels within discipline strata.
+   - Committed sensitivities:
+     - S1, the crossed 3x4 core;
+     - S2, rank regression with surface, length and context RDMs;
+     - S3–S5, alternative discipline, container and surface RDMs (IDF weights come from all Python-bearing datasets
+       of the dependency);
+     - S6, other readouts, the layer curve and a geodesic D_S;
+     - S7, the E0 and RANDNET baselines, and the measured expansion order used as D_disc;
+     - S8, the cell-cluster bootstrap;
+     - S9, the noise ceiling;
+     - S10, without repair rows;
+     - S11, Kendall τ-a.
+4. **G2.** 351 placed programs were placed out of sample on a 464-program frame (24 cells + catalogue). The
+   placement uses iteration 9's kNN-geodesic code (`geometry.py`, `oos` unchanged).
+   - Placed families:
+     - F-UD: 38 unit-weight Dijkstra;
+     - F-BF: 32 grid Bellman-Ford;
+     - F-CK: 18 coordinate-key heaps;
+     - F-RF: 14 random frontiers;
+     - F-RS: 4 raster sweeps;
+     - F-SF: 3 set frontiers;
+     - F-OTH: 8 other;
+     - F-COV: 136 covert BFS/DFS from the five-name ban;
+     - F-COVX: 98 covert BFS/DFS from other ban sets.
+   - Frames: the full frame, the HEAP / GRID2D / SET / DEQUE+LIST container-held-fixed frames, and the BFSO+COST /
+     RELAX / DFSO discipline-held-fixed frames.
+5. **Pre-registration.** `commitments.log` is a sha256 hash chain whose genesis is `sha256('iter10_tpg2')`. It holds:
+   - COMMIT1a: cells, prompts, verifiers, every rule and prediction (before wave A);
+   - COMMIT1b: family lists (before any placed-program state);
+   - COMMIT1c: the g1/g2 code (before any G1/G2 output);
+   - the factorial and top-up freezes (before their states).
 
-## Headline results
+## Results (numbers from `results/`)
 
-All numbers come from `results/verdicts.json`, `results/g1_*.json`, `results/g2_*.json` and `results/t5_placement.json`.
+**G1 verdict: INDETERMINATE on both models (`results/g1_verdict.json`).** Discipline is encoded, but container is
+encoded more strongly, and token surface more strongly than either.
 
-| | Qwen3-8B (block 17) | Qwen3-32B (block 33) |
+| model (block, R1) | ρ_dc [95% CI] | ρ_cd [95% CI] | δ = ρ_dc − ρ_cd [CI] | perm p (dc / cd) |
+|---|---|---|---|---|
+| Qwen3-8B (17) | 0.226 [0.186, 0.265] | 0.300 [0.251, 0.351] | −0.074 [−0.133, −0.018] | 0.0005 / 0.0005 |
+| Qwen3-32B (33) | 0.285 [0.252, 0.321] | 0.414 [0.363, 0.462] | −0.129 [−0.193, −0.060] | 0.0005 / 0.0005 |
+| 8B crossed core 3x4 | 0.280 [0.218, 0.357] | 0.366 [0.293, 0.457] | −0.086 [−0.182, 0.008] | 0.0005 / 0.0005 |
+| 32B crossed core 3x4 | 0.336 [0.288, 0.392] | 0.545 [0.482, 0.611] | −0.209 [−0.295, −0.118] | 0.0005 / 0.0005 |
+
+- **Baselines.** The E0 bag-of-tokens baseline gives ρ_dc 0.169 (8B) and 0.156 (32B). RANDNET gives 0.072. The
+  trained states therefore carry discipline information beyond token identity, but less than the 0.30 threshold.
+- **Surface dominates.**
+  - Rank regression (S2), semi-partial r on 8B: D_surf 0.32, D_len 0.30, D_cont 0.13, D_disc 0.10, D_ctx 0.02.
+  - The same on 32B: D_surf 0.41, D_len 0.23, D_cont 0.20, D_disc 0.13.
+  - Partialling the token-surface RDM out leaves ρ_dc 0.13–0.15 (8B) and 0.18–0.21 (32B).
+- **Robustness.**
+  - The noise ceiling across context variants is 0.94 (8B).
+  - The cell-cluster bootstrap widens the δ CI to include 0.
+  - Readouts: R2 (token after the first pop) gives ρ_dc 0.09 and R3 (16th code token) gives 0.04–0.05.
+  - The layer curve is flat: ρ_dc 0.20–0.26 on 8B and 0.25–0.30 on 32B.
+- **Placebos fail as required:** discipline labels shuffled give ρ_dc 0.006; container labels shuffled within
+  discipline give ρ_cd 0.006.
+
+**G2 (`results/g2_<model>.json`).** The frame's class-level LOO accuracy is 0.68 (8B) / 0.83 (32B), and its
+discipline-level LOO accuracy 0.83 / 0.91, against a chance level of 0.03. The false-inside rate is 0.46 / 0.47, with
+banned classes making up 53% of the frame's classes.
+
+| prediction | Qwen3-8B | Qwen3-32B |
 |---|---|---|
-| rho_d = partial Spearman(cell RDM, D_disc given D_cont) | **0.104** (boot 95% CI 0.026-0.137) | **0.090** (0.038-0.142) |
-| within-container permutation p (exact, 5,760 permutations) / Holm | 0.053 / 0.053 | 0.024 / 0.049 |
-| rho_c = partial Spearman(cell RDM, D_cont given D_disc) | **0.462** (0.385-0.536), p = 0.002 | **0.592** (0.549-0.601), p = 0.0006 |
-| P_boot(rho_d > rho_c) | 0.000 | 0.000 |
-| rho_d with surface, length and dispersion controls | 0.028 (p = 0.36) | 0.044 (p = 0.17) |
-| zero-order Kendall tau-a: disc / cont / AST surface / length | 0.008 / 0.19 / 0.58 / 0.52 | -0.007 / 0.25 / 0.52 / 0.49 |
-| noise ceiling (split-half, Spearman-Brown) | 0.94 | 0.97 |
-| rho_d of the lexical baselines (block 0 / TF-IDF / AST 4-grams) | 0.146 / 0.188 / 0.195 | 0.111 / 0.188 / 0.195 |
-| selectivity rho_d(model) - rho_d(TF-IDF) | -0.083 (CI -0.144 to -0.014) | -0.098 |
-| leave-one-out nearest-cell accuracy: model / TF-IDF / AST (chance 0.067) | 0.70 / 0.66 / 0.43 | 0.79 / 0.66 / 0.43 |
-| G1 verdict (plan rule) | INTERMEDIATE (FRAGILE: full control gives <= 0.1) | LOW (<= 0.1) |
+| P-UD (EDGE on full + HEAP frames; nearest discipline BFSO/COST; contrast) | r_F 0.90 [0.77, 1.00] EDGE, HEAP 0.99 EDGE (both not robust); 76% nearest BFSO/COST (COST 27/38); contrast 38/38 (p 4e-12) → rule met, not robust | r_F 0.98 EDGE, HEAP 1.03 **OPPOSITE** (not robust); 68% BFSO/COST; contrast 38/38 → not supported |
+| P-BF (OPPOSITE; nearest RELAX; RELAX-GRID2D on GRID2D frame) | r_F 0.86 **EDGE** (robust) → full-frame part fails; nearest RELAX 30/32; GRID2D frame RELAX-GRID2D 30/32; contrast 29/32 | r_F 1.03 [1.01, 1.07] **OPPOSITE robust**; nearest RELAX 31/32; contrast 31/32 → supported |
+| P-COV (≥ 0.8 banned nearest class) | 0.993 [0.960, 0.999]; BFS→BFSO 0.92, DFS→DFSO 0.85 → supported | 0.978 [0.937, 0.992]; 0.93 / 0.87 → supported |
 
-**G1: NOT SUPPORTED.** The cell map is highly reliable (ceiling 0.94-0.97). It is organised by container and by code
-surface: AST shingles and length alone explain 0.48 / 0.34 of the rank variance uniquely, and discipline explains
-about 0.00.
+**Independent audit (`audit/rederive_g2.py`, stdlib, results/rederive_g2.json).** The G2 shares were recomputed
+from the raw class-distance CSVs and compared with random families of the same size drawn from all placed programs.
+- F-BF nearest RELAX: 0.94 (8B) and 0.97 (32B), against a placebo median of 0.09.
+- P-COV banned-nearest: 0.99 and 0.98, against a placebo median of 0.78 (q95 0.82).
+- The P-UD contrast (BFSO/COST-HEAP closer than HEUR-HEAP) is **not specific on 8B**: every family, and every random
+  draw, scores 1.0 there, so the 8B 38/38 sign test passes vacuously. On 32B it is specific: 1.0 against a placebo
+  median of 0.47.
+- A stdlib G1 placebo with discipline labels shuffled gives ρ_dc 0.0003 (8B) and 0.0075 (32B).
 
-The discipline effect is about 0.1, below the 0.3 threshold. It carries no more discipline information than the
-lexical baselines. Selectivity is negative on every baseline.
+**Caveat on r_F.** Every family is EDGE on 8B, and so is every random draw of 38 placed programs (placebo:
+1000/1000). The r_F point verdict therefore does not discriminate families on 8B. The family-specific evidence is the
+nearest-class pattern and the pre-committed contrasts: Bellman-Ford survivors sit with RELAX cells; unit-weight
+Dijkstra survivors sit with COST-HEAP / BFSO-HEAP rather than HEUR-HEAP; covert BFS/DFS sit with their own discipline.
 
-The formal DISCONFIRMED rule (rho_d <= 0.1 on both models) misses by 0.004 on 8B. All sensitivities give rho_d between
-0.01 and 0.19, and none reaches 0.3: k = 10, the cross-validated centroid RDM, R1g and R2, blocks L +/- 2, excluding
-reassigned or disputed programs, adding the PROBE cell, frame F1, and the program-level RDM.
+The robustness grid ({8B, 32B} x {k15, k10} x {R1, R1g, R2}; 12 cells) is in `results/robustness.json`.
+- **P-COV** holds in 12/12 cells, with a share of 0.96–1.00.
+- **P-UD:** the full-frame verdict is EDGE in 12/12 cells, but the HEAP frame turns OPPOSITE in 6/12. The complete
+  P-UD rule holds in 6/12 cells: 8B R1 and R2 at both k, and 32B R2 at both k.
+- **P-BF** holds in 8/12 cells: every 32B cell, plus 8B R2 at both k and 8B k10 R1g. It fails at the 8B primary
+  setting.
 
-Discipline is still locally decodable (leave-one-out discipline accuracy 0.74 / 0.83). It just does not shape the
-between-cell distances.
+## Interpretation limits
 
-**G2: NOT SUPPORTED as preregistered** (8B primary, 32B replication, k = 15 and 10). The full prediction set held for
-no family. The findings below are the substance; `results/g2_*.json` has the details.
-
-- **Within a container, survivors land at their own discipline's cell.** Unit-weight Dijkstra survivors (UD, measured
-  LEV x HEAP) land at LEV_HEAP (36/36 on 8B, 34/36 on 32B). Grid Bellman-Ford survivors (BF, RLX x ARR) land at
-  RLX_ARR (29-30/32). Random-priority survivors (RP) land at RND_HEAP (6/10 and 9/10).
-- **Across containers, the sign points to surface, but the test is weak.** For every family, Delta < 0: programs sit
-  closer to same-container / other-discipline cells than to same-discipline / other-container cells. For example,
-  Delta(UD) = -6.5 on 8B and -20.7 on 32B. But:
-  - no Delta is significant under the within-container permutation (p = 0.33-0.57);
-  - norm-matched Gaussian states give Deltas of the same order (BF -10.5 / -16.6; UD +6.6 / -4.2;
-    `audit/rederive2.json`).
-
-  Read the Delta signs as descriptive, not as evidence on their own.
-- **The PROBE cell lands with the relaxation surface.** These are FIFO label-correcting programs, measured as level
-  order on unit grids. 15 of 16 land at RLX_STK, not at LEV_DEQ, on both models. That is the textbook-name / surface
-  reading, not the mechanism reading.
-- **Covert BFS/DFS programs land near banned algorithms.** The share whose nearest algorithm is banned is 0.87 / 0.97
-  on F0 (binomial p vs the class-size base rate: 0.005 on 8B). The share whose nearest cell has a banned discipline is
-  0.77 / 0.90 on F1. The F1 share is not diagnostic on 32B: norm-matched Gaussian states give 1.0 there, and 0.57 on
-  8B.
-- **The F0 EDGE call does not discriminate.** On F0 every placed survivor lands EDGE, BF included, and the
-  family-label placebo cannot move it. On F1, BF is OPPOSITE and UD is EDGE.
-- **Iteration 9's UD result reproduces exactly.** On the iteration-9 frame it is 15/15 EDGE on both models (T5).
-
-Geometry is correlational: no intervention was run.
-
-**Exploratory analyses (added after COMMIT1, not preregistered):**
-
-- **Leave-one-out errors are surface errors** (`results/explore_confusion.json`). When a program's nearest cell is
-  wrong:
-  - the predicted cell shares its container 42/66 times on 8B and 35/47 on 32B, against about 16% by chance
-    (binomial p < 1e-6);
-  - it shares its discipline 8/66 and 10/47 times, against about 12-14% by chance (p = 0.59 and 0.10).
-- **Graded behaviour adds nothing beyond surface** (`results/explore_dbeh.json`). This is the D_beh sensitivity that
-  was dropped before COMMIT1.
-  - Behavioural distance is 1 - Spearman of first-expansion ranks on 8 probe grids. It tracks discipline (Spearman with
-    D_disc 0.40) and not container (0.06).
-  - Cell map vs D_beh given container: 0.035 / 0.025 (within-container permutation p = 0.39 / 0.26).
-  - At the program level (24,310 pairs), partial Spearman(geodesic, behaviour | AST surface, same container) is
-    0.015 / 0.031. Surface given behaviour is 0.47 / 0.48. This answers iteration 9's open "behaviour given surface"
-    question: about 0.
-- **Bootstrap coverage addendum** (`results/t4b_bootstrap_coverage.json`). Against each synthetic dataset's own expected rho_d (same planted cell structure, 20 fresh noise draws), the within-cell bootstrap CI covers 0.92 of 50 runs (nominal 0.95). The committed T4 figure of 0.56 compared CIs with the across-dataset mean, an estimand that bootstrap cannot target.
-
-## What was done (pipeline)
-
-1. **Inputs and reproduction (Stage 0).**
-   - Iteration 9 (E46, E45) and iteration 8 (E44) files were copied into `inputs/` with `inputs/SHA256SUMS`. The large
-     iteration-9 npz files were read in place, with hashes in `inputs/LARGE_INPUTS.sha256`.
-   - The frozen readout was reproduced on both models: cosine >= 0.99999 against the cached states, and g(UD)
-     geodesics identical (`results/repro_gate.json`).
-2. **Cells, prompts, instrument (1.1-1.3).**
-   - 17 requested cells plus a PROBE cell, each with a words-only instruction in 3 frames. A forbidden-word audit found
-     0 hits on 108 prompts (`predictions/cells.json`, COMMIT0a).
-   - The name-blind instrument (`src/instrument.py` plus the extended tracer child `src/inst_child.py`) applies an
-     ordered rule. It checks sweeps and label-correcting re-push, then RNG sensitivity, goal sensitivity, level order,
-     LIFO and coordinate key. The container is read from the runtime selection operation.
-   - Gate: 18/18 planted cell references and 13/15 catalogue references correct, and 2/2 mutation tests
-     (`results/instrument_gate.json`, COMMIT0b).
-3. **Generation (1.4).** 1,020 forced Qwen3-32B calls (DeepInfra fp8, thinking off, T = 1) in 3 rounds of 20 per cell.
-   - 61% of round 0 failed the frozen suites on one edge case: start == goal on a wall.
-   - Amendments COMMIT0c and COMMIT0d added an edge-case reminder. The second, placed inside the instruction, worked.
-4. **Acceptance (1.5).** A program is accepted when all of the following hold:
-   - both frozen suites (48 + 41 cases) pass on the raw code and on the scrubbed code;
-   - the alias audit finds 0 hits;
-   - the instrument's (disc, cont) equals the requested cell, or another planned cell (reassigned and logged);
-   - it survives deduplication.
-
-   The executor hand-read every RLX / RND / CRD program and every ARR-cell program, plus 3 random programs per other
-   cell: 158 reads in `data/hand_reads.jsonl`, with 0.86 agreement with the instrument.
-   - 19 RLX_STK programs re-push improved cells at runtime but compare `new_dist < dist[nb]`. The frozen AST
-     relaxation pattern misses that, so the instrument read DFS. The hand read assigns RLX and flags them as disputed.
-   - The G1 sensitivity that excludes disputed programs gives 0.096 / 0.072.
-
-   Gated LLM judges failed their 9/10 gate (deepseek 8/10, kimi 6/10, mistral 7/10; all misread the coordinate-keyed
-   order), so per plan F4 the hand reads decide.
-5. **Factorial set.** 15 cells with at least 10 programs each, capped at 16 (221 programs), plus 16 PROBE programs.
-   - LEV_SET (4) and RLX_HEAP (4) were dropped.
-   - Most "re-push" RLX_HEAP requests came out as coordinate order with a visited set, and were reassigned to CRD_HEAP.
-   - The design is connected, every discipline appears in at least 2 containers, and Spearman(D_disc, D_cont) = -0.15
-     (`results/design.json`).
-6. **Top-ups, survivors, covert set (1.6-1.8).**
-   - Top-ups were re-adjudicated from iteration 9 and new named ones generated, all hand-read:
-     - iddfs 10 (F0 total 12);
-     - bibfs 7 (F0 total 15);
-     - biastar 5 (F0 total 7, below the floor of 10);
-     - jps 1 (below the floor).
-   - F0 therefore has 3 non-banned classes (plan F7).
-   - 114 survivors with hand-read families, split by measured discipline: UD-LEV 36, BF-RLX 32, CK-CRD 20, RP-RND 10,
-     FL-RLX 4, RC-RND 4, MX 5, SP 3. No BF program measured LEV, so the sharp BF-LEV test is unavailable.
-   - 30 covert BFS/DFS programs.
-7. **COMMIT1 (Stage 2)** froze, before any new state was read:
-   - frames, analysis code hashes, thresholds, predictions and placebos;
-   - the T4 synthetic validation: type-I 0.055, power 0.64, bootstrap coverage 0.56 (a known limitation).
-8. **States (Stage 3).** 412 programs per model, R1 / R1g / R2 at blocks [0, L-2 .. L+2], float16. The npz files are
-   `cache/states/tpg2_8b.npz` (0.17 s per program) and `cache/states/tpg2_32b.npz` (0.38 s per program).
-9. **Analysis (Stages 4-5).** G1 and G2 as frozen. Bootstrap B = 1,000, rebuilding the graph in every resample.
-10. **Figures (Stage 6)** in actual activation coordinates (`figures/`).
-11. **Independent re-derivation and placebos (Stage 7):** 0 mismatches (`audit/rederive.json`).
-12. **Positioning (Stage 8)** against 7 works, with verbatim quotes (`results/positioning.json`).
-
-OpenRouter spend was USD 0.170 over 1,230 calls, with no budget refusals (`results/costs.json`). GPU time was about
-0.25 h on one RTX 4090.
+These follow the mechanistic-interpretability handbook.
+- **Geometry is correlational.** Nothing here moves a model's output; iteration 7's in-manifold pushes moved 0/300.
+  "Decodable is not actionable."
+- **The map class is declared and frozen:** iteration 9's readout, block, k and landing code, with no fitted
+  alignment.
+- **Effects are reported as distributions:** program bootstrap, cell-cluster bootstrap and restricted permutations.
+  Random-network (RANDNET) and bag-of-tokens (E0) baselines sit beside every G1 number.
+- **The authorship confound remains.** Every factorial program has one author (Qwen3-32B), while survivors and covert
+  programs come from several authors. Placement of non-Qwen programs is therefore weaker evidence; the per-author
+  breakdowns are in `results/g2_*.json` (P-COV `by_author`).
 
 ## Layout
 
-| path | content |
-|---|---|
-| `method.py` | entry point: `python method.py all` or `python method.py <stage>`; stages are listed in its docstring |
-| `src/tpg2.py` | cell table, prompts, forbidden-word audit, frozen constants, commitment chain |
-| `src/gen_or.py` | OpenRouter generation, with GET /key before each batch, cost ledger, 403 stop and rounds |
-| `src/instrument.py`, `src/inst_child.py` | name-blind discipline x container instrument (child = iteration 9's tracer plus assignment values, sorted-list marking and seeded runs) |
-| `src/gate_instrument.py`, `references/planted/*.py` | instrument gate and the 18 planted cell references |
-| `src/accept.py` | acceptance pipeline: suites, scrub, alias audit, instrument, dedupe |
-| `src/stage_sets.py`, `src/measure_primary.py` | top-ups, survivors, covert set, PRIMARY-frame measurement |
-| `src/handread.py` | compact views and the hand-read ledger |
-| `src/build_frames.py` | hand reads applied, design check, frames, state items |
-| `src/synth_t4.py` | T4 synthetic validation |
-| `src/states10.py` | reproduction gate and state extraction (iteration 9's `states.py` / `stage_mcode.py`, unchanged) |
-| `src/analysis_g2.py`, `src/run_analysis.py` | frozen G1 / G2 analysis (hashes in COMMIT1) |
-| `src/figures.py`, `src/make_outputs.py`, `src/add_topup_preds.py`, `src/t3_t9_checks.py`, `src/judges.py` | figures, outputs, T3 / T5 / T9 checks, judge gate and novelty audit |
-| `src/explore_confusion.py`, `src/explore_dbeh.py`, `src/synth_t4b.py` | exploratory analyses added after COMMIT1 (LOO confusion structure, graded behavioural RDM, bootstrap-coverage addendum) |
-| `src/{common,geometry,landing,states,stage_mcode,prompts_tp,programs,label_tp,expansion*,tpg,sample_or}.py` | iteration-9 modules, byte-identical |
-| `src/{tracer_v9,orderclass,probes_v9}.py` | iteration-9 tracer, byte-identical |
-| `audit/rederive.py`, `audit/rederive.json` | independent re-derivation 1 (stdlib + numpy): G1 rho_d / rho_c / exact permutation p / cell RDM, G2 F0 classes, covert F0 share; placebos |
-| `audit/rederive2.py`, `audit/rederive2.json` | independent re-derivation 2 (stdlib + numpy, Floyd-Warshall geodesics): LOO nearest-cell accuracy and error split, PROBE landing, Delta(UD / BF), covert F1 share, AST-baseline rho_d; shuffled-label and Gaussian placebos |
-| `predictions/` | `cells.json`; `commit0b_instrument_gate.json`; `commit0c` / `commit0d` amendments; `commit1.json`; `hardware.json` |
-| `commitments.log` | hash chain (genesis sha256('iter10_tpg2'); verified in `results/t9_commitments.json`) |
-| `data/raw_factorial.jsonl`, `data/raw_topups_v10.jsonl` | every generation call: prompt, content, provider, cost, seed |
-| `data/factorial.jsonl` | every factorial program: suites, scrubbed code, instrument fields, acceptance |
-| `data/topup_candidates.jsonl`, `data/survivor_candidates.jsonl`, `data/placed_covert.jsonl`, `data/primary_measured.jsonl` | the other program sets |
-| `data/hand_reads.jsonl` | executor hand reads with a one-line rationale each |
-| `data/frames.json`, `data/state_items.json` | committed frame lists and the programs whose states were read |
-| `data/instrument_cache.jsonl`, `data/program_eval_cache.jsonl` | caches keyed by sha256; the eval cache is excluded from the published repo |
-| `cache/states/tpg2_8b.npz`, `cache/states/tpg2_32b.npz` | **kept**: R[program, readout (R1, R1g, R2), block, d] float16 for all 412 programs |
-| `cache/e46_states/` | **kept**: bit-identical reduced copies of iteration 9's cached M-code states (PRIMARY + SURV rows, blocks L-2..L+2, 4 readouts) and its frozen PRIMARY geodesic npz; provenance in `README.json` |
-| `reproducibility.md`, `restore.sh`, `pyproject.toml`, `requirements.lock.txt` | exact reproduction steps, environment rebuild, 70 exact pins |
-| `results/` | `g1_*.json`, `g2_*.json`, `verdicts.json`, `design.json`, `repro_gate.json`, `instrument_gate.json`, `t4_synthetic.json`, `t5_placement.json`, `t3_scrub.json`, `t9_commitments.json`, `novelty_audit.json`, `judges.json`, `positioning.json`, `deviations.json`, `costs.json`, `timing.jsonl` |
-| `figures/` | see below |
-| `method_out.json` (+ `full_` / `mini_` / `preview_`) | exp_gen_sol_out output; see below |
-| `inputs/`, `vendor/`, `probes/` | copied iteration-8 / iteration-9 inputs with SHA256SUMS; test harness; probe grids |
+- `method.py`: orchestrator for every stage (`.venv/bin/python method.py <stage>`; see its docstring).
+- `src/`:
+  - `cells.py`: cell table and prompts;
+  - `verify.py` and `probe_child.py`: the verifiers;
+  - `gen.py`: OpenRouter generation, repair and paraphrase;
+  - `assemble.py`: placed families;
+  - `freeze.py`;
+  - `extract.py`: states;
+  - `g1.py` and `g2.py`: the statistics, frozen in COMMIT1c;
+  - `analysis.py`: the G1/G2 drivers;
+  - `outputs.py`;
+  - `figures.py`;
+  - `r0.py`: the reproduction gate;
+  - `v10.py`: constants and the commitment chain.
+  - Reused unchanged from iteration 9: `common.py`, `states.py`, `stage_mcode.py`, `geometry.py`, `landing.py`,
+    `programs.py`, `expansion*.py`, `prompts_tp.py`, `tpg.py`, `label_tp.py`, `judge_tp.py`, `sample_or.py`,
+    `tracer_v9.py`, `orderclass.py`, `probes_v9.py`.
+- `vendor/`: hidden-test harnesses, the 48-case and 41-case suites, the 15 T1 references and the labeller (copied,
+  sha256 in `inputs_manifest.json`). `probes/` holds the tracer's 40 probe grids.
+- `inputs/`: copies of the prior artifacts' data and results that this round reads.
+- `tests/`: `test_verifiers.py` (34/34 pass: references, 12 planted hard-cell programs, 4 negative controls,
+  idastar rejected in every cell), `test_analysis.py` (T7 synthetic G1 checks, T8 placement checks), and the
+  planted and negative programs.
+- `data/`:
+  - `programs_v10.jsonl`: every verified generation;
+  - `gen_raw_v10.jsonl`: every API call;
+  - `hand_reads_v10.jsonl`: 139 hand reads;
+  - `factorial_set.jsonl`, `topups_set.jsonl`, `placed_programs.jsonl`;
+  - `frame_freeze.json`, `topup_freeze.json`, `order_matrix_factorial.npz`.
+- `results/`:
+  - `g1_8b.json`, `g1_32b.json`, `g1_verdict.json`, `g2_8b.json`, `g2_32b.json`, `robustness.json`;
+  - `placebos.json`, `r0_reproduction.json`, `state_checks_*.json`, `verifier_unit_tests.json`,
+    `analysis_unit_tests.json`;
+  - `verification_summary.json`, `costs_v10.json`, `deviations.json`, `rederive.json`;
+  - `pairs_<model>.csv`: per-pair RDM entries for the audit;
+  - `geo_class_dist_<model>.csv`: per-program class geodesics.
+- `figures/` (PDF + PNG, actual activation coordinates):
+  - `F1_factorial_8b` / `F2_factorial_32b`: PCA, Isomap and MDS of the factorial frame;
+  - `F3_full_frame_*`: implemented counts at baseline vs under the ban, with families overlaid;
+  - `F4_heldfixed_8b`: the HEAP and GRID2D frames;
+  - `F5_g1_bars`, `F6_family_g_*`, `F7_layer_curve`, `F8_placement_heatmap_8b`.
+- `audit/rederive.py`: a stdlib-only re-derivation of ρ_dc, ρ_cd, δ, r_F and the cell counts (0 mismatches).
+- `predictions/`: the commitment payloads (`commit1.json`, `commit1b.json`, `commit1c.json`) and `hardware.json`.
+  `commitments.log` holds the hash chain.
+- `method_out.json` (+ `full_` / `mini_` / `preview_`): exp_gen_sol_out with four datasets: `tpg2_factorial` (287),
+  `tpg2_topups` (48), `tpg2_placements` (351) and `tpg2_g1_rows`.
+- `cache/states_v10/` **stays on the run's volume, not in the published repository** (files ≥ 100 MB are not
+  pushed). It holds the program states (`<model>_<set>.npz` plus a `.jsonl` index) and the G2 frame coordinates
+  (`g2frame_<model>.npz`). Later rounds read these.
 
-Figures, each with PDF and PNG; every axis is in actual activation coordinates:
+## Hand-read rule
 
-- `pca_F1_*`: PCA of frame F1, colour = discipline, marker = container;
-- `isomap_F1_*`: Isomap at k = 15 and k = 10;
-- `mds_F1_*`: classical MDS of the geodesics, with stress-1;
-- `F0_counts_placed_*`: F0 catalogue centroids sized by implemented count, baseline vs ban, with survivors and covert
-  programs overlaid;
-- `subframes_UD_BF_*`: the S_disc and S_cont panels;
-- `rdm_heatmaps_*`: the cell RDM next to D_disc, D_cont and D_surf;
-- `g1_forest`: rho_d and rho_c with CIs, the permutation null band, the noise ceiling and the baselines.
+The executor read every RELAX and GRID2D program, every tracer/AST disagreement and every top-up program. The verdict
+is ACCEPT if and only if the code implements the cell's storage AND selection rule as specified (or, for a top-up, its
+mechanics). A program that passes the automatic checks but whose search loop is driven by a different container or
+order is REJECT. There were 4 REJECTs:
+- a RELAX-SET program that shrinks its sweep set;
+- a BFSO-HEAP program whose popped entry overwrites the global counter;
+- two bidirectional A* programs that are effectively one-directional.
 
-Datasets in `method_out.json`:
-
-| dataset | rows | output | predictions |
-|---|---|---|---|
-| `tpg2_factorial` | 237 | measured `disc\|cont` | leave-one-out nearest cell: model 8B, model 32B, TF-IDF baseline, AST baseline |
-| `tpg2_topups` | 23 | hand-read class | leave-one-out nearest F0 class |
-| `tpg2_placements` | 144 survivors + covert | family / label | class on F0, F1 and S_disc, and nearest cell, for 8B and 32B |
-| `tpg2_g1` | 36 | one row per model x representation / sensitivity | |
-
-The metadata holds the verdicts, deviations, commitments, costs and timing.
-
-The two state files stay on the run's volume at the relative paths above. At 54 MB and 68 MB they are under the
-100 MB publish limit, so they are also in the repository.
+The reading depth is recorded per row; see `results/deviations.json` (D-hand-read-depth).
 
 ## How to run
 
 ```bash
 uv venv .venv --python=3.12 && uv pip install --python .venv/bin/python -r requirements.lock.txt
-export OPENROUTER_BASE_URL=... OPENROUTER_API_KEY=...      # only for the generation stages
-python method.py all          # resumable; stages skip when their outputs exist (--force reruns)
-python method.py analysis rederive figures outputs --force   # recompute everything after the states
+.venv/bin/python scripts/download_full.py          # Qwen/Qwen3-8B and unsloth/Qwen3-32B-bnb-4bit at pinned revisions
+.venv/bin/python method.py setup r0 tests          # inputs, reproduction gate, verifier + analysis tests
+.venv/bin/python method.py generate assemble freeze states order   # needs OPENROUTER_BASE_URL / OPENROUTER_API_KEY
+.venv/bin/python method.py all-analysis            # g1, g2, robustness, outputs, figures, audit
 ```
 
-All paths are relative to this folder. Prior artifacts are sibling folders named by artifact id, each read through
-one constant in `src/tpg2.py` that an environment variable can override:
+Generation is resumable from `data/gen_raw_v10.jsonl`, so re-running it on the shipped data makes no API calls.
+OpenRouter spend for this artifact was USD 0.25 for 1,138 calls (`results/costs_v10.json`).
 
-- `TPG2_E46` → `../art_VVA3P0ocZNA2`
-- `TPG2_E45` → `../art_8nXdw3_lDAll`
-- `TPG2_E44` → `../art_R-HSmXq2t97f`
-- `TPG2_DS` → `../art_j3Rm_lr2nzR6`
+## Deviations
 
-They are only needed to re-copy `inputs/` (already shipped, with `inputs/SHA256SUMS`) and for the novelty-audit pool.
-
-Iteration 9's cached states are over the 100 MB publish limit. Bit-identical reduced copies (PRIMARY and SURV rows,
-blocks L-2..L+2) ship in `cache/e46_states/`.
-
-Full step-by-step instructions, with runtimes and expected numbers, are in `reproducibility.md`. `restore.sh` rebuilds
-the environment.
-
-## Deviations (full list in `results/deviations.json`)
-
-- **D1.** COMMIT #0 was split: 0a before generation, 0b (the instrument) before any classification.
-- **D2.** Instrument gate: 18/18 planted, 13/15 catalogue (JPS and BiA* misses; those classes are hand-read).
-- **D3.** Container is read at runtime.
-- **D4.** 15 catalogue references, not 25.
-- **D5 / D7.** Edge-case prompt amendments (COMMIT0c, COMMIT0d).
-- **D6.** Named top-ups carry the edge hint.
-- **D8.** Plan F7: 3 non-banned F0 classes.
-- **D9.** LEV_SET and RLX_HEAP dropped.
-- **D10.** 19 RLX_STK programs disputed (AST-pattern gap; hand read decides).
-- **D11.** D_beh sensitivity dropped.
-- **D12.** Fresh states for the iteration-8 survivors.
-- **D13.** No judge passed the gate.
-- **D14.** Optional human-author check and the T7 kill/resume test not run.
-- **D15.** `hardware.json` written at the end.
-- **D16.** Portability: relative sibling-folder paths, reduced bit-identical iteration-9 state copies, and an edit to one provenance copy (`inputs/PORTABILITY_EDITS.md`).
-
-Known limitations:
-
-- The committed T4 bootstrap coverage was 0.56. The post-COMMIT1 addendum against each dataset's own expected value gives 0.92, so the P_boot statements are approximately calibrated.
-- Hand-read and instrument agreement was 0.86, below the 0.90 target.
-- All factorial programs share one author, Qwen3-32B. The 32B frame reads its own programs, while 8B reads another
-  model's.
-- Everything is correlational.
+Every deviation is in `results/deviations.json`. The main ones:
+- The hardware was smaller than planned, so fewer blocks were kept.
+- Commit #1 was split into 1a/1b/1c.
+- F-COV has 136 programs, not ~294. The rest come from other ban sets and form F-COVX.
+- The state-reproduction cosine is 0.9998 rather than 0.9999 (different GPU).
+- JPS consists only of paraphrases of the reference.
+- Sensitivity bootstraps used 200 resamples.
+- `results/positioning.json` is a title-level screen of 6 scholarly queries, with no verbatim quotes.
 
 ## Restoring removed files
 
-`.aii/manifest.yaml` marks these for deletion after the round:
-
-| deleted path | restore command |
+| removed path (`.aii/manifest.yaml` delete entry) | how to restore |
 |---|---|
-| `.venv/` | `uv venv .venv --python=3.12 && uv pip install --python .venv/bin/python -r requirements.lock.txt` (or `bash restore.sh`) |
-| `src/__pycache__/` | `python -m compileall src` (also recreated automatically on import) |
-| `vendor/exp9/tasks/__pycache__/` | `python -m compileall vendor` (also recreated automatically on import) |
+| `.venv/` | `uv venv .venv --python=3.12 && uv pip install --python .venv/bin/python -r requirements.lock.txt` |
+| `src/__pycache__/` | regenerated automatically by any `.venv/bin/python method.py <stage>` run |
+| `audit/__pycache__/` | regenerated automatically by `python3 audit/rederive_g2.py` |
+| `vendor/exp9/tasks/__pycache__/` | regenerated automatically by `.venv/bin/python method.py tests` |
 
-The `.venv` pins are the same as iteration 9's (torch 2.8.0+cu128, transformers 4.57.6, bitsandbytes 0.50.2). The two
-binary state folders `cache/states/` and `cache/e46_states/` are **kept** and are not deleted.
-
-Model weights live in the run's shared HF cache, not in this folder. To fetch them:
-`huggingface-cli download Qwen/Qwen3-8B --revision b968826d9c46dd6066d109eabc6255188de91218` and
-`huggingface-cli download unsloth/Qwen3-32B-bnb-4bit --revision 7f721e74a6a8cc9ee352f7e49303a2c1705f9083`.
-`data/program_eval_cache.jsonl` is excluded from the published repository. It is rebuilt by
-`python method.py accept --force`, which re-runs the sandbox suites.
+Not in this folder at all, but needed to rerun the state extraction:
+- **Model weights** live in the shared Hugging Face cache. Restore them with `.venv/bin/python scripts/download_full.py`
+  (Qwen/Qwen3-8B@b968826d9c46dd6066d109eabc6255188de91218, unsloth/Qwen3-32B-bnb-4bit@7f721e74a6a8cc9ee352f7e49303a2c1705f9083).
+- **`cache/states_v10/`** is kept on the run's volume and is not in the published repository (files ≥ 100 MB). Rebuild
+  it with `.venv/bin/python method.py states` (see `reproducibility.md`, steps 9, 10, 14 and 16).
