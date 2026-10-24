@@ -1,0 +1,1042 @@
+[
+ {
+  "oid": "B00",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    valid_mask = remaining > 0\n    \n    # Base score: prioritize bins with more remaining space and moderate utilization\n    r_percent = remaining / bins\n    base_score_pos = -np.abs(remaining - item) * valid_mask * r_percent * (1 - r_percent)\n    \n    # Penalize bins that are almost full\n    full_penalty = -np.clip(r_percent, a_min=0, a_max=0.9) * valid_mask\n    \n    # Penalize bins with very small remaining space\n    small_space_penalty = -np.clip(remaining, a_min=0, a_max=10) * valid_mask\n    \n    # Encourage bins with space close to item size\n    fit_score = np.clip(remaining / item, a_min=0, a_max=2) * valid_mask\n    \n    # Encourage bins with moderate utilization\n    moderate_utilization = np.clip(r_percent, a_min=0.5, a_max=0.9) * valid_mask\n    \n    # Encourage bins with lower utilization\n    low_utilization = np.clip(1 - r_percent, a_min=0, a_max=0.5) * valid_mask\n    \n    # Combine scores with weights\n    score = (base_score_pos * 0.5) + (full_penalty * 1.5) + (small_space_penalty * 0.5) + (fit_score * 2.0) + (moderate_utilization * 0.8) + (low_utilization * 1.2)\n    return score",
+  "F": 0.7718,
+  "nearest": [
+   {
+    "name": "ab-BF(7,24)",
+    "agreement": 0.7385,
+    "agreement_informative": 0.6858858858858858
+   },
+   {
+    "name": "ab-BF(7,26)",
+    "agreement": 0.738,
+    "agreement_informative": 0.6852852852852853
+   },
+   {
+    "name": "ab-BF(7,22)",
+    "agreement": 0.738,
+    "agreement_informative": 0.6852852852852853
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(7,24)",
+   "agreement": 0.7385
+  }
+ },
+ {
+  "oid": "B01",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    remaining = np.clip(remaining, 3, None)\n    # Prioritize bins with remaining space between 7 and 23\n    mask = (remaining >= 7) & (remaining <= 23)\n    # Penalize bins that are too full or too empty\n    penalty = (remaining < 7) * (remaining / 7) + (remaining > 23) * ((remaining - 23) / 5)\n    # Apply mask to prioritize bins in the desired range\n    # Apply penalty to the remaining space\n    return -remaining * mask - penalty",
+  "F": 0.8635,
+  "nearest": [
+   {
+    "name": "ab-BF(6,24)",
+    "agreement": 0.6965,
+    "agreement_informative": 0.6354354354354355
+   },
+   {
+    "name": "ab-BF(5,24)",
+    "agreement": 0.692,
+    "agreement_informative": 0.63003003003003
+   },
+   {
+    "name": "ab-BF(4,24)",
+    "agreement": 0.6805,
+    "agreement_informative": 0.6162162162162163
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(6,24)",
+   "agreement": 0.6965
+  }
+ },
+ {
+  "oid": "B02",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining_spaces = bins - item\n    valid_indices = remaining_spaces > 0\n    r_percent = remaining_spaces / bins\n\n    # Base score based on remaining space and utilization\n    base_score = -np.abs(remaining_spaces - item) * valid_indices * r_percent * (1 - r_percent)\n\n    # Penalize bins that are almost full\n    full_penalty = -np.clip(r_percent, a_min=0, a_max=0.95) * valid_indices\n\n    # Penalize bins with very small remaining space\n    small_space_penalty = -np.clip(remaining_spaces, a_min=0, a_max=10) * valid_indices\n\n    # Encourage bins with space close to item size\n    fit_score = np.clip(remaining_spaces / item, a_min=0, a_max=2) * valid_indices\n\n    # Encourage bins with moderate utilization\n    moderate_utilization = np.clip(r_percent, a_min=0.5, a_max=0.9) * valid_indices\n\n    # Encourage bins that are not too full and not too empty\n    utilization_balance = np.clip(1 - 2 * np.abs(r_percent - 0.5), a_min=0, a_max=1) * valid_indices\n\n    # Combine all scores with adjusted weights\n    score = (\n        base_score * 0.4 +\n        full_penalty * 0.2 +\n        small_space_penalty * 0.1 +\n        fit_score * 0.15 +\n        moderate_utilization * 0.1 +\n        utilization_balance * 0.05\n    )\n    return score",
+  "F": 0.7615,
+  "nearest": [
+   {
+    "name": "ab-BF(7,17)",
+    "agreement": 0.806,
+    "agreement_informative": 0.766966966966967
+   },
+   {
+    "name": "ab-BF(12,17)",
+    "agreement": 0.805,
+    "agreement_informative": 0.7657657657657657
+   },
+   {
+    "name": "ab-BF(11,17)",
+    "agreement": 0.805,
+    "agreement_informative": 0.7657657657657657
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(7,17)",
+   "agreement": 0.806
+  }
+ },
+ {
+  "oid": "B03",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    bins = np.clip(bins, a_min=item, a_max=None)\n    bins_ratio = bins / item\n    availability = (bins - item) / (bins - item + 1e-8)\n    term1 = np.exp(-6 * (bins_ratio - 1) ** 2)\n    term2 = (bins_ratio >= 0.75)\n    term3 = np.sin(np.pi * bins_ratio) + 0.5\n    term4 = np.clip(availability, a_min=0.3, a_max=1.0)\n    return np.maximum(\n        0,\n        term1 * term2 * term3 * term4\n    )",
+  "F": 0.84,
+  "nearest": [
+   {
+    "name": "FunSearch-c12-vec",
+    "agreement": 0.673,
+    "agreement_informative": 0.6072072072072072
+   },
+   {
+    "name": "FunSearch-c12",
+    "agreement": 0.673,
+    "agreement_informative": 0.6072072072072072
+   },
+   {
+    "name": "ab-BF(8,29)",
+    "agreement": 0.6555,
+    "agreement_informative": 0.5861861861861862
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(8,29)",
+   "agreement": 0.6555
+  }
+ },
+ {
+  "oid": "B04",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    if bins.size == 0:\n        return np.array([], dtype=object)\n    item = np.array([item], dtype=bins.dtype, ndmin=1)\n    remaining = bins - item\n    invalid = np.bitwise_or(np.isclose(remaining, 0), remaining < 0)\n    valid_bins = ~invalid\n    remaining_ratio = remaining / (bins + 1e-8)\n    item_ratio = item / (bins + 1e-8)\n    # Base score: prefer bins with more remaining space and better item-to-bin ratio\n    score = -np.abs(remaining - item) * valid_bins * (remaining_ratio * (1 + item_ratio))\n    # Logarithmic penalty for small remaining space\n    score += -np.log(remaining + 1e-8 + 1) * valid_bins\n    # Penalty for bins that are almost full\n    penalty = np.clip(1 - remaining_ratio, 0, 1)\n    score *= (1 + penalty)\n    # Additional penalty for bins that are too small to accommodate the item\n    small_bin_penalty = np.clip(remaining / bins, 0, 0.1)\n    score *= (1 + 10 * small_bin_penalty)\n    # Bonus for bins with moderate remaining space and good item-to-bin ratio\n    moderate_ratio = np.clip(remaining_ratio, 0.3, 0.7)\n    score += moderate_ratio * valid_bins\n    # Modulate score based on item size relative to bin capacity\n    item_scaled = item / (bins + 1e-8)\n    score *= (1 - 0.5 * item_scaled)\n    return score",
+  "F": 0.876,
+  "nearest": [
+   {
+    "name": "ab-BF(19,21)",
+    "agreement": 0.8255,
+    "agreement_informative": 0.7903903903903904
+   },
+   {
+    "name": "ab-BF(18,21)",
+    "agreement": 0.8255,
+    "agreement_informative": 0.7903903903903904
+   },
+   {
+    "name": "ab-BF(18,20)",
+    "agreement": 0.825,
+    "agreement_informative": 0.7897897897897898
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(18,21)",
+   "agreement": 0.8255
+  }
+ },
+ {
+  "oid": "B05",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    penalty = 1e6 * (remaining < 0).astype(float,)\n    # Penalize bins where item is too large to fit\n    score = remaining * (remaining > 0.0) * (remaining < 5 * item)\n    # Small penalty for bins that are not close to full\n    score += (remaining ** 2) * (remaining > 5 * item) * (remaining < 10 * item)\n    # Reward for bins that are nearly full\n    score += (remaining ** 2) * (remaining < item)\n    # Penalize bins that are too large\n    score -= (remaining ** 2) * (remaining > 10 * item)\n    return -score - penalty",
+  "F": 0.838,
+  "nearest": [
+   {
+    "name": "ab-BF(7,50)",
+    "agreement": 0.842,
+    "agreement_informative": 0.8102102102102102
+   },
+   {
+    "name": "ab-BF(7,33)",
+    "agreement": 0.841,
+    "agreement_informative": 0.809009009009009
+   },
+   {
+    "name": "ab-BF(7,34)",
+    "agreement": 0.8405,
+    "agreement_informative": 0.8084084084084084
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(7,50)",
+   "agreement": 0.842
+  }
+ },
+ {
+  "oid": "B06",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    valid_mask = remaining > 0\n    remaining_percentage = (remaining / bins) * valid_mask\n\n    # Base score: prioritize more remaining space and lower utilization\n    weight_base = 0.4\n    score = -np.abs(remaining - item) * valid_mask * remaining_percentage * (1 - remaining_percentage) * weight_base\n\n    # Penalize almost full bins\n    weight_full_penalty = 0.2\n    full_penalty = -np.clip(remaining_percentage, a_min=0, a_max=0.9) * valid_mask * weight_full_penalty\n    score += full_penalty\n\n    # Penalize small remaining space\n    weight_small_penalty = 0.1\n    small_space_penalty = -np.clip(remaining, a_min=0, a_max=10) * valid_mask * weight_small_penalty\n    score += small_space_penalty\n\n    # Encourage bins with space close to item size\n    weight_fit_score = 0.15\n    fit_score = np.clip(remaining / item, a_min=0, a_max=2) * valid_mask * weight_fit_score\n    score += fit_score\n\n    # Bonus for bins where remaining space is slightly larger than the item\n    weight_fit_bonus = 0.05\n    fit_bonus = np.clip(remaining - item, a_min=0, a_max=5) * valid_mask * weight_fit_bonus\n    score += fit_bonus\n\n    # Encourage bins with lower utilization\n    weight_utilization = 0.1\n    utilization_score = -np.clip(remaining_percentage, a_min=0, a_max=0.9) * valid_mask * weight_utilization\n    score += utilization_score\n\n    return score",
+  "F": 0.7705,
+  "nearest": [
+   {
+    "name": "ab-BF(7,17)",
+    "agreement": 0.808,
+    "agreement_informative": 0.7693693693693694
+   },
+   {
+    "name": "ab-BF(7,18)",
+    "agreement": 0.806,
+    "agreement_informative": 0.766966966966967
+   },
+   {
+    "name": "ab-BF(9,17)",
+    "agreement": 0.804,
+    "agreement_informative": 0.7645645645645646
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(7,17)",
+   "agreement": 0.808
+  }
+ },
+ {
+  "oid": "B07",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    valid_mask =(np.isclose(remaining, 0, atol=1e-8) | (remaining >= 0))\n    remaining[~valid_mask] = 0\n    eps = 10 * np.finfo(float).eps\n\n    # Base priority based on remaining capacity and bin size\n    log_bins = np.log(bins + eps)\n    log_remaining = np.log(remaining + eps)\n    weighted_log = log_remaining * log_bins\n\n    # Apply exponential decay to emphasize recent available space\n    decay_factor = np.clip(1 - (remaining / bins), 0.8, 1.0)\n    priority = -np.exp(weighted_log * decay_factor).clip(0, item)\n\n    # Apply adaptive boosts based on remaining space relative to item size\n    priority[remaining > 0.6 * item] += 20\n    priority[remaining < 0.15 * item] += 30\n    priority[remaining > 0.9 * item] -= 15\n\n    # Penalize bins that cannot fit the item\n    priority[~valid_mask] = np.inf\n    return priority",
+  "F": 0.7396,
+  "nearest": [
+   {
+    "name": "ab-FF(6,22)",
+    "agreement": 0.821,
+    "agreement_informative": 0.784984984984985
+   },
+   {
+    "name": "ab-FF(6,21)",
+    "agreement": 0.8205,
+    "agreement_informative": 0.7843843843843844
+   },
+   {
+    "name": "ab-FF(7,22)",
+    "agreement": 0.8185,
+    "agreement_informative": 0.781981981981982
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-FF(6,22)",
+   "agreement": 0.821
+  }
+ },
+ {
+  "oid": "B08",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    bins = np.clip(bins, a_min=item, a_max=None)\n    bins_ratio = bins / item\n    bins_remaining = bins - item\n    bins_remaining_ratio = bins_remaining / item\n\n    # Base score based on remaining space ratio\n    base_score = np.exp(-4 * (bins_ratio - 1) ** 2) * (bins_ratio >= 0.8)\n\n    # Add periodicity and positive utilization incentive\n    score = base_score * (1 + np.sin(np.pi * bins_ratio) - np.sqrt(bins_ratio) + 0.5)\n\n    # Penalize bins with small remaining space relative to item\n    score *= (1 - 0.5 * np.sin(np.pi * bins_remaining_ratio))\n\n    # Additional penalty for bins that are too full\n    score *= (1 - 0.3 * np.clip(bins_ratio - 1, a_min=0, a_max=None))\n\n    # Ensure non-negative scores\n    score = np.maximum(0, score)\n    return score",
+  "F": 0.791,
+  "nearest": [
+   {
+    "name": "ab-FF(8,50)",
+    "agreement": 0.821,
+    "agreement_informative": 0.784984984984985
+   },
+   {
+    "name": "ab-FF(7,50)",
+    "agreement": 0.8205,
+    "agreement_informative": 0.7843843843843844
+   },
+   {
+    "name": "ab-FF(10,50)",
+    "agreement": 0.8195,
+    "agreement_informative": 0.7831831831831831
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-FF(8,50)",
+   "agreement": 0.821
+  }
+ },
+ {
+  "oid": "B09",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    remaining = np.clip(remaining, 0, np.inf)\n    utilization = 1 - remaining / bins\n    # Use a combination of remaining capacity and utilization\n    # with separate weights for different aspects\n    # Higher remaining capacity -> lower priority\n    # Higher utilization -> higher priority\n    # Add a penalty for bins with very low remaining capacity\n    penalty = np.where(remaining < 0.1 * bins, 1.0, 0.0)\n    # Combine remaining capacity and utilization\n    weight_remaining = np.clip(utilization, 0, 1)\n    weight_utilization = np.clip(1 - utilization, 0, 1)\n    priority = weight_remaining * (1.0 / (remaining + 1e-8)) + weight_utilization * utilization + penalty\n    return priority",
+  "F": 0.7628,
+  "nearest": [
+   {
+    "name": "ab-BF(7,9)",
+    "agreement": 0.8765,
+    "agreement_informative": 0.8516516516516517
+   },
+   {
+    "name": "ab-BF(7,10)",
+    "agreement": 0.876,
+    "agreement_informative": 0.851051051051051
+   },
+   {
+    "name": "ab-BF(7,14)",
+    "agreement": 0.876,
+    "agreement_informative": 0.851051051051051
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(7,9)",
+   "agreement": 0.8765
+  }
+ },
+ {
+  "oid": "B10",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    return -remaining * (remaining >= 6) * (remaining <= 20)",
+  "F": 0.8376,
+  "nearest": [
+   {
+    "name": "FF",
+    "agreement": 0.7165,
+    "agreement_informative": 0.6594594594594595
+   },
+   {
+    "name": "dep-xlcost_python-3242",
+    "agreement": 0.7165,
+    "agreement_informative": 0.6594594594594595
+   },
+   {
+    "name": "dep-xlcost_python-2196",
+    "agreement": 0.7165,
+    "agreement_informative": 0.6594594594594595
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-FF(0,21)",
+   "agreement": 0.6965
+  }
+ },
+ {
+  "oid": "B11",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    # Penalize bins that are too full or too empty, with a decreasing penalty\n    penalty = np.where(((remaining > 6) & (remaining < 24)), -remaining, 0)\n    return penalty",
+  "F": 0.8776,
+  "nearest": [
+   {
+    "name": "dep-xlcost_python-2196",
+    "agreement": 0.7,
+    "agreement_informative": 0.6396396396396397
+   },
+   {
+    "name": "dep-xlcost_python-3242",
+    "agreement": 0.7,
+    "agreement_informative": 0.6396396396396397
+   },
+   {
+    "name": "dep-xlcost_python-5342",
+    "agreement": 0.7,
+    "agreement_informative": 0.6396396396396397
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-FF(0,24)",
+   "agreement": 0.673
+  }
+ },
+ {
+  "oid": "B12",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    bins = np.clip(bins, a_min=item, a_max=None)\n    bins_ratio = bins / item\n    # Base score using Gaussian-like function with a focus on bins close to full\n    base_score = np.exp(-4 * (bins_ratio - 1) ** 2) * (bins_ratio >= 0.5)\n    # Add periodicity and adjust for utilization\n    score = base_score * (1 + np.sin(np.pi * bins_ratio) - 0.5 * np.sqrt(bins_ratio))\n    # Penalize bins with very small remaining space relative to item\n    score *= (1 - 0.5 * np.sin(np.pi * (bins - item) / item))\n    # Add item size ratio to emphasize larger items\n    score += 0.3 * (item / bins)\n    # Ensure non-negative scores\n    score = np.maximum(0, score)\n    return score",
+  "F": 0.849,
+  "nearest": [
+   {
+    "name": "ab-BF(11,21)",
+    "agreement": 0.8855,
+    "agreement_informative": 0.8624624624624625
+   },
+   {
+    "name": "ab-BF(11,18)",
+    "agreement": 0.8845,
+    "agreement_informative": 0.8612612612612612
+   },
+   {
+    "name": "ab-BF(11,22)",
+    "agreement": 0.8845,
+    "agreement_informative": 0.8612612612612612
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(11,21)",
+   "agreement": 0.8855
+  }
+ },
+ {
+  "oid": "B13",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    valid_mask = remaining >= 0\n    normalized_remaining = remaining.clip(0, None) / bins\n    normalized_item = item / bins\n\n    # Base score: prioritize bins with more remaining space and better fit\n    base_score = -np.abs(remaining - item) * valid_mask * (normalized_remaining * (1 - normalized_remaining))\n    \n    # Penalize bins that are almost full\n    full_penalty = -np.clip(normalized_remaining, a_min=0, a_max=0.9) * valid_mask\n    \n    # Penalize bins with very small remaining space\n    small_space_penalty = -np.clip(remaining, a_min=0, a_max=10) * valid_mask\n    \n    # Encourage bins with remaining space close to item size\n    fit_score = -np.abs(remaining - item) * valid_mask * (1 / (remaining + item))\n    \n    # Encourage bins with similar item size to remaining capacity\n    size_similarity_score = -np.abs(normalized_item - normalized_remaining) * valid_mask\n    \n    # Encourage bins with low utilization to avoid overfilling\n    utilization_score = -np.clip(normalized_remaining, a_min=0, a_max=0.7) * valid_mask\n    \n    # Combine all components with adjusted weights\n    score = (\n        base_score\n        + full_penalty\n        + small_space_penalty\n        + fit_score\n        + size_similarity_score\n        + utilization_score\n    )\n    return score",
+  "F": 0.7961,
+  "nearest": [
+   {
+    "name": "ab-BF(11,17)",
+    "agreement": 0.878,
+    "agreement_informative": 0.8534534534534535
+   },
+   {
+    "name": "ab-BF(12,17)",
+    "agreement": 0.878,
+    "agreement_informative": 0.8534534534534535
+   },
+   {
+    "name": "ab-BF(10,17)",
+    "agreement": 0.8775,
+    "agreement_informative": 0.8528528528528528
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(11,17)",
+   "agreement": 0.878
+  }
+ },
+ {
+  "oid": "B14",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    valid_mask = np.isclose(remaining, 0, atol=1e-8) | (remaining >= 0)\n    remaining[~valid_mask] = 0\n    eps = 10 * np.finfo(float).eps\n\n    # Use a combination of remaining capacity and adaptive weighting\n    # to balance between tight fit and avoid overflow\n    log_bins = np.log(bins + eps)\n    log_remaining = np.log(remaining + eps)\n    weighted_log = log_remaining * log_bins\n\n    # Apply exponential decay to emphasize recent available space\n    decay_factor = np.clip(1 - (remaining / bins), 0.8, 1.0)\n    priority = -np.exp(weighted_log * decay_factor).clip(0, item)\n\n    # Apply adaptive boosts based on remaining space relative to item size\n    priority[remaining > 0.5 * item] += 15\n    priority[remaining < 0.1 * item] += 25\n    priority[remaining > 0.9 * item] -= 10\n\n    # Penalize bins that cannot fit the item\n    priority[~valid_mask] = np.inf\n    return priority",
+  "F": 0.7787,
+  "nearest": [
+   {
+    "name": "ab-FF(4,18)",
+    "agreement": 0.822,
+    "agreement_informative": 0.7861861861861862
+   },
+   {
+    "name": "ab-FF(4,19)",
+    "agreement": 0.8215,
+    "agreement_informative": 0.7855855855855856
+   },
+   {
+    "name": "ab-FF(4,20)",
+    "agreement": 0.82,
+    "agreement_informative": 0.7837837837837838
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-FF(4,18)",
+   "agreement": 0.822
+  }
+ },
+ {
+  "oid": "B15",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    valid_mask = remaining < 0\n    valid_mask = ~valid_mask\n    remaining[~valid_mask] = 0\n    eps = 10 * np.finfo(float).eps\n\n    # Base score based on remaining space and bin size\n    priority = -((remaining * np.log(bins + eps)).clip(0, item))\n\n    # Normalize by item size to maintain consistency across different item sizes\n    norm_item = item + eps\n    priority /= norm_item\n\n    # Boost for bins with more than half remaining space\n    priority[remaining > 0.5 * item] += 15 / norm_item\n    # Further boost for bins with very small remaining space (almost full)\n    priority[remaining < 0.1 * item] += 25 / norm_item\n    # Penalize bins with very large remaining space (wasteful)\n    priority[remaining > 0.9 * item] -= 10 / norm_item\n\n    # Add a penalty for bins that are already heavily used\n    usage_ratio = 1 - (remaining / bins)\n    usage_ratio[~valid_mask] = 0\n    priority -= usage_ratio * (usage_ratio > 0.7) * 3 / norm_item\n\n    # Penalize bins that cannot fit the item\n    priority[~valid_mask] = np.inf\n    return priority",
+  "F": 0.8027,
+  "nearest": [
+   {
+    "name": "ab-FF(8,18)",
+    "agreement": 0.854,
+    "agreement_informative": 0.8246246246246246
+   },
+   {
+    "name": "ab-FF(8,19)",
+    "agreement": 0.854,
+    "agreement_informative": 0.8246246246246246
+   },
+   {
+    "name": "ab-FF(8,20)",
+    "agreement": 0.8535,
+    "agreement_informative": 0.824024024024024
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-FF(8,18)",
+   "agreement": 0.854
+  }
+ },
+ {
+  "oid": "B16",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    valid_mask = remaining > 0\n    remaining_percentage = remaining / bins\n\n    # Base score: prioritize more remaining space and lower utilization\n    weightSpaceBase = 0.4\n    base_score = -np.abs(remaining - item) * valid_mask * remaining_percentage * (1 - remaining_percentage) * weightSpaceBase\n\n    # Penalize almost full bins\n    weightFullPenalty = 0.2\n    full_penalty = -np.clip(remaining_percentage, a_min=0, a_max=0.9) * valid_mask * weightFullPenalty\n\n    # Penalize small remaining space\n    weightSmallPenalty = 0.15\n    small_space_penalty = -np.clip(remaining, a_min=0, a_max=10) * valid_mask * weightSmallPenalty\n\n    # Encourage bins with space close to item size\n    weightFitScore = 0.25\n    fit_score = np.clip(remaining / item, a_min=0, a_max=2) * valid_mask * weightFitScore\n\n    # Additional penalty for bins with very low utilization\n    weightLowUtilizationPenalty = 0.1\n    low_utilization_penalty = -np.clip(remaining_percentage, a_min=0.1, a_max=1) * valid_mask * weightLowUtilizationPenalty\n\n    # Additional score for bins with small remaining space but not too small\n    weightSmallButNotTooSmallScore = 0.1\n    small_but_not_too_small_score = np.clip(remaining, a_min=5, a_max=10) * valid_mask * weightSmallButNotTooSmallScore\n\n    # Combine all components\n    score = base_score + full_penalty + small_space_penalty + fit_score + low_utilization_penalty + small_but_not_too_small_score\n    return score",
+  "F": 0.8285,
+  "nearest": [
+   {
+    "name": "ab-BF(7,17)",
+    "agreement": 0.754,
+    "agreement_informative": 0.7045045045045045
+   },
+   {
+    "name": "ab-BF(7,18)",
+    "agreement": 0.7515,
+    "agreement_informative": 0.7015015015015015
+   },
+   {
+    "name": "EoH-run3-18",
+    "agreement": 0.751,
+    "agreement_informative": 0.7009009009009008
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(7,17)",
+   "agreement": 0.754
+  }
+ },
+ {
+  "oid": "B17",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    valid_mask = remaining > 0\n    # Calculate remaining percentage\n    remaining_percentage = remaining / bins\n    # Base score: prioritize more remaining space and lower utilization\n    weight_remaining = 0.5\n    base_score = -np.abs(remaining - item) * valid_mask * remaining_percentage * (1 - remaining_percentage) * weight_remaining\n    # Penalize almost full bins\n    weight_full_penalty = 0.3\n    full_penalty = -np.clip(remaining_percentage, a_min=0, a_max=0.9) * valid_mask * weight_full_penalty\n    # Penalize bins with very small remaining space\n    weight_small_penalty = 0.1\n    small_space_penalty = -np.clip(remaining, a_min=0, a_max=10) * valid_mask * weight_small_penalty\n    # Encourage bins with space close to item size\n    weight_fit_score = 0.3\n    fit_score = np.clip(remaining / item, a_min=0, a_max=2) * valid_mask * weight_fit_score\n    # Combine all components\n    score = base_score + full_penalty + small_space_penalty + fit_score\n    return score",
+  "F": 0.7823,
+  "nearest": [
+   {
+    "name": "ab-BF(7,17)",
+    "agreement": 0.7805,
+    "agreement_informative": 0.7363363363363363
+   },
+   {
+    "name": "ab-BF(7,18)",
+    "agreement": 0.778,
+    "agreement_informative": 0.7333333333333333
+   },
+   {
+    "name": "ab-BF(12,17)",
+    "agreement": 0.7775,
+    "agreement_informative": 0.7327327327327328
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(7,17)",
+   "agreement": 0.7805
+  }
+ },
+ {
+  "oid": "B18",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    valid_mask = (remaining > 0) & (remaining <= bins)\n    r_percent = remaining / bins\n\n    # Base score: prioritize bins with more remaining space\n    base_score = -np.abs(remaining - item) * valid_mask * r_percent * (1 - r_percent)\n\n    # Penalize bins that are almost full\n    full_penalty = -np.clip(r_percent, a_min=0, a_max=0.95) * valid_mask\n\n    # Penalize bins with very small remaining space\n    small_space_penalty = -np.clip(remaining, a_min=0, a_max=10) * valid_mask\n\n    # Encourage bins with space close to item size\n    fit_score = np.clip(remaining / item, a_min=0, a_max=2) * valid_mask\n\n    # Encourage bins with moderate utilization\n    moderate_utilization = np.clip(r_percent, a_min=0.5, a_max=0.9) * valid_mask\n\n    # Encourage bins with space that is not too large\n    space_ratio_penalty = -np.clip(remaining / item, a_min=1, a_max=2) * valid_mask\n\n    # Combine scores with weights\n    score = (base_score * 0.5) + (full_penalty * 1.0) + (small_space_penalty * 0.5) + (fit_score * 1.5) + (moderate_utilization * 0.8) + (space_ratio_penalty * 0.3)\n    return score",
+  "F": 0.7933,
+  "nearest": [
+   {
+    "name": "ab-BF(7,21)",
+    "agreement": 0.867,
+    "agreement_informative": 0.8402402402402402
+   },
+   {
+    "name": "ab-BF(7,22)",
+    "agreement": 0.866,
+    "agreement_informative": 0.8390390390390391
+   },
+   {
+    "name": "ab-BF(7,23)",
+    "agreement": 0.864,
+    "agreement_informative": 0.8366366366366367
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(7,21)",
+   "agreement": 0.867
+  }
+ },
+ {
+  "oid": "B19",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining_capacity = bins - item\n    valid_mask = remaining_capacity > 6  # Only consider bins with more than 6 units remaining\n    # Prioritize bins with more remaining space\n    # Penalize those with very small remaining space\n    # Add a penalty for bins with high utilization\n    # Consider the ratio of item to bin size for better fit\n    # Encourage bins that are not yet filled to avoid premature filling\n    score = -np.abs(remaining_capacity - item) * valid_mask * (remaining_capacity / bins) * (1 - (remaining_capacity / bins)) * (1 - (remaining_capacity / bins))\n    return score",
+  "F": 0.8733,
+  "nearest": [
+   {
+    "name": "FunSearch-c12",
+    "agreement": 0.689,
+    "agreement_informative": 0.6264264264264264
+   },
+   {
+    "name": "FunSearch-c12-vec",
+    "agreement": 0.689,
+    "agreement_informative": 0.6264264264264264
+   },
+   {
+    "name": "ab-BF(6,21)",
+    "agreement": 0.6385,
+    "agreement_informative": 0.5657657657657658
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(6,21)",
+   "agreement": 0.6385
+  }
+ },
+ {
+  "oid": "B20",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    bins = np.clip(bins, a_min=item, a_max=None)\n    bins_ratio = bins / item\n    term1 = np.exp(-0.5 * (bins_ratio - 1) ** 2)\n    term2 = (bins_ratio >= 0.75)\n    term3 = 1 + np.sin(np.pi * bins_ratio) - np.sqrt(bins_ratio) + 0.5\n    return np.maximum(\n        0,\n        term1 * term2 * term3\n    )",
+  "F": 0.8234,
+  "nearest": [
+   {
+    "name": "ab-FF(4,50)",
+    "agreement": 0.743,
+    "agreement_informative": 0.6912912912912913
+   },
+   {
+    "name": "ab-FF(5,50)",
+    "agreement": 0.743,
+    "agreement_informative": 0.6912912912912913
+   },
+   {
+    "name": "ab-FF(7,50)",
+    "agreement": 0.7415,
+    "agreement_informative": 0.6894894894894895
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-FF(4,50)",
+   "agreement": 0.743
+  }
+ },
+ {
+  "oid": "B21",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    fit = bins - item\n    mask = fit >= 0\n    decay = np.exp(-fit / item)\n    sin_factor = 1 + np.sin(np.pi * bins / item)\n    capacity_mask = bins >= item * 0.7\n    return np.where(\n        mask,\n        decay * sin_factor * capacity_mask,\n        np.zeros_like(fit)\n    )",
+  "F": 0.7581,
+  "nearest": [
+   {
+    "name": "ab-BF(11,26)",
+    "agreement": 0.8495,
+    "agreement_informative": 0.8192192192192193
+   },
+   {
+    "name": "ab-BF(11,24)",
+    "agreement": 0.849,
+    "agreement_informative": 0.8186186186186186
+   },
+   {
+    "name": "ab-BF(10,26)",
+    "agreement": 0.8485,
+    "agreement_informative": 0.818018018018018
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(11,26)",
+   "agreement": 0.8495
+  }
+ },
+ {
+  "oid": "B22",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    bins = np.clip(bins, a_min=item, a_max=None)\n    bins_ratio = bins / item\n    ratio_diff = bins_ratio - 0.5\n    term1 = np.exp(-2 * np.abs(ratio_diff) ** 2)\n    term2 = (bins_ratio >= 0.8) + (bins_ratio <= 0.2)\n    term3 = 1 + np.sin(np.pi * bins_ratio) - np.sqrt(bins_ratio) + 0.5\n    term4 = np.sqrt(np.abs(ratio_diff)) + 0.1\n    return np.maximum(\n        0,\n        term1 * term2 * term3 * term4\n    )",
+  "F": 0.7255,
+  "nearest": [
+   {
+    "name": "ab-FF(10,24)",
+    "agreement": 0.824,
+    "agreement_informative": 0.7885885885885886
+   },
+   {
+    "name": "ab-FF(10,17)",
+    "agreement": 0.8235,
+    "agreement_informative": 0.787987987987988
+   },
+   {
+    "name": "ab-FF(10,27)",
+    "agreement": 0.8235,
+    "agreement_informative": 0.787987987987988
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-FF(10,24)",
+   "agreement": 0.824
+  }
+ },
+ {
+  "oid": "B23",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    bins = np.clip(bins, a_min=item, a_max=None)\n    bins_ratio = bins / item\n    fit = bins_ratio >= 1.0\n    term1 = np.exp(-6 * (bins_ratio - 1) ** 2)\n    term2 = np.where(bins_ratio < 0.8, 0.5, 1.0)\n    term3 = 1.0 + np.sin(np.pi * bins_ratio) - 0.5 * np.sqrt(bins_ratio)\n    score = term1 * term2 * term3\n    score = np.where(fit, score, 0.0)\n    score = np.clip(score, a_min=0.0, a_max=10.0)\n    return score",
+  "F": 0.7592,
+  "nearest": [
+   {
+    "name": "ab-FF(7,48)",
+    "agreement": 0.8315,
+    "agreement_informative": 0.7975975975975976
+   },
+   {
+    "name": "ab-FF(7,49)",
+    "agreement": 0.8315,
+    "agreement_informative": 0.7975975975975976
+   },
+   {
+    "name": "ab-BF(7,24)",
+    "agreement": 0.831,
+    "agreement_informative": 0.796996996996997
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-FF(7,48)",
+   "agreement": 0.8315
+  }
+ },
+ {
+  "oid": "B24",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    remaining_valid = remaining > 0\n    item = np.maximum(item, 1e-8)  # Avoid division by zero\n    \n    # Base score: prioritize bins with more remaining space and lower utilization\n    weight_space = 0.3\n    remaining_percentage = remaining / bins\n    base_score = -np.abs(remaining - item) * remaining_valid * remaining_percentage * (1 - remaining_percentage) * weight_space\n    \n    # Penalize almost full bins (remaining < 0.9 * bin capacity)\n    weight_full_penalty = 0.2\n    full_penalty = -np.clip(remaining_percentage, a_min=0, a_max=0.9) * remaining_valid * weight_full_penalty\n    \n    # Penalize small remaining space (remaining < 10)\n    weight_small_penalty = 0.15\n    small_space_penalty = -np.clip(remaining, a_min=0, a_max=10) * remaining_valid * weight_small_penalty\n    \n    # Encourage bins with space close to item size (remaining / item between 0.5 and 2)\n    weight_fit_score = 0.15\n    fit_score = np.clip(remaining / item, a_min=0.5, a_max=2) * remaining_valid * weight_fit_score\n    \n    # Encourage bins with space close to item size for lower utilization\n    weight_fit_score_v2 = 0.1\n    fit_score_v2 = np.clip(remaining / item, a_min=0.5, a_max=2) * remaining_valid * weight_fit_score_v2\n    \n    # Combine all components\n    score = base_score + full_penalty + small_space_penalty + fit_score + fit_score_v2\n    return score",
+  "F": 0.7843,
+  "nearest": [
+   {
+    "name": "ab-BF(7,17)",
+    "agreement": 0.851,
+    "agreement_informative": 0.821021021021021
+   },
+   {
+    "name": "ab-BF(11,17)",
+    "agreement": 0.8505,
+    "agreement_informative": 0.8204204204204204
+   },
+   {
+    "name": "ab-BF(12,17)",
+    "agreement": 0.8505,
+    "agreement_informative": 0.8204204204204204
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(7,17)",
+   "agreement": 0.851
+  }
+ },
+ {
+  "oid": "B25",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    penalty_low = 1e6 * (remaining < 0).astype(float)\n    penalty_high = 1e3 * (remaining > 10 * item).astype(float)\n    score = remaining * (remaining > 0.0) * (remaining < 5 * item)\n    score += (remaining ** 2) * (remaining > 5 * item) * (remaining < 10 * item)\n    score += (remaining ** 2) * (remaining < item)\n    return -score - penalty_low - penalty_high",
+  "F": 0.8169,
+  "nearest": [
+   {
+    "name": "ab-FF(7,50)",
+    "agreement": 0.869,
+    "agreement_informative": 0.8426426426426427
+   },
+   {
+    "name": "ab-BF(7,33)",
+    "agreement": 0.867,
+    "agreement_informative": 0.8402402402402402
+   },
+   {
+    "name": "ab-FF(7,49)",
+    "agreement": 0.8665,
+    "agreement_informative": 0.8396396396396396
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-FF(7,50)",
+   "agreement": 0.869
+  }
+ },
+ {
+  "oid": "B26",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    valid_mask = remaining > 5  # Adjust threshold for better performance\n    # Calculate remaining percentage\n    remaining_percentage = remaining / bins\n    # Base score: prioritize more remaining space and lower utilization\n    weight_space = 0.4\n    base_score = -np.abs(remaining - item) * valid_mask * remaining_percentage * (1 - remaining_percentage) * weight_space\n    # Penalize almost full bins\n    weight_full_penalty = 0.2\n    full_penalty = -np.clip(remaining_percentage, a_min=0, a_max=0.9) * valid_mask * weight_full_penalty\n    # Penalize small remaining space\n    weight_small_penalty = 0.15\n    small_space_penalty = -np.clip(remaining, a_min=0, a_max=10) * valid_mask * weight_small_penalty\n    # Encourage bins with space close to item size\n    weight_fit_score = 0.25\n    fit_score = np.clip(remaining / item, a_min=0, a_max=2) * valid_mask * weight_fit_score\n    # Combine all components\n    score = base_score + full_penalty + small_space_penalty + fit_score\n    return score",
+  "F": 0.8063,
+  "nearest": [
+   {
+    "name": "FunSearch-c12-vec",
+    "agreement": 0.7125,
+    "agreement_informative": 0.6546546546546547
+   },
+   {
+    "name": "FunSearch-c12",
+    "agreement": 0.7125,
+    "agreement_informative": 0.6546546546546547
+   },
+   {
+    "name": "ab-BF(7,17)",
+    "agreement": 0.6625,
+    "agreement_informative": 0.5945945945945946
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(7,17)",
+   "agreement": 0.6625
+  }
+ },
+ {
+  "oid": "B27",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    valid_mask = remaining.clip(0, None) > 6  # Only consider bins with more than 6 units remaining\n    # Prioritize bins with more remaining space\n    # Penalize those with very small remaining space\n    # Add a penalty for bins with high utilization\n    # Consider the ratio of item to bin size for better fit\n    # Add a penalty for bins that are already heavily used\n    utilization = bins - remaining\n    score = -np.abs(remaining - item) * valid_mask * (remaining / bins) * (1 - (remaining / bins)) * (1 + utilization / bins)\n    return score",
+  "F": 0.8274,
+  "nearest": [
+   {
+    "name": "FunSearch-c12",
+    "agreement": 0.6835,
+    "agreement_informative": 0.6198198198198198
+   },
+   {
+    "name": "FunSearch-c12-vec",
+    "agreement": 0.6835,
+    "agreement_informative": 0.6198198198198198
+   },
+   {
+    "name": "ab-BF(7,18)",
+    "agreement": 0.64,
+    "agreement_informative": 0.5675675675675675
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(7,17)",
+   "agreement": 0.64
+  }
+ },
+ {
+  "oid": "B28",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    if bins.size == 0:\n        return np.array([], dtype=object)\n    item = np.array([item], dtype=bins.dtype)\n    remaining = bins - item\n    invalid = np.bitwise_or(np.isclose(remaining, 0), remaining < 0)\n    valid_bins = ~invalid\n    remaining_ratio = remaining / (bins + 1e-8)\n    item_ratio = item / (bins + 1e-8)\n    # Base score: prefer bins with more remaining space and better item-to-bin ratio\n    score = -np.abs(remaining - item) * valid_bins * (remaining_ratio * (1 + item_ratio))\n    # Logarithmic penalty for small remaining space\n    score += -np.log(remaining + 1e-8 + 1) * valid_bins\n    # Penalty for bins that are almost full\n    penalty = np.clip(1 - remaining_ratio, 0, 1)\n    score *= (1 + penalty)\n    # Additional penalty for bins that are too small to accommodate the item\n    small_bin_penalty = np.clip(remaining / bins, 0, 0.1)\n    score *= (1 + 10 * small_bin_penalty)\n    # Bonus for bins with moderate remaining space and good item-to-bin ratio\n    moderate_ratio = np.clip(remaining_ratio, 0.3, 0.7)\n    score += moderate_ratio * valid_bins\n    return score",
+  "F": 0.8305,
+  "nearest": [
+   {
+    "name": "ab-BF(19,21)",
+    "agreement": 0.7815,
+    "agreement_informative": 0.7375375375375376
+   },
+   {
+    "name": "ab-BF(7,9)",
+    "agreement": 0.7815,
+    "agreement_informative": 0.7375375375375376
+   },
+   {
+    "name": "ab-BF(18,21)",
+    "agreement": 0.7815,
+    "agreement_informative": 0.7375375375375376
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(7,9)",
+   "agreement": 0.7815
+  }
+ },
+ {
+  "oid": "B29",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    bins = np.clip(bins, a_min=item, a_max=None)\n    bins_ratio = bins / item\n    term1 = np.exp(-5 * (bins_ratio - 1) ** 2)\n    term2 = (bins_ratio >= 0.8)\n    term3 = 1 + np.sin(np.pi * bins_ratio) - np.sqrt(bins_ratio) + 0.3\n    return np.maximum(\n        0,\n        term1 * term2 * term3\n    )",
+  "F": 0.8215,
+  "nearest": [
+   {
+    "name": "ab-FF(4,52)",
+    "agreement": 0.7735,
+    "agreement_informative": 0.7279279279279279
+   },
+   {
+    "name": "ab-FF(4,6)",
+    "agreement": 0.7715,
+    "agreement_informative": 0.7255255255255255
+   },
+   {
+    "name": "ab-FF(4,7)",
+    "agreement": 0.7715,
+    "agreement_informative": 0.7255255255255255
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-FF(4,52)",
+   "agreement": 0.7735
+  }
+ },
+ {
+  "oid": "B30",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    valid_mask = remaining > 0\n    # Calculate remaining percentage\n    if item == 0:\n        item = 1e-8\n    remaining_percentage = remaining / bins\n    # Base score: prioritize bins with more remaining space and lower utilization\n    weight_base = 0.4\n    base_score = -np.abs(remaining - item) * valid_mask * remaining_percentage * (1 - remaining_percentage) * weight_base\n    # Penalize almost full bins\n    weight_full_penalty = 0.3\n    full_penalty = -np.clip(remaining_percentage, a_min=0, a_max=0.9) * valid_mask * weight_full_penalty\n    # Penalize small remaining space\n    weight_small_penalty = 0.15\n    small_space_penalty = -np.clip(remaining, a_min=0, a_max=10) * valid_mask * weight_small_penalty\n    # Encourage bins with space close to item size\n    weight_fit_score = 0.2\n    fit_score = np.clip(remaining / item, a_min=0, a_max=2) * valid_mask * weight_fit_score\n    # Encourage bins with space close to item size but not too large\n    weight_fit_score_v2 = 0.1\n    fit_score_v2 = np.clip(remaining / item, a_min=0, a_max=1.5) * valid_mask * weight_fit_score_v2\n    # Combine all components\n    score = base_score + full_penalty + small_space_penalty + fit_score + fit_score_v2\n    return score",
+  "F": 0.7615,
+  "nearest": [
+   {
+    "name": "ab-BF(7,17)",
+    "agreement": 0.828,
+    "agreement_informative": 0.7933933933933934
+   },
+   {
+    "name": "ab-BF(7,18)",
+    "agreement": 0.8265,
+    "agreement_informative": 0.7915915915915915
+   },
+   {
+    "name": "ab-BF(11,17)",
+    "agreement": 0.8265,
+    "agreement_informative": 0.7915915915915915
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(7,17)",
+   "agreement": 0.828
+  }
+ },
+ {
+  "oid": "B31",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    bins = np.clip(bins, a_min=item, a_max=None)\n    bins_ratio = bins / item\n    term1 = np.exp(-np.sqrt(2) * (bins_ratio - 1) ** 2)\n    term2 = (bins_ratio >= 0.6)\n    term3 = 1 + np.sin(np.pi * bins_ratio) - np.sqrt(bins_ratio) + 0.5\n    term4 = np.clip(np.sin(np.pi * bins_ratio), a_min=0.5, a_max=1.0)\n    term5 = np.clip(np.sqrt(bins_ratio), a_min=0.5, a_max=1.0)\n    return np.maximum(0, term1 * term2 * term3 * term4 * term5)",
+  "F": 0.8105,
+  "nearest": [
+   {
+    "name": "ab-FF(7,50)",
+    "agreement": 0.802,
+    "agreement_informative": 0.7621621621621621
+   },
+   {
+    "name": "ab-FF(10,24)",
+    "agreement": 0.802,
+    "agreement_informative": 0.7621621621621621
+   },
+   {
+    "name": "ab-FF(10,27)",
+    "agreement": 0.8015,
+    "agreement_informative": 0.7615615615615615
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-FF(7,50)",
+   "agreement": 0.802
+  }
+ },
+ {
+  "oid": "B32",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    bins = np.clip(bins, a_min=item, a_max=None)\n    bins_ratio = bins / item\n    ratio_diff = bins_ratio - 0.5\n    term1 = np.exp(-np.abs(ratio_diff) ** 2)\n    term2 = (bins_ratio >= 0.75) + (bins_ratio <= 0.25)\n    term3 = 1 + np.sin(np.pi * bins_ratio) - np.sqrt(bins_ratio) + 0.5\n    return np.maximum(\n        0,\n        term1 * term2 * term3\n    )",
+  "F": 0.7349,
+  "nearest": [
+   {
+    "name": "ab-FF(10,24)",
+    "agreement": 0.812,
+    "agreement_informative": 0.7741741741741742
+   },
+   {
+    "name": "ab-FF(10,29)",
+    "agreement": 0.8115,
+    "agreement_informative": 0.7735735735735736
+   },
+   {
+    "name": "ab-FF(10,17)",
+    "agreement": 0.8115,
+    "agreement_informative": 0.7735735735735736
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-FF(10,24)",
+   "agreement": 0.812
+  }
+ },
+ {
+  "oid": "B33",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    bins = np.clip(bins, a_min=item, a_max=None)\n    bins_ratio = bins / item\n    used_ratio = (bins - bins) / bins  # Placeholder for used ratio, adjust as needed\n    available_ratio = 1 - (used_ratio if used_ratio.size else np.zeros_like(bins_ratio))\n    term1 = np.exp(-4 * (bins_ratio - 1) ** 2)\n    term2 = (bins_ratio >= 0.75)\n    term3 = 1 + np.sin(np.pi * bins_ratio) - np.sqrt(bins_ratio) + 0.5\n    term4 = np.clip(bins_ratio, a_min=0.5, a_max=None)\n    term5 = np.clip(available_ratio, a_min=0.2, a_max=1.0)\n    term6 = 1 - np.sqrt(bins_ratio - 0.65) if (bins_ratio >= 0.65).any() else np.ones_like(bins_ratio)\n    return np.maximum(\n        0,\n        term1 * term2 * term3 * term4 * term5 * term6\n    )",
+  "F": 0.8474,
+  "nearest": [
+   {
+    "name": "ab-BF(11,13)",
+    "agreement": 0.8245,
+    "agreement_informative": 0.7891891891891892
+   },
+   {
+    "name": "ab-BF(9,11)",
+    "agreement": 0.8235,
+    "agreement_informative": 0.787987987987988
+   },
+   {
+    "name": "ab-BF(9,13)",
+    "agreement": 0.8235,
+    "agreement_informative": 0.787987987987988
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(11,13)",
+   "agreement": 0.8245
+  }
+ },
+ {
+  "oid": "B34",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    penalty_weight = 10\n    penalty = penalty_weight * (remaining < 0).astype(float)\n    \n    # Score based on how much space is left, but only if it's reasonable\n    score = remaining * (remaining > 0.0) * (remaining < 3 * item)\n    \n    # Add a small penalty for bins that are too large\n    score += (remaining ** 2) * (remaining > 3 * item)\n    \n    # Add a small reward for bins that are nearly full\n    score += (remaining ** 2) * (remaining < item)\n    \n    return -score - penalty",
+  "F": 0.818,
+  "nearest": [
+   {
+    "name": "ab-BF(7,33)",
+    "agreement": 0.866,
+    "agreement_informative": 0.8390390390390391
+   },
+   {
+    "name": "ab-BF(7,32)",
+    "agreement": 0.8655,
+    "agreement_informative": 0.8384384384384385
+   },
+   {
+    "name": "ab-BF(7,31)",
+    "agreement": 0.865,
+    "agreement_informative": 0.8378378378378378
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(7,33)",
+   "agreement": 0.866
+  }
+ },
+ {
+  "oid": "B35",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    remaining = np.maximum(remaining, 0)\n    # Prioritize bins with remaining space between 5 and 25\n    mask = (remaining >= 5) & (remaining <= 25)\n    # Penalize bins that are too full or too empty\n    penalty = (remaining < 5) * (remaining / 5) + (remaining > 25) * ((remaining - 25) / 5)\n    # Apply mask to prioritize bins in the desired range\n    return -remaining * mask - penalty",
+  "F": 0.7768,
+  "nearest": [
+   {
+    "name": "ab-BF(4,26)",
+    "agreement": 0.898,
+    "agreement_informative": 0.8774774774774775
+   },
+   {
+    "name": "ab-BF(3,26)",
+    "agreement": 0.8915,
+    "agreement_informative": 0.8696696696696696
+   },
+   {
+    "name": "ab-BF(5,26)",
+    "agreement": 0.8885,
+    "agreement_informative": 0.8660660660660661
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(4,26)",
+   "agreement": 0.898
+  }
+ },
+ {
+  "oid": "B36",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    bins = np.clip(bins, a_min=item, a_max=None)\n    bins_ratio = bins / item\n    term1 = np.exp(-8 * (bins_ratio - 1) ** 2)\n    term2 = (bins_ratio >= 0.75)\n    term3 = 1 + np.sin(np.pi * bins_ratio) - 0.7 * np.sqrt(bins_ratio)\n    return np.maximum(\n        0,\n        term1 * term2 * term3\n    )",
+  "F": 0.8207,
+  "nearest": [
+   {
+    "name": "ab-FF(4,50)",
+    "agreement": 0.7765,
+    "agreement_informative": 0.7315315315315315
+   },
+   {
+    "name": "ab-BF(4,50)",
+    "agreement": 0.7745,
+    "agreement_informative": 0.7291291291291291
+   },
+   {
+    "name": "ab-FF(5,50)",
+    "agreement": 0.774,
+    "agreement_informative": 0.7285285285285286
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-FF(4,50)",
+   "agreement": 0.7765
+  }
+ },
+ {
+  "oid": "B37",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    valid_mask = remaining >= 0\n    eps = 10 * np.finfo(float).eps\n\n    # Base score based on remaining space and bin size\n    log_remaining = np.log(remaining + eps)\n    log_bins = np.log(bins + eps)\n    base_score = -((remaining * (log_remaining - log_bins)).clip(0, item))\n\n    # Normalize by item size to maintain consistency across different item sizes\n    norm_item = item + eps\n    priority = base_score / norm_item\n\n    # Boost for bins with more than half remaining space\n    priority[remaining > 0.5 * item] += 15 / norm_item\n    # Further boost for bins with very small remaining space (almost full)\n    priority[remaining < 0.1 * item] += 25 / norm_item\n    # Penalize bins with very large remaining space (wasteful)\n    priority[remaining > 0.9 * item] -= 10 / norm_item\n\n    # Add a penalty for bins that are already heavily used\n    usage_ratio = 1 - (remaining / bins)\n    usage_ratio[~valid_mask] = 0\n    priority -= usage_ratio * (usage_ratio > 0.7) * 3 / norm_item\n\n    # Penalize bins that cannot fit the item\n    priority[~valid_mask] = np.inf\n    return priority",
+  "F": 0.8834,
+  "nearest": [
+   {
+    "name": "ab-FF(4,19)",
+    "agreement": 0.526,
+    "agreement_informative": 0.4306306306306306
+   },
+   {
+    "name": "ab-FF(4,18)",
+    "agreement": 0.525,
+    "agreement_informative": 0.4294294294294294
+   },
+   {
+    "name": "ab-FF(4,20)",
+    "agreement": 0.5245,
+    "agreement_informative": 0.42882882882882883
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-FF(4,19)",
+   "agreement": 0.526
+  }
+ },
+ {
+  "oid": "B38",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    valid_mask = remaining.astype(bool)\n    remaining[~valid_mask] = 0\n    eps = 10 * np.finfo(float).eps\n    # Use a combination of remaining capacity and adaptive weighting\n    # to balance between tight fit and avoid overflow\n    base_priority = -((remaining * np.log(bins + eps)).clip(0, item))\n    # Apply adaptive boosting based on remaining space relative to item size\n    base_priority[remaining > 0.6 * item] += 20\n    base_priority[remaining < 0.2 * item] += 30\n    base_priority[remaining > 0.9 * item] -= 15\n    # Normalize to ensure stability and prevent overflow\n    max_val = np.max(base_priority)\n    if max_val > 0:\n        base_priority /= max_val\n    return base_priority",
+  "F": 0.82,
+  "nearest": [
+   {
+    "name": "ab-FF(11,21)",
+    "agreement": 0.8805,
+    "agreement_informative": 0.8564564564564564
+   },
+   {
+    "name": "ab-FF(11,22)",
+    "agreement": 0.8805,
+    "agreement_informative": 0.8564564564564564
+   },
+   {
+    "name": "ab-FF(9,22)",
+    "agreement": 0.8795,
+    "agreement_informative": 0.8552552552552553
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-FF(11,21)",
+   "agreement": 0.8805
+  }
+ },
+ {
+  "oid": "B39",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    valid_mask = remaining > 0\n    \n    # Base score: prioritize bins with more remaining space and moderate utilization\n    r_percent = remaining / bins\n    base_score_pos = (-np.abs(remaining - item) * valid_mask * \n                      r_percent * (1 - r_percent))\n    \n    # Penalize bins that are almost full\n    full_penalty = -np.clip(r_percent, a_min=0, a_max=0.9) * valid_mask\n    \n    # Penalize bins with very small remaining space\n    small_space_penalty = -np.clip(remaining, a_min=0, a_max=10) * valid_mask\n    \n    # Encourage bins with space close to item size\n    fit_score = np.clip(remaining / item, a_min=0, a_max=2) * valid_mask\n    \n    # Encourage bins with moderate utilization\n    moderate_utilization = np.clip(r_percent, a_min=0.5, a_max=0.9) * valid_mask\n    \n    # Encourage bins with lower utilization\n    low_utilization = np.clip(1 - r_percent, a_min=0, a_max=0.5) * valid_mask\n    \n    # Combine scores with weights\n    score = (base_score_pos * 0.6) + (full_penalty * 1.8) + (small_space_penalty * 0.7) + \\\n            (fit_score * 2.5) + (moderate_utilization * 0.9) + (low_utilization * 1.5)\n    return score",
+  "F": 0.789,
+  "nearest": [
+   {
+    "name": "ab-BF(7,24)",
+    "agreement": 0.8345,
+    "agreement_informative": 0.8012012012012012
+   },
+   {
+    "name": "ab-BF(7,26)",
+    "agreement": 0.834,
+    "agreement_informative": 0.8006006006006006
+   },
+   {
+    "name": "ab-BF(7,22)",
+    "agreement": 0.834,
+    "agreement_informative": 0.8006006006006006
+   }
+  ],
+  "nearest_ab": {
+   "name": "ab-BF(7,24)",
+   "agreement": 0.8345
+  }
+ }
+]

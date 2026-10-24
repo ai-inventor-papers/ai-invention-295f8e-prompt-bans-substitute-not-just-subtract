@@ -1,0 +1,136 @@
+{
+ "V1": {
+  "verdict": "PARTIAL",
+  "limits": {
+   "H-FSW5k": 0.031874434047690935,
+   "H-OR3": 0.04294234592445333
+  },
+  "passes": {
+   "T1.0": false,
+   "T1.6": false,
+   "DTB": true,
+   "RPB": true,
+   "IDEA": true,
+   "NS": false
+  },
+  "beats_bf_on_a_primary_set": {
+   "T1.0": true,
+   "T1.6": false,
+   "DTB": true,
+   "RPB": true,
+   "IDEA": true,
+   "NS": false
+  }
+ },
+ "V2": {
+  "verdict": "PARTIAL",
+  "conditions": {
+   "R_T1.0>=1.5": true,
+   "R_T1.6>=1.5": true,
+   "per_seed_vs_temps>1": true,
+   "R_RPB>=1.2": false,
+   "m_DTB<=min(m_T1.0,m_T1.6)": true
+  },
+  "failed": [
+   "R_RPB>=1.2"
+  ],
+  "R": {
+   "T1.0": 17.76190476190476,
+   "T1.6": 186.5,
+   "RPB": 0.7430278884462151,
+   "IDEA": 1.313380281690141
+  },
+  "per_seed": {
+   "S2:DTB/T1.0": 17.692307692307693,
+   "S2:DTB/T1.6": 230.0,
+   "S2:DTB/RPB": 0.8550185873605948,
+   "S3:DTB/T1.0": 17.874999999999996,
+   "S3:DTB/T1.6": 142.99999999999997,
+   "S3:DTB/RPB": 0.6137339055793991
+  },
+  "m": {
+   "T1.0": 0.9099326599326615,
+   "T1.6": 1.0,
+   "DTB": 0.6593013468013471,
+   "RPB": 0.5608164983164988,
+   "IDEA": 0.5986952861952866,
+   "NS": 1.0
+  },
+  "bootstrap": {
+   "T1.0": {
+    "median": 14.94736842105263,
+    "ci95": [
+     13.04875,
+     17.600624999999997
+    ]
+   },
+   "T1.6": {
+    "median": 139.0,
+    "ci95": [
+     127.0,
+     151.0
+    ]
+   },
+   "RPB": {
+    "median": 0.7292454063950827,
+    "ci95": [
+     0.6795865633074936,
+     0.780825865540247
+    ]
+   }
+  },
+  "placebo": {
+   "n": 200,
+   "supported_share": 0.0,
+   "pass": true,
+   "note": "held-out condition of V2 treated as satisfied in every shuffle (conservative)"
+  }
+ },
+ "V3": {
+  "verdict": "DISCONFIRMED",
+  "n_novel_and_better": 0,
+  "novel_ids": [],
+  "n_candidates": 151,
+  "n_pass_08": 50,
+  "n_pass_both_filters": 48,
+  "n_judged": 40,
+  "rule_of_three_upper_bound": 0.075
+ },
+ "V6": {
+  "verdict": "PARTIAL",
+  "rename_IDEA": 0.6696335078534031,
+  "rename_T1.0": 0.9591478696741854,
+  "rates": {
+   "T1.0": {
+    "rename": 0.9591478696741854,
+    "n_valid": 3990,
+    "claims_new_idea_share": 0.0
+   },
+   "IDEA": {
+    "rename": 0.6696335078534031,
+    "n_valid": 3820,
+    "claims_new_idea_share": 0.004
+   },
+   "T1.6": {
+    "rename": 1.0,
+    "n_valid": 4000,
+    "claims_new_idea_share": 0.0
+   },
+   "DTB": {
+    "rename": 0.6934700485698867,
+    "n_valid": 3706,
+    "claims_new_idea_share": 0.0
+   },
+   "RPB": {
+    "rename": 0.6344782890473104,
+    "n_valid": 3086,
+    "claims_new_idea_share": 0.0
+   },
+   "NS": {
+    "rename": 0.9676277187658068,
+    "n_valid": 1977,
+    "claims_new_idea_share": 0.0
+   }
+  }
+ }
+}

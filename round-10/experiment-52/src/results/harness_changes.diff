@@ -1,0 +1,444 @@
+--- inputs/bp9_src/bp.py	2026-10-24 17:50:04.000000000 +0000
++++ src/bp.py	2026-10-24 17:51:15.000000000 +0000
+@@ -26,19 +26,37 @@
+     """Priority output is not a 1-D array with one score per valid bin."""
+ 
+ 
++class NonFiniteError(Exception):
++    """Priority output contains NaN or +-inf (invalid under the iteration-10 validity rule, protocol v10)."""
++
++
+ # ----------------------------------------------------------------------------------------------- harness
+ def valid(item: int, bins: np.ndarray) -> np.ndarray:
+     return np.nonzero((bins - item) >= 0)[0]
+ 
+ 
+-def pack(items: list[int], cap: int, prio: Callable) -> int:
+-    """Pack `items` online with FunSearch semantics; return the number of used bins."""
++def _finite_or_raise(p: np.ndarray) -> None:
++    if p.dtype.kind not in "biuf":
++        p = p.astype(np.float64)  # non-numeric output raises here (runtime error)
++    if p.dtype.kind == "f" and not np.isfinite(p).all():
++        raise NonFiniteError("priority returned a non-finite score")
++
++
++def pack(items: list[int], cap: int, prio: Callable, strict: bool = False, nf_counter: list | None = None) -> int:
++    """Pack `items` online with FunSearch semantics; return the number of used bins.
++
++    strict=True applies the v10 validity rule (every score finite, else NonFiniteError). With strict=False
++    (FunSearch semantics) non-finite scores are tolerated and, if `nf_counter` is given, counted in nf_counter[0]."""
+     bins = np.array([cap for _ in range(len(items))])
+     for it in items:
+         v = np.nonzero(bins >= it)[0]  # identical to (bins - item) >= 0 for integer data
+         p = np.asarray(prio(it, bins[v]))
+         if p.ndim != 1 or p.shape[0] != v.shape[0]:
+             raise ShapeError(f"priority returned shape {p.shape} for {v.shape[0]} valid bins")
++        if strict:
++            _finite_or_raise(p)
++        elif nf_counter is not None and p.dtype.kind == "f" and not np.isfinite(p).all():
++            nf_counter[0] += 1
+         b = v[np.argmax(p)]
+         bins[b] -= it
+     return int((bins != cap).sum())
+@@ -199,6 +217,51 @@
+     return score
+ 
+ 
++def prio_awf(item, bins):
++    """Almost-worst fit in priority form: the second-largest remaining capacity among opened bins that fit (the
++    largest if only one fits); a new bin only when no opened bin fits."""
++    cap = bins.max()
++    op = np.nonzero(bins < cap)[0]
++    score = np.zeros(len(bins))
++    if len(op) == 0:
++        return score
++    order = op[np.argsort(-bins[op], kind="stable")]
++    score[op] = 1.0
++    score[order[1] if len(order) >= 2 else order[0]] = 2.0
++    return score
++
++
++SRC_AWF = ("def priority(item, bins):\n    cap = bins.max()\n    op = np.nonzero(bins < cap)[0]\n"
++           "    score = np.zeros(len(bins))\n    if len(op) == 0:\n        return score\n"
++           "    order = op[np.argsort(-bins[op], kind='stable')]\n    score[op] = 1.0\n"
++           "    score[order[1] if len(order) >= 2 else order[0]] = 2.0\n    return score\n")
++
++
++def hand_awf(items: list[int], cap: int) -> int:
++    """Hand-coded almost-worst-fit packer (reference for the priority form)."""
++    rem: list[int] = []
++    for s in items:
++        fit = [(r, i) for i, r in enumerate(rem) if r >= s]
++        if not fit:
++            rem.append(cap - s)
++            continue
++        fit.sort(key=lambda t: (-t[0], t[1]))  # descending remaining capacity, stable in index
++        _, bi = fit[1] if len(fit) >= 2 else fit[0]
++        rem[bi] -= s
++    return len(rem)
++
++
++def next_fit(items: list[int], cap: int) -> int:
++    """Next Fit (standalone, stateful): only the most recently opened bin is open."""
++    used, rem = 0, -1
++    for s in items:
++        if rem < s:
++            used += 1
++            rem = cap
++        rem -= s
++    return used
++
++
+ def make_ab(a: int, b: int, base: str) -> Callable:
+     """ab-heuristics of Herrmann & Pallez (arXiv 2510.27353, Algorithms 4-6); capacity = bins.max() (an unused bin
+     at full capacity is always among the valid bins in the pre-allocated harness)."""
+--- inputs/bp9_src/sandbox.py	2026-10-24 17:50:04.000000000 +0000
++++ src/sandbox.py	2026-10-24 17:52:29.000000000 +0000
+@@ -1,6 +1,14 @@
+ #!/usr/bin/env python3
+ """Subprocess sandbox for LLM-written priority programs: AST screen, restricted exec, CPU-time limits, persistent
+-workers (spawn) each capped by RLIMIT_AS, a parent watchdog that kills and respawns hung workers."""
++workers (spawn) each capped by RLIMIT_AS, a parent watchdog that kills and respawns hung workers.
++
++Iteration-10 changes (diff in results/harness_changes.diff):
++- ONE cumulative ITIMER_PROF budget across the selection sets (SEL-OR then SEL-W, fail fast) instead of one per set;
++  held-out tasks keep a per-set budget (120 s);
++- validity rule v10: strict packing (1-D, one score per valid bin, all scores finite) -> 'shape' / 'nonfinite';
++  programs that fail ONLY by non-finite scores are re-scored once under FunSearch semantics (sensitivity);
++- probe pass on P10 for valid programs only; a probe timeout marks the remaining states ERR (the vector is kept);
++- `stochastic` AST flag and a parent-side result cache keyed by normalise_key (see EvalCache)."""
+ from __future__ import annotations
+ 
+ import ast
+@@ -27,7 +35,12 @@
+ FORBIDDEN_ATTRS = {"save", "savez", "savez_compressed", "savetxt", "load", "loadtxt", "fromfile", "tofile", "memmap",
+                    "genfromtxt", "fromregex", "ctypeslib", "ctypes", "DataSource", "f2py", "distutils", "testing"}
+ ERR_CODE = 65535
+-ERROR_TYPES = ("ok", "syntax", "forbidden", "runtime", "shape", "timeout", "memory")
++ERROR_TYPES = ("ok", "syntax", "forbidden", "runtime", "shape", "nonfinite", "timeout", "memory")
++SEL_SETS = ["SEL-OR", "SEL-W"]
++SEL_BUDGET_S = 20.0
++PROBE_BUDGET_S = 20.0
++HELDOUT_BUDGET_S = 120.0
++SEL_WATCHDOG_S = 90.0
+ 
+ 
+ class Forbidden(Exception):
+@@ -56,6 +69,24 @@
+                 raise Forbidden(f"attribute {node.attr}")
+ 
+ 
++def is_stochastic(code: str) -> bool:
++    """AST flag: the program references `random` (np.random.*, numpy.random, from numpy import random)."""
++    try:
++        tree = ast.parse(code)
++    except (SyntaxError, ValueError):
++        return False
++    for node in ast.walk(tree):
++        if isinstance(node, ast.Attribute) and node.attr == "random":
++            return True
++        if isinstance(node, ast.Name) and node.id == "random":
++            return True
++        if isinstance(node, ast.ImportFrom) and node.module and "random" in node.module:
++            return True
++        if isinstance(node, ast.alias) and "random" in node.name:
++            return True
++    return False
++
++
+ def _restricted_import(name, globals=None, locals=None, fromlist=(), level=0):  # noqa: A002
+     if level or name.split(".")[0] not in ALLOWED_MODULES:
+         raise ImportError(f"import of {name} not allowed")
+@@ -127,34 +158,45 @@
+ 
+ 
+ def _classify(e: BaseException) -> str:
+-    from bp import ShapeError
++    from bp import NonFiniteError, ShapeError
+     if isinstance(e, CpuTimeout):
+         return "timeout"
+     if isinstance(e, MemoryError):
+         return "memory"
+     if isinstance(e, ShapeError):
+         return "shape"
++    if isinstance(e, NonFiniteError):
++        return "nonfinite"
+     return "runtime"
+ 
+ 
+-def _probe_decisions(fn, states: list[tuple[int, np.ndarray]]) -> np.ndarray:
++def probe_decisions(fn, states: list[tuple[int, np.ndarray]]) -> np.ndarray:
++    """FunSearch argmax on each probe state (NaN -> first NaN index); the decision is the chosen bin's remaining
++    capacity. ERR only on an exception, a wrong shape or a timeout (states not reached are ERR)."""
+     out = np.full(len(states), ERR_CODE, dtype=np.uint16)
+-    for i, (item, arr) in enumerate(states):
+-        try:
+-            p = np.asarray(fn(item, arr.copy()))
+-            if p.ndim != 1 or p.shape[0] != arr.shape[0]:
++    try:
++        for i, (item, arr) in enumerate(states):
++            try:
++                p = np.asarray(fn(item, arr.copy()))
++                if p.ndim != 1 or p.shape[0] != arr.shape[0]:
++                    continue
++                out[i] = int(arr[int(np.argmax(p))])
++            except (CpuTimeout, MemoryError):
++                raise
++            except Exception:  # noqa: BLE001 - per-state errors are recorded as ERR
+                 continue
+-            out[i] = int(arr[int(np.argmax(p))])
+-        except CpuTimeout:
+-            raise
+-        except MemoryError:
+-            raise
+-        except Exception:  # noqa: BLE001 - per-state errors are recorded as ERR
+-            continue
++    except CpuTimeout:
++        raise _ProbeTimeout(out) from None
+     return out
+ 
+ 
+-def _load_probe(path: Path) -> list[tuple[int, np.ndarray]]:
++class _ProbeTimeout(Exception):
++    def __init__(self, partial: np.ndarray):
++        super().__init__("probe cpu time limit")
++        self.partial = partial
++
++
++def load_probe(path: Path) -> list[tuple[int, np.ndarray]]:
+     import json
+     if not path.exists():
+         return []
+@@ -162,6 +204,34 @@
+     return [(int(it), np.array(list(of) + [int(cap)] * int(ne))) for it, of, ne, cap in d["states"]]
+ 
+ 
++def _run_sets(fn, task: dict, get_set, bp, strict: bool, res: dict, key: str) -> None:
++    """Evaluate on task['sets'] in order. budget 'cumulative': one ITIMER_PROF for all sets; 'per_set': one each."""
++    import signal
++    limit = float(task["limit"])
++    cumulative = task.get("budget", "cumulative") == "cumulative"
++    nf = [0]
++    res[key] = {}
++    try:
++        if cumulative:
++            signal.setitimer(signal.ITIMER_PROF, limit)
++        for set_name in task.get("sets", []):
++            insts = get_set(set_name)
++            try:
++                if not cumulative:
++                    signal.setitimer(signal.ITIMER_PROF, limit)
++                ts = time.process_time()
++                res[key][set_name] = [bp.pack(x["items"], x["capacity"], fn, strict=strict, nf_counter=nf)
++                                      for x in insts]
++                res.setdefault("set_s", {})[f"{key}:{set_name}"] = time.process_time() - ts
++            finally:
++                if not cumulative:
++                    signal.setitimer(signal.ITIMER_PROF, 0)
++    finally:
++        signal.setitimer(signal.ITIMER_PROF, 0)
++    if not strict:
++        res["fs_nonfinite_calls"] = nf[0]
++
++
+ def _worker_main(conn, root: str, as_bytes: int) -> None:
+     import resource
+     import signal
+@@ -181,9 +251,8 @@
+             sets_cache[name] = bp.load_set(name)
+         return sets_cache[name]
+ 
+-    probes = {"P1": _load_probe(Path(root) / "data" / "probes" / "P1.json"),
+-              "P2": _load_probe(Path(root) / "data" / "probes" / "P2.json")}
+-    conn.send({"ready": True})
++    probes = {"P10": load_probe(Path(root) / "data" / "probes" / "P10.json")}
++    conn.send({"ready": True, "n_probe_states": len(probes["P10"])})
+     while True:
+         try:
+             task = conn.recv()
+@@ -198,32 +267,40 @@
+             res.update(error_type=et, msg=msg)
+             conn.send(res)
+             continue
+-        # ---- evaluation on instance sets (fail fast, in the given order)
+-        for set_name in task.get("sets", []):
+-            insts = get_set(set_name)
++        strict = bool(task.get("strict", True))
++        try:
++            _run_sets(fn, task, get_set, bp, strict, res, "bins")
++        except BaseException as e:  # noqa: BLE001 - classify every failure of untrusted code
++            if isinstance(e, KeyboardInterrupt):
++                raise
++            res["error_type"] = _classify(e)
++            res["msg"] = f"{e!r}"[:300]
++            res["failed_set"] = next((s for s in task.get("sets", []) if s not in res["bins"]), None)
++        res["eval_s"] = time.process_time() - t0
++        # FunSearch-semantics re-score of programs whose ONLY failure is a non-finite score
++        do_fs = res["error_type"] == "nonfinite" and task.get("fs_rescore", False)
++        if do_fs:
++            fsr: dict = {"bins": {}}
+             try:
+-                signal.setitimer(signal.ITIMER_PROF, float(task["limit"]))
+-                ts = time.process_time()
+-                res["bins"][set_name] = [bp.pack(x["items"], x["capacity"], fn) for x in insts]
+-                res.setdefault("set_s", {})[set_name] = time.process_time() - ts
+-            except BaseException as e:  # noqa: BLE001 - classify every failure of untrusted code
+-                signal.setitimer(signal.ITIMER_PROF, 0)
++                _run_sets(fn, dict(task, limit=task["limit"]), get_set, bp, False, fsr, "bins")
++                fsr["error_type"] = "ok"
++            except BaseException as e:  # noqa: BLE001
+                 if isinstance(e, KeyboardInterrupt):
+                     raise
+-                res["error_type"] = _classify(e)
+-                res["msg"] = f"{set_name}: {e!r}"[:300]
+-                res["failed_set"] = set_name
+-                if task.get("fail_fast", True):
+-                    break
+-            finally:
+-                signal.setitimer(signal.ITIMER_PROF, 0)
+-        res["eval_s"] = time.process_time() - t0
+-        # ---- behaviour probes (only for programs valid on all requested sets)
+-        if res["error_type"] == "ok" and task.get("probes"):
++                fsr["error_type"] = _classify(e)
++                fsr["msg"] = f"{e!r}"[:200]
++            res["fs"] = {"bins": fsr["bins"], "error_type": fsr["error_type"],
++                         "nonfinite_calls": fsr.get("fs_nonfinite_calls")}
++        # behaviour probes: valid programs (and FunSearch-valid non-finite-only programs, flagged)
++        probe_ok = res["error_type"] == "ok" or (do_fs and res["fs"]["error_type"] == "ok")
++        if probe_ok and task.get("probes"):
+             for pname in task["probes"]:
+                 try:
+-                    signal.setitimer(signal.ITIMER_PROF, float(task.get("probe_limit", 20.0)))
+-                    res["probes"][pname] = _probe_decisions(fn, probes[pname]).tobytes()
++                    signal.setitimer(signal.ITIMER_PROF, float(task.get("probe_limit", PROBE_BUDGET_S)))
++                    res["probes"][pname] = probe_decisions(fn, probes[pname]).tobytes()
++                except _ProbeTimeout as e:
++                    res["probes"][pname] = e.partial.tobytes()
++                    res["probe_error"] = f"{pname}: timeout"
+                 except BaseException as e:  # noqa: BLE001
+                     if isinstance(e, KeyboardInterrupt):
+                         raise
+@@ -231,6 +308,7 @@
+                     res["probe_error"] = f"{pname}: {e!r}"[:200]
+                 finally:
+                     signal.setitimer(signal.ITIMER_PROF, 0)
++        res["total_cpu_s"] = time.process_time() - t0
+         conn.send(res)
+ 
+ 
+@@ -244,6 +322,7 @@
+         self.q: queue.Queue = queue.Queue()
+         self.n_respawn = 0
+         self._tid = 0
++        self._busy = 0
+         self._lock = threading.Lock()
+         self.threads = [threading.Thread(target=self._manage, args=(i,), daemon=True) for i in range(n_workers)]
+         for t in self.threads:
+@@ -259,6 +338,16 @@
+         a.recv()
+         return p, a
+ 
++    @staticmethod
++    def wall_limit(task: dict) -> float:
++        if task.get("budget", "cumulative") == "cumulative":
++            w = SEL_WATCHDOG_S
++            if task.get("fs_rescore"):
++                w += 45.0
++            return w
++        return 2.0 * (float(task.get("limit", HELDOUT_BUDGET_S)) * max(1, len(task.get("sets", [])))) + 30.0 + \
++            float(task.get("probe_limit", PROBE_BUDGET_S)) * len(task.get("probes", []))
++
+     def _manage(self, idx: int) -> None:
+         proc, conn = self._spawn()
+         while True:
+@@ -271,9 +360,11 @@
+                 proc.join(5)
+                 return
+             task, fut = item
+-            wall = 2.0 * (float(task.get("limit", 10)) * max(1, len(task.get("sets", []))) +
+-                          float(task.get("probe_limit", 20)) * len(task.get("probes", []))) + 10.0
++            with self._lock:
++                self._busy += 1
++            wall = self.wall_limit(task)
+             res = None
++            t_wall = time.time()
+             try:
+                 conn.send(task)
+                 if conn.poll(wall):
+@@ -284,12 +375,15 @@
+             except (EOFError, BrokenPipeError, OSError) as e:
+                 res = {"tid": task["tid"], "error_type": "memory", "msg": f"worker died: {e!r}"[:200], "bins": {},
+                        "eval_s": 0.0, "probes": {}}
++            res["wall_s"] = time.time() - t_wall
+             if res.get("error_type") in ("timeout", "memory") and (not proc.is_alive() or "watchdog" in res["msg"]
+                                                                   or "died" in res["msg"]):
+                 proc.kill()
+                 proc.join(5)
+                 self.n_respawn += 1
+                 proc, conn = self._spawn()
++            with self._lock:
++                self._busy -= 1
+             fut.set_result(res)
+ 
+     def submit(self, task: dict) -> Future:
+@@ -303,8 +397,60 @@
+     def backlog(self) -> int:
+         return self.q.qsize()
+ 
++    def busy(self) -> int:
++        return self._busy
++
+     def close(self) -> None:
+         for _ in self.threads:
+             self.q.put(None)
+         for t in self.threads:
+             t.join(10)
++
++
++def selection_task(code: str, probes: bool = True) -> dict:
++    """The standard offspring evaluation: strict, cumulative 20 s CPU over SEL-OR then SEL-W, then the P10 pass."""
++    return {"code": code, "sets": list(SEL_SETS), "budget": "cumulative", "limit": SEL_BUDGET_S, "strict": True,
++            "fs_rescore": True, "probes": ["P10"] if probes else [], "probe_limit": PROBE_BUDGET_S}
++
++
++def heldout_task(code: str, sets: list[str], strict: bool = True) -> dict:
++    return {"code": code, "sets": list(sets), "budget": "per_set", "limit": HELDOUT_BUDGET_S, "strict": strict,
++            "fs_rescore": False, "probes": []}
++
++
++class EvalCache:
++    """Parent-side result cache keyed by normalise_key(program), shared across arms and seeds. A duplicate that is
++    still in flight attaches to the same future; a cached duplicate inherits the stored result."""
++
++    def __init__(self, pool: EvalPool):
++        self.pool = pool
++        self.done: dict[str, dict] = {}
++        self.inflight: dict[str, Future] = {}
++        self.lock = threading.RLock()  # re-entrant: a done-callback may run in the submitting thread
++        self.hits = 0
++
++    def preload(self, key: str, res: dict) -> None:
++        self.done[key] = res
++
++    def submit(self, code: str) -> tuple[str | None, Future, bool]:
++        """Return (key, future, cached?). Unparseable programs (key None) are evaluated without caching."""
++        key = normalise_key(code)
++        with self.lock:
++            if key is not None and key in self.done:
++                self.hits += 1
++                f: Future = Future()
++                f.set_result(self.done[key])
++                return key, f, True
++            if key is not None and key in self.inflight:
++                self.hits += 1
++                return key, self.inflight[key], True
++            fut = self.pool.submit(selection_task(code))
++            if key is not None:
++                self.inflight[key] = fut
++
++                def _done(f, k=key):
++                    with self.lock:
++                        self.done[k] = f.result()
++                        self.inflight.pop(k, None)
++                fut.add_done_callback(_done)
++            return key, fut, False
