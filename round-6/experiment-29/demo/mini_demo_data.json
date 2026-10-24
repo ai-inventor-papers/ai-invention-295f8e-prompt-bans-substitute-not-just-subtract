@@ -1,0 +1,4743 @@
+{
+ "metadata": {
+  "artifact_id": "art_lpQalcAXMGr1",
+  "title": "Is FP8 rounding behind the random-push escapes?",
+  "source": "full_method_out.json of the artifact, dataset 'engine_pop' (3140 CRN slots); summaries from its metadata",
+  "selection": "task T10, alpha 2, screen slots (k 0-1 x templates W1-W5) of the 10 fixed random directions 9101-9110 (the artifact's REPRO directions; outcome-blind choice) = 100 CRN slots, each with all four engines' 'label|pass' (predict_a..predict_d)",
+  "engines": {
+   "a": "W8A8",
+   "b": "W8A16",
+   "c": "W16A8",
+   "d": "BF16"
+  },
+  "twin": {
+   "a": {
+    "T10": {
+     "n": 50,
+     "n_valid": 50,
+     "k_off": 0,
+     "share": 0.0,
+     "pass": 1.0,
+     "k_pass": 50,
+     "n_other": 0,
+     "n_invalid": 0,
+     "n_disputed": 0
+    },
+    "T2": {
+     "n": 50,
+     "n_valid": 50,
+     "k_off": 0,
+     "share": 0.0,
+     "pass": 1.0,
+     "k_pass": 50,
+     "n_other": 0,
+     "n_invalid": 0,
+     "n_disputed": 0
+    }
+   },
+   "b": {
+    "T10": {
+     "n": 50,
+     "n_valid": 50,
+     "k_off": 0,
+     "share": 0.0,
+     "pass": 1.0,
+     "k_pass": 50,
+     "n_other": 0,
+     "n_invalid": 0,
+     "n_disputed": 0
+    },
+    "T2": {
+     "n": 50,
+     "n_valid": 50,
+     "k_off": 1,
+     "share": 0.02,
+     "pass": 0.98,
+     "k_pass": 49,
+     "n_other": 0,
+     "n_invalid": 0,
+     "n_disputed": 0
+    }
+   },
+   "c": {
+    "T10": {
+     "n": 50,
+     "n_valid": 50,
+     "k_off": 0,
+     "share": 0.0,
+     "pass": 1.0,
+     "k_pass": 50,
+     "n_other": 0,
+     "n_invalid": 0,
+     "n_disputed": 0
+    },
+    "T2": {
+     "n": 50,
+     "n_valid": 50,
+     "k_off": 1,
+     "share": 0.02,
+     "pass": 1.0,
+     "k_pass": 50,
+     "n_other": 0,
+     "n_invalid": 0,
+     "n_disputed": 0
+    }
+   },
+   "d": {
+    "T10": {
+     "n": 50,
+     "n_valid": 50,
+     "k_off": 0,
+     "share": 0.0,
+     "pass": 1.0,
+     "k_pass": 50,
+     "n_other": 0,
+     "n_invalid": 0,
+     "n_disputed": 0
+    },
+    "T2": {
+     "n": 50,
+     "n_valid": 50,
+     "k_off": 1,
+     "share": 0.02,
+     "pass": 0.98,
+     "k_pass": 49,
+     "n_other": 0,
+     "n_invalid": 0,
+     "n_disputed": 0
+    }
+   }
+  },
+  "twin_note": "twin summary per engine and task (N = 50 twin slots, k 0-9 x W1-W5) computed by the artifact's src/escape.py share(); the twin rows themselves belong to the separate engine_twins dataset",
+  "E_iter4_relabelled": {
+   "T10": {
+    "1.0": 0.375,
+    "2.0": 0.725
+   },
+   "T2": {
+    "1.0": 0.175,
+    "2.0": 0.2
+   },
+   "T03": {
+    "1.0": 0.3,
+    "2.0": 0.625
+   }
+  },
+  "full_run": {
+   "verdict": {
+    "T10": {
+     "E_alpha2": {
+      "a": 0.725,
+      "b": null,
+      "c": 0.6,
+      "d": 0.65
+     },
+     "E_screen_alpha2": {
+      "a": 0.75,
+      "b": 0.7,
+      "c": 0.675,
+      "d": 0.675
+     },
+     "E_iter4_relabelled_a": 0.725,
+     "literal_verdict": "NOT_REPRODUCED_HIGH",
+     "literal_clauses": {
+      "c-d": false,
+      "|a-c|<=0.1": false,
+      "|b-d|<=0.1": null
+     },
+     "screen_level_verdict": "NOT_REPRODUCED_HIGH",
+     "screen_level_clauses": {
+      "c-d": false,
+      "|a-c|<=0.1": true,
+      "|b-d|<=0.1": true
+     }
+    },
+    "T2": {
+     "E_alpha2": {
+      "a": 0.2,
+      "b": 0.125,
+      "c": 0.15,
+      "d": 0.15
+     },
+     "E_screen_alpha2": {
+      "a": 0.375,
+      "b": 0.2,
+      "c": 0.2,
+      "d": 0.225
+     },
+     "E_iter4_relabelled_a": 0.2,
+     "literal_verdict": "NOT_REPRODUCED_HIGH",
+     "literal_clauses": {
+      "c-d": false,
+      "|a-c|<=0.1": true,
+      "|b-d|<=0.1": true
+     },
+     "screen_level_verdict": "MIXED",
+     "screen_level_clauses": {
+      "c-d": false,
+      "|a-c|<=0.1": false,
+      "|b-d|<=0.1": true
+     },
+     "feasibility_reading": {
+      "verdict": "NOT_REPRODUCED_HIGH",
+      "clauses": {
+       "c-d": false,
+       "|a-c|<=0.1": true,
+       "|b-d|<=0.1": true
+      },
+      "rule": "E(c)-E(d) >= (2/3)(E(a)-E(d)) and one-sided exact McNemar c>d p<0.05"
+     }
+    },
+    "claim": {
+     "literal": "NOT_REPRODUCED_HIGH",
+     "activation_rounding_claim_both_tasks": false
+    }
+   },
+   "escape_alpha2": {
+    "a": {
+     "T10": {
+      "n_run": 40,
+      "n_screen_pass": 30,
+      "n_confirmed": 29,
+      "E_t": 0.725,
+      "E_screen": 0.75,
+      "n_excess_met_but_pass_clause_failed": 1,
+      "mean_share10": 0.5824999999999999,
+      "mean_pass10": 0.9600000000000002,
+      "E_wilson": [
+       0.5716504419378943,
+       0.8389198375233267
+      ],
+      "E_screen_wilson": [
+       0.5980603857923197,
+       0.858128813609037
+      ],
+      "confirmation_complete": true,
+      "n_screen_pass_not_confirmed_tested": 0
+     },
+     "T2": {
+      "n_run": 40,
+      "n_screen_pass": 15,
+      "n_confirmed": 8,
+      "E_t": 0.2,
+      "E_screen": 0.375,
+      "n_excess_met_but_pass_clause_failed": 17,
+      "mean_share10": 0.4325,
+      "mean_pass10": 0.74,
+      "E_wilson": [
+       0.10499989725437704,
+       0.347573063463995
+      ],
+      "E_screen_wilson": [
+       0.24222979167233266,
+       0.5296756086269889
+      ],
+      "confirmation_complete": true,
+      "n_screen_pass_not_confirmed_tested": 0
+     }
+    },
+    "b": {
+     "T10": {
+      "n_run": 40,
+      "n_screen_pass": 28,
+      "n_confirmed": 27,
+      "E_t": 0.675,
+      "E_screen": 0.7,
+      "n_excess_met_but_pass_clause_failed": 1,
+      "mean_share10": 0.5575,
+      "mean_pass10": 0.9625,
+      "E_wilson": [
+       0.5201774618987768,
+       0.799154977682173
+      ],
+      "E_screen_wilson": [
+       0.5456998118185507,
+       0.8192515477025347
+      ],
+      "confirmation_complete": false,
+      "n_screen_pass_not_confirmed_tested": 28
+     },
+     "T2": {
+      "n_run": 40,
+      "n_screen_pass": 8,
+      "n_confirmed": 5,
+      "E_t": 0.125,
+      "E_screen": 0.2,
+      "n_excess_met_but_pass_clause_failed": 14,
+      "mean_share10": 0.39,
+      "mean_pass10": 0.7575,
+      "E_wilson": [
+       0.05459500250945401,
+       0.261121198388511
+      ],
+      "E_screen_wilson": [
+       0.10499989725437704,
+       0.347573063463995
+      ],
+      "confirmation_complete": true,
+      "n_screen_pass_not_confirmed_tested": 0
+     }
+    },
+    "c": {
+     "T10": {
+      "n_run": 40,
+      "n_screen_pass": 27,
+      "n_confirmed": 24,
+      "E_t": 0.6,
+      "E_screen": 0.675,
+      "n_excess_met_but_pass_clause_failed": 3,
+      "mean_share10": 0.49750000000000005,
+      "mean_pass10": 0.9600000000000002,
+      "E_wilson": [
+       0.44595893660346186,
+       0.7365167431570808
+      ],
+      "E_screen_wilson": [
+       0.5201774618987768,
+       0.799154977682173
+      ],
+      "confirmation_complete": true,
+      "n_screen_pass_not_confirmed_tested": 0
+     },
+     "T2": {
+      "n_run": 40,
+      "n_screen_pass": 8,
+      "n_confirmed": 6,
+      "E_t": 0.15,
+      "E_screen": 0.2,
+      "n_excess_met_but_pass_clause_failed": 17,
+      "mean_share10": 0.41999999999999993,
+      "mean_pass10": 0.7474999999999999,
+      "E_wilson": [
+       0.07061187717320358,
+       0.2907232436648971
+      ],
+      "E_screen_wilson": [
+       0.10499989725437704,
+       0.347573063463995
+      ],
+      "confirmation_complete": true,
+      "n_screen_pass_not_confirmed_tested": 0
+     }
+    },
+    "d": {
+     "T10": {
+      "n_run": 40,
+      "n_screen_pass": 27,
+      "n_confirmed": 26,
+      "E_t": 0.65,
+      "E_screen": 0.675,
+      "n_excess_met_but_pass_clause_failed": 2,
+      "mean_share10": 0.5325,
+      "mean_pass10": 0.9524999999999999,
+      "E_wilson": [
+       0.49505880837257693,
+       0.7786547112682372
+      ],
+      "E_screen_wilson": [
+       0.5201774618987768,
+       0.799154977682173
+      ],
+      "confirmation_complete": true,
+      "n_screen_pass_not_confirmed_tested": 0
+     },
+     "T2": {
+      "n_run": 40,
+      "n_screen_pass": 9,
+      "n_confirmed": 6,
+      "E_t": 0.15,
+      "E_screen": 0.225,
+      "n_excess_met_but_pass_clause_failed": 17,
+      "mean_share10": 0.4074999999999999,
+      "mean_pass10": 0.725,
+      "E_wilson": [
+       0.07061187717320358,
+       0.2907232436648971
+      ],
+      "E_screen_wilson": [
+       0.12316091323540743,
+       0.37503096742310027
+      ],
+      "confirmation_complete": true,
+      "n_screen_pass_not_confirmed_tested": 0
+     }
+    }
+   },
+   "pairs": {
+    "T10|a-d|confirmed": {
+     "n_dirs": 40,
+     "E_x": 0.725,
+     "E_y": 0.65,
+     "diff": 0.075,
+     "n10": 3,
+     "n01": 0,
+     "p_two_sided": 0.25,
+     "p_one_sided_x_gt_y": 0.125,
+     "tango90": [
+      0.007000000000000117,
+      0.17325000000000013
+     ],
+     "tost_margin_0.1_equivalent": false,
+     "kappa": 0.8265895953757226,
+     "spearman_share10": 0.9603885359263379,
+     "p_holm": 1.0
+    },
+    "T10|a-d|screen": {
+     "n_dirs": 40,
+     "E_x": 0.75,
+     "E_y": 0.675,
+     "diff": 0.075,
+     "n10": 3,
+     "n01": 0,
+     "p_two_sided": 0.25,
+     "p_one_sided_x_gt_y": 0.125,
+     "tango90": [
+      0.007000000000000117,
+      0.17325000000000013
+     ],
+     "tost_margin_0.1_equivalent": false,
+     "kappa": 0.8181818181818182,
+     "spearman_share10": 0.9603885359263379
+    },
+    "T10|c-d|confirmed": {
+     "n_dirs": 40,
+     "E_x": 0.6,
+     "E_y": 0.65,
+     "diff": -0.05,
+     "n10": 1,
+     "n01": 3,
+     "p_two_sided": 0.625,
+     "p_one_sided_x_gt_y": 0.9375,
+     "tango90": [
+      -0.15349999999999997,
+      0.04200000000000004
+     ],
+     "tost_margin_0.1_equivalent": false,
+     "kappa": 0.7872340425531915,
+     "spearman_share10": 0.9648465064929841,
+     "p_holm": 1.0
+    },
+    "T10|c-d|screen": {
+     "n_dirs": 40,
+     "E_x": 0.675,
+     "E_y": 0.675,
+     "diff": 0.0,
+     "n10": 2,
+     "n01": 2,
+     "p_two_sided": 1.0,
+     "p_one_sided_x_gt_y": 0.6875,
+     "tango90": [
+      -0.09950000000000003,
+      0.09949999999999992
+     ],
+     "tost_margin_0.1_equivalent": true,
+     "kappa": 0.7720797720797721,
+     "spearman_share10": 0.9648465064929841
+    },
+    "T10|b-d|confirmed": {
+     "status": "confirmation incomplete for an engine; see screen level"
+    },
+    "T10|b-d|screen": {
+     "n_dirs": 40,
+     "E_x": 0.7,
+     "E_y": 0.675,
+     "diff": 0.025,
+     "n10": 2,
+     "n01": 1,
+     "p_two_sided": 1.0,
+     "p_one_sided_x_gt_y": 0.5,
+     "tango90": [
+      -0.0625,
+      0.11975000000000002
+     ],
+     "tost_margin_0.1_equivalent": false,
+     "kappa": 0.8255813953488373,
+     "spearman_share10": 0.9696850573185566
+    },
+    "T10|a-c|confirmed": {
+     "n_dirs": 40,
+     "E_x": 0.725,
+     "E_y": 0.6,
+     "diff": 0.125,
+     "n10": 5,
+     "n01": 0,
+     "p_two_sided": 0.0625,
+     "p_one_sided_x_gt_y": 0.03125,
+     "tango90": [
+      0.053749999999999964,
+      0.23524999999999996
+     ],
+     "tost_margin_0.1_equivalent": false,
+     "kappa": 0.7252747252747253,
+     "spearman_share10": 0.946017965879584
+    },
+    "T10|a-c|screen": {
+     "n_dirs": 40,
+     "E_x": 0.75,
+     "E_y": 0.675,
+     "diff": 0.075,
+     "n10": 4,
+     "n01": 1,
+     "p_two_sided": 0.375,
+     "p_one_sided_x_gt_y": 0.1875,
+     "tango90": [
+      -0.02124999999999999,
+      0.18524999999999991
+     ],
+     "tost_margin_0.1_equivalent": false,
+     "kappa": 0.6969696969696969,
+     "spearman_share10": 0.946017965879584
+    },
+    "T10|a-b|confirmed": {
+     "status": "confirmation incomplete for an engine; see screen level"
+    },
+    "T10|a-b|screen": {
+     "n_dirs": 40,
+     "E_x": 0.75,
+     "E_y": 0.7,
+     "diff": 0.05,
+     "n10": 2,
+     "n01": 0,
+     "p_two_sided": 0.5,
+     "p_one_sided_x_gt_y": 0.25,
+     "tango90": [
+      -0.01649999999999996,
+      0.14024999999999999
+     ],
+     "tost_margin_0.1_equivalent": false,
+     "kappa": 0.8749999999999999,
+     "spearman_share10": 0.9703116469394935
+    },
+    "T2|a-d|confirmed": {
+     "n_dirs": 40,
+     "E_x": 0.2,
+     "E_y": 0.15,
+     "diff": 0.05,
+     "n10": 4,
+     "n01": 2,
+     "p_two_sided": 0.6875,
+     "p_one_sided_x_gt_y": 0.34375,
+     "tango90": [
+      -0.059250000000000025,
+      0.16549999999999998
+     ],
+     "tost_margin_0.1_equivalent": false,
+     "kappa": 0.48275862068965497,
+     "spearman_share10": 0.8712393487666891,
+     "p_holm": 1.0
+    },
+    "T2|a-d|screen": {
+     "n_dirs": 40,
+     "E_x": 0.375,
+     "E_y": 0.225,
+     "diff": 0.15,
+     "n10": 9,
+     "n01": 3,
+     "p_two_sided": 0.14599609375,
+     "p_one_sided_x_gt_y": 0.072998046875,
+     "tango90": [
+      0.00825000000000009,
+      0.2922500000000001
+     ],
+     "tost_margin_0.1_equivalent": false,
+     "kappa": 0.30434782608695643,
+     "spearman_share10": 0.8712393487666891
+    },
+    "T2|c-d|confirmed": {
+     "n_dirs": 40,
+     "E_x": 0.15,
+     "E_y": 0.15,
+     "diff": 0.0,
+     "n10": 2,
+     "n01": 2,
+     "p_two_sided": 1.0,
+     "p_one_sided_x_gt_y": 0.6875,
+     "tango90": [
+      -0.09950000000000003,
+      0.09949999999999992
+     ],
+     "tost_margin_0.1_equivalent": true,
+     "kappa": 0.6078431372549022,
+     "spearman_share10": 0.8993656914009364,
+     "p_holm": 1.0
+    },
+    "T2|c-d|screen": {
+     "n_dirs": 40,
+     "E_x": 0.2,
+     "E_y": 0.225,
+     "diff": -0.025,
+     "n10": 3,
+     "n01": 4,
+     "p_two_sided": 1.0,
+     "p_one_sided_x_gt_y": 0.7734375,
+     "tango90": [
+      -0.14574999999999994,
+      0.09349999999999992
+     ],
+     "tost_margin_0.1_equivalent": false,
+     "kappa": 0.4776119402985071,
+     "spearman_share10": 0.8993656914009364
+    },
+    "T2|b-d|confirmed": {
+     "n_dirs": 40,
+     "E_x": 0.125,
+     "E_y": 0.15,
+     "diff": -0.025,
+     "n10": 0,
+     "n01": 1,
+     "p_two_sided": 1.0,
+     "p_one_sided_x_gt_y": 1.0,
+     "tango90": [
+      -0.10449999999999993,
+      0.03974999999999995
+     ],
+     "tost_margin_0.1_equivalent": false,
+     "kappa": 0.894736842105263,
+     "spearman_share10": 0.8310020321475621,
+     "p_holm": 1.0
+    },
+    "T2|b-d|screen": {
+     "n_dirs": 40,
+     "E_x": 0.2,
+     "E_y": 0.225,
+     "diff": -0.025,
+     "n10": 1,
+     "n01": 2,
+     "p_two_sided": 1.0,
+     "p_one_sided_x_gt_y": 0.875,
+     "tango90": [
+      -0.11975000000000002,
+      0.0625
+     ],
+     "tost_margin_0.1_equivalent": false,
+     "kappa": 0.7761194029850746,
+     "spearman_share10": 0.8310020321475621
+    },
+    "T2|a-c|confirmed": {
+     "n_dirs": 40,
+     "E_x": 0.2,
+     "E_y": 0.15,
+     "diff": 0.05,
+     "n10": 4,
+     "n01": 2,
+     "p_two_sided": 0.6875,
+     "p_one_sided_x_gt_y": 0.34375,
+     "tango90": [
+      -0.059250000000000025,
+      0.16549999999999998
+     ],
+     "tost_margin_0.1_equivalent": false,
+     "kappa": 0.48275862068965497,
+     "spearman_share10": 0.8129127676881666
+    },
+    "T2|a-c|screen": {
+     "n_dirs": 40,
+     "E_x": 0.375,
+     "E_y": 0.2,
+     "diff": 0.175,
+     "n10": 10,
+     "n01": 3,
+     "p_two_sided": 0.09228515625,
+     "p_one_sided_x_gt_y": 0.046142578125,
+     "tango90": [
+      0.029249999999999998,
+      0.31975
+     ],
+     "tost_margin_0.1_equivalent": false,
+     "kappa": 0.23529411764705901,
+     "spearman_share10": 0.8129127676881666
+    },
+    "T2|a-b|confirmed": {
+     "n_dirs": 40,
+     "E_x": 0.2,
+     "E_y": 0.125,
+     "diff": 0.075,
+     "n10": 5,
+     "n01": 2,
+     "p_two_sided": 0.453125,
+     "p_one_sided_x_gt_y": 0.2265625,
+     "tango90": [
+      -0.03874999999999995,
+      0.19625000000000004
+     ],
+     "tost_margin_0.1_equivalent": false,
+     "kappa": 0.36363636363636326,
+     "spearman_share10": 0.9129943218467169
+    },
+    "T2|a-b|screen": {
+     "n_dirs": 40,
+     "E_x": 0.375,
+     "E_y": 0.2,
+     "diff": 0.175,
+     "n10": 9,
+     "n01": 2,
+     "p_two_sided": 0.0654296875,
+     "p_one_sided_x_gt_y": 0.03271484375,
+     "tango90": [
+      0.04325000000000001,
+      0.31125
+     ],
+     "tost_margin_0.1_equivalent": false,
+     "kappa": 0.35294117647058826,
+     "spearman_share10": 0.9129943218467169
+    },
+    "holm_family": [
+     "T10|a-d",
+     "T10|c-d",
+     "T2|a-d",
+     "T2|b-d",
+     "T2|c-d"
+    ]
+   },
+   "slot_flips": {
+    "T10|a-d": {
+     "n_slots": 400,
+     "n10": 30,
+     "n01": 10,
+     "p_two_sided": 0.0022214337732293643,
+     "p_one_sided_x_gt_y": 0.0011107168866146822,
+     "same_label_frac": 0.8725,
+     "offdefault_x": 0.5825,
+     "offdefault_y": 0.5325
+    },
+    "T10|a-d|all_common_slots": {
+     "n_slots": 940,
+     "n10": 89,
+     "n01": 35,
+     "p_two_sided": 1.3391625040993677e-06,
+     "p_one_sided_x_gt_y": 6.695812520496839e-07,
+     "same_label_frac": 0.8382978723404255,
+     "offdefault_x": 0.6553191489361702,
+     "offdefault_y": 0.597872340425532
+    },
+    "T10|c-d": {
+     "n_slots": 400,
+     "n10": 9,
+     "n01": 23,
+     "p_two_sided": 0.020061607006937265,
+     "p_one_sided_x_gt_y": 0.99649981665425,
+     "same_label_frac": 0.9,
+     "offdefault_x": 0.4975,
+     "offdefault_y": 0.5325
+    },
+    "T10|c-d|all_common_slots": {
+     "n_slots": 899,
+     "n10": 21,
+     "n01": 73,
+     "p_two_sided": 6.65366562409261e-08,
+     "p_one_sided_x_gt_y": 0.9999999907694082,
+     "same_label_frac": 0.8787541713014461,
+     "offdefault_x": 0.5317018909899889,
+     "offdefault_y": 0.5895439377085651
+    },
+    "T10|b-d": {
+     "n_slots": 399,
+     "n10": 17,
+     "n01": 7,
+     "p_two_sided": 0.06391465663909912,
+     "p_one_sided_x_gt_y": 0.03195732831954956,
+     "same_label_frac": 0.924812030075188,
+     "offdefault_x": 0.556390977443609,
+     "offdefault_y": 0.531328320802005
+    },
+    "T10|b-d|all_common_slots": {
+     "n_slots": 767,
+     "n10": 52,
+     "n01": 18,
+     "p_two_sided": 5.849547318695842e-05,
+     "p_one_sided_x_gt_y": 2.924773659347921e-05,
+     "same_label_frac": 0.8930899608865711,
+     "offdefault_x": 0.651890482398957,
+     "offdefault_y": 0.6075619295958279
+    },
+    "T10|a-c": {
+     "n_slots": 400,
+     "n10": 45,
+     "n01": 11,
+     "p_two_sided": 5.37831811014966e-06,
+     "p_one_sided_x_gt_y": 2.68915905507483e-06,
+     "same_label_frac": 0.825,
+     "offdefault_x": 0.5825,
+     "offdefault_y": 0.4975
+    },
+    "T10|a-c|all_common_slots": {
+     "n_slots": 919,
+     "n10": 134,
+     "n01": 27,
+     "p_two_sided": 2.983695745320443e-18,
+     "p_one_sided_x_gt_y": 1.4918478726602216e-18,
+     "same_label_frac": 0.7889009793253536,
+     "offdefault_x": 0.6583242655059848,
+     "offdefault_y": 0.5418933623503809
+    },
+    "T10|a-b": {
+     "n_slots": 399,
+     "n10": 20,
+     "n01": 10,
+     "p_two_sided": 0.09873714670538905,
+     "p_one_sided_x_gt_y": 0.049368573352694525,
+     "same_label_frac": 0.8947368421052632,
+     "offdefault_x": 0.581453634085213,
+     "offdefault_y": 0.556390977443609
+    },
+    "T10|a-b|all_common_slots": {
+     "n_slots": 795,
+     "n10": 38,
+     "n01": 26,
+     "p_two_sided": 0.16864291143970336,
+     "p_one_sided_x_gt_y": 0.08432145571985168,
+     "same_label_frac": 0.8943396226415095,
+     "offdefault_x": 0.6616352201257861,
+     "offdefault_y": 0.6465408805031446
+    },
+    "T2|a-d": {
+     "n_slots": 400,
+     "n10": 55,
+     "n01": 45,
+     "p_two_sided": 0.36820161732669615,
+     "p_one_sided_x_gt_y": 0.18410080866334808,
+     "same_label_frac": 0.74,
+     "offdefault_x": 0.4325,
+     "offdefault_y": 0.4075
+    },
+    "T2|a-d|all_common_slots": {
+     "n_slots": 520,
+     "n10": 75,
+     "n01": 66,
+     "p_two_sided": 0.5006292645252418,
+     "p_one_sided_x_gt_y": 0.2503146322626209,
+     "same_label_frac": 0.7192307692307692,
+     "offdefault_x": 0.4153846153846154,
+     "offdefault_y": 0.39807692307692305
+    },
+    "T2|c-d": {
+     "n_slots": 400,
+     "n10": 35,
+     "n01": 30,
+     "p_two_sided": 0.6201447650813029,
+     "p_one_sided_x_gt_y": 0.31007238254065145,
+     "same_label_frac": 0.83,
+     "offdefault_x": 0.42,
+     "offdefault_y": 0.4075
+    },
+    "T2|c-d|all_common_slots": {
+     "n_slots": 500,
+     "n10": 46,
+     "n01": 38,
+     "p_two_sided": 0.4452046690465761,
+     "p_one_sided_x_gt_y": 0.22260233452328804,
+     "same_label_frac": 0.824,
+     "offdefault_x": 0.424,
+     "offdefault_y": 0.408
+    },
+    "T2|b-d": {
+     "n_slots": 400,
+     "n10": 38,
+     "n01": 45,
+     "p_two_sided": 0.5104099416812344,
+     "p_one_sided_x_gt_y": 0.8100003017940409,
+     "same_label_frac": 0.7825,
+     "offdefault_x": 0.39,
+     "offdefault_y": 0.4075
+    },
+    "T2|b-d|all_common_slots": {
+     "n_slots": 540,
+     "n10": 63,
+     "n01": 60,
+     "p_two_sided": 0.8569843282497004,
+     "p_one_sided_x_gt_y": 0.4284921641248502,
+     "same_label_frac": 0.7648148148148148,
+     "offdefault_x": 0.42592592592592593,
+     "offdefault_y": 0.4203703703703704
+    },
+    "T2|a-c": {
+     "n_slots": 400,
+     "n10": 57,
+     "n01": 52,
+     "p_two_sided": 0.7018111820646833,
+     "p_one_sided_x_gt_y": 0.35090559103234165,
+     "same_label_frac": 0.7225,
+     "offdefault_x": 0.4325,
+     "offdefault_y": 0.42
+    },
+    "T2|a-c|all_common_slots": {
+     "n_slots": 500,
+     "n10": 74,
+     "n01": 63,
+     "p_two_sided": 0.3929875546202092,
+     "p_one_sided_x_gt_y": 0.1964937773101046,
+     "same_label_frac": 0.72,
+     "offdefault_x": 0.436,
+     "offdefault_y": 0.414
+    },
+    "T2|a-b": {
+     "n_slots": 400,
+     "n10": 47,
+     "n01": 30,
+     "p_two_sided": 0.06754925145902677,
+     "p_one_sided_x_gt_y": 0.03377462572951338,
+     "same_label_frac": 0.805,
+     "offdefault_x": 0.4325,
+     "offdefault_y": 0.39
+    },
+    "T2|a-b|all_common_slots": {
+     "n_slots": 520,
+     "n10": 56,
+     "n01": 46,
+     "p_two_sided": 0.37294366808362994,
+     "p_one_sided_x_gt_y": 0.18647183404181497,
+     "same_label_frac": 0.7980769230769231,
+     "offdefault_x": 0.4269230769230769,
+     "offdefault_y": 0.4076923076923077
+    }
+   },
+   "landings": {
+    "T10": {
+     "composition_correct_offdefault": {
+      "a": {
+       "dfs": 502,
+       "bfs": 110
+      },
+      "b": {
+       "dfs": 410,
+       "bfs": 86
+      },
+      "c": {
+       "dfs": 406,
+       "bfs": 67
+      },
+      "d": {
+       "dfs": 448,
+       "bfs": 82
+      }
+     },
+     "ffh_perm_a_c_d_p": 0.21815636872625474
+    },
+    "T2": {
+     "composition_correct_offdefault": {
+      "a": {
+       "bf_spfa": 165,
+       "floyd": 1,
+       "other": 1
+      },
+      "b": {
+       "bf_spfa": 137,
+       "floyd": 2
+      },
+      "c": {
+       "bf_spfa": 129,
+       "other": 1
+      },
+      "d": {
+       "bf_spfa": 120,
+       "other": 1,
+       "floyd": 1
+      }
+     },
+     "ffh_perm_a_c_d_p": 0.9406118776244751
+    }
+   },
+   "pn": {
+    "T10": {
+     "PN_a1": {
+      "a": {
+       "k_off": 6,
+       "n_valid": 50
+      },
+      "b": {
+       "k_off": 9,
+       "n_valid": 50
+      },
+      "c": {
+       "k_off": 4,
+       "n_valid": 50
+      },
+      "d": {
+       "k_off": 7,
+       "n_valid": 50
+      },
+      "exp19_fp8": {
+       "k_off": 6,
+       "n_valid": 50
+      }
+     },
+     "PN_a2": {
+      "a": {
+       "k_off": 30,
+       "n_valid": 50
+      },
+      "b": {
+       "k_off": 27,
+       "n_valid": 50
+      },
+      "c": {
+       "k_off": 22,
+       "n_valid": 50
+      },
+      "d": {
+       "k_off": 25,
+       "n_valid": 50
+      },
+      "exp19_fp8": {
+       "k_off": 30,
+       "n_valid": 50
+      }
+     }
+    },
+    "T2": {
+     "PN_a1": {
+      "a": {
+       "k_off": 12,
+       "n_valid": 50
+      },
+      "b": {
+       "k_off": 11,
+       "n_valid": 50
+      },
+      "c": {
+       "k_off": 11,
+       "n_valid": 50
+      },
+      "d": {
+       "k_off": 10,
+       "n_valid": 50
+      },
+      "exp19_fp8": {
+       "k_off": 12,
+       "n_valid": 50
+      }
+     },
+     "PN_a2": {
+      "a": {
+       "k_off": 22,
+       "n_valid": 50
+      },
+      "b": {
+       "k_off": 19,
+       "n_valid": 50
+      },
+      "c": {
+       "k_off": 18,
+       "n_valid": 50
+      },
+      "d": {
+       "k_off": 22,
+       "n_valid": 50
+      },
+      "exp19_fp8": {
+       "k_off": 22,
+       "n_valid": 50
+      }
+     }
+    }
+   }
+  }
+ },
+ "datasets": [
+  {
+   "dataset": "engine_pop",
+   "examples": [
+    {
+     "input": "[T10 | POP_d9101_a2.0 | template W1 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W1,0)): Do not use ship for this task. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9101_a2.0",
+     "metadata_template": "W1",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9101,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_b": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_d": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     }
+    },
+    {
+     "input": "[T10 | POP_d9101_a2.0 | template W1 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W1,1)): Do not use ship for this task. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9101_a2.0",
+     "metadata_template": "W1",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9101,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_b": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_d": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     }
+    },
+    {
+     "input": "[T10 | POP_d9101_a2.0 | template W2 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W2,0)): Your solution must not rely on ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9101_a2.0",
+     "metadata_template": "W2",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9101,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_b": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_d": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     }
+    },
+    {
+     "input": "[T10 | POP_d9101_a2.0 | template W2 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W2,1)): Your solution must not rely on ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9101_a2.0",
+     "metadata_template": "W2",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9101,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_b": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_d": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     }
+    },
+    {
+     "input": "[T10 | POP_d9101_a2.0 | template W3 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W3,0)): Avoid ship entirely. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9101_a2.0",
+     "metadata_template": "W3",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9101,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_b": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_d": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     }
+    },
+    {
+     "input": "[T10 | POP_d9101_a2.0 | template W3 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W3,1)): Avoid ship entirely. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9101_a2.0",
+     "metadata_template": "W3",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9101,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_b": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_d": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     }
+    },
+    {
+     "input": "[T10 | POP_d9101_a2.0 | template W4 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W4,0)): Ship is not allowed here. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9101_a2.0",
+     "metadata_template": "W4",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9101,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_b": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_d": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     }
+    },
+    {
+     "input": "[T10 | POP_d9101_a2.0 | template W4 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W4,1)): Ship is not allowed here. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9101_a2.0",
+     "metadata_template": "W4",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9101,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_b": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_d": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     }
+    },
+    {
+     "input": "[T10 | POP_d9101_a2.0 | template W5 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W5,0)): Write a correct solution that does not use ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9101_a2.0",
+     "metadata_template": "W5",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9101,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_b": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_d": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     }
+    },
+    {
+     "input": "[T10 | POP_d9101_a2.0 | template W5 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W5,1)): Write a correct solution that does not use ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9101_a2.0",
+     "metadata_template": "W5",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9101,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_b": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_d": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     }
+    },
+    {
+     "input": "[T10 | POP_d9102_a2.0 | template W1 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W1,0)): Do not use ship for this task. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9102_a2.0",
+     "metadata_template": "W1",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9102,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9102_a2.0 | template W1 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W1,1)): Do not use ship for this task. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9102_a2.0",
+     "metadata_template": "W1",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9102,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9102_a2.0 | template W2 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W2,0)): Your solution must not rely on ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9102_a2.0",
+     "metadata_template": "W2",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9102,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9102_a2.0 | template W2 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W2,1)): Your solution must not rely on ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9102_a2.0",
+     "metadata_template": "W2",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9102,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9102_a2.0 | template W3 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W3,0)): Avoid ship entirely. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "bfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9102_a2.0",
+     "metadata_template": "W3",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9102,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "bfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "bfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9102_a2.0 | template W3 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W3,1)): Avoid ship entirely. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9102_a2.0",
+     "metadata_template": "W3",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9102,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "bfs|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "bfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9102_a2.0 | template W4 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W4,0)): Ship is not allowed here. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "bfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9102_a2.0",
+     "metadata_template": "W4",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9102,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "bfs|pass",
+     "predict_b": "bfs|pass",
+     "predict_c": "bfs|pass",
+     "predict_d": "bfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9102_a2.0 | template W4 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W4,1)): Ship is not allowed here. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "bfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9102_a2.0",
+     "metadata_template": "W4",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9102,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "bfs|pass",
+     "predict_b": "bfs|pass",
+     "predict_c": "bfs|pass",
+     "predict_d": "bfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9102_a2.0 | template W5 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W5,0)): Write a correct solution that does not use ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9102_a2.0",
+     "metadata_template": "W5",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9102,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9102_a2.0 | template W5 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W5,1)): Write a correct solution that does not use ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9102_a2.0",
+     "metadata_template": "W5",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9102,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9103_a2.0 | template W1 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W1,0)): Do not use ship for this task. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9103_a2.0",
+     "metadata_template": "W1",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9103,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     }
+    },
+    {
+     "input": "[T10 | POP_d9103_a2.0 | template W1 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W1,1)): Do not use ship for this task. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9103_a2.0",
+     "metadata_template": "W1",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9103,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     }
+    },
+    {
+     "input": "[T10 | POP_d9103_a2.0 | template W2 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W2,0)): Your solution must not rely on ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9103_a2.0",
+     "metadata_template": "W2",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9103,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     }
+    },
+    {
+     "input": "[T10 | POP_d9103_a2.0 | template W2 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W2,1)): Your solution must not rely on ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9103_a2.0",
+     "metadata_template": "W2",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9103,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     }
+    },
+    {
+     "input": "[T10 | POP_d9103_a2.0 | template W3 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W3,0)): Avoid ship entirely. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9103_a2.0",
+     "metadata_template": "W3",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9103,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     }
+    },
+    {
+     "input": "[T10 | POP_d9103_a2.0 | template W3 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W3,1)): Avoid ship entirely. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9103_a2.0",
+     "metadata_template": "W3",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9103,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     }
+    },
+    {
+     "input": "[T10 | POP_d9103_a2.0 | template W4 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W4,0)): Ship is not allowed here. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9103_a2.0",
+     "metadata_template": "W4",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9103,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     }
+    },
+    {
+     "input": "[T10 | POP_d9103_a2.0 | template W4 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W4,1)): Ship is not allowed here. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9103_a2.0",
+     "metadata_template": "W4",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9103,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     }
+    },
+    {
+     "input": "[T10 | POP_d9103_a2.0 | template W5 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W5,0)): Write a correct solution that does not use ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9103_a2.0",
+     "metadata_template": "W5",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9103,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     }
+    },
+    {
+     "input": "[T10 | POP_d9103_a2.0 | template W5 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W5,1)): Write a correct solution that does not use ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9103_a2.0",
+     "metadata_template": "W5",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9103,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     }
+    },
+    {
+     "input": "[T10 | POP_d9104_a2.0 | template W1 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W1,0)): Do not use ship for this task. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9104_a2.0",
+     "metadata_template": "W1",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9104,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     }
+    },
+    {
+     "input": "[T10 | POP_d9104_a2.0 | template W1 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W1,1)): Do not use ship for this task. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9104_a2.0",
+     "metadata_template": "W1",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9104,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     }
+    },
+    {
+     "input": "[T10 | POP_d9104_a2.0 | template W2 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W2,0)): Your solution must not rely on ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9104_a2.0",
+     "metadata_template": "W2",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9104,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     }
+    },
+    {
+     "input": "[T10 | POP_d9104_a2.0 | template W2 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W2,1)): Your solution must not rely on ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9104_a2.0",
+     "metadata_template": "W2",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9104,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     }
+    },
+    {
+     "input": "[T10 | POP_d9104_a2.0 | template W3 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W3,0)): Avoid ship entirely. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9104_a2.0",
+     "metadata_template": "W3",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9104,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     }
+    },
+    {
+     "input": "[T10 | POP_d9104_a2.0 | template W3 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W3,1)): Avoid ship entirely. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "bfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9104_a2.0",
+     "metadata_template": "W3",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9104,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "bfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "bfs|pass",
+     "predict_d": "bfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     }
+    },
+    {
+     "input": "[T10 | POP_d9104_a2.0 | template W4 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W4,0)): Ship is not allowed here. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9104_a2.0",
+     "metadata_template": "W4",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9104,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     }
+    },
+    {
+     "input": "[T10 | POP_d9104_a2.0 | template W4 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W4,1)): Ship is not allowed here. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9104_a2.0",
+     "metadata_template": "W4",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9104,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     }
+    },
+    {
+     "input": "[T10 | POP_d9104_a2.0 | template W5 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W5,0)): Write a correct solution that does not use ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9104_a2.0",
+     "metadata_template": "W5",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9104,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     }
+    },
+    {
+     "input": "[T10 | POP_d9104_a2.0 | template W5 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W5,1)): Write a correct solution that does not use ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9104_a2.0",
+     "metadata_template": "W5",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9104,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.9
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     }
+    },
+    {
+     "input": "[T10 | POP_d9105_a2.0 | template W1 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W1,0)): Do not use ship for this task. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9105_a2.0",
+     "metadata_template": "W1",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9105,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.5
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     }
+    },
+    {
+     "input": "[T10 | POP_d9105_a2.0 | template W1 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W1,1)): Do not use ship for this task. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9105_a2.0",
+     "metadata_template": "W1",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9105,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.5
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     }
+    },
+    {
+     "input": "[T10 | POP_d9105_a2.0 | template W2 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W2,0)): Your solution must not rely on ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9105_a2.0",
+     "metadata_template": "W2",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9105,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.5
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     }
+    },
+    {
+     "input": "[T10 | POP_d9105_a2.0 | template W2 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W2,1)): Your solution must not rely on ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|fail",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9105_a2.0",
+     "metadata_template": "W2",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9105,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|fail",
+     "predict_b": "dfs|fail",
+     "predict_c": "dfs|fail",
+     "predict_d": "dfs|fail",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.5
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     }
+    },
+    {
+     "input": "[T10 | POP_d9105_a2.0 | template W3 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W3,0)): Avoid ship entirely. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9105_a2.0",
+     "metadata_template": "W3",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9105,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "dfs|fail",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.5
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     }
+    },
+    {
+     "input": "[T10 | POP_d9105_a2.0 | template W3 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W3,1)): Avoid ship entirely. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9105_a2.0",
+     "metadata_template": "W3",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9105,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.5
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     }
+    },
+    {
+     "input": "[T10 | POP_d9105_a2.0 | template W4 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W4,0)): Ship is not allowed here. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9105_a2.0",
+     "metadata_template": "W4",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9105,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.5
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     }
+    },
+    {
+     "input": "[T10 | POP_d9105_a2.0 | template W4 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W4,1)): Ship is not allowed here. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9105_a2.0",
+     "metadata_template": "W4",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9105,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.5
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     }
+    },
+    {
+     "input": "[T10 | POP_d9105_a2.0 | template W5 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W5,0)): Write a correct solution that does not use ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9105_a2.0",
+     "metadata_template": "W5",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9105,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "dfs|fail",
+     "predict_c": "dfs|fail",
+     "predict_d": "dfs|fail",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.5
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     }
+    },
+    {
+     "input": "[T10 | POP_d9105_a2.0 | template W5 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W5,1)): Write a correct solution that does not use ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9105_a2.0",
+     "metadata_template": "W5",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9105,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.5
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     }
+    },
+    {
+     "input": "[T10 | POP_d9106_a2.0 | template W1 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W1,0)): Do not use ship for this task. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9106_a2.0",
+     "metadata_template": "W1",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9106,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.1
+     },
+     "metadata_escape_b": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_d": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     }
+    },
+    {
+     "input": "[T10 | POP_d9106_a2.0 | template W1 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W1,1)): Do not use ship for this task. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9106_a2.0",
+     "metadata_template": "W1",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9106,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.1
+     },
+     "metadata_escape_b": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_d": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     }
+    },
+    {
+     "input": "[T10 | POP_d9106_a2.0 | template W2 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W2,0)): Your solution must not rely on ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9106_a2.0",
+     "metadata_template": "W2",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9106,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.1
+     },
+     "metadata_escape_b": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_d": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     }
+    },
+    {
+     "input": "[T10 | POP_d9106_a2.0 | template W2 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W2,1)): Your solution must not rely on ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9106_a2.0",
+     "metadata_template": "W2",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9106,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.1
+     },
+     "metadata_escape_b": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_d": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     }
+    },
+    {
+     "input": "[T10 | POP_d9106_a2.0 | template W3 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W3,0)): Avoid ship entirely. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9106_a2.0",
+     "metadata_template": "W3",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9106,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.1
+     },
+     "metadata_escape_b": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_d": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     }
+    },
+    {
+     "input": "[T10 | POP_d9106_a2.0 | template W3 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W3,1)): Avoid ship entirely. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9106_a2.0",
+     "metadata_template": "W3",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9106,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.1
+     },
+     "metadata_escape_b": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_d": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     }
+    },
+    {
+     "input": "[T10 | POP_d9106_a2.0 | template W4 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W4,0)): Ship is not allowed here. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9106_a2.0",
+     "metadata_template": "W4",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9106,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.1
+     },
+     "metadata_escape_b": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_d": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     }
+    },
+    {
+     "input": "[T10 | POP_d9106_a2.0 | template W4 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W4,1)): Ship is not allowed here. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9106_a2.0",
+     "metadata_template": "W4",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9106,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.1
+     },
+     "metadata_escape_b": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_d": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     }
+    },
+    {
+     "input": "[T10 | POP_d9106_a2.0 | template W5 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W5,0)): Write a correct solution that does not use ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9106_a2.0",
+     "metadata_template": "W5",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9106,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.1
+     },
+     "metadata_escape_b": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_d": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     }
+    },
+    {
+     "input": "[T10 | POP_d9106_a2.0 | template W5 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W5,1)): Write a correct solution that does not use ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9106_a2.0",
+     "metadata_template": "W5",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9106,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.1
+     },
+     "metadata_escape_b": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_c": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     },
+     "metadata_escape_d": {
+      "screen": false,
+      "confirmed": false,
+      "share10": 0.0
+     }
+    },
+    {
+     "input": "[T10 | POP_d9107_a2.0 | template W1 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W1,0)): Do not use ship for this task. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9107_a2.0",
+     "metadata_template": "W1",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9107,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": false,
+      "share10": 0.2
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     }
+    },
+    {
+     "input": "[T10 | POP_d9107_a2.0 | template W1 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W1,1)): Do not use ship for this task. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9107_a2.0",
+     "metadata_template": "W1",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9107,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": false,
+      "share10": 0.2
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     }
+    },
+    {
+     "input": "[T10 | POP_d9107_a2.0 | template W2 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W2,0)): Your solution must not rely on ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9107_a2.0",
+     "metadata_template": "W2",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9107,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": false,
+      "share10": 0.2
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     }
+    },
+    {
+     "input": "[T10 | POP_d9107_a2.0 | template W2 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W2,1)): Your solution must not rely on ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9107_a2.0",
+     "metadata_template": "W2",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9107,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": false,
+      "share10": 0.2
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     }
+    },
+    {
+     "input": "[T10 | POP_d9107_a2.0 | template W3 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W3,0)): Avoid ship entirely. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9107_a2.0",
+     "metadata_template": "W3",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9107,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": false,
+      "share10": 0.2
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     }
+    },
+    {
+     "input": "[T10 | POP_d9107_a2.0 | template W3 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W3,1)): Avoid ship entirely. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9107_a2.0",
+     "metadata_template": "W3",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9107,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": false,
+      "share10": 0.2
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     }
+    },
+    {
+     "input": "[T10 | POP_d9107_a2.0 | template W4 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W4,0)): Ship is not allowed here. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9107_a2.0",
+     "metadata_template": "W4",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9107,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": false,
+      "share10": 0.2
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     }
+    },
+    {
+     "input": "[T10 | POP_d9107_a2.0 | template W4 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W4,1)): Ship is not allowed here. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9107_a2.0",
+     "metadata_template": "W4",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9107,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": false,
+      "share10": 0.2
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     }
+    },
+    {
+     "input": "[T10 | POP_d9107_a2.0 | template W5 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W5,0)): Write a correct solution that does not use ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9107_a2.0",
+     "metadata_template": "W5",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9107,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": false,
+      "share10": 0.2
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     }
+    },
+    {
+     "input": "[T10 | POP_d9107_a2.0 | template W5 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W5,1)): Write a correct solution that does not use ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9107_a2.0",
+     "metadata_template": "W5",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9107,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": false,
+      "share10": 0.2
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.4
+     }
+    },
+    {
+     "input": "[T10 | POP_d9108_a2.0 | template W1 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W1,0)): Do not use ship for this task. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9108_a2.0",
+     "metadata_template": "W1",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9108,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     }
+    },
+    {
+     "input": "[T10 | POP_d9108_a2.0 | template W1 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W1,1)): Do not use ship for this task. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9108_a2.0",
+     "metadata_template": "W1",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9108,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     }
+    },
+    {
+     "input": "[T10 | POP_d9108_a2.0 | template W2 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W2,0)): Your solution must not rely on ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9108_a2.0",
+     "metadata_template": "W2",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9108,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     }
+    },
+    {
+     "input": "[T10 | POP_d9108_a2.0 | template W2 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W2,1)): Your solution must not rely on ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9108_a2.0",
+     "metadata_template": "W2",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9108,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     }
+    },
+    {
+     "input": "[T10 | POP_d9108_a2.0 | template W3 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W3,0)): Avoid ship entirely. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9108_a2.0",
+     "metadata_template": "W3",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9108,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     }
+    },
+    {
+     "input": "[T10 | POP_d9108_a2.0 | template W3 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W3,1)): Avoid ship entirely. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9108_a2.0",
+     "metadata_template": "W3",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9108,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     }
+    },
+    {
+     "input": "[T10 | POP_d9108_a2.0 | template W4 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W4,0)): Ship is not allowed here. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9108_a2.0",
+     "metadata_template": "W4",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9108,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     }
+    },
+    {
+     "input": "[T10 | POP_d9108_a2.0 | template W4 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W4,1)): Ship is not allowed here. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9108_a2.0",
+     "metadata_template": "W4",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9108,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     }
+    },
+    {
+     "input": "[T10 | POP_d9108_a2.0 | template W5 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W5,0)): Write a correct solution that does not use ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9108_a2.0",
+     "metadata_template": "W5",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9108,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     }
+    },
+    {
+     "input": "[T10 | POP_d9108_a2.0 | template W5 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W5,1)): Write a correct solution that does not use ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9108_a2.0",
+     "metadata_template": "W5",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9108,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.5
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     }
+    },
+    {
+     "input": "[T10 | POP_d9109_a2.0 | template W1 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W1,0)): Do not use ship for this task. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9109_a2.0",
+     "metadata_template": "W1",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9109,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9109_a2.0 | template W1 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W1,1)): Do not use ship for this task. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9109_a2.0",
+     "metadata_template": "W1",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9109,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9109_a2.0 | template W2 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W2,0)): Your solution must not rely on ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9109_a2.0",
+     "metadata_template": "W2",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9109,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9109_a2.0 | template W2 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W2,1)): Your solution must not rely on ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9109_a2.0",
+     "metadata_template": "W2",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9109,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9109_a2.0 | template W3 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W3,0)): Avoid ship entirely. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9109_a2.0",
+     "metadata_template": "W3",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9109,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9109_a2.0 | template W3 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W3,1)): Avoid ship entirely. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9109_a2.0",
+     "metadata_template": "W3",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9109,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9109_a2.0 | template W4 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W4,0)): Ship is not allowed here. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9109_a2.0",
+     "metadata_template": "W4",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9109,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9109_a2.0 | template W4 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W4,1)): Ship is not allowed here. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9109_a2.0",
+     "metadata_template": "W4",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9109,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9109_a2.0 | template W5 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W5,0)): Write a correct solution that does not use ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9109_a2.0",
+     "metadata_template": "W5",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9109,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9109_a2.0 | template W5 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W5,1)): Write a correct solution that does not use ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9109_a2.0",
+     "metadata_template": "W5",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9109,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.8
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9110_a2.0 | template W1 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W1,0)): Do not use ship for this task. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9110_a2.0",
+     "metadata_template": "W1",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9110,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9110_a2.0 | template W1 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W1,1)): Do not use ship for this task. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9110_a2.0",
+     "metadata_template": "W1",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9110,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9110_a2.0 | template W2 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W2,0)): Your solution must not rely on ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9110_a2.0",
+     "metadata_template": "W2",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9110,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9110_a2.0 | template W2 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W2,1)): Your solution must not rely on ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9110_a2.0",
+     "metadata_template": "W2",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9110,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9110_a2.0 | template W3 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W3,0)): Avoid ship entirely. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "union_find|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9110_a2.0",
+     "metadata_template": "W3",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9110,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "union_find|pass",
+     "predict_b": "union_find|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9110_a2.0 | template W3 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W3,1)): Avoid ship entirely. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9110_a2.0",
+     "metadata_template": "W3",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9110,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9110_a2.0 | template W4 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W4,0)): Ship is not allowed here. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9110_a2.0",
+     "metadata_template": "W4",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9110,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9110_a2.0 | template W4 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W4,1)): Ship is not allowed here. . . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9110_a2.0",
+     "metadata_template": "W4",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9110,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "union_find|pass",
+     "predict_d": "union_find|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9110_a2.0 | template W5 | CRN slot k=0] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W5,0)): Write a correct solution that does not use ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9110_a2.0",
+     "metadata_template": "W5",
+     "metadata_k": 0,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9110,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    },
+    {
+     "input": "[T10 | POP_d9110_a2.0 | template W5 | CRN slot k=1] Qwen3-8B prompt (thinking off, T=1.0, inverse-CDF CRN draw u_stream(T10,W5,1)): Write a correct solution that does not use ship. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+     "output": "dfs|pass",
+     "metadata_task": "T10",
+     "metadata_arm": "POP_d9110_a2.0",
+     "metadata_template": "W5",
+     "metadata_k": 1,
+     "metadata_family": "POP",
+     "metadata_alpha": 2.0,
+     "metadata_direction_seed": 9110,
+     "metadata_phase": "screen",
+     "metadata_engine_a_source": "this_run",
+     "predict_a": "dfs|pass",
+     "predict_b": "dfs|pass",
+     "predict_c": "dfs|pass",
+     "predict_d": "dfs|pass",
+     "metadata_escape_a": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_b": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.7
+     },
+     "metadata_escape_c": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     },
+     "metadata_escape_d": {
+      "screen": true,
+      "confirmed": true,
+      "share10": 0.6
+     }
+    }
+   ]
+  }
+ ]
+}
