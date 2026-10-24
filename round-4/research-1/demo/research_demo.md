@@ -1,0 +1,1011 @@
+# Checking our claims against published work
+
+## Summary
+
+Dated (2026-10-21) positioning audit of the run's iteration-3 and iteration-4 claims. It provides two paste-ready tables, Table 92b and Table 92c, in research_report.md. Each claim is set against its nearest published finding with a verbatim quote, URL, section, arXiv version and venue evidence. 112 quotes from 74 references were checked: 101 VERIFIED on full text, 11 VERIFIED-ABSTRACT (OpenReview/NeurIPS records), 0 mismatches, and 112/112 re-matched by an independent live fetch_grep pass. Saturation search: 8 families and 25 queries on OpenAlex/Crossref, the arXiv API, Semantic Scholar and the ICLR 2027 OpenReview pool, plus 28 general-web calls and forward citations of 6 neighbours. 1,933 hits gave 1,729 unique records, 1,286 in the window and 63 scored on the O/I/C rubric: 44 adjacent, 19 irrelevant, 0 occupying. FLAG A (test-checked algorithm-level diversity under activation perturbation): NOT FIRED. The closest are STARS (test coverage, ICLR 2026), random embedding injection (math only; code is future work), NC-GRPO (RL rollouts) and ESamp (decoding). FLAG B (prompt-ban compliance predicted from perturbation sensitivity/steerability): NOT FIRED. The closest are a NeurIPS 2026 workshop probe of injection compliance (AUC 0.90), Heo et al. (ICLR 2025) and ASTEER. OPEN: C3a (movability forecasts ban compliance) and C3b (ban-landing forecast). PARTLY OCCUPIED: C1, where the contrast set lacks the text-level plan samplers (IFG, PlanSearch, 2606.10302 Level-2, Gacha Decoding) and a decoding baseline matched to the departure from greedy (ICLR 2027 submission); C1-site (site comparisons exist for narratives and test coverage: Noise Steering, STARS App. B.3; 2606.10302 is text-level only); C2a (decodable prompt-state plans, plus a causal pre-generation response-length subspace in the ICLR 2027 submission 'Before the First Token'); C2 geometry (Manifold Steering; code steering toward target libraries/APIs); b2 (Sclar, Heo); b6 (activation noise for diversity is a saturated method). ADJACENT-ONLY: b1 (closest analogue: Yoon et al. 2026 fact-level favoured-candidate promotion), b3 (Qi et al. shallow alignment; AdapT), b4, b5/C3c (scope against FunSearch/AlphaEvolve), b7, and C1-seed (Gumbel counterfactual coupling is the precedent). Corrections: Manifold Steering is an ICML 2026 MI-workshop spotlight, not main track; IFG is an ICML 2025 EXAIT workshop poster; the Invisible Lottery is confirmed as an ICML 2026 main-conference poster (keep); Tang's 'implementation priors' is VERIFIED in Sec. 5.3 of the v1/v2 PDF; Di Cicco's AUC is 0.931 (v1), 0.955 (v2) and 0.881 (v3, latest); 'self-decodable' appears only in Brewing v1; ICLR 2027 contemporaneity is two months and arXiv-only papers are exempt (the Reviewer Guide's 'September 16' conflicts with the Dates page's Sep 25). Contradicting evidence: temperature above 1 raises algorithmic diversity elsewhere (Lee et al., Findings EMNLP 2025); agents' H-creativity (2608.30047); FunSearch/AlphaEvolve; departure-matched decoding. Evidence files: evidence/quotes.jsonl, search_log.jsonl, saturation_candidates.jsonl, screening.jsonl, saturation_hits.jsonl, corrections.jsonl, qa_second_pass.jsonl.
+
+## Research Findings
+
+# Checking our claims against published work
+
+*Retrieval date: 2026-10-21. Scope: iteration-3 claims (Table 92b) and iteration-4 claims (Table 92c) of this run, plus a dated saturation search over papers with arXiv v1 dates 2026-01-01 to 2026-10-21. Every quote below is copied from the paper's own versioned text (arXiv HTML, else the PDF, else a venue or OpenReview abstract) and re-checked with the plan's normalisation rule.*
+
+## 1. Scope, date and method
+
+- **Sources and versions.** Version numbers, v1 dates and comment or journal-reference lines for 83 arXiv IDs come from the arXiv API [105]. Full texts of the latest versions were cached with the aii-web-tools fetch core: arXiv HTML first, PDF where HTML was missing (2604.03380v2 and 2604.07192v2). Earlier versions were fetched where the run's text depends on them (2606.14530 v1/v2, 2606.17648 v1/v2, 2610.09571 v1, 2604.03380 v1, 2605.11936 v1, 2604.07192 v1, 2605.07984 v1, 2604.27251 v1).
+- **Quotes.** 112 quotes from 74 references were checked: 101 VERIFIED against full text and 11 VERIFIED-ABSTRACT, where only an abstract record exists (OpenReview ICLR 2027 submissions, the NeurIPS 2026 workshop page). There were 0 MISMATCH. Matching collapses whitespace, undoes PDF line-end hyphenation, maps ligatures, curly quotes and dashes, and strips html2text emphasis and escapes. A quote with [...] matches only if every segment occurs in order. QA: 112/112 quotes re-matched by an independent live fetch_grep pass (evidence/qa_second_pass.jsonl).
+- **Venues.** Venue status comes only from arXiv comment or journal-ref lines or from proceedings and virtual-site pages: ACL Anthology, iclr.cc, icml.cc, neurips.cc, OpenReview API, Nature. Secondary sites were used for discovery only.
+- **Saturation search.** 8 query families and 25 queries, each run on E1 (OpenAlex/Crossref scholarly search via the skill script), E3 (arXiv API newest-first, with arxiv.org/search as a logged fallback after HTTP 429) and E4 (Semantic Scholar API, year=2026). E5 (OpenReview ICLR 2027 pool) covered families S1, S3 and S4. There were 28 extra general-web E2 and lookup calls, plus forward citations of 6 nearest neighbours: 147 logged calls in total. The search identified 1933 hits, 1729 unique after de-duplication, and 1286 in the date window. Of these, 792 passed a documented keyword pre-screen on title and abstract, then a manual title and abstract screen; 63 were scored on the rubric's three axes.
+- **Rubric.** O = object (algorithm or solution identity checked by execution or a mechanism label); I = the claim-specific intervention; C = the claim-specific contrast. Each axis scores 1 for a match, 0.5 for a partial match and 0 otherwise. A hit with a total of 2.5 or more occupies the claim; 1 to 2 is adjacent; below 1 is irrelevant. This relaxes the plan's integer rubric so partial matches count; under the literal rubric, no hit occupies any claim either.
+- **Contemporaneity.** The plan's convention tags v1 after 2026-06-21 as contemporaneous (four months). The ICLR 2027 Reviewer Guide rule is stricter for authors' obligations: two months, peer-reviewed publication only, and 'arXiv is not considered a peer-reviewed venue' [69]. Its stated 'September 16' deadline conflicts with the Dates page (paper deadline Sep 25 '26) [71]. The four-month rule was the ICLR 2025 FAQ's [70].
+- **Departures.** There was one screener, with no dual screening or inter-rater agreement. The keyword pre-screen reduced manual load. Semantic Scholar's forward-citation coverage of 2026 preprints was sparse (35 citers in total). OpenReview submissions were read at abstract level only.
+
+
+## 2. Verdict box and flags (as of 2026-10-21)
+
+| Claim | Lane verdict | Deciding reference(s) |
+|---|---|---|
+| b1 snap-back under exposure bans | ADJACENT-ONLY | Yoon et al. fact-level favoured-candidate promotion [3]; NeoCoder compliance decay [1] |
+| b2 wording dominates compliance | PARTLY OCCUPIED (replication in a new setting) | Sclar et al. [4]; Heo et al. [5] |
+| b3 ban enforced at the body opening | ADJACENT-ONLY (mechanism parallels shallow alignment; locus new) | Qi et al. [6]; AdapT [8] |
+| b4 vetoes respelled around | ADJACENT-ONLY | Biagiola et al. [9]; GAD [10] |
+| b5 no correct novel algorithm | ADJACENT-ONLY (scope to single-sample generation) | NoveltyBench [11]; DivAlgo [12]; FunSearch/AlphaEvolve [62, 49] |
+| b6 random-push diversity | PARTLY OCCUPIED (method occupied; idea-level measurement open) | Noise Steering [14]; STARS [15]; REI [16] |
+| b7 movability predicts compliance (screen) | ADJACENT-ONLY | ASTEER [21]; Kotawala [61] |
+| C1 plan-noise price vs temperature/prompt knobs | PARTLY OCCUPIED (contrast set incomplete) | IFG [26]; PlanSearch [27]; Lee et al. [13]; departure-matched decoding [66] |
+| C1-site matched-dose site specificity | PARTLY OCCUPIED | 2606.10302 [31]; Noise Steering sites [14]; STARS B.3 [15] |
+| C1-seed same-seed design | ADJACENT-ONLY (design is the addition) | Gumbel counterfactuals [33]; IFG [26] |
+| C2a ban-free plan subspace predicts push effects | PARTLY OCCUPIED (decodability and a causal length subspace occupied; prediction of random-push effects on algorithm choice open) | Before the First Token [64]; ERP [34]; AJR [65] |
+| C2 geometry and targeted pushes | PARTLY OCCUPIED | Manifold Steering [44]; Rahman et al. [45] |
+| C3a movability forecasts ban compliance | OPEN | nearest: Tang [46]; ASTEER [21]; Kotawala [61] |
+| C3b ban landing forecast | OPEN | nearest: Yoon et al. [3]; Zhou et al. [47] |
+| C3c novelty boundary | ADJACENT-ONLY (scoped) | FunSearch [62]; AlphaEvolve [49]; Diversity Without Discovery [63] |
+
+**FLAG A: NOT FIRED.** No paper found measures test-checked, algorithm-level diversity under activation perturbation. Closest: STARS steers activations and checks generated tests by execution, but its diversity object is test-input coverage [15]. Random embedding injection is math-only and names code generation as future work [16]. NC-GRPO perturbs the prompt-encoding states during RL on VLM geometry [52]. APTS uses probed-answer hidden states to separate solution paths by search, not perturbation [59]. ESamp is a decoding method [53]. DivAlgo's 'steering' is prompting [12].
+
+**FLAG B: NOT FIRED.** No paper found predicts prompt-level ban or negative-constraint compliance from perturbation sensitivity or steerability. Closest: a supervised last-prompt-token probe predicts prompt-injection compliance (ROC-AUC 0.90; NeurIPS 2026 workshop) [61]; Heo et al.'s instruction-following dimension [5]; ASTEER predicts the success of the same white-box intervention, with only steering-strength-search baselines and zero matches for 'prompting' or 'compliance' [21]; separation metrics predict steerability [57]; SPARK uses hidden-state susceptibility to guide steering, not to forecast compliance [58].
+
+**Two framing consequences.**
+1. A reviewer will name the text-level plan sampler first for C1: IFG intent-hot/response-cold [26], 2606.10302's Diverse Outline/Keyword [31], PlanSearch [27] and, contemporaneously, Gacha Decoding [54]. A second likely reviewer baseline is decoding matched to the perturbation's departure from greedy [66]. Until both are run, C1's wording should be 'beats the token-level and prompt-seed knobs tested'.
+2. Activation noise for diversity is a saturated method lane [14, 15, 16], and there are contemporaneous negative results on latent perturbation [63, 66]. The paper's claims should therefore be about where the algorithm is chosen (task-specification states), what is movable, and what this forecasts about bans, not about a new knob.
+
+
+## 3. Table 92b - iteration-3 claims vs nearest published findings
+
+| No. | Run claim (key numbers) | Nearest neighbour | Neighbour's finding (verbatim quote) | Where (URL; section) | Retrieved | What this run adds, or 'replication of X in Y' | Lane verdict |
+|---|---|---|---|---|---|---|---|
+| b1a | Snap-back under exposure bans: Qwen3-8B, 12 tasks, 33 shown algorithms, N=50/arm; default share 0.05 (copy twin) -> 0.72 (named ban) / 0.82 (unnamed ban 'uses a different algorithm from the one above'); Llama present-minor bans snap back in 0.72-0.93 of non-banned attempts (art_WiY4wqHLb9Gy; art_Q-qh-9HhPoWo) | Lu et al., 2025, NAACL 2025 (Long), arXiv 2407.09007v2 [1] | "When stress-testing humans or LLMs to look for more creative solutions, they are very likely to make mistakes and may copy previous solutions during the process." | https://arxiv.org/html/2407.09007v2; Sec. 5.2 (paragraph above Table 3) | 2026-10-21 | Replication of 'compliance decays under successive denials' (NeoCoder Table 3: GPT-4 constraint following 100.0 at t=0 to 14.4 at t=5) for algorithm bans. Addition NeoCoder does not measure: the replacement is the model's own unconditional default, measured against a copy-twin control, in two families. | ADJACENT-ONLY |
+| b1b | (same claim) | Yoon et al., 2026, arXiv preprint (under review), arXiv 2610.09571v2 [3] | "Our main finding is that specialized attention heads and MLP neurons jointly implement negation by (1) suppressing retrieval of the original answer (e.g., ‘‘Madrid’’) while (2) promoting a favored candidate within the answer category (e.g., ‘‘Paris’’)." | https://arxiv.org/html/2610.09571v2; Abstract | 2026-10-21 | Closest analogue (contemporaneous, v1 2026-10-07, arXiv only): under negation a favoured in-category candidate is promoted. The run adds the algorithm level, execution-checked labels, the copy twin, and that the promoted alternative is the unconditional default. | (closest analogue) |
+| b1c | (same claim) | Rana, 2026, arXiv preprint, arXiv 2601.08070v1 [2] | "In priming failure (87.5% of violations), the instruction’s explicit mention of the forbidden word paradoxically activates rather than suppresses the target representation." | https://arxiv.org/html/2601.08070v1; Abstract | 2026-10-21 | Word-level priming. The run's unnamed ban snaps back more (0.82) than the named ban (0.72), so naming the banned item is not needed for snap-back. | (adjacent) |
+| b2a | Wording dominates compliance: 12 tasks x 5 templates; template SD 2.0 logits [1.1, 3.5]; likelihood ratio 374 (df 4); shuffled placebo p 0.39; template W4 ('X is not allowed here.') fails on 10/12 tasks (art_1AYTO1Epb_7t; art__5akZ9W9iZM4) | Sclar et al., 2024, ICLR 2024, arXiv 2310.11324v2 [4] | "We find that several widely used open-source LLMs are extremely sensitive to subtle changes in prompt formatting in few-shot settings, with performance differences of up to 76 accuracy points when evaluated using LLaMA-2-13B." | https://arxiv.org/html/2310.11324v2; Abstract | 2026-10-21 | Replication of prompt-format sensitivity (Sclar 2024) in algorithm-prohibition compliance, estimated as a template random effect with a shuffled placebo. | PARTLY OCCUPIED |
+| b2b | (same claim) | Heo et al., 2025, ICLR 2025 (poster), arXiv 2410.14516v5 [5] | "Our analysis identifies a direction in the input embedding space, termed the instruction-following dimension, that predicts whether a response will comply with a given instruction. [...] Further investigation reveals that this dimension is more closely related to the phrasing of prompts rather than the inherent difficulty of the task or instructions." | https://arxiv.org/html/2410.14516v5; Abstract | 2026-10-21 | Heo ties instruction-following success to an internal dimension aligned with phrasing; the run adds algorithm prohibitions on code tasks and a variance-components estimate. | (adjacent) |
+| b3a | Ban enforced at the body opening: forcing the default's opening up to its first body token undoes the ban (P_open 0.98-1.00); a neutral def line undoes none (-0.12 to 0.01); the ban gives way at the first content token of the body (1 token on kth smallest, 10-30 elsewhere) (art__5akZ9W9iZM4) | Qi et al., 2025, ICLR 2025, Outstanding Paper Award, arXiv 2406.05946v1 [6] | "safety alignment can take shortcuts, wherein the alignment adapts a model’s generative distribution primarily over only its very first few output tokens. We refer to this issue as shallow safety alignment." | https://arxiv.org/html/2406.05946v1; Abstract | 2026-10-21 | Replication of shallow-alignment / prefill fragility for a user-imposed algorithm prohibition. Addition: the locus is the first content token of the body after a neutral signature, not the first response tokens. | ADJACENT-ONLY |
+| b3b | (same claim) | Zhu et al., 2024, AAAI 2024, arXiv 2309.02772v3 [8] | "With an analysis of loss distributions of code tokens, we find that code tokens can be divided into two categories: challenging tokens that are difficult to predict and confident tokens that can be easily inferred. Among them, the challenging tokens mainly appear at the beginning of a code block." | https://arxiv.org/html/2309.02772v3; Abstract | 2026-10-21 | Independent prior that the decisive (high-loss) code tokens sit at block openings, consistent with the run's locus. | (supporting) |
+| b3c | (same claim) | Andriushchenko et al., 2025, ICLR 2025, arXiv 2404.02151v4 [7] | "We also show how to jailbreak all Claude models—that do not expose logprobs—via either a transfer or prefilling attack with a 100% success rate." | https://arxiv.org/html/2404.02151v4; Abstract | 2026-10-21 | Prefilling is an established lever; the run applies it as a measurement (P_open), not an attack. | (adjacent) |
+| b4a | Signature vetoes respelled around: exact n-gram veto left 0 banned-sequence occurrences in 1,450 vetoed generations but the walk stalled on 6/6 tasks; the default returned by renaming (current_row/current_col), respelling (parent/parents) or near-miss syntax (T1 66-86% invalid); a sham veto kept the default; the distinctive veto cut T2 pass from 50/50 to 19/46 (art_ccAbfJVcv0LO; art_1AYTO1Epb_7t) | Biagiola et al., 2026, arXiv preprint, arXiv 2606.21619v1 [9] | "Incompleteness pushes the model into low-probability regions of the program space, causing the generation to frequently time out, and reducing functional correctness by up to 97%." | https://arxiv.org/html/2606.21619v1; Abstract | 2026-10-21 | These show constraint-induced distortion and correctness cost. The run adds that the ALGORITHM survives a lexical veto by respelling (the constraint moves the surface, not the idea), with a sham-veto control. | ADJACENT-ONLY |
+| b4b | (same claim) | Park et al., 2024, NeurIPS 2024, arXiv 2405.21047v4 [10] | "In this paper we demonstrate that GCD techniques (and in general constrained decoding techniques) can distort the LLM’s distribution, leading to outputs that are grammatical but appear with likelihoods that are not proportional to the ones given by the LLM, and so ultimately are low-quality." | https://arxiv.org/html/2405.21047v4; Abstract | 2026-10-21 | Pre-window (2024) distortion result; same addition. | (adjacent) |
+| b5a | No correct novel algorithm: 0/78 (iterations 1-2) and 0/38 (iteration 3) correct out-of-catalogue programs were novel (two blind judges + manual pass vs 472 known solutions); under the 2,000-word novelty instruction 84% of outputs claim novelty, 39% of those contain no code, 75% of the rest are catalogue algorithms (art_3tH2xtoZ7Gj2; art_ccAbfJVcv0LO) | Zhang et al., 2025, COLM 2025, arXiv 2504.05228v4 [11] | "Evaluating 20 leading language models, we find that current state-of-the-art systems generate significantly less diversity than human writers. Notably, larger models within a family often exhibit less diversity than their smaller counterparts, challenging the notion that capability on standard benchmarks translates directly to generative utility." | https://arxiv.org/html/2504.05228v4; Abstract | 2026-10-21 | Neighbours measure diversity or creativity relative to humans; none audits whether a correct program lies outside a known-solution catalogue. The run's zero is a different measurement (verified novelty). | ADJACENT-ONLY |
+| b5b | (same claim) | Jangra et al., 2026, arXiv preprint, arXiv 2610.19157v1 [12] | "Moreover, while it was possible to steer the models to generate solutions based on human strategies, they were unable to reproduce the diversity of the human solutions." | https://arxiv.org/html/2610.19157v1; Abstract | 2026-10-21 | Algorithmic diversity vs human solutions under prompting-based steering (no activation intervention; 'steer' means prompting). | (adjacent) |
+| b5c | (same claim) | Lu et al., 2025, NAACL 2025 (Long), arXiv 2407.09007v2 [1] | "We quantify NeoGauge for various proprietary and open-source models and find that even the most creative model, GPT-4, still falls short of demonstrating human-like creativity." | https://arxiv.org/html/2407.09007v2; Abstract | 2026-10-21 | Creativity vs humans with technique detection; no catalogue audit. | (adjacent) |
+| b6a | Random-push diversity: isotropic random directions at task-spec positions, layers 12-23, norm-matched to the ban displacement. kth smallest: 7/15 directions moved >=20% off the default, 5 reached correct-only Hill-1 >= 2 at pass >= 0.96 (best 2.92: size-k heap 19, quickselect 16, full sort 15; pass 1.00); two sum 2/3 at alpha 2; shortest path 3/15 at pass >= 0.88 (best Hill-1 1.97); no push moved a ban-failing task; a leave-one-task-out prohibition direction was no better than random (0/5) (art_pVlCZ272hDV7) | Khalid et al., 2026, BEA workshop @ ACL 2026, arXiv 2604.03380v2 [14] | "Residual stream noise consistently improves narrative diversity with minimal quality or constraint cost and preserves early-grade reading level across all Arabic-centric models." | https://arxiv.org/pdf/2604.03380v2; Abstract (p. 1, PDF) | 2026-10-21 | Activation noise for diversity is OCCUPIED as a method (the handbook's saturated lane). State the claim as idea-level (test-checked, mechanism-labelled), task-dependent (movable vs immovable tasks) and norm-calibrated to the ban, not as a new knob. | PARTLY OCCUPIED (method occupied; idea-level measurement open) |
+| b6b | (same claim) | Zhu et al., 2026, ICLR 2026, arXiv 2601.22010v1 [15] | "After generation, all test cases must undergo a correctness check. [...] The overall coverage for a program is computed by the proportion of lines/branches in the program that have been covered by at least one test case" | https://arxiv.org/html/2601.22010v1; Sec. 6.1 Test Case Generation | 2026-10-21 | Closest FLAG-A candidate: activation steering, execution-checked outputs, temperature contrast; but the diversity object is test-input coverage, not which algorithm a program implements. | (adjacent) |
+| b6c | (same claim) | Kim et al., 2026, ICML 2026 Mechanistic Interpretability Workshop (spotlight); not main track, arXiv 2605.11936v2 [16] | "Open questions include whether the mechanism extends beyond RoPE-based decoders and math reasoning, whether RSP admits a continuous control dial like temperature sampling (e.g., via the RSP norm or its mixing ratio with real tokens), and whether the same diversity gains transfer to tasks with multiple valid answers such as code generation or open-ended reasoning." | https://arxiv.org/html/2605.11936v2; Sec. 5 Conclusion (future work) | 2026-10-21 | Random embedding injection widens Pass@N on math only; code is explicitly open. | (adjacent) |
+| b6d | (same claim) | Anonymous, 2026, ICLR 2027 submission (under review), OpenReview wJ8HkA8vGN [63] | "we fairly compare latent perturbation methods with standard explicit reasoning on a shared backbone and find that, for unconstrained latent thoughts, i.e., thoughts not restricted to the embedding space, aggregating perturbed latent chains brings no gain over the no-sampling baseline, whereas explicit reasoning turns the same budget into accuracy gains." | https://openreview.net/forum?id=wJ8HkA8vGN; OpenReview abstract (ICLR 2027 submission) | 2026-10-21 | Contemporaneous counterpoint: latent perturbation adds diversity without discovery (latent reasoners); consistent with the run's immovable tasks. | (adjacent) |
+| b6e | (same claim) | Ly Tran Ho Khanh et al., 2026, AAAI 2026, arXiv 2511.08305v1 [17] | "Empirical evaluations on popular mathematical benchmarks demonstrate that our test-time Riemannian activation steering strategy outperforms vanilla sampling techniques in terms of generative diversity and solution accuracy." | https://arxiv.org/html/2511.08305v1; Abstract | 2026-10-21 | Pre-window (AAAI 2026) activation steering for diverse reasoning; math only. | (adjacent) |
+| b6f | (same claim) | Jerge et al., 2026, arXiv preprint, arXiv 2605.08221v1 [18] | "Rather than training models to reason in latent space, we inject controlled noise into latent trajectories to generate diverse reasoning paths. Agreement among these paths provides a confidence signal, enabling models to abstain when uncertain." | https://arxiv.org/html/2605.08221v1; Abstract | 2026-10-21 | Latent noise used for consensus/abstention, not solution-identity diversity. | (adjacent) |
+| b7a | Movability predicts compliance (screen): every task where some push at alpha <= 2 moved the default is a task where the ban works (6/6); no ban-failing task was moved (0/8), but 7 of those 8 had only 3 directions at alpha 1 (art_pVlCZ272hDV7; art_1AYTO1Epb_7t; art__5akZ9W9iZM4) | Fan et al., 2026, arXiv preprint, arXiv 2606.11599v1 [21] | "We then train a Gradient Boosting Decision Trees (GBDT) classifier on these features to predict whether an intervention will under-steer, succeed, or over-steer without requiring full rollout. Our predictor achieves around 0.7 macro-F1 score on unseen concepts, demonstrating that early hidden states encode substantial, structured information about eventual steering efficacy." | https://arxiv.org/html/2606.11599v1; Abstract | 2026-10-21 | ASTEER predicts the outcome of the same white-box intervention; the run predicts a black-box PROMPT prohibition from ban-free white-box movability. | ADJACENT-ONLY (FLAG B not fired) |
+| b7b | (same claim) | Kotawala, 2026, NeurIPS 2026 workshop poster (Agents in the Wild); no arXiv record found, no arXiv record [61] | "On Qwen2.5-3B-Instruct, a linear probe on the last prompt-token residual stream predicts whether an injected instruction will be obeyed at ROC-AUC 0.90 (0.92 document-grouped), read before the first token is generated." | https://neurips.cc/virtual/2026/168286; Abstract on the NeurIPS 2026 virtual-site page | 2026-10-21 | Closest FLAG-B candidate: prompt-level compliance predicted from hidden states, but by a probe trained on compliance labels for prompt injection, not from perturbation sensitivity. | (adjacent) |
+| b7c | (same claim) | Mishra et al., 2026, ICLR 2026 workshops (Sci4DL, Re-Align), arXiv 2604.09839v2 [24] | "Almost surely, no prompt can reproduce the same internal behavior induced by steering. [...] Our results establish a formal separation between white-box steerability and black-box prompting." | https://arxiv.org/html/2604.09839v2; Abstract | 2026-10-21 | Formal reason why a white-box-to-black-box forecast is non-trivial. | (context) |
+| b7d | (same claim) | Tan et al., 2026, Findings of EMNLP 2026, arXiv 2604.27251v3 [23] | "Probing reveals instruction decodability even without compliance, while CKA identifies geometric differences across models and spans." | https://arxiv.org/html/2604.27251v3; Abstract | 2026-10-21 | Instruction decodable without compliance; steering toward compliance (no forecast from movability). | (adjacent) |
+| b7e | (same claim) | Li et al., 2026, arXiv preprint, arXiv 2608.12321v1 [22] | "Hidden-constraint failure is a routing problem, not a knowledge problem." | https://arxiv.org/html/2608.12321v1; Abstract | 2026-10-21 | Constraint knowledge present but not routed; no perturbation-sensitivity forecast. | (adjacent) |
+
+## 4. Table 92c - iteration-4 claims vs nearest published findings
+
+| No. | Run claim (key numbers) | Nearest neighbour | Neighbour's finding (verbatim quote) | Where (URL; section) | Retrieved | What this run adds, or 'replication of X in Y' | Lane verdict |
+|---|---|---|---|---|---|---|---|
+| C1a | Price of plan noise vs temperature and prompt knobs (H5 = best correct-only Hill-1 within 5 pass points): temperature 0.3-1.3 with top-k 10 / top-p 0.95 gave BFS 797/800 (thinking off) and 800/800 (on); with coupled seeds the algorithm changed in 0/30 seeds in 10/12 cells; semantic seed Hill-1 1.94 at 7 points; random pushes Hill-1 > 2 at 0-4 points on kth smallest and two sum (art_UoCVh2Qe5RZ0; art_pVlCZ272hDV7) | Ahmed et al., 2025, ICML 2025 workshop poster (EXAIT); not ICML 2025 main track, arXiv 2506.09659v1 [26] | "Current methods for increasing diversity often only operate at the token-level, paraphrasing the same response." | https://arxiv.org/html/2506.09659v1; Abstract | 2026-10-21 | IFG is the text-level 'plan hot, words cold' analogue and reports pass@k gains on code. The run adds activation-level plan noise priced on the same tasks with test-checked labels and seed-coupled contrasts, but C1's contrast set lacks the text-level plan sampler. | PARTLY OCCUPIED |
+| C1b | (same claim) | Ahmed et al., 2025, ICML 2025 workshop poster (EXAIT); not ICML 2025 main track, arXiv 2506.09659v1 [26] | "This factorisation allows us to use a higher temperature during the intent step to promote conceptual diversity, and a lower temperature during the final generation to ensure the outputs are coherent and self-consistent." | https://arxiv.org/html/2506.09659v1; Abstract | 2026-10-21 | Fair tuning of the missing baseline: intent at its best temperature, response at default temperature. | (baseline to add) |
+| C1c | (same claim) | Wang et al., 2025, ICLR 2025 (poster), arXiv 2409.03733v2 [27] | "We empirically demonstrate that this lack of diversity can be mitigated by searching over candidate plans for solving a problem in natural language." | https://arxiv.org/html/2409.03733v2; Abstract | 2026-10-21 | Code-specific plan-level text sampler (observations -> plans -> code). | (baseline to add) |
+| C1d | (same claim) | Lee et al., 2025, Findings of EMNLP 2025, arXiv 2503.00691v2 [13] | "Our analysis demonstrates that model-generated solutions exhibit low algorithmic diversity, which was neglected by the research community. [...] Our findings highlight that code diversity can be enhanced with the help of heterogeneous models and setting temperature beyond 1.0 that has not been fully explored due to the functional correctness degradation." | https://arxiv.org/html/2503.00691v2; Abstract | 2026-10-21 | QUALIFIES the run: temperature > 1 can raise algorithmic diversity on other problems (at a correctness cost); the BFS null may be task-specific, so price temperature per task. | (contradicting in part) |
+| C1e | (same claim) | Jangra et al., 2026, arXiv preprint, arXiv 2610.19157v1 [12] | "Even when using diverse code generation strategies such as temperature variations, verbalized sampling Zhang et al. (2025), and iterative constrained generation Ye et al. (2025), we can only achieve up to 70.5% diversity relative to human solutions with an equal number of samples (Section 5.1)." | https://arxiv.org/html/2610.19157v1; Sec. 1 Introduction | 2026-10-21 | Text-level knob baselines (temperature, verbalized sampling, iterative constrained generation) on algorithmic diversity. | (adjacent) |
+| C1f | (same claim) | Narula et al., 2026, ICML 2026 (main-conference poster), arXiv 2606.04057v1 [30] | "We find large, systematic shifts in algorithm-family distributions (up to 100 pp), largely consistent with cue semantics, including in applied tasks such as rate limiting. Direct algorithm naming is the most reliable mitigation we tested." | https://arxiv.org/html/2606.04057v1; Abstract | 2026-10-21 | Prompt cues as algorithm knobs; the run's semantic seed belongs to this family. | (adjacent) |
+| C1g | (same claim) | Anonymous, 2026, ICLR 2027 submission (under review), OpenReview oag3wgNLRh [66] | "More directly, ordinary stochastic decoding whose parameters are selected to match steering's aggregate departure from greedy decoding achieves comparable accuracy while substantially reducing the remaining marginal benefit of steering; whole-thought exploration reproduces the same pattern." | https://openreview.net/forum?id=oag3wgNLRh; OpenReview abstract (ICLR 2027 submission) | 2026-10-21 | Reviewer-ready baseline: stochastic decoding matched to plan noise's departure from greedy. | (baseline to add) |
+| C1h | (same claim) | Peeperkorn et al., 2024, ICCC 2024, arXiv 2405.00492v1 [25] | "We find that temperature is weakly correlated with novelty, and unsurprisingly, moderately correlated with incoherence, but there is no relationship with either cohesion or typicality." | https://arxiv.org/html/2405.00492v1; Abstract | 2026-10-21 | Consistent with the temperature null. | (supporting) |
+| C1i | (same claim) | Zeng et al., 2026, ICML 2026, arXiv 2604.24927v2 [53] | "Unfortunately, naive sampling strategies (Ackley et al., 1985) frequently fall into this trap, as stochastic perturbations at the token level tend to induce surface-level lexical variation without substantially altering the underlying reasoning strategy." | https://arxiv.org/html/2604.24927v2; Sec. 1 Introduction | 2026-10-21 | Token-level perturbation yields lexical, not strategy, variation (ICML 2026). | (supporting) |
+| C1j | (same claim) | Geng et al., 2026, arXiv preprint, arXiv 2610.01382v1 [54] | "Our key insight is to treat diversity as an instruction-following problem: rather than relying on the LM’s token entropy, we combine its instruction-following capability with randomness from an external RNG tool to scalably identify and realize distinct modes of the response space." | https://arxiv.org/html/2610.01382v1; Abstract | 2026-10-21 | Contemporaneous text-level plan sampler (instruction following + external RNG). | (baseline candidate) |
+| C1k | (same claim) | Wu et al., 2025, ICLR 2025 (poster), arXiv 2407.02209v1 [28] | "We experimentally demonstrate the prevalence of generative monoculture through analysis of book review and code generation tasks, and find that simple countermeasures such as altering sampling or prompting strategies are insufficient to mitigate the behavior." | https://arxiv.org/html/2407.02209v1; Abstract | 2026-10-21 | Sampling/prompting changes insufficient against algorithmic monoculture (ICLR 2025). | (supporting) |
+| C1l | (same claim) | Burtch, 2026, arXiv preprint, arXiv 2607.13077v3 [60] | "However, function calls involving machine-learning algorithms are notably not affected." | https://arxiv.org/pdf/2607.13077v3; Results (PDF) | 2026-10-21 | Field evidence that AI assistance homogenises syntax rather than algorithms in human code. | (adjacent) |
+| C1-sitea | Site specificity at matched dose on test-checked algorithm labels: task-spec positions at layers 12-23 vs read position, condition segment, generated tokens 1-32, layers 0-11, layers 24-35; entropy and word seeds (Level-1 sources) moved behaviour by <= 1 pp | Zhang et al., 2026, arXiv preprint, arXiv 2606.10302v1 [31] | "It measures the fraction of source diversity that is realized in the final output." | https://arxiv.org/html/2606.10302v1; Sec. 3.3, text after Definition 1 (Transmission Score) | 2026-10-21 | Text-level framework (Level 0/1/2; WritingPrompts, Infinite Chats, NoveltyBench, Poetry Foundation, IBM ArgKP; GPT-5-mini, Qwen3-4B, DeepSeek-V3.2, Mistral-Large-3): no activation site, no code, no test-checked labels. The run adds sites inside the network at matched dose on algorithm labels; its <= 1 pp Level-1 seeds replicate the Level-1 < Level-2 ordering on code. | PARTLY OCCUPIED |
+| C1-siteb | (same claim) | Zhang et al., 2026, arXiv preprint, arXiv 2606.10302v1 [31] | "To our knowledge, no existing test-time method provides per-output specifications to promote diversity in general open-ended generation." | https://arxiv.org/html/2606.10302v1; Sec. 3.2, 'The Level 2 Gap' | 2026-10-21 | Positioning note: this gap claim omits IFG and PlanSearch (0 citations in the paper). | (framing) |
+| C1-sitec | (same claim) | Zhang et al., 2026, arXiv preprint, arXiv 2606.10302v1 [31] | "G2 and High Temperature require access to the model and are evaluated only on Qwen3-4B." | https://arxiv.org/html/2606.10302v1; Sec. 5.1, Table 2 caption | 2026-10-21 | Its temperature arm is single-model. | (detail) |
+| C1-sited | (same claim) | Khalid et al., 2026, BEA workshop @ ACL 2026, arXiv 2604.03380v2 [14] | "As with attention-logit noise, only the last token position of the attention output (shape (B, 1, D) during decoding) is perturbed and the KV cache is left intact." | https://arxiv.org/pdf/2604.03380v2; Sec. 4.4 (AENI), PDF | 2026-10-21 | A site comparison exists (embedding / attention-logit / AENI / residual vs high temperature), but only at generated-token positions and on narrative diversity. | (adjacent) |
+| C1-sitee | (same claim) | Zhu et al., 2026, ICLR 2026, arXiv 2601.22010v1 [15] | "We investigate two natural intervention points within each transformer layer: (1) before the output projection of the attention mechanism (o_proj), which captures the attended representations before they are projected back to the residual dimension, and (2) the output of the MLP block, which represents the processed information after the feed-forward transformation." | https://arxiv.org/html/2601.22010v1; Appendix B.3 Compare intervention positions | 2026-10-21 | Intra-layer site comparison (o_proj vs MLP output) on test coverage. | (adjacent) |
+| C1-sitef | (same claim) | Jerge et al., 2026, arXiv preprint, arXiv 2608.21595v1 [52] | "Existing approaches diversify through decoding temperature or pixel-space image distortion; we ask whether the perturbation belongs in the model’s latent space instead. We introduce Noise-Contrastive GRPO (NC-GRPO), which injects scale-calibrated Gaussian noise into the last hidden layer of the prompt-encoding pass for half of each rollout group, branching those rollouts from a displaced departure state." | https://arxiv.org/html/2608.21595v1; Abstract | 2026-10-21 | Prompt-state noise vs temperature, but during RL training on VLM geometry (contemporaneous, v1 2026-08-21). | (adjacent) |
+| C1-siteg | (same claim) | Nagarajan et al., 2025, ICML 2025 (spotlight poster; Outstanding Paper), arXiv 2504.15266v4 [19] | "Secondly, to elicit randomness without hurting coherence, we find that injecting noise at the input layer (dubbed seed-conditioning) works surprisingly as well as (and in some conditions, better than) temperature sampling from the output layer." | https://arxiv.org/html/2504.15266v4; Abstract | 2026-10-21 | Input-layer vs output-layer randomness on algorithmic-creativity tasks (ICML 2025). | (adjacent) |
+| C1-seeda | Same token seed across temperature vs plan-noise draws, thinking on and off: phrasing clusters rose from 3-4 (T 0.3) to 24-36 (T 1.3) on T1 with ideas fixed (art_UoCVh2Qe5RZ0; art_3iv5G76C3yoX) | Ravfogel et al., 2025, ICLR 2025, arXiv 2411.07180v5 [33] | "This reformulation allows us to model the joint distribution over original strings and their counterfactuals resulting from the same instantiation of the sampling noise." | https://arxiv.org/html/2411.07180v5; Abstract | 2026-10-21 | Methodological precedent for coupling sampling noise across interventions. No paper found that couples token seeds across temperatures and activation-noise draws to split idea changes from phrasing changes on test-checked labels; the design is the addition. | ADJACENT-ONLY |
+| C1-seedb | (same claim) | Ahmed et al., 2025, ICML 2025 workshop poster (EXAIT); not ICML 2025 main track, arXiv 2506.09659v1 [26] | "As shown in Figure 2(a), when sampling from LLMs, intent and phrasing are latent variables, and although increasing temperature will increase the entropy of both, the increase tends to be dominated by changes in phrasing (Peeperkorn et al., 2024)." | https://arxiv.org/html/2506.09659v1; Sec. 3 (method) | 2026-10-21 | Asserted (citing Peeperkorn), not measured with coupled seeds. | (adjacent) |
+| C1-seedc | (same claim) | He et al., 2026, EMNLP 2026, arXiv 2609.00077v1 [29] | "In this regime, surface-level edit diversity remains stable, but semantic and mechanism-level diversity collapse: the agent continues to edit different lines of code while repeatedly proposing the same kinds of algorithmic changes." | https://arxiv.org/html/2609.00077v1; Abstract | 2026-10-21 | Surface vs mechanism split for agents' code edits (HiTemp baseline). | (adjacent) |
+| C1-seedd | (same claim) | Yun et al., 2025, arXiv preprint, arXiv 2505.18949v1 [32] | "We systematically evaluate this effect across tasks like story completion and free-form generation, finding that (1) diversity collapse persists even under high-temperature sampling, and (2) structural tokens in templates significantly constrain the model’s output space." | https://arxiv.org/html/2505.18949v1; Abstract | 2026-10-21 | Collapse persists under high temperature. | (supporting) |
+| C2aa | Ban-free plan subspace (from forced-algorithm prompts at the task-specification states) must predict which random directions move the algorithm | Anonymous, 2026, ICLR 2027 submission (under review), OpenReview knirOusGcq [64] | "We first show that future response length is encoded before the first generated token: controlled length perturbations induce persistent changes in response length even when the explicit length signal is unavailable during subsequent decoding, supporting the existence of a pre-generation planning state rather than a purely autoregressive length effect." | https://openreview.net/forum?id=knirOusGcq; OpenReview abstract (ICLR 2027 submission) | 2026-10-21 | Closest competitor (contemporaneous ICLR 2027 submission): a causal pre-generation subspace for a scalar (length). The run's addition: a categorical, test-checked object (algorithm) and a ban-free subspace that predicts the effect of RANDOM directions. | PARTLY OCCUPIED |
+| C2ab | (same claim) | Anonymous, 2026, ICLR 2027 submission (under review), OpenReview knirOusGcq [64] | "We further establish its causal role by decomposing hidden-state interventions into components parallel and orthogonal to the learned subspace." | https://openreview.net/forum?id=knirOusGcq; OpenReview abstract (ICLR 2027 submission) | 2026-10-21 | Same decomposition the run's test implies; cite and contrast. | (method overlap) |
+| C2ac | (same claim) | Dong et al., 2025, ICML 2025, arXiv 2502.06258v3 [34] | "Through simple probing, we demonstrate that LLM prompt representations encode global attributes of their entire responses, including structure attributes (e.g., response length, reasoning steps), content attributes (e.g., character choices in storywriting, multiple-choice answers at the end of response), and behavior attributes (e.g., answer confidence, factual consistency)." | https://arxiv.org/html/2502.06258v3; Abstract | 2026-10-21 | Decodable plans in prompt states are occupied (ICML 2025). | (occupied sub-claim) |
+| C2ad | (same claim) | Ma et al., 2026, ICML 2026 Workshop on Mechanistic Interpretability, arXiv 2605.07984v2 [35] | "Activation patching reveals that only Gemma-3-27B causally relies on this encoding, exhibiting a handoff in which the causal driver migrates from the rhyme word to the line boundary around layer 30. Every other model we test conditions on the rhyme word throughout generation, with near-zero causal effect at the line boundary despite strong probe signal." | https://arxiv.org/html/2605.07984v2; Abstract | 2026-10-21 | Decodable is not causal. | (adjacent) |
+| C2ae | (same claim) | Anonymous, 2026, ICLR 2027 submission (under review), OpenReview Dl1xo5fqnj [65] | "Reading a language model's hidden state and predicting what will happen if we change it are different tasks. [...] learned decoders read unmodified states accurately but often mispredict intervention effects, whereas AJR learns their local response." | https://openreview.net/forum?id=Dl1xo5fqnj; OpenReview abstract (ICLR 2027 submission) | 2026-10-21 | Why the run's prediction test is informative. | (adjacent) |
+| C2af | (same claim) | Basu et al., 2026, arXiv preprint, arXiv 2603.18353v1 [43] | "Linear probes trained on Qwen’s internal representations discriminated hazardous from benign cases with 98.2% AUROC (95% CI 0.968 to 0.993), demonstrating a 53-percentage-point gap between internal knowledge and output behaviour." | https://arxiv.org/html/2603.18353v1; Abstract | 2026-10-21 | Knowledge-action gap; the handbook's bar for decodability claims. | (context) |
+| C2ag | (same claim) | Di Cicco, 2026, arXiv preprint, arXiv 2606.14530v3 [41] | "The correctness of the model’s first-attempt code is linearly decodable from the hidden state at the final prompt token, captured before any output token is generated, with a leakage-free held-out AUC of 0.881 [...]" | https://arxiv.org/html/2606.14530v3; Abstract (v3) | 2026-10-21 | Code-specific decodability before generation (v3 number). | (adjacent) |
+| C2ah | (same claim) | Chen et al., 2026, arXiv preprint, arXiv 2606.17648v3 [36] | "Our framework reveals three diagnostic notions that characterize how answer representations develop across model layers [...] the correct answer is linearly recoverable from the hidden representation." | https://arxiv.org/html/2606.17648v3; Sec. 1 Introduction | 2026-10-21 | Availability before readiness (v3 wording). | (adjacent) |
+| C2ai | (same claim) | Silva et al., 2026, arXiv preprint, arXiv 2607.05188v1 [42] | "We show that the residual streams of language models under coding agents linearly encode properties of the evolving program [...] Probes trained to predict the outcome of future edits (before they are materialized and written on disk) achieve performance above chance up to roughly 25 steps in advance." | https://arxiv.org/html/2607.05188v1; Abstract | 2026-10-21 | Latent programming horizon in agents. | (adjacent) |
+| C2aj | (same claim) | Galeone et al., 2026, arXiv preprint, arXiv 2606.24952v1 [56] | "If not, the cosine between them quantifies what we call the detection-intervention gap." | https://arxiv.org/html/2606.24952v1; Abstract | 2026-10-21 | Detection and control directions can diverge; the run's subspace-predicts-pushes test measures this gap for plans. | (adjacent) |
+| C2ak | (same claim) | Hendel et al., 2023, Findings of EMNLP 2023, arXiv 2310.15916v1 [37] | "We have revealed a simple and elegant structure: ICL functions by compressing a given training set into a single task vector, which then guides the transformer to generate appropriate outputs given queries." | https://arxiv.org/html/2310.15916v1; Sec. 8 Conclusions | 2026-10-21 | Task vectors (pre-window) - compressed task representations. | (background) |
+| C2al | (same claim) | Todd et al., 2024, ICLR 2024, arXiv 2310.15213v2 [38] | "Using causal mediation analysis on a diverse range of in-context-learning (ICL) tasks, we find that a small number attention heads transport a compact representation of the demonstrated task, which we call a function vector (FV)." | https://arxiv.org/html/2310.15213v2; Abstract | 2026-10-21 | Function vectors (pre-window). | (background) |
+| C2am | (same claim) | Pal et al., 2023, CoNLL 2023, arXiv 2311.04897v1 [39] | "We find that, at some layers, we can approximate a model’s output with more than 48% accuracy with respect to its prediction of subsequent tokens through a single hidden state." | https://arxiv.org/html/2311.04897v1; Abstract | 2026-10-21 | Future tokens decodable from one hidden state (pre-window). | (background) |
+| C2an | (same claim) | Wu et al., 2024, COLM 2024, arXiv 2404.00859v2 [40] | "In a constructed synthetic data setting, we find clear evidence for pre-caching. In the autoregressive language modeling setting, our experiments are more suggestive of the breadcrumbs hypothesis, though pre-caching increases with model scale." | https://arxiv.org/html/2404.00859v2; Abstract | 2026-10-21 | Pre-caching vs breadcrumbs (pre-window). | (background) |
+| C2-geoa | Geometry and targeted pushes (default -> runner-up algorithm) | Wurgaft et al., 2026, ICML 2026 Mechanistic Interpretability Workshop (spotlight); not main track, arXiv 2605.05115v1 [44] | "[...] linear steering—which assumes a Euclidean geometry—cuts through off-manifold regions and hence produces unnatural outputs." | https://arxiv.org/html/2605.05115v1; Abstract | 2026-10-21 | Geometry-aware steering with geodesic distances and an MDS isometry test exists (full-text grep: 'geodesic' 34 matches, 'MDS' 14, 'Isomap' 0). The run's addition is algorithm-level geometry on test-checked labels. | PARTLY OCCUPIED |
+| C2-geob | (same claim) | Wurgaft et al., 2026, ICML 2026 Mechanistic Interpretability Workshop (spotlight); not main track, arXiv 2605.05115v1 [44] | "Furthermore, on-manifold distances in activation space show strong correlation with on-manifold distances in behavior space (right column), as well as a clear structural match via a multidimensional scaling (MDS) embedding (middle column)." | https://arxiv.org/html/2605.05115v1; Sec. 4, figure caption (isometry test) | 2026-10-21 | MDS isometry evidence. | (method overlap) |
+| C2-geoc | (same claim) | Rahman et al., 2026, arXiv preprint, arXiv 2603.23629v2 [45] | "Using a difference-in-means method, we estimate layer-wise steering vectors for five language/library pairs and add them to model hidden states during generation. Across three open-weight code LLMs, these interventions substantially increase generation toward the target ecosystem under neutral prompts and often remain effective even when prompts explicitly request the opposite choice." | https://arxiv.org/html/2603.23629v2; Abstract | 2026-10-21 | Targeted code steering toward a chosen library or language anticipates the default -> runner-up push in kind; the run's object is the algorithm. | (adjacent) |
+| C2-geod | (same claim) | Mishra et al., 2026, ICLR 2026 workshops (Sci4DL, Re-Align), arXiv 2604.09839v2 [24] | "Almost surely, no prompt can reproduce the same internal behavior induced by steering. [...] Our results establish a formal separation between white-box steerability and black-box prompting." | https://arxiv.org/html/2604.09839v2; Abstract | 2026-10-21 | Steered states are off the prompt-reachable manifold; relevant when comparing pushes with prompts. | (context) |
+| C3aa | Movability predicts ban compliance in a held-out family: a ban-free white-box quantity (escape fraction under random plan pushes) forecasts black-box prompt-ban compliance, with predictions committed before the family's first ban sample | Tang, 2026, arXiv preprint, arXiv 2604.07192v2 [46] | "It suggests that LLMs possess implementation priors—default code patterns for common tasks (e.g., "styling React components" → inline style objects)—that compete with explicit constraints." | https://arxiv.org/pdf/2604.07192v2; Sec. 5.3 'Why Counter-Intuitive Constraints Fail' (PDF) | 2026-10-21 | Behavioural prior: constraints opposing defaults fail. The run adds a ban-free white-box forecast of prompt-ban compliance, pre-registered. | OPEN (FLAG B not fired) |
+| C3ab | (same claim) | Tang, 2026, arXiv preprint, arXiv 2604.07192v2 [46] | "counter-intuitive constraints opposing model defaults fail at rates of 10–100% [...] while conventional constraints achieve 99%+ compliance regardless of encoding." | https://arxiv.org/pdf/2604.07192v2; Abstract (PDF p. 1) | 2026-10-21 | Abstract wording is 'fail at rates of 10-100%'. | (behavioural prior) |
+| C3ac | (same claim) | Tang, 2026, arXiv preprint, arXiv 2604.07192v2 [46] | "First, positive constraints ("use X") appear easier to follow than negative constraints ("do not use Y"), presumably because the latter requires suppressing an activated implementation path." | https://arxiv.org/pdf/2604.07192v2; Sec. 5.3 (PDF) | 2026-10-21 | Positive vs negative constraint asymmetry. | (behavioural prior) |
+| C3ad | (same claim) | Bhattarai et al., 2026, arXiv preprint, arXiv 2609.14151v1 [57] | "We make this dataset-dependence claim more rigorous and show that simple separation metrics strongly correlate with the downstream steerability of language models across diverse settings, even after controlling for layers and dataset effects." | https://arxiv.org/html/2609.14151v1; Abstract | 2026-10-21 | Predicts steerability (a white-box outcome), not prompt compliance. | (adjacent) |
+| C3ae | (same claim) | Yoon et al., 2026, arXiv preprint (under review), arXiv 2610.09571v2 [3] | "[...] so the model can repeat the original answer when suppression is too weak or when a bias toward particular answers prevents it from selecting an alternative." | https://arxiv.org/html/2610.09571v2; Abstract | 2026-10-21 | Mechanistic analogue of immovable defaults resisting prohibition. | (adjacent) |
+| C3af | (same claim) | Anonymous, 2026, ICLR 2027 submission (under review), OpenReview tZaHwMrvq2 [67] | "attack information is linearly decodable from the first layer, yet causal leverage over the model's behavior is negligible until a late-layer bottleneck in the final third of the network." | https://openreview.net/forum?id=tZaHwMrvq2; OpenReview abstract (ICLR 2027 submission) | 2026-10-21 | Compliance is decodable early but causally decided late. | (adjacent) |
+| C3ag | (same claim) | Fan et al., 2026, arXiv preprint, arXiv 2606.11599v1 [21] | "Although the term “steering” is sometimes used broadly in the literature to describe instruction following or prompt engineering, in this work, steering refers exclusively to inference-time activation engineering, where carefully calculated vectors are injected into the residual stream to alter model behavior without weight updates." | https://arxiv.org/html/2606.11599v1; Appendix A.1 | 2026-10-21 | ASTEER's 'steering' is activation engineering only; no prompting outcome is predicted. | (adjacent) |
+| C3ah | (same claim) | Kotawala, 2026, NeurIPS 2026 workshop poster (Agents in the Wild); no arXiv record found, no arXiv record [61] | "We show that this decision is readable before generation and only partly steerable." | https://neurips.cc/virtual/2026/168286; Abstract on the NeurIPS 2026 virtual-site page | 2026-10-21 | Probe-readable compliance decision, only partly steerable (prompt injection). | (adjacent) |
+| C3ai | (same claim) | Heo et al., 2025, ICLR 2025 (poster), arXiv 2410.14516v5 [5] | "Our analysis identifies a direction in the input embedding space, termed the instruction-following dimension, that predicts whether a response will comply with a given instruction. [...] Further investigation reveals that this dimension is more closely related to the phrasing of prompts rather than the inherent difficulty of the task or instructions." | https://arxiv.org/html/2410.14516v5; Abstract | 2026-10-21 | Probe direction predicts compliance (instruction following). | (adjacent) |
+| C3aj | (same claim) | Li et al., 2026, arXiv preprint, arXiv 2608.12321v1 [22] | "Hidden-constraint failure is a routing problem, not a knowledge problem." | https://arxiv.org/html/2608.12321v1; Abstract | 2026-10-21 | Routing, not knowledge. | (adjacent) |
+| C3ba | Ban landing: forecast WHICH alternative a prohibition installs (push-landing forecast, opening ladder) | Yoon et al., 2026, arXiv preprint (under review), arXiv 2610.09571v2 [3] | "Our main finding is that specialized attention heads and MLP neurons jointly implement negation by (1) suppressing retrieval of the original answer (e.g., ‘‘Madrid’’) while (2) promoting a favored candidate within the answer category (e.g., ‘‘Paris’’)." | https://arxiv.org/html/2610.09571v2; Abstract | 2026-10-21 | Describes the landing mechanism at the fact level but does not forecast which alternative from a ban-free measure; the run's push-landing forecast is new. | OPEN (closest: Yoon, contemporaneous) |
+| C3bb | (same claim) | Zhou et al., 2026, ICML 2026, arXiv 2605.03052v2 [47] | "Overall, we reveal that construction and suppression work collaboratively to compute negation; the model computes a negated representation in its mid-layer attention outputs (e.g. interpreting “not gas” as “solid”), while also suppressing the negated concept." | https://arxiv.org/html/2605.03052v2; Sec. 1 Introduction | 2026-10-21 | Negation as construction + suppression (ICML 2026). | (adjacent) |
+| C3bc | (same claim) | Narula et al., 2026, ICML 2026 (main-conference poster), arXiv 2606.04057v1 [30] | "Pass rate is 120/120 (100%); strict compliance is 73/120 (60.8%) and 118/120 (98.3%) after normalizing for label-granularity synonyms documented in Appendix A.6 (e.g., “dynamic programming” satisfied by bottom-up tabulation)." | https://arxiv.org/html/2606.04057v1; Sec. 5.6 Mitigation | 2026-10-21 | Positive naming nearly always lands; no prohibition-landing forecast. | (adjacent) |
+| C3bd | (same claim) | Anonymous, 2026, ICLR 2027 submission (under review), OpenReview L09agUoh7d [68] | "Modern language models increasingly follow negative instructions well. Yet even a compliant response may restate the rule, announce compliance, or reintroduce the excluded object." | https://openreview.net/forum?id=L09agUoh7d; OpenReview abstract (ICLR 2027 submission) | 2026-10-21 | Compliant answers still reintroduce excluded objects. | (adjacent) |
+| C3be | (same claim) | Lu et al., 2025, NAACL 2025 (Long), arXiv 2407.09007v2 [1] | "When stress-testing humans or LLMs to look for more creative solutions, they are very likely to make mistakes and may copy previous solutions during the process." | https://arxiv.org/html/2407.09007v2; Sec. 5.2 (paragraph above Table 3) | 2026-10-21 | Denied solutions recur under stress-testing; no landing forecast. | (adjacent) |
+| C3ca | Novelty boundary: no correct off-catalogue algorithm up to breakage | Romera-Paredes et al., 2024, Nature 625, 468-475 (2024); published 14 December 2023, no arXiv record [62] | "Here we introduce FunSearch (short for searching in the function space), an evolutionary procedure based on pairing a pretrained LLM with a systematic evaluator. [...] Applying FunSearch to a central problem in extremal combinatorics—the cap set problem—we discover new constructions of large cap sets going beyond the best-known ones, both in finite dimensional and asymptotic cases." | https://www.nature.com/articles/s41586-023-06924-6; Abstract (Nature article page) | 2026-10-21 | Counter-reference: search + evaluator produces new programs. Scope the claim to single-sample generation under knobs, without search or an evaluator. | ADJACENT-ONLY (scoped) |
+| C3cb | (same claim) | Novikov et al., 2025, arXiv preprint (white paper), arXiv 2506.13131v1 [49] | "Using an evolutionary approach, continuously receiving feedback from one or more evaluators, AlphaEvolve iteratively improves the algorithm, potentially leading to new scientific and practical discoveries." | https://arxiv.org/html/2506.13131v1; Abstract | 2026-10-21 | Same scope limit. | (counter-reference) |
+| C3cc | (same claim) | Anonymous, 2026, ICLR 2027 submission (under review), OpenReview wJ8HkA8vGN [63] | "Empirically, the added diversity comes predominantly from borderline samples and, unlike with explicit reasoners, a correct answer reached through perturbation carries no gain in confidence." | https://openreview.net/forum?id=wJ8HkA8vGN; OpenReview abstract (ICLR 2027 submission) | 2026-10-21 | Supporting (contemporaneous). | (supporting) |
+| C3cd | (same claim) | Anonymous, 2026, ICLR 2027 submission (under review), OpenReview oag3wgNLRh [66] | "they alter local decoder preferences and redirect generation among reasoning trajectories already supported by the model. Correct solutions and related reasoning strategies are frequently accessible under unsteered sampling." | https://openreview.net/forum?id=oag3wgNLRh; OpenReview abstract (ICLR 2027 submission) | 2026-10-21 | Supporting: steering moves among trajectories the model already supports. | (supporting) |
+| C3ce | (same claim) | Maveli et al., 2026, arXiv preprint, arXiv 2610.02438v1 [55] | "We argue that for well-known algorithms whose canonical implementations are widely accessible in pretraining corpora, code generation is better measured as parametric code retrieval: reproducing a named algorithm from internalised knowledge rather than synthesizing a novel one." | https://arxiv.org/html/2610.02438v1; Abstract | 2026-10-21 | Supporting framing: named-algorithm code generation as retrieval. | (supporting) |
+| C3cf | (same claim) | Bhushan et al., 2026, arXiv preprint (a COLM 2026 acceptance is reported only by secondary sites; unconfirmed), arXiv 2608.30047v1 [50] | "Our findings reveal that current agents can explore novel regions of the solution space but lack the capacity to convert this novelty into improved task performance." | https://arxiv.org/html/2608.30047v1; Abstract | 2026-10-21 | Contradicting in part: agents produce human-novel (LLM-judged) solutions, though not better ones. | (contradicting in part) |
+| C3cg | (same claim) | Nia et al., 2025, arXiv preprint, arXiv 2507.06463v2 [51] | "Although our findings demonstrate that contemporary LLMs excel in optimizing and integrating established algorithms, the potential for these models to eventually invent transformative algorithmic techniques represents a compelling frontier for future research." | https://arxiv.org/html/2507.06463v2; Abstract | 2026-10-21 | Hedged statement; the search-snippet wording 'not inventing novel techniques' is not in the paper. | (supporting, hedged) |
+| C3ch | (same claim) | Bystroński et al., 2025, arXiv preprint, arXiv 2507.13874v2 [48] | "Our experiments demonstrate that this manifold-based conditioning substantially increases generative diversity, with direct benefits for enhancing divergent thinking, a core facet of creativity, in language models." | https://arxiv.org/html/2507.13874v2; Abstract | 2026-10-21 | Diversity-boundary extension via embedding-space conditioning (diversity, not verified novelty). | (adjacent) |
+| C3ci | (same claim) | Deshpande et al., 2026, arXiv preprint, arXiv 2605.28664v1 [20] | "[...] and find that increasing steering strength reduces response diversity." | https://arxiv.org/html/2605.28664v1; Abstract | 2026-10-21 | Stronger steering reduces diversity. | (adjacent) |
+| C3cj | (same claim) | Biagiola et al., 2026, arXiv preprint, arXiv 2606.21619v1 [9] | "Incompleteness pushes the model into low-probability regions of the program space, causing the generation to frequently time out, and reducing functional correctness by up to 97%." | https://arxiv.org/html/2606.21619v1; Abstract | 2026-10-21 | Pushing decoding into low-probability regions costs correctness - consistent with 'breakage before novelty'. | (supporting) |
+
+## 5. Saturation search (dated 2026-10-21)
+
+### 5.1 Saturation verdict per claim
+
+| Claim | in-window hits scored | adjacent | occupying | contemporaneous adjacent (v1 > 2026-06-21 or ICLR 2027 submission) | closest in-window hits (score) |
+|---|---|---|---|---|---|
+| b1 snap-back | 3 | 3 | 0 | 2 | 2610.09571 [3] (1.5); or:L09agUoh7d [68] (1.0); 2601.08070 [2] (1) |
+| b2 wording | 4 | 1 | 0 | 0 | 2605.29737 [96] (1.0) |
+| b4 vetoes | 2 | 0 | 0 | 0 | none in window (closest neighbours are pre-window; see tables) |
+| b6 random pushes | 9 | 7 | 0 | 3 | 2604.03380 [14] (2); 2601.22010 [15] (2); 2605.11936 [16] (2); or:wJ8HkA8vGN [63] (2) |
+| b7 movability screen | 5 | 4 | 0 | 2 | venue:kotawala [61] (1.5); 2606.11599 [21] (1.0); 2604.27251 [23] (1.0); 2609.14151 [57] (1.0) |
+| C1 knob price | 15 | 13 | 0 | 7 | 2604.03380 [14] (2); 2601.22010 [15] (2); 2605.11936 [16] (2); 2610.19157 [12] (2) |
+| C1-site | 5 | 5 | 0 | 2 | 2604.03380 [14] (2); 2605.11936 [16] (2); 2608.21595 [52] (2); 2606.10302 [31] (1.5) |
+| C1-seed | 3 | 2 | 0 | 1 | 2604.24927 [53] (2.0); 2609.00077 [29] (1.5) |
+| C2a plan subspace | 14 | 11 | 0 | 5 | 2605.07984 [35] (1.5); or:knirOusGcq [64] (1.5); or:Dl1xo5fqnj [65] (1.5); 2606.14530 [41] (1.0) |
+| C2 geometry / targeted pushes | 3 | 3 | 0 | 1 | 2610.25133 [97] (1.5); 2603.23629 [45] (1.5); 2605.05115 [73] (1.5) |
+| C3a compliance forecast | 13 | 8 | 0 | 5 | or:Dl1xo5fqnj [65] (1.5); venue:kotawala [61] (1.5); or:uVn7IU6iPN [104] (1.5); 2606.11599 [21] (1.0) |
+| C3b ban landing | 5 | 5 | 0 | 2 | 2606.04057 [74] (1.5); 2610.09571 [3] (1.5); or:L09agUoh7d [68] (1.0); 2605.03052 [47] (1) |
+| C3c novelty boundary (b5) | 8 | 7 | 0 | 6 | 2610.19157 [12] (2); or:wJ8HkA8vGN [63] (2); or:oag3wgNLRh [66] (2); 2608.14669 [99] (1.5) |
+| FLAG A candidates | 2 | 2 | 0 | 1 | 2601.22010 [15] (2); 2608.30345 [59] (1.0) |
+| FLAG B candidates | 4 | 3 | 0 | 2 | venue:kotawala [61] (1.5); 2606.11599 [21] (1.0); 2609.14151 [57] (1.0) |
+
+No hit occupies any claim. The ICLR 2027 pool contains the submissions of 2606.10302 (OpenReview AnsxpIWvcZ) and HiDRA (MxTe9wDyk8), and six other closely relevant submissions cited above.
+
+### 5.2 Counts per query family (PRISMA-style)
+
+| family | identified (raw) | unique after de-dup | in window (screened) | passed keyword pre-screen | full-text checked & included | included (adjacent or occupying) |
+|---|---|---|---|---|---|---|
+| S1 | 336 | 321 | 261 | 158 | 11 | 15 |
+| S2 | 162 | 150 | 91 | 57 | 4 | 4 |
+| S3 | 362 | 335 | 246 | 135 | 3 | 6 |
+| S4 | 282 | 256 | 210 | 124 | 5 | 9 |
+| S5 | 202 | 187 | 138 | 86 | 0 | 1 |
+| S6 | 225 | 210 | 150 | 106 | 3 | 3 |
+| S7 | 203 | 195 | 138 | 82 | 2 | 2 |
+| S8 | 126 | 114 | 86 | 62 | 1 | 3 |
+| FC | 35 | 35 | 30 | 19 | 2 | 4 |
+| planning/E2 only | 0 | 0 | 0 | 0 | 6 | 7 |
+| total (unique records) | 1933 | 1729 | 1286 | 792 | - | 44 adjacent, 0 occupying, 19 irrelevant (of 63 scored) |
+
+### 5.3 Search log summary (calls / hits per family x engine; full log in evidence/search_log.jsonl)
+
+| family | E1 | E2 | E3 | E3-web | E4 | E5 |
+|---|---|---|---|---|---|---|
+| FC | - | - | - | - | 6 calls / 35 hits (6 ok) | - |
+| S1 | 4 calls / 100 hits (4 ok) | 2 calls / 18 hits (2 ok) | 9 calls / 36 hits (4 ok) | 4 calls / 50 hits (1 ok) | 4 calls / 100 hits (4 ok) | 4 calls / 100 hits (4 ok) |
+| S2 | 3 calls / 75 hits (3 ok) | 2 calls / 18 hits (2 ok) | 4 calls / 36 hits (3 ok) | 3 calls / 0 hits (0 ok) | 3 calls / 51 hits (3 ok) | - |
+| S3 | 4 calls / 100 hits (4 ok) | 2 calls / 18 hits (2 ok) | 4 calls / 66 hits (4 ok) | 4 calls / 0 hits (0 ok) | 4 calls / 96 hits (4 ok) | 4 calls / 100 hits (4 ok) |
+| S4 | 3 calls / 75 hits (3 ok) | 1 calls / 9 hits (1 ok) | 3 calls / 57 hits (3 ok) | 3 calls / 0 hits (0 ok) | 3 calls / 75 hits (3 ok) | 3 calls / 75 hits (3 ok) |
+| S5 | 3 calls / 75 hits (3 ok) | 3 calls / 27 hits (3 ok) | 3 calls / 75 hits (3 ok) | 3 calls / 0 hits (0 ok) | 3 calls / 52 hits (3 ok) | - |
+| S6 | 3 calls / 75 hits (3 ok) | 2 calls / 18 hits (2 ok) | 3 calls / 75 hits (3 ok) | 3 calls / 0 hits (0 ok) | 3 calls / 75 hits (3 ok) | - |
+| S7 | 3 calls / 75 hits (3 ok) | 2 calls / 18 hits (2 ok) | 3 calls / 75 hits (3 ok) | 1 calls / 0 hits (0 ok) | 3 calls / 53 hits (3 ok) | - |
+| S8 | 2 calls / 50 hits (2 ok) | 2 calls / 18 hits (2 ok) | 2 calls / 26 hits (2 ok) | - | 2 calls / 50 hits (2 ok) | - |
+| V | - | 12 calls / 111 hits (12 ok) | - | - | - | - |
+
+### 5.4 Scored hits
+
+The 57 scored hits with O/I/C scores, v1 dates, venue status and contemporaneity tags are in research_report.md section 5.4 and evidence/saturation_hits.jsonl.
+
+
+### 5.5 Other screened records and evidence pages (cited for completeness)
+
+- High-Dimensional Random Projection for Activation Steering in Language Models [84]: HiDRA random-projection steering (method variant; irrelevant).
+- A Coin Flip Per Token: Bernoulli Sparse Steering of Large Language Models [85]: Bernoulli sparse steering (method variant; irrelevant).
+- "Many Are My Names": The Anatomy of the Assistant and Its Personas via Sparse Autoencoders [86]: SAE anatomy of personas (irrelevant).
+- Revisiting Prompt Sensitivity in Large Language Models for Text Classification: The Role of Prompt Underspecification [87]: Prompt sensitivity from underspecified prompts (irrelevant to the claims).
+- Understanding the Prompt Sensitivity [88]: Taylor-expansion account of prompt sensitivity (irrelevant).
+- Fragile Reasoning: A Mechanistic Analysis of LLM Sensitivity to Meaning-Preserving Perturbations [89]: Answer flips under meaning-preserving perturbations localised by patching (irrelevant).
+- Smaller Models are Natural Explorers for Policy-Level Diversity in GRPO [90]: Smaller models as explorers in GRPO (training-time; irrelevant).
+- Mechanistically Eliciting Latent Behaviors in Language Models [91]: Causal perturbative elicitation of latent behaviours (abstract screened).
+- Latent Planning Emerges with Scale [92]: Latent planning emerges with scale (ICLR 2026; abstract screened).
+- How Far Ahead Do LLMs Plan? Uncovering the Latent Horizon in Chain-of-Thought Reasoning [93]: Latent planning horizon in CoT (ICML 2026; abstract screened).
+- How Much is Left? LLMs Linearly Encode Their Remaining Output Length [94]: Remaining output length decodable from the prompt's last hidden state (abstract screened).
+- CodeCircuit: Toward Inferring LLM-Generated Code Correctness via Attribution Graphs [95]: Code correctness from attribution graphs (abstract screened).
+- One Token Away from Collapse: The Fragility of Instruction-Tuned Helpfulness [98]: Single-token lexical bans collapse helpfulness (abstract screened).
+- Contemporary AI lacks the imagination to diverge or negate in science [100]: Scientist ratings of LLM ideas: hivemind collapse (abstract screened).
+- Sampling More, Getting Less: Calibration is the Diversity Bottleneck in LLMs [101]: Calibration as the diversity bottleneck (abstract screened).
+- Examining and Addressing Barriers to Diversity in LLM-Generated Ideas [102]: Barriers to diversity in LLM ideas (abstract screened).
+- Test-Time Augmentation for LLMs: Where to Inject Diversity at Inference Time [103]: Where to inject diversity at the input level for test-time augmentation (abstract screened).
+
+## 6. Corrections to the run's current citations
+
+| id | item | the run / plan says | the source says | status | replacement or action |
+|---|---|---|---|---|---|
+| K1 | Tang 2026 (arXiv 2604.07192) 'implementation priors' attributed to Sec. 5.3 | Planning could not confirm the phrase (absent from the abstract; HTML v2 returned HTTP 404) and expected a MISMATCH. | PDF v2, Sec. 5.3 'Why Counter-Intuitive Constraints Fail': 'It suggests that LLMs possess implementation priors—default code patterns for common tasks ... —that compete with explicit constraints.' Same sentence in PDF v1. | VERIFIED - no correction to the attribution | Tang (2026, arXiv 2604.07192v2, Sec. 5.3) attributes the failure of counter-intuitive constraints to 'implementation priors—default code patterns for common tasks ... that compete with explicit constraints'. |
+| K2 | Venue of Narula et al., 'The Invisible Lottery' (arXiv 2606.04057) | Run text: ICML 2026. Planning: arXiv shows no venue; downgrade to preprint if not found. | icml.cc/virtual/2026/poster/64782 lists it as a main-conference Poster (Tue Jul 7 2026, Hall A #3510) with an OpenReview link; the ICML abstract reports 46,535 experiments (as arXiv v1). A secondary search summary's '55,545' does not appear on the ICML page. | CONFIRMED - no downgrade | Narula et al. (ICML 2026; arXiv 2606.04057v1) |
+| K3 | Venue of Wurgaft et al., 'Manifold Steering ...' (arXiv 2605.05115) | Run text: ICML 2026. | icml.cc/virtual/2026/79460: 'Spotlight in Workshop: Workshop on Mechanistic Interpretability'. arXiv v1 has no comment line. No main-track listing found. | CORRECTION | Wurgaft et al. (2026; ICML 2026 Mechanistic Interpretability Workshop spotlight, arXiv 2605.05115v1) |
+| K4 | Venue of Ahmed et al., 'Intent Factored Generation' (arXiv 2506.09659) | Plan text: ICML 2025. | icml.cc/virtual/2025/51482: 'Poster in Workshop: Exploration in AI Today (EXAIT)'. No main-track listing found; arXiv v1 has no comment. | CORRECTION | Ahmed et al. (2025; ICML 2025 EXAIT workshop, arXiv 2506.09659v1) |
+| K5 | Kim et al., 'From Noise to Diversity: Random Embedding Injection' (arXiv 2605.11936) | Plan: icml.cc/virtual/2026/79614 is the workshop listing, not the main track. | icml.cc/virtual/2026/79614: 'Spotlight in Workshop: Workshop on Mechanistic Interpretability'; arXiv v2 comment 'Under review, ICML 2026 Mechanistic Interpretability Workshop (Spotlight)'. | CONFIRMED (workshop) | Never call it an ICML 2026 paper; say ICML 2026 MI workshop spotlight. |
+| K6 | Di Cicco 2026 (arXiv 2606.14530) AUC | Listings disagree: 0.91 vs 0.931. | v1 abstract: held-out AUC 0.931 (residualised for prompt length: 0.911; length-only baseline 0.754). v2: 0.955 (residualised 0.940; baseline 0.720). v3 (latest, 2026-07-16): 0.881 (baseline 0.657). | VERSION CORRECTION | code correctness is linearly decodable from the final prompt token before generation (AUC 0.881 in v3; 0.931 in v1). |
+| K7 | Chen et al., 'From Brewing to Resolution' (arXiv 2606.17648) 'self-decodable' | Planning pattern 'self-decodable'; latest is v3 (2026-10-11). | 'self-decodable' occurs only in v1 ('linearly recoverable many layers before it becomes self-decodable'); v2 and v3 replace it with Availability/Brewing/Readiness ('decodable by the model's own ...'). | VERSION CORRECTION | Quote v3 wording or cite v1 explicitly when using 'self-decodable'. |
+| K8 | Khalid et al., 'Noise Steering' (arXiv 2604.03380) | Planning quote from abstract; comment 'BEA @ ACL 2026'. | v1: '... preserves early-grade reading level across all models'; v2 (latest): '... across all Arabic-centric models'. The BEA @ ACL 26 acceptance appears only in the v2 comment. v2 HTML unavailable; quoted from the v2 PDF. | MINOR VERSION DIFFERENCE | Quote v2 wording. |
+| K9 | STARS (arXiv 2601.22010) model naming | Planning noted Sec. 6.1 says GEMMA-1.5-2B-IT. | Table 1 rows: 'Gemma-1.1-2b-it'; Sec. 6.1 text: 'GEMMA-1.5-2B-IT'; App. B.3: 'Gemma-1.1-2-it'. | SOURCE INCONSISTENCY (in the cited paper) | When citing STARS's models, say 'Gemma-1.1-2B-it (named inconsistently in the paper) and Qwen3-1.7B'. |
+| K10 | Contemporaneity rule for ICLR 2027 | Plan: ICLR treats papers within four months as contemporaneous (ICLR 2025 FAQ); ICLR 2027 deadline 2026-09-25. | ICLR 2027 Reviewer Guide FAQ: 'We consider papers contemporaneous if they are published within the last two months ... since our full paper deadline is September 16, if a paper was published (i.e., at a peer-reviewed venue) on or after July 17, 2026 ...'; 'arXiv is not considered a peer-reviewed venue'. The ICLR 2027 Dates page gives Paper Deadline Sep 25 '26 (abstract Sep 18) - the Reviewer Guide's 'September 16' is inconsistent with it. | CORRECTION | Use the ICLR 2027 two-month rule (and the arXiv-only exemption) for an ICLR 2027 submission; keep the plan's four-month tag only as a conservative convention. |
+| K11 | Graph-analysis novelty paper (arXiv 2507.06463) | (Search snippet only) 'LLMs ... excel at optimizing and integrating established algorithms but not inventing novel techniques'. | v2 abstract: 'Although our findings demonstrate that contemporary LLMs excel in optimizing and integrating established algorithms, the potential for these models to eventually invent transformative algorithmic techniques represents a compelling frontier for future research.' The snippet wording is not in the paper. | SNIPPET ≠ SOURCE | Quote the paper's own, more hedged sentence. |
+| K12 | DivAlgo (arXiv 2610.19157) 'steer' | FLAG A check on 'steer/activation/hidden'. | 'steer' means prompting models toward human solution strategies; 0 matches for 'activation' and 'hidden'. | CLARIFICATION | Do not describe DivAlgo as activation steering. |
+| K13 | Zhang, Xin, Zhong (arXiv 2606.10302) 'Level 2 Gap' | Positioned as the site-level framework neighbour. | Claims 'To our knowledge, no existing test-time method provides per-output specifications to promote diversity in general open-ended generation' and cites neither IFG nor PlanSearch (0 matches); it is also an ICLR 2027 submission (OpenReview AnsxpIWvcZ). | OBSERVATION (positioning) | When positioning C1, cite IFG (intent sampled hot) and PlanSearch alongside 2606.10302's Level-2 methods as the text-level plan samplers. |
+| K14 | Other venue checks | NeoCoder NAACL 2025; Qi ICLR 2025 (award); Heo ICLR 2025; PlanSearch ICLR 2025; Generative Monoculture ICLR 2025; NoveltyBench COLM 2025 (expected). | All confirmed: ACL Anthology 2025.naacl-long.141; ICLR 2025 Outstanding Paper blog; iclr.cc posters 28257, 31034, 27717; OpenReview venue field 'COLM 2025' for NoveltyBench. Also: Lee et al. 2503.00691 = Findings of EMNLP 2025 (2025.findings-emnlp.10); Nagarajan et al. 2504.15266 = ICML 2025 oral/spotlight + Outstanding Paper. | CONFIRMED | None. |
+
+Sources for the venue rows: ICML 2025 EXAIT listing [72]; ICML 2026 workshop listing for Manifold Steering [73]; ICML 2026 poster page for the Invisible Lottery [74]; ICML 2026 workshop listing for REI [75]; ACL Anthology for NeoCoder [76] and Lee et al. [82]; ICLR 2025 award blog [77]; ICLR 2025 poster pages [78, 79, 80]; OpenReview COLM 2025 record for NoveltyBench [81]; ICML 2025 page for seed-conditioning [83].
+
+
+## 7. Unverified references (no numbers are taken from these)
+
+- Chatzi et al., 'Counterfactual Token Generation in Large Language Models' (arXiv 2409.17027): a candidate second precedent for C1-seed. Its metadata request hit HTTP 429 and the text was not read.
+- 'Rogue Scalpel' (arXiv 2509.22067): a search snippet said random-direction steering can raise harmful compliance. Not fetched.
+- 'Belief Dynamics Reveal the Dual Nature of In-Context Learning and Activation Steering' (PMLR v306): seen only in a search result. Not fetched.
+- AlphaResearch (arXiv 2511.08522): the snippet claim that LLM judges favour solutions within existing knowledge boundaries was not found in v2 (0 matches); not used.
+- Interaction-smells study (arXiv 2603.09701): a snippet said a model broke confirmed negative constraints a turn later. HTML returned 404 and the text was not read.
+- A secondary summary's '55,545 experiments' for the Invisible Lottery: not on the ICML page or arXiv v1, both of which say 46,535.
+- DRUGS noise-injection library (github.com/EGjoni/DRUGS): software; not checked (optional in the plan).
+- 'On the Effect of Sampling Diversity in Scaling LLM Inference' (arXiv 2502.11027v5): fetched but not quoted (optional, pre-window).
+
+
+## 8. Confidence, contradicting evidence and what would change the verdicts
+
+- **Confidence that no paper occupies C3a, C3b or the idea-level part of C1 (FLAG A and FLAG B not fired): moderate-high.** The basis is 1729 unique records on four engines, the ICLR 2027 pool and forward citations. The residual risk is a competitor written in unexpected vocabulary, or one indexed after 2026-10-21. A single screener did the screening.
+- **Contradicting or qualifying evidence.**
+  - Temperature above 1.0 can raise algorithmic diversity in other code settings, at a correctness cost [13]. DivAlgo counts temperature variation among its diversity strategies [12]. The run's BFS null should therefore be presented as task-specific.
+  - LLM agents show greater H-creativity than medal-winning humans under LLM-judged novelty [50].
+  - Search with an evaluator produces new programs [62, 49].
+  - Departure-matched stochastic decoding recovers most of steering's gains in maths [66], which a reviewer may expect to hold for plan noise too.
+- **What would change the verdicts.**
+  - An ICLR 2027 or arXiv paper that measures algorithm identity under activation noise would turn C1 to OCCUPIED. That paper might come from the authors of STARS or REI, whose stated future work is code [16].
+  - A paper that forecasts prompt-ban compliance from steerability would turn C3a to OCCUPIED.
+  - Full-text reading of the ICLR 2027 'Before the First Token' and 'AJR' submissions could raise C2a from PARTLY OCCUPIED to OCCUPIED, if either predicts the effects of random directions.
+
+
+## 9. Follow-up questions
+
+1. Must C1's contrast set add a text-level plan sampler on the same tasks with correct-only labels? Candidates are IFG intent sampling (intent at its best temperature, response at default), 2606.10302's Diverse Outline/Keyword, PlanSearch observations and Gacha Decoding. This is the comparison a reviewer will name first.
+2. Should the knob artifact report a label-level transmission score, I(label; noise draw)/H(noise draw), for plan noise vs temperature, adapting 2606.10302's Definition 1 to algorithm labels?
+3. Should the novelty claim (C3c/b5) be scoped explicitly to single-sample generation under knobs, without search or an evaluator, to pre-empt FunSearch and AlphaEvolve?
+4. Venue corrections: keep 'ICML 2026' for 2606.04057 (confirmed main-track poster); downgrade 2605.05115 to an ICML 2026 MI-workshop spotlight; cite IFG as an ICML 2025 EXAIT workshop paper. Should the run's text adopt these now?
+5. Tang wording: 'implementation priors' is verified in Sec. 5.3 of v1 and v2. Should the run cite the v2 PDF and quote the abstract as 'fail at rates of 10–100%'?
+6. Should C1 also add a decoding baseline matched to plan noise's departure from greedy (as in the ICLR 2027 'Rethinking Activation Steering' submission)?
+7. Should C2a be positioned explicitly against 'Before the First Token' (parallel vs orthogonal decomposition of interventions) and AJR (decoders mispredict intervention effects)?
+
+
+
+## Sources
+
+[1] [Benchmarking Language Model Creativity: A Case Study on Code Generation](https://arxiv.org/html/2407.09007v2) (Yining Lu, Dixuan Wang, Tianjian Li, Dongwei Jiang, Sanjeev Khudanpur, Meng Jiang, Daniel Khashabi; 2024) — NeoCoder / Denial Prompting (NAACL 2025): constraint following decays over successive denials; models may copy previous solutions; GPT-4 below human creativity.
+
+> We introduce Denial Prompting which pushes LLMs to develop more creative solutions to a given problem by incrementally imposing new constraints on the previous solution, compelling LLMs to adopt new strategies.
+
+Locator: Abstract
+
+> When stress-testing humans or LLMs to look for more creative solutions, they are very likely to make mistakes and may copy previous solutions during the process.
+
+Locator: Sec. 5.2 (paragraph above Table 3)
+
+> It is evident that as the state increases (more hard constraints are imposed), the quality of solutions declines both in terms of correctness and constraint following.
+
+Locator: Sec. 5.2, text after Table 3 (GPT-4 constraint following 100.0 at t=0 to 14.4 at t=5)
+
+[2] [Semantic Gravity Wells: Why Negative Constraints Backfire](https://arxiv.org/html/2601.08070v1) (Shailesh Rana; 2026) — Negative word constraints: priming failure (naming the forbidden word activates it) explains 87.5% of violations.
+
+> (87.5% of violations), the instruction’s explicit mention of the forbidden word paradoxically activates rather than suppresses the target representation.
+
+Locator: Abstract
+
+[3] [How Do LLMs Change Predictions Under Negation?](https://arxiv.org/html/2610.09571v2) (Jongwook Yoon, Jongwon Lim, Sungjib Lim, Woojin Cho, Yohan Jo; 2026) — Negation in LLMs: 37-71% repeat the original answer; mechanism suppresses the original and promotes a favoured in-category candidate.
+
+> We evaluate recent open-source and closed-source LLMs on our negation benchmark and find that, in 37–71% of cases, they repeat the same answer under negation
+
+Locator: Abstract
+
+> Our main finding is that specialized attention heads and MLP neurons jointly implement negation by (1) suppressing retrieval of the original answer (e.g., ‘‘Madrid’’) while (2) promoting a favored candidate within the answer category (e.g., ‘‘Paris’’).
+
+Locator: Abstract
+
+> so the model can repeat the original answer when suppression is too weak or when a bias toward particular answers prevents it from selecting an alternative.
+
+Locator: Abstract
+
+[4] [Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting](https://arxiv.org/html/2310.11324v2) (Melanie Sclar, Yejin Choi, Yulia Tsvetkov, Alane Suhr; 2023) — Prompt-format sensitivity up to 76 accuracy points (ICLR 2024).
+
+> We find that several widely used open-source LLMs are extremely sensitive to subtle changes in prompt formatting in few-shot settings, with performance differences of up to 76 accuracy points when evaluated using LLaMA-2-13B.
+
+Locator: Abstract
+
+[5] [Do LLMs "know" internally when they follow instructions?](https://arxiv.org/html/2410.14516v5) (Juyeon Heo, Christina Heinze-Deml, Oussama Elachqar, Kwan Ho Ryan Chan, Shirley Ren, Udhay Nallasamy, Andy Miller, Jaya Narain; 2024) — An input-embedding 'instruction-following dimension' predicts compliance and tracks prompt phrasing (ICLR 2025).
+
+> Our analysis identifies a direction in the input embedding space, termed the instruction-following dimension, that predicts whether a response will comply with a given instruction.
+
+Locator: Abstract
+
+[6] [Safety Alignment Should Be Made More Than Just a Few Tokens Deep](https://arxiv.org/html/2406.05946v1) (Xiangyu Qi, Ashwinee Panda, Kaifeng Lyu, Xiao Ma, Subhrajit Roy, Ahmad Beirami, Prateek Mittal, Peter Henderson; 2024) — Shallow safety alignment: alignment concentrated in the first few output tokens; prefilling effects (ICLR 2025 Outstanding Paper).
+
+> safety alignment can take shortcuts, wherein the alignment adapts a model’s generative distribution primarily over only its very first few output tokens. We refer to this issue as shallow safety alignment.
+
+Locator: Abstract
+
+> For example, simply prefilling an unaligned base model to start its output with a prefix “I cannot fulfill” is sufficient to make it as safe as aligned models.
+
+Locator: Sec. 1 Introduction
+
+[7] [Jailbreaking Leading Safety-Aligned LLMs with Simple Adaptive Attacks](https://arxiv.org/html/2404.02151v4) (Maksym Andriushchenko, Francesco Croce, Nicolas Flammarion; 2024) — Adaptive and prefilling jailbreak attacks (ICLR 2025).
+
+> We also show how to jailbreak all Claude models—that do not expose logprobs—via either a transfer or prefilling attack with a 100% success rate.
+
+Locator: Abstract
+
+[8] [Hot or Cold? Adaptive Temperature Sampling for Code Generation with Large Language Models](https://arxiv.org/html/2309.02772v3) (Yuqi Zhu, Jia Li, Ge Li, YunFei Zhao, Jia Li, Zhi Jin, Hong Mei; 2023) — AdapT: high-loss 'challenging tokens' concentrate at the beginning of code blocks (AAAI 2024).
+
+> With an analysis of loss distributions of code tokens, we find that code tokens can be divided into two categories: challenging tokens that are difficult to predict and confident tokens that can be easily inferred. Among them, the challenging tokens mainly appear at the beginning of a code block.
+
+Locator: Abstract
+
+[9] [The Alignment Problem in Constrained Code Generation](https://arxiv.org/html/2606.21619v1) (Matteo Biagiola, Jahrim Gabriele Cesario, Luca Di Grazia, George Zakhour, Guido Salvaneschi; 2026) — Misaligned (incomplete) constrainers push code decoding into low-probability regions, cutting correctness by up to 97%.
+
+> Incompleteness pushes the model into low-probability regions of the program space, causing the generation to frequently time out, and reducing functional correctness by up to 97%.
+
+Locator: Abstract
+
+[10] [Grammar-Aligned Decoding](https://arxiv.org/html/2405.21047v4) (Kanghee Park, Jiayu Wang, Taylor Berg-Kirkpatrick, Nadia Polikarpova, Loris D'Antoni; 2024) — Grammar-constrained decoding distorts the LM distribution; grammar-aligned decoding (NeurIPS 2024).
+
+> leading to outputs that are grammatical but appear with likelihoods that are not proportional to the ones given by the LLM, and so ultimately are low-quality.
+
+Locator: Abstract
+
+[11] [NoveltyBench: Evaluating Language Models for Humanlike Diversity](https://arxiv.org/html/2504.05228v4) (Yiming Zhang, Harshita Diddee, Susan Holm, Hanchen Liu, Xinyue Liu, Vinay Samuel, Barry Wang, Daphne Ippolito; 2025) — NoveltyBench (COLM 2025): models generate less diversity than human writers; larger models often less diverse.
+
+> Evaluating 20 leading language models, we find that current state-of-the-art systems generate significantly less diversity than human writers. Notably, larger models within a family often exhibit less diversity than their smaller counterparts, challenging the notion that capability on standard benchmarks translates directly to generative utility.
+
+Locator: Abstract
+
+[12] [DivAlgo: A systematic evaluation of algorithmic diversity for code generation models](https://arxiv.org/html/2610.19157v1) (Anubhav Jangra, Smaranda Muresan; 2026) — DivAlgo: algorithmic diversity of 24 code models vs human solutions (~31%; best strategy ~70%); prompt-based steering cannot reproduce human diversity.
+
+> Moreover, while it was possible to steer the models to generate solutions based on human strategies, they were unable to reproduce the diversity of the human solutions.
+
+Locator: Abstract
+
+> Even when using diverse code generation strategies such as temperature variations, verbalized sampling Zhang et al. (2025), and iterative constrained generation Ye et al. (2025), we can only achieve up to 70.5% diversity relative to human solutions with an equal number of samples (Section 5.1).
+
+Locator: Sec. 1 Introduction
+
+> The strongest single-model approach still captures only 70% of human diversity at a matched sample size, highlighting the limitations of LLMs in eliciting human-level algorithmic variety.
+
+Locator: Sec. 5.1
+
+[13] [How Diversely Can Language Models Solve Problems? Exploring the Algorithmic Diversity of Model-Generated Code](https://arxiv.org/html/2503.00691v2) (Seonghyeon Lee, Heejae Chon, Joonwon Jang, Dongha Lee, Hwanjo Yu; 2025) — Algorithmic diversity of model code is low; heterogeneous models and temperature > 1.0 raise it at a correctness cost (Findings of EMNLP 2025).
+
+[14] [Noise Steering for Controlled Text Generation: Improving Diversity and Reading-Level Fidelity in Arabic Educational Story Generation](https://arxiv.org/pdf/2604.03380v2) (Haziq Mohammad Khalid, Salsabeel Shapsough, Imran Zualkernan; 2026) — Noise steering (BEA @ ACL 2026): four internal injection sites vs high temperature for narrative diversity; residual noise best.
+
+> or constraint cost and preserves early-grade reading level across all Arabic-centric
+
+Locator: Abstract (p. 1, PDF)
+
+> We compare four injection strategies against high-temperature sampling baselines, measuring diversity,
+
+Locator: Abstract (p. 1, PDF)
+
+> As with attention-logit noise, only the last token position of the attention output (shape (B, 1, D) during decoding) is
+
+Locator: Sec. 4.4 (AENI), PDF
+
+[15] [Exploring Diverse Generation Paths via Inference-time Stiefel Activation Steering](https://arxiv.org/html/2601.22010v1) (Dongxuan Zhu, Ly Tran Ho Khanh, Andy Yat-Ming Cheung, Man-Chung Yue, Viet Anh Nguyen; 2026) — STARS (ICLR 2026): Stiefel activation steering for diverse generation; TESTEVAL test cases with execution-checked validity and coverage vs temperature.
+
+> Existing methods for inducing diversity primarily perturb the token-level sampling process.
+
+Locator: Sec. 1 Introduction
+
+> The overall coverage for a program is computed by the proportion of lines/branches in the program that have been covered by at least one test case
+
+Locator: Sec. 6.1 Test Case Generation
+
+> Table 1 demonstrates that the STARS method consistently outperforms the temperature sampling approach (labeled as sampling) across all temperature settings and evaluation metrics on both the GEMMA-1.5-2B-IT and QWEN3-1.7B models.
+
+Locator: Sec. 6.1 Test Case Generation
+
+[16] [From Noise to Diversity: Random Embedding Injection in LLM Reasoning](https://arxiv.org/html/2605.11936v2) (Heejun Kim, Seungpil Lee, Jewon Yeom, Jaewon Sok, Seonghyeon Park, Jeongjae Park, Taesup Kim, Sundong Kim; 2026) — Random soft prompts (random embedding injection) branch early tokens and widen Pass@N on math; code left to future work (ICML 2026 MI workshop spotlight).
+
+> We study Random Soft Prompts (RSPs), which drop the training step entirely and append a freshly drawn sequence of random embedding vectors to the input.
+
+Locator: Abstract
+
+> because attention has to absorb a never-seen-before random position, the distribution over the first few generated tokens flattens and reasoning trajectories
+
+Locator: Abstract
+
+> Open questions include whether the mechanism extends beyond RoPE-based decoders and math reasoning, whether RSP admits a continuous control dial like temperature sampling (e.g., via the RSP norm or its mixing ratio with real tokens), and whether the same diversity gains transfer to tasks with multiple valid answers such as code generation or open-ended reasoning.
+
+Locator: Sec. 5 Conclusion (future work)
+
+[17] [Test-time Diverse Reasoning by Riemannian Activation Steering](https://arxiv.org/html/2511.08305v1) (Ly Tran Ho Khanh, Dongxuan Zhu, Man-Chung Yue, Viet Anh Nguyen; 2025) — SPREAD (AAAI 2026): Riemannian activation steering for diverse reasoning, evaluated on math benchmarks.
+
+> Empirical evaluations on popular mathematical benchmarks demonstrate that our test-time Riemannian activation steering strategy outperforms vanilla sampling techniques in terms of generative diversity and solution accuracy.
+
+Locator: Abstract
+
+[18] [NoisyCoconut: Counterfactual Consensus via Latent Space Reasoning](https://arxiv.org/html/2605.08221v1) (Michael Jerge, David Evans; 2026) — NoisyCoconut: noise in latent reasoning trajectories for consensus and abstention.
+
+> Rather than training models to reason in latent space, we inject controlled noise into latent trajectories to generate diverse reasoning paths. Agreement among these paths provides a confidence signal, enabling models to abstain when uncertain.
+
+Locator: Abstract
+
+[19] [Roll the dice & look before you leap: Going beyond the creative limits of next-token prediction](https://arxiv.org/html/2504.15266v4) (Vaishnavh Nagarajan, Chen Henry Wu, Charles Ding, Aditi Raghunathan; 2025) — Seed-conditioning (input-layer noise) matches or beats output temperature on algorithmic-creativity tasks (ICML 2025).
+
+[20] [Activation Steering for Synthetic Data Generation: The Role of Diversity in Downstream Safety Detection](https://arxiv.org/html/2605.28664v1) (Vijeta Deshpande, Tootiya Giyahchi, Veena Padmanabhan, Leman Akoglu, Anna Rumshisky; 2026) — Activation steering for synthetic data: stronger steering reduces response diversity.
+
+> and find that increasing steering strength reduces response diversity.
+
+Locator: Abstract
+
+[21] [When is Your LLM Steerable?](https://arxiv.org/html/2606.11599v1) (Chenrui Fan, Yize Cheng, Ming Li, Soheil Feizi, Tianyi Zhou; 2026) — ASTEER: predicts under-/successful/over-steering of an activation-steering intervention from early hidden states (~0.7 macro-F1).
+
+> We then train a Gradient Boosting Decision Trees (GBDT) classifier on these features to predict whether an intervention will under-steer, succeed, or over-steer without requiring full rollout. Our predictor achieves around 0.7 macro-F1 score on unseen concepts, demonstrating that early hidden states encode substantial, structured information about eventual steering efficacy.
+
+Locator: Abstract
+
+> Although the term “steering” is sometimes used broadly in the literature to describe instruction following or prompt engineering, in this work, steering refers exclusively to inference-time activation engineering, where carefully calculated vectors are injected into the residual stream to alter model behavior without weight updates.
+
+Locator: Appendix A.1
+
+[22] [LLMs Know the Constraint But Do Not Use It: Activation Bottlenecks in Pragmatic Constraint Reasoning](https://arxiv.org/html/2608.12321v1) (Yubo Li, Ramayya Krishnan, Rema Padman; 2026) — Implicit-constraint failures are routing, not knowledge, failures (probes + patching).
+
+> Hidden-constraint failure is a routing problem, not a knowledge problem.
+
+Locator: Abstract
+
+[23] [Compliance vs. Sensibility: On the Reasoning Controllability in Large Language Models](https://arxiv.org/html/2604.27251v3) (Xingwei Tan, Marco Valentino, Mahmud Elahi Akhter, Yuxiang Zhou, Maria Liakata, Nikolaos Aletras; 2026) — Reasoning-instruction compliance vs sensibility; instructions decodable without compliance; steering toward compliance (Findings of EMNLP 2026).
+
+> Probing reveals instruction decodability even without compliance, while CKA identifies geometric differences across models and spans.
+
+Locator: Abstract
+
+[24] [Steered LLM Activations are Non-Surjective](https://arxiv.org/html/2604.09839v2) (Aayush Mishra, Daniel Khashabi, Anqi Liu; 2026) — Steered activations are non-surjective: formal separation between white-box steering and black-box prompting.
+
+> Almost surely, no prompt can reproduce the same internal behavior induced by steering.
+
+Locator: Abstract
+
+[25] [Is Temperature the Creativity Parameter of Large Language Models?](https://arxiv.org/html/2405.00492v1) (Max Peeperkorn, Tom Kouwenhoven, Dan Brown, Anna Jordanous; 2024) — Temperature weakly correlated with novelty, moderately with incoherence (ICCC 2024).
+
+> We find that temperature is weakly correlated with novelty, and unsurprisingly, moderately correlated with incoherence, but there is no relationship with either cohesion or typicality.
+
+Locator: Abstract
+
+[26] [Intent Factored Generation: Unleashing the Diversity in Your Language Model](https://arxiv.org/html/2506.09659v1) (Eltayeb Ahmed, Uljad Berdica, Martha Elliott, Danijela Horak, Jakob N. Foerster; 2025) — Intent Factored Generation: sample intent hot, response cold; token-level methods paraphrase; pass@k gains on maths and code (ICML 2025 EXAIT workshop).
+
+> Current methods for increasing diversity often only operate at the token-level, paraphrasing the same response.
+
+Locator: Abstract
+
+> This factorisation allows us to use a higher temperature during the intent step to promote conceptual diversity, and a lower temperature during the final generation to ensure the outputs are coherent and self-consistent.
+
+Locator: Abstract
+
+> We show this method improves both pass@k and Reinforcement Learning from Verifier Feedback (RLVF) on maths and code tasks.
+
+Locator: Abstract
+
+[27] [Planning In Natural Language Improves LLM Search For Code Generation](https://arxiv.org/html/2409.03733v2) (Evan Wang, Federico Cassano, Catherine Wu, Yunfeng Bai, Will Song, Vaskar Nath, Ziwen Han, Sean Hendryx, Summer Yue, Hugh Zhang; 2024) — PlanSearch (ICLR 2025): searching natural-language plans mitigates the lack of diversity in code generation.
+
+> We empirically demonstrate that this lack of diversity can be mitigated by searching over candidate plans for solving a problem in natural language.
+
+Locator: Abstract
+
+[28] [Generative Monoculture in Large Language Models](https://arxiv.org/html/2407.02209v1) (Fan Wu, Emily Black, Varun Chandrasekaran; 2024) — Generative monoculture (ICLR 2025): narrower range of algorithms than humans; sampling/prompting changes insufficient.
+
+> We experimentally demonstrate the prevalence of generative monoculture through analysis of book review and code generation tasks, and find that simple countermeasures such as altering sampling or prompting strategies are insufficient to mitigate the behavior.
+
+Locator: Abstract
+
+[29] [Beneath the Diff: Diagnosing and Mitigating Algorithmic Mode Collapse in Code-Level Autonomous Research Loops](https://arxiv.org/html/2609.00077v1) (Bowei He, Weixu Zhang, Yili Jin, Xue Liu; 2026) — Beneath the Diff (EMNLP 2026): surface edit diversity stable while mechanism-level diversity collapses in code research loops.
+
+> In this regime, surface-level edit diversity remains stable, but semantic and mechanism-level diversity collapse: the agent continues to edit different lines of code while repeatedly proposing the same kinds of algorithmic changes.
+
+Locator: Abstract
+
+[30] [The Invisible Lottery: How Subtle Cues Steer Algorithm Choice in LLM Code Generation](https://arxiv.org/html/2606.04057v1) (Akanksha Narula, Mofasshara Binte Rafique, Laurent Bindschaedler; 2026) — The Invisible Lottery (ICML 2026): incidental cues shift algorithm families up to 100 pp; direct naming is the best mitigation.
+
+> We find large, systematic shifts in algorithm-family distributions (up to 100 pp), largely consistent with cue semantics, including in applied tasks such as rate limiting. Direct algorithm naming is the most reliable mitigation we tested.
+
+Locator: Abstract
+
+> Cues we designed as neutral placebos (team names, project codes, color themes) still produced a mean 26 pp shift
+
+Locator: Sec. 1 Introduction
+
+> Pass rate is 120/120 (100%); strict compliance is 73/120 (60.8%) and 118/120 (98.3%) after normalizing for label-granularity synonyms documented in Appendix A.6 (e.g., “dynamic programming” satisfied by bottom-up tabulation).
+
+Locator: Sec. 5.6 Mitigation
+
+[31] [Where You Inject Diversity Matters: A Unified Framework for Diverse Generation](https://arxiv.org/html/2606.10302v1) (Cheng Zhang, Rui Xin, Chudi Zhong; 2026) — Diversity Injection Framework: Level 0/1/2 diversity sources and a transmission score; text-level, no code, no activation site.
+
+> We introduce a framework that characterizes test-time diverse generation methods by the diversity source introduced during generation and provide a transmission score for measuring how effectively variation in the source reaches the final output.
+
+Locator: Abstract
+
+> It measures the fraction of source diversity that is realized in the final output.
+
+Locator: Sec. 3.3, text after Definition 1 (Transmission Score)
+
+> To our knowledge, no existing test-time method provides per-output specifications to promote diversity in general open-ended generation.
+
+Locator: Sec. 3.2, 'The Level 2 Gap'
+
+[32] [The Price of Format: Diversity Collapse in LLMs](https://arxiv.org/html/2505.18949v1) (Longfei Yun, Chenyang An, Zilong Wang, Letian Peng, Jingbo Shang; 2025) — Diversity collapse persists under high temperature; structural template tokens constrain output space.
+
+> We systematically evaluate this effect across tasks like story completion and free-form generation, finding that (1) diversity collapse persists even under high-temperature sampling, and (2) structural tokens in templates significantly constrain the model’s output space.
+
+Locator: Abstract
+
+[33] [Gumbel Counterfactual Generation From Language Models](https://arxiv.org/html/2411.07180v5) (Shauli Ravfogel, Anej Svete, Vésteinn Snæbjarnarson, Ryan Cotterell; 2024) — Gumbel counterfactual generation (ICLR 2025): joint distribution of strings and counterfactuals under the same sampling noise.
+
+[34] [Emergent Response Planning in LLMs](https://arxiv.org/html/2502.06258v3) (Zhichen Dong, Zhanhui Zhou, Zhixuan Liu, Chao Yang, Chaochao Lu; 2025) — Emergent response planning (ICML 2025): prompt representations encode global attributes of the upcoming response.
+
+> Through simple probing, we demonstrate that LLM prompt representations encode global attributes of their entire responses, including structure attributes (e.g., response length, reasoning steps), content attributes (e.g., character choices in storywriting, multiple-choice answers at the end of response), and behavior attributes (e.g., answer confidence, factual consistency).
+
+Locator: Abstract
+
+[35] [Where's the Plan? Locating Latent Planning in Language Models with Lightweight Mechanistic Interventions](https://arxiv.org/html/2605.07984v2) (Nicole Ma, Nick Rui; 2026) — Where's the Plan (ICML 2026 MI workshop): probe signal vs causal reliance on latent planning differ across models.
+
+> Activation patching reveals that only Gemma-3-27B causally relies on this encoding, exhibiting a handoff in which the causal driver migrates from the rhyme word to the line boundary around layer 30. Every other model we test conditions on the rhyme word throughout generation, with near-zero causal effect at the line boundary despite strong probe signal.
+
+Locator: Abstract
+
+[36] [From Brewing to Resolution: Tracing the Internal Lifecycle of Code Reasoning in LLMs](https://arxiv.org/html/2606.17648v3) (Siyue Chen, Yifu Guo, Yuquan Lu, Zishan Xu, Jiaye Lin, Jianbo Lin, Siyu Zhang, Cheng Yang, Junxin Li, Yujia Li, Yu Huo, Ruixuan Wang; 2026) — From Brewing to Resolution: answers linearly recoverable before the model can use them (code reasoning); wording changed across versions.
+
+> Our framework reveals three diagnostic notions that characterize how answer representations develop across model layers
+
+Locator: Sec. 1 Introduction
+
+[37] [In-Context Learning Creates Task Vectors](https://arxiv.org/html/2310.15916v1) (Roee Hendel, Mor Geva, Amir Globerson; 2023) — In-context learning compresses demonstrations into a task vector (Findings of EMNLP 2023).
+
+> We have revealed a simple and elegant structure: ICL functions by compressing a given training set into a single task vector, which then guides the transformer to generate appropriate outputs given queries.
+
+Locator: Sec. 8 Conclusions
+
+[38] [Function Vectors in Large Language Models](https://arxiv.org/html/2310.15213v2) (Eric Todd, Millicent L. Li, Arnab Sen Sharma, Aaron Mueller, Byron C. Wallace, David Bau; 2023) — Function vectors carried by a few attention heads (ICLR 2024).
+
+> Using causal mediation analysis on a diverse range of in-context-learning (ICL) tasks, we find that a small number attention heads transport a compact representation of the demonstrated task, which we call a
+
+Locator: Abstract
+
+[39] [Future Lens: Anticipating Subsequent Tokens from a Single Hidden State](https://arxiv.org/html/2311.04897v1) (Koyena Pal, Jiuding Sun, Andrew Yuan, Byron C. Wallace, David Bau; 2023) — Future Lens (CoNLL 2023): single hidden states anticipate subsequent tokens.
+
+> We find that, at some layers, we can approximate a model’s output with more than 48% accuracy with respect to its prediction of subsequent tokens through a single hidden state.
+
+Locator: Abstract
+
+[40] [Do language models plan ahead for future tokens?](https://arxiv.org/html/2404.00859v2) (Wilson Wu, John X. Morris, Lionel Levine; 2024) — Pre-caching vs breadcrumbs (COLM 2024).
+
+> In a constructed synthetic data setting, we find clear evidence for pre-caching. In the autoregressive language modeling setting, our experiments are more suggestive of the breadcrumbs hypothesis, though pre-caching increases with model scale.
+
+Locator: Abstract
+
+[41] [Code Correctness Is Linearly Decodable from LLM Hidden States Before Generation](https://arxiv.org/html/2606.14530v3) (Carlo Di Cicco; 2026) — Code correctness linearly decodable from the final prompt token before generation; AUC differs by version (0.931 v1, 0.955 v2, 0.881 v3).
+
+> The correctness of the model’s first-attempt code is linearly decodable from the hidden state at the final prompt token, captured before any output token is generated, with a leakage-free held-out AUC of 0.881
+
+Locator: Abstract (v3)
+
+[42] [Latent Programming Horizons in Coding Agents](https://arxiv.org/html/2607.05188v1) (André Silva, Han Tu, Martin Monperrus; 2026) — Latent programming horizons in coding agents: probes predict future edit outcomes up to ~25 steps ahead.
+
+> Probes trained to predict the outcome of future edits (before they are materialized and written on disk) achieve performance above chance up to roughly 25 steps in advance.
+
+Locator: Abstract
+
+[43] [Interpretability without actionability: mechanistic methods cannot correct language model errors despite near-perfect internal representations](https://arxiv.org/html/2603.18353v1) (Sanjay Basu, Sadiq Y. Patel, Parth Sheth, Bhairavi Muralidharan, Namrata Elamaran, Aakriti Kinra, John Morgan, Rajaie Batniji; 2026) — Interpretability without actionability: 98.2% AUROC probes vs 45.1% output sensitivity; steering indistinguishable from random perturbation.
+
+> Linear probes trained on Qwen’s internal representations discriminated hazardous from benign cases with 98.2% AUROC (95% CI 0.968 to 0.993), demonstrating a 53-percentage-point gap between internal knowledge and output behaviour.
+
+Locator: Abstract
+
+[44] [Manifold Steering Reveals the Shared Geometry of Neural Network Representation and Behavior](https://arxiv.org/html/2605.05115v1) (Daniel Wurgaft, Can Rager, Matthew Kowal, Vasudev Shyam, Sheridan Feucht, Usha Bhalla, Tal Haklay, Eric Bigelow, Raphael Sarfati, Thomas McGrath, Owen Lewis, Jack Merullo, Noah Goodman, Thomas Fel, Atticus Geiger, Ekdeep Singh Lubana; 2026) — Manifold steering (ICML 2026 MI workshop spotlight): geodesic/MDS isometry; linear steering cuts off-manifold.
+
+> linear steering—which assumes a Euclidean geometry—cuts through off-manifold regions and hence produces unnatural outputs.
+
+Locator: Abstract
+
+> Furthermore, on-manifold distances in activation space show strong correlation with on-manifold distances in behavior space (right column), as well as a clear structural match via a multidimensional scaling (MDS) embedding (middle column).
+
+Locator: Sec. 4, figure caption (isometry test)
+
+[45] [Steering Code LLMs with Activation Directions for Language and Library Control](https://arxiv.org/html/2603.23629v2) (Md Mahbubur Rahman, Arjun Guha, Harshitha Menon; 2026) — Difference-in-means steering toward target languages/libraries in code LLMs, even against opposite prompts.
+
+> Using a difference-in-means method, we estimate layer-wise steering vectors for five language/library pairs and add them to model hidden states during generation. Across three open-weight code LLMs, these interventions substantially increase generation toward the target ecosystem under neutral prompts and often remain effective even when prompts explicitly request the opposite choice.
+
+Locator: Abstract
+
+[46] [Compact Constraint Encoding for LLM Code Generation: An Empirical Study of Token Economics and Constraint Compliance](https://arxiv.org/pdf/2604.07192v2) (Hanzhang Tang; 2026) — Compact constraint encoding: counter-intuitive constraints opposing defaults fail 10-100%; 'implementation priors' (Sec. 5.3).
+
+> It suggests that LLMs possess implementation priors—default code patterns for common tasks (e.g., "styling React components" → inline style objects)—that compete with explicit constraints.
+
+Locator: Sec. 5.3 'Why Counter-Intuitive Constraints Fail' (PDF)
+
+> counter-intuitive constraints opposing model defaults fail at rates of 10–100%
+
+Locator: Abstract (PDF p. 1)
+
+> First, positive constraints ("use X") appear easier to follow than negative constraints ("do not use Y"), presumably because the latter requires suppressing an activated implementation path.
+
+Locator: Sec. 5.3 (PDF)
+
+[47] [How Language Models Process Negation](https://arxiv.org/html/2605.03052v2) (Zhejian Zhou, Tianyi Zhou, Robin Jia, Jonathan May; 2026) — How LMs process negation (ICML 2026): construction + suppression; late-layer shortcut heads cause failures.
+
+> We show that LLMs’ failures on negation queries arise not from the absence of negation ability, but because their negation processing mechanisms are overshadowed by other mechanisms at later layers.
+
+Locator: Sec. 1 Introduction (contributions)
+
+> Overall, we reveal that construction and suppression work collaboratively to compute negation; the model computes a negated representation in its mid-layer attention outputs (e.g. interpreting “not gas” as “solid”), while also suppressing the negated concept.
+
+Locator: Sec. 1 Introduction
+
+[48] [Geometry of Knowledge Allows Extending Diversity Boundaries of Large Language Models](https://arxiv.org/html/2507.13874v2) (Mateusz Bystroński, Doheon Han, Nitesh V. Chawla, Tomasz Kajdanowicz; 2025) — Manifold-based conditioning in embedding space increases generative diversity.
+
+> Our experiments demonstrate that this manifold-based conditioning substantially increases generative diversity, with direct benefits for enhancing divergent thinking, a core facet of creativity, in language models.
+
+Locator: Abstract
+
+[49] [AlphaEvolve: A coding agent for scientific and algorithmic discovery](https://arxiv.org/html/2506.13131v1) (Alexander Novikov, Ngân Vũ, Marvin Eisenberger, Emilien Dupont, Po-Sen Huang, Adam Zsolt Wagner, Sergey Shirobokov, Borislav Kozlovskii, Francisco J. R. Ruiz, Abbas Mehrabian, M. Pawan Kumar, Abigail See, Swarat Chaudhuri, George Holland, Alex Davies, Sebastian Nowozin, Pushmeet Kohli, Matej Balog; 2025) — AlphaEvolve: evolutionary coding agent with evaluators discovers improved algorithms.
+
+> Using an evolutionary approach, continuously receiving feedback from one or more evaluators,
+
+Locator: Abstract
+
+[50] [Can LLM Agents Discover? Evaluating Creativity on ML Engineering Tasks](https://arxiv.org/html/2608.30047v1) (Shitanshu Bhushan, Yunxiang Zhang, Lu Wang; 2026) — LLM agents show greater H-creativity than medal-winning humans but lower performance (LLM-judge novelty).
+
+[51] [Evaluating Efficiency and Novelty of LLM-Generated Code for Graph Analysis](https://arxiv.org/html/2507.06463v2) (Atieh Barati Nia, Mohammad Dindoost, David A. Bader; 2025) — LLMs excel at optimising/integrating established graph algorithms; inventing new techniques left as a frontier.
+
+[52] [Perturb the Thought, Not the Pixels: Latent-Space Rollout Diversification for Reinforcement Learning of Vision-Language Models](https://arxiv.org/html/2608.21595v1) (Michael Jerge, Joseph Pelczar, Justin Downes; 2026) — NC-GRPO: Gaussian noise in the prompt-encoding pass vs temperature/pixel noise for RLVR rollout diversity (VLMs).
+
+> Existing approaches diversify through decoding temperature or pixel-space image distortion; we ask whether the perturbation belongs in the model’s latent space instead. We introduce Noise-Contrastive GRPO (NC-GRPO), which injects scale-calibrated Gaussian noise into the last hidden layer of the prompt-encoding pass for half of each rollout group, branching those rollouts from a displaced departure state.
+
+Locator: Abstract
+
+[53] [Large Language Models Explore by Latent Distilling](https://arxiv.org/html/2604.24927v2) (Yuanhao Zeng, Ao Lu, Lufei Li, Zheng Zhang, Yexin Li, Kan Ren; 2026) — ESamp (ICML 2026): token-level sampling yields surface lexical variation; latent-novelty-guided decoding for semantic exploration (incl. LiveCodeBench).
+
+> Unfortunately, naive sampling strategies (Ackley et al., 1985) frequently fall into this trap, as stochastic perturbations at the token level tend to induce surface-level lexical variation without substantially altering the underlying reasoning strategy.
+
+Locator: Sec. 1 Introduction
+
+[54] [Gacha Decoding: Eliciting Diverse Generations Through Instruction Following](https://arxiv.org/html/2610.01382v1) (Scott Geng, Yufei Zhang, Joseph Lee, Jerry Li, Marjan Ghazvininejad, Pang Wei Koh; 2026) — Gacha Decoding: diversity as instruction following with an external RNG (text-level plan sampler).
+
+> Our key insight is to treat diversity as an instruction-following problem: rather than relying on the LM’s token entropy, we combine its instruction-following capability with randomness from an external RNG tool to scalably identify and realize distinct modes of the response space.
+
+Locator: Abstract
+
+[55] [Are you Synthesizing or Recalling? Evaluating LLMs on Algorithmic Code Retrieval](https://arxiv.org/html/2610.02438v1) (Nickil Maveli, Antonio Vergari, Shay B. Cohen; 2026) — AlgoREval: code generation for named algorithms as parametric retrieval rather than synthesis.
+
+> We argue that for well-known algorithms whose canonical implementations are widely accessible in pretraining corpora, code generation is better measured as parametric code retrieval: reproducing a named algorithm from internalised knowledge rather than synthesizing a novel one.
+
+Locator: Abstract
+
+[56] [Perfect Detection, Failed Control: The Geometry of Knowing vs. Steering in Language Models](https://arxiv.org/html/2606.24952v1) (Cosimo Galeone, Anna Ettorre, Minsu Park, Giuseppe Ettorre, Daniele Ligorio; 2026) — Angle between detection and control directions (detection-intervention gap).
+
+> If not, the cosine between them quantifies what we call the detection-intervention gap.
+
+Locator: Abstract
+
+[57] [Signatures of Steerability in Activation Space of Language Models](https://arxiv.org/html/2609.14151v1) (Prajjwal Bhattarai, Tuka Alhanai; 2026) — Separation metrics in activation space predict steerability.
+
+> We make this dataset-dependence claim more rigorous and show that simple separation metrics strongly correlate with the downstream steerability of language models across diverse settings, even after controlling for layers and dataset effects.
+
+Locator: Abstract
+
+[58] [SPARK: Susceptibility-Guided Profiling and Steering of Latent Reasoning States in Large Language Models](https://arxiv.org/html/2607.10296v1) (Dongxu Zhang, Yiding Sun, Zihao Guo, Xiangyang Yang, Kai Tang, Lin Chen, Cheng Tan, Jihua Zhu; 2026) — SPARK: length-controlled hidden-state susceptibility to diagnose reasoning-state activation and guide steering.
+
+> In this paper, we introduce SPARK, which uses hidden-state response to diagnose whether a model internally enters an effective reasoning state and to guide lightweight test-time steering.
+
+Locator: Abstract
+
+[59] [Answer Probing-Guided Search for Diverse Solution Exploration of LLMs](https://arxiv.org/html/2608.30345v1) (Yi Fang, Que Shen, Chengpeng Li, Boyi Deng, Wei Shi, Wenjie Wang, Fuli Feng, Fengli Xu, Dayiheng Liu; 2026) — APTS (EMNLP 2026): hidden states of probed answers separate distinct solution paths in tree search.
+
+> We demonstrate that the hidden states of probed answers more effectively differentiate distinct solution paths than semantic embeddings, and the perplexity of probed answers serves as a practical proxy for reasoning correctness.
+
+Locator: Abstract
+
+[60] [The Hitchhiker's Guide to Monoculture: AI Homogenizes Syntax, Not (Necessarily) Semantics](https://arxiv.org/pdf/2607.13077v3) (Gordon Burtch; 2026) — AI-assisted human code homogenises syntax, not ML-algorithm calls.
+
+> However, function calls involving machine-learning algorithms are notably not affected.
+
+Locator: Results (PDF)
+
+[61] [Probing and Steering Prompt Injection Compliance](https://neurips.cc/virtual/2026/168286) (Anany Kotawala; 2026) — NeurIPS 2026 workshop poster: a last-prompt-token probe predicts injection compliance (ROC-AUC 0.90); only partly steerable. Abstract-only (no arXiv record found).
+
+> On Qwen2.5-3B-Instruct, a linear probe on the last prompt-token residual stream predicts whether an injected instruction will be obeyed at ROC-AUC 0.90 (0.92 document-grouped), read before the first token is generated.
+
+Locator: Abstract on the NeurIPS 2026 virtual-site page
+
+> We show that this decision is readable before generation and only partly steerable.
+
+Locator: Abstract on the NeurIPS 2026 virtual-site page
+
+> The Third Workshop on Agents in the Wild: Safety, Security, and Beyond
+
+Locator: page header: 'Poster in Workshop:' label, linking to this workshop
+
+[62] [Mathematical discoveries from program search with large language models](https://www.nature.com/articles/s41586-023-06924-6) (Bernardino Romera-Paredes; 2024) — FunSearch (Nature 625, 468-475; published 14 Dec 2023): LLM + systematic evaluator in an evolutionary loop finds new cap-set constructions.
+
+> Applying FunSearch to a central problem in extremal combinatorics—the cap set problem—we discover new constructions of large cap sets going beyond the best-known ones, both in finite dimensional and asymptotic cases.
+
+Locator: Abstract (Nature article page)
+
+[63] [Diversity Without Discovery: Why Chain Perturbation Fails to Explore in Latent Test-Time Scaling](https://api2.openreview.net/notes/search?term=Diversity%20Without%20Discovery%3A%20Why%20Chain%20Perturbation%20Fails%20to%20Explore%20in%20Latent%20Test-Time%20Scaling&group=ICLR.cc/2027/Conference&limit=10) (2026) — ICLR 2027 submission (anonymous): perturbed latent chains add diversity without accuracy gains vs explicit sampling. Abstract read via the OpenReview API.
+
+> we fairly compare latent perturbation methods with standard explicit reasoning on a shared backbone and find that, for unconstrained latent thoughts, i.e., thoughts not restricted to the embedding space, aggregating perturbed latent chains brings no gain over the no-sampling baseline, whereas explicit reasoning turns the same budget into accuracy gains.
+
+Locator: OpenReview abstract (ICLR 2027 submission)
+
+> Empirically, the added diversity comes predominantly from borderline samples and, unlike with explicit reasoners, a correct answer reached through perturbation carries no gain in confidence.
+
+Locator: OpenReview abstract (ICLR 2027 submission)
+
+[64] [Before the First Token: A Shared Causal Subspace for Response-Length Planning in LLMs](https://api2.openreview.net/notes/search?term=Before%20the%20First%20Token%3A%20A%20Shared%20Causal%20Subspace%20for%20Response-Length%20Planning%20in%20LLMs&group=ICLR.cc/2027/Conference&limit=10) (2026) — ICLR 2027 submission: causal pre-generation subspace for response length (parallel vs orthogonal intervention decomposition). Abstract read via the OpenReview API.
+
+> We first show that future response length is encoded before the first generated token: controlled length perturbations induce persistent changes in response length even when the explicit length signal is unavailable during subsequent decoding, supporting the existence of a pre-generation planning state rather than a purely autoregressive length effect.
+
+Locator: OpenReview abstract (ICLR 2027 submission)
+
+> We further establish its causal role by decomposing hidden-state interventions into components parallel and orthogonal to the learned subspace.
+
+Locator: OpenReview abstract (ICLR 2027 submission)
+
+[65] [AJR: Amortized Jacobian Readouts for Prompt-Adaptive Steering](https://api2.openreview.net/notes/search?term=AJR%3A%20Amortized%20Jacobian%20Readouts%20for%20Prompt-Adaptive%20Steering&group=ICLR.cc/2027/Conference&limit=10) (2026) — ICLR 2027 submission: reading states vs predicting intervention effects; decoders mispredict intervention effects. Abstract read via the OpenReview API.
+
+> Reading a language model's hidden state and predicting what will happen if we change it are different tasks.
+
+Locator: OpenReview abstract (ICLR 2027 submission)
+
+[66] [Rethinking Activation Steering for Mathematical Reasoning: What Actually Drives Its Reasoning Gains?](https://api2.openreview.net/notes/search?term=Rethinking%20Activation%20Steering%20for%20Mathematical%20Reasoning&group=ICLR.cc/2027/Conference&limit=10) (2026) — ICLR 2027 submission: steering redirects among already-supported trajectories; departure-matched decoding matches it. Abstract read via the OpenReview API.
+
+> they alter local decoder preferences and redirect generation among reasoning trajectories already supported by the model. Correct solutions and related reasoning strategies are frequently accessible under unsteered sampling.
+
+Locator: OpenReview abstract (ICLR 2027 submission)
+
+> More directly, ordinary stochastic decoding whose parameters are selected to match steering's aggregate departure from greedy decoding achieves comparable accuracy while substantially reducing the remaining marginal benefit of steering; whole-thought exploration reproduces the same pattern.
+
+Locator: OpenReview abstract (ICLR 2027 submission)
+
+[67] [Where Do LLMs Decide to Break the Rules? Mechanistic Localization of Prompt Injection Compliance](https://api2.openreview.net/notes/search?term=Where%20Do%20LLMs%20Decide%20to%20Break%20the%20Rules%3F%20Mechanistic%20Localization%20of%20Prompt%20Injection%20Compliance&group=ICLR.cc/2027/Conference&limit=10) (2026) — ICLR 2027 submission: injection compliance decodable early, causally decided in a late-layer bottleneck. Abstract read via the OpenReview API.
+
+> attack information is linearly decodable from the first layer, yet causal leverage over the model's behavior is negligible until a late-layer bottleneck in the final third of the network.
+
+Locator: OpenReview abstract (ICLR 2027 submission)
+
+[68] [Silent Compliance: Separating Constraint Echoing from Instruction Following](https://api2.openreview.net/notes/search?term=Silent%20Compliance%3A%20Separating%20Constraint%20Echoing%20from%20Instruction%20Following&group=ICLR.cc/2027/Conference&limit=10) (2026) — ICLR 2027 submission: compliant answers to negative instructions often echo or reintroduce the excluded object. Abstract read via the OpenReview API.
+
+> Modern language models increasingly follow negative instructions well. Yet even a compliant response may restate the rule, announce compliance, or reintroduce the excluded object.
+
+Locator: OpenReview abstract (ICLR 2027 submission)
+
+[69] [ICLR 2027 Reviewer Guide](https://www.iclr.cc/Conferences/2027/ReviewerGuidelines) — Contemporaneous = published at a peer-reviewed venue within two months of the deadline; arXiv-only papers need not be compared.
+
+> We consider papers contemporaneous if they are published within the last two months. That means, since our full paper deadline is September 16, if a paper was published (i.e., at a peer-reviewed venue) on or after July 17, 2026, authors are not required to compare their own work to that paper.
+
+Locator: ICLR 2027 Reviewer Guide, FAQ
+
+> Note that arXiv is not considered a peer-reviewed venue.
+
+Locator: ICLR 2027 Reviewer Guide, FAQ
+
+[70] [ICLR 2025 FAQ](https://iclr.cc/Conferences/2025/FAQ) — Earlier four-month contemporaneity rule.
+
+> We consider papers contemporaneous if they are published within the last four months.
+
+Locator: ICLR 2025 FAQ
+
+[71] [ICLR 2027 Dates](https://iclr.cc/Conferences/2027/Dates) — Abstract deadline Sep 18 '26, paper deadline Sep 25 '26 (AoE).
+
+[72] [ICML 2025 virtual page: Intent Factored Generation](https://icml.cc/virtual/2025/51482) — Listed as 'Poster in Workshop: Exploration in AI Today (EXAIT)'.
+
+> Exploration in AI Today (EXAIT)
+
+Locator: page header: 'Poster in Workshop:' label, linking to this workshop
+
+[73] [ICML 2026 virtual page: Manifold Steering](https://icml.cc/virtual/2026/79460) — Listed as 'Spotlight in Workshop: Workshop on Mechanistic Interpretability'.
+
+> Workshop on Mechanistic Interpretability
+
+Locator: page header: 'Spotlight in Workshop:' label, linking to this workshop
+
+[74] [ICML 2026 virtual page: The Invisible Lottery](https://icml.cc/virtual/2026/poster/64782) — Main-conference poster (Hall A #3510) with OpenReview link.
+
+> The Invisible Lottery: How Subtle Cues Steer Algorithm Choice in LLM Code Generation
+
+Locator: icml.cc/virtual/2026/poster/64782 page header
+
+[75] [ICML 2026 virtual page: Random Embedding Injection](https://icml.cc/virtual/2026/79614) — Listed as 'Spotlight in Workshop: Workshop on Mechanistic Interpretability'.
+
+[76] [ACL Anthology 2025.naacl-long.141](https://aclanthology.org/2025.naacl-long.141/) — NeoCoder in NAACL 2025 (Volume 1: Long Papers).
+
+[77] [ICLR 2025 Outstanding Paper Awards](https://blog.iclr.cc/2025/04/22/announcing-the-outstanding-paper-awards-at-iclr-2025/) — Qi et al. listed among Outstanding Papers.
+
+[78] [ICLR 2025 poster page: Heo et al.](https://iclr.cc/virtual/2025/poster/28257) — ICLR 2025 poster.
+
+[79] [ICLR 2025 poster page: PlanSearch](https://iclr.cc/virtual/2025/poster/31034) — ICLR 2025 poster.
+
+[80] [ICLR 2025 poster page: Generative Monoculture](https://iclr.cc/virtual/2025/poster/27717) — ICLR 2025 poster.
+
+[81] [OpenReview API record: NoveltyBench](https://api2.openreview.net/notes/search?term=NoveltyBench&limit=10) — Venue field 'COLM 2025'.
+
+[82] [ACL Anthology 2025.findings-emnlp.10](https://aclanthology.org/2025.findings-emnlp.10/) — Lee et al. in Findings of EMNLP 2025.
+
+[83] [ICML 2025 page: Roll the dice & look before you leap](https://icml.cc/virtual/2025/poster/45769) — Spotlight poster; Outstanding Paper 2025.
+
+[84] [High-Dimensional Random Projection for Activation Steering in Language Models](https://arxiv.org/abs/2606.15092v1) (Minh-Hieu Pham, Bach Do, Laziz Abdullaev, Tan Minh Nguyen, Khoat Than; 2026) — HiDRA random-projection steering (method variant; irrelevant).
+
+[85] [A Coin Flip Per Token: Bernoulli Sparse Steering of Large Language Models](https://arxiv.org/abs/2607.05615v2) (Nima Eshraghi, Lovedeep Gondara, Yuqing Huang, Sagarika Suresh, Leizer Teran, Jithin Pradeep, Xiaotong Xu, Fanny Chevalier; 2026) — Bernoulli sparse steering (method variant; irrelevant).
+
+[86] ["Many Are My Names": The Anatomy of the Assistant and Its Personas via Sparse Autoencoders](https://arxiv.org/abs/2608.07852v2) (Adelaide Danilov, Aria Nourbakhsh, Oleksandr Marchenko Breneur, Salima Lamsiyah; 2026) — SAE anatomy of personas (irrelevant).
+
+[87] [Revisiting Prompt Sensitivity in Large Language Models for Text Classification: The Role of Prompt Underspecification](https://arxiv.org/abs/2602.04297v1) (Branislav Pecher, Michal Spiegel, Robert Belanec, Jan Cegin; 2026) — Prompt sensitivity from underspecified prompts (irrelevant to the claims).
+
+[88] [Understanding the Prompt Sensitivity](https://arxiv.org/abs/2604.18389v1) (Yang Liu, Chenhui Chu; 2026) — Taylor-expansion account of prompt sensitivity (irrelevant).
+
+[89] [Fragile Reasoning: A Mechanistic Analysis of LLM Sensitivity to Meaning-Preserving Perturbations](https://arxiv.org/abs/2604.01639v1) (Shou-Tzu Han, Rodrigue Rizk, KC Santosh; 2026) — Answer flips under meaning-preserving perturbations localised by patching (irrelevant).
+
+[90] [Smaller Models are Natural Explorers for Policy-Level Diversity in GRPO](https://arxiv.org/abs/2605.30789v3) (Yiran Xu, Yiming Ren, Zicheng Lin, Chufan Shi, Yukang Chen, Dingdong Wang, Tianhe Wu, Junjie Wang, Yujiu Yang, Yu Qiao, Ruihang Chu; 2026) — Smaller models as explorers in GRPO (training-time; irrelevant).
+
+[91] [Mechanistically Eliciting Latent Behaviors in Language Models](https://arxiv.org/abs/2606.29604v1) (Andrew Mack, Nina Panickssery, Alexander Matt Turner; 2026) — Causal perturbative elicitation of latent behaviours (abstract screened).
+
+[92] [Latent Planning Emerges with Scale](https://arxiv.org/abs/2604.12493v1) (Michael Hanna, Emmanuel Ameisen; 2026) — Latent planning emerges with scale (ICLR 2026; abstract screened).
+
+[93] [How Far Ahead Do LLMs Plan? Uncovering the Latent Horizon in Chain-of-Thought Reasoning](https://arxiv.org/abs/2602.02103v2) (Liyan Xu, Mo Yu, Fandong Meng, Jie Zhou; 2026) — Latent planning horizon in CoT (ICML 2026; abstract screened).
+
+[94] [How Much is Left? LLMs Linearly Encode Their Remaining Output Length](https://arxiv.org/abs/2607.05316v1) (Mohamed Amine Merzouk, Dmitri Carpov, Mirko Bronzi, Damiano Fornasiere, Adam Oberman; 2026) — Remaining output length decodable from the prompt's last hidden state (abstract screened).
+
+[95] [CodeCircuit: Toward Inferring LLM-Generated Code Correctness via Attribution Graphs](https://arxiv.org/abs/2602.07080v1) (Yicheng He, Zheng Zhao, Zhou Kaiyu, Bryan Dai, Jie Fu, Yonghui Yang; 2026) — Code correctness from attribution graphs (abstract screened).
+
+[96] [Minimal Prompt Perturbations Lead to Code Vulnerabilities: Prompt Fragility and Hidden-State Signals in Coding LLMs](https://arxiv.org/abs/2605.29737v1) (Alexander Sternfeld, Andrei Kucharavy, Ljiljana Dolamic; 2026) — Single-character prompt mutations flip code security; hidden-state signals (abstract screened).
+
+[97] [Many Repairs, One Direction: Steering Code Models Toward Safer Cryptographic API Use](https://arxiv.org/abs/2610.25133v1) (Tianhe Lu, Sakuna Harinda Jayasundara, Eric Spero, Ewan Tempero, Robert Biddle, Giovanni Russello; 2026) — One steering direction toward safer cryptographic API use (abstract screened).
+
+[98] [One Token Away from Collapse: The Fragility of Instruction-Tuned Helpfulness](https://arxiv.org/abs/2604.13006v2) (Erfan Baghaei Potraghloo, Seyedarmin Azizi, Souvik Kundu, Massoud Pedram; 2026) — Single-token lexical bans collapse helpfulness (abstract screened).
+
+[99] [Beyond Correctness: Toward Automated Novelty Verification with Lean 4](https://arxiv.org/abs/2608.14669v1) (Ayrton Porto; 2026) — Automated novelty verification in Lean 4 (abstract screened).
+
+[100] [Contemporary AI lacks the imagination to diverge or negate in science](https://arxiv.org/abs/2606.08251v3) (Honglin Bao, Siyang Wu, Xiao Liu, Sida Li, Shiyun Cao, James A. Evans; 2026) — Scientist ratings of LLM ideas: hivemind collapse (abstract screened).
+
+[101] [Sampling More, Getting Less: Calibration is the Diversity Bottleneck in LLMs](https://arxiv.org/abs/2605.11128v1) (Amin Banayeeanzade, Qingchuan Yang, Dhruv Tarsadiya, Fatemeh Bahrani, Leonardo Blas, Alfy Samuel, Robin Jia, Meisam Razaviyayn, Sai Praneeth Karimireddy; 2026) — Calibration as the diversity bottleneck (abstract screened).
+
+[102] [Examining and Addressing Barriers to Diversity in LLM-Generated Ideas](https://arxiv.org/abs/2602.20408v1) (Yuting Deng, Melanie Brucks, Olivier Toubia; 2026) — Barriers to diversity in LLM ideas (abstract screened).
+
+[103] [Test-Time Augmentation for LLMs: Where to Inject Diversity at Inference Time](https://arxiv.org/abs/2608.09351v2) (Nikita Kozodoi, Zainab Afolabi, Jack Butler; 2026) — Where to inject diversity at the input level for test-time augmentation (abstract screened).
+
+[104] [Does Prompt Sensitivity Improve Cross-Family Degradation Prediction?](https://openreview.net/forum?id=uVn7IU6iPN) (2026) — ICLR 2027 submission: black-box prompt sensitivity as a frozen predictor of accuracy loss (abstract screened).
+
+[105] [arXiv API (id_list metadata: versions, v1 dates, comment and journal_ref lines)](https://export.arxiv.org/api/query) — Source of every version number, v1 date and comment-line venue claim in this artifact (queried 2026-10-21).
+
+## Verification
+
+Numbered citations resolve to unique listed sources. Passage checks test text occurrence, not claim truth or entailment. Author/year metadata and locators are not independently verified. Details: `research_verification.json`.
+
+- Source [1]: text found — We introduce Denial Prompting which pushes LLMs to develop more creative solutions to a given proble
+- Source [1]: text found — When stress-testing humans or LLMs to look for more creative solutions, they are very likely to make
+- Source [1]: text found — It is evident that as the state increases (more hard constraints are imposed), the quality of soluti
+- Source [2]: text found — (87.5% of violations), the instruction’s explicit mention of the forbidden word paradoxically activa
+- Source [3]: text found — We evaluate recent open-source and closed-source LLMs on our negation benchmark and find that, in 37
+- Source [3]: text found — Our main finding is that specialized attention heads and MLP neurons jointly implement negation by (
+- Source [3]: text found — so the model can repeat the original answer when suppression is too weak or when a bias toward parti
+- Source [4]: text found — We find that several widely used open-source LLMs are extremely sensitive to subtle changes in promp
+- Source [5]: text found — Our analysis identifies a direction in the input embedding space, termed the instruction-following d
+- Source [6]: text found — safety alignment can take shortcuts, wherein the alignment adapts a model’s generative distribution 
+- Source [6]: text found — For example, simply prefilling an unaligned base model to start its output with a prefix “I cannot f
+- Source [7]: text found — We also show how to jailbreak all Claude models—that do not expose logprobs—via either a transfer or
+- Source [8]: text found — With an analysis of loss distributions of code tokens, we find that code tokens can be divided into 
+- Source [9]: text found — Incompleteness pushes the model into low-probability regions of the program space, causing the gener
+- Source [10]: text found — leading to outputs that are grammatical but appear with likelihoods that are not proportional to the
+- Source [11]: text found — Evaluating 20 leading language models, we find that current state-of-the-art systems generate signif
+- Source [12]: text found — Moreover, while it was possible to steer the models to generate solutions based on human strategies,
+- Source [12]: text found — Even when using diverse code generation strategies such as temperature variations, verbalized sampli
+- Source [12]: text found — The strongest single-model approach still captures only 70% of human diversity at a matched sample s
+- Source [14]: text found — or constraint cost and preserves early-grade reading level across all Arabic-centric
+- Source [14]: text found — We compare four injection strategies against high-temperature sampling baselines, measuring diversit
+- Source [14]: text found — As with attention-logit noise, only the last token position of the attention output (shape (B, 1, D)
+- Source [15]: text found — Existing methods for inducing diversity primarily perturb the token-level sampling process.
+- Source [15]: text found — The overall coverage for a program is computed by the proportion of lines/branches in the program th
+- Source [15]: text found — Table 1 demonstrates that the STARS method consistently outperforms the temperature sampling approac
+- Source [16]: text found — We study Random Soft Prompts (RSPs), which drop the training step entirely and append a freshly draw
+- Source [16]: text found — because attention has to absorb a never-seen-before random position, the distribution over the first
+- Source [16]: text found — Open questions include whether the mechanism extends beyond RoPE-based decoders and math reasoning, 
+- Source [17]: text found — Empirical evaluations on popular mathematical benchmarks demonstrate that our test-time Riemannian a
+- Source [18]: text found — Rather than training models to reason in latent space, we inject controlled noise into latent trajec
+- Source [20]: text found — and find that increasing steering strength reduces response diversity.
+- Source [21]: text found — We then train a Gradient Boosting Decision Trees (GBDT) classifier on these features to predict whet
+- Source [21]: text found — Although the term “steering” is sometimes used broadly in the literature to describe instruction fol
+- Source [22]: text found — Hidden-constraint failure is a routing problem, not a knowledge problem.
+- Source [23]: text found — Probing reveals instruction decodability even without compliance, while CKA identifies geometric dif
+- Source [24]: text found — Almost surely, no prompt can reproduce the same internal behavior induced by steering.
+- Source [25]: text found — We find that temperature is weakly correlated with novelty, and unsurprisingly, moderately correlate
+- Source [26]: text found — Current methods for increasing diversity often only operate at the token-level, paraphrasing the sam
+- Source [26]: text found — This factorisation allows us to use a higher temperature during the intent step to promote conceptua
+- Source [26]: text found — We show this method improves both pass@k and Reinforcement Learning from Verifier Feedback (RLVF) on
+- Source [27]: text found — We empirically demonstrate that this lack of diversity can be mitigated by searching over candidate 
+- Source [28]: text found — We experimentally demonstrate the prevalence of generative monoculture through analysis of book revi
+- Source [29]: text found — In this regime, surface-level edit diversity remains stable, but semantic and mechanism-level divers
+- Source [30]: text found — We find large, systematic shifts in algorithm-family distributions (up to 100 pp), largely consisten
+- Source [30]: text found — Cues we designed as neutral placebos (team names, project codes, color themes) still produced a mean
+- Source [30]: text found — Pass rate is 120/120 (100%); strict compliance is 73/120 (60.8%) and 118/120 (98.3%) after normalizi
+- Source [31]: text found — We introduce a framework that characterizes test-time diverse generation methods by the diversity so
+- Source [31]: text found — It measures the fraction of source diversity that is realized in the final output.
+- Source [31]: text found — To our knowledge, no existing test-time method provides per-output specifications to promote diversi
+- Source [32]: text found — We systematically evaluate this effect across tasks like story completion and free-form generation, 
+- Source [34]: text found — Through simple probing, we demonstrate that LLM prompt representations encode global attributes of t
+- Source [35]: text found — Activation patching reveals that only Gemma-3-27B causally relies on this encoding, exhibiting a han
+- Source [36]: text found — Our framework reveals three diagnostic notions that characterize how answer representations develop 
+- Source [37]: text found — We have revealed a simple and elegant structure: ICL functions by compressing a given training set i
+- Source [38]: text found — Using causal mediation analysis on a diverse range of in-context-learning (ICL) tasks, we find that 
+- Source [39]: text found — We find that, at some layers, we can approximate a model’s output with more than 48% accuracy with r
+- Source [40]: text found — In a constructed synthetic data setting, we find clear evidence for pre-caching. In the autoregressi
+- Source [41]: text found — The correctness of the model’s first-attempt code is linearly decodable from the hidden state at the
+- Source [42]: text found — Probes trained to predict the outcome of future edits (before they are materialized and written on d
+- Source [43]: text found — Linear probes trained on Qwen’s internal representations discriminated hazardous from benign cases w
+- Source [44]: text found — linear steering—which assumes a Euclidean geometry—cuts through off-manifold regions and hence produ
+- Source [44]: text found — Furthermore, on-manifold distances in activation space show strong correlation with on-manifold dist
+- Source [45]: text found — Using a difference-in-means method, we estimate layer-wise steering vectors for five language/librar
+- Source [46]: text found — It suggests that LLMs possess implementation priors—default code patterns for common tasks (e.g., "s
+- Source [46]: text found — counter-intuitive constraints opposing model defaults fail at rates of 10–100%
+- Source [46]: text found — First, positive constraints ("use X") appear easier to follow than negative constraints ("do not use
+- Source [47]: text found — We show that LLMs’ failures on negation queries arise not from the absence of negation ability, but 
+- Source [47]: text found — Overall, we reveal that construction and suppression work collaboratively to compute negation; the m
+- Source [48]: text found — Our experiments demonstrate that this manifold-based conditioning substantially increases generative
+- Source [49]: text found — Using an evolutionary approach, continuously receiving feedback from one or more evaluators,
+- Source [52]: text found — Existing approaches diversify through decoding temperature or pixel-space image distortion; we ask w
+- Source [53]: text found — Unfortunately, naive sampling strategies (Ackley et al., 1985) frequently fall into this trap, as st
+- Source [54]: text found — Our key insight is to treat diversity as an instruction-following problem: rather than relying on th
+- Source [55]: text found — We argue that for well-known algorithms whose canonical implementations are widely accessible in pre
+- Source [56]: text found — If not, the cosine between them quantifies what we call the detection-intervention gap.
+- Source [57]: text found — We make this dataset-dependence claim more rigorous and show that simple separation metrics strongly
+- Source [58]: text found — In this paper, we introduce SPARK, which uses hidden-state response to diagnose whether a model inte
+- Source [59]: text found — We demonstrate that the hidden states of probed answers more effectively differentiate distinct solu
+- Source [60]: text found — However, function calls involving machine-learning algorithms are notably not affected.
+- Source [61]: text found — On Qwen2.5-3B-Instruct, a linear probe on the last prompt-token residual stream predicts whether an 
+- Source [61]: text found — We show that this decision is readable before generation and only partly steerable.
+- Source [61]: text found — The Third Workshop on Agents in the Wild: Safety, Security, and Beyond
+- Source [62]: text found — Applying FunSearch to a central problem in extremal combinatorics—the cap set problem—we discover ne
+- Source [63]: text found — we fairly compare latent perturbation methods with standard explicit reasoning on a shared backbone 
+- Source [63]: text found — Empirically, the added diversity comes predominantly from borderline samples and, unlike with explic
+- Source [64]: text found — We first show that future response length is encoded before the first generated token: controlled le
+- Source [64]: text found — We further establish its causal role by decomposing hidden-state interventions into components paral
+- Source [65]: text found — Reading a language model's hidden state and predicting what will happen if we change it are differen
+- Source [66]: text found — they alter local decoder preferences and redirect generation among reasoning trajectories already su
+- Source [66]: text found — More directly, ordinary stochastic decoding whose parameters are selected to match steering's aggreg
+- Source [67]: text found — attack information is linearly decodable from the first layer, yet causal leverage over the model's 
+- Source [68]: text found — Modern language models increasingly follow negative instructions well. Yet even a compliant response
+- Source [69]: text found — We consider papers contemporaneous if they are published within the last two months. That means, sin
+- Source [69]: text found — Note that arXiv is not considered a peer-reviewed venue.
+- Source [70]: text found — We consider papers contemporaneous if they are published within the last four months.
+- Source [72]: text found — Exploration in AI Today (EXAIT)
+- Source [73]: text found — Workshop on Mechanistic Interpretability
+- Source [74]: text found — The Invisible Lottery: How Subtle Cues Steer Algorithm Choice in LLM Code Generation
+
+## Follow-up Questions
+
+- Must C1's contrast set add a text-level plan sampler on the same tasks with correct-only labels? Candidates: IFG intent sampling (intent at its best temperature, response at default), 2606.10302's Diverse Outline/Keyword, PlanSearch observations, or Gacha Decoding. This is the comparison a reviewer will name first; without it C1 should read 'beats the token-level and prompt-seed knobs tested'.
+- Should the knob artifact report a label-level transmission score, I(algorithm label; noise draw)/H(noise draw), for plan noise vs temperature, adapting 2606.10302's Definition 1 to test-checked algorithm labels?
+- Should the novelty claim (b5/C3c) be scoped explicitly to single-sample generation under knobs, without search or an evaluator, to pre-empt FunSearch and AlphaEvolve?
+- Should the run's text now downgrade Manifold Steering (2605.05115) to an ICML 2026 MI-workshop spotlight and IFG (2506.09659) to an ICML 2025 EXAIT workshop paper, while keeping ICML 2026 for the Invisible Lottery (2606.04057, confirmed main-track poster)?
+- Tang wording: 'implementation priors' is verified in Sec. 5.3 of the v2 PDF (and v1). Should the run cite that PDF and quote the abstract as 'fail at rates of 10–100%'?
+- Should C1 add a stochastic-decoding baseline matched to plan noise's departure from greedy, as in the ICLR 2027 'Rethinking Activation Steering for Mathematical Reasoning' submission?
+- Should C2a be positioned against the ICLR 2027 submissions 'Before the First Token' (parallel vs orthogonal decomposition of interventions) and AJR (decoders mispredict intervention effects), and framed as predicting random-direction effects on a categorical, test-checked choice?
+
+---
+*Generated by AI Inventor Pipeline*
