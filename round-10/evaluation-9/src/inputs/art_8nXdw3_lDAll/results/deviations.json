@@ -1,0 +1,52 @@
+[
+ {
+  "code": "N-key-ua",
+  "text": "Implementation note, not a protocol deviation: the first Stage-0 /key call used urllib's default User-Agent, which the run's proxy refuses (HTTP 403); it was read as 'remaining 0' and logged D-budget by mistake. Fixed (explicit User-Agent) and Stage 0 re-run; D-budget does not apply (remaining 13.71).",
+  "utc": "2026-10-23T09:59:30Z"
+ },
+ {
+  "code": "D-scale",
+  "text": "qwen/qwen3-235b-a22b-thinking-2507 is served only by Venice at USD 3.5 per million output tokens (smoke: USD 0.0023 for 614 tokens; about USD 0.03 per thinking row, 5x the planned 0.006). Its scale cells are dropped before commit #1a; the scale check runs on gpt-oss-120b (reasoning effort medium) only, if the budget allows after E.",
+  "utc": "2026-10-23T10:01:48.747169Z"
+ },
+ {
+  "code": "D-commit-split",
+  "text": "Plan COMMIT #1 is made as two hash-chained commits, each before the rows it governs: #1a (prompts, cells, seeds, N, decoding, budget, lexical rules, mappings, decision-list semantics/thresholds, predictions) before any new sample; #1b (tracer code, probes, planted controls, gate result, rotated sets, N3-D descriptions, analysis code) before the first traced ban row and before the B/C/D/F-ban samples. Reason: thinking rows take 5-7 min each at ~29 tok/s, so A/E sampling must start while the tracer is gated. New rows are not opened, labelled or traced before #1b.",
+  "utc": "2026-10-23T10:01:48.792224Z"
+ },
+ {
+  "code": "D-gate-r1",
+  "text": "Tracer gate round 0 (references 14/15 with BIDIR-heuristic the one unverified class, planted controls 9/9) failed on gold (163/249 = 0.65). Diagnosis on the gold programs: implementation defects relative to the committed definitions, not class semantics. (i) Recursive searches that carry the path as an argument (dfs(depth, path, visited)) never surfaced the root, and backtracking removals (visited.remove, path.pop) were confirmed as frontier pops. (ii) p_lifo counted every re-expansion as non-LIFO, so the plan's own DFS-revisit class (exhaustive backtracking) was unreachable. Round-1 fixes: a CALL cell can come from a path argument (its last cell); int pairs count as cells only under coordinate-like parameter names; a probe with >= 3 self-recursive cell calls uses the call stream; p_lifo uses a simulated path stack (descend or backtrack-then-descend), excluding immediate reversals. References and planted controls are unchanged by the fixes (14/15, 9/9). Round 0 is kept in results/tracer_gate_round0_final.json.",
+  "utc": "2026-10-23T10:51:00.662742Z"
+ },
+ {
+  "code": "D-gate-r2",
+  "text": "Tracer gate round 1 (refs 14/15, controls 9/9) left gold at 162/248 = 0.65. Round-2 (the last allowed) diagnosis on gold: (i) queue/stack items of the form (r, c, path) or (r, c, prev_dir, path) lost their cell because only trailing int pairs were read -> leading int pairs are read for non-heap items; (ii) c_f/c_h were trivially 1 whenever the open list held one cell (recursive DFS with goal-sorted neighbours read as HEUR) -> a step counts only when the open list offers >= 2 cells; (iii) exponential IDDFS/IDA* programs hitting the 2 s probe timeout were counted as crashes although their partial traces show the pass structure -> only exceptions count toward the > 20-crash rule, timed-out probes keep their flagged partial record and drop their incomplete last pass from the bound test. References and controls unchanged (14/15, 9/9).",
+  "utc": "2026-10-23T11:03:30.329810Z"
+ },
+ {
+  "code": "D-gate-fallback",
+  "text": "The tracer gate FAILED after the 2 allowed revision rounds: references 14/15 (BIDIR-heuristic unverified), planted controls 9/9, gold 182/260 = 0.70 < 0.90 (per label: bfs 39/40, bibfs 19/20, gbfs 35/35, dijkstra_unit 35/39, dfs 34/39, astar 18/24, jps 1/7, iddfs 0/34, idastar 1/22). Committed fallback (plan): N1-N3 are DESCRIPTIVE; the mechanism label is the iteration-8 10-class name-free runtime label mapped through the 1.11 coarse table (runtime_class); the tracer v9 order class is reported as a second column (sensitivity) with its per-class gate rates. N5 keeps its tracer-based distances and is flagged. Decided before commit #1b and before any ban row was traced.",
+  "utc": "2026-10-23T11:14:18.151533Z"
+ },
+ {
+  "code": "D-cap-labelling",
+  "text": "The committed USD 3.5 cap was budgeted as sampling plus about 0.4 of judges. The iteration-8 adjudication protocol (deepseek-chat-v3.1 + kimi-k2, mistral-medium-3.1 third) cost about USD 0.08 per labelled cell (kimi-k2 rationales), USD 1.02 for the first 13 cells, i.e. 2.5x the plan. To label ALL cells with one consistent protocol (a cheaper judge pair for the last 6 cells would confound N5 and N3-D), the artifact cap is raised from 3.5 to 4.0 at USD 3.21 spent, before labelling B_R1-R3, C_desc, D_R5, D_R6. Sampling had already finished inside 3.5; the phase pot had USD 11.9 left and the system's per-artifact ceiling is USD 10.",
+  "utc": "2026-10-23T12:18:44.558253Z"
+ },
+ {
+  "code": "D-n-short",
+  "text": "7 of 280 B/C/D rows were lost to upstream HTTP 429 rate limits after 4 retries each and were not resampled (time and cap): B_R1 49, B_R2 46, B_R3 48 rows instead of 50; every other cell has 50.",
+  "utc": "2026-10-23T12:25:17.280798Z"
+ },
+ {
+  "code": "D-reads",
+  "text": "Manual reads cover every Qwen3-32B and Qwen3-14B k=5 and held-out survivor (76 programs; plan TIME-BINDS branch: 'Lower manual reads to k = 5 survivors only'); the survivors whose name-level label and order class disagree at k=1..4 and the 10% sample of other survivors were not read.",
+  "utc": "2026-10-23T12:25:17.350993Z"
+ },
+ {
+  "code": "D-L2-validation",
+  "text": "L2 was validated on 60 alias-bearing code lines (comments, docstrings, identifiers) from non-ban rows instead of 60 baseline comment lines: baseline programs carry almost no comments (63/729 contain any alias). All 60 are self-naming, so only recall is estimable (0.88); L2's handling of disavowals is checked on the 11 constructed disavowal unit tests (11/11).",
+  "utc": "2026-10-23T12:25:17.421207Z"
+ }
+]

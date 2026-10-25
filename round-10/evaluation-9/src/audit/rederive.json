@@ -1,0 +1,213 @@
+{
+ "n_checks": 861,
+ "n_mismatches": 0,
+ "mismatches": [],
+ "placebos": {
+  "P1_family_shuffle": {
+   "share_differs": 0.98,
+   "required": 0.9,
+   "fails_as_required": true,
+   "draws": 200,
+   "seed": 7
+  },
+  "P2_placement_shuffle": {
+   "share_broken": 1.0,
+   "required": 0.9,
+   "fails_as_required": true
+  },
+  "P3_swap_placebo": {
+   "mean_pooled_gap": 0.0023147405759609417,
+   "sd": 0.03709288754823839,
+   "fails_as_required": true
+  },
+  "P4_relabel_neural": {
+   "null_mean_lex": -0.0012413456848358445,
+   "null_mean_ds": 0.0005363167974325619,
+   "q05_q95_lex": [
+    -0.2596163809730453,
+    0.29664717150401065
+   ],
+   "q05_q95_ds": [
+    -0.22740997481560274,
+    0.2965032883781817
+   ],
+   "observed": [
+    0.5023470254488613,
+    0.6745770362965409
+   ],
+   "fails_as_required": true
+  },
+  "P5_sign_flip_null": {
+   "null_mean": 0.0,
+   "share_ge_obs": 0.03125,
+   "share_le_minus_obs": 0.03125,
+   "fails_as_required": true
+  },
+  "P6_planted_value": {
+   "mismatches_on_planted_copy": 1,
+   "fails_as_required": true,
+   "example": [
+    "exh ('q32', '1', 'runtime_coarse') mech_k: got 49 want 50"
+   ],
+   "source_table": "tables/exhaustion_readings_exact.csv"
+  }
+ },
+ "placebos_failing_as_required": 6,
+ "n_placebos": 6,
+ "rsa": {
+  "32b|mname": {
+   "r": 0.13329591130914534,
+   "lex_given_ds": 0.5023470254488613,
+   "ds_given_lex": 0.6745770362965409,
+   "pA_lex": 0.00206,
+   "pB_lex": 0.002555,
+   "pA_ds": 0.00132,
+   "pB_ds": 0.00098,
+   "exact": false,
+   "n_perm": 200000
+  },
+  "32b|mdesc": {
+   "r": 0.1696067857662782,
+   "lex_given_ds": 0.5635257344559984,
+   "ds_given_lex": 0.4063526641298861,
+   "pA_lex": 0.001441247795414462,
+   "pB_lex": 0.0020419973544973545,
+   "pA_ds": 0.02562830687830688,
+   "pB_ds": 0.026063712522045854,
+   "exact": true,
+   "n_perm": 362880
+  },
+  "32b|mlex": {
+   "r": 0.13329591130914534,
+   "lex_given_ds": 0.4625402515855213,
+   "ds_given_lex": 0.4323818868971915,
+   "pA_lex": 0.00318,
+   "pB_lex": 0.003475,
+   "pA_ds": 0.014715,
+   "pB_ds": 0.0149,
+   "exact": false,
+   "n_perm": 200000
+  },
+  "32b|mcode_PRIMARY_R1": {
+   "r": -0.07929328565333006,
+   "lex_given_ds": 0.44716477772384255,
+   "ds_given_lex": 0.7075083023871357,
+   "pA_lex": 0.09444444444444444,
+   "pB_lex": 0.09305555555555556,
+   "pA_ds": 0.005555555555555556,
+   "pB_ds": 0.004166666666666667,
+   "exact": true,
+   "n_perm": 720
+  },
+  "32b|mcode_PRIMARY_R2": {
+   "r": -0.07929328565333006,
+   "lex_given_ds": 0.046226049436733606,
+   "ds_given_lex": 0.5695098476869996,
+   "pA_lex": 0.39861111111111114,
+   "pB_lex": 0.41388888888888886,
+   "pA_ds": 0.019444444444444445,
+   "pB_ds": 0.022222222222222223,
+   "exact": true,
+   "n_perm": 720
+  },
+  "32b|mcode_M32_R1": {
+   "r": -0.07929328565333006,
+   "lex_given_ds": 0.21750655882775913,
+   "ds_given_lex": 0.7231461038263192,
+   "pA_lex": 0.2875,
+   "pB_lex": 0.2847222222222222,
+   "pA_ds": 0.005555555555555556,
+   "pB_ds": 0.004166666666666667,
+   "exact": true,
+   "n_perm": 720
+  },
+  "8b|mname": {
+   "r": 0.13329591130914534,
+   "lex_given_ds": 0.4675174476503383,
+   "ds_given_lex": 0.3475759865689514,
+   "pA_lex": 0.005795,
+   "pB_lex": 0.00647,
+   "pA_ds": 0.0316,
+   "pB_ds": 0.034035,
+   "exact": false,
+   "n_perm": 200000
+  },
+  "8b|mdesc": {
+   "r": 0.1696067857662782,
+   "lex_given_ds": 0.20494775853815664,
+   "ds_given_lex": 0.3688266494073734,
+   "pA_lex": 0.14621638007054674,
+   "pB_lex": 0.1480820105820106,
+   "pA_ds": 0.029877645502645503,
+   "pB_ds": 0.030208333333333334,
+   "exact": true,
+   "n_perm": 362880
+  },
+  "8b|mcode_PRIMARY_R1": {
+   "r": -0.07929328565333006,
+   "lex_given_ds": 0.19621716028526476,
+   "ds_given_lex": 0.6513570808264054,
+   "pA_lex": 0.3,
+   "pB_lex": 0.30694444444444446,
+   "pA_ds": 0.011111111111111112,
+   "pB_ds": 0.009722222222222222,
+   "exact": true,
+   "n_perm": 720
+  }
+ },
+ "described": {
+  "Mechanistic compliance, runtime label (primary)": 0.5785270629991127,
+  "Mechanistic compliance, tracer": -0.06974637681159424,
+  "Mechanistic compliance, tracer fine classes (computed from rows; not stored)": 0.05253623188405798,
+  "Mechanistic compliance, runtime fine classes": 0.5785270629991127,
+  "Described (runtime label) against named with hand reads substituted": 0.20896184560780828
+ },
+ "random_sets": {
+  "B3|R": [
+   1,
+   49,
+   0.44
+  ],
+  "B3|Rpure": [
+   47,
+   3,
+   0.25
+  ],
+  "B3|Rscaled": [
+   1,
+   49,
+   0.1
+  ],
+  "T10|R": [
+   36,
+   14,
+   0.06666666666666667
+  ],
+  "T10|Rpure": [
+   50,
+   0,
+   1.0
+  ],
+  "T10|Rscaled": [
+   36,
+   14,
+   0.06666666666666667
+  ]
+ },
+ "heldout": {
+  "ablate": {
+   "forced": 7.904986053466797,
+   "padded": -0.19090599060058594,
+   "p10": 0.0625,
+   "p5": 0.0625
+  },
+  "steer": {
+   "forced": 7.648586097717285,
+   "padded": 0.0505162353515625,
+   "p10": 0.0234375,
+   "p5": 0.0625
+  }
+ },
+ "stdlib_only": true,
+ "mc_draws_10_classes": 200000
+}
