@@ -1,0 +1,110 @@
+[
+ {
+  "code": "D1",
+  "text": "vLLM --max-model-len 6144 (4096 cannot hold max_tokens 4096 + prompt)",
+  "utc": "2026-10-24T20:55:08.771532Z",
+  "elapsed_h": 3.149
+ },
+ {
+  "code": "D2",
+  "text": "VALID on SEL-OR + probes; VALID_FULL (SEL-W) is a sensitivity denominator",
+  "utc": "2026-10-24T20:55:08.827552Z",
+  "elapsed_h": 3.149
+ },
+ {
+  "code": "D3",
+  "text": "streaming with 180 s idle timeout and 900 s total cap",
+  "utc": "2026-10-24T20:55:08.949136Z",
+  "elapsed_h": 3.149
+ },
+ {
+  "code": "D4",
+  "text": "stochastic RF matcher instead of literal agreement >= 0.95 for RF",
+  "utc": "2026-10-24T20:55:09.068328Z",
+  "elapsed_h": 3.149
+ },
+ {
+  "code": "D5",
+  "text": "described-ban P2 scored against S_desc (B_5 as sensitivity)",
+  "utc": "2026-10-24T20:55:09.125845Z",
+  "elapsed_h": 3.149
+ },
+ {
+  "code": "D6",
+  "text": "paired Newcombe for the k = 5 gap (unpaired printed beside it)",
+  "utc": "2026-10-24T20:55:09.167392Z",
+  "elapsed_h": 3.149
+ },
+ {
+  "code": "D7",
+  "text": "HF_HOME not overridden (shared run cache, per the system rules); VLLM_CACHE_ROOT in the workspace",
+  "utc": "2026-10-24T20:55:09.219886Z",
+  "elapsed_h": 3.149
+ },
+ {
+  "code": "D8",
+  "text": "RNG patch bug found by the gate's planted control and fixed before commit #1",
+  "utc": "2026-10-24T20:55:09.259075Z",
+  "elapsed_h": 3.149
+ },
+ {
+  "code": "D9",
+  "text": "OpenRouter concurrency 12 instead of 8 and new-request stop at 4.45 h: sampling started at 3.26 h (planned 1.5 h), so the never-drop set (q8, q32 NAME_1..5 + DESC_5) would otherwise miss the stop time",
+  "utc": "2026-10-24T21:01:45.932205Z",
+  "elapsed_h": 3.259
+ },
+ {
+  "code": "NAMING_THINK_q32",
+  "text": "reasoning appeared in naming replies of q32 despite reasoning disabled (recorded per version)",
+  "utc": "2026-10-24T21:06:45.121478Z",
+  "elapsed_h": 3.343
+ },
+ {
+  "code": "NAMING_THINK_q14",
+  "text": "reasoning appeared in naming replies of q14 despite reasoning disabled (recorded per version)",
+  "utc": "2026-10-24T21:21:37.185446Z",
+  "elapsed_h": 3.59
+ },
+ {
+  "code": "NAMING_NOTHINK",
+  "text": "OpenRouter (DeepInfra) Qwen3-32B emitted reasoning with reasoning {enabled: false}; at max_tokens 96 every reply was empty. Per the fallback plan the naming checks of q32/q14 were rerun with ' /no_think' appended and max_tokens 1024 (visible content only); the first attempt is kept in data/naming_raw_q32_run0_reasoning_ate_budget.jsonl. The orchestrator was stopped and resumed (in-flight requests re-sent).",
+  "utc": "2026-10-24T21:21:48.822181Z",
+  "elapsed_h": 3.594
+ },
+ {
+  "code": "BASE_EVAL_TIMEOUT_q32",
+  "text": "order computed on 50 of 55 BASE rows after 1500 s",
+  "utc": "2026-10-24T21:48:55.676105Z",
+  "elapsed_h": 4.045
+ },
+ {
+  "code": "DESC_SKIPPED_q32",
+  "text": "no description of B_5 passed the naming check",
+  "utc": "2026-10-24T21:48:55.813458Z",
+  "elapsed_h": 4.046
+ },
+ {
+  "code": "CRASH_RESTART",
+  "text": "The worker container crashed at about 22:00 UTC (agent API error, not a code error); every process died. Restarted at 23:40 UTC (elapsed 5.9 h) with ONE orchestrator (q32, q14; q8 was complete) and ONE evaluator, both behind exclusive lock files. New-request stop moved to elapsed 7.5 h and the SEL-W quality cutoff to 8.6 h because the time base shifted by about 1.7 h.",
+  "utc": "2026-10-24T23:44:19.139056Z",
+  "elapsed_h": 5.969
+ },
+ {
+  "code": "DUPLICATE_ORCHESTRATOR",
+  "text": "From 21:21 to 22:00 UTC two orchestrators ran at once (the kill hit a shell wrapper, its Python child survived). Effects: 5 duplicate q32 BASE rows (slots 43, 45, 46, 48, 49) moved to data/samples_raw_q32_duplicates_crash_era.jsonl, keeping the first row per slot (the one the evaluator scored); the naming files of q14/q32 mixed empty 96-token replies with genuine ones, so a clean rerun goes to data/naming_raw_<m>_clean.jsonl and COMMIT #3; the payload files of commit2_q14 and commit2_q32 were overwritten after their hashes were logged, so lines 2-3 of commitments.log no longer match the files on disk. B_1..B_5 are identical (BF, FF, WF, AWF, LF) in every version, so NAME/HOLD cells are unaffected.",
+  "utc": "2026-10-24T23:44:19.189308Z",
+  "elapsed_h": 5.969
+ },
+ {
+  "code": "D9b",
+  "text": "OpenRouter concurrency 16 (was 12) after the crash, so that the never-drop set, HOLD_5 and the INSTR cells fit before the moved stop time.",
+  "utc": "2026-10-24T23:44:19.235362Z",
+  "elapsed_h": 5.969
+ },
+ {
+  "code": "EVAL_WORKERS_8",
+  "text": "After the restart the container has a 10.2-CPU cgroup quota (was 7.65), so the evaluator runs 8 workers instead of 5. CPU-time limits are per process, so the results do not change.",
+  "utc": "2026-10-24T23:44:19.268863Z",
+  "elapsed_h": 5.969
+ }
+]

@@ -1,0 +1,827 @@
+{
+ "U1_harness": {
+  "passed": true,
+  "gate": {
+   "BF_OR3": true,
+   "BF_binpack3": true,
+   "BF_W5k": true,
+   "c12vec_OR3": true,
+   "c12nb_OR3": true,
+   "c14_W5k": true,
+   "c14nb_W5k": true
+  }
+ },
+ "U2_handcoded": {
+  "BF": {
+   "equal": true,
+   "n_instances": 26,
+   "priority_bins_first5": [
+    54,
+    51,
+    46,
+    51,
+    52
+   ],
+   "hand_bins_first5": [
+    54,
+    51,
+    46,
+    51,
+    52
+   ]
+  },
+  "FF": {
+   "equal": true,
+   "n_instances": 26,
+   "priority_bins_first5": [
+    54,
+    51,
+    46,
+    51,
+    53
+   ],
+   "hand_bins_first5": [
+    54,
+    51,
+    46,
+    51,
+    53
+   ]
+  },
+  "WF": {
+   "equal": true,
+   "n_instances": 26,
+   "priority_bins_first5": [
+    58,
+    54,
+    48,
+    54,
+    56
+   ],
+   "hand_bins_first5": [
+    58,
+    54,
+    48,
+    54,
+    56
+   ]
+  },
+  "AWF": {
+   "equal": true,
+   "n_instances": 26,
+   "priority_bins_first5": [
+    56,
+    51,
+    46,
+    52,
+    53
+   ],
+   "hand_bins_first5": [
+    56,
+    51,
+    46,
+    52,
+    53
+   ]
+  },
+  "LF": {
+   "equal": true,
+   "n_instances": 26,
+   "priority_bins_first5": [
+    56,
+    53,
+    47,
+    52,
+    54
+   ],
+   "hand_bins_first5": [
+    56,
+    53,
+    47,
+    52,
+    54
+   ]
+  },
+  "passed": true
+ },
+ "U3_probes": {
+  "sha_build1": "5b9bc90523eb564b8e69c2a94a24ef9058a0e88999ed8056096f548e17feb535",
+  "sha_build2": "5b9bc90523eb564b8e69c2a94a24ef9058a0e88999ed8056096f548e17feb535",
+  "deterministic": true,
+  "n_trace": 1000,
+  "n_uniform": 1000,
+  "reconstruction_matches_load_probe": true,
+  "informative_flag_matches": true,
+  "passed": true,
+  "summary": {
+   "n_states": 2000,
+   "n_informative": 1657,
+   "n_informative_trace": 665,
+   "n_informative_uniform": 992,
+   "trace_reference_counts": {
+    "BF": 170,
+    "FF": 158,
+    "WF": 170,
+    "AWF": 158,
+    "c12": 174,
+    "c14": 170
+   },
+   "path": "data/probes/P10.json",
+   "sha256": "5b9bc90523eb564b8e69c2a94a24ef9058a0e88999ed8056096f548e17feb535"
+  }
+ },
+ "U4_seeding": {
+  "rf_identical_same_seeds": true,
+  "rf_share_differing_seed0_vs_1": 0.57,
+  "unseeded_default_rng_deterministic_under_patch": true,
+  "unseeded_default_rng_differs_across_harness_seeds": true,
+  "passed": true
+ },
+ "U5_alias_regex": {
+  "positives": [
+   {
+    "s": "almost worst fit",
+    "want": "AWF",
+    "got": [
+     "AWF"
+    ],
+    "ok": true
+   },
+   {
+    "s": "Almost-Worst-Fit",
+    "want": "AWF",
+    "got": [
+     "AWF"
+    ],
+    "ok": true
+   },
+   {
+    "s": "AWF",
+    "want": "AWF",
+    "got": [
+     "AWF"
+    ],
+    "ok": true
+   },
+   {
+    "s": "best_fit",
+    "want": "BF",
+    "got": [
+     "BF"
+    ],
+    "ok": true
+   },
+   {
+    "s": "BestFit",
+    "want": "BF",
+    "got": [
+     "BF"
+    ],
+    "ok": true
+   },
+   {
+    "s": "best fit",
+    "want": "BF",
+    "got": [
+     "BF"
+    ],
+    "ok": true
+   },
+   {
+    "s": "BEST-FIT",
+    "want": "BF",
+    "got": [
+     "BF"
+    ],
+    "ok": true
+   },
+   {
+    "s": "BF",
+    "want": "BF",
+    "got": [
+     "BF"
+    ],
+    "ok": true
+   },
+   {
+    "s": "BF_score",
+    "want": "BF",
+    "got": [
+     "BF"
+    ],
+    "ok": true
+   },
+   {
+    "s": "first fit",
+    "want": "FF",
+    "got": [
+     "FF"
+    ],
+    "ok": true
+   },
+   {
+    "s": "FirstFit",
+    "want": "FF",
+    "got": [
+     "FF"
+    ],
+    "ok": true
+   },
+   {
+    "s": "(FF)",
+    "want": "FF",
+    "got": [
+     "FF"
+    ],
+    "ok": true
+   },
+   {
+    "s": "worst-fit",
+    "want": "WF",
+    "got": [
+     "WF"
+    ],
+    "ok": true
+   },
+   {
+    "s": "WF",
+    "want": "WF",
+    "got": [
+     "WF"
+    ],
+    "ok": true
+   },
+   {
+    "s": "last fit",
+    "want": "LF",
+    "got": [
+     "LF"
+    ],
+    "ok": true
+   },
+   {
+    "s": "Last_Fit",
+    "want": "LF",
+    "got": [
+     "LF"
+    ],
+    "ok": true
+   },
+   {
+    "s": "LF:",
+    "want": "LF",
+    "got": [
+     "LF"
+    ],
+    "ok": true
+   },
+   {
+    "s": "random fit",
+    "want": "RF",
+    "got": [
+     "RF"
+    ],
+    "ok": true
+   },
+   {
+    "s": "RandomFit",
+    "want": "RF",
+    "got": [
+     "RF"
+    ],
+    "ok": true
+   },
+   {
+    "s": "x = RF",
+    "want": "RF",
+    "got": [
+     "RF"
+    ],
+    "ok": true
+   }
+  ],
+  "negatives": [
+   {
+    "s": "BFS",
+    "got": [],
+    "ok": true
+   },
+   {
+    "s": "the best way to fit",
+    "got": [],
+    "ok": true
+   },
+   {
+    "s": "first, fit",
+    "got": [],
+    "ok": true
+   },
+   {
+    "s": "0xFF",
+    "got": [],
+    "ok": true
+   },
+   {
+    "s": "#FF0000",
+    "got": [],
+    "ok": true
+   },
+   {
+    "s": "FFT",
+    "got": [],
+    "ok": true
+   },
+   {
+    "s": "WFS",
+    "got": [],
+    "ok": true
+   },
+   {
+    "s": "self",
+    "got": [],
+    "ok": true
+   },
+   {
+    "s": "lf",
+    "got": [],
+    "ok": true
+   },
+   {
+    "s": "rf",
+    "got": [],
+    "ok": true
+   },
+   {
+    "s": "bf",
+    "got": [],
+    "ok": true
+   },
+   {
+    "s": "worst case fit",
+    "got": [],
+    "ok": true
+   },
+   {
+    "s": "random forest",
+    "got": [],
+    "ok": true
+   },
+   {
+    "s": "AWFUL",
+    "got": [],
+    "ok": true
+   },
+   {
+    "s": "LFU",
+    "got": [],
+    "ok": true
+   },
+   {
+    "s": "RFC",
+    "got": [],
+    "ok": true
+   },
+   {
+    "s": "fit best",
+    "got": [],
+    "ok": true
+   },
+   {
+    "s": "fits first",
+    "got": [],
+    "ok": true
+   },
+   {
+    "s": "best  fit",
+    "got": [],
+    "ok": true
+   },
+   {
+    "s": "first  fit",
+    "got": [],
+    "ok": true
+   }
+  ],
+  "awf_masks_wf": true,
+  "negation_L1_counts_L2_ignores": true,
+  "plain_mention_both_flags": true,
+  "passed": true
+ },
+ "U6_extraction": {
+  "cases": [
+   {
+    "case": "plain fence",
+    "ok": true,
+    "how": "last_python_fence",
+    "extracted_ok": true
+   },
+   {
+    "case": "thinking prefix",
+    "ok": true,
+    "how": "last_python_fence",
+    "extracted_ok": true
+   },
+   {
+    "case": "two blocks, last wins",
+    "ok": true,
+    "how": "last_python_fence",
+    "extracted_ok": true
+   },
+   {
+    "case": "top-level test calls",
+    "ok": true,
+    "how": "last_python_fence",
+    "extracted_ok": true
+   },
+   {
+    "case": "main block",
+    "ok": true,
+    "how": "last_python_fence",
+    "extracted_ok": true
+   },
+   {
+    "case": "missing fence",
+    "ok": true,
+    "how": "from_def",
+    "extracted_ok": true
+   },
+   {
+    "case": "helper functions",
+    "ok": true,
+    "how": "last_python_fence",
+    "extracted_ok": true
+   },
+   {
+    "case": "unlabelled fence",
+    "ok": true,
+    "how": "first_fence",
+    "extracted_ok": true
+   },
+   {
+    "case": "no function",
+    "ok": true,
+    "how": "none",
+    "extracted_ok": false
+   },
+   {
+    "case": "other import dropped",
+    "ok": true,
+    "how": "last_python_fence",
+    "extracted_ok": true
+   },
+   {
+    "case": "truncated tail",
+    "ok": true,
+    "how": "last_python_fence",
+    "extracted_ok": true
+   },
+   {
+    "case": "class helper",
+    "ok": true,
+    "how": "last_python_fence",
+    "extracted_ok": true
+   }
+  ],
+  "passed": true
+ },
+ "U7_statistics": {
+  "wilson": [
+   {
+    "k": 0,
+    "n": 10,
+    "ours": [
+     0.0,
+     0.2775327998628892
+    ],
+    "statsmodels": [
+     0.0,
+     0.27753279986288926
+    ],
+    "ok": true
+   },
+   {
+    "k": 3,
+    "n": 10,
+    "ours": [
+     0.10779126740630099,
+     0.6032218525388546
+    ],
+    "statsmodels": [
+     0.10779126740630104,
+     0.6032218525388546
+    ],
+    "ok": true
+   },
+   {
+    "k": 15,
+    "n": 148,
+    "ours": [
+     0.0623863995307363,
+     0.16048724172330803
+    ],
+    "statsmodels": [
+     0.06238639953073628,
+     0.16048724172330803
+    ],
+    "ok": true
+   },
+   {
+    "k": 50,
+    "n": 50,
+    "ours": [
+     0.9286524008666414,
+     1.0
+    ],
+    "statsmodels": [
+     0.9286524008666412,
+     1.0
+    ],
+    "ok": true
+   },
+   {
+    "k": 37,
+    "n": 50,
+    "ours": [
+     0.6044684273515117,
+     0.8412847250644762
+    ],
+    "statsmodels": [
+     0.6044684273515116,
+     0.841284725064476
+    ],
+    "ok": true
+   }
+  ],
+  "newcombe_unpaired": [
+   {
+    "cells": [
+     56,
+     70,
+     48,
+     80
+    ],
+    "ours": [
+     0.05243147240236498,
+     0.333872654036906
+    ],
+    "statsmodels": [
+     0.05243147240236498,
+     0.33387265403690614
+    ],
+    "ok": true
+   },
+   {
+    "cells": [
+     40,
+     50,
+     20,
+     50
+    ],
+    "ours": [
+     0.2100213712514444,
+     0.5517313147848633
+    ],
+    "statsmodels": [
+     0.21002137125144432,
+     0.5517313147848633
+    ],
+    "ok": true
+   },
+   {
+    "cells": [
+     5,
+     50,
+     0,
+     50
+    ],
+    "ours": [
+     0.008975448080590046,
+     0.21360231437479654
+    ],
+    "statsmodels": [
+     0.008975448080590018,
+     0.21360231437479657
+    ],
+    "ok": true
+   },
+   {
+    "cells": [
+     49,
+     50,
+     30,
+     50
+    ],
+    "ours": [
+     0.2297586718436203,
+     0.5191625749176154
+    ],
+    "statsmodels": [
+     0.22975867184362034,
+     0.5191625749176154
+    ],
+    "ok": true
+   }
+  ],
+  "newcombe_paired_table3": [
+   {
+    "cells": [
+     36,
+     12,
+     2,
+     0
+    ],
+    "ours": [
+     0.0569,
+     0.3404
+    ],
+    "paper": [
+     0.0569,
+     0.3404
+    ],
+    "ok": true
+   },
+   {
+    "cells": [
+     20,
+     12,
+     2,
+     16
+    ],
+    "ours": [
+     0.0562,
+     0.3292
+    ],
+    "paper": [
+     0.0562,
+     0.3292
+    ],
+    "ok": true
+   },
+   {
+    "cells": [
+     18,
+     12,
+     2,
+     18
+    ],
+    "ours": [
+     0.0562,
+     0.329
+    ],
+    "paper": [
+     0.0562,
+     0.329
+    ],
+    "ok": true
+   },
+   {
+    "cells": [
+     36,
+     14,
+     0,
+     0
+    ],
+    "ours": [
+     0.1528,
+     0.4167
+    ],
+    "paper": [
+     0.1528,
+     0.4167
+    ],
+    "ok": true
+   },
+   {
+    "cells": [
+     35,
+     14,
+     0,
+     1
+    ],
+    "ours": [
+     0.1461,
+     0.4175
+    ],
+    "paper": [
+     0.1461,
+     0.4175
+    ],
+    "ok": true
+   },
+   {
+    "cells": [
+     18,
+     14,
+     0,
+     18
+    ],
+    "ours": [
+     0.1441,
+     0.3963
+    ],
+    "paper": [
+     0.1441,
+     0.3963
+    ],
+    "ok": true
+   }
+  ],
+  "paired_vs_bootstrap": [
+   {
+    "cells": [
+     120,
+     60,
+     8,
+     12
+    ],
+    "newcombe": [
+     0.1857379681628874,
+     0.3319674024573502
+    ],
+    "bootstrap": [
+     0.18999999999999995,
+     0.33499999999999996
+    ],
+    "ok": true
+   },
+   {
+    "cells": [
+     80,
+     80,
+     20,
+     20
+    ],
+    "newcombe": [
+     0.2082684060629943,
+     0.38465420828636077
+    ],
+    "bootstrap": [
+     0.20999999999999996,
+     0.38999999999999996
+    ],
+    "ok": true
+   },
+   {
+    "cells": [
+     40,
+     100,
+     40,
+     20
+    ],
+    "newcombe": [
+     0.18803201229221128,
+     0.40270738469975587
+    ],
+    "bootstrap": [
+     0.19,
+     0.405
+    ],
+    "ok": true
+   }
+  ],
+  "jt_tiny": {
+   "exact": 0.11904761904761904,
+   "perm": 0.11779441102794486,
+   "ok": true
+  },
+  "jt_large": {
+   "p_perm": 0.04504774761261937,
+   "p_normal": 0.042546050278681725,
+   "ok": true
+  },
+  "passed": true
+ },
+ "U8_mock_403_and_slow_stream": {
+  "mock_403": {
+   "server_hits": 4,
+   "rows_written": 0,
+   "stopped": true,
+   "passed": true
+  },
+  "slow_stream": {
+   "finish_reasons": [
+    "idle_timeout_180s",
+    "total_cap_900s"
+   ],
+   "seconds": 3.4,
+   "passed": true
+  },
+  "passed": true,
+  "note": "accelerated timers: idle 1 s, total 2 s (production 180 s / 900 s)"
+ },
+ "U9_instrument_gate": {
+  "passed": true,
+  "parts": {
+   "a": true,
+   "b": true,
+   "c": true,
+   "d": true,
+   "e": true
+  },
+  "min_margin": 0.49149999999999994
+ },
+ "U10_rederive_placebos": {
+  "status": "run at S12 with audit/rederive.py (stdlib audit path; it does not govern any sample)"
+ },
+ "all_pre_commit_passed": true
+}

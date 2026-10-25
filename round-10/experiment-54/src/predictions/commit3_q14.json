@@ -1,0 +1,142 @@
+{
+ "model": "q14",
+ "label": "commit3_q14",
+ "utc": "2026-10-24T23:46:28Z",
+ "amends": "commit2_q14",
+ "B": {
+  "1": [
+   "BF"
+  ],
+  "2": [
+   "BF",
+   "FF"
+  ],
+  "3": [
+   "BF",
+   "FF",
+   "WF"
+  ],
+  "4": [
+   "BF",
+   "FF",
+   "WF",
+   "AWF"
+  ],
+  "5": [
+   "BF",
+   "FF",
+   "WF",
+   "AWF",
+   "LF"
+  ]
+ },
+ "order": [
+  "BF",
+  "FF",
+  "WF",
+  "AWF",
+  "LF",
+  "RF"
+ ],
+ "S_desc_clean": [
+  "FF"
+ ],
+ "desc_text_clean": {
+  "FF": "putting each item into the earliest-created bin that has room for it"
+ },
+ "governs": "nothing: q14 DESC_5 keeps the text of its first 30 rows (commit2_q14)",
+ "S_desc_used_for_DESC_5": [
+  "FF"
+ ],
+ "desc_text_used_for_DESC_5": {
+  "FF": "scanning the bins in the order they were created and placing the item into the first one it fits into"
+ },
+ "naming_clean": {
+  "BF": {
+   "passed": false,
+   "version_used": null,
+   "rates": [
+    0.05,
+    0.05,
+    0.0
+   ],
+   "empty": [
+    0,
+    0,
+    0
+   ]
+  },
+  "FF": {
+   "passed": true,
+   "version_used": 0,
+   "rates": [
+    1.0,
+    1.0,
+    0.95
+   ],
+   "empty": [
+    0,
+    0,
+    0
+   ]
+  },
+  "WF": {
+   "passed": false,
+   "version_used": null,
+   "rates": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "empty": [
+    0,
+    0,
+    0
+   ]
+  },
+  "AWF": {
+   "passed": false,
+   "version_used": null,
+   "rates": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "empty": [
+    0,
+    0,
+    0
+   ]
+  },
+  "LF": {
+   "passed": false,
+   "version_used": null,
+   "rates": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "empty": [
+    0,
+    0,
+    0
+   ]
+  },
+  "RF": {
+   "passed": true,
+   "version_used": 1,
+   "rates": [
+    0.65,
+    0.85,
+    0.2
+   ],
+   "empty": [
+    0,
+    0,
+    0
+   ]
+  }
+ },
+ "rendered_prompt_sha256": {},
+ "why": "container crash; duplicate orchestrator contaminated the first naming files and overwrote the commit #2 payload files of q14 and q32 after their hashes were logged"
+}
