@@ -1,0 +1,86 @@
+{
+ "unit": "B3",
+ "utc": "2026-10-21T12:51:09.782783Z",
+ "spec_banned_hits": [],
+ "n_cases": 64,
+ "kinds": {
+  "example": 6,
+  "random": 48,
+  "stress": 10
+ },
+ "oracle_disagreements": [],
+ "references_pass_all": {
+  "kruskal": true,
+  "prim_heap": true,
+  "prim_array": true,
+  "boruvka": true
+ },
+ "references_slow_cases": {
+  "kruskal": [],
+  "prim_heap": [],
+  "prim_array": [],
+  "boruvka": []
+ },
+ "max_ref_time_by_mode": {
+  "kruskal": 0.015158,
+  "prim_heap": 0.02155,
+  "prim_array": 0.025781,
+  "boruvka": 0.021913
+ },
+ "mutants": {
+  "mutant_0": {
+   "fails": true,
+   "first_fail": {
+    "i": 8,
+    "status": "wrong",
+    "case_id": "B3:rand2"
+   }
+  },
+  "mutant_1": {
+   "fails": true,
+   "first_fail": {
+    "i": 1,
+    "status": "wrong",
+    "case_id": "B3:ex1"
+   }
+  },
+  "mutant_2": {
+   "fails": true,
+   "first_fail": {
+    "i": 0,
+    "status": "wrong",
+    "case_id": "B3:ex0"
+   }
+  }
+ },
+ "excluded_by_limit": {},
+ "labellers_on_references": {
+  "kruskal": {
+   "runtime": "kruskal",
+   "ast": "kruskal",
+   "ok": true
+  },
+  "prim_heap": {
+   "runtime": "prim_heap",
+   "ast": "prim_heap",
+   "ok": true
+  },
+  "prim_array": {
+   "runtime": "prim_array",
+   "ast": "prim_array",
+   "ok": true
+  },
+  "boruvka": {
+   "runtime": "boruvka",
+   "ast": "boruvka",
+   "ok": true
+  }
+ },
+ "probes_run": true,
+ "probe_correct": {
+  "sparse": true,
+  "dense": true
+ },
+ "stage_i": "PROVISIONAL",
+ "seconds": 4.5270421504974365
+}
