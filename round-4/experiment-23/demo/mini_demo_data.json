@@ -511,7 +511,8 @@
       "rho": 0.4127846443634239,
       "p_one_sided": 0.06464676766161692
      }
-    }
+    },
+    "frozen_analysis_sha256": "945887ba7bb4b3a9397080e4bb24536ab4182f3199a54d7b6f6475dc3e15c910"
    },
    "rivals": {
     "twin_modal_share": {
@@ -2681,7 +2682,7 @@
        "label": "bfs",
        "passed": true,
        "labeller_source": "agree",
-       "note": "ban of 'dfs': the modal label under the ban is 'bfs'",
+       "note": "modal ban (the prompt bans the default 'dfs'): the most common answer 'bfs' (83 of 100)",
        "prompt": "Your solution must not rely on depth-first search (DFS).\n\nTask: write a Python function solve(grid, start, goal) that finds a path between two cells of a grid. grid is a list of equal-length strings with between 1 and 30 rows and between 1 and 30 columns; the character . is a free cell and the character # is a wall. start and goal are (row, col) tuples of 0-based indices. A move goes to one of the 4 orthogonal neighbours (up, down, left, right) and may not leave the grid or enter a wall. Return a list of (row, col) tuples that begins with start, ends with goal, and in which consecutive cells are neighbours and every cell is free. Any valid path is accepted; it does not have to be the shortest. If start equals goal and the cell is free, return [start]. If no path exists, or start or goal is a wall, return [].\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
        "code": "from collections import deque\n\ndef solve(grid, start, goal):\n    rows = len(grid)\n    cols = len(grid[0])\n\n    if grid[start[0]][start[1]] == '#' or grid[goal[0]][goal[1]] == '#':\n        return []\n\n    queue = deque([(start, [start])])\n    visited = {start}\n\n    while queue:\n        (row, col), path = queue.popleft()\n\n        if (row, col) == goal:\n            return path\n\n        neighbors = [(row + 1, col), (row - 1, col), (row, col + 1), (row, col - 1)]\n\n        for r, c in neighbors:\n            if 0 <= r < rows and 0 <= c < cols and grid[r][c] == '.' and (r, c) not in visited:\n                visited.add((r, c))\n                queue.append(((r, c), path + [(r, c)]))\n\n    return []\n"
       },
@@ -2697,7 +2698,7 @@
        "label": "bfs",
        "passed": true,
        "labeller_source": "agree",
-       "note": "twin prompt + confirmed escape push (direction 9003, alpha 1) at the task-spec states",
+       "note": "neutral twin prompt + confirmed escape push (direction 9003, alpha 1.0): lands on 'bfs' without any ban",
        "prompt": "Your solution must not rely on house. . . . . .\n\nTask: write a Python function solve(grid, start, goal) that finds a path between two cells of a grid. grid is a list of equal-length strings with between 1 and 30 rows and between 1 and 30 columns; the character . is a free cell and the character # is a wall. start and goal are (row, col) tuples of 0-based indices. A move goes to one of the 4 orthogonal neighbours (up, down, left, right) and may not leave the grid or enter a wall. Return a list of (row, col) tuples that begins with start, ends with goal, and in which consecutive cells are neighbours and every cell is free. Any valid path is accepted; it does not have to be the shortest. If start equals goal and the cell is free, return [start]. If no path exists, or start or goal is a wall, return [].\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
        "code": "def solve(grid, start, goal):\n    rows = len(grid)\n    cols = len(grid[0])\n    if grid[start[0]][start[1]] == '#' or grid[goal[0]][goal[1]] == '#':\n        return []\n    if start == goal:\n        return [start]\n    q = [(start, [start])]\n    visited = {start}\n    while q:\n        (row, col), path = q.pop(0)\n        if (row, col) == goal:\n            return path\n        neighbors = [(row - 1, col), (row + 1, col), (row, col - 1), (row, col + 1)]\n        for r, c in neighbors:\n            if 0 <= r < rows and 0 <= c < cols and grid[r][c] == '.' and (r, c) not in visited:\n                q.append(((r, c), path + [(r, c)]))\n                visited.add((r, c))\n    return []\n"
       }
@@ -3115,7 +3116,7 @@
        "label": "bf_spfa",
        "passed": true,
        "labeller_source": "judge",
-       "note": "ban of 'dijkstra': the modal label under the ban is 'bf_spfa'",
+       "note": "modal ban (the prompt bans the default 'dijkstra'): the most common answer 'bf_spfa' (96 of 100)",
        "prompt": "Write a correct solution that does not use Dijkstra's algorithm.\n\nTask: write a Python function solve(n, edges, s, t) that returns the length of the shortest path from node s to node t in a directed weighted graph. Nodes are numbered 0 to n-1 with 1 <= n <= 100. edges is a list of (u, v, w) tuples, each a directed edge from u to v with integer weight 0 <= w <= 100; there are at most 600 edges and the graph may contain cycles, self-loops and parallel edges. Return the minimum total weight of a path from s to t as an int, 0 if s equals t, and -1 if t cannot be reached from s.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
        "code": "def solve(n, edges, s, t):\n    if s == t:\n        return 0\n    graph = [[] for _ in range(n)]\n    for u, v, w in edges:\n        graph[u].append((v, w))\n    \n    dist = [float('inf')] * n\n    dist[s] = 0\n    \n    for _ in range(n):\n        for u in range(n):\n            for v, w in graph[u]:\n                if dist[u] != float('inf') and dist[u] + w < dist[v]:\n                    dist[v] = dist[u] + w\n    \n    if dist[t] == float('inf'):\n        return -1\n    else:\n        return dist[t]\n"
       },
@@ -3131,7 +3132,7 @@
        "label": "bf_spfa",
        "passed": true,
        "labeller_source": "agree",
-       "note": "twin prompt + confirmed escape push (direction 9004, alpha 1) at the task-spec states",
+       "note": "neutral twin prompt + confirmed escape push (direction 9004, alpha 1.0): lands on 'bf_spfa' without any ban",
        "prompt": "Your solution must not rely on man. . . .\n\nTask: write a Python function solve(n, edges, s, t) that returns the length of the shortest path from node s to node t in a directed weighted graph. Nodes are numbered 0 to n-1 with 1 <= n <= 100. edges is a list of (u, v, w) tuples, each a directed edge from u to v with integer weight 0 <= w <= 100; there are at most 600 edges and the graph may contain cycles, self-loops and parallel edges. Return the minimum total weight of a path from s to t as an int, 0 if s equals t, and -1 if t cannot be reached from s.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
        "code": "def solve(n, edges, s, t):\n    dist = [float('inf')] * n\n    dist[s] = 0\n    for _ in range(n - 1):\n        for u, v, w in edges:\n            if dist[u] != float('inf') and dist[u] + w < dist[v]:\n                dist[v] = dist[u] + w\n    if dist[t] == float('inf'):\n        return -1\n    else:\n        return dist[t]\n"
       },
@@ -3147,7 +3148,7 @@
        "label": "bf_spfa",
        "passed": true,
        "labeller_source": "agree",
-       "note": "labelled 'bf_spfa' by the frozen labeller; the structural rule of the post-hoc re-audit reads it as array-based Dijkstra",
+       "note": "POST HOC: the frozen labeller called this ban answer Bellman-Ford/SPFA; it is an array-based Dijkstra (visited array + linear minimum scan, no heap)",
        "prompt": "Dijkstra's algorithm is not allowed here.\n\nTask: write a Python function solve(n, edges, s, t) that returns the length of the shortest path from node s to node t in a directed weighted graph. Nodes are numbered 0 to n-1 with 1 <= n <= 100. edges is a list of (u, v, w) tuples, each a directed edge from u to v with integer weight 0 <= w <= 100; there are at most 600 edges and the graph may contain cycles, self-loops and parallel edges. Return the minimum total weight of a path from s to t as an int, 0 if s equals t, and -1 if t cannot be reached from s.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
        "code": "def solve(n, edges, s, t):\n    if s == t:\n        return 0\n\n    dist = [float('inf')] * n\n    dist[s] = 0\n    visited = [False] * n\n\n    for _ in range(n):\n        u = -1\n        for v in range(n):\n            if not visited[v] and (u == -1 or dist[v] < dist[u]):\n                u = v\n\n        if u == -1:\n            break\n\n        visited[u] = True\n\n        for u2, v2, w in edges:\n            if u2 == u and dist[u] + w < dist[v2]:\n                dist[v2] = dist[u] + w\n\n    if dist[t] == float('inf'):\n        return -1\n    else:\n        return dist[t]\n"
       }
@@ -3515,7 +3516,7 @@
        "label": "size_k_heap",
        "passed": true,
        "labeller_source": "runtime+ast",
-       "note": "ban of 'full_sort': the modal label under the ban is 'size_k_heap'",
+       "note": "modal ban (the prompt bans the default 'full_sort'): the most common answer 'size_k_heap' (61 of 100)",
        "prompt": "Do not use a full sort for this task.\n\nTask: write a Python function solve(nums, k) that returns the k-th smallest value in nums. The argument nums is a list of integers with 1 <= len(nums) <= 2000, and every value lies between -10000 and 10000 inclusive; values may repeat. The argument k is an integer with 1 <= k <= len(nums), counted from 1, so k = 1 asks for the minimum and k = len(nums) for the maximum. Repeated values are counted separately: for nums = [3, 1, 3] and k = 3 the answer is 3.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
        "code": "import heapq\n\ndef solve(nums, k):\n    return heapq.nsmallest(k, nums)[-1]\n"
       }
@@ -3946,7 +3947,7 @@
        "label": "naive",
        "passed": true,
        "labeller_source": "runtime+ast",
-       "note": "ban of 'naive': the modal label under the ban is 'naive'",
+       "note": "modal ban (the prompt bans the default 'naive'): the most common answer 'naive' (76 of 100)",
        "prompt": "The naive sliding-window comparison is not allowed here.\n\nTask: write a Python function solve(haystack, needle) that returns the index of the first position at which the string needle occurs as a contiguous substring of the string haystack, or -1 if needle is not a substring of haystack. Both strings consist only of lowercase English letters, with 1 <= len(haystack) <= 2000 and 1 <= len(needle) <= 200. Indices start at 0. If needle is longer than haystack, the answer is -1.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
        "code": "def solve(haystack, needle):\n    if len(needle) > len(haystack):\n        return -1\n    for i in range(len(haystack) - len(needle) + 1):\n        if haystack[i:i+len(needle)] == needle:\n            return i\n    return -1\n"
       },
@@ -3962,7 +3963,7 @@
        "label": "builtin",
        "passed": true,
        "labeller_source": "runtime+ast",
-       "note": "twin prompt + confirmed escape push (direction 9001, alpha 1) at the task-spec states",
+       "note": "neutral twin prompt + confirmed escape push (direction 9001, alpha 1.0): lands on 'builtin' without any ban",
        "prompt": "Do not use bank for this task. . . . . .\n\nTask: write a Python function solve(haystack, needle) that returns the index of the first position at which the string needle occurs as a contiguous substring of the string haystack, or -1 if needle is not a substring of haystack. Both strings consist only of lowercase English letters, with 1 <= len(haystack) <= 2000 and 1 <= len(needle) <= 200. Indices start at 0. If needle is longer than haystack, the answer is -1.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
        "code": "def solve(haystack, needle):\n    if len(needle) > len(haystack):\n        return -1\n    try:\n        return haystack.index(needle)\n    except ValueError:\n        return -1\n"
       }
@@ -4311,7 +4312,7 @@
        "label": "other",
        "passed": false,
        "labeller_source": "runtime+ast",
-       "note": "ban of 'hash_set': the modal label under the ban is 'other'",
+       "note": "modal ban (the prompt bans the default 'hash_set'): the most common answer 'other' (38 of 100)",
        "prompt": "Avoid a hash set of seen values entirely.\n\nTask: write a Python function solve(nums) that returns the repeated value in nums. The argument nums is a list of n + 1 integers, where 1 <= n <= 10000, and every value lies between 1 and n inclusive. Exactly one value occurs more than once, and it may occur two or more times; every other value occurs at most once. Return the repeated value as an int.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
        "code": "def solve(nums):\n    n = len(nums) - 1\n    total_sum = sum(nums)\n    expected_sum = n * (n + 1) // 2\n    return total_sum - expected_sum\n"
       }
@@ -4690,24 +4691,24 @@
        "label": "brute_force",
        "passed": true,
        "labeller_source": "runtime+ast",
-       "note": "ban of 'hash_map': the modal label under the ban is 'brute_force'",
+       "note": "modal ban (the prompt bans the default 'hash_map'): the most common answer 'brute_force' (59 of 100)",
        "prompt": "Do not use a hash map of seen values for this task.\n\nTask: write a Python function solve(nums, target) that returns a list [i, j] of two indices with i < j such that nums[i] + nums[j] == target. The argument nums is a list of integers with 2 <= len(nums) <= 2000 and every value between -10**9 and 10**9 inclusive; target is an integer. Each input has exactly one pair of indices whose values add up to target, so the answer is unique. The two indices must be different positions, although the values at them may be equal.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
        "code": "def solve(nums, target):\n    for i in range(len(nums)):\n        for j in range(i + 1, len(nums)):\n            if nums[i] + nums[j] == target:\n                return [i, j]\n"
       },
       {
        "kind": "escape_push",
-       "row_id": "A|T05|W3|esc9003_a2|0",
+       "row_id": "A|T05|W1|esc9004_a2|0",
        "stage": "A",
-       "arm": "esc9003_a2",
-       "template": "W3",
+       "arm": "esc9004_a2",
+       "template": "W1",
        "slot": 0,
        "alpha": 2.0,
-       "direction_seed": 9003,
+       "direction_seed": 9004,
        "label": "brute_force",
        "passed": true,
        "labeller_source": "runtime+ast",
-       "note": "twin prompt + confirmed escape push (direction 9003, alpha 2) at the task-spec states",
-       "prompt": "Avoid face entirely. . . . . .\n\nTask: write a Python function solve(nums, target) that returns a list [i, j] of two indices with i < j such that nums[i] + nums[j] == target. The argument nums is a list of integers with 2 <= len(nums) <= 2000 and every value between -10**9 and 10**9 inclusive; target is an integer. Each input has exactly one pair of indices whose values add up to target, so the answer is unique. The two indices must be different positions, although the values at them may be equal.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+       "note": "neutral twin prompt + confirmed escape push (direction 9004, alpha 2.0): lands on 'brute_force' without any ban",
+       "prompt": "Do not use face for this task. . . . . .\n\nTask: write a Python function solve(nums, target) that returns a list [i, j] of two indices with i < j such that nums[i] + nums[j] == target. The argument nums is a list of integers with 2 <= len(nums) <= 2000 and every value between -10**9 and 10**9 inclusive; target is an integer. Each input has exactly one pair of indices whose values add up to target, so the answer is unique. The two indices must be different positions, although the values at them may be equal.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
        "code": "def solve(nums, target):\n    for i in range(len(nums)):\n        for j in range(i + 1, len(nums)):\n            if nums[i] + nums[j] == target:\n                return [i, j]\n"
       }
      ]
@@ -5075,7 +5076,7 @@
        "label": "dfs",
        "passed": true,
        "labeller_source": "runtime+ast",
-       "note": "ban of 'dfs': the modal label under the ban is 'dfs'",
+       "note": "modal ban (the prompt bans the default 'dfs'): the most common answer 'dfs' (100 of 100)",
        "prompt": "Do not use depth-first search (DFS) for this task.\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
        "code": "def solve(n, edges):\n    adj = [[] for _ in range(n)]\n    for u, v in edges:\n        adj[u].append(v)\n        adj[v].append(u)\n\n    visited = [False] * n\n    count = 0\n\n    def dfs(node):\n        visited[node] = True\n        for neighbor in adj[node]:\n            if not visited[neighbor]:\n                dfs(neighbor)\n\n    for i in range(n):\n        if not visited[i]:\n            dfs(i)\n            count += 1\n\n    return count\n"
       },
@@ -5091,7 +5092,7 @@
        "label": "union_find",
        "passed": true,
        "labeller_source": "runtime+ast",
-       "note": "twin prompt + confirmed escape push (direction 9002, alpha 2) at the task-spec states",
+       "note": "neutral twin prompt + confirmed escape push (direction 9002, alpha 2.0): lands on 'union_find' without any ban",
        "prompt": "Do not use building for this task. . . . . . .\n\nTask: write a Python function solve(n, edges) that returns the number of connected components of an undirected graph. The nodes are the integers 0 to n - 1, with 1 <= n <= 300. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v, each joining nodes u and v; 0 <= len(edges) <= 1500 and no pair of nodes is joined twice. A node with no edges forms a component on its own.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
        "code": "def solve(n, edges):\n    parent = list(range(n))\n\n    def find(i):\n        if parent[i] == i:\n            return i\n        parent[i] = find(parent[i])\n        return parent[i]\n\n    def union(i, j):\n        root_i = find(i)\n        root_j = find(j)\n        if root_i != root_j:\n            parent[root_i] = root_j\n\n    for u, v in edges:\n        union(u, v)\n\n    count = 0\n    for i in range(n):\n        if parent[i] == i:\n            count += 1\n\n    return count\n"
       }
@@ -5427,7 +5428,7 @@
        "label": "greedy_end",
        "passed": true,
        "labeller_source": "runtime+ast",
-       "note": "ban of 'greedy_end': the modal label under the ban is 'greedy_end'",
+       "note": "modal ban (the prompt bans the default 'greedy_end'): the most common answer 'greedy_end' (100 of 100)",
        "prompt": "Avoid the greedy earliest-finish rule entirely.\n\nTask: write a Python function solve(intervals) that returns the minimum number of intervals that have to be removed so that no two of the remaining intervals overlap. The argument intervals is a list of pairs [start, end] of integers with start < end, 1 <= len(intervals) <= 1000 and every value between -50000 and 50000 inclusive. Two intervals that only touch, such as [1, 2] and [2, 3], count as non-overlapping. Return the count as an int.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
        "code": "def solve(intervals):\n    if not intervals:\n        return 0\n\n    intervals.sort(key=lambda x: x[1])\n\n    count = 0\n    last_end = float('-inf')\n\n    for start, end in intervals:\n        if start < last_end:\n            count += 1\n        else:\n            last_end = end\n\n    return count\n"
       }
@@ -5764,7 +5765,7 @@
        "label": "iteration",
        "passed": true,
        "labeller_source": "runtime+ast",
-       "note": "ban of 'iteration': the modal label under the ban is 'iteration'",
+       "note": "modal ban (the prompt bans the default 'iteration'): the most common answer 'iteration' (87 of 100)",
        "prompt": "Do not use bottom-up iteration for this task.\n\nTask: write a Python function solve(n) that returns the n-th Fibonacci number as an exact Python int. The sequence is defined by F(0) = 0, F(1) = 1 and F(n) = F(n - 1) + F(n - 2) for n >= 2, so F(10) = 55. The argument n is an integer with 0 <= n <= 500, and the result must be exact for every n in that range.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
        "code": "def solve(n):\n    if n <= 1:\n        return n\n    a, b = 0, 1\n    for _ in range(2, n + 1):\n        a, b = b, a + b\n    return b\n"
       }
@@ -6087,7 +6088,7 @@
        "label": "kahn",
        "passed": true,
        "labeller_source": "runtime+ast",
-       "note": "ban of 'kahn': the modal label under the ban is 'kahn'",
+       "note": "modal ban (the prompt bans the default 'kahn'): the most common answer 'kahn' (100 of 100)",
        "prompt": "Your solution must not rely on Kahn's in-degree queue.\n\nTask: write a Python function solve(n, prerequisites) that orders n tasks numbered 0 to n - 1. Each pair [a, b] in the list prerequisites means that task b has to come before task a. Return a list that contains every task exactly once and respects every pair; if several orders are valid, any of them is accepted. If no valid order exists, return an empty list. Here 1 <= n <= 500, 0 <= len(prerequisites) <= 2000, a != b, and no pair is repeated.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
        "code": "def solve(n, prerequisites):\n    adj = [[] for _ in range(n)]\n    indegree = [0] * n\n    for a, b in prerequisites:\n        adj[b].append(a)\n        indegree[a] += 1\n\n    queue = [i for i in range(n) if indegree[i] == 0]\n    result = []\n    count = 0\n\n    while queue:\n        u = queue.pop(0)\n        result.append(u)\n        count += 1\n\n        for v in adj[u]:\n            indegree[v] -= 1\n            if indegree[v] == 0:\n                queue.append(v)\n\n    if count == n:\n        return result\n    else:\n        return []\n"
       }
@@ -6416,7 +6417,7 @@
        "label": "sort_sweep",
        "passed": true,
        "labeller_source": "runtime+ast",
-       "note": "ban of 'sort_sweep': the modal label under the ban is 'sort_sweep'",
+       "note": "modal ban (the prompt bans the default 'sort_sweep'): the most common answer 'sort_sweep' (100 of 100)",
        "prompt": "Avoid sorting and a single sweep entirely.\n\nTask: write a Python function solve(intervals) that merges overlapping intervals. The argument intervals is a list of pairs [start, end] of integers with 0 <= start <= end <= 10000 and 1 <= len(intervals) <= 1500, given in no particular order. Two intervals belong to the same merged interval when they overlap or touch, for example [1, 3] and [3, 5] merge into [1, 5]. Return the merged intervals as a list of [start, end] lists sorted by start, with no two of them overlapping or touching.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
        "code": "def solve(intervals):\n    if not intervals:\n        return []\n\n    intervals.sort()\n    merged = []\n    for interval in intervals:\n        if not merged or interval[0] > merged[-1][1]:\n            merged.append(interval)\n        else:\n            merged[-1][1] = max(merged[-1][1], interval[1])\n    return merged\n"
       }
@@ -6758,7 +6759,7 @@
        "label": "binary_search",
        "passed": true,
        "labeller_source": "runtime+ast",
-       "note": "ban of 'binary_search': the modal label under the ban is 'binary_search'",
+       "note": "modal ban (the prompt bans the default 'binary_search'): the most common answer 'binary_search' (99 of 100)",
        "prompt": "A hand-written binary search is not allowed here.\n\nTask: write a Python function solve(nums, target) that returns a list [first, last] holding the first and the last index at which target occurs in nums, or [-1, -1] if target does not occur. The argument nums is a list of integers sorted in non-decreasing order, with 0 <= len(nums) <= 100000 and every value between -10**9 and 10**9 inclusive; target is an integer in the same range.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
        "code": "def solve(nums, target):\n    first = -1\n    last = -1\n    l, r = 0, len(nums) - 1\n    while l <= r:\n        mid = (l + r) // 2\n        if nums[mid] == target:\n            first = mid\n            r = mid - 1\n        elif nums[mid] < target:\n            l = mid + 1\n        else:\n            r = mid - 1\n    l, r = 0, len(nums) - 1\n    while l <= r:\n        mid = (l + r) // 2\n        if nums[mid] == target:\n            last = mid\n            l = mid + 1\n        elif nums[mid] < target:\n            l = mid + 1\n        else:\n            r = mid - 1\n    return [first, last]\n"
       }
@@ -7100,7 +7101,7 @@
        "label": "sort_by_count",
        "passed": true,
        "labeller_source": "runtime+ast",
-       "note": "ban of 'sort_by_count': the modal label under the ban is 'sort_by_count'",
+       "note": "modal ban (the prompt bans the default 'sort_by_count'): the most common answer 'sort_by_count' (100 of 100)",
        "prompt": "Do not use sorting by frequency for this task.\n\nTask: write a Python function solve(nums, k) that returns the k values that occur most often in nums, as a list in any order. The argument nums is a list of integers with 1 <= len(nums) <= 10000 and every value between -10000 and 10000 inclusive; k is an integer between 1 and the number of distinct values in nums. The inputs are chosen so that the answer is unique: the k-th and (k+1)-th highest frequencies always differ.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
        "code": "from collections import Counter\n\ndef solve(nums, k):\n    counts = Counter(nums)\n    sorted_counts = sorted(counts.items(), key=lambda item: item[1], reverse=True)\n    result = [item[0] for item in sorted_counts[:k]]\n    return result\n"
       }
@@ -7458,7 +7459,7 @@
        "label": "patience_bisect",
        "passed": true,
        "labeller_source": "runtime+ast",
-       "note": "ban of 'patience_bisect': the modal label under the ban is 'patience_bisect'",
+       "note": "modal ban (the prompt bans the default 'patience_bisect'): the most common answer 'patience_bisect' (100 of 100)",
        "prompt": "Do not use patience sorting with binary search for this task.\n\nTask: write a Python function solve(nums) that returns the length of the longest strictly increasing subsequence of nums. A subsequence keeps the original order of the chosen elements but need not be contiguous, and strictly increasing means each chosen value is larger than the one before it. The argument nums is a list of integers with 1 <= len(nums) <= 1000 and every value between -10000 and 10000 inclusive.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
        "code": "def solve(nums):\n    tails = []\n    for num in nums:\n        if not tails or num > tails[-1]:\n            tails.append(num)\n        else:\n            l, r = 0, len(tails) - 1\n            while l <= r:\n                mid = (l + r) // 2\n                if tails[mid] < num:\n                    l = mid + 1\n                else:\n                    r = mid - 1\n            tails[l] = num\n    return len(tails)\n"
       },
@@ -7474,7 +7475,7 @@
        "label": "quadratic_dp",
        "passed": true,
        "labeller_source": "runtime+ast",
-       "note": "twin prompt + confirmed escape push (direction 9004, alpha 2) at the task-spec states",
+       "note": "neutral twin prompt + confirmed escape push (direction 9004, alpha 2.0): lands on 'quadratic_dp' without any ban",
        "prompt": "Write a correct solution that does not use wall. . . . .\n\nTask: write a Python function solve(nums) that returns the length of the longest strictly increasing subsequence of nums. A subsequence keeps the original order of the chosen elements but need not be contiguous, and strictly increasing means each chosen value is larger than the one before it. The argument nums is a list of integers with 1 <= len(nums) <= 1000 and every value between -10000 and 10000 inclusive.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
        "code": "def solve(nums):\n    n = len(nums)\n    if n == 0:\n        return 0\n    dp = [1] * n\n    for i in range(1, n):\n        for j in range(i):\n            if nums[i] > nums[j]:\n                dp[i] = max(dp[i], dp[j] + 1)\n    return max(dp)\n"
       }
@@ -7815,7 +7816,7 @@
        "label": "dfs_parent",
        "passed": true,
        "labeller_source": "runtime+ast",
-       "note": "ban of 'dfs_parent': the modal label under the ban is 'dfs_parent'",
+       "note": "modal ban (the prompt bans the default 'dfs_parent'): the most common answer 'dfs_parent' (97 of 100)",
        "prompt": "Avoid DFS with parent tracking entirely.\n\nTask: write a Python function solve(n, edges) that returns True if an undirected graph contains a cycle and False otherwise. The nodes are the integers 0 to n - 1, with 1 <= n <= 1000. The argument edges is a list of pairs [u, v] with 0 <= u, v < n and u != v; 0 <= len(edges) <= 2000 and no pair of nodes is joined twice. The graph need not be connected, and a cycle in any part of it counts.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
        "code": "def solve(n, edges):\n    adj = [[] for _ in range(n)]\n    for u, v in edges:\n        adj[u].append(v)\n        adj[v].append(u)\n\n    visited = [False] * n\n\n    def dfs(u, parent):\n        visited[u] = True\n        for v in adj[u]:\n            if not visited[v]:\n                if dfs(v, u):\n                    return True\n            elif v != parent:\n                return True\n        return False\n\n    for i in range(n):\n        if not visited[i]:\n            if dfs(i, -1):\n                return True\n\n    return False\n"
       }
