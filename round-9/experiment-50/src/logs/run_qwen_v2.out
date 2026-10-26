@@ -1,0 +1,36 @@
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:05<00:23,  5.99s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:11<00:17,  5.89s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:17<00:11,  5.83s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:22<00:05,  5.45s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:24<00:00,  4.25s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:24<00:00,  4.91s/it]
+14:31:04|INFO   |loaded qwen: {'model': 'qwen', 'path_snapshot': 'b968826d9c46dd6066d109eabc6255188de91218', 'load_s': 26.8, 'free_vram_before_GB': 23.46, 'free_vram_after_GB': 7.07, 'gpu': 'NVIDIA L4'}
+14:31:06|INFO   |engine check qwen B3: chat [0.99, 0.987, 1.485, 1.245, 0.49] vs ref [1.24, 0.737, 1.485, 1.245, 0.49] (max diff 0.2499)
+14:31:07|INFO   |engine check qwen T10: chat [16.924, 16.011, 18.893, 16.923, 9.951] vs ref [16.924, 16.509, 18.648, 17.279, 10.451] (max diff 0.5000)
+14:31:29|INFO   |exp41 clean-margin check B3: max |diff| 0.0
+14:31:29|INFO   |instr B3: m mean 1.318 over 20 prompts
+14:31:44|INFO   |exp41 clean-margin check T10: max |diff| 0.0
+14:31:44|INFO   |instr T10: m mean 4.457 over 20 prompts
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:05<00:22,  5.52s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:11<00:16,  5.53s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:16<00:11,  5.52s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:21<00:05,  5.10s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:22<00:00,  3.94s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:22<00:00,  4.58s/it]
+14:33:56|INFO   |loaded qwen_base: {'model': 'qwen_base', 'path_snapshot': '49e3418fbbbca6ecbdf9608b4d22e5a407081db4', 'load_s': 25.2, 'free_vram_before_GB': 23.46, 'free_vram_after_GB': 7.07, 'gpu': 'NVIDIA L4'}
+14:33:58|INFO   |engine check qwen_base B3: chat [-0.819, -0.716, -0.832, -0.893, -0.885] vs ref [-0.812, -0.831, -0.817, -0.718, -0.805] (max diff 0.1741)
+14:33:59|INFO   |engine check qwen_base T10: chat [2.381, 2.833, 2.582, 2.48, 2.525] vs ref [2.521, 2.662, 2.668, 2.36, 2.525] (max diff 0.1710)
+14:34:17|INFO   |base B3: m mean -0.750 over 20 prompts
+14:34:31|INFO   |base T10: m mean -0.070 over 20 prompts
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:06<00:24,  6.18s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:12<00:18,  6.32s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:18<00:12,  6.20s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:23<00:05,  5.66s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:25<00:00,  4.30s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:25<00:00,  5.08s/it]
+14:37:43|INFO   |loaded qwen: {'model': 'qwen', 'path_snapshot': 'b968826d9c46dd6066d109eabc6255188de91218', 'load_s': 28.7, 'free_vram_before_GB': 23.46, 'free_vram_after_GB': 7.07, 'gpu': 'NVIDIA L4'}
+Traceback (most recent call last):
+  File "./src/cmap9.py", line 973, in <module>
+    stage_patch(mp)
+  File "./src/cmap9.py", line 916, in stage_patch
+    gpu_tests[u] = gpu_checks(model, ot, kv, ids, Rd, f, a, b, out_rows)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "./src/cmap9.py", line 953, in gpu_checks
+    out["B1_shape_vs_B40_unpatched"] = r_b1[0]["m"] - rb[0]["m"]
+                                       ~~~~^^^
+IndexError: list index out of range
+QWEN_V2_DONE
