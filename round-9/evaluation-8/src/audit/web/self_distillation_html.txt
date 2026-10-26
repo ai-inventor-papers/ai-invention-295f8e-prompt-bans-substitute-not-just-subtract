@@ -1,0 +1,42 @@
+# url: https://arxiv.org/html/2604.01193
+# pattern: [Ff]ork tokens?|[Ll]ock tokens?|precision-exploration|precision.{0,20}exploration
+# utc: 2026-10-23T09:42:13Z
+# tool: aii-web-tools aii_fast_web_fetch.py grep
+
+URL: https://arxiv.org/html/2604.01193
+Type: HTML
+Pattern: [Ff]ork tokens?|[Ll]ock tokens?|precision-exploration|precision.{0,20}exploration (7 matches in 145387 chars)
+
+--- Content ---
+
+5791:...iveCodeBench v6, with gains concentrating on harder problems, and it generalizes across Qwen, Llama, and GPT-OSS models at 4B–30B scale, including both instruct and thinking variants. To understand why such a simple method can work, we trace these gains to a _precision-exploration conflict_ in LLM decoding and show that SSD reshapes token distributions in a context-dependent way, suppressing distractor tails where precision matters while preserving useful diversity where exploration matters. Taken together, SSD offers a complementary p...
+--
+10119:...g TevalT_{\textsf{eval}} secures locks but starves forks of diversity, while raising it enables exploration at forks but lets distractors flood back in at locks. The best global decoding setting is therefore necessarily a compromise; we call this tension the _precision-exploration conflict_.
+
+SSD can be understood through this lens. Training on temperature-shifted, truncated samples implicitly reshapes the model’s distributions in a context dependent way (we formalize this later as support compression and within support reshaping in Eq...
+--
+11111:...ur contributions are threefold. First, we show that SSD can substantially improve code generation models’ performance using only their own unverified outputs, without any external teacher, verifier, reward model, or labeled solutions. Second, we identify the _precision-exploration conflict_ and argue that it is the key mechanism behind SSD. Third, we support this mechanism with aligned evidence from controlled simulation, real-model analysis, and theory.
+
+## 2 Embarrassingly Simple Self-Distillation (SSD)
+
+#### Data synthesis.
+
+We writ...
+--
+24101:...ion: what changes inside the model during simple self-distillation, and why can’t the same effect be achieved by simply adjusting how the original model decodes? Our hypothesis is that the answer lies in a structural conflict in generation. Some tokens demand precision, others demand exploration, and any fixed decoding configuration must compromise between them. SSD helps by reshaping token distributions in a way that alleviates this conflict. We validate this mechanism in three steps: a controlled toy simulation, real model analysis, and theoretical...
+--
+45641:...x models, simple self-distillation consistently improves LiveCodeBench, with the largest gains on harder problems; for Qwen3-30B-Instruct, pass@1 rises from 42.4% to 55.3% on LiveCodeBench v6. Our evidence points to a simple explanation: code generation mixes precision-bound locks and exploration-bound forks, and SSD reshapes token distributions so decoding can explore useful branches without reopening distractor tails. More broadly, these results suggest that strong code models contain latent capability that can be unlocked without a verifier, a teac...
+--
+76395:...t or an almost degenerate head, whereas fork-like contexts can retain a nontrivial, uneven multi-token head. Evaluation-time temperature is therefore typically more effective at forks and less effective at locks, which is the asymmetry needed to alleviate the precision-exploration conflict.
+
+#### Evaluation-time behavior under a local ideal-fit approximation.
+
+The preceding analysis characterizes how the objective behaves locally. To connect that picture to evaluation time, we now use a local ideal-fit approximation and then state the ...
+--
+98342:...0)  
+---|---|---|---  
+  
+By Equation 39, increasing τ\tau to help the fork simultaneously lowers the lock-side upper bound. The same knob that makes it easier to retain more fork alternatives therefore makes it harder to keep lock supports short. This is the precision-exploration conflict in its most operational form.
+
+Reordering the operators can shift where the prefix boundary lands, and when top-pp precedes top-kk the final support can be clipped again by kk. But no reordering escapes the two rigidities above: the final decoder sti...
+# exit: 0
