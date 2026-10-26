@@ -1,0 +1,42 @@
+# gen_viz_report_12 — report_results
+
+> Phase: `gen_paper_repo` · `gen_viz`
+> Run: `gen_paper_repo_c164ac661673` — A Random Activation Push Changes a Code Model's Algorithm Where Temperature Does Not
+>
+> Full, verbatim record of every prompt the AI Inventor pipeline gave this agent — system-user, human-user and skill-input — in the order they landed. Nothing truncated.
+
+## Task: `gen_viz_report_12` (terminal_claude_agent)
+
+### [1] SYSTEM-USER prompt · 2026-10-26 04:35:33 UTC
+
+```
+<research_methodology>
+Create figures that belong in a top-venue paper.
+
+- Every figure needs a clear takeaway visible at a glance.
+- Choose chart types that match the data relationship (comparisons, trends, correlations, distributions).
+- Include uncertainty (error bars, confidence intervals) when showing experimental results.
+- Keep it clean — no clutter, clear labels with units, readable at print size.
+</research_methodology>
+
+<safeguard_research_reporting>
+When the research concerns bypassin... [truncated, 242895 chars total]
+```
+
+### [2] SYSTEM-USER prompt · 2026-10-26 04:42:20 UTC
+
+```
+[Image: original 3000x1285, displayed at 2000x857. Multiply coordinates by 1.50 to map to original image.]
+```
+
+### [3] SYSTEM-USER prompt · 2026-10-26 04:43:46 UTC
+
+```
+[Image: original 3000x1285, displayed at 2000x857. Multiply coordinates by 1.50 to map to original image.]
+```
+
+### [4] SYSTEM-USER prompt · 2026-10-26 04:47:20 UTC
+
+```
+[Image: original 3000x1285, displayed at 2000x857. Multiply coordinates by 1.50 to map to original image.]
+```

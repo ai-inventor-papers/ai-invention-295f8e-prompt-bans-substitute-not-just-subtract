@@ -1,0 +1,164 @@
+# Prompts
+
+Complete, auto-generated record of **every prompt the AI Inventor system gave each agent** across this run — generated at repository-upload time so it captures all steps. For the full conversation (assistant turns, thinking, tool calls and results) see the sibling `../messages/` folder.
+
+- Run: `gen_paper_repo_c164ac661673` — A Random Activation Push Changes a Code Model's Algorithm Where Temperature Does Not
+
+Each prompt is labelled by type and timestamped, with its full untruncated body:
+
+- **SYSTEM-USER** — the pipeline-generated role/instruction prompt placed in the user slot.
+- **HUMAN-USER** — the task / human-typed message into the agent stream.
+- **SKILL-INPUT** — a skill the agent loaded; its `SKILL.md` instructions, verbatim.
+
+Layout mirrors the run's module tree: one folder per high-level phase, a `round_N/` per iteration where the phase iterates, then each module — a single-task module is one `.md` file, a parallel module (gen_plan / gen_art / gen_viz / gen_demo_art) is a folder with one `.md` per task.
+
+## Index
+
+- **1. report_results** — `gen_paper_repo`
+  - `chat/prompts/1_report_results/1_gen_paper_draft.md` — 4 prompts
+  - `2_gen_viz/` — 72 task(s)
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_1.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_2.md` — 19 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_3.md` — 2 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_4.md` — 3 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_5.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_6.md` — 4 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_1.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_2.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_3.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_4.md` — 4 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_5.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_6.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_7.md` — 4 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_8.md` — 2 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_9.md` — 2 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_10.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_11.md` — 3 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_12.md` — 4 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_13.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_14.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_15.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_16.md` — 2 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_17.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_18.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_19.md` — 2 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_20.md` — 2 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_21.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_22.md` — 2 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_23.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_24.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_25.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_26.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_27.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_28.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_29.md` — 3 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_30.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_31.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_32.md` — 2 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_33.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_34.md` — 2 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_35.md` — 2 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_36.md` — 5 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_37.md` — 5 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_38.md` — 2 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_39.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_40.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_41.md` — 2 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_42.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_43.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_44.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_45.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_46.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_47.md` — 2 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_48.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_49.md` — 3 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_50.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_51.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_52.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_53.md` — 2 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_54.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_55.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_56.md` — 2 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_57.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_58.md` — 2 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_59.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_60.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_61.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_62.md` — 3 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_63.md` — 2 prompts
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_64.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_65.md` — 1 prompt
+    - `chat/prompts/1_report_results/2_gen_viz/gen_viz_report_66.md` — 1 prompt
+  - `3_gen_demo_art/` — 63 task(s)
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_dataset_1.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_evaluation_1.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_evaluation_2.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_evaluation_3.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_evaluation_4.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_evaluation_5.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_evaluation_6.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_evaluation_7.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_evaluation_8.md` — 7 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_evaluation_9.md` — 4 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_1.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_2.md` — 4 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_3.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_4.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_5.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_6.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_7.md` — 4 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_8.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_9.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_10.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_11.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_12.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_13.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_14.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_15.md` — 4 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_16.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_17.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_18.md` — 4 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_19.md` — 6 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_20.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_21.md` — 4 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_22.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_23.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_24.md` — 4 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_25.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_26.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_27.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_28.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_29.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_30.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_31.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_32.md` — 5 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_33.md` — 5 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_34.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_35.md` — 7 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_36.md` — 4 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_37.md` — 4 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_38.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_39.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_40.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_41.md` — 4 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_42.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_43.md` — 5 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_44.md` — 4 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_45.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_46.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_47.md` — 7 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_48.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_49.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_50.md` — 4 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_51.md` — 3 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_52.md` — 4 prompts
+    - `chat/prompts/1_report_results/3_gen_demo_art/gen_demo_art_experiment_53.md` — 5 prompts
+  - `4_gen_full_paper/` — 3 task(s)
+    - `chat/prompts/1_report_results/4_gen_full_paper/gen_full_paper.md` — 7 prompts
+    - `chat/prompts/1_report_results/4_gen_full_paper/gen_paper_site.md` — 6 prompts
+    - `chat/prompts/1_report_results/4_gen_full_paper/gen_report_doc.md` — 7 prompts
+  - `chat/prompts/1_report_results/5_gen_html_demo.md` — 6 prompts
+  - `chat/prompts/1_report_results/6_final_review.md` — 14 prompts
+  - `7_deploy_gh/` — 2 task(s)
+    - `chat/prompts/1_report_results/7_deploy_gh/repro_backfill.md` — 1 prompt
+    - `chat/prompts/1_report_results/7_deploy_gh/repro_backfill.md` — 1 prompt
