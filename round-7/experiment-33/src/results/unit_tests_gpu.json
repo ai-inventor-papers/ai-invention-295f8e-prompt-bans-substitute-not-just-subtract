@@ -1,0 +1,44 @@
+{
+ "U1_zero_rank_identical": true,
+ "U2_full_exchange_all_blocks": {
+  "max_abs_logit_diff": 0.0,
+  "top1_equal": true,
+  "pass": true
+ },
+ "U3_packed_vs_separate": {
+  "per_program_abs_diff": [
+   0.2735,
+   0.0012,
+   0.0163,
+   0.1125,
+   0.0163,
+   0.1875
+  ],
+  "max_program_diff": 0.27348363399505615,
+  "mean_program_diff": 0.1012136737505595,
+  "max_token_diff_single_pack": 0.16291111707687378,
+  "pass": false
+ },
+ "U4_cached_vs_full": {
+  "max_abs_contrast_diff": 0.15963482856750488,
+  "C_edit": 0.6388109922409058,
+  "C_none": 0.6272610425949097,
+  "pass": false
+ },
+ "U8_memory": {
+  "peak_GB_train_microbatch": 17.25,
+  "seconds_train_microbatch": 0.87,
+  "grad_norm": 0.04188760370016098,
+  "free_GB": 7.11
+ },
+ "U7a_grad_finite_nonzero": true,
+ "U5_fullrank_rotation_equals_exchange": {
+  "max_abs_logit_diff_read_pos": 0.0,
+  "identical_token_streams_of_10": 10
+ },
+ "U6_crn_determinism": {
+  "identical_token_streams_of_10": 10,
+  "pass": true,
+  "decode_hooks": "edit hooks are registered only inside the prefill context (engine_v4.block_hooks), so no decode step is hooked"
+ }
+}

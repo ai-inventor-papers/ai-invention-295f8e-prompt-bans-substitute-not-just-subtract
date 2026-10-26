@@ -1,0 +1,333 @@
+{
+ "name": "commit1_T03_v2",
+ "utc": "2026-10-22T14:03:04.216926Z",
+ "amendment": "v2: default pool extended to TRAIN-family padding-twin samples (duplicated twin openings)",
+ "kept_Y": [
+  "heapify_pop",
+  "quickselect",
+  "counting_sort"
+ ],
+ "landing": [
+  "quickselect",
+  "size_k_heap"
+ ],
+ "groups": {
+  "quickselect+size_k_heap": [
+   "quickselect",
+   "size_k_heap"
+  ],
+  "quickselect": [
+   "quickselect"
+  ],
+  "counting_sort": [
+   "counting_sort"
+  ]
+ },
+ "excluded_pad_cells": [],
+ "adherence": {
+  "full_sort": {
+   "n": 20,
+   "correct_Y": 20,
+   "share": 1.0,
+   "labels": {
+    "full_sort": 20
+   }
+  },
+  "size_k_heap": {
+   "n": 20,
+   "correct_Y": 10,
+   "share": 0.5,
+   "labels": {
+    "size_k_heap": 16,
+    "heapify_pop": 4
+   }
+  },
+  "heapify_pop": {
+   "n": 20,
+   "correct_Y": 17,
+   "share": 0.85,
+   "labels": {
+    "quickselect": 3,
+    "heapify_pop": 17
+   }
+  },
+  "quickselect": {
+   "n": 20,
+   "correct_Y": 20,
+   "share": 1.0,
+   "labels": {
+    "quickselect": 20
+   }
+  },
+  "median_of_medians": {
+   "n": 20,
+   "correct_Y": 3,
+   "share": 0.15,
+   "labels": {
+    "median_of_medians": 15,
+    "invalid": 2,
+    "quickselect": 3
+   }
+  },
+  "counting_sort": {
+   "n": 20,
+   "correct_Y": 14,
+   "share": 0.7,
+   "labels": {
+    "counting_sort": 14,
+    "other": 6
+   }
+  }
+ },
+ "pad_default": {
+  "size_k_heap": {
+   "n": 20,
+   "default": 20,
+   "share": 1.0
+  },
+  "heapify_pop": {
+   "n": 20,
+   "default": 20,
+   "share": 1.0
+  },
+  "quickselect": {
+   "n": 20,
+   "default": 20,
+   "share": 1.0
+  },
+  "median_of_medians": {
+   "n": 20,
+   "default": 20,
+   "share": 1.0
+  },
+  "counting_sort": {
+   "n": 20,
+   "default": 20,
+   "share": 1.0
+  }
+ },
+ "target_meta": {
+  "quickselect": {
+   "train": [
+    {
+     "sample_id": "T03|BAN_W1|2",
+     "code_sha256": "b8740a250ed3a9433e393f1820c4388c08d2b925c904fe4863a0e4a847daa0eb",
+     "clean": true,
+     "n_tok": 48
+    },
+    {
+     "sample_id": "T03|BAN_W1|6",
+     "code_sha256": "9da8f186f7c2cdd36c72005286f3138e1b6940c9dd9a5646085b05f19f29e7c7",
+     "clean": true,
+     "n_tok": 48
+    },
+    {
+     "sample_id": "T03|BAN_W2|0",
+     "code_sha256": "942f8d330604f938c3d4b73d73bdb7447146f65535e268e447a43221d112bf7d",
+     "clean": true,
+     "n_tok": 48
+    },
+    {
+     "sample_id": "T03|F2_quickselect|9",
+     "code_sha256": "d72727bb1fb3e4c0638e3a1a077207a4c60df828b96558bb2a462d4aa7747928",
+     "clean": true,
+     "n_tok": 48
+    },
+    {
+     "sample_id": "T03|F0_quickselect|0",
+     "code_sha256": "9518bff81ce198e920ac97f9e9e6cfb94543677dab963ad0b7748275a37eadd7",
+     "clean": false,
+     "n_tok": 48
+    }
+   ],
+   "val": [
+    {
+     "sample_id": "T03|F0_quickselect|1",
+     "code_sha256": "254229b6605adfdde77bc4bf95d8f9c5e28cbea3fbd4b918223b86cfddf37d6e",
+     "clean": false,
+     "n_tok": 48
+    },
+    {
+     "sample_id": "T03|BAN_W1|2",
+     "code_sha256": "b8740a250ed3a9433e393f1820c4388c08d2b925c904fe4863a0e4a847daa0eb",
+     "clean": true,
+     "n_tok": 48
+    },
+    {
+     "sample_id": "T03|BAN_W1|6",
+     "code_sha256": "9da8f186f7c2cdd36c72005286f3138e1b6940c9dd9a5646085b05f19f29e7c7",
+     "clean": true,
+     "n_tok": 48
+    }
+   ]
+  },
+  "counting_sort": {
+   "train": [
+    {
+     "sample_id": "T03|F0_counting_sort|2",
+     "code_sha256": "6407f9c6e45fd442fd9b3672ebc1ce08ab4f95b796465fb78575f4b9910adf79",
+     "clean": true,
+     "n_tok": 48
+    },
+    {
+     "sample_id": "T03|F2_counting_sort|9",
+     "code_sha256": "ea2ce0d977d2134299df957cf50e094a2eb654f2521118256904ceaf935da0a1",
+     "clean": true,
+     "n_tok": 48
+    },
+    {
+     "sample_id": "T03|F0_counting_sort|0",
+     "code_sha256": "4e0f3cb3bc0ea79c1b4a0b59c711008e2d534c7d5aa8ff0c2921516d9bab93a3",
+     "clean": false,
+     "n_tok": 48
+    },
+    {
+     "sample_id": "T03|F0_counting_sort|1",
+     "code_sha256": "88c336f0a57c2d9ffe3c6e93211fef01e4052004f449b75a1f2e78383124301b",
+     "clean": false,
+     "n_tok": 48
+    },
+    {
+     "sample_id": "T03|F1_counting_sort|4",
+     "code_sha256": "b7bfdb3b751547f23f89b00192fc4819eb4567c1d9f99808ba5ba7676416036f",
+     "clean": false,
+     "n_tok": 48
+    }
+   ],
+   "val": [
+    {
+     "sample_id": "T03|F0_counting_sort|2",
+     "code_sha256": "6407f9c6e45fd442fd9b3672ebc1ce08ab4f95b796465fb78575f4b9910adf79",
+     "clean": true,
+     "n_tok": 48
+    },
+    {
+     "sample_id": "T03|F2_counting_sort|9",
+     "code_sha256": "ea2ce0d977d2134299df957cf50e094a2eb654f2521118256904ceaf935da0a1",
+     "clean": true,
+     "n_tok": 48
+    },
+    {
+     "sample_id": "T03|F0_counting_sort|0",
+     "code_sha256": "4e0f3cb3bc0ea79c1b4a0b59c711008e2d534c7d5aa8ff0c2921516d9bab93a3",
+     "clean": false,
+     "n_tok": 48
+    }
+   ]
+  },
+  "heapify_pop": {
+   "train": [
+    {
+     "sample_id": "T03|F0_heapify_pop|1",
+     "code_sha256": "8688b08755293ba423a639b72269102f04f172885ca6cd73ff4bf68f127ea5b9",
+     "clean": false,
+     "n_tok": 43
+    }
+   ],
+   "val": [
+    {
+     "sample_id": "T03|F0_heapify_pop|1",
+     "code_sha256": "8688b08755293ba423a639b72269102f04f172885ca6cd73ff4bf68f127ea5b9",
+     "clean": false,
+     "n_tok": 43
+    }
+   ]
+  },
+  "size_k_heap": {
+   "train": [
+    {
+     "sample_id": "T03|BAN_W1|0",
+     "code_sha256": "c78618c0df18d5828ffe62e4e09dadd6ce0d2ff532c1bdb219e0ac8aedd9db3f",
+     "clean": false,
+     "n_tok": 26
+    },
+    {
+     "sample_id": "T03|F0_size_k_heap|3",
+     "code_sha256": "a5bd2ce1457902254dfd34cd254697615c7ff2dbe85bdd616f2a5872eb8c77b1",
+     "clean": false,
+     "n_tok": 48
+    },
+    {
+     "sample_id": "T03|F1_size_k_heap|4",
+     "code_sha256": "0625c7a4f149768d08d0b0708da94da63ea192f4d3dd03aa4beeacfa86d3b138",
+     "clean": false,
+     "n_tok": 48
+    },
+    {
+     "sample_id": "T03|F2_size_k_heap|8",
+     "code_sha256": "0e84425aff52cd96d5a047a411ff1d73cff72a684d5e3e03b0e0aced1cac1f52",
+     "clean": false,
+     "n_tok": 27
+    }
+   ],
+   "val": [
+    {
+     "sample_id": "T03|BAN_W1|0",
+     "code_sha256": "c78618c0df18d5828ffe62e4e09dadd6ce0d2ff532c1bdb219e0ac8aedd9db3f",
+     "clean": false,
+     "n_tok": 26
+    },
+    {
+     "sample_id": "T03|F0_size_k_heap|3",
+     "code_sha256": "a5bd2ce1457902254dfd34cd254697615c7ff2dbe85bdd616f2a5872eb8c77b1",
+     "clean": false,
+     "n_tok": 48
+    },
+    {
+     "sample_id": "T03|F1_size_k_heap|4",
+     "code_sha256": "0625c7a4f149768d08d0b0708da94da63ea192f4d3dd03aa4beeacfa86d3b138",
+     "clean": false,
+     "n_tok": 48
+    }
+   ]
+  },
+  "full_sort": {
+   "train": [
+    {
+     "sample_id": "T03|TWIN|0",
+     "code_sha256": "dea0acb3b8accac898cd69cb87e20347b447118bf15f05a20cc563011dec1219",
+     "clean": true,
+     "n_tok": 20
+    },
+    {
+     "sample_id": "T03|TWIN|1",
+     "code_sha256": "f10fd15169b5d847f5b789707d5af4ab019681daa7e41912643507156201a4db",
+     "clean": true,
+     "n_tok": 22
+    }
+   ],
+   "val": [
+    {
+     "sample_id": "T03|TWIN|0",
+     "code_sha256": "dea0acb3b8accac898cd69cb87e20347b447118bf15f05a20cc563011dec1219",
+     "clean": true,
+     "n_tok": 20
+    },
+    {
+     "sample_id": "T03|TWIN|1",
+     "code_sha256": "f10fd15169b5d847f5b789707d5af4ab019681daa7e41912643507156201a4db",
+     "clean": true,
+     "n_tok": 22
+    }
+   ]
+  }
+ },
+ "flags": [
+  "quickselect: validation set filled from training programs (2)",
+  "quickselect: 1 unclean openings in the training set",
+  "counting_sort: validation set filled from training programs (3)",
+  "counting_sort: 3 unclean openings in the training set",
+  "heapify_pop: only 1 training programs",
+  "heapify_pop: validation set filled from training programs (3)",
+  "heapify_pop: 1 unclean openings in the training set",
+  "heapify_pop: T03 short-program fallback (min 43 tokens)",
+  "size_k_heap: only 4 training programs",
+  "size_k_heap: validation set filled from training programs (3)",
+  "size_k_heap: 4 unclean openings in the training set",
+  "size_k_heap: T03 short-program fallback (min 26 tokens)",
+  "full_sort: only 2 training programs",
+  "full_sort: validation set filled from training programs (3)",
+  "full_sort: T03 short-program fallback (min 20 tokens)"
+ ],
+ "targets_sha256": "d9767ba9a62a2e2eddf009723d8c7c87f5c183fe8d89fed11cb24ab3375e2aa8"
+}

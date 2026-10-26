@@ -1,0 +1,872 @@
+{
+ "n_correct_other": 38,
+ "classes": {
+  "CATALOGUE_VARIANT": 36,
+  "LABELLER_MISS": 2
+ },
+ "rows": [
+  {
+   "sample_id": "T03|F3_counting_sort|13",
+   "task": "T03",
+   "arm": "F3_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort, as it first counts the occurrences of each number and then iterates through the sorted unique numbers to find the k-th element."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The program uses counting of occurrences and sorted keys to find the k-th smallest element, which is a variant of counting sort adapted for this task."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.4883,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|F3_counting_sort|15",
+   "task": "T03",
+   "arm": "F3_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort, as it first counts the frequencies of elements and then iterates through sorted unique elements to find the k-th smallest."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code uses frequency counting and cumulative counts to find the k-th smallest element, which is a variant of counting sort adapted for selection."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.4317,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|F1_counting_sort|5",
+   "task": "T03",
+   "arm": "F1_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort, as it first counts the frequencies of elements and then iterates through sorted unique elements to find the k-th smallest."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code uses frequency counting and sorted keys to find the k-th smallest element, which is a variant of counting sort."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.4317,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|F1_counting_sort|6",
+   "task": "T03",
+   "arm": "F1_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort that leverages a dictionary to count frequencies and then iterates through sorted unique elements to find the k-th smallest value."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort approach by counting occurrences and iterating over sorted unique keys to find the k-th smallest element."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.482,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|F1_counting_sort|7",
+   "task": "T03",
+   "arm": "F1_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort, as it first counts the occurrences of each number and then iterates through the sorted unique numbers to find the k-th element."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort approach by counting occurrences and iterating over sorted unique keys to find the k-th smallest element."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.4932,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|F2_counting_sort|11",
+   "task": "T03",
+   "arm": "F2_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This implementation is a variant of counting sort that leverages a dictionary to handle sparse and potentially negative input ranges, but fundamentally uses the counting principle to find the k-th ele"
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements counting sort by frequency counting and cumulative counting to find the k-th smallest element, a known counting sort approach with minor implementation differences."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.4323,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T2|LAM0.6_ban_k2|19",
+   "task": "T2",
+   "arm": "LAM0.6_ban_k2",
+   "judge_a": {
+    "class": "LABELLER_MISS",
+    "catalogue_name": "dijkstra",
+    "reason": "The code implements Dijkstra's algorithm using a list as a priority queue, which is a standard but less efficient implementation of Dijkstra's algorithm."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "dijkstra",
+    "reason": "The code implements Dijkstra's algorithm using a list as a priority queue instead of a heap, which is a cosmetic implementation detail of the standard Dijkstra algorithm."
+   },
+   "tie": {
+    "class": "LABELLER_MISS",
+    "catalogue_name": "dijkstra",
+    "reason": "The code implements standard Dijkstra's algorithm using a list as a priority queue with min() and remove() operations."
+   },
+   "class": "LABELLER_MISS",
+   "difflib": {
+    "nearest": "reference:dijkstra_lazy",
+    "similarity": 0.6687,
+    "n_compared": 84
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|0",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort that uses a dictionary to store counts and then iterates through sorted unique elements to find the k-th smallest value."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort variant by counting occurrences and iterating over sorted unique keys to find the k-th smallest element."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|2",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort that leverages a dictionary to count frequencies and then iterates through sorted unique elements to find the k-th smallest value."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort variant by counting occurrences and iterating over sorted unique keys to find the k-th smallest element."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.5386,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|4",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort that uses a dictionary to store counts and then iterates through sorted unique elements to find the k-th smallest value."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort approach by counting occurrences and iterating over sorted unique keys to find the k-th smallest element."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|6",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort that uses a dictionary to store counts and then iterates through sorted unique elements to find the k-th smallest value."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort approach by counting occurrences and iterating over sorted unique keys to find the k-th smallest, which is a variant of counting sort."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|8",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": null,
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort approach by counting occurrences and iterating over sorted unique keys to find the k-th smallest, which is a known counting sort variant."
+   },
+   "tie": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This implements counting sort with frequency counting followed by cumulative counting to find the k-th smallest element."
+   },
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.5386,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|10",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort that uses a dictionary to store counts and then iterates through sorted unique elements to find the k-th smallest value."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort approach by counting occurrences and iterating over sorted unique keys to find the k-th smallest, which is a standard counting sort variant."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|12",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": null,
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort approach by counting occurrences and iterating over sorted unique keys to find the k-th smallest, which is a known counting sort variant."
+   },
+   "tie": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The algorithm uses counting via a frequency dictionary followed by sorted keys iteration, which is a variant implementation of counting sort principles."
+   },
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|14",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort that uses a dictionary to store counts and then iterates through sorted unique elements to find the k-th smallest value."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort variant by counting occurrences and iterating over sorted unique keys to find the k-th smallest element."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.5418,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|16",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort that uses a dictionary to store counts and then iterates through sorted unique elements to find the k-th smallest value."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort variant by counting occurrences and iterating over sorted unique keys to find the k-th smallest element."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|18",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort that uses a dictionary to store counts and then iterates through sorted unique elements to find the k-th smallest value."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort variant by counting occurrences and iterating over sorted unique keys to find the k-th smallest element."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|20",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": null,
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort variant by counting occurrences and iterating over sorted unique keys to find the k-th smallest element."
+   },
+   "tie": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This implements counting sort with frequency counting followed by sorted key iteration to find the k-th smallest element."
+   },
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|22",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort that uses a dictionary to store counts and then iterates through sorted unique elements to find the k-th smallest value."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort approach by counting occurrences and iterating over sorted unique keys to find the k-th smallest element."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|24",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort that uses a dictionary to store counts and then iterates through sorted unique elements to find the k-th smallest value."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort variant by counting occurrences and iterating over sorted unique keys to find the k-th smallest element."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|26",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort that uses a dictionary to store counts and then iterates through sorted unique elements to find the k-th smallest value."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort variant by counting occurrences and iterating over sorted unique keys to find the k-th smallest element."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|28",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort that uses a dictionary to store counts and then iterates through sorted unique elements to find the k-th smallest value."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort approach by counting occurrences and iterating over sorted unique keys to find the k-th smallest element."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|1",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": null,
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort variant by counting occurrences and iterating over sorted unique keys to find the k-th smallest element."
+   },
+   "tie": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This implements counting sort by using a frequency dictionary and then iterating through sorted unique keys to find the k-th smallest element."
+   },
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.5597,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|3",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": null,
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort variant by counting occurrences and iterating over sorted unique keys to find the k-th smallest element."
+   },
+   "tie": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The algorithm uses counting via a frequency dictionary followed by key sorting, which is a variant implementation of counting sort principles."
+   },
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|5",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort that uses a dictionary to store counts and then iterates through sorted unique elements to find the k-th smallest value."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting approach by tallying frequencies and iterating over sorted keys to find the k-th smallest, which is a variant of counting sort."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|7",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": null,
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort approach by counting occurrences and iterating over sorted unique keys to find the k-th smallest element."
+   },
+   "tie": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This implements counting sort with frequency counting followed by cumulative counting to find the k-th smallest element."
+   },
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.5333,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|9",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort that uses a dictionary to store counts and then iterates through sorted unique elements to find the k-th smallest value."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort approach by counting occurrences and iterating over sorted unique keys to find the k-th smallest, which is a known counting sort variant."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|13",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort that uses a dictionary to store counts and then iterates through sorted unique elements to find the k-th smallest value."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort variant by counting occurrences and iterating over sorted unique keys to find the k-th smallest, which is a known counting sort approach."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|15",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort that uses a dictionary to store counts and then iterates through sorted unique elements to find the k-th smallest value."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort approach by counting occurrences and iterating over sorted unique keys to find the k-th smallest, which is a known counting sort variant."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|17",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort that uses a dictionary to store counts and then iterates through sorted unique elements to find the k-th smallest value."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort approach by counting occurrences and iterating over sorted unique keys to find the k-th smallest, which is a known counting sort variant."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|19",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort that uses a dictionary to store counts and then iterates through sorted unique elements to find the k-th smallest value."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort approach by counting occurrences and iterating over sorted unique keys to find the k-th smallest element."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|21",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": null,
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort approach by counting occurrences and iterating over sorted unique keys to find the k-th smallest, which is a known counting sort variant."
+   },
+   "tie": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This implements counting sort with frequency counting followed by sorted key iteration to find the k-th smallest element."
+   },
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|23",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort that uses a dictionary to store counts and then iterates through sorted unique elements to find the k-th smallest value."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort approach by counting occurrences and iterating over sorted unique keys to find the k-th smallest, which is a standard counting sort variant."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|25",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort that uses a dictionary to store counts and then iterates through sorted unique elements to find the k-th smallest value."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort approach by counting occurrences and iterating over sorted unique keys to find the k-th smallest, which is a standard counting sort variant."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.5418,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|27",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm is a variant of counting sort that uses a dictionary to store counts and then iterates through sorted unique elements to find the k-th smallest value."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort approach by counting occurrences and iterating over sorted unique keys to find the k-th smallest, which is a standard counting sort variant."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|FULL_F_counting_sort|29",
+   "task": "T03",
+   "arm": "FULL_F_counting_sort",
+   "judge_a": null,
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code implements a counting sort approach by counting occurrences and iterating over sorted unique keys to find the k-th smallest, which is a known counting sort variant."
+   },
+   "tie": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This implements counting sort with frequency counting followed by sorted key iteration to find the k-th smallest element."
+   },
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:counting_sort",
+    "similarity": 0.544,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T2|MGEN_seed_sem|1",
+   "task": "T2",
+   "arm": "MGEN_seed_sem",
+   "judge_a": {
+    "class": "LABELLER_MISS",
+    "catalogue_name": "dijkstra",
+    "reason": "The provided code implements Dijkstra's algorithm by iteratively selecting the unvisited node with the smallest current distance and relaxing its outgoing edges."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "dijkstra",
+    "reason": "The code implements Dijkstra's algorithm using a simple linear search for the next node instead of a priority queue, which is a known variant of the standard Dijkstra method."
+   },
+   "tie": {
+    "class": "LABELLER_MISS",
+    "catalogue_name": "dijkstra",
+    "reason": "This is a standard implementation of Dijkstra's algorithm using a naive O(n) search for the minimum unvisited node."
+   },
+   "class": "LABELLER_MISS",
+   "difflib": {
+    "nearest": "reference:dijkstra_lazy",
+    "similarity": 0.5623,
+    "n_compared": 84
+   }
+  },
+  {
+   "sample_id": "T2|DASLY2_ban_k2|19",
+   "task": "T2",
+   "arm": "DASLY2_ban_k2",
+   "judge_a": {
+    "class": "LABELLER_MISS",
+    "catalogue_name": "dijkstra",
+    "reason": "The code implements Dijkstra's algorithm using a list as a priority queue, which is a standard but less efficient implementation of Dijkstra's algorithm."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "dijkstra",
+    "reason": "The code implements Dijkstra's algorithm using a list as a priority queue instead of a heap, which is a cosmetic implementation detail of the standard Dijkstra algorithm."
+   },
+   "tie": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "dijkstra",
+    "reason": "The code implements Dijkstra's algorithm with an inefficient min-search using min() and remove() instead of a proper priority queue."
+   },
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:dijkstra_lazy",
+    "similarity": 0.6687,
+    "n_compared": 84
+   }
+  }
+ ],
+ "cost_usd": 0.01768,
+ "stopped_by_budget": null,
+ "judges": [
+  "google/gemini-2.5-flash-lite",
+  "openai/gpt-4.1-mini"
+ ],
+ "tie_breaker": "deepseek/deepseek-chat-v3.1",
+ "defaults": {
+  "T03": "full_sort",
+  "T10": "union_find",
+  "T2": "dijkstra",
+  "T05": "hash_map",
+  "T06": "hash_set",
+  "T1": "bfs"
+ }
+}

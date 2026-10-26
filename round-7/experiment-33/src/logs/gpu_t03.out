@@ -1,0 +1,48 @@
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:01,  2.02it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:01,  1.77it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:01<00:01,  1.73it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  1.86it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  2.55it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  2.16it/s]
+15:07:37|INFO   |Qwen/Qwen3-8B bf16 loaded: {'precision': 'bf16', 'cpu_embedding': False, 'free_vram_before_GB': 24.838, 'free_vram_after_GB': 8.302, 'total_vram_GB': 25.253, 'gpu': 'NVIDIA GeForce RTX 4090', 'load_seconds': 39.2}
+15:07:38|INFO   |=== stage profile (['T03']) ===
+15:07:57|INFO   |profile T03: L* = 16; single-layer gains {10: 5.4832871026462975, 12: 7.176390144560072, 14: 9.65190632475747, 16: 14.02053337626987, 18: 14.072894414265951, 20: 10.41910105281406, 22: 4.621175852086809, 24: 2.152952161100176, 26: 1.1287361449665494}
+15:09:16|INFO   |site T03: layer (L* 16); transfer L 0.73 band 0.77
+15:09:16|INFO   |stage profile T03 done in 98s
+15:09:16|INFO   |=== stage profile done in 98s ===
+15:09:16|INFO   |=== stage fitlight (['T03']) ===
+15:09:16|INFO   |fit T03: site [16]; 270 train pairs, 27 val pairs
+./src/das7.py:279: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  tot += float(out[objective][0])
+15:09:35|INFO   |[T03:MAIN] step 25: train C 55.692; val gain 74.827 (by k {1: 37.944, 2: 61.623, 4: 91.634, 8: 108.35, 16: 74.582}) 18s
+15:09:51|INFO   |[T03:MAIN] step 50: train C 72.159; val gain 122.549 (by k {1: 46.585, 2: 126.325, 4: 153.258, 8: 150.615, 16: 135.962}) 34s
+15:10:07|INFO   |[T03:MAIN] step 75: train C 141.477; val gain 125.858 (by k {1: 42.797, 2: 142.185, 4: 161.883, 8: 154.343, 16: 128.083}) 50s
+15:10:22|INFO   |[T03:MAIN] step 100: train C 188.256; val gain 153.400 (by k {1: 42.667, 2: 159.273, 4: 181.094, 8: 198.571, 16: 185.393}) 65s
+15:10:37|INFO   |[T03:MAIN] step 125: train C 61.648; val gain 176.686 (by k {1: 36.612, 2: 208.012, 4: 232.639, 8: 244.025, 16: 162.145}) 80s
+15:10:53|INFO   |[T03:MAIN] step 150: train C 71.049; val gain 171.091 (by k {1: 38.97, 2: 173.245, 4: 209.734, 8: 217.958, 16: 215.548}) 96s
+15:11:00|INFO   |stage fitlight T03 done in 104s
+15:11:00|INFO   |=== stage fitlight done in 104s ===
+15:11:00|INFO   |=== stage fitly3 (['T03']) ===
+15:11:19|INFO   |[T03:MAIN_LY] step 25: train C -1.675; val gain 6.599 (by k {1: 6.099, 2: 6.52, 4: 6.756, 8: 6.791, 16: 6.828}) 18s
+15:11:35|INFO   |[T03:MAIN_LY] step 50: train C -1.734; val gain 6.710 (by k {1: 6.346, 2: 6.693, 4: 6.817, 8: 6.843, 16: 6.854}) 34s
+15:11:51|INFO   |[T03:MAIN_LY] step 75: train C -1.922; val gain 6.731 (by k {1: 6.329, 2: 6.778, 4: 6.826, 8: 6.865, 16: 6.856}) 50s
+15:12:07|INFO   |[T03:MAIN_LY] step 100: train C -2.040; val gain 6.785 (by k {1: 6.547, 2: 6.789, 4: 6.849, 8: 6.861, 16: 6.878}) 66s
+15:12:23|INFO   |[T03:MAIN_LY] step 125: train C -1.793; val gain 6.794 (by k {1: 6.583, 2: 6.817, 4: 6.838, 8: 6.867, 16: 6.866}) 83s
+15:12:39|INFO   |[T03:MAIN_LY] step 150: train C -1.904; val gain 6.824 (by k {1: 6.676, 2: 6.832, 4: 6.859, 8: 6.88, 16: 6.875}) 98s
+15:12:39|INFO   |[T03:MAIN_LY] still improving at 150: +75 steps (equal-budget rule)
+15:12:54|INFO   |[T03:MAIN_LY] step 175: train C -1.805; val gain 6.832 (by k {1: 6.686, 2: 6.845, 4: 6.872, 8: 6.88, 16: 6.878}) 113s
+15:13:10|INFO   |[T03:MAIN_LY] step 200: train C -2.101; val gain 6.809 (by k {1: 6.628, 2: 6.797, 4: 6.874, 8: 6.879, 16: 6.866}) 129s
+15:13:25|INFO   |[T03:MAIN_LY] step 225: train C -1.965; val gain 6.824 (by k {1: 6.683, 2: 6.825, 4: 6.873, 8: 6.874, 16: 6.865}) 144s
+15:13:41|INFO   |[T03:PERM_LY] step 25: train C -2.362; val gain 4.064 (by k {1: 4.311, 2: 4.385, 4: 4.142, 8: 4.403, 16: 3.08}) 16s
+15:13:56|INFO   |[T03:PERM_LY] step 50: train C -2.426; val gain 4.519 (by k {1: 4.686, 2: 4.664, 4: 4.375, 8: 4.331, 16: 4.537}) 31s
+15:14:12|INFO   |[T03:PERM_LY] step 75: train C -2.476; val gain 4.658 (by k {1: 5.044, 2: 4.873, 4: 4.705, 8: 4.374, 16: 4.293}) 46s
+15:14:27|INFO   |[T03:PERM_LY] step 100: train C -2.411; val gain 4.769 (by k {1: 5.222, 2: 4.941, 4: 4.76, 8: 4.525, 16: 4.397}) 62s
+15:14:43|INFO   |[T03:PERM_LY] step 125: train C -2.556; val gain 5.046 (by k {1: 5.376, 2: 5.129, 4: 5.231, 8: 4.841, 16: 4.651}) 77s
+15:14:58|INFO   |[T03:PERM_LY] step 150: train C -2.145; val gain 4.946 (by k {1: 5.438, 2: 4.919, 4: 5.074, 8: 4.698, 16: 4.603}) 92s
+15:15:13|INFO   |[T03:PERM_LY] step 175: train C -1.928; val gain 5.568 (by k {1: 5.786, 2: 5.487, 4: 5.714, 8: 5.358, 16: 5.496}) 108s
+15:15:29|INFO   |[T03:PERM_LY] step 200: train C -2.398; val gain 5.044 (by k {1: 5.394, 2: 5.293, 4: 4.933, 8: 4.739, 16: 4.859}) 123s
+15:15:44|INFO   |[T03:PERM_LY] step 225: train C -1.934; val gain 5.111 (by k {1: 5.148, 2: 4.976, 4: 5.419, 8: 5.087, 16: 4.924}) 139s
+15:16:01|INFO   |stage fitly3 T03 done in 301s
+15:16:01|INFO   |=== stage fitly3 done in 301s ===
+15:16:01|INFO   |=== stage genred (['T03']) ===
+15:18:42|INFO   |T03 MAIN_LY: k* = 1 ({'recovery_by_k': {1: 0.9545454545454546, 2: None, 4: 1.0, 8: None, 16: 1.0}, 'full_transfer_count': 22, 'base_count': 5})
+15:19:05|INFO   |stage genred T03 done in 184s
+15:19:05|INFO   |=== stage genred done in 184s ===
