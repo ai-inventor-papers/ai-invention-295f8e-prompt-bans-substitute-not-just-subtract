@@ -1,0 +1,70 @@
+{
+ "tag": "ban-free unit and iteration-5 seeds",
+ "iteration5_plan_sampler_verdict": {
+  "verdict": "DISCONFIRMED",
+  "wins": 1,
+  "tag": "ban-free unit and iteration-5 seeds"
+ },
+ "iteration5_movability_verdict": {
+  "statement": "Extra arm A: T05/T06/T1/T2 lost 'movable' in bf16",
+  "tag": "ban-free unit and iteration-5 seeds"
+ },
+ "D_star": "D1",
+ "movability_at_D_star": {
+  "T03": {
+   "twin_Y_any": 0.02,
+   "Dstar_a2_Y_any": 0.6,
+   "excess_Y_any": 0.58,
+   "excess_Y": 0.54,
+   "pass_twin": 1.0,
+   "pass_Dstar_a2": 0.98,
+   "pass_clause": true,
+   "movable": true
+  },
+  "T10": {
+   "twin_Y_any": 0.0,
+   "Dstar_a2_Y_any": 0.5,
+   "excess_Y_any": 0.5,
+   "excess_Y": 0.5,
+   "pass_twin": 1.0,
+   "pass_Dstar_a2": 0.98,
+   "pass_clause": true,
+   "movable": true
+  },
+  "T2": {
+   "twin_Y_any": 0.0,
+   "Dstar_a2_Y_any": 0.16,
+   "excess_Y_any": 0.16,
+   "excess_Y": 0.16,
+   "pass_twin": 0.98,
+   "pass_Dstar_a2": 0.62,
+   "pass_clause": false,
+   "movable": false
+  },
+  "T05": {
+   "twin_Y_any": 0.0,
+   "Dstar_a2_Y_any": 0.02,
+   "excess_Y_any": 0.02,
+   "excess_Y": 0.02,
+   "pass_twin": 1.0,
+   "pass_Dstar_a2": 1.0,
+   "pass_clause": true,
+   "movable": false
+  },
+  "T1": {
+   "twin_Y_any": 0.0,
+   "Dstar_a2_Y_any": 0.08,
+   "excess_Y_any": 0.08,
+   "excess_Y": 0.08,
+   "pass_twin": 0.76,
+   "pass_Dstar_a2": 0.78,
+   "pass_clause": true,
+   "movable": false
+  }
+ },
+ "rule": "movable := alpha-2 correct off-default share (Y_any) - twin >= 0.20 at pass >= 0.8 x twin",
+ "replacement_sentences": [
+  "iteration-7 correction: at the moving design D* = D1, plan noise matches or beats base-written intent on 2 of 5 decisive tasks (committed prediction 3); under iteration 5's own rule it matches or beats the best text sampler on 2 of 5 (DISCONFIRMED).",
+  "iteration-7 correction: movability at D* (alpha 2): T03 movable (excess +0.58, pass 0.98 vs twin 1.00), T10 movable (excess +0.50, pass 0.98 vs twin 1.00), T2 not movable (excess +0.16, pass 0.62 vs twin 0.98), T05 not movable (excess +0.02, pass 1.00 vs twin 1.00), T1 not movable (excess +0.08, pass 0.78 vs twin 0.76); T06 untested here."
+ ]
+}

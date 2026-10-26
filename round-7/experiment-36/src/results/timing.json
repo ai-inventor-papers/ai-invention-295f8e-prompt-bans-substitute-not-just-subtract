@@ -1,0 +1,100 @@
+{
+ "instruct_runner_stages": {
+  "S0_check": {
+   "batches": 10,
+   "rows": 120,
+   "seconds": 36.809999999999995,
+   "steps": 1464,
+   "length_rows": 0,
+   "s_per_program": 0.30674999999999997,
+   "ms_per_step_per_batch": 25.143442622950815
+  },
+  "S0_twin": {
+   "batches": 30,
+   "rows": 360,
+   "seconds": 130.25000000000003,
+   "steps": 5184,
+   "length_rows": 0,
+   "s_per_program": 0.36180555555555566,
+   "ms_per_step_per_batch": 25.12538580246914
+  },
+  "S1_anchor": {
+   "batches": 10,
+   "rows": 120,
+   "seconds": 50.85,
+   "steps": 1776,
+   "length_rows": 0,
+   "s_per_program": 0.42375,
+   "ms_per_step_per_batch": 28.631756756756758
+  },
+  "S1": {
+   "batches": 85,
+   "rows": 1020,
+   "seconds": 496.5399999999999,
+   "steps": 17512,
+   "length_rows": 0,
+   "s_per_program": 0.48680392156862734,
+   "ms_per_step_per_batch": 28.35427135678391
+  },
+  "S1_D5": {
+   "batches": 15,
+   "rows": 180,
+   "seconds": 85.78,
+   "steps": 3024,
+   "length_rows": 0,
+   "s_per_program": 0.47655555555555557,
+   "ms_per_step_per_batch": 28.366402116402117
+  },
+  "S2": {
+   "batches": 30,
+   "rows": 360,
+   "seconds": 235.25999999999996,
+   "steps": 8544,
+   "length_rows": 0,
+   "s_per_program": 0.6534999999999999,
+   "ms_per_step_per_batch": 27.53511235955056
+  },
+  "S3_PN": {
+   "batches": 30,
+   "rows": 360,
+   "seconds": 177.54999999999995,
+   "steps": 6240,
+   "length_rows": 0,
+   "s_per_program": 0.4931944444444443,
+   "ms_per_step_per_batch": 28.45352564102563
+  },
+  "E1_sweep": {
+   "batches": 30,
+   "rows": 360,
+   "seconds": 292.7900000000001,
+   "steps": 9960,
+   "length_rows": 0,
+   "s_per_program": 0.8133055555555557,
+   "ms_per_step_per_batch": 29.396586345381532
+  },
+  "E3_fresh": {
+   "batches": 40,
+   "rows": 480,
+   "seconds": 197.95999999999995,
+   "steps": 6888,
+   "length_rows": 0,
+   "s_per_program": 0.41241666666666654,
+   "ms_per_step_per_batch": 28.739837398373975
+  },
+  "E3_T03": {
+   "batches": 15,
+   "rows": 180,
+   "seconds": 73.78999999999999,
+   "steps": 2576,
+   "length_rows": 0,
+   "s_per_program": 0.4099444444444444,
+   "ms_per_step_per_batch": 28.64518633540372
+  }
+ },
+ "instruct_runner_total_s": 1777.58,
+ "instruct_runner_programs": 3540,
+ "knob_process_batches": 76,
+ "knob_process_total_s": 607.26,
+ "staged_scaling": "anchors ran W1 (20 rows, the 10-slot stage) before W2-W5; the measured s/program (T10 ~0.4 s, T2 ~0.6 s at B = 12) put the whole plan far inside the budget, so every cell ran at its full N and nothing in the drop order was dropped",
+ "gpu_hours_total_estimate": 0.662
+}

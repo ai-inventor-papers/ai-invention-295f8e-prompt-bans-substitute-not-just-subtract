@@ -1,0 +1,107 @@
+[
+ {
+  "sha": "b3f1cfad86e8d592",
+  "task": "T03",
+  "arm": "D1_a2",
+  "kind": "audit",
+  "code": "import bisect\n\ndef solve(nums, k):\n    counts = {}\n    for num in nums:\n        counts[num] = counts.get(num, 0) + 1\n    sorted_nums = sorted(counts.keys())\n    for num in sorted_nums:\n        if k <= counts[num]:\n            return num\n        k -= counts[num]\n    return sorted_nums[-1]\n"
+ },
+ {
+  "sha": "f65ae995dab9fdb5",
+  "task": "T03",
+  "arm": "D1_a2",
+  "kind": "audit",
+  "code": "import bisect\n\ndef solve(nums, k):\n    count = {}\n    for num in nums:\n        count[num] = count.get(num, 0) + 1\n    \n    sorted_nums = sorted(count.keys())\n    for num in sorted_nums:\n        if k <= count[num]:\n            return num\n        k -= count[num]\n    return None\n"
+ },
+ {
+  "sha": "56908a44b876615c",
+  "task": "T03",
+  "arm": "EAP",
+  "kind": "audit",
+  "code": "def solve(nums, k):\n    count = {}\n    for num in nums:\n        if num in count:\n            count[num] += 1\n        else:\n            count[num] = 1\n    for key in sorted(count.keys()):\n        if count[key] >= k:\n            return key\n        else:\n            k -= count[key]\n"
+ },
+ {
+  "sha": "54019c5134103020",
+  "task": "T03",
+  "arm": "EAP",
+  "kind": "audit",
+  "code": "import collections\n\ndef solve(nums, k):\n    count = collections.defaultdict(int)\n    for num in nums:\n        count[num] += 1\n    \n    for num in sorted(count):\n        if count[num] >= k:\n            return num\n        k -= count[num]\n    return -1\n"
+ },
+ {
+  "sha": "ab79cb14e32d07e1",
+  "task": "T03",
+  "arm": "E27:BINT",
+  "kind": "audit",
+  "code": "def solve(nums, k):\n    count = {}\n    for num in nums:\n        count[num] = count.get(num, 0) + 1\n    sorted_nums = sorted(count.keys())\n    for num in sorted_nums:\n        if k <= count[num]:\n            return num\n        k -= count[num]\n    return -1\n"
+ },
+ {
+  "sha": "dea0acb3b8accac8",
+  "task": "T03",
+  "arm": "TWIN",
+  "kind": "control",
+  "code": "def solve(nums, k):\n    return sorted(nums)[k-1]\n"
+ },
+ {
+  "sha": "b8740a250ed3a943",
+  "task": "T03",
+  "arm": "TWIN",
+  "kind": "control",
+  "code": "def solve(nums, k):\n    def partition(arr, low, high):\n        pivot = arr[high]\n        i = low\n        for j in range(low, high):\n            if arr[j] <= pivot:\n                arr[i], arr[j] = arr[j], arr[i]\n                i += 1\n        arr[i], arr[high] = arr[high], arr[i]\n        return i\n\n    def quickselect(arr, low, high, k):\n        if low == high:\n            return arr[low]\n        pivot_index = partition(arr, low, high)\n        if k == pivot_index:\n            return arr[k]\n        elif k < pivot_index:\n            return quickselect(arr, low, pivot_index - 1, k)\n        else:\n            return quickselect(arr, pivot_index + 1, high, k)\n\n    return quickselect(nums, 0, len(nums) - 1, k - 1)\n"
+ },
+ {
+  "sha": "aaef86bfc0e35a8a",
+  "task": "T10",
+  "arm": "TWIN",
+  "kind": "control",
+  "code": "def solve(n, edges):\n    parent = list(range(n))\n    \n    def find(x):\n        if parent[x] != x:\n            parent[x] = find(parent[x])\n        return parent[x]\n    \n    def union(x, y):\n        rootX = find(x)\n        rootY = find(y)\n        if rootX != rootY:\n            parent[rootY] = rootX\n    \n    for u, v in edges:\n        union(u, v)\n    \n    roots = set()\n    for i in range(n):\n        roots.add(find(i))\n    \n    return len(roots)\n"
+ },
+ {
+  "sha": "eb44324b03a5a461",
+  "task": "T10",
+  "arm": "D1_a2",
+  "kind": "control",
+  "code": "def solve(n, edges):\n    def dfs(node):\n        visited.add(node)\n        for neighbor in adj[node]:\n            if neighbor not in visited:\n                dfs(neighbor)\n    \n    adj = [[] for _ in range(n)]\n    for u, v in edges:\n        adj[u].append(v)\n        adj[v].append(u)\n    \n    visited = set()\n    components = 0\n    \n    for i in range(n):\n        if i not in visited:\n            dfs(i)\n            components += 1\n    \n    return components\n"
+ },
+ {
+  "sha": "d8b8fe04c893bc0d",
+  "task": "T2",
+  "arm": "TWIN",
+  "kind": "control",
+  "code": "import heapq\n\ndef solve(n, edges, s, t):\n    if s == t:\n        return 0\n    \n    adj = [[] for _ in range(n)]\n    for u, v, w in edges:\n        adj[u].append((v, w))\n    \n    dist = [float('inf')] * n\n    dist[s] = 0\n    heap = [(0, s)]\n    \n    while heap:\n        current_dist, u = heapq.heappop(heap)\n        if current_dist > dist[u]:\n            continue\n        for v, weight in adj[u]:\n            if dist[v] > dist[u] + weight:\n                dist[v] = dist[u] + weight\n                heapq.heappush(heap, (dist[v], v))\n    \n    return dist[t] if dist[t] != float('inf') else -1\n"
+ },
+ {
+  "sha": "c01daccaf3769cd5",
+  "task": "T2",
+  "arm": "D1_a2",
+  "kind": "control",
+  "code": "from collections import deque\n\ndef solve(n, edges, s, t):\n    if s == t:\n        return 0\n    \n    graph = [[] for _ in range(n)]\n    for u, v, w in edges:\n        graph[u].append((v, w))\n    \n    dist = [-1] * n\n    dist[s] = 0\n    queue = deque([s])\n    \n    while queue:\n        u = queue.popleft()\n        for v, w in graph[u]:\n            if dist[v] == -1 or dist[v] > dist[u] + w:\n                dist[v] = dist[u] + w\n                queue.append(v)\n    \n    return dist[t] if dist[t] != -1 else -1\n"
+ },
+ {
+  "sha": "1718ec75d45a8224",
+  "task": "T05",
+  "arm": "TWIN",
+  "kind": "control",
+  "code": "def solve(nums, target):\n    seen = {}\n    for i, num in enumerate(nums):\n        complement = target - num\n        if complement in seen:\n            return [seen[complement], i]\n        seen[num] = i\n"
+ },
+ {
+  "sha": "4375841b5253b142",
+  "task": "T05",
+  "arm": "BINT",
+  "kind": "control",
+  "code": "def solve(nums, target):\n    nums = [(num, i) for i, num in enumerate(nums)]\n    nums.sort()\n    left, right = 0, len(nums) - 1\n    while left < right:\n        current_sum = nums[left][0] + nums[right][0]\n        if current_sum == target:\n            return [nums[left][1], nums[right][1]]\n        elif current_sum < target:\n            left += 1\n        else:\n            right -= 1\n"
+ },
+ {
+  "sha": "0598f8e1237d5d7a",
+  "task": "T1",
+  "arm": "TWIN",
+  "kind": "control",
+  "code": "from collections import deque\n\ndef solve(grid, start, goal):\n    if not grid or not grid[0]:\n        return []\n    rows, cols = len(grid), len(grid[0])\n    start_row, start_col = start\n    goal_row, goal_col = goal\n\n    if (start_row < 0 or start_row >= rows or\n        start_col < 0 or start_col >= cols or\n        grid[start_row][start_col] == '#' or\n        grid[goal_row][goal_col] == '#'):\n        return []\n\n    if start == goal:\n        return [start]\n\n    visited = [[False for _ in range(cols)] for _ in range(rows)]\n    queue = deque()\n    queue.append((start_row, start_col, [start]))\n    visited[start_row][start_col] = True\n\n    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]\n\n    while queue:\n        r, c, path = queue.popleft()\n        for dr, dc in directions:\n            nr, nc = r + dr, c + dc\n            if 0 <= nr < rows and 0 <= nc < cols and not visited[nr][nc] and grid[nr][nc] == '.':\n                if (nr, nc) == (goal_row, goal_col):\n                    return path + [(nr, nc)]\n                visited[nr][nc] = True\n                queue.append((nr, nc, path + [(nr, nc)]))\n    return []\n"
+ },
+ {
+  "sha": "16ea919d090f49d0",
+  "task": "T1",
+  "arm": "D1_a2",
+  "kind": "control",
+  "code": "def solve(grid, start, goal):\n    rows = len(grid)\n    cols = len(grid[0]) if rows else 0\n\n    if not (0 <= start[0] < rows and 0 <= start[1] < cols or\n            0 <= goal[0] < rows and 0 <= goal[1] < cols):\n        return []\n\n    if grid[start[0]][start[1]] == '#' or grid[goal[0]][goal[1]] == '#':\n        return []\n\n    if start == goal:\n        return [start]\n\n    visited = set()\n    directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]\n\n    def dfs(r, c, path):\n        if (r, c) == goal:\n            return path + [goal]\n        if (r, c) in visited or grid[r][c] == '#':\n            return None\n        visited.add((r, c))\n        for dr, dc in directions:\n            nr, nc = r + dr, c + dc\n            if 0 <= nr < rows and 0 <= nc < cols:\n                result = dfs(nr, nc, path + [(r, c)])\n                if result:\n                    return result\n        return None\n\n    result = dfs(start[0], start[1], [])\n    return result if result else []\n"
+ }
+]

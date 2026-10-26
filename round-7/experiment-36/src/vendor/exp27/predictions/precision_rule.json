@@ -1,0 +1,24 @@
+{
+ "utc": "2026-10-21T12:18:17.487420Z",
+ "hardware": {
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "compute_capability": "8.9",
+  "vram_total_mib": 24564.0,
+  "vram_free_mib": 24082.0,
+  "driver": "595.91.07",
+  "gcc": null,
+  "cc": null,
+  "nvcc": null,
+  "cpus": 14,
+  "ram_gb_container": 82.999996416,
+  "disk_free_gb": 528817.959010304
+ },
+ "rule": "Ada/Hopper (cc >= 8.9) with < 19.5 GiB -> HF FP8 W8A8 engine (engine_v4 'hf_fp8'); otherwise -> HF bf16 with batch size from a memory probe (rows x (P + max_new) x 147,456 B <= 0.8 x free VRAM). vLLM literal cell: bf16 only if the KV cache fits >= 4 sequences of 18,432 tokens, else Qwen/Qwen3-8B-FP8 rev 220b46e3.",
+ "hf_engine": "hf_bf16",
+ "vram_gib": 23.98828125,
+ "compute_capability": 8.9,
+ "vllm_kv_seqs_bf16": 1.9025236153308265,
+ "vllm_checkpoint": "fp8_official",
+ "consequence": "bf16: iteration-4 FP8 rows cannot be reused slot for slot; T1.3, TOPK10, NOVELTY and SEMSEED are rerun on D5 (P3); everything else from iteration 4 is carried flagged 'other engine'; the engine-check difference is reported as precision sensitivity",
+ "vllm_no_compiler_flags": true
+}
