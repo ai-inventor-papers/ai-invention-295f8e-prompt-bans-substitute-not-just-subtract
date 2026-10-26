@@ -183,7 +183,7 @@ if __name__ == "__main__":
     from cfg import ITER3, setup_logging
 
     setup_logging("screen")
-    n = extract_exp16_path_rows(ITER3 / "gen_art_experiment_16" / "data" / "samples.jsonl")
+    n = extract_exp16_path_rows(ITER3 / "experiment-16/src" / "data" / "samples.jsonl")
     logger.info(f"exp16 path rows copied: {n}")
     build_screen()
     build_reused()

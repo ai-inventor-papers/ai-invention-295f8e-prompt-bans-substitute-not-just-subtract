@@ -23,9 +23,9 @@ ROOT = Path(__file__).resolve().parent.parent
 # them; every other stage reads the copies in inputs/.  Each is one constant, relative to this folder (the published
 # repository keeps the run layout <loop>/iter_N/gen_art/<artifact>), overridable by an environment variable.
 _LOOP = ROOT.parents[2]  # this folder is <loop>/iter_3/gen_art/<this artifact>
-EXP11 = Path(os.environ.get("AII_EXP11_DIR", _LOOP / "iter_2/gen_art/gen_art_experiment_11"))  # art_0ndRfWKBWclR
-EXP7 = Path(os.environ.get("AII_EXP7_DIR", _LOOP / "iter_2/gen_art/gen_art_experiment_7"))  # art_6zBfl3kDjeiP
-EXP8 = Path(os.environ.get("AII_EXP8_DIR", _LOOP / "iter_2/gen_art/gen_art_experiment_8"))  # art_8_ULPE8jJQc_
+EXP11 = Path(os.environ.get("AII_EXP11_DIR", _LOOP / "round-2/experiment-11/src"))  # art_0ndRfWKBWclR
+EXP7 = Path(os.environ.get("AII_EXP7_DIR", _LOOP / "round-2/experiment-7/src"))  # art_6zBfl3kDjeiP
+EXP8 = Path(os.environ.get("AII_EXP8_DIR", _LOOP / "round-2/experiment-8/src"))  # art_8_ULPE8jJQc_
 # iteration-1 dataset of another run (art_j3Rm_lr2nzR6), provenance check only; skipped when absent
 DEP_DATASET = Path(os.environ.get("AII_DEP_DATASET_DIR", ROOT / "inputs" / "art_j3Rm_lr2nzR6"))
 

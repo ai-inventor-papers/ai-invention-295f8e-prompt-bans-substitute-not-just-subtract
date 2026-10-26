@@ -29,22 +29,22 @@ from cfg import (BENCH, E20, E22, E23, EVAL3, I1E5, INPUTS, ITER1, ITER2, ITER4,
 
 SCREEN_SHA = "d6a2ca9711f461973c39482314a523d448d0590cb40e32432826dec1da4846e8"
 SOURCES = {  # copy in inputs/ -> source path (read-only)
-    "exp22/prompts4.jsonl": ITER4 / "gen_art_experiment_22" / "prompts" / "prompts4.jsonl",
-    "exp22/escape.json": ITER4 / "gen_art_experiment_22" / "results" / "escape.json",
-    "exp22/units.json": ITER4 / "gen_art_experiment_22" / "results" / "units.json",
-    "exp22/screen.json": ITER4 / "gen_art_experiment_22" / "results" / "screen.json",
-    "exp22/geometry.json": ITER4 / "gen_art_experiment_22" / "results" / "geometry.json",
-    "exp20/positions.json": ITER4 / "gen_art_experiment_20" / "results" / "positions.json",
-    "exp20/engine_check.json": ITER4 / "gen_art_experiment_20" / "results" / "engine_check.json",
-    "exp20/known_solutions_summary.json": ITER4 / "gen_art_experiment_20" / "results" /
+    "exp22/prompts4.jsonl": ITER4 / "experiment-22/src" / "prompts" / "prompts4.jsonl",
+    "exp22/escape.json": ITER4 / "experiment-22/src" / "results" / "escape.json",
+    "exp22/units.json": ITER4 / "experiment-22/src" / "results" / "units.json",
+    "exp22/screen.json": ITER4 / "experiment-22/src" / "results" / "screen.json",
+    "exp22/geometry.json": ITER4 / "experiment-22/src" / "results" / "geometry.json",
+    "exp20/positions.json": ITER4 / "experiment-20/src" / "results" / "positions.json",
+    "exp20/engine_check.json": ITER4 / "experiment-20/src" / "results" / "engine_check.json",
+    "exp20/known_solutions_summary.json": ITER4 / "experiment-20/src" / "results" /
     "known_solutions_summary.json",
-    "exp23/qwen_ratio.json": ITER4 / "gen_art_experiment_23" / "results" / "qwen_ratio.json",
-    "eval3/screen.json": ITER4 / "gen_art_evaluation_3" / "screen.json",
-    "iter1_exp5/labelled_base_chat__baseline.jsonl": ITER1 / "gen_art_experiment_5" / "runs" /
+    "exp23/qwen_ratio.json": ITER4 / "experiment-23/src" / "results" / "qwen_ratio.json",
+    "eval3/screen.json": ITER4 / "evaluation-3/src" / "screen.json",
+    "iter1_exp5/labelled_base_chat__baseline.jsonl": ITER1 / "experiment-5/src" / "runs" /
     "labelled_base_chat__baseline.jsonl",
-    "iter1_exp5/raw_base_chat__baseline.jsonl": ITER1 / "gen_art_experiment_5" / "runs" /
+    "iter1_exp5/raw_base_chat__baseline.jsonl": ITER1 / "experiment-5/src" / "runs" /
     "raw_base_chat__baseline.jsonl",
-    "iter1_exp5/reproducibility.md": ITER1 / "gen_art_experiment_5" / "reproducibility.md",
+    "iter1_exp5/reproducibility.md": ITER1 / "experiment-5/src" / "reproducibility.md",
 }
 ITER1_MAP = {"bellman_ford_spfa": "bf_spfa", "astar_greedy": "astar_gbfs", "dijkstra_unit": "dijkstra",
              "floyd_warshall": "floyd", "bidir_dijkstra": "bidijkstra"}
@@ -83,8 +83,8 @@ def provenance() -> dict[str, Any]:
         if h_m is None or (h_s is not None and h_m != h_s):
             out["mismatch"].append(k)
     # bench and suite copies against the ITER2 originals
-    for sub, src_root in (("exp11/bench", ITER2 / "gen_art_experiment_11" / "bench"),
-                          ("exp8/suite", ITER2 / "gen_art_experiment_8" / "suite")):
+    for sub, src_root in (("exp11/bench", ITER2 / "experiment-11/src" / "bench"),
+                          ("exp8/suite", ITER2 / "experiment-8/src" / "suite")):
         n = bad = 0
         for f in sorted((INPUTS / sub).rglob("*")):
             if not f.is_file() or "__pycache__" in f.parts:

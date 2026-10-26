@@ -229,7 +229,7 @@ def main() -> None:
     logger.info(f"seeds: {seeds_check()}")
     n = manifest()
     logger.info(f"manifest: {n} input files hashed")
-    if not (RUN_LOOP / "round-1" / "." / "gen_art_experiment_5").exists():
+    if not (RUN_LOOP / "round-1" / "." / "experiment-5/src").exists():
         append_deviation("D-iter1-purged", "ITER1/gen_art_experiment_5 (iteration-1 base compositions of T1/T2) is "
                          "purged from the run volume; the 'half + screen' analysis cannot add T1/T2 iteration-1 base "
                          "rows and marks them PENDING_STEP1.")

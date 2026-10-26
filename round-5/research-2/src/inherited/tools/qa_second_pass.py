@@ -16,7 +16,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import CACHE, EVID, now_utc  # noqa: E402
 
 PY = "/ai-inventor/.claude/skills/.ability_client_venv/bin/python"
-FETCH = "/ai-inventor/.claude/skills/aii-web-tools/scripts/aii_fast_web_fetch.py"
+FETCH = str(Path(__file__).resolve().parents[5] / "tools/aii-web-tools/scripts/aii_fast_web_fetch.py")
 INDEX = {}
 for line in (CACHE / "index.jsonl").read_text().splitlines():
     r = json.loads(line)

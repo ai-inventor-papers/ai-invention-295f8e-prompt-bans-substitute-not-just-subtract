@@ -1,0 +1,8 @@
+# Heavy-path decisions for this workspace.
+# Everything else here is text (markdown, JSON, BibTeX, Python scripts), far below the 10 MB auto-keep
+# floor. The one cache directory is Python bytecode written when work/make_tables2.py imports
+# work/make_tables.py and work/names.py; running that script writes it again.
+entries:
+  - path: work/__pycache__/
+    delete: regenerable
+    source: "python3 work/make_tables2.py > /dev/null"

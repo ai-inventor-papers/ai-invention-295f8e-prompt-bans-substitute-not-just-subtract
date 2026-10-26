@@ -72,7 +72,7 @@ ITER4 = Path(os.environ.get("AII_ITER4_DIR", RUN_ROOT / "round-4" / "."))
 ITER1 = Path(os.environ.get("AII_ITER1_DIR", _ancestor(4) / "run_4VFKidE1bxPG" / "." / "round-1"
                             / "."))
 DEP_DATASET_DIR = Path(os.environ.get("ART_J3RM_DIR") or next(
-    (d for d in (ROOT.parent / "art_j3Rm_lr2nzR6",) if d.exists()), ITER1 / "gen_art_dataset_1"))
+    (d for d in (ROOT.parent / "art_j3Rm_lr2nzR6",) if d.exists()), ITER1 / "dataset-1/src"))
 
 # ------------------------------------------------------------------------------------------------ models
 MODEL_ID = "Qwen/Qwen3-8B"
