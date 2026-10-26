@@ -1,0 +1,6 @@
+# Decisions for paths that are not plain text or code. Everything else in this workspace is markdown, JSON,
+# BibTeX or Python, each far below the 10 MB auto-keep floor (the largest, paper_draft.md, is about 1.3 MB).
+entries:
+  - path: work/__pycache__/
+    delete: regenerable
+    source: "python3 -m compileall -q work/vocab7.py work/assemble7.py"
