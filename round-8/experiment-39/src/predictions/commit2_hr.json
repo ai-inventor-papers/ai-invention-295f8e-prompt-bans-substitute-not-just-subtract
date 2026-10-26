@@ -1,0 +1,37 @@
+{
+ "utc": "2026-10-23T02:14:07.425157Z",
+ "predicted_extra_ideas": {
+  "T10": ">= 1 (bfs reached only by forcing ' bfs' at n11 or rank > 20 tokens)",
+  "B3": ">= 1 (prim_array or boruvka)",
+  "A3": ">= 1 (monotonic_stack or peak_split)",
+  "B6": ">= 1 (hash_count or alphabet_count_scan)",
+  "G": "0-1",
+  "T1": ">= 1 if mapped"
+ },
+ "prediction": "ideas(HR) - ideas(K*) >= 1 on >= 3 units; every extra idea is a KNOWN technique; 0 novel",
+ "nodes_order": [
+  "T10 n10",
+  "T10 n11",
+  "B3 c0",
+  "B3 c1",
+  "G cstar",
+  "A3 c0",
+  "A3 c1",
+  "B6 c0",
+  "T1 n3"
+ ],
+ "hr_design": "ranks 1-64 by template-averaged T = 1 probability; ranks in the Stage 2 map reuse its first 5 continuations; new tokens: 5 continuations at T = 1, streams ('iter8hr', 6,600,000 + node*1000 + rank*10 + k)",
+ "novelty_audit_protocol": {
+  "retrieval": "3 nearest known solutions by identifier-normalised AST Zhang-Shasha distance after a token 4-gram Jaccard prefilter over 17,442 solutions from all ten datasets of art_j3Rm_lr2nzR6",
+  "judges": [
+   "deepseek/deepseek-chat-v3.1",
+   "google/gemini-2.5-flash"
+  ],
+  "tiebreak": "moonshotai/kimi-k2",
+  "controls": "10 programs of known class: 6 catalogue (twins), 2 known-outside-catalogue (prime-product anagram hash; Laplacian-rank component count), 2 degenerate",
+  "gate": ">= 8/10 family-correct",
+  "manual_read": "every audited program: NOVEL ALGORITHM / KNOWN OUTSIDE CATALOGUE / CATALOGUE VARIANT / LABELLER MISS / DEGENERATE",
+  "claim_rule": "'no correct novel algorithm' only at a count of 0, with the rule-of-three bound",
+  "cap_usd": 1.5
+ }
+}
