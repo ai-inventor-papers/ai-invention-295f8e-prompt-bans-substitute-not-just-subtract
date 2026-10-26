@@ -1,0 +1,4 @@
+#!/bin/sh
+# C compiler shim for Triton (ziglang); resolves the workspace venv relative to this file.
+DIR="$(cd "$(dirname "$0")/.." && pwd)"
+exec "$DIR/.venv/bin/python" -m ziglang cc "$@"

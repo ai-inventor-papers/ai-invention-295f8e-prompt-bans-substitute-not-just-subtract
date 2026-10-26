@@ -1,0 +1,481 @@
+{
+ "label": "commit1",
+ "utc": "2026-10-24T20:55:08Z",
+ "inputs_manifest_sha256": "ab584150204844c06d2b028d882dc5eaa702a892b01cbdcf4498ea46516a8f64",
+ "instance_sha256": {
+  "CALIB-W": "5e7b0468448900469cdf8e8756188bfce30b4ce3e3f6c43277f3d3bb72127cdd",
+  "FS-OR3": "b89390f503db5bd471361efb3b9aa57c147be39678f78f64d1fe13df533d31a1",
+  "H-FSW5k": "e58e2ff43f97b0093407a2efdbd68b0dce316b79c5352e39073c53ce57ee9703",
+  "H-OR1": "c5604b1a056c7b1070b58846550e1b991bf3e47eac59167d5886641957b358a6",
+  "H-OR2": "0e1fd208f26139b94359b4abb0ca2a1574f70b7cceda139fc30ac8612307d13c",
+  "H-OR3": "b89390f503db5bd471361efb3b9aa57c147be39678f78f64d1fe13df533d31a1",
+  "H-OR4": "1014d8c716c511745b902a5bbd82db66b7fbcc1541267aabd2a477927299c2d5",
+  "H-SHIFT": "6a98e8c395aeb14fb47cf24f334dfd84d575ee320391ec76c670ff361d7ba9ff",
+  "H-W10k": "cf5cd9b599a58b5932602759e844e112fd08cb04cb38536bc9767ebcb7f8f4f0",
+  "H-W5k": "eb4d3c6629da9ac1533985963a22edede519dd73c75f19d51c0190ff3c505b1a",
+  "P1SRC-OR": "3a2a73f5af220e978e00614ea087769306ed0da0f18a440f90502c150fdc715c",
+  "P1SRC-W": "e6eb2fb86a9da2d6fa849099b25cc4712061858f7af18d41ca4f78e5bc3af6e1",
+  "SEL-OR": "4fa84e1e8d2fcb7d7a49f2fc4b6dff3c14c6980f741d7e6c9804c46f47de82d7",
+  "SEL-W": "7f95af860eabf585434030cbb95b62f217a7b23443bbed0e60f1b8c2974e68d3"
+ },
+ "probe": {
+  "P10_sha256": "5b9bc90523eb564b8e69c2a94a24ef9058a0e88999ed8056096f548e17feb535",
+  "rule_text_sha256": "7e8228506d4ffcf0317d0011636cd8a0c037fd6c4cb27826d5f4a9608c3863bf",
+  "n_states": 2000,
+  "n_informative": 1657
+ },
+ "corpus": {
+  "n_members": 427,
+  "tuned_ab": "grid:ab-FF(5,25)",
+  "tuned_ab_F": 0.7690060851926991,
+  "decisions_sha256": "59b943e7c6962ac2b099aa8e5e99b341322171c355e5b176b37ff52e65929e7c",
+  "corpus_json_sha256": "85fd7c6af0ff97dd3bd3ca313678e8496ff198323fdd783ad182e905c523469c"
+ },
+ "instrument_gate": {
+  "passed": true,
+  "parts": {
+   "a": true,
+   "b": true,
+   "c": true,
+   "d": true,
+   "e": true
+  },
+  "min_margin": 0.49149999999999994,
+  "file_sha256": "bd82a1d1a08d5e821da3262953542b6f3d1f4d9590e9ee1d1fc0258a93c1d17f",
+  "note": "run 0 failed part (e) only because the harness's RandomState patch broke numpy 2.x default_rng (planted control rf_default_rng_priority errored); the patch was fixed (type subclasses) and the gate rerun on the same P10 before this commit; run 0 kept in results/instrument_gate_run0_rngpatchbug.json"
+ },
+ "thresholds": {
+  "class": 0.95,
+  "novelty": 0.9,
+  "heldout_factor": 0.8,
+  "H-OR3_pct": 4.294,
+  "H-FSW5k_pct": 3.187,
+  "quality_F": 1.1,
+  "P1a_P1c": 0.7,
+  "P1d_e_gap": 0.3,
+  "P2_diff": 0.2,
+  "P3_cap": 0.02,
+  "jt_alpha": 0.05,
+  "valid_probe_err": 0.01,
+  "stochastic_diff": 0.01,
+  "rf_matcher": {
+   "used_min": 0.95,
+   "ks_max": 0.1,
+   "s2s_margin": 0.15
+  },
+  "sensitivities": [
+   0.9,
+   0.98,
+   "informative-only",
+   "L2",
+   "VALID_FULL denominator"
+  ]
+ },
+ "prompts": {
+  "task_spec": "Online bin packing. Items arrive one at a time and each must be placed immediately, without knowledge of future items, into a bin of fixed integer capacity; the goal is to use as few bins as possible. You will write the scoring heuristic that decides where each item goes. For every arriving item the packer calls priority(item, bins), where item is the item size (an integer) and bins is a numpy array with the remaining capacity of every bin in which the item fits, listed in the order in which the bins were created; bins that are still unused appear in this array with their full capacity. The item is placed into the bin with the highest score (the first such bin on ties). Use only numpy (imported as np) and the math module.\n\n```python\nimport numpy as np\n\n\ndef priority(item: float, bins: np.ndarray) -> np.ndarray:\n    \"\"\"Returns priority with which we want to add item to each bin.\n\n    Args:\n        item: Size of item to be added to the bin.\n        bins: Array of capacity for each bin.\n\n    Return:\n        Array of same size as bins with priority score of each bin.\n    \"\"\"\n```\n\nWrite the complete function in one Python code block.",
+  "task_spec_sha256": "82614bb778897f29752df43f864fd97625608d93fdbe0ddfdb8b38989bc3ca6d",
+  "templates": {
+   "W1": "Do not use {X} for this task.",
+   "W2": "Your solution must not rely on {X}.",
+   "W3": "Avoid {X} entirely.",
+   "W4": "{X} is not allowed here.",
+   "W5": "Write a correct solution that does not use {X}."
+  },
+  "template_sha256": {
+   "W1": "2ab861337dfe7496b3fb37370a5b1afd3f0fa091597a3dcf9c16af3660576fb1",
+   "W2": "57a04b931695996fd99c19a7d921c30fbcee86708d463980f920fab31f848929",
+   "W3": "2097904ed7620adb4dfd6c795aa02234893301c635543c5ce75f1c5403a88281",
+   "W4": "348ff34e67b79827810d7985ac0e030afdf189d2fece0f1e3c012ba2f6cb95ab",
+   "W5": "ddc8fa8e230b94925823d19a791a6e3a6f909ff9f75a06841488d05b3c99e6a7"
+  },
+  "desc_templates": {
+   "DW1": "Do not use any of the following rules for this task: {D}.",
+   "DW2": "Your solution must not rely on any of the following rules: {D}.",
+   "DW3": "Avoid each of the following rules entirely: {D}."
+  },
+  "desc_template_sha256": {
+   "DW1": "ae81b89043337fdff7e31bce1f4f84caf7e1c5ca48a9467a31baa5f830d4b5b0",
+   "DW2": "a91c3920e6b259a0726f3997cb6275df2a5d7d347dd728470a383294545ea718",
+   "DW3": "431ea0c2e39d1520b1f2788d892890670d236020ee54a5c84443e928f431138f"
+  },
+  "instr": {
+   "INSTR_NEW": "Make a new algorithm.",
+   "INSTR_LONG": "Make a fully novel algorithm never seen before. First explain your idea in about 2,000 words, then give the complete function."
+  },
+  "instr_sha256": {
+   "INSTR_NEW": "b83caab2733a21175a73a16d47fd468c621ec30fa3f36abc4a09fbff506c62ba",
+   "INSTR_LONG": "64d7860d0cad1b22a95e58840a71bfbc8df2dc626f27ae58046756ea8711e644"
+  },
+  "w_rot": {
+   "W1": 0,
+   "W2": 1,
+   "W3": 2,
+   "W4": 3,
+   "W5": 4
+  },
+  "dw_rot": {
+   "DW1": 0,
+   "DW2": 1,
+   "DW3": 2
+  },
+  "display": {
+   "BF": "Best Fit",
+   "FF": "First Fit",
+   "WF": "Worst Fit",
+   "AWF": "Almost Worst Fit",
+   "LF": "Last Fit",
+   "RF": "Random Fit"
+  },
+  "descriptions": {
+   "BF": [
+    "putting each item into the bin that it would leave with the least spare room",
+    "choosing, among the bins the item fits into, the one whose remaining capacity after placing the item is smallest",
+    "placing each item where the leftover space in the chosen bin is minimised"
+   ],
+   "FF": [
+    "putting each item into the earliest-created bin that has room for it",
+    "scanning the bins in the order they were created and placing the item into the first one it fits into",
+    "always preferring the oldest bin that can still take the item"
+   ],
+   "WF": [
+    "putting each item into the already-used bin with the most spare room, and opening a new bin only when no used bin has room",
+    "choosing, among the partly filled bins the item fits into, the one with the largest remaining capacity",
+    "placing each item into the emptiest partly filled bin that can take it"
+   ],
+   "AWF": [
+    "putting each item into the already-used bin with the second-most spare room (or into the only used bin that has room), and opening a new bin only when no used bin has room",
+    "choosing, among the partly filled bins the item fits into, the one with the second-largest remaining capacity",
+    "placing each item into the second-emptiest partly filled bin that can take it"
+   ],
+   "LF": [
+    "putting each item into the most recently created bin that already holds items and has room for it",
+    "scanning the partly filled bins from the newest to the oldest and placing the item into the first one it fits into",
+    "always preferring the newest partly filled bin that can still take the item"
+   ],
+   "RF": [
+    "putting each item into a partly filled bin chosen uniformly at random among those that have room for it, and opening a new bin only when none has room",
+    "choosing at random, with equal probability, one of the partly filled bins the item fits into",
+    "placing each item into a randomly picked partly filled bin that can take it"
+   ]
+  },
+  "naming_prompt": "In online bin packing, which standard heuristic places each arriving item by the following rule: {description}? Reply with the name of the heuristic only.",
+  "naming_n": 20,
+  "naming_pass": 16,
+  "cells": {
+   "BASE": [
+    0,
+    "base",
+    0
+   ],
+   "NAME_1": [
+    1,
+    "name",
+    1
+   ],
+   "NAME_2": [
+    2,
+    "name",
+    2
+   ],
+   "NAME_3": [
+    3,
+    "name",
+    3
+   ],
+   "NAME_4": [
+    4,
+    "name",
+    4
+   ],
+   "NAME_5": [
+    5,
+    "name",
+    5
+   ],
+   "DESC_5": [
+    6,
+    "desc",
+    5
+   ],
+   "HOLD_5": [
+    7,
+    "hold",
+    5
+   ],
+   "INSTR_NEW": [
+    8,
+    "instr",
+    0
+   ],
+   "INSTR_LONG": [
+    9,
+    "instr",
+    0
+   ]
+  },
+  "screen_slots": [
+   [
+    "W1",
+    17
+   ],
+   [
+    "W2",
+    17
+   ],
+   [
+    "W3",
+    16
+   ]
+  ],
+  "hold_slots": [
+   [
+    "W4",
+    25
+   ],
+   [
+    "W5",
+    25
+   ]
+  ],
+  "desc_slots": [
+   [
+    "DW1",
+    17
+   ],
+   [
+    "DW2",
+    17
+   ],
+   [
+    "DW3",
+    16
+   ]
+  ],
+  "ladder": {
+   "50": {
+    "screen": [
+     17,
+     17,
+     16
+    ],
+    "hold": [
+     25,
+     25
+    ]
+   },
+   "40": {
+    "screen": [
+     14,
+     13,
+     13
+    ],
+    "hold": [
+     20,
+     20
+    ]
+   },
+   "30": {
+    "screen": [
+     10,
+     10,
+     10
+    ],
+    "hold": [
+     15,
+     15
+    ]
+   }
+  },
+  "seed_rule": "seed = 1000*cell_index + slot + 1",
+  "rotation_rule": "rotation = (slot + W_ROT[w]) mod k; names joined 'A', 'A or B', 'A, B or C'; the first letter of the segment is capitalised",
+  "message_rule": "user message = condition segment + blank line + task spec (BASE: task spec only); no system message"
+ },
+ "aliases": {
+  "names": {
+   "BF": "best fit",
+   "FF": "first fit",
+   "WF": "worst fit",
+   "AWF": "almost worst fit",
+   "LF": "last fit",
+   "RF": "random fit"
+  },
+  "match_order": [
+   "AWF",
+   "BF",
+   "FF",
+   "WF",
+   "LF",
+   "RF"
+  ],
+  "negation_window": 40,
+  "negation_regex": "(?:\\b(?:not|avoid(?:s|ed|ing)?|instead of|rather than|unlike|without|banned|prohibited|forbidden|except)\\b|n't)",
+  "synonyms": {
+   "BF-like": [
+    "\\btightest\\b",
+    "\\bsnug\\w*",
+    "\\b(?:least|minimum|minimal|minimi[sz]\\w*|smallest|min)[ _-]?(?:remaining|residual|waste|wasted|slack|leftover|left[ _-]over|gap|space)\\b",
+    "\\bperfect[ _-]?fit\\w*",
+    "\\bexact[ _-]?fit\\w*"
+   ],
+   "WF-like": [
+    "\\bmost[ _-]?(?:remaining|space|room)\\b",
+    "\\bemptiest\\b",
+    "\\blargest[ _-]?gap\\b"
+   ],
+   "FF-like": [
+    "\\bearliest\\b",
+    "\\blowest[ _-]?index\\b",
+    "\\bfirst[ _-]?available\\b"
+   ],
+   "LF-like": [
+    "\\bmost[ _-]?recent\\w*",
+    "\\blatest\\b",
+    "\\blast[ _-]?opened\\b"
+   ],
+   "RF-like": [
+    "\\brandom\\w*"
+   ]
+  }
+ },
+ "extraction_rule": "Program extraction (frozen in commit #1; identical in every cell).\n\nVisible content only (reasoning excluded; any inline <think>...</think> is removed). Take the last ```python fenced\nblock containing 'def priority'; else the first fenced block of any language containing it; else the text from\n'def priority' to the end. The AST filter keeps numpy/math imports, function and class definitions and constant\nassignments, and drops top-level calls, prints, other imports and __main__ blocks. The kept nodes keep their original\nsource text (comments inside them survive); `raw` is the whole selected block (used by the lexical flag L1).",
+ "models": {
+  "q8": {
+   "engine": "vLLM0.11/Qwen3-8B-FP8/W8A16-Marlin",
+   "thinking": false,
+   "max_tokens": 4096,
+   "N": {
+    "decisive": 50,
+    "instr": 50
+   }
+  },
+  "q32": {
+   "model": "qwen/qwen3-32b",
+   "provider": {
+    "order": [
+     "DeepInfra"
+    ],
+    "allow_fallbacks": false,
+    "quantizations": [
+     "fp8"
+    ]
+   },
+   "thinking": true,
+   "max_tokens": 12288,
+   "N": {
+    "decisive": 50,
+    "instr": 30
+   }
+  },
+  "q14": {
+   "model": "qwen/qwen3-14b",
+   "provider": {
+    "order": [
+     "DeepInfra"
+    ],
+    "allow_fallbacks": false,
+    "quantizations": [
+     "fp8"
+    ]
+   },
+   "thinking": true,
+   "max_tokens": 12288,
+   "N": {
+    "decisive": 50,
+    "instr": 30
+   }
+  }
+ },
+ "decoding": {
+  "temperature": 1.0,
+  "top_p": 1.0,
+  "top_k": "-1 local / off OpenRouter"
+ },
+ "verdict_rules": {
+  "P1": "SUPPORTED iff (a) L1 >= 0.7 and mech >= 0.7 at k=1 in every run model, and each of (b) JT decreasing p_perm < 0.05, (c) L1 >= 0.7 at every k, (d) NAME_5 paired gap >= 0.3 with paired Newcombe lower bound > 0, (e) HOLD_5 gap >= 0.3 with lower bound > 0 holds in >= 2 run models; DISCONFIRMED iff |L1 - mech| <= 0.1 at every k in every run model; otherwise PARTIAL naming the failing parts",
+  "P2": "DESC_5 minus NAME_5 mech compliance (scored against S_desc), unpaired Newcombe; SUPPORTED iff >= 0.2 with lower bound > 0 in >= 2 run models; DISCONFIRMED iff <= 0 in >= 2; otherwise PARTIAL; sensitivity scored against B_5",
+  "P3": "per cell, share of all N that is VALID, better on both held-out sets (H-OR3 <= 4.294%, H-FSW5k <= 3.187%), novel (max corpus agreement < 0.9, class other) and confirmed by the S11 audit; SUPPORTED iff every run cell <= 0.02"
+ },
+ "schedule": {
+  "order_rule": "frequency order over {BF,FF,WF,AWF,LF,RF} among VALID BASE programs; ties and zero counts by BF,FF,WF,AWF,LF,RF; B_k = top k; S_desc = rules of B_5 whose description passed the naming check (>= 16/20; rewrites 1, 2)",
+  "openrouter_priority": [
+   "q32 NAME_1..5+DESC_5",
+   "q14 NAME_1..5+DESC_5",
+   "HOLD_5 q32",
+   "HOLD_5 q14",
+   "INSTR q32",
+   "INSTR q14"
+  ],
+  "slot_interleaving": "templates interleaved by slot so a time cut leaves cells balanced",
+  "reduction_ladder": {
+   "50": {
+    "screen": [
+     17,
+     17,
+     16
+    ],
+    "hold": [
+     25,
+     25
+    ]
+   },
+   "40": {
+    "screen": [
+     14,
+     13,
+     13
+    ],
+    "hold": [
+     20,
+     20
+    ]
+   },
+   "30": {
+    "screen": [
+     10,
+     10,
+     10
+    ],
+    "hold": [
+     15,
+     15
+    ]
+   }
+  },
+  "drop_order": [
+   "OpenRouter INSTR cells",
+   "q14",
+   "HOLD_5 of the weaker model"
+  ],
+  "never_dropped": [
+   "G-INSTR",
+   "q8 and q32 through NAME_1..5 and DESC_5",
+   "P3 in every run cell"
+  ],
+  "hard_stop_sampling_h": 4.5,
+  "openrouter_concurrency": 8,
+  "cost_cap_usd": 5.0
+ },
+ "deviations_declared": {
+  "D1": "vLLM --max-model-len 6144 (4096 cannot hold max_tokens 4096 + prompt)",
+  "D2": "VALID on SEL-OR + probes; VALID_FULL (SEL-W) is a sensitivity denominator",
+  "D3": "streaming with 180 s idle timeout and 900 s total cap",
+  "D4": "stochastic RF matcher instead of literal agreement >= 0.95 for RF",
+  "D5": "described-ban P2 scored against S_desc (B_5 as sensitivity)",
+  "D6": "paired Newcombe for the k = 5 gap (unpaired printed beside it)",
+  "D7": "HF_HOME not overridden (shared run cache, per the system rules); VLLM_CACHE_ROOT in the workspace",
+  "D8": "RNG patch bug found by the gate's planted control and fixed before commit #1"
+ },
+ "tests_sha256": "fc4bad95846bb43260d0b9ab9fb13c1992943b3a28f4c8510fa193e1bc2ed3af",
+ "frozen_code": {
+  "analysis.py": "b31bfa092f2231205e56e0ce12595a8d4b1353fe942ab60f60910e73b541b695",
+  "stats.py": "0186d9fa76baf2ffcd6166f3b4a31f15ad148e8ec568bb61c1ca26e9b9bf43d5",
+  "lexical.py": "4edaa0bd4015e55423fe1ac69f247f502951c5f69cf1b0a0766baa4e731378e8",
+  "extract.py": "a8e89d37b9d583e06bcdcea02a7e151d9f97f4ae50fd0882c3e9be66bdce0ead",
+  "gate_instr.py": "2d9f6827b4042711d8884d10f66761c2380afd26a031234020bc8331f5d8792a",
+  "instr.py": "be072d6ca241fe4e4656c90f0e5bbc6f1006c44178f8c8e11d91abb20ffb084f",
+  "prompts.py": "6fab2bf88c0729c688658f92268dd1d7095d0ec0d2dc3d5b10ddcf9df4c8d25f",
+  "evalq.py": "98fb71fa64e8ca4129b2b18593106cf0e25849a39f26a240df7319d5789b7893",
+  "sandbox.py": "741b59853b7aa8541765eccb682dc24fef6047ffa7d634d2725428897f686f2b",
+  "probes.py": "dfa671db83482fae7a1834c73574b49d6c0af822b15807a3503e7baa3927f604"
+ }
+}
