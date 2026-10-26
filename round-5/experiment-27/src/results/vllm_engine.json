@@ -1,0 +1,28 @@
+{
+ "model": "Qwen/Qwen3-8B-FP8",
+ "revision": "220b46e3b2180893580a4454f21f22d3ebb187d3",
+ "local_path_name": "220b46e3b2180893580a4454f21f22d3ebb187d3",
+ "kv_seqs_bf16_rule": 1.9025236153308265,
+ "use_fp8": true,
+ "load_seconds": 181.3268883228302,
+ "engine": "vllm==0.11.0 (V1, eager, FP8 Marlin weight-only, native sampler)",
+ "has_c_compiler": false,
+ "kv_tokens_estimate": 82539.10347222224,
+ "env": {
+  "VLLM_USE_FLASHINFER_SAMPLER": "0",
+  "TORCH_COMPILE_DISABLE": "1",
+  "VLLM_TEST_FORCE_FP8_MARLIN": "1"
+ },
+ "params": {
+  "max_model_len": 18432,
+  "gpu_memory_utilization": 0.9,
+  "enable_prefix_caching": true,
+  "max_num_seqs": 16,
+  "enforce_eager": true,
+  "max_num_batched_tokens": 4096
+ },
+ "vllm_version": "0.11.0",
+ "num_gpu_blocks": 5375,
+ "block_size": 16,
+ "kv_tokens": 86000
+}

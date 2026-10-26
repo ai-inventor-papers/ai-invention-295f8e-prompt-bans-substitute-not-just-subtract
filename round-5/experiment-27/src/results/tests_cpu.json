@@ -1,0 +1,42 @@
+{
+ "prompts": {
+  "spec_ids_identical_across_kinds": true,
+  "n_tasks": 15,
+  "multi_turn_verbatim": true,
+  "forced_intent_ids_present": true
+ },
+ "parsers": {
+  "observations_ok": "20/20",
+  "enum_ok": "20/20",
+  "intent_ok": "20/20",
+  "fenced_code_ok": "20/20",
+  "pass": true
+ },
+ "sampler": {
+  "inverse_cdf_identity": "10000/10000",
+  "topk_mask_ok": true,
+  "topp_mask_ok": true,
+  "kl_matches_scipy_1e-6": true,
+  "f_off_monotone": true,
+  "bisection_T_hat": 1.7699999999988976,
+  "bisection_ok": true
+ },
+ "hull": {
+  "two_setting_full_eq_edge": true,
+  "full_ge_edge_3_4_5": true,
+  "random_cases_within_0.01_of_fine_grid": "50/50",
+  "pass": true,
+  "hull_exp20_verbatim": true,
+  "exp19_T03_PN_H5_rederived": {
+   "TWIN+PN_a0.5+PN_a1+PN_a2+PN_a4": 2.72560899978333,
+   "TWIN+PN_a0.5+PN_a1+PN_a2": 2.72560899978333
+  },
+  "exp19_T03_PN_H5_reported": 2.72,
+  "exp19_T03_within_0.03": true
+ },
+ "chain": {
+  "chain_breaks": 0,
+  "n_lines": 17,
+  "tampered_detected": true
+ }
+}

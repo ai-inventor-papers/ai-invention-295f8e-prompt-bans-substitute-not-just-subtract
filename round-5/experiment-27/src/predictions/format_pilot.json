@@ -1,0 +1,244 @@
+{
+ "T03": {
+  "intent_present": 1.0,
+  "observations_ge2": 1.0,
+  "enum_ge1": 0.9,
+  "examples": {
+   "intent": [
+    "Use Python's built-in sorted function to sort the list and return the k-th smallest element.",
+    "Sort the list and return the (k-1)-th element to get the k-th smallest value.",
+    "Use Python's built-in sorting function to sort the list and return the k-th smallest element."
+   ],
+   "observations": [
+    [
+     "The problem requires finding the k-th smallest element in a list, considering duplicates as separate entries.",
+     "A straightforward approach is to sort the list and directly access the (k-1)-th element.",
+     "Sorting the list ensures that elements are in ascending order, making it easy to pick the k-th smallest.",
+     "The constraints allow for a simple sorting-based solution due to the manageable size of the input list.",
+     "The function must handle negative numbers and repeated values correctly, which sorting naturally accommodates."
+    ],
+    [
+     "The problem requires finding the k-th smallest element in a list, considering duplicates as separate entries.",
+     "A straightforward approach is to sort the list and directly access the (k-1)-th element.",
+     "Sorting the list ensures that the elements are in ascending order, making it easy to pick the k-th smallest.",
+     "The constraints allow for a simple sorting-based solution due to the manageable size of the input (up to 2000 elements).",
+     "The function must handle negative numbers and repeated values correctly, which sorting naturally accommodates."
+    ]
+   ],
+   "enum": [
+    [
+     "Quickselect",
+     "Heapq",
+     "Sorting",
+     "Counting Sort",
+     "Iterative Quickselect",
+     "Randomized Quickselect",
+     "Bubble Sort",
+     "Selection Sort"
+    ],
+    [
+     "Selection Sort",
+     "Quickselect",
+     "Heapq",
+     "Sorting",
+     "Counting Sort",
+     "Binary Search on Answer",
+     "Bucket Sort",
+     "Randomized Quickselect"
+    ],
+    [
+     "Quickselect",
+     "Sorting",
+     "Heapq",
+     "Counting Sort",
+     "Randomized Quickselect",
+     "Selection with Partitioning",
+     "Introselect",
+     "Bucket Sort"
+    ]
+   ],
+   "raw_psl": [
+    "1. The problem requires finding the k-th smallest element in a list, considering duplicates as separate entries.  \n2. A straightforward approach is to sort the list and directly access the (k-1)-th element.  \n3. Sorting the list ensures that elements are in ascending order, making it easy to pick the k-th smallest.  \n4. The constraints allow for a simple sorting-based solution due to the manageabl",
+    "1. The problem requires finding the k-th smallest element in a list, considering duplicates as separate entries.  \n2. A straightforward approach is to sort the list and directly access the (k-1)-th element.  \n3. Sorting the list ensures that the elements are in ascending order, making it easy to pick the k-th smallest.  \n4. The constraints allow for a simple sorting-based solution due to the manag"
+   ],
+   "raw_eap": [
+    "<1>. <Quickselect>: <Partitions the list to find the k-th smallest element in linear time on average.>  \n<2>. <Heapq>: <Uses a max-heap of size k to track the k smallest elements.>  \n<3>. <Sorting>: <Sorts the list and returns the (k-1)-th element.>  \n<4>. <Counting Sort>: <Counts frequencies and finds the k-th smallest by cumulative counts.>  \n<5>. <Iterative Quickselect>: <Repeats partitioning u",
+    "<1>. Selection Sort: Find the k-th smallest element by performing k-1 swaps to bring the k-th smallest to the front.  \n<2>. Quickselect: Use a selection-based algorithm that works similarly to quicksort to find the k-th smallest element in linear time on average.  \n<3>. Heapq: Use a max-heap of size k to keep track of the k smallest elements.  \n<4>. Sorting: Sort the list and return the (k-1)-th e"
+   ]
+  },
+  "n_enum_items": [
+   8,
+   8,
+   8,
+   8,
+   8,
+   8,
+   8,
+   0,
+   8,
+   8
+  ]
+ },
+ "T2": {
+  "intent_present": 1.0,
+  "observations_ge2": 0.8,
+  "enum_ge1": 1.0,
+  "examples": {
+   "intent": [
+    "Use Dijkstra's algorithm to find the shortest path from node s to node t in a directed weighted graph.",
+    "Use Dijkstra's algorithm to find the shortest path from node s to node t in a directed weighted graph.",
+    "Use Dijkstra's algorithm to find the shortest path from node s to node t in a directed weighted graph."
+   ],
+   "observations": [
+    [
+     "The graph is directed and may contain cycles, which means we need to avoid revisiting nodes that lead to infinite loops.",
+     "Since the weights are non-negative, Dijkstra's algorithm is a suitable choice for finding the shortest path.",
+     "The problem allows for self-loops and parallel edges, so we must handle multiple edges between the same nodes.",
+     "If the start node `s` is the same as the target node `t`, the shortest path length is 0.",
+     "If no path exists from `s` to `t`, the function should return -1."
+    ],
+    [
+     "The graph is directed and weighted, so standard BFS is not suitable; instead, Dijkstra's algorithm or Bellman-Ford should be considered.",
+     "Since the graph may have negative weights (though not in this case), Dijkstra's algorithm is still valid as all weights are non-negative.",
+     "The problem allows cycles and parallel edges, but we only need the shortest path, so we must avoid revisiting nodes with higher cost.",
+     "If the start node `s` is the same as the target node `t`, the answer is immediately 0.",
+     "The graph can be represented using an adjacency list for efficient traversal and weight lookup."
+    ]
+   ],
+   "enum": [
+    [
+     "Dijkstra's Algorithm",
+     "Bellman-Ford Algorithm",
+     "BFS for Unweighted Graph",
+     "Floyd-Warshall Algorithm",
+     "BFS with Weights",
+     "Modified Dijkstra's for Negative Weights",
+     "BFS with Priority Queue",
+     "Goldstein's Algorithm"
+    ],
+    [
+     "Dijkstra's Algorithm",
+     "Bellman-Ford Algorithm",
+     "BFS for Unweighted Graph",
+     "Modified BFS for Weighted Graph",
+     "Floyd-Warshall Algorithm",
+     "BFS with Priority Queue",
+     "Shortest Path with Negative Weights",
+     "Edge Relaxation for Single Source"
+    ],
+    [
+     "Dijkstra's Algorithm",
+     "Bellman-Ford Algorithm",
+     "BFS for Unweighted Graph",
+     "Floyd-Warshall Algorithm",
+     "SPFA (Shortest Path Faster Algorithm)",
+     "A* Algorithm",
+     "Topological Sort with Relaxation",
+     "Binary Search on Edge Weights"
+    ]
+   ],
+   "raw_psl": [
+    "1. The graph is directed and may contain cycles, which means we need to avoid revisiting nodes that lead to infinite loops.  \n2. Since the weights are non-negative, Dijkstra's algorithm is a suitable choice for finding the shortest path.  \n3. The problem allows for self-loops and parallel edges, so we must handle multiple edges between the same nodes.  \n4. If the start node `s` is the same as the ",
+    "1. The graph is directed and weighted, so standard BFS is not suitable; instead, Dijkstra's algorithm or Bellman-Ford should be considered.  \n2. Since the graph may have negative weights (though not in this case), Dijkstra's algorithm is still valid as all weights are non-negative.  \n3. The problem allows cycles and parallel edges, but we only need the shortest path, so we must avoid revisiting no"
+   ],
+   "raw_eap": [
+    "<1>. Dijkstra's Algorithm: Uses a priority queue to find the shortest path in a graph with non-negative weights.  \n<2>. Bellman-Ford Algorithm: Iteratively relaxes edges to find the shortest path even with negative weights.  \n<3>. BFS for Unweighted Graph: Uses a queue to explore nodes level by level for unweighted graphs.  \n<4>. Floyd-Warshall Algorithm: Computes all pairs of shortest paths using",
+    "<1>. Dijkstra's Algorithm: Use a priority queue to find the shortest path from s to t in a graph with non-negative weights.  \n<2>. Bellman-Ford Algorithm: Relax all edges repeatedly to find the shortest path from s to t even with negative weights.  \n<3>. BFS for Unweighted Graph: Use BFS to find the shortest path in an unweighted graph, but not applicable here due to weights.  \n<4>. Modified BFS f"
+   ]
+  },
+  "n_enum_items": [
+   8,
+   8,
+   8,
+   8,
+   8,
+   8,
+   8,
+   8,
+   8,
+   8
+  ]
+ },
+ "T05": {
+  "intent_present": 1.0,
+  "observations_ge2": 1.0,
+  "enum_ge1": 1.0,
+  "examples": {
+   "intent": [
+    "Use a hash map to store the complement of each number and find the pair that sums to the target.",
+    "Use a hash map to store the complement of each number and find the indices efficiently.",
+    "Use a hash map to store the difference between the target and each number for O(n) time complexity."
+   ],
+   "observations": [
+    [
+     "The problem requires finding two distinct indices whose values sum to the target.",
+     "Since the input has exactly one valid solution, we don't need to handle multiple possibilities.",
+     "We can use a hash map (dictionary) to store the complement of each number as we iterate through the list.",
+     "The complement for a number `num` is `target - num`, and we check if it has already been seen.",
+     "We need to ensure that the indices are distinct and that the first occurrence of the complement is used to maintain the order `i < j`."
+    ],
+    [
+     "The problem requires finding two distinct indices whose values sum to the target.",
+     "Since the solution is unique, we can stop as soon as we find the correct pair.",
+     "A brute-force approach with two nested loops would work but is inefficient for large lists.",
+     "Using a hash map (dictionary) to store seen values and their indices can optimize the solution to O(n) time complexity.",
+     "We must ensure that the two indices are different, even if the values are the same."
+    ]
+   ],
+   "enum": [
+    [
+     "Two Pointers",
+     "Hash Map",
+     "Brute Force",
+     "Binary Search",
+     "Hash Set",
+     "Sorting and Two Pointers",
+     "Prefix Sum",
+     "Recursive Search"
+    ],
+    [
+     "Two Pass Hash Map",
+     "One Pass Hash Map",
+     "Two Pointers (Sorted)",
+     "Brute Force",
+     "Hash Set",
+     "Binary Search",
+     "Prefix Sum",
+     "Hash Map with Index Tracking"
+    ],
+    [
+     "Two Pointers",
+     "Hash Map",
+     "Brute Force",
+     "Binary Search",
+     "Two Pass Hash Map",
+     "Optimization with Set",
+     "Sorting and Two Pointers",
+     "Recursive Backtracking"
+    ]
+   ],
+   "raw_psl": [
+    "1. The problem requires finding two distinct indices whose values sum to the target.  \n2. Since the input has exactly one valid solution, we don't need to handle multiple possibilities.  \n3. We can use a hash map (dictionary) to store the complement of each number as we iterate through the list.  \n4. The complement for a number `num` is `target - num`, and we check if it has already been seen.  \n5",
+    "1. The problem requires finding two distinct indices whose values sum to the target.  \n2. Since the solution is unique, we can stop as soon as we find the correct pair.  \n3. A brute-force approach with two nested loops would work but is inefficient for large lists.  \n4. Using a hash map (dictionary) to store seen values and their indices can optimize the solution to O(n) time complexity.  \n5. We m"
+   ],
+   "raw_eap": [
+    "<1>. Two Pointers: Use two pointers to find the pair from sorted array.  \n<2>. Hash Map: Store values and their indices in a hash map to find the complement.  \n<3>. Brute Force: Check all possible pairs of indices for the sum.  \n<4>. Binary Search: Sort the array and use binary search for each element.  \n<5>. Hash Set: Use a hash set to track seen elements and find the complement.  \n<6>. Sorting a",
+    "<1>. Two Pass Hash Map: Store all values in a hash map and iterate again to find the complement for each value.  \n<2>. One Pass Hash Map: Use a hash map to track seen values and check for the complement as we iterate through the list.  \n<3>. Two Pointers (Sorted): Sort the list and use two pointers to find the pair, then adjust indices to maintain original order.  \n<4>. Brute Force: Check all poss"
+   ]
+  },
+  "n_enum_items": [
+   8,
+   8,
+   8,
+   8,
+   8,
+   8,
+   8,
+   8,
+   8,
+   8
+  ]
+ },
+ "min_rate": 0.8,
+ "pass": true
+}
