@@ -1,0 +1,8 @@
+# Reproducibility
+
+- Python 3.12 (uv), numpy, scipy, matplotlib, loguru; the audit uses the standard library only.
+- Dependency roots are resolved in this order: `$AII_DEPS_ROOT/<artifact_id>`, a sibling folder named by the artifact id, then the workspace path recorded for the dependency (kept only in the untracked `.env`). Small inputs are read from `inputs/<artifact_id>/` when present.
+- Published files cite inputs as `<artifact_id>:<relative path>#<key>`; no absolute server path is written into a published file. Locations live only in the untracked `.env`: `DEP_<artifact_id>=<root>` for the three dependencies, `REPORT=<path of the report to correct>`, `LOST_BINPACK=<the lost iteration-9 bin-packing workspace>` (optional; without it item 0j is CARRIED) and `FIG_SKILL=<aii-data-fig-gen scripts>` (optional house style). With the copied `inputs/`, the report and every small JSON need no dependency root at all; the large row files (labelled cells, retrace rows, b2_tf rows) do.
+- Vendored code is unmodified (sha256 in `vendor/SHA256SUMS`); `stage_analysis.py`'s functions are compiled from its own source text because the module imports the GPU pipeline at load time.
+- Randomness: Jonckheere-Terpstra uses the record's 100,000 permutations and seeds (1 for fine classes); the configuration bootstrap uses B 10,000 and seed 0 (the record's settings); exact relabeling p uses all n! relabelings; the audit's 10-class partial-RSA p uses 200,000 random relabelings (seed 20261024); placebos use seed 7.
+- Every stage is deterministic: rerunning `uv run eval.py all` reproduces every table and JSON byte for byte except timestamps.

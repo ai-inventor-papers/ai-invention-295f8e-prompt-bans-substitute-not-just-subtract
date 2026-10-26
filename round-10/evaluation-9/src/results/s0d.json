@@ -1,0 +1,1234 @@
+{
+ "stage": "s0d",
+ "utc": "2026-10-25T02:17:43Z",
+ "status": "DONE",
+ "family_map_sha256": "9a299a428b072247d54c46811279a89cea5fee6713d24c281efceb1cd42d06fd",
+ "family_sizes": {
+  "other known": 5,
+  "unit-weight Dijkstra": 15,
+  "Bellman-Ford/SPFA": 15,
+  "BFS variants": 3
+ },
+ "other_names": {
+  "unit-weight Dijkstra": [
+   ""
+  ],
+  "Bellman-Ford/SPFA": [
+   "Bellman-Ford",
+   "Bellman-Ford / SPFA",
+   "Bellman-Ford / SPFA on grid"
+  ],
+  "BFS variants": [
+   "BFS with left-biased neighbor ordering (not standard BFS)",
+   "deque-based BFS with directional priority",
+   "deque-based BFS with left/right prioritization"
+  ],
+  "other known": [
+   "random walk with restart",
+   "random-priority graph search (heap keyed by random.random(): whatever-first search in random frontier order)",
+   "randomized DFS",
+   "wavefront propagation"
+  ]
+ },
+ "frames": {
+  "32b|mcode_PRIMARY_R1": {
+   "frame_median": 24.7555384053046,
+   "frame_g": {
+    "idastar": 32.8627058350452,
+    "dijkstra_unit": 16.648370975564
+   },
+   "loo": {
+    "loo_accuracy": 0.8547008547008547,
+    "gate": 0.7,
+    "pass": true
+   },
+   "block": 33,
+   "families": {
+    "unit-weight Dijkstra": {
+     "n": 15,
+     "edge": 15,
+     "opposite": 0,
+     "share_opposite": 0.0,
+     "wilson95": [
+      0.0,
+      0.20388330103584862
+     ],
+     "median_g": 20.236814302673473,
+     "g_values": [
+      21.97903238341068,
+      17.141750481699457,
+      21.13811329056399,
+      18.248348770902812,
+      19.267449205949305,
+      17.24405656647652,
+      18.375652324713762,
+      21.10226860896163,
+      21.77960948793262,
+      20.236814302673473,
+      21.13098976955813,
+      20.146779396976974,
+      20.68543788093907,
+      21.963400668529566,
+      16.957103408303112
+     ],
+     "beyond_farther_reference": 0,
+     "nearest_algorithm": {
+      "dijkstra_unit": 13,
+      "gbfs": 2
+     }
+    },
+    "Bellman-Ford/SPFA": {
+     "n": 15,
+     "edge": 0,
+     "opposite": 15,
+     "share_opposite": 1.0,
+     "wilson95": [
+      0.7961166989641515,
+      1.0
+     ],
+     "median_g": 28.12358155645079,
+     "g_values": [
+      28.81800835356871,
+      27.8845946532504,
+      25.979398517182204,
+      28.06686417574074,
+      28.024036344266044,
+      28.225038240120785,
+      29.07986625213198,
+      28.043679007338266,
+      27.934035010469415,
+      29.79943062164031,
+      28.12358155645079,
+      28.45096802421481,
+      27.446641492184586,
+      30.56457180848979,
+      30.75444609704157
+     ],
+     "beyond_farther_reference": 0,
+     "nearest_algorithm": {
+      "dijkstra_unit": 14,
+      "bfs": 1
+     }
+    },
+    "BFS variants": {
+     "n": 3,
+     "edge": 3,
+     "opposite": 0,
+     "share_opposite": 0.0,
+     "wilson95": [
+      5.551115123125783e-17,
+      0.5614970317550454
+     ],
+     "median_g": 16.84750708645914,
+     "g_values": [
+      20.269114863116734,
+      14.87154127562817,
+      16.84750708645914
+     ],
+     "beyond_farther_reference": 0,
+     "nearest_algorithm": {
+      "bfs": 3
+     }
+    },
+    "other known": {
+     "n": 5,
+     "edge": 5,
+     "opposite": 0,
+     "share_opposite": 0.0,
+     "wilson95": [
+      0.0,
+      0.43448246478317476
+     ],
+     "median_g": 19.563919172141304,
+     "g_values": [
+      24.68766120716996,
+      17.904970408805998,
+      23.062602185577315,
+      16.639119207052296,
+      19.563919172141304
+     ],
+     "beyond_farther_reference": 0,
+     "nearest_algorithm": {
+      "bfs": 3,
+      "dijkstra_unit": 1,
+      "gbfs": 1
+     }
+    }
+   }
+  },
+  "32b|mcode_PRIMARY_R2": {
+   "frame_median": 128.21218203786066,
+   "frame_g": {
+    "idastar": 215.7556886515421,
+    "dijkstra_unit": 40.66867542417921
+   },
+   "loo": {
+    "loo_accuracy": 0.6666666666666666,
+    "gate": 0.7,
+    "pass": false
+   },
+   "block": 21,
+   "families": {
+    "unit-weight Dijkstra": {
+     "n": 15,
+     "edge": 15,
+     "opposite": 0,
+     "share_opposite": 0.0,
+     "wilson95": [
+      0.0,
+      0.20388330103584862
+     ],
+     "median_g": 45.44483418581991,
+     "g_values": [
+      51.43570004958167,
+      45.44483418581991,
+      48.17552690847741,
+      49.483642743384635,
+      46.68031719778971,
+      44.923199533845306,
+      46.166572460374354,
+      42.458308871099646,
+      42.07399394293622,
+      43.9986759601939,
+      44.813133991039926,
+      47.01842575866637,
+      52.13367972975459,
+      42.74023770888233,
+      38.800131407645544
+     ],
+     "beyond_farther_reference": 0,
+     "nearest_algorithm": {
+      "dijkstra_unit": 14,
+      "gbfs": 1
+     }
+    },
+    "Bellman-Ford/SPFA": {
+     "n": 15,
+     "edge": 9,
+     "opposite": 6,
+     "share_opposite": 0.4,
+     "wilson95": [
+      0.1982449614134158,
+      0.6425316987937539
+     ],
+     "median_g": 127.86276568438106,
+     "g_values": [
+      127.86276568438106,
+      139.6985656631865,
+      127.37075065310837,
+      127.80357464708716,
+      127.68834094531496,
+      127.69154945848592,
+      127.80943729895246,
+      143.16802204992763,
+      139.9834873272764,
+      141.8652879933083,
+      127.80357464708716,
+      142.19858727729815,
+      127.90580258222693,
+      188.56390570711372,
+      127.75036809728965
+     ],
+     "beyond_farther_reference": 0,
+     "nearest_algorithm": {
+      "bfs": 14,
+      "dfs": 1
+     }
+    },
+    "BFS variants": {
+     "n": 3,
+     "edge": 3,
+     "opposite": 0,
+     "share_opposite": 0.0,
+     "wilson95": [
+      5.551115123125783e-17,
+      0.5614970317550454
+     ],
+     "median_g": 49.98425083751739,
+     "g_values": [
+      49.98425083751739,
+      25.472591718691056,
+      56.562491751837875
+     ],
+     "beyond_farther_reference": 0,
+     "nearest_algorithm": {
+      "bfs": 3
+     }
+    },
+    "other known": {
+     "n": 5,
+     "edge": 3,
+     "opposite": 2,
+     "share_opposite": 0.4,
+     "wilson95": [
+      0.11762077423264783,
+      0.769275718723987
+     ],
+     "median_g": 127.68834094531496,
+     "g_values": [
+      128.29883556645677,
+      136.53147383773606,
+      127.68834094531496,
+      31.949511217605096,
+      61.96570405236256
+     ],
+     "beyond_farther_reference": 0,
+     "nearest_algorithm": {
+      "bfs": 2,
+      "gbfs": 2,
+      "astar": 1
+     }
+    }
+   }
+  },
+  "32b|mcode_M32_R1": {
+   "frame_median": 24.80925877459441,
+   "frame_g": {
+    "idastar": 29.94325517264832,
+    "dijkstra_unit": 19.6752623765405
+   },
+   "loo": {
+    "loo_accuracy": 0.8938053097345132,
+    "gate": 0.7,
+    "pass": true
+   },
+   "block": 31,
+   "families": {
+    "unit-weight Dijkstra": {
+     "n": 15,
+     "edge": 10,
+     "opposite": 5,
+     "share_opposite": 0.3333333333333333,
+     "wilson95": [
+      0.1517632443971473,
+      0.5828645226148023
+     ],
+     "median_g": 23.77637036934673,
+     "g_values": [
+      23.77637036934673,
+      21.75826549407646,
+      25.20787073212236,
+      21.35241649086554,
+      22.58222202976051,
+      20.926925116754994,
+      22.113469936854667,
+      23.778746525967257,
+      23.226337565082467,
+      24.104599674991142,
+      24.844559503369833,
+      25.144025826348265,
+      25.14678644192581,
+      25.552633084702197,
+      22.381937204962497
+     ],
+     "beyond_farther_reference": 0,
+     "nearest_algorithm": {
+      "astar": 1,
+      "dijkstra_unit": 14
+     }
+    },
+    "Bellman-Ford/SPFA": {
+     "n": 15,
+     "edge": 0,
+     "opposite": 15,
+     "share_opposite": 1.0,
+     "wilson95": [
+      0.7961166989641515,
+      1.0
+     ],
+     "median_g": 30.772566009830722,
+     "g_values": [
+      31.724659593896398,
+      28.878126064127866,
+      30.500295855932983,
+      29.99313744280795,
+      30.612418009506786,
+      30.863986256936812,
+      31.75920081835912,
+      29.709641752505053,
+      30.986270171044616,
+      30.01183329804008,
+      31.591443420590746,
+      30.772566009830722,
+      29.19433507554252,
+      35.12587776750361,
+      33.18517704260082
+     ],
+     "beyond_farther_reference": 12,
+     "nearest_algorithm": {
+      "dijkstra_unit": 11,
+      "astar": 2,
+      "idastar": 2
+     }
+    },
+    "BFS variants": {
+     "n": 3,
+     "edge": 3,
+     "opposite": 0,
+     "share_opposite": 0.0,
+     "wilson95": [
+      5.551115123125783e-17,
+      0.5614970317550454
+     ],
+     "median_g": 19.302864777432372,
+     "g_values": [
+      22.48722856824801,
+      16.980633640016045,
+      19.302864777432372
+     ],
+     "beyond_farther_reference": 0,
+     "nearest_algorithm": {
+      "bfs": 3
+     }
+    },
+    "other known": {
+     "n": 5,
+     "edge": 3,
+     "opposite": 2,
+     "share_opposite": 0.4,
+     "wilson95": [
+      0.11762077423264783,
+      0.769275718723987
+     ],
+     "median_g": 22.34698231271282,
+     "g_values": [
+      25.4431805191936,
+      21.30021403350957,
+      26.430759302378203,
+      21.723701526251006,
+      22.34698231271282
+     ],
+     "beyond_farther_reference": 0,
+     "nearest_algorithm": {
+      "bfs": 2,
+      "dijkstra_unit": 3
+     }
+    }
+   }
+  },
+  "8b|mcode_PRIMARY_R1": {
+   "frame_median": 12.18876667614553,
+   "frame_g": {
+    "idastar": 16.70315235274336,
+    "dijkstra_unit": 7.674380999547703
+   },
+   "loo": {
+    "loo_accuracy": 0.8290598290598291,
+    "gate": 0.7,
+    "pass": true
+   },
+   "block": 17,
+   "families": {
+    "unit-weight Dijkstra": {
+     "n": 15,
+     "edge": 15,
+     "opposite": 0,
+     "share_opposite": 0.0,
+     "wilson95": [
+      0.0,
+      0.20388330103584862
+     ],
+     "median_g": 9.595077395568634,
+     "g_values": [
+      10.290303624189876,
+      7.881888861550001,
+      9.595077395568634,
+      8.20389346833289,
+      8.725986216240509,
+      7.901119195567024,
+      8.726819611078605,
+      9.628568877178378,
+      10.070530967222584,
+      10.151041135087736,
+      10.070864769171806,
+      9.250770566550916,
+      9.698481719597625,
+      9.788836342225414,
+      7.3661630171079135
+     ],
+     "beyond_farther_reference": 0,
+     "nearest_algorithm": {
+      "dijkstra_unit": 12,
+      "gbfs": 3
+     }
+    },
+    "Bellman-Ford/SPFA": {
+     "n": 15,
+     "edge": 10,
+     "opposite": 5,
+     "share_opposite": 0.3333333333333333,
+     "wilson95": [
+      0.1517632443971473,
+      0.5828645226148023
+     ],
+     "median_g": 11.945925159239462,
+     "g_values": [
+      12.509392190369418,
+      12.269350104268714,
+      11.917325428558621,
+      11.201109881687389,
+      11.84012505860607,
+      11.510920809672088,
+      12.148115666680084,
+      11.377693642782152,
+      12.730065224144719,
+      11.784876412449986,
+      11.484645115697273,
+      12.049314564236434,
+      11.945925159239462,
+      13.022307916724614,
+      13.126955107998503
+     ],
+     "beyond_farther_reference": 0,
+     "nearest_algorithm": {
+      "dijkstra_unit": 14,
+      "gbfs": 1
+     }
+    },
+    "BFS variants": {
+     "n": 3,
+     "edge": 3,
+     "opposite": 0,
+     "share_opposite": 0.0,
+     "wilson95": [
+      5.551115123125783e-17,
+      0.5614970317550454
+     ],
+     "median_g": 10.139894159735764,
+     "g_values": [
+      11.069871515401529,
+      8.095800797617045,
+      10.139894159735764
+     ],
+     "beyond_farther_reference": 0,
+     "nearest_algorithm": {
+      "dijkstra_unit": 2,
+      "bfs": 1
+     }
+    },
+    "other known": {
+     "n": 5,
+     "edge": 5,
+     "opposite": 0,
+     "share_opposite": 0.0,
+     "wilson95": [
+      0.0,
+      0.43448246478317476
+     ],
+     "median_g": 10.492799552237262,
+     "g_values": [
+      11.858955320658765,
+      7.716438918975025,
+      11.862503931654075,
+      7.445013997997525,
+      10.492799552237262
+     ],
+     "beyond_farther_reference": 0,
+     "nearest_algorithm": {
+      "dfs": 1,
+      "gbfs": 2,
+      "bfs": 1,
+      "dijkstra_unit": 1
+     }
+    }
+   }
+  }
+ },
+ "metrics": {
+  "family_unit_weight_dijkstra": 15,
+  "family_bellman_ford": 15,
+  "family_bfs_variants": 3,
+  "family_other_known": 5,
+  "bf_opposite_32b_primary": 15,
+  "bf_opposite_32b_programs_only": 15,
+  "bf_opposite_8b": 5,
+  "bf_median_g_32b_primary": 28.12358155645079,
+  "ud_edge_32b_primary": 15,
+  "ud_edge_32b_programs_only": 10,
+  "frames_same_programs": 1.0
+ },
+ "section": {
+  "inputs": [
+   "art_VVA3P0ocZNA2:results/placement.json"
+  ],
+  "computation": "family map frozen from label/other_name before any class was read (sha256 logged); per family x frame counts of edge/opposite, Wilson intervals, median g, the two reference g values (unit-weight Dijkstra, IDA*), the count beyond the farther reference, nearest algorithm counts and the frame's leave-one-out gate",
+  "results": {
+   "family_sizes": {
+    "other known": 5,
+    "unit-weight Dijkstra": 15,
+    "Bellman-Ford/SPFA": 15,
+    "BFS variants": 3
+   },
+   "other_names": {
+    "unit-weight Dijkstra": [
+     ""
+    ],
+    "Bellman-Ford/SPFA": [
+     "Bellman-Ford",
+     "Bellman-Ford / SPFA",
+     "Bellman-Ford / SPFA on grid"
+    ],
+    "BFS variants": [
+     "BFS with left-biased neighbor ordering (not standard BFS)",
+     "deque-based BFS with directional priority",
+     "deque-based BFS with left/right prioritization"
+    ],
+    "other known": [
+     "random walk with restart",
+     "random-priority graph search (heap keyed by random.random(): whatever-first search in random frontier order)",
+     "randomized DFS",
+     "wavefront propagation"
+    ]
+   },
+   "map_sha256": "9a299a428b072247d54c46811279a89cea5fee6713d24c281efceb1cd42d06fd",
+   "frames": {
+    "32b|mcode_PRIMARY_R1": {
+     "frame_median": 24.7555384053046,
+     "frame_g": {
+      "idastar": 32.8627058350452,
+      "dijkstra_unit": 16.648370975564
+     },
+     "loo": {
+      "loo_accuracy": 0.8547008547008547,
+      "gate": 0.7,
+      "pass": true
+     },
+     "block": 33,
+     "families": {
+      "unit-weight Dijkstra": {
+       "n": 15,
+       "edge": 15,
+       "opposite": 0,
+       "share_opposite": 0.0,
+       "wilson95": [
+        0.0,
+        0.20388330103584862
+       ],
+       "median_g": 20.236814302673473,
+       "g_values": [
+        21.97903238341068,
+        17.141750481699457,
+        21.13811329056399,
+        18.248348770902812,
+        19.267449205949305,
+        17.24405656647652,
+        18.375652324713762,
+        21.10226860896163,
+        21.77960948793262,
+        20.236814302673473,
+        21.13098976955813,
+        20.146779396976974,
+        20.68543788093907,
+        21.963400668529566,
+        16.957103408303112
+       ],
+       "beyond_farther_reference": 0,
+       "nearest_algorithm": {
+        "dijkstra_unit": 13,
+        "gbfs": 2
+       }
+      },
+      "Bellman-Ford/SPFA": {
+       "n": 15,
+       "edge": 0,
+       "opposite": 15,
+       "share_opposite": 1.0,
+       "wilson95": [
+        0.7961166989641515,
+        1.0
+       ],
+       "median_g": 28.12358155645079,
+       "g_values": [
+        28.81800835356871,
+        27.8845946532504,
+        25.979398517182204,
+        28.06686417574074,
+        28.024036344266044,
+        28.225038240120785,
+        29.07986625213198,
+        28.043679007338266,
+        27.934035010469415,
+        29.79943062164031,
+        28.12358155645079,
+        28.45096802421481,
+        27.446641492184586,
+        30.56457180848979,
+        30.75444609704157
+       ],
+       "beyond_farther_reference": 0,
+       "nearest_algorithm": {
+        "dijkstra_unit": 14,
+        "bfs": 1
+       }
+      },
+      "BFS variants": {
+       "n": 3,
+       "edge": 3,
+       "opposite": 0,
+       "share_opposite": 0.0,
+       "wilson95": [
+        5.551115123125783e-17,
+        0.5614970317550454
+       ],
+       "median_g": 16.84750708645914,
+       "g_values": [
+        20.269114863116734,
+        14.87154127562817,
+        16.84750708645914
+       ],
+       "beyond_farther_reference": 0,
+       "nearest_algorithm": {
+        "bfs": 3
+       }
+      },
+      "other known": {
+       "n": 5,
+       "edge": 5,
+       "opposite": 0,
+       "share_opposite": 0.0,
+       "wilson95": [
+        0.0,
+        0.43448246478317476
+       ],
+       "median_g": 19.563919172141304,
+       "g_values": [
+        24.68766120716996,
+        17.904970408805998,
+        23.062602185577315,
+        16.639119207052296,
+        19.563919172141304
+       ],
+       "beyond_farther_reference": 0,
+       "nearest_algorithm": {
+        "bfs": 3,
+        "dijkstra_unit": 1,
+        "gbfs": 1
+       }
+      }
+     }
+    },
+    "32b|mcode_PRIMARY_R2": {
+     "frame_median": 128.21218203786066,
+     "frame_g": {
+      "idastar": 215.7556886515421,
+      "dijkstra_unit": 40.66867542417921
+     },
+     "loo": {
+      "loo_accuracy": 0.6666666666666666,
+      "gate": 0.7,
+      "pass": false
+     },
+     "block": 21,
+     "families": {
+      "unit-weight Dijkstra": {
+       "n": 15,
+       "edge": 15,
+       "opposite": 0,
+       "share_opposite": 0.0,
+       "wilson95": [
+        0.0,
+        0.20388330103584862
+       ],
+       "median_g": 45.44483418581991,
+       "g_values": [
+        51.43570004958167,
+        45.44483418581991,
+        48.17552690847741,
+        49.483642743384635,
+        46.68031719778971,
+        44.923199533845306,
+        46.166572460374354,
+        42.458308871099646,
+        42.07399394293622,
+        43.9986759601939,
+        44.813133991039926,
+        47.01842575866637,
+        52.13367972975459,
+        42.74023770888233,
+        38.800131407645544
+       ],
+       "beyond_farther_reference": 0,
+       "nearest_algorithm": {
+        "dijkstra_unit": 14,
+        "gbfs": 1
+       }
+      },
+      "Bellman-Ford/SPFA": {
+       "n": 15,
+       "edge": 9,
+       "opposite": 6,
+       "share_opposite": 0.4,
+       "wilson95": [
+        0.1982449614134158,
+        0.6425316987937539
+       ],
+       "median_g": 127.86276568438106,
+       "g_values": [
+        127.86276568438106,
+        139.6985656631865,
+        127.37075065310837,
+        127.80357464708716,
+        127.68834094531496,
+        127.69154945848592,
+        127.80943729895246,
+        143.16802204992763,
+        139.9834873272764,
+        141.8652879933083,
+        127.80357464708716,
+        142.19858727729815,
+        127.90580258222693,
+        188.56390570711372,
+        127.75036809728965
+       ],
+       "beyond_farther_reference": 0,
+       "nearest_algorithm": {
+        "bfs": 14,
+        "dfs": 1
+       }
+      },
+      "BFS variants": {
+       "n": 3,
+       "edge": 3,
+       "opposite": 0,
+       "share_opposite": 0.0,
+       "wilson95": [
+        5.551115123125783e-17,
+        0.5614970317550454
+       ],
+       "median_g": 49.98425083751739,
+       "g_values": [
+        49.98425083751739,
+        25.472591718691056,
+        56.562491751837875
+       ],
+       "beyond_farther_reference": 0,
+       "nearest_algorithm": {
+        "bfs": 3
+       }
+      },
+      "other known": {
+       "n": 5,
+       "edge": 3,
+       "opposite": 2,
+       "share_opposite": 0.4,
+       "wilson95": [
+        0.11762077423264783,
+        0.769275718723987
+       ],
+       "median_g": 127.68834094531496,
+       "g_values": [
+        128.29883556645677,
+        136.53147383773606,
+        127.68834094531496,
+        31.949511217605096,
+        61.96570405236256
+       ],
+       "beyond_farther_reference": 0,
+       "nearest_algorithm": {
+        "bfs": 2,
+        "gbfs": 2,
+        "astar": 1
+       }
+      }
+     }
+    },
+    "32b|mcode_M32_R1": {
+     "frame_median": 24.80925877459441,
+     "frame_g": {
+      "idastar": 29.94325517264832,
+      "dijkstra_unit": 19.6752623765405
+     },
+     "loo": {
+      "loo_accuracy": 0.8938053097345132,
+      "gate": 0.7,
+      "pass": true
+     },
+     "block": 31,
+     "families": {
+      "unit-weight Dijkstra": {
+       "n": 15,
+       "edge": 10,
+       "opposite": 5,
+       "share_opposite": 0.3333333333333333,
+       "wilson95": [
+        0.1517632443971473,
+        0.5828645226148023
+       ],
+       "median_g": 23.77637036934673,
+       "g_values": [
+        23.77637036934673,
+        21.75826549407646,
+        25.20787073212236,
+        21.35241649086554,
+        22.58222202976051,
+        20.926925116754994,
+        22.113469936854667,
+        23.778746525967257,
+        23.226337565082467,
+        24.104599674991142,
+        24.844559503369833,
+        25.144025826348265,
+        25.14678644192581,
+        25.552633084702197,
+        22.381937204962497
+       ],
+       "beyond_farther_reference": 0,
+       "nearest_algorithm": {
+        "astar": 1,
+        "dijkstra_unit": 14
+       }
+      },
+      "Bellman-Ford/SPFA": {
+       "n": 15,
+       "edge": 0,
+       "opposite": 15,
+       "share_opposite": 1.0,
+       "wilson95": [
+        0.7961166989641515,
+        1.0
+       ],
+       "median_g": 30.772566009830722,
+       "g_values": [
+        31.724659593896398,
+        28.878126064127866,
+        30.500295855932983,
+        29.99313744280795,
+        30.612418009506786,
+        30.863986256936812,
+        31.75920081835912,
+        29.709641752505053,
+        30.986270171044616,
+        30.01183329804008,
+        31.591443420590746,
+        30.772566009830722,
+        29.19433507554252,
+        35.12587776750361,
+        33.18517704260082
+       ],
+       "beyond_farther_reference": 12,
+       "nearest_algorithm": {
+        "dijkstra_unit": 11,
+        "astar": 2,
+        "idastar": 2
+       }
+      },
+      "BFS variants": {
+       "n": 3,
+       "edge": 3,
+       "opposite": 0,
+       "share_opposite": 0.0,
+       "wilson95": [
+        5.551115123125783e-17,
+        0.5614970317550454
+       ],
+       "median_g": 19.302864777432372,
+       "g_values": [
+        22.48722856824801,
+        16.980633640016045,
+        19.302864777432372
+       ],
+       "beyond_farther_reference": 0,
+       "nearest_algorithm": {
+        "bfs": 3
+       }
+      },
+      "other known": {
+       "n": 5,
+       "edge": 3,
+       "opposite": 2,
+       "share_opposite": 0.4,
+       "wilson95": [
+        0.11762077423264783,
+        0.769275718723987
+       ],
+       "median_g": 22.34698231271282,
+       "g_values": [
+        25.4431805191936,
+        21.30021403350957,
+        26.430759302378203,
+        21.723701526251006,
+        22.34698231271282
+       ],
+       "beyond_farther_reference": 0,
+       "nearest_algorithm": {
+        "bfs": 2,
+        "dijkstra_unit": 3
+       }
+      }
+     }
+    },
+    "8b|mcode_PRIMARY_R1": {
+     "frame_median": 12.18876667614553,
+     "frame_g": {
+      "idastar": 16.70315235274336,
+      "dijkstra_unit": 7.674380999547703
+     },
+     "loo": {
+      "loo_accuracy": 0.8290598290598291,
+      "gate": 0.7,
+      "pass": true
+     },
+     "block": 17,
+     "families": {
+      "unit-weight Dijkstra": {
+       "n": 15,
+       "edge": 15,
+       "opposite": 0,
+       "share_opposite": 0.0,
+       "wilson95": [
+        0.0,
+        0.20388330103584862
+       ],
+       "median_g": 9.595077395568634,
+       "g_values": [
+        10.290303624189876,
+        7.881888861550001,
+        9.595077395568634,
+        8.20389346833289,
+        8.725986216240509,
+        7.901119195567024,
+        8.726819611078605,
+        9.628568877178378,
+        10.070530967222584,
+        10.151041135087736,
+        10.070864769171806,
+        9.250770566550916,
+        9.698481719597625,
+        9.788836342225414,
+        7.3661630171079135
+       ],
+       "beyond_farther_reference": 0,
+       "nearest_algorithm": {
+        "dijkstra_unit": 12,
+        "gbfs": 3
+       }
+      },
+      "Bellman-Ford/SPFA": {
+       "n": 15,
+       "edge": 10,
+       "opposite": 5,
+       "share_opposite": 0.3333333333333333,
+       "wilson95": [
+        0.1517632443971473,
+        0.5828645226148023
+       ],
+       "median_g": 11.945925159239462,
+       "g_values": [
+        12.509392190369418,
+        12.269350104268714,
+        11.917325428558621,
+        11.201109881687389,
+        11.84012505860607,
+        11.510920809672088,
+        12.148115666680084,
+        11.377693642782152,
+        12.730065224144719,
+        11.784876412449986,
+        11.484645115697273,
+        12.049314564236434,
+        11.945925159239462,
+        13.022307916724614,
+        13.126955107998503
+       ],
+       "beyond_farther_reference": 0,
+       "nearest_algorithm": {
+        "dijkstra_unit": 14,
+        "gbfs": 1
+       }
+      },
+      "BFS variants": {
+       "n": 3,
+       "edge": 3,
+       "opposite": 0,
+       "share_opposite": 0.0,
+       "wilson95": [
+        5.551115123125783e-17,
+        0.5614970317550454
+       ],
+       "median_g": 10.139894159735764,
+       "g_values": [
+        11.069871515401529,
+        8.095800797617045,
+        10.139894159735764
+       ],
+       "beyond_farther_reference": 0,
+       "nearest_algorithm": {
+        "dijkstra_unit": 2,
+        "bfs": 1
+       }
+      },
+      "other known": {
+       "n": 5,
+       "edge": 5,
+       "opposite": 0,
+       "share_opposite": 0.0,
+       "wilson95": [
+        0.0,
+        0.43448246478317476
+       ],
+       "median_g": 10.492799552237262,
+       "g_values": [
+        11.858955320658765,
+        7.716438918975025,
+        11.862503931654075,
+        7.445013997997525,
+        10.492799552237262
+       ],
+       "beyond_farther_reference": 0,
+       "nearest_algorithm": {
+        "dfs": 1,
+        "gbfs": 2,
+        "bfs": 1,
+        "dijkstra_unit": 1
+       }
+      }
+     }
+    }
+   }
+  },
+  "caveats": [
+   "the per-family placement was not preregistered",
+   "with only two non-banned classes on the program frames, 'opposite' means farther than the median of the unit-weight Dijkstra and IDA* frame g values",
+   "the class depends on that two-class reference"
+  ],
+  "edits": [
+   "E-T438",
+   "E-9.8-established",
+   "E-9.9",
+   "E-closing-ban"
+  ],
+  "status": "DONE"
+ },
+ "examples": {
+  "placement_families": [
+   {
+    "input": "placement of the unit-weight Dijkstra survivors on the Qwen3-32B, primary readout (block 33) frame",
+    "output": "15 programs: edge 15, opposite 0 (share opposite 0.00, Wilson 0.00 to 0.20); median g 20.237 against frame median 24.756 (references: unit-weight Dijkstra 16.648, IDA* 32.863); beyond the farther reference 0; nearest dijkstra_unit 13; gbfs 2; gate 0.85 (passes)",
+    "metadata_frame": "Qwen3-32B, primary readout (block 33)",
+    "metadata_family": "unit-weight Dijkstra",
+    "eval_share_opposite": 0.0,
+    "eval_n": 15.0
+   },
+   {
+    "input": "placement of the Bellman-Ford/SPFA survivors on the Qwen3-32B, primary readout (block 33) frame",
+    "output": "15 programs: edge 0, opposite 15 (share opposite 1.00, Wilson 0.80 to 1.00); median g 28.124 against frame median 24.756 (references: unit-weight Dijkstra 16.648, IDA* 32.863); beyond the farther reference 0; nearest dijkstra_unit 14; bfs 1; gate 0.85 (passes)",
+    "metadata_frame": "Qwen3-32B, primary readout (block 33)",
+    "metadata_family": "Bellman-Ford/SPFA",
+    "eval_share_opposite": 1.0,
+    "eval_n": 15.0
+   },
+   {
+    "input": "placement of the BFS variants survivors on the Qwen3-32B, primary readout (block 33) frame",
+    "output": "3 programs: edge 3, opposite 0 (share opposite 0.00, Wilson 0.00 to 0.56); median g 16.848 against frame median 24.756 (references: unit-weight Dijkstra 16.648, IDA* 32.863); beyond the farther reference 0; nearest bfs 3; gate 0.85 (passes)",
+    "metadata_frame": "Qwen3-32B, primary readout (block 33)",
+    "metadata_family": "BFS variants",
+    "eval_share_opposite": 0.0,
+    "eval_n": 3.0
+   },
+   {
+    "input": "placement of the other known survivors on the Qwen3-32B, primary readout (block 33) frame",
+    "output": "5 programs: edge 5, opposite 0 (share opposite 0.00, Wilson 0.00 to 0.43); median g 19.564 against frame median 24.756 (references: unit-weight Dijkstra 16.648, IDA* 32.863); beyond the farther reference 0; nearest bfs 3; dijkstra_unit 1; gbfs 1; gate 0.85 (passes)",
+    "metadata_frame": "Qwen3-32B, primary readout (block 33)",
+    "metadata_family": "other known",
+    "eval_share_opposite": 0.0,
+    "eval_n": 5.0
+   },
+   {
+    "input": "placement of the unit-weight Dijkstra survivors on the Qwen3-32B, second readout (block 21; gate fails) frame",
+    "output": "15 programs: edge 15, opposite 0 (share opposite 0.00, Wilson 0.00 to 0.20); median g 45.445 against frame median 128.212 (references: unit-weight Dijkstra 40.669, IDA* 215.756); beyond the farther reference 0; nearest dijkstra_unit 14; gbfs 1; gate 0.67 (fails)",
+    "metadata_frame": "Qwen3-32B, second readout (block 21; gate fails)",
+    "metadata_family": "unit-weight Dijkstra",
+    "eval_share_opposite": 0.0,
+    "eval_n": 15.0
+   },
+   {
+    "input": "placement of the Bellman-Ford/SPFA survivors on the Qwen3-32B, second readout (block 21; gate fails) frame",
+    "output": "15 programs: edge 9, opposite 6 (share opposite 0.40, Wilson 0.20 to 0.64); median g 127.863 against frame median 128.212 (references: unit-weight Dijkstra 40.669, IDA* 215.756); beyond the farther reference 0; nearest bfs 14; dfs 1; gate 0.67 (fails)",
+    "metadata_frame": "Qwen3-32B, second readout (block 21; gate fails)",
+    "metadata_family": "Bellman-Ford/SPFA",
+    "eval_share_opposite": 0.4,
+    "eval_n": 15.0
+   },
+   {
+    "input": "placement of the BFS variants survivors on the Qwen3-32B, second readout (block 21; gate fails) frame",
+    "output": "3 programs: edge 3, opposite 0 (share opposite 0.00, Wilson 0.00 to 0.56); median g 49.984 against frame median 128.212 (references: unit-weight Dijkstra 40.669, IDA* 215.756); beyond the farther reference 0; nearest bfs 3; gate 0.67 (fails)",
+    "metadata_frame": "Qwen3-32B, second readout (block 21; gate fails)",
+    "metadata_family": "BFS variants",
+    "eval_share_opposite": 0.0,
+    "eval_n": 3.0
+   },
+   {
+    "input": "placement of the other known survivors on the Qwen3-32B, second readout (block 21; gate fails) frame",
+    "output": "5 programs: edge 3, opposite 2 (share opposite 0.40, Wilson 0.12 to 0.77); median g 127.688 against frame median 128.212 (references: unit-weight Dijkstra 40.669, IDA* 215.756); beyond the farther reference 0; nearest bfs 2; gbfs 2; astar 1; gate 0.67 (fails)",
+    "metadata_frame": "Qwen3-32B, second readout (block 21; gate fails)",
+    "metadata_family": "other known",
+    "eval_share_opposite": 0.4,
+    "eval_n": 5.0
+   },
+   {
+    "input": "placement of the unit-weight Dijkstra survivors on the Qwen3-32B programs only (block 31) frame",
+    "output": "15 programs: edge 10, opposite 5 (share opposite 0.33, Wilson 0.15 to 0.58); median g 23.776 against frame median 24.809 (references: unit-weight Dijkstra 19.675, IDA* 29.943); beyond the farther reference 0; nearest dijkstra_unit 14; astar 1; gate 0.89 (passes)",
+    "metadata_frame": "Qwen3-32B programs only (block 31)",
+    "metadata_family": "unit-weight Dijkstra",
+    "eval_share_opposite": 0.33,
+    "eval_n": 15.0
+   },
+   {
+    "input": "placement of the Bellman-Ford/SPFA survivors on the Qwen3-32B programs only (block 31) frame",
+    "output": "15 programs: edge 0, opposite 15 (share opposite 1.00, Wilson 0.80 to 1.00); median g 30.773 against frame median 24.809 (references: unit-weight Dijkstra 19.675, IDA* 29.943); beyond the farther reference 12; nearest dijkstra_unit 11; astar 2; idastar 2; gate 0.89 (passes)",
+    "metadata_frame": "Qwen3-32B programs only (block 31)",
+    "metadata_family": "Bellman-Ford/SPFA",
+    "eval_share_opposite": 1.0,
+    "eval_n": 15.0
+   },
+   {
+    "input": "placement of the BFS variants survivors on the Qwen3-32B programs only (block 31) frame",
+    "output": "3 programs: edge 3, opposite 0 (share opposite 0.00, Wilson 0.00 to 0.56); median g 19.303 against frame median 24.809 (references: unit-weight Dijkstra 19.675, IDA* 29.943); beyond the farther reference 0; nearest bfs 3; gate 0.89 (passes)",
+    "metadata_frame": "Qwen3-32B programs only (block 31)",
+    "metadata_family": "BFS variants",
+    "eval_share_opposite": 0.0,
+    "eval_n": 3.0
+   },
+   {
+    "input": "placement of the other known survivors on the Qwen3-32B programs only (block 31) frame",
+    "output": "5 programs: edge 3, opposite 2 (share opposite 0.40, Wilson 0.12 to 0.77); median g 22.347 against frame median 24.809 (references: unit-weight Dijkstra 19.675, IDA* 29.943); beyond the farther reference 0; nearest dijkstra_unit 3; bfs 2; gate 0.89 (passes)",
+    "metadata_frame": "Qwen3-32B programs only (block 31)",
+    "metadata_family": "other known",
+    "eval_share_opposite": 0.4,
+    "eval_n": 5.0
+   },
+   {
+    "input": "placement of the unit-weight Dijkstra survivors on the Qwen3-8B, primary readout (block 17) frame",
+    "output": "15 programs: edge 15, opposite 0 (share opposite 0.00, Wilson 0.00 to 0.20); median g 9.595 against frame median 12.189 (references: unit-weight Dijkstra 7.674, IDA* 16.703); beyond the farther reference 0; nearest dijkstra_unit 12; gbfs 3; gate 0.83 (passes)",
+    "metadata_frame": "Qwen3-8B, primary readout (block 17)",
+    "metadata_family": "unit-weight Dijkstra",
+    "eval_share_opposite": 0.0,
+    "eval_n": 15.0
+   },
+   {
+    "input": "placement of the Bellman-Ford/SPFA survivors on the Qwen3-8B, primary readout (block 17) frame",
+    "output": "15 programs: edge 10, opposite 5 (share opposite 0.33, Wilson 0.15 to 0.58); median g 11.946 against frame median 12.189 (references: unit-weight Dijkstra 7.674, IDA* 16.703); beyond the farther reference 0; nearest dijkstra_unit 14; gbfs 1; gate 0.83 (passes)",
+    "metadata_frame": "Qwen3-8B, primary readout (block 17)",
+    "metadata_family": "Bellman-Ford/SPFA",
+    "eval_share_opposite": 0.33,
+    "eval_n": 15.0
+   },
+   {
+    "input": "placement of the BFS variants survivors on the Qwen3-8B, primary readout (block 17) frame",
+    "output": "3 programs: edge 3, opposite 0 (share opposite 0.00, Wilson 0.00 to 0.56); median g 10.140 against frame median 12.189 (references: unit-weight Dijkstra 7.674, IDA* 16.703); beyond the farther reference 0; nearest dijkstra_unit 2; bfs 1; gate 0.83 (passes)",
+    "metadata_frame": "Qwen3-8B, primary readout (block 17)",
+    "metadata_family": "BFS variants",
+    "eval_share_opposite": 0.0,
+    "eval_n": 3.0
+   },
+   {
+    "input": "placement of the other known survivors on the Qwen3-8B, primary readout (block 17) frame",
+    "output": "5 programs: edge 5, opposite 0 (share opposite 0.00, Wilson 0.00 to 0.43); median g 10.493 against frame median 12.189 (references: unit-weight Dijkstra 7.674, IDA* 16.703); beyond the farther reference 0; nearest gbfs 2; dfs 1; bfs 1; dijkstra_unit 1; gate 0.83 (passes)",
+    "metadata_frame": "Qwen3-8B, primary readout (block 17)",
+    "metadata_family": "other known",
+    "eval_share_opposite": 0.0,
+    "eval_n": 5.0
+   }
+  ]
+ }
+}

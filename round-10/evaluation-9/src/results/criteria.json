@@ -1,0 +1,55 @@
+{
+ "source": "art_8nXdw3_lDAll:predictions/commit1a.json#predictions.N3",
+ "N3": {
+  "claim": "Under cumulative bans B_k = first k of [BFS, DFS, IDDFS, A*, greedy] on Qwen3-32B thinking, mechanistic compliance falls with k while lexical compliance stays high.",
+  "criteria": [
+   "k=1: lexical and mechanistic compliance both >= 0.7",
+   "Jonckheere-Terpstra one-sided (decreasing in k) on binary mechanistic compliance over the 5 ordered groups: Monte-Carlo exact p (100,000 permutations) < 0.05; Cochran-Armitage beside",
+   "lexical (L1) >= 0.7 at every k",
+   "k=5 gap >= 0.4 (paired Newcombe)",
+   "CONFIRMATION: held-out k=5 (W4/W5/P6/P7) gap >= 0.4 with Newcombe lower bound > 0"
+  ],
+  "disconfirmed": "|lex - mech| <= 0.1 at every k",
+  "denominators": "among completed programs (primary) and over all samples",
+  "sensitivities": [
+   "L2",
+   "fine classes (e.g. greedy at k=4 is compliant)",
+   "all-samples denominator"
+  ],
+  "replication": "Qwen3-14B thinking, same rules"
+ },
+ "N1": {
+  "claim": "Across the 10 retraced five-name-ban configurations, lexical compliance exceeds mechanistic compliance (gap = lex - mech, among traceable programs).",
+  "primary": "equal-weight mean of the 10 per-configuration gaps (95% configuration-cluster bootstrap, 10,000 resamples); program-weighted pooled gap beside it",
+  "supported": "pooled gap >= 0.3 AND gap > 0 in >= 7/10 configurations",
+  "disconfirmed": "pooled gap < 0.1",
+  "tests": "per configuration: 2x2 lex x mech, Newcombe paired interval (method 10), exact McNemar on the discordant cells",
+  "sensitivities": [
+   "L2 instead of L1",
+   "fine classes",
+   "untraceable counted as compliant (lower bound) and as non-compliant (upper bound)"
+  ]
+ },
+ "N3-D": {
+  "claim": "exploratory: a name-free described five-mechanism ban vs the named k=5 cell",
+  "direction": "under R6, mechanistic compliance OR violation (banned class) rises relative to the named k=5 cell (unpaired Newcombe)",
+  "measures": [
+   "mechanistic compliance",
+   "violation (banned coarse class)",
+   "lexical use of any banned name",
+   "correct survivors"
+  ]
+ },
+ "N2": {
+  "claim": "Qwen3-32B-thinking's correct NAME-level survivors of the five-name ban mostly run a banned coarse order class.",
+  "pool": "iteration-8 screen 17 + held-out 21 + new A k=5 (W1-W3) + new A held-out",
+  "supported": "share in a banned coarse order class >= 0.6 (Wilson CI reported)",
+  "disconfirmed": "share <= 0.3",
+  "readings": [
+   "(a) all survivors",
+   "(b) survivors whose name-level identity is not BFS order by definition (excluding unit Dijkstra, FIFO SPFA, wavefront/flood fill, uniform-cost search)",
+   "N2-adj: observed share minus the uniform-over-non-banned-catalogue null (0.6 coarse, 0.2 fine), Wilson interval shifted; the text states whether the share exceeds the null"
+  ],
+  "by_source": "iteration-8 rows (cap 9,728) vs new rows (cap 12,288) reported separately"
+ }
+}

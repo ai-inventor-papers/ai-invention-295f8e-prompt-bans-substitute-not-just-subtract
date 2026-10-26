@@ -1,0 +1,780 @@
+{
+ "stage": "s8_edits",
+ "utc": "2026-10-25T02:18:38Z",
+ "status": "DONE",
+ "apply": {
+  "apply_test_pass": true,
+  "problems": [],
+  "n_edits": 27,
+  "outside_identical": true,
+  "diff_is_unified": true,
+  "diff_lines": 322,
+  "report_sha256": "27545375f03c3e96e79c921a280b25f756ee5b3b5ce484a17ce600a7557ff4e0",
+  "corrected_sha256": "55cb6008594d7d6926d9d65df6eceadca66a343a6291c67af9d51b1720ef47bf",
+  "grim_checks": 76,
+  "grim_failures": [],
+  "lint": {
+   "R01": {
+    "desc": "'moves compliance to the names'",
+    "before": 1,
+    "after": 0,
+    "positive_control": "original",
+    "result": "PASS"
+   },
+   "R02": {
+    "desc": "'mostly not renamed BFS' without 'hand reads'",
+    "before": 1,
+    "after": 0,
+    "positive_control": "original",
+    "result": "PASS"
+   },
+   "R03": {
+    "desc": "'to 0.22' in an exhaustion sentence without 'runtime label'",
+    "before": 4,
+    "after": 0,
+    "positive_control": "original",
+    "result": "PASS"
+   },
+   "R04": {
+    "desc": "'0.58' or 'to 0.80' in a described-ban sentence without '-0.07'",
+    "before": 2,
+    "after": 0,
+    "positive_control": "original",
+    "result": "PASS"
+   },
+   "R05": {
+    "desc": "'within algorithms the relation vanishes'",
+    "before": 1,
+    "after": 0,
+    "positive_control": "original",
+    "result": "PASS"
+   },
+   "R06": {
+    "desc": "'half its pair values'",
+    "before": 1,
+    "after": 0,
+    "positive_control": "original",
+    "result": "PASS"
+   },
+   "R07": {
+    "desc": "'about half its pair-prompt effect'",
+    "before": 1,
+    "after": 0,
+    "positive_control": "original",
+    "result": "PASS"
+   },
+   "R08": {
+    "desc": "'read by runtime expansion order'",
+    "before": 2,
+    "after": 0,
+    "positive_control": "original",
+    "result": "PASS"
+   },
+   "R09": {
+    "desc": "'audits by runtime expansion order'",
+    "before": 1,
+    "after": 0,
+    "positive_control": "original",
+    "result": "PASS"
+   },
+   "R10": {
+    "desc": "'Seven of 280'",
+    "before": 1,
+    "after": 0,
+    "positive_control": "original",
+    "result": "PASS"
+   },
+   "R11": {
+    "desc": "'programs at 0.17' without '0.167'",
+    "before": 1,
+    "after": 0,
+    "positive_control": "original",
+    "result": "PASS"
+   },
+   "R12": {
+    "desc": "'track lexical distance' without 'data-structure'",
+    "before": 2,
+    "after": 0,
+    "positive_control": "original",
+    "result": "PASS"
+   },
+   "R13": {
+    "desc": "'all 15 survivors place at the edge' without '10 of 15'",
+    "before": 2,
+    "after": 0,
+    "positive_control": "original",
+    "result": "PASS"
+   },
+   "R14": {
+    "desc": "'under all three readings' or 'under every reading' about Qwen3-14B without 'fine'",
+    "before": 0,
+    "after": 0,
+    "positive_control": "planted",
+    "result": "PASS"
+   },
+   "R15": {
+    "desc": "'no search ran' not scoped to iteration 9",
+    "before": 0,
+    "after": 0,
+    "positive_control": "planted",
+    "result": "PASS"
+   }
+  },
+  "lint_hits_before_examples": {
+   "R01": [
+    "Under cumulative bans, mechanistic compliance falls from 1.00 at one name to 0.22 (Qwen3-32B) and 0.10 (Qwen3-14B) at five while lexical compliance stays at or above 0.86: banning one name changes the mechanism, banning the repertoire moves compliance to the names."
+   ],
+   "R02": [
+    "The survivors of the obeying models are mostly not renamed BFS."
+   ],
+   "R03": [
+    "| Is the gap a property of exhaustion? | Mechanistic compliance falls from 1.00 at one name to 0.22 and 0.10 at five, lexical compliance stays at or above 0.86 | n/a |",
+    "| Exhaustion curve (primary) | Bars met in both models; descriptive | Mechanistic compliance 1.00 to 0.22 (Qwen3-32B) and 1.00 to 0.10 (Qwen3-14B), trend p 0.00001; lexical at or above 0.86; held-out gaps 0.56 and 0.68; the tracer's curve is weaker and not monotone |",
+    "Under cumulative bans, mechanistic compliance falls from 1.00 at one name to 0.22 (Qwen3-32B) and 0.10 (Qwen3-14B) at five while lexical compliance stays at or above 0.86: banning one name changes the mechanism, banning the repertoire moves compliance to the names."
+   ],
+   "R04": [
+    "It raised mechanistic compliance from 0.22 under the named five-name ban to 0.80 (difference 0.58, 0.39 to 0.71), and the share of samples that are correct mechanism-level survivors rose from 0.16 to 0.68 (Table 433).",
+    "| Measure | Described (no names) | Named, k = 5 | Difference (95%) |\n|-|-|-|-|\n| Mechanistic compliance | 0.80 (39 of 49) | 0.22 (10 of 46) | 0.58 (0.39 to 0.71) |\n| Violation | 0.20 (10 of 49) | 0.78 (36 of 46) | -0.58 (-0.71 to -0.39) |\n| Any banned name in the code | 0.02 (1 of 49) | 0.11 (5 of 4"
+   ],
+   "R05": [
+    "Within algorithms the relation vanishes: the stratified test, which permutes overlap only among the three aliases of one algorithm, gives -0.12 (p 0.46 over 216 effective relabelings), and the slope of a fixed-effects fit has the wrong sign (+2.36, p 0.78)."
+   ],
+   "R06": [
+    "| Held-out rerun (secondary) | Reported | Layer-0 node 3.86 and 3.85 nats held out (p 0.0625 and 0.023; Holm 0.22 and 0.12), half its pair values; motif still differs on condition share |"
+   ],
+   "R07": [
+    "The layer-0 condition-span node, repaired, holds out at about half its pair-prompt effect without surviving its family's Holm adjustment, and the motif comparison still reads a different condition share when the contrasts are matched in kind."
+   ],
+   "R08": [
+    "Read by runtime expansion order over 546 programs in ten configurations, lexical compliance exceeds mechanistic compliance by 0.70 (runtime label) or 0.61 (tracer), in every configuration, and in the three configurations with reasoning nearly every covert program comes with reasoning that names a ba",
+    "The top five prohibition was applied by prompt, token veto, plan push and push inside the manifold, screened across ten configurations, read by runtime expansion order, cumulated one name at a time and described without names."
+   ],
+   "R09": [
+    "**Positioning.** The experiment's dated search (2026-10-23) found no work that audits by runtime expansion order whether a banned technique returns under another name."
+   ],
+   "R10": [
+    "Seven of 280 rotated and described samples were lost to rate limits and not resampled, and the manual reads cover only the k = 5 survivors."
+   ],
+   "R11": [
+    "The described manifold also evokes the names: a classifier trained on the named manifold's block-31 states labels the described prompts at balanced accuracy 0.69 (chance 0.11) and the programs at 0.17."
+   ],
+   "R12": [
+    "The language manifolds track lexical distance; the program manifold tracks behaviour, surface and length together.",
+    "The language manifolds track lexical distance between the names (Spearman 0.46 to 0.57 with a lexical matrix), and alias-level distance follows shared words across algorithms but not within them."
+   ],
+   "R13": [
+    "On manifolds built from text, unit-weight Dijkstra lies opposite the banned five, and on the manifold built from its name-scrubbed programs it lies at the edge, robust to the program source and the readout; all 15 survivors place at the edge.",
+    "On the manifold built from its name-scrubbed programs it lies at the edge (0.67), robustly, and all 15 survivors place at the edge."
+   ],
+   "R14": [],
+   "R15": []
+  },
+  "lint_hits_after": {},
+  "lint_pass": true,
+  "planted_controls": {
+   "R14": true,
+   "R15": true
+  }
+ },
+ "metrics": {
+  "n_edits": 27,
+  "apply_test_pass": 1.0,
+  "grim_checks": 76,
+  "grim_failures": 0,
+  "lint_pass": 1.0,
+  "lint_rules": 15,
+  "lint_hits_before_total": 20,
+  "lint_hits_after_total": 0,
+  "edits_item_0a": 6,
+  "edits_item_0b": 2,
+  "edits_item_0c": 4,
+  "edits_item_0d": 7,
+  "edits_item_0e": 5,
+  "edits_item_0f": 4,
+  "edits_item_0g": 3,
+  "edits_item_0h": 5,
+  "edits_item_0i": 6,
+  "edits_item_0j": 2,
+  "values_CORRECTED": 10,
+  "values_MATCH": 44,
+  "values_NEW": 90,
+  "lint_R01_before": 1,
+  "lint_R02_before": 1,
+  "lint_R03_before": 4,
+  "lint_R04_before": 2,
+  "lint_R05_before": 1,
+  "lint_R06_before": 1,
+  "lint_R07_before": 1,
+  "lint_R08_before": 2,
+  "lint_R09_before": 1,
+  "lint_R10_before": 1,
+  "lint_R11_before": 1,
+  "lint_R12_before": 2,
+  "lint_R13_before": 2,
+  "lint_R14_before": 0,
+  "lint_R15_before": 0,
+  "lint_R01_after": 0,
+  "lint_R02_after": 0,
+  "lint_R03_after": 0,
+  "lint_R04_after": 0,
+  "lint_R05_after": 0,
+  "lint_R06_after": 0,
+  "lint_R07_after": 0,
+  "lint_R08_after": 0,
+  "lint_R09_after": 0,
+  "lint_R10_after": 0,
+  "lint_R11_after": 0,
+  "lint_R12_after": 0,
+  "lint_R13_after": 0,
+  "lint_R14_after": 0,
+  "lint_R15_after": 0
+ },
+ "examples": {
+  "corrections": [
+   {
+    "input": "**The alias test.** The audit computed, on CPU from iteration 8's stored states and geodesics, how the geodesic distance g of each non-banned alias to the banned five relates to the number of content words the alias shares with a banned alias. Its four gates passed; the last recomputed the k-nearest-neighbour geodesics independently from the stored states and matched the stored k = 15 matrix at Spearman 1.000. Across the 15 aliases, g falls as overlap rises (Spearman -0.61 at k 15, exact p 0.0093 over 360,360 assignments; -0.77 at k 10, p 0.0007). Within algorithms the relation vanishes: the stratified test, which permutes overlap only among the three aliases of one algorithm, gives -0.12 (p 0.46 over 216 effective relabelings), and the slope of a fixed-effects fit has the wrong sign (+2.36, p 0.78). With only five algorithm centroids, the centroid-level Spearman of -0.63 cannot reach significance (p 0.133; the attainable floor is 0.033). The committed reading is that g follows alias overlap across algorithms, but the pattern is carried by algorithm identity: on this manifold names and mechanisms are confounded. A sensitivity on the model's own BPE tokens gives a borderline within-algorithm statistic (-0.50, p 0.057; -0.40, p 0.11 at k 10), so a small name effect inside algorithms is not excluded. The placebos fail as required and a planted name effect is recovered (Table 424). The figure of Section 8.8 plots the alias-level points and the classical MDS of the stored k = 15 geodesics.",
+    "output": "**The alias test.** The audit computed, on CPU from iteration 8's stored states and geodesics, how the geodesic distance g of each non-banned alias to the banned five relates to the number of content words the alias shares with a banned alias. Its four gates passed; the last recomputed the k-nearest-neighbour geodesics independently from the stored states and matched the stored k = 15 matrix at Spearman 1.000. Across the 15 aliases, g falls as overlap rises (Spearman -0.61 at k 15, exact p 0.0093 over 360,360 assignments; -0.77 at k 10, p 0.0007). Within algorithms the relation is not detected (three algorithms; underpowered) (iteration-10 correction): the stratified test, which permutes overlap only among the three aliases of one algorithm, gives -0.12 (p 0.46 over 216 effective relabelings), and the slope of a fixed-effects fit has the wrong sign (+2.36, p 0.78). With only five algorithm centroids, the centroid-level Spearman of -0.63 cannot reach significance (p 0.133; the attainable floor is 0.033). The committed reading is that g follows alias overlap across algorithms, but the pattern is carried by algorithm identity: on this manifold names and mechanisms are confounded. A sensitivity on the model's own BPE tokens gives a borderline within-algorithm statistic (-0.50, p 0.057; -0.40, p 0.11 at k 10), so a small name effect inside algorithms is not excluded. The placebos fail as required and a planted name effect is recovered (Table 424). The figure of Section 8.8 plots the alias-level points and the classical MDS of the stored k = 15 geodesics.",
+    "metadata_id": "E-9.2-alias",
+    "metadata_items": [
+     "0i"
+    ],
+    "metadata_location": {
+     "section": "9.2",
+     "table": null,
+     "line_hint": 9355
+    },
+    "metadata_reason": "review minor 4: 216 effective relabelings = (3!)^3, so only three algorithms inform the stratified test; 'vanishes' overstates a non-detection",
+    "metadata_n_values": 1,
+    "metadata_value_status": {
+     "MATCH": 1
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "**Table 427.** Compliance by name and by mechanism under a ban of five names, per configuration (retraced programs of iterations 2, 6 and 8). The covert share counts programs with no banned alias that use a banned expansion order. The bounds recompute the gap over programs both instruments could trace, calling a program compliant only if both labels agree (upper) or if either does (lower).\n\n| Configuration | Programs | Lexical compliance | Mechanistic compliance (runtime label) | Gap (paired Newcombe 95%) | McNemar p | Covert share | Gap with the tracer | Gap bounds, programs traced by both instruments | Reasoning names a banned alias |\n|-|-|-|-|-|-|-|-|-|-|\n| Qwen3-8B, thinking on | 30 | 0.67 | 0.00 | 0.67 (0.45 to 0.81) | 1.9e-06 | 0.67 | 0.27 | 0.27 to 0.67 | 1.00 (20) |\n| Llama-3.1-8B-Instruct | 50 | 0.96 | 0.58 | 0.38 (0.21 to 0.53) | 6.6e-05 | 0.42 | 0.75 | 0.67 to 0.92 | n/a |\n| Qwen3-14B, thinking off | 50 | 0.94 | 0.00 | 0.94 (0.82 to 0.98) | 1.4e-14 | 0.94 | 0.78 | 0.78 to 0.94 | n/a |\n| Qwen3-14B, thinking on | 46 | 0.89 | 0.15 | 0.74 (0.56 to 0.84) | 1.1e-09 | 0.76 | 0.58 | 0.49 to 0.84 | 0.91 (35) |\n| Qwen3-32B, thinking off | 49 | 0.71 | 0.14 | 0.57 (0.40 to 0.69) | 7.5e-09 | 0.57 | 0.51 | 0.47 to 0.67 | n/a |\n| Qwen3-32B, thinking on (screen and held out) | 71 | 0.89 | 0.25 | 0.63 (0.49 to 0.74) | 4.4e-12 | 0.66 | 0.31 | 0.30 to 0.70 | 1.00 (47) |\n| gemma-3-27b-it | 50 | 1.00 | 0.00 | 1.00 (0.90 to 1.00) | 1.8e-15 | 1.00 | 0.94 | 0.94 to 1.00 | n/a |\n| Qwen2.5-Coder-32B-Instruct | 50 | 0.94 | 0.24 | 0.70 (0.53 to 0.80) | 5.8e-11 | 0.70 | 0.78 | 0.76 to 0.88 | n/a |\n| Qwen3-8B, thinking off (iteration 2) | 100 | 0.41 | 0.01 | 0.40 (0.30 to 0.50) | 2.0e-11 | 0.41 | 0.24 | 0.24 to 0.40 | n/a |\n| gemma-3-4b-it (iteration 6) | 50 | 0.94 | 0.00 | 0.94 (0.82 to 0.98) | 1.4e-14 | 0.94 | 0.92 | 0.92 to 0.94 | n/a |\n| Pooled, equal weight (configuration bootstrap 95%) | 546 | | | 0.70 (0.57 to 0.82) | | | 0.61 (0.45 to 0.76) | | |",
+    "output": "**Table 427.** Compliance by name and by mechanism under a ban of five names, per configuration (retraced programs of iterations 2, 6 and 8). The covert share counts programs with no banned alias that use a banned expansion order. The bounds recompute the gap over programs both instruments could trace, calling a program compliant only if both labels agree (upper) or if either does (lower). The last column (iteration-10 correction) is a sensitivity in which the runtime labels unit-weight Dijkstra, IDA* and jump point search count as compliant (pooled 0.66 against 0.70); 294 of the 371 covert programs carry the runtime label BFS or DFS. For the obeying configuration, Qwen3-32B with thinking, the gap is 0.63 by the runtime label, 0.31 by the tracer and 0.30 to 0.70 between the instrument bounds.\n\n| Configuration | Programs | Lexical compliance | Mechanistic compliance (runtime label) | Gap (paired Newcombe 95%) | McNemar p | Covert share | Gap with the tracer | Gap bounds, programs traced by both instruments | Reasoning names a banned alias | Gap if unit-weight Dijkstra, IDA* and JPS count as compliant (95%) |\n|-|-|-|-|-|-|-|-|-|-|-|\n| Qwen3-8B, thinking on | 30 | 0.67 | 0.00 | 0.67 (0.45 to 0.81) | 1.9e-06 | 0.67 | 0.27 | 0.27 to 0.67 | 1.00 (20) | 0.67 (0.45 to 0.81) |\n| Llama-3.1-8B-Instruct | 50 | 0.96 | 0.58 | 0.38 (0.21 to 0.53) | 6.6e-05 | 0.42 | 0.75 | 0.67 to 0.92 | n/a | 0.38 (0.21 to 0.53) |\n| Qwen3-14B, thinking off | 50 | 0.94 | 0.00 | 0.94 (0.82 to 0.98) | 1.4e-14 | 0.94 | 0.78 | 0.78 to 0.94 | n/a | 0.94 (0.82 to 0.98) |\n| Qwen3-14B, thinking on | 46 | 0.89 | 0.15 | 0.74 (0.56 to 0.84) | 1.1e-09 | 0.76 | 0.58 | 0.49 to 0.84 | 0.91 (35) | 0.65 (0.47 to 0.77) |\n| Qwen3-32B, thinking off | 49 | 0.71 | 0.14 | 0.57 (0.40 to 0.69) | 7.5e-09 | 0.57 | 0.51 | 0.47 to 0.67 | n/a | 0.49 (0.31 to 0.62) |\n| Qwen3-32B, thinking on (screen and held out) | 71 | 0.89 | 0.25 | 0.63 (0.49 to 0.74) | 4.4e-12 | 0.66 | 0.31 | 0.30 to 0.70 | 1.00 (47) | 0.45 (0.31 to 0.57) |\n| gemma-3-27b-it | 50 | 1.00 | 0.00 | 1.00 (0.90 to 1.00) | 1.8e-15 | 1.00 | 0.94 | 0.94 to 1.00 | n/a | 1.00 (0.90 to 1.00) |\n| Qwen2.5-Coder-32B-Instruct | 50 | 0.94 | 0.24 | 0.70 (0.53 to 0.80) | 5.8e-11 | 0.70 | 0.78 | 0.76 to 0.88 | n/a | 0.70 (0.53 to 0.80) |\n| Qwen3-8B, thinking off (iteration 2) | 100 | 0.41 | 0.01 | 0.40 (0.30 to 0.50) | 2.0e-11 | 0.41 | 0.24 | 0.24 to 0.40 | n/a | 0.40 (0.30 to 0.50) |\n| gemma-3-4b-it (iteration 6) | 50 | 0.94 | 0.00 | 0.94 (0.82 to 0.98) | 1.4e-14 | 0.94 | 0.92 | 0.92 to 0.94 | n/a | 0.94 (0.82 to 0.98) |\n| Pooled, equal weight (configuration bootstrap 95%) | 546 | | | 0.70 (0.57 to 0.82) | | | 0.61 (0.45 to 0.76) | | | 0.66 (0.52 to 0.80) |",
+    "metadata_id": "E-T427",
+    "metadata_items": [
+     "0h"
+    ],
+    "metadata_location": {
+     "section": "9.3",
+     "table": "427",
+     "line_hint": 9422
+    },
+    "metadata_reason": "review minor 3: UD/IDA*/JPS-compliant sensitivity, covert BFS/DFS count and the obeying configuration's range",
+    "metadata_n_values": 14,
+    "metadata_value_status": {
+     "NEW": 12,
+     "MATCH": 2
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "**The exhaustion curve.** Cumulative bans of the first k names in Qwen3-32B's frequency order (BFS; then DFS, IDDFS, A* and greedy best-first) were sampled 50 times per k on three templates, with the full ban also sampled on four held-out templates, for Qwen3-32B and Qwen3-14B with thinking (Table 431 and the figure below). At k = 1 both models comply by name and by mechanism in every completed program: banning BFS changes the mechanism. Lexical compliance stays at or above 0.86 at every k on the committed templates. Mechanistic compliance by the runtime label falls with k, from 1.00 to 0.22 for Qwen3-32B and from 1.00 to 0.10 for Qwen3-14B (Jonckheere-Terpstra [149] Monte-Carlo p 0.00001 for each model; Cochran-Armitage [150] one-sided p below 0.00001). At k = 5 the gap is 0.67 (0.50 to 0.78) and 0.76 (0.59 to 0.85), and on the held-out templates 0.56 and 0.68. Every committed criterion is met, but descriptively. The tracer's curve falls less and is not monotone for Qwen3-32B (1.00, 0.86, 0.91, 0.47, 0.67), because it reads the coordinate-key heaps and Bellman-Ford rounds of the late cells as compliant. Correctness does not follow compliance: at k = 1 only 9 of 50 Qwen3-32B programs and 14 of 50 Qwen3-14B programs pass the hidden tests, against 33 to 40 and 17 to 27 of 50 at the larger k.",
+    "output": "**The exhaustion curve.** Cumulative bans of the first k names in Qwen3-32B's frequency order (BFS; then DFS, IDDFS, A* and greedy best-first) were sampled 50 times per k on three templates, with the full ban also sampled on four held-out templates, for Qwen3-32B and Qwen3-14B with thinking (Table 431 and the figure below). At k = 1 both models comply by name and by mechanism in every completed program: banning BFS changes the mechanism. Lexical compliance stays at or above 0.86 at every k on the committed templates. Mechanistic compliance by the runtime label falls with k, from 1.00 to 0.22 for Qwen3-32B and from 1.00 to 0.10 for Qwen3-14B (Jonckheere-Terpstra [149] Monte-Carlo p 0.00001 for each model; Cochran-Armitage [150] one-sided p below 0.00001). At k = 5 the gap is 0.67 (0.50 to 0.78) and 0.76 (0.59 to 0.85), and on the held-out templates 0.56 and 0.68. Whether the committed bars are met depends on the reading (iteration-10 correction). By the runtime label both models meet every committed criterion, descriptively. The registered fine-class sensitivity was a no-op for the runtime label in the executed code: results/n3.json repeats the primary in all 12 cells, because analysis_v9.py applies fine classes only when the mechanism field is the tracer's; it was applied for the tracer (results/n3_tracer.json). Computed for the runtime label, it changes one step: from k = 3 to k = 4 Qwen3-32B falls from 0.84 to 0.24 by the coarse runtime label, but 11 of the 35 coarse violations at k = 4 are greedy best-first programs, a name not yet banned, and with fine classes compliance is 22 of 46 = 0.48 (tracer 0.47 coarse and 0.82 fine); at k = 5 the fine runtime value equals the coarse one (10 of 46 = 0.22). By the runtime label mechanistic compliance falls to 0.22 (Qwen3-32B) and 0.10 (Qwen3-14B) at five names; by hand reads to 0.59 and 0.12; by the tracer to 0.67 and 0.24 (fine classes 0.74 and 0.37; Table 431b). Qwen3-14B meets the k = 5 bar of a 0.4 gap under every reading (runtime label 0.76, hand reads 0.73, tracer 0.61, tracer fine 0.49) and the held-out bar under every reading except the tracer's fine classes, where its held-out gap is 0.38 (lexical 0.78 against 20 of 50 = 0.40). Qwen3-32B meets both bars only by the runtime label (0.67 at k = 5, 0.56 held out): at k = 5 the hand reads (0.30), the coarse tracer (0.22) and the fine tracer (0.15) fall below 0.4, and on the held-out templates the hand reads give 0.396, just below the bar, and the coarse tracer 0.42; counting unit-weight Dijkstra, IDA* and jump point search as compliant gives 0.57 at k = 5 and 0.31 held out. Its tracer curve is not monotone (1.00, 0.86, 0.91, 0.47, 0.67), because the tracer reads the coordinate-key heaps and Bellman-Ford rounds of the late cells as compliant. The hand reads adjudicate between the instruments on exactly these programs: they agree with the tracer on 0.88 of the 76 read programs and with the runtime label on 0.64; coordinate-key heaps and grid Bellman-Ford rounds are other known disciplines, and the runtime label reads the Bellman-Ford rounds as iterative deepening. Correctness does not follow compliance: at k = 1 only 9 of 50 Qwen3-32B programs and 14 of 50 Qwen3-14B programs pass the hidden tests, against 33 to 40 and 17 to 27 of 50 at the larger k.",
+    "metadata_id": "E-9.3-exhaustion",
+    "metadata_items": [
+     "0a",
+     "0b"
+    ],
+    "metadata_location": {
+     "section": "9.3",
+     "table": null,
+     "line_hint": 9471
+    },
+    "metadata_reason": "review majors 1 and 2: the committed bars restated per model and per reading (runtime coarse and fine, tracer coarse and fine, hand reads), the fine-class no-op proved and repaired",
+    "metadata_n_values": 19,
+    "metadata_value_status": {
+     "NEW": 11,
+     "MATCH": 8
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "**Table 431.** Cumulative bans, k = 1 to 5 (50 samples per cell; rates over completed programs; gap with its 95% interval). Named survivors are correct programs whose name-level label is not banned.\n\n| Model | k | Completed | Lexical | Mechanistic, runtime label | Gap (95%) | Mechanistic, tracer | Named survivors | Pass | Truncated |\n|-|-|-|-|-|-|-|-|-|-|\n| Qwen3-32B, thinking on | 1 | 49 of 50 | 1.00 | 1.00 | 0.00 (-0.07 to 0.07) | 1.00 | 0.18 | 0.18 | 0.02 |\n| | 2 | 43 of 50 | 1.00 | 0.84 | 0.16 (0.05 to 0.30) | 0.86 | 0.76 | 0.76 | 0.14 |\n| | 3 | 45 of 50 | 1.00 | 0.84 | 0.16 (0.04 to 0.29) | 0.91 | 0.80 | 0.80 | 0.10 |\n| | 4 | 46 of 50 | 0.96 | 0.24 | 0.72 (0.54 to 0.82) | 0.47 | 0.64 | 0.66 | 0.08 |\n| | 5 | 46 of 50 | 0.89 | 0.22 | 0.67 (0.50 to 0.78) | 0.67 | 0.54 | 0.66 | 0.08 |\n| | 5, held out | 48 of 50 | 0.94 | 0.38 | 0.56 (0.40 to 0.69) | 0.52 | 0.52 | 0.68 | 0.04 |\n| Qwen3-14B, thinking on | 1 | 49 of 50 | 1.00 | 1.00 | 0.00 (-0.07 to 0.07) | 1.00 | 0.28 | 0.28 | 0.02 |\n| | 2 | 50 of 50 | 0.96 | 0.30 | 0.66 (0.49 to 0.78) | 0.76 | 0.26 | 0.34 | 0.00 |\n| | 3 | 49 of 50 | 1.00 | 0.51 | 0.49 (0.34 to 0.63) | 0.76 | 0.52 | 0.54 | 0.02 |\n| | 4 | 50 of 50 | 0.90 | 0.20 | 0.70 (0.53 to 0.80) | 0.24 | 0.18 | 0.38 | 0.00 |\n| | 5 | 49 of 50 | 0.86 | 0.10 | 0.76 (0.59 to 0.85) | 0.24 | 0.10 | 0.44 | 0.02 |\n| | 5, held out | 50 of 50 | 0.78 | 0.10 | 0.68 (0.51 to 0.78) | 0.30 | 0.16 | 0.36 | 0.00 |",
+    "output": "**Table 431.** Cumulative bans, k = 1 to 5 (50 samples per cell; rates over completed programs; gap with its 95% interval). Named survivors are correct programs whose name-level label is not banned. The last three columns (iteration-10 correction): the runtime label with fine classes (greedy best-first, A*, jump point search, IDA* and IDDFS separate; banned only once named), the tracer's fine classes as stored in results/n3_tracer.json, and the hand reads substituted for the runtime class where a program was read (k = 5 only).\n\n| Model | k | Completed | Lexical | Mechanistic, runtime label | Gap (95%) | Mechanistic, tracer | Named survivors | Pass | Truncated | Mechanistic, runtime fine | Mechanistic, tracer fine | Mechanistic, hand reads substituted |\n|-|-|-|-|-|-|-|-|-|-|-|-|-|\n| Qwen3-32B, thinking on | 1 | 49 of 50 | 1.00 | 1.00 | 0.00 (-0.07 to 0.07) | 1.00 | 0.18 | 0.18 | 0.02 | 1.00 (49/49) | 1.00 (48/48) | n/a (no reads) |\n| | 2 | 43 of 50 | 1.00 | 0.84 | 0.16 (0.05 to 0.30) | 0.86 | 0.76 | 0.76 | 0.14 | 0.84 (36/43) | 0.86 (36/42) | n/a (no reads) |\n| | 3 | 45 of 50 | 1.00 | 0.84 | 0.16 (0.04 to 0.29) | 0.91 | 0.80 | 0.80 | 0.10 | 0.84 (38/45) | 0.91 (41/45) | n/a (no reads) |\n| | 4 | 46 of 50 | 0.96 | 0.24 | 0.72 (0.54 to 0.82) | 0.47 | 0.64 | 0.66 | 0.08 | 0.48 (22/46) | 0.82 (37/45) | n/a (no reads) |\n| | 5 | 46 of 50 | 0.89 | 0.22 | 0.67 (0.50 to 0.78) | 0.67 | 0.54 | 0.66 | 0.08 | 0.22 (10/46) | 0.74 (34/46) | 0.59 (27/46) |\n| | 5, held out | 48 of 50 | 0.94 | 0.38 | 0.56 (0.40 to 0.69) | 0.52 | 0.52 | 0.68 | 0.04 | 0.38 (18/48) | 0.60 (29/48) | 0.54 (26/48) |\n| Qwen3-14B, thinking on | 1 | 49 of 50 | 1.00 | 1.00 | 0.00 (-0.07 to 0.07) | 1.00 | 0.28 | 0.28 | 0.02 | 1.00 (49/49) | 1.00 (49/49) | n/a (no reads) |\n| | 2 | 50 of 50 | 0.96 | 0.30 | 0.66 (0.49 to 0.78) | 0.76 | 0.26 | 0.34 | 0.00 | 0.30 (15/50) | 0.76 (38/50) | n/a (no reads) |\n| | 3 | 49 of 50 | 1.00 | 0.51 | 0.49 (0.34 to 0.63) | 0.76 | 0.52 | 0.54 | 0.02 | 0.51 (25/49) | 0.76 (37/49) | n/a (no reads) |\n| | 4 | 50 of 50 | 0.90 | 0.20 | 0.70 (0.53 to 0.80) | 0.24 | 0.18 | 0.38 | 0.00 | 0.20 (10/50) | 0.35 (17/49) | n/a (no reads) |\n| | 5 | 49 of 50 | 0.86 | 0.10 | 0.76 (0.59 to 0.85) | 0.24 | 0.10 | 0.44 | 0.02 | 0.10 (5/49) | 0.37 (18/49) | 0.12 (6/49) |\n| | 5, held out | 50 of 50 | 0.78 | 0.10 | 0.68 (0.51 to 0.78) | 0.30 | 0.16 | 0.36 | 0.00 | 0.10 (5/50) | 0.40 (20/50) | 0.12 (6/50) |\n\n**Table 431b.** The k = 5 cells under every reading (iteration-10 correction) (rate over the reading's traceable completed programs, k/n; gap = lexical minus mechanistic compliance on the same programs, paired Newcombe 95% interval [Newcombe 1998b, method 10]). The committed bars, quoted from the rename artifact's first commitment: \"k=5 gap >= 0.4 (paired Newcombe)\" and \"CONFIRMATION: held-out k=5 (W4/W5/P6/P7) gap >= 0.4 with Newcombe lower bound > 0\". The hand reads come from one reader and were not double-coded, so they are a third reading, not a gold standard.\n\n| Model | Templates | Completed | Lexical | Runtime label, coarse (primary) | Runtime label, fine | Tracer, coarse | Tracer, fine | Hand reads substituted | Unit-weight Dijkstra, IDA* and JPS compliant | Meets the committed bar |\n|-|-|-|-|-|-|-|-|-|-|-|\n| Qwen3-32B, thinking on | k = 5 | 46 | 0.89 | 0.22 (10/46); gap 0.67 (0.50 to 0.78) | 0.22 (10/46); gap 0.67 (0.50 to 0.78) | 0.67 (31/46); gap 0.22 (0.06 to 0.37) | 0.74 (34/46); gap 0.15 (0.01 to 0.30) | 0.59 (27/46); gap 0.30 (0.16 to 0.44) | 0.33 (15/46); gap 0.57 (0.39 to 0.69) | meets: runtime coarse, runtime fine, UD/IDA*/JPS; misses: tracer coarse, tracer fine, hand reads |\n| Qwen3-32B, thinking on | k = 5, held out | 48 | 0.94 | 0.38 (18/48); gap 0.56 (0.40 to 0.69) | 0.38 (18/48); gap 0.56 (0.40 to 0.69) | 0.52 (25/48); gap 0.42 (0.25 to 0.56) | 0.60 (29/48); gap 0.33 (0.17 to 0.48) | 0.54 (26/48); gap 0.396 (0.24 to 0.53) | 0.63 (30/48); gap 0.31 (0.17 to 0.45) | meets: runtime coarse, runtime fine, tracer coarse; misses: tracer fine, hand reads, UD/IDA*/JPS |\n| Qwen3-14B, thinking on | k = 5 | 49 | 0.86 | 0.10 (5/49); gap 0.76 (0.59 to 0.85) | 0.10 (5/49); gap 0.76 (0.59 to 0.85) | 0.24 (12/49); gap 0.61 (0.43 to 0.73) | 0.37 (18/49); gap 0.49 (0.30 to 0.63) | 0.12 (6/49); gap 0.73 (0.57 to 0.83) | 0.16 (8/49); gap 0.69 (0.53 to 0.79) | meets: runtime coarse, runtime fine, tracer coarse, tracer fine, hand reads, UD/IDA*/JPS; misses: none |\n| Qwen3-14B, thinking on | k = 5, held out | 50 | 0.78 | 0.10 (5/50); gap 0.68 (0.51 to 0.78) | 0.10 (5/50); gap 0.68 (0.51 to 0.78) | 0.30 (15/50); gap 0.48 (0.28 to 0.63) | 0.40 (20/50); gap 0.38 (0.19 to 0.53) | 0.12 (6/50); gap 0.66 (0.49 to 0.77) | 0.20 (10/50); gap 0.58 (0.41 to 0.69) | meets: runtime coarse, runtime fine, tracer coarse, hand reads, UD/IDA*/JPS; misses: tracer fine |\n\n[FIGURE:fig_s0_kcurves]",
+    "metadata_id": "E-T431",
+    "metadata_items": [
+     "0a",
+     "0b",
+     "0h"
+    ],
+    "metadata_location": {
+     "section": "9.3",
+     "table": "431",
+     "line_hint": 9473
+    },
+    "metadata_reason": "review majors 1-2 and minor 3: runtime fine, tracer fine and hand-read columns over all k; new Table 431b with every reading against the committed bar",
+    "metadata_n_values": 24,
+    "metadata_value_status": {
+     "MATCH": 12,
+     "NEW": 12
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "**A ban described without names (exploratory).** The described ban lists the five banned mechanisms in words, with no algorithm name (each description first named correctly by the model). It raised mechanistic compliance from 0.22 under the named five-name ban to 0.80 (difference 0.58, 0.39 to 0.71), and the share of samples that are correct mechanism-level survivors rose from 0.16 to 0.68 (Table 433). The committed direction was that mechanistic compliance or violation rises; compliance rose and violation fell. Under the described ban the model mostly writes heaps keyed by goal-independent coordinates (19 called greedy best-first and 8 unit-weight Dijkstra by the judges). The runtime label calls them other and the tracer weak heuristic order. Since their keys do not depend on the goal, they are by mechanism neither a heuristic search nor BFS order, so for this cell the runtime reading is the closer one; the 11 FIFO BFS programs are its real violations.",
+    "output": "**A ban described without names (exploratory).** The described ban lists the five banned mechanisms in words, with no algorithm name (each description first named correctly by the model). Its effect on mechanistic compliance is instrument-dependent (iteration-10 correction): +0.58 by the runtime label (39 of 49 = 0.80 under the described ban against 10 of 46 = 0.22 under the named five-name ban; 0.39 to 0.71), -0.07 by the tracer (29 of 48 = 0.60 against 31 of 46 = 0.67; -0.25 to 0.12), +0.05 by the tracer's fine classes (-0.12 to 0.22), and about +0.21 (0.02 to 0.38) under the per-cell reading the record argues for, the runtime label for the described cell and hand reads substituted for the named cell (27 of 46 = 0.59). The described cell was not hand-read, and its denominators differ because the tracer cannot trace one described program (49 against 48). At about 50 programs per cell the unpaired Newcombe half-width of these differences is 0.16 to 0.19, so differences below about 0.2 between readings are not resolvable and the record does not rank them; NOV-R's single-instrument retest in iteration 10 addresses this. By the runtime label the share of samples that are correct mechanism-level survivors rose from 0.16 to 0.68 (Table 433). The committed direction was that mechanistic compliance or violation rises; by the runtime label compliance rose and violation fell. Under the described ban the model mostly writes heaps keyed by goal-independent coordinates (19 called greedy best-first and 8 unit-weight Dijkstra by the judges). The runtime label calls them other and the tracer weak heuristic order. Since their keys do not depend on the goal, they are by mechanism neither a heuristic search nor BFS order, so for this cell the runtime reading is the closer one; the 11 FIFO BFS programs are its real violations.",
+    "metadata_id": "E-9.3-described",
+    "metadata_items": [
+     "0c"
+    ],
+    "metadata_location": {
+     "section": "9.3",
+     "table": null,
+     "line_hint": 9497
+    },
+    "metadata_reason": "review major 3: the described-ban effect depends on the instrument; every reading shown with its unpaired Newcombe interval",
+    "metadata_n_values": 4,
+    "metadata_value_status": {
+     "MATCH": 1,
+     "NEW": 3
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "**Table 433.** A five-mechanism ban described without names against the named five-name ban (Qwen3-32B with thinking; Newcombe 95% intervals [42]).\n\n| Measure | Described (no names) | Named, k = 5 | Difference (95%) |\n|-|-|-|-|\n| Mechanistic compliance | 0.80 (39 of 49) | 0.22 (10 of 46) | 0.58 (0.39 to 0.71) |\n| Violation | 0.20 (10 of 49) | 0.78 (36 of 46) | -0.58 (-0.71 to -0.39) |\n| Any banned name in the code | 0.02 (1 of 49) | 0.11 (5 of 46) | -0.09 (-0.21 to 0.02) |\n| Named survivors | 0.18 (9 of 50) | 0.54 (27 of 50) | -0.36 (-0.51 to -0.17) |\n| Mechanism-level survivors | 0.68 (34 of 50) | 0.16 (8 of 50) | 0.52 (0.33 to 0.66) |",
+    "output": "**Table 433.** A five-mechanism ban described without names against the named five-name ban (Qwen3-32B with thinking; Newcombe 95% intervals [42]). The last three rows (iteration-10 correction) read the same programs with the tracer, with the tracer's fine classes, and with hand reads substituted in the named cell (the described cell was not read); the denominators 49 and 48 differ by one described program the tracer cannot trace.\n\n| Measure | Described (no names) | Named, k = 5 | Difference (95%) |\n|-|-|-|-|\n| Mechanistic compliance, runtime label | 0.80 (39 of 49) | 0.22 (10 of 46) | 0.58 (0.39 to 0.71) |\n| Violation | 0.20 (10 of 49) | 0.78 (36 of 46) | -0.58 (-0.71 to -0.39) |\n| Any banned name in the code | 0.02 (1 of 49) | 0.11 (5 of 46) | -0.09 (-0.21 to 0.02) |\n| Named survivors | 0.18 (9 of 50) | 0.54 (27 of 50) | -0.36 (-0.51 to -0.17) |\n| Mechanism-level survivors | 0.68 (34 of 50) | 0.16 (8 of 50) | 0.52 (0.33 to 0.66) |\n| Mechanistic compliance, tracer | 0.60 (29 of 48) | 0.67 (31 of 46) | -0.07 (-0.25 to 0.12) |\n| Mechanistic compliance, tracer fine classes (from rows; not stored) | 0.79 (38 of 48) | 0.74 (34 of 46) | 0.05 (-0.12 to 0.22) |\n| Described by the runtime label against named with hand reads substituted | 0.80 (39 of 49) | 0.59 (27 of 46) | 0.21 (0.02 to 0.38) |",
+    "metadata_id": "E-T433",
+    "metadata_items": [
+     "0c"
+    ],
+    "metadata_location": {
+     "section": "9.3",
+     "table": "433",
+     "line_hint": 9499
+    },
+    "metadata_reason": "review major 3: Table 433 gains the tracer, tracer-fine and hand-read rows",
+    "metadata_n_values": 3,
+    "metadata_value_status": {
+     "NEW": 3
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "**Novelty, audits and cost.** Of 568 correct programs, 73 were labelled other or flagged; two judges and the executor called all 73 known (Bellman-Ford on a grid, random-priority and coordinate-key searches among them), so no correct novel program was found (rule-of-three 95% upper bound 0.0053). A separate standard-library script recomputed the 2-by-2 tables, gaps, intervals, trend statistics, survivor counts and sign counts with 0 mismatches, and a second short script re-derived the headline numbers from raw rows. The placebos behave as required: swapping the lexical and mechanistic flags at random gives a pooled gap of -0.002 against 0.70; permuting k labels gives Jonckheere-Terpstra p below 0.05 in 0.07 and 0.06 of draws; random survivors of the rotated sets give a mean joint count of 1.80 against 1.75 by chance. OpenRouter spend was USD 3.889. The committed cap of 3.5 was raised to 4.0 at USD 3.21, before the last six cells were labelled, so that every cell is labelled by one judge protocol. Seven of 280 rotated and described samples were lost to rate limits and not resampled, and the manual reads cover only the k = 5 survivors.",
+    "output": "**Novelty, audits and cost.** Of 568 correct programs, 73 were labelled other or flagged; two judges and the executor called all 73 known (Bellman-Ford on a grid, random-priority and coordinate-key searches among them), so no correct novel program was found (rule-of-three 95% upper bound 0.0053). A separate standard-library script recomputed the 2-by-2 tables, gaps, intervals, trend statistics, survivor counts and sign counts with 0 mismatches, and a second short script re-derived the headline numbers from raw rows. The placebos behave as required: swapping the lexical and mechanistic flags at random gives a pooled gap of -0.002 against 0.70; permuting k labels gives Jonckheere-Terpstra p below 0.05 in 0.07 and 0.06 of draws; random survivors of the rotated sets give a mean joint count of 1.80 against 1.75 by chance. OpenRouter spend was USD 3.889. The committed cap of 3.5 was raised to 4.0 at USD 3.21, before the last six cells were labelled, so that every cell is labelled by one judge protocol. Seven of 350 rotated and described samples were lost to rate limits and not resampled (293 of 300 rotated and 50 of 50 described samples are present) (iteration-10 correction), and the manual reads cover only the k = 5 survivors.",
+    "metadata_id": "E-9.3-novelty",
+    "metadata_items": [
+     "0i"
+    ],
+    "metadata_location": {
+     "section": "9.3",
+     "table": null,
+     "line_hint": 9532
+    },
+    "metadata_reason": "review minor 4: the denominator of the lost samples is 350",
+    "metadata_n_values": 2,
+    "metadata_value_status": {
+     "CORRECTED": 1,
+     "NEW": 1
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "**Positioning.** The experiment's dated search (2026-10-23) found no work that audits by runtime expansion order whether a banned technique returns under another name. Denial prompting [23] imposes technique-level bans to elicit new strategies and scores them behaviourally. Compact constraint encoding [38] reports that constraints opposing a model's defaults fail at 10% to 100%. The Invisible Lottery [1] steers algorithm choice by incidental cues. Semantic Gravity Wells [7] and the white-bear study [53] show that naming a forbidden word primes it. IFEvalCode [151] checks code constraints, including naming, with programmatic checkers, which cannot see a renamed mechanism. The measurement here is new only as a measurement: with the tracer's gate failed, no inferential claim is made.",
+    "output": "**Positioning.** The experiment's dated search (2026-10-23) found no work that audits whether a banned technique returns under another name, read by the runtime label (heap priorities, frontier evidence, restarts) and by the expansion-order tracer (iteration-10 correction). Denial prompting [23] imposes technique-level bans to elicit new strategies and scores them behaviourally. Compact constraint encoding [38] reports that constraints opposing a model's defaults fail at 10% to 100%. The Invisible Lottery [1] steers algorithm choice by incidental cues. Semantic Gravity Wells [7] and the white-bear study [53] show that naming a forbidden word primes it. IFEvalCode [151] checks code constraints, including naming, with programmatic checkers, which cannot see a renamed mechanism. The measurement here is new only as a measurement: with the tracer's gate failed, no inferential claim is made.",
+    "metadata_id": "E-9.3-positioning",
+    "metadata_items": [
+     "0h"
+    ],
+    "metadata_location": {
+     "section": "9.3",
+     "table": null,
+     "line_hint": 9534
+    },
+    "metadata_reason": "review minor 3: the primary label is the runtime label, not runtime expansion order",
+    "metadata_n_values": 1,
+    "metadata_value_status": {
+     "CORRECTED": 1
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "**What each manifold tracks.** Representational similarity analysis [147] compares each manifold's class-by-class distances with four model matrices: lexical distance between the aliases, behavioural distance from expansion-order traces of the reference implementations, surface distance between the programs' token sets, and length (Table 437; exact label-permutation p-values; noise ceilings from split halves [148]). The named, described and name-only manifolds track the lexical matrix (0.46, 0.57 and 0.47) and not behaviour. The program manifolds track behaviour (0.64 on Qwen3-32B and 0.88 on Qwen3-8B), but they track surface and length as strongly (0.67 and 0.78; 0.87 and 0.88), so with six classes the program manifold cannot tell an edge in mechanism from an edge in how the code looks. The described manifold also evokes the names: a classifier trained on the named manifold's block-31 states labels the described prompts at balanced accuracy 0.69 (chance 0.11) and the programs at 0.17. The behavioural anchor holds by construction: in expansion order, unit-weight Dijkstra is the nearest non-banned algorithm to BFS (distance 0.31, against 0.72 for bidirectional BFS and 0.86 to 1.12 for the rest).",
+    "output": "**What each manifold tracks.** Representational similarity analysis [147] compares each manifold's class-by-class distances with four model matrices: lexical distance between the aliases, behavioural distance from expansion-order traces of the reference implementations, surface distance between the programs' token sets, and length (Table 437; exact label-permutation p-values; noise ceilings from split halves [148]). The named, described and name-only manifolds track the lexical matrix (0.46, 0.57 and 0.47) and textbook data-structure attributes, not measured expansion order (iteration-10 correction): on the named Qwen3-32B manifold the data-structure matrix gives 0.65 (exact p 0.001) against 0.46 for the lexical matrix, and the expansion-order matrix gives -0.03 to 0.16 on the five language manifolds. The two model matrices are nearly unrelated there (Spearman 0.13, variance inflation 1.02), and each survives partialling out the other: lexical given data structure 0.50 and data structure given lexical 0.67, exact relabeling p 0.002 and 0.001 when the tested matrix is relabeled and 0.003 and 0.001 under Freedman-Lane residual relabeling (Table 437b). With ten classes and a contested partial Mantel test these p-values are descriptive. The program manifolds track behaviour (0.64 on Qwen3-32B and 0.88 on Qwen3-8B), but they track surface and length as strongly (0.67 and 0.78; 0.87 and 0.88), so with six classes the program manifold cannot tell an edge in mechanism from an edge in how the code looks. The described manifold also evokes the names: a classifier trained on the named manifold's block-31 states labels the described prompts at balanced accuracy 0.69 (chance 0.11) and the programs at 0.17, which is chance for six classes (0.167) (iteration-10 correction). The behavioural anchor holds by construction: in expansion order, unit-weight Dijkstra is the nearest non-banned algorithm to BFS (distance 0.31, against 0.72 for bidirectional BFS and 0.86 to 1.12 for the rest).",
+    "metadata_id": "E-9.4-rsa",
+    "metadata_items": [
+     "0e",
+     "0i"
+    ],
+    "metadata_location": {
+     "section": "9.4",
+     "table": null,
+     "line_hint": 9577
+    },
+    "metadata_reason": "review major 5 and minor 4: aliases carry mechanism words, so data-structure attributes are tested beside lexical distance; the program-probe value equals chance",
+    "metadata_n_values": 5,
+    "metadata_value_status": {
+     "MATCH": 2,
+     "NEW": 3
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "**Table 437.** Representational similarity of each manifold to four model matrices (Spearman, exact label-permutation p in brackets; upper noise ceiling).\n\n| Manifold (classes) | Lexical | Behavioural | Surface | Length | Noise ceiling |\n|-|-|-|-|-|-|\n| Named, Qwen3-32B (10) | 0.46 (0.003) | 0.24 (0.091) | 0.20 (0.128) | 0.07 (0.297) | 1.00 |\n| Described, Qwen3-32B (9) | 0.57 (0.000) | 0.12 (0.252) | 0.02 (0.463) | 0.01 (0.426) | 1.00 |\n| Name-only, Qwen3-32B (10) | 0.47 (0.001) | 0.29 (0.034) | -0.13 (0.785) | 0.33 (0.027) | 0.99 |\n| Program, primary readout, Qwen3-32B (6) | 0.29 (0.164) | 0.64 (0.018) | 0.67 (0.010) | 0.78 (0.007) | 1.00 |\n| Program, second readout, Qwen3-32B (6) | -0.01 (0.451) | 0.59 (0.050) | 0.66 (0.039) | 0.49 (0.081) | 0.96 |\n| Program, Qwen3-32B programs only (6) | 0.10 (0.372) | 0.73 (0.008) | 0.70 (0.010) | 0.77 (0.007) | 1.00 |\n| Named, Qwen3-8B (10) | 0.48 (0.002) | 0.27 (0.071) | -0.12 (0.715) | 0.28 (0.058) | 0.99 |\n| Described, Qwen3-8B (9) | 0.25 (0.079) | 0.25 (0.087) | 0.33 (0.040) | 0.46 (0.008) | 0.99 |\n| Program, primary readout, Qwen3-8B (6) | 0.10 (0.360) | 0.88 (0.001) | 0.87 (0.001) | 0.88 (0.001) | 0.99 |",
+    "output": "**Table 437.** Representational similarity of each manifold to four model matrices (Spearman, exact label-permutation p in brackets; upper noise ceiling). The last three columns (iteration-10 correction) add the data-structure, expansion-order and description-lexical model matrices stored in results/rsa.json.\n\n| Manifold (classes) | Lexical | Behavioural | Surface | Length | Noise ceiling | Data structure | Expansion order | Description lexical |\n|-|-|-|-|-|-|-|-|-|\n| Named, Qwen3-32B (10) | 0.46 (0.003) | 0.24 (0.091) | 0.20 (0.128) | 0.07 (0.297) | 1.00 | 0.65 (0.001) | -0.03 (0.532) | 0.23 (0.079) |\n| Described, Qwen3-32B (9) | 0.57 (0.000) | 0.12 (0.252) | 0.02 (0.463) | 0.01 (0.426) | 1.00 | 0.43 (0.014) | 0.07 (0.349) | 0.44 (0.006) |\n| Name-only, Qwen3-32B (10) | 0.47 (0.001) | 0.29 (0.034) | -0.13 (0.785) | 0.33 (0.027) | 0.99 | 0.44 (0.009) | 0.16 (0.163) | 0.54 (0.000) |\n| Program, primary readout, Qwen3-32B (6) | 0.29 (0.164) | 0.64 (0.018) | 0.67 (0.010) | 0.78 (0.007) | 1.00 | 0.65 (0.011) | 0.43 (0.096) | 0.89 (0.003) |\n| Program, second readout, Qwen3-32B (6) | -0.01 (0.451) | 0.59 (0.050) | 0.66 (0.039) | 0.49 (0.081) | 0.96 | 0.57 (0.017) | 0.43 (0.165) | 0.67 (0.006) |\n| Program, Qwen3-32B programs only (6) | 0.10 (0.372) | 0.73 (0.008) | 0.70 (0.010) | 0.77 (0.007) | 1.00 | 0.71 (0.006) | 0.52 (0.058) | 0.90 (0.001) |\n| Named, Qwen3-8B (10) | 0.48 (0.002) | 0.27 (0.071) | -0.12 (0.715) | 0.28 (0.058) | 0.99 | 0.37 (0.016) | 0.14 (0.248) | 0.57 (0.000) |\n| Described, Qwen3-8B (9) | 0.25 (0.079) | 0.25 (0.087) | 0.33 (0.040) | 0.46 (0.008) | 0.99 | 0.39 (0.018) | 0.14 (0.226) | 0.53 (0.001) |\n| Program, primary readout, Qwen3-8B (6) | 0.10 (0.360) | 0.88 (0.001) | 0.87 (0.001) | 0.88 (0.001) | 0.99 | 0.64 (0.011) | 0.71 (0.013) | 0.92 (0.003) |\n\n**Table 437b.** Lexical distance against data-structure attributes (iteration-10 correction): the Spearman of the two model matrices over the present pairs (exact relabeling p), their variance inflation 1/(1 - r^2), and partial Spearman correlations (Pearson partial correlation of average-rank vectors) of each manifold, with exact one-sided relabeling p over all n! relabelings (10! = 3,628,800; 9! = 362,880; 6! = 720, floor 0.0014) under scheme A (relabel the tested matrix) and scheme B (Freedman-Lane: relabel the residuals of the neural ranks on the control ranks). Partial Mantel tests can be anticonservative for structured matrices, so every p here is descriptive.\n\n| Manifold (classes) | Spearman of lexical and data-structure matrices (p) | Variance inflation | Lexical given data structure (p A; p B) | Data structure given lexical (p A; p B) |\n|-|-|-|-|-|\n| Named, Qwen3-32B (10) | 0.13 (0.230) | 1.02 | 0.50 (0.002; 0.003) | 0.67 (0.001; 0.001) |\n| Described, Qwen3-32B (9) | 0.17 (0.185) | 1.03 | 0.56 (0.001; 0.002) | 0.41 (0.026; 0.026) |\n| Name-only, Qwen3-32B (10) | 0.13 (0.230) | 1.02 | 0.46 (0.003; 0.003) | 0.43 (0.015; 0.015) |\n| Program, primary readout, Qwen3-32B (6) | -0.08 (0.628) | 1.01 | 0.45 (0.094; 0.093) | 0.71 (0.006; 0.004) |\n| Program, second readout, Qwen3-32B (6) | -0.08 (0.628) | 1.01 | 0.05 (0.399; 0.414) | 0.57 (0.019; 0.022) |\n| Program, Qwen3-32B programs only (6) | -0.08 (0.628) | 1.01 | 0.22 (0.288; 0.285) | 0.72 (0.006; 0.004) |\n| Named, Qwen3-8B (10) | 0.13 (0.230) | 1.02 | 0.47 (0.006; 0.007) | 0.35 (0.032; 0.034) |\n| Described, Qwen3-8B (9) | 0.17 (0.185) | 1.03 | 0.20 (0.146; 0.148) | 0.37 (0.030; 0.030) |\n| Program, primary readout, Qwen3-8B (6) | -0.08 (0.628) | 1.01 | 0.20 (0.300; 0.307) | 0.65 (0.011; 0.010) |",
+    "metadata_id": "E-T437",
+    "metadata_items": [
+     "0e"
+    ],
+    "metadata_location": {
+     "section": "9.4",
+     "table": "437",
+     "line_hint": 9579
+    },
+    "metadata_reason": "review major 5: Table 437 gains R_DS, R_beh_order and R_desc_lex; new Table 437b",
+    "metadata_n_values": 18,
+    "metadata_value_status": {
+     "MATCH": 9,
+     "NEW": 9
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "**Table 438.** Placement of the 15 unit-weight Dijkstra survivors on each program frame (k 15).\n\n| Frame | Block | Leave-one-out placement accuracy (gate 0.70) | Survivors classed edge | Nearest algorithm of the survivors | Baseline programs placed on their own label |\n|-|-|-|-|-|-|\n| Qwen3-32B, primary readout | 33 | 0.85 (passes) | 15 of 15 | unit-weight Dijkstra 13, greedy best-first 2 | 1.00 |\n| Qwen3-32B, second readout | 21 | 0.67 (fails) | 15 of 15 | unit-weight Dijkstra 14, greedy best-first 1 | 0.98 |\n| Qwen3-32B programs only | 31 | 0.89 (passes) | 10 of 15 | unit-weight Dijkstra 14, A* 1 | 1.00 |\n| Qwen3-8B, primary readout | 17 | 0.83 (passes) | 15 of 15 | unit-weight Dijkstra 12, greedy best-first 3 | 0.92 |",
+    "output": "**Table 438.** Placement of the 15 unit-weight Dijkstra survivors on each program frame (k 15). The first four rows are the 15 unit-weight Dijkstra survivors; the rows below (iteration-10 correction) place the other 23 survivors of the placement file by family (frozen from the labels before any class was read: 15 Bellman-Ford/SPFA, 3 BFS variants, 5 other known), with the median g, the frame median and the two reference values (unit-weight Dijkstra and IDA*). Three caveats apply: the per-family placement was not preregistered; with only two non-banned classes on these frames, 'opposite' means farther than the median of the unit-weight Dijkstra and IDA* frame values; and the class therefore depends on that two-class reference.\n\n| Frame | Block | Leave-one-out placement accuracy (gate 0.70) | Survivors classed edge | Nearest algorithm of the survivors | Baseline programs placed on their own label |\n|-|-|-|-|-|-|\n| Qwen3-32B, primary readout | 33 | 0.85 (passes) | 15 of 15 | unit-weight Dijkstra 13, greedy best-first 2 | 1.00 |\n| Qwen3-32B, second readout | 21 | 0.67 (fails) | 15 of 15 | unit-weight Dijkstra 14, greedy best-first 1 | 0.98 |\n| Qwen3-32B programs only | 31 | 0.89 (passes) | 10 of 15 | unit-weight Dijkstra 14, A* 1 | 1.00 |\n| Qwen3-8B, primary readout | 17 | 0.83 (passes) | 15 of 15 | unit-weight Dijkstra 12, greedy best-first 3 | 0.92 |\n| Qwen3-32B, primary readout: Bellman-Ford/SPFA survivors | 33 | 0.85 (passes) | 0 of 15 (opposite 15; median g 28.1 against the frame median 24.8; references 16.6 and 32.9; 0 beyond the farther) | unit-weight Dijkstra 14, BFS 1 | 1.00 |\n| Qwen3-32B, primary readout: BFS variants survivors | 33 | 0.85 (passes) | 3 of 3 (opposite 0; median g 16.8 against the frame median 24.8; references 16.6 and 32.9; 0 beyond the farther) | BFS 3 | 1.00 |\n| Qwen3-32B, primary readout: other known survivors | 33 | 0.85 (passes) | 5 of 5 (opposite 0; median g 19.6 against the frame median 24.8; references 16.6 and 32.9; 0 beyond the farther) | BFS 3, unit-weight Dijkstra 1, greedy best-first 1 | 1.00 |\n| Qwen3-32B, second readout: Bellman-Ford/SPFA survivors | 21 | 0.67 (fails) | 9 of 15 (opposite 6; median g 127.9 against the frame median 128.2; references 40.7 and 215.8; 0 beyond the farther) | BFS 14, DFS 1 | 0.98 |\n| Qwen3-32B, second readout: BFS variants survivors | 21 | 0.67 (fails) | 3 of 3 (opposite 0; median g 50.0 against the frame median 128.2; references 40.7 and 215.8; 0 beyond the farther) | BFS 3 | 0.98 |\n| Qwen3-32B, second readout: other known survivors | 21 | 0.67 (fails) | 3 of 5 (opposite 2; median g 127.7 against the frame median 128.2; references 40.7 and 215.8; 0 beyond the farther) | BFS 2, greedy best-first 2, A* 1 | 0.98 |\n| Qwen3-32B programs only: Bellman-Ford/SPFA survivors | 31 | 0.89 (passes) | 0 of 15 (opposite 15; median g 30.8 against the frame median 24.8; references 19.7 and 29.9; 12 beyond the farther) | unit-weight Dijkstra 11, A* 2, IDA* 2 | 1.00 |\n| Qwen3-32B programs only: BFS variants survivors | 31 | 0.89 (passes) | 3 of 3 (opposite 0; median g 19.3 against the frame median 24.8; references 19.7 and 29.9; 0 beyond the farther) | BFS 3 | 1.00 |\n| Qwen3-32B programs only: other known survivors | 31 | 0.89 (passes) | 3 of 5 (opposite 2; median g 22.3 against the frame median 24.8; references 19.7 and 29.9; 0 beyond the farther) | unit-weight Dijkstra 3, BFS 2 | 1.00 |\n| Qwen3-8B, primary readout: Bellman-Ford/SPFA survivors | 17 | 0.83 (passes) | 10 of 15 (opposite 5; median g 11.9 against the frame median 12.2; references 7.7 and 16.7; 0 beyond the farther) | unit-weight Dijkstra 14, greedy best-first 1 | 0.92 |\n| Qwen3-8B, primary readout: BFS variants survivors | 17 | 0.83 (passes) | 3 of 3 (opposite 0; median g 10.1 against the frame median 12.2; references 7.7 and 16.7; 0 beyond the farther) | unit-weight Dijkstra 2, BFS 1 | 0.92 |\n| Qwen3-8B, primary readout: other known survivors | 17 | 0.83 (passes) | 5 of 5 (opposite 0; median g 10.5 against the frame median 12.2; references 7.7 and 16.7; 0 beyond the farther) | greedy best-first 2, DFS 1, BFS 1, unit-weight Dijkstra 1 | 0.92 |\n\n[FIGURE:fig_s0_placement]",
+    "metadata_id": "E-T438",
+    "metadata_items": [
+     "0d"
+    ],
+    "metadata_location": {
+     "section": "9.4",
+     "table": "438",
+     "line_hint": 9595
+    },
+    "metadata_reason": "review major 4: placement per survivor family with its reference values and caveats",
+    "metadata_n_values": 16,
+    "metadata_value_status": {
+     "NEW": 16
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "**Table 440.** Base against instruct at counterfactually located forks (teacher forcing on identical token ids; Gemma under its chat template, Llama template-free). P(D) is the probability of the instruct default's class; JS ratio is the Jensen-Shannon divergence at the fork over that at base-entropy-matched positions.\n\n| Fork (classes) | Prompts | Instruct P(D) | Base P(D) | Gain, nats (95% interval) | Template-free gain | JS ratio | Argmax differs |\n|-|-|-|-|-|-|-|-|\n| Gemma grid, token 32 (BFS against DFS) | 20 | 0.671 | 0.089 | 1.78 (1.59 to 2.00) | 0.95 | 1.09 | 20 of 20 |\n| Gemma substring search, token 31 | 5 | 0.832 | 0.765 | 1.75 (-1.31 to 4.82) | 4.54 | 0.75 | 2 of 5 |\n| Gemma first and last position, token 12 | 5 | 0.946 | 0.370 | 3.07 (2.06 to 4.10) | 2.03 | 1.18 | 0 of 5 |\n| Gemma first and last position, token 24 | 5 | 0.882 | 0.481 | 1.68 (0.37 to 2.99) | 3.05 | 0.90 | 0 of 5 |\n| Llama grid, token 52 (descriptive) | 5 | 0.654 | 0.366 | 0.96 (template-free) | n/a | 0.60 | 5 of 5 |\n| Llama grid, token 121 (descriptive) | 5 | 0.606 | 0.757 | -0.71 (template-free) | n/a | 0.71 | 0 of 5 |\n| Qwen3-8B, carried from iteration 8 | | | | grid 3.27, connected components 13.41, shortest path 2.11, minimum spanning tree 1.84, trapped rain water 1.53 | | | |",
+    "output": "**Table 440.** Base against instruct at counterfactually located forks (teacher forcing on identical token ids; Gemma under its chat template, Llama template-free). P(D) is the probability of the instruct default's class; JS ratio is the Jensen-Shannon divergence at the fork over that at base-entropy-matched positions. The last two columns (iteration-10 correction) give the base model's probability of the alternative class, where the fork has a single alternative, and the base model's probability mass on tokens mapped to no class (results/b1_*.json).\n\n| Fork (classes) | Prompts | Instruct P(D) | Base P(D) | Gain, nats (95% interval) | Template-free gain | JS ratio | Argmax differs | Base P(alternative) | Unmapped base mass |\n|-|-|-|-|-|-|-|-|-|-|\n| Gemma grid, token 32 (BFS against DFS) | 20 | 0.671 | 0.089 | 1.78 (1.59 to 2.00) | 0.95 | 1.09 | 20 of 20 | 0.25 (BFS) | 0.663 |\n| Gemma substring search, token 31 | 5 | 0.832 | 0.765 | 1.75 (-1.31 to 4.82) | 4.54 | 0.75 | 2 of 5 | n/a (several alternatives) | 0.157 |\n| Gemma first and last position, token 12 | 5 | 0.946 | 0.370 | 3.07 (2.06 to 4.10) | 2.03 | 1.18 | 0 of 5 | n/a (several alternatives) | 0.311 |\n| Gemma first and last position, token 24 | 5 | 0.882 | 0.481 | 1.68 (0.37 to 2.99) | 3.05 | 0.90 | 0 of 5 | n/a (several alternatives) | 0.335 |\n| Llama grid, token 52 (descriptive) | 5 | 0.654 | 0.366 | 0.96 (template-free) | n/a | 0.60 | 5 of 5 | n/a (several alternatives) | 0.296 |\n| Llama grid, token 121 (descriptive) | 5 | 0.606 | 0.757 | -0.71 (template-free) | n/a | 0.71 | 0 of 5 | n/a (several alternatives) | below 0.001 |\n| Qwen3-8B, carried from iteration 8 | | | | grid 3.27, connected components 13.41, shortest path 2.11, minimum spanning tree 1.84, trapped rain water 1.53 | | | | n/a | n/a |",
+    "metadata_id": "E-T440",
+    "metadata_items": [
+     "0i"
+    ],
+    "metadata_location": {
+     "section": "9.5",
+     "table": "440",
+     "line_hint": 9627
+    },
+    "metadata_reason": "review minor 4: base P(alternative) and unmapped base mass",
+    "metadata_n_values": 2,
+    "metadata_value_status": {
+     "NEW": 2
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "**The sharpening measurement (verdict partial).** The margin is log P(default class) minus log P(alternative class) at the fork, under the chat template for Gemma. Llama was switched to template-free prompts by the committed rule, because the Llama-3.1-8B base model's embedding rows of its chat-header and end-of-turn tokens have about 3e-21 of the median row norm, which means they are untrained. On Gemma's grid fork the instruct model puts 0.671 on its default class and the base model 0.089, a gain of 1.78 nats [1.59, 2.00], and the argmax differs on all 20 prompts: the instruct default is not the base model's first choice there (Table 440). On the two first-and-last-position forks the gains are 3.07 and 1.68 nats with the same argmax. On substring search the gain is 1.75 nats with an interval that crosses zero (5 prompts). Phrasing positions barely move (entropy change 0.44 to 0.50 nats; the instruct token is the base model's top choice at 91% to 97% of phrasing positions, the URIAL pattern [100]). The divergence at the fork is 4.7 to 6.6 times the mean phrasing divergence, but only 0.75 to 1.18 times the divergence at positions matched for base entropy: at these forks, \"fork\" and \"high base entropy\" coincide. Cantarero et al.'s own pattern reproduces: divergence 11 to 15 times higher inside their base-entropy fork set than outside, a rate-matched random set near 1.0, and every Gemma fork inside their set. Of the committed predictions, the phrasing prediction holds; the gain of at least 2 nats on every near-collapsed fork fails (1.68 at the second first-and-last fork); divergence at least 1.3 times the entropy-matched positions fails; and a different argmax on at least half the units holds only on the grid. Llama's grid fork fails the committed on-policy rule (the instruct model's log probability of the shared opening is about -13.6, below -5), so its two forks are descriptive.",
+    "output": "**The sharpening measurement (verdict partial).** The margin is log P(default class) minus log P(alternative class) at the fork, under the chat template for Gemma. Llama was switched to template-free prompts by the committed rule, because the Llama-3.1-8B base model's embedding rows of its chat-header and end-of-turn tokens have about 3e-21 of the median row norm, which means they are untrained. On Gemma's grid fork the instruct model puts 0.671 on its default class and the base model 0.089, a gain of 1.78 nats [1.59, 2.00], and the argmax differs on all 20 prompts: post-training reversed and concentrated the choice (base P(BFS) 0.25 against P(DFS) 0.09, with 0.663 of the base model's mass on tokens mapped to no class) (iteration-10 correction) (Table 440). On the two first-and-last-position forks the gains are 3.07 and 1.68 nats with the same argmax. On substring search the gain is 1.75 nats with an interval that crosses zero (5 prompts). Phrasing positions barely move (entropy change 0.44 to 0.50 nats; the instruct token is the base model's top choice at 91% to 97% of phrasing positions, the URIAL pattern [100]). The divergence at the fork is 4.7 to 6.6 times the mean phrasing divergence, but only 0.75 to 1.18 times the divergence at positions matched for base entropy: at these forks, \"fork\" and \"high base entropy\" coincide. Cantarero et al.'s own pattern reproduces: divergence 11 to 15 times higher inside their base-entropy fork set than outside, a rate-matched random set near 1.0, and every Gemma fork inside their set. Of the committed predictions, the phrasing prediction holds; the gain of at least 2 nats on every near-collapsed fork fails (1.68 at the second first-and-last fork); divergence at least 1.3 times the entropy-matched positions fails; and a different argmax on at least half the units holds only on the grid. Llama's grid fork fails the committed on-policy rule (the instruct model's log probability of the shared opening is about -13.6, below -5), so its two forks are descriptive.",
+    "metadata_id": "E-9.5-sharpening",
+    "metadata_items": [
+     "0i"
+    ],
+    "metadata_location": {
+     "section": "9.5",
+     "table": null,
+     "line_hint": 9623
+    },
+    "metadata_reason": "review minor 4: reversed and concentrated",
+    "metadata_n_values": 1,
+    "metadata_value_status": {
+     "NEW": 1
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "**The patching test (verdict partial; localisation distributed).** In Qwen3-8B against Qwen3-8B-Base, on minimum spanning tree weight (Kruskal against Prim) and connected components (`find` against `dfs` or `bfs`), base outputs of components were patched into the instruct run at the fork, 20 prompts per unit with fixed batch shapes (Table 441 and the figure below it). The ten validated fork-stack nodes of iteration 8's circuit close 1.00 [0.96, 1.04] of the 2.06-nat gap on minimum spanning tree. That is not specific: 50 sets of random late-layer components, matched in write norm, close a median 0.81 (95th percentile 1.41; empirical p 0.45), and random sets that exclude the circuit's top 15 components close a median 0.66, below the fork stack at p 0.039. On connected components the fork stack closes 0.45 [0.28, 0.57] of a 4.52-nat gap, above random sets (median -0.22, p 0.020), but short of the committed 0.5. The task-specification nodes close nothing (-0.02 and -0.17), so the sharpening is not written upstream. It is carried at the fork by late MLPs, redundantly: several single MLPs between layers 26 and 35 each close about half the minimum spanning tree gap (layer 35 alone 0.98), and the fork stack's joint share is about half the sum of its singles. A large part of the gap is not in the residual stream at all. The instruct model's unembedding, reading the base model's own final residual, accounts for 0.43 of the gap on minimum spanning tree and 0.85 on connected components, which is why swapping the whole residual at the fork in layer 36 does not reach 1. Weight differences agree: every module moved by 5% to 11% in relative Frobenius norm, the unembedding by 9%, while the unembedding rows of ' dfs' (12.0%, 91st percentile) and ' bfs' (14.4%, 96th) moved more than almost any other row and ' find' (6.6%, 27th) little. Per-layer weight change does not track the per-layer patching shares (r at most 0.2). Along the first principal component of the block-30 output at the fork (98.5% and 94.6% of the variance of the instruct and base states on the two units), the patched states move most of the way from the instruct states toward the base states, and the median random and residual-swap states move less.",
+    "output": "**The patching test (verdict partial; localisation distributed).** In Qwen3-8B against Qwen3-8B-Base, on minimum spanning tree weight (Kruskal against Prim) and connected components (`find` against `dfs` or `bfs`), base outputs of components were patched into the instruct run at the fork, 20 prompts per unit with fixed batch shapes (Table 441 and the figure below it). The ten validated fork-stack nodes of iteration 8's circuit close 1.00 [0.96, 1.04] of the 2.06-nat gap on minimum spanning tree. That is not specific: 50 sets of random late-layer components, matched in write norm, close a median 0.81 (95th percentile 1.41; empirical p 0.45), and random sets that exclude the circuit's top 15 components close a median 0.66, below the fork stack at p 0.039. On connected components the fork stack closes 0.45 [0.28, 0.57] of a 4.52-nat gap, above random sets (median -0.22, p 0.020), but short of the committed 0.5. (iteration-10 correction) Most matched random sets repeat a component, because the draw falls back to the whole candidate pool once an MLP pool is used up: an MLP repeats in 1 of 50 random sets and 47 of 50 sets without the circuit's top 15 on minimum spanning tree, and in 36 of 50 and 50 of 50 on connected components. Restricted to sets of ten distinct components, the minimum spanning tree null keeps a median 0.80 (49 sets; p 0.44) and the sets without the top 15 keep 3 (median 0.65; p 0.25, the floor at that N); random sets scaled to the fork stack's write norm give a median 0.64 (p 0.098), beside 0.66 (p 0.039) and 0.81 (p 0.45). On connected components the 14 full-size random sets give a median -0.33 (p 0.067, at its floor) and no set without the top 15 is full-size. The fork stack's 0.45 there is a ratio of means; per prompt its share has mean 0.13, median 0.43 and interquartile range -0.02 to 0.61, negative on 6 of 20 prompts (the five fork MLPs: ratio of means 0.41, mean of per-prompt shares 0.07; Table 441b). On minimum spanning tree specificity stays unresolved in this record; BASE-W redraws the sets without reuse. The task-specification nodes close nothing (-0.02 and -0.17), so the sharpening is not written upstream. It is carried at the fork by late MLPs, redundantly: several single MLPs between layers 26 and 35 each close about half the minimum spanning tree gap (layer 35 alone 0.98), and the fork stack's joint share is about half the sum of its singles. A large part of the gap is not in the residual stream at all. The instruct model's unembedding, reading the base model's own final residual, accounts for 0.43 of the gap on minimum spanning tree and 0.85 on connected components, which is why swapping the whole residual at the fork in layer 36 does not reach 1. Weight differences agree: every module moved by 5% to 11% in relative Frobenius norm, the unembedding by 9%, while the unembedding rows of ' dfs' (12.0%, 91st percentile) and ' bfs' (14.4%, 96th) moved more than almost any other row and ' find' (6.6%, 27th) little. Per-layer weight change does not track the per-layer patching shares (r at most 0.2). Along the first principal component of the block-30 output at the fork (98.5% and 94.6% of the variance of the instruct and base states on the two units), the patched states move most of the way from the instruct states toward the base states, and the median random and residual-swap states move less.",
+    "metadata_id": "E-9.5-patching",
+    "metadata_items": [
+     "0g"
+    ],
+    "metadata_location": {
+     "section": "9.5",
+     "table": null,
+     "line_hint": 9631
+    },
+    "metadata_reason": "review minor 2: repeated components in the random sets, restricted nulls and per-prompt shares",
+    "metadata_n_values": 4,
+    "metadata_value_status": {
+     "NEW": 2,
+     "MATCH": 2
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "**Table 441.** Share of the instruct-minus-base fork margin closed by patching base outputs into Qwen3-8B at the fork (20 prompts per unit; bootstrap 95% intervals).\n\n| Measure | Minimum spanning tree (Kruskal against Prim) | Connected components (`find` against `dfs` or `bfs`) |\n|-|-|-|\n| Gap, instruct minus base (nats) | 2.06 (1.96 to 2.16) | 4.52 (3.50 to 5.57) |\n| Ten validated fork-stack nodes | 1.00 (0.96 to 1.04) | 0.45 (0.28 to 0.57) |\n| Five fork MLPs / five fork heads | 1.08 / 0.17 | 0.41 / 0.30 |\n| 50 matched random sets: median / 95th percentile / empirical p | 0.81 / 1.41 / 0.45 | -0.22 / 0.06 / 0.020 |\n| Random sets without the circuit's top 15: median / p | 0.66 / 0.039 | -0.46 / 0.020 |\n| Task-specification nodes | -0.02 | -0.17 |\n| Residual swap at the fork, layer 23 / layer 36 | 0.78 / 0.57 | -0.05 / 0.15 |\n| Residual swap of the prefix / of all positions, layer 23 | 0.44 / 1.13 | 0.37 / 0.61 |\n| Unembedding alone (CPU readout decomposition) | 0.43 | 0.85 |\n| Best single components | MLP 35 0.98, MLP 28 0.62, MLP 29 0.56, MLP 26 0.52 | MLP 30 0.53, MLP 35 0.38, MLP 34 0.26, head 10 of layer 23 0.21 |\n| Base MLP weights on instruct inputs (5 MLPs) | 0.23 | 0.38 |\n| Reverse: instruct fork stack written into the base model, share opened | -0.30 | 0.22 (p 0.02) |",
+    "output": "**Table 441.** Share of the instruct-minus-base fork margin closed by patching base outputs into Qwen3-8B at the fork (20 prompts per unit; bootstrap 95% intervals).\n\n| Measure | Minimum spanning tree (Kruskal against Prim) | Connected components (`find` against `dfs` or `bfs`) |\n|-|-|-|\n| Gap, instruct minus base (nats) | 2.06 (1.96 to 2.16) | 4.52 (3.50 to 5.57) |\n| Ten validated fork-stack nodes | 1.00 (0.96 to 1.04) | 0.45 (0.28 to 0.57) |\n| Five fork MLPs / five fork heads | 1.08 / 0.17 | 0.41 / 0.30 |\n| 50 matched random sets: median / 95th percentile / empirical p | 0.81 / 1.41 / 0.45 | -0.22 / 0.06 / 0.020 |\n| Random sets without the circuit's top 15: median / p | 0.66 / 0.039 | -0.46 / 0.020 |\n| Task-specification nodes | -0.02 | -0.17 |\n| Residual swap at the fork, layer 23 / layer 36 | 0.78 / 0.57 | -0.05 / 0.15 |\n| Residual swap of the prefix / of all positions, layer 23 | 0.44 / 1.13 | 0.37 / 0.61 |\n| Unembedding alone (CPU readout decomposition) | 0.43 | 0.85 |\n| Best single components | MLP 35 0.98, MLP 28 0.62, MLP 29 0.56, MLP 26 0.52 | MLP 30 0.53, MLP 35 0.38, MLP 34 0.26, head 10 of layer 23 0.21 |\n| Base MLP weights on instruct inputs (5 MLPs) | 0.23 | 0.38 |\n| Reverse: instruct fork stack written into the base model, share opened | -0.30 | 0.22 (p 0.02) |\n\n**Table 441b.** The random patching sets by effective size (iteration-10 correction) (Rscaled reuses the matched sets, scaled; empirical p = (1 + #null >= fork stack)/(N + 1), floor 1/(N + 1)).\n\n| Unit | Family | Sets repeating an MLP | Distinct components per set | Sets of ten distinct components | Median share, all sets; p | Median share, ten-distinct sets; p (floor) |\n|-|-|-|-|-|-|-|\n| Minimum spanning tree | matched random sets | 1 of 50 | 10 distinct: 49; 9 distinct: 1 | 49 | 0.81; p 0.451 | 0.80; p 0.440 (floor 0.020) |\n| Minimum spanning tree | without the circuit's top 15 | 47 of 50 | 10 distinct: 3; 9 distinct: 27; 8 distinct: 20 | 3 | 0.66; p 0.039 | 0.65; p 0.250 (floor 0.250) |\n| Minimum spanning tree | scaled to the fork stack's write norm | 1 of 50 | 10 distinct: 49; 9 distinct: 1 | 49 | 0.64; p 0.098 | 0.64; p 0.100 (floor 0.020) |\n| Connected components | matched random sets | 36 of 50 | 10 distinct: 14; 9 distinct: 29; 8 distinct: 7 | 14 | -0.22; p 0.020 | -0.33; p 0.067 (floor 0.067) |\n| Connected components | without the circuit's top 15 | 50 of 50 | 9 distinct: 11; 8 distinct: 39 | 0 | -0.46; p 0.020 | none (N = 0) |\n| Connected components | scaled to the fork stack's write norm | 36 of 50 | 10 distinct: 14; 9 distinct: 29; 8 distinct: 7 | 14 | -0.25; p 0.020 | -0.42; p 0.067 (floor 0.067) |\n\n**Table 441c.** Per-prompt shares s = (m_patched - m_instruct)/(m_base - m_instruct) beside the ratio of means (iteration-10 correction).\n\n| Unit | Arm | Ratio of means | Mean of per-prompt shares | Median | Interquartile range | Range | Negative | Prompts with a gap below 0.5 nats |\n|-|-|-|-|-|-|-|-|-|\n| Minimum spanning tree | fork stack | 1.00 | 1.00 | 1.00 | 0.95 to 1.07 | 0.84 to 1.15 | 0 of 20 | 0 |\n| Minimum spanning tree | five fork MLPs | 1.08 | 1.09 | 1.11 | 1.01 to 1.16 | 0.91 to 1.24 | 0 of 20 | 0 |\n| Connected components | fork stack | 0.45 | 0.13 | 0.43 | -0.02 to 0.61 | -2.45 to 0.76 | 6 of 20 | 0 |\n| Connected components | five fork MLPs | 0.41 | 0.07 | 0.39 | -0.06 to 0.55 | -2.79 to 0.71 | 6 of 20 | 0 |",
+    "metadata_id": "E-T441",
+    "metadata_items": [
+     "0g"
+    ],
+    "metadata_location": {
+     "section": "9.5",
+     "table": "441",
+     "line_hint": 9633
+    },
+    "metadata_reason": "review minor 2: new Tables 441b and 441c (effective sizes, restricted nulls, per-prompt shares)",
+    "metadata_n_values": 6,
+    "metadata_value_status": {
+     "NEW": 6
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "**The held-out rerun.** The rerun confirmed the cache bug: the original lookup returns nothing for every condition-span node on every held-out prompt of the forced-Prim contrast, so iteration 8's held-out arm applied no edit. With span means interpolated to the target span length, the layer-0 condition-span MLP has a held-out effect of 3.86 nats under ablation (sign-flip p 0.0625) and 3.85 under steering at dose 2 (p 0.023) on the 10 held-out prompts, against 8.14 and 7.41 on the pair prompts; Holm-adjusted within the six-test family the p-values are 0.22 and 0.12. The layer-5 condition MLP reverses sign (-1.50, p 0.008), and dose 0.5 shows nothing (post hoc). The engine reproduces iteration 8's pair-prompt value only to 0.096 nats (8.387 against 8.291), because the circuit artifact's engine was modified after its validation rows were written; its clean margins reproduce exactly, so token ids and positions are right. Matched in kind between the families, the committed motif statistic still differs on the condition share: on natural contrasts Qwen3-8B gives condition 0.08 and fork 0.34 against Gemma's 0.37 and 0.51, and on forced contrasts 0.01 and 0.62 against 0.34 and 0.54.",
+    "output": "**The held-out rerun.** The rerun confirmed the cache bug: the original lookup returns nothing for every condition-span node on every held-out prompt of the forced-Prim contrast, so iteration 8's held-out arm applied no edit. With span means interpolated to the target span length, the layer-0 condition-span MLP has a held-out effect of about 7.9 nats on the five forced prompts (7.90 under ablation, 7.65 under steering at dose 2), close to its pair-prompt values (8.14 and 7.41, each the mean over both sides of the 20 pair prompts), and about 0 on the five padded twins (-0.19 and 0.05), unlike the pair prompts, where both sides carry the effect (ablation 8.68 forced and 7.61 padded); the means of 3.86 (sign-flip p 0.0625) and 3.85 (p 0.023) over the 10 held-out prompts average the two sides (iteration-10 correction). Taken as five contrasts, the exact sign-flip test has 32 equally likely patterns, so its smallest attainable p is 0.031 one-sided and 0.0625 two-sided; all five contrasts are positive under both modes, which gives exactly those values, so five contrasts cannot reach two-sided 0.05. On the F11 and F15 rows 153 of the 765 edit jobs of each row (612 of 3,060) were empty, all in the exact-length sensitivity variant, whose ablation mean is 3.50 with those rows and 5.83 without them; the primary interpolated variant applied every edit. The matched random set holds 10 distinct components among its 50 draws. Holm-adjusted within the six-test family the p-values are 0.22 and 0.12. The layer-5 condition MLP reverses sign (-1.50, p 0.008), and dose 0.5 shows nothing (post hoc). The engine reproduces iteration 8's pair-prompt value only to 0.096 nats (8.387 against 8.291), because the circuit artifact's engine was modified after its validation rows were written; its clean margins reproduce exactly, so token ids and positions are right. Matched in kind between the families, the committed motif statistic still differs on the condition share: on natural contrasts Qwen3-8B gives condition 0.08 and fork 0.34 against Gemma's 0.37 and 0.51, and on forced contrasts 0.01 and 0.62 against 0.34 and 0.54.",
+    "metadata_id": "E-9.5-heldout",
+    "metadata_items": [
+     "0f"
+    ],
+    "metadata_location": {
+     "section": "9.5",
+     "table": null,
+     "line_hint": 9653
+    },
+    "metadata_reason": "review minor 1: a mean over a bimodal held-out distribution replaced by per-side values",
+    "metadata_n_values": 6,
+    "metadata_value_status": {
+     "NEW": 3,
+     "MATCH": 3
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "**The top-five question, read by mechanism and by geometry.** The rename experiment and the geometry experiment answer the request's edge-or-opposite question from two sides (Table 443). By expansion order, the survivors of the full five-name ban are a mixture. Unit-weight Dijkstra, 0.30 of the hand-read survivors and all of iteration 8's catalogue survivors, is BFS order under a non-banned name and container. The other 0.70 are known algorithms with a different expansion discipline. By geometry, unit-weight Dijkstra sits opposite the banned five on every manifold built from language, including the one that avoids names and still evokes them, and at the edge on the manifold built from the programs. For that one algorithm the account's prediction, opposite in names and at the edge in mechanisms, holds. Two limits apply. The program manifold tracks surface and length as strongly as behaviour, and the geometry experiment placed only the 15 unit-weight Dijkstra survivors, so the other survivor families (grid Bellman-Ford, coordinate-key heaps, random frontiers) have no landing yet.",
+    "output": "**The top-five question, read by mechanism and by geometry.** The rename experiment and the geometry experiment answer the request's edge-or-opposite question from two sides (Table 443). By expansion order, the survivors of the full five-name ban are a mixture. Unit-weight Dijkstra, 0.30 of the hand-read survivors and all of iteration 8's catalogue survivors, is BFS order under a non-banned name and container. The other 0.70 are known algorithms with a different expansion discipline. By geometry, unit-weight Dijkstra sits opposite the banned five on every manifold built from language, including the one that avoids names and still evokes them, and at the edge on the manifold built from the programs. For that one algorithm the account's prediction, opposite in names and at the edge in mechanisms, holds. Two limits apply. The program manifold tracks surface and length as strongly as behaviour, and the geometry experiment's verdict placed only the 15 unit-weight Dijkstra survivors. Its placement file also places 23 further iteration-8 survivors (iteration-10 correction): the 15 Bellman-Ford/SPFA programs land opposite on both gate-passing Qwen3-32B frames (15 of 15 and 15 of 15) and 10 edge, 5 opposite on Qwen3-8B, while the 3 BFS variants and the 5 other known programs place at the edge on the primary frames; 'opposite' there means farther than the median of two reference classes, and the placement was not preregistered (Table 438). The coordinate-key heaps have no landing yet.",
+    "metadata_id": "E-9.7-top5",
+    "metadata_items": [
+     "0d"
+    ],
+    "metadata_location": {
+     "section": "9.7",
+     "table": null,
+     "line_hint": 9687
+    },
+    "metadata_reason": "review major 4: the record's own placement file places the Bellman-Ford/SPFA survivors",
+    "metadata_n_values": 1,
+    "metadata_value_status": {
+     "NEW": 1
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "**Table 443.** The top-five prohibition across this iteration's instruments.\n\n| Question | Rename experiment | Geometry experiment |\n|-|-|-|\n| Are bans obeyed by name more than by mechanism? | Yes across ten configurations (gap 0.70 runtime, 0.61 tracer; descriptive) | n/a |\n| Is the gap a property of exhaustion? | Mechanistic compliance falls from 1.00 at one name to 0.22 and 0.10 at five, lexical compliance stays at or above 0.86 | n/a |\n| What do the obeying model's survivors run? | Hand reads: 0.30 BFS order (unit-weight Dijkstra), 0.70 other known disciplines; the instruments disagree (0.79 runtime, 0.43 tracer, on the 91 survivors) | n/a |\n| Where does unit-weight Dijkstra land? | n/a | Opposite on the named (1.63), name-only (1.20) and described (1.08) manifolds; edge on the program manifold (0.67); 15 of 15 survivors edge by placement |\n| What does each map track? | n/a | Language manifolds: lexical distance; program manifold: behaviour, surface and length alike |",
+    "output": "**Table 443.** The top-five prohibition across this iteration's instruments (iteration-10 correction).\n\n| Question | Rename experiment | Geometry experiment |\n|-|-|-|\n| Are bans obeyed by name more than by mechanism? | Yes across ten configurations (gap 0.70 runtime, 0.61 tracer; descriptive) | n/a |\n| Is the gap a property of exhaustion? | By the runtime label mechanistic compliance falls from 1.00 at one name to 0.22 and 0.10 at five; by hand reads to 0.59 and 0.12; by the tracer to 0.67 and 0.24 (fine 0.74 and 0.37); lexical compliance stays at or above 0.86 | n/a |\n| What do the obeying model's survivors run? | Hand reads: 0.30 BFS order (unit-weight Dijkstra), 0.70 other known disciplines; the instruments disagree (0.79 runtime, 0.43 tracer, on the 91 survivors) | n/a |\n| Where does unit-weight Dijkstra land? | n/a | Opposite on the named (1.63), name-only (1.20) and described (1.08) manifolds; edge on the program manifold (0.67); 15 of 15 survivors edge by placement on the primary frame, 10 of 15 on the Qwen3-32B programs-only frame; Bellman-Ford/SPFA survivors opposite on both gate-passing Qwen3-32B frames |\n| What does each map track? | n/a | Language manifolds: lexical distance and data-structure attributes; program manifold: behaviour, surface and length alike |",
+    "metadata_id": "E-T443",
+    "metadata_items": [
+     "0a",
+     "0d",
+     "0e"
+    ],
+    "metadata_location": {
+     "section": "9.7",
+     "table": "443",
+     "line_hint": 9689
+    },
+    "metadata_reason": "review majors 1, 4 and 5",
+    "metadata_n_values": 2,
+    "metadata_value_status": {
+     "CORRECTED": 2
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "**Sharpening and the circuit.** The base-model experiment and the record audit bear on the same nodes. Iteration 8's circuit found a late stack of fork-position MLPs and heads; the patching test shows that this stack also carries most of the base-to-instruct difference on minimum spanning tree, but so do random late-layer sets, as in iteration 8's steering at dose 2, where the matched random five also flipped the algorithm. Specificity fails at the same place under three methods: steering, DAS and now patching. The layer-0 condition-span node, repaired, holds out at about half its pair-prompt effect without surviving its family's Holm adjustment, and the motif comparison still reads a different condition share when the contrasts are matched in kind.",
+    "output": "**Sharpening and the circuit.** The base-model experiment and the record audit bear on the same nodes. Iteration 8's circuit found a late stack of fork-position MLPs and heads; the patching test shows that this stack also carries most of the base-to-instruct difference on minimum spanning tree, but so do random late-layer sets, as in iteration 8's steering at dose 2, where the matched random five also flipped the algorithm. Specificity fails at the same place under three methods: steering, DAS and now patching. The layer-0 condition-span node, repaired, holds out at about 7.9 nats on the five forced prompts, close to its pair-prompt values, and about 0 on the five padded twins (its mean of 3.86 averages the two sides) (iteration-10 correction), without surviving its family's Holm adjustment, and the motif comparison still reads a different condition share when the contrasts are matched in kind.",
+    "metadata_id": "E-9.7-circuit",
+    "metadata_items": [
+     "0f"
+    ],
+    "metadata_location": {
+     "section": "9.7",
+     "table": null,
+     "line_hint": 9697
+    },
+    "metadata_reason": "review minor 1",
+    "metadata_n_values": 1,
+    "metadata_value_status": {
+     "CORRECTED": 1
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "**Table 444.** Verdicts of the claims of iteration 9.\n\n| Claim | Committed verdict | Deciding evidence |\n|-|-|-|\n| Rename gap (primary) | Bars met; descriptive (tracer gate failed) | Pooled gap 0.70 (0.57 to 0.82) runtime, 0.61 (0.45 to 0.76) tracer; positive in 10 of 10 configurations under both; reasoning names a banned alias in 0.91 to 1.00 of covert programs |\n| Survivor reading (primary) | Instruments disagree; descriptive | 0.79 (runtime), 0.43 (tracer) of 91 survivors in a banned class against a 0.6 bar and a 0.6 null; hand reads of 76 survivors 0.30, at the disconfirming bar, all unit-weight Dijkstra |\n| Exhaustion curve (primary) | Bars met in both models; descriptive | Mechanistic compliance 1.00 to 0.22 (Qwen3-32B) and 1.00 to 0.10 (Qwen3-14B), trend p 0.00001; lexical at or above 0.86; held-out gaps 0.56 and 0.68; the tracer's curve is weaker and not monotone |\n| Name-free landing (primary) | MIXED (the committed outcome for a split) | Edge on the program manifold (0.67; robust to source and readout; 15 of 15 survivors edge), opposite on the described (1.08), name-only (1.20) and named (1.63) manifolds; the named manifold's reproduction gate failed (0.894) |\n| Rotated sets (secondary) | Disconfirmed | Joint sign in 3 of 7 sets (p 0.24) |\n| Second task (secondary) | Not run | Lost at gen_art |\n| Discovery with an evaluator (secondary) | Not run | Lost at gen_art (bin packing and TSP) |\n| Sharpening measurement (secondary) | Partial | Gemma grid gain 1.78 nats with the argmax different on 20 of 20; phrasing entropy change at most 0.50; fork divergence 0.75 to 1.18 times entropy-matched positions; Llama descriptive |\n| Patching test (secondary) | Partial; distributed | Fork stack 1.00 on minimum spanning tree but random sets 0.81 (p 0.45); 0.45 on connected components (p 0.020 against random); task-specification nodes about 0; unembedding 0.43 and 0.85 |\n| Held-out rerun (secondary) | Reported | Layer-0 node 3.86 and 3.85 nats held out (p 0.0625 and 0.023; Holm 0.22 and 0.12), half its pair values; motif still differs on condition share |\n| Record repair | Done | 49 corrections; every review item answered in place; 400 checks, 0 mismatches |",
+    "output": "**Table 444.** Verdicts of the claims of iteration 9 (iteration-10 correction).\n\n| Claim | Committed verdict | Deciding evidence |\n|-|-|-|\n| Rename gap (primary) | Bars met; descriptive (tracer gate failed) | Pooled gap 0.70 (0.57 to 0.82) runtime, 0.61 (0.45 to 0.76) tracer; positive in 10 of 10 configurations under both; reasoning names a banned alias in 0.91 to 1.00 of covert programs |\n| Survivor reading (primary) | Instruments disagree; descriptive | 0.79 (runtime), 0.43 (tracer) of 91 survivors in a banned class against a 0.6 bar and a 0.6 null; hand reads of 76 survivors 0.30, at the disconfirming bar, all unit-weight Dijkstra |\n| Exhaustion curve (primary) | Bars met in both models by the runtime label; reading-dependent; descriptive | By the runtime label mechanistic compliance 1.00 to 0.22 (Qwen3-32B) and 1.00 to 0.10 (Qwen3-14B), trend p 0.00001; lexical at or above 0.86; held-out gaps 0.56 and 0.68. By reading: Qwen3-14B meets the bars under every reading except the tracer's fine classes on held-out templates (0.38); Qwen3-32B meets them only by the runtime label (k = 5 gaps: hand reads 0.30, tracer 0.22, tracer fine 0.15), and its tracer curve is not monotone |\n| Name-free landing (primary) | MIXED (the committed outcome for a split) | Edge on the program manifold (0.67; robust to source and readout; 15 of 15 survivors edge on the primary frame, 10 of 15 on the programs-only frame), opposite on the described (1.08), name-only (1.20) and named (1.63) manifolds; the named manifold's reproduction gate failed (0.894) |\n| Rotated sets (secondary) | Disconfirmed | Joint sign in 3 of 7 sets (p 0.24) |\n| Second task (secondary) | Not run | Lost at gen_art |\n| Discovery with an evaluator (secondary) | Not run | Lost at gen_art (bin packing and TSP) |\n| Sharpening measurement (secondary) | Partial | Gemma grid gain 1.78 nats with the argmax different on 20 of 20; phrasing entropy change at most 0.50; fork divergence 0.75 to 1.18 times entropy-matched positions; Llama descriptive |\n| Patching test (secondary) | Partial; distributed | Fork stack 1.00 on minimum spanning tree but random sets 0.81 (p 0.45); 0.45 on connected components (p 0.020 against random); task-specification nodes about 0; unembedding 0.43 and 0.85 |\n| Held-out rerun (secondary) | Reported | Layer-0 node about 7.9 nats on the five forced prompts, close to its pair-prompt values, and about 0 on the five padded twins; the mean of 3.86 averages the two sides (3.85 steering; p 0.0625 and 0.023; Holm 0.22 and 0.12; five contrasts give p 0.031 one-sided, the floor); motif still differs on condition share |\n| Record repair | Done | 49 corrections; every review item answered in place; 400 checks, 0 mismatches |",
+    "metadata_id": "E-T444",
+    "metadata_items": [
+     "0a",
+     "0d",
+     "0f"
+    ],
+    "metadata_location": {
+     "section": "9.8",
+     "table": "444",
+     "line_hint": 9703
+    },
+    "metadata_reason": "review majors 1 and 4, minor 1",
+    "metadata_n_values": 2,
+    "metadata_value_status": {
+     "CORRECTED": 1,
+     "NEW": 1
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "**Established.** A ban of five path-algorithm names is obeyed by name far more often than by expansion order. The gap is 0.70 pooled over ten configurations with the runtime label and 0.61 with the tracer, positive in every configuration, and in the three configurations with reasoning nearly every covert program comes with reasoning that names a banned algorithm (descriptive, because the tracer failed its gold gate). Under cumulative bans, mechanistic compliance falls from 1.00 at one name to 0.22 (Qwen3-32B) and 0.10 (Qwen3-14B) at five while lexical compliance stays at or above 0.86: banning one name changes the mechanism, banning the repertoire moves compliance to the names. The survivors of the obeying models are mostly not renamed BFS. By hand reads, 0.30 are unit-weight Dijkstra, which is BFS order on a unit grid, and the rest are known algorithms with other expansion disciplines (grid Bellman-Ford, coordinate-key heaps, random frontiers); judges' names are unreliable for exactly these programs. On manifolds built from text, unit-weight Dijkstra lies opposite the banned five, and on the manifold built from its name-scrubbed programs it lies at the edge, robust to the program source and the readout; all 15 survivors place at the edge. The language manifolds track lexical distance; the program manifold tracks behaviour, surface and length together. Post-training sharpened Gemma's grid fork by 1.78 nats and reversed the base model's preference there (20 of 20 prompts); in Qwen3-8B the sharpening is not written upstream of the fork but by late MLPs and, for most of the connected-components gap, by the unembedding.",
+    "output": "**Established.** A ban of five path-algorithm names is obeyed by name far more often than by expansion order. The gap is 0.70 pooled over ten configurations with the runtime label and 0.61 with the tracer, positive in every configuration, and in the three configurations with reasoning nearly every covert program comes with reasoning that names a banned algorithm (descriptive, because the tracer failed its gold gate). Under cumulative bans lexical compliance stays at or above 0.86, and mechanistic compliance at five names depends on the reading (iteration-10 correction): by the runtime label it falls from 1.00 at one name to 0.22 (Qwen3-32B) and 0.10 (Qwen3-14B); by hand reads to 0.59 and 0.12; by the tracer to 0.67 and 0.24 (fine classes 0.74 and 0.37). Banning one name changes the mechanism; banning the whole repertoire is answered by renaming in Qwen3-14B under every reading except the fine tracer on held-out templates, while Qwen3-32B moves mostly to other known disciplines. A ban described without names changes mechanistic compliance by an instrument-dependent amount (+0.58 by the runtime label, -0.07 by the tracer, about +0.21 under the per-cell reading; exploratory). By hand reads the survivors of the obeying models are mostly not renamed BFS: 0.30 are unit-weight Dijkstra (BFS order under another name) and 0.70 are known algorithms with other expansion disciplines (grid Bellman-Ford, coordinate-key heaps, random frontiers); judges' names are unreliable for exactly these programs, and the instruments disagree on them (by the runtime label 0.79 and by the tracer 0.43 of Qwen3-32B's 91 name-level survivors are in a banned class). On manifolds built from text, unit-weight Dijkstra lies opposite the banned five, and on the manifold built from its name-scrubbed programs it lies at the edge, robust to the program source and the readout; its 15 survivors place at the edge on the primary frames (15 of 15) and 10 of 15 on the Qwen3-32B programs-only frame, while the 15 Bellman-Ford/SPFA survivors place opposite on both gate-passing Qwen3-32B frames ('opposite' relative to the median of two reference classes; not preregistered). The language manifolds track lexical distance and textbook data-structure attributes, not measured expansion order; the program manifold tracks behaviour, surface and length together. Post-training sharpened Gemma's grid fork by 1.78 nats and reversed and concentrated the base model's preference there (20 of 20 prompts; base P(BFS) 0.25, 0.663 of base mass unmapped); in Qwen3-8B the sharpening is not written upstream of the fork but by late MLPs and, for most of the connected-components gap, by the unembedding.",
+    "metadata_id": "E-9.8-established",
+    "metadata_items": [
+     "0a",
+     "0c",
+     "0d",
+     "0e",
+     "0i"
+    ],
+    "metadata_location": {
+     "section": "9.8",
+     "table": null,
+     "line_hint": 9717
+    },
+    "metadata_reason": "review majors 1, 3, 4, 5 and minor 4: the established claims restated per reading",
+    "metadata_n_values": 2,
+    "metadata_value_status": {
+     "NEW": 1,
+     "MATCH": 1
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "- *Discovery on online bin packing* (NOV-B): an evaluator-guided island search with Qwen3-8B as mutator in FunSearch's priority-function setting, comparing at matched calls temperature 1.0, temperature 1.6, branching at the decision token, the same branching at a random position and an instruction to differ from both parents, scored on held-out instances against best fit and published discovered heuristics. Lost at gen_art; no artifact.",
+    "output": "- *Discovery on online bin packing* (NOV-B): an evaluator-guided island search with Qwen3-8B as mutator in FunSearch's priority-function setting, comparing at matched calls temperature 1.0, temperature 1.6, branching at the decision token, the same branching at a random position and an instruction to differ from both parents, scored on held-out instances against best fit and published discovered heuristics. Lost at gen_art; no artifact. Before the failure the harness was built and passed its gate (iteration-10 correction): G-HARNESS PASS, with best fit at 5.37% excess on OR3 and 3.98% on Weibull 5k reproduced, FunSearch's published heuristics at 3.11% and 0.68%, and the priority-form first, best and worst fit equal to the hand-coded packers; iteration 10's evaluator search reuses it, and no search ran in iteration 9.",
+    "metadata_id": "E-9.6-novb",
+    "metadata_items": [
+     "0j"
+    ],
+    "metadata_location": {
+     "section": "9.6",
+     "table": null,
+     "line_hint": 9680
+    },
+    "metadata_reason": "review minor 5: the harness passed its gate before the failure",
+    "metadata_n_values": 1,
+    "metadata_value_status": {
+     "MATCH": 1
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "Iteration 10 is the last. Three leads remain from this one. First, the edge-or-opposite answer is now split by the kind of map: opposite on every manifold built from language, at the edge on the manifold built from programs, for the one survivor algorithm that is a banned mechanism under another name. Two steps would make it decisive. One is a program manifold whose classes can be separated from surface and length, with more non-banned algorithms above the floor. The other is placing the other survivor families, the grid Bellman-Ford rounds and coordinate-key heaps, which are known but genuinely different disciplines. Second, the names-against-mechanisms numbers are descriptive because the tracer failed on iterative deepening; an instrument that reads those programs would turn the strongest behavioural finding of this iteration into a test. Third, the request's \"truly novel\" question has still not met the one route left untried, an evaluator-guided search on a task with a measurable score; the bin-packing and TSP plans were lost before they ran, so the question stays open, not answered. The sharpening reading can be stated for Qwen3-8B and Gemma at the fork, with Llama descriptive and the base-entropy confound of Cantarero et al. carried, and does not need another experiment to be written up.",
+    "output": "Iteration 10 is the last. Three leads remain from this one. First, the edge-or-opposite answer is now split by the kind of map: opposite on every manifold built from language, at the edge on the manifold built from programs, for the one survivor algorithm that is a banned mechanism under another name. Two steps would make it decisive. One is a program manifold whose classes can be separated from surface and length, with more non-banned algorithms above the floor. The other is placing the remaining survivor families (iteration-10 correction): the record's placement file already places iteration 8's grid Bellman-Ford/SPFA survivors, which land opposite on both gate-passing Qwen3-32B frames (15 of 15; 'opposite' is relative to the median of the two non-banned reference classes, and the placement was not preregistered), while the unit-weight Dijkstra survivors place at the edge (15 of 15 on the primary frames, 10 of 15 on the programs-only frame); the coordinate-key heaps have no landing yet, and TP-G2's preregistered placements address both. Second, the names-against-mechanisms numbers are descriptive because the tracer failed on iterative deepening; an instrument that reads those programs would turn the strongest behavioural finding of this iteration into a test. Third, the request's \"truly novel\" question has still not met the one route left untried, an evaluator-guided search on a task with a measurable score; the bin-packing and TSP plans were lost before they ran, so the question stays open, not answered; the bin-packing harness had been built and had passed its gate before the loss (best fit 5.37% and 3.98% excess reproduced; FunSearch's heuristics 3.11% and 0.68%), iteration 10's evaluator search reuses it, and no search ran in iteration 9 (iteration-10 correction). The sharpening reading can be stated for Qwen3-8B and Gemma at the fork, with Llama descriptive and the base-entropy confound of Cantarero et al. carried, and does not need another experiment to be written up.",
+    "metadata_id": "E-9.9",
+    "metadata_items": [
+     "0d",
+     "0j"
+    ],
+    "metadata_location": {
+     "section": "9.9",
+     "table": null,
+     "line_hint": 9727
+    },
+    "metadata_reason": "review major 4 and minor 5",
+    "metadata_n_values": 2,
+    "metadata_value_status": {
+     "NEW": 1,
+     "MATCH": 1
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "Post-training made those margins, and the instruct default is a sharpened choice of the base model, not its mean answer. On the three collapsed Qwen3-8B tasks the instruct fork margin exceeds the base model's by 2.1 to 13.4 nats while phrasing entropy moves by under 0.5 nats, and the default is the base model's second or third choice at the fork. In Gemma the grid fork gains 1.78 nats and the base model prefers the other class on all 20 prompts, while the first-and-last-position forks sharpen the base model's own first choice (3.07 and 1.68 nats); Llama could be compared only without its chat template and is descriptive. That post-training shifts concentrate at forks of high base entropy is shown by Cantarero et al. [142] and Sparse but Critical [143], and the run confirms the confound they control: at Gemma's forks the base-instruct divergence is 4.7 to 6.6 times that of phrasing positions but only 0.75 to 1.18 times that of positions matched for base entropy. What the run adds is the algorithm-level outcome on code at counterfactually located forks, and where the sharpening lives in Qwen3-8B. It is not written upstream at the task-specification nodes (shares -0.02 and -0.17). It sits at the fork, in late MLPs (layers 26 to 35, redundantly) and in the unembedding, which alone carries 0.43 of the minimum spanning tree gap and 0.85 of the connected components gap. The validated fork stack closes the whole minimum spanning tree gap, but random late-layer sets close a median 0.81 of it. In generation, patching the fork stack with base outputs turns 19 of 30 minimum spanning tree programs into correct Prim against 0 for the twin, exactly as a matched random set does, and on connected components only splicing the base model's whole fork distribution brings DFS back (18 of 30).",
+    "output": "Post-training made those margins, and the instruct default is a sharpened choice of the base model, not its mean answer. On the three collapsed Qwen3-8B tasks the instruct fork margin exceeds the base model's by 2.1 to 13.4 nats while phrasing entropy moves by under 0.5 nats, and the default is the base model's second or third choice at the fork. In Gemma the grid fork gains 1.78 nats and the base model prefers the other class on all 20 prompts, while the first-and-last-position forks sharpen the base model's own first choice (3.07 and 1.68 nats); Llama could be compared only without its chat template and is descriptive. That post-training shifts concentrate at forks of high base entropy is shown by Cantarero et al. [142] and Sparse but Critical [143], and the run confirms the confound they control: at Gemma's forks the base-instruct divergence is 4.7 to 6.6 times that of phrasing positions but only 0.75 to 1.18 times that of positions matched for base entropy. What the run adds is the algorithm-level outcome on code at counterfactually located forks, and where the sharpening lives in Qwen3-8B. It is not written upstream at the task-specification nodes (shares -0.02 and -0.17). It sits at the fork, in late MLPs (layers 26 to 35, redundantly) and in the unembedding, which alone carries 0.43 of the minimum spanning tree gap and 0.85 of the connected components gap. The validated fork stack closes the whole minimum spanning tree gap, but random late-layer sets close a median 0.81 of it; most of those sets repeat a component, and the 49 sets of ten distinct components keep a median 0.80, so specificity there stays unresolved until BASE-W's draws without reuse (iteration-10 correction). In generation, patching the fork stack with base outputs turns 19 of 30 minimum spanning tree programs into correct Prim against 0 for the twin, exactly as a matched random set does, and on connected components only splicing the base model's whole fork distribution brings DFS back (18 of 30).",
+    "metadata_id": "E-closing-sharpening",
+    "metadata_items": [
+     "0g"
+    ],
+    "metadata_location": {
+     "section": "What we have learned so far",
+     "table": null,
+     "line_hint": 9737
+    },
+    "metadata_reason": "review minor 2",
+    "metadata_n_values": 1,
+    "metadata_value_status": {
+     "NEW": 1
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "Internal handles exist in both families, and under one protocol none is a certified variable. In Qwen3-8B, exchanging the task specification states of a ban or a forced instruction into a neutral twin transfers the algorithm. A DAS subspace of rank 1 or 2 at blocks 12 to 23 matches that exchange for ban sources, while permuted labels transfer 0.47 to 0.70 of the slots, an untrained network admits the fit, the reverse interchange does not restore the default, and the effect of scaling it is a ramp. At the fork itself, a rank-4 edit moves the written algorithm in both families. Under the committed rule it is a sufficient handle in Gemma (22 of 30 correct BFS against 6 unedited) and NO HANDLE at Qwen3-8B's fork, where the edit toward DFS gives 29 of 30 correct DFS but the edit toward BFS writes BFS in 29 of 30 programs and 24 fail (pass 0.20 against 0.83). Neither passes the specificity controls: fits on permuted labels reach 0.11 to 0.87 of the true fit's effect, fits on a randomly initialised network 0.41 to 0.69, and both forks show the off-manifold overshoot Makelov et al. warn of [122]; at block 24, where the full state carries the class, the specificity failures remain [132]. In Gemma, the iteration-7 dial is dormant by the shared rule (it keeps 0.18 to 0.28 of its effect inside the twins' natural variation) but lies inside the variation that prompts induce; it works in free generation (38 of 50 correct BFS against 13), within the range of prompt wordings (14 to 49; the committed wording 32, the best 49). Prompting with the dial's prefill fails (0 of 50), because the prefilled opening is off-policy for the forced prompt and selects a BFS implementation without a wall check. Path-patching circuits for the fork margin, validated against matched random components in the real model, show that a late stack of fork-position MLPs and heads carries the fork logit in both families. The committed motif test reads different motif (condition share 0.01, depth 0.86, against Gemma's bands [0.21, 0.51] and [0.45, 0.80]), the post hoc sweep still misses the condition and depth bands (forced-Prim condition share 0.17; every minimum spanning tree row depth 0.86 to 0.96), and matched in kind the condition share still differs (natural contrasts 0.08 against 0.37; forced 0.01 against 0.34). The layer-0 condition-span MLP rests on its 20 pair prompts (8.14 and 7.41 nats) and on the natural contrast: iteration 8's held-out edit was never applied, and the repaired held-out arm gives 3.86 and 3.85 nats (p 0.0625 and 0.023; Holm 0.22 and 0.12 in its family). Steering the top five Qwen3-8B nodes rewrites the algorithm (29 of 30 Prim; 29 of 30 DFS) with every program passing, but at the committed dose matched random components do nearly as much, and the circuit separates from them only at a lower dose (24:0 at dose 0.5 on connected components; 6:1 on minimum spanning tree weight). Specificity fails at the same late fork-position sites under steering, DAS and cross-model patching. A natural language autoencoder on Qwen2.5-7B-Instruct names the algorithm only where the prompt names it, and an outside reader of the visible text predicts it better. The read position is inert as a carrier in Qwen3-8B and in that reading.",
+    "output": "Internal handles exist in both families, and under one protocol none is a certified variable. In Qwen3-8B, exchanging the task specification states of a ban or a forced instruction into a neutral twin transfers the algorithm. A DAS subspace of rank 1 or 2 at blocks 12 to 23 matches that exchange for ban sources, while permuted labels transfer 0.47 to 0.70 of the slots, an untrained network admits the fit, the reverse interchange does not restore the default, and the effect of scaling it is a ramp. At the fork itself, a rank-4 edit moves the written algorithm in both families. Under the committed rule it is a sufficient handle in Gemma (22 of 30 correct BFS against 6 unedited) and NO HANDLE at Qwen3-8B's fork, where the edit toward DFS gives 29 of 30 correct DFS but the edit toward BFS writes BFS in 29 of 30 programs and 24 fail (pass 0.20 against 0.83). Neither passes the specificity controls: fits on permuted labels reach 0.11 to 0.87 of the true fit's effect, fits on a randomly initialised network 0.41 to 0.69, and both forks show the off-manifold overshoot Makelov et al. warn of [122]; at block 24, where the full state carries the class, the specificity failures remain [132]. In Gemma, the iteration-7 dial is dormant by the shared rule (it keeps 0.18 to 0.28 of its effect inside the twins' natural variation) but lies inside the variation that prompts induce; it works in free generation (38 of 50 correct BFS against 13), within the range of prompt wordings (14 to 49; the committed wording 32, the best 49). Prompting with the dial's prefill fails (0 of 50), because the prefilled opening is off-policy for the forced prompt and selects a BFS implementation without a wall check. Path-patching circuits for the fork margin, validated against matched random components in the real model, show that a late stack of fork-position MLPs and heads carries the fork logit in both families. The committed motif test reads different motif (condition share 0.01, depth 0.86, against Gemma's bands [0.21, 0.51] and [0.45, 0.80]), the post hoc sweep still misses the condition and depth bands (forced-Prim condition share 0.17; every minimum spanning tree row depth 0.86 to 0.96), and matched in kind the condition share still differs (natural contrasts 0.08 against 0.37; forced 0.01 against 0.34). The layer-0 condition-span MLP rests on its 20 pair prompts (8.14 and 7.41 nats) and on the natural contrast: iteration 8's held-out edit was never applied, and the repaired held-out arm gives about 7.9 nats on the five forced prompts (7.90 and 7.65) and about 0 on the five padded twins; its means of 3.86 and 3.85 nats average the two sides (p 0.0625 and 0.023; Holm 0.22 and 0.12 in its family; five contrasts cannot reach two-sided 0.05) (iteration-10 correction). Steering the top five Qwen3-8B nodes rewrites the algorithm (29 of 30 Prim; 29 of 30 DFS) with every program passing, but at the committed dose matched random components do nearly as much, and the circuit separates from them only at a lower dose (24:0 at dose 0.5 on connected components; 6:1 on minimum spanning tree weight). Specificity fails at the same late fork-position sites under steering, DAS and cross-model patching. A natural language autoencoder on Qwen2.5-7B-Instruct names the algorithm only where the prompt names it, and an outside reader of the visible text predicts it better. The read position is inert as a carrier in Qwen3-8B and in that reading.",
+    "metadata_id": "E-closing-handles",
+    "metadata_items": [
+     "0f"
+    ],
+    "metadata_location": {
+     "section": "What we have learned so far",
+     "table": null,
+     "line_hint": 9741
+    },
+    "metadata_reason": "review minor 1",
+    "metadata_n_values": 1,
+    "metadata_value_status": {
+     "CORRECTED": 1
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "A single prompt ban, where the model obeys it, removes the default and the output collapses on one replacement: Bellman-Ford/SPFA on shortest path, DFS on the grid, and quickselect and size k heap, brute force, index marking and BFS on the bench tasks where Qwen3-8B obeys. Shown a correct program of another algorithm and told not to use it, the model goes home to its default. How often a ban is obeyed depends on its wording more than on anything else measured, and the template that states only that the algorithm is not allowed here is the weakest in every artifact and model tested. A ban of five names is obeyed by name far more often than by mechanism. Read by runtime expansion order over 546 programs in ten configurations, lexical compliance exceeds mechanistic compliance by 0.70 (runtime label) or 0.61 (tracer), in every configuration, and in the three configurations with reasoning nearly every covert program comes with reasoning that names a banned algorithm; the tracer failed its gold gate on iterative deepening, so these numbers are descriptive. The gap is a property of exhausting the repertoire. Under cumulative bans of one to five names, Qwen3-32B and Qwen3-14B with thinking comply by name and by mechanism at one name (1.00), and mechanistic compliance falls to 0.22 and 0.10 at five names while lexical compliance stays at or above 0.86. Among ten open configurations only Qwen3-32B with thinking obeys the five-name ban often (17 of 50 correct survivors on the screen, 21 of 50 on held-out templates), at a cost of about 2,200 more reasoning tokens and a 46% truncation rate. The survivors of the full ban are mostly not renamed BFS: by hand reads of 76 survivors of Qwen3-32B and Qwen3-14B, 0.30 are unit-weight Dijkstra, which is BFS order on a unit grid, and the rest are known algorithms with other expansion disciplines (grid Bellman-Ford rounds, heaps keyed by goal-independent coordinates, random frontiers), which the judges often misname. The answer to the request's edge-or-opposite question depends on the map. On every manifold built from language, the named prompts, name-only sentences and name-free descriptions that the model names correctly, unit-weight Dijkstra lies opposite the banned five (g 1.63, 1.20 and 1.08 times the median of the non-banned algorithms). On the manifold built from its name-scrubbed programs it lies at the edge (0.67), robustly, and all 15 survivors place at the edge. The language manifolds track lexical distance between the names (Spearman 0.46 to 0.57 with a lexical matrix), and alias-level distance follows shared words across algorithms but not within them. The program manifold tracks behaviour, surface and length alike, so its edge is an edge in what the program does and in how it looks. The ban prompts themselves move toward two of the banned algorithms on the named manifold, and a push inside that manifold toward the survivors of a top-five ban produced BFS in all 300 programs: the geometry is correlational.",
+    "output": "A single prompt ban, where the model obeys it, removes the default and the output collapses on one replacement: Bellman-Ford/SPFA on shortest path, DFS on the grid, and quickselect and size k heap, brute force, index marking and BFS on the bench tasks where Qwen3-8B obeys. Shown a correct program of another algorithm and told not to use it, the model goes home to its default. How often a ban is obeyed depends on its wording more than on anything else measured, and the template that states only that the algorithm is not allowed here is the weakest in every artifact and model tested. A ban of five names is obeyed by name far more often than by mechanism. Read by the runtime label (heap priorities, frontier evidence, restarts) and by the expansion-order tracer over 546 programs in ten configurations, lexical compliance exceeds mechanistic compliance by 0.70 (runtime label) or 0.61 (tracer), 0.66 if unit-weight Dijkstra, IDA* and jump point search count as compliant (iteration-10 correction), in every configuration, and in the three configurations with reasoning nearly every covert program comes with reasoning that names a banned algorithm; the tracer failed its gold gate on iterative deepening, so these numbers are descriptive. The gap is a property of exhausting the repertoire. Under cumulative bans of one to five names, Qwen3-32B and Qwen3-14B with thinking comply by name and by mechanism at one name (1.00), and by the runtime label mechanistic compliance falls to 0.22 and 0.10 at five names (by hand reads 0.59 and 0.12; by the tracer 0.67 and 0.24) while lexical compliance stays at or above 0.86; Qwen3-14B meets the committed 0.4 gap under every reading except the tracer's fine classes on held-out templates (0.38), and Qwen3-32B only by the runtime label. A ban described without names moves mechanistic compliance by an instrument-dependent amount (+0.58 by the runtime label, -0.07 by the tracer, about +0.21 under the per-cell reading). Among ten open configurations only Qwen3-32B with thinking obeys the five-name ban often (17 of 50 correct survivors on the screen, 21 of 50 on held-out templates), at a cost of about 2,200 more reasoning tokens and a 46% truncation rate. By hand reads of 76 survivors of Qwen3-32B and Qwen3-14B, the survivors of the full ban are mostly not renamed BFS: 0.30 are unit-weight Dijkstra, which is BFS order on a unit grid, and the rest are known algorithms with other expansion disciplines (grid Bellman-Ford rounds, heaps keyed by goal-independent coordinates, random frontiers), which the judges often misname. The answer to the request's edge-or-opposite question depends on the map. On every manifold built from language, the named prompts, name-only sentences and name-free descriptions that the model names correctly, unit-weight Dijkstra lies opposite the banned five (g 1.63, 1.20 and 1.08 times the median of the non-banned algorithms). On the manifold built from its name-scrubbed programs it lies at the edge (0.67), robustly; its survivors place at the edge on the primary frames (15 of 15) and on 10 of 15 on the Qwen3-32B programs-only frame, and the 15 Bellman-Ford/SPFA survivors place opposite on both gate-passing Qwen3-32B frames (relative to the median of two reference classes; not preregistered). The language manifolds track lexical distance between the names and textbook data-structure attributes, not measured expansion order (Spearman 0.46 to 0.57 with a lexical matrix; 0.65 with a data-structure matrix on the named Qwen3-32B manifold, each surviving the other in partial RSA, descriptively), and alias-level distance follows shared words across algorithms but not within them. The program manifold tracks behaviour, surface and length alike, so its edge is an edge in what the program does and in how it looks. The ban prompts themselves move toward two of the banned algorithms on the named manifold, and a push inside that manifold toward the survivors of a top-five ban produced BFS in all 300 programs: the geometry is correlational.",
+    "metadata_id": "E-closing-ban",
+    "metadata_items": [
+     "0a",
+     "0c",
+     "0d",
+     "0e",
+     "0h"
+    ],
+    "metadata_location": {
+     "section": "What we have learned so far",
+     "table": null,
+     "line_hint": 9743
+    },
+    "metadata_reason": "review majors 1, 3, 4, 5 and minor 3",
+    "metadata_n_values": 4,
+    "metadata_value_status": {
+     "NEW": 1,
+     "CORRECTED": 2,
+     "MATCH": 1
+    },
+    "eval_applied_once": 1.0
+   },
+   {
+    "input": "What remains open follows from this. First, whether the program manifold's edge is an edge in mechanism or in surface: a program map whose classes separate behaviour from surface and length, with more non-banned algorithms above the floor, and landings for the survivor families other than unit-weight Dijkstra. Second, an instrument that reads iterative deepening, IDA* and jump point search, so that the names-against-mechanisms measurements can become tests. Third, whether a variable for the algorithm exists anywhere: specificity fails at the late fork-position sites under every method tried, and the off-manifold failures vanish only where the full state carries the class. Fourth, evolutionary or island search with an evaluator on a scored task, the only route to novelty not yet run. Of the items of the request, these have been run. Geometry plots in actual activation coordinates exist at a position that depends on the label (iteration 2), at the plan site (iteration 4), for the top five prohibition and the fork (iteration 6), and in the fitted DAS coordinates (iterations 7 and 8). They also exist at the fork for every dosed arm and for the forced prompts of ten algorithms with the ban prompts of the model that obeys (iteration 8), and on four manifolds of the ten algorithms built with and without names, in two models (iteration 9). They use geodesic distances, Isomap, MDS and centroids sized by implemented count. The top five prohibition was applied by prompt, token veto, plan push and push inside the manifold, screened across ten configurations, read by runtime expansion order, cumulated one name at a time and described without names. Natural BFS against DFS internals were read within a ban in Qwen3-8B and within one prompt in Gemma, with circuits for the fork in both. Thought anchors and forks, the logit and tuned lenses, the test under the same seed with thinking on and off and with top-k 10, the mean-answer question (answered at the fork by base-model comparisons in Qwen3-8B and Gemma and by cross-model patching), natural language autoencoders, sparse autoencoders, DAS with the published controls under one protocol, circuits with path patching and evolutionary search with an evaluator were all run.",
+    "output": "What remains open follows from this. First, whether the program manifold's edge is an edge in mechanism or in surface: a program map whose classes separate behaviour from surface and length, with more non-banned algorithms above the floor, and landings for the survivor families other than unit-weight Dijkstra. Second, an instrument that reads iterative deepening, IDA* and jump point search, so that the names-against-mechanisms measurements can become tests. Third, whether a variable for the algorithm exists anywhere: specificity fails at the late fork-position sites under every method tried, and the off-manifold failures vanish only where the full state carries the class. Fourth, evolutionary or island search with an evaluator on a scored task, the only route to novelty not yet run. Of the items of the request, these have been run. Geometry plots in actual activation coordinates exist at a position that depends on the label (iteration 2), at the plan site (iteration 4), for the top five prohibition and the fork (iteration 6), and in the fitted DAS coordinates (iterations 7 and 8). They also exist at the fork for every dosed arm and for the forced prompts of ten algorithms with the ban prompts of the model that obeys (iteration 8), and on four manifolds of the ten algorithms built with and without names, in two models (iteration 9). They use geodesic distances, Isomap, MDS and centroids sized by implemented count. The top five prohibition was applied by prompt, token veto, plan push and push inside the manifold, screened across ten configurations, read by the runtime label (heap priorities, frontier evidence, restarts) and by the expansion-order tracer (iteration-10 correction), cumulated one name at a time and described without names. Natural BFS against DFS internals were read within a ban in Qwen3-8B and within one prompt in Gemma, with circuits for the fork in both. Thought anchors and forks, the logit and tuned lenses, the test under the same seed with thinking on and off and with top-k 10, the mean-answer question (answered at the fork by base-model comparisons in Qwen3-8B and Gemma and by cross-model patching), natural language autoencoders, sparse autoencoders, DAS with the published controls under one protocol, circuits with path patching and evolutionary search with an evaluator were all run.",
+    "metadata_id": "E-closing-open",
+    "metadata_items": [
+     "0h"
+    ],
+    "metadata_location": {
+     "section": "What we have learned so far",
+     "table": null,
+     "line_hint": 9749
+    },
+    "metadata_reason": "review minor 3",
+    "metadata_n_values": 1,
+    "metadata_value_status": {
+     "CORRECTED": 1
+    },
+    "eval_applied_once": 1.0
+   }
+  ]
+ }
+}
