@@ -1,0 +1,287 @@
+{
+ "utc": "2026-10-24T19:45:00Z",
+ "queries": [
+  "RAISE LLM automated heuristic design distribution shift online bin packing arXiv 2606.31801",
+  "EoH-S evolution of heuristic set complementary heuristics online bin packing AAAI 2026",
+  "\"What Makes an LLM a Good Optimizer\" trajectory analysis bin packing priority function arXiv 2604.19440",
+  "ELMER mutation strength DPO LLM evolutionary program search arXiv 2608.10196",
+  "token entropy forking tokens branching mutation LLM program search evolutionary heuristic design",
+  "RefineEvo arXiv 2607.11358 heuristic",
+  "EvoTune evolutionary search reinforcement learning LLM algorithm discovery bin packing",
+  "CALM co-evolution LLM automatic heuristic design fine-tuning online bin packing",
+  "BehaveSim behavioral similarity heuristics LLM ICLR 2026",
+  "\"Forking Paths in Neural Text Generation\" ICLR 2025 forking tokens",
+  "ARPO agentic reinforced policy optimization entropy-based adaptive rollout branching",
+  "AdapT adaptive temperature sampling code generation LLM",
+  "\"Fork-Patched Decoding\" OR \"DivAlgo\" OR \"Beneath the Diff\" LLM code diversity algorithm",
+  "AlphaEvolve coding agent scientific algorithmic discovery Gemini 2025 white paper"
+ ],
+ "tool": "built-in WebSearch/WebFetch (the aii-web-tools scholarly mode was not used; deviation logged). Quotes are short verbatim excerpts (the fetch tool caps quotes at 125 characters).",
+ "conclusion": "No source applies a decoding-time token-entropy fork (forced rank-2..8 token at the highest-entropy early position) as the mutation operator of LLM program search; the closest are ELMER (trained mutation-strength control), AdapT (entropy-adaptive temperature in code decoding) and the RL branching methods (ARPO, TreeRL, Beyond the 80/20).",
+ "sources": [
+  {
+   "source": "FunSearch (Romera-Paredes et al., Nature 2024)",
+   "url": "https://github.com/google-deepmind/funsearch/blob/2a2c8641f8590ae17ad98e82435cb1781a917957/bin_packing/bin_packing.ipynb",
+   "version": "commit 2a2c864",
+   "quotes": [
+    "Finds good assignment for online 1d bin packing."
+   ],
+   "verdict": "adjacent",
+   "note": "harness, prompt skeleton and the c12/c14 heuristics come from here; no token-level mutation operator",
+   "heuristic_code": "in corpus (c12, c14, c12-vec)"
+  },
+  {
+   "source": "EoH (Liu et al., ICML 2024)",
+   "url": "https://github.com/FeiLiu36/EoH/tree/472545785c936dcfc863d2bc0d6109cf23c7ce62/docs/Results/Prob1_OnlineBinPacking",
+   "version": "commit 4725457",
+   "quotes": [],
+   "verdict": "adjacent",
+   "note": "thought+code evolution; 60 published final-population programs",
+   "heuristic_code": "in corpus (EoH runs 1-3, 60 programs)"
+  },
+  {
+   "source": "EoH-S (Liu et al., AAAI 2026; arXiv 2508.03082)",
+   "url": "https://arxiv.org/abs/2508.03082",
+   "version": "v2, 20 Aug 2025",
+   "quotes": [
+    "Automated Heuristic Design (AHD) using Large Language Models (LLMs) has achieved notable success in recent years."
+   ],
+   "verdict": "adjacent",
+   "note": "evolves complementary heuristic SETS; repository github.com/FeiLiu36/EoH-S found (README fetched to ext/s3c/), but no OBP heuristic file was located within the time box",
+   "heuristic_code": "not retrieved"
+  },
+  {
+   "source": "ReEvo (Ye et al., NeurIPS 2024)",
+   "url": "https://github.com/ai4co/reevo/tree/6dce18257da5e11db2d138e417a2fffc5c72d05f",
+   "version": "commit 6dce182",
+   "quotes": [],
+   "verdict": "adjacent",
+   "note": "reflective evolution; problems/bpp_online/gpt.py returned HTTP 404 at the pinned commit",
+   "heuristic_code": "seed_func in corpus; gpt.py not retrievable (404)"
+  },
+  {
+   "source": "HSEvo (Dat et al., AAAI 2025)",
+   "url": "https://github.com/datphamvn/HSEvo/tree/f3afffabc2b458fddf70a42a8678758039671297",
+   "version": "commit f3afffa",
+   "quotes": [],
+   "verdict": "adjacent",
+   "note": "diversity indices on code embeddings (SWDI/CDI)",
+   "heuristic_code": "in corpus (HSEvo-gpt, HSEvo-reevo-seed)"
+  },
+  {
+   "source": "MCTS-AHD (Zheng et al., ICML 2025)",
+   "url": "https://github.com/zz1358m/MCTS-AHD-master/tree/ee9c4f424503c65a5fd2b899e6620ce86079fedb",
+   "version": "commit ee9c4f4",
+   "quotes": [],
+   "verdict": "adjacent",
+   "note": "tree search over heuristics",
+   "heuristic_code": "in corpus (MCTS-AHD-gpt)"
+  },
+  {
+   "source": "LLM4AD (Liu et al.)",
+   "url": "https://github.com/Optima-CityU/llm4ad/tree/ffb6acf64497be93932c98d25369352efd3865cf",
+   "version": "commit ffb6acf",
+   "quotes": [],
+   "verdict": "adjacent",
+   "note": "platform; template and tutorial programs",
+   "heuristic_code": "in corpus (template, tutorial)"
+  },
+  {
+   "source": "Zhang et al., arXiv 2407.10873",
+   "url": "https://arxiv.org/abs/2407.10873",
+   "version": "v1, 15 Jul 2024",
+   "quotes": [
+    "Automated heuristic design (AHD) has gained considerable attention"
+   ],
+   "verdict": "adjacent",
+   "note": "benchmark of EPS methods vs random sampling (our NS arm follows it)",
+   "heuristic_code": null
+  },
+  {
+   "source": "Herrmann & Pallez, arXiv 2510.27353",
+   "url": "https://arxiv.org/html/2510.27353",
+   "version": "HTML fetched 2026-10-23 (BP9)",
+   "quotes": [
+    "Minimum for a = 5 and b = 24",
+    "Minimum for a = 1 and b = 21"
+   ],
+   "verdict": "adjacent",
+   "note": "the ab family; FunSearch heuristics collapse to known principles",
+   "heuristic_code": "in corpus (full 3,843-member grid, published members, tuned member)"
+  },
+  {
+   "source": "RefineEvo, arXiv 2607.11358 (ICML 2026)",
+   "url": "https://arxiv.org/abs/2607.11358",
+   "version": "v1, 13 Jul 2026",
+   "quotes": [
+    "RefineEvo: Planning-Guided Heuristic Evolution with Bidirectional Experience"
+   ],
+   "verdict": "adjacent",
+   "note": "operator scheduling by a planner; code at an anonymous repository (not retrieved)",
+   "heuristic_code": "not retrieved"
+  },
+  {
+   "source": "RAISE, arXiv 2606.31801",
+   "url": "https://arxiv.org/html/2606.31801",
+   "version": "HTML as served 2026-10-24",
+   "quotes": [
+    "Automated Heuristic Design (AHD) with Large Language Models (LLMs) has shown remarkable progress"
+   ],
+   "verdict": "adjacent",
+   "note": "robustness to distribution shift via adversarial instance search; OBP heuristic printed in Appendix E.1.1",
+   "heuristic_code": "retrieved (Listing 1) -> corpus entry RAISE-appendixE.1.1"
+  },
+  {
+   "source": "What Makes an LLM a Good Optimizer?, arXiv 2604.19440 (Findings ACL 2026)",
+   "url": "https://arxiv.org/abs/2604.19440",
+   "version": "v1, 21 Apr 2026",
+   "quotes": [
+    "strong LLM optimizers behave as local refiners",
+    "weaker optimizers exhibit large semantic drift",
+    "novelty is beneficial only when the search remains sufficiently localized"
+   ],
+   "verdict": "adjacent",
+   "note": "trajectory analysis incl. an OBP priority-function task; no operator",
+   "heuristic_code": "no heuristic code (prompt template only)"
+  },
+  {
+   "source": "CALM, arXiv 2505.12285",
+   "url": "https://arxiv.org/abs/2505.12285",
+   "version": "search snippet 2026-10-24",
+   "quotes": [
+    "CALM: Co-evolution of Algorithms and Language Model for Automatic Heuristic Design"
+   ],
+   "verdict": "adjacent",
+   "note": "GRPO fine-tuning of the mutator during search; OBP among tasks",
+   "heuristic_code": "not retrieved"
+  },
+  {
+   "source": "EvoTune, arXiv 2504.05108",
+   "url": "https://arxiv.org/abs/2504.05108",
+   "version": "v4 (HTML)",
+   "quotes": [
+    "Algorithm Discovery With LLMs: Evolutionary Search Meets Reinforcement Learning"
+   ],
+   "verdict": "adjacent",
+   "note": "DPO fine-tuning of the mutator; bin packing among tasks",
+   "heuristic_code": "not retrieved"
+  },
+  {
+   "source": "ELMER, arXiv 2608.10196",
+   "url": "https://arxiv.org/abs/2608.10196",
+   "version": "v1, 10 Aug 2026",
+   "quotes": [
+    "Syntactic edit size is an unreliable proxy"
+   ],
+   "verdict": "adjacent",
+   "note": "conditions mutation strength (low/medium/high) by oDPO on Qwen3-8B; closest operator-control work, but trained, not a decoding-time token fork",
+   "heuristic_code": null
+  },
+  {
+   "source": "AlphaEvolve (DeepMind white paper, 2025)",
+   "url": "https://deepmind.google/discover/blog/alphaevolve",
+   "version": "white paper 2025",
+   "quotes": [
+    "an evolutionary coding agent that substantially enhances capabilities of state-of-the-art LLMs on highly challenging tasks"
+   ],
+   "verdict": "adjacent",
+   "note": "evolves whole codebases; no token-entropy operator",
+   "heuristic_code": null
+  },
+  {
+   "source": "Forking Paths in Neural Text Generation (Bigelow et al., ICLR 2025; arXiv 2412.07961)",
+   "url": "https://arxiv.org/abs/2412.07961",
+   "version": "ICLR 2025",
+   "quotes": [
+    "key forking tokens"
+   ],
+   "verdict": "adjacent",
+   "note": "re-sampling at forking tokens changes outcomes in text generation; not program search",
+   "heuristic_code": null
+  },
+  {
+   "source": "Beyond the 80/20 Rule (arXiv 2506.01939)",
+   "url": "https://arxiv.org/abs/2506.01939",
+   "version": "v2, 13 Nov 2025",
+   "quotes": [
+    "critical forks that steer the model toward diverse reasoning pathways"
+   ],
+   "verdict": "adjacent",
+   "note": "high-entropy minority tokens in RLVR training",
+   "heuristic_code": null
+  },
+  {
+   "source": "ARPO (Dong et al., ICLR 2026; arXiv 2507.19849)",
+   "url": "https://arxiv.org/abs/2507.19849",
+   "version": "v1, 26 Jul 2025",
+   "quotes": [
+    "Agentic Reinforced Policy Optimization"
+   ],
+   "verdict": "adjacent",
+   "note": "entropy-based adaptive rollout branching after tool calls (RL)",
+   "heuristic_code": null
+  },
+  {
+   "source": "TreeRL (arXiv 2506.11902)",
+   "url": "https://arxiv.org/abs/2506.11902",
+   "version": "search snippet",
+   "quotes": [
+    "TreeRL: LLM Reinforcement Learning with On-Policy Tree Search"
+   ],
+   "verdict": "adjacent",
+   "note": "entropy-guided tree search branching at forking tokens (RL)",
+   "heuristic_code": null
+  },
+  {
+   "source": "AdapT (Zhu et al., AAAI 2024; arXiv 2309.02772)",
+   "url": "https://arxiv.org/abs/2309.02772",
+   "version": "v3",
+   "quotes": [
+    "Hot or Cold? Adaptive Temperature Sampling for Code Generation with Large Language Models"
+   ],
+   "verdict": "adjacent",
+   "note": "higher temperature at challenging code tokens; decoding-side analogue of DTB without forcing",
+   "heuristic_code": null
+  },
+  {
+   "source": "Fork-Patched Decoding (NeurIPS 2026, 'The RLVR Policy Shift Is Sparse and Predictable from the Base Model')",
+   "url": "https://neurips.cc/virtual/2026/172378",
+   "version": "search snippet",
+   "quotes": [
+    "The RLVR Policy Shift Is Sparse and Predictable from the Base Model"
+   ],
+   "verdict": "adjacent",
+   "note": "splices base logits at forks; math answers, not program search",
+   "heuristic_code": null
+  },
+  {
+   "source": "DivAlgo",
+   "url": null,
+   "version": null,
+   "quotes": [],
+   "verdict": "not_found",
+   "note": "no matching source found by the search on 2026-10-24 (no silent cap: listed as not found)",
+   "heuristic_code": null
+  },
+  {
+   "source": "Beneath the Diff",
+   "url": null,
+   "version": null,
+   "quotes": [],
+   "verdict": "not_found",
+   "note": "no matching source found by the search on 2026-10-24",
+   "heuristic_code": null
+  },
+  {
+   "source": "BehaveSim ('Rethinking Code Similarity for Automated Algorithm Design with LLMs', ICLR 2026; arXiv 2603.02787)",
+   "url": "https://arxiv.org/abs/2603.02787",
+   "version": "ICLR 2026",
+   "quotes": [
+    "Rethinking Code Similarity for Automated Algorithm Design with LLMs"
+   ],
+   "verdict": "adjacent",
+   "note": "behaviour (trajectory) similarity for AAD; our P10 agreement is the exact-decision analogue",
+   "heuristic_code": null
+  }
+ ]
+}

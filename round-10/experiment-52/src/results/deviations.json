@@ -1,0 +1,112 @@
+[
+ {
+  "key": "hf_home",
+  "utc": "2026-10-24T18:36:17Z",
+  "text": "HF_HOME/TRANSFORMERS_CACHE were NOT set to ./hf_cache: the run's system prompt forbids overriding the shared cache variables (double-storage risk). Qwen3-8B-FP8 @220b46e was already present in the shared cache and was used from there; no hf_cache/ directory exists in this workspace."
+ },
+ {
+  "key": "gpu",
+  "utc": "2026-10-24T18:36:17Z",
+  "text": "The GPU is an RTX 4090 (24 GB), not the RTX A4500 (20 GB) the plan assumed. Engine tag ends in RTX4090. With --gpu-memory-utilization 0.93 vLLM reports 8.91 GiB of weights and 12.45 GiB of KV cache (90,656 tokens) instead of 5.06 GiB (36,864 tokens)."
+ },
+ {
+  "key": "cudagraph",
+  "utc": "2026-10-24T18:36:17Z",
+  "text": "TSP9 launcher used verbatim (-O0 with cudagraph_mode FULL_DECODE_ONLY). vLLM 0.11 logged 'Skipping CUDA graph capture' under -O0, so decoding runs without CUDA graphs. Throughput only; sampling semantics unchanged."
+ },
+ {
+  "key": "cc_shim",
+  "utc": "2026-10-24T18:36:17Z",
+  "text": "tools/cc was rewritten to call this workspace's .venv python -m ziglang cc (the copied shim pointed at BP9's venv). There is no system C compiler."
+ },
+ {
+  "key": "eval_workers",
+  "utc": "2026-10-24T18:36:17Z",
+  "text": "9 persistent sandbox workers in the search instead of 5 (container quota 13.6 CPUs; 6 for the probe gate and tests; 11 for corpus scoring). CPU budgets are per-process ITIMER_PROF, so the validity rule is unchanged."
+ },
+ {
+  "key": "clock",
+  "utc": "2026-10-24T18:36:17Z",
+  "text": "All clock milestones are 10 min earlier than in the plan, because the session limit is 5 h 54 min, not 6 h: C* deadline 4:30, drop deadline 4:38, hard stop 4:40, measured from T0 = logs/t0_utc.txt."
+ },
+ {
+  "key": "system_python_precompute",
+  "utc": "2026-10-24T18:36:17Z",
+  "text": "S0 verification, S2 probes and the first S3 corpus pass ran under the system Python 3.12.14 with numpy 2.2.6 while the uv venv was installing. The venv also has numpy 2.2.6, and all outputs are integer bin counts and decision vectors. The probe gate's worker-equals-in-process check and the offline tests ran in the venv."
+ },
+ {
+  "key": "eoh_indent",
+  "utc": "2026-10-24T18:36:17Z",
+  "text": "EoH run3 program 03 is published with a mangled indent (the def line is indented by one space, like its body). The adapter strips the def-line indentation, which leaves a valid 1-space body; this is noted in its adapter_note."
+ },
+ {
+  "key": "c12_heldout",
+  "utc": "2026-10-24T18:36:17Z",
+  "text": "FunSearch c12 is a per-bin Python loop and times out on H-W10k (120 s per set). Its vectorised exact equivalent (c12-vec; bins equal per instance on OR3, a gate check) is a separate corpus entry and stands in for c12 on held-out comparisons. MCTS-AHD's loop program times out on every Weibull set, so it has no selection F; its OR scores and P10 vector are kept."
+ },
+ {
+  "key": "probe_timeout",
+  "utc": "2026-10-24T18:36:17Z",
+  "text": "A probe-pass CPU timeout marks the states not yet reached as ERR and keeps the vector (in BP9 the whole vector became None)."
+ },
+ {
+  "key": "fs_rescore",
+  "utc": "2026-10-24T18:36:17Z",
+  "text": "Programs whose ONLY failure is a non-finite score (strict v10) are re-scored once under FunSearch semantics at evaluation time, with their own 20 s budget and a P10 pass. This feeds the FunSearch-semantics sensitivity; they stay invalid in every denominator and are never registered."
+ },
+ {
+  "key": "s3b_s3c_timing",
+  "utc": "2026-10-24T18:36:17Z",
+  "text": "The S3b dependency scan and the S3c dated search run during the search, after commit #1. Their corpus additions enter by an amendment commit before any V3 comparison. Additions can only make novelty harder."
+ },
+ {
+  "key": "fence_filter",
+  "utc": "2026-10-24T18:36:17Z",
+  "text": "Interpretation of the DTB/RPB candidate filter 'tokens whose text contains a fence': tokens containing three backticks, or made only of backticks, are excluded."
+ },
+ {
+  "key": "todo_tool",
+  "utc": "2026-10-24T18:36:17Z",
+  "text": "No todo-tracking tool exists in this harness, so the three mandated todos are tracked verbatim in logs/todos.md."
+ },
+ {
+  "key": "v5_engine_restart",
+  "utc": "2026-10-24T20:45:42Z",
+  "text": "The first V5 run crashed the vLLM engine with a CUDA OOM inside prompt_logprobs (a float32 log-softmax over the 151,936-token vocabulary for every prompt position, ~0.7 GB, on a 0.93-utilisation engine). After the search had finished, the engine was restarted for V5 only from start_vllm_v5.sh, identical to start_vllm.sh except --gpu-memory-utilization 0.80. V5 now appends one row per offspring and resumes from them; the 15 offspring finished before the crash were recomputed."
+ },
+ {
+  "key": "judges_gate",
+  "utc": "2026-10-24T21:58:17Z",
+  "text": "No judge family passed its 10-control gate (DeepSeek v3.1 5/10, Mistral Medium 3.1 5/10 as the one-time replacement, Kimi K2 4/10: they label even the executor-written novel compositions KNOWN/KNOWN_FAMILY, and Kimi returned empty answers for some prompts). Per F7 the judges are advisory and the arm-blind manual read decides. Provider pinning found no endpoint list, so default routing was used and the served provider is recorded per row. Spend: USD 0.145."
+ },
+ {
+  "key": "extension_seeds",
+  "utc": "2026-10-24T21:58:17Z",
+  "text": "Exploratory extension on seeds 4 and 5 (same protocol, C = 2000, no NS), pre-registered as amendment commit #3. It is reported beside, never inside, the pre-registered verdicts."
+ },
+ {
+  "key": "figures_tool",
+  "utc": "2026-10-24T21:58:17Z",
+  "text": "Figures were drawn with matplotlib directly (Type-42 fonts, colour-blind palette) instead of the aii-data-fig-gen JSON-spec tool, to save time; the numbers come straight from the results files."
+ },
+ {
+  "key": "s3c_tool",
+  "utc": "2026-10-24T21:58:17Z",
+  "text": "The S3c dated search used the built-in WebSearch/WebFetch tools instead of aii-web-tools scholarly mode. The fetch tool caps verbatim quotes at 125 characters, so the quotes are short excerpts. The RAISE heuristic was transcribed by the fetch tool from the arXiv HTML listing and was not byte-verified."
+ },
+ {
+  "key": "manual_read_profiles",
+  "utc": "2026-10-24T21:58:17Z",
+  "text": "The arm-blind manual read used synthetic decision profiles (scripts/profile_rules.py) of every candidate and every corpus program as a reading aid. These showed that the published EoH run-3 and MCTS-AHD programs already target a residual of about c*item, and that ab/c12 avoid a residual band. Their recombinations were therefore classed KNOWN FAMILY, NEW PARAMETERS."
+ },
+ {
+  "key": "eval_split",
+  "utc": "2026-10-24T22:29:59Z",
+  "text": "The evaluation rows (one file, 152 MB, over the 100 MB publish limit) were split line-aligned into data/eval/eval_part_001.jsonl and eval_part_002.jsonl; the sha256 of the concatenated parts equals that of the original. All readers and the writer go through common.read_eval_rows() and common.eval_append_path(): search.py, analysis.py (an I/O-only change to the frozen file, made after commit #1) and audit/rederive.py. Re-running analysis.py best gave a byte-identical best_programs.json."
+ },
+ {
+  "key": "path_sanitize",
+  "utc": "2026-10-24T22:37:50Z",
+  "text": "Before publishing, absolute server path prefixes in logs, inputs_manifest.json and predictions/hardware.json were replaced by relative or placeholder forms. results/sanitize_record.json lists each file's sha256 before and after; the pre-sanitisation sha256 of inputs_manifest.json equals the value committed in commit1.json."
+ }
+]

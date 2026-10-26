@@ -1,0 +1,4829 @@
+{
+ "bf": {
+  "H-FSW5k": 0.03984304255961367,
+  "H-OR3": 0.05367793240556666,
+  "H-W5k": 0.04131167029918757,
+  "H-W10k": 0.040578265204386885,
+  "H-SHIFT": 0.055379882061362434,
+  "H-OR1": 0.05810397553516823,
+  "H-OR2": 0.06056129985228957,
+  "H-OR4": 0.04943203095743356
+ },
+ "seed_best": {
+  "S2-T1.0": {
+   "excess": {
+    "H-FSW5k": 0.03672401650065411,
+    "H-OR3": 0.0482107355864812,
+    "H-W5k": 0.03903308896374082,
+    "H-W10k": 0.037337986041874424,
+    "H-SHIFT": 0.055636270404239074,
+    "H-OR1": 0.055045871559633086,
+    "H-OR2": 0.05760709010339743,
+    "H-OR4": 0.04481338160029956
+   },
+   "excess_over_bf": {
+    "H-FSW5k": 0.921717171717174,
+    "H-OR3": 0.8981481481481488,
+    "H-W5k": 0.9448441247002408,
+    "H-W10k": 0.9201474201474202,
+    "H-SHIFT": 1.0046296296296289,
+    "H-OR1": 0.947368421052632,
+    "H-OR2": 0.9512195121951225,
+    "H-OR4": 0.9065656565656555
+   },
+   "paired_vs_bf": {
+    "H-FSW5k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -6.2
+    },
+    "H-OR3": {
+     "wins": 15,
+     "ties": 3,
+     "losses": 2,
+     "mean_bin_diff": -1.1
+    },
+    "H-W5k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -4.6
+    },
+    "H-W10k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -13.0
+    },
+    "H-SHIFT": {
+     "wins": 1,
+     "ties": 1,
+     "losses": 3,
+     "mean_bin_diff": 0.6
+    },
+    "H-OR1": {
+     "wins": 4,
+     "ties": 15,
+     "losses": 1,
+     "mean_bin_diff": -0.15
+    },
+    "H-OR2": {
+     "wins": 6,
+     "ties": 13,
+     "losses": 1,
+     "mean_bin_diff": -0.3
+    },
+    "H-OR4": {
+     "wins": 16,
+     "ties": 3,
+     "losses": 1,
+     "mean_bin_diff": -1.85
+    }
+   },
+   "errors": {},
+   "bins": {
+    "H-FSW5k": [
+     2090,
+     2054,
+     2053,
+     2055,
+     2052
+    ],
+    "H-OR3": [
+     209,
+     211,
+     211,
+     215,
+     217,
+     216,
+     218,
+     217,
+     206,
+     211,
+     207,
+     209,
+     210,
+     206,
+     213,
+     210,
+     210,
+     206,
+     210,
+     206
+    ],
+    "H-W5k": [
+     2084,
+     2117,
+     2097,
+     2086,
+     2104
+    ],
+    "H-W10k": [
+     4136,
+     4165,
+     4162,
+     4149,
+     4197
+    ],
+    "H-SHIFT": [
+     2468,
+     2466,
+     2465,
+     2475,
+     2478
+    ],
+    "H-OR1": [
+     50,
+     51,
+     48,
+     52,
+     52,
+     51,
+     51,
+     52,
+     53,
+     48,
+     55,
+     51,
+     52,
+     51,
+     52,
+     52,
+     55,
+     56,
+     51,
+     52
+    ],
+    "H-OR2": [
+     103,
+     107,
+     109,
+     106,
+     107,
+     106,
+     107,
+     108,
+     111,
+     108,
+     111,
+     107,
+     111,
+     108,
+     106,
+     113,
+     103,
+     105,
+     105,
+     107
+    ],
+    "H-OR4": [
+     417,
+     423,
+     430,
+     431,
+     416,
+     416,
+     413,
+     422,
+     416,
+     415,
+     416,
+     420,
+     411,
+     414,
+     414,
+     420,
+     423,
+     419,
+     415,
+     419
+    ]
+   },
+   "F": 0.9192494929006079,
+   "call": 1214,
+   "seed": 2,
+   "arm": "T1.0",
+   "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    return -(bins - item) * (1 + 1 / bins + 0.5 * np.sin(2 * np.pi * bins / item))"
+  },
+  "S3-T1.0": {
+   "excess": {
+    "H-FSW5k": 0.03984304255961367,
+    "H-OR3": 0.05367793240556666,
+    "H-W5k": 0.04131167029918757,
+    "H-W10k": 0.040578265204386885,
+    "H-SHIFT": 0.055379882061362434,
+    "H-OR1": 0.05810397553516823,
+    "H-OR2": 0.06056129985228957,
+    "H-OR4": 0.04943203095743356
+   },
+   "excess_over_bf": {
+    "H-FSW5k": 1.0,
+    "H-OR3": 1.0,
+    "H-W5k": 1.0,
+    "H-W10k": 1.0,
+    "H-SHIFT": 1.0,
+    "H-OR1": 1.0,
+    "H-OR2": 1.0,
+    "H-OR4": 1.0
+   },
+   "paired_vs_bf": {
+    "H-FSW5k": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR3": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-W5k": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-W10k": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-SHIFT": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR1": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR2": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR4": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    }
+   },
+   "errors": {},
+   "bins": {
+    "H-FSW5k": [
+     2094,
+     2059,
+     2057,
+     2067,
+     2058
+    ],
+    "H-OR3": [
+     211,
+     212,
+     213,
+     215,
+     218,
+     218,
+     217,
+     216,
+     207,
+     212,
+     209,
+     212,
+     210,
+     207,
+     215,
+     211,
+     211,
+     207,
+     213,
+     206
+    ],
+    "H-W5k": [
+     2086,
+     2123,
+     2103,
+     2089,
+     2110
+    ],
+    "H-W10k": [
+     4150,
+     4173,
+     4177,
+     4165,
+     4209
+    ],
+    "H-SHIFT": [
+     2468,
+     2465,
+     2464,
+     2476,
+     2476
+    ],
+    "H-OR1": [
+     50,
+     51,
+     48,
+     53,
+     52,
+     52,
+     52,
+     52,
+     53,
+     48,
+     55,
+     51,
+     51,
+     51,
+     53,
+     52,
+     55,
+     56,
+     51,
+     52
+    ],
+    "H-OR2": [
+     105,
+     108,
+     109,
+     106,
+     107,
+     107,
+     107,
+     109,
+     111,
+     108,
+     111,
+     108,
+     111,
+     108,
+     105,
+     113,
+     103,
+     106,
+     105,
+     107
+    ],
+    "H-OR4": [
+     419,
+     426,
+     433,
+     434,
+     417,
+     420,
+     415,
+     425,
+     418,
+     417,
+     418,
+     422,
+     412,
+     414,
+     414,
+     422,
+     423,
+     422,
+     419,
+     417
+    ]
+   },
+   "F": 1.0,
+   "call": 0,
+   "seed": 3,
+   "arm": "T1.0",
+   "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    return -(bins - item)"
+  },
+  "S2-T1.6": {
+   "excess": {
+    "H-FSW5k": 0.03984304255961367,
+    "H-OR3": 0.05367793240556666,
+    "H-W5k": 0.04131167029918757,
+    "H-W10k": 0.040578265204386885,
+    "H-SHIFT": 0.055379882061362434,
+    "H-OR1": 0.05810397553516823,
+    "H-OR2": 0.06056129985228957,
+    "H-OR4": 0.04943203095743356
+   },
+   "excess_over_bf": {
+    "H-FSW5k": 1.0,
+    "H-OR3": 1.0,
+    "H-W5k": 1.0,
+    "H-W10k": 1.0,
+    "H-SHIFT": 1.0,
+    "H-OR1": 1.0,
+    "H-OR2": 1.0,
+    "H-OR4": 1.0
+   },
+   "paired_vs_bf": {
+    "H-FSW5k": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR3": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-W5k": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-W10k": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-SHIFT": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR1": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR2": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR4": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    }
+   },
+   "errors": {},
+   "bins": {
+    "H-FSW5k": [
+     2094,
+     2059,
+     2057,
+     2067,
+     2058
+    ],
+    "H-OR3": [
+     211,
+     212,
+     213,
+     215,
+     218,
+     218,
+     217,
+     216,
+     207,
+     212,
+     209,
+     212,
+     210,
+     207,
+     215,
+     211,
+     211,
+     207,
+     213,
+     206
+    ],
+    "H-W5k": [
+     2086,
+     2123,
+     2103,
+     2089,
+     2110
+    ],
+    "H-W10k": [
+     4150,
+     4173,
+     4177,
+     4165,
+     4209
+    ],
+    "H-SHIFT": [
+     2468,
+     2465,
+     2464,
+     2476,
+     2476
+    ],
+    "H-OR1": [
+     50,
+     51,
+     48,
+     53,
+     52,
+     52,
+     52,
+     52,
+     53,
+     48,
+     55,
+     51,
+     51,
+     51,
+     53,
+     52,
+     55,
+     56,
+     51,
+     52
+    ],
+    "H-OR2": [
+     105,
+     108,
+     109,
+     106,
+     107,
+     107,
+     107,
+     109,
+     111,
+     108,
+     111,
+     108,
+     111,
+     108,
+     105,
+     113,
+     103,
+     106,
+     105,
+     107
+    ],
+    "H-OR4": [
+     419,
+     426,
+     433,
+     434,
+     417,
+     420,
+     415,
+     425,
+     418,
+     417,
+     418,
+     422,
+     412,
+     414,
+     414,
+     422,
+     423,
+     422,
+     419,
+     417
+    ]
+   },
+   "F": 1.0,
+   "call": 0,
+   "seed": 2,
+   "arm": "T1.6",
+   "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    return -(bins - item)"
+  },
+  "S3-T1.6": {
+   "excess": {
+    "H-FSW5k": 0.03984304255961367,
+    "H-OR3": 0.05367793240556666,
+    "H-W5k": 0.04131167029918757,
+    "H-W10k": 0.040578265204386885,
+    "H-SHIFT": 0.055379882061362434,
+    "H-OR1": 0.05810397553516823,
+    "H-OR2": 0.06056129985228957,
+    "H-OR4": 0.04943203095743356
+   },
+   "excess_over_bf": {
+    "H-FSW5k": 1.0,
+    "H-OR3": 1.0,
+    "H-W5k": 1.0,
+    "H-W10k": 1.0,
+    "H-SHIFT": 1.0,
+    "H-OR1": 1.0,
+    "H-OR2": 1.0,
+    "H-OR4": 1.0
+   },
+   "paired_vs_bf": {
+    "H-FSW5k": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR3": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-W5k": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-W10k": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-SHIFT": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR1": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR2": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR4": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    }
+   },
+   "errors": {},
+   "bins": {
+    "H-FSW5k": [
+     2094,
+     2059,
+     2057,
+     2067,
+     2058
+    ],
+    "H-OR3": [
+     211,
+     212,
+     213,
+     215,
+     218,
+     218,
+     217,
+     216,
+     207,
+     212,
+     209,
+     212,
+     210,
+     207,
+     215,
+     211,
+     211,
+     207,
+     213,
+     206
+    ],
+    "H-W5k": [
+     2086,
+     2123,
+     2103,
+     2089,
+     2110
+    ],
+    "H-W10k": [
+     4150,
+     4173,
+     4177,
+     4165,
+     4209
+    ],
+    "H-SHIFT": [
+     2468,
+     2465,
+     2464,
+     2476,
+     2476
+    ],
+    "H-OR1": [
+     50,
+     51,
+     48,
+     53,
+     52,
+     52,
+     52,
+     52,
+     53,
+     48,
+     55,
+     51,
+     51,
+     51,
+     53,
+     52,
+     55,
+     56,
+     51,
+     52
+    ],
+    "H-OR2": [
+     105,
+     108,
+     109,
+     106,
+     107,
+     107,
+     107,
+     109,
+     111,
+     108,
+     111,
+     108,
+     111,
+     108,
+     105,
+     113,
+     103,
+     106,
+     105,
+     107
+    ],
+    "H-OR4": [
+     419,
+     426,
+     433,
+     434,
+     417,
+     420,
+     415,
+     425,
+     418,
+     417,
+     418,
+     422,
+     412,
+     414,
+     414,
+     422,
+     423,
+     422,
+     419,
+     417
+    ]
+   },
+   "F": 1.0,
+   "call": 0,
+   "seed": 3,
+   "arm": "T1.6",
+   "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    return -(bins - item)"
+  },
+  "S2-DTB": {
+   "excess": {
+    "H-FSW5k": 0.023946071033303217,
+    "H-OR3": 0.038518886679920476,
+    "H-W5k": 0.02486625718248467,
+    "H-W10k": 0.022632103688933244,
+    "H-SHIFT": 0.03837278865054277,
+    "H-OR1": 0.06218144750254851,
+    "H-OR2": 0.046282619399310714,
+    "H-OR4": 0.033454000748970106
+   },
+   "excess_over_bf": {
+    "H-FSW5k": 0.6010101010101023,
+    "H-OR3": 0.7175925925925918,
+    "H-W5k": 0.6019184652278192,
+    "H-W10k": 0.5577395577395582,
+    "H-SHIFT": 0.6929012345679008,
+    "H-OR1": 1.0701754385964921,
+    "H-OR2": 0.7642276422764225,
+    "H-OR4": 0.6767676767676751
+   },
+   "paired_vs_bf": {
+    "H-FSW5k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -31.6
+    },
+    "H-OR3": {
+     "wins": 19,
+     "ties": 1,
+     "losses": 0,
+     "mean_bin_diff": -3.05
+    },
+    "H-W5k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -33.2
+    },
+    "H-W10k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -72.0
+    },
+    "H-SHIFT": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -39.8
+    },
+    "H-OR1": {
+     "wins": 4,
+     "ties": 8,
+     "losses": 8,
+     "mean_bin_diff": 0.2
+    },
+    "H-OR2": {
+     "wins": 18,
+     "ties": 2,
+     "losses": 0,
+     "mean_bin_diff": -1.45
+    },
+    "H-OR4": {
+     "wins": 20,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -6.4
+    }
+   },
+   "errors": {},
+   "bins": {
+    "H-FSW5k": [
+     2060,
+     2033,
+     2026,
+     2032,
+     2026
+    ],
+    "H-OR3": [
+     207,
+     209,
+     209,
+     211,
+     215,
+     215,
+     215,
+     213,
+     205,
+     207,
+     206,
+     208,
+     208,
+     204,
+     215,
+     207,
+     209,
+     205,
+     208,
+     203
+    ],
+    "H-W5k": [
+     2056,
+     2082,
+     2081,
+     2057,
+     2069
+    ],
+    "H-W10k": [
+     4082,
+     4101,
+     4105,
+     4093,
+     4133
+    ],
+    "H-SHIFT": [
+     2421,
+     2428,
+     2440,
+     2437,
+     2424
+    ],
+    "H-OR1": [
+     50,
+     51,
+     48,
+     51,
+     53,
+     51,
+     50,
+     55,
+     53,
+     49,
+     56,
+     52,
+     52,
+     51,
+     53,
+     53,
+     56,
+     56,
+     51,
+     51
+    ],
+    "H-OR2": [
+     103,
+     105,
+     108,
+     105,
+     105,
+     105,
+     106,
+     108,
+     110,
+     106,
+     109,
+     108,
+     110,
+     108,
+     104,
+     111,
+     101,
+     104,
+     104,
+     105
+    ],
+    "H-OR4": [
+     414,
+     419,
+     426,
+     426,
+     409,
+     413,
+     409,
+     417,
+     412,
+     411,
+     414,
+     415,
+     405,
+     408,
+     406,
+     415,
+     417,
+     417,
+     413,
+     413
+    ]
+   },
+   "F": 0.7255172413793087,
+   "call": 1897,
+   "seed": 2,
+   "arm": "DTB",
+   "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    bins = np.clip(bins, a_min=item, a_max=None)\n    bins_ratio = bins / item\n    ratio_diff = bins_ratio - 0.5\n    term1 = np.exp(-2 * np.abs(ratio_diff) ** 2)\n    term2 = (bins_ratio >= 0.8) + (bins_ratio <= 0.2)\n    term3 = 1 + np.sin(np.pi * bins_ratio) - np.sqrt(bins_ratio) + 0.5\n    term4 = np.sqrt(np.abs(ratio_diff)) + 0.1\n    return np.maximum(\n        0,\n        term1 * term2 * term3 * term4\n    )"
+  },
+  "S3-DTB": {
+   "excess": {
+    "H-FSW5k": 0.02133011369353058,
+    "H-OR3": 0.035288270377733716,
+    "H-W5k": 0.02179512581731733,
+    "H-W10k": 0.02088733798604192,
+    "H-SHIFT": 0.03837278865054277,
+    "H-OR1": 0.06218144750254851,
+    "H-OR2": 0.04382077794190057,
+    "H-OR4": 0.029085008113843406
+   },
+   "excess_over_bf": {
+    "H-FSW5k": 0.5353535353535361,
+    "H-OR3": 0.6574074074074089,
+    "H-W5k": 0.5275779376498836,
+    "H-W10k": 0.5147420147420153,
+    "H-SHIFT": 0.6929012345679008,
+    "H-OR1": 1.0701754385964921,
+    "H-OR2": 0.7235772357723574,
+    "H-OR4": 0.5883838383838368
+   },
+   "paired_vs_bf": {
+    "H-FSW5k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -36.8
+    },
+    "H-OR3": {
+     "wins": 20,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -3.7
+    },
+    "H-W5k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -39.4
+    },
+    "H-W10k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -79.0
+    },
+    "H-SHIFT": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -39.8
+    },
+    "H-OR1": {
+     "wins": 5,
+     "ties": 8,
+     "losses": 7,
+     "mean_bin_diff": 0.2
+    },
+    "H-OR2": {
+     "wins": 18,
+     "ties": 2,
+     "losses": 0,
+     "mean_bin_diff": -1.7
+    },
+    "H-OR4": {
+     "wins": 20,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -8.15
+    }
+   },
+   "errors": {},
+   "bins": {
+    "H-FSW5k": [
+     2057,
+     2024,
+     2021,
+     2028,
+     2021
+    ],
+    "H-OR3": [
+     206,
+     208,
+     207,
+     211,
+     214,
+     213,
+     216,
+     214,
+     204,
+     207,
+     206,
+     206,
+     207,
+     203,
+     212,
+     207,
+     209,
+     203,
+     210,
+     203
+    ],
+    "H-W5k": [
+     2056,
+     2081,
+     2067,
+     2047,
+     2063
+    ],
+    "H-W10k": [
+     4074,
+     4093,
+     4097,
+     4089,
+     4126
+    ],
+    "H-SHIFT": [
+     2426,
+     2425,
+     2424,
+     2434,
+     2441
+    ],
+    "H-OR1": [
+     51,
+     51,
+     48,
+     52,
+     52,
+     51,
+     51,
+     53,
+     52,
+     50,
+     55,
+     53,
+     52,
+     51,
+     53,
+     52,
+     55,
+     57,
+     52,
+     51
+    ],
+    "H-OR2": [
+     103,
+     105,
+     107,
+     105,
+     104,
+     104,
+     105,
+     108,
+     109,
+     107,
+     110,
+     106,
+     109,
+     108,
+     105,
+     112,
+     100,
+     105,
+     103,
+     105
+    ],
+    "H-OR4": [
+     410,
+     417,
+     422,
+     424,
+     408,
+     411,
+     408,
+     415,
+     410,
+     410,
+     411,
+     413,
+     403,
+     407,
+     410,
+     412,
+     416,
+     414,
+     411,
+     412
+    ]
+   },
+   "F": 0.739614604462474,
+   "call": 1943,
+   "seed": 3,
+   "arm": "DTB",
+   "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    valid_mask =(np.isclose(remaining, 0, atol=1e-8) | (remaining >= 0))\n    remaining[~valid_mask] = 0\n    eps = 10 * np.finfo(float).eps\n\n    # Base priority based on remaining capacity and bin size\n    log_bins = np.log(bins + eps)\n    log_remaining = np.log(remaining + eps)\n    weighted_log = log_remaining * log_bins\n\n    # Apply exponential decay to emphasize recent available space\n    decay_factor = np.clip(1 - (remaining / bins), 0.8, 1.0)\n    priority = -np.exp(weighted_log * decay_factor).clip(0, item)\n\n    # Apply adaptive boosts based on remaining space relative to item size\n    priority[remaining > 0.6 * item] += 20\n    priority[remaining < 0.15 * item] += 30\n    priority[remaining > 0.9 * item] -= 15\n\n    # Penalize bins that cannot fit the item\n    priority[~valid_mask] = np.inf\n    return priority"
+  },
+  "S2-RPB": {
+   "excess": {
+    "H-FSW5k": 0.020525203742831247,
+    "H-OR3": 0.03628230616302193,
+    "H-W5k": 0.020408163265306145,
+    "H-W10k": 0.020338983050847435,
+    "H-SHIFT": 0.048628322365609856,
+    "H-OR1": 0.05810397553516823,
+    "H-OR2": 0.050221565731167,
+    "H-OR4": 0.02958432155785786
+   },
+   "excess_over_bf": {
+    "H-FSW5k": 0.5151515151515142,
+    "H-OR3": 0.6759259259259263,
+    "H-W5k": 0.49400479616307086,
+    "H-W10k": 0.5012285012285002,
+    "H-SHIFT": 0.8780864197530853,
+    "H-OR1": 1.0,
+    "H-OR2": 0.8292682926829275,
+    "H-OR4": 0.5984848484848464
+   },
+   "paired_vs_bf": {
+    "H-FSW5k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -38.4
+    },
+    "H-OR3": {
+     "wins": 20,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -3.5
+    },
+    "H-W5k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -42.2
+    },
+    "H-W10k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -81.2
+    },
+    "H-SHIFT": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -15.8
+    },
+    "H-OR1": {
+     "wins": 4,
+     "ties": 11,
+     "losses": 5,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR2": {
+     "wins": 14,
+     "ties": 5,
+     "losses": 1,
+     "mean_bin_diff": -1.05
+    },
+    "H-OR4": {
+     "wins": 20,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -7.95
+    }
+   },
+   "errors": {},
+   "bins": {
+    "H-FSW5k": [
+     2054,
+     2026,
+     2020,
+     2025,
+     2018
+    ],
+    "H-OR3": [
+     206,
+     210,
+     208,
+     212,
+     215,
+     213,
+     215,
+     213,
+     203,
+     209,
+     205,
+     208,
+     207,
+     202,
+     213,
+     207,
+     208,
+     204,
+     209,
+     203
+    ],
+    "H-W5k": [
+     2049,
+     2078,
+     2064,
+     2046,
+     2063
+    ],
+    "H-W10k": [
+     4070,
+     4091,
+     4097,
+     4084,
+     4126
+    ],
+    "H-SHIFT": [
+     2454,
+     2453,
+     2445,
+     2456,
+     2462
+    ],
+    "H-OR1": [
+     50,
+     51,
+     48,
+     51,
+     52,
+     51,
+     50,
+     52,
+     52,
+     50,
+     55,
+     52,
+     52,
+     51,
+     53,
+     52,
+     56,
+     57,
+     51,
+     52
+    ],
+    "H-OR2": [
+     104,
+     106,
+     109,
+     106,
+     107,
+     104,
+     105,
+     108,
+     110,
+     106,
+     110,
+     107,
+     109,
+     108,
+     107,
+     111,
+     100,
+     105,
+     104,
+     107
+    ],
+    "H-OR4": [
+     412,
+     418,
+     424,
+     424,
+     409,
+     411,
+     405,
+     415,
+     410,
+     409,
+     411,
+     412,
+     404,
+     407,
+     408,
+     413,
+     416,
+     418,
+     410,
+     412
+    ]
+   },
+   "F": 0.7768356997971597,
+   "call": 1706,
+   "seed": 2,
+   "arm": "RPB",
+   "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    remaining = np.maximum(remaining, 0)\n    # Prioritize bins with remaining space between 5 and 25\n    mask = (remaining >= 5) & (remaining <= 25)\n    # Penalize bins that are too full or too empty\n    penalty = (remaining < 5) * (remaining / 5) + (remaining > 25) * ((remaining - 25) / 5)\n    # Apply mask to prioritize bins in the desired range\n    return -remaining * mask - penalty"
+  },
+  "S3-RPB": {
+   "excess": {
+    "H-FSW5k": 0.017204950196196823,
+    "H-OR3": 0.037027833001988156,
+    "H-W5k": 0.01812958192985939,
+    "H-W10k": 0.01640079760717851,
+    "H-SHIFT": 0.04999572686095206,
+    "H-OR1": 0.0632008154943935,
+    "H-OR2": 0.053668143771541145,
+    "H-OR4": 0.029209836474847057
+   },
+   "excess_over_bf": {
+    "H-FSW5k": 0.4318181818181821,
+    "H-OR3": 0.6898148148148155,
+    "H-W5k": 0.4388489208633117,
+    "H-W10k": 0.4041769041769049,
+    "H-SHIFT": 0.9027777777777752,
+    "H-OR1": 1.0877192982456139,
+    "H-OR2": 0.8861788617886176,
+    "H-OR4": 0.5909090909090899
+   },
+   "paired_vs_bf": {
+    "H-FSW5k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -45.0
+    },
+    "H-OR3": {
+     "wins": 19,
+     "ties": 0,
+     "losses": 1,
+     "mean_bin_diff": -3.35
+    },
+    "H-W5k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -46.8
+    },
+    "H-W10k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -97.0
+    },
+    "H-SHIFT": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -12.6
+    },
+    "H-OR1": {
+     "wins": 6,
+     "ties": 5,
+     "losses": 9,
+     "mean_bin_diff": 0.25
+    },
+    "H-OR2": {
+     "wins": 12,
+     "ties": 4,
+     "losses": 4,
+     "mean_bin_diff": -0.7
+    },
+    "H-OR4": {
+     "wins": 20,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -8.1
+    }
+   },
+   "errors": {},
+   "bins": {
+    "H-FSW5k": [
+     2047,
+     2015,
+     2012,
+     2023,
+     2013
+    ],
+    "H-OR3": [
+     204,
+     210,
+     207,
+     212,
+     213,
+     215,
+     215,
+     215,
+     204,
+     209,
+     205,
+     208,
+     205,
+     203,
+     218,
+     207,
+     208,
+     205,
+     208,
+     202
+    ],
+    "H-W5k": [
+     2047,
+     2074,
+     2057,
+     2040,
+     2059
+    ],
+    "H-W10k": [
+     4057,
+     4080,
+     4076,
+     4070,
+     4106
+    ],
+    "H-SHIFT": [
+     2454,
+     2451,
+     2455,
+     2462,
+     2464
+    ],
+    "H-OR1": [
+     50,
+     51,
+     47,
+     51,
+     54,
+     51,
+     50,
+     53,
+     52,
+     50,
+     55,
+     53,
+     51,
+     51,
+     54,
+     53,
+     57,
+     57,
+     52,
+     51
+    ],
+    "H-OR2": [
+     103,
+     104,
+     108,
+     105,
+     106,
+     105,
+     106,
+     110,
+     111,
+     107,
+     112,
+     107,
+     110,
+     109,
+     106,
+     113,
+     103,
+     105,
+     103,
+     107
+    ],
+    "H-OR4": [
+     410,
+     417,
+     425,
+     425,
+     408,
+     412,
+     406,
+     415,
+     410,
+     409,
+     411,
+     411,
+     405,
+     405,
+     408,
+     413,
+     416,
+     416,
+     411,
+     412
+    ]
+   },
+   "F": 0.7615212981744426,
+   "call": 1979,
+   "seed": 3,
+   "arm": "RPB",
+   "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining_spaces = bins - item\n    valid_indices = remaining_spaces > 0\n    r_percent = remaining_spaces / bins\n\n    # Base score based on remaining space and utilization\n    base_score = -np.abs(remaining_spaces - item) * valid_indices * r_percent * (1 - r_percent)\n\n    # Penalize bins that are almost full\n    full_penalty = -np.clip(r_percent, a_min=0, a_max=0.95) * valid_indices\n\n    # Penalize bins with very small remaining space\n    small_space_penalty = -np.clip(remaining_spaces, a_min=0, a_max=10) * valid_indices\n\n    # Encourage bins with space close to item size\n    fit_score = np.clip(remaining_spaces / item, a_min=0, a_max=2) * valid_indices\n\n    # Encourage bins with moderate utilization\n    moderate_utilization = np.clip(r_percent, a_min=0.5, a_max=0.9) * valid_indices\n\n    # Encourage bins that are not too full and not too empty\n    utilization_balance = np.clip(1 - 2 * np.abs(r_percent - 0.5), a_min=0, a_max=1) * valid_indices\n\n    # Combine all scores with adjusted weights\n    score = (\n        base_score * 0.4 +\n        full_penalty * 0.2 +\n        small_space_penalty * 0.1 +\n        fit_score * 0.15 +\n        moderate_utilization * 0.1 +\n        utilization_balance * 0.05\n    )\n    return score"
+  },
+  "S2-IDEA": {
+   "excess": {
+    "H-FSW5k": 0.03974242881577635,
+    "H-OR3": 0.038518886679920476,
+    "H-W5k": 0.039726570239746406,
+    "H-W10k": 0.04037886340977069,
+    "H-SHIFT": 0.056576360994786815,
+    "H-OR1": 0.05606523955147809,
+    "H-OR2": 0.04825209256523886,
+    "H-OR4": 0.03420297091499186
+   },
+   "excess_over_bf": {
+    "H-FSW5k": 0.9974747474747497,
+    "H-OR3": 0.7175925925925918,
+    "H-W5k": 0.9616306954436471,
+    "H-W10k": 0.995085995085994,
+    "H-SHIFT": 1.0216049382716028,
+    "H-OR1": 0.9649122807017538,
+    "H-OR2": 0.796747967479675,
+    "H-OR4": 0.6919191919191909
+   },
+   "paired_vs_bf": {
+    "H-FSW5k": {
+     "wins": 1,
+     "ties": 2,
+     "losses": 2,
+     "mean_bin_diff": -0.2
+    },
+    "H-OR3": {
+     "wins": 19,
+     "ties": 1,
+     "losses": 0,
+     "mean_bin_diff": -3.05
+    },
+    "H-W5k": {
+     "wins": 3,
+     "ties": 2,
+     "losses": 0,
+     "mean_bin_diff": -3.2
+    },
+    "H-W10k": {
+     "wins": 3,
+     "ties": 0,
+     "losses": 2,
+     "mean_bin_diff": -0.8
+    },
+    "H-SHIFT": {
+     "wins": 1,
+     "ties": 0,
+     "losses": 4,
+     "mean_bin_diff": 2.8
+    },
+    "H-OR1": {
+     "wins": 7,
+     "ties": 8,
+     "losses": 5,
+     "mean_bin_diff": -0.1
+    },
+    "H-OR2": {
+     "wins": 16,
+     "ties": 3,
+     "losses": 1,
+     "mean_bin_diff": -1.25
+    },
+    "H-OR4": {
+     "wins": 20,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -6.1
+    }
+   },
+   "errors": {},
+   "bins": {
+    "H-FSW5k": [
+     2095,
+     2060,
+     2054,
+     2067,
+     2058
+    ],
+    "H-OR3": [
+     207,
+     210,
+     208,
+     213,
+     215,
+     214,
+     217,
+     213,
+     204,
+     209,
+     205,
+     208,
+     207,
+     204,
+     212,
+     209,
+     208,
+     204,
+     209,
+     203
+    ],
+    "H-W5k": [
+     2086,
+     2117,
+     2103,
+     2087,
+     2102
+    ],
+    "H-W10k": [
+     4156,
+     4167,
+     4173,
+     4167,
+     4207
+    ],
+    "H-SHIFT": [
+     2471,
+     2468,
+     2467,
+     2475,
+     2482
+    ],
+    "H-OR1": [
+     50,
+     50,
+     48,
+     52,
+     51,
+     51,
+     53,
+     52,
+     53,
+     49,
+     55,
+     52,
+     52,
+     50,
+     52,
+     52,
+     55,
+     56,
+     52,
+     51
+    ],
+    "H-OR2": [
+     102,
+     106,
+     107,
+     106,
+     106,
+     105,
+     105,
+     110,
+     110,
+     107,
+     110,
+     107,
+     109,
+     108,
+     104,
+     111,
+     101,
+     104,
+     104,
+     107
+    ],
+    "H-OR4": [
+     413,
+     420,
+     426,
+     425,
+     412,
+     412,
+     407,
+     419,
+     412,
+     410,
+     412,
+     416,
+     405,
+     410,
+     410,
+     414,
+     419,
+     418,
+     411,
+     414
+    ]
+   },
+   "F": 0.8969168356997963,
+   "call": 1987,
+   "seed": 2,
+   "arm": "IDEA",
+   "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    available = bins - item\n    return np.where(available >= 0, \n                   (available + 1e-8) ** -0.5 * np.exp(-0.01 * available) * (1 + np.cos(available / 5)), \n                   -np.inf)"
+  },
+  "S3-IDEA": {
+   "excess": {
+    "H-FSW5k": 0.02133011369353058,
+    "H-OR3": 0.035536779324055696,
+    "H-W5k": 0.0226867446007529,
+    "H-W10k": 0.020438683948155532,
+    "H-SHIFT": 0.046406290060678736,
+    "H-OR1": 0.06116207951070337,
+    "H-OR2": 0.050713934022648996,
+    "H-OR4": 0.02970914991886151
+   },
+   "excess_over_bf": {
+    "H-FSW5k": 0.5353535353535361,
+    "H-OR3": 0.6620370370370369,
+    "H-W5k": 0.5491606714628301,
+    "H-W10k": 0.5036855036855031,
+    "H-SHIFT": 0.8379629629629635,
+    "H-OR1": 1.052631578947368,
+    "H-OR2": 0.83739837398374,
+    "H-OR4": 0.6010101010100996
+   },
+   "paired_vs_bf": {
+    "H-FSW5k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -36.8
+    },
+    "H-OR3": {
+     "wins": 20,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -3.65
+    },
+    "H-W5k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -37.6
+    },
+    "H-W10k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -80.8
+    },
+    "H-SHIFT": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -21.0
+    },
+    "H-OR1": {
+     "wins": 5,
+     "ties": 9,
+     "losses": 6,
+     "mean_bin_diff": 0.15
+    },
+    "H-OR2": {
+     "wins": 14,
+     "ties": 4,
+     "losses": 2,
+     "mean_bin_diff": -1.0
+    },
+    "H-OR4": {
+     "wins": 20,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -7.9
+    }
+   },
+   "errors": {},
+   "bins": {
+    "H-FSW5k": [
+     2055,
+     2023,
+     2022,
+     2028,
+     2023
+    ],
+    "H-OR3": [
+     205,
+     209,
+     207,
+     212,
+     215,
+     212,
+     216,
+     214,
+     203,
+     206,
+     206,
+     209,
+     207,
+     203,
+     214,
+     206,
+     208,
+     204,
+     209,
+     202
+    ],
+    "H-W5k": [
+     2053,
+     2081,
+     2068,
+     2051,
+     2070
+    ],
+    "H-W10k": [
+     4069,
+     4096,
+     4097,
+     4081,
+     4127
+    ],
+    "H-SHIFT": [
+     2444,
+     2446,
+     2442,
+     2452,
+     2460
+    ],
+    "H-OR1": [
+     51,
+     50,
+     48,
+     51,
+     53,
+     51,
+     51,
+     51,
+     53,
+     50,
+     55,
+     53,
+     51,
+     51,
+     53,
+     52,
+     57,
+     57,
+     51,
+     52
+    ],
+    "H-OR2": [
+     103,
+     105,
+     108,
+     105,
+     106,
+     104,
+     106,
+     110,
+     110,
+     108,
+     110,
+     106,
+     111,
+     108,
+     106,
+     113,
+     101,
+     105,
+     103,
+     106
+    ],
+    "H-OR4": [
+     411,
+     419,
+     422,
+     426,
+     407,
+     414,
+     407,
+     415,
+     411,
+     409,
+     411,
+     414,
+     403,
+     407,
+     407,
+     412,
+     416,
+     413,
+     413,
+     412
+    ]
+   },
+   "F": 0.7627586206896543,
+   "call": 1914,
+   "seed": 3,
+   "arm": "IDEA",
+   "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    remaining = np.clip(remaining, 0, np.inf)\n    utilization = 1 - remaining / bins\n    # Use a combination of remaining capacity and utilization\n    # with separate weights for different aspects\n    # Higher remaining capacity -> lower priority\n    # Higher utilization -> higher priority\n    # Add a penalty for bins with very low remaining capacity\n    penalty = np.where(remaining < 0.1 * bins, 1.0, 0.0)\n    # Combine remaining capacity and utilization\n    weight_remaining = np.clip(utilization, 0, 1)\n    weight_utilization = np.clip(1 - utilization, 0, 1)\n    priority = weight_remaining * (1.0 / (remaining + 1e-8)) + weight_utilization * utilization + penalty\n    return priority"
+  },
+  "S2-NS": {
+   "excess": {
+    "H-FSW5k": 0.03984304255961367,
+    "H-OR3": 0.05367793240556666,
+    "H-W5k": 0.04131167029918757,
+    "H-W10k": 0.040578265204386885,
+    "H-SHIFT": 0.055379882061362434,
+    "H-OR1": 0.05810397553516823,
+    "H-OR2": 0.06056129985228957,
+    "H-OR4": 0.04943203095743356
+   },
+   "excess_over_bf": {
+    "H-FSW5k": 1.0,
+    "H-OR3": 1.0,
+    "H-W5k": 1.0,
+    "H-W10k": 1.0,
+    "H-SHIFT": 1.0,
+    "H-OR1": 1.0,
+    "H-OR2": 1.0,
+    "H-OR4": 1.0
+   },
+   "paired_vs_bf": {
+    "H-FSW5k": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR3": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-W5k": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-W10k": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-SHIFT": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR1": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR2": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR4": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    }
+   },
+   "errors": {},
+   "bins": {
+    "H-FSW5k": [
+     2094,
+     2059,
+     2057,
+     2067,
+     2058
+    ],
+    "H-OR3": [
+     211,
+     212,
+     213,
+     215,
+     218,
+     218,
+     217,
+     216,
+     207,
+     212,
+     209,
+     212,
+     210,
+     207,
+     215,
+     211,
+     211,
+     207,
+     213,
+     206
+    ],
+    "H-W5k": [
+     2086,
+     2123,
+     2103,
+     2089,
+     2110
+    ],
+    "H-W10k": [
+     4150,
+     4173,
+     4177,
+     4165,
+     4209
+    ],
+    "H-SHIFT": [
+     2468,
+     2465,
+     2464,
+     2476,
+     2476
+    ],
+    "H-OR1": [
+     50,
+     51,
+     48,
+     53,
+     52,
+     52,
+     52,
+     52,
+     53,
+     48,
+     55,
+     51,
+     51,
+     51,
+     53,
+     52,
+     55,
+     56,
+     51,
+     52
+    ],
+    "H-OR2": [
+     105,
+     108,
+     109,
+     106,
+     107,
+     107,
+     107,
+     109,
+     111,
+     108,
+     111,
+     108,
+     111,
+     108,
+     105,
+     113,
+     103,
+     106,
+     105,
+     107
+    ],
+    "H-OR4": [
+     419,
+     426,
+     433,
+     434,
+     417,
+     420,
+     415,
+     425,
+     418,
+     417,
+     418,
+     422,
+     412,
+     414,
+     414,
+     422,
+     423,
+     422,
+     419,
+     417
+    ]
+   },
+   "F": 1.0,
+   "call": 101,
+   "seed": 2,
+   "arm": "NS",
+   "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    return -(bins - item)"
+  },
+  "S3-NS": {
+   "excess": {
+    "H-FSW5k": 0.03984304255961367,
+    "H-OR3": 0.05367793240556666,
+    "H-W5k": 0.04131167029918757,
+    "H-W10k": 0.040578265204386885,
+    "H-SHIFT": 0.055379882061362434,
+    "H-OR1": 0.05810397553516823,
+    "H-OR2": 0.06056129985228957,
+    "H-OR4": 0.04943203095743356
+   },
+   "excess_over_bf": {
+    "H-FSW5k": 1.0,
+    "H-OR3": 1.0,
+    "H-W5k": 1.0,
+    "H-W10k": 1.0,
+    "H-SHIFT": 1.0,
+    "H-OR1": 1.0,
+    "H-OR2": 1.0,
+    "H-OR4": 1.0
+   },
+   "paired_vs_bf": {
+    "H-FSW5k": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR3": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-W5k": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-W10k": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-SHIFT": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR1": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR2": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR4": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    }
+   },
+   "errors": {},
+   "bins": {
+    "H-FSW5k": [
+     2094,
+     2059,
+     2057,
+     2067,
+     2058
+    ],
+    "H-OR3": [
+     211,
+     212,
+     213,
+     215,
+     218,
+     218,
+     217,
+     216,
+     207,
+     212,
+     209,
+     212,
+     210,
+     207,
+     215,
+     211,
+     211,
+     207,
+     213,
+     206
+    ],
+    "H-W5k": [
+     2086,
+     2123,
+     2103,
+     2089,
+     2110
+    ],
+    "H-W10k": [
+     4150,
+     4173,
+     4177,
+     4165,
+     4209
+    ],
+    "H-SHIFT": [
+     2468,
+     2465,
+     2464,
+     2476,
+     2476
+    ],
+    "H-OR1": [
+     50,
+     51,
+     48,
+     53,
+     52,
+     52,
+     52,
+     52,
+     53,
+     48,
+     55,
+     51,
+     51,
+     51,
+     53,
+     52,
+     55,
+     56,
+     51,
+     52
+    ],
+    "H-OR2": [
+     105,
+     108,
+     109,
+     106,
+     107,
+     107,
+     107,
+     109,
+     111,
+     108,
+     111,
+     108,
+     111,
+     108,
+     105,
+     113,
+     103,
+     106,
+     105,
+     107
+    ],
+    "H-OR4": [
+     419,
+     426,
+     433,
+     434,
+     417,
+     420,
+     415,
+     425,
+     418,
+     417,
+     418,
+     422,
+     412,
+     414,
+     414,
+     422,
+     423,
+     422,
+     419,
+     417
+    ]
+   },
+   "F": 1.0,
+   "call": 413,
+   "seed": 3,
+   "arm": "NS",
+   "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    return -(bins - item)**2"
+  }
+ },
+ "artifact_best": {
+  "T1.0": {
+   "excess": {
+    "H-FSW5k": 0.03672401650065411,
+    "H-OR3": 0.0482107355864812,
+    "H-W5k": 0.03903308896374082,
+    "H-W10k": 0.037337986041874424,
+    "H-SHIFT": 0.055636270404239074,
+    "H-OR1": 0.055045871559633086,
+    "H-OR2": 0.05760709010339743,
+    "H-OR4": 0.04481338160029956
+   },
+   "excess_over_bf": {
+    "H-FSW5k": 0.921717171717174,
+    "H-OR3": 0.8981481481481488,
+    "H-W5k": 0.9448441247002408,
+    "H-W10k": 0.9201474201474202,
+    "H-SHIFT": 1.0046296296296289,
+    "H-OR1": 0.947368421052632,
+    "H-OR2": 0.9512195121951225,
+    "H-OR4": 0.9065656565656555
+   },
+   "paired_vs_bf": {
+    "H-FSW5k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -6.2
+    },
+    "H-OR3": {
+     "wins": 15,
+     "ties": 3,
+     "losses": 2,
+     "mean_bin_diff": -1.1
+    },
+    "H-W5k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -4.6
+    },
+    "H-W10k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -13.0
+    },
+    "H-SHIFT": {
+     "wins": 1,
+     "ties": 1,
+     "losses": 3,
+     "mean_bin_diff": 0.6
+    },
+    "H-OR1": {
+     "wins": 4,
+     "ties": 15,
+     "losses": 1,
+     "mean_bin_diff": -0.15
+    },
+    "H-OR2": {
+     "wins": 6,
+     "ties": 13,
+     "losses": 1,
+     "mean_bin_diff": -0.3
+    },
+    "H-OR4": {
+     "wins": 16,
+     "ties": 3,
+     "losses": 1,
+     "mean_bin_diff": -1.85
+    }
+   },
+   "errors": {},
+   "bins": {
+    "H-FSW5k": [
+     2090,
+     2054,
+     2053,
+     2055,
+     2052
+    ],
+    "H-OR3": [
+     209,
+     211,
+     211,
+     215,
+     217,
+     216,
+     218,
+     217,
+     206,
+     211,
+     207,
+     209,
+     210,
+     206,
+     213,
+     210,
+     210,
+     206,
+     210,
+     206
+    ],
+    "H-W5k": [
+     2084,
+     2117,
+     2097,
+     2086,
+     2104
+    ],
+    "H-W10k": [
+     4136,
+     4165,
+     4162,
+     4149,
+     4197
+    ],
+    "H-SHIFT": [
+     2468,
+     2466,
+     2465,
+     2475,
+     2478
+    ],
+    "H-OR1": [
+     50,
+     51,
+     48,
+     52,
+     52,
+     51,
+     51,
+     52,
+     53,
+     48,
+     55,
+     51,
+     52,
+     51,
+     52,
+     52,
+     55,
+     56,
+     51,
+     52
+    ],
+    "H-OR2": [
+     103,
+     107,
+     109,
+     106,
+     107,
+     106,
+     107,
+     108,
+     111,
+     108,
+     111,
+     107,
+     111,
+     108,
+     106,
+     113,
+     103,
+     105,
+     105,
+     107
+    ],
+    "H-OR4": [
+     417,
+     423,
+     430,
+     431,
+     416,
+     416,
+     413,
+     422,
+     416,
+     415,
+     416,
+     420,
+     411,
+     414,
+     414,
+     420,
+     423,
+     419,
+     415,
+     419
+    ]
+   },
+   "F": 0.9192494929006079,
+   "call": 1214,
+   "seed": 2,
+   "arm": "T1.0",
+   "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    return -(bins - item) * (1 + 1 / bins + 0.5 * np.sin(2 * np.pi * bins / item))",
+   "from_seed": 2
+  },
+  "T1.6": {
+   "excess": {
+    "H-FSW5k": 0.03984304255961367,
+    "H-OR3": 0.05367793240556666,
+    "H-W5k": 0.04131167029918757,
+    "H-W10k": 0.040578265204386885,
+    "H-SHIFT": 0.055379882061362434,
+    "H-OR1": 0.05810397553516823,
+    "H-OR2": 0.06056129985228957,
+    "H-OR4": 0.04943203095743356
+   },
+   "excess_over_bf": {
+    "H-FSW5k": 1.0,
+    "H-OR3": 1.0,
+    "H-W5k": 1.0,
+    "H-W10k": 1.0,
+    "H-SHIFT": 1.0,
+    "H-OR1": 1.0,
+    "H-OR2": 1.0,
+    "H-OR4": 1.0
+   },
+   "paired_vs_bf": {
+    "H-FSW5k": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR3": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-W5k": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-W10k": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-SHIFT": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR1": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR2": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR4": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    }
+   },
+   "errors": {},
+   "bins": {
+    "H-FSW5k": [
+     2094,
+     2059,
+     2057,
+     2067,
+     2058
+    ],
+    "H-OR3": [
+     211,
+     212,
+     213,
+     215,
+     218,
+     218,
+     217,
+     216,
+     207,
+     212,
+     209,
+     212,
+     210,
+     207,
+     215,
+     211,
+     211,
+     207,
+     213,
+     206
+    ],
+    "H-W5k": [
+     2086,
+     2123,
+     2103,
+     2089,
+     2110
+    ],
+    "H-W10k": [
+     4150,
+     4173,
+     4177,
+     4165,
+     4209
+    ],
+    "H-SHIFT": [
+     2468,
+     2465,
+     2464,
+     2476,
+     2476
+    ],
+    "H-OR1": [
+     50,
+     51,
+     48,
+     53,
+     52,
+     52,
+     52,
+     52,
+     53,
+     48,
+     55,
+     51,
+     51,
+     51,
+     53,
+     52,
+     55,
+     56,
+     51,
+     52
+    ],
+    "H-OR2": [
+     105,
+     108,
+     109,
+     106,
+     107,
+     107,
+     107,
+     109,
+     111,
+     108,
+     111,
+     108,
+     111,
+     108,
+     105,
+     113,
+     103,
+     106,
+     105,
+     107
+    ],
+    "H-OR4": [
+     419,
+     426,
+     433,
+     434,
+     417,
+     420,
+     415,
+     425,
+     418,
+     417,
+     418,
+     422,
+     412,
+     414,
+     414,
+     422,
+     423,
+     422,
+     419,
+     417
+    ]
+   },
+   "F": 1.0,
+   "call": 0,
+   "seed": 2,
+   "arm": "T1.6",
+   "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    return -(bins - item)",
+   "from_seed": 2
+  },
+  "DTB": {
+   "excess": {
+    "H-FSW5k": 0.023946071033303217,
+    "H-OR3": 0.038518886679920476,
+    "H-W5k": 0.02486625718248467,
+    "H-W10k": 0.022632103688933244,
+    "H-SHIFT": 0.03837278865054277,
+    "H-OR1": 0.06218144750254851,
+    "H-OR2": 0.046282619399310714,
+    "H-OR4": 0.033454000748970106
+   },
+   "excess_over_bf": {
+    "H-FSW5k": 0.6010101010101023,
+    "H-OR3": 0.7175925925925918,
+    "H-W5k": 0.6019184652278192,
+    "H-W10k": 0.5577395577395582,
+    "H-SHIFT": 0.6929012345679008,
+    "H-OR1": 1.0701754385964921,
+    "H-OR2": 0.7642276422764225,
+    "H-OR4": 0.6767676767676751
+   },
+   "paired_vs_bf": {
+    "H-FSW5k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -31.6
+    },
+    "H-OR3": {
+     "wins": 19,
+     "ties": 1,
+     "losses": 0,
+     "mean_bin_diff": -3.05
+    },
+    "H-W5k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -33.2
+    },
+    "H-W10k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -72.0
+    },
+    "H-SHIFT": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -39.8
+    },
+    "H-OR1": {
+     "wins": 4,
+     "ties": 8,
+     "losses": 8,
+     "mean_bin_diff": 0.2
+    },
+    "H-OR2": {
+     "wins": 18,
+     "ties": 2,
+     "losses": 0,
+     "mean_bin_diff": -1.45
+    },
+    "H-OR4": {
+     "wins": 20,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -6.4
+    }
+   },
+   "errors": {},
+   "bins": {
+    "H-FSW5k": [
+     2060,
+     2033,
+     2026,
+     2032,
+     2026
+    ],
+    "H-OR3": [
+     207,
+     209,
+     209,
+     211,
+     215,
+     215,
+     215,
+     213,
+     205,
+     207,
+     206,
+     208,
+     208,
+     204,
+     215,
+     207,
+     209,
+     205,
+     208,
+     203
+    ],
+    "H-W5k": [
+     2056,
+     2082,
+     2081,
+     2057,
+     2069
+    ],
+    "H-W10k": [
+     4082,
+     4101,
+     4105,
+     4093,
+     4133
+    ],
+    "H-SHIFT": [
+     2421,
+     2428,
+     2440,
+     2437,
+     2424
+    ],
+    "H-OR1": [
+     50,
+     51,
+     48,
+     51,
+     53,
+     51,
+     50,
+     55,
+     53,
+     49,
+     56,
+     52,
+     52,
+     51,
+     53,
+     53,
+     56,
+     56,
+     51,
+     51
+    ],
+    "H-OR2": [
+     103,
+     105,
+     108,
+     105,
+     105,
+     105,
+     106,
+     108,
+     110,
+     106,
+     109,
+     108,
+     110,
+     108,
+     104,
+     111,
+     101,
+     104,
+     104,
+     105
+    ],
+    "H-OR4": [
+     414,
+     419,
+     426,
+     426,
+     409,
+     413,
+     409,
+     417,
+     412,
+     411,
+     414,
+     415,
+     405,
+     408,
+     406,
+     415,
+     417,
+     417,
+     413,
+     413
+    ]
+   },
+   "F": 0.7255172413793087,
+   "call": 1897,
+   "seed": 2,
+   "arm": "DTB",
+   "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    bins = np.clip(bins, a_min=item, a_max=None)\n    bins_ratio = bins / item\n    ratio_diff = bins_ratio - 0.5\n    term1 = np.exp(-2 * np.abs(ratio_diff) ** 2)\n    term2 = (bins_ratio >= 0.8) + (bins_ratio <= 0.2)\n    term3 = 1 + np.sin(np.pi * bins_ratio) - np.sqrt(bins_ratio) + 0.5\n    term4 = np.sqrt(np.abs(ratio_diff)) + 0.1\n    return np.maximum(\n        0,\n        term1 * term2 * term3 * term4\n    )",
+   "from_seed": 2
+  },
+  "RPB": {
+   "excess": {
+    "H-FSW5k": 0.017204950196196823,
+    "H-OR3": 0.037027833001988156,
+    "H-W5k": 0.01812958192985939,
+    "H-W10k": 0.01640079760717851,
+    "H-SHIFT": 0.04999572686095206,
+    "H-OR1": 0.0632008154943935,
+    "H-OR2": 0.053668143771541145,
+    "H-OR4": 0.029209836474847057
+   },
+   "excess_over_bf": {
+    "H-FSW5k": 0.4318181818181821,
+    "H-OR3": 0.6898148148148155,
+    "H-W5k": 0.4388489208633117,
+    "H-W10k": 0.4041769041769049,
+    "H-SHIFT": 0.9027777777777752,
+    "H-OR1": 1.0877192982456139,
+    "H-OR2": 0.8861788617886176,
+    "H-OR4": 0.5909090909090899
+   },
+   "paired_vs_bf": {
+    "H-FSW5k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -45.0
+    },
+    "H-OR3": {
+     "wins": 19,
+     "ties": 0,
+     "losses": 1,
+     "mean_bin_diff": -3.35
+    },
+    "H-W5k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -46.8
+    },
+    "H-W10k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -97.0
+    },
+    "H-SHIFT": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -12.6
+    },
+    "H-OR1": {
+     "wins": 6,
+     "ties": 5,
+     "losses": 9,
+     "mean_bin_diff": 0.25
+    },
+    "H-OR2": {
+     "wins": 12,
+     "ties": 4,
+     "losses": 4,
+     "mean_bin_diff": -0.7
+    },
+    "H-OR4": {
+     "wins": 20,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -8.1
+    }
+   },
+   "errors": {},
+   "bins": {
+    "H-FSW5k": [
+     2047,
+     2015,
+     2012,
+     2023,
+     2013
+    ],
+    "H-OR3": [
+     204,
+     210,
+     207,
+     212,
+     213,
+     215,
+     215,
+     215,
+     204,
+     209,
+     205,
+     208,
+     205,
+     203,
+     218,
+     207,
+     208,
+     205,
+     208,
+     202
+    ],
+    "H-W5k": [
+     2047,
+     2074,
+     2057,
+     2040,
+     2059
+    ],
+    "H-W10k": [
+     4057,
+     4080,
+     4076,
+     4070,
+     4106
+    ],
+    "H-SHIFT": [
+     2454,
+     2451,
+     2455,
+     2462,
+     2464
+    ],
+    "H-OR1": [
+     50,
+     51,
+     47,
+     51,
+     54,
+     51,
+     50,
+     53,
+     52,
+     50,
+     55,
+     53,
+     51,
+     51,
+     54,
+     53,
+     57,
+     57,
+     52,
+     51
+    ],
+    "H-OR2": [
+     103,
+     104,
+     108,
+     105,
+     106,
+     105,
+     106,
+     110,
+     111,
+     107,
+     112,
+     107,
+     110,
+     109,
+     106,
+     113,
+     103,
+     105,
+     103,
+     107
+    ],
+    "H-OR4": [
+     410,
+     417,
+     425,
+     425,
+     408,
+     412,
+     406,
+     415,
+     410,
+     409,
+     411,
+     411,
+     405,
+     405,
+     408,
+     413,
+     416,
+     416,
+     411,
+     412
+    ]
+   },
+   "F": 0.7615212981744426,
+   "call": 1979,
+   "seed": 3,
+   "arm": "RPB",
+   "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining_spaces = bins - item\n    valid_indices = remaining_spaces > 0\n    r_percent = remaining_spaces / bins\n\n    # Base score based on remaining space and utilization\n    base_score = -np.abs(remaining_spaces - item) * valid_indices * r_percent * (1 - r_percent)\n\n    # Penalize bins that are almost full\n    full_penalty = -np.clip(r_percent, a_min=0, a_max=0.95) * valid_indices\n\n    # Penalize bins with very small remaining space\n    small_space_penalty = -np.clip(remaining_spaces, a_min=0, a_max=10) * valid_indices\n\n    # Encourage bins with space close to item size\n    fit_score = np.clip(remaining_spaces / item, a_min=0, a_max=2) * valid_indices\n\n    # Encourage bins with moderate utilization\n    moderate_utilization = np.clip(r_percent, a_min=0.5, a_max=0.9) * valid_indices\n\n    # Encourage bins that are not too full and not too empty\n    utilization_balance = np.clip(1 - 2 * np.abs(r_percent - 0.5), a_min=0, a_max=1) * valid_indices\n\n    # Combine all scores with adjusted weights\n    score = (\n        base_score * 0.4 +\n        full_penalty * 0.2 +\n        small_space_penalty * 0.1 +\n        fit_score * 0.15 +\n        moderate_utilization * 0.1 +\n        utilization_balance * 0.05\n    )\n    return score",
+   "from_seed": 3
+  },
+  "IDEA": {
+   "excess": {
+    "H-FSW5k": 0.02133011369353058,
+    "H-OR3": 0.035536779324055696,
+    "H-W5k": 0.0226867446007529,
+    "H-W10k": 0.020438683948155532,
+    "H-SHIFT": 0.046406290060678736,
+    "H-OR1": 0.06116207951070337,
+    "H-OR2": 0.050713934022648996,
+    "H-OR4": 0.02970914991886151
+   },
+   "excess_over_bf": {
+    "H-FSW5k": 0.5353535353535361,
+    "H-OR3": 0.6620370370370369,
+    "H-W5k": 0.5491606714628301,
+    "H-W10k": 0.5036855036855031,
+    "H-SHIFT": 0.8379629629629635,
+    "H-OR1": 1.052631578947368,
+    "H-OR2": 0.83739837398374,
+    "H-OR4": 0.6010101010100996
+   },
+   "paired_vs_bf": {
+    "H-FSW5k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -36.8
+    },
+    "H-OR3": {
+     "wins": 20,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -3.65
+    },
+    "H-W5k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -37.6
+    },
+    "H-W10k": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -80.8
+    },
+    "H-SHIFT": {
+     "wins": 5,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -21.0
+    },
+    "H-OR1": {
+     "wins": 5,
+     "ties": 9,
+     "losses": 6,
+     "mean_bin_diff": 0.15
+    },
+    "H-OR2": {
+     "wins": 14,
+     "ties": 4,
+     "losses": 2,
+     "mean_bin_diff": -1.0
+    },
+    "H-OR4": {
+     "wins": 20,
+     "ties": 0,
+     "losses": 0,
+     "mean_bin_diff": -7.9
+    }
+   },
+   "errors": {},
+   "bins": {
+    "H-FSW5k": [
+     2055,
+     2023,
+     2022,
+     2028,
+     2023
+    ],
+    "H-OR3": [
+     205,
+     209,
+     207,
+     212,
+     215,
+     212,
+     216,
+     214,
+     203,
+     206,
+     206,
+     209,
+     207,
+     203,
+     214,
+     206,
+     208,
+     204,
+     209,
+     202
+    ],
+    "H-W5k": [
+     2053,
+     2081,
+     2068,
+     2051,
+     2070
+    ],
+    "H-W10k": [
+     4069,
+     4096,
+     4097,
+     4081,
+     4127
+    ],
+    "H-SHIFT": [
+     2444,
+     2446,
+     2442,
+     2452,
+     2460
+    ],
+    "H-OR1": [
+     51,
+     50,
+     48,
+     51,
+     53,
+     51,
+     51,
+     51,
+     53,
+     50,
+     55,
+     53,
+     51,
+     51,
+     53,
+     52,
+     57,
+     57,
+     51,
+     52
+    ],
+    "H-OR2": [
+     103,
+     105,
+     108,
+     105,
+     106,
+     104,
+     106,
+     110,
+     110,
+     108,
+     110,
+     106,
+     111,
+     108,
+     106,
+     113,
+     101,
+     105,
+     103,
+     106
+    ],
+    "H-OR4": [
+     411,
+     419,
+     422,
+     426,
+     407,
+     414,
+     407,
+     415,
+     411,
+     409,
+     411,
+     414,
+     403,
+     407,
+     407,
+     412,
+     416,
+     413,
+     413,
+     412
+    ]
+   },
+   "F": 0.7627586206896543,
+   "call": 1914,
+   "seed": 3,
+   "arm": "IDEA",
+   "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    remaining = bins - item\n    remaining = np.clip(remaining, 0, np.inf)\n    utilization = 1 - remaining / bins\n    # Use a combination of remaining capacity and utilization\n    # with separate weights for different aspects\n    # Higher remaining capacity -> lower priority\n    # Higher utilization -> higher priority\n    # Add a penalty for bins with very low remaining capacity\n    penalty = np.where(remaining < 0.1 * bins, 1.0, 0.0)\n    # Combine remaining capacity and utilization\n    weight_remaining = np.clip(utilization, 0, 1)\n    weight_utilization = np.clip(1 - utilization, 0, 1)\n    priority = weight_remaining * (1.0 / (remaining + 1e-8)) + weight_utilization * utilization + penalty\n    return priority",
+   "from_seed": 3
+  },
+  "NS": {
+   "excess": {
+    "H-FSW5k": 0.03984304255961367,
+    "H-OR3": 0.05367793240556666,
+    "H-W5k": 0.04131167029918757,
+    "H-W10k": 0.040578265204386885,
+    "H-SHIFT": 0.055379882061362434,
+    "H-OR1": 0.05810397553516823,
+    "H-OR2": 0.06056129985228957,
+    "H-OR4": 0.04943203095743356
+   },
+   "excess_over_bf": {
+    "H-FSW5k": 1.0,
+    "H-OR3": 1.0,
+    "H-W5k": 1.0,
+    "H-W10k": 1.0,
+    "H-SHIFT": 1.0,
+    "H-OR1": 1.0,
+    "H-OR2": 1.0,
+    "H-OR4": 1.0
+   },
+   "paired_vs_bf": {
+    "H-FSW5k": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR3": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-W5k": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-W10k": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-SHIFT": {
+     "wins": 0,
+     "ties": 5,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR1": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR2": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    },
+    "H-OR4": {
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "mean_bin_diff": 0.0
+    }
+   },
+   "errors": {},
+   "bins": {
+    "H-FSW5k": [
+     2094,
+     2059,
+     2057,
+     2067,
+     2058
+    ],
+    "H-OR3": [
+     211,
+     212,
+     213,
+     215,
+     218,
+     218,
+     217,
+     216,
+     207,
+     212,
+     209,
+     212,
+     210,
+     207,
+     215,
+     211,
+     211,
+     207,
+     213,
+     206
+    ],
+    "H-W5k": [
+     2086,
+     2123,
+     2103,
+     2089,
+     2110
+    ],
+    "H-W10k": [
+     4150,
+     4173,
+     4177,
+     4165,
+     4209
+    ],
+    "H-SHIFT": [
+     2468,
+     2465,
+     2464,
+     2476,
+     2476
+    ],
+    "H-OR1": [
+     50,
+     51,
+     48,
+     53,
+     52,
+     52,
+     52,
+     52,
+     53,
+     48,
+     55,
+     51,
+     51,
+     51,
+     53,
+     52,
+     55,
+     56,
+     51,
+     52
+    ],
+    "H-OR2": [
+     105,
+     108,
+     109,
+     106,
+     107,
+     107,
+     107,
+     109,
+     111,
+     108,
+     111,
+     108,
+     111,
+     108,
+     105,
+     113,
+     103,
+     106,
+     105,
+     107
+    ],
+    "H-OR4": [
+     419,
+     426,
+     433,
+     434,
+     417,
+     420,
+     415,
+     425,
+     418,
+     417,
+     418,
+     422,
+     412,
+     414,
+     414,
+     422,
+     423,
+     422,
+     419,
+     417
+    ]
+   },
+   "F": 1.0,
+   "call": 101,
+   "seed": 2,
+   "arm": "NS",
+   "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    return -(bins - item)",
+   "from_seed": 2
+  }
+ },
+ "comparison": {
+  "tuned_ab@C*=2000 (ab-FF(5,22))": {
+   "F": 0.739614604462474,
+   "excess": {
+    "H-FSW5k": 0.021430727437368013,
+    "H-OR3": 0.030566600397614344,
+    "H-W5k": 0.021200713295026728,
+    "H-W10k": 0.020987038883349903,
+    "H-SHIFT": 0.04931202461328096,
+    "H-OR1": 0.06727828746177379,
+    "H-OR2": 0.049236829148202856,
+    "H-OR4": 0.021595306453626208
+   }
+  },
+  "ab-FF(5,24) published": {
+   "F": 0.7909533468559837,
+   "excess": {
+    "H-FSW5k": 0.02173256866888019,
+    "H-OR3": 0.030069582504970237,
+    "H-W5k": 0.02189419457103232,
+    "H-W10k": 0.021136590229312108,
+    "H-SHIFT": 0.0454661994701308,
+    "H-OR1": 0.0632008154943935,
+    "H-OR2": 0.04529788281634671,
+    "H-OR4": 0.021220821370615404
+   }
+  },
+  "ab-WF(1,21) published": {
+   "F": 1.4491277890466532,
+   "excess": {
+    "H-FSW5k": 0.0068417345809438255,
+    "H-OR3": 0.08523856858846922,
+    "H-W5k": 0.0067366752526253895,
+    "H-W10k": 0.005034895314057781,
+    "H-SHIFT": 0.04700452952739082,
+    "H-OR1": 0.1559633027522937,
+    "H-OR2": 0.11669128508124085,
+    "H-OR4": 0.06403694919485702
+   }
+  },
+  "FF": {
+   "F": 1.090547667342798,
+   "excess": {
+    "H-FSW5k": 0.04225777241171155,
+    "H-OR3": 0.057405566600397674,
+    "H-W5k": 0.04468000792550032,
+    "H-W10k": 0.04327018943170498,
+    "H-SHIFT": 0.056832749337663455,
+    "H-OR1": 0.06422018348623865,
+    "H-OR2": 0.06450024618414571,
+    "H-OR4": 0.05230308326051676
+   },
+   "family": "textbook",
+   "flag_nonfinite": false
+  },
+  "BF": {
+   "F": 1.0,
+   "excess": {
+    "H-FSW5k": 0.03984304255961367,
+    "H-OR3": 0.05367793240556666,
+    "H-W5k": 0.04131167029918757,
+    "H-W10k": 0.040578265204386885,
+    "H-SHIFT": 0.055379882061362434,
+    "H-OR1": 0.05810397553516823,
+    "H-OR2": 0.06056129985228957,
+    "H-OR4": 0.04943203095743356
+   },
+   "family": "textbook",
+   "flag_nonfinite": false
+  },
+  "WF": {
+   "F": 2.771196754563895,
+   "excess": {
+    "H-FSW5k": 0.13210584565851702,
+    "H-OR3": 0.1466202783300199,
+    "H-W5k": 0.1306716861501882,
+    "H-W10k": 0.1298604187437687,
+    "H-SHIFT": 0.09947867703615085,
+    "H-OR1": 0.15290519877675843,
+    "H-OR2": 0.15312653865091086,
+    "H-OR4": 0.14267881662713763
+   },
+   "family": "textbook",
+   "flag_nonfinite": false
+  },
+  "AWF": {
+   "F": 1.6955172413793096,
+   "excess": {
+    "H-FSW5k": 0.08220142871516242,
+    "H-OR3": 0.0810139165009941,
+    "H-W5k": 0.08569447196354281,
+    "H-W10k": 0.08394815553339985,
+    "H-SHIFT": 0.06324245790958039,
+    "H-OR1": 0.08664627930682978,
+    "H-OR2": 0.086656819300837,
+    "H-OR4": 0.07876669579328426
+   },
+   "family": "textbook",
+   "flag_nonfinite": false
+  },
+  "FunSearch-c12": {
+   "F": 0.7800608519269782,
+   "excess": {
+    "H-FSW5k": 0.03028473689505989,
+    "H-OR3": 0.03106361829025845,
+    "H-W5k": 0.030711313651674375,
+    "H-SHIFT": 0.050166652422869884,
+    "H-OR1": 0.05300713557594295,
+    "H-OR2": 0.04185130477597243,
+    "H-OR4": 0.024716015478716706
+   },
+   "family": "funsearch",
+   "flag_nonfinite": false
+  },
+  "FunSearch-c14": {
+   "F": 2.586267748478703,
+   "excess": {
+    "H-FSW5k": 0.0068417345809438255,
+    "H-OR3": 0.12773359840954285,
+    "H-W5k": 0.006835744006340378,
+    "H-W10k": 0.0032402791625124627,
+    "H-SHIFT": 0.13810785402957024,
+    "H-OR1": 0.2925586136595311,
+    "H-OR2": 0.19842442146725758,
+    "H-OR4": 0.08138809137436016
+   },
+   "family": "funsearch",
+   "flag_nonfinite": false
+  },
+  "FunSearch-c12-vec": {
+   "F": 0.7800608519269782,
+   "excess": {
+    "H-FSW5k": 0.03028473689505989,
+    "H-OR3": 0.03106361829025845,
+    "H-W5k": 0.030711313651674375,
+    "H-W10k": 0.03015952143569292,
+    "H-SHIFT": 0.050166652422869884,
+    "H-OR1": 0.05300713557594295,
+    "H-OR2": 0.04185130477597243,
+    "H-OR4": 0.024716015478716706
+   },
+   "family": "funsearch",
+   "flag_nonfinite": false
+  },
+  "EoH-run1-00": {
+   "F": 0.9871399594320488,
+   "excess": {
+    "H-FSW5k": 0.006238052117919354,
+    "H-OR3": 0.06585487077534792,
+    "H-W5k": 0.00743015652863087,
+    "H-W10k": 0.0049351944167497965,
+    "H-SHIFT": 0.06358430903341603,
+    "H-OR1": 0.11213047910295618,
+    "H-OR2": 0.09059576563269328,
+    "H-OR4": 0.05180376981650231
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run1-01": {
+   "F": 0.9859634888438132,
+   "excess": {
+    "H-FSW5k": 0.006338665861756785,
+    "H-OR3": 0.06585487077534792,
+    "H-W5k": 0.0076282940360610715,
+    "H-W10k": 0.0049351944167497965,
+    "H-SHIFT": 0.06358430903341603,
+    "H-OR1": 0.11213047910295618,
+    "H-OR2": 0.09059576563269328,
+    "H-OR4": 0.051928598177505954
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run1-02": {
+   "F": 1.3206085192697783,
+   "excess": {
+    "H-FSW5k": 0.006439279605594102,
+    "H-OR3": 0.08896620278330024,
+    "H-W5k": 0.010105012878938028,
+    "H-W10k": 0.0034396809571286594,
+    "H-SHIFT": 0.06734467139560738,
+    "H-OR1": 0.143730886850153,
+    "H-OR2": 0.121122599704579,
+    "H-OR4": 0.07027836724503801
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run1-03": {
+   "F": 1.362941176470589,
+   "excess": {
+    "H-FSW5k": 0.006539893349431532,
+    "H-OR3": 0.08672962226640168,
+    "H-W5k": 0.0114919754309491,
+    "H-W10k": 0.00448654037886341,
+    "H-SHIFT": 0.0668318947098539,
+    "H-OR1": 0.14984709480122327,
+    "H-OR2": 0.12161496799606114,
+    "H-OR4": 0.06728248658095116
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run1-04": {
+   "F": 1.3198174442190669,
+   "excess": {
+    "H-FSW5k": 0.006640507093268963,
+    "H-OR3": 0.09020874751491056,
+    "H-W5k": 0.010699425401228521,
+    "H-W10k": 0.004087736789631129,
+    "H-SHIFT": 0.06734467139560738,
+    "H-OR1": 0.14984709480122327,
+    "H-OR2": 0.119645494830133,
+    "H-OR4": 0.07052802396704531
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run1-05": {
+   "F": 1.3092494929006095,
+   "excess": {
+    "H-FSW5k": 0.006741120837106394,
+    "H-OR3": 0.08921471172962235,
+    "H-W5k": 0.008916187834357044,
+    "H-W10k": 0.00319042871385847,
+    "H-SHIFT": 0.06725920861464836,
+    "H-OR1": 0.14882772680937828,
+    "H-OR2": 0.120137863121615,
+    "H-OR4": 0.07027836724503801
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run1-06": {
+   "F": 1.371561866125761,
+   "excess": {
+    "H-FSW5k": 0.0068417345809438255,
+    "H-OR3": 0.09194831013916502,
+    "H-W5k": 0.010303150386368117,
+    "H-W10k": 0.00423728813559322,
+    "H-SHIFT": 0.06760105973848402,
+    "H-OR1": 0.15494393476044857,
+    "H-OR2": 0.121122599704579,
+    "H-OR4": 0.07040319560604166
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run1-07": {
+   "F": 1.081176470588235,
+   "excess": {
+    "H-FSW5k": 0.006942348324781142,
+    "H-OR3": 0.0653578528827038,
+    "H-W5k": 0.008420844065781653,
+    "H-W10k": 0.005234297108673978,
+    "H-SHIFT": 0.06392616015725168,
+    "H-OR1": 0.1192660550458716,
+    "H-OR2": 0.09158050221565729,
+    "H-OR4": 0.050680314567469756
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run1-08": {
+   "F": 1.318255578093307,
+   "excess": {
+    "H-FSW5k": 0.007042962068618573,
+    "H-OR3": 0.08598409542743544,
+    "H-W5k": 0.01089756290865861,
+    "H-W10k": 0.003639082751744743,
+    "H-SHIFT": 0.06691735749081291,
+    "H-OR1": 0.15086646279306842,
+    "H-OR2": 0.11718365337272285,
+    "H-OR4": 0.06578454624890767
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run1-09": {
+   "F": 1.839411764705883,
+   "excess": {
+    "H-FSW5k": 0.0071435758124560045,
+    "H-OR3": 0.11406560636182912,
+    "H-W5k": 0.008123637804636463,
+    "H-W10k": 0.003639082751744743,
+    "H-SHIFT": 0.051704982480129905,
+    "H-OR1": 0.2120285423037718,
+    "H-OR2": 0.18217626784835056,
+    "H-OR4": 0.06191486705779556
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run1-10": {
+   "F": 1.3409939148073031,
+   "excess": {
+    "H-FSW5k": 0.007244189556293436,
+    "H-OR3": 0.08971172962226646,
+    "H-W5k": 0.010402219140083218,
+    "H-W10k": 0.004087736789631129,
+    "H-SHIFT": 0.0674301341765662,
+    "H-OR1": 0.14984709480122327,
+    "H-OR2": 0.11866075824716886,
+    "H-OR4": 0.07102733741105977
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run1-11": {
+   "F": 1.3703853955375254,
+   "excess": {
+    "H-FSW5k": 0.007344803300130867,
+    "H-OR3": 0.0914512922465209,
+    "H-W5k": 0.011888250445809392,
+    "H-W10k": 0.0039381854436690384,
+    "H-SHIFT": 0.06768652251944282,
+    "H-OR1": 0.15392456676860355,
+    "H-OR2": 0.12259970457902514,
+    "H-OR4": 0.07077768068905246
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run1-12": {
+   "F": 1.3292292089249502,
+   "excess": {
+    "H-FSW5k": 0.0074454170439681834,
+    "H-OR3": 0.09020874751491056,
+    "H-W5k": 0.010501287893798318,
+    "H-W10k": 0.00383848454636094,
+    "H-SHIFT": 0.0674301341765662,
+    "H-OR1": 0.14984709480122327,
+    "H-OR2": 0.119153126538651,
+    "H-OR4": 0.07052802396704531
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run1-13": {
+   "F": 1.3515821501014205,
+   "excess": {
+    "H-FSW5k": 0.007546030787805615,
+    "H-OR3": 0.09269383697813124,
+    "H-W5k": 0.011194769169803912,
+    "H-W10k": 0.004785643070787592,
+    "H-SHIFT": 0.06734467139560738,
+    "H-OR1": 0.15290519877675843,
+    "H-OR2": 0.12259970457902514,
+    "H-OR4": 0.07077768068905246
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run1-14": {
+   "F": 1.3484381338742395,
+   "excess": {
+    "H-FSW5k": 0.007646644531643046,
+    "H-OR3": 0.0909542743538768,
+    "H-W5k": 0.009807806617792725,
+    "H-W10k": 0.003788634097706834,
+    "H-SHIFT": 0.067515596957525,
+    "H-OR1": 0.14984709480122327,
+    "H-OR2": 0.120630231413097,
+    "H-OR4": 0.07127699413306705
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run1-15": {
+   "F": 1.282210953346857,
+   "excess": {
+    "H-FSW5k": 0.007747258275480477,
+    "H-OR3": 0.08921471172962235,
+    "H-W5k": 0.009411531602932436,
+    "H-W10k": 0.0037387836490528413,
+    "H-SHIFT": 0.06717374583368955,
+    "H-OR1": 0.143730886850153,
+    "H-OR2": 0.119153126538651,
+    "H-OR4": 0.07002871052303086
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run1-16": {
+   "F": 1.3703853955375254,
+   "excess": {
+    "H-FSW5k": 0.007847872019317907,
+    "H-OR3": 0.09244532803180926,
+    "H-W5k": 0.01060035664751342,
+    "H-W10k": 0.004187437686939228,
+    "H-SHIFT": 0.06768652251944282,
+    "H-OR1": 0.15392456676860355,
+    "H-OR2": 0.12358444116198915,
+    "H-OR4": 0.07065285232804897
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run1-17": {
+   "F": 1.3801825557809342,
+   "excess": {
+    "H-FSW5k": 0.007948485763155225,
+    "H-OR3": 0.09169980119284303,
+    "H-W5k": 0.012383594214384784,
+    "H-W10k": 0.004336989032901319,
+    "H-SHIFT": 0.06768652251944282,
+    "H-OR1": 0.15392456676860355,
+    "H-OR2": 0.12309207287050715,
+    "H-OR4": 0.07115216577206342
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run1-18": {
+   "F": 1.382535496957404,
+   "excess": {
+    "H-FSW5k": 0.008049099506992655,
+    "H-OR3": 0.0914512922465209,
+    "H-W5k": 0.011690112938379304,
+    "H-W10k": 0.004536390827517402,
+    "H-SHIFT": 0.06768652251944282,
+    "H-OR1": 0.15392456676860355,
+    "H-OR2": 0.12309207287050715,
+    "H-OR4": 0.07115216577206342
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run1-19": {
+   "F": 1.391947261663287,
+   "excess": {
+    "H-FSW5k": 0.008149713250830087,
+    "H-OR3": 0.0914512922465209,
+    "H-W5k": 0.012383594214384784,
+    "H-W10k": 0.00448654037886341,
+    "H-SHIFT": 0.06768652251944282,
+    "H-OR1": 0.15392456676860355,
+    "H-OR2": 0.12309207287050715,
+    "H-OR4": 0.07115216577206342
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run2-00": {
+   "F": 2.292778904665314,
+   "excess": {
+    "H-FSW5k": 0.006741120837106394,
+    "H-OR3": 0.08921471172962235,
+    "H-W5k": 0.008618981573211854,
+    "H-W10k": 0.0042871385842472125,
+    "H-SHIFT": 0.05213229638492437,
+    "H-OR1": 0.2731906218144752,
+    "H-OR2": 0.16149679960610544,
+    "H-OR4": 0.04818374734739735
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run2-01": {
+   "F": 2.2731845841784994,
+   "excess": {
+    "H-FSW5k": 0.0068417345809438255,
+    "H-OR3": 0.08722664015904578,
+    "H-W5k": 0.008222706558351564,
+    "H-W10k": 0.0042871385842472125,
+    "H-SHIFT": 0.05264507307067784,
+    "H-OR1": 0.2731906218144752,
+    "H-OR2": 0.15903495814869528,
+    "H-OR4": 0.04893271751341896
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run2-02": {
+   "F": 2.2990466531440177,
+   "excess": {
+    "H-FSW5k": 0.006942348324781142,
+    "H-OR3": 0.08126242544731622,
+    "H-W5k": 0.00782643154349116,
+    "H-W10k": 0.0049351944167497965,
+    "H-SHIFT": 0.04597897615588427,
+    "H-OR1": 0.2680937818552499,
+    "H-OR2": 0.14771048744460857,
+    "H-OR4": 0.04344026962925971
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run2-03": {
+   "F": 1.8935091277890468,
+   "excess": {
+    "H-FSW5k": 0.007042962068618573,
+    "H-OR3": 0.07728628230616308,
+    "H-W5k": 0.010303150386368117,
+    "H-W10k": 0.005433698903290175,
+    "H-SHIFT": 0.05503803093752679,
+    "H-OR1": 0.21814475025484206,
+    "H-OR2": 0.13146233382570172,
+    "H-OR4": 0.044938209961303203
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run2-04": {
+   "F": 2.585882352941177,
+   "excess": {
+    "H-FSW5k": 0.0071435758124560045,
+    "H-OR3": 0.09517892644135192,
+    "H-W5k": 0.008718050326926956,
+    "H-W10k": 0.004436689930209417,
+    "H-SHIFT": 0.049739338518075424,
+    "H-OR1": 0.30581039755351686,
+    "H-OR2": 0.17528311176760214,
+    "H-OR4": 0.05043065784546246
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run2-05": {
+   "F": 2.6176267748478703,
+   "excess": {
+    "H-FSW5k": 0.007244189556293436,
+    "H-OR3": 0.09517892644135192,
+    "H-W5k": 0.009015256588072144,
+    "H-W10k": 0.004985044865403789,
+    "H-SHIFT": 0.046833603965473196,
+    "H-OR1": 0.2966360856269114,
+    "H-OR2": 0.16691285081240773,
+    "H-OR4": 0.05155411309449501
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run2-06": {
+   "F": 2.700304259634889,
+   "excess": {
+    "H-FSW5k": 0.007344803300130867,
+    "H-OR3": 0.09120278330019893,
+    "H-W5k": 0.007925500297206262,
+    "H-W10k": 0.004985044865403789,
+    "H-SHIFT": 0.04597897615588427,
+    "H-OR1": 0.3088685015290521,
+    "H-OR2": 0.17971442639094043,
+    "H-OR4": 0.04706029209836466
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run2-07": {
+   "F": 2.585882352941177,
+   "excess": {
+    "H-FSW5k": 0.0074454170439681834,
+    "H-OR3": 0.09592445328031815,
+    "H-W5k": 0.009114325341787246,
+    "H-W10k": 0.004436689930209417,
+    "H-SHIFT": 0.049482950175198784,
+    "H-OR1": 0.30479102956167187,
+    "H-OR2": 0.17676021664204827,
+    "H-OR4": 0.05180376981650231
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run2-08": {
+   "F": 1.9393509127789055,
+   "excess": {
+    "H-FSW5k": 0.007546030787805615,
+    "H-OR3": 0.08126242544731622,
+    "H-W5k": 0.010005944125222927,
+    "H-W10k": 0.005383848454636069,
+    "H-SHIFT": 0.05512349371848561,
+    "H-OR1": 0.2262996941896025,
+    "H-OR2": 0.13589364844903987,
+    "H-OR4": 0.04768443390338276
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run2-09": {
+   "F": 1.9369979716024344,
+   "excess": {
+    "H-FSW5k": 0.007646644531643046,
+    "H-OR3": 0.08300198807157066,
+    "H-W5k": 0.010501287893798318,
+    "H-W10k": 0.005234297108673978,
+    "H-SHIFT": 0.05401247756602004,
+    "H-OR1": 0.2375127420998982,
+    "H-OR2": 0.14032496307237816,
+    "H-OR4": 0.046935463737361155
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run2-10": {
+   "F": 2.3366734279918875,
+   "excess": {
+    "H-FSW5k": 0.007747258275480477,
+    "H-OR3": 0.09244532803180926,
+    "H-W5k": 0.010005944125222927,
+    "H-W10k": 0.005732801595214357,
+    "H-SHIFT": 0.05204683360396555,
+    "H-OR1": 0.2731906218144752,
+    "H-OR2": 0.16001969473165928,
+    "H-OR4": 0.05080514292847326
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run2-11": {
+   "F": 3.3429411764705894,
+   "excess": {
+    "H-FSW5k": 0.007847872019317907,
+    "H-OR3": 0.11829025844930424,
+    "H-W5k": 0.008123637804636463,
+    "H-W10k": 0.00448654037886341,
+    "H-SHIFT": 0.05110674301341782,
+    "H-OR1": 0.38430173292558634,
+    "H-OR2": 0.21713441654357457,
+    "H-OR4": 0.06066658344775936
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run2-12": {
+   "F": 1.9636511156186616,
+   "excess": {
+    "H-FSW5k": 0.007948485763155225,
+    "H-OR3": 0.08175944333996032,
+    "H-W5k": 0.010798494154943508,
+    "H-W10k": 0.005433698903290175,
+    "H-SHIFT": 0.05426886590889668,
+    "H-OR1": 0.2375127420998982,
+    "H-OR2": 0.14032496307237816,
+    "H-OR4": 0.04755960554237926
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run2-13": {
+   "F": 3.4695131845841805,
+   "excess": {
+    "H-FSW5k": 0.008049099506992655,
+    "H-OR3": 0.12326043737574559,
+    "H-W5k": 0.009510600356647535,
+    "H-W10k": 0.00513459621136588,
+    "H-SHIFT": 0.05392701478506123,
+    "H-OR1": 0.40774719673802245,
+    "H-OR2": 0.23092072870507144,
+    "H-OR4": 0.06391212083385336
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run2-14": {
+   "F": 3.6219472616632866,
+   "excess": {
+    "H-FSW5k": 0.008149713250830087,
+    "H-OR3": 0.1304671968190855,
+    "H-W5k": 0.008519912819496753,
+    "H-W10k": 0.00488534396809569,
+    "H-SHIFT": 0.05443979147081451,
+    "H-OR1": 0.43017329255861386,
+    "H-OR2": 0.2466765140324963,
+    "H-OR4": 0.06653351641492941
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run2-15": {
+   "F": 2.7222515212981753,
+   "excess": {
+    "H-FSW5k": 0.008250326994667517,
+    "H-OR3": 0.09915506958250506,
+    "H-W5k": 0.009312462849217334,
+    "H-W10k": 0.0052841475573279706,
+    "H-SHIFT": 0.05230322194684219,
+    "H-OR1": 0.3129459734964324,
+    "H-OR2": 0.18119153126538656,
+    "H-OR4": 0.051928598177505954
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run2-16": {
+   "F": 3.565902636916836,
+   "excess": {
+    "H-FSW5k": 0.00835094073850495,
+    "H-OR3": 0.11779324055666013,
+    "H-W5k": 0.008519912819496753,
+    "H-W10k": 0.0042871385842472125,
+    "H-SHIFT": 0.04580805059396645,
+    "H-OR1": 0.40468909276248743,
+    "H-OR2": 0.22156573116691286,
+    "H-OR4": 0.061290725252777456
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run2-17": {
+   "F": 3.506348884381339,
+   "excess": {
+    "H-FSW5k": 0.008451554482342265,
+    "H-OR3": 0.12450298210735593,
+    "H-W5k": 0.009708737864077738,
+    "H-W10k": 0.0049351944167497965,
+    "H-SHIFT": 0.0537560892231434,
+    "H-OR1": 0.41284403669724773,
+    "H-OR2": 0.23436730674544556,
+    "H-OR4": 0.06328797902883526
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run2-18": {
+   "F": 3.532210953346857,
+   "excess": {
+    "H-FSW5k": 0.008552168226179697,
+    "H-OR3": 0.12301192842942346,
+    "H-W5k": 0.009708737864077738,
+    "H-W10k": 0.0050847457627118875,
+    "H-SHIFT": 0.05418340312793787,
+    "H-OR1": 0.41488277268093804,
+    "H-OR2": 0.2348596750369277,
+    "H-OR4": 0.06403694919485702
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run2-19": {
+   "F": 2.897809330628803,
+   "excess": {
+    "H-FSW5k": 0.008652781970017127,
+    "H-OR3": 0.11903578528827047,
+    "H-W5k": 0.009906875371507827,
+    "H-W10k": 0.005184446660019985,
+    "H-SHIFT": 0.05708913768054028,
+    "H-OR1": 0.33333333333333354,
+    "H-OR2": 0.21614967996061057,
+    "H-OR4": 0.06016727000374476
+   },
+   "family": "eoh",
+   "flag_nonfinite": true
+  },
+  "EoH-run3-00": {
+   "F": 1.4836105476673433,
+   "excess": {
+    "H-FSW5k": 0.0068417345809438255,
+    "H-OR3": 0.07977137176938376,
+    "H-W5k": 0.007727362789776172,
+    "H-W10k": 0.005583250249252266,
+    "H-SHIFT": 0.08922314332108375,
+    "H-OR1": 0.162079510703364,
+    "H-OR2": 0.119153126538651,
+    "H-OR4": 0.05504930720259646
+   },
+   "family": "eoh",
+   "flag_nonfinite": false
+  },
+  "EoH-run3-01": {
+   "F": 1.4785192697768768,
+   "excess": {
+    "H-FSW5k": 0.0071435758124560045,
+    "H-OR3": 0.07678926441351898,
+    "H-W5k": 0.007727362789776172,
+    "H-W10k": 0.005832502492522456,
+    "H-SHIFT": 0.08409537646355021,
+    "H-OR1": 0.16004077471967385,
+    "H-OR2": 0.12161496799606114,
+    "H-OR4": 0.05230308326051676
+   },
+   "family": "eoh",
+   "flag_nonfinite": false
+  },
+  "EoH-run3-02": {
+   "F": 1.339411764705883,
+   "excess": {
+    "H-FSW5k": 0.007244189556293436,
+    "H-OR3": 0.0653578528827038,
+    "H-W5k": 0.009114325341787246,
+    "H-W10k": 0.006231306081754736,
+    "H-SHIFT": 0.07332706606272985,
+    "H-OR1": 0.14780835881753313,
+    "H-OR2": 0.102412604628262,
+    "H-OR4": 0.03869679191112221
+   },
+   "family": "eoh",
+   "flag_nonfinite": false
+  },
+  "EoH-run3-03": {
+   "F": 1.3441176470588239,
+   "excess": {
+    "H-FSW5k": 0.007344803300130867,
+    "H-OR3": 0.0653578528827038,
+    "H-W5k": 0.009609669110362637,
+    "H-W10k": 0.006281156530408729,
+    "H-SHIFT": 0.07332706606272985,
+    "H-OR1": 0.14780835881753313,
+    "H-OR2": 0.102412604628262,
+    "H-OR4": 0.03869679191112221
+   },
+   "family": "eoh",
+   "flag_nonfinite": false
+  },
+  "EoH-run3-04": {
+   "F": 1.3441176470588239,
+   "excess": {
+    "H-FSW5k": 0.007344803300130867,
+    "H-OR3": 0.0653578528827038,
+    "H-W5k": 0.009609669110362637,
+    "H-W10k": 0.006281156530408729,
+    "H-SHIFT": 0.07332706606272985,
+    "H-OR1": 0.14780835881753313,
+    "H-OR2": 0.102412604628262,
+    "H-OR4": 0.03869679191112221
+   },
+   "family": "eoh",
+   "flag_nonfinite": false
+  },
+  "EoH-run3-05": {
+   "F": 1.3586206896551725,
+   "excess": {
+    "H-FSW5k": 0.0074454170439681834,
+    "H-OR3": 0.06610337972167005,
+    "H-W5k": 0.009510600356647535,
+    "H-W10k": 0.006131605184446638,
+    "H-SHIFT": 0.07537817280574315,
+    "H-OR1": 0.14271151885830785,
+    "H-OR2": 0.10536681437715414,
+    "H-OR4": 0.04294095618524526
+   },
+   "family": "eoh",
+   "flag_nonfinite": false
+  },
+  "EoH-run3-06": {
+   "F": 1.357444219066937,
+   "excess": {
+    "H-FSW5k": 0.007546030787805615,
+    "H-OR3": 0.06610337972167005,
+    "H-W5k": 0.009510600356647535,
+    "H-W10k": 0.006081754735792645,
+    "H-SHIFT": 0.07537817280574315,
+    "H-OR1": 0.14271151885830785,
+    "H-OR2": 0.10536681437715414,
+    "H-OR4": 0.04294095618524526
+   },
+   "family": "eoh",
+   "flag_nonfinite": false
+  },
+  "EoH-run3-07": {
+   "F": 1.359797160243408,
+   "excess": {
+    "H-FSW5k": 0.007646644531643046,
+    "H-OR3": 0.06610337972167005,
+    "H-W5k": 0.009312462849217334,
+    "H-W10k": 0.006331006979062834,
+    "H-SHIFT": 0.07537817280574315,
+    "H-OR1": 0.14271151885830785,
+    "H-OR2": 0.10536681437715414,
+    "H-OR4": 0.04294095618524526
+   },
+   "family": "eoh",
+   "flag_nonfinite": false
+  },
+  "EoH-run3-08": {
+   "F": 1.3562677484787014,
+   "excess": {
+    "H-FSW5k": 0.007747258275480477,
+    "H-OR3": 0.06610337972167005,
+    "H-W5k": 0.009807806617792725,
+    "H-W10k": 0.006281156530408729,
+    "H-SHIFT": 0.07537817280574315,
+    "H-OR1": 0.14271151885830785,
+    "H-OR2": 0.10536681437715414,
+    "H-OR4": 0.04294095618524526
+   },
+   "family": "eoh",
+   "flag_nonfinite": false
+  },
+  "EoH-run3-09": {
+   "F": 1.357444219066937,
+   "excess": {
+    "H-FSW5k": 0.007847872019317907,
+    "H-OR3": 0.06610337972167005,
+    "H-W5k": 0.009708737864077738,
+    "H-W10k": 0.006081754735792645,
+    "H-SHIFT": 0.07537817280574315,
+    "H-OR1": 0.14271151885830785,
+    "H-OR2": 0.10536681437715414,
+    "H-OR4": 0.04294095618524526
+   },
+   "family": "eoh",
+   "flag_nonfinite": false
+  },
+  "EoH-run3-10": {
+   "F": 1.357444219066937,
+   "excess": {
+    "H-FSW5k": 0.007948485763155225,
+    "H-OR3": 0.06610337972167005,
+    "H-W5k": 0.010105012878938028,
+    "H-W10k": 0.006331006979062834,
+    "H-SHIFT": 0.07537817280574315,
+    "H-OR1": 0.14271151885830785,
+    "H-OR2": 0.10536681437715414,
+    "H-OR4": 0.04294095618524526
+   },
+   "family": "eoh",
+   "flag_nonfinite": false
+  },
+  "EoH-run3-11": {
+   "F": 1.357444219066937,
+   "excess": {
+    "H-FSW5k": 0.008049099506992655,
+    "H-OR3": 0.06610337972167005,
+    "H-W5k": 0.009708737864077738,
+    "H-W10k": 0.006231306081754736,
+    "H-SHIFT": 0.07537817280574315,
+    "H-OR1": 0.14271151885830785,
+    "H-OR2": 0.10536681437715414,
+    "H-OR4": 0.04294095618524526
+   },
+   "family": "eoh",
+   "flag_nonfinite": false
+  },
+  "EoH-run3-12": {
+   "F": 1.357444219066937,
+   "excess": {
+    "H-FSW5k": 0.008149713250830087,
+    "H-OR3": 0.06610337972167005,
+    "H-W5k": 0.01020408163265313,
+    "H-W10k": 0.006231306081754736,
+    "H-SHIFT": 0.07537817280574315,
+    "H-OR1": 0.14271151885830785,
+    "H-OR2": 0.10536681437715414,
+    "H-OR4": 0.04294095618524526
+   },
+   "family": "eoh",
+   "flag_nonfinite": false
+  },
+  "EoH-run3-13": {
+   "F": 1.3550912778904671,
+   "excess": {
+    "H-FSW5k": 0.008250326994667517,
+    "H-OR3": 0.06610337972167005,
+    "H-W5k": 0.009708737864077738,
+    "H-W10k": 0.0061814556331007435,
+    "H-SHIFT": 0.07537817280574315,
+    "H-OR1": 0.14271151885830785,
+    "H-OR2": 0.10536681437715414,
+    "H-OR4": 0.04294095618524526
+   },
+   "family": "eoh",
+   "flag_nonfinite": false
+  },
+  "EoH-run3-14": {
+   "F": 1.3159026369168358,
+   "excess": {
+    "H-FSW5k": 0.00835094073850495,
+    "H-OR3": 0.06486083499005971,
+    "H-W5k": 0.009510600356647535,
+    "H-W10k": 0.006281156530408729,
+    "H-SHIFT": 0.06221690453807383,
+    "H-OR1": 0.14882772680937828,
+    "H-OR2": 0.102904972919744,
+    "H-OR4": 0.03969541879915111
+   },
+   "family": "eoh",
+   "flag_nonfinite": false
+  },
+  "EoH-run3-15": {
+   "F": 1.2810344827586215,
+   "excess": {
+    "H-FSW5k": 0.008451554482342265,
+    "H-OR3": 0.06709741550695826,
+    "H-W5k": 0.009609669110362637,
+    "H-W10k": 0.006679960119641122,
+    "H-SHIFT": 0.08110417912998898,
+    "H-OR1": 0.1518858307849134,
+    "H-OR2": 0.10438207779419015,
+    "H-OR4": 0.04381475471227066
+   },
+   "family": "eoh",
+   "flag_nonfinite": false
+  },
+  "EoH-run3-16": {
+   "F": 1.4393509127789044,
+   "excess": {
+    "H-FSW5k": 0.008552168226179697,
+    "H-OR3": 0.07007952286282318,
+    "H-W5k": 0.010798494154943508,
+    "H-W10k": 0.007028913260219297,
+    "H-SHIFT": 0.07828390735834556,
+    "H-OR1": 0.15494393476044857,
+    "H-OR2": 0.11078286558345643,
+    "H-OR4": 0.04344026962925971
+   },
+   "family": "eoh",
+   "flag_nonfinite": false
+  },
+  "EoH-run3-17": {
+   "F": 1.3178701825557815,
+   "excess": {
+    "H-FSW5k": 0.008652781970017127,
+    "H-OR3": 0.06187872763419492,
+    "H-W5k": 0.009213394095502347,
+    "H-W10k": 0.006630109670987016,
+    "H-SHIFT": 0.061789590633279365,
+    "H-OR1": 0.14780835881753313,
+    "H-OR2": 0.103889709502708,
+    "H-OR4": 0.04031956060416921
+   },
+   "family": "eoh",
+   "flag_nonfinite": false
+  },
+  "EoH-run3-18": {
+   "F": 1.3327586206896556,
+   "excess": {
+    "H-FSW5k": 0.008753395713854558,
+    "H-OR3": 0.06933399602385695,
+    "H-W5k": 0.010105012878938028,
+    "H-W10k": 0.006779661016949107,
+    "H-SHIFT": 0.07418169387231877,
+    "H-OR1": 0.14169215086646286,
+    "H-OR2": 0.10192023633678,
+    "H-OR4": 0.04593683684933211
+   },
+   "family": "eoh",
+   "flag_nonfinite": false
+  },
+  "EoH-run3-19": {
+   "F": 1.3327586206896556,
+   "excess": {
+    "H-FSW5k": 0.00885400945769199,
+    "H-OR3": 0.06933399602385695,
+    "H-W5k": 0.010303150386368117,
+    "H-W10k": 0.006979062811565304,
+    "H-SHIFT": 0.07418169387231877,
+    "H-OR1": 0.14169215086646286,
+    "H-OR2": 0.10192023633678,
+    "H-OR4": 0.04581200848832846
+   },
+   "family": "eoh",
+   "flag_nonfinite": false
+  },
+  "HSEvo-gpt": {
+   "F": 29.947565922920894,
+   "excess": {
+    "H-FSW5k": 1.5153435959352046,
+    "H-OR3": 1.4850894632206761,
+    "H-W5k": 1.4767188428769566,
+    "H-W10k": 1.4925224327018942,
+    "H-SHIFT": 1.1365695239723101,
+    "H-OR1": 1.4464831804281346,
+    "H-OR2": 1.4618414574101428,
+    "H-OR4": 1.4965672200724005
+   },
+   "family": "hsevo",
+   "flag_nonfinite": false
+  },
+  "HSEvo-reevo-seed": {
+   "F": 29.947565922920894,
+   "excess": {
+    "H-FSW5k": 1.5153435959352046,
+    "H-OR3": 1.4850894632206761,
+    "H-W5k": 1.4767188428769566,
+    "H-W10k": 1.4925224327018942,
+    "H-SHIFT": 1.1365695239723101,
+    "H-OR1": 1.4464831804281346,
+    "H-OR2": 1.4618414574101428,
+    "H-OR4": 1.4965672200724005
+   },
+   "family": "hsevo",
+   "flag_nonfinite": false
+  },
+  "MCTS-AHD-gpt": {
+   "F": null,
+   "excess": {
+    "H-OR3": 0.109840954274354,
+    "H-OR1": 0.18960244648318053,
+    "H-OR2": 0.14327917282127028,
+    "H-OR4": 0.08363500187242541
+   },
+   "family": "mctsahd",
+   "flag_nonfinite": false
+  },
+  "ReEvo-seed": {
+   "F": 2.586267748478703,
+   "excess": {
+    "H-FSW5k": 0.0068417345809438255,
+    "H-OR3": 0.12773359840954285,
+    "H-W5k": 0.006835744006340378,
+    "H-W10k": 0.0032402791625124627,
+    "H-SHIFT": 0.13810785402957024,
+    "H-OR1": 0.2925586136595311,
+    "H-OR2": 0.19842442146725758,
+    "H-OR4": 0.08138809137436016
+   },
+   "family": "reevo",
+   "flag_nonfinite": false
+  },
+  "LLM4AD-template": {
+   "F": 1.0,
+   "excess": {
+    "H-FSW5k": 0.03984304255961367,
+    "H-OR3": 0.05367793240556666,
+    "H-W5k": 0.04131167029918757,
+    "H-W10k": 0.040578265204386885,
+    "H-SHIFT": 0.055379882061362434,
+    "H-OR1": 0.05810397553516823,
+    "H-OR2": 0.06056129985228957,
+    "H-OR4": 0.04943203095743356
+   },
+   "family": "llm4ad",
+   "flag_nonfinite": false
+  },
+  "LLM4AD-tutorial-cell13": {
+   "F": 29.947565922920894,
+   "excess": {
+    "H-FSW5k": 1.5153435959352046,
+    "H-OR3": 1.4850894632206761,
+    "H-W5k": 1.4767188428769566,
+    "H-W10k": 1.4925224327018942,
+    "H-SHIFT": 1.1365695239723101,
+    "H-OR1": 1.4464831804281346,
+    "H-OR2": 1.4618414574101428,
+    "H-OR4": 1.4965672200724005
+   },
+   "family": "llm4ad",
+   "flag_nonfinite": false
+  },
+  "ab-FF(5,24)-published": {
+   "F": 0.7909533468559837,
+   "excess": {
+    "H-FSW5k": 0.02173256866888019,
+    "H-OR3": 0.030069582504970237,
+    "H-W5k": 0.02189419457103232,
+    "H-W10k": 0.021136590229312108,
+    "H-SHIFT": 0.0454661994701308,
+    "H-OR1": 0.0632008154943935,
+    "H-OR2": 0.04529788281634671,
+    "H-OR4": 0.021220821370615404
+   },
+   "family": "ab_published",
+   "flag_nonfinite": false
+  },
+  "ab-WF(1,21)-published": {
+   "F": 1.4491277890466532,
+   "excess": {
+    "H-FSW5k": 0.0068417345809438255,
+    "H-OR3": 0.08523856858846922,
+    "H-W5k": 0.0067366752526253895,
+    "H-W10k": 0.005034895314057781,
+    "H-SHIFT": 0.04700452952739082,
+    "H-OR1": 0.1559633027522937,
+    "H-OR2": 0.11669128508124085,
+    "H-OR4": 0.06403694919485702
+   },
+   "family": "ab_published",
+   "flag_nonfinite": false
+  },
+  "next_fit (stateful)": {
+   "F": 6.028945233265722,
+   "excess": {
+    "H-FSW5k": 0.28845960358184924,
+    "H-OR3": 0.3170974155069583,
+    "H-W5k": 0.292252823459481,
+    "H-W10k": 0.2892323030907277,
+    "H-SHIFT": 0.2996325100418769,
+    "H-OR1": 0.3037716615698268,
+    "H-OR2": 0.31413096996553413,
+    "H-OR4": 0.3166895518661839
+   }
+  },
+  "harmonic_3 (stateful)": {
+   "F": 7.702839756592294,
+   "excess": {
+    "H-FSW5k": 0.35788308682966086,
+    "H-OR3": 0.4097912524850894,
+    "H-W5k": 0.36249256984347134,
+    "H-W10k": 0.36011964107676975,
+    "H-SHIFT": 0.42175882403213405,
+    "H-OR1": 0.40774719673802245,
+    "H-OR2": 0.41358936484490416,
+    "H-OR4": 0.4103108226188989
+   }
+  },
+  "harmonic_4 (stateful)": {
+   "F": 7.63184584178499,
+   "excess": {
+    "H-FSW5k": 0.35234933091860343,
+    "H-OR3": 0.407803180914513,
+    "H-W5k": 0.35684565088171183,
+    "H-W10k": 0.35398803589232297,
+    "H-SHIFT": 0.4206478078796685,
+    "H-OR1": 0.40672782874617747,
+    "H-OR2": 0.4101427868045297,
+    "H-OR4": 0.4073149419548122
+   }
+  },
+  "harmonic_5 (stateful)": {
+   "F": 7.698052738336713,
+   "excess": {
+    "H-FSW5k": 0.3502364422980179,
+    "H-OR3": 0.40929423459244546,
+    "H-W5k": 0.3554586883297009,
+    "H-W10k": 0.3519940179461615,
+    "H-SHIFT": 0.4206478078796685,
+    "H-OR1": 0.417940876656473,
+    "H-OR2": 0.41457410142786816,
+    "H-OR4": 0.4073149419548122
+   }
+  },
+  "harmonic_6 (stateful)": {
+   "F": 7.721561866125761,
+   "excess": {
+    "H-FSW5k": 0.3502364422980179,
+    "H-OR3": 0.4100397614314116,
+    "H-W5k": 0.3550624133148405,
+    "H-W10k": 0.3515952143569293,
+    "H-SHIFT": 0.4208187334415863,
+    "H-OR1": 0.42405708460754327,
+    "H-OR2": 0.4190054160512063,
+    "H-OR4": 0.40818874048183734
+   }
+  },
+  "harmonic_7 (stateful)": {
+   "F": 7.79288032454361,
+   "excess": {
+    "H-FSW5k": 0.3504376697856928,
+    "H-OR3": 0.41252485089463226,
+    "H-W5k": 0.3551614820685557,
+    "H-W10k": 0.35174476570289126,
+    "H-SHIFT": 0.4209041962225451,
+    "H-OR1": 0.43527013251783914,
+    "H-OR2": 0.4224519940915804,
+    "H-OR4": 0.40818874048183734
+   }
+  },
+  "harmonic_8 (stateful)": {
+   "F": 7.796409736308316,
+   "excess": {
+    "H-FSW5k": 0.3503370560418553,
+    "H-OR3": 0.41252485089463226,
+    "H-W5k": 0.3552605508222707,
+    "H-W10k": 0.3517946161515453,
+    "H-SHIFT": 0.4209041962225451,
+    "H-OR1": 0.43527013251783914,
+    "H-OR2": 0.4224519940915804,
+    "H-OR4": 0.40818874048183734
+   }
+  },
+  "harmonic_9 (stateful)": {
+   "F": 7.7999391480730225,
+   "excess": {
+    "H-FSW5k": 0.3508401247610423,
+    "H-OR3": 0.41252485089463226,
+    "H-W5k": 0.3556568258371311,
+    "H-W10k": 0.35184446660019947,
+    "H-SHIFT": 0.4209041962225451,
+    "H-OR1": 0.43527013251783914,
+    "H-OR2": 0.4224519940915804,
+    "H-OR4": 0.40818874048183734
+   }
+  },
+  "harmonic_10 (stateful)": {
+   "F": 7.7999391480730225,
+   "excess": {
+    "H-FSW5k": 0.3508401247610423,
+    "H-OR3": 0.41252485089463226,
+    "H-W5k": 0.35585496334456107,
+    "H-W10k": 0.35184446660019947,
+    "H-SHIFT": 0.4209041962225451,
+    "H-OR1": 0.43527013251783914,
+    "H-OR2": 0.4224519940915804,
+    "H-OR4": 0.40818874048183734
+   }
+  }
+ },
+ "tuned_ab_name": "ab-FF(5,22)"
+}

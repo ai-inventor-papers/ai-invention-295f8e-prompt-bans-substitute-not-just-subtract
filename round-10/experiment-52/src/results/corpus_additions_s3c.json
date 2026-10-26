@@ -1,0 +1,13 @@
+[
+ {
+  "name": "RAISE-appendixE.1.1",
+  "family": "raise",
+  "code": "def priority(item: float, bins: np.ndarray) -> np.ndarray:\n    import numpy as np\n\n    eps = 1e-12\n    NEG_INF = -1e9\n\n    bins = np.asarray(bins, dtype=float)\n    n = bins.size\n\n    if n == 0:\n        return np.array([], dtype=float)\n    if item <= eps:\n        return np.full(n, NEG_INF, dtype=float)\n\n    feasible = bins >= item - 1e-12\n    scores = np.full(n, NEG_INF, dtype=float)\n    if not np.any(feasible):\n        return scores\n\n    b_all = bins.copy()\n    order = np.argsort(b_all)\n    ranks = np.empty_like(order)\n    ranks[order] = np.arange(n)\n    if n > 1:\n        rank_norm_all = 1.0 - (ranks.astype(float) / (n - 1))\n    else:\n        rank_norm_all = np.ones(n, dtype=float)\n\n    b = b_all[feasible]\n    rank_norm = rank_norm_all[feasible]\n\n    r = np.maximum(b - item, 0.0)\n\n    mu = max(0.6 * item, 1e-12)\n    n_slots = np.floor(r / mu).astype(int)\n\n    q = 0.65\n    robustness = (1.0 - np.power(q, n_slots + 1)) / (1.0 - q) - 1.0\n    robustness = np.maximum(robustness, 0.0)\n\n    tightness = item / (b + eps)\n\n    frac_left = r / (b + eps)\n    mid_sliver_penalty = np.exp(-8.0 * frac_left)\n\n    exact_fit = (r <= 1e-9).astype(float)\n\n    w_rank = 0.72\n    w_rob  = 0.85\n    w_tight = 0.95\n    w_pen  = 0.55\n    w_exact = 2.5\n\n    combined = (\n        w_rank * rank_norm * (1.0 + 0.5 * robustness)\n        + w_tight * tightness\n        + w_rob * (robustness / (1.0 + robustness))\n        + w_pen * mid_sliver_penalty\n        + w_exact * exact_fit\n    )\n    combined = combined - 0.002 * r\n\n    c_min = float(np.min(combined))\n    c_max = float(np.max(combined))\n    if c_max - c_min < 1e-12:\n        norm = np.full_like(combined, 0.5, dtype=float)\n    else:\n        norm = (combined - c_min) / (c_max - c_min)\n\n    scores[feasible] = norm\n    return scores\n",
+  "source_local": null,
+  "source_url": "https://arxiv.org/html/2606.31801 (Appendix E.1.1, Listing 1)",
+  "commit": "arXiv HTML as served 2026-10-24",
+  "access_utc": "2026-10-24T19:40:00Z",
+  "source_sha256": "c2ec887635086eee42f517848ece44b1184b138b6b4c4fa54d3e3d4b0af8b0c8",
+  "adapter_note": "S3c: transcribed by the fetch tool from the arXiv HTML listing (comments dropped; the outer 'import numpy as np' line removed, the inner one kept); not byte-verified against the PDF"
+ }
+]

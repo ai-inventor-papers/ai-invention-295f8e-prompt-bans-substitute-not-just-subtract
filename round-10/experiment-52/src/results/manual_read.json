@@ -1,0 +1,302 @@
+{
+ "summary": {
+  "criterion": "NOVEL requires a decision principle absent from the corpus and the literature; a recombination of corpus principles (BF on near-exact fits, an avoided residual band, an item-proportional target residual) with new thresholds or weights is KNOWN FAMILY, NEW PARAMETERS. Read arm-blind under opaque ids, before any judge call, with each program's synthetic decision profile (scripts/profile_rules.py) and the same profiles of the corpus (results/corpus_profiles.json).",
+  "n_read": 40,
+  "counts": {
+   "NOVEL": 0,
+   "KNOWN": 0,
+   "KNOWN_FAMILY_NEW_PARAMETERS": 40,
+   "DEGENERATE": 0
+  },
+  "groups": {
+   "band_FF": 2,
+   "band_BF": 4,
+   "quad": 3,
+   "target": 14,
+   "sin": 12,
+   "log": 5
+  }
+ },
+ "reads": {
+  "B10": {
+   "oid": "B10",
+   "group": "band_FF",
+   "rule_in_words": "First Fit, except that a bin whose residual after packing would fall in a fixed band (B10: 6..20, B11: 7..23) is scored below every other bin, so the item goes to the first bin outside the band (a new bin if needed).",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "ab family (Herrmann & Pallez, arXiv 2510.27353): avoided residual band with FF base; FF also inside the tight class; new thresholds"
+  },
+  "B11": {
+   "oid": "B11",
+   "group": "band_FF",
+   "rule_in_words": "First Fit, except that a bin whose residual after packing would fall in a fixed band (B10: 6..20, B11: 7..23) is scored below every other bin, so the item goes to the first bin outside the band (a new bin if needed).",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "ab family (Herrmann & Pallez, arXiv 2510.27353): avoided residual band with FF base; FF also inside the tight class; new thresholds"
+  },
+  "B01": {
+   "oid": "B01",
+   "group": "band_BF",
+   "rule_in_words": "Best fit among near-exact fits; residuals in a band (about 5-25 / 7-23, or item-dependent for B09/B13) lose to a new bin; above the band a best-fit-like order relative to the band edge (B01 even prefers a residual just above 23 over an exact fit).",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "ab-BF family (2510.27353): tight fits by BF, avoided band, BF base above it; new thresholds"
+  },
+  "B35": {
+   "oid": "B35",
+   "group": "band_BF",
+   "rule_in_words": "Best fit among near-exact fits; residuals in a band (about 5-25 / 7-23, or item-dependent for B09/B13) lose to a new bin; above the band a best-fit-like order relative to the band edge (B01 even prefers a residual just above 23 over an exact fit).",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "ab-BF family (2510.27353): tight fits by BF, avoided band, BF base above it; new thresholds"
+  },
+  "B09": {
+   "oid": "B09",
+   "group": "band_BF",
+   "rule_in_words": "Best fit among near-exact fits; residuals in a band (about 5-25 / 7-23, or item-dependent for B09/B13) lose to a new bin; above the band a best-fit-like order relative to the band edge (B01 even prefers a residual just above 23 over an exact fit).",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "ab-BF family (2510.27353): tight fits by BF, avoided band, BF base above it; new thresholds"
+  },
+  "B13": {
+   "oid": "B13",
+   "group": "band_BF",
+   "rule_in_words": "Best fit among near-exact fits; residuals in a band (about 5-25 / 7-23, or item-dependent for B09/B13) lose to a new bin; above the band a best-fit-like order relative to the band edge (B01 even prefers a residual just above 23 over an exact fit).",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "ab-BF family (2510.27353): tight fits by BF, avoided band, BF base above it; new thresholds"
+  },
+  "B05": {
+   "oid": "B05",
+   "group": "quad",
+   "rule_in_words": "Best fit with a quadratic penalty r^2 for residuals below the item size and a linear penalty above it, so medium residuals just below the item size lose to a new bin (an emergent item-dependent band); B25/B34 also penalise very large residuals (>10*item, >3*item), which for small items makes opening a new bin a last resort.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "ab family (2510.27353) with item-dependent band edges; BF base"
+  },
+  "B25": {
+   "oid": "B25",
+   "group": "quad",
+   "rule_in_words": "Best fit with a quadratic penalty r^2 for residuals below the item size and a linear penalty above it, so medium residuals just below the item size lose to a new bin (an emergent item-dependent band); B25/B34 also penalise very large residuals (>10*item, >3*item), which for small items makes opening a new bin a last resort.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "ab family (2510.27353) with item-dependent band edges; BF base"
+  },
+  "B34": {
+   "oid": "B34",
+   "group": "quad",
+   "rule_in_words": "Best fit with a quadratic penalty r^2 for residuals below the item size and a linear penalty above it, so medium residuals just below the item size lose to a new bin (an emergent item-dependent band); B25/B34 also penalise very large residuals (>10*item, >3*item), which for small items makes opening a new bin a last resort.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "ab family (2510.27353) with item-dependent band edges; BF base"
+  },
+  "B00": {
+   "oid": "B00",
+   "group": "target",
+   "rule_in_words": "Near-exact fits first (residual 0-2); residuals below about 10 penalised (an avoided band); otherwise prefer the bin whose residual is closest to the item size (an |r - item| term weighted by utilisation), with small weight differences between candidates.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "EoH run-3 family (published OBP population: tight fit, then target residual ~ item) combined with the ab band; new weights"
+  },
+  "B02": {
+   "oid": "B02",
+   "group": "target",
+   "rule_in_words": "Near-exact fits first (residual 0-2); residuals below about 10 penalised (an avoided band); otherwise prefer the bin whose residual is closest to the item size (an |r - item| term weighted by utilisation), with small weight differences between candidates.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "EoH run-3 family (published OBP population: tight fit, then target residual ~ item) combined with the ab band; new weights"
+  },
+  "B04": {
+   "oid": "B04",
+   "group": "target",
+   "rule_in_words": "Near-exact fits first (residual 0-2); residuals below about 10 penalised (an avoided band); otherwise prefer the bin whose residual is closest to the item size (an |r - item| term weighted by utilisation), with small weight differences between candidates.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "EoH run-3 family (published OBP population: tight fit, then target residual ~ item) combined with the ab band; new weights"
+  },
+  "B06": {
+   "oid": "B06",
+   "group": "target",
+   "rule_in_words": "Near-exact fits first (residual 0-2); residuals below about 10 penalised (an avoided band); otherwise prefer the bin whose residual is closest to the item size (an |r - item| term weighted by utilisation), with small weight differences between candidates.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "EoH run-3 family (published OBP population: tight fit, then target residual ~ item) combined with the ab band; new weights"
+  },
+  "B16": {
+   "oid": "B16",
+   "group": "target",
+   "rule_in_words": "Near-exact fits first (residual 0-2); residuals below about 10 penalised (an avoided band); otherwise prefer the bin whose residual is closest to the item size (an |r - item| term weighted by utilisation), with small weight differences between candidates.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "EoH run-3 family (published OBP population: tight fit, then target residual ~ item) combined with the ab band; new weights"
+  },
+  "B17": {
+   "oid": "B17",
+   "group": "target",
+   "rule_in_words": "Near-exact fits first (residual 0-2); residuals below about 10 penalised (an avoided band); otherwise prefer the bin whose residual is closest to the item size (an |r - item| term weighted by utilisation), with small weight differences between candidates.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "EoH run-3 family (published OBP population: tight fit, then target residual ~ item) combined with the ab band; new weights"
+  },
+  "B18": {
+   "oid": "B18",
+   "group": "target",
+   "rule_in_words": "Near-exact fits first (residual 0-2); residuals below about 10 penalised (an avoided band); otherwise prefer the bin whose residual is closest to the item size (an |r - item| term weighted by utilisation), with small weight differences between candidates.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "EoH run-3 family (published OBP population: tight fit, then target residual ~ item) combined with the ab band; new weights"
+  },
+  "B19": {
+   "oid": "B19",
+   "group": "target",
+   "rule_in_words": "Near-exact fits first (residual 0-2); residuals below about 10 penalised (an avoided band); otherwise prefer the bin whose residual is closest to the item size (an |r - item| term weighted by utilisation), with small weight differences between candidates.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "EoH run-3 family (published OBP population: tight fit, then target residual ~ item) combined with the ab band; new weights"
+  },
+  "B24": {
+   "oid": "B24",
+   "group": "target",
+   "rule_in_words": "Near-exact fits first (residual 0-2); residuals below about 10 penalised (an avoided band); otherwise prefer the bin whose residual is closest to the item size (an |r - item| term weighted by utilisation), with small weight differences between candidates.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "EoH run-3 family (published OBP population: tight fit, then target residual ~ item) combined with the ab band; new weights"
+  },
+  "B26": {
+   "oid": "B26",
+   "group": "target",
+   "rule_in_words": "Near-exact fits first (residual 0-2); residuals below about 10 penalised (an avoided band); otherwise prefer the bin whose residual is closest to the item size (an |r - item| term weighted by utilisation), with small weight differences between candidates.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "EoH run-3 family (published OBP population: tight fit, then target residual ~ item) combined with the ab band; new weights"
+  },
+  "B27": {
+   "oid": "B27",
+   "group": "target",
+   "rule_in_words": "Near-exact fits first (residual 0-2); residuals below about 10 penalised (an avoided band); otherwise prefer the bin whose residual is closest to the item size (an |r - item| term weighted by utilisation), with small weight differences between candidates.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "EoH run-3 family (published OBP population: tight fit, then target residual ~ item) combined with the ab band; new weights"
+  },
+  "B28": {
+   "oid": "B28",
+   "group": "target",
+   "rule_in_words": "Near-exact fits first (residual 0-2); residuals below about 10 penalised (an avoided band); otherwise prefer the bin whose residual is closest to the item size (an |r - item| term weighted by utilisation), with small weight differences between candidates.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "EoH run-3 family (published OBP population: tight fit, then target residual ~ item) combined with the ab band; new weights"
+  },
+  "B30": {
+   "oid": "B30",
+   "group": "target",
+   "rule_in_words": "Near-exact fits first (residual 0-2); residuals below about 10 penalised (an avoided band); otherwise prefer the bin whose residual is closest to the item size (an |r - item| term weighted by utilisation), with small weight differences between candidates.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "EoH run-3 family (published OBP population: tight fit, then target residual ~ item) combined with the ab band; new weights"
+  },
+  "B39": {
+   "oid": "B39",
+   "group": "target",
+   "rule_in_words": "Near-exact fits first (residual 0-2); residuals below about 10 penalised (an avoided band); otherwise prefer the bin whose residual is closest to the item size (an |r - item| term weighted by utilisation), with small weight differences between candidates.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "EoH run-3 family (published OBP population: tight fit, then target residual ~ item) combined with the ab band; new weights"
+  },
+  "B03": {
+   "oid": "B03",
+   "group": "sin",
+   "rule_in_words": "A Gaussian bump in the capacity ratio rho = bins/item times a sinusoid in rho: near-exact fits score highest, a band of residuals of roughly 0.15-0.5 item scores zero (ties resolved by first index, i.e. First Fit among them), and a secondary peak sits at an item-proportional residual (~0.1-0.5 item, or ~1.3-1.5 item for B20, B21, B31); B21's sinusoid also skips residuals near odd half-multiples of the item.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "item-proportional target-residual family (EoH run 3; MCTS-AHD targets ~1.5 item) with an ab-style avoided band; FF tie-break"
+  },
+  "B08": {
+   "oid": "B08",
+   "group": "sin",
+   "rule_in_words": "A Gaussian bump in the capacity ratio rho = bins/item times a sinusoid in rho: near-exact fits score highest, a band of residuals of roughly 0.15-0.5 item scores zero (ties resolved by first index, i.e. First Fit among them), and a secondary peak sits at an item-proportional residual (~0.1-0.5 item, or ~1.3-1.5 item for B20, B21, B31); B21's sinusoid also skips residuals near odd half-multiples of the item.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "item-proportional target-residual family (EoH run 3; MCTS-AHD targets ~1.5 item) with an ab-style avoided band; FF tie-break"
+  },
+  "B12": {
+   "oid": "B12",
+   "group": "sin",
+   "rule_in_words": "A Gaussian bump in the capacity ratio rho = bins/item times a sinusoid in rho: near-exact fits score highest, a band of residuals of roughly 0.15-0.5 item scores zero (ties resolved by first index, i.e. First Fit among them), and a secondary peak sits at an item-proportional residual (~0.1-0.5 item, or ~1.3-1.5 item for B20, B21, B31); B21's sinusoid also skips residuals near odd half-multiples of the item.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "item-proportional target-residual family (EoH run 3; MCTS-AHD targets ~1.5 item) with an ab-style avoided band; FF tie-break"
+  },
+  "B20": {
+   "oid": "B20",
+   "group": "sin",
+   "rule_in_words": "A Gaussian bump in the capacity ratio rho = bins/item times a sinusoid in rho: near-exact fits score highest, a band of residuals of roughly 0.15-0.5 item scores zero (ties resolved by first index, i.e. First Fit among them), and a secondary peak sits at an item-proportional residual (~0.1-0.5 item, or ~1.3-1.5 item for B20, B21, B31); B21's sinusoid also skips residuals near odd half-multiples of the item.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "item-proportional target-residual family (EoH run 3; MCTS-AHD targets ~1.5 item) with an ab-style avoided band; FF tie-break"
+  },
+  "B21": {
+   "oid": "B21",
+   "group": "sin",
+   "rule_in_words": "A Gaussian bump in the capacity ratio rho = bins/item times a sinusoid in rho: near-exact fits score highest, a band of residuals of roughly 0.15-0.5 item scores zero (ties resolved by first index, i.e. First Fit among them), and a secondary peak sits at an item-proportional residual (~0.1-0.5 item, or ~1.3-1.5 item for B20, B21, B31); B21's sinusoid also skips residuals near odd half-multiples of the item.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "item-proportional target-residual family (EoH run 3; MCTS-AHD targets ~1.5 item) with an ab-style avoided band; FF tie-break"
+  },
+  "B22": {
+   "oid": "B22",
+   "group": "sin",
+   "rule_in_words": "A Gaussian bump in the capacity ratio rho = bins/item times a sinusoid in rho: near-exact fits score highest, a band of residuals of roughly 0.15-0.5 item scores zero (ties resolved by first index, i.e. First Fit among them), and a secondary peak sits at an item-proportional residual (~0.1-0.5 item, or ~1.3-1.5 item for B20, B21, B31); B21's sinusoid also skips residuals near odd half-multiples of the item.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "item-proportional target-residual family (EoH run 3; MCTS-AHD targets ~1.5 item) with an ab-style avoided band; FF tie-break"
+  },
+  "B23": {
+   "oid": "B23",
+   "group": "sin",
+   "rule_in_words": "A Gaussian bump in the capacity ratio rho = bins/item times a sinusoid in rho: near-exact fits score highest, a band of residuals of roughly 0.15-0.5 item scores zero (ties resolved by first index, i.e. First Fit among them), and a secondary peak sits at an item-proportional residual (~0.1-0.5 item, or ~1.3-1.5 item for B20, B21, B31); B21's sinusoid also skips residuals near odd half-multiples of the item.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "item-proportional target-residual family (EoH run 3; MCTS-AHD targets ~1.5 item) with an ab-style avoided band; FF tie-break"
+  },
+  "B29": {
+   "oid": "B29",
+   "group": "sin",
+   "rule_in_words": "A Gaussian bump in the capacity ratio rho = bins/item times a sinusoid in rho: near-exact fits score highest, a band of residuals of roughly 0.15-0.5 item scores zero (ties resolved by first index, i.e. First Fit among them), and a secondary peak sits at an item-proportional residual (~0.1-0.5 item, or ~1.3-1.5 item for B20, B21, B31); B21's sinusoid also skips residuals near odd half-multiples of the item.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "item-proportional target-residual family (EoH run 3; MCTS-AHD targets ~1.5 item) with an ab-style avoided band; FF tie-break"
+  },
+  "B31": {
+   "oid": "B31",
+   "group": "sin",
+   "rule_in_words": "A Gaussian bump in the capacity ratio rho = bins/item times a sinusoid in rho: near-exact fits score highest, a band of residuals of roughly 0.15-0.5 item scores zero (ties resolved by first index, i.e. First Fit among them), and a secondary peak sits at an item-proportional residual (~0.1-0.5 item, or ~1.3-1.5 item for B20, B21, B31); B21's sinusoid also skips residuals near odd half-multiples of the item.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "item-proportional target-residual family (EoH run 3; MCTS-AHD targets ~1.5 item) with an ab-style avoided band; FF tie-break"
+  },
+  "B32": {
+   "oid": "B32",
+   "group": "sin",
+   "rule_in_words": "A Gaussian bump in the capacity ratio rho = bins/item times a sinusoid in rho: near-exact fits score highest, a band of residuals of roughly 0.15-0.5 item scores zero (ties resolved by first index, i.e. First Fit among them), and a secondary peak sits at an item-proportional residual (~0.1-0.5 item, or ~1.3-1.5 item for B20, B21, B31); B21's sinusoid also skips residuals near odd half-multiples of the item.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "item-proportional target-residual family (EoH run 3; MCTS-AHD targets ~1.5 item) with an ab-style avoided band; FF tie-break"
+  },
+  "B33": {
+   "oid": "B33",
+   "group": "sin",
+   "rule_in_words": "A Gaussian bump in the capacity ratio rho = bins/item times a sinusoid in rho: near-exact fits score highest, a band of residuals of roughly 0.15-0.5 item scores zero (ties resolved by first index, i.e. First Fit among them), and a secondary peak sits at an item-proportional residual (~0.1-0.5 item, or ~1.3-1.5 item for B20, B21, B31); B21's sinusoid also skips residuals near odd half-multiples of the item.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "item-proportional target-residual family (EoH run 3; MCTS-AHD targets ~1.5 item) with an ab-style avoided band; FF tie-break"
+  },
+  "B36": {
+   "oid": "B36",
+   "group": "sin",
+   "rule_in_words": "A Gaussian bump in the capacity ratio rho = bins/item times a sinusoid in rho: near-exact fits score highest, a band of residuals of roughly 0.15-0.5 item scores zero (ties resolved by first index, i.e. First Fit among them), and a secondary peak sits at an item-proportional residual (~0.1-0.5 item, or ~1.3-1.5 item for B20, B21, B31); B21's sinusoid also skips residuals near odd half-multiples of the item.",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "item-proportional target-residual family (EoH run 3; MCTS-AHD targets ~1.5 item) with an ab-style avoided band; FF tie-break"
+  },
+  "B07": {
+   "oid": "B07",
+   "group": "log",
+   "rule_in_words": "Tiered bonuses with item-proportional thresholds: residual below 0.1-0.2 item gets the largest bonus, residual in (0.5-0.6, 0.9] item a smaller bonus, residual above 0.9 item a penalty; inside tiers a log-based best-fit-like order (B37 orders its tight tier worst-fit-first, which only matters for residuals below 0.1 item).",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "c12-style tiered gap scores (FunSearch OR heuristic) / ab band with item-proportional tier edges"
+  },
+  "B14": {
+   "oid": "B14",
+   "group": "log",
+   "rule_in_words": "Tiered bonuses with item-proportional thresholds: residual below 0.1-0.2 item gets the largest bonus, residual in (0.5-0.6, 0.9] item a smaller bonus, residual above 0.9 item a penalty; inside tiers a log-based best-fit-like order (B37 orders its tight tier worst-fit-first, which only matters for residuals below 0.1 item).",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "c12-style tiered gap scores (FunSearch OR heuristic) / ab band with item-proportional tier edges"
+  },
+  "B15": {
+   "oid": "B15",
+   "group": "log",
+   "rule_in_words": "Tiered bonuses with item-proportional thresholds: residual below 0.1-0.2 item gets the largest bonus, residual in (0.5-0.6, 0.9] item a smaller bonus, residual above 0.9 item a penalty; inside tiers a log-based best-fit-like order (B37 orders its tight tier worst-fit-first, which only matters for residuals below 0.1 item).",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "c12-style tiered gap scores (FunSearch OR heuristic) / ab band with item-proportional tier edges"
+  },
+  "B37": {
+   "oid": "B37",
+   "group": "log",
+   "rule_in_words": "Tiered bonuses with item-proportional thresholds: residual below 0.1-0.2 item gets the largest bonus, residual in (0.5-0.6, 0.9] item a smaller bonus, residual above 0.9 item a penalty; inside tiers a log-based best-fit-like order (B37 orders its tight tier worst-fit-first, which only matters for residuals below 0.1 item).",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "c12-style tiered gap scores (FunSearch OR heuristic) / ab band with item-proportional tier edges"
+  },
+  "B38": {
+   "oid": "B38",
+   "group": "log",
+   "rule_in_words": "Tiered bonuses with item-proportional thresholds: residual below 0.1-0.2 item gets the largest bonus, residual in (0.5-0.6, 0.9] item a smaller bonus, residual above 0.9 item a penalty; inside tiers a log-based best-fit-like order (B37 orders its tight tier worst-fit-first, which only matters for residuals below 0.1 item).",
+   "manual_class": "KNOWN_FAMILY_NEW_PARAMETERS",
+   "family": "c12-style tiered gap scores (FunSearch OR heuristic) / ab band with item-proportional tier edges"
+  }
+ }
+}

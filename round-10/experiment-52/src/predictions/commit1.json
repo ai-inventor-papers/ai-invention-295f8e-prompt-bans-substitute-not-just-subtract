@@ -1,0 +1,239 @@
+{
+ "utc": "2026-10-24T18:37:21Z",
+ "artifact": "NOV-B2 (seeds 2 and 3)",
+ "inputs_manifest_sha256": "a301298fa0f28a7c28e8b1d0a6a4a77c98aaf64ffd526e56f88f1db24ab18d2a",
+ "instance_sha256": {
+  "SEL-OR": "4fa84e1e8d2fcb7d7a49f2fc4b6dff3c14c6980f741d7e6c9804c46f47de82d7",
+  "SEL-W": "7f95af860eabf585434030cbb95b62f217a7b23443bbed0e60f1b8c2974e68d3",
+  "H-W5k": "eb4d3c6629da9ac1533985963a22edede519dd73c75f19d51c0190ff3c505b1a",
+  "H-W10k": "cf5cd9b599a58b5932602759e844e112fd08cb04cb38536bc9767ebcb7f8f4f0",
+  "H-SHIFT": "6a98e8c395aeb14fb47cf24f334dfd84d575ee320391ec76c670ff361d7ba9ff",
+  "CALIB-W": "5e7b0468448900469cdf8e8756188bfce30b4ce3e3f6c43277f3d3bb72127cdd",
+  "P1SRC-W": "e6eb2fb86a9da2d6fa849099b25cc4712061858f7af18d41ca4f78e5bc3af6e1",
+  "P1SRC-OR": "3a2a73f5af220e978e00614ea087769306ed0da0f18a440f90502c150fdc715c",
+  "H-OR1": "c5604b1a056c7b1070b58846550e1b991bf3e47eac59167d5886641957b358a6",
+  "H-OR2": "0e1fd208f26139b94359b4abb0ca2a1574f70b7cceda139fc30ac8612307d13c",
+  "H-OR3": "b89390f503db5bd471361efb3b9aa57c147be39678f78f64d1fe13df533d31a1",
+  "H-OR4": "1014d8c716c511745b902a5bbd82db66b7fbcc1541267aabd2a477927299c2d5",
+  "FS-OR3": "b89390f503db5bd471361efb3b9aa57c147be39678f78f64d1fe13df533d31a1",
+  "H-FSW5k": "e58e2ff43f97b0093407a2efdbd68b0dce316b79c5352e39073c53ce57ee9703"
+ },
+ "p10_sha256": "9b6a1d4f0c50c19a702eae84cf8cb8b905194f7bce5fbf16b91050a87b6075e8",
+ "corpus": {
+  "corpus_code_sha256": "c4242d212be99da3c9600f21efaff8221f40ceedea57e42d29eb43935c687376",
+  "corpus_decisions_sha256": "be78d0de8add6188ef65898f37d9bde5f379cf5d3eb11041b8195a38569d2d64",
+  "ab_decisions_sha256": "65d4a15f8ba76dd226ef6a44706ee0181af5af4470e6fbfb4e6b6dfbd6cc9c31",
+  "n_entries": 75,
+  "n_ab_grid": 3843
+ },
+ "tuned_ab_permutation": {
+  "seed": 20261024,
+  "perm_sha256": "ac8f1a82c917c08e9b6bf0df114a778b225703cf93be8d18872d48c7890dbdef",
+  "n_evaluated": 2000,
+  "tuned": {
+   "1000": {
+    "grid_index": 388,
+    "perm_rank": 474,
+    "base": "FF",
+    "a": 6,
+    "b": 22,
+    "name": "ab-FF(6,22)",
+    "F": 0.7631643002028387
+   },
+   "1500": {
+    "grid_index": 327,
+    "perm_rank": 1067,
+    "base": "FF",
+    "a": 5,
+    "b": 22,
+    "name": "ab-FF(5,22)",
+    "F": 0.739614604462474
+   },
+   "2000": {
+    "grid_index": 327,
+    "perm_rank": 1067,
+    "base": "FF",
+    "a": 5,
+    "b": 22,
+    "name": "ab-FF(5,22)",
+    "F": 0.739614604462474
+   }
+  }
+ },
+ "prompt": {
+  "instruction": "Complete the Python module below by writing the body of priority_v2. Reply with code only.",
+  "idea_sentence": "Write priority_v2 based on an idea different from both functions above.",
+  "prefill": "```python\ndef priority_v2(item: float, bins: np.ndarray) -> np.ndarray:\n    \"\"\"Improved version of priority_v1.\"\"\"\n",
+  "stops": [
+   "\n```",
+   "\ndef ",
+   "\nclass ",
+   "\nif __name__",
+   "\nprint(",
+   "\n@"
+  ],
+  "max_tokens": 512,
+  "template": "funsearch_bestshot_v10",
+  "user_turn_example_T1.0": "Complete the Python module below by writing the body of priority_v2. Reply with code only.\n\n```python\n\"\"\"Finds good assignment for online 1d bin packing.\"\"\"\nimport numpy as np\n\n\ndef priority_v0(item: float, bins: np.ndarray) -> np.ndarray:\n    \"\"\"Returns priority with which we want to add item to each bin.\n\n    Args:\n        item: Size of item to be added to the bin.\n        bins: Array of capacities for each bin.\n\n    Return:\n        Array of same size as bins with priority score of each bin.\n    \"\"\"\n    return -(bins - item)\n\n\ndef priority_v1(item: float, bins: np.ndarray) -> np.ndarray:\n    \"\"\"Improved version of priority_v0.\"\"\"\n    return -(bins - item)\n```",
+  "user_turn_example_IDEA": "Complete the Python module below by writing the body of priority_v2. Reply with code only.\n\n```python\n\"\"\"Finds good assignment for online 1d bin packing.\"\"\"\nimport numpy as np\n\n\ndef priority_v0(item: float, bins: np.ndarray) -> np.ndarray:\n    \"\"\"Returns priority with which we want to add item to each bin.\n\n    Args:\n        item: Size of item to be added to the bin.\n        bins: Array of capacities for each bin.\n\n    Return:\n        Array of same size as bins with priority score of each bin.\n    \"\"\"\n    return -(bins - item)\n\n\ndef priority_v1(item: float, bins: np.ndarray) -> np.ndarray:\n    \"\"\"Improved version of priority_v0.\"\"\"\n    return -(bins - item)\n```\n\nWrite priority_v2 based on an idea different from both functions above.",
+  "user_turn_NS": "Complete the Python module below by writing the body of priority_v2. Reply with code only.\n\n```python\n\"\"\"Finds good assignment for online 1d bin packing.\"\"\"\nimport numpy as np\n\n\ndef priority_v0(item: float, bins: np.ndarray) -> np.ndarray:\n    \"\"\"Returns priority with which we want to add item to each bin.\n\n    Args:\n        item: Size of item to be added to the bin.\n        bins: Array of capacities for each bin.\n\n    Return:\n        Array of same size as bins with priority score of each bin.\n    \"\"\"\n    return -np.arange(len(bins))\n\n\ndef priority_v1(item: float, bins: np.ndarray) -> np.ndarray:\n    \"\"\"Improved version of priority_v0.\"\"\"\n    return -(bins - item)\n```",
+  "rendered_sha256_per_arm_with_BF_parents": {
+   "T1.0": {
+    "sha256": "908ee3eadef04713f781113bd7cd87a12cbf200a549cd3d2182dda1e1dca26fe",
+    "n_tokens": 199
+   },
+   "T1.6": {
+    "sha256": "908ee3eadef04713f781113bd7cd87a12cbf200a549cd3d2182dda1e1dca26fe",
+    "n_tokens": 199
+   },
+   "DTB": {
+    "sha256": "908ee3eadef04713f781113bd7cd87a12cbf200a549cd3d2182dda1e1dca26fe",
+    "n_tokens": 199
+   },
+   "RPB": {
+    "sha256": "908ee3eadef04713f781113bd7cd87a12cbf200a549cd3d2182dda1e1dca26fe",
+    "n_tokens": 199
+   },
+   "IDEA": {
+    "sha256": "17d0e208323663c9d9529001f200717b500ea8bf892c5e96f0ef57f517086db2",
+    "n_tokens": 214
+   },
+   "NS": {
+    "sha256": "75369087b4c9e2e9736a1761460b7980b8200a3e557050ef68bba463affbcb99",
+    "n_tokens": 201
+   }
+  }
+ },
+ "arms": {
+  "T1.0": {
+   "T": 1.0,
+   "top_p": 1.0,
+   "idea": false,
+   "branch": null
+  },
+  "T1.6": {
+   "T": 1.6,
+   "top_p": 0.95,
+   "idea": false,
+   "branch": null
+  },
+  "DTB": {
+   "T": 1.0,
+   "top_p": 1.0,
+   "idea": false,
+   "branch": "entropy"
+  },
+  "RPB": {
+   "T": 1.0,
+   "top_p": 1.0,
+   "idea": false,
+   "branch": "random"
+  },
+  "IDEA": {
+   "T": 1.0,
+   "top_p": 1.0,
+   "idea": true,
+   "branch": null
+  },
+  "NS": {
+   "T": 1.0,
+   "top_p": 1.0,
+   "idea": false,
+   "branch": null
+  }
+ },
+ "seeds": [
+  2,
+  3
+ ],
+ "arm_ids": {
+  "T1.0": 0,
+  "T1.6": 1,
+  "DTB": 2,
+  "RPB": 3,
+  "IDEA": 4,
+  "NS": 5
+ },
+ "rng_rules": {
+  "request_seed": "(S*1000003 + arm_id*100003 + call*7 + req) mod 2^31",
+  "parent_draw": "default_rng([S, arm_id, 1]) (also the reset noise and founder draws)",
+  "branch": "default_rng([S, arm_id, call, 7]); RPB j = rng.choice(E); r = rng.integers(2, min(8, len(cand[j])) + 1)"
+ },
+ "round": {
+  "calls_per_arm_seed": 20,
+  "lockstep": "all active arm-seeds",
+  "lag": "prompts of round r+1 from databases after round r-1 is registered"
+ },
+ "islands": {
+  "n": 5,
+  "seed": "BF (F = 1, not a call)",
+  "cluster": "identical 25-instance selection signature",
+  "T_c": "0.1 * (1 - (n_island mod 30000)/30000)",
+  "within_cluster": "softmax(-(len-min)/(max+1e-6))",
+  "reset": "after every 400 calls: 2 worst of 5 (best score + N(0,1e-6)), founder = best of a uniform survivor"
+ },
+ "C_star_rule": {
+  "options": [
+   2000,
+   1500,
+   1000
+  ],
+  "t_round": "median wall time of rounds 3-5",
+  "end(C)": "now + (C/20 - 5) * t_round * 1.1",
+  "deadline_h": 4.5,
+  "drop_deadline_h": 4.633,
+  "hard_stop_h": 4.667,
+  "drop_order": [
+   "NS",
+   "IDEA to 1000",
+   "IDEA off",
+   "seed 3 to 1000"
+  ],
+  "note": "plan clock milestones shifted 10 min earlier (session limit 5 h 54 min)"
+ },
+ "validity_rule": "v10: compiles under the AST screen; runs on all 25 selection instances within one cumulative 20 s CPU budget (SEL-OR then SEL-W, fail fast); every output 1-D, one finite score per valid bin",
+ "clustering_rule": "complete linkage on 1 - agreement over unique P10 vectors of valid offspring, cut at 0.05 (every within-cluster pair agrees >= 0.95); D = clusters per 1000 calls",
+ "thresholds": {
+  "V1_factor": 0.8,
+  "V2_R_temp": 1.5,
+  "V2_R_RPB": 1.2,
+  "V2_disconfirm": 1.0,
+  "cluster": 0.95,
+  "novelty": 0.9,
+  "V6_supported": 0.4,
+  "V6_margin": 0.1,
+  "V6_disconfirm": 0.2,
+  "V5_entropy_percentile": 90
+ },
+ "verdict_rules": {
+  "V1": "pass(X) iff exc_FSW5k(best_X) <= 0.8*3.9843% and exc_OR3(best_X) <= 0.8*5.3678%; SUPPORTED iff all four core arms pass; DISCONFIRMED iff no core arm's best has lower excess than BF on H-FSW5k or on H-OR3; else PARTIAL",
+  "V2": "R_X = (DTB clusters summed over seeds / DTB calls) / (same for X); SUPPORTED iff R_T1.0>=1.5 and R_T1.6>=1.5 and every per-seed ratio vs each temperature arm >1 and R_RPB>=1.2 and m_DTB<=min(m_T1.0,m_T1.6); DISCONFIRMED iff R_T1.0<=1.0 or R_T1.6<=1.0; else PARTIAL",
+  "V3": "NOVEL-and-better = passes the 0.8 rule on both primary sets, max agreement < 0.9 with every priority-form corpus entry, NOT_KNOWN from both gated judges and NOVEL in the arm-blind manual read; SUPPORTED iff >= 1; else DISCONFIRMED with the rule-of-three bound",
+  "V6": "rename(X) = share of valid offspring agreeing >= 0.95 with either parent; SUPPORTED iff rename(IDEA)>=0.4 and rename(IDEA)>=rename(T1.0)-0.1; DISCONFIRMED iff rename(IDEA)<0.2; else PARTIAL",
+  "V5": "descriptive"
+ },
+ "lexicon": {
+  "A": "\\b(new|novel|different|alternative|instead|unlike|another)\\b",
+  "B": "\\b(idea|approach|strategy|heuristic|method|rule)\\b",
+  "rule": "A and B in the same comment"
+ },
+ "base_fork_arm": "dropped (protocol forbids two models on the GPU)",
+ "src_sha256": {
+  "src/analysis.py": "81961b4b50aa62854ead3fe11786fa763c95b3a8b8898f97ecdf851a28f0d99c",
+  "src/bp.py": "aaf9c8cb66c147a57c4df748baac50c524a798ae42615939c02be2f52860d613",
+  "src/clusters.py": "bd5c141215edd173bb470066cd2643ce0f640fb47dc794938ab92f094944e0ce",
+  "src/commit.py": "416180f1b20b7b2d28688c095bcea3982b944dd681ec077517e7ba602435ef74",
+  "src/common.py": "3679cbab70fc31ce8d759ec71c54650f1ec1857c6143fbe66915e2fc8bbe9000",
+  "src/corpus.py": "46d03e363974a1679389b2908e877e15ebd6d0c532aed3c527711f700be57e05",
+  "src/engine.py": "77731952b1a27a787a8ba0352748ebd30e9edaba875b55f8ec29e4f7b5acbb73",
+  "src/fetch_ext.py": "78adbb27b6aa9b96dfe913cebbba1467731b9af100aed9a96caa8700b84af0b7",
+  "src/gate.py": "db180602026d45a474ea619f7e3a008e3d5684bb1478192bafde6c8a89dfddc1",
+  "src/islands.py": "e081ad353cb4c070c106768805c9051754f96cfe79566d3c8666065cf5b68e9a",
+  "src/operators.py": "e8a30980eb702890ec4385eb1f705305b70b41a4e4ff687a2d1a2cd33b76363c",
+  "src/probes.py": "7ba44070f8f72c67ea5336b6273de8663bfef791cdf841a52a0b86f4c32d276c",
+  "src/prompts.py": "26cd8129c1a4cee93177b878409757d0c5e9a51a183157726314926e035c0c28",
+  "src/s0_setup.py": "57deeb1dc140377cce6bb2534f97cd7df324e26ab904d39185da7114bd11838b",
+  "src/sandbox.py": "44ae417329ab9be87eb807222a28dc4e8baa2f01a2d7001106f32a42cbb588a8",
+  "src/search.py": "36f2fe853ace381be6516b235c41caee619d78a1af54117241c6ea88fb4f2395"
+ }
+}

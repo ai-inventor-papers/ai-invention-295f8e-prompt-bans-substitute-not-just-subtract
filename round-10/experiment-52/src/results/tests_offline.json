@@ -1,0 +1,210 @@
+{
+ "utc": "2026-10-24T18:34:47Z",
+ "n": 40,
+ "n_fail": 0,
+ "results": {
+  "reject import os": {
+   "ok": true,
+   "info": null
+  },
+  "reject open()": {
+   "ok": true,
+   "info": null
+  },
+  "reject eval": {
+   "ok": true,
+   "info": null
+  },
+  "reject dunder": {
+   "ok": true,
+   "info": null
+  },
+  "while True -> timeout within budget": {
+   "ok": true,
+   "info": 20.0
+  },
+  "slow only on SEL-W fails within 20 s total": {
+   "ok": true,
+   "info": {
+    "et": "timeout",
+    "eval_s": 20.0,
+    "wall": 20.0
+   }
+  },
+  "10 GB allocation -> memory": {
+   "ok": true,
+   "info": "memory"
+  },
+  "wrong shape -> shape": {
+   "ok": true,
+   "info": "shape"
+  },
+  "inf -> nonfinite (strict)": {
+   "ok": true,
+   "info": "nonfinite"
+  },
+  "nonfinite program re-scored under FunSearch semantics": {
+   "ok": true,
+   "info": null
+  },
+  "nonfinite program gets a probe vector (argmax semantics)": {
+   "ok": true,
+   "info": null
+  },
+  "NaN -> nonfinite (strict)": {
+   "ok": true,
+   "info": null
+  },
+  "call to priority_v1 -> runtime": {
+   "ok": true,
+   "info": null
+  },
+  "empty body -> syntax": {
+   "ok": true,
+   "info": null
+  },
+  "priority forms == hand-coded packers (FF/BF/WF/AWF)": {
+   "ok": true,
+   "info": {
+    "FF": true,
+    "BF": true,
+    "WF": true,
+    "AWF": true
+   }
+  },
+  "BF via sandbox: F == 1": {
+   "ok": true,
+   "info": null
+  },
+  "cached duplicate returns identical result": {
+   "ok": true,
+   "info": null
+  },
+  "stochastic flag": {
+   "ok": true,
+   "info": null
+  },
+  "next_fit sane": {
+   "ok": true,
+   "info": null
+  },
+  "render: empty think block present, ends with prefill": {
+   "ok": true,
+   "info": null
+  },
+  "render: tokens decode back": {
+   "ok": true,
+   "info": null
+  },
+  "IDEA differs from T1.0 by exactly one sentence": {
+   "ok": true,
+   "info": null
+  },
+  "NS prompt constant": {
+   "ok": true,
+   "info": null
+  },
+  "12 crafted completions give the expected bodies": {
+   "ok": true,
+   "info": null
+  },
+  "body_of drops a model-written docstring": {
+   "ok": true,
+   "info": null
+  },
+  "DTB: j = argmax of H over E (ties earliest)": {
+   "ok": true,
+   "info": {
+    "j": 2,
+    "best": 2
+   }
+  },
+  "comment positions excluded from E": {
+   "ok": true,
+   "info": [
+    7,
+    8
+   ]
+  },
+  "forced rank in 2..8": {
+   "ok": true,
+   "info": null
+  },
+  "forced id is a filtered candidate": {
+   "ok": true,
+   "info": null
+  },
+  "DTB plan deterministic (re-derivation)": {
+   "ok": true,
+   "info": null
+  },
+  "RPB uses the same E and rank rule": {
+   "ok": true,
+   "info": null
+  },
+  "EOS / fence / whitespace / dedent candidates excluded": {
+   "ok": true,
+   "info": null
+  },
+  "shuffled entropy re-derivation disagrees with j (>= 10 of 20 shuffles)": {
+   "ok": true,
+   "info": 17
+  },
+  "cluster sampling within 2 SE of the softmax": {
+   "ok": true,
+   "info": {
+    "seed-BF": 0.1857,
+    "a": 0.5073,
+    "b": 0.3069
+   }
+  },
+  "shorter programs preferred within a cluster": {
+   "ok": true,
+   "info": {
+    "short": 1010,
+    "long": 410
+   }
+  },
+  "2 worst of 5 islands reset at 400 calls": {
+   "ok": true,
+   "info": {
+    "at_calls": 400,
+    "reset": [
+     1,
+     0
+    ],
+    "founders": [
+     [
+      1,
+      4,
+      "seed-BF"
+     ],
+     [
+      0,
+      4,
+      "seed-BF"
+     ]
+    ]
+   }
+  },
+  "planted 5x20 -> 5 clusters (complete linkage and leader)": {
+   "ok": true,
+   "info": [
+    5,
+    5
+   ]
+  },
+  "complete-linkage invariant": {
+   "ok": true,
+   "info": null
+  },
+  "one-hot agreement == brute force (100 pairs)": {
+   "ok": true,
+   "info": null
+  },
+  "ERR never agrees": {
+   "ok": true,
+   "info": null
+  }
+ }
+}

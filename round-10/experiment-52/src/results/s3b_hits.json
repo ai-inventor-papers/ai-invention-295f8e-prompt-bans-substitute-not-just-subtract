@@ -1,0 +1,141 @@
+{
+ "dependency": "art_j3Rm_lr2nzR6 full_data_out.json",
+ "dep_sha256": "079dec278b504db49dfad24cdf8713e2400ec9abbc9c49c56511a35f9f4c3038",
+ "regex": "bin.?pack|first.?fit|best.?fit|worst.?fit|next.?fit",
+ "counts": {
+  "thealgorithms_python": {
+   "records": 1354,
+   "hits": 1
+  },
+  "kodcode_algorithmic": {
+   "records": 2767,
+   "hits": 1
+  },
+  "xlcost_python": {
+   "records": 10622,
+   "hits": 8
+  }
+ },
+ "hits": [
+  {
+   "dataset": "thealgorithms_python",
+   "index": 612,
+   "record_id": "thealgorithms_python:612",
+   "matches": [
+    "best fit"
+   ],
+   "input": "\"\"\"\nLinear regression is the most basic type of regression commonly used for\npredictive analysis. The idea is pretty simple: we have a dataset, and we have\nfeatures associated with it. Features should be chosen very cautiously\nas they determine how much our model will be able to make future predictions.\nWe try to set the weight of these features, over many iterations, so that they best\nfit our dataset. In this particular code, I used a CSGO dataset (ADR vs\nRating). We try to best fit a line through the dataset and estimate the parameters.\n\"\"\"\n\n# /// script\n# requires-python = \">=3.13\"\n# dependencies = [\n#     \"httpx2\",\n#     \"numpy\",\n#     \"matplotlib\",\n# ]\n# ///\n\nimport httpx2\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n\ndef collect_dataset():\n    \"\"\"Collect dataset of CSGO\n    The dataset contains ADR vs Rating of a Player\n    :return : dataset obtained from the link, as a matrix\n    \"\"\"\n    response = httpx2.get(\n        \"https://raw.githubusercontent.com/yashLadha/The_Math_of_Intelligence/\"\n        \"master/Week1/ADRvsRating.csv\",\n        timeout=10,\n    )\n    lines = response.text.splitlines()\n    data = []\n    for item in lines:\n        item = item.split(\",\")\n        data.append(item)\n    data.pop(0)  # This is for removing the labels from the list\n    dataset = np.matrix(data)\n    return dataset\n\n\ndef run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):\n    \"\"\"Run steep gradient descent and update the Feature vector accordingly_\n    :param data_x   : contains the dataset\n    :param data_y   : contains the output associated with each data-entry\n    :param len_data : length of the data_\n    :param alpha    : Learning rate of the model\n    :param theta    : Feature vector (weights for our model)\n    ;param return    : Updated features, using\n                       curr_features - alpha_ * gradient(w.r.t. feature)\n    >>> import numpy as np\n    >>> data_x = np.array([[1, 2], [3, 4]])\n    >>> data_y = np.array([5, 6])\n    >>> len_data = len(data_x)\n    >>> alpha = 0.01\n    >>> theta = np.array([0.1, 0.2])\n    >>> run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta)\n    array([0.196, 0.343])\n    \"\"\"\n    n = len_data\n\n    prod = np.dot(theta, data_x.transpose())\n    prod -= data_y.transpose()\n    sum_grad = np.dot(prod, data_x)\n    theta = theta - (alpha / n) * sum_grad\n    return theta\n\n\ndef sum_of_square_error(data_x, data_y, theta):\n    \"\"\"Return sum of square error for error calculation\n    :param data_x    : contains our dataset\n    :param data_y    : contains the output (result vector)\n    :param theta     : contains the feature vector\n    :return          : sum of square error computed from given feature's\n\n    Example:\n    >>> vc_x = np.array([[1.1], [2.1], [3.1]])\n    >>> vc_y = np.array([1.2, 2.2, 3.2])\n    >>> round(sum_of_square_error(vc_x, vc_y, np.array([1])), 3)\n    np.float64(0.03)\n    \"\"\"\n    prod = np.dot(theta, data_x.transpose())\n    prod -= data_y.transpose()\n    return np.sum(np.square(pro",
+   "output": "linear_regression",
+   "sha256": "33080889a14b2ec42d1c9adbc4f4a20a6d075a9d46d48fd5d1b74c1325ba2b9d"
+  },
+  {
+   "dataset": "kodcode_algorithmic",
+   "index": 353,
+   "record_id": "kodcode_algorithmic:1206",
+   "matches": [
+    "best fit"
+   ],
+   "input": "### Coding Question\n\n**Scenario**:\n\nYou are developing a feature for a recipe application that categorizes recipes based on their ingredients. A recipe can only belong to one category and it must include all the sub-ingredients of that category to qualify. Your goal is to write a function that, given a set of recipes and categories, determines the category for each recipe.\n\nEach category is defined by a set of sub-ingredients. A recipe includes a category if all the sub-ingredients of that category are present in the recipe. Only one category can be assigned to each recipe, so if multiple categories match, the category with the most sub-ingredients will be the final choice.\n\n**Question**:\n\nImplement a function `assign_category(recipes: List[Set[str]], categories: Dict[str, Set[str]]) -> List[str]` that determines the category for each recipe.\n\n**Input**:\n- `recipes`: A list of sets, where each set contains strings representing the ingredients of a recipe.\n- `categories`: A dictionary where keys are strings representing category names and values are sets of strings representing sub-ingredients that define each category.\n\n**Output**:\n- A list of strings where each string represents the category assigned to the corresponding recipe in the input list.\n\n**Constraints**:\n- Categories are mutually exclusive.\n- A recipe can belong to at most one category.\n- If a recipe satisfies no category, it should be assigned an empty string `\"\"`.\n\n### Examples\n\n1. `assign_category([{\"chicken\", \"salt\", \"pepper\"}, {\"flour\", \"egg\", \"milk\"}, {\"flour\", \"sugar\", \"butter\"}], {\"Meat\": {\"chicken\", \"salt\"}, \"Baking\": {\"flour\", \"butter\"}, \"Dessert\": {\"sugar\", \"butter\"}})`\n   should return `[\"Meat\", \"\", \"Baking\"]`.\n\n2. `assign_category([{\"potato\", \"cheese\", \"salt\"}, {\"fish\", \"salt\", \"lemon\"}], {\"Vegetarian\": {\"potato\", \"cheese\"}, \"Seafood\": {\"fish\", \"lemon\"}})`\n   should return `[\"Vegetarian\", \"Seafood\"]`.\n\n### Function Signature\n\n```python\nfrom typing import List, Set, Dict\n\ndef assign_category(recipes: List[Set[str]], categories: Dict[str, Set[str]]) -> List[str]:\n    pass\n```\n\n**Hint**:\n- Iterate through each recipe and check each category to determine the best fit.\n- Ensure to handle conflicts by choosing the category with the largest set of sub-ingredients if multiple categories apply.",
+   "output": "from typing import List, Set, Dict\n\ndef assign_category(recipes: List[Set[str]], categories: Dict[str, Set[str]]) -> List[str]:\n    result = []\n    \n    for recipe in recipes:\n        best_category = \"\"\n        max_subs = 0\n        \n        for category, sub_ingredients in categories.items():\n            if sub_ingredients.issubset(recipe) and len(sub_ingredients) > max_subs:\n                best_category = category\n                max_subs = len(sub_ingredients)\n        \n        result.append(best_category)\n    \n    return result",
+   "sha256": "c68b11bba69ed2dd93cce3dc0324cf15e5e74f23377550ded899b04951f0f6d8"
+  },
+  {
+   "dataset": "xlcost_python",
+   "index": 1427,
+   "record_id": "xlcost_python:1427",
+   "matches": [
+    "next fit",
+    "nextfit"
+   ],
+   "input": "Program for Next Fit algorithm in Memory Management | Function to allocate memory to blocks as per Next fit algorithm ; Initially no block is assigned to any process ; pick each process and find suitable blocks according to its size ad assign to it ; Do not start from beginning ; allocate block j to p [ i ] process ; Reduce available memory in this block . ; mod m will help in traversing the blocks from starting block after we reach the end . ; Driver Code",
+   "output": "def NextFit ( blockSize , m , processSize , n ) :\n    allocation = [ - 1 ] * n\n    j = 0\n    for i in range ( n ) :\n        while j < m :\n            if blockSize [ j ] >= processSize [ i ] :\n                allocation [ i ] = j\n                blockSize [ j ] -= processSize [ i ]\n                break\n            j = ( j + 1 ) % m\n    print ( \" Process   No .   Process   Size   Block   no . \" )\n    for i in range ( n ) :\n        print ( i + 1 , \"   \" , processSize [ i ] , end = \"   \" )\n        if allocation [ i ] != - 1 :\n            print ( allocation [ i ] + 1 )\n        else :\n            print ( \" Not   Allocated \" )\nif __name__ == ' _ _ main _ _ ' :\n    blockSize = [ 5 , 10 , 20 ]\n    processSize = [ 10 , 20 , 5 ]\n    m = len ( blockSize )\n    n = len ( processSize )\n    NextFit ( blockSize , m , processSize , n )\n",
+   "sha256": "e915e4a15fa5e1c9a285ad32faed9407be4c7f8b8d34d7c816f46035b5cc1a8b"
+  },
+  {
+   "dataset": "xlcost_python",
+   "index": 2196,
+   "record_id": "xlcost_python:2196",
+   "matches": [
+    "first fit",
+    "firstfit"
+   ],
+   "input": "Program for First Fit algorithm in Memory Management | Function to allocate memory to blocks as per First fit algorithm ; Stores block id of the block allocated to a process ; pick each process and find suitable blocks according to its size ad assign to it ; allocate block j to p [ i ] process ; Reduce available memory in this block . ; Driver code",
+   "output": "def firstFit ( blockSize , m , processSize , n ) :\n    allocation = [ - 1 ] * n\n    for i in range ( n ) :\n        for j in range ( m ) :\n            if blockSize [ j ] >= processSize [ i ] :\n                allocation [ i ] = j\n                blockSize [ j ] -= processSize [ i ]\n                break\n    print ( \"   Process   No .   Process   Size   Block   no . \" )\n    for i in range ( n ) :\n        print ( \"   \" , i + 1 , \"   \" , processSize [ i ] , \"   \" , end = \"   \" )\n        if allocation [ i ] != - 1 :\n            print ( allocation [ i ] + 1 )\n        else :\n            print ( \" Not   Allocated \" )\nif __name__ == ' _ _ main _ _ ' :\n    blockSize = [ 100 , 500 , 200 , 300 , 600 ]\n    processSize = [ 212 , 417 , 112 , 426 ]\n    m = len ( blockSize )\n    n = len ( processSize )\n    firstFit ( blockSize , m , processSize , n )\n",
+   "sha256": "8dd583e3e7cf03357b30c5212a9afa1a36129662d781214794c3c42070914ebc"
+  },
+  {
+   "dataset": "xlcost_python",
+   "index": 3242,
+   "record_id": "xlcost_python:3242",
+   "matches": [
+    "first fit",
+    "firstfit"
+   ],
+   "input": "Program for First Fit algorithm in Memory Management | Function to allocate memory to blocks as per First fit algorithm ; Stores block id of the block allocated to a process ; pick each process and find suitable blocks according to its size ad assign to it ; allocate block j to p [ i ] process ; Reduce available memory in this block . ; Driver code",
+   "output": "def firstFit ( blockSize , m , processSize , n ) :\n    allocation = [ - 1 ] * n\n    for i in range ( n ) :\n        for j in range ( m ) :\n            if blockSize [ j ] >= processSize [ i ] :\n                allocation [ i ] = j\n                blockSize [ j ] -= processSize [ i ]\n                break\n    print ( \"   Process   No .   Process   Size   Block   no . \" )\n    for i in range ( n ) :\n        print ( \"   \" , i + 1 , \"   \" , processSize [ i ] , \"   \" , end = \"   \" )\n        if allocation [ i ] != - 1 :\n            print ( allocation [ i ] + 1 )\n        else :\n            print ( \" Not   Allocated \" )\nif __name__ == ' _ _ main _ _ ' :\n    blockSize = [ 100 , 500 , 200 , 300 , 600 ]\n    processSize = [ 212 , 417 , 112 , 426 ]\n    m = len ( blockSize )\n    n = len ( processSize )\n    firstFit ( blockSize , m , processSize , n )\n",
+   "sha256": "8dd583e3e7cf03357b30c5212a9afa1a36129662d781214794c3c42070914ebc"
+  },
+  {
+   "dataset": "xlcost_python",
+   "index": 3341,
+   "record_id": "xlcost_python:3341",
+   "matches": [
+    "best fit"
+   ],
+   "input": "Represent a given set of points by the best possible straight line | function to calculate m and c that best fit points represented by x [ ] and y [ ] ; Driver main function",
+   "output": "def bestApproximate ( x , y , n ) :\n    sum_x = 0\n    sum_y = 0\n    sum_xy = 0\n    sum_x2 = 0\n    for i in range ( 0 , n ) :\n        sum_x += x [ i ]\n        sum_y += y [ i ]\n        sum_xy += x [ i ] * y [ i ]\n        sum_x2 += pow ( x [ i ] , 2 )\n    m = ( float ) ( ( n * sum_xy - sum_x * sum_y ) / ( n * sum_x2 - pow ( sum_x , 2 ) ) ) ;\n    c = ( float ) ( sum_y - m * sum_x ) / n ;\n    print ( \" m   =   \" , m ) ;\n    print ( \" c   =   \" , c ) ;\nx = [ 1 , 2 , 3 , 4 , 5 ]\ny = [ 14 , 27 , 40 , 55 , 68 ]\nn = len ( x )\nbestApproximate ( x , y , n )\n",
+   "sha256": "8da054a1d2ba6bdbf1d691bccc5a5b02a74c5c543af1508b152444ded68d6fe5"
+  },
+  {
+   "dataset": "xlcost_python",
+   "index": 5338,
+   "record_id": "xlcost_python:5338",
+   "matches": [
+    "best fit",
+    "worst fit",
+    "worstfit"
+   ],
+   "input": "Program for Worst Fit algorithm in Memory Management | Function to allocate memory to blocks as per worst fit algorithm ; Initially no block is assigned to any process ; pick each process and find suitable blocks according to its size ad assign to it ; Find the best fit block for current process ; If we could find a block for current process ; allocate block j to p [ i ] process ; Reduce available memory in this block . ; Driver code",
+   "output": "def worstFit ( blockSize , m , processSize , n ) :\n    allocation = [ - 1 ] * n\n    for i in range ( n ) :\n        wstIdx = - 1\n        for j in range ( m ) :\n            if blockSize [ j ] >= processSize [ i ] :\n                if wstIdx == - 1 :\n                    wstIdx = j\n                elif blockSize [ wstIdx ] < blockSize [ j ] :\n                    wstIdx = j\n        if wstIdx != - 1 :\n            allocation [ i ] = wstIdx\n            blockSize [ wstIdx ] -= processSize [ i ]\n    print ( \" Process   No .   Process   Size   Block   no . \" )\n    for i in range ( n ) :\n        print ( i + 1 , \"   \" , processSize [ i ] , end = \"   \" )\n        if allocation [ i ] != - 1 :\n            print ( allocation [ i ] + 1 )\n        else :\n            print ( \" Not   Allocated \" )\nif __name__ == ' _ _ main _ _ ' :\n    blockSize = [ 100 , 500 , 200 , 300 , 600 ]\n    processSize = [ 212 , 417 , 112 , 426 ]\n    m = len ( blockSize )\n    n = len ( processSize )\n    worstFit ( blockSize , m , processSize , n )\n",
+   "sha256": "20a975354b3a2d27e724a58637fa8cd03c36e85bb4b4d65aacb786ad38a5b7bb"
+  },
+  {
+   "dataset": "xlcost_python",
+   "index": 5342,
+   "record_id": "xlcost_python:5342",
+   "matches": [
+    "bin pack",
+    "first fit",
+    "firstfit"
+   ],
+   "input": "Bin Packing Problem ( Minimize number of used Bins ) | Returns number of bins required using first fit online algorithm ; Initialize result ( Count of bins ) ; Create an array to store remaining space in bins there can be at most n bins ; Place items one by one ; Find the first bin that can accommodate weight [ i ] ; If no bin could accommodate weight [ i ] ; Driver program",
+   "output": "def firstFit ( weight , n , c ) :\n    res = 0\n    bin_rem = [ 0 ] * n\n    for i in range ( n ) :\n        j = 0\n        while ( j < res ) :\n            if ( bin_rem [ j ] >= weight [ i ] ) :\n                bin_rem [ j ] = bin_rem [ j ] - weight [ i ]\n                break\n            j += 1\n        if ( j == res ) :\n            bin_rem [ res ] = c - weight [ i ]\n            res = res + 1\n    return res\nweight = [ 2 , 5 , 4 , 7 , 1 , 3 , 8 ]\nc = 10\nn = len ( weight )\nprint ( \" Number   of   bins   required   in   First   Fit   :   \" , firstFit ( weight , n , c ) )\n",
+   "sha256": "4ac5848d215ce12a1541220b06a7daea65627e5dd0269aaaa0100903f6677881"
+  },
+  {
+   "dataset": "xlcost_python",
+   "index": 9219,
+   "record_id": "xlcost_python:9219",
+   "matches": [
+    "best fit",
+    "bestfit"
+   ],
+   "input": "Program for Best Fit algorithm in Memory Management | Function to allocate memory to blocks as per Best fit algorithm ; Stores block id of the block allocated to a process ; pick each process and find suitable blocks according to its size ad assign to it ; Find the best fit block for current process ; If we could find a block for current process ; allocate block j to p [ i ] process ; Reduce available memory in this block . ; Driver code",
+   "output": "def bestFit ( blockSize , m , processSize , n ) :\n    allocation = [ - 1 ] * n\n    for i in range ( n ) :\n        bestIdx = - 1\n        for j in range ( m ) :\n            if blockSize [ j ] >= processSize [ i ] :\n                if bestIdx == - 1 :\n                    bestIdx = j\n                elif blockSize [ bestIdx ] > blockSize [ j ] :\n                    bestIdx = j\n        if bestIdx != - 1 :\n            allocation [ i ] = bestIdx\n            blockSize [ bestIdx ] -= processSize [ i ]\n    print ( \" Process   No .   Process   Size   Block   no . \" )\n    for i in range ( n ) :\n        print ( i + 1 , \"   \" , processSize [ i ] , end = \"   \" )\n        if allocation [ i ] != - 1 :\n            print ( allocation [ i ] + 1 )\n        else :\n            print ( \" Not   Allocated \" )\nif __name__ == ' _ _ main _ _ ' :\n    blockSize = [ 100 , 500 , 200 , 300 , 600 ]\n    processSize = [ 212 , 417 , 112 , 426 ]\n    m = len ( blockSize )\n    n = len ( processSize )\n    bestFit ( blockSize , m , processSize , n )\n",
+   "sha256": "79b14b44f864b560e1f548e2c35a51336ce23a894c2a3fa101d76cd07611c5fe"
+  },
+  {
+   "dataset": "xlcost_python",
+   "index": 9220,
+   "record_id": "xlcost_python:9220",
+   "matches": [
+    "bin pack",
+    "first fit",
+    "firstfit"
+   ],
+   "input": "Bin Packing Problem ( Minimize number of used Bins ) | Returns number of bins required using first fit online algorithm ; Initialize result ( Count of bins ) ; Create an array to store remaining space in bins there can be at most n bins ; Place items one by one ; Find the first bin that can accommodate weight [ i ] ; Initialize minimum space left and index of best bin ; If no bin could accommodate weight [ i ] , create a new bin ; else : Assign the item to best bin ; Driver code",
+   "output": "def firstFit ( weight , n , c ) :\n    res = 0 ;\n    bin_rem = [ 0 ] * n ;\n    for i in range ( n ) :\n        j = 0 ;\n        min = c + 1 ;\n        bi = 0 ;\n        for j in range ( res ) :\n            if ( bin_rem [ j ] >= weight [ i ] and bin_rem [ j ] - weight [ i ] < min ) :\n                bi = j ;\n                min = bin_rem [ j ] - weight [ i ] ;\n        if ( min == c + 1 ) :\n            bin_rem [ res ] = c - weight [ i ] ;\n            res += 1 ;\n            bin_rem [ bi ] -= weight [ i ] ;\n    return res ;\nif __name__ == ' _ _ main _ _ ' :\n    weight = [ 2 , 5 , 4 , 7 , 1 , 3 , 8 ] ;\n    c = 10 ;\n    n = len ( weight ) ;\n    print ( \" Number   of   bins   required   in   First   Fit   :   \" , firstFit ( weight , n , c ) ) ;\n",
+   "sha256": "ed58ba9230e83fd30d1d4cec3538a558de8dd5228bd31acb82490e847cb9df1f"
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+ "name": "extension_and_corpus_additions",
+ "made_before": "any seed-4/5 generation call and any V3 judge/manual-read call",
+ "extension": {
+   "seeds": [4, 5],
+   "protocol": "identical to commit #1 (arms T1.0, T1.6, DTB, RPB, IDEA; lockstep rounds of 20 calls; same islands, prompt, RNG rules, validity and clustering rules), C fixed at the committed C* = 2000, no NS",
+   "status": "EXPLORATORY robustness check, not part of the pre-registered verdicts: V1/V2/V3/V6 verdicts are computed on seeds 2 and 3 only, exactly as committed; seeds 4-5 statistics are reported beside them with the same frozen analysis functions",
+   "reason": "the search finished at 1:25 instead of the planned 5:00, so the freed GPU time buys two more independent runs (departure (a) of the plan: two seeds per artifact)"
+ },
+ "corpus_additions": "S3b dependency-scan entries (results/corpus_additions_s3b.json: 6 stateless online rules adapted to priority form) and S3c dated-search entries (results/corpus_additions_s3c.json if any), scored with FunSearch semantics and added before any V3 comparison is final; the V3 novelty filter is recomputed after the additions (heldout.py novelty)",
+ "code_changes_after_commit1": ["src/search.py: NOVB2_SEEDS/NOVB2_TAG switch (default behaviour unchanged)", "src/heldout.py: new module (held-out scoring, V3 filters)", "src/commit.py unchanged", "src/analysis.py unchanged (frozen)"]
+}
