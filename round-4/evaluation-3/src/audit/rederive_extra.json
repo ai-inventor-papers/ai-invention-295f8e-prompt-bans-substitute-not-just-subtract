@@ -1,0 +1,212 @@
+{
+ "checks": [
+  {
+   "name": "judge_kappa_A_B",
+   "rederived": 0.7747,
+   "expected": 0.7747,
+   "match": true
+  },
+  {
+   "name": "control_gate_positives",
+   "rederived": {
+    "A": 4,
+    "B": 5
+   },
+   "expected": {
+    "A": 4,
+    "B": 5
+   },
+   "match": true
+  },
+  {
+   "name": "final_class_counts",
+   "rederived": {
+    "CATALOGUE_VARIANT": 68,
+    "DEGENERATE": 156,
+    "LABELLER_MISS": 2
+   },
+   "expected": {
+    "CATALOGUE_VARIANT": 68,
+    "DEGENERATE": 156,
+    "LABELLER_MISS": 2
+   },
+   "match": true
+  },
+  {
+   "name": "novel_confirmed",
+   "rederived": 0,
+   "expected": 0,
+   "match": true
+  },
+  {
+   "name": "llama_snap_back",
+   "rederived": {
+    "T14:sort_by_count": [
+     54,
+     75
+    ],
+    "T04:kmp": [
+     48,
+     66
+    ],
+    "T10:dfs": [
+     79,
+     85
+    ]
+   },
+   "expected": {
+    "T14:sort_by_count": [
+     54,
+     75
+    ],
+    "T04:kmp": [
+     48,
+     66
+    ],
+    "T10:dfs": [
+     79,
+     85
+    ]
+   },
+   "match": true
+  },
+  {
+   "name": "exposure_sentence",
+   "rederived": {
+    "n_Y": 33,
+    "defined": 4,
+    "exposure_named": 4,
+    "exposure_unnamed": 4
+   },
+   "expected": {
+    "n_Y": 33,
+    "defined": 4,
+    "exposure_named": 4,
+    "exposure_unnamed": 4
+   },
+   "match": true
+  },
+  {
+   "name": "contest_exp13_all",
+   "rederived": {
+    "SUBTRACT": -0.695,
+    "LADDER": 0.061,
+    "ASSOCIATE": -1.779,
+    "PROXIMITY": -1.529
+   },
+   "expected": {
+    "SUBTRACT": -0.695,
+    "LADDER": 0.061,
+    "ASSOCIATE": -1.779,
+    "PROXIMITY": -1.529
+   },
+   "match": true
+  },
+  {
+   "name": "contest_exp13_wo_T13",
+   "rederived": {
+    "SUBTRACT": -0.868,
+    "LADDER": 0.076,
+    "ASSOCIATE": -2.045,
+    "PROXIMITY": -1.952
+   },
+   "expected": {
+    "SUBTRACT": -0.868,
+    "LADDER": 0.076,
+    "ASSOCIATE": -2.045,
+    "PROXIMITY": -1.952
+   },
+   "match": true
+  },
+  {
+   "name": "screen_fisher_p",
+   "rederived": 0.000333000333000333,
+   "expected": 0.000333000333000333,
+   "match": true
+  },
+  {
+   "name": "rival_rho_movability_scipy",
+   "rederived": 0.8612,
+   "expected": 0.8612,
+   "match": true
+  },
+  {
+   "name": "route_T10_readings",
+   "rederived": {
+    "a": {
+     "bfs": 75,
+     "dfs": 25
+    },
+    "c": {
+     "dfs": 56,
+     "bfs": 44
+    },
+    "d": {
+     "dfs": 70,
+     "bfs": 10,
+     "union_find": 20
+    },
+    "K0": {
+     "dfs": 57,
+     "bfs": 43
+    }
+   },
+   "expected": {
+    "a": {
+     "bfs": 75,
+     "dfs": 25
+    },
+    "c": {
+     "dfs": 56,
+     "bfs": 44
+    },
+    "d": {
+     "dfs": 70,
+     "bfs": 10
+    },
+    "K0": {
+     "dfs": 57,
+     "bfs": 43
+    }
+   },
+   "match": true
+  },
+  {
+   "name": "novel_candidate_hidden_tests",
+   "rederived": "60/60",
+   "expected": "60/60",
+   "match": true
+  }
+ ],
+ "placebos": [
+  {
+   "name": "kappa_shuffled_B",
+   "detail": {
+    "observed": 0.7746996169788551,
+    "null_mean": 8.132640747158837e-05,
+    "null_q95": 0.09879846791542057
+   },
+   "failed_as_required": true
+  },
+  {
+   "name": "fisher_shuffled_tasks",
+   "detail": {
+    "median_p": 0.5291375291375291
+   },
+   "failed_as_required": true
+  },
+  {
+   "name": "spearman_shuffled_outcome",
+   "detail": {
+    "observed": 0.861232752689211,
+    "null_q95_abs": 0.5382704704307568,
+    "null_median_abs": 0.17942349014358563
+   },
+   "failed_as_required": true
+  }
+ ],
+ "n_checks": 12,
+ "n_mismatches": 0,
+ "n_placebos_failed_as_required": 3,
+ "n_placebos": 3
+}

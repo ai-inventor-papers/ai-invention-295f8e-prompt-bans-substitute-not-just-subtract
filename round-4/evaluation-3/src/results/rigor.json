@@ -1,0 +1,192 @@
+{
+ "defined_only": [
+  {
+   "contest": "bench (exp13, gated)",
+   "family": "SUBTRACT",
+   "n_events": 5,
+   "n_defined": 2,
+   "top1_hits_defined_only": 0,
+   "hit_rate_defined_only": 0.0,
+   "fractional_tie_credit": 0.0,
+   "fractional_rate": 0.0
+  },
+  {
+   "contest": "bench (exp13, gated)",
+   "family": "LADDER",
+   "n_events": 5,
+   "n_defined": 1,
+   "top1_hits_defined_only": 1,
+   "hit_rate_defined_only": 1.0,
+   "fractional_tie_credit": 1.0,
+   "fractional_rate": 1.0
+  },
+  {
+   "contest": "bench (exp13, gated)",
+   "family": "ASSOCIATE",
+   "n_events": 5,
+   "n_defined": 5,
+   "top1_hits_defined_only": 1,
+   "hit_rate_defined_only": 0.2,
+   "fractional_tie_credit": 1.0,
+   "fractional_rate": 0.2
+  },
+  {
+   "contest": "bench (exp13, gated)",
+   "family": "PROXIMITY",
+   "n_events": 5,
+   "n_defined": 5,
+   "top1_hits_defined_only": 1,
+   "hit_rate_defined_only": 0.2,
+   "fractional_tie_credit": 1.0,
+   "fractional_rate": 0.2
+  },
+  {
+   "contest": "exposure (exp14, gated)",
+   "family": "SUBTRACT",
+   "n_events": 64,
+   "n_defined": 8,
+   "top1_hits_defined_only": 8,
+   "hit_rate_defined_only": 1.0,
+   "fractional_tie_credit": 8.0,
+   "fractional_rate": 1.0
+  },
+  {
+   "contest": "exposure (exp14, gated)",
+   "family": "LADDER",
+   "n_events": 64,
+   "n_defined": 64,
+   "top1_hits_defined_only": 52,
+   "hit_rate_defined_only": 0.8125,
+   "fractional_tie_credit": 52.0,
+   "fractional_rate": 0.8125
+  },
+  {
+   "contest": "exposure (exp14, gated)",
+   "family": "ASSOCIATE",
+   "n_events": 64,
+   "n_defined": 64,
+   "top1_hits_defined_only": 31,
+   "hit_rate_defined_only": 0.484375,
+   "fractional_tie_credit": 31.0,
+   "fractional_rate": 0.484375
+  },
+  {
+   "contest": "exposure (exp14, gated)",
+   "family": "PROXIMITY",
+   "n_events": 64,
+   "n_defined": 64,
+   "top1_hits_defined_only": 42,
+   "hit_rate_defined_only": 0.65625,
+   "fractional_tie_credit": 42.0,
+   "fractional_rate": 0.65625
+  },
+  {
+   "contest": "Llama (exp15, gated)",
+   "family": "SUBTRACT",
+   "n_events": 13,
+   "n_defined": 12,
+   "top1_hits_defined_only": 4,
+   "hit_rate_defined_only": 0.3333333333333333,
+   "fractional_tie_credit": 4.0,
+   "fractional_rate": 0.3333333333333333
+  },
+  {
+   "contest": "Llama (exp15, gated)",
+   "family": "LADDER",
+   "n_events": 13,
+   "n_defined": 13,
+   "top1_hits_defined_only": 7,
+   "hit_rate_defined_only": 0.5384615384615384,
+   "fractional_tie_credit": 7.0,
+   "fractional_rate": 0.5384615384615384
+  },
+  {
+   "contest": "Llama (exp15, gated)",
+   "family": "ASSOCIATE",
+   "n_events": 13,
+   "n_defined": 13,
+   "top1_hits_defined_only": 7,
+   "hit_rate_defined_only": 0.5384615384615384,
+   "fractional_tie_credit": 7.0,
+   "fractional_rate": 0.5384615384615384
+  },
+  {
+   "contest": "Llama (exp15, gated)",
+   "family": "PROXIMITY",
+   "n_events": 13,
+   "n_defined": 13,
+   "top1_hits_defined_only": 3,
+   "hit_rate_defined_only": 0.23076923076923078,
+   "fractional_tie_credit": 3.0,
+   "fractional_rate": 0.23076923076923078
+  }
+ ],
+ "exposure_sentence": {
+  "n_shown_algorithms": 33,
+  "n_subtract_defined": 4,
+  "defined_Y": [
+   [
+    "R6",
+    "exponential_search"
+   ],
+   [
+    "T03",
+    "median_of_medians"
+   ],
+   [
+    "T05",
+    "brute_force"
+   ],
+   [
+    "T10",
+    "label_propagation"
+   ]
+  ],
+  "per_arm": {
+   "exposure_named": {
+    "n": 4,
+    "names_landing": 4,
+    "pairs": [
+     "median_of_medians -> quickselect (SUBTRACT ['quickselect'])",
+     "brute_force -> hash_map (SUBTRACT ['hash_map'])",
+     "label_propagation -> union_find (SUBTRACT ['union_find'])",
+     "exponential_search -> binary_search (SUBTRACT ['binary_search'])"
+    ]
+   },
+   "exposure_unnamed": {
+    "n": 4,
+    "names_landing": 4,
+    "pairs": [
+     "median_of_medians -> quickselect (SUBTRACT ['quickselect'])",
+     "brute_force -> hash_map (SUBTRACT ['hash_map'])",
+     "label_propagation -> union_find (SUBTRACT ['union_find'])",
+     "exponential_search -> binary_search (SUBTRACT ['binary_search'])"
+    ]
+   }
+  },
+  "bench_modal_bans_subtract_defined": 2,
+  "bench_hits": 0,
+  "sentence": "In the exposure contest the in-context SUBTRACT forecast was defined for 4 of 33 shown algorithms and named the landing 4 of 4 times (NAMED) and 4 of 4 (UNNAMED); on the modal bench bans it was defined 2 times and hit 0.",
+  "sources": [
+   "art_WiY4wqHLb9Gy:results/c1_events.jsonl",
+   "art_1AYTO1Epb_7t:results/c1_events.jsonl"
+  ]
+ },
+ "table82": {
+  "n_rows": 11,
+  "n_modal": 2,
+  "n_sham": 9,
+  "hits_gain": 0,
+  "hits_residual": 0,
+  "hits_implied": 8,
+  "hits_implied_sham": 6,
+  "definitions": "L = mean over W1-W5 of the primary yield-corrected FRLP log-likelihood (half 'all'); gain_j = L(ban|X) - L(neutral|X) over survivors (neutral twins A and B pooled); residual = centred gain minus a x centred frozen ladder profile u (a by least squares, exp7 c1.py decomposition); implied mass = softmax of L(ban|X) over the measurable catalogue, argmax over allowed (non-banned) modes. Realised landing: modal non-banned label of the exp1 event in gate_events.json for modal rows; the default for sham rows.",
+  "divergence_note": "exp7 frlp_cells carry 'L' (yield-corrected, primary) rather than a column named L_corr; L is used as L_corr. Sham rows are bans of algorithms absent from the default output.",
+  "expected": "gain 0/11, residual 0/11, implied 8/11 (6 sham)",
+  "sources": [
+   "art_6zBfl3kDjeiP:results/frlp_cells.jsonl",
+   "art_6zBfl3kDjeiP:frozen/ladder_profile.json",
+   "art_6zBfl3kDjeiP:results/gate_events.json"
+  ]
+ }
+}
