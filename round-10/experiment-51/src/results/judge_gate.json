@@ -1,0 +1,246 @@
+{
+ "utc": "2026-10-24T19:49:25Z",
+ "per_model": {
+  "deepseek/deepseek-chat-v3.1": {
+   "score": 5,
+   "pass": false,
+   "rows": [
+    {
+     "control": "ctl_c14",
+     "expected": "KNOWN",
+     "label": "KNOWN",
+     "correct": true,
+     "text": "KNOWN:FunSearch Weibull heuristic\n\nThe candidate function is identical to the FunSearch Weibull heuristic (notebook cell 9) and the ReEvo seed function, with perfect agreement on 2,000 probe states. The code structure matches exactly: it computes a score combining (bins - max_bin_cap)^2 / item, bins^2 / item^2, and bins^2 / item^3, negates scores for bins larger than the item, and then subtracts the previous bin's score from each subsequent bin. The minor differences (variable names like `hi` vs `max_bin_cap` and `b2` vs repeated squaring) are syntactical and do not affect the decision logic. "
+    },
+    {
+     "control": "ctl_abwf",
+     "expected": "KNOWN",
+     "label": "KNOWN_FAMILY_NEW_PARAMETERS",
+     "correct": true,
+     "text": "KNOWN_FAMILY_NEW_PARAMETERS:ab-heuristics\n\nThe candidate function is structurally identical to the ab-WorstFit heuristic with parameters a=1 and b=21, as shown by the exact match with abWF_1_21 (agreement 1.000). The function implements the ab-heuristic framework where: items that leave a gap \u2264 a (here 1) are placed using a Worst-Fit variant (preferring bins with smallest remaining capacity), items that would leave a gap between a+1 and b (here 2-21) are penalized with score -2.0, and items leaving larger gaps use a Worst-Fit scoring (-1.0/gap) while new bins (full capacity) get score -1.0. Wh"
+    },
+    {
+     "control": "ctl_eoh",
+     "expected": "KNOWN",
+     "label": "KNOWN",
+     "correct": true,
+     "text": "KNOWN:EoH_r1_01\n\nThe candidate function is identical to the EoH_r1_01 heuristic from the corpus, which is a member of the EoH (Evolution of Heuristics) family. Both functions compute the same expression: (bins / sqrt(log(bins - item))) raised to (bins / sqrt(item)) multiplied by exp(item*(bins - item)), then divided by ((1/bins) * sqrt(item)) and scaled by 100. The only difference is a variable name change (scores vs val), which does not affect the decision behavior. This heuristic was evolved through genetic programming and published with a specific objective value (0.00634), making it a know"
+    },
+    {
+     "control": "ctl_wf",
+     "expected": "KNOWN",
+     "label": "KNOWN",
+     "correct": true,
+     "text": "KNOWN:WF\n\nThe candidate function is exactly equivalent to Worst Fit (WF) among open bins, with the same tie-breaking and new-bin behavior. It assigns a score equal to the remaining capacity after placing the item, but only for bins that are not new (i.e., not at maximum capacity). For new bins, it assigns a very low score (-1e12) unless all bins are new, in which case it uses the remaining capacity. This matches WF's behavior: it always places the item in the open bin with the most remaining space (if one fits), and only opens a new bin if no open bin can accommodate the item. The provided nea"
+    },
+    {
+     "control": "ctl_ss",
+     "expected": "KNOWN",
+     "label": "KNOWN",
+     "correct": true,
+     "text": "KNOWN:SS\n\nThe candidate function is exactly equivalent to the Sum-of-Squares (SS) heuristic in priority function form, as developed by Csirik et al. (2006). Both functions compute the same score for each bin: they calculate the change in the sum of squares of gap counts that would result from placing the item in that bin. The implementation details are identical: both use bincounts of current gaps (excluding full bins), update counts for the current gap when removing capacity, and update counts for the new gap after placement. The return value (-change) is the negative of this delta, meaning b"
+    },
+    {
+     "control": "ctl_new1",
+     "expected": "NOT_KNOWN",
+     "label": "KNOWN_FAMILY_NEW_PARAMETERS",
+     "correct": false,
+     "text": "KNOWN_FAMILY_NEW_PARAMETERS:Modified-Worst-Fit-with-threshold\n\nThe candidate heuristic is a parametric modification of Worst Fit with a capacity threshold constraint. While it uses the core Worst Fit principle (maximizing leftover space, implemented here through minimizing |left - item| which is equivalent to maximizing left when item is fixed), it introduces a novel threshold parameter (0.7) that prevents using new bins when items are smaller than 70% of capacity. This creates a hybrid behavior: for items \u226470% capacity, it behaves like standard Worst Fit among existing bins (since new bins ar"
+    },
+    {
+     "control": "ctl_new2",
+     "expected": "NOT_KNOWN",
+     "label": "KNOWN_FAMILY_NEW_PARAMETERS",
+     "correct": false,
+     "text": "KNOWN_FAMILY_NEW_PARAMETERS:Trigonometric-modular hybrid\n\nThe candidate combines trigonometric and modular arithmetic operations in a way that doesn't correspond to any standard bin packing heuristic, but represents a novel parametric family. The sin(leftover/5.0) term creates a periodic scoring pattern with period 10\u03c0, while the np.mod(left, 7)==0 term adds discrete preference points at multiples of 7. This creates a complex, oscillating priority landscape unlike traditional heuristics that typically use linear, harmonic, or simple threshold-based scoring. The 0.5 coefficient and period param"
+    },
+    {
+     "control": "ctl_new3",
+     "expected": "NOT_KNOWN",
+     "label": "KNOWN_FAMILY_NEW_PARAMETERS",
+     "correct": false,
+     "text": "KNOWN_FAMILY_NEW_PARAMETERS:Median-based heuristics\n\nThe candidate heuristic selects bins based on minimizing the absolute deviation from the median leftover capacity among feasible bins, which represents a novel parameterization within the broader family of statistical-dispersion-based heuristics. While it shares conceptual similarities with mean-based approaches (like aiming for balanced bin fill levels), the median focus provides robustness to outliers. The high agreement with HSEvo's log-ratio heuristic (which effectively minimizes relative waste) and Best Fit (bins - item) suggests it ope"
+    },
+    {
+     "control": "ctl_new4",
+     "expected": "NOT_KNOWN",
+     "label": "KNOWN_FAMILY_NEW_PARAMETERS",
+     "correct": false,
+     "text": "KNOWN_FAMILY_NEW_PARAMETERS:GoldenRatioHeuristic\n\nThe candidate heuristic prioritizes bins where the ratio of leftover space to item size is closest to the golden ratio (\u03c6 \u2248 1.618), which represents a novel parametric variation within the broader family of ratio-based heuristics. While it shares structural similarities with other ratio-based approaches (like those comparing item size to bin capacity), the specific targeting of the golden ratio distinguishes it from classical heuristics (Best/Worst Fit) and common parametric families (Harmonic-k). The high agreement with HSEvo's log-ratio heuri"
+    },
+    {
+     "control": "ctl_new5",
+     "expected": "NOT_KNOWN",
+     "label": "KNOWN_FAMILY_NEW_PARAMETERS",
+     "correct": false,
+     "text": "KNOWN_FAMILY_NEW_PARAMETERS:Modular-based heuristics\n\nThe candidate heuristic uses a modular scoring approach (np.mod(left, item)) that prioritizes bins where the leftover capacity is just below a multiple of the item size, combined with a small tie-breaking term favoring fuller bins. While modular considerations appear in some specialized packing literature (e.g., in residual-aware heuristics or number-theoretic approaches to bin packing), this specific formulation with modulo operation as the primary scoring mechanism does not match any well-known standard heuristic like First Fit or Best Fi"
+    }
+   ]
+  },
+  "moonshotai/kimi-k2": {
+   "score": 6,
+   "pass": false,
+   "rows": [
+    {
+     "control": "ctl_c14",
+     "expected": "KNOWN",
+     "label": "KNOWN",
+     "correct": true,
+     "text": "KNOWN:FunSearch Weibull heuristic (c14)\n\nThe CANDIDATE is byte-for-byte identical to the FunSearch Weibull heuristic discovered by Romera-Paredes et al. (2023) and published in their Nature paper, specifically the version shown in notebook cell 9. The code matches exactly: computing squared distance from maximum bin capacity divided by item, adding squared bins over item squared and over item cubed, negating scores for bins exceeding the item size, and applying a first-difference transformation (score[1:] -= score[:-1]). This is also reproduced as the ReEvo seed function. The heuristic is not "
+    },
+    {
+     "control": "ctl_abwf",
+     "expected": "KNOWN",
+     "label": "KNOWN",
+     "correct": true,
+     "text": "KNOWN:abWF_1_21\n\nThe CANDIDATE is exactly the ab-WorstFit heuristic with parameters a=1 and b=21, as defined by Herrmann & Pallez (2025) in their \"ab-heuristics\" family. The code structure matches precisely: it assigns high priority (cap - bins[i] + 1) to bins where the remaining gap would be at most a=1 (tight fit preference), penalizes bins with gap at most b=21 with a large negative score (-2.0), and among remaining bins prefers the largest gap (via -1.0/g, which is maximized when g is largest). New bins (bins[i] == full) are deprioritized with score -1.0, placed last among valid options. T"
+    },
+    {
+     "control": "ctl_eoh",
+     "expected": "KNOWN",
+     "label": "UNPARSED",
+     "correct": false,
+     "text": ""
+    },
+    {
+     "control": "ctl_wf",
+     "expected": "KNOWN",
+     "label": "UNPARSED",
+     "correct": false,
+     "text": ""
+    },
+    {
+     "control": "ctl_ss",
+     "expected": "KNOWN",
+     "label": "KNOWN",
+     "correct": true,
+     "text": "KNOWN:SS\n\nThe CANDIDATE is identical to the Sum-of-Squares (SS) heuristic of Csirik, Johnson, Kenyon, Orlin, Shor, and Weber (STOC 2000/JACM 2006), up to variable naming and implementation details. Both compute the change in the sum-of-squares objective: for each candidate bin, they calculate how the objective \u03a3_g N(g)\u00b2 changes when placing the item, where N(g) counts open bins with gap g. The formula matches exactly: subtracting 2\u00b7N(g)+1 when closing a gap (new_gap \u2264 0) or adding 2\u00b7N(g')+1 when creating a new gap g' = old_gap - item_size, with the sign flipped to return a priority (higher = b"
+    },
+    {
+     "control": "ctl_new1",
+     "expected": "NOT_KNOWN",
+     "label": "KNOWN",
+     "correct": false,
+     "text": "KNOWN:Almost-Worst Fit (AWF)\n\nThe candidate implements a variant of Almost-Worst Fit (AWF), a textbook heuristic that places items into the second-emptiest bin (or more precisely, avoids both the fullest and emptiest bins, preferring bins with intermediate remaining capacity). The core scoring `-np.abs(left - item)` maximizes when `left == item`, i.e., when the leftover space equals the item size\u2014this prefers bins that are neither too full nor too empty, specifically those where remaining capacity is roughly twice the item size. The penalty of `-1e6` on empty bins (when `item <= 0.7 * cap`) im"
+    },
+    {
+     "control": "ctl_new2",
+     "expected": "NOT_KNOWN",
+     "label": "NOT_KNOWN",
+     "correct": true,
+     "text": "NOT_KNOWN\n\nThe candidate heuristic combines a sinusoidal function of the leftover capacity with a sparse bonus for leftovers that are multiples of 7. This is fundamentally different from all classical bin packing heuristics: First/Best/Worst/Next Fit and their variants depend on simple comparisons or extremal selections (min/max), while Harmonic-k uses interval-based classification. The parametric families in the literature (e.g., weight-based heuristics, or the linear combinations in GP hyper-heuristics) do not include trigonometric functions or modular arithmetic bonuses. The nearest neighbo"
+    },
+    {
+     "control": "ctl_new3",
+     "expected": "NOT_KNOWN",
+     "label": "NOT_KNOWN",
+     "correct": true,
+     "text": "NOT_KNOWN\n\nThe CANDIDATE heuristic selects the bin whose remaining capacity after placement is closest to the median of all such remaining capacities across fitting bins. This is a novel \"center-seeking\" or \"balanced-fill\" strategy that attempts to keep bin utilization balanced around the median, avoiding both very tight and very loose packings. It does not match any classical textbook heuristic (First/Best/Worst/Next Fit, Harmonic-k, Sum-of-Squares), nor does it align with the genetic-programming hyper-heuristics from Burke et al. or the LLM-evolved heuristics in the corpus. The nearest neigh"
+    },
+    {
+     "control": "ctl_new4",
+     "expected": "NOT_KNOWN",
+     "label": "UNPARSED",
+     "correct": false,
+     "text": ""
+    },
+    {
+     "control": "ctl_new5",
+     "expected": "NOT_KNOWN",
+     "label": "NOT_KNOWN",
+     "correct": true,
+     "text": "NOT_KNOWN\n\nThe candidate\u2019s primary score is `np.mod(bins, item)` (equivalently `np.mod(bins - item, item)`), which is a periodic, non\u2011monotonic function of the bin\u2019s remaining capacity. This does not align with any classic textbook heuristic\u2014First, Best, Worst, Next, Almost\u2011Worst Fit, Harmonic\u2011k, or Sum\u2011of\u2011Squares\u2014nor with standard parametric families such as linear/affine combinations of item and bin features. No known published bin\u2011packing rule uses a modulo of the remaining capacity by the item size as its selection criterion. The `\u20111e\u20113\u00b7left` term is merely a tie\u2011breaker favoring tighter f"
+    }
+   ]
+  },
+  "mistralai/mistral-medium-3.1": {
+   "score": 9,
+   "pass": true,
+   "rows": [
+    {
+     "control": "ctl_c14",
+     "expected": "KNOWN",
+     "label": "KNOWN",
+     "correct": true,
+     "text": "KNOWN:FunSearch Weibull heuristic\n\nThe CANDIDATE priority function is an exact match (up to variable naming) to the FunSearch Weibull heuristic (c14) and the ReEvo seed function, both of which compute the same score: a combination of squared distance from the largest bin capacity, scaled by powers of the item size, with negation for bins larger than the item and a first-difference transformation applied to the scores. The only differences are superficial (e.g., `bins_remain_cap` vs. `bins`), and the logic is identical, confirming it as a known heuristic from the literature."
+    },
+    {
+     "control": "ctl_abwf",
+     "expected": "KNOWN",
+     "label": "KNOWN",
+     "correct": true,
+     "text": "KNOWN:abWF_1_21\n\nThe CANDIDATE priority function exactly matches the ab-WorstFit heuristic with parameters a=1 and b=21 (abWF_1_21) from Herrmann & Pallez (2025), as shown by the identical decision agreement (1.000) on 2,000 probe states. The logic aligns perfectly: it prioritizes bins with gaps \u22641 by tightness (cap - bins + 1), penalizes bins with gaps \u226421 (-2.0), treats unused bins (-1.0), and otherwise prefers larger gaps (-1.0/g). The only difference is superficial (e.g., variable names), confirming it is the same heuristic."
+    },
+    {
+     "control": "ctl_eoh",
+     "expected": "KNOWN",
+     "label": "KNOWN_FAMILY_NEW_PARAMETERS",
+     "correct": true,
+     "text": "KNOWN_FAMILY_NEW_PARAMETERS:EoH\n\nThe CANDIDATE's priority function is a closed-form expression that closely resembles the EoH (Evolution of Heuristics) family of heuristics, which are known for their complex, LLM-evolved scoring mechanisms. The nearest matches from the corpus (EoH_r1_00, EoH_r1_01, EoH_r1_07) share the same structural components: logarithmic, exponential, and power-law terms involving `bins` and `item`. The CANDIDATE differs only by minor algebraic rearrangements (e.g., the placement of `np.sqrt(item)` in the denominator) and a scalar multiple (100), which are monotone transfo"
+    },
+    {
+     "control": "ctl_wf",
+     "expected": "KNOWN",
+     "label": "KNOWN",
+     "correct": true,
+     "text": "KNOWN:Worst Fit"
+    },
+    {
+     "control": "ctl_ss",
+     "expected": "KNOWN",
+     "label": "KNOWN",
+     "correct": true,
+     "text": "KNOWN:Sum-of-Squares\n\nThe CANDIDATE priority function computes a score for each bin based on the change in the sum of squared counts of open bins with each gap size, which is exactly the mechanism of the Sum-of-Squares (SS) heuristic. The provided SS reference implementation matches the CANDIDATE's logic: it calculates the delta in the sum of squares of gap counts when placing the item in each bin, and the item is placed in the bin that minimizes this delta (equivalent to maximizing `-delta`). The only difference is superficial (variable names and minor stylistic variations), and the behavior "
+    },
+    {
+     "control": "ctl_new1",
+     "expected": "NOT_KNOWN",
+     "label": "KNOWN",
+     "correct": false,
+     "text": "KNOWN:Best Fit Decreasing (with a conditional new-bin penalty)\n\nThe candidate prioritizes the bin whose leftover space after placement is closest to the item's size (i.e., minimizes |(bin - item) - item| = |bin - 2*item|), which is equivalent to Best Fit (minimizing |bin - item|) under a monotone transformation. The additional penalty (-1e6) for new bins when the item is \u2264 70% of capacity enforces a conditional preference for reusing bins, similar to Best Fit Decreasing (BFD) but with a dynamic threshold. Thus, it aligns with BFD up to tie-breaks and the 70% threshold parameter."
+    },
+    {
+     "control": "ctl_new2",
+     "expected": "NOT_KNOWN",
+     "label": "NOT_KNOWN",
+     "correct": true,
+     "text": "NOT_KNOWN\n\nThe candidate priority function uses a non-linear trigonometric term (sin(leftover / 5)) combined with a conditional bonus for leftovers divisible by 7, which does not correspond to any standard bin-packing heuristic (e.g., First Fit, Best Fit, Harmonic, etc.) or known parametric family. The closest matches (FF and its variants) rely on simple index-based ordering, while this rule introduces arbitrary, non-monotonic scoring that lacks a clear operational interpretation in the literature. Thus, it is not a known heuristic or a member of a published family."
+    },
+    {
+     "control": "ctl_new3",
+     "expected": "NOT_KNOWN",
+     "label": "NOT_KNOWN",
+     "correct": true,
+     "text": "NOT_KNOWN\n\nThe CANDIDATE rule selects the bin whose leftover capacity after placing the item is closest to the median leftover capacity among all feasible bins. This is a novel criterion that does not correspond to any known heuristic (e.g., First Fit, Best Fit, Harmonic, or LLM-evolved rules like HSEvo or LLM4AD) or a published parametric family. The closest matches in the corpus (HSEvo_gpt, HSEvo_seed, LLM4AD_tutorial) all use fundamentally different scoring mechanisms (e.g., log-ratios or raw leftover space), and their agreement (~73%) is far from exact. Thus, the rule is not a known heuris"
+    },
+    {
+     "control": "ctl_new4",
+     "expected": "NOT_KNOWN",
+     "label": "NOT_KNOWN",
+     "correct": true,
+     "text": "NOT_KNOWN\n\nThe CANDIDATE prioritizes bins where the leftover space after placing the item is closest to the golden ratio (1.618) times the item size. This is a novel criterion not matching any known heuristic or parametric family in the literature. The closest matches (HSEvo_gpt, HSEvo_seed, LLM4AD_tutorial) all use fundamentally different scoring mechanisms (log-ratios or simple leftover space), and their agreement (~69.6%) is far from perfect, confirming the CANDIDATE is distinct. It is not degenerate, as it meaningfully depends on both the item and bin capacities."
+    },
+    {
+     "control": "ctl_new5",
+     "expected": "NOT_KNOWN",
+     "label": "NOT_KNOWN",
+     "correct": true,
+     "text": "NOT_KNOWN\n\nThe candidate heuristic uses a score based on the modulo of the leftover space with respect to the item size, adjusted by a small penalty proportional to the leftover space itself (`np.mod(left, item) - 1e-3 * left`). This prioritizes bins where the remaining space is just below a multiple of the item size, with a slight preference for fuller bins in case of ties. This behavior does not match any known textbook heuristic (e.g., First Fit, Best Fit, Harmonic-k) or published parametric families (e.g., Sum-of-Squares, Almost-Worst Fit). It also differs from the provided LLM-evolved heu"
+    }
+   ]
+  }
+ },
+ "spent_usd": 0.03668369999999999,
+ "stopped": false,
+ "stop_reason": null,
+ "pins": {
+  "deepseek/deepseek-chat-v3.1": "CoreWeave",
+  "moonshotai/kimi-k2": "Novita",
+  "mistralai/mistral-medium-3.1": "Mistral"
+ },
+ "gated_judges": [
+  "mistralai/mistral-medium-3.1"
+ ],
+ "tiebreaker": null,
+ "judge_gate_met": false
+}
