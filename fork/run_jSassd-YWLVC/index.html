@@ -1,0 +1,886 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Random Activation Push Changes a Code Model's Algorithm Where Temperature Does Not</title>
+<style>
+:root{
+  --bg:#fbfbf8;
+  --surface:#ffffff;
+  --ink:#1b1d21;
+  --ink-2:#4d525a;
+  --ink-3:#686d76;
+  --line:#e3e2dc;
+  --line-strong:#c9c7bf;
+  --accent:#1d5c99;
+  --accent-hover:#164a7d;
+  --code-bg:#efeee8;
+  --measure:39rem;
+  --wide:62.5rem;
+  --gutter:1rem;
+  --sans:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:1.125rem;line-height:1.65;font-kerning:normal}
+img{max-width:100%}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:.18em}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:2px}
+main:focus{outline:none}
+p{margin:0 0 1.1rem;max-width:var(--measure)}
+code{font-family:var(--mono);font-size:.84em;background:var(--code-bg);padding:.06em .3em;border-radius:3px;overflow-wrap:anywhere}
+var{font-style:italic}
+sup,sub{line-height:0}
+.vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* skip link */
+.skip{position:absolute;left:.75rem;top:-4rem;z-index:100;background:var(--ink);color:#fff;padding:.55rem .95rem;border-radius:4px;font-weight:600;font-size:1rem;text-decoration:none}
+.skip:focus{top:.75rem}
+
+/* layout and section navigation */
+.toc{position:sticky;top:0;z-index:30;background:rgba(251,251,248,.97);border-bottom:1px solid var(--line)}
+.toc-title{display:none}
+.toc ol{position:relative;list-style:none;margin:0;padding:0 var(--gutter);display:flex;gap:1.35rem;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+.toc ol::-webkit-scrollbar{display:none}
+.toc a{display:block;padding:.72rem 0 .6rem;color:var(--ink-2);text-decoration:none;font-size:.9375rem;font-weight:500;line-height:1.3;border-bottom:2px solid transparent}
+.toc a:hover{color:var(--ink)}
+.toc a.active{color:var(--accent);border-bottom-color:var(--accent)}
+.toc a:focus-visible{outline-offset:-3px}
+main{display:block;padding:0 var(--gutter)}
+@media (min-width:68.75rem){
+  .layout{display:grid;grid-template-columns:11.5rem minmax(0,1fr);column-gap:4rem;max-width:84rem;margin:0 auto;padding:0 2.5rem}
+  .toc{grid-column:1;grid-row:1 / span 2;align-self:start;height:100vh;background:none;border:0;padding-top:4.75rem}
+  main{grid-column:2;grid-row:1}
+  .site-footer{grid-column:2;grid-row:2}
+  .toc-title{display:block;margin:0 0 .8rem;font-size:.75rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+  .toc ol{flex-direction:column;gap:0;padding:0;overflow:visible;white-space:normal;border-left:1px solid var(--line)}
+  .toc a{padding:.42rem 0 .42rem 1rem;margin-left:-1px;border-bottom:0;border-left:2px solid transparent}
+  .toc a.active{border-left-color:var(--accent);border-bottom-color:transparent}
+  main{padding:0}
+}
+
+/* hero */
+.hero{padding:2.5rem 0 3.75rem}
+.hero h1{font-size:clamp(1.75rem,1.15rem + 2.6vw,3rem);line-height:1.1;letter-spacing:-.022em;font-weight:700;margin:0 0 2.25rem;max-width:28ch;text-wrap:balance}
+.hero-grid{display:grid;gap:2.25rem;align-items:start;max-width:var(--wide)}
+.tldr-label{margin:0 0 .5rem;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.tldr-text{font-size:1.1875rem;line-height:1.62;margin:0;max-width:40rem}
+.headline{border-top:2px solid var(--ink);padding-top:1.1rem}
+.headline p{max-width:none}
+.headline-num{margin:0 0 .45rem;font-size:clamp(3.25rem,2.6rem + 2.6vw,4.5rem);font-weight:700;line-height:1;letter-spacing:-.03em;font-variant-numeric:lining-nums tabular-nums}
+.headline-label{margin:0 0 .85rem;font-size:1rem;font-weight:600;line-height:1.4}
+.headline-meta{margin:0 0 .6rem;font-size:.875rem;line-height:1.55;color:var(--ink-2)}
+.hero-links{margin-top:2.75rem}
+.doc-links{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.625rem}
+.btn{display:inline-block;padding:.62rem 1rem;border:1px solid var(--line-strong);border-radius:4px;background:var(--surface);color:var(--accent);font-size:.9375rem;font-weight:600;line-height:1.3;text-decoration:none}
+.btn:hover{border-color:var(--accent)}
+.btn-primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+.rounds{margin:1.1rem 0 0;max-width:none;font-size:.9375rem;line-height:1.9;color:var(--ink-2)}
+.rounds a{margin-right:.7rem;white-space:nowrap}
+.rounds-label{font-weight:600;margin-right:.45rem;color:var(--ink)}
+@media (min-width:56rem){.hero{padding:4.25rem 0 4.5rem}.hero-grid{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:3.5rem}}
+
+/* sections */
+.section{padding:4.25rem 0 1.5rem;border-top:1px solid var(--line);scroll-margin-top:2.75rem}
+.section>h2{margin:0 0 1.5rem;font-size:clamp(1.7rem,1.3rem + 1.4vw,2.3rem);line-height:1.15;letter-spacing:-.016em;font-weight:700}
+h3{margin:2.5rem 0 .75rem;font-size:1.25rem;line-height:1.3;font-weight:650;letter-spacing:-.006em}
+.lede{font-size:1.1875rem;line-height:1.6;color:var(--ink-2)}
+@media (min-width:68.75rem){.section{scroll-margin-top:1rem}}
+
+/* contributions */
+.cards{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15.5rem,1fr));gap:2.25rem 2.5rem;counter-reset:card;max-width:var(--wide)}
+.card{counter-increment:card;border-top:1px solid var(--ink);padding-top:1rem}
+.card::before{content:counter(card,decimal-leading-zero);display:block;margin-bottom:.55rem;font-size:.8125rem;font-weight:600;letter-spacing:.05em;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.card h3{margin:0 0 .55rem;font-size:1.125rem;line-height:1.35}
+.card p{margin:0;font-size:1rem;line-height:1.6}
+
+/* method */
+.steps{margin:0 0 1rem;padding:0;list-style:none;counter-reset:step;max-width:var(--wide)}
+.steps>li{counter-increment:step;position:relative;padding:0 0 0 2.6rem;margin:0 0 1.6rem}
+.steps>li::before{content:counter(step);position:absolute;left:0;top:.1rem;width:1.75rem;height:1.75rem;border:1px solid var(--line-strong);border-radius:50%;font-size:.8125rem;font-weight:700;line-height:1.65rem;text-align:center;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.steps p{margin-bottom:.75rem}
+.out-list{margin:0 0 1rem;padding-left:1.2rem;max-width:var(--measure)}
+.out-list li{margin-bottom:.45rem}
+.eq-wrap{max-width:var(--wide);overflow-x:auto;margin:.5rem 0 1rem;padding:1rem 1.15rem;background:var(--surface);border:1px solid var(--line);border-radius:4px}
+.eq{margin:0;max-width:none;white-space:nowrap;font-size:1.0625rem;line-height:2}
+.eq var{font-family:var(--sans)}
+.terms{margin:0 0 1rem;display:grid;grid-template-columns:auto minmax(0,1fr);gap:.35rem 1rem;font-size:.9375rem;line-height:1.5;max-width:var(--measure)}
+.terms dt{white-space:nowrap}
+.terms dd{margin:0;color:var(--ink-2)}
+
+/* figures */
+.fig{margin:0 0 2.25rem;max-width:var(--wide)}
+.fig-scroll{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:4px}
+.zoom{display:block;padding:.85rem;cursor:zoom-in;line-height:0}
+.zoom img{display:block;width:100%;height:auto}
+.zoom:focus-visible{outline-offset:-4px}
+.mw-560{min-width:35rem}.mw-600{min-width:37.5rem}.mw-800{min-width:50rem}
+.fig-hint{display:none;margin:.5rem 0 0;font-size:.8125rem;color:var(--ink-3)}
+@media (max-width:52rem){.fig-hint{display:block}}
+.fig>figcaption{margin-top:.85rem;font-size:.9375rem;line-height:1.55;color:var(--ink-2);max-width:46rem}
+.fig>figcaption strong{color:var(--ink)}
+.gallery{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:3.75rem}
+.gallery>li{min-width:0}
+.gfig{margin:0;max-width:var(--wide)}
+.gfig figcaption{margin-top:1.1rem}
+.gfig-title{margin:0 0 .45rem;font-size:1.125rem;line-height:1.35}
+.gfig-num{color:var(--ink-3);font-weight:600}
+.gfig-caption{margin:0;max-width:48rem;font-size:.9375rem;line-height:1.6;color:var(--ink-2)}
+
+/* results */
+.minitoc{list-style:none;margin:0 0 .5rem;padding:0;display:flex;flex-wrap:wrap;gap:.35rem 1.25rem;font-size:.9375rem;max-width:var(--wide)}
+.result{margin-top:3.25rem;padding-top:2.25rem;border-top:1px solid var(--line);scroll-margin-top:3.25rem}
+.result>h3{margin:0 0 1.25rem;font-size:1.4rem;line-height:1.25;max-width:34ch}
+.result-head{display:grid;gap:1.25rem 2.75rem;margin:0 0 1.75rem;max-width:var(--wide)}
+@media (min-width:46rem){.result-head{grid-template-columns:minmax(0,15rem) minmax(0,1fr)}}
+.stat{margin:0;max-width:none}
+.stat-num{display:block;font-size:clamp(2.5rem,2rem + 1.6vw,3.2rem);font-weight:700;line-height:1;letter-spacing:-.028em;font-variant-numeric:lining-nums tabular-nums}
+.stat-num.long{font-size:clamp(2rem,1.7rem + 1vw,2.4rem)}
+.stat-unit{display:block;margin-top:.4rem;font-size:1rem;font-weight:600;line-height:1.35}
+.stat-label{display:block;margin-top:.6rem;font-size:.9375rem;line-height:1.5;color:var(--ink-2)}
+.stat-pair{display:grid;grid-template-columns:auto auto;justify-content:start;gap:.3rem 1.25rem;align-items:baseline}
+.facts{margin:0;display:grid;gap:1rem}
+.facts dt{margin:0 0 .2rem;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.facts dd{margin:0;font-size:1rem;line-height:1.6;max-width:var(--measure)}
+.readouts{margin:0 0 1.25rem;padding-left:1.2rem;max-width:var(--measure)}
+.readouts li{margin-bottom:.7rem}
+.src{margin-left:.25em;font-size:.6875rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;vertical-align:.18em;white-space:nowrap}
+.figrefs{margin:0;font-size:.9375rem;color:var(--ink-2)}
+.figref{font-weight:600}
+
+/* tables */
+.table-cap{max-width:var(--wide);margin:1.75rem 0 0;padding:.75rem max(0px,calc(100% - 50rem)) .85rem 0;border-top:1px solid var(--ink);font-size:.875rem;line-height:1.5;color:var(--ink-2)}
+.table-cap strong{color:var(--ink)}
+.table-wrap{max-width:var(--wide);overflow-x:auto;margin:0 0 1.75rem}
+table{border-collapse:collapse;width:100%;font-size:.9375rem;line-height:1.45;font-variant-numeric:tabular-nums}
+th,td{padding:.55rem .9rem .55rem 0;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+thead th{font-size:.8125rem;font-weight:600;line-height:1.35;color:var(--ink-2);border-bottom:1px solid var(--line-strong);vertical-align:bottom}
+tbody th{font-weight:500}
+.n{text-align:right;white-space:nowrap}
+.t-law{min-width:56rem}.t-seed{min-width:36rem}.t-ctrl{min-width:44rem}
+thead th.n{white-space:normal}
+.t-law tbody th{min-width:11rem}.t-seed tbody th{min-width:14rem}.t-ctrl tbody th{min-width:13rem}
+td b{font-weight:700}
+
+/* limitations */
+.limits{margin:0;padding:0;list-style:none;max-width:var(--measure)}
+.limits li{padding:1rem 0;border-bottom:1px solid var(--line)}
+.limits li:first-child{border-top:1px solid var(--line)}
+.limits strong{display:block;margin-bottom:.2rem}
+
+/* code list */
+.code-rounds{display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:.5rem 2.5rem;max-width:var(--wide)}
+.code-rounds h3{margin:1.25rem 0 .4rem;font-size:.8125rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.code-rounds ul{list-style:none;margin:0;padding:0}
+.code-rounds li{margin:0 0 .45rem;font-size:.9375rem;line-height:1.45}
+
+/* footer */
+.site-footer{margin-top:4rem;border-top:1px solid var(--line-strong)}
+.footer-inner{padding:2.75rem var(--gutter) 3.5rem}
+@media (min-width:68.75rem){.footer-inner{padding:3rem 0 4.5rem}}
+.foot-title{margin:0 0 1.25rem;font-weight:650;font-size:1.0625rem;line-height:1.4;max-width:40rem}
+.foot-note{margin:1.5rem 0 0;font-size:.875rem;color:var(--ink-3);max-width:46rem}
+
+/* lightbox */
+.lightbox{padding:0;margin:0;border:0;width:100%;height:100%;max-width:100%;max-height:100%;background:transparent;color:var(--ink);overflow:hidden}
+.lightbox[open]{display:flex;align-items:center;justify-content:center;animation:lb-in .16s ease-out}
+.lightbox::backdrop{background:rgba(16,17,19,.92)}
+@keyframes lb-in{from{opacity:0}to{opacity:1}}
+html.lb-open{overflow:hidden}
+.lb-panel{display:flex;flex-direction:column;width:min(100% - 2rem,82rem);height:min(100% - 2rem,62rem);background:var(--surface);border-radius:6px;overflow:hidden}
+.lb-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem .75rem;padding:.6rem .75rem .6rem 1.25rem;border-bottom:1px solid var(--line)}
+.lb-count{margin:0;font-size:.875rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.lb-actions{display:flex;flex-wrap:wrap;gap:.5rem}
+.lb-btn{font-family:inherit;font-size:.875rem;font-weight:600;line-height:1.2;padding:.5rem .8rem;border:1px solid var(--line-strong);border-radius:4px;background:var(--surface);color:var(--ink);cursor:pointer}
+.lb-btn:hover{border-color:var(--ink-2)}
+.lb-btn[aria-pressed="true"]{background:var(--code-bg);border-color:var(--ink-2)}
+.lb-close{background:var(--ink);border-color:var(--ink);color:#fff}
+.lb-close:hover{background:#000}
+.lb-stage{flex:1 1 0;min-height:0;overflow:auto;display:flex;align-items:center;justify-content:center;padding:1rem}
+.lb-stage img{display:block;max-width:100%;max-height:100%;width:auto;height:auto}
+.lb-stage.is-actual{display:block}
+.lb-stage.is-actual img{max-width:none;max-height:none;width:auto}
+@media (max-width:52rem){
+  .lb-stage{display:block;padding:.75rem}
+  .lb-stage img{max-width:none;max-height:none;width:var(--lb-w,50rem)}
+}
+.lb-stage:focus-visible,.lb-text:focus-visible{outline-offset:-3px}
+.lb-text{flex:0 0 auto;max-height:32%;overflow:auto;padding:.9rem 1.25rem 1.1rem;border-top:1px solid var(--line)}
+.lb-title{margin:0 0 .35rem;font-size:1.0625rem;font-weight:650;max-width:none}
+.lb-caption{margin:0;max-width:62rem;font-size:.9375rem;line-height:1.55;color:var(--ink-2)}
+@media (max-width:40rem){.lb-panel{width:100%;height:100%;border-radius:0}.lb-bar{padding:.55rem .75rem}.lb-actions{gap:.4rem}.lb-btn{padding:.45rem .6rem;font-size:.8125rem}}
+
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<div class="layout">
+<nav class="toc" data-scrollspy aria-label="Sections of this page">
+<p class="toc-title" aria-hidden="true">On this page</p>
+<ol>
+<li><a href="#contributions">Contributions</a></li>
+<li><a href="#method">Method</a></li>
+<li><a href="#results">Results</a></li>
+<li><a href="#figures">Figures</a></li>
+<li><a href="#limitations">Limitations</a></li>
+<li><a href="#code">Code</a></li>
+</ol>
+</nav>
+
+<main id="main" tabindex="-1">
+
+<header class="hero">
+<h1>A Random Activation Push Changes a Code Model's Algorithm Where Temperature Does Not</h1>
+<div class="hero-grid">
+<div class="tldr">
+<p class="tldr-label">TL;DR</p>
+<p class="tldr-text">Sampling temperature is often treated as the creativity control of a language model. This paper asks whether it changes <em>which algorithm</em> a code model implements, or only how the model writes the same one. With the random draws held fixed per seed, temperature from 0.3 to 1.3 never changed the algorithm Qwen3-8B wrote, in 20 seeds on each of three tasks, while the number of phrasings grew. A random push to the model's internal states at the prompt tokens that state the task did change it, in more seeds than temperature did: a paired difference of <strong>0.545 per seed</strong> (95% CI 0.41 to 0.67), pooled over shortest path and <var>k</var>-th smallest. The algorithm is settled at one or two forking tokens early in the program, where the default leads by several nats, more than this temperature range can overcome.</p>
+</div>
+<aside class="headline" aria-label="Headline number">
+<p class="headline-num">0.545</p>
+<p class="headline-label">seeds changed per seed: random task-state push minus temperature, on the same random streams</p>
+<p class="headline-meta">95% CI 0.41 to 0.67; one-sided sign-flip <var>p</var> = 1.0 × 10<sup>−5</sup>. Qwen3-8B, shortest path and <var>k</var>-th smallest, 40 seeds.</p>
+<p class="headline-meta">A preregistered contrast that held, in an experiment graded partial. It ran only in an 8-bit (W8A8) engine and is untested in bfloat16.</p>
+</aside>
+</div>
+<div class="hero-links">
+<ul class="doc-links">
+<li><a class="btn btn-primary" href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/paper.pdf">Read the paper (PDF)</a></li>
+<li><a class="btn" href="interactive.html">Explore the interactive demo</a></li>
+<li><a class="btn" href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/report.pdf">Read the full research report</a></li>
+<li><a class="btn" href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/exec_summary.pdf">Read the executive summary</a></li>
+<li><a class="btn" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC">Code repository</a></li>
+</ul>
+<p class="rounds"><span class="rounds-label">Round reports:</span> <a href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/round-1/report.pdf">Round 1</a> <a href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/round-2/report.pdf">Round 2</a> <a href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/round-3/report.pdf">Round 3</a> <a href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/round-4/report.pdf">Round 4</a> <a href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/round-5/report.pdf">Round 5</a> <a href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/round-6/report.pdf">Round 6</a> <a href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/round-7/report.pdf">Round 7</a> <a href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/round-8/report.pdf">Round 8</a> <a href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/round-9/report.pdf">Round 9</a> <a href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/round-10/report.pdf">Round 10</a></p>
+</div>
+</header>
+
+<section id="contributions" class="section" aria-labelledby="contributions-h">
+<h2 id="contributions-h">Contributions</h2>
+<ol class="cards">
+<li class="card">
+<h3>A task-state push changes the algorithm where temperature does not</h3>
+<p>On the same random streams, a random push to the task specification states changed the algorithm in more seeds than temperature did, by 0.545 per seed (95% CI 0.41 to 0.67) over shortest path and <var>k</var>-th smallest. Temperature from 0.3 to 1.3 changed it in 0 of 20 seeds on each of three tasks, while phrasing clusters on the grid task rose from 3 to 13.</p>
+</li>
+<li class="card">
+<h3>One or two forking tokens settle the algorithm</h3>
+<p>Given the class of the forking token, at most 0.19 bits of uncertainty about the algorithm remain. On four default tasks the default leads at that token by a fork margin of 4.85 to 17.04 nats.</p>
+</li>
+<li class="card">
+<h3>A law built from that token's logits predicts temperature's effect</h3>
+<p>Committed before sampling, it matched the observed algorithm mix across four temperatures within a mean total variation distance of 0.014 to 0.054 on five of six units, two of them held-out Gemma-3-4B units. It failed on Llama-3.1-8B's grid task (0.142), and a baseline that predicts no change was close.</p>
+</li>
+<li class="card">
+<h3>Task states and post-training set the fork</h3>
+<p>Writing the task specification states of a prompt that names the minority algorithm into an aligned copy without that instruction produced the minority algorithm in 30 of 30 samples on each of three tasks. On the three default tasks, post-training widened fork margins by 2.11 to 13.41 nats while changing entropy at phrasing positions by less than 0.5 nats.</p>
+</li>
+<li class="card">
+<h3>Other controls reweight the same repertoire</h3>
+<p>Random seeds, novelty instructions, bans, activation pushes and program search moved programs among known algorithms. No audit of a control applied to single samples found a correct novel algorithm; eight bin-packing programs from one evaluator-guided search were classed as a new idea, and a replication found none. Where a ban of five names lands in activation space depends on whether the map is built from names or from programs.</p>
+</li>
+</ol>
+</section>
+
+<section id="method" class="section" aria-labelledby="method-h">
+<h2 id="method-h">Method</h2>
+<figure class="fig">
+<div class="fig-scroll"><a class="zoom mw-800" href="figures/fig2_v0.jpg" data-open-figure="1" aria-haspopup="dialog" aria-label="Enlarge Figure 2: Where the algorithm is decided"><img src="figures/fig2_v0.jpg" width="3819" height="1043" alt="Diagram of the account: a prompt asking for the total weight of a minimum spanning tree feeds a shared 61-token code opening, then a forking token where the token Kr, at probability 0.72, leads to Kruskal and the token Prim, at 0.27, leads to Prim, each written in many phrasings. Arrows mark the task-state exchange and the random task-state push entering at the prompt's task-specification states, and a thermometer marks temperature acting only at the fork."></a></div>
+<p class="fig-hint">Scroll the figure sideways, or select it to enlarge.</p>
+<figcaption><strong>Figure 2. Where the algorithm is decided.</strong> Schematic illustration of the account and of the measurements (not data), using one minimum spanning tree example. <a href="#fig-2">Full caption in the gallery</a>.</figcaption>
+</figure>
+
+<p class="lede">The method has one aim: to tell a change of algorithm apart from a change of wording, and to find the token at which the algorithm is chosen.</p>
+
+<h3>What goes in</h3>
+<p>Coding prompts whose possible answers are known in advance. The study starts from two path search tasks. In the grid task, <code>solve(grid, start, goal)</code> returns a valid path on a grid with walls; its catalogue holds breadth-first search (BFS), depth-first search (DFS), bidirectional BFS, iterative deepening DFS, A* and unit weight Dijkstra. The weighted shortest path task works on a directed graph, with a catalogue of Dijkstra, Bellman-Ford with its queue variant SPFA, bidirectional Dijkstra, Floyd-Warshall and Dial's algorithm. Each has 40 to 48 seeded hidden test cases with a time limit per case, and reference implementations of every catalogue algorithm that pass all tests.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-1/experiment-1">code<span class="vh">: Where an algorithm ban sends an AI coder</span></a> A further 13 tasks, the bench, were derived from LeetCode problems with frozen wording and catalogues of 3 to 6 algorithms each, 684 hidden test cases in total, and references for all 54 catalogue algorithms.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-2/experiment-11">code<span class="vh">: Coding-task bench with a baseline pilot</span></a></p>
+<p>The main model is Qwen3-8B, in non-thinking mode unless stated, with Qwen3-8B-Base for the post-training comparison. Held-out units come from Gemma-3-4B and Llama-3.1-8B, and Qwen3-14B and Qwen3-32B with thinking enter the ban experiments. A <em>unit</em> is a task paired with one model. It is a <em>default task</em> when the instruct model writes one algorithm in essentially all samples, and a <em>mixed unit</em> when its unperturbed samples already contain a second algorithm at a share of roughly 0.1 to 0.4.</p>
+
+<h3>What happens to it</h3>
+<ol class="steps">
+<li><p><strong>Each program is labelled by what it does when run.</strong> A sandboxed runtime tracer records queue, stack and heap operations, edge relaxations and grid reads; it is combined with AST rules, and a blind LLM judge breaks disagreements. On the bench tasks the runtime and AST labellers agreed at Cohen's κ 0.84 to 1.00. On the path tasks the combined label agreed with an adjudicated gold label at κ = 0.966, with 22 of 22 references correct, though the stricter criterion of that gate (κ = 0.753 between the runtime and AST labellers) was not met. A program is correct when it passes every hidden test.</p></li>
+<li><p><strong>Ideas are counted apart from phrasings.</strong> The runtime label of a correct program is its <em>idea</em>. Within one idea, programs whose AST 4-gram shingle sets, with identifiers normalised, have Jaccard similarity of at least 0.8 form one <em>phrasing cluster</em>; 0.7 and 0.9 serve as sensitivity values. Diversity over ideas is the Hill number of order 1 (Hill-1) among correct programs.</p></li>
+<li><p><strong>Conditions share one random stream per seed.</strong> Each seed owns one stream of uniform variates, and every condition maps the same variates through its own next-token distribution, so a difference on one seed is caused by the condition, not by a different draw. A task's <em>change count</em> is the number of seeds whose algorithm label differs anywhere across a block of conditions. The temperature block ran 20 seeds per task, spread over five prompt templates, at <var>T</var> = 0.3, 0.7, 1.0 and 1.3 with top-<var>p</var> 1, plus top-<var>k</var> 10 at <var>T</var> = 0.7 and min-<var>p</var> 0.1 at <var>T</var> = 2.0 as sensitivity conditions.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-4/experiment-21">code<span class="vh">: Same seed: temperature vs plan nudges</span></a></p></li>
+<li><p><strong>A random push enters at the task states.</strong> One isotropic unit direction is added, during the prefill only, to the residual stream activations at the prompt tokens that state the task (the <em>task specification states</em>) in blocks 12 to 23. Its size is a multiple α of the displacement that a ban prompt induces at the same positions. Six fixed directions were run at α = 1 and 2.</p></li>
+<li><p><strong>Prefix resampling finds the forking token.</strong> Following Forking Paths analysis, base programs are resampled from their prefixes at increasing lengths, every continuation is labelled, and a preregistered Bayesian change-point rule, calibrated against permutation nulls, detects where the algorithm distribution shifts. The change point is refined to a single token and confirmed by forcing each candidate. The <em>fork margin</em> is the teacher-forced gap in log probability, at that token, between the class of tokens that lead to the default algorithm and the best class that leads elsewhere.</p></li>
+<li><p><strong>A law composed at the fork predicts temperature.</strong> It tempers the probability of each shared opening and of each token at the fork, and mixes the algorithm shares that follow each token at <var>T</var> = 1:</p>
+<div class="eq-wrap" role="group" aria-label="The composed temperature law"><p class="eq"><var>P</var><sub><var>T</var></sub>(<var>A</var>) = ∑<sub><var>c</var></sub> <var>w</var><sub><var>T</var></sub>(<var>O</var><sub><var>c</var></sub>) [ ∑<sub><var>t</var></sub> <var>π</var><sub><var>T</var></sub>(<var>t</var> | <var>O</var><sub><var>c</var></sub>) <var>G</var>(<var>t</var>, <var>A</var>) + <var>r</var><sub><var>T</var></sub>(<var>c</var>) <var>P</var>(<var>A</var> | rest<sub><var>c</var></sub>) ] + (1 − ∑<sub><var>c</var></sub> <var>w</var><sub><var>T</var></sub>(<var>O</var><sub><var>c</var></sub>)) <var>q</var><sub>rest</sub>(<var>A</var>)</p></div>
+<dl class="terms">
+<dt><var>O</var><sub><var>c</var></sub>, <var>w</var><sub><var>T</var></sub>(<var>O</var><sub><var>c</var></sub>)</dt><dd>the <var>c</var>-th shared opening before a forking token, and the probability of sampling it at temperature <var>T</var>: the product of tempered teacher-forced token probabilities along it</dd>
+<dt><var>π</var><sub><var>T</var></sub>(<var>t</var> | <var>O</var><sub><var>c</var></sub>)</dt><dd>the tempered next-token distribution at the fork, renormalised over the top 10 logits for top-<var>k</var> 10</dd>
+<dt><var>G</var>(<var>t</var>, <var>A</var>)</dt><dd><var>P</var>(<var>A</var> | <var>t</var>), the share of algorithm <var>A</var> among <var>T</var> = 1 continuations forced from token <var>t</var>, or the same mixture over a second fork's tokens when <var>t</var> opens one</dd>
+<dt><var>r</var><sub><var>T</var></sub>(<var>c</var>), <var>q</var><sub>rest</sub></dt><dd>the tempered mass outside the top 20 tokens, and the composition of samples that leave the located openings</dd>
+</dl>
+<p>The prediction is averaged over five prompt templates and uses only teacher-forced logits and <var>T</var> = 1 conditionals, so it can be committed before any temperature sample is drawn.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-8/experiment-43">code<span class="vh">: Predicting how temperature shifts code ideas</span></a> Four rivals were committed with it: a flat law that keeps the <var>T</var> = 1 shares at every temperature; share tempering, which raises the <var>T</var> = 1 shares to the power 1/<var>T</var> and renormalises; a single fork law without the second level; and the same law at the position of highest entropy. Each is scored by its mean absolute error (MAE), the mean over the four temperatures of the total variation distance between predicted and observed label distributions.</p></li>
+<li><p><strong>Exchanges of internal states ask what sets the fork.</strong> A task-state exchange pairs a forced prompt (<code>Implement the task with ⟨minority algorithm⟩</code>) with a <em>padding twin</em> whose instruction is replaced by padding tokens, so that all positions align. The task specification states of the forced prompt are written into the forward pass of the twin, which then samples on shared streams, against a random exchange matched in norm.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-7/experiment-35">code<span class="vh">: Where temperature changes the algorithm an LLM writes</span></a> Separately, Qwen3-8B and Qwen3-8B-Base are teacher-forced on identical token ids, formatted with the chat template, at the forking tokens and at 64 phrasing positions of 20 programs per task.</p></li>
+<li><p><strong>Other controls and a novelty audit bound the result.</strong> Random context seeds (<code>seed=d32qxk4nt43</code> and <code>seed=(horse chair roof love)</code> prepended to the prompt), a semantic seed that implies an algorithm without naming it, instructions from <code>be creative</code> to a 2,000-word request for a fully novel algorithm, bans of one or of five algorithm names, and an island-model program search in the manner of FunSearch. Every correct program labelled outside its task's catalogue was compared with a corpus of about 18,000 known solutions, read by blind LLM judges gated on known controls, and read manually.</p></li>
+</ol>
+
+<h3>What comes out</h3>
+<ul class="out-list">
+<li>For each block of conditions, the change count per task, with its rate bounded by a Clopper-Pearson interval.</li>
+<li>Phrasing clusters per idea, and the number of ideas at depth 25: the expected count of distinct ideas among 25 correct programs drawn from a cell.</li>
+<li>The forking token of each unit, its fork margin in nats, and <var>H</var>(<var>A</var> | class), the entropy of the algorithm given the class of the forking token.</li>
+<li>A committed prediction of the algorithm mix at each temperature, scored on 100 fresh shared streams per cell.</li>
+<li>A count of correct novel algorithms, reported with the rule-of-three bound 3/<var>n</var> when it is zero.</li>
+</ul>
+
+<h3>Why it is built this way</h3>
+<p>Counting distinct outputs cannot answer the question. Two programs can differ in every line and implement the same algorithm, and a program can name one algorithm while executing another, so labels come from what the code does when run. Comparisons across temperatures drawn with independent random numbers mix the effect of temperature with sampling noise: with a default share near 1.0, a few stray samples look like a temperature effect. Knowing that an algorithm changes also says nothing about where the decision was made. Prefix resampling answers that.</p>
+<p>Every decisive prediction, threshold and analysis rule was written to a SHA-256 hash chain before the samples it governs were drawn. Every headline number was rederived from raw rows by an independent script sharing no code with the analysis, and placebo versions of each test were run and rejected at about their nominal rate.</p>
+</section>
+
+<section id="results" class="section" aria-labelledby="results-h">
+<h2 id="results-h">Results</h2>
+<p class="lede">Each result gives its number, what it was measured on, and what it is compared against. Figure links open an enlarged view; the tables reproduce the paper's.</p>
+<ul class="minitoc" aria-label="Results in this section">
+<li><a href="#r-push">Push against temperature</a></li>
+<li><a href="#r-temperature">Phrasings, not algorithms</a></li>
+<li><a href="#r-fork">Forking tokens</a></li>
+<li><a href="#r-law">The temperature law</a></li>
+<li><a href="#r-sets">What sets the fork</a></li>
+<li><a href="#r-readouts">Reading the choice</a></li>
+<li><a href="#r-controls">Other controls</a></li>
+<li><a href="#r-geometry">Activation geometry</a></li>
+<li><a href="#r-meaning">What it means</a></li>
+</ul>
+
+<section class="result" id="r-push" aria-labelledby="r-push-h">
+<h3 id="r-push-h">A task-state push changes the algorithm where temperature does not</h3>
+<div class="result-head">
+<p class="stat"><span class="stat-num">0.545</span><span class="stat-unit">per seed</span><span class="stat-label">Paired difference in seeds changed, push (α = 1, <var>T</var> = 1.0) minus temperature. 95% bootstrap CI 0.41 to 0.67; one-sided sign-flip <var>p</var> = 1.0 × 10<sup>−5</sup>.</span></p>
+<dl class="facts">
+<div><dt>Measured on</dt><dd>Qwen3-8B, shortest path and <var>k</var>-th smallest pooled (40 seeds), one shared random stream per seed, 8-bit (W8A8) engine.</dd></div>
+<div><dt>Compared against</dt><dd>Temperature 0.3, 0.7, 1.0 and 1.3 on the same seeds. A permutation of conditions within each seed never reaches the observed mean (maximum placebo mean 0.155 in 200 permutations).</dd></div>
+</dl>
+</div>
+<p>For each seed, the contrast is the push's change indicator, averaged over the 20 subsets of three directions, minus the seed's change indicator across the four temperatures. It was the experiment's single entry in its secondary family of preregistered tests, and it held. The experiment as a whole is graded partial: its prediction that the push changes at least 5 of 20 seeds held on shortest path (17.25) but failed on <var>k</var>-th smallest (4.55). The contrast was run only in the 8-bit engine and was not rerun in bfloat16.</p>
+<p>The push itself does change the algorithm in bfloat16 at the same absolute push norm: 26 of 40 directions escape on connected components against 29 in the 8-bit engine, and 6 against 8 on shortest path.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-6/experiment-29">code<span class="vh">: Is FP8 rounding behind the random-push escapes?</span></a> A single push direction at α = 1 changed 7, 10, 15, 17, 3 and 8 of 20 seeds on shortest path and up to 7 of 20 on <var>k</var>-th smallest. The changed programs landed on Bellman-Ford/SPFA (52 of 60 programs off the default on shortest path) and quickselect (11 of 11 on <var>k</var>-th smallest). The push is not free. Pass rates on shortest path fell from 1.00 to 0.63 at α = 1 and 0.42 at α = 2.</p>
+<p class="table-cap" id="t1-cap"><strong>Table 1.</strong> Seeds (of 20) whose algorithm changes across the conditions of a block, Qwen3-8B, same random stream per seed, 8-bit W8A8 engine except the thinking-mode arm (vLLM). Push rows are the mean over the 20 subsets of three of the six fixed directions of the number of seeds whose label differs anywhere among the unpushed arm and the three directions.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-labelledby="t1-cap">
+<table class="t-seed" aria-labelledby="t1-cap">
+<thead><tr><th scope="col">Conditions on the same seeds</th><th scope="col" class="n">Shortest path (Dijkstra)</th><th scope="col" class="n"><var>k</var>-th smallest (full sort)</th><th scope="col" class="n">Grid path (BFS)</th></tr></thead>
+<tbody>
+<tr><th scope="row">Temperature 0.3, 0.7, 1.0, 1.3, top-<var>p</var> 1</th><td class="n">0</td><td class="n">0</td><td class="n">0</td></tr>
+<tr><th scope="row">The same, plus top-<var>k</var> 10 at <var>T</var> 0.7</th><td class="n">0</td><td class="n">0</td><td class="n">0</td></tr>
+<tr><th scope="row">The same, plus min-<var>p</var> 0.1 at <var>T</var> 2.0</th><td class="n">1</td><td class="n">1</td><td class="n">0</td></tr>
+<tr><th scope="row">Temperature 0.3 to 1.3, thinking mode</th><td class="n">0</td><td class="n">not run</td><td class="n">0 (of 10)</td></tr>
+<tr><th scope="row">Random task-state push, α = 1, <var>T</var> 1.0</th><td class="n">17.25</td><td class="n">4.55</td><td class="n">2.50</td></tr>
+<tr><th scope="row">Random task-state push, α = 2, <var>T</var> 1.0</th><td class="n">19.05</td><td class="n">10.60</td><td class="n">8.70</td></tr>
+</tbody>
+</table>
+</div>
+<p class="figrefs">See <a class="figref" href="#fig-1" data-open-figure="0" aria-haspopup="dialog">Figure 1</a>.</p>
+</section>
+
+<section class="result" id="r-temperature" aria-labelledby="r-temperature-h">
+<h3 id="r-temperature-h">Temperature multiplies phrasings, not algorithms</h3>
+<div class="result-head">
+<p class="stat"><span class="stat-num">0 of 20</span><span class="stat-unit">seeds changed, on each of three tasks</span><span class="stat-label">Across <var>T</var> = 0.3, 0.7, 1.0 and 1.3; exact 95% upper bound 0.168 on the change rate per seed.</span></p>
+<dl class="facts">
+<div><dt>Measured on</dt><dd>Qwen3-8B on shortest path (Dijkstra), <var>k</var>-th smallest (full sort) and the grid task (BFS), 20 seeds per task on shared streams, 8-bit engine.</dd></div>
+<div><dt>Compared against</dt><dd>Phrasing clusters among the same 20 grid programs: 3 at <var>T</var> = 0.3, then 10, 12 and 13 at <var>T</var> = 0.7, 1.0 and 1.3, while the number of distinct algorithms stayed at 1 on all three tasks at every temperature.</dd></div>
+</dl>
+</div>
+<p>This was a separate preregistered prediction (at most 1 of 20 seeds per cell), and it held under every reading: counting only correct programs, counting invalid outputs as a label, and adding top-<var>k</var> 10 as a fifth condition all leave the count at 0. Adding min-<var>p</var> 0.1 at <var>T</var> = 2.0 changes one seed on shortest path and one on <var>k</var>-th smallest. With thinking mode enabled, shortest path kept Dijkstra in 20 of 20 seeds, and the reduced grid arm kept BFS in 10 of 10.</p>
+<p>The pooled slope of log phrasings per idea on temperature is 0.70 per unit <var>T</var> (95% CI 0.35 to 0.93) at Jaccard threshold 0.8, and 0.64 [0.30, 0.89] and 0.81 [0.33, 0.98] at 0.7 and 0.9. Almost all of the growth comes from the grid task; shortest path moves from 1 to 2 clusters and <var>k</var>-th smallest stays at 2.</p>
+<p>The null replicates with independent samples. With 100 samples per cell, 797 of 800 grid programs were BFS and 797 of 800 shortest path programs were Dijkstra across eight temperature and sampler cells in non-thinking mode, and 800 of 800 in thinking mode. Over the same cells, grid phrasing clusters rose from 4 to 36 with top-<var>k</var> 10 and from 3 to 24 with top-<var>p</var> 0.95. Thinking mode with top-<var>k</var> 10 under one seed per stream again changed the shortest path algorithm in 0 of 20 seeds (one-sided 95% upper bound 0.139).<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-5/experiment-27">code<span class="vh">: Plan noise vs plan-first prompting for code</span></a> At tight temperature the model therefore writes one idea in a few phrasings, and loosening temperature multiplies the phrasings of that idea rather than adding ideas.</p>
+<p>Which default a model writes depends on the model. Asked for a path search on a grid, Qwen3-8B writes BFS in 99 of 100 programs at <var>T</var> = 1.0, and Dijkstra in 100 of 100 on weighted shortest path. It knows the alternatives: asked to list ten approaches before implementing one, it names every grid algorithm in the catalogue in 100 of 100 lists.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-1/experiment-6">code<span class="vh">: Do temperature and seeds change an LLM's algorithm?</span></a> Gemma-3-4B writes DFS in 139 and BFS in 61 of 200 grid programs.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-6/experiment-31">code<span class="vh">: Where Gemma picks BFS or DFS, and steering it</span></a> Llama-3.1-8B attempts BFS in 77 and DFS in 20 of 100, but its correct grid programs are all BFS.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-2/experiment-10">code<span class="vh">: Do algorithm bans work the same in Llama?</span></a><a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-3/evaluation-2">code<span class="vh">: Record repair and novelty audit of algorithm bans</span></a></p>
+<p class="figrefs">See <a class="figref" href="#fig-3" data-open-figure="2" aria-haspopup="dialog">Figure 3</a>.</p>
+</section>
+
+<section class="result" id="r-fork" aria-labelledby="r-fork-h">
+<h3 id="r-fork-h">One or two forking tokens settle the algorithm</h3>
+<div class="result-head">
+<p class="stat"><span class="stat-num long">4.85–17.04</span><span class="stat-unit">nats of fork margin for the default</span><span class="stat-label">Teacher-forced, at the located forking position, on four default tasks.</span></p>
+<dl class="facts">
+<div><dt>Measured on</dt><dd>Qwen3-8B: 7.46 nats on the grid task, 4.85 on shortest path, 17.04 on connected components and 6.10 on <var>k</var>-th smallest. Averaged over five prompt templates instead, the first three are 6.33, 5.61 and 15.96 nats.</dd></div>
+<div><dt>Compared against</dt><dd>What <var>T</var> = 1.3 can overcome. Dividing these logits by 1.3 predicts at most 0.02 of samples off the default, and 100 samples at <var>T</var> = 1.3 from the forking position produced no program off the default on any of the four tasks.</dd></div>
+</dl>
+</div>
+<p>On every unit where the instruct model writes two algorithms, prefix resampling places the decision at a single token after a shared opening. On minimum spanning tree weight the 61-token opening is followed by the word after the comment marker <code>#</code>: <code>Kr</code> (probability 0.72) leads to Kruskal in every continuation, and <code>Prim</code> (0.27) to Prim in 97%. On trapped rain water, after <code>if not height: return 0</code>, <code>n</code> leads to prefix and suffix arrays and <code>left</code> to two pointers. On valid anagram, after the length check, <code>return</code> leads to sorting and <code>count</code> to counting.</p>
+<p>Given the class of the located forking token, the remaining entropy of the algorithm, <var>H</var>(<var>A</var> | class), is 0.050 bits [95% CI 0.014, 0.096], 0.153 and 0.189 bits on these three units, against the preregistered limit of 0.3. A blind locator with a frozen change-point rule recovered the same tokens on fresh paths, where the remaining entropy was at most 0.004 bits on the five Qwen3-8B and Gemma units.</p>
+<p>The same structure appears in other tasks and families. Connected components in Qwen3-8B is settled at generated tokens 10 to 11, where a <code>parent</code> or <code>def find</code> line leads to union find and <code>def dfs</code> to graph search, with 0 bits left at token 11.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-7/experiment-34">code<span class="vh">: Where a coding AI picks its algorithm</span></a> Gemma's grid prompt forks at response index 32: <code>visited</code> leads to DFS (<var>P</var>(BFS) = 0.011), and a newline, <code>if</code> or <code>queue</code> to BFS (0.95 to 1.00). Shortest path has no single forking token within its first 60 tokens.</p>
+<p class="figrefs">See <a class="figref" href="#fig-2" data-open-figure="1" aria-haspopup="dialog">Figure 2</a> for the minimum spanning tree fork.</p>
+</section>
+
+<section class="result" id="r-law" aria-labelledby="r-law-h">
+<h3 id="r-law-h">The forking-token logits predict the temperature response</h3>
+<div class="result-head">
+<p class="stat"><span class="stat-num">5 of 6</span><span class="stat-unit">units passed</span><span class="stat-label">Criterion: MAE of at most 0.10, with <var>H</var>(<var>A</var> | class) of at most 0.3 bits.</span></p>
+<dl class="facts">
+<div><dt>Measured on</dt><dd>Three Qwen3-8B development units (MAE 0.029, 0.054 and 0.043) and three held-out units: substring search (0.033) and first and last position (0.014) in Gemma-3-4B, and grid path in Llama-3.1-8B (0.142, failed). 100 fresh shared streams per cell at <var>T</var> = 0.3, 0.7, 1.0 and 1.3, in bfloat16.</dd></div>
+<div><dt>Compared against</dt><dd>Four rivals committed at the same time. The law has the lowest error on three of six units and beats the flat law, which predicts no change, on four of six (exact sign test <var>p</var> = 0.34).</dd></div>
+</dl>
+</div>
+<p>The preregistered claim is graded partial. Five of six scored units pass (0.83, above the 0.70 bar), but only three held-out units were scored where the claim required four, so the held-out criterion is underpowered rather than met. No held-out unit exceeded the disconfirming error of 0.2. Bootstrap intervals of the difference from the flat law exclude 0 on minimum spanning tree weight [−0.050, −0.025], first and last position [−0.081, −0.018] and substring search [−0.041, −0.002]. On first and last position the first forking token is impure, and the second level found inside it lowers the error from 0.051 for the single fork law to 0.014.</p>
+<p>Lowering temperature from 1.0 to 0.3 removed the minority in one direction only on both Gemma units (10:0 and 13:0 discordant streams, McNemar <var>p</var> = 0.001 and 1.2 × 10<sup>−4</sup>) and on minimum spanning tree weight (18:0, <var>p</var> = 3.8 × 10<sup>−6</sup>). On the grid task of Llama-3.1-8B every predictor fails. Llama reaches the forking tokens through many openings, so the two confirmed openings cover about 2% of samples and the committed law is almost the flat law. At <var>T</var> = 1.3, 72 of 100 programs run to the token cap and the pass rate falls to 0.04.</p>
+<p>Applying temperature only at the forking token tests the account causally. With the dose committed from teacher-forced logits, predicted algorithm shares matched the observed ones with MAE 0.010 to 0.047 on five located units, and Hill-1 among correct programs on valid anagram rose from 1.78 to 2.78 at a cost of 2 percentage points of pass rate.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-8/experiment-39">code<span class="vh">: Temperature at the algorithm-deciding token</span></a> On connected components, a default task, the same treatment reached DFS in only 3 and 9 of 50 programs.</p>
+<p class="table-cap" id="t2-cap"><strong>Table 2.</strong> The composed temperature law against its four rivals: mean absolute error (mean total variation distance over <var>T</var> = 0.3, 0.7, 1.0, 1.3; 100 shared streams per cell). Development units were used to build the law; held-out units were committed and swept before any sweep of a development unit. Lowest error per row in bold. The built-in index, a call to the language's own string search, is the minority algorithm on substring search.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-labelledby="t2-cap">
+<table class="t-law" aria-labelledby="t2-cap">
+<thead><tr><th scope="col">Unit (model)</th><th scope="col">Held out</th><th scope="col">Minority algorithm</th><th scope="col">Forking token(s)</th><th scope="col" class="n">Composed law</th><th scope="col" class="n">Flat</th><th scope="col" class="n">Share tempering</th><th scope="col" class="n">Single fork</th><th scope="col" class="n">Highest-entropy position</th><th scope="col" class="n"><var>H</var>(<var>A</var> | class), bits</th><th scope="col">Pass</th></tr></thead>
+<tbody>
+<tr><th scope="row">Trapped rain water (Qwen3-8B)</th><td>no</td><td>Two pointers</td><td>18 and 19</td><td class="n"><b>0.029</b></td><td class="n">0.055</td><td class="n">0.070</td><td class="n">0.038</td><td class="n">0.037</td><td class="n">&lt;0.001</td><td>yes</td></tr>
+<tr><th scope="row">Valid anagram (Qwen3-8B)</th><td>no</td><td>Fixed count array</td><td>24 and 26</td><td class="n">0.054</td><td class="n"><b>0.030</b></td><td class="n">0.091</td><td class="n">0.054</td><td class="n">0.071</td><td class="n">&lt;0.001</td><td>yes</td></tr>
+<tr><th scope="row">Minimum spanning tree weight (Qwen3-8B)</th><td>no</td><td>Prim</td><td>61</td><td class="n"><b>0.043</b></td><td class="n">0.093</td><td class="n">0.058</td><td class="n"><b>0.043</b></td><td class="n">0.045</td><td class="n">0.004</td><td>yes</td></tr>
+<tr><th scope="row">Substring search (Gemma-3-4B)</th><td>yes</td><td>Built-in index</td><td>31</td><td class="n">0.033</td><td class="n">0.043</td><td class="n"><b>0.023</b></td><td class="n">0.033</td><td class="n">0.036</td><td class="n">0.001</td><td>yes</td></tr>
+<tr><th scope="row">First and last position (Gemma-3-4B)</th><td>yes</td><td>Binary search</td><td>12 and 24</td><td class="n"><b>0.014</b></td><td class="n">0.073</td><td class="n">0.018</td><td class="n">0.051</td><td class="n">0.017</td><td class="n">0.001</td><td>yes</td></tr>
+<tr><th scope="row">Grid path (Llama-3.1-8B)</th><td>yes</td><td>DFS</td><td>after a 52-token opening</td><td class="n">0.142</td><td class="n">0.138</td><td class="n">0.143</td><td class="n">0.142</td><td class="n"><b>0.134</b></td><td class="n">0.63</td><td>no</td></tr>
+</tbody>
+</table>
+</div>
+<p class="figrefs">See <a class="figref" href="#fig-4" data-open-figure="3" aria-haspopup="dialog">Figure 4</a>.</p>
+</section>
+
+<section class="result" id="r-sets" aria-labelledby="r-sets-h">
+<h3 id="r-sets-h">The task specification states and post-training set the fork</h3>
+<div class="result-head">
+<p class="stat"><span class="stat-num">30 of 30</span><span class="stat-unit">streams wrote the minority algorithm</span><span class="stat-label">After a task-state exchange, on each of the three mixed units, with every program passing.</span></p>
+<dl class="facts">
+<div><dt>Measured on</dt><dd>Qwen3-8B in bfloat16, 30 shared streams per arm, on minimum spanning tree weight (Prim), trapped rain water (two pointers) and valid anagram (fixed count array).</dd></div>
+<div><dt>Compared against</dt><dd>The padding twin alone, which gave 0 to 7 of 30, and a random exchange of matched norm, 0 to 12 of 30. The fork margin moved 4.87 to 22.12 nats toward the minority, against at most 2.00 nats for the random exchange.</dd></div>
+</dl>
+</div>
+<p>The argmax at the forking token flips with the exchange (<code>Kr</code> to <code>Prim</code>). The same exchange carries a prohibition. Writing the task specification states of a shortest path prompt that bans Dijkstra, at all 36 blocks, into a neutral twin matched in token length made the twin write correct Bellman-Ford/SPFA in 21 of 30 streams; a post hoc McNemar test against a matched random exchange gives 21:0 (<var>p</var> = 9.5 × 10<sup>−7</sup>).<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-6/experiment-30">code<span class="vh">: Where a coding model decides its algorithm</span></a></p>
+<p>Post-training made the fork margins. On identical token ids formatted with the chat template, the fork margin of Qwen3-8B exceeds that of Qwen3-8B-Base by 3.27 nats on the grid task, 13.41 on connected components and 2.11 on shortest path, and by 1.84 and 1.53 nats on the two mixed units. Without chat tokens the gains on the default tasks are 5.31, 11.05 and 2.69 nats, so the template does not produce them. At 64 ordinary phrasing positions per program the two models differ little: the base model's next-token entropy is higher by 0.21 to 0.34 nats, and the instruct model's token is the base model's top token at 90.6% to 95.3% of phrasing positions on the default tasks.</p>
+<p>At the forking token, the instruct model's choice is the base model's second or third choice in 20, 17 and 19 of 20 programs. On the default tasks the Jensen–Shannon divergence between the two models is 7.3 to 12.0 times larger at the fork than at phrasing positions, but only 1.5 to 1.9 times larger than at phrasing positions matched for base-model entropy. The instruct default is therefore not the base model's average answer: on minimum spanning tree weight the base model's fork distribution, pushed through the instruct model's continuations, would give Prim 0.68 where the instruct model writes Kruskal 0.78.</p>
+<p class="figrefs">See <a class="figref" href="#fig-5" data-open-figure="4" aria-haspopup="dialog">Figure 5</a>.</p>
+</section>
+
+<section class="result" id="r-readouts" aria-labelledby="r-readouts-h">
+<h3 id="r-readouts-h">No readout found the choice before the forking token</h3>
+<div class="result-head">
+<p class="stat"><span class="stat-num">0 of 112</span><span class="stat-unit">prompt-end positions named the plan</span><span class="stat-label">A natural language autoencoder's explanations, read at the positions that end the prompt.</span></p>
+<dl class="facts">
+<div><dt>Measured on</dt><dd>Qwen2.5-7B-Instruct, at the positions that end the prompt, before any code is written.</dd></div>
+<div><dt>Compared against</dt><dd>The token that names the algorithm, where its explanations named it 80% to 89% of the time.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-6/experiment-32">code<span class="vh">: Reading an LLM's planned algorithm in words</span></a></dd></div>
+</dl>
+</div>
+<p>Reading the choice before the forking token was not possible with the readouts the paper tried, which fits a decision made at that token.</p>
+<ul class="readouts">
+<li>Sparse autoencoder features from Gemma Scope 2 read the log odds at the fork of Gemma across 120 prompt variants (<var>R</var><sup>2</sup> = 0.66 against 0.18 for a text baseline), but a ridge readout of the raw residual reached 0.72. Clamping features also steered the fork less than a difference-in-means direction (+1.78 against +4.04 nats at matched norm).</li>
+<li>Distributed alignment search at the forking token produced edits that moved the algorithm, but controls with permuted labels and with randomly initialised networks kept 0.63 to 0.87 and 0.69 of the effect, so no certified variable of low rank for the algorithm was found.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-8/experiment-40">code<span class="vh">: Searching for a hidden algorithm switch in code models</span></a></li>
+<li>Path patching located a stack of MLPs and attention heads at the forking position that carries the fork logit, but at the committed dose five matched random components flipped nearly as many programs as the top five (7:1 discordant streams on minimum spanning tree weight, two-sided <var>p</var> = 0.070, and 0:1 on connected components).<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-8/experiment-41">code<span class="vh">: Qwen3-8B Algorithm‑Choice Circuit Findings</span></a></li>
+<li>A logit-lens reading found no layer at which a ban vetoes the default at the token that first names the algorithm, because the choice is already made before it.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-2/experiment-8">code<span class="vh">: Where a coding-algorithm ban takes effect in an LLM</span></a></li>
+<li>A community Jacobian lens failed its own gate against the logit lens on Qwen3-8B (top-1 agreement 0.104 against 0.291 at layer 27), so it was not used further.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-2/experiment-12">code<span class="vh">: Reading a coding ban inside Qwen3-8B</span></a></li>
+<li>Thought-anchor resampling of thinking traces under a BFS ban showed DFS fixed from the first resampling point in 4 of 4 traces.</li>
+</ul>
+<p>The forking token is where intervention is cheap and measurable, but a certified mechanism for the choice is still missing.</p>
+</section>
+
+<section class="result" id="r-controls" aria-labelledby="r-controls-h">
+<h3 id="r-controls-h">Other controls reweight the same repertoire</h3>
+<div class="result-head">
+<p class="stat"><span class="stat-num long">0 of 10,651</span><span class="stat-unit">correct programs under random pushes were novel</span><span class="stat-label">Also 0 of 4,703 in the sweeps that tested the temperature law (rule-of-three bound 0.0006).<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-4/experiment-22">code<span class="vh">: Where the model picks its coding algorithm</span></a></span></p>
+<dl class="facts">
+<div><dt>Measured on</dt><dd>Every correct program labelled outside its task's catalogue, under every control applied to single samples.</dd></div>
+<div><dt>Compared against</dt><dd>A corpus of about 18,000 known solutions built from LeetCode, textbook and benchmark solutions, with blind LLM judges gated on known controls and a manual read.</dd></div>
+</dl>
+</div>
+<p class="table-cap" id="t4-cap"><strong>Table 4.</strong> What other controls did to the algorithm, and the novelty audit of their correct programs outside the catalogue.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-labelledby="t4-cap">
+<table class="t-ctrl" aria-labelledby="t4-cap">
+<thead><tr><th scope="col">Control</th><th scope="col">Effect on the algorithm</th><th scope="col">Correct novel algorithms</th></tr></thead>
+<tbody>
+<tr><th scope="row">Random context seeds (entropy string, four unrelated words)</th><td>Grid BFS 100/100, shortest path Dijkstra 100/100</td><td>0</td></tr>
+<tr><th scope="row">Semantic seed (paragraph implying an algorithm)</th><td>Shortest path: Bellman-Ford/SPFA 61 of 92 correct (<var>p</var> &lt; 0.001); grid: +2.2 points bidirectional BFS (<var>p</var> = 0.078)</td><td>0</td></tr>
+<tr><th scope="row"><code>Make a fully novel algorithm never seen before</code></th><td>Shortest path: Dijkstra share −14.6 points (to Bellman-Ford/SPFA); grid: −3.7 points</td><td>0</td></tr>
+<tr><th scope="row">2,000-word novelty instructions (575 outputs)</th><td>84% claim a new algorithm; 75% of claims with code are catalogue algorithms</td><td>0 of 38 correct, outside the catalogue</td></tr>
+<tr><th scope="row">Ban of the default by name</th><td>Lands on one substitute: grid DFS 257 of 257, shortest path Bellman-Ford/SPFA 255 of 260</td><td>0</td></tr>
+<tr><th scope="row">Ban of five grid algorithms by name (10 open configurations)</th><td>Only Qwen3-32B with thinking reaches 0.20 correct survivors (17/50 = 0.34 [0.22, 0.48]); others reimplement banned algorithms</td><td>0 of 27 audited</td></tr>
+<tr><th scope="row">Random push of the task specification states (40 fixed directions, α = 2, bfloat16)</th><td>26 of 40 directions escape on connected components and 6 of 40 on shortest path; landings DFS/BFS and Bellman-Ford/SPFA</td><td>0 of 10,651 correct (8-bit engine, 15 tasks)</td></tr>
+<tr><th scope="row">Temperature at the forking token only</th><td>Valid anagram Hill-1 1.78 to 2.78 (pass rate −2 points); connected components DFS at most 9/50</td><td>0 of 5,543 correct</td></tr>
+<tr><th scope="row">Island-model program search (<var>k</var>-th smallest, bin packing, TSP)</th><td><var>k</var>-th smallest: 78 of 2,500 known techniques outside the catalogue vs 2 of 500 for the instruction alone; bin packing: beats best fit on held-out data</td><td>8 in one bin-packing run (manual read); 0 of 40 in its replication</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Context seeds.</strong> Random context seeds left the default intact, although the word seed moved the residual state at the last prompt token 1.555 times as far as switching between paraphrases of the prompt does. Context with meaning did move the algorithm: a paragraph that implies a relaxation over all edges without naming it turned 61 of 92 correct shortest path programs into Bellman-Ford/SPFA (permutation <var>p</var> &lt; 0.001).</p>
+<p><strong>Instructions moved claims more than code.</strong> <code>Make a fully novel algorithm never seen before</code> lowered the Dijkstra share by 14.6 points, toward Bellman-Ford/SPFA. Under two 2,000-word novelty instructions, 84% of outputs claimed a new algorithm, 39% of those contained no code, and 75% of the rest were catalogue algorithms.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-3/experiment-18">code<span class="vh">: How far bans and token vetoes push Qwen3-8B</span></a> On online bin packing, the shorter instruction <code>Make a new algorithm</code> still produced the textbook best-fit rule in 28 of 29 programs from Qwen3-14B and 28 of 28 from Qwen3-32B, both in thinking mode.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-10/experiment-54">code<span class="vh">: Do banned bin-packing rules come back renamed?</span></a> Asking the model to list ten approaches and implementing one picked at random raised the number of ideas at depth 25 from 1.26 to 3.98 on the grid task and from 1.00 to 3.00 on shortest path, at pass rates of 0.55 and 0.75.</p>
+<p><strong>Bans relocate the default within the repertoire.</strong> Whether a single ban is obeyed depends on its wording: on 12 bench tasks the template alone gives a likelihood ratio of 374 on 4 degrees of freedom for avoidance, and the wording <code>X is not allowed here.</code> fails on 10 of 12 tasks.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-3/experiment-13">code<span class="vh">: Forecasting where coding bans send a model</span></a> Where it is obeyed, a single ban of the default by name lands on one substitute, DFS for BFS and Bellman-Ford/SPFA for Dijkstra.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-3/experiment-16">code<span class="vh">: Where a coding ban takes effect in Qwen3-8B</span></a> Banning five grid algorithms at once fails in most models. Across ten open configurations only Qwen3-32B with thinking clears the preregistered bar of 0.20 correct survivors.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-8/experiment-44">code<span class="vh">: Which open models obey a five-algorithm ban</span></a> Qwen3-14B with thinking reaches 0.14 and Qwen3-32B without thinking 0.08, while Qwen3-8B with and without thinking, Llama-3.1-8B-Instruct, Qwen3-14B without thinking, gemma-3-27b-it, Qwen2.5-Coder-32B-Instruct and gemma-3-4b-it reach 0.00; these models keep writing BFS or DFS, often without naming it.</p>
+<p>Lexical compliance, the share of programs that name no banned algorithm, exceeded mechanistic compliance, the share whose runtime behaviour is not a banned algorithm, by 0.70 pooled over ten configurations, a descriptive figure because the expansion-order tracer failed its gold gate.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-9/experiment-45">code<span class="vh">: Do AI coders dodge bans by renaming algorithms?</span></a> With an exact behavioural instrument on online bin packing, Qwen3-8B without thinking obeyed a ban of five names lexically in 0.91 of programs but by mechanism in 0.51 (difference 0.40 [0.21, 0.55]), while Qwen3-14B and Qwen3-32B with thinking left the banned rules.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-10/experiment-54">code<span class="vh">: Do banned bin-packing rules come back renamed?</span></a></p>
+<p><strong>Program search did better than the textbook rule without producing a confirmed new idea.</strong> On <var>k</var>-th smallest it produced 78 known techniques outside the catalogue in 2,500 calls, against 2 in 500 for the instruction alone (a ratio per call of 7.8, lower 95% bound 2.41, short of the committed tenfold) and 0 in 1,250 for a prompt that enumerates approaches and picks one, all of them published methods.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-7/experiment-37">code<span class="vh">: Evolutionary search for new coding algorithms</span></a> On online bin packing the best searched programs reached 1.40% to 2.43% excess bins over the lower bound on held-out Weibull instances against 3.98% for best fit, but none beat the published FunSearch heuristic (0.68%).<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-10/experiment-51">code<span class="vh">: LLM search for new bin-packing rules</span></a> In an independent replication with two new seeds, the arms that forced a token or asked for a different idea beat best fit by the preregistered margin, an excess at most 0.8 times best fit's (1.72% to 2.40% on the Weibull set), and the two temperature arms did not (3.67%, and best fit's own 3.98%). In the first search the arm-blind manual read, which decided novelty under the committed rule because only one of three judge families passed its control gate, classed eight programs as a new idea, all preferring a leftover that is a whole multiple of the item size, and that one judge agreed on all eight; the replication found 0 novel among 40 judged programs.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-10/experiment-52">code<span class="vh">: Can guided LLM search invent bin-packing rules? (run 2)</span></a> The same searches tested where to spend randomness, at matched numbers of calls. Forcing a token of rank 2 to 8 at the highest-entropy position of the first 48 code tokens gave 3.0 and 17.8 times the behaviour clusters per call of temperature 1.0 in the two bin-packing searches, but 2.10 and 0.74 times those of the same forcing at a random position, and on constructive TSP it gave 0.96 times the clusters of temperature 1.0, which met the preregistered disconfirming condition.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-10/experiment-53">code<span class="vh">: Token forcing vs temperature in LLM search for TSP heuristics</span></a></p>
+</section>
+
+<section class="result" id="r-geometry" aria-labelledby="r-geometry-h">
+<h3 id="r-geometry-h">Where a ban of five names lands in activation space depends on the map</h3>
+<div class="result-head">
+<div class="stat"><div class="stat-pair"><span class="stat-num long">1.63×</span><span class="stat-unit">map from names</span><span class="stat-num long">0.67×</span><span class="stat-unit">map from programs</span></div><span class="stat-label">Geodesic distance of unit weight Dijkstra, the ban's main catalogue survivor, relative to the median among unbanned algorithms.</span></div>
+<dl class="facts">
+<div><dt>Measured on</dt><dd>Qwen3-32B with thinking (4-bit weights): a map of ten grid algorithms from 300 forced prompts that name them (block 31), and a map from 117 name-scrubbed programs that pass the hidden tests (block 33), with geodesic distances on a k-nearest-neighbour graph with <var>k</var> = 15.</dd></div>
+<div><dt>Compared against</dt><dd>The median distance among unbanned algorithms. With no ban, the model writes BFS in 91 of 100 programs; under the ban its six correct catalogue survivors are all unit weight Dijkstra, and on held-out ban templates 9 of 9 are. Its other 11 correct survivors use known algorithms off the grid catalogue, 7 of them Bellman-Ford/SPFA.</dd></div>
+</dl>
+</div>
+<p>On the map built from forced prompts that name the algorithms, unit weight Dijkstra is the unbanned algorithm farthest from the banned five, at 1.63 times the median.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-9/experiment-46">code<span class="vh">: Mapping grid algorithms with and without their names</span></a> On the map built from name-scrubbed programs, programs with every algorithm name removed, it lies at the edge of the banned set, at 0.67 times the median and nearest to greedy best-first search. Distances on the map built from names track the lexical overlap of the algorithm names (Spearman −0.61 at <var>k</var> = 15), and the relation was not detected within algorithms in a test with aliases of the same algorithm (Spearman −0.12, <var>p</var> = 0.46; three algorithms, underpowered), so names and mechanisms are confounded there.<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-9/evaluation-8">code<span class="vh">: Repairing the iteration-8 research record</span></a></p>
+<p>The landing evidence is weak at the level of algorithms: the permutation <var>p</var> over algorithms is 0.20, its floor, and the opposite reading held in 10 of 15 robustness cells. The geometry is also correlational. Pushing Qwen3-8B's grid states inside the named map toward the survivor centroids produced BFS in 300 of 300 programs.</p>
+<p>A follow-up that crossed six expansion disciplines with six containers (24 implementable cells, 287 name-scrubbed programs) found that the program map tracks the container more than the expansion discipline (partial Spearman 0.28 against 0.41 on Qwen3-32B and 0.23 against 0.30 on Qwen3-8B), so its edge placement is not yet a placement by mechanism. On that frame the Bellman-Ford/SPFA survivors land beside relaxation programs, and the covert BFS and DFS programs of configurations that disobey the ban land inside the banned classes (0.98 to 0.99).<a class="src" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-10/experiment-55">code<span class="vh">: Do code-model maps track search order or storage?</span></a></p>
+<p class="figrefs">See <a class="figref" href="#fig-6" data-open-figure="5" aria-haspopup="dialog">Figure 6</a>.</p>
+</section>
+
+<section class="result" id="r-meaning" aria-labelledby="r-meaning-h">
+<h3 id="r-meaning-h">What this says about temperature as a creativity knob</h3>
+<p>One account covers the three regimes the paper observed. The algorithm behaves like an almost discrete decision taken at one or two tokens early in the program, and temperature reaches it only through the next-token distribution there. Where post-training has widened the fork margin to 4.85 to 17.04 nats, a temperature of 1.3 cannot reach the alternative, so the algorithm stays fixed while every other position varies more: the phrasing growth of <a class="figref" href="#fig-3" data-open-figure="2" aria-haspopup="dialog">Figure 3</a>. Where the forking token is contested, temperature sharpens or flattens the same two or three known algorithms at the rate the forking-token logits predict; Prim on minimum spanning tree weight rises from 0.07 at <var>T</var> = 0.3 to 0.31 at <var>T</var> = 1.3. Where the model reaches the decision through many openings, as Llama does on the grid task, no law at a single token captures it.</p>
+<p>A tight temperature with top-<var>k</var> 10 gives one idea in a few phrasings, and a loose one gives the same idea, or the same few ideas, in more phrasings. This reconciles the finding with reports that temperature above 1 raises algorithmic diversity among correct programs: on contested tasks it moves mass between known algorithms, on decided tasks it does not, and a diversity evaluation that pools tasks sees an average of the two. Nor is the instruct default the base model's average answer. Post-training moved and sharpened one token, often promoting the base model's second or third choice, and left the repertoire unchanged.</p>
+<p>Controls that act upstream of the fork, such as context that implies an algorithm, a prompt that lists approaches and then picks one, or perturbations of the task specification states, do change the algorithm. They move it to the second choice the model already knows, at a cost in correctness. The audits found no route from any control applied to single samples to a correct novel algorithm. Inside program search, targeting the forking token was not reliably better than forcing a token at a random position, so the account locates the decision without yet telling a search where to spend its randomness.</p>
+</section>
+</section>
+
+<section id="figures" class="section" aria-labelledby="figures-h">
+<h2 id="figures-h">Figures</h2>
+<p class="lede">All six figures of the paper, with their captions. Select a figure to enlarge it; Escape, the close button or a click outside the figure closes the enlarged view.</p>
+<ol class="gallery">
+<li>
+<figure class="gfig" id="fig-1">
+<div class="fig-scroll"><a class="zoom mw-560" href="figures/fig1_v0.png" data-open-figure="0" aria-haspopup="dialog" aria-label="Enlarge Figure 1: Same-seed algorithm changes: temperature against a task-state push"><img src="figures/fig1_v0.png" width="1300" height="732" loading="lazy" decoding="async" alt="Bar chart of seeds out of 20 whose algorithm changed, for shortest path, k-th smallest and grid path. Temperature bars, with thinking off and on, are 0 on every task where they were run, while the random task-state push bars reach 17.25 and 19.05 on shortest path, 4.55 and 10.60 on k-th smallest, and 2.50 and 8.70 on grid path. A bracket marks the pooled contrast of 0.545 per seed."></a></div>
+<figcaption>
+<h3 class="gfig-title"><span class="gfig-num">Figure 1.</span> Same-seed algorithm changes: temperature against a task-state push</h3>
+<p class="gfig-caption">Seeds (of 20) whose algorithm label changed under one shared random stream per seed, for Qwen3-8B on an 8-bit (W8A8) engine; grouped by task along the horizontal axis (shortest path/Dijkstra, <var>k</var>-th smallest/full sort, grid path/BFS), with four bars per task as in the legend below the axes. Light and mid grey bars sweep temperature over <var>T</var> = 0.3, 0.7, 1.0, 1.3 with thinking off and on; a seed counts as changed if its label differs anywhere across those four temperatures, and temperature changed no seed on any task it was run on (exact 95% upper bound 0.168 per seed). Thinking-mode cells are marked where they depart from the full 20-seed design: not run for <var>k</var>-th smallest, and completed on only 10 of 20 seeds for grid path (“0 of 10”). Light and dark blue bars add a random push to the hidden state of the model at the task specification tokens at α = 1 and α = 2 (<var>T</var> = 1.0); each bar is the mean, over the 20 subsets of three directions drawn from 6 independently sampled push directions, of how many seeds had their label differ from the unpushed arm anywhere among that subset, with whiskers at the minimum and maximum over subsets. The bracket over shortest path and <var>k</var>-th smallest gives the preregistered paired contrast, push (α = 1) minus temperature, pooled over those two tasks: 0.545 seeds changed per seed, 95% CI [0.41, 0.67], one sided sign flip <var>p</var> = 1.0 × 10<sup>−5</sup>. This design ran on one 8-bit engine only – bf16 does not fit the 16 GB GPU used – and was not rerun in bf16.</p>
+</figcaption>
+</figure>
+</li>
+<li>
+<figure class="gfig" id="fig-2">
+<div class="fig-scroll"><a class="zoom mw-800" href="figures/fig2_v0.jpg" data-open-figure="1" aria-haspopup="dialog" aria-label="Enlarge Figure 2: Where the algorithm is decided"><img src="figures/fig2_v0.jpg" width="3819" height="1043" loading="lazy" decoding="async" alt="Diagram of the account: a prompt asking for the total weight of a minimum spanning tree feeds a shared 61-token code opening, then a forking token where the token Kr, at probability 0.72, leads to Kruskal and the token Prim, at 0.27, leads to Prim, each written in many phrasings. Arrows mark the task-state exchange and the random task-state push entering at the prompt's task-specification states, and a thermometer marks temperature acting only at the fork."></a></div>
+<figcaption>
+<h3 class="gfig-title"><span class="gfig-num">Figure 2.</span> Where the algorithm is decided</h3>
+<p class="gfig-caption">Schematic illustration of the account and of the measurements (not data), using one minimum spanning tree example. Left to right: a rounded ‘Prompt’ box contains the task text ‘Return the total weight of a minimum spanning tree of the graph.’, with the words that define the task, ‘minimum spanning tree of the graph.’, highlighted in light blue and bracketed as ‘task-specification states (residual stream, blocks 12 to 23)’, that is, the residual stream activations at those tokens; two downward arrows above the box, labelled ‘task-state exchange’ and ‘random task-state push’, denote interventions applied to these states. An arrow leads to the ‘shared opening (61 tokens)’, shown as three representative monospace code tokens (‘import heapq’, ‘graph = [[] for _ in range(n)]’, ‘#’) followed by an ellipsis marking the rest of the shared opening. A second arrow leads to a ‘forking token’ node, above which a thermometer icon is labelled ‘temperature T: softmax(logits / T)’ with the note ‘changes the algorithm only here’. From the forking token, two branches lead to the token chips ‘Kr’ and ‘Prim’; the orange bar beside each chip shows the token's probability at the fork — 0.72 for ‘Kr’, leading to the ‘Kruskal’ outcome box, and 0.27 for ‘Prim’, leading to the ‘Prim’ outcome box, with each bar's fill proportional to its value. A fan of four thin lines labelled ‘phrasings’ beside each outcome box denotes that one algorithmic idea is written out in many surface forms. A grey band spanning the bottom states the composed law ‘P_T(A) = sum over openings w_T(O) x sum over forking tokens pi_T(t | O) x P(A | t)’. Blue marks the pipeline from prompt to fork (boxes, arrows, the forking-token node and chips); orange marks the two realized algorithm outcomes and their fork probabilities. The 61-token opening length and the 0.72/0.27 fork split are the only numbers in the figure, drawn from teacher-forced measurements on this example; the diagram as a whole is a schematic of the proposed mechanism, not a plotted dataset.</p>
+</figcaption>
+</figure>
+</li>
+<li>
+<figure class="gfig" id="fig-3">
+<div class="fig-scroll"><a class="zoom mw-600" href="figures/fig3_v0.png" data-open-figure="2" aria-haspopup="dialog" aria-label="Enlarge Figure 3: Temperature multiplies phrasings, not algorithms"><img src="figures/fig3_v0.png" width="1521" height="1140" loading="lazy" decoding="async" alt="Line chart against sampling temperature from 0.3 to 1.3. Phrasing clusters on grid path climb from 3 to 13, shortest path goes from 1 to 2, k-th smallest stays at 2, and the dashed line for distinct algorithms stays at 1 throughout."></a></div>
+<figcaption>
+<h3 class="gfig-title"><span class="gfig-num">Figure 3.</span> Temperature multiplies phrasings, not algorithms</h3>
+<p class="gfig-caption">Counts of phrasing clusters and of distinct algorithms across sampling temperature, under a shared random stream (Qwen3-8B, non-thinking mode, top-<var>p</var> 1, 20 seeds per task, one program per seed and temperature; same seeds as Figure 1 and Table 1). Solid lines with markers give phrasing clusters among the 20 programs drawn on the same seeds on each task – blue circles for grid path (BFS), orange squares for shortest path (Dijkstra), green triangles for <var>k</var>-th smallest (full sort) – where a cluster is a connected component of programs whose AST 4-gram Jaccard similarity, with identifiers normalised, is at least 0.8. The black dashed line with diamond markers gives distinct algorithms among the same programs, which is 1 on all three tasks at every temperature, as the annotation inside the figure states (algorithm changed in 0 of 20 seeds per task; exact 95% upper bound 0.168 on the change rate per seed). Phrasing diversity rises steeply with temperature on the grid path task (3 to 13 clusters) and stays close to flat on the other two (1 rising to 2 on shortest path; constant at 2 on <var>k</var>-th smallest), while the dashed line never leaves 1.</p>
+</figcaption>
+</figure>
+</li>
+<li>
+<figure class="gfig" id="fig-4">
+<div class="fig-scroll"><a class="zoom mw-800" href="figures/fig4_v0.png" data-open-figure="3" aria-haspopup="dialog" aria-label="Enlarge Figure 4: Forking-token law against observed shares"><img src="figures/fig4_v0.png" width="2040" height="1148" loading="lazy" decoding="async" alt="Six small line charts of the minority algorithm's share against temperature, each comparing observed points with 95% intervals, the composed law's prediction and a flat-law line: three Qwen3-8B development units, two held-out Gemma-3-4B units and one held-out Llama-3.1-8B unit. The prediction follows the observed trend in the first five panels; in the Llama grid-path panel neither line follows the observed points."></a></div>
+<figcaption>
+<h3 class="gfig-title"><span class="gfig-num">Figure 4.</span> Forking-token law against observed shares</h3>
+<p class="gfig-caption">Predicted and observed share of the minority algorithm at four sampling temperatures (0.3, 0.7, 1.0, 1.3; top-<var>p</var> = 1, <var>N</var> = 100 generations per cell, shared random streams across temperatures), for six algorithm-choice units: three Qwen3-8B development units – (a) trapped rain water: two pointers, (b) valid anagram: fixed count array, (c) minimum spanning tree weight: Prim – and three held-out units – (d) Gemma-3-4B substring search: built-in index, that is, a call to the language's own string search, (e) Gemma-3-4B first/last position: binary search, (f) Llama-3.1-8B grid path: DFS. Black circles give the observed minority share with vertical Wilson 95% confidence intervals; the solid blue line with small markers is the composed forking-token law's prediction, fixed before any temperature sample; the dashed grey line is the flat law, a reference that holds the <var>T</var> = 1 share constant across temperature. Each panel title gives the mean absolute error, over the four temperature points, of the composed law and the flat law respectively. The composed law tracks the observed trend, rising or nearly flat, on five of six panels, including both held-out Gemma-3-4B units (d, e); on the held-out Llama-3.1-8B grid path unit (f) both the composed and flat lines stay nearly constant and neither tracks the nonmonotonic observed points, consistent with that unit's pass rate falling from 0.22 to 0.04 between <var>T</var> = 0.3 and <var>T</var> = 1.3, where most generated programs become unusable.</p>
+</figcaption>
+</figure>
+</li>
+<li>
+<figure class="gfig" id="fig-5">
+<div class="fig-scroll"><a class="zoom mw-560" href="figures/fig5_v0.png" data-open-figure="4" aria-haspopup="dialog" aria-label="Enlarge Figure 5: Post-training widened the fork margin"><img src="figures/fig5_v0.png" width="1300" height="732" loading="lazy" decoding="async" alt="Paired bars of fork margin in nats for Qwen3-8B instruct and Qwen3-8B-Base on five tasks. The instruct bars are higher on every task, with gains of +3.27, +13.41 and +2.11 nats on the three default tasks and +1.84 and +1.53 nats on the two mixed units."></a></div>
+<figcaption>
+<h3 class="gfig-title"><span class="gfig-num">Figure 5.</span> Post-training widened the fork margin</h3>
+<p class="gfig-caption">Fork margin — the teacher-forced gap in log probability, in nats, between the token class leading to the default algorithm of the instruct model and the best alternative class — for Qwen3-8B (instruct; dark blue bars) and Qwen3-8B-Base (grey bars) on identical token ids formatted with the chat template, across five coding tasks. Bars show the mean over five prompt templates; whiskers span the minimum to the maximum over those templates. A dotted vertical line and italic headers separate the three default tasks (grid path/BFS, connected components/union find, shortest path/Dijkstra) from the two mixed units (minimum spanning tree weight/Kruskal, trapped rain water/prefix and suffix maxima); the number above each pair is the gain from post-training in mean fork margin, instruct minus base: +3.27, +13.41 and +2.11 nats on the default tasks, +1.84 and +1.53 nats on the mixed units. Over the same five templates and the same programs, the next-token entropy of the base model at 64 ordinary phrasing positions per program, away from the fork, was only 0.21-0.34 nats higher than that of the instruct model, so the effect of post-training on the output distribution is concentrated at the forking token rather than spread across the prompt.</p>
+</figcaption>
+</figure>
+</li>
+<li>
+<figure class="gfig" id="fig-6">
+<div class="fig-scroll"><a class="zoom mw-800" href="figures/fig6_v0.png" data-open-figure="5" aria-haspopup="dialog" aria-label="Enlarge Figure 6: Where the five-name ban lands"><img src="figures/fig6_v0.png" width="2080" height="1170" loading="lazy" decoding="async" alt="Two scatter maps from multidimensional scaling of the activation centroids of grid-search algorithms in Qwen3-32B. Banned algorithms are crosses, the others circles, and colour shows how many of 50 programs under the five-name ban used each one. Unit-weight Dijkstra, the main catalogue survivor, sits far from the banned set on the map built from named prompts and next to it on the map built from name-scrubbed programs."></a></div>
+<figcaption>
+<h3 class="gfig-title"><span class="gfig-num">Figure 6.</span> Where the five-name ban lands</h3>
+<p class="gfig-caption">Maps in activation space of ten grid search algorithms in Qwen3-32B (4-bit weights, thinking mode), with point coordinates from classical multidimensional scaling (MDS; arbitrary axis orientation, arbitrary units) of Euclidean distances between the residual-stream centroids of the algorithms. Marker shape distinguishes the five algorithms named in the ban, that is, BFS, DFS, IDDFS, A* and greedy best-first (cross), from the rest (circle). Marker fill colour, on the shared colour bar at right (“programs under the ban (of 50)”, light grey to dark red, 0-8), gives how many of 50 programs sampled under the ban of five names implemented that algorithm. A thick black ring marks unit weight Dijkstra, the unbanned catalogue algorithm written most often under the ban (6/50; seven further correct programs used Bellman-Ford/SPFA, which is not on these maps); a thin ring marks BFS, the modal default with no ban in effect (91/100, noted beside it). (a) Map built from named prompts (block 31): centroids of 300 forced <code>Implement ⟨algorithm⟩</code> prompts (30 per algorithm, 10 algorithms), averaged over the task specification tokens; the top two MDS axes carry 50% and 17% of the variance. On a k-nearest-neighbour graph with <var>k</var> = 15, unit weight Dijkstra sits opposite the banned set (geodesic distance 1.63× the median distance among unbanned algorithms). (b) Map built from name-scrubbed programs (block 33), that is, programs with every algorithm name removed: centroids of such programs that pass the hidden tests, for the six algorithms with at least 10 programs (20 each, 17 for IDA*; 117 programs total), averaged over the generated code tokens; the top two axes carry 48% and 40% of the variance. On the same <var>k</var> = 15 construction, unit weight Dijkstra instead sits at the edge of the banned set (0.67× the median). The two maps disagree on whether the ban's main catalogue survivor lands opposite the banned algorithms or beside them; the geometry is correlational, not a steering result.</p>
+</figcaption>
+</figure>
+</li>
+</ol>
+</section>
+
+<section id="limitations" class="section" aria-labelledby="limitations-h">
+<h2 id="limitations-h">Limitations</h2>
+<p class="lede">What the paper states it does not show.</p>
+<ul class="limits">
+<li><strong>The headline contrast ran in one 8-bit engine.</strong> The contrast between the push and temperature ran only in an 8-bit (W8A8) engine and was not rerun in bfloat16. The push alone changes the algorithm in bfloat16 at the same absolute push norm, but the paired contrast was not repeated, and it pools two tasks, with the grid task moving only 2.50 of 20 seeds.</li>
+<li><strong>One main model.</strong> Most results come from one model, Qwen3-8B, in non-thinking mode.</li>
+<li><strong>The law's generality is an open question.</strong> The composed law was tested on three held-out units in two other families; two passed and Llama's grid task failed, below the four held-out units the preregistered claim required. It was also not clearly better than the flat law, a baseline that predicts no change (four of six units, sign test <var>p</var> = 0.34), which means that much of its accuracy reflects how little temperature moves these units.</li>
+<li><strong>The temperature null bounds the change rate; it does not make it zero.</strong> The null on shared seeds rests on 20 seeds per task, which bounds the change rate per seed below 0.17 per task, not at zero, and it ran with 8-bit linear layers. The bfloat16 fork margins and the grid sweep with independent samples agree with it, but the thinking-mode evidence is limited to shortest path and a 10-seed grid arm.</li>
+<li><strong>Short, well-known tasks.</strong> The tasks are short, well-known programming problems whose solutions are likely memorised, with catalogues of three to ten known algorithms; the conclusions may not hold for open-ended programs or for problems without a textbook solution.</li>
+<li><strong>Mixed engines.</strong> Experiments ran on different engines (bfloat16 and 8-bit linear layers, vLLM and Hugging Face). Push escapes reproduced in bfloat16, but pushed cells showed precision sensitivity at the level of single streams.</li>
+<li><strong>Phrasing clusters depend on a threshold.</strong> They depend on a Jaccard threshold over AST shingles with normalised identifiers, and the growth was driven mostly by the grid task.</li>
+<li><strong>Some numbers are descriptive only.</strong> Labellers were gated per task, but the gate failed by its strict criteria for the decoding experiment with independent samples and for the agreement between runtime and AST labels on the path tasks (κ = 0.753), and the expansion-order tracer used for the ban of five names failed its gold gate, so those numbers are descriptive.</li>
+<li><strong>Novelty in program search rests on manual reads.</strong> At most one LLM judge family passed its control gate there, short of the two the bin-packing rule required, and the eight candidates of one search's reader, which the one gated judge also called new, were not reproduced by the replication.</li>
+<li><strong>The geometry is correlational.</strong> The map built from names is confounded by lexical overlap between algorithm names.</li>
+<li><strong>No certified mechanism.</strong> Fitted subspace edits at the fork moved the algorithm without passing the controls that would make them a variable of the model, so a certified mechanism for the choice is still missing.</li>
+</ul>
+</section>
+
+<section id="code" class="section" aria-labelledby="code-h">
+<h2 id="code-h">Code for the other experiments</h2>
+<p class="lede">Every experiment of the run is published with its code. The results above link the code behind each sentence; the experiments they do not cite are listed here by research round.</p>
+<div class="code-rounds">
+<div>
+<h3>Round 1</h3>
+<ul>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-1/dataset-1">Code: Source data for an algorithm-choice coding bench</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-1/experiment-2">Code: How prompt bans move an LLM's path-search choices</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-1/experiment-3">Code: Do a few early tokens decide the algorithm?</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-1/experiment-4">Code: Steering an LLM to vary its search algorithms</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-1/experiment-5">Code: Did post-training cause Qwen3's algorithm collapse?</a></li>
+</ul>
+</div>
+<div>
+<h3>Round 2</h3>
+<ul>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-2/evaluation-1">Code: When does the AI coder pick its algorithm? An audit</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-2/experiment-7">Code: Do algorithm bans pick a substitute or a ladder?</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-2/experiment-9">Code: Banning five path algorithms in one prompt</a></li>
+</ul>
+</div>
+<div>
+<h3>Round 3</h3>
+<ul>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-3/experiment-14">Code: Show a solution, ban it, see what replaces it</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-3/experiment-15">Code: Where Llama goes when an algorithm is banned</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-3/experiment-17">Code: Searching Qwen3-8B for where a coding ban lives</a></li>
+</ul>
+</div>
+<div>
+<h3>Round 4</h3>
+<ul>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-4/evaluation-3">Code: Record repair and a frozen push screen</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-4/experiment-19">Code: Is plan noise the cheapest route to diverse code?</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-4/experiment-20">Code: Where noise must enter to change the model's algorithm</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-4/experiment-23">Code: Predicting which coding bans a new AI model obeys</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-4/research-1">Code: Checking our claims against published work</a></li>
+</ul>
+</div>
+<div>
+<h3>Round 5</h3>
+<ul>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-5/evaluation-4">Code: Record fixes and frozen rival predictors</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-5/experiment-24">Code: Transplanting base-model plan states into Qwen3-8B</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-5/experiment-25">Code: Does the base model predict which coding tasks can be nudged?</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-5/experiment-26">Code: Base-model variety vs nudgeable coding tasks (panel B)</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-5/experiment-28">Code: Does Gemma's base model predict nudge effects?</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-5/research-2">Code: Has prior work restored base-model variety?</a></li>
+</ul>
+</div>
+<div>
+<h3>Round 6</h3>
+<ul>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-6/evaluation-5">Code: Record repair and blind novelty re-check</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-6/research-3">Code: Who already found the hidden plan?</a></li>
+</ul>
+</div>
+<div>
+<h3>Round 7</h3>
+<ul>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-7/evaluation-6">Code: Fixing the run's record, number by number</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-7/experiment-33">Code: Searching for the model's algorithm switch</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-7/experiment-36">Code: Why random nudges stopped changing the algorithm</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-7/experiment-38">Code: Gemma BFS‑DFS Fork Analysis</a></li>
+</ul>
+</div>
+<div>
+<h3>Round 8</h3>
+<ul>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-8/evaluation-7">Code: Fixing errors in the iteration-7 research record</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-8/experiment-42">Code: Fair test of Gemma's BFS steering dial</a></li>
+</ul>
+</div>
+<div>
+<h3>Round 9</h3>
+<ul>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-9/experiment-50">Code: How tuning sharpens a code model's algorithm choice</a></li>
+</ul>
+</div>
+<div>
+<h3>Round 10</h3>
+<ul>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-10/experiment-53">Code: Token forcing vs temperature in LLM search for TSP heuristics</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-10/experiment-55">Code: Do code-model maps track search order or storage?</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-10/experiment-56">Code: Which weights make the model pick one algorithm</a></li>
+<li><a href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC/round-10/evaluation-9">Code: Correcting last round's report from raw data</a></li>
+</ul>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+<div class="footer-inner">
+<p class="foot-title">A Random Activation Push Changes a Code Model's Algorithm Where Temperature Does Not</p>
+<ul class="doc-links">
+<li><a class="btn btn-primary" href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/paper.pdf">Read the paper (PDF)</a></li>
+<li><a class="btn" href="interactive.html">Explore the interactive demo</a></li>
+<li><a class="btn" href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/report.pdf">Read the full research report</a></li>
+<li><a class="btn" href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/exec_summary.pdf">Read the executive summary</a></li>
+<li><a class="btn" href="https://github.com/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract/tree/fork/run_jSassd-YWLVC">Code repository</a></li>
+</ul>
+<p class="rounds"><span class="rounds-label">Round reports:</span> <a href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/round-1/report.pdf">Round 1</a> <a href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/round-2/report.pdf">Round 2</a> <a href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/round-3/report.pdf">Round 3</a> <a href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/round-4/report.pdf">Round 4</a> <a href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/round-5/report.pdf">Round 5</a> <a href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/round-6/report.pdf">Round 6</a> <a href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/round-7/report.pdf">Round 7</a> <a href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/round-8/report.pdf">Round 8</a> <a href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/round-9/report.pdf">Round 9</a> <a href="https://cdn.jsdelivr.net/gh/ai-inventor-papers/ai-invention-295f8e-prompt-bans-substitute-not-just-subtract@fork/run_jSassd-YWLVC/round-10/report.pdf">Round 10</a></p>
+<p class="foot-note">Every number on this page is taken from the paper's final source; the figures are rendered from the same files the paper includes.</p>
+</div>
+</footer>
+</div>
+
+<dialog id="lightbox" class="lightbox" aria-labelledby="lb-title">
+<div class="lb-panel">
+<div class="lb-bar">
+<p class="lb-count" id="lb-count" aria-live="polite">Figure 1 of 6</p>
+<div class="lb-actions">
+<button type="button" class="lb-btn lb-prev">Previous</button>
+<button type="button" class="lb-btn lb-next">Next</button>
+<button type="button" class="lb-btn lb-size" aria-pressed="false">Actual size</button>
+<button type="button" class="lb-btn lb-close">Close</button>
+</div>
+</div>
+<div class="lb-stage" tabindex="0" role="region" aria-label="Enlarged figure"></div>
+<div class="lb-text" tabindex="0" role="region" aria-label="Figure caption">
+<p class="lb-title" id="lb-title"></p>
+<p class="lb-caption" id="lb-caption"></p>
+</div>
+</div>
+</dialog>
+
+<script>
+/* aii-scroll-spy v1: paste verbatim */
+(function () {
+  var links = [], targets = [];
+  document.querySelectorAll('[data-scrollspy] a[href^="#"]').forEach(function (a) {
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) { links.push(a); targets.push(el); }
+  });
+  if (!links.length) return;
+  var queued = false;
+  function current() {
+    var view = window.innerHeight;
+    var doc = document.documentElement;
+    var atEnd = window.scrollY > 0 && view + window.scrollY >= doc.scrollHeight - 2;
+    var line = atEnd ? view - 1 : Math.min(view * 0.3, 200);
+    var best = null, bestTop = -Infinity;
+    targets.forEach(function (el) {
+      var top = el.getBoundingClientRect().top;
+      if (top <= line && top > bestTop) { best = el; bestTop = top; }
+    });
+    return best;
+  }
+  function update() {
+    queued = false;
+    var el = current();
+    links.forEach(function (a, i) {
+      var on = targets[i] === el;
+      a.classList.toggle('active', on);
+      if (on) a.setAttribute('aria-current', 'location');
+      else a.removeAttribute('aria-current');
+    });
+  }
+  function schedule() {
+    if (!queued) { queued = true; window.requestAnimationFrame(update); }
+  }
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule);
+  window.addEventListener('load', schedule);
+  if (window.ResizeObserver) new ResizeObserver(schedule).observe(document.body);
+  update();
+})();
+
+/* On narrow screens the section list scrolls sideways: keep the current link in view. */
+(function () {
+  var list = document.querySelector('.toc ol');
+  if (!list || !window.MutationObserver) return;
+  new MutationObserver(function () {
+    var a = list.querySelector('a.active');
+    if (!a || list.scrollWidth <= list.clientWidth) return;
+    var item = a.parentNode;
+    list.scrollLeft = Math.max(0, item.offsetLeft - (list.clientWidth - item.offsetWidth) / 2);
+  }).observe(list, { attributes: true, subtree: true, attributeFilter: ['class'] });
+})();
+
+/* Figure lightbox: opens from any [data-open-figure] trigger, traps focus, closes on Escape,
+   on the close button and on a click outside the panel, and returns focus to the trigger. */
+(function () {
+  var dialog = document.getElementById('lightbox');
+  var figs = Array.prototype.slice.call(document.querySelectorAll('.gfig'));
+  if (!dialog || !figs.length || typeof dialog.showModal !== 'function') return;
+  var title = document.getElementById('lb-title');
+  var caption = document.getElementById('lb-caption');
+  var count = document.getElementById('lb-count');
+  var stage = dialog.querySelector('.lb-stage');
+  var img = document.createElement('img');
+  stage.appendChild(img);
+  var text = dialog.querySelector('.lb-text');
+  var closeBtn = dialog.querySelector('.lb-close');
+  var sizeBtn = dialog.querySelector('.lb-size');
+  var items = figs.map(function (fig) {
+    var im = fig.querySelector('img');
+    return {
+      src: im.getAttribute('src'),
+      alt: im.getAttribute('alt'),
+      minWidth: getComputedStyle(fig.querySelector('.zoom')).minWidth,
+      title: fig.querySelector('.gfig-title').textContent,
+      caption: fig.querySelector('.gfig-caption').innerHTML
+    };
+  });
+  var index = 0, opener = null;
+
+  function setActual(on) {
+    stage.classList.toggle('is-actual', on);
+    sizeBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  }
+  function show(i) {
+    index = (i + items.length) % items.length;
+    var it = items[index];
+    img.src = it.src;
+    img.alt = it.alt;
+    /* on narrow screens the enlarged view keeps the figure at its legible width and pans */
+    stage.style.setProperty('--lb-w', it.minWidth && it.minWidth !== 'auto' ? it.minWidth : '50rem');
+    title.textContent = it.title;
+    caption.innerHTML = it.caption;
+    count.textContent = 'Figure ' + (index + 1) + ' of ' + items.length;
+    stage.scrollTop = 0; stage.scrollLeft = 0; text.scrollTop = 0;
+  }
+  function open(i, trigger) {
+    opener = trigger || null;
+    setActual(false);
+    show(i);
+    dialog.showModal();
+    document.documentElement.classList.add('lb-open');
+    closeBtn.focus();
+  }
+  function close() {
+    if (dialog.open) dialog.close();
+  }
+
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target.closest('[data-open-figure]') : null;
+    if (!t || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    open(parseInt(t.getAttribute('data-open-figure'), 10) || 0, t);
+  });
+  dialog.addEventListener('close', function () {
+    document.documentElement.classList.remove('lb-open');
+    if (opener && document.body.contains(opener)) opener.focus();
+    opener = null;
+  });
+  dialog.addEventListener('cancel', function (e) { e.preventDefault(); close(); });
+  dialog.addEventListener('click', function (e) { if (e.target === dialog) close(); });
+  closeBtn.addEventListener('click', close);
+  dialog.querySelector('.lb-prev').addEventListener('click', function () { show(index - 1); });
+  dialog.querySelector('.lb-next').addEventListener('click', function () { show(index + 1); });
+  sizeBtn.addEventListener('click', function () { setActual(!stage.classList.contains('is-actual')); });
+
+  dialog.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { e.preventDefault(); close(); return; }
+    if (e.key === 'Tab') {
+      var f = Array.prototype.slice.call(dialog.querySelectorAll('button, [tabindex="0"]'));
+      var first = f[0], last = f[f.length - 1], active = document.activeElement;
+      if (e.shiftKey && (active === first || !dialog.contains(active))) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && (active === last || !dialog.contains(active))) { e.preventDefault(); first.focus(); }
+      return;
+    }
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      if (e.target === stage && stage.classList.contains('is-actual')) return;
+      e.preventDefault();
+      show(index + (e.key === 'ArrowRight' ? 1 : -1));
+    }
+  });
+})();
+</script>
+</body>
+</html>
