@@ -1,0 +1,92 @@
+05:35:28|INFO   |GPU stage: RAM bounded by the cgroup (28 GB); VRAM by set_per_process_memory_fraction
+05:35:28|INFO   |stage fork start; pid 18695
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+05:37:18|INFO   |google/gemma-3-4b-it loaded in 24s; free VRAM 8.84/16.72 GB
+05:37:18|INFO   |U8 partial labeller: {'n': 200, 'agreement': 1.0, 'confusion': {'dfs->dfs': 139, 'bfs->bfs': 61}, 'pass': True}
+05:37:20|INFO   |fork coarse: 3072 continuations to run (B=48)
+./src/engine.py:455: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  nxt = torch.searchsorted(cdf, Ut[:, step:step + 1]).squeeze(-1).clamp_(max=V - 1)
+05:38:01|INFO   |FORKpilot:0: 48/48 rows 41.8s, 304 steps
+05:38:01|INFO   |fork pilot 41.8s for 48 -> coarse estimate 44.6 min
+05:38:38|INFO   |FORK:0: 48/48 rows 36.5s, 272 steps
+05:39:08|INFO   |FORK:1: 48/48 rows 30.0s, 224 steps
+05:39:46|INFO   |FORK:2: 48/48 rows 38.2s, 288 steps
+05:40:18|INFO   |FORK:3: 48/48 rows 32.0s, 240 steps
+05:40:58|INFO   |FORK:4: 48/48 rows 39.6s, 288 steps
+05:41:37|INFO   |FORK:5: 48/48 rows 38.7s, 288 steps
+05:41:47|INFO   |FORK:6: 48/48 rows 10.0s, 80 steps
+05:42:29|INFO   |FORK:7: 48/48 rows 42.7s, 320 steps
+05:43:06|INFO   |FORK:8: 48/48 rows 36.5s, 272 steps
+05:43:46|INFO   |FORK:9: 48/48 rows 39.9s, 288 steps
+05:44:29|INFO   |FORK:10: 48/48 rows 43.4s, 320 steps
+05:44:54|INFO   |FORK:11: 48/48 rows 25.0s, 192 steps
+05:45:34|INFO   |FORK:12: 48/48 rows 40.0s, 288 steps
+05:46:02|INFO   |FORK:13: 48/48 rows 27.6s, 208 steps
+05:46:14|INFO   |FORK:14: 48/48 rows 12.4s, 96 steps
+05:46:43|INFO   |FORK:15: 48/48 rows 28.5s, 224 steps
+05:47:20|INFO   |FORK:16: 48/48 rows 36.6s, 272 steps
+05:48:00|INFO   |FORK:17: 48/48 rows 40.7s, 288 steps
+05:48:31|INFO   |FORK:18: 48/48 rows 31.0s, 240 steps
+05:49:06|INFO   |FORK:19: 48/48 rows 34.3s, 256 steps
+05:49:35|INFO   |FORK:20: 48/48 rows 29.8s, 224 steps
+05:50:12|INFO   |FORK:21: 48/48 rows 36.0s, 272 steps
+05:50:41|INFO   |FORK:22: 48/48 rows 29.8s, 224 steps
+05:51:24|INFO   |FORK:23: 48/48 rows 42.9s, 320 steps
+05:51:49|INFO   |FORK:24: 48/48 rows 24.7s, 192 steps
+05:52:29|INFO   |FORK:25: 48/48 rows 39.7s, 288 steps
+05:53:10|INFO   |FORK:26: 48/48 rows 40.9s, 304 steps
+05:53:47|INFO   |FORK:27: 48/48 rows 37.0s, 272 steps
+05:54:21|INFO   |FORK:28: 48/48 rows 34.7s, 256 steps
+05:55:02|INFO   |FORK:29: 48/48 rows 41.1s, 304 steps
+05:55:45|INFO   |FORK:30: 48/48 rows 42.2s, 304 steps
+05:56:23|INFO   |FORK:31: 48/48 rows 37.9s, 288 steps
+05:56:47|INFO   |FORK:32: 48/48 rows 24.7s, 192 steps
+05:57:30|INFO   |FORK:33: 48/48 rows 42.3s, 304 steps
+05:58:08|INFO   |FORK:34: 48/48 rows 38.4s, 288 steps
+05:58:38|INFO   |FORK:35: 48/48 rows 29.6s, 224 steps
+05:59:08|INFO   |FORK:36: 48/48 rows 29.8s, 224 steps
+05:59:39|INFO   |FORK:37: 48/48 rows 31.2s, 240 steps
+06:00:04|INFO   |FORK:38: 48/48 rows 25.3s, 192 steps
+06:00:30|INFO   |FORK:39: 48/48 rows 26.1s, 208 steps
+06:01:07|INFO   |FORK:40: 48/48 rows 36.5s, 272 steps
+06:01:46|INFO   |FORK:41: 48/48 rows 39.6s, 288 steps
+06:02:25|INFO   |FORK:42: 48/48 rows 38.5s, 288 steps
+06:02:59|INFO   |FORK:43: 48/48 rows 34.3s, 256 steps
+06:03:39|INFO   |FORK:44: 48/48 rows 39.8s, 288 steps
+06:04:18|INFO   |FORK:45: 48/48 rows 38.7s, 288 steps
+06:04:41|INFO   |FORK:46: 48/48 rows 22.9s, 176 steps
+06:05:11|INFO   |FORK:47: 48/48 rows 30.6s, 240 steps
+06:05:45|INFO   |FORK:48: 48/48 rows 34.1s, 256 steps
+06:06:15|INFO   |FORK:49: 48/48 rows 29.8s, 224 steps
+06:06:58|INFO   |FORK:50: 48/48 rows 43.2s, 320 steps
+06:07:23|INFO   |FORK:51: 48/48 rows 24.9s, 192 steps
+06:07:53|INFO   |FORK:52: 48/48 rows 29.7s, 224 steps
+06:08:29|INFO   |FORK:53: 48/48 rows 36.2s, 272 steps
+06:08:52|INFO   |FORK:54: 48/48 rows 22.9s, 176 steps
+06:09:30|INFO   |FORK:55: 48/48 rows 37.9s, 288 steps
+06:10:07|INFO   |FORK:56: 48/48 rows 36.7s, 272 steps
+06:10:47|INFO   |FORK:57: 48/48 rows 40.0s, 288 steps
+06:11:15|INFO   |FORK:58: 48/48 rows 28.8s, 224 steps
+06:11:52|INFO   |FORK:59: 48/48 rows 37.0s, 272 steps
+06:12:32|INFO   |FORK:60: 48/48 rows 39.8s, 288 steps
+06:13:08|INFO   |FORK:61: 48/48 rows 36.1s, 272 steps
+06:13:47|INFO   |FORK:62: 48/48 rows 38.3s, 272 steps
+06:14:28|INFO   |REFINE:0: 48/48 rows 37.6s, 288 steps
+06:14:50|INFO   |REFINE:1: 48/48 rows 21.8s, 176 steps
+06:15:12|INFO   |REFINE:2: 48/48 rows 22.1s, 176 steps
+06:15:48|INFO   |REFINE:3: 48/48 rows 35.8s, 272 steps
+06:16:01|INFO   |REFINE:4: 48/48 rows 13.4s, 112 steps
+06:16:37|INFO   |REFINE:5: 48/48 rows 35.6s, 272 steps
+06:17:08|INFO   |REFINE:6: 48/48 rows 31.0s, 240 steps
+06:17:30|INFO   |REFINE:7: 48/48 rows 21.9s, 176 steps
+06:17:54|INFO   |REFINE:8: 48/48 rows 24.2s, 192 steps
+06:18:18|INFO   |REFINE:9: 48/48 rows 24.1s, 192 steps
+06:18:54|INFO   |REFINE:10: 48/48 rows 35.7s, 272 steps
+06:19:30|INFO   |REFINE:11: 48/48 rows 35.7s, 272 steps
+06:19:58|INFO   |REFINE:12: 48/48 rows 28.4s, 224 steps
+06:20:13|INFO   |REFINE:13: 16/48 rows 14.9s, 224 steps
+06:20:14|INFO   |fork: branch change_point, coarse 36, token index 31, c* 'ows = len(grid)
+    cols = len(grid[0])
+', B [] D [], IPS {'W1': 0.8538461538461538, 'W2': 0.7282051282051282, 'W3': 0.7705128205128206, 'W4': 0.8153846153846154, 'W5': 0.7705128205128206}
+06:20:14|INFO   |stage fork done in 2686s

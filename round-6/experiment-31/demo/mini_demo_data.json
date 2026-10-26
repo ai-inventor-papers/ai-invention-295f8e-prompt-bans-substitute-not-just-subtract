@@ -1,0 +1,1638 @@
+{
+ "metadata": {
+  "source_artifact": "art_zNyBP6zieI5u (claim S: google/gemma-3-4b-it, where it picks BFS or DFS)",
+  "source_file": "full_method_out.json -> dataset 'fork_resampling' (384 rows = 24 base paths x 16 prefix lengths)",
+  "selection": "6 of the 24 base paths (3 BFS: s3|T1|W1|twin|2, s3|T1|W5|twin|10, s3|T1|W4|twin|4; 3 DFS: s3|T1|W1|twin|0, s3|T1|W2|twin|1, s3|T1|W3|twin|2), all 16 coarse prefix lengths t = 0, 4, ..., 60 each = 96 rows, in the original order. Picked to cover all five prompt templates, the early (t = 16) BFS fork, typical BFS forks (t = 36), the single DFS path with a detected fork and two DFS paths without one.",
+  "row_semantics": "one row = one (base path, prefix length t): the model's own S3 response truncated to t tokens (token ids in 'input') was continued 8 times (T = 1.0, CRN seeds) and each continuation labelled by the partial-code labeller; predict_p_bfs_continuations = share of the 8 labelled BFS, predict_own_class_share = share with the base path's own class; metadata_path_fork_t / metadata_change_point_p = the artifact's recorded per-path result",
+  "model": "google/gemma-3-4b-it@093f9f388b31de276ce2de164bdc2081324b9767 (bf16, text decoder)",
+  "recorded_fork": {
+   "per_path_summary": [
+    {
+     "row_id": "s3|T1|W1|twin|2",
+     "label": "bfs",
+     "template": "W1",
+     "fork_t": 16,
+     "rise": 0.75,
+     "cp_p_value": 0.001998001998001998,
+     "cps": [
+      4
+     ],
+     "lcp_with_other_class_max": 14
+    },
+    {
+     "row_id": "s3|T1|W2|twin|4",
+     "label": "bfs",
+     "template": "W2",
+     "fork_t": 36,
+     "rise": 0.5337301587301587,
+     "cp_p_value": 0.000999000999000999,
+     "cps": [
+      9
+     ],
+     "lcp_with_other_class_max": 84
+    },
+    {
+     "row_id": "s3|T1|W3|twin|0",
+     "label": "bfs",
+     "template": "W3",
+     "fork_t": 36,
+     "rise": 0.7222222222222222,
+     "cp_p_value": 0.000999000999000999,
+     "cps": [
+      9
+     ],
+     "lcp_with_other_class_max": 78
+    },
+    {
+     "row_id": "s3|T1|W4|twin|3",
+     "label": "bfs",
+     "template": "W4",
+     "fork_t": 32,
+     "rise": 0.640625,
+     "cp_p_value": 0.002997002997002997,
+     "cps": [
+      8
+     ],
+     "lcp_with_other_class_max": 32
+    },
+    {
+     "row_id": "s3|T1|W5|twin|10",
+     "label": "bfs",
+     "template": "W5",
+     "fork_t": 36,
+     "rise": 0.7361111111111112,
+     "cp_p_value": 0.000999000999000999,
+     "cps": [
+      9
+     ],
+     "lcp_with_other_class_max": 65
+    },
+    {
+     "row_id": "s3|T1|W1|twin|12",
+     "label": "bfs",
+     "template": "W1",
+     "fork_t": 36,
+     "rise": 0.75,
+     "cp_p_value": 0.000999000999000999,
+     "cps": [
+      9
+     ],
+     "lcp_with_other_class_max": 65
+    },
+    {
+     "row_id": "s3|T1|W2|twin|5",
+     "label": "bfs",
+     "template": "W2",
+     "fork_t": 32,
+     "rise": 0.53125,
+     "cp_p_value": 0.000999000999000999,
+     "cps": [
+      8
+     ],
+     "lcp_with_other_class_max": 40
+    },
+    {
+     "row_id": "s3|T1|W3|twin|1",
+     "label": "bfs",
+     "template": "W3",
+     "fork_t": 32,
+     "rise": 0.578125,
+     "cp_p_value": 0.000999000999000999,
+     "cps": [
+      8
+     ],
+     "lcp_with_other_class_max": 32
+    },
+    {
+     "row_id": "s3|T1|W4|twin|4",
+     "label": "bfs",
+     "template": "W4",
+     "fork_t": 36,
+     "rise": 0.7043650793650793,
+     "cp_p_value": 0.001998001998001998,
+     "cps": [
+      9
+     ],
+     "lcp_with_other_class_max": 84
+    },
+    {
+     "row_id": "s3|T1|W5|twin|20",
+     "label": "bfs",
+     "template": "W5",
+     "fork_t": 32,
+     "rise": 0.75,
+     "cp_p_value": 0.000999000999000999,
+     "cps": [
+      8
+     ],
+     "lcp_with_other_class_max": 40
+    },
+    {
+     "row_id": "s3|T1|W1|twin|36",
+     "label": "bfs",
+     "template": "W1",
+     "fork_t": 36,
+     "rise": 0.7083333333333333,
+     "cp_p_value": 0.002997002997002997,
+     "cps": [
+      9
+     ],
+     "lcp_with_other_class_max": 84
+    },
+    {
+     "row_id": "s3|T1|W2|twin|6",
+     "label": "bfs",
+     "template": "W2",
+     "fork_t": 36,
+     "rise": 0.5515873015873015,
+     "cp_p_value": 0.000999000999000999,
+     "cps": [
+      9
+     ],
+     "lcp_with_other_class_max": 78
+    },
+    {
+     "row_id": "s3|T1|W1|twin|0",
+     "label": "dfs",
+     "template": "W1",
+     "fork_t": null,
+     "rise": null,
+     "cp_p_value": 0.008991008991008992,
+     "cps": [
+      9
+     ],
+     "lcp_with_other_class_max": 38
+    },
+    {
+     "row_id": "s3|T1|W2|twin|1",
+     "label": "dfs",
+     "template": "W2",
+     "fork_t": 36,
+     "rise": 0.4305555555555556,
+     "cp_p_value": 0.001998001998001998,
+     "cps": [
+      9
+     ],
+     "lcp_with_other_class_max": 38
+    },
+    {
+     "row_id": "s3|T1|W3|twin|2",
+     "label": "dfs",
+     "template": "W3",
+     "fork_t": null,
+     "rise": null,
+     "cp_p_value": 0.000999000999000999,
+     "cps": [
+      9
+     ],
+     "lcp_with_other_class_max": 38
+    },
+    {
+     "row_id": "s3|T1|W4|twin|0",
+     "label": "dfs",
+     "template": "W4",
+     "fork_t": null,
+     "rise": null,
+     "cp_p_value": 0.003996003996003996,
+     "cps": [
+      8
+     ],
+     "lcp_with_other_class_max": 38
+    },
+    {
+     "row_id": "s3|T1|W5|twin|1",
+     "label": "dfs",
+     "template": "W5",
+     "fork_t": null,
+     "rise": null,
+     "cp_p_value": 0.000999000999000999,
+     "cps": [
+      9
+     ],
+     "lcp_with_other_class_max": 38
+    },
+    {
+     "row_id": "s3|T1|W1|twin|1",
+     "label": "dfs",
+     "template": "W1",
+     "fork_t": null,
+     "rise": null,
+     "cp_p_value": 0.001998001998001998,
+     "cps": [
+      9
+     ],
+     "lcp_with_other_class_max": 38
+    },
+    {
+     "row_id": "s3|T1|W2|twin|2",
+     "label": "dfs",
+     "template": "W2",
+     "fork_t": null,
+     "rise": null,
+     "cp_p_value": 0.000999000999000999,
+     "cps": [
+      9
+     ],
+     "lcp_with_other_class_max": 38
+    },
+    {
+     "row_id": "s3|T1|W3|twin|7",
+     "label": "dfs",
+     "template": "W3",
+     "fork_t": null,
+     "rise": null,
+     "cp_p_value": 0.001998001998001998,
+     "cps": [
+      9
+     ],
+     "lcp_with_other_class_max": 38
+    },
+    {
+     "row_id": "s3|T1|W4|twin|1",
+     "label": "dfs",
+     "template": "W4",
+     "fork_t": null,
+     "rise": null,
+     "cp_p_value": 0.000999000999000999,
+     "cps": [
+      9
+     ],
+     "lcp_with_other_class_max": 38
+    },
+    {
+     "row_id": "s3|T1|W5|twin|2",
+     "label": "dfs",
+     "template": "W5",
+     "fork_t": null,
+     "rise": null,
+     "cp_p_value": 0.002997002997002997,
+     "cps": [
+      8
+     ],
+     "lcp_with_other_class_max": 38
+    },
+    {
+     "row_id": "s3|T1|W1|twin|3",
+     "label": "dfs",
+     "template": "W1",
+     "fork_t": null,
+     "rise": null,
+     "cp_p_value": 0.000999000999000999,
+     "cps": [
+      9
+     ],
+     "lcp_with_other_class_max": 38
+    },
+    {
+     "row_id": "s3|T1|W2|twin|7",
+     "label": "dfs",
+     "template": "W2",
+     "fork_t": null,
+     "rise": null,
+     "cp_p_value": 0.000999000999000999,
+     "cps": [
+      8
+     ],
+     "lcp_with_other_class_max": 38
+    }
+   ],
+   "refined": [
+    {
+     "row_id": "s3|T1|W1|twin|2",
+     "label": "bfs",
+     "series": [
+      {
+       "t": 12,
+       "n": 16,
+       "p_own": 0.25,
+       "p_bfs": 0.25
+      },
+      {
+       "t": 13,
+       "n": 16,
+       "p_own": 0.3125,
+       "p_bfs": 0.3125
+      },
+      {
+       "t": 14,
+       "n": 16,
+       "p_own": 0.25,
+       "p_bfs": 0.25
+      },
+      {
+       "t": 15,
+       "n": 16,
+       "p_own": 1.0,
+       "p_bfs": 1.0
+      },
+      {
+       "t": 16,
+       "n": 16,
+       "p_own": 1.0,
+       "p_bfs": 1.0
+      }
+     ],
+     "fork_len": 15,
+     "fork_token_index": 14,
+     "fork_token": "if",
+     "jump": 0.75,
+     "p_bfs_before": 0.25,
+     "p_bfs_after": 1.0
+    },
+    {
+     "row_id": "s3|T1|W5|twin|10",
+     "label": "bfs",
+     "series": [
+      {
+       "t": 32,
+       "n": 16,
+       "p_own": 0.125,
+       "p_bfs": 0.125
+      },
+      {
+       "t": 33,
+       "n": 16,
+       "p_own": 0.9375,
+       "p_bfs": 0.9375
+      },
+      {
+       "t": 34,
+       "n": 16,
+       "p_own": 1.0,
+       "p_bfs": 1.0
+      },
+      {
+       "t": 35,
+       "n": 16,
+       "p_own": 1.0,
+       "p_bfs": 1.0
+      },
+      {
+       "t": 36,
+       "n": 16,
+       "p_own": 1.0,
+       "p_bfs": 1.0
+      }
+     ],
+     "fork_len": 33,
+     "fork_token_index": 32,
+     "fork_token": "\n",
+     "jump": 0.8125,
+     "p_bfs_before": 0.125,
+     "p_bfs_after": 0.9375
+    }
+   ],
+   "branch": "change_point",
+   "fork_coarse_median": 36,
+   "fork_index_rule": {
+    "candidates": {
+     "14": {
+      "mi_bits": 0.017297947500973798,
+      "n_on_cstar": 200,
+      "n_paths": 1
+     },
+     "30": {
+      "mi_bits": 0.09979724176064209,
+      "n_on_cstar": 198,
+      "n_paths": 3
+     },
+     "32": {
+      "mi_bits": 0.620948620428888,
+      "n_on_cstar": 177,
+      "n_paths": 4
+     }
+    },
+    "median_index": 31,
+    "modal_index": 32,
+    "chosen": 32
+   },
+   "fork_token_index": 32,
+   "cstar_ids": [
+    2717,
+    6719,
+    107,
+    2063,
+    8974,
+    236769,
+    8545,
+    236764,
+    1502,
+    236764,
+    5671,
+    1473,
+    107,
+    140,
+    4290,
+    578,
+    5980,
+    236769,
+    8545,
+    236768,
+    107,
+    140,
+    22016,
+    578,
+    5980,
+    236769,
+    8545,
+    236840,
+    236771,
+    2812,
+    107,
+    140
+   ],
+   "cstar_text": "```python\ndef solve(grid, start, goal):\n    rows = len(grid)\n    cols = len(grid[0])\n    ",
+   "cstar_count": 177,
+   "cstar_share": 0.885,
+   "token_table": {
+    "53227": {
+     "n": 1409,
+     "n_bfs": 15,
+     "n_dfs": 1394,
+     "p_bfs": 0.0106458481192335,
+     "pooled": false,
+     "token": "visited"
+    },
+    "107": {
+     "n": 204,
+     "n_bfs": 193,
+     "n_dfs": 11,
+     "p_bfs": 0.946078431372549,
+     "pooled": false,
+     "token": "\n"
+    },
+    "584": {
+     "n": 177,
+     "n_bfs": 174,
+     "n_dfs": 2,
+     "p_bfs": 0.9886363636363636,
+     "pooled": false,
+     "token": "if"
+    },
+    "15204": {
+     "n": 82,
+     "n_bfs": 82,
+     "n_dfs": 0,
+     "p_bfs": 1.0,
+     "pooled": false,
+     "token": "queue"
+    },
+    "236809": {
+     "n": 3,
+     "n_bfs": 3,
+     "n_dfs": 0,
+     "p_bfs": 1.0,
+     "pooled": false,
+     "token": "q"
+    }
+   },
+   "token_table_s3_only": {
+    "53227": {
+     "n": 134,
+     "n_bfs": 2,
+     "n_dfs": 132,
+     "p_bfs": 0.014925373134328358,
+     "pooled": false,
+     "token": "visited"
+    },
+    "107": {
+     "n": 21,
+     "n_bfs": 19,
+     "n_dfs": 2,
+     "p_bfs": 0.9047619047619048,
+     "pooled": false,
+     "token": "\n"
+    },
+    "584": {
+     "n": 17,
+     "n_bfs": 16,
+     "n_dfs": 1,
+     "p_bfs": 0.9411764705882353,
+     "pooled": false,
+     "token": "if"
+    },
+    "15204": {
+     "n": 4,
+     "n_bfs": 4,
+     "n_dfs": 0,
+     "p_bfs": 1.0,
+     "pooled": false,
+     "token": "queue"
+    },
+    "236809": {
+     "n": 1,
+     "n_bfs": 1,
+     "n_dfs": 0,
+     "p_bfs": 1.0,
+     "pooled": true,
+     "token": "q"
+    }
+   },
+   "B_tokens": [
+    "\n",
+    "if",
+    "queue",
+    "q"
+   ],
+   "D_tokens": [
+    "visited"
+   ],
+   "identical_prefix_share": {
+    "W1": 0.8538461538461538,
+    "W2": 0.7282051282051282,
+    "W3": 0.7705128205128206,
+    "W4": 0.8153846153846154,
+    "W5": 0.7705128205128206
+   },
+   "gap_fork_to_identifying": {
+    "median": 138.0,
+    "q10": 80.0,
+    "q90": 181.0
+   },
+   "U6": {
+    "full_prefix_reproduces_label": true,
+    "t0_bfs_share": 0.3802083333333333,
+    "t0_n": 192,
+    "s3_bfs_share": 0.305,
+    "s3_ci95": [
+     0.24536415630735034,
+     0.37198552097978366
+    ],
+    "t0_within_ci": false
+   },
+   "U8_partial_labeller": {
+    "n": 200,
+    "agreement": 1.0,
+    "confusion": {
+     "dfs->dfs": 139,
+     "bfs->bfs": 61
+    },
+    "pass": true
+   },
+   "n_continuations": 3712
+  }
+ },
+ "datasets": [
+  {
+   "dataset": "fork_resampling",
+   "examples": [
+    {
+     "input": "[W1 twin prompt] + response prefix of 0 tokens: []",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.2500",
+     "predict_own_class_share": "0.2500",
+     "metadata_base_row": "s3|T1|W1|twin|2",
+     "metadata_t": 0,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 16,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 4 tokens: [2717, 6719, 107, 2063]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.5000",
+     "predict_own_class_share": "0.5000",
+     "metadata_base_row": "s3|T1|W1|twin|2",
+     "metadata_t": 4,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 16,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 8 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "0.0000",
+     "metadata_base_row": "s3|T1|W1|twin|2",
+     "metadata_t": 8,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 16,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 12 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.2500",
+     "predict_own_class_share": "0.2500",
+     "metadata_base_row": "s3|T1|W1|twin|2",
+     "metadata_t": 12,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 16,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 16 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 584, 711]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W1|twin|2",
+     "metadata_t": 16,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 16,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 20 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 584, 711, 8411, 653, 711, 8411]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W1|twin|2",
+     "metadata_t": 20,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 16,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 24 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 584, 711, 8411, 653, 711, 8411, 236840, 236771, 9414, 107]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W1|twin|2",
+     "metadata_t": 24,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 16,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 28 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 584, 711, 8411, 653, 711, 8411, 236840, 236771, 9414, 107, 144, 2060, 2977, 107]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W1|twin|2",
+     "metadata_t": 28,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 16,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 32 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 584, 711, 8411, 653, 711, 8411, 236840, 236771, 9414, 107, 144, 2060, 2977, 107, 140, 4290, 236764, 39891]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W1|twin|2",
+     "metadata_t": 32,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 16,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 36 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 584, 711, 8411, 653, 711, 8411, 236840, 236771, 9414, 107, 144, 2060, 2977, 107, 140, 4290, 236764, 39891, 578, 5980, 236769, 8545]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W1|twin|2",
+     "metadata_t": 36,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 16,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 40 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 584, 711, 8411, 653, 711, 8411, 236840, 236771, 9414, 107, 144, 2060, 2977, 107, 140, 4290, 236764, 39891, 578, 5980, 236769, 8545, 779, 5980, 236769, 8545]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W1|twin|2",
+     "metadata_t": 40,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 16,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 44 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 584, 711, 8411, 653, 711, 8411, 236840, 236771, 9414, 107, 144, 2060, 2977, 107, 140, 4290, 236764, 39891, 578, 5980, 236769, 8545, 779, 5980, 236769, 8545, 236840, 236771, 2812, 107]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W1|twin|2",
+     "metadata_t": 44,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 16,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 48 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 584, 711, 8411, 653, 711, 8411, 236840, 236771, 9414, 107, 144, 2060, 2977, 107, 140, 4290, 236764, 39891, 578, 5980, 236769, 8545, 779, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 584, 1502, 236840]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W1|twin|2",
+     "metadata_t": 48,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 16,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 52 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 584, 711, 8411, 653, 711, 8411, 236840, 236771, 9414, 107, 144, 2060, 2977, 107, 140, 4290, 236764, 39891, 578, 5980, 236769, 8545, 779, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 584, 1502, 236840, 236771, 236842, 655, 236743]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W1|twin|2",
+     "metadata_t": 52,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 16,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 56 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 584, 711, 8411, 653, 711, 8411, 236840, 236771, 9414, 107, 144, 2060, 2977, 107, 140, 4290, 236764, 39891, 578, 5980, 236769, 8545, 779, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 584, 1502, 236840, 236771, 236842, 655, 236743, 236771, 653, 1502, 236840]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W1|twin|2",
+     "metadata_t": 56,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 16,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 60 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 584, 711, 8411, 653, 711, 8411, 236840, 236771, 9414, 107, 144, 2060, 2977, 107, 140, 4290, 236764, 39891, 578, 5980, 236769, 8545, 779, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 584, 1502, 236840, 236771, 236842, 655, 236743, 236771, 653, 1502, 236840, 236771, 236842, 6867, 12773]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W1|twin|2",
+     "metadata_t": 60,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 16,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W5 twin prompt] + response prefix of 0 tokens: []",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "0.0000",
+     "metadata_base_row": "s3|T1|W5|twin|10",
+     "metadata_t": 0,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W5 twin prompt] + response prefix of 4 tokens: [2717, 6719, 107, 2063]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.5000",
+     "predict_own_class_share": "0.5000",
+     "metadata_base_row": "s3|T1|W5|twin|10",
+     "metadata_t": 4,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W5 twin prompt] + response prefix of 8 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "0.0000",
+     "metadata_base_row": "s3|T1|W5|twin|10",
+     "metadata_t": 8,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W5 twin prompt] + response prefix of 12 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.5000",
+     "predict_own_class_share": "0.5000",
+     "metadata_base_row": "s3|T1|W5|twin|10",
+     "metadata_t": 12,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W5 twin prompt] + response prefix of 16 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.5000",
+     "predict_own_class_share": "0.5000",
+     "metadata_base_row": "s3|T1|W5|twin|10",
+     "metadata_t": 16,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W5 twin prompt] + response prefix of 20 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.2500",
+     "predict_own_class_share": "0.2500",
+     "metadata_base_row": "s3|T1|W5|twin|10",
+     "metadata_t": 20,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W5 twin prompt] + response prefix of 24 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.1250",
+     "predict_own_class_share": "0.1250",
+     "metadata_base_row": "s3|T1|W5|twin|10",
+     "metadata_t": 24,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W5 twin prompt] + response prefix of 28 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.3750",
+     "predict_own_class_share": "0.3750",
+     "metadata_base_row": "s3|T1|W5|twin|10",
+     "metadata_t": 28,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W5 twin prompt] + response prefix of 32 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.1250",
+     "predict_own_class_share": "0.1250",
+     "metadata_base_row": "s3|T1|W5|twin|10",
+     "metadata_t": 32,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W5 twin prompt] + response prefix of 36 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 107, 140, 584, 8411]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W5|twin|10",
+     "metadata_t": 36,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W5 twin prompt] + response prefix of 40 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 107, 140, 584, 8411, 236840, 3041, 236840, 236771]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W5|twin|10",
+     "metadata_t": 40,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W5 twin prompt] + response prefix of 44 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 107, 140, 584, 8411, 236840, 3041, 236840, 236771, 69929, 3041, 236840, 236770]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W5|twin|10",
+     "metadata_t": 44,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W5 twin prompt] + response prefix of 48 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 107, 140, 584, 8411, 236840, 3041, 236840, 236771, 69929, 3041, 236840, 236770, 10660, 1251, 210744, 653]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W5|twin|10",
+     "metadata_t": 48,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W5 twin prompt] + response prefix of 52 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 107, 140, 584, 8411, 236840, 3041, 236840, 236771, 69929, 3041, 236840, 236770, 10660, 1251, 210744, 653, 8411, 236840, 29538, 236840]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W5|twin|10",
+     "metadata_t": 52,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W5 twin prompt] + response prefix of 56 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 107, 140, 584, 8411, 236840, 3041, 236840, 236771, 69929, 3041, 236840, 236770, 10660, 1251, 210744, 653, 8411, 236840, 29538, 236840, 236771, 69929, 29538, 236840]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W5|twin|10",
+     "metadata_t": 56,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W5 twin prompt] + response prefix of 60 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 107, 140, 584, 8411, 236840, 3041, 236840, 236771, 69929, 3041, 236840, 236770, 10660, 1251, 210744, 653, 8411, 236840, 29538, 236840, 236771, 69929, 29538, 236840, 236770, 10660, 1251, 15390]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W5|twin|10",
+     "metadata_t": 60,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W4 twin prompt] + response prefix of 0 tokens: []",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.2500",
+     "predict_own_class_share": "0.2500",
+     "metadata_base_row": "s3|T1|W4|twin|4",
+     "metadata_t": 0,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W4 twin prompt] + response prefix of 4 tokens: [2717, 6719, 107, 2063]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.3750",
+     "predict_own_class_share": "0.3750",
+     "metadata_base_row": "s3|T1|W4|twin|4",
+     "metadata_t": 4,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W4 twin prompt] + response prefix of 8 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.2500",
+     "predict_own_class_share": "0.2500",
+     "metadata_base_row": "s3|T1|W4|twin|4",
+     "metadata_t": 8,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W4 twin prompt] + response prefix of 12 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.3750",
+     "predict_own_class_share": "0.3750",
+     "metadata_base_row": "s3|T1|W4|twin|4",
+     "metadata_t": 12,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W4 twin prompt] + response prefix of 16 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.1250",
+     "predict_own_class_share": "0.1250",
+     "metadata_base_row": "s3|T1|W4|twin|4",
+     "metadata_t": 16,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W4 twin prompt] + response prefix of 20 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.2500",
+     "predict_own_class_share": "0.2500",
+     "metadata_base_row": "s3|T1|W4|twin|4",
+     "metadata_t": 20,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W4 twin prompt] + response prefix of 24 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.2500",
+     "predict_own_class_share": "0.2500",
+     "metadata_base_row": "s3|T1|W4|twin|4",
+     "metadata_t": 24,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W4 twin prompt] + response prefix of 28 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.5000",
+     "predict_own_class_share": "0.5000",
+     "metadata_base_row": "s3|T1|W4|twin|4",
+     "metadata_t": 28,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W4 twin prompt] + response prefix of 32 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.1250",
+     "predict_own_class_share": "0.1250",
+     "metadata_base_row": "s3|T1|W4|twin|4",
+     "metadata_t": 32,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W4 twin prompt] + response prefix of 36 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 107, 140, 584, 8411]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W4|twin|4",
+     "metadata_t": 36,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W4 twin prompt] + response prefix of 40 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 107, 140, 584, 8411, 236840, 3041, 236840, 236771]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W4|twin|4",
+     "metadata_t": 40,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W4 twin prompt] + response prefix of 44 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 107, 140, 584, 8411, 236840, 3041, 236840, 236771, 69929, 3041, 236840, 236770]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W4|twin|4",
+     "metadata_t": 44,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W4 twin prompt] + response prefix of 48 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 107, 140, 584, 8411, 236840, 3041, 236840, 236771, 69929, 3041, 236840, 236770, 10660, 1251, 210744, 653]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W4|twin|4",
+     "metadata_t": 48,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W4 twin prompt] + response prefix of 52 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 107, 140, 584, 8411, 236840, 3041, 236840, 236771, 69929, 3041, 236840, 236770, 10660, 1251, 210744, 653, 8411, 236840, 29538, 236840]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W4|twin|4",
+     "metadata_t": 52,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W4 twin prompt] + response prefix of 56 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 107, 140, 584, 8411, 236840, 3041, 236840, 236771, 69929, 3041, 236840, 236770, 10660, 1251, 210744, 653, 8411, 236840, 29538, 236840, 236771, 69929, 29538, 236840]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "1.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W4|twin|4",
+     "metadata_t": 56,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W4 twin prompt] + response prefix of 60 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 107, 140, 584, 8411, 236840, 3041, 236840, 236771, 69929, 3041, 236840, 236770, 10660, 1251, 210744, 653, 8411, 236840, 29538, 236840, 236771, 69929, 29538, 236840, 236770, 10660, 1251, 15390]",
+     "output": "bfs",
+     "predict_p_bfs_continuations": "0.8750",
+     "predict_own_class_share": "0.8750",
+     "metadata_base_row": "s3|T1|W4|twin|4",
+     "metadata_t": 60,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 0 tokens: []",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.2500",
+     "predict_own_class_share": "0.7500",
+     "metadata_base_row": "s3|T1|W1|twin|0",
+     "metadata_t": 0,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.008991008991008992
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 4 tokens: [2717, 6719, 107, 2063]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.1250",
+     "predict_own_class_share": "0.8750",
+     "metadata_base_row": "s3|T1|W1|twin|0",
+     "metadata_t": 4,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.008991008991008992
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 8 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W1|twin|0",
+     "metadata_t": 8,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.008991008991008992
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 12 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W1|twin|0",
+     "metadata_t": 12,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.008991008991008992
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 16 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.2500",
+     "predict_own_class_share": "0.7500",
+     "metadata_base_row": "s3|T1|W1|twin|0",
+     "metadata_t": 16,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.008991008991008992
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 20 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.2500",
+     "predict_own_class_share": "0.7500",
+     "metadata_base_row": "s3|T1|W1|twin|0",
+     "metadata_t": 20,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.008991008991008992
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 24 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.2500",
+     "predict_own_class_share": "0.7500",
+     "metadata_base_row": "s3|T1|W1|twin|0",
+     "metadata_t": 24,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.008991008991008992
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 28 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.2500",
+     "predict_own_class_share": "0.7500",
+     "metadata_base_row": "s3|T1|W1|twin|0",
+     "metadata_t": 28,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.008991008991008992
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 32 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.2500",
+     "predict_own_class_share": "0.7500",
+     "metadata_base_row": "s3|T1|W1|twin|0",
+     "metadata_t": 32,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.008991008991008992
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 36 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 53227, 578, 1076, 825]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W1|twin|0",
+     "metadata_t": 36,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.008991008991008992
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 40 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 53227, 578, 1076, 825, 107, 140, 2337, 578]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W1|twin|0",
+     "metadata_t": 40,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.008991008991008992
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 44 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 53227, 578, 1076, 825, 107, 140, 2337, 578, 2977, 108, 140, 2063]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W1|twin|0",
+     "metadata_t": 44,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.008991008991008992
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 48 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 53227, 578, 1076, 825, 107, 140, 2337, 578, 2977, 108, 140, 2063, 563, 236779, 4730, 236769]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W1|twin|0",
+     "metadata_t": 48,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.008991008991008992
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 52 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 53227, 578, 1076, 825, 107, 140, 2337, 578, 2977, 108, 140, 2063, 563, 236779, 4730, 236769, 809, 236764, 908, 1473]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W1|twin|0",
+     "metadata_t": 52,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.008991008991008992
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 56 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 53227, 578, 1076, 825, 107, 140, 2337, 578, 2977, 108, 140, 2063, 563, 236779, 4730, 236769, 809, 236764, 908, 1473, 107, 144, 2060, 236743]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W1|twin|0",
+     "metadata_t": 56,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.008991008991008992
+    },
+    {
+     "input": "[W1 twin prompt] + response prefix of 60 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 53227, 578, 1076, 825, 107, 140, 2337, 578, 2977, 108, 140, 2063, 563, 236779, 4730, 236769, 809, 236764, 908, 1473, 107, 144, 2060, 236743, 236771, 6605, 2050, 655]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W1|twin|0",
+     "metadata_t": 60,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.008991008991008992
+    },
+    {
+     "input": "[W2 twin prompt] + response prefix of 0 tokens: []",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.6250",
+     "predict_own_class_share": "0.3750",
+     "metadata_base_row": "s3|T1|W2|twin|1",
+     "metadata_t": 0,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W2 twin prompt] + response prefix of 4 tokens: [2717, 6719, 107, 2063]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.1250",
+     "predict_own_class_share": "0.8750",
+     "metadata_base_row": "s3|T1|W2|twin|1",
+     "metadata_t": 4,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W2 twin prompt] + response prefix of 8 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.1250",
+     "predict_own_class_share": "0.8750",
+     "metadata_base_row": "s3|T1|W2|twin|1",
+     "metadata_t": 8,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W2 twin prompt] + response prefix of 12 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.6250",
+     "predict_own_class_share": "0.3750",
+     "metadata_base_row": "s3|T1|W2|twin|1",
+     "metadata_t": 12,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W2 twin prompt] + response prefix of 16 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.5000",
+     "predict_own_class_share": "0.5000",
+     "metadata_base_row": "s3|T1|W2|twin|1",
+     "metadata_t": 16,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W2 twin prompt] + response prefix of 20 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.1250",
+     "predict_own_class_share": "0.8750",
+     "metadata_base_row": "s3|T1|W2|twin|1",
+     "metadata_t": 20,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W2 twin prompt] + response prefix of 24 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.6250",
+     "predict_own_class_share": "0.3750",
+     "metadata_base_row": "s3|T1|W2|twin|1",
+     "metadata_t": 24,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W2 twin prompt] + response prefix of 28 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.5000",
+     "predict_own_class_share": "0.5000",
+     "metadata_base_row": "s3|T1|W2|twin|1",
+     "metadata_t": 28,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W2 twin prompt] + response prefix of 32 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.6250",
+     "predict_own_class_share": "0.3750",
+     "metadata_base_row": "s3|T1|W2|twin|1",
+     "metadata_t": 32,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W2 twin prompt] + response prefix of 36 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 53227, 578, 1076, 825]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W2|twin|1",
+     "metadata_t": 36,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W2 twin prompt] + response prefix of 40 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 53227, 578, 1076, 825, 107, 140, 2337, 578]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W2|twin|1",
+     "metadata_t": 40,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W2 twin prompt] + response prefix of 44 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 53227, 578, 1076, 825, 107, 140, 2337, 578, 2977, 108, 140, 2063]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W2|twin|1",
+     "metadata_t": 44,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W2 twin prompt] + response prefix of 48 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 53227, 578, 1076, 825, 107, 140, 2337, 578, 2977, 108, 140, 2063, 563, 236779, 4730, 236769]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W2|twin|1",
+     "metadata_t": 48,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W2 twin prompt] + response prefix of 52 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 53227, 578, 1076, 825, 107, 140, 2337, 578, 2977, 108, 140, 2063, 563, 236779, 4730, 236769, 809, 236764, 908, 1473]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W2|twin|1",
+     "metadata_t": 52,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W2 twin prompt] + response prefix of 56 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 53227, 578, 1076, 825, 107, 140, 2337, 578, 2977, 108, 140, 2063, 563, 236779, 4730, 236769, 809, 236764, 908, 1473, 107, 144, 2060, 236743]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W2|twin|1",
+     "metadata_t": 56,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W2 twin prompt] + response prefix of 60 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 53227, 578, 1076, 825, 107, 140, 2337, 578, 2977, 108, 140, 2063, 563, 236779, 4730, 236769, 809, 236764, 908, 1473, 107, 144, 2060, 236743, 236771, 6605, 2050, 655]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W2|twin|1",
+     "metadata_t": 60,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": 36,
+     "metadata_change_point_p": 0.001998001998001998
+    },
+    {
+     "input": "[W3 twin prompt] + response prefix of 0 tokens: []",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.3750",
+     "predict_own_class_share": "0.6250",
+     "metadata_base_row": "s3|T1|W3|twin|2",
+     "metadata_t": 0,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W3 twin prompt] + response prefix of 4 tokens: [2717, 6719, 107, 2063]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.2500",
+     "predict_own_class_share": "0.7500",
+     "metadata_base_row": "s3|T1|W3|twin|2",
+     "metadata_t": 4,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W3 twin prompt] + response prefix of 8 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.3750",
+     "predict_own_class_share": "0.6250",
+     "metadata_base_row": "s3|T1|W3|twin|2",
+     "metadata_t": 8,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W3 twin prompt] + response prefix of 12 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.6250",
+     "predict_own_class_share": "0.3750",
+     "metadata_base_row": "s3|T1|W3|twin|2",
+     "metadata_t": 12,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W3 twin prompt] + response prefix of 16 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.2500",
+     "predict_own_class_share": "0.7500",
+     "metadata_base_row": "s3|T1|W3|twin|2",
+     "metadata_t": 16,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W3 twin prompt] + response prefix of 20 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.2500",
+     "predict_own_class_share": "0.7500",
+     "metadata_base_row": "s3|T1|W3|twin|2",
+     "metadata_t": 20,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W3 twin prompt] + response prefix of 24 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.2500",
+     "predict_own_class_share": "0.7500",
+     "metadata_base_row": "s3|T1|W3|twin|2",
+     "metadata_t": 24,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W3 twin prompt] + response prefix of 28 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.3750",
+     "predict_own_class_share": "0.6250",
+     "metadata_base_row": "s3|T1|W3|twin|2",
+     "metadata_t": 28,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W3 twin prompt] + response prefix of 32 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.2500",
+     "predict_own_class_share": "0.7500",
+     "metadata_base_row": "s3|T1|W3|twin|2",
+     "metadata_t": 32,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W3 twin prompt] + response prefix of 36 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 53227, 578, 1076, 825]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W3|twin|2",
+     "metadata_t": 36,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W3 twin prompt] + response prefix of 40 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 53227, 578, 1076, 825, 107, 140, 2337, 578]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W3|twin|2",
+     "metadata_t": 40,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W3 twin prompt] + response prefix of 44 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 53227, 578, 1076, 825, 107, 140, 2337, 578, 2977, 108, 140, 2063]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W3|twin|2",
+     "metadata_t": 44,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W3 twin prompt] + response prefix of 48 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 53227, 578, 1076, 825, 107, 140, 2337, 578, 2977, 108, 140, 2063, 563, 236779, 4730, 236769]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W3|twin|2",
+     "metadata_t": 48,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W3 twin prompt] + response prefix of 52 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 53227, 578, 1076, 825, 107, 140, 2337, 578, 2977, 108, 140, 2063, 563, 236779, 4730, 236769, 809, 236764, 908, 1473]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W3|twin|2",
+     "metadata_t": 52,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W3 twin prompt] + response prefix of 56 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 53227, 578, 1076, 825, 107, 140, 2337, 578, 2977, 108, 140, 2063, 563, 236779, 4730, 236769, 809, 236764, 908, 1473, 107, 144, 2060, 236743]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W3|twin|2",
+     "metadata_t": 56,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.000999000999000999
+    },
+    {
+     "input": "[W3 twin prompt] + response prefix of 60 tokens: [2717, 6719, 107, 2063, 8974, 236769, 8545, 236764, 1502, 236764, 5671, 1473, 107, 140, 4290, 578, 5980, 236769, 8545, 236768, 107, 140, 22016, 578, 5980, 236769, 8545, 236840, 236771, 2812, 107, 140, 53227, 578, 1076, 825, 107, 140, 2337, 578, 2977, 108, 140, 2063, 563, 236779, 4730, 236769, 809, 236764, 908, 1473, 107, 144, 2060, 236743, 236771, 6605, 2050, 655]",
+     "output": "dfs",
+     "predict_p_bfs_continuations": "0.0000",
+     "predict_own_class_share": "1.0000",
+     "metadata_base_row": "s3|T1|W3|twin|2",
+     "metadata_t": 60,
+     "metadata_n_continuations": 8,
+     "metadata_path_fork_t": null,
+     "metadata_change_point_p": 0.000999000999000999
+    }
+   ]
+  }
+ ]
+}
