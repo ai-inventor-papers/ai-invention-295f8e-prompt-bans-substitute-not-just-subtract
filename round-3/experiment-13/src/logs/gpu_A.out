@@ -1,0 +1,157 @@
+/ai-inventor/aii_data/runs/run_aRfWvcSWjssb/3_invention_loop/iter_3/gen_art/gen_art_experiment_13/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+INFO 10-20 18:25:41 [__init__.py:216] Automatically detected platform cuda.
+INFO 10-20 18:26:09 [utils.py:233] non-default args: {'tokenizer': '/ai-inventor/aii_data/runs/run_aRfWvcSWjssb/.shared_cache/hf/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218', 'dtype': 'bfloat16', 'seed': 0, 'max_model_len': 2048, 'enable_prefix_caching': True, 'max_num_batched_tokens': 4096, 'max_num_seqs': 64, 'disable_log_stats': True, 'enforce_eager': True, 'generation_config': 'vllm', 'model': '/ai-inventor/aii_data/runs/run_aRfWvcSWjssb/.shared_cache/hf/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218'}
+INFO 10-20 18:26:09 [model.py:547] Resolved architecture: Qwen3ForCausalLM
+`torch_dtype` is deprecated! Use `dtype` instead!
+INFO 10-20 18:26:09 [model.py:1510] Using max model len 2048
+INFO 10-20 18:26:12 [scheduler.py:205] Chunked prefill is enabled with max_num_batched_tokens=4096.
+INFO 10-20 18:26:12 [__init__.py:381] Cudagraph is disabled under eager mode
+[1;36m(EngineCore_DP0 pid=22435)[0;0m INFO 10-20 18:26:12 [core.py:644] Waiting for init message from front-end.
+[1;36m(EngineCore_DP0 pid=22435)[0;0m INFO 10-20 18:26:12 [core.py:77] Initializing a V1 LLM engine (v0.11.0) with config: model='/ai-inventor/aii_data/runs/run_aRfWvcSWjssb/.shared_cache/hf/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218', speculative_config=None, tokenizer='/ai-inventor/aii_data/runs/run_aRfWvcSWjssb/.shared_cache/hf/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser=''), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None), seed=0, served_model_name=/ai-inventor/aii_data/runs/run_aRfWvcSWjssb/.shared_cache/hf/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218, enable_prefix_caching=True, chunked_prefill_enabled=True, pooler_config=None, compilation_config={"level":0,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":null,"use_inductor":true,"compile_sizes":[],"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"cudagraph_mode":0,"use_cudagraph":true,"cudagraph_num_of_warmups":0,"cudagraph_capture_sizes":[],"cudagraph_copy_inputs":false,"full_cuda_graph":false,"use_inductor_graph_partition":false,"pass_config":{},"max_capture_size":0,"local_cache_dir":null}
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[1;36m(EngineCore_DP0 pid=22435)[0;0m INFO 10-20 18:26:25 [parallel_state.py:1208] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0, EP rank 0
+[1;36m(EngineCore_DP0 pid=22435)[0;0m WARNING 10-20 18:26:25 [topk_topp_sampler.py:66] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+[1;36m(EngineCore_DP0 pid=22435)[0;0m INFO 10-20 18:26:26 [gpu_model_runner.py:2602] Starting to load model /ai-inventor/aii_data/runs/run_aRfWvcSWjssb/.shared_cache/hf/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218...
+[1;36m(EngineCore_DP0 pid=22435)[0;0m INFO 10-20 18:26:26 [gpu_model_runner.py:2634] Loading model from scratch...
+[1;36m(EngineCore_DP0 pid=22435)[0;0m INFO 10-20 18:26:26 [cuda.py:366] Using Flash Attention backend on V1 engine.
+[1;36m(EngineCore_DP0 pid=22435)[0;0m Loading safetensors checkpoint shards:   0% Completed | 0/5 [00:00<?, ?it/s]
+[1;36m(EngineCore_DP0 pid=22435)[0;0m Loading safetensors checkpoint shards:  20% Completed | 1/5 [00:04<00:18,  4.63s/it]
+[1;36m(EngineCore_DP0 pid=22435)[0;0m Loading safetensors checkpoint shards:  40% Completed | 2/5 [00:09<00:13,  4.56s/it]
+[1;36m(EngineCore_DP0 pid=22435)[0;0m Loading safetensors checkpoint shards:  60% Completed | 3/5 [00:13<00:09,  4.54s/it]
+[1;36m(EngineCore_DP0 pid=22435)[0;0m Loading safetensors checkpoint shards:  80% Completed | 4/5 [00:17<00:04,  4.30s/it]
+[1;36m(EngineCore_DP0 pid=22435)[0;0m Loading safetensors checkpoint shards: 100% Completed | 5/5 [00:19<00:00,  3.28s/it]
+[1;36m(EngineCore_DP0 pid=22435)[0;0m Loading safetensors checkpoint shards: 100% Completed | 5/5 [00:19<00:00,  3.81s/it]
+[1;36m(EngineCore_DP0 pid=22435)[0;0m 
+[1;36m(EngineCore_DP0 pid=22435)[0;0m INFO 10-20 18:26:45 [default_loader.py:267] Loading weights took 19.09 seconds
+[1;36m(EngineCore_DP0 pid=22435)[0;0m INFO 10-20 18:26:46 [gpu_model_runner.py:2653] Model loading took 15.2683 GiB and 19.403476 seconds
+[1;36m(EngineCore_DP0 pid=22435)[0;0m INFO 10-20 18:26:47 [gpu_worker.py:298] Available KV cache memory: 5.37 GiB
+[1;36m(EngineCore_DP0 pid=22435)[0;0m INFO 10-20 18:26:48 [kv_cache_utils.py:1087] GPU KV cache size: 39,072 tokens
+[1;36m(EngineCore_DP0 pid=22435)[0;0m INFO 10-20 18:26:48 [kv_cache_utils.py:1091] Maximum concurrency for 2,048 tokens per request: 19.08x
+[1;36m(EngineCore_DP0 pid=22435)[0;0m WARNING 10-20 18:26:48 [cudagraph_dispatcher.py:106] cudagraph dispatching keys are not initialized. No cudagraph will be used.
+[1;36m(EngineCore_DP0 pid=22435)[0;0m INFO 10-20 18:26:48 [core.py:210] init engine (profile, create kv cache, warmup model) took 1.89 seconds
+[1;36m(EngineCore_DP0 pid=22435)[0;0m INFO 10-20 18:26:48 [__init__.py:381] Cudagraph is disabled under eager mode
+INFO 10-20 18:26:48 [llm.py:306] Supported_tasks: ['generate']
+18:26:48|INFO   |vLLM up in 40s (Qwen/Qwen3-8B bf16, eager)
+18:26:48|INFO   |Labeller up: 11 workers, 224 cached code labels
+18:26:48|INFO   |effective SamplingParams: SamplingParams(n=1, presence_penalty=0.0, frequency_penalty=0.0, repetition_penalty=1.0, temperature=1.0, top_p=1.0, top_k=-1, min_p=0.0, seed=0, stop=[], stop_token_ids=[151645, 151643], bad_words=[], include_stop_str_in_output=False, ignore_eos=False, max_tokens=1024, min_tokens=0, logprobs=None, prompt_logprobs=None, skip_special_tokens=True, spaces_between_special_tokens=True, truncate_prompt_tokens=None, structured_outputs=None, extra_args=None)
+18:27:11|INFO   |sampled 600 x twin in 23s (2411 tok/s)
+18:27:23|INFO   |judge batch of 10 done; running spend $0.0024
+18:27:23|INFO   |labelled 600 rows twin in 12s (10 judged; spend $0.0024)
+18:27:23|INFO   |T03: twin D programs 48, bf16 coverage of FP8 n-gram 0.8333333333333334, source fp8_pilot
+18:27:23|INFO   |T04: twin D programs 50, bf16 coverage of FP8 n-gram 1.0, source fp8_pilot
+18:27:23|INFO   |T06: twin D programs 50, bf16 coverage of FP8 n-gram 1.0, source fp8_pilot
+18:27:23|INFO   |T05: twin D programs 50, bf16 coverage of FP8 n-gram 1.0, source fp8_pilot
+18:27:23|INFO   |T10: twin D programs 50, bf16 coverage of FP8 n-gram 1.0, source fp8_pilot
+18:27:23|WARNING|DEVIATION: R1: FP8-pilot n-gram covers 0.64 < 0.8 of bf16 twin D programs; re-derived on bf16 twin programs (declared rule): [' if start']
+18:27:23|INFO   |R1: twin D programs 50, bf16 coverage of FP8 n-gram 0.64, source bf16_twin_rederived
+18:27:23|INFO   |T08: twin D programs 50, bf16 coverage of FP8 n-gram 1.0, source fp8_pilot
+18:27:23|INFO   |R3: twin D programs 50, bf16 coverage of FP8 n-gram 1.0, source fp8_pilot
+18:27:23|INFO   |T13: twin D programs 50, bf16 coverage of FP8 n-gram 1.0, source fp8_pilot
+18:27:23|INFO   |R6: twin D programs 40, bf16 coverage of FP8 n-gram 0.925, source fp8_pilot
+18:27:23|WARNING|DEVIATION: T14: FP8-pilot n-gram covers 0.79 < 0.8 of bf16 twin D programs; re-derived on bf16 twin programs (declared rule): ['_counts']
+18:27:23|INFO   |T14: twin D programs 48, bf16 coverage of FP8 n-gram 0.7916666666666666, source bf16_twin_rederived
+18:27:23|INFO   |T11: twin D programs 50, bf16 coverage of FP8 n-gram 1.0, source fp8_pilot
+18:27:24|INFO   |veto arm ut_oneshot (oneshot, round 0): 20 samples, 19 vetoes, 1 redraw rounds, 0 text leaks, 0s
+18:27:24|INFO   |veto arm ut_persistent (persistent, round 0): 20 samples, 19 vetoes, 1 redraw rounds, 0 text leaks, 0s
+18:27:24|INFO   |veto arm ut_never (persistent, round 0): 20 samples, 0 vetoes, 0 redraw rounds, 0 text leaks, 0s
+18:27:24|INFO   |veto unit tests: {'n': 20, 'mask': [[262, 10307]], 'a_oneshot_first_completion_removed': True, 'b_persistent_zero_completions': True, 'c_redraws_avoid_mask': True, 'd_never_firing_mask_identity': True, 'e_text_leaks_oneshot': 0, 'e_text_leaks_persistent': 0, 'f_fire_rate': 0.95, 'vetoes_persistent_mean': 0.95, 'all_pass': True}
+18:27:38|INFO   |veto arm oneshot (oneshot, round 0): 600 samples, 571 vetoes, 1 redraw rounds, 137 text leaks, 14s
+18:27:49|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:27:49|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:27:49|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:27:49|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:27:49|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:27:50|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:27:50|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:27:51|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:27:51|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:27:52|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:27:52|INFO   |judge batch of 59 done; running spend $0.0024
+18:27:53|INFO   |veto arm sham (oneshot, round 0): 600 samples, 588 vetoes, 1 redraw rounds, 233 text leaks, 15s
+18:27:59|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:27:59|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:27:59|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:28:00|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:28:02|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:28:02|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:28:02|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:28:04|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:28:04|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:28:04|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:28:04|INFO   |judge batch of 10 done; running spend $0.0024
+18:28:10|INFO   |veto arm persistent (persistent, round 0): 600 samples, 657 vetoes, 3 redraw rounds, 138 text leaks, 17s
+18:28:17|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:28:17|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:28:17|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:28:17|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:28:20|INFO   |judge batch of 10 done; running spend $0.0028
+18:28:32|INFO   |sampled 600 x nonce in 22s (2449 tok/s)
+18:28:36|INFO   |judge batch of 4 done; running spend $0.0030
+18:28:36|INFO   |labelled 600 rows oneshot in 58s (59 judged; spend $0.0030)
+18:28:39|INFO   |judge batch of 32 done; running spend $0.0046
+18:28:39|INFO   |labelled 600 rows sham in 46s (32 judged; spend $0.0046)
+18:28:39|INFO   |judge batch of 58 done; running spend $0.0046
+18:28:39|INFO   |labelled 600 rows persistent in 28s (58 judged; spend $0.0046)
+18:28:39|INFO   |judge batch of 14 done; running spend $0.0047
+18:28:39|INFO   |labelled 600 rows nonce in 7s (14 judged; spend $0.0047)
+18:29:07|INFO   |sampled 600 x novelty in 34s (2111 tok/s)
+18:29:52|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:29:52|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:29:52|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:29:53|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:29:54|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:29:54|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:29:55|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:29:55|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:29:55|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:29:58|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:29:58|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:29:58|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:29:58|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:29:58|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:29:59|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:30:00|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:30:00|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:30:01|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:30:01|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:30:01|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:30:01|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:30:02|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:30:02|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:30:03|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:30:03|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:30:04|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:30:04|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:30:06|INFO   |judge batch of 56 done; running spend $0.0068
+18:30:13|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:30:16|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:30:17|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:30:22|INFO   |judge batch of 27 done; running spend $0.0085
+18:30:33|INFO   |judge batch of 3 done; running spend $0.0087
+18:30:33|INFO   |labelled 600 rows novelty in 86s (56 judged; spend $0.0087)
+18:30:54|INFO   |veto arm iter1 (persistent, round 1): 600 samples, 839 vetoes, 4 redraw rounds, 176 text leaks, 20s
+18:31:05|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:31:05|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:31:05|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:31:06|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:31:06|WARNING|judge j1 call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.5-flash-lite is temporarily rate-limited upstream. Please retry shortly, or add you
+18:31:06|INFO   |judge batch of 37 done; running spend $0.0090
+18:31:14|INFO   |judge batch of 5 done; running spend $0.0093
+18:31:14|INFO   |labelled 600 rows iter1 in 20s (37 judged; spend $0.0093)
+18:31:14|INFO   |round 1: triggered ['T03', 'T04', 'T06', 'T05', 'T10', 'R1', 'T08', 'R3', 'T13', 'R6', 'T14', 'T11']
+18:31:25|INFO   |veto arm iter2 (persistent, round 2): 500 samples, 672 vetoes, 4 redraw rounds, 271 text leaks, 11s
+18:31:34|INFO   |judge batch of 38 done; running spend $0.0111
+18:31:34|INFO   |labelled 500 rows iter2 in 9s (38 judged; spend $0.0111)
+18:31:34|INFO   |round 2: triggered ['T03', 'T04', 'T05', 'R1', 'T08', 'R3', 'T13', 'R6', 'T14', 'T11']
+18:32:04|INFO   |veto arm iter3 (persistent, round 3): 450 samples, 1048 vetoes, 8 redraw rounds, 230 text leaks, 29s
+18:32:24|INFO   |judge batch of 38 done; running spend $0.0130
+18:32:24|INFO   |labelled 450 rows iter3 in 20s (38 judged; spend $0.0130)
+18:32:24|INFO   |round 3: triggered ['T03', 'T04', 'T05', 'R1', 'T08', 'R3', 'T13', 'R6', 'T14']
+18:32:24|INFO   |process A done; judge spend $0.0130
+EXIT 0
