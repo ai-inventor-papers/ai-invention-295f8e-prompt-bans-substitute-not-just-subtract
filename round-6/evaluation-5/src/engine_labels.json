@@ -1,0 +1,277 @@
+{
+ "engine_check": {
+  "hf_fp8_w8a8_confirmed_from_source": true,
+  "literal_cell_kernel": "vllm==0.11.0 (V1, eager, FP8 Marlin weight-only, native sampler)",
+  "env": {
+   "VLLM_USE_FLASHINFER_SAMPLER": "0",
+   "TORCH_COMPILE_DISABLE": "1",
+   "VLLM_TEST_FORCE_FP8_MARLIN": "1"
+  }
+ },
+ "rows": [
+  {
+   "id": "E01",
+   "claim": "Plan noise H5 on kth smallest 2.72 (iteration-4 price)",
+   "report_location": "4.10 item 4 (line 3843)",
+   "source": "art_mWn-MQEnNelg:results/c1.json",
+   "engine_class": "HF-FP8-W8A8 (per-output-channel e4m3 weights, per-row e4m3 activations, torch._scaled_mm, sm_89)",
+   "device": "RTX 2000 Ada (16 GB)",
+   "bf16_counterpart": "art_jR6Pyy3W9xum:results/unit_ratio.json#/T03/H5_PN_banfree_bf16 = 1.98",
+   "status": "not established (bf16 smaller, Fisher not < 0.01)",
+   "note": "population tag: not established"
+  },
+  {
+   "id": "E02",
+   "claim": "Plan noise H5 on connected components 2.09 (iteration-4 price)",
+   "report_location": "4.10 item 4 (line 3843)",
+   "source": "art_mWn-MQEnNelg:results/c1.json",
+   "engine_class": "HF-FP8-W8A8 (per-output-channel e4m3 weights, per-row e4m3 activations, torch._scaled_mm, sm_89)",
+   "device": "RTX 2000 Ada (16 GB)",
+   "bf16_counterpart": "art_jR6Pyy3W9xum:results/unit_ratio.json#/T10/H5_PN_banfree_bf16 = 1.09; bf16 alpha 2 1/50 correct off default",
+   "status": "did NOT replicate in bf16 at the population level",
+   "note": "population tag: did NOT replicate in bf16 at the population level"
+  },
+  {
+   "id": "E03",
+   "claim": "Per-sample plan noise moves the shortest path task (26% at alpha 1, iteration 4)",
+   "report_location": "5.10 Table 222 (line ~4966)",
+   "source": "art_mWn-MQEnNelg:results/alpha_sweep.json",
+   "engine_class": "HF-FP8-W8A8 (per-output-channel e4m3 weights, per-row e4m3 activations, torch._scaled_mm, sm_89)",
+   "device": "RTX 2000 Ada (16 GB)",
+   "bf16_counterpart": "bf16 alpha 1 0/50, alpha 2 2/47 correct off default",
+   "status": "did NOT replicate in bf16 at the population level",
+   "note": "population tag: did NOT replicate in bf16 at the population level"
+  },
+  {
+   "id": "E04",
+   "claim": "Per-sample plan noise on grid (0.24 at alpha 2, iteration 4)",
+   "report_location": "5.10 Table 222",
+   "source": "art_mWn-MQEnNelg:results/alpha_sweep.json",
+   "engine_class": "HF-FP8-W8A8 (per-output-channel e4m3 weights, per-row e4m3 activations, torch._scaled_mm, sm_89)",
+   "device": "RTX 2000 Ada (16 GB)",
+   "bf16_counterpart": "bf16 alpha 2 1/38 correct off default",
+   "status": "not established",
+   "note": ""
+  },
+  {
+   "id": "E05",
+   "claim": "Site claim: task-specification states vs other prefill sites, odds ratio 5.72 [3.94, 8.30]",
+   "report_location": "4.10 item 3 (line 3842); closing 5042",
+   "source": "art_Cx9JOh8soBw7 (CARRIED from current_report.md 4.10)",
+   "engine_class": "HF-FP8-W8A8 (per-output-channel e4m3 weights, per-row e4m3 activations, torch._scaled_mm, sm_89)",
+   "device": "RTX 2000 Ada (16 GB)",
+   "bf16_counterpart": "none measured",
+   "status": "FP8 only, untested in bf16",
+   "note": "CARRIED"
+  },
+  {
+   "id": "E06",
+   "claim": "Same-seed contrast: one direction changes the algorithm in 17.25 of 20 seeds (shortest path)",
+   "report_location": "4.10 item 2 (line 3841); closing 5042",
+   "source": "art_Yu6GN6pLxW8f (CARRIED from current_report.md 4.10)",
+   "engine_class": "HF-FP8-W8A8 (per-output-channel e4m3 weights, per-row e4m3 activations, torch._scaled_mm, sm_89)",
+   "device": "RTX 2000 Ada (16 GB)",
+   "bf16_counterpart": "none measured",
+   "status": "FP8 only, untested in bf16",
+   "note": "CARRIED"
+  },
+  {
+   "id": "E07",
+   "claim": "40-direction escape fractions (kth smallest 0.30/0.63, connected components 0.38/0.73, ...)",
+   "report_location": "4.10 item 6; Table 196 'Iteration 4 E'",
+   "source": "art_SHaWv77P1XCI:results/escape.json",
+   "engine_class": "HF-FP8-W8A8 (per-output-channel e4m3 weights, per-row e4m3 activations, torch._scaled_mm, sm_89)",
+   "device": "RTX 2000 Ada (16 GB)",
+   "bf16_counterpart": "T03 bf16 E 0.250; T10 bf16 E 0.125; T2 bf16 E 0.000; T05 bf16 E 0.000; T1 bf16 E 0.000; T06 bf16 E 0.000 (art_8WbrpoEFslk9:results/extra_arm_a.json, 8 directions, ban-free unit)",
+   "status": "did NOT replicate in bf16 at the population level on shortest path, two sum, grid and find duplicate; replicated (smaller) on kth smallest and connected components",
+   "note": "FP8 E: T03 0.30/0.62; T10 0.38/0.72; T2 0.17/0.20; T05 0.00/0.12; T1 0.05/0.12; T06 0.00/0.00"
+  },
+  {
+   "id": "E08",
+   "claim": "Frozen screen: six movable tasks",
+   "report_location": "4.10 intro (line 3839); Table 196",
+   "source": "art_sV0cQ3ef1ZRQ:screen.json",
+   "engine_class": "HF-FP8-W8A8 (per-output-channel e4m3 weights, per-row e4m3 activations, torch._scaled_mm, sm_89)",
+   "device": "RTX 2000 Ada (16 GB)",
+   "bf16_counterpart": "bf16 remeasure: movable only kth smallest and connected components (art_8WbrpoEFslk9:results/extra_arm_a.json)",
+   "status": "did NOT replicate in bf16 at the population level (4 of 6 lose 'movable')",
+   "note": "dose units differ; see A2"
+  },
+  {
+   "id": "E09",
+   "claim": "Plan subspace tests C2a/C2b/C2c",
+   "report_location": "4.10 item 5, Ruled out; closing 5048",
+   "source": "art_SHaWv77P1XCI:results/c2a.json",
+   "engine_class": "HF-FP8-W8A8 (per-output-channel e4m3 weights, per-row e4m3 activations, torch._scaled_mm, sm_89)",
+   "device": "RTX 2000 Ada (16 GB)",
+   "bf16_counterpart": "none measured",
+   "status": "FP8 only, untested in bf16",
+   "note": ""
+  },
+  {
+   "id": "E10",
+   "claim": "Connected components screen escape from the bf16 rand3 direction",
+   "report_location": "Table 196 / iteration 5",
+   "source": "art_8WbrpoEFslk9:results/extra_arm_a.json",
+   "engine_class": "HF-bf16",
+   "device": "RTX 4090",
+   "bf16_counterpart": "itself bf16",
+   "status": "bf16 result",
+   "note": ""
+  },
+  {
+   "id": "E11",
+   "claim": "Pre-selected directions 9002/9004 move in both engines",
+   "report_location": "5.10 engine checks",
+   "source": "art_8WbrpoEFslk9 / art_jR6Pyy3W9xum engine_check.json (CARRIED)",
+   "engine_class": "HF-FP8-W8A8 and HF-bf16",
+   "device": "both",
+   "bf16_counterpart": "shortest path: Dijkstra 31 / BF-SPFA 19 (bf16) vs 26 / 24 (FP8)",
+   "status": "replicated in bf16",
+   "note": "CARRIED"
+  },
+  {
+   "id": "E12",
+   "claim": "Plan noise against matched decoding (19 vs 3 discordant at alpha 2)",
+   "report_location": "5.11 item 4 (line 5010)",
+   "source": "art_jR6Pyy3W9xum:results/pn_vs_dmd.json",
+   "engine_class": "HF-bf16",
+   "device": "RTX 4090",
+   "bf16_counterpart": "itself bf16",
+   "status": "bf16 result",
+   "note": ""
+  },
+  {
+   "id": "E13",
+   "claim": "Transplant results (Claim B, T14 reopening, matched random on T03)",
+   "report_location": "5.6; closing 5046",
+   "source": "art_CcZLW-9NX00l:results/claim_b.json",
+   "engine_class": "HF-bf16",
+   "device": "RTX 4090",
+   "bf16_counterpart": "itself bf16",
+   "status": "bf16 result",
+   "note": ""
+  },
+  {
+   "id": "E14",
+   "claim": "Read-position transplant breaks output without moving the algorithm",
+   "report_location": "5.6 site controls",
+   "source": "art_CcZLW-9NX00l:results/confirmation.json",
+   "engine_class": "HF-bf16",
+   "device": "RTX 4090",
+   "bf16_counterpart": "itself bf16",
+   "status": "bf16 result",
+   "note": ""
+  },
+  {
+   "id": "E15",
+   "claim": "Route of a ban (direct vs prompt-state route)",
+   "report_location": "4.10 item 7",
+   "source": "art_8_ULPE8jJQc_ / art__5akZ9W9iZM4 (CARRIED)",
+   "engine_class": "HF-bf16",
+   "device": "n/a",
+   "bf16_counterpart": "itself bf16",
+   "status": "bf16 result",
+   "note": "CARRIED"
+  },
+  {
+   "id": "E16",
+   "claim": "Band patching on kth smallest and connected components",
+   "report_location": "iteration-4 band patching",
+   "source": "art_1AYTO1Epb_7t (CARRIED)",
+   "engine_class": "HF-bf16",
+   "device": "n/a",
+   "bf16_counterpart": "itself bf16",
+   "status": "bf16 result",
+   "note": "CARRIED"
+  },
+  {
+   "id": "E17",
+   "claim": "Literal cell: temperature null with thinking on (C_T 0/20)",
+   "report_location": "Table 206; 5.10",
+   "source": "art_jR6Pyy3W9xum:results/vllm_engine.json",
+   "engine_class": "vLLM-FP8 W8A16 Marlin (weight-only)",
+   "device": "RTX 4090",
+   "bf16_counterpart": "none (behaviour level)",
+   "status": "behaviour-level, engine-robust",
+   "note": "vllm==0.11.0 (V1, eager, FP8 Marlin weight-only, native sampler)"
+  },
+  {
+   "id": "E18",
+   "claim": "Temperature changes phrasing not algorithm (thinking off, 3 tasks)",
+   "report_location": "4.10 item 1",
+   "source": "art_ccAbfJVcv0LO / iteration-2 bench pilot (CARRIED)",
+   "engine_class": "vLLM-FP8 W8A16 Marlin (iteration-2 bench pilot)",
+   "device": "n/a",
+   "bf16_counterpart": "bf16 T1.3 cells: no diversity (art_jR6Pyy3W9xum:results/cells.json)",
+   "status": "behaviour-level, engine-robust",
+   "note": ""
+  },
+  {
+   "id": "E19",
+   "claim": "Llama knob rows (Table 126c)",
+   "report_location": "Table 126c",
+   "source": "art_Q-qh-9HhPoWo via art_sV0cQ3ef1ZRQ:tables/knob_table.csv",
+   "engine_class": "vLLM-bf16",
+   "device": "n/a",
+   "bf16_counterpart": "itself bf16",
+   "status": "bf16 result",
+   "note": ""
+  },
+  {
+   "id": "E20",
+   "claim": "Novelty audits (0 novel)",
+   "report_location": "closing 5058",
+   "source": "art_CcZLW-9NX00l:results/novelty_audit.json",
+   "engine_class": "fp32 scoring (sandbox) on programs from both engines",
+   "device": "CPU",
+   "bf16_counterpart": "n/a",
+   "status": "behaviour-level, engine-robust",
+   "note": ""
+  },
+  {
+   "id": "E21",
+   "claim": "Plan sampler comparison DISCONFIRMED (claim_c.json)",
+   "report_location": "5.8 Table 207",
+   "source": "art_jR6Pyy3W9xum:results/claim_c.json",
+   "engine_class": "HF-bf16",
+   "device": "RTX 4090",
+   "bf16_counterpart": "itself bf16",
+   "status": "bf16-conditional",
+   "note": "rests on bf16 plan noise / bf16 escape fractions; may not hold under the 8-bit engine"
+  },
+  {
+   "id": "E22",
+   "claim": "Movability half of the narrowed-repertoire account",
+   "report_location": "5.11 movability bullet (line 5015)",
+   "source": "art_8WbrpoEFslk9:pooled_inputs.json; art_9a8LrIv2lHbV:pooled_inputs.json",
+   "engine_class": "HF-bf16",
+   "device": "RTX 4090",
+   "bf16_counterpart": "itself bf16",
+   "status": "bf16-conditional",
+   "note": "rests on bf16 plan noise / bf16 escape fractions; may not hold under the 8-bit engine"
+  },
+  {
+   "id": "E23",
+   "claim": "Plan noise as the practical knob is a dead end",
+   "report_location": "5.11 dead end (line 5029)",
+   "source": "art_jR6Pyy3W9xum:results/prices.json",
+   "engine_class": "HF-bf16",
+   "device": "RTX 4090",
+   "bf16_counterpart": "itself bf16",
+   "status": "bf16-conditional",
+   "note": "rests on bf16 plan noise / bf16 escape fractions; may not hold under the 8-bit engine"
+  },
+  {
+   "id": "E24",
+   "claim": "Six screen-movable tasks shrank to two",
+   "report_location": "5.12 (line 5036)",
+   "source": "art_8WbrpoEFslk9:results/extra_arm_a.json",
+   "engine_class": "HF-bf16",
+   "device": "RTX 4090",
+   "bf16_counterpart": "itself bf16",
+   "status": "bf16-conditional",
+   "note": "rests on bf16 plan noise / bf16 escape fractions; may not hold under the 8-bit engine"
+  }
+ ]
+}

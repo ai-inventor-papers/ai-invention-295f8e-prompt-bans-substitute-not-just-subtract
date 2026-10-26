@@ -1,0 +1,2075 @@
+{
+ "n_checks": 277,
+ "n_passed": 277,
+ "n_placebos": 5,
+ "n_placebos_failed": 5,
+ "failed_checks": [],
+ "placebos": [
+  {
+   "name": "dose ratios inverted (bracket inequality must fail on >= 1 task)",
+   "family": "dose",
+   "check_result": false,
+   "failed_as_required": true,
+   "detail": ""
+  },
+  {
+   "name": "engine labels swapped (T10 alpha 2: bf16 lower than FP8 at p < 0.01 must fail)",
+   "family": "engine",
+   "check_result": false,
+   "failed_as_required": true,
+   "detail": "p 1"
+  },
+  {
+   "name": "landings shuffled across events (tally p < 0.001 in most shuffles must fail)",
+   "family": "landing",
+   "check_result": false,
+   "failed_as_required": true,
+   "detail": "0/200 significant"
+  },
+  {
+   "name": "beta permuted across units (recorded rho reproduced in most permutations must fail)",
+   "family": "movability",
+   "check_result": false,
+   "failed_as_required": true,
+   "detail": "4/200"
+  },
+  {
+   "name": "judge verdicts shuffled (kappa reproduced within 0.05 must fail)",
+   "family": "judges",
+   "check_result": false,
+   "failed_as_required": true,
+   "detail": "mean shuffled kappa -0.005 vs 0.802"
+  }
+ ],
+ "checks": [
+  {
+   "family": "dose",
+   "name": "ratio of means T1: units.json vs dose_units.csv",
+   "expected": 0.7510728240013123,
+   "got": 0.7510728240013123,
+   "pass": true
+  },
+  {
+   "family": "dose",
+   "name": "ratio of means T2: units.json vs dose_units.csv",
+   "expected": 0.8335155248641968,
+   "got": 0.8335155248641968,
+   "pass": true
+  },
+  {
+   "family": "dose",
+   "name": "ratio of means T03: units.json vs dose_units.csv",
+   "expected": 0.9735943675041199,
+   "got": 0.9735943675041199,
+   "pass": true
+  },
+  {
+   "family": "dose",
+   "name": "ratio of means T05: units.json vs dose_units.csv",
+   "expected": 0.7773554921150208,
+   "got": 0.7773554921150208,
+   "pass": true
+  },
+  {
+   "family": "dose",
+   "name": "ratio of means T06: units.json vs dose_units.csv",
+   "expected": 0.6199100017547607,
+   "got": 0.6199100017547607,
+   "pass": true
+  },
+  {
+   "family": "dose",
+   "name": "ratio of means T10: units.json vs dose_units.csv",
+   "expected": 0.7451708316802979,
+   "got": 0.7451708316802979,
+   "pass": true
+  },
+  {
+   "family": "dose",
+   "name": "ratio of means T14: units.json vs dose_units.csv",
+   "expected": 0.698820173740387,
+   "got": 0.698820173740387,
+   "pass": true
+  },
+  {
+   "family": "dose",
+   "name": "ratio of means R6: units.json vs dose_units.csv",
+   "expected": 0.6177505254745483,
+   "got": 0.6177505254745483,
+   "pass": true
+  },
+  {
+   "family": "dose",
+   "name": "ratio of means T04: units.json vs dose_units.csv",
+   "expected": 0.29637160897254944,
+   "got": 0.29637160897254944,
+   "pass": true
+  },
+  {
+   "family": "dose",
+   "name": "mean ratio T03",
+   "expected": 1.3938049693902332,
+   "got": 1.3938049693902332,
+   "pass": true
+  },
+  {
+   "family": "dose",
+   "name": "mean ratio T10",
+   "expected": 0.9904374480247494,
+   "got": 0.9904374480247494,
+   "pass": true
+  },
+  {
+   "family": "dose",
+   "name": "mean ratio T2",
+   "expected": 0.8892610977093378,
+   "got": 0.8892610977093378,
+   "pass": true
+  },
+  {
+   "family": "dose",
+   "name": "mean ratio T05",
+   "expected": 0.9949302176634469,
+   "got": 0.9949302176634469,
+   "pass": true
+  },
+  {
+   "family": "dose",
+   "name": "mean ratio T1",
+   "expected": 0.8742541482051215,
+   "got": 0.8742541482051215,
+   "pass": true
+  },
+  {
+   "family": "dose",
+   "name": "mean ratio T06",
+   "expected": 0.8290518095095952,
+   "got": 0.8290518095095952,
+   "pass": true
+  },
+  {
+   "family": "dose",
+   "name": "bracket dose inequality on all six decisive tasks",
+   "expected": true,
+   "got": true,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T03 bf16 a1.0 correct off-default",
+   "expected": 4,
+   "got": 4,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T03 bf16 a1.0 n correct",
+   "expected": 49,
+   "got": 49,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T03 bf16 a1.0 attempts off-default",
+   "expected": 5,
+   "got": 5,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T03 bf16 a2.0 correct off-default",
+   "expected": 14,
+   "got": 14,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T03 bf16 a2.0 n correct",
+   "expected": 50,
+   "got": 50,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T03 bf16 a2.0 attempts off-default",
+   "expected": 14,
+   "got": 14,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T03 fp8 a1.0 correct off-default",
+   "expected": 14,
+   "got": 14,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T03 fp8 a1.0 n correct",
+   "expected": 50,
+   "got": 50,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T03 fp8 a1.0 attempts off-default",
+   "expected": 14,
+   "got": 14,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T03 fp8 a2.0 correct off-default",
+   "expected": 23,
+   "got": 23,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T03 fp8 a2.0 n correct",
+   "expected": 47,
+   "got": 47,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T03 fp8 a2.0 attempts off-default",
+   "expected": 25,
+   "got": 25,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T10 bf16 a1.0 correct off-default",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T10 bf16 a1.0 n correct",
+   "expected": 50,
+   "got": 50,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T10 bf16 a1.0 attempts off-default",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T10 bf16 a2.0 correct off-default",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T10 bf16 a2.0 n correct",
+   "expected": 50,
+   "got": 50,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T10 bf16 a2.0 attempts off-default",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T10 fp8 a1.0 correct off-default",
+   "expected": 6,
+   "got": 6,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T10 fp8 a1.0 n correct",
+   "expected": 50,
+   "got": 50,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T10 fp8 a1.0 attempts off-default",
+   "expected": 6,
+   "got": 6,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T10 fp8 a2.0 correct off-default",
+   "expected": 30,
+   "got": 30,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T10 fp8 a2.0 n correct",
+   "expected": 50,
+   "got": 50,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T10 fp8 a2.0 attempts off-default",
+   "expected": 30,
+   "got": 30,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T2 bf16 a1.0 correct off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T2 bf16 a1.0 n correct",
+   "expected": 50,
+   "got": 50,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T2 bf16 a1.0 attempts off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T2 bf16 a2.0 correct off-default",
+   "expected": 2,
+   "got": 2,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T2 bf16 a2.0 n correct",
+   "expected": 47,
+   "got": 47,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T2 bf16 a2.0 attempts off-default",
+   "expected": 5,
+   "got": 5,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T2 fp8 a1.0 correct off-default",
+   "expected": 9,
+   "got": 9,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T2 fp8 a1.0 n correct",
+   "expected": 43,
+   "got": 43,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T2 fp8 a1.0 attempts off-default",
+   "expected": 13,
+   "got": 13,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T2 fp8 a2.0 correct off-default",
+   "expected": 15,
+   "got": 15,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T2 fp8 a2.0 n correct",
+   "expected": 37,
+   "got": 37,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T2 fp8 a2.0 attempts off-default",
+   "expected": 27,
+   "got": 27,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T05 bf16 a1.0 correct off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T05 bf16 a1.0 n correct",
+   "expected": 50,
+   "got": 50,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T05 bf16 a1.0 attempts off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T05 bf16 a2.0 correct off-default",
+   "expected": 2,
+   "got": 2,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T05 bf16 a2.0 n correct",
+   "expected": 50,
+   "got": 50,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T05 bf16 a2.0 attempts off-default",
+   "expected": 2,
+   "got": 2,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T05 fp8 a1.0 correct off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T05 fp8 a1.0 n correct",
+   "expected": 50,
+   "got": 50,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T05 fp8 a1.0 attempts off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T05 fp8 a2.0 correct off-default",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T05 fp8 a2.0 n correct",
+   "expected": 50,
+   "got": 50,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T05 fp8 a2.0 attempts off-default",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T1 bf16 a1.0 correct off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T1 bf16 a1.0 n correct",
+   "expected": 40,
+   "got": 40,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T1 bf16 a1.0 attempts off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T1 bf16 a2.0 correct off-default",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T1 bf16 a2.0 n correct",
+   "expected": 38,
+   "got": 38,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T1 bf16 a2.0 attempts off-default",
+   "expected": 2,
+   "got": 2,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T1 fp8 a1.0 correct off-default",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T1 fp8 a1.0 n correct",
+   "expected": 35,
+   "got": 35,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T1 fp8 a1.0 attempts off-default",
+   "expected": 3,
+   "got": 3,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T1 fp8 a2.0 correct off-default",
+   "expected": 4,
+   "got": 4,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T1 fp8 a2.0 n correct",
+   "expected": 36,
+   "got": 36,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T1 fp8 a2.0 attempts off-default",
+   "expected": 12,
+   "got": 12,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T06 bf16 a1.0 correct off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T06 bf16 a1.0 n correct",
+   "expected": 30,
+   "got": 30,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T06 bf16 a1.0 attempts off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T06 bf16 a2.0 correct off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T06 bf16 a2.0 n correct",
+   "expected": 30,
+   "got": 30,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T06 bf16 a2.0 attempts off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T06 fp8 a1.0 correct off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T06 fp8 a1.0 n correct",
+   "expected": 50,
+   "got": 50,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T06 fp8 a1.0 attempts off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T06 fp8 a2.0 correct off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T06 fp8 a2.0 n correct",
+   "expected": 49,
+   "got": 49,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T06 fp8 a2.0 attempts off-default",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T03 Fisher two-sided a2 (correct-only)",
+   "expected": 0.03888598628365684,
+   "got": 0.03888598628365685,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T03 bracket one-sided p (correct-only)",
+   "expected": 0.5879763207301328,
+   "got": 0.5879763207301326,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T10 Fisher two-sided a2 (correct-only)",
+   "expected": 7.19752603712036e-11,
+   "got": 7.197526037120362e-11,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T10 bracket one-sided p (correct-only)",
+   "expected": 0.05587480885907363,
+   "got": 0.055874808859073644,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T2 Fisher two-sided a2 (correct-only)",
+   "expected": 5.278166134237923e-05,
+   "got": 5.278166134237922e-05,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T2 bracket one-sided p (correct-only)",
+   "expected": 0.01695641382983751,
+   "got": 0.01695641382983751,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T05 Fisher two-sided a2 (correct-only)",
+   "expected": 1.0,
+   "got": 1.0,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T05 bracket one-sided p (correct-only)",
+   "expected": 1.0,
+   "got": 1.0,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T1 Fisher two-sided a2 (correct-only)",
+   "expected": 0.19351726799151076,
+   "got": 0.1935172679915107,
+   "pass": true
+  },
+  {
+   "family": "engine",
+   "name": "T1 bracket one-sided p (correct-only)",
+   "expected": 0.732496194824962,
+   "got": 0.732496194824962,
+   "pass": true
+  },
+  {
+   "family": "landing",
+   "name": "hits FP8 screen",
+   "expected": 5,
+   "got": 5,
+   "pass": true
+  },
+  {
+   "family": "landing",
+   "name": "Poisson-binomial p FP8 screen",
+   "expected": 0.0011111111111111111,
+   "got": 0.0011111111111111111,
+   "pass": true
+  },
+  {
+   "family": "landing",
+   "name": "hits bf16 existing remeasure",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "landing",
+   "name": "Poisson-binomial p bf16 existing remeasure",
+   "expected": 0.4666666666666667,
+   "got": 0.4666666666666667,
+   "pass": true
+  },
+  {
+   "family": "landing",
+   "name": "hits panel A",
+   "expected": 3,
+   "got": 3,
+   "pass": true
+  },
+  {
+   "family": "landing",
+   "name": "Poisson-binomial p panel A",
+   "expected": 0.018518518518518517,
+   "got": 0.018518518518518517,
+   "pass": true
+  },
+  {
+   "family": "landing",
+   "name": "hits panel B",
+   "expected": 3,
+   "got": 3,
+   "pass": true
+  },
+  {
+   "family": "landing",
+   "name": "Poisson-binomial p panel B",
+   "expected": 0.08148148148148149,
+   "got": 0.08148148148148149,
+   "pass": true
+  },
+  {
+   "family": "landing",
+   "name": "hits Gemma",
+   "expected": 5,
+   "got": 5,
+   "pass": true
+  },
+  {
+   "family": "landing",
+   "name": "Poisson-binomial p Gemma",
+   "expected": 0.02518518518518519,
+   "got": 0.02518518518518519,
+   "pass": true
+  },
+  {
+   "family": "landing",
+   "name": "hits total (17 of 21 expected)",
+   "expected": 17,
+   "got": 17,
+   "pass": true
+  },
+  {
+   "family": "landing",
+   "name": "Poisson-binomial p total",
+   "expected": 5.820311191646864e-07,
+   "got": 5.820311191646864e-07,
+   "pass": true
+  },
+  {
+   "family": "landing",
+   "name": "unconfounded events (8 expected)",
+   "expected": 8,
+   "got": 8,
+   "pass": true
+  },
+  {
+   "family": "landing",
+   "name": "unconfounded hits (5 expected)",
+   "expected": 5,
+   "got": 5,
+   "pass": true
+  },
+  {
+   "family": "landing",
+   "name": "unconfounded pooled p",
+   "expected": 0.052839506172839515,
+   "got": 0.05283950617283952,
+   "pass": true
+  },
+  {
+   "family": "movability",
+   "name": "rho(beta, E) over 13 units",
+   "expected": 0.14559511621137752,
+   "got": 0.14559511621137752,
+   "pass": true
+  },
+  {
+   "family": "movability",
+   "name": "rho rounds to the recorded 0.15",
+   "expected": 0.15,
+   "got": 0.15,
+   "pass": true
+  },
+  {
+   "family": "movability",
+   "name": "Fisher-z CI plain",
+   "expected": [
+    -0.44074727086913534,
+    0.6448500512025882
+   ],
+   "got": [
+    -0.44074727086913534,
+    0.644850051202588
+   ],
+   "pass": true
+  },
+  {
+   "family": "movability",
+   "name": "Fisher-z CI fieller",
+   "expected": [
+    -0.4553909874184541,
+    0.6554276105669936
+   ],
+   "got": [
+    -0.45539098741845385,
+    0.6554276105669935
+   ],
+   "pass": true
+  },
+  {
+   "family": "movability",
+   "name": "Fisher-z CI bonett_wright",
+   "expected": [
+    -0.4433830150194423,
+    0.6467597089442118
+   ],
+   "got": [
+    -0.4433830150194422,
+    0.6467597089442115
+   ],
+   "pass": true
+  },
+  {
+   "family": "movability",
+   "name": "permutation p (Monte Carlo 20,000)",
+   "expected": 0.31683868316131686,
+   "got": 0.3182840857957102,
+   "pass": true
+  },
+  {
+   "family": "movability",
+   "name": "power at rho 0.6 (+-0.03 Monte Carlo)",
+   "expected": 0.6343,
+   "got": 0.636,
+   "pass": true
+  },
+  {
+   "family": "movability",
+   "name": "rival R1_opening_margin rho",
+   "expected": 0.07862136275414387,
+   "got": 0.07862136275414387,
+   "pass": true
+  },
+  {
+   "family": "movability",
+   "name": "rival R4_novelty_excess rho",
+   "expected": -0.5033258793634009,
+   "got": -0.5033258793634009,
+   "pass": true
+  },
+  {
+   "family": "movability",
+   "name": "rival R6_runtime_merit rho",
+   "expected": 0.7134160694357499,
+   "got": 0.7134160694357499,
+   "pass": true
+  },
+  {
+   "family": "movability",
+   "name": "rival R7_twin_modal_share rho",
+   "expected": 0.4090066997856399,
+   "got": 0.4090066997856399,
+   "pass": true
+  },
+  {
+   "family": "movability",
+   "name": "rival K rho",
+   "expected": -0.20643348211598284,
+   "got": -0.20643348211598286,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "phrasing clusters LIT_T0.3",
+   "expected": [
+    2,
+    4,
+    8
+   ],
+   "got": [
+    2,
+    4,
+    8
+   ],
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "phrasing clusters LIT_T0.7",
+   "expected": [
+    3,
+    3,
+    10
+   ],
+   "got": [
+    3,
+    3,
+    10
+   ],
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "phrasing clusters LIT_T1.0",
+   "expected": [
+    2,
+    3,
+    9
+   ],
+   "got": [
+    2,
+    3,
+    9
+   ],
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "phrasing clusters LIT_T1.3",
+   "expected": [
+    5,
+    7,
+    12
+   ],
+   "got": [
+    5,
+    7,
+    12
+   ],
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "phrasing clusters LIT_REP_T0.7",
+   "expected": [
+    3,
+    6,
+    10
+   ],
+   "got": [
+    3,
+    6,
+    10
+   ],
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "phrasing clusters LIT_T0.3 against the expected",
+   "expected": [
+    2,
+    4,
+    8
+   ],
+   "got": [
+    2,
+    4,
+    8
+   ],
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "phrasing clusters LIT_T0.7 against the expected",
+   "expected": [
+    3,
+    3,
+    10
+   ],
+   "got": [
+    3,
+    3,
+    10
+   ],
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "phrasing clusters LIT_T1.0 against the expected",
+   "expected": [
+    2,
+    3,
+    9
+   ],
+   "got": [
+    2,
+    3,
+    9
+   ],
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "phrasing clusters LIT_T1.3 against the expected",
+   "expected": [
+    5,
+    7,
+    12
+   ],
+   "got": [
+    5,
+    7,
+    12
+   ],
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "P15 BINT T10",
+   "expected": 0.005,
+   "got": 0.005,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "P20 BINT T10",
+   "expected": 0.011,
+   "got": 0.011,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "P15 EAP T2",
+   "expected": 0.103,
+   "got": 0.103,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "P20 EAP T2",
+   "expected": 0.19,
+   "got": 0.19,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "P20 NOVELTY T03",
+   "expected": 0.018,
+   "got": 0.018,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B1 twin correct off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B1 twin Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.0,
+   "got": 1.0,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B1 plan noise alpha 1 correct off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B1 plan noise alpha 1 Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.0,
+   "got": 1.0,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B1 plan noise alpha 2 correct off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B1 plan noise alpha 2 Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.0,
+   "got": 1.0,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B1 temperature 1.3 correct off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B1 temperature 1.3 Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.0,
+   "got": 1.0,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B2 twin correct off-default",
+   "expected": 4,
+   "got": 4,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B2 twin Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.3046451443068614,
+   "got": 1.3123087391179853,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B2 plan noise alpha 1 correct off-default",
+   "expected": 10,
+   "got": 10,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B2 plan noise alpha 1 Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.6316166322978076,
+   "got": 1.6375154930645295,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B2 plan noise alpha 2 correct off-default",
+   "expected": 19,
+   "got": 19,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B2 plan noise alpha 2 Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.919443343648678,
+   "got": 1.9240261793396687,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B2 temperature 1.3 correct off-default",
+   "expected": 6,
+   "got": 6,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B2 temperature 1.3 Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.4921800108485301,
+   "got": 1.4966188868955728,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B3 twin correct off-default",
+   "expected": 17,
+   "got": 17,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B3 twin Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.8758519313891842,
+   "got": 1.8810122477606974,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B3 plan noise alpha 1 correct off-default",
+   "expected": 20,
+   "got": 20,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B3 plan noise alpha 1 Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.9374594562782763,
+   "got": 1.9409906308131408,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B3 plan noise alpha 2 correct off-default",
+   "expected": 19,
+   "got": 19,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B3 plan noise alpha 2 Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.9401746018054198,
+   "got": 1.9384839705705046,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B3 temperature 1.3 correct off-default",
+   "expected": 18,
+   "got": 18,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B3 temperature 1.3 Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.9154951762321637,
+   "got": 1.9120899056437244,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B4 twin correct off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B4 twin Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.0,
+   "got": 1.0,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B4 plan noise alpha 1 correct off-default",
+   "expected": 2,
+   "got": 2,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B4 plan noise alpha 1 Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.1673746809498171,
+   "got": 1.1720366115352907,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B4 plan noise alpha 2 correct off-default",
+   "expected": 4,
+   "got": 4,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B4 plan noise alpha 2 Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.3259591898913787,
+   "got": 1.3177731853926231,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B4 temperature 1.3 correct off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B4 temperature 1.3 Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.0,
+   "got": 1.0,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B5 twin correct off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B5 twin Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.0,
+   "got": 1.0,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B5 plan noise alpha 1 correct off-default",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B5 plan noise alpha 1 Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.119414464450237,
+   "got": 1.114294089251758,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B5 plan noise alpha 2 correct off-default",
+   "expected": 4,
+   "got": 4,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B5 plan noise alpha 2 Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.4060723708596956,
+   "got": 1.4026284484060687,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B5 temperature 1.3 correct off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B5 temperature 1.3 Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.0,
+   "got": 1.0,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B6 twin correct off-default",
+   "expected": 12,
+   "got": 12,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B6 twin Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 2.005388768901016,
+   "got": 2.0110832907712584,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B6 plan noise alpha 1 correct off-default",
+   "expected": 11,
+   "got": 11,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B6 plan noise alpha 1 Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.8945945785672076,
+   "got": 1.895457237005555,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B6 plan noise alpha 2 correct off-default",
+   "expected": 18,
+   "got": 18,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B6 plan noise alpha 2 Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 2.365421201526254,
+   "got": 2.3755430765152266,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B6 temperature 1.3 correct off-default",
+   "expected": 13,
+   "got": 13,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B6 temperature 1.3 Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 2.0334226236218997,
+   "got": 2.048961288759539,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B7 twin correct off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B7 twin Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.0,
+   "got": 1.0,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B7 plan noise alpha 1 correct off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B7 plan noise alpha 1 Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.0,
+   "got": 1.0,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B7 plan noise alpha 2 correct off-default",
+   "expected": 5,
+   "got": 5,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B7 plan noise alpha 2 Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 2.951151785867524,
+   "got": 2.9511517858675242,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B7 temperature 1.3 correct off-default",
+   "expected": 0,
+   "got": 0,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "panel B B7 temperature 1.3 Hill-1 (exact rarefaction vs Monte Carlo)",
+   "expected": 1.0,
+   "got": 1.0,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "B3 T1.3 Prim 18/49",
+   "expected": "18/49",
+   "got": "18/49",
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "Table 126c K0522 Hill-1",
+   "expected": 2.87,
+   "got": 2.87,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "Table 126c K0523 Hill-1",
+   "expected": 2.96,
+   "got": 2.96,
+   "pass": true
+  },
+  {
+   "family": "tables",
+   "name": "Table 126c K0524 Hill-1",
+   "expected": 2.92,
+   "got": 2.92,
+   "pass": true
+  },
+  {
+   "family": "judges",
+   "name": "kappa (4 class, 24 items)",
+   "expected": 0.8021978021978022,
+   "got": 0.8021978021978022,
+   "pass": true
+  },
+  {
+   "family": "judges",
+   "name": "AC1 (4 class, 24 items)",
+   "expected": 0.8418161845477847,
+   "got": 0.8418161845477847,
+   "pass": true
+  },
+  {
+   "family": "judges",
+   "name": "raw agreement on the 14",
+   "expected": 0.8571428571428571,
+   "got": 0.8571428571428571,
+   "pass": true
+  },
+  {
+   "family": "judges",
+   "name": "controls correct",
+   "expected": 9,
+   "got": 9,
+   "pass": true
+  },
+  {
+   "family": "judges",
+   "name": "novel calls on the 14",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-001 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-001 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-002 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-002 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-003 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-003 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-004 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-004 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-005 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-005 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-006 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-006 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-007 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-007 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-008 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-008 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-009 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-009 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-010 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-010 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-011 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-011 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-012 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-012 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-013 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-013 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-014 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-014 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-015 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-015 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-016 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-016 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-017 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-017 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-018 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-018 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-019 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-019 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-020 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-020 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-021 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-021 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-022 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-022 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-023 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-023 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-024 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-024 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-025 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-025 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-026 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-026 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-027 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-027 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-028 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-028 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-029 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-029 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-030 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-030 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-031 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-031 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-032 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-032 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-033 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-033 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-034 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-034 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-035 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-035 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-036 old_text is an exact unique substring",
+   "expected": 1,
+   "got": 1,
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "C6-036 marker",
+   "expected": "iteration-6 correction",
+   "got": "iteration-6 correction",
+   "pass": true
+  },
+  {
+   "family": "corrections",
+   "name": "old_text spans are disjoint",
+   "expected": true,
+   "got": true,
+   "pass": true
+  }
+ ]
+}
