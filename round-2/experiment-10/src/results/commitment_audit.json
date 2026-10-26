@@ -1,0 +1,94 @@
+{
+ "n_entries": 14,
+ "chain_ok": true,
+ "problems": [],
+ "freeze_utc": "2026-10-20T01:59:11.750627Z",
+ "first_S5_score_utc": "2026-10-20T02:02:38.006074Z",
+ "freeze_before_first_S5_score": true,
+ "entries": [
+  {
+   "utc_time": "2026-10-20T01:59:11.750627Z",
+   "file": "results/frozen_config.json",
+   "sha": "984bd05e8e05785e2264d477e7ed14567ecf242db654bc470bee1631d2ce3e10",
+   "note": "freeze: S0.9 before the first S5 score (T9 passed: results/test_analysis_c1.json)"
+  },
+  {
+   "utc_time": "2026-10-20T01:59:11.762747Z",
+   "file": "src/frlp.py",
+   "sha": "3186a3f1f9963c0f85b7eb1e6f4c9af0470bb8a74d11a20eab68941cd5070241",
+   "note": "freeze: S0.9 before the first S5 score (T9 passed: results/test_analysis_c1.json)"
+  },
+  {
+   "utc_time": "2026-10-20T01:59:11.772270Z",
+   "file": "src/analysis_c1.py",
+   "sha": "e3b622a900a2103c1a42414d0f6ab9de77d709d9057878d899c80aca2d9413e9",
+   "note": "freeze: S0.9 before the first S5 score (T9 passed: results/test_analysis_c1.json)"
+  },
+  {
+   "utc_time": "2026-10-20T01:59:11.782159Z",
+   "file": "src/run_analysis.py",
+   "sha": "da2ec8126868a9779a35f3cc78c20e298fce3aca674e03b67e8a4c1b69218e2c",
+   "note": "freeze: S0.9 before the first S5 score (T9 passed: results/test_analysis_c1.json)"
+  },
+  {
+   "utc_time": "2026-10-20T01:59:11.805063Z",
+   "file": "src/config.py",
+   "sha": "acd1006a64049ca1bc5777e55bcf54142ab3186ea10666331a0907eeba98da96",
+   "note": "freeze: S0.9 before the first S5 score (T9 passed: results/test_analysis_c1.json)"
+  },
+  {
+   "utc_time": "2026-10-20T02:05:10.165792Z",
+   "file": "src/run_analysis.py",
+   "sha": "7bd5395de20b5c5662d05b5fa2f9ac43f5f4fc2ea2aca503202b917c2e7142fc",
+   "note": "bugfix/extension: audit-disputed sensitivity (plan S1) and template-mean noise sensitivity added to run_analysis.py; primary analysis unchanged"
+  },
+  {
+   "utc_time": "2026-10-20T02:05:10.175880Z",
+   "file": "src/analysis_c1.py",
+   "sha": "e3b622a900a2103c1a42414d0f6ab9de77d709d9057878d899c80aca2d9413e9",
+   "note": "bugfix/extension: audit-disputed sensitivity (plan S1) and template-mean noise sensitivity added to run_analysis.py; primary analysis unchanged"
+  },
+  {
+   "utc_time": "2026-10-20T02:33:23.631436Z",
+   "file": "data/forced_set.jsonl",
+   "sha": "e9f948297127e98cd3c111504bb41f02476e13b285042b5966df522073375165",
+   "note": "bugfix (before S6): 8 forced programs whose ORIGINAL code is unparsable (e.g. Python-2 tuple parameters) cannot be name-scrubbed and are dropped (plan S2.3/F12); scores unchanged for the other 248; post-hoc bootstrap diagnostics added to run_analysis.py"
+  },
+  {
+   "utc_time": "2026-10-20T02:33:23.640597Z",
+   "file": "src/run_analysis.py",
+   "sha": "af0128ba22099dbf7ea7fe93d357831ec5bf08d9568b2321839c04cb67489bfd",
+   "note": "bugfix (before S6): 8 forced programs whose ORIGINAL code is unparsable (e.g. Python-2 tuple parameters) cannot be name-scrubbed and are dropped (plan S2.3/F12); scores unchanged for the other 248; post-hoc bootstrap diagnostics added to run_analysis.py"
+  },
+  {
+   "utc_time": "2026-10-20T02:40:59.039161Z",
+   "file": "src/analysis_c1.py",
+   "sha": "030dfa899b9fefa43c271fe5c84316eed93a42dd400a856c319fa0a6f53d8285",
+   "note": "bugfix: View.u returns a NaN vector (not a scalar) when every type profile is undefined (degenerate bootstrap draws in the audit-disputed sensitivity); primary results unaffected"
+  },
+  {
+   "utc_time": "2026-10-20T02:48:01.329161Z",
+   "file": "src/run_analysis.py",
+   "sha": "7926765fdf0ab0f97ed94f96b5c79f4267b9c8ce56b2da6c2bcaf0d1284fc7bc",
+   "note": "bugfix: free-form cross-check read exp1's ext_freetext.jsonl with the wrong keys (mode_X/raw); sensitivity only"
+  },
+  {
+   "utc_time": "2026-10-20T03:19:55.971124Z",
+   "file": "src/analysis_c1.py",
+   "sha": "44110b907af194b947ad0bc9613f74062fc4b6f14c235fbaf3ea3c966ab8f7c8",
+   "note": "omission fix: route-test survivor-profile cosines (plan 6.11) computed per task (profiles of different length were skipped)"
+  },
+  {
+   "utc_time": "2026-10-20T03:27:19.709750Z",
+   "file": "src/run_analysis.py",
+   "sha": "3740213fa2d195ce5b504adf1393f44eba0024e63be5c38d65798a5a05bc3c39",
+   "note": "cosmetic: @logger.catch(reraise=True) on main() (aii-python convention); no logic change"
+  },
+  {
+   "utc_time": "2026-10-20T03:27:19.719449Z",
+   "file": "src/analysis_c1.py",
+   "sha": "44110b907af194b947ad0bc9613f74062fc4b6f14c235fbaf3ea3c966ab8f7c8",
+   "note": "cosmetic: @logger.catch(reraise=True) on main() (aii-python convention); no logic change"
+  }
+ ]
+}
