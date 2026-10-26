@@ -1,0 +1,92 @@
+<workspace>/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+INFO 10-20 01:36:54 [__init__.py:216] Automatically detected platform cuda.
+INFO 10-20 01:37:11 [utils.py:233] non-default args: {'tokenizer': '<run-volume-path>', 'dtype': 'bfloat16', 'seed': 1234, 'max_model_len': 2048, 'enable_prefix_caching': True, 'max_num_seqs': 48, 'disable_log_stats': True, 'enforce_eager': True, 'generation_config': 'vllm', 'model': '<run-volume-path>'}
+INFO 10-20 01:37:11 [model.py:547] Resolved architecture: Qwen3ForCausalLM
+`torch_dtype` is deprecated! Use `dtype` instead!
+INFO 10-20 01:37:11 [model.py:1510] Using max model len 2048
+INFO 10-20 01:37:14 [scheduler.py:205] Chunked prefill is enabled with max_num_batched_tokens=8192.
+INFO 10-20 01:37:14 [__init__.py:381] Cudagraph is disabled under eager mode
+[1;36m(EngineCore_DP0 pid=9010)[0;0m INFO 10-20 01:37:14 [core.py:644] Waiting for init message from front-end.
+[1;36m(EngineCore_DP0 pid=9010)[0;0m INFO 10-20 01:37:14 [core.py:77] Initializing a V1 LLM engine (v0.11.0) with config: model='<run-volume-path>', speculative_config=None, tokenizer='<run-volume-path>', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser=''), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None), seed=1234, served_model_name=<run-volume-path>, enable_prefix_caching=True, chunked_prefill_enabled=True, pooler_config=None, compilation_config={"level":0,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":null,"use_inductor":true,"compile_sizes":[],"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"cudagraph_mode":0,"use_cudagraph":true,"cudagraph_num_of_warmups":0,"cudagraph_capture_sizes":[],"cudagraph_copy_inputs":false,"full_cuda_graph":false,"use_inductor_graph_partition":false,"pass_config":{},"max_capture_size":0,"local_cache_dir":null}
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[1;36m(EngineCore_DP0 pid=9010)[0;0m INFO 10-20 01:37:24 [parallel_state.py:1208] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0, EP rank 0
+[1;36m(EngineCore_DP0 pid=9010)[0;0m WARNING 10-20 01:37:24 [topk_topp_sampler.py:66] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+[1;36m(EngineCore_DP0 pid=9010)[0;0m INFO 10-20 01:37:25 [gpu_model_runner.py:2602] Starting to load model <run-volume-path>
+[1;36m(EngineCore_DP0 pid=9010)[0;0m INFO 10-20 01:37:25 [gpu_model_runner.py:2634] Loading model from scratch...
+[1;36m(EngineCore_DP0 pid=9010)[0;0m INFO 10-20 01:37:25 [cuda.py:366] Using Flash Attention backend on V1 engine.
+[1;36m(EngineCore_DP0 pid=9010)[0;0m Loading safetensors checkpoint shards:   0% Completed | 0/5 [00:00<?, ?it/s]
+[1;36m(EngineCore_DP0 pid=9010)[0;0m Loading safetensors checkpoint shards:  20% Completed | 1/5 [00:05<00:21,  5.48s/it]
+[1;36m(EngineCore_DP0 pid=9010)[0;0m Loading safetensors checkpoint shards:  40% Completed | 2/5 [00:11<00:16,  5.55s/it]
+[1;36m(EngineCore_DP0 pid=9010)[0;0m Loading safetensors checkpoint shards:  60% Completed | 3/5 [00:16<00:10,  5.47s/it]
+[1;36m(EngineCore_DP0 pid=9010)[0;0m Loading safetensors checkpoint shards:  80% Completed | 4/5 [00:21<00:05,  5.13s/it]
+[1;36m(EngineCore_DP0 pid=9010)[0;0m Loading safetensors checkpoint shards: 100% Completed | 5/5 [00:23<00:00,  3.99s/it]
+[1;36m(EngineCore_DP0 pid=9010)[0;0m Loading safetensors checkpoint shards: 100% Completed | 5/5 [00:23<00:00,  4.60s/it]
+[1;36m(EngineCore_DP0 pid=9010)[0;0m 
+[1;36m(EngineCore_DP0 pid=9010)[0;0m INFO 10-20 01:37:48 [default_loader.py:267] Loading weights took 23.08 seconds
+[1;36m(EngineCore_DP0 pid=9010)[0;0m INFO 10-20 01:37:49 [gpu_model_runner.py:2653] Model loading took 15.2683 GiB and 23.245793 seconds
+[1;36m(EngineCore_DP0 pid=9010)[0;0m INFO 10-20 01:37:52 [gpu_worker.py:298] Available KV cache memory: 3.71 GiB
+[1;36m(EngineCore_DP0 pid=9010)[0;0m INFO 10-20 01:37:52 [kv_cache_utils.py:1087] GPU KV cache size: 26,992 tokens
+[1;36m(EngineCore_DP0 pid=9010)[0;0m INFO 10-20 01:37:52 [kv_cache_utils.py:1091] Maximum concurrency for 2,048 tokens per request: 13.18x
+[1;36m(EngineCore_DP0 pid=9010)[0;0m WARNING 10-20 01:37:52 [cudagraph_dispatcher.py:106] cudagraph dispatching keys are not initialized. No cudagraph will be used.
+[1;36m(EngineCore_DP0 pid=9010)[0;0m INFO 10-20 01:37:52 [core.py:210] init engine (profile, create kv cache, warmup model) took 3.43 seconds
+[1;36m(EngineCore_DP0 pid=9010)[0;0m INFO 10-20 01:37:53 [__init__.py:381] Cudagraph is disabled under eager mode
+INFO 10-20 01:37:53 [llm.py:306] Supported_tasks: ['generate']
+01:37:53|INFO   |vLLM loaded in 42s
+01:42:17|INFO   |generated 440 in 264s (0.60 s/gen, 534 tok/s)
+01:42:25|INFO   |generated 220 in 8s (0.04 s/gen, 488 tok/s)
+01:42:25|INFO   |evaluate_unique: 405 unique programs, 393 not cached
+01:42:29|INFO   |evaluate 240/393: 100/240
+01:42:42|INFO   |evaluate 240/393: 200/240
+01:42:45|INFO   |evaluate 240/393: 240/240
+01:42:57|INFO   |evaluate 393/393: 100/153
+01:43:02|INFO   |evaluate 393/393: 153/153
+01:43:16|INFO   |judge openai/gpt-4.1-mini [judge]: 125/125 judged; spent 0.0574 USD on judge; stop={'stop': False}
+01:43:16|INFO   |after round 1: ('t1', 'astar_gbfs', 'plain') {'attempts': 40, 'labelled': 15}
+01:43:16|INFO   |after round 1: ('t1', 'bfs', 'plain') {'attempts': 40, 'labelled': 40}
+01:43:16|INFO   |after round 1: ('t1', 'bibfs', 'plain') {'attempts': 40, 'labelled': 11}
+01:43:16|INFO   |after round 1: ('t1', 'dfs', 'plain') {'attempts': 40, 'labelled': 40}
+01:43:16|INFO   |after round 1: ('t1', 'dijkstra', 'plain') {'attempts': 40, 'labelled': 6}
+01:43:16|INFO   |after round 1: ('t1', 'iddfs', 'plain') {'attempts': 40, 'labelled': 40}
+01:43:16|INFO   |after round 1: ('t2', 'bf_spfa', 'plain') {'attempts': 40, 'labelled': 40}
+01:43:16|INFO   |after round 1: ('t2', 'bidijkstra', 'plain') {'attempts': 40, 'labelled': 1}
+01:43:16|INFO   |after round 1: ('t2', 'dial', 'plain') {'attempts': 40, 'labelled': 7}
+01:43:16|INFO   |after round 1: ('t2', 'dijkstra', 'plain') {'attempts': 40, 'labelled': 40}
+01:43:16|INFO   |after round 1: ('t2', 'floyd', 'plain') {'attempts': 40, 'labelled': 40}
+01:43:16|INFO   |round 2: 370 requests
+01:47:49|INFO   |generated 370 in 273s (0.74 s/gen, 532 tok/s)
+01:47:49|INFO   |evaluate_unique: 370 unique programs, 370 not cached
+01:47:52|INFO   |evaluate 240/370: 100/240
+01:47:54|INFO   |evaluate 240/370: 200/240
+01:47:59|INFO   |evaluate 240/370: 240/240
+01:48:01|INFO   |evaluate 370/370: 100/130
+01:48:02|INFO   |evaluate 370/370: 130/130
+01:48:24|INFO   |judge openai/gpt-4.1-mini [judge]: 234/234 judged; spent 0.1651 USD on judge; stop={'stop': False}
+01:48:24|INFO   |round 3 (descriptive): 360 requests
+01:52:17|INFO   |generated 360 in 233s (0.65 s/gen, 540 tok/s)
+01:52:17|INFO   |evaluate_unique: 355 unique programs, 355 not cached
+01:52:20|INFO   |evaluate 240/355: 100/240
+01:52:23|INFO   |evaluate 240/355: 200/240
+01:52:28|INFO   |evaluate 240/355: 240/240
+01:52:30|INFO   |evaluate 355/355: 100/115
+01:52:35|INFO   |evaluate 355/355: 115/115
+01:53:00|INFO   |judge openai/gpt-4.1-mini [judge]: 275/275 judged; spent 0.2821 USD on judge; stop={'stop': False}
+01:53:00|INFO   |final: t1|astar_gbfs|plain {'attempts': 90, 'labelled': 32}
+01:53:00|INFO   |final: t1|bfs|plain {'attempts': 40, 'labelled': 40}
+01:53:00|INFO   |final: t1|bibfs|plain {'attempts': 120, 'labelled': 30}
+01:53:00|INFO   |final: t1|dfs|plain {'attempts': 40, 'labelled': 40}
+01:53:00|INFO   |final: t1|dijkstra|desc {'attempts': 120, 'labelled': 92}
+01:53:00|INFO   |final: t1|dijkstra|plain {'attempts': 120, 'labelled': 26}
+01:53:00|INFO   |final: t1|iddfs|plain {'attempts': 40, 'labelled': 40}
+01:53:00|INFO   |final: t2|bf_spfa|plain {'attempts': 40, 'labelled': 40}
+01:53:00|INFO   |final: t2|bidijkstra|desc {'attempts': 120, 'labelled': 14}
+01:53:00|INFO   |final: t2|bidijkstra|plain {'attempts': 120, 'labelled': 2}
+01:53:00|INFO   |final: t2|dial|desc {'attempts': 120, 'labelled': 106}
+01:53:00|INFO   |final: t2|dial|plain {'attempts': 120, 'labelled': 22}
+01:53:00|INFO   |final: t2|dijkstra|plain {'attempts': 40, 'labelled': 40}
+01:53:00|INFO   |final: t2|floyd|plain {'attempts': 40, 'labelled': 40}

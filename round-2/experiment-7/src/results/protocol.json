@@ -1,0 +1,138 @@
+{
+ "model": "Qwen/Qwen3-8B@b968826d9c46dd6066d109eabc6255188de91218, thinking off",
+ "chat_tail": "<|im_start|>assistant\\n<think>\\n\\n</think>\\n\\n",
+ "templates": "src/config.py TEMPLATES (W1..W5 ban / mention / neutral)",
+ "neutral_padding": {
+  "filler": " .",
+  "candidates": [
+   " .",
+   " -",
+   " ok"
+  ],
+  "failures": []
+ },
+ "nouns": {
+  "t1": {
+   "bfs": {
+    "A": "man",
+    "B": "guy",
+    "name_tokens": 7
+   },
+   "dfs": {
+    "A": "house",
+    "B": "baby",
+    "name_tokens": 6
+   },
+   "bibfs": {
+    "A": "car",
+    "B": "mother",
+    "name_tokens": 3
+   },
+   "iddfs": {
+    "A": "room",
+    "B": "kid",
+    "name_tokens": 8
+   },
+   "astar_gbfs": {
+    "A": "school",
+    "B": "honey",
+    "name_tokens": 3
+   },
+   "dijkstra": {
+    "A": "door",
+    "B": "face",
+    "name_tokens": 4
+   },
+   "jps": {
+    "A": "hand",
+    "B": "phone",
+    "name_tokens": 3
+   },
+   "idastar": {
+    "A": "drink",
+    "B": "heart",
+    "name_tokens": 4
+   },
+   "nonce": {
+    "A": "water",
+    "B": "fire",
+    "name_tokens": 6
+   },
+   "two_step": {
+    "A": "office or dinner",
+    "B": "body or dog",
+    "name_tokens": 14
+   }
+  },
+  "t2": {
+   "dijkstra": {
+    "A": "man",
+    "B": "guy",
+    "name_tokens": 4
+   },
+   "bf_spfa": {
+    "A": "house",
+    "B": "baby",
+    "name_tokens": 7
+   },
+   "bidijkstra": {
+    "A": "car",
+    "B": "mother",
+    "name_tokens": 4
+   },
+   "floyd": {
+    "A": "room",
+    "B": "kid",
+    "name_tokens": 4
+   },
+   "dial": {
+    "A": "school",
+    "B": "honey",
+    "name_tokens": 6
+   },
+   "johnson": {
+    "A": "door",
+    "B": "face",
+    "name_tokens": 3
+   },
+   "yen": {
+    "A": "hand",
+    "B": "phone",
+    "name_tokens": 9
+   },
+   "nonce": {
+    "A": "drink",
+    "B": "heart",
+    "name_tokens": 6
+   },
+   "two_step": {
+    "A": "water or fire",
+    "B": "office or dinner",
+    "name_tokens": 12
+   }
+  }
+ },
+ "spec_suffix_tokens": {
+  "t1": 229,
+  "t2": 186
+ },
+ "response_text": "'```python\\n' + name-scrubbed code (ending in newline) + '```'",
+ "tokenisation": "prompt (chat string) and response tokenised separately, add_special_tokens=False, concatenated",
+ "precision": "bf16 weights; fp32 activations; TF32 matmuls; fp32 lm_head + log-softmax",
+ "row_schema": [
+  "task",
+  "condition",
+  "template",
+  "paraphrase_id",
+  "sample_id",
+  "seed",
+  "model",
+  "decoding",
+  "label",
+  "labeller_source",
+  "passed",
+  "code_sha256",
+  "code"
+ ],
+ "ess_flag": "cells with ESS < 5 are flagged; ESS-weighted variant down-weights them by ESS/5"
+}

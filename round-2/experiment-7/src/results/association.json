@@ -1,0 +1,131 @@
+{
+ "profiles": {
+  "t1|bfs": {
+   "dfs": 0.84,
+   "bibfs": 0.04,
+   "iddfs": 0.04,
+   "astar_gbfs": 0.04,
+   "dijkstra": 0.04
+  },
+  "t1|dfs": {
+   "bfs": 0.84,
+   "bibfs": 0.04,
+   "iddfs": 0.04,
+   "astar_gbfs": 0.04,
+   "dijkstra": 0.04
+  },
+  "t1|bibfs": {
+   "bfs": 0.44,
+   "dfs": 0.12,
+   "iddfs": 0.04,
+   "astar_gbfs": 0.36,
+   "dijkstra": 0.04
+  },
+  "t1|iddfs": {
+   "bfs": 0.08,
+   "dfs": 0.72,
+   "bibfs": 0.04,
+   "astar_gbfs": 0.12,
+   "dijkstra": 0.04
+  },
+  "t1|astar_gbfs": {
+   "bfs": 0.84,
+   "dfs": 0.04,
+   "bibfs": 0.04,
+   "iddfs": 0.04,
+   "dijkstra": 0.04
+  },
+  "t1|dijkstra": {
+   "bfs": 0.8,
+   "dfs": 0.04,
+   "bibfs": 0.04,
+   "iddfs": 0.04,
+   "astar_gbfs": 0.08
+  },
+  "t2|dijkstra": {
+   "bf_spfa": 0.25,
+   "bidijkstra": 0.041666666666666664,
+   "floyd": 0.041666666666666664,
+   "dial": 0.041666666666666664
+  },
+  "t2|bf_spfa": {
+   "dijkstra": 0.3333333333333333,
+   "bidijkstra": 0.041666666666666664,
+   "floyd": 0.041666666666666664,
+   "dial": 0.041666666666666664
+  },
+  "t2|bidijkstra": {
+   "dijkstra": 0.875,
+   "bf_spfa": 0.041666666666666664,
+   "floyd": 0.041666666666666664,
+   "dial": 0.041666666666666664
+  },
+  "t2|floyd": {
+   "dijkstra": 0.875,
+   "bf_spfa": 0.041666666666666664,
+   "bidijkstra": 0.041666666666666664,
+   "dial": 0.041666666666666664
+  },
+  "t2|dial": {
+   "dijkstra": 0.875,
+   "bf_spfa": 0.041666666666666664,
+   "bidijkstra": 0.041666666666666664,
+   "floyd": 0.041666666666666664
+  }
+ },
+ "counts": {
+  "t1|bfs": {
+   "dfs": 20
+  },
+  "t1|dfs": {
+   "bfs": 20
+  },
+  "t1|bibfs": {
+   "bfs": 10,
+   "astar_gbfs": 8,
+   "dfs": 2
+  },
+  "t1|iddfs": {
+   "dfs": 17,
+   "astar_gbfs": 2,
+   "bfs": 1
+  },
+  "t1|astar_gbfs": {
+   "bfs": 20
+  },
+  "t1|dijkstra": {
+   "bfs": 19,
+   "astar_gbfs": 1
+  },
+  "t2|dijkstra": {
+   "bf_spfa": 5,
+   "other": 15
+  },
+  "t2|bf_spfa": {
+   "dijkstra": 7,
+   "other": 13
+  },
+  "t2|bidijkstra": {
+   "dijkstra": 20
+  },
+  "t2|floyd": {
+   "dijkstra": 20
+  },
+  "t2|dial": {
+   "dijkstra": 20
+  }
+ },
+ "replication_exp1": {
+  "t1": {
+   "spearman_new_vs_exp1": 0.9300210549301127,
+   "n_pairs": 30,
+   "n_exp1_rows": 120
+  },
+  "t2": {
+   "spearman_new_vs_exp1": 0.9973890339425588,
+   "n_pairs": 20,
+   "n_exp1_rows": 100
+  }
+ },
+ "rule": "first catalogue name matched by the lexicon that is not X; A_X(j) = (count_j + 1) / (20 + |S_X|)"
+}
