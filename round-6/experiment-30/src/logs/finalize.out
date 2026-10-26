@@ -1,0 +1,47 @@
+cac85bbf228e35b3cffb00533ab4ff8fe6c01030d2bc713e126db1be608e396c
+08:29:02|INFO   |4320 labelled rows
+08:29:02|INFO   |engine check: {'T03': {'n_pairs': 40, 'label_agreement': 0.975, 'byte_identical_code': 39, 'this_twin_comp': {'full_sort': 50}, 'exp27_twin_comp': {'full_sort': 39, 'quickselect': 1}, 'decisive': True}, 'T2': {'n_pairs': 40, 'label_agreement': 0.975, 'byte_identical_code': 35, 'this_twin_comp': {'dijkstra': 50}, 'exp27_twin_comp': {'dijkstra': 39, 'bf_spfa': 1}, 'decisive': True}, 'T10': {'n_pairs': 40, 'label_agreement': 1.0, 'byte_identical_code': 36, 'this_twin_comp': {'union_find': 50}, 'exp27_twin_comp': {'union_find': 40}, 'decisive': False}, 'T05': {'n_pairs': 40, 'label_agreement': 1.0, 'byte_identical_code': 39, 'this_twin_comp': {'hash_map': 50}, 'exp27_twin_comp': {'hash_map': 40}, 'decisive': False}, 'T1': {'n_pairs': 40, 'label_agreement': 1.0, 'byte_identical_code': 18, 'this_twin_comp': {'bfs': 50}, 'exp27_twin_comp': {'bfs': 40}, 'decisive': False}, 'verdict': 'ENGINE AGREES (>= 0.95)', 'unit_tests': {'U1_T03': {'n': 10, 'byte_identical_alpha0_vs_twin': 10}, 'U2_T03': {'n': 10, 'byte_identical_identity_exchange_vs_twin': 10}, 'U5_T03': {'n': 10, 'byte_identical_repeat': 10}, 'U3': {'W1': {'max_abs_logit_diff_at_R': 0.5, 'top1_equal': True}, 'W2': {'max_abs_logit_diff_at_R': 0.4453125, 'top1_equal': True}}, 'U3_programs': {'W1': {'n': 8, 'byte_identical': 6}, 'W2': {'n': 2, 'byte_identical': 2}}, 'U1_T2': {'n': 10, 'byte_identical_alpha0_vs_twin': 10}, 'U2_T2': {'n': 10, 'byte_identical_identity_exchange_vs_twin': 10}, 'U5_T2': {'n': 10, 'byte_identical_repeat': 10}, 'U4': {'max_rel_err_along_u': 0.0006856234977021813, 'pass': True}, 'pass': {'U1': True, 'U2': True, 'U3': False, 'U4': True, 'U5': True}, 'U3_label_equality': {'n': 10, 'equal': 10}}}
+08:29:02|INFO   |Stage A P1: {'prompt_route_tasks_transferring': ['T2', 'T03'], 'n_needed': 2, 'T05_T06_transfer': {'T05': 0.43333333333333335, 'T06': 0.03333333333333333}, 'T05_T06_upper95': {'T05': 0.6257265493907793, 'T06': 0.17216945563341265}, 'verdict': 'NOT SUPPORTED'}
+<workspace>/.venv/lib/python3.12/site-packages/statsmodels/stats/contingency_tables.py:1123: RuntimeWarning: divide by zero encountered in scalar divide
+  odds_ratio = np.sum(self._ad / self._n) / np.sum(self._bc / self._n)
+<workspace>/.venv/lib/python3.12/site-packages/statsmodels/stats/contingency_tables.py:1163: RuntimeWarning: divide by zero encountered in scalar divide
+  mid /= adns * bcns
+<workspace>/.venv/lib/python3.12/site-packages/statsmodels/stats/contingency_tables.py:1165: RuntimeWarning: invalid value encountered in scalar divide
+  lor_va += np.sum((1 - self._apd / self._n) * self._bc / self._n) / bcns**2
+<workspace>/.venv/lib/python3.12/site-packages/statsmodels/stats/contingency_tables.py:1191: RuntimeWarning: divide by zero encountered in log
+  lor = np.log(self.oddsratio_pooled)
+<workspace>/.venv/lib/python3.12/site-packages/statsmodels/stats/contingency_tables.py:1159: RuntimeWarning: invalid value encountered in scalar divide
+  lor_va = np.sum(self._apd * self._ad / self._n**2) / adns**2
+<workspace>/.venv/lib/python3.12/site-packages/statsmodels/stats/contingency_tables.py:1123: RuntimeWarning: invalid value encountered in scalar divide
+  odds_ratio = np.sum(self._ad / self._n) / np.sum(self._bc / self._n)
+<workspace>/.venv/lib/python3.12/site-packages/statsmodels/stats/contingency_tables.py:1163: RuntimeWarning: invalid value encountered in scalar divide
+  mid /= adns * bcns
+<workspace>/.venv/lib/python3.12/site-packages/statsmodels/stats/contingency_tables.py:1104: RuntimeWarning: invalid value encountered in scalar divide
+  statistic /= denom
+08:29:20|INFO   |ST RULE: {'verdict': 'WITHDRAWN as FP8-specific: the site of the choice is open', 'tasks_surviving': []}
+08:29:20|INFO   |state vs token: {'T03|a2': {'n_pairs': 50, 'S3_only_flips': 12, 'DMD_only_flips': 6, 'p_exact_mcnemar': 0.237884521484375, 'S3_flip_share': 0.26, 'DMD_flip_share': 0.14, 'S3_pass': 0.94, 'DMD_pass': 0.98, 'S3_correct_comp': {'full_sort': 33, 'quickselect': 12, 'size_k_heap': 1, 'other': 1}, 'DMD_correct_comp': {'full_sort': 42, 'quickselect': 3, 'size_k_heap': 4}, 'calibration': {'task': 'T03', 'alpha': 2.0, 'K_S3': 0.38829455892555415, 'n_S3': 50, 'T_dmd': 2.0625, 'f_on': 0.37622442752818847, 'iterations': [[2.0, 0.23192944423207865], [2.5, 1.055301058795843], [2.25, 0.6706451620880806], [2.125, 0.49095984672542414], [2.0625, 0.37622442752818847]], 'converged': True, 'cap_reached': False, 'cal_template': 'W1', 'cal_slots': [0, 1, 2, 3, 4, 5, 6, 7, 30, 31], 'label': None}, 'primary': True}, 'T03|a4': {'n_pairs': 50, 'S3_only_flips': 8, 'DMD_only_flips': 3, 'p_exact_mcnemar': 0.2265625, 'S3_flip_share': 0.18, 'DMD_flip_share': 0.08, 'S3_pass': 0.5, 'DMD_pass': 0.82, 'S3_correct_comp': {'quickselect': 4, 'full_sort': 15, 'size_k_heap': 2, 'heapify_pop': 3, 'other': 1}, 'DMD_correct_comp': {'full_sort': 37, 'size_k_heap': 1, 'quickselect': 3}, 'calibration': {'task': 'T03', 'alpha': 4.0, 'K_S3': 2.33361487030983, 'n_S3': 50, 'T_dmd': 3.0, 'f_on': 1.7734090254529287, 'iterations': [], 'converged': False, 'cap_reached': True, 'cal_template': 'W1', 'cal_slots': [0, 1, 2, 3, 4, 5, 6, 7, 30, 31], 'label': 'S3 exceeds token-level departure (T capped at 3.0)'}, 'primary': False}, 'T10|a2': {'n_pairs': 50, 'S3_only_flips': 7, 'DMD_only_flips': 3, 'p_exact_mcnemar': 0.34375, 'S3_flip_share': 0.14, 'DMD_flip_share': 0.06, 'S3_pass': 0.92, 'DMD_pass': 0.92, 'S3_correct_comp': {'union_find': 39, 'dfs': 7}, 'DMD_correct_comp': {'union_find': 43, 'dfs': 3}, 'calibration': {'task': 'T10', 'alpha': 2.0, 'K_S3': 0.23150540497968905, 'n_S3': 50, 'T_dmd': 2.71875, 'f_on': 0.23104549079597658, 'iterations': [[2.0, 0.029814956355183844], [2.5, 0.10117754572222665], [2.75, 0.35086426304996743], [2.625, 0.15074990970120392], [2.6875, 0.1898678507058195], [2.71875, 0.23104549079597658]], 'converged': True, 'cap_reached': False, 'cal_template': 'W1', 'cal_slots': [0, 1, 2, 3, 4, 5, 6, 7, 30, 31], 'label': None}, 'primary': True}, 'T10|a4': {'n_pairs': 50, 'S3_only_flips': 8, 'DMD_only_flips': 1, 'p_exact_mcnemar': 0.0390625, 'S3_flip_share': 0.16, 'DMD_flip_share': 0.02, 'S3_pass': 0.38, 'DMD_pass': 0.7, 'S3_correct_comp': {'bfs': 2, 'dfs': 6, 'union_find': 11}, 'DMD_correct_comp': {'union_find': 34, 'dfs': 1}, 'calibration': {'task': 'T10', 'alpha': 4.0, 'K_S3': 3.092582316398621, 'n_S3': 50, 'T_dmd': 3.0, 'f_on': 0.8178301456820988, 'iterations': [], 'converged': False, 'cap_reached': True, 'cal_template': 'W1', 'cal_slots': [0, 1, 2, 3, 4, 5, 6, 7, 30, 31], 'label': 'S3 exceeds token-level departure (T capped at 3.0)'}, 'primary': False}, 'verdict_alpha2': 'not established at alpha 2 on both tasks (threshold p < 0.05, min 6:0)'}
+08:29:28|INFO   |L: BASE {'hits': 17, 'n_defined': 21, 'qwen_FP8': [5, 5], 'qwen_bf16': [7, 9], 'gemma_bf16': [5, 7]} OPEN {'hits': 10, 'n_defined': 21, 'qwen_FP8': [3, 5], 'qwen_bf16': [4, 9], 'gemma_bf16': [3, 7]} TWINMIN {'hits': 6, 'n_defined': 7, 'qwen_bf16': [3, 4], 'gemma_bf16': [3, 3]}; sign test {'n_discordant': 9, 'base_wins': 8, 'open_wins': 1, 'p_one_sided_base_gt_open': 0.01953125, 'minimum_for_p_lt_0.05': '5 of 5 (p = 0.031)', 'n_top1_differ': 9}
+08:29:41|INFO   |novelty audit: 2 correct 'other' programs
+08:29:56|INFO   |novelty audit: {'CATALOGUE_VARIANT': 2}; cost USD 0.0011
+08:30:02|INFO   |inputs missing: []
+08:30:15|INFO   |tests_cpu all_pass=True; labeller [19, 19]
+08:30:15|INFO   |seed collisions: 0
+{"n_checks": 282, "mismatches": 0}
+08:30:22|INFO   |figure F1_stageA_transfer
+08:30:23|INFO   |figure F2_site_grid
+08:30:23|INFO   |figure F3_indicator_coefficients
+08:30:24|INFO   |figure F4_state_vs_token
+08:30:25|INFO   |figure F5_top5_geometry
+08:30:26|INFO   |figure F6_landing_forecasts
+summary.md: 292 lines
+08:30:38|INFO   |method_out.json: [('engine_check', 224), ('stage_a_exchange', 1530), ('site_grid', 1760), ('state_vs_token', 520), ('top5_push', 170), ('landing_forecast', 21)]
+Generated 3 versions:
+  Full (4225 items): <workspace>/full_method_out.json
+  Mini (18 items): <workspace>/mini_method_out.json
+  Preview (18 items, truncated): <workspace>/preview_method_out.json
+Format: exp_gen_sol_out
+Validation PASSED
+-rw-rw-rw- 1 aii-agent aii-agent 4257278 Oct 22 08:30 full_method_out.json
+-rw-rw-rw- 1 aii-agent aii-agent 3761256 Oct 22 08:30 method_out.json
+-rw-rw-rw- 1 aii-agent aii-agent  262654 Oct 22 08:30 mini_method_out.json
+-rw-rw-rw- 1 aii-agent aii-agent  186637 Oct 22 08:30 preview_method_out.json

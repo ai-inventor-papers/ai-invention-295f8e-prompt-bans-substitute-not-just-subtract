@@ -1,0 +1,100 @@
+<workspace>/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]
+Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:02,  1.63it/s]
+Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.33it/s]
+Loading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.32it/s]
+Loading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  1.38it/s]
+Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.89it/s]
+Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.62it/s]
+05:37:46|INFO   |Qwen/Qwen3-8B bf16 loaded: {'precision': 'bf16', 'cpu_embedding': True, 'free_vram_before_GB': 16.624, 'free_vram_after_GB': 1.334, 'total_vram_GB': 16.724, 'gpu': 'NVIDIA RTX 2000 Ada Generation', 'load_seconds': 39.7}
+05:37:46|INFO   |=== stage stageA ===
+05:39:45|INFO   |twins/stageA T03/W1: 93 rows in 119s
+05:41:59|INFO   |twins/stageA T03/W2: 93 rows in 134s
+05:44:03|INFO   |twins/stageA T03/W3: 82 rows in 124s
+05:45:43|INFO   |twins/stageA T03/W5: 82 rows in 100s
+05:48:18|INFO   |twins/stageA T10/W1: 93 rows in 155s
+05:50:30|INFO   |twins/stageA T10/W2: 93 rows in 132s
+05:52:26|INFO   |twins/stageA T10/W3: 82 rows in 116s
+05:54:38|INFO   |twins/stageA T10/W5: 82 rows in 132s
+05:58:10|INFO   |twins/stageA T2/W1: 93 rows in 212s
+06:01:40|INFO   |twins/stageA T2/W2: 93 rows in 210s
+06:04:55|INFO   |twins/stageA T2/W3: 82 rows in 194s
+06:08:17|INFO   |twins/stageA T2/W5: 82 rows in 203s
+06:08:55|INFO   |twins/stageA T05/W1: 69 rows in 38s
+06:09:32|INFO   |twins/stageA T05/W2: 69 rows in 37s
+06:10:06|INFO   |twins/stageA T05/W3: 61 rows in 34s
+06:10:44|INFO   |twins/stageA T05/W5: 61 rows in 37s
+06:11:24|INFO   |twins/stageA T06/W1: 69 rows in 40s
+06:12:02|INFO   |twins/stageA T06/W2: 69 rows in 38s
+06:12:38|INFO   |twins/stageA T06/W3: 61 rows in 36s
+06:13:05|INFO   |twins/stageA T06/W5: 61 rows in 28s
+06:19:29|INFO   |twins/stageA T1/W1: 69 rows in 384s
+06:25:49|INFO   |twins/stageA T1/W2: 69 rows in 380s
+06:31:28|INFO   |twins/stageA T1/W3: 61 rows in 339s
+06:36:55|INFO   |twins/stageA T1/W5: 61 rows in 327s
+06:36:55|INFO   |=== stage stageA done in 3548s ===
+06:36:55|INFO   |=== stage stcore ===
+06:39:44|INFO   |ST ST_core T03/W1: 144 rows in 169s
+06:43:13|INFO   |ST ST_core T03/W2: 144 rows in 209s
+06:46:08|INFO   |ST ST_core T03/W3: 126 rows in 175s
+06:49:20|INFO   |ST ST_core T03/W5: 126 rows in 192s
+06:54:05|INFO   |ST ST_core T10/W1: 144 rows in 286s
+06:57:59|INFO   |ST ST_core T10/W2: 144 rows in 234s
+07:01:40|INFO   |ST ST_core T10/W3: 126 rows in 220s
+07:05:55|INFO   |ST ST_core T10/W5: 126 rows in 255s
+07:05:55|INFO   |=== stage stcore done in 1740s ===
+07:05:55|INFO   |=== stage dmd ===
+07:06:39|INFO   |ST S3ext T03/W1: 10 rows in 44s
+07:07:20|INFO   |ST S3ext T03/W2: 10 rows in 41s
+07:08:05|INFO   |ST S3ext T03/W3: 10 rows in 45s
+07:08:43|INFO   |ST S3ext T03/W5: 10 rows in 38s
+07:09:32|INFO   |ST S3ext T10/W1: 10 rows in 49s
+07:10:07|INFO   |ST S3ext T10/W2: 10 rows in 34s
+07:10:45|INFO   |ST S3ext T10/W3: 10 rows in 38s
+07:11:19|INFO   |ST S3ext T10/W5: 10 rows in 34s
+<workspace>/src/engine_v4.py:263: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  tok = torch.searchsorted(cdf, u[:, None].to(cdf.dtype)).squeeze(-1)
+07:11:36|INFO   |DMD T03|2: K_S3 0.3883 -> T 2.062 (f_on 0.3762)
+07:11:39|INFO   |DMD T03|4: K_S3 2.3336 -> T 3.000 (f_on 1.7734)
+07:11:58|INFO   |DMD T10|2: K_S3 0.2315 -> T 2.719 (f_on 0.2310)
+07:12:01|INFO   |DMD T10|4: K_S3 3.0926 -> T 3.000 (f_on 0.8178)
+07:19:00|INFO   |=== stage dmd done in 785s ===
+07:19:00|INFO   |=== stage top5 ===
+07:37:28|INFO   |top5: geometry states 28 -> geometry_T1_states.npz
+07:37:28|INFO   |=== stage top5 done in 1107s ===
+07:37:28|INFO   |=== stage stext ===
+07:38:06|INFO   |ST ST_energy_a2 T03/W1: 16 rows in 39s
+07:38:17|INFO   |ST ST_energy_a2 T03/W2: 16 rows in 11s
+07:38:54|INFO   |ST ST_energy_a2 T03/W3: 14 rows in 37s
+07:39:33|INFO   |ST ST_energy_a2 T03/W5: 14 rows in 38s
+07:40:04|INFO   |ST ST_energy_a2 T10/W1: 16 rows in 32s
+07:40:50|INFO   |ST ST_energy_a2 T10/W2: 16 rows in 46s
+07:41:36|INFO   |ST ST_energy_a2 T10/W3: 14 rows in 46s
+07:42:22|INFO   |ST ST_energy_a2 T10/W5: 14 rows in 46s
+07:44:35|INFO   |ST ST_a8_spec T03/W1: 32 rows in 133s
+07:46:51|INFO   |ST ST_a8_spec T03/W2: 32 rows in 136s
+07:49:17|INFO   |ST ST_a8_spec T03/W3: 28 rows in 146s
+07:51:36|INFO   |ST ST_a8_spec T03/W5: 28 rows in 138s
+07:54:06|INFO   |ST ST_a8_spec T10/W1: 32 rows in 151s
+07:56:37|INFO   |ST ST_a8_spec T10/W2: 32 rows in 151s
+07:58:53|INFO   |ST ST_a8_spec T10/W3: 28 rows in 136s
+08:00:55|INFO   |ST ST_a8_spec T10/W5: 28 rows in 122s
+08:01:32|INFO   |ST ST_a8_RC T03/W1: 16 rows in 37s
+08:01:55|INFO   |ST ST_a8_RC T03/W2: 16 rows in 23s
+08:02:09|INFO   |ST ST_a8_RC T03/W3: 14 rows in 14s
+08:02:38|INFO   |ST ST_a8_RC T03/W5: 14 rows in 29s
+08:03:16|INFO   |ST ST_a8_RC T10/W1: 16 rows in 38s
+08:03:52|INFO   |ST ST_a8_RC T10/W2: 16 rows in 37s
+08:04:31|INFO   |ST ST_a8_RC T10/W3: 14 rows in 39s
+08:05:17|INFO   |ST ST_a8_RC T10/W5: 14 rows in 46s
+08:05:29|INFO   |ST ST_energy_a4 T03/W1: 16 rows in 12s
+08:05:48|INFO   |ST ST_energy_a4 T03/W2: 16 rows in 19s
+08:05:58|INFO   |ST ST_energy_a4 T03/W3: 14 rows in 11s
+08:06:11|INFO   |ST ST_energy_a4 T03/W5: 14 rows in 13s
+08:06:42|INFO   |ST ST_energy_a4 T10/W1: 16 rows in 30s
+08:07:28|INFO   |ST ST_energy_a4 T10/W2: 16 rows in 46s
+08:08:06|INFO   |ST ST_energy_a4 T10/W3: 14 rows in 38s
+08:08:52|INFO   |ST ST_energy_a4 T10/W5: 14 rows in 46s
+08:08:52|INFO   |=== stage stext done in 1884s ===
