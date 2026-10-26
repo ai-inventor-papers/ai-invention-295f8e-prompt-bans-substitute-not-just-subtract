@@ -1,0 +1,107 @@
+{
+ "model_info": {
+  "path_revision": "093f9f388b31de276ce2de164bdc2081324b9767",
+  "n_tensors_loaded": 444,
+  "load_seconds": 16.706584215164185,
+  "vram_free_gb_after_load": 8.843952128,
+  "vram_total_gb": 16.724066304,
+  "n_layers": 34,
+  "d_model": 2560,
+  "layer_types": [
+   "sliding_attention",
+   "sliding_attention",
+   "sliding_attention",
+   "sliding_attention",
+   "sliding_attention",
+   "full_attention",
+   "sliding_attention",
+   "sliding_attention",
+   "sliding_attention",
+   "sliding_attention",
+   "sliding_attention",
+   "full_attention",
+   "sliding_attention",
+   "sliding_attention",
+   "sliding_attention",
+   "sliding_attention",
+   "sliding_attention",
+   "full_attention",
+   "sliding_attention",
+   "sliding_attention",
+   "sliding_attention",
+   "sliding_attention",
+   "sliding_attention",
+   "full_attention",
+   "sliding_attention",
+   "sliding_attention",
+   "sliding_attention",
+   "sliding_attention",
+   "sliding_attention",
+   "full_attention",
+   "sliding_attention",
+   "sliding_attention",
+   "sliding_attention",
+   "sliding_attention"
+  ],
+  "sliding_window": 1024,
+  "final_logit_softcapping": null,
+  "attn_logit_softcapping": null,
+  "files": [
+   "model-00001-of-00002.safetensors",
+   "model-00002-of-00002.safetensors"
+  ]
+ },
+ "tests": {
+  "T03": {
+   "U1_alpha0_bit_identical_logits": true,
+   "U2_pre_band_identical": true,
+   "U2_outside_spec_identical_at_first_band_block": true,
+   "U3_max_rel_err_along_u": 0.00012583553325384855,
+   "U3_pass": true,
+   "disp_S_mean_alpha0": 268.46514892578125,
+   "disp_S_first_band_alpha1": 1238.3775634765625,
+   "unit_n_mean_first_band": 1235.84326171875,
+   "unit_n_mean_last_band": 4342.50732421875,
+   "residual_norm_mean_first_band": 17704.34765625,
+   "massive_top5_share": 0.9919208884239197,
+   "U4_crn_slot0_identical": true,
+   "U4_example_text": "```python\ndef solve(nums, k):\n    nums.sort()\n    return nums[k - 1]\n```"
+  },
+  "T2": {
+   "U1_alpha0_bit_identical_logits": true,
+   "U2_pre_band_identical": true,
+   "U2_outside_spec_identical_at_first_band_block": true,
+   "U3_max_rel_err_along_u": 0.00015616857854183763,
+   "U3_pass": true,
+   "disp_S_mean_alpha0": 237.24110412597656,
+   "disp_S_first_band_alpha1": 1325.625244140625,
+   "unit_n_mean_first_band": 1323.1707763671875,
+   "unit_n_mean_last_band": 4466.5625,
+   "residual_norm_mean_first_band": 18955.380859375,
+   "massive_top5_share": 0.9928502440452576,
+   "U4_crn_slot0_identical": true,
+   "U4_example_text": "```python\nimport heapq\n\ndef solve(n, edges, s, t):\n    if s == t:\n        return 0\n\n    graph = [[] for _ in range(n)]\n    for u, v, w in edges:\n        graph[u].append((v, w))\n\n    dist = [float('inf"
+  }
+ },
+ "speed_memory": {
+  "T03_B36_max1024": {
+   "ms_per_step_first128": 18.808111548423767,
+   "peak_alloc_gb_full_buffer": 13.962847744,
+   "P": 191,
+   "example": "```python\ndef solve(nums, k):\n    nums.sort()\n    return nums[k - 1]\n```"
+  },
+  "T2_B24_max1536": {
+   "ms_per_step_first128": 55.51629513502121,
+   "peak_alloc_gb_full_buffer": 13.65649664,
+   "P": 200,
+   "example": "```python\nimport heapq\n\ndef solve(n, edges, s, t):\n    if s == t:\n        return 0\n\n    graph = [[] for _ in range(n)]\n "
+  },
+  "T03_B24_max1024": {
+   "ms_per_step_first128": 16.17974415421486,
+   "peak_alloc_gb_full_buffer": 11.941730816,
+   "P": 191,
+   "example": "```python\ndef solve(nums, k):\n    nums.sort()\n    return nums[k - 1]\n```"
+  }
+ },
+ "all_pass": true
+}
