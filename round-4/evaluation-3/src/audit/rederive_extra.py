@@ -36,11 +36,11 @@ def _dep(aid: str, env: str, folder: str) -> Path:
     raise FileNotFoundError(f"dependency {aid} not found; set AII_DEPS_DIR or {env}")
 
 
-E11 = _dep("art_0ndRfWKBWclR", "AII_ITER2", "gen_art_experiment_11")
-E13 = _dep("art_1AYTO1Epb_7t", "AII_ITER3", "gen_art_experiment_13")
-E14 = _dep("art_WiY4wqHLb9Gy", "AII_ITER3", "gen_art_experiment_14")
-E15 = _dep("art_Q-qh-9HhPoWo", "AII_ITER3", "gen_art_experiment_15")
-E16 = _dep("art__5akZ9W9iZM4", "AII_ITER3", "gen_art_experiment_16")
+E11 = _dep("art_0ndRfWKBWclR", "AII_ITER2", "experiment-11/src")
+E13 = _dep("art_1AYTO1Epb_7t", "AII_ITER3", "experiment-13/src")
+E14 = _dep("art_WiY4wqHLb9Gy", "AII_ITER3", "experiment-14/src")
+E15 = _dep("art_Q-qh-9HhPoWo", "AII_ITER3", "experiment-15/src")
+E16 = _dep("art__5akZ9W9iZM4", "AII_ITER3", "experiment-16/src")
 RNG = random.Random(97)
 
 

@@ -30,10 +30,10 @@ for p in (str(SUITE), str(E11)):
     if p not in sys.path:
         sys.path.insert(0, p)
 
-E17_SRC = ITER3 / "gen_art_experiment_17"
-E13_SRC = ITER3 / "gen_art_experiment_13"
-E11_SRC = ITER2 / "gen_art_experiment_11"
-E7_SRC = ITER2 / "gen_art_experiment_7"
+E17_SRC = ITER3 / "experiment-17/src"
+E13_SRC = ITER3 / "experiment-13/src"
+E11_SRC = ITER2 / "experiment-11/src"
+E7_SRC = ITER2 / "experiment-7/src"
 
 # (copy in this workspace, source on the run volume)
 COPIES: list[tuple[str, Path]] = [

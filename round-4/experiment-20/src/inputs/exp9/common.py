@@ -36,7 +36,7 @@ for _d in (PROMPT_DIR, DATA_DIR, RESULTS_DIR, FIG_DIR, LOG_DIR, STATES_DIR):
 
 # Declared dependency art_j3Rm_lr2nzR6 (gen_art_dataset_1, the algorithm-choice source data): read through ONE constant,
 # overridable with MB_DEP_DATASET; by default the published sibling folder next to this artifact.
-DS_FILE = Path(os.environ.get("MB_DEP_DATASET", str(ROOT.parent / "gen_art_dataset_1" / "full_data_out.json")))
+DS_FILE = Path(os.environ.get("MB_DEP_DATASET", str(ROOT.parent / "dataset-1/src" / "full_data_out.json")))
 
 MODEL_ID = os.environ.get("MB_MODEL", "Qwen/Qwen3-8B")
 MODEL_REVISION = "b968826d9c46dd6066d109eabc6255188de91218"

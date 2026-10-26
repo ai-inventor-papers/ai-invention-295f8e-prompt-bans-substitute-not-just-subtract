@@ -24,17 +24,17 @@ _DEFAULT_ROOTS = _local_roots()
 
 # artifact id -> (root env var, workspace folder, short experiment name)
 ARTIFACTS: dict[str, tuple[str, str, str]] = {
-    "art_U5UKkFrOgSsE": ("AII_ITER1", "gen_art_experiment_4", "exp4"),
-    "art_UoCVh2Qe5RZ0": ("AII_ITER1", "gen_art_experiment_6", "exp6"),
-    "art_6zBfl3kDjeiP": ("AII_ITER2", "gen_art_experiment_7", "exp7"),
-    "art_IVZc3TWCeE9f": ("AII_ITER2", "gen_art_experiment_9", "exp9"),
-    "art_0ndRfWKBWclR": ("AII_ITER2", "gen_art_experiment_11", "exp11"),
-    "art_1AYTO1Epb_7t": ("AII_ITER3", "gen_art_experiment_13", "exp13"),
-    "art_WiY4wqHLb9Gy": ("AII_ITER3", "gen_art_experiment_14", "exp14"),
-    "art_Q-qh-9HhPoWo": ("AII_ITER3", "gen_art_experiment_15", "exp15"),
-    "art__5akZ9W9iZM4": ("AII_ITER3", "gen_art_experiment_16", "exp16"),
-    "art_pVlCZ272hDV7": ("AII_ITER3", "gen_art_experiment_17", "exp17"),
-    "art_ccAbfJVcv0LO": ("AII_ITER3", "gen_art_experiment_18", "exp18"),
+    "art_U5UKkFrOgSsE": ("AII_ITER1", "experiment-4/src", "exp4"),
+    "art_UoCVh2Qe5RZ0": ("AII_ITER1", "experiment-6/src", "exp6"),
+    "art_6zBfl3kDjeiP": ("AII_ITER2", "experiment-7/src", "exp7"),
+    "art_IVZc3TWCeE9f": ("AII_ITER2", "experiment-9/src", "exp9"),
+    "art_0ndRfWKBWclR": ("AII_ITER2", "experiment-11/src", "exp11"),
+    "art_1AYTO1Epb_7t": ("AII_ITER3", "experiment-13/src", "exp13"),
+    "art_WiY4wqHLb9Gy": ("AII_ITER3", "experiment-14/src", "exp14"),
+    "art_Q-qh-9HhPoWo": ("AII_ITER3", "experiment-15/src", "exp15"),
+    "art__5akZ9W9iZM4": ("AII_ITER3", "experiment-16/src", "exp16"),
+    "art_pVlCZ272hDV7": ("AII_ITER3", "experiment-17/src", "exp17"),
+    "art_ccAbfJVcv0LO": ("AII_ITER3", "experiment-18/src", "exp18"),
 }
 BY_EXP = {v[2]: k for k, v in ARTIFACTS.items()}
 

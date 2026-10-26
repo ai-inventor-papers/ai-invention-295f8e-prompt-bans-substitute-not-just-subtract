@@ -39,7 +39,7 @@ EXP_DIRS = {e: _upstream(f"BRT_{e.upper()}_DIR", ROOT.parents[2] / "round-2" / "
             for e in ("exp7", "exp8", "exp9", "exp11", "exp12")}
 # art_j3Rm_lr2nzR6 (the declared dataset dependency, produced in another run of the same study)
 DATASET_DIR = _upstream("BRT_DATASET_DIR", ROOT.parents[4] / "run_4VFKidE1bxPG" / "." / "round-1" / "."
-                        / "gen_art_dataset_1", ROOT.parents[2] / "round-1" / "dataset-1" / "src")
+                        / "dataset-1/src", ROOT.parents[2] / "round-1" / "dataset-1" / "src")
 
 INPUTS = ROOT / "inputs"
 BENCH = INPUTS / "bench"                 # copy of exp11 bench/ (12 frozen tasks + common/)

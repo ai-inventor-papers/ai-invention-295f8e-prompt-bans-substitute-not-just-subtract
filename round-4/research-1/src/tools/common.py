@@ -13,7 +13,7 @@ from pathlib import Path
 WS = Path(__file__).resolve().parents[1]
 CACHE = WS / "cache"
 EVID = WS / "evidence"
-SKILL_SCRIPTS = Path("/ai-inventor/.claude/skills/aii-web-tools/scripts")
+SKILL_SCRIPTS = Path(__file__).resolve().parents[4] / "tools/aii-web-tools/scripts"
 sys.path.insert(0, str(SKILL_SCRIPTS))
 import aii_fast_web_fetch as F  # noqa: E402  (skill fetch core)
 

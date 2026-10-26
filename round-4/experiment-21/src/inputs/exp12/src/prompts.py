@@ -69,7 +69,7 @@ def load_noun_bank() -> dict[str, Any]:
             if reasons == {"not_single_qwen3_token"} and rec["ntok_sp"] >= 2 and w.isalpha():
                 fillers.append(rec)
     del data
-    out = {"source": "gen_art_dataset_1/full_data_out.json:concreteness_norms", "n_words": n_all,
+    out = {"source": "dataset-1/src/full_data_out.json:concreteness_norms", "n_words": n_all,
            "n_candidates": len(cands), "candidates": cands, "fillers": fillers,
            "source_sha256": sha256_file(src)}
     write_json(cache, out)

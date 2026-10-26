@@ -34,9 +34,9 @@ def _dep(aid: str, env: str, folder: str) -> str:
     raise FileNotFoundError(f"dependency {aid} ({folder}) not found; set AII_DEPS_DIR or {env}")
 
 WS = Path(__file__).resolve().parent.parent
-E17 = _dep("art_pVlCZ272hDV7", "AII_ITER3", "gen_art_experiment_17")
-E15 = _dep("art_Q-qh-9HhPoWo", "AII_ITER3", "gen_art_experiment_15")
-E16 = _dep("art__5akZ9W9iZM4", "AII_ITER3", "gen_art_experiment_16")
+E17 = _dep("art_pVlCZ272hDV7", "AII_ITER3", "experiment-17/src")
+E15 = _dep("art_Q-qh-9HhPoWo", "AII_ITER3", "experiment-15/src")
+E16 = _dep("art__5akZ9W9iZM4", "AII_ITER3", "experiment-16/src")
 DEF = {"T03": "full_sort", "T2": "dijkstra", "T03b": "full_sort"}
 NOATT = {"invalid", "no_code", "unparseable", "disputed", "unresolved", ""}
 

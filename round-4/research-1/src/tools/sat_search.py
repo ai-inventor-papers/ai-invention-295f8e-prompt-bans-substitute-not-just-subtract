@@ -23,7 +23,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import CACHE, EVID, F, append_jsonl, now_utc  # noqa: E402
 
-SEARCH_PY = "/ai-inventor/.claude/skills/aii-web-tools/scripts/aii_fast_web_search.py"
+SEARCH_PY = str(Path(__file__).resolve().parents[4] / "tools/aii-web-tools/scripts/aii_fast_web_search.py")
 PY = "/ai-inventor/.claude/skills/.ability_client_venv/bin/python"
 RAW = CACHE / "search_results"
 LOG = EVID / "search_log.jsonl"
