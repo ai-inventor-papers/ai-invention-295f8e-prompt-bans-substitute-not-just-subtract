@@ -1,0 +1,135 @@
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:04<00:18,  4.61s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:09<00:13,  4.58s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:13<00:09,  4.54s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:17<00:04,  4.26s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:18<00:00,  3.22s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:18<00:00,  3.77s/it]
+12:50:04|INFO   |Qwen/Qwen3-8B-Base loaded in 20s ({'n_fp8_linears': 0}); free VRAM 8.5/25.3 GB
+12:51:20|INFO   |forced states (base): 1950 prompts in 58s
+12:51:35|INFO   |base1: waiting for COMMIT #1 ...
+12:52:05|INFO   |base1: waiting for COMMIT #1 ...
+12:52:35|INFO   |base1: waiting for COMMIT #1 ...
+12:53:05|INFO   |base1: waiting for COMMIT #1 ...
+12:53:35|INFO   |base1: waiting for COMMIT #1 ...
+12:54:05|INFO   |base1: waiting for COMMIT #1 ...
+12:54:35|INFO   |base1: waiting for COMMIT #1 ...
+12:55:05|INFO   |base1: waiting for COMMIT #1 ...
+./src/engine5.py:275: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  tok = torch.searchsorted(cdf, u[:, None].to(cdf.dtype)).squeeze(-1)
+12:56:03|INFO   |S6 T10/W1 ['BTWIN', 'RT1.0'] rows 20+0pad: 28.0s, 1024 steps
+12:56:31|INFO   |S6 T10/W1 ['BMR1.0'] rows 10+10pad: 27.9s, 1024 steps
+12:56:58|INFO   |S6 T10/W2 ['BTWIN', 'RT1.0'] rows 20+0pad: 27.7s, 1024 steps
+12:57:26|INFO   |S6 T10/W2 ['BMR1.0'] rows 10+10pad: 27.9s, 1024 steps
+12:57:54|INFO   |S6 T10/W3 ['BTWIN', 'RT1.0'] rows 20+0pad: 27.7s, 1024 steps
+12:58:22|INFO   |S6 T10/W3 ['BMR1.0'] rows 10+10pad: 27.9s, 1024 steps
+12:58:50|INFO   |S6 T10/W4 ['BTWIN', 'RT1.0'] rows 20+0pad: 27.7s, 1024 steps
+12:59:17|INFO   |S6 T10/W4 ['BMR1.0'] rows 10+10pad: 27.9s, 1024 steps
+12:59:45|INFO   |S6 T10/W5 ['BTWIN', 'RT1.0'] rows 20+0pad: 27.9s, 1024 steps
+13:00:13|INFO   |S6 T10/W5 ['BMR1.0'] rows 10+10pad: 28.0s, 1024 steps
+13:00:41|INFO   |S6 T03/W1 ['BTWIN', 'RT1.0'] rows 20+0pad: 27.9s, 1024 steps
+13:01:09|INFO   |S6 T03/W1 ['BMR1.0'] rows 10+10pad: 28.0s, 1024 steps
+13:01:37|INFO   |S6 T03/W2 ['BTWIN', 'RT1.0'] rows 20+0pad: 27.8s, 1024 steps
+13:02:05|INFO   |S6 T03/W2 ['BMR1.0'] rows 10+10pad: 28.0s, 1024 steps
+13:02:33|INFO   |S6 T03/W3 ['BTWIN', 'RT1.0'] rows 20+0pad: 27.8s, 1024 steps
+13:03:01|INFO   |S6 T03/W3 ['BMR1.0'] rows 10+10pad: 28.0s, 1024 steps
+13:03:18|INFO   |S6 T03/W4 ['BTWIN', 'RT1.0'] rows 20+0pad: 16.4s, 616 steps
+13:03:46|INFO   |S6 T03/W4 ['BMR1.0'] rows 10+10pad: 28.0s, 1024 steps
+13:04:13|INFO   |S6 T03/W5 ['BTWIN', 'RT1.0'] rows 20+0pad: 27.8s, 1024 steps
+13:04:41|INFO   |S6 T03/W5 ['BMR1.0'] rows 10+10pad: 28.0s, 1024 steps
+13:05:10|ERROR  |An error has been caught in function '<module>', process 'MainProcess' (173311), thread 'MainThread' (136715575180160):
+Traceback (most recent call last):
+
+> File "./src/gpu5.py", line 595, in <module>
+    main()
+    └ <function main at 0x7c563ae74c20>
+
+  File "./src/gpu5.py", line 590, in main
+    {"instr1": stage_instr1, "base1": stage_base1, "instr2": stage_instr2}[args.stage](args)
+               │                      │                      │             │    │      └ Namespace(stage='base1', wait_min=60.0)
+               │                      │                      │             │    └ 'base1'
+               │                      │                      │             └ Namespace(stage='base1', wait_min=60.0)
+               │                      │                      └ <function stage_instr2 at 0x7c563ae74860>
+               │                      └ <function stage_base1 at 0x7c563ae74720>
+               └ <function stage_instr1 at 0x7c563ae74540>
+
+  File "./src/gpu5.py", line 506, in stage_base1
+    ctx.run_cells(task, [(a, list(range(10))) for a in arms], "S6", BASEHOOK_RAW)
+    │   │         │                                    │            └ PosixPath('./data/basehook_ra...
+    │   │         │                                    └ ['BTWIN', 'RT1.0', 'BMR1.0']
+    │   │         └ 'T2'
+    │   └ <function Ctx.run_cells at 0x7c563ae74360>
+    └ <__main__.Ctx object at 0x7c563ae781d0>
+
+  File "./src/gpu5.py", line 328, in run_cells
+    self.run_rows(task, w, rows[i:i + self.B], block_id, raw)
+    │    │        │     │  │    │ │   │    │   │         └ PosixPath('./data/basehook_ra...
+    │    │        │     │  │    │ │   │    │   └ 'S6'
+    │    │        │     │  │    │ │   │    └ 20
+    │    │        │     │  │    │ │   └ <__main__.Ctx object at 0x7c563ae781d0>
+    │    │        │     │  │    │ └ 0
+    │    │        │     │  │    └ 0
+    │    │        │     │  └ [('BTWIN', 0), ('BTWIN', 1), ('BTWIN', 2), ('BTWIN', 3), ('BTWIN', 4), ('BTWIN', 5), ('BTWIN', 6), ('BTWIN', 7), ('BTWIN', 8)...
+    │    │        │     └ 'W1'
+    │    │        └ 'T2'
+    │    └ <function Ctx.run_rows at 0x7c563ae742c0>
+    └ <__main__.Ctx object at 0x7c563ae781d0>
+
+  File "./src/gpu5.py", line 286, in run_rows
+    res = E.sample(self.model, groups, max_new=mx, fence=fence, tok=self.tok, stop_ids=stops)
+          │ │      │    │      │               │         │          │    │             └ (151644,)
+          │ │      │    │      │               │         │          │    └ Qwen2TokenizerFast(name_or_path='<run>/.shared_cache/hf/hub/models--Qwen--Qwen3-8B-Base...
+          │ │      │    │      │               │         │          └ <__main__.Ctx object at 0x7c563ae781d0>
+          │ │      │    │      │               │         └ 'base'
+          │ │      │    │      │               └ 1536
+          │ │      │    │      └ [{'pre': {'kv': [(tensor([[[[ 1.4844e-01, -1.4219e+00,  3.5352e-01,  ..., -3.8906e+00,
+          │ │      │    │                   -4.2773e-01, -4.5938e+00],
+          │ │      │    │        ...
+          │ │      │    └ Qwen3ForCausalLM(
+          │ │      │        (model): Qwen3Model(
+          │ │      │          (embed_tokens): Embedding(151936, 4096)
+          │ │      │          (layers): ModuleList(
+          │ │      │            (0-35): ...
+          │ │      └ <__main__.Ctx object at 0x7c563ae781d0>
+          │ └ <function sample at 0x7c563ae5e8e0>
+          └ <module 'engine5' from './src...
+
+  File "./.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           │     │       └ {'max_new': 1536, 'fence': 'base', 'tok': Qwen2TokenizerFast(name_or_path='<run>/.share...
+           │     └ (Qwen3ForCausalLM(
+           │         (model): Qwen3Model(
+           │           (embed_tokens): Embedding(151936, 4096)
+           │           (layers): ModuleList(
+           │             (0-35):...
+           └ <function sample at 0x7c563ae5e840>
+
+  File "./src/engine5.py", line 480, in sample
+    nxt = _inverse_cdf(probs, U[:, step])
+          │            │      │    └ 1024
+          │            │      └ tensor([[0.2324, 0.6562, 0.8459,  ..., 0.8587, 0.0673, 0.4066],
+          │            │                [0.9396, 0.5015, 0.4128,  ..., 0.7238, 0.2341, 0.6812...
+          │            └ tensor([[2.5374e-05, 6.0869e-05, 2.1245e-04,  ..., 3.2571e-07, 3.2571e-07,
+          │                       3.2571e-07],
+          │                      [9.4661e-06, 4.2424e...
+          └ <function _inverse_cdf at 0x7c563ae5e160>
+
+IndexError: index 1024 is out of bounds for dimension 1 with size 1024
+Traceback (most recent call last):
+  File "./src/gpu5.py", line 595, in <module>
+    main()
+  File "./.venv/lib/python3.12/site-packages/loguru/_logger.py", line 1297, in catch_wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./src/gpu5.py", line 590, in main
+    {"instr1": stage_instr1, "base1": stage_base1, "instr2": stage_instr2}[args.stage](args)
+  File "./src/gpu5.py", line 506, in stage_base1
+    ctx.run_cells(task, [(a, list(range(10))) for a in arms], "S6", BASEHOOK_RAW)
+  File "./src/gpu5.py", line 328, in run_cells
+    self.run_rows(task, w, rows[i:i + self.B], block_id, raw)
+  File "./src/gpu5.py", line 286, in run_rows
+    res = E.sample(self.model, groups, max_new=mx, fence=fence, tok=self.tok, stop_ids=stops)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "./src/engine5.py", line 480, in sample
+    nxt = _inverse_cdf(probs, U[:, step])
+                              ~^^^^^^^^^
+IndexError: index 1024 is out of bounds for dimension 1 with size 1024

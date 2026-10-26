@@ -1,0 +1,143 @@
+{
+ "protocol": "v5 (iteration 5, Step 1): Claim B (transplant of the base model's task-spec states into the instruct prefill reopens the base repertoire), Claim D (push along unit(D) vs isotropic), the reverse interchange, plan-site geometry, Claim A screen check, novelty audit. Stages 0-8 as in README.md. Thinking off, T = 1.0, top-p 1, no top-k, exact CRN per (task, template, slot).",
+ "precision_rule": {
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "compute_capability": 8.9,
+  "total_GiB": 23.52,
+  "precision": "bf16",
+  "rule": "cc >= 8.9 and GiB < 19.5 -> fp8_w8a8; GiB >= 19.5 -> bf16; cc < 8.9 and GiB < 19.5 -> fp8_weight_only",
+  "planned_gpu": "RTX A4500 (~19.99 GiB -> bf16)",
+  "utc": "2026-10-21T12:21:35.935449Z"
+ },
+ "input_hashes_sha256": "2e2807f74b0ee895d34ac38872e37ef517a0581555b8ff462ac6794df3fc480a",
+ "frozen_code_sha256": {
+  "analysis_b.py": "2d8ab2ac3283cf5bbe73a2dd634bcb90583335d57f685add9665b85d3d41a0c5",
+  "commits5.py": "ca5d6ab4e44ff6e2c90d6935edf08dec513fa1870dd894fe3e60643180fc3c73",
+  "hooks5.py": "d87558c941e8774c9607ff6f1d3dfac8b08f85adbd71a27f77798f4cb54772b1",
+  "gpu5.py": "fad40e2303e6169e40b0b5bf9242a7f0423988e0423092b3f80eb9a24aa5b3da",
+  "engine5.py": "8bf3062d24a04e6db24f836729419dc8e70b3baaffb64a5ee0a2443a941adccb",
+  "labels5.py": "25dd094a31fac8997fa046bdd381c5cdd968532de043fea6b7747dcfd8bdc74c",
+  "prompts5.py": "a593180c497f5a454de257ae910700d9954e00aa5a262496cf49d87e737c52d5"
+ },
+ "thresholds": {
+  "default_share_min": 0.6,
+  "beta_diverse": 0.2,
+  "beta_collapsed": 0.05,
+  "pass_frac_validity": 0.8,
+  "min_correct_for_correct_basis": 20,
+  "topup_min_correct": 30,
+  "topup_n": 100,
+  "lambda_grid": [
+   0.25,
+   0.5,
+   1.0
+  ],
+  "ds_alphas": [
+   0.5,
+   1.0,
+   2.0
+  ],
+  "claim_b_share_frac_of_beta": 0.5,
+  "holm_alpha": 0.05,
+  "specificity_tol": 0.05,
+  "specificity_collapsed_frac": 0.8,
+  "claim_b_confirm_frac": "ceil(2/3 n_div)",
+  "claim_b_disconfirm_frac": "> 1/3 of decisive tasks fail (iii)",
+  "escape_excess": 0.2,
+  "escape_binom_p0": "(twin_k + 0.5)/(twin_n + 1)",
+  "claim_d_dose_ratio": 0.5,
+  "reverse_rise_frac": 0.5,
+  "hill_depth": 25,
+  "n_boot": 2000,
+  "boot_seed": 20261021,
+  "base_audit_agreement_min": 0.8,
+  "template_robustness_min": "3 of 5"
+ },
+ "definitions": "Frozen analysis code (sha256 committed in COMMIT #0): statistics and the pre-registered decision rules for\nClaim B (transplant reopens the base repertoire), Claim D (de-sharpening push) and the reverse interchange.\n\nDefinitions (also restated in predictions/commit0.json):\n- correct(r)       := passed every hidden test AND a program was extracted (label != 'invalid').\n- catalogue label  := a label in the task's catalogue; 'other' and 'invalid' are never catalogue labels.\n- off-default share (among correct) := n(correct, catalogue label != default_t) / n(correct); 'other' stays in the\n                      denominator only.\n- y(slot)          := 1[correct AND catalogue label != default_t] (per CRN slot; the McNemar outcome).\n- default_t        := modal correct label of the S1 twin if its share among correct >= 0.6, else None.\n- beta_t           := off-default share of the BASE_CHAT programs w.r.t. default_t (fewer than 20 correct even after\n                      the top-up -> the same share over parseable attempts, flagged ATTEMPT).\n- r_t              := the most frequent correct non-default catalogue label of BASE_CHAT (ties: more attempts, then\n                      alphabetical).\n- strata           := BASE-DIVERSE beta >= 0.20; BASE-COLLAPSED beta < 0.05; INTERMEDIATE otherwise.\nTests: one-sided exact McNemar = binomial(b, b + c, 1/2) upper tail on the discordant pairs of y; Holm over the\ndecisive family; Wilson intervals for shares, Newcombe (hybrid score) intervals for differences.\n",
+ "crn_slot_map": {
+  "S1": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "S2_N50": [
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19
+  ],
+  "S2_N100": [
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   29
+  ],
+  "DS_slots": [
+   10,
+   11,
+   12,
+   13,
+   14,
+   15
+  ],
+  "base_chat": "j 0-19 (T1/T2 0-39), top-up j 20-39",
+  "base_plain": "j 0-19",
+  "reverse_base_slots": "key (task, W, j, 'base'), j 0-9",
+  "uniforms": "u_stream(task, W, j) instruct; u_stream(task, W, j, 'base') base model"
+ },
+ "derangement_seed": 20261021,
+ "topup_rule": "any task other than T1/T2 with < 30 correct BASE_CHAT programs gets 100 more (once)",
+ "n_policy": {
+  "budget_minutes": {
+   "instr2": 95.0
+  },
+  "drop_order": [
+   "S2 N 100 -> 50",
+   "MR(0.25) and MR(0.5) dropped (MR(1) kept)",
+   "BMR in the reverse arm",
+   "DS/ISO beyond alpha 1",
+   "EARLY/LATE on INTERMEDIATE tasks",
+   "the plain-completion base arm",
+   "T(0.25) to N = 30"
+  ],
+  "never_drop": [
+   "base repertoire on 15 tasks with COMMIT #1",
+   "instruct twin",
+   "T(1) on all tasks",
+   "READ(1)",
+   "Stage 4 with MR and XT",
+   "novelty audit"
+  ],
+  "floors": "never below 30 on a decisive S1 cell, never below 50 on the S2 decisive arms"
+ },
+ "utc": "2026-10-21T12:47:43.351206Z"
+}

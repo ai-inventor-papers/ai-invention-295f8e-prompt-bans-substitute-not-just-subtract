@@ -1,0 +1,9 @@
+{
+ "gpu": "NVIDIA GeForce RTX 4090",
+ "compute_capability": 8.9,
+ "total_GiB": 23.52,
+ "precision": "bf16",
+ "rule": "cc >= 8.9 and GiB < 19.5 -> fp8_w8a8; GiB >= 19.5 -> bf16; cc < 8.9 and GiB < 19.5 -> fp8_weight_only",
+ "planned_gpu": "RTX A4500 (~19.99 GiB -> bf16)",
+ "utc": "2026-10-21T12:21:35.935449Z"
+}
