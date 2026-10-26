@@ -1,0 +1,1112 @@
+{
+ "C1": {
+  "config": "C1",
+  "name": "qwen3-8b-think",
+  "arm": "ban",
+  "banned_set": [
+   "bfs",
+   "dfs",
+   "iddfs",
+   "astar",
+   "gbfs"
+  ],
+  "n": 30,
+  "n_correct_survivors": 0,
+  "share_cs": 0.0,
+  "share_cs_wilson95": [
+   0.0,
+   0.11351339317396876
+  ],
+  "share_cs_upper95_one_sided": 0.08272430812509929,
+  "n_correct_survivors_incl_unresolved_other": 0,
+  "sensitivity_cs": {
+   "catalogue_only": 0,
+   "excluding_other_named_bfs_dfs_variant": 0,
+   "excluding_bfs_dfs_variant_and_spfa": 0,
+   "share_excluding_bfs_dfs_variant": 0.0,
+   "share_excluding_bfs_dfs_variant_and_spfa": 0.0,
+   "note": "primary = committed adjudication; these drop 'other' survivors whose adjudicated name is a BFS/DFS variant (and SPFA, which degenerates toward BFS on a unit grid)"
+  },
+  "attempted_survivor_share": 0.0,
+  "attempted_survivor_wilson95": [
+   0.0,
+   0.11351339317396876
+  ],
+  "banned_mechanism_share": 1.0,
+  "banned_mechanism_wilson95": [
+   0.8864866068260312,
+   0.9999999999999999
+  ],
+  "name_free_reimpl_code": 0.6666666666666666,
+  "name_free_reimpl_all_text": 0.0,
+  "n_banned_mechanism": 30,
+  "pass_rate": 0.13333333333333333,
+  "pass_rate_exp2": 0.4666666666666667,
+  "pass_agreement_suites": 0.6666666666666666,
+  "invalid_share": 0.0,
+  "truncation_share": 0.2,
+  "composition": {
+   "dfs": 19,
+   "bfs": 11
+  },
+  "baseline_composition": {
+   "bfs": 30
+  },
+  "baseline_n": 30,
+  "baseline_pass_rate": 1.0,
+  "shift_vs_baseline": {
+   "bfs": {
+    "ban": 11,
+    "baseline": 30,
+    "diff": -0.6333333333333333,
+    "newcombe95": [
+     -0.7812607919389929,
+     -0.42205221830057926
+    ]
+   },
+   "dfs": {
+    "ban": 19,
+    "baseline": 0,
+    "diff": 0.6333333333333333,
+    "newcombe95": [
+     0.42205221830057915,
+     0.7812607919389929
+    ]
+   }
+  },
+  "per_template": {
+   "W1": {
+    "n": 10,
+    "correct_survivors": 0,
+    "banned_mechanism": 10,
+    "pass": 0
+   },
+   "W2": {
+    "n": 10,
+    "correct_survivors": 0,
+    "banned_mechanism": 10,
+    "pass": 3
+   },
+   "W3": {
+    "n": 10,
+    "correct_survivors": 0,
+    "banned_mechanism": 10,
+    "pass": 1
+   }
+  },
+  "survivor_algorithms": {},
+  "engine": "local vLLM",
+  "providers": {
+   "local-vllm": 30
+  },
+  "quantization": "fp8 (official FP8 checkpoint, W8A16 Marlin)",
+  "thinking": true,
+  "params_b": 8.2,
+  "local": true,
+  "mean_reasoning_tokens": 6537.733333333334,
+  "cost_usd": 0.0
+ },
+ "C2": {
+  "config": "C2",
+  "name": "llama-3.1-8b",
+  "arm": "ban",
+  "banned_set": [
+   "bfs",
+   "dfs",
+   "iddfs",
+   "astar",
+   "gbfs"
+  ],
+  "n": 50,
+  "n_correct_survivors": 0,
+  "share_cs": 0.0,
+  "share_cs_wilson95": [
+   6.938893903907228e-18,
+   0.07134759913335872
+  ],
+  "share_cs_upper95_one_sided": 0.051333185786270115,
+  "n_correct_survivors_incl_unresolved_other": 0,
+  "sensitivity_cs": {
+   "catalogue_only": 0,
+   "excluding_other_named_bfs_dfs_variant": 0,
+   "excluding_bfs_dfs_variant_and_spfa": 0,
+   "share_excluding_bfs_dfs_variant": 0.0,
+   "share_excluding_bfs_dfs_variant_and_spfa": 0.0,
+   "note": "primary = committed adjudication; these drop 'other' survivors whose adjudicated name is a BFS/DFS variant (and SPFA, which degenerates toward BFS on a unit grid)"
+  },
+  "attempted_survivor_share": 0.1,
+  "attempted_survivor_wilson95": [
+   0.04347576493189041,
+   0.21360231437479654
+  ],
+  "banned_mechanism_share": 0.9,
+  "banned_mechanism_wilson95": [
+   0.7863976856252035,
+   0.9565242350681096
+  ],
+  "name_free_reimpl_code": 0.9555555555555556,
+  "name_free_reimpl_all_text": 0.9555555555555556,
+  "n_banned_mechanism": 45,
+  "pass_rate": 0.02,
+  "pass_rate_exp2": 0.18,
+  "pass_agreement_suites": 0.84,
+  "invalid_share": 0.0,
+  "truncation_share": 0.0,
+  "composition": {
+   "bfs": 37,
+   "dfs": 7,
+   "other": 5,
+   "astar": 1
+  },
+  "baseline_composition": {
+   "bfs": 77,
+   "dfs": 20,
+   "other": 3
+  },
+  "baseline_n": 100,
+  "baseline_pass_rate": 0.05,
+  "shift_vs_baseline": {
+   "bfs": {
+    "ban": 37,
+    "baseline": 77,
+    "diff": -0.030000000000000027,
+    "newcombe95": [
+     -0.18326673321557851,
+     0.10652424101358152
+    ]
+   },
+   "dfs": {
+    "ban": 7,
+    "baseline": 20,
+    "diff": -0.06,
+    "newcombe95": [
+     -0.17340059787031076,
+     0.07888951468308372
+    ]
+   },
+   "astar": {
+    "ban": 1,
+    "baseline": 0,
+    "diff": 0.02,
+    "newcombe95": [
+     -0.020490429670680665,
+     0.10495443589637815
+    ]
+   },
+   "other": {
+    "ban": 5,
+    "baseline": 3,
+    "diff": 0.07,
+    "newcombe95": [
+     -0.008532478839510513,
+     0.18530554909815644
+    ]
+   }
+  },
+  "per_template": {
+   "W1": {
+    "n": 17,
+    "correct_survivors": 0,
+    "banned_mechanism": 16,
+    "pass": 1
+   },
+   "W2": {
+    "n": 17,
+    "correct_survivors": 0,
+    "banned_mechanism": 16,
+    "pass": 0
+   },
+   "W3": {
+    "n": 16,
+    "correct_survivors": 0,
+    "banned_mechanism": 13,
+    "pass": 0
+   }
+  },
+  "survivor_algorithms": {},
+  "engine": null,
+  "providers": {
+   "CoreWeave": 50
+  },
+  "quantization": "bf16",
+  "thinking": false,
+  "params_b": 8.0,
+  "local": false,
+  "mean_reasoning_tokens": 0.0,
+  "cost_usd": 0.0167871
+ },
+ "C3": {
+  "config": "C3",
+  "name": "qwen3-14b-off",
+  "arm": "ban",
+  "banned_set": [
+   "bfs",
+   "dfs",
+   "iddfs",
+   "astar",
+   "gbfs"
+  ],
+  "n": 50,
+  "n_correct_survivors": 0,
+  "share_cs": 0.0,
+  "share_cs_wilson95": [
+   6.938893903907228e-18,
+   0.07134759913335872
+  ],
+  "share_cs_upper95_one_sided": 0.051333185786270115,
+  "n_correct_survivors_incl_unresolved_other": 0,
+  "sensitivity_cs": {
+   "catalogue_only": 0,
+   "excluding_other_named_bfs_dfs_variant": 0,
+   "excluding_bfs_dfs_variant_and_spfa": 0,
+   "share_excluding_bfs_dfs_variant": 0.0,
+   "share_excluding_bfs_dfs_variant_and_spfa": 0.0,
+   "note": "primary = committed adjudication; these drop 'other' survivors whose adjudicated name is a BFS/DFS variant (and SPFA, which degenerates toward BFS on a unit grid)"
+  },
+  "attempted_survivor_share": 0.0,
+  "attempted_survivor_wilson95": [
+   6.938893903907228e-18,
+   0.07134759913335872
+  ],
+  "banned_mechanism_share": 1.0,
+  "banned_mechanism_wilson95": [
+   0.9286524008666414,
+   1.0
+  ],
+  "name_free_reimpl_code": 0.94,
+  "name_free_reimpl_all_text": 0.94,
+  "n_banned_mechanism": 50,
+  "pass_rate": 0.46,
+  "pass_rate_exp2": 0.52,
+  "pass_agreement_suites": 0.94,
+  "invalid_share": 0.0,
+  "truncation_share": 0.0,
+  "composition": {
+   "dfs": 34,
+   "bfs": 16
+  },
+  "baseline_composition": {
+   "bfs": 94,
+   "dfs": 6
+  },
+  "baseline_n": 100,
+  "baseline_pass_rate": 0.97,
+  "shift_vs_baseline": {
+   "bfs": {
+    "ban": 16,
+    "baseline": 94,
+    "diff": -0.6199999999999999,
+    "newcombe95": [
+     -0.7369423104506281,
+     -0.4674636272689271
+    ]
+   },
+   "dfs": {
+    "ban": 34,
+    "baseline": 6,
+    "diff": 0.6200000000000001,
+    "newcombe95": [
+     0.4674636272689273,
+     0.7369423104506283
+    ]
+   }
+  },
+  "per_template": {
+   "W1": {
+    "n": 17,
+    "correct_survivors": 0,
+    "banned_mechanism": 17,
+    "pass": 2
+   },
+   "W2": {
+    "n": 17,
+    "correct_survivors": 0,
+    "banned_mechanism": 17,
+    "pass": 13
+   },
+   "W3": {
+    "n": 16,
+    "correct_survivors": 0,
+    "banned_mechanism": 16,
+    "pass": 8
+   }
+  },
+  "survivor_algorithms": {},
+  "engine": "DeepInfra",
+  "providers": {
+   "DeepInfra": 50
+  },
+  "quantization": "fp8",
+  "thinking": false,
+  "params_b": 14.8,
+  "local": false,
+  "mean_reasoning_tokens": 1.0,
+  "cost_usd": 0.01601664
+ },
+ "C4": {
+  "config": "C4",
+  "name": "qwen3-14b-on",
+  "arm": "ban",
+  "banned_set": [
+   "bfs",
+   "dfs",
+   "iddfs",
+   "astar",
+   "gbfs"
+  ],
+  "n": 50,
+  "n_correct_survivors": 7,
+  "share_cs": 0.14,
+  "share_cs_wilson95": [
+   0.06950833427016294,
+   0.2618619371058554
+  ],
+  "share_cs_upper95_one_sided": 0.23923899594548453,
+  "n_correct_survivors_incl_unresolved_other": 7,
+  "sensitivity_cs": {
+   "catalogue_only": 5,
+   "excluding_other_named_bfs_dfs_variant": 7,
+   "excluding_bfs_dfs_variant_and_spfa": 7,
+   "share_excluding_bfs_dfs_variant": 0.14,
+   "share_excluding_bfs_dfs_variant_and_spfa": 0.14,
+   "note": "primary = committed adjudication; these drop 'other' survivors whose adjudicated name is a BFS/DFS variant (and SPFA, which degenerates toward BFS on a unit grid)"
+  },
+  "attempted_survivor_share": 0.16,
+  "attempted_survivor_wilson95": [
+   0.08337420678033404,
+   0.2851421606303499
+  ],
+  "banned_mechanism_share": 0.76,
+  "banned_mechanism_wilson95": [
+   0.6258731624205708,
+   0.8570260860300828
+  ],
+  "name_free_reimpl_code": 0.868421052631579,
+  "name_free_reimpl_all_text": 0.07894736842105263,
+  "n_banned_mechanism": 38,
+  "pass_rate": 0.32,
+  "pass_rate_exp2": 0.42,
+  "pass_agreement_suites": 0.9,
+  "invalid_share": 0.08,
+  "truncation_share": 0.1,
+  "composition": {
+   "dfs": 26,
+   "invalid": 4,
+   "bfs": 9,
+   "other": 2,
+   "dijkstra_unit": 6,
+   "gbfs": 2,
+   "astar": 1
+  },
+  "baseline_composition": {
+   "bfs": 96,
+   "dfs": 4
+  },
+  "baseline_n": 100,
+  "baseline_pass_rate": 0.96,
+  "shift_vs_baseline": {
+   "bfs": {
+    "ban": 9,
+    "baseline": 96,
+    "diff": -0.78,
+    "newcombe95": [
+     -0.8658210209745523,
+     -0.6393549174043951
+    ]
+   },
+   "dfs": {
+    "ban": 26,
+    "baseline": 4,
+    "diff": 0.48000000000000004,
+    "newcombe95": [
+     0.3330291087123385,
+     0.6142528898634965
+    ]
+   },
+   "astar": {
+    "ban": 1,
+    "baseline": 0,
+    "diff": 0.02,
+    "newcombe95": [
+     -0.020490429670680665,
+     0.10495443589637815
+    ]
+   },
+   "gbfs": {
+    "ban": 2,
+    "baseline": 0,
+    "diff": 0.04,
+    "newcombe95": [
+     -0.006981540317227128,
+     0.1346009068750702
+    ]
+   },
+   "dijkstra_unit": {
+    "ban": 6,
+    "baseline": 0,
+    "diff": 0.12,
+    "newcombe95": [
+     0.046229940403113234,
+     0.23804817383202992
+    ]
+   },
+   "invalid": {
+    "ban": 4,
+    "baseline": 0,
+    "diff": 0.08,
+    "newcombe95": [
+     0.019041255798354063,
+     0.18838246918342838
+    ]
+   },
+   "other": {
+    "ban": 2,
+    "baseline": 0,
+    "diff": 0.04,
+    "newcombe95": [
+     -0.006981540317227128,
+     0.1346009068750702
+    ]
+   }
+  },
+  "per_template": {
+   "W1": {
+    "n": 17,
+    "correct_survivors": 1,
+    "banned_mechanism": 14,
+    "pass": 2
+   },
+   "W2": {
+    "n": 17,
+    "correct_survivors": 5,
+    "banned_mechanism": 10,
+    "pass": 10
+   },
+   "W3": {
+    "n": 16,
+    "correct_survivors": 1,
+    "banned_mechanism": 14,
+    "pass": 4
+   }
+  },
+  "survivor_algorithms": {
+   "other:Bellman-Ford": 2,
+   "dijkstra_unit": 5
+  },
+  "engine": "DeepInfra",
+  "providers": {
+   "DeepInfra": 50
+  },
+  "quantization": "fp8",
+  "thinking": true,
+  "params_b": 14.8,
+  "local": false,
+  "mean_reasoning_tokens": 7097.52,
+  "cost_usd": 0.23281128
+ },
+ "C5": {
+  "config": "C5",
+  "name": "qwen3-32b-off",
+  "arm": "ban",
+  "banned_set": [
+   "bfs",
+   "dfs",
+   "iddfs",
+   "astar",
+   "gbfs"
+  ],
+  "n": 50,
+  "n_correct_survivors": 4,
+  "share_cs": 0.08,
+  "share_cs_wilson95": [
+   0.03154951408859298,
+   0.18838246918342838
+  ],
+  "share_cs_upper95_one_sided": 0.16669789472014648,
+  "n_correct_survivors_incl_unresolved_other": 4,
+  "sensitivity_cs": {
+   "catalogue_only": 3,
+   "excluding_other_named_bfs_dfs_variant": 4,
+   "excluding_bfs_dfs_variant_and_spfa": 4,
+   "share_excluding_bfs_dfs_variant": 0.08,
+   "share_excluding_bfs_dfs_variant_and_spfa": 0.08,
+   "note": "primary = committed adjudication; these drop 'other' survivors whose adjudicated name is a BFS/DFS variant (and SPFA, which degenerates toward BFS on a unit grid)"
+  },
+  "attempted_survivor_share": 0.16,
+  "attempted_survivor_wilson95": [
+   0.08337420678033404,
+   0.2851421606303499
+  ],
+  "banned_mechanism_share": 0.82,
+  "banned_mechanism_wilson95": [
+   0.6920394632569922,
+   0.9022980732976582
+  ],
+  "name_free_reimpl_code": 0.6829268292682927,
+  "name_free_reimpl_all_text": 0.6829268292682927,
+  "n_banned_mechanism": 41,
+  "pass_rate": 0.28,
+  "pass_rate_exp2": 0.62,
+  "pass_agreement_suites": 0.66,
+  "invalid_share": 0.02,
+  "truncation_share": 0.0,
+  "composition": {
+   "dfs": 23,
+   "other": 3,
+   "bfs": 11,
+   "astar": 3,
+   "dijkstra_unit": 5,
+   "gbfs": 4,
+   "invalid": 1
+  },
+  "baseline_composition": {
+   "bfs": 81,
+   "dfs": 19
+  },
+  "baseline_n": 100,
+  "baseline_pass_rate": 0.56,
+  "shift_vs_baseline": {
+   "bfs": {
+    "ban": 11,
+    "baseline": 81,
+    "diff": -0.5900000000000001,
+    "newcombe95": [
+     -0.7029373799350344,
+     -0.4311268551635239
+    ]
+   },
+   "dfs": {
+    "ban": 23,
+    "baseline": 19,
+    "diff": 0.27,
+    "newcombe95": [
+     0.11288281755927407,
+     0.4206815009205522
+    ]
+   },
+   "astar": {
+    "ban": 3,
+    "baseline": 0,
+    "diff": 0.06,
+    "newcombe95": [
+     0.005965756503838675,
+     0.16217091688838173
+    ]
+   },
+   "gbfs": {
+    "ban": 4,
+    "baseline": 0,
+    "diff": 0.08,
+    "newcombe95": [
+     0.019041255798354063,
+     0.18838246918342838
+    ]
+   },
+   "dijkstra_unit": {
+    "ban": 5,
+    "baseline": 0,
+    "diff": 0.1,
+    "newcombe95": [
+     0.03244625798947062,
+     0.21360231437479654
+    ]
+   },
+   "invalid": {
+    "ban": 1,
+    "baseline": 0,
+    "diff": 0.02,
+    "newcombe95": [
+     -0.020490429670680665,
+     0.10495443589637815
+    ]
+   },
+   "other": {
+    "ban": 3,
+    "baseline": 0,
+    "diff": 0.06,
+    "newcombe95": [
+     0.005965756503838675,
+     0.16217091688838173
+    ]
+   }
+  },
+  "per_template": {
+   "W1": {
+    "n": 17,
+    "correct_survivors": 1,
+    "banned_mechanism": 16,
+    "pass": 5
+   },
+   "W2": {
+    "n": 17,
+    "correct_survivors": 3,
+    "banned_mechanism": 9,
+    "pass": 6
+   },
+   "W3": {
+    "n": 16,
+    "correct_survivors": 0,
+    "banned_mechanism": 16,
+    "pass": 3
+   }
+  },
+  "survivor_algorithms": {
+   "other:generic (whatever-first) graph search with a coordinate-ordered priority queue": 1,
+   "dijkstra_unit": 3
+  },
+  "engine": "DeepInfra",
+  "providers": {
+   "DeepInfra": 50
+  },
+  "quantization": "fp8",
+  "thinking": false,
+  "params_b": 32.8,
+  "local": false,
+  "mean_reasoning_tokens": 1.0,
+  "cost_usd": 0.01607364
+ },
+ "C6": {
+  "config": "C6",
+  "name": "qwen3-32b-on",
+  "arm": "ban",
+  "banned_set": [
+   "bfs",
+   "dfs",
+   "iddfs",
+   "astar",
+   "gbfs"
+  ],
+  "n": 50,
+  "n_correct_survivors": 17,
+  "share_cs": 0.34,
+  "share_cs_wilson95": [
+   0.2243694922250009,
+   0.478461739497674
+  ],
+  "share_cs_upper95_one_sided": 0.45585449769347197,
+  "n_correct_survivors_incl_unresolved_other": 17,
+  "sensitivity_cs": {
+   "catalogue_only": 6,
+   "excluding_other_named_bfs_dfs_variant": 17,
+   "excluding_bfs_dfs_variant_and_spfa": 14,
+   "share_excluding_bfs_dfs_variant": 0.34,
+   "share_excluding_bfs_dfs_variant_and_spfa": 0.28,
+   "note": "primary = committed adjudication; these drop 'other' survivors whose adjudicated name is a BFS/DFS variant (and SPFA, which degenerates toward BFS on a unit grid)"
+  },
+  "attempted_survivor_share": 0.36,
+  "attempted_survivor_wilson95": [
+   0.24138749651846741,
+   0.49858983123887307
+  ],
+  "banned_mechanism_share": 0.22,
+  "banned_mechanism_wilson95": [
+   0.1275391597021442,
+   0.3524154958125367
+  ],
+  "name_free_reimpl_code": 0.5454545454545454,
+  "name_free_reimpl_all_text": 0.0,
+  "n_banned_mechanism": 11,
+  "pass_rate": 0.42,
+  "pass_rate_exp2": 0.44,
+  "pass_agreement_suites": 0.98,
+  "invalid_share": 0.42,
+  "truncation_share": 0.46,
+  "composition": {
+   "other": 12,
+   "invalid": 21,
+   "dfs": 8,
+   "gbfs": 1,
+   "dijkstra_unit": 6,
+   "bfs": 2
+  },
+  "baseline_composition": {
+   "invalid": 9,
+   "bfs": 91
+  },
+  "baseline_n": 100,
+  "baseline_pass_rate": 0.85,
+  "shift_vs_baseline": {
+   "bfs": {
+    "ban": 2,
+    "baseline": 91,
+    "diff": -0.87,
+    "newcombe95": [
+     -0.9209574147973136,
+     -0.7509573740172792
+    ]
+   },
+   "dfs": {
+    "ban": 8,
+    "baseline": 0,
+    "diff": 0.16,
+    "newcombe95": [
+     0.07491162772662026,
+     0.2851421606303499
+    ]
+   },
+   "gbfs": {
+    "ban": 1,
+    "baseline": 0,
+    "diff": 0.02,
+    "newcombe95": [
+     -0.020490429670680665,
+     0.10495443589637815
+    ]
+   },
+   "dijkstra_unit": {
+    "ban": 6,
+    "baseline": 0,
+    "diff": 0.12,
+    "newcombe95": [
+     0.046229940403113234,
+     0.23804817383202992
+    ]
+   },
+   "invalid": {
+    "ban": 21,
+    "baseline": 9,
+    "diff": 0.32999999999999996,
+    "newcombe95": [
+     0.18453223983084904,
+     0.47390873655115284
+    ]
+   },
+   "other": {
+    "ban": 12,
+    "baseline": 0,
+    "diff": 0.24,
+    "newcombe95": [
+     0.1361607960358552,
+     0.3741268375794292
+    ]
+   }
+  },
+  "per_template": {
+   "W1": {
+    "n": 17,
+    "correct_survivors": 2,
+    "banned_mechanism": 9,
+    "pass": 5
+   },
+   "W2": {
+    "n": 17,
+    "correct_survivors": 7,
+    "banned_mechanism": 0,
+    "pass": 7
+   },
+   "W3": {
+    "n": 16,
+    "correct_survivors": 8,
+    "banned_mechanism": 2,
+    "pass": 9
+   }
+  },
+  "survivor_algorithms": {
+   "other:random walk with restart": 1,
+   "dijkstra_unit": 6,
+   "other:random-priority graph search (heap keyed by random.random(): whatever-first search in random frontier order)": 2,
+   "other:Bellman-Ford": 4,
+   "other:Bellman-Ford / SPFA on grid": 2,
+   "other:wavefront propagation": 1,
+   "other:Bellman-Ford / SPFA": 1
+  },
+  "engine": "DeepInfra",
+  "providers": {
+   "DeepInfra": 50
+  },
+  "quantization": "fp8",
+  "thinking": true,
+  "params_b": 32.8,
+  "local": false,
+  "mean_reasoning_tokens": 9090.14,
+  "cost_usd": 0.31901868
+ },
+ "C7": {
+  "config": "C7",
+  "name": "gemma-3-27b-it",
+  "arm": "ban",
+  "banned_set": [
+   "bfs",
+   "dfs",
+   "iddfs",
+   "astar",
+   "gbfs"
+  ],
+  "n": 50,
+  "n_correct_survivors": 0,
+  "share_cs": 0.0,
+  "share_cs_wilson95": [
+   6.938893903907228e-18,
+   0.07134759913335872
+  ],
+  "share_cs_upper95_one_sided": 0.051333185786270115,
+  "n_correct_survivors_incl_unresolved_other": 0,
+  "sensitivity_cs": {
+   "catalogue_only": 0,
+   "excluding_other_named_bfs_dfs_variant": 0,
+   "excluding_bfs_dfs_variant_and_spfa": 0,
+   "share_excluding_bfs_dfs_variant": 0.0,
+   "share_excluding_bfs_dfs_variant_and_spfa": 0.0,
+   "note": "primary = committed adjudication; these drop 'other' survivors whose adjudicated name is a BFS/DFS variant (and SPFA, which degenerates toward BFS on a unit grid)"
+  },
+  "attempted_survivor_share": 0.0,
+  "attempted_survivor_wilson95": [
+   6.938893903907228e-18,
+   0.07134759913335872
+  ],
+  "banned_mechanism_share": 1.0,
+  "banned_mechanism_wilson95": [
+   0.9286524008666414,
+   1.0
+  ],
+  "name_free_reimpl_code": 1.0,
+  "name_free_reimpl_all_text": 1.0,
+  "n_banned_mechanism": 50,
+  "pass_rate": 0.86,
+  "pass_rate_exp2": 0.86,
+  "pass_agreement_suites": 1.0,
+  "invalid_share": 0.0,
+  "truncation_share": 0.0,
+  "composition": {
+   "dfs": 31,
+   "bfs": 19
+  },
+  "baseline_composition": {
+   "bfs": 99
+  },
+  "baseline_n": 99,
+  "baseline_pass_rate": 1.0,
+  "shift_vs_baseline": {
+   "bfs": {
+    "ban": 19,
+    "baseline": 99,
+    "diff": -0.62,
+    "newcombe95": [
+     -0.7413721068980641,
+     -0.47655567465769766
+    ]
+   },
+   "dfs": {
+    "ban": 31,
+    "baseline": 0,
+    "diff": 0.62,
+    "newcombe95": [
+     0.4765556746576977,
+     0.7413721068980641
+    ]
+   }
+  },
+  "per_template": {
+   "W1": {
+    "n": 17,
+    "correct_survivors": 0,
+    "banned_mechanism": 17,
+    "pass": 15
+   },
+   "W2": {
+    "n": 17,
+    "correct_survivors": 0,
+    "banned_mechanism": 17,
+    "pass": 14
+   },
+   "W3": {
+    "n": 16,
+    "correct_survivors": 0,
+    "banned_mechanism": 16,
+    "pass": 14
+   }
+  },
+  "survivor_algorithms": {},
+  "engine": "DeepInfra",
+  "providers": {
+   "DeepInfra": 50
+  },
+  "quantization": "fp8",
+  "thinking": false,
+  "params_b": 27.4,
+  "local": false,
+  "mean_reasoning_tokens": 0.0,
+  "cost_usd": 0.01067088
+ },
+ "C8": {
+  "config": "C8",
+  "name": "qwen2.5-coder-32b",
+  "arm": "ban",
+  "banned_set": [
+   "bfs",
+   "dfs",
+   "iddfs",
+   "astar",
+   "gbfs"
+  ],
+  "n": 50,
+  "n_correct_survivors": 0,
+  "share_cs": 0.0,
+  "share_cs_wilson95": [
+   6.938893903907228e-18,
+   0.07134759913335872
+  ],
+  "share_cs_upper95_one_sided": 0.051333185786270115,
+  "n_correct_survivors_incl_unresolved_other": 0,
+  "sensitivity_cs": {
+   "catalogue_only": 0,
+   "excluding_other_named_bfs_dfs_variant": 0,
+   "excluding_bfs_dfs_variant_and_spfa": 0,
+   "share_excluding_bfs_dfs_variant": 0.0,
+   "share_excluding_bfs_dfs_variant_and_spfa": 0.0,
+   "note": "primary = committed adjudication; these drop 'other' survivors whose adjudicated name is a BFS/DFS variant (and SPFA, which degenerates toward BFS on a unit grid)"
+  },
+  "attempted_survivor_share": 0.06,
+  "attempted_survivor_wilson95": [
+   0.02061497034897397,
+   0.16217091688838173
+  ],
+  "banned_mechanism_share": 0.94,
+  "banned_mechanism_wilson95": [
+   0.8378290831116182,
+   0.979385029651026
+  ],
+  "name_free_reimpl_code": 0.9361702127659575,
+  "name_free_reimpl_all_text": 0.9361702127659575,
+  "n_banned_mechanism": 47,
+  "pass_rate": 0.4,
+  "pass_rate_exp2": 0.54,
+  "pass_agreement_suites": 0.82,
+  "invalid_share": 0.0,
+  "truncation_share": 0.0,
+  "composition": {
+   "dfs": 37,
+   "bfs": 10,
+   "jps": 3
+  },
+  "baseline_composition": {
+   "dfs": 52,
+   "bfs": 48
+  },
+  "baseline_n": 100,
+  "baseline_pass_rate": 0.22,
+  "shift_vs_baseline": {
+   "bfs": {
+    "ban": 10,
+    "baseline": 48,
+    "diff": -0.27999999999999997,
+    "newcombe95": [
+     -0.4105528934812154,
+     -0.11847882359797576
+    ]
+   },
+   "dfs": {
+    "ban": 37,
+    "baseline": 52,
+    "diff": 0.21999999999999997,
+    "newcombe95": [
+     0.05428553321432808,
+     0.3601265932972111
+    ]
+   },
+   "jps": {
+    "ban": 3,
+    "baseline": 0,
+    "diff": 0.06,
+    "newcombe95": [
+     0.005965756503838675,
+     0.16217091688838173
+    ]
+   }
+  },
+  "per_template": {
+   "W1": {
+    "n": 17,
+    "correct_survivors": 0,
+    "banned_mechanism": 17,
+    "pass": 9
+   },
+   "W2": {
+    "n": 17,
+    "correct_survivors": 0,
+    "banned_mechanism": 14,
+    "pass": 4
+   },
+   "W3": {
+    "n": 16,
+    "correct_survivors": 0,
+    "banned_mechanism": 16,
+    "pass": 7
+   }
+  },
+  "survivor_algorithms": {},
+  "engine": "Cloudflare",
+  "providers": {
+   "Cloudflare": 50
+  },
+  "quantization": "unknown",
+  "thinking": false,
+  "params_b": 32.8,
+  "local": false,
+  "mean_reasoning_tokens": 0.0,
+  "cost_usd": 0.06418878
+ },
+ "C9": {
+  "config": "C9",
+  "name": "qwen3-8b-off (carried)",
+  "arm": "ban (carried)",
+  "banned_set": [
+   "astar",
+   "bfs",
+   "dfs",
+   "gbfs",
+   "iddfs"
+  ],
+  "n": 100,
+  "n_correct_survivors": 0,
+  "share_cs": 0.0,
+  "share_cs_wilson95": [
+   3.469446951953614e-18,
+   0.03699349820698568
+  ],
+  "share_cs_upper95_one_sided": 0.026342720783174324,
+  "composition": {
+   "dfs": 36,
+   "bfs": 63,
+   "iddfs": 1
+  },
+  "pass_rate": 0.68,
+  "banned_mechanism_share": 1.0,
+  "engine": "local-vllm bf16 (iter 2)",
+  "source": "art_IVZc3TWCeE9f TOP5 rows",
+  "carried": true,
+  "params_b": 8.2,
+  "thinking": false
+ },
+ "C10": {
+  "config": "C10",
+  "name": "gemma-3-4b-it (carried)",
+  "arm": "ban (carried)",
+  "banned_set": [
+   "bfs",
+   "dfs",
+   "gbfs",
+   "iddfs",
+   "astar"
+  ],
+  "n": 50,
+  "n_correct_survivors": 0,
+  "share_cs": 0.0,
+  "share_cs_wilson95": [
+   6.938893903907228e-18,
+   0.07134759913335872
+  ],
+  "share_cs_upper95_one_sided": 0.051333185786270115,
+  "composition": {
+   "dfs": 9,
+   "bfs": 41
+  },
+  "pass_rate": 0.38,
+  "banned_mechanism_share": 1.0,
+  "engine": "carried",
+  "source": "art_zNyBP6zieI5u (ITER6 exp31) results/top5.json",
+  "carried": true,
+  "params_b": 4.3,
+  "thinking": false
+ }
+}

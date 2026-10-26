@@ -1,0 +1,37 @@
+03:58:53|INFO   |=== stage adjudicate ['ban', 'C4,C5,C7,C8']
+03:58:54|INFO   |evaluate_unique: 193 unique, 189 to run
+03:59:22|INFO   |sandbox: 50/189
+03:59:35|INFO   |sandbox: 100/189
+03:59:51|INFO   |sandbox: 150/189
+04:00:04|INFO   |sandbox: 189/189
+04:00:07|INFO   |judge deepseek/deepseek-chat-v3.1 [labeller]: 36 new calls (0 cached)
+04:00:20|INFO   |labelled C4 ban: 50 rows; label_raw {'dfs': 26, 'invalid': 4, 'bfs': 9, 'other': 3, 'dijkstra_unit': 5, 'gbfs': 2, 'astar': 1}
+04:00:20|INFO   |labelled C5 ban: 50 rows; label_raw {'dfs': 23, 'gbfs': 7, 'bfs': 11, 'astar': 3, 'dijkstra_unit': 4, 'invalid': 1, 'other': 1}
+04:00:20|INFO   |labelled C7 ban: 50 rows; label_raw {'dfs': 31, 'bfs': 19}
+04:00:20|INFO   |labelled C8 ban: 50 rows; label_raw {'dfs': 37, 'bfs': 10, 'jps': 2, 'other': 1}
+04:00:20|INFO   |judge deepseek/deepseek-chat-v3.1 [adj:C4:ban]: 8 new calls (4 cached)
+04:00:29|INFO   |judge moonshotai/kimi-k2 [adj:C4:ban]: 12 new calls (0 cached)
+04:01:44|WARNING|judge moonshotai/kimi-k2 attempt 0: TimeoutError
+04:01:50|INFO   |judge mistralai/mistral-medium-3.1 [adj3:C4:ban]: 2 new calls (0 cached)
+04:01:51|INFO   |adjudicated C4 ban: {'n_adjudicated': 12, 'reasons': {'candidate_survivor': 7, 'review_class:dijkstra_unit': 1, 'audit_in_banned': 4}, 'audit_n': 4, 'audit_disagree': 0, 'audit_disagreement_rate': 0.0, 'label_changes': 1, 'sources': {'judges_agree': 10, 'third_judge_majority': 2}}
+04:01:52|INFO   |judge deepseek/deepseek-chat-v3.1 [adj:C5:ban]: 6 new calls (4 cached)
+04:02:02|INFO   |judge moonshotai/kimi-k2 [adj:C5:ban]: 10 new calls (0 cached)
+04:03:18|WARNING|judge moonshotai/kimi-k2 attempt 0: TimeoutError
+04:03:18|WARNING|judge moonshotai/kimi-k2 attempt 0: TimeoutError
+04:04:24|INFO   |judge mistralai/mistral-medium-3.1 [adj3:C5:ban]: 5 new calls (0 cached)
+04:04:26|WARNING|[C5:ban] audit disagreement 2/5 > 10% -> adjudicating all ban rows
+04:04:26|INFO   |judge deepseek/deepseek-chat-v3.1 [adj:C5:ban:extended]: 32 new calls (7 cached)
+04:04:36|INFO   |judge moonshotai/kimi-k2 [adj:C5:ban:extended]: 39 new calls (0 cached)
+04:05:51|WARNING|judge moonshotai/kimi-k2 attempt 0: TimeoutError
+04:05:54|WARNING|judge moonshotai/kimi-k2 attempt 0: TimeoutError
+04:05:59|INFO   |judge mistralai/mistral-medium-3.1 [adj3:C5:ban:extended]: 3 new calls (0 cached)
+04:06:00|INFO   |adjudicated C5 ban: {'n_adjudicated': 10, 'reasons': {'candidate_survivor': 3, 'review_class:dijkstra_unit': 1, 'review_class:other': 1, 'audit_in_banned': 5}, 'audit_n': 5, 'audit_disagree': 2, 'audit_disagreement_rate': 0.4, 'label_changes': 3, 'sources': {'judges_agree': 5, 'third_judge_majority': 3, 'split_third_judge': 2}, 'extended': 39}
+04:06:00|INFO   |judge deepseek/deepseek-chat-v3.1 [adj:C7:ban]: 4 new calls (1 cached)
+04:06:11|INFO   |judge moonshotai/kimi-k2 [adj:C7:ban]: 5 new calls (0 cached)
+04:06:28|INFO   |adjudicated C7 ban: {'n_adjudicated': 5, 'reasons': {'audit_in_banned': 5}, 'audit_n': 5, 'audit_disagree': 0, 'audit_disagreement_rate': 0.0, 'label_changes': 0, 'sources': {'judges_agree': 5}}
+04:06:28|INFO   |judge deepseek/deepseek-chat-v3.1 [adj:C8:ban]: 3 new calls (5 cached)
+04:06:38|INFO   |judge moonshotai/kimi-k2 [adj:C8:ban]: 8 new calls (0 cached)
+04:07:53|WARNING|judge moonshotai/kimi-k2 attempt 0: TimeoutError
+04:09:11|WARNING|judge moonshotai/kimi-k2 attempt 1: TimeoutError
+04:10:05|INFO   |judge mistralai/mistral-medium-3.1 [adj3:C8:ban]: 1 new calls (0 cached)
+04:10:07|INFO   |adjudicated C8 ban: {'n_adjudicated': 8, 'reasons': {'review_class:jps': 2, 'review_class:other': 1, 'audit_in_banned': 5}, 'audit_n': 5, 'audit_disagree': 0, 'audit_disagreement_rate': 0.0, 'label_changes': 1, 'sources': {'judges_agree': 7, 'split_third_judge': 1}}
