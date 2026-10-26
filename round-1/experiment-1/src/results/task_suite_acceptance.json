@@ -1,0 +1,192 @@
+{
+ "t1": {
+  "n_cases": 48,
+  "n_references": 12,
+  "reference_pass": {
+   "astar_fg.py": true,
+   "bfs_deque_parent.py": true,
+   "bfs_listpop_pathcarry.py": true,
+   "bibfs_deques.py": true,
+   "bibfs_sets.py": true,
+   "dfs_recursive.py": true,
+   "dfs_stack.py": true,
+   "dijkstra_counter.py": true,
+   "dijkstra_lazy.py": true,
+   "gbfs_counter.py": true,
+   "iddfs_iterative.py": true,
+   "iddfs_recursive.py": true
+  },
+  "all_references_pass": true,
+  "mutation_suite": [
+   {
+    "mutant": "wall_cell",
+    "rejected": true,
+    "msg": "cell out of bounds or wall"
+   },
+   {
+    "mutant": "diagonal_step",
+    "rejected": true,
+    "msg": "non-adjacent step"
+   },
+   {
+    "mutant": "wrong_endpoint",
+    "rejected": true,
+    "msg": "wrong endpoints"
+   },
+   {
+    "mutant": "wrong_start",
+    "rejected": true,
+    "msg": "wrong endpoints"
+   },
+   {
+    "mutant": "teleport",
+    "rejected": true,
+    "msg": "non-adjacent step"
+   },
+   {
+    "mutant": "path_for_unreachable",
+    "rejected": true,
+    "msg": "expected []"
+   }
+  ],
+  "harness_robustness": {
+   "crash": {
+    "passed": false,
+    "error": "runtime_error",
+    "as_expected": true
+   },
+   "infinite_loop": {
+    "passed": false,
+    "error": "timeout",
+    "as_expected": true
+   },
+   "prints": {
+    "passed": true,
+    "error": null,
+    "as_expected": true
+   },
+   "main_block": {
+    "passed": true,
+    "error": null,
+    "as_expected": true
+   },
+   "imports_os": {
+    "passed": false,
+    "error": "forbidden_import",
+    "as_expected": true
+   },
+   "no_solve": {
+    "passed": false,
+    "error": "no_solve",
+    "as_expected": true
+   },
+   "syntax_error": {
+    "passed": false,
+    "error": "syntax_error",
+    "as_expected": true
+   },
+   "deep_recursive_dfs_spiral": {
+    "passed": true,
+    "as_expected": true
+   },
+   "tracer_infinite_loop": {
+    "error": "probe_timeout",
+    "as_expected": true
+   }
+  },
+  "max_limit_s": 1.252,
+  "sum_limits_s": 48.25
+ },
+ "t2": {
+  "n_cases": 45,
+  "n_references": 10,
+  "reference_pass": {
+   "bellman_ford.py": true,
+   "bidijkstra_alternate.py": true,
+   "bidijkstra_reverse.py": true,
+   "dial_dict.py": true,
+   "dial_list.py": true,
+   "dijkstra_decreasekey.py": true,
+   "dijkstra_lazy.py": true,
+   "floyd_bigint.py": true,
+   "floyd_inf.py": true,
+   "spfa.py": true
+  },
+  "all_references_pass": true,
+  "mutation_suite": [
+   {
+    "mutant": "off_by_one_plus",
+    "rejected": true,
+    "msg": "got 30"
+   },
+   {
+    "mutant": "off_by_one_minus",
+    "rejected": true,
+    "msg": "got 28"
+   },
+   {
+    "mutant": "inf_for_unreachable",
+    "rejected": true,
+    "msg": "got inf"
+   },
+   {
+    "mutant": "none_for_unreachable",
+    "rejected": true,
+    "msg": "returned NoneType"
+   },
+   {
+    "mutant": "bfs_edge_count",
+    "rejected": true,
+    "msg": "got 1"
+   },
+   {
+    "mutant": "bfs_first_found_weight",
+    "rejected": true,
+    "msg": "got 35"
+   }
+  ],
+  "harness_robustness": {
+   "crash": {
+    "passed": false,
+    "error": "runtime_error",
+    "as_expected": true
+   },
+   "infinite_loop": {
+    "passed": false,
+    "error": "timeout",
+    "as_expected": true
+   },
+   "prints": {
+    "passed": true,
+    "error": null,
+    "as_expected": true
+   },
+   "main_block": {
+    "passed": true,
+    "error": null,
+    "as_expected": true
+   },
+   "imports_os": {
+    "passed": false,
+    "error": "forbidden_import",
+    "as_expected": true
+   },
+   "no_solve": {
+    "passed": false,
+    "error": "no_solve",
+    "as_expected": true
+   },
+   "syntax_error": {
+    "passed": false,
+    "error": "syntax_error",
+    "as_expected": true
+   },
+   "tracer_infinite_loop": {
+    "error": "probe_timeout",
+    "as_expected": true
+   }
+  },
+  "max_limit_s": 1.0,
+  "sum_limits_s": 45.0
+ }
+}
