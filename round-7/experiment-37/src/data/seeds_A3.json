@@ -1,0 +1,58 @@
+[
+ {
+  "id": "seed:A3:two_pointers",
+  "code": "def solve(height):\n    l, r = 0, len(height) - 1\n    lmax = rmax = 0\n    water = 0\n    while l < r:\n        if height[l] < height[r]:\n            if height[l] >= lmax:\n                lmax = height[l]\n            else:\n                water += lmax - height[l]\n            l += 1\n        else:\n            if height[r] >= rmax:\n                rmax = height[r]\n            else:\n                water += rmax - height[r]\n            r -= 1\n    return water\n",
+  "novelty": 0.560748,
+  "s": 0.439252,
+  "runtime_ratio": 1.0504,
+  "median_case_ms": 0.0016,
+  "runtime_label": "two_pointers",
+  "ds_signature": "none",
+  "cell": "two_pointers|none",
+  "origin": "seed",
+  "depth": 0,
+  "mode": "two_pointers"
+ },
+ {
+  "id": "seed:A3:prefix_suffix_max",
+  "code": "def solve(height):\n    n = len(height)\n    left = [0] * n\n    right = [0] * n\n    left[0] = height[0]\n    for i in range(1, n):\n        left[i] = max(left[i - 1], height[i])\n    right[n - 1] = height[n - 1]\n    for i in range(n - 2, -1, -1):\n        right[i] = max(right[i + 1], height[i])\n    return sum(min(left[i], right[i]) - height[i] for i in range(n))\n",
+  "novelty": 0.307692,
+  "s": 0.692308,
+  "runtime_ratio": 6.0051,
+  "median_case_ms": 0.0126,
+  "runtime_label": "prefix_suffix_max",
+  "ds_signature": "none",
+  "cell": "prefix_suffix_max|none",
+  "origin": "seed",
+  "depth": 0,
+  "mode": "prefix_suffix_max"
+ },
+ {
+  "id": "seed:A3:monotonic_stack",
+  "code": "def solve(height):\n    stack = []\n    water = 0\n    for i, h in enumerate(height):\n        while stack and height[stack[-1]] < h:\n            bottom = stack.pop()\n            if not stack:\n                break\n            left = stack[-1]\n            width = i - left - 1\n            bounded = min(height[left], h) - height[bottom]\n            water += width * bounded\n        stack.append(i)\n    return water\n",
+  "novelty": 0.664062,
+  "s": 0.335938,
+  "runtime_ratio": 4.1995,
+  "median_case_ms": 0.0049,
+  "runtime_label": "monotonic_stack",
+  "ds_signature": "stack_list",
+  "cell": "monotonic_stack|stack_list",
+  "origin": "seed",
+  "depth": 0,
+  "mode": "monotonic_stack"
+ },
+ {
+  "id": "seed:A3:peak_split",
+  "code": "def solve(height):\n    n = len(height)\n    peak = 0\n    for i in range(n):\n        if height[i] > height[peak]:\n            peak = i\n    water = 0\n    m = 0\n    for i in range(peak):\n        if height[i] > m:\n            m = height[i]\n        else:\n            water += m - height[i]\n    m = 0\n    for i in range(n - 1, peak, -1):\n        if height[i] > m:\n            m = height[i]\n        else:\n            water += m - height[i]\n    return water\n",
+  "novelty": 0.565217,
+  "s": 0.434783,
+  "runtime_ratio": 1.0731,
+  "median_case_ms": 0.0031,
+  "runtime_label": "peak_split",
+  "ds_signature": "none",
+  "cell": "peak_split|none",
+  "origin": "seed",
+  "depth": 0,
+  "mode": "peak_split"
+ }
+]

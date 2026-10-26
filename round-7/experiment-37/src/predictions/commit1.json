@@ -1,0 +1,200 @@
+{
+ "utc": "2026-10-22T14:58:40.215848+00:00",
+ "s_star": {
+  "T2": {
+   "s_star": 0.35940910000000004,
+   "n_forced_kept": 89,
+   "n_refs": 10,
+   "per_mode_kept_of_correct": {
+    "dijkstra": [
+     30,
+     30
+    ],
+    "bf_spfa": [
+     29,
+     29
+    ],
+    "bidijkstra": [
+     0,
+     10
+    ],
+    "floyd": [
+     30,
+     30
+    ],
+    "dial": [
+     0,
+     4
+    ]
+   },
+   "median_s": 0.531469,
+   "seed_ids": []
+  },
+  "T03": {
+   "s_star": 0.30303,
+   "n_forced_kept": 120,
+   "n_refs": 6,
+   "per_mode_kept_of_correct": {
+    "full_sort": [
+     28,
+     29
+    ],
+    "size_k_heap": [
+     17,
+     27
+    ],
+    "heapify_pop": [
+     24,
+     25
+    ],
+    "quickselect": [
+     25,
+     25
+    ],
+    "median_of_medians": [
+     4,
+     4
+    ],
+    "counting_sort": [
+     22,
+     30
+    ]
+   },
+   "median_s": 0.439338,
+   "seed_ids": [
+    "seed:T03:full_sort",
+    "seed:T03:size_k_heap",
+    "seed:T03:heapify_pop",
+    "seed:T03:quickselect",
+    "seed:T03:median_of_medians",
+    "seed:T03:counting_sort"
+   ]
+  },
+  "A3": {
+   "s_star": 0.6084411000000001,
+   "n_forced_kept": 54,
+   "n_refs": 4,
+   "per_mode_kept_of_correct": {
+    "two_pointers": [
+     24,
+     30
+    ],
+    "prefix_suffix_max": [
+     30,
+     30
+    ],
+    "monotonic_stack": [
+     0,
+     25
+    ],
+    "peak_split": [
+     0,
+     30
+    ]
+   },
+   "median_s": 0.806723,
+   "seed_ids": []
+  }
+ },
+ "engine_check": {
+  "T2": {
+   "n": 20,
+   "pass_rate": 1.0,
+   "default_share_of_correct": 1.0,
+   "labels": {
+    "dijkstra": 20
+   },
+   "default": "dijkstra"
+  },
+  "T03": {
+   "n": 20,
+   "pass_rate": 1.0,
+   "default_share_of_correct": 1.0,
+   "labels": {
+    "full_sort": 20
+   },
+   "default": "full_sort"
+  },
+  "A3": {
+   "n": 20,
+   "pass_rate": 1.0,
+   "default_share_of_correct": 0.75,
+   "labels": {
+    "prefix_suffix_max": 15,
+    "two_pointers": 5
+   },
+   "default": "prefix_suffix_max"
+  }
+ },
+ "throughput": {
+  "S_shaped": {
+   "n": 64,
+   "wall_s": 13.7,
+   "children_per_hour": 16820.2,
+   "gpu_s_per_child": 0.214,
+   "new_tokens": 7354,
+   "prompt_tokens_median": 533,
+   "prompt_tokens_max": 706,
+   "has_code_rate": 1.0,
+   "fence_stop_rate": 1.0
+  },
+  "B0": {
+   "n": 64,
+   "wall_s": 5.25,
+   "children_per_hour": 43883.7,
+   "gpu_s_per_child": 0.082,
+   "new_tokens": 1638,
+   "prompt_tokens_median": 188,
+   "prompt_tokens_max": 190
+  },
+  "utc": "2026-10-22T14:56:39.342098+00:00",
+  "engine_config": {
+   "model": "Qwen/Qwen3-8B",
+   "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+   "dtype": "bfloat16",
+   "gpu_memory_utilization": 0.92,
+   "enable_prefix_caching": true,
+   "seed": 7101,
+   "enforce_eager": true,
+   "max_model_len": 4096,
+   "max_num_seqs": 48,
+   "load_s": 40.2
+  }
+ },
+ "hours_level0": 0.355,
+ "hours_level1": 0.115,
+ "gpu_hours_available": 2.0,
+ "level": 1,
+ "N": {
+  "T2": {
+   "S": 1500,
+   "EAP": 750,
+   "BINT": 750,
+   "NE": 500,
+   "I0": 500,
+   "B0": 200
+  },
+  "T03": {
+   "S": 1500,
+   "EAP": 750,
+   "BINT": 750,
+   "NE": 500,
+   "I0": 500,
+   "B0": 200
+  },
+  "A3": {
+   "S": 1000,
+   "EAP": 500,
+   "BINT": 500,
+   "NE": 300,
+   "I0": 300,
+   "B0": 100
+  }
+ },
+ "task_order": [
+  "T03",
+  "T2",
+  "A3"
+ ],
+ "notes": "N per arm = calls; S/NE prompts carry 4 children each"
+}
