@@ -1,0 +1,107 @@
+{
+ "task": "A1",
+ "task_id": "A1_majority_element",
+ "leetcode_ids": [
+  169
+ ],
+ "signature": "solve(nums)",
+ "description": "Task: write a Python function solve(nums) that returns the value that appears more than len(nums) // 2 times in the list nums. The argument nums is a list of integers with 1 <= len(nums) <= 30000, and every value lies between -1000000000 and 1000000000 inclusive. Such a value always exists, so the answer is unique: for nums = [2, 2, 1, 1, 1, 2, 2] the answer is 2.",
+ "format_line": "Use only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+ "spec_text": "Task: write a Python function solve(nums) that returns the value that appears more than len(nums) // 2 times in the list nums. The argument nums is a list of integers with 1 <= len(nums) <= 30000, and every value lies between -1000000000 and 1000000000 inclusive. Such a value always exists, so the answer is unique: for nums = [2, 2, 1, 1, 1, 2, 2] the answer is 2.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+ "bounds": {
+  "len(nums)": [
+   1,
+   30000
+  ],
+  "value": [
+   -1000000000,
+   1000000000
+  ]
+ },
+ "whitelist": [],
+ "catalogue": [
+  {
+   "mode": "boyer_moore_vote",
+   "display_name": "Boyer-Moore majority vote",
+   "mechanism": "keep one candidate and a counter in a single pass: equal values add one, others subtract one, and the candidate is replaced when the counter is zero; no container of counts"
+  },
+  {
+   "mode": "hash_count",
+   "display_name": "hash map counting",
+   "mechanism": "count the occurrences of every value in a dict, Counter or defaultdict (including most_common or an early exit once a count exceeds half) and return the value whose count exceeds half"
+  },
+  {
+   "mode": "sort_middle",
+   "display_name": "sorting",
+   "mechanism": "sort the values and return the element at index len(nums) // 2"
+  },
+  {
+   "mode": "divide_conquer",
+   "display_name": "divide and conquer",
+   "mechanism": "recursively find the majority of each half and, when the halves disagree, count both candidates over the range"
+  },
+  {
+   "mode": "randomized_verify",
+   "display_name": "randomized sampling",
+   "mechanism": "repeatedly pick a random element with the random module and count its occurrences until one exceeds half"
+  },
+  {
+   "mode": "bit_count",
+   "display_name": "bit-by-bit counting",
+   "mechanism": "for each of the 32 bit positions count how many values have that bit set and assemble the answer bit by bit, with sign handling"
+  },
+  {
+   "mode": "library_mode",
+   "display_name": "statistics.mode",
+   "mechanism": "return statistics.mode(nums) (or multimode), a library call that solves the whole task"
+  }
+ ],
+ "aliases": {
+  "boyer_moore_vote": [
+   "boyer-moore",
+   "boyer moore",
+   "majority vote",
+   "voting algorithm",
+   "moore's voting",
+   "moore voting"
+  ],
+  "hash_count": [
+   "hash map",
+   "hashmap",
+   "hash table",
+   "dictionary",
+   "counter",
+   "frequency count",
+   "frequency map",
+   "counting occurrences"
+  ],
+  "sort_middle": [
+   "sorting",
+   "sort the",
+   "sorted"
+  ],
+  "divide_conquer": [
+   "divide and conquer",
+   "divide-and-conquer"
+  ],
+  "randomized_verify": [
+   "randomized",
+   "randomised",
+   "random sampling",
+   "random selection"
+  ],
+  "bit_count": [
+   "bit manipulation",
+   "bitwise",
+   "bit-by-bit",
+   "bit counting"
+  ],
+  "library_mode": [
+   "statistics.mode",
+   "statistics module",
+   "multimode"
+  ]
+ },
+ "association_template": "What is the standard alternative to {x} for this task? Name one algorithm and answer in one sentence.",
+ "spec_version": 1
+}

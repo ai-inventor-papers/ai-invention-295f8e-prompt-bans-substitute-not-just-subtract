@@ -1,0 +1,160 @@
+{
+ "unit": "A5",
+ "utc": "2026-10-21T12:51:28Z",
+ "n_lc_ok": 148,
+ "n_lc_kept": 40,
+ "n_generated": 29,
+ "oracle": "sort_ends",
+ "n_cases": 69,
+ "n_stress": 5,
+ "references": {
+  "horizontal_scan": {
+   "passed": true,
+   "n_pass": 69,
+   "max_time_over_limit": 4.663801519200206e-05,
+   "first_fail": null,
+   "load_error": null
+  },
+  "vertical_scan": {
+   "passed": true,
+   "n_pass": 69,
+   "max_time_over_limit": 0.0009041270241141319,
+   "first_fail": null,
+   "load_error": null
+  },
+  "sort_ends": {
+   "passed": true,
+   "n_pass": 69,
+   "max_time_over_limit": 1.638103276491165e-05,
+   "first_fail": null,
+   "load_error": null
+  },
+  "binary_search_length": {
+   "passed": true,
+   "n_pass": 69,
+   "max_time_over_limit": 8.858600631356239e-05,
+   "first_fail": null,
+   "load_error": null
+  },
+  "divide_conquer": {
+   "passed": true,
+   "n_pass": 69,
+   "max_time_over_limit": 0.0016013249987736344,
+   "first_fail": null,
+   "load_error": null
+  },
+  "trie": {
+   "passed": true,
+   "n_pass": 69,
+   "max_time_over_limit": 0.012508771033026278,
+   "first_fail": null,
+   "load_error": null
+  },
+  "library_commonprefix": {
+   "passed": true,
+   "n_pass": 69,
+   "max_time_over_limit": 1.889502163976431e-05,
+   "first_fail": null,
+   "load_error": null
+  }
+ },
+ "mutants": {
+  "horizontal_scan_mut0": {
+   "fails": true,
+   "n_pass": 49
+  },
+  "vertical_scan_mut1": {
+   "fails": true,
+   "n_pass": 19
+  },
+  "sort_ends_mut2": {
+   "fails": true,
+   "n_pass": 48
+  },
+  "binary_search_length_mut3": {
+   "fails": true,
+   "n_pass": 30
+  },
+  "divide_conquer_mut4": {
+   "fails": true,
+   "n_pass": 19
+  },
+  "trie_mut5": {
+   "fails": true,
+   "n_pass": 59
+  },
+  "library_commonprefix_mut6": {
+   "fails": true,
+   "n_pass": 49
+  }
+ },
+ "baselines": {},
+ "labels_on_references": {
+  "horizontal_scan": {
+   "runtime": "horizontal_scan",
+   "ast": "horizontal_scan"
+  },
+  "vertical_scan": {
+   "runtime": "vertical_scan",
+   "ast": "vertical_scan"
+  },
+  "sort_ends": {
+   "runtime": "sort_ends",
+   "ast": "sort_ends"
+  },
+  "binary_search_length": {
+   "runtime": "binary_search_length",
+   "ast": "binary_search_length"
+  },
+  "divide_conquer": {
+   "runtime": "divide_conquer",
+   "ast": "divide_conquer"
+  },
+  "trie": {
+   "runtime": "trie",
+   "ast": "trie"
+  },
+  "library_commonprefix": {
+   "runtime": "library_commonprefix",
+   "ast": "library_commonprefix"
+  }
+ },
+ "labels_on_variants": {
+  "zip_set": {
+   "expected": "vertical_scan",
+   "runtime": "vertical_scan",
+   "ast": "vertical_scan"
+  },
+  "sorted_first_last": {
+   "expected": "sort_ends",
+   "runtime": "sort_ends",
+   "ast": "sort_ends"
+  },
+  "horizontal_charloop": {
+   "expected": "horizontal_scan",
+   "runtime": "horizontal_scan",
+   "ast": "horizontal_scan"
+  },
+  "from_ospath": {
+   "expected": "library_commonprefix",
+   "runtime": "library_commonprefix",
+   "ast": "library_commonprefix"
+  },
+  "trie_dict": {
+   "expected": "trie",
+   "runtime": "trie",
+   "ast": "trie"
+  }
+ },
+ "ref_label_acc_runtime": 1.0,
+ "ref_label_acc_ast": 1.0,
+ "variant_acc_runtime": 1.0,
+ "variant_acc_ast": 1.0,
+ "checks": {
+  "references_all_pass": true,
+  "references_within_quarter_limit": true,
+  "mutants_all_fail": true,
+  "baselines_as_expected": true,
+  "labellers_100pct_on_references": true
+ }
+}

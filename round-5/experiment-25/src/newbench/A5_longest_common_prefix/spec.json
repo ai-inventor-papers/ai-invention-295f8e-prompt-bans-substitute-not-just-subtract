@@ -1,0 +1,99 @@
+{
+ "task": "A5",
+ "task_id": "A5_longest_common_prefix",
+ "leetcode_ids": [
+  14
+ ],
+ "signature": "solve(strs)",
+ "description": "Task: write a Python function solve(strs) that returns the longest string that is a prefix of every string in the list strs. The argument strs is a list of 1 to 200 strings, each of length 0 to 200 and made of lowercase English letters. If the strings do not all start with the same letter the answer is the empty string: for strs = [\"flower\", \"flow\", \"flight\"] the answer is \"fl\", and for strs = [\"dog\", \"racecar\", \"car\"] it is \"\".",
+ "format_line": "Use only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+ "spec_text": "Task: write a Python function solve(strs) that returns the longest string that is a prefix of every string in the list strs. The argument strs is a list of 1 to 200 strings, each of length 0 to 200 and made of lowercase English letters. If the strings do not all start with the same letter the answer is the empty string: for strs = [\"flower\", \"flow\", \"flight\"] the answer is \"fl\", and for strs = [\"dog\", \"racecar\", \"car\"] it is \"\".\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+ "bounds": {
+  "len(strs)": [
+   1,
+   200
+  ],
+  "len(s)": [
+   0,
+   200
+  ]
+ },
+ "whitelist": [
+  "prefix"
+ ],
+ "catalogue": [
+  {
+   "mode": "horizontal_scan",
+   "display_name": "horizontal scanning",
+   "mechanism": "take the first string as the answer and shorten it against each following string in turn (startswith, slicing or a character loop per string)"
+  },
+  {
+   "mode": "vertical_scan",
+   "display_name": "vertical scanning",
+   "mechanism": "compare the strings column by column, character position i of every string before position i + 1 (including zip(*strs))"
+  },
+  {
+   "mode": "sort_ends",
+   "display_name": "comparing the lexicographically smallest and largest strings",
+   "mechanism": "sort the strings (or take min and max) and return the common prefix of the first and last only"
+  },
+  {
+   "mode": "binary_search_length",
+   "display_name": "binary search on the prefix length",
+   "mechanism": "binary search over the candidate length, testing whether the prefix of that length is shared by all strings"
+  },
+  {
+   "mode": "divide_conquer",
+   "display_name": "divide and conquer",
+   "mechanism": "recursively compute the common prefix of each half of the list and combine the two results"
+  },
+  {
+   "mode": "trie",
+   "display_name": "trie (prefix tree)",
+   "mechanism": "insert the strings into a trie and walk down from the root while there is a single child and no string ends"
+  },
+  {
+   "mode": "library_commonprefix",
+   "display_name": "os.path.commonprefix",
+   "mechanism": "return os.path.commonprefix(strs), a library call that solves the whole task"
+  }
+ ],
+ "aliases": {
+  "horizontal_scan": [
+   "horizontal scan",
+   "horizontal scanning",
+   "pairwise comparison",
+   "reduce"
+  ],
+  "vertical_scan": [
+   "vertical scan",
+   "vertical scanning",
+   "character by character",
+   "column by column",
+   "zip("
+  ],
+  "sort_ends": [
+   "sorting",
+   "sort the",
+   "lexicographic",
+   "min and max"
+  ],
+  "binary_search_length": [
+   "binary search"
+  ],
+  "divide_conquer": [
+   "divide and conquer",
+   "divide-and-conquer"
+  ],
+  "trie": [
+   "trie",
+   "prefix tree"
+  ],
+  "library_commonprefix": [
+   "os.path.commonprefix",
+   "commonprefix"
+  ]
+ },
+ "association_template": "What is the standard alternative to {x} for this task? Name one algorithm and answer in one sentence.",
+ "spec_version": 1
+}

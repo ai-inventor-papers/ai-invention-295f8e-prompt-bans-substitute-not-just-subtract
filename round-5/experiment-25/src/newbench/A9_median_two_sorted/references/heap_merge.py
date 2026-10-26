@@ -1,0 +1,9 @@
+import heapq
+
+
+def solve(nums1, nums2):
+    merged = list(heapq.merge(nums1, nums2))
+    n = len(merged)
+    if n % 2:
+        return float(merged[n // 2])
+    return (merged[n // 2 - 1] + merged[n // 2]) / 2.0

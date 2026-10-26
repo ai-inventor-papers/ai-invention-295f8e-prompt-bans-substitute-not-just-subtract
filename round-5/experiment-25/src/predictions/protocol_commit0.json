@@ -1,0 +1,80 @@
+{
+ "utc": "2026-10-21T12:14:19.258825Z",
+ "panel": "A",
+ "models": {
+  "instruct": {
+   "id": "Qwen/Qwen3-8B",
+   "revision": "b968826d9c46dd6066d109eabc6255188de91218"
+  },
+  "base": {
+   "id": "Qwen/Qwen3-8B-Base",
+   "revision": "49e3418fbbbca6ecbdf9608b4d22e5a407081db4"
+  }
+ },
+ "precision_rule_file": "predictions/precision_rule.json",
+ "esc_seeds": [
+  95101,
+  95102,
+  95103,
+  95104,
+  95105,
+  95106,
+  95107,
+  95108
+ ],
+ "alphas": [
+  1.0,
+  2.0
+ ],
+ "v_blocks": [
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23
+ ],
+ "site": "spec positions, blocks 12-23, prefill only",
+ "dose_unit": "ban-free n[l,p] = ||h_twin_clean[l,p]|| * r_Q(l) per template (exp23 units.r_at 'r_Q')",
+ "pn_seed": "stable_seed('i5A','PN',task,alpha,w,k)",
+ "crn": "u_stream(task, w, k) shared by arms and both models",
+ "n": {
+  "twin": 50,
+  "base": 100,
+  "plain": 50,
+  "novelty": 30,
+  "assoc": 20,
+  "stage1": 10,
+  "topup": 20,
+  "pn": 50,
+  "t13": 50
+ },
+ "thresholds": {
+  "BETA_MOVABLE": 0.05,
+  "DEFAULT_SHARE": 0.6,
+  "ESC_EXCESS": 0.2,
+  "ESC_PASS_FRAC": 0.8,
+  "P_BINOM": 0.05,
+  "MIN_CORRECT_BASE": 20,
+  "DEPTH": 25,
+  "KAPPA_GATE": 0.8,
+  "RT_ADJ_GATE": 0.9,
+  "pooled_rho": 0.6,
+  "pooled_collapsed_immovable": 0.8,
+  "alpha_one_sided": 0.01,
+  "log_score_margin_nats": 0.1
+ },
+ "decision": "panel-level wording only (consistent / not consistent with the pooled thresholds); the decision is pooled next round",
+ "analysis_code_sha256": {
+  "analysis_a1a2.py": "15410eaa9129d5c41892c2bb0c673758e6c6bbd8432c855b2979920281390490",
+  "escape_rule.py": "11379fa44c835f1e6ef3413508a91756ec92a0cb13f34a79b3011a2af1db356c",
+  "metrics.py": "0baca4afee9c1c6fc089d1dbfa2b5eed7a15f3bb3ebf341ec2bf6d0fdb40eb3d",
+  "cfg5.py": "df7756f87b2e25e4ea34512d4d16f83a7936b52f8ba1b1b13bddf266a80a3178"
+ }
+}

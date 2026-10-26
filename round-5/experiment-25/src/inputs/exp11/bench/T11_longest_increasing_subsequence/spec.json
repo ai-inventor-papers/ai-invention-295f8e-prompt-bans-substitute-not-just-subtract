@@ -1,0 +1,76 @@
+{
+ "task": "T11",
+ "task_id": "T11_longest_increasing_subsequence",
+ "leetcode_ids": [
+  300
+ ],
+ "signature": "solve(nums)",
+ "description": "Task: write a Python function solve(nums) that returns the length of the longest strictly increasing subsequence of nums. A subsequence keeps the original order of the chosen elements but need not be contiguous, and strictly increasing means each chosen value is larger than the one before it. The argument nums is a list of integers with 1 <= len(nums) <= 1000 and every value between -10000 and 10000 inclusive.",
+ "format_line": "Use only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+ "spec_text": "Task: write a Python function solve(nums) that returns the length of the longest strictly increasing subsequence of nums. A subsequence keeps the original order of the chosen elements but need not be contiguous, and strictly increasing means each chosen value is larger than the one before it. The argument nums is a list of integers with 1 <= len(nums) <= 1000 and every value between -10000 and 10000 inclusive.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+ "bounds": {
+  "n": [
+   1,
+   1000
+  ],
+  "value": [
+   -10000,
+   10000
+  ]
+ },
+ "catalogue": [
+  {
+   "mode": "quadratic_dp",
+   "display_name": "quadratic dynamic programming",
+   "mechanism": "dp[i] = 1 + max dp[j] over earlier j with nums[j] < nums[i], comparing all pairs"
+  },
+  {
+   "mode": "patience_bisect",
+   "display_name": "patience sorting with binary search",
+   "mechanism": "keep a tails array of the smallest tail per length and binary-search (bisect) where each value goes"
+  },
+  {
+   "mode": "fenwick",
+   "display_name": "a Fenwick tree over compressed values",
+   "mechanism": "compress values to ranks and query/update prefix maxima in a Fenwick (or segment) tree"
+  }
+ ],
+ "aliases": {
+  "quadratic_dp": [
+   "dynamic programming",
+   "quadratic",
+   "o(n^2)",
+   "o(n2)",
+   "dp array"
+  ],
+  "patience_bisect": [
+   "patience",
+   "binary search",
+   "bisect",
+   "tails"
+  ],
+  "fenwick": [
+   "fenwick",
+   "binary indexed tree",
+   "bit",
+   "segment tree",
+   "coordinate compression",
+   "compressed values"
+  ]
+ },
+ "forced_templates": [
+  "Implement {j} for this task.",
+  "Use {j} to solve this task.",
+  "Solve this task with {j}.",
+  "Your solution should use {j}.",
+  "Write an implementation based on {j}.",
+  "Solve the task below using {j}.",
+  "Your solution must implement {j}.",
+  "Write code that implements {j}.",
+  "Base your solution on {j}.",
+  "Apply {j} to solve this task."
+ ],
+ "descriptive_forced_template": "Implement the approach described as: {d}",
+ "association_template": "What is the standard alternative to {x} for this task? Name one algorithm and answer in one sentence.",
+ "spec_version": 1
+}
