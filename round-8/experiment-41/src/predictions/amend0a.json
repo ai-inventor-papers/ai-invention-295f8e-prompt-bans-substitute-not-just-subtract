@@ -1,0 +1,51 @@
+{
+ "name": "amend0a",
+ "utc": "2026-10-23T01:34:34.950896Z",
+ "prev": "bc681673204a4c111a0124dd1d36d58190a62a4b344d22fe9ca9bc60055b1a89",
+ "sha256": "96932afbf0c336f6f062c0f189c0fbf48dbf4f97ae81e9f41126f4db51b07c03",
+ "payload": {
+  "F2_triggered": true,
+  "C1nat_A_TE_mean": 0.8931844075520833,
+  "C1nat_A_n_TE_gt_0.2": 15,
+  "C1_primary": "C1forced",
+  "C1forced_design": "10 forced-Prim paraphrases F1-F10 (corrupt) vs their ' .' padding twins (clean) as pairs; F11-F15 and their padding twins as the 10 held-out validation prompts (no Prim paraphrase set exists in art_MZAfDPVhM6Ui beyond its single wording, so the 15 wordings are written here); C1-nat is still screened and reported descriptively; C1mix uses F1-F5",
+  "C1forced_TE": [
+   9.840873718261719,
+   10.506200790405273,
+   7.020984649658203,
+   10.424976348876953,
+   12.001157760620117,
+   10.485450744628906,
+   7.050750732421875,
+   11.419689178466797,
+   9.91131591796875,
+   10.402910232543945
+  ],
+  "metric_readout": "m read in fp32 from the bf16 final-norm hidden state (h . (W_a - W_b)); the bf16 lm_head output is quantised to 0.125-0.25 nats",
+  "F5_decision": {
+   "suffix_vs_full": {
+    "max_abs_diff": 0.2678260803222656,
+    "mean_abs_diff": 0.07629108428955078,
+    "pass": false
+   },
+   "full_vs_full_batch_shapes": {
+    "max_abs_diff": 0.193603515625,
+    "mean_abs_diff": 0.061238861083984374
+   },
+   "keep_suffix_forwards": true,
+   "rule": "suffix forwards are kept when their mean deviation from full recompute is no larger than 1.5 x the full-vs-full batch-shape noise + 0.02 nats (both are bf16 path noise and cancel within each in-chunk base-row comparison); otherwise every row is a full forward"
+  },
+  "generation_alignment_rule": "TOP5 for generation = the five highest-ranked top-10 nodes whose position class aligns with the B3 twin prompt; COND nodes of C1forced (the forced instruction span) have no counterpart in the twin's condition sentence and are skipped (the next-ranked node fills in); RAND5 = one matched draw per generation node (seed 8303)",
+  "code_sha256": {
+   "src/download_model.py": "7110e09d708ac3677856ce35bd635ff77131b72a25db7adbf343e30c28636cdf",
+   "src/k3cfg.py": "c08e5ea5b93723dd0c84b018f87b69373b3995de5193bca5841af03ad2f80744",
+   "src/k3circuit.py": "10ec5170096eba97e38b797ae03443aa765605720972c672f4660bd0fcf7342c",
+   "src/k3engine.py": "c8e3354856229f86197f1942ddc888844ab60e985d91d0923880ae8fc2b00240",
+   "src/k3motif.py": "f6194287cfbd53f7448f407b8ba085f95d726a843ce2d5565795b4272fe24f9c",
+   "src/k3prompts.py": "6d4ebc061a252789051679876160e3751f3c5ba3de832f3fbd544e2e5396a891",
+   "src/k3stats.py": "074a3ab0bb6f49cd6135791c041a6cbe06f90ce5e4a4552188281ad3d21e83f9",
+   "src/label_k3.py": "0688252d1bb1e8fe6a17ee777969a93c815814e716a6ee0a56d660f108f38b4f",
+   "method.py": "f93f839c604e48af4c7833f419cd7328525614114c1c5b2fd9062553d4e2fad2"
+  }
+ }
+}

@@ -1,0 +1,158 @@
+[
+ {
+  "id": "metric_fp32_readout",
+  "severity": "major",
+  "utc": "2026-10-23T01:27:00Z",
+  "text": "First GPU-test pass (logs/superseded/gpu_tests.json) read m from the bf16 lm_head output, which is quantised to 0.125-0.25 nats at logit magnitudes ~20-30 (every m was a multiple of 0.25; U3 and U8 failed by exactly one or two quanta). From then on m is read in fp32 as h_final . (W_a - W_b) from the bf16 final-norm hidden state (the model's forward stays bf16). The C1-nat ranking/pairing and every contrast were recomputed before any screen row. Generation keeps the iteration-6 engine (bf16 lm_head logits) for CRN parity."
+ },
+ {
+  "id": "F5_prefix_cache",
+  "severity": "major",
+  "text": "U3 (suffix forward with reused prefix KV vs full recompute) differs by mean 0.076 / max 0.268 nats (> 0.05). The same 20 rows run as full forwards in two batch shapes differ by mean 0.061 / max 0.194: the gap is bf16 path noise, not a cache error, so suffix forwards were kept (amendment 0a rule) instead of F5's full forwards. U2 (patch everything -> corrupt) is off by 0.117 and U8 (own-state exchange) by 0.092 nats for the same reason; every effect is measured against an unedited base row of its own batch.",
+  "utc": "2026-10-23T01:29:47.574457Z"
+ },
+ {
+  "id": "F4_C1forced",
+  "severity": "minor",
+  "text": "C1forced: AtP-vs-exact Spearman 0.29 < 0.6 -> IG-AtP (5 alphas, input interpolation) and 120 exact nodes; the S19 correction was not implemented within the 30-minute timebox",
+  "utc": "2026-10-23T01:36:36.837746Z"
+ },
+ {
+  "id": "F4_C2a",
+  "severity": "minor",
+  "text": "C2a: AtP-vs-exact Spearman 0.25 < 0.6 -> IG-AtP (5 alphas, input interpolation) and 120 exact nodes; the S19 correction was not implemented within the 30-minute timebox",
+  "utc": "2026-10-23T01:42:39.064199Z"
+ },
+ {
+  "id": "F4_C1nat",
+  "severity": "minor",
+  "text": "C1nat: AtP-vs-exact Spearman 0.11 < 0.6 -> IG-AtP (5 alphas, input interpolation) and 120 exact nodes; the S19 correction was not implemented within the 30-minute timebox",
+  "utc": "2026-10-23T01:50:06.867019Z"
+ },
+ {
+  "id": "F2_C1forced_primary",
+  "severity": "major",
+  "text": "C1-nat set A mean TE 0.893 nats < 1.0 -> F2: C1-forced is the primary C1 unit (amendment 0a, committed before any screen row). art_MZAfDPVhM6Ui has one forced-Prim wording, so 15 wordings were written here: F1-F10 are the 10 pairs, F11-F15 (and their padding twins) the 10 held-out validation prompts. C1-nat is screened, validated and reported descriptively.",
+  "utc": "2026-10-23T03:08:28.249746Z"
+ },
+ {
+  "id": "F4b_exhaustive_sweep",
+  "severity": "major",
+  "text": "AtP and IG-AtP both gave Spearman < 0.4 against exact patching on 160 random nodes (those nodes sit at the bf16 noise floor), so F4's second clause applied: ranking by exact noising over ALL DEC-class nodes plus the screen's top 120; all 144 MLP nodes were added because AtP is least reliable for early MLPs. This found C1-forced's largest node, the layer-0 MLP at the condition span (7.7 of 9.9 nats; AtP estimate 0.1), which the screen had missed. Edges and faithfulness were recomputed for the new top 15; screen-only lists are kept in circuit_*.json.",
+  "utc": "2026-10-23T03:08:28.249760Z"
+ },
+ {
+  "id": "IG_AtP_input_interpolation",
+  "severity": "minor",
+  "text": "IG-AtP interpolates the input difference (embedding at the differing positions; the exchanged states for C2a) with every activation live, so gradients stay total derivatives; it did not improve the random-node correlation and plain AtP was kept. The S19 (arXiv 2606.09899) HVP correction was not implemented within the timebox.",
+  "utc": "2026-10-23T03:08:28.249774Z"
+ },
+ {
+  "id": "faithfulness_definition",
+  "severity": "minor",
+  "text": "Faithfulness type 1/2 freeze every non-circuit node to the corrupt run (type 1) or the corrupt-class same-template mean (type 2) on the clean input with circuit nodes live and the input embedding clean (MIB style). With the embedding also patched, as the plan wrote, no clean information can enter a frozen network and f(k) = 0 by construction. Type 1 is ~0 at every k <= 60 (the decision nodes need distributed upstream processing); completeness (top-k jointly noised) and sufficiency (top-k jointly denoised), both live, carry the faithfulness result. Type 2 is undefined for C1-forced (one prompt per wording) and C2a's corrupt run is an intervention, so C2a reports completeness/sufficiency only.",
+  "utc": "2026-10-23T03:08:28.249781Z"
+ },
+ {
+  "id": "transcoder_extension_dropped",
+  "severity": "minor",
+  "text": "F11: the Qwen3-8B transcoders (~96.5 GB) exceed the 23 GB GPU and 57 GB RAM and circuit-tracer is not installed; dropped at the precheck (results/transcoder_precheck.json). No feature-level account.",
+  "utc": "2026-10-23T03:08:28.249787Z"
+ },
+ {
+  "id": "C2b_dropped",
+  "severity": "minor",
+  "text": "C2b (ban vs twin on T10) was not run (first droppable item after the transcoders).",
+  "utc": "2026-10-23T03:08:28.249794Z"
+ },
+ {
+  "id": "hardware",
+  "severity": "minor",
+  "text": "Ran on one NVIDIA L4 (23 GB; plan: RTX A4500 20 GB); the embedding stayed on the GPU.",
+  "utc": "2026-10-23T03:08:28.249801Z"
+ },
+ {
+  "id": "generation_alignment_rule",
+  "severity": "minor",
+  "text": "C1-forced's top-10 includes the layer-0 COND MLP, whose positions (the forced instruction) have no counterpart in the B3 twin's condition sentence; by the rule committed in amendment 0a the generation TOP5 uses the five highest-ranked non-COND nodes (all at DEC) and RAND5 matches those.",
+  "utc": "2026-10-23T03:08:28.249807Z"
+ },
+ {
+  "id": "FREE_condition_exact",
+  "severity": "minor",
+  "text": "FREE is implemented exactly without online hooks: the edited opening is teacher-forced and each slot samples with its own uniforms until the first divergence; rows that reproduce the whole opening continue from the edited decision position (identical to PREFILL), diverged rows continue from their own prefix with only the edits at earlier positions.",
+  "utc": "2026-10-23T03:08:28.249814Z"
+ },
+ {
+  "id": "engine_check_reference",
+  "severity": "minor",
+  "text": "The T10 engine-check reference (art_pHL7LWNhpcCS) was generated on an RTX 4090 with the iteration-6 exp29 engine and different CRN keys, so T10 is compared at the label level only; B3 uses the same keys and engine family.",
+  "utc": "2026-10-23T03:08:28.249820Z"
+ },
+ {
+  "id": "sign_flip_exact_to_40",
+  "severity": "minor",
+  "text": "The sign-flip test is exact up to n = 40 (meet-in-the-middle enumeration of all 2^n sign patterns) instead of exact to 25 and Monte Carlo beyond.",
+  "utc": "2026-10-23T03:08:28.249827Z"
+ },
+ {
+  "id": "head_null_sensitivity_posthoc",
+  "severity": "minor",
+  "text": "POST HOC (labelled, committed before its rows): the top decision heads are write-norm outliers, so their matched pools fell back to the 50 nearest heads (smaller norms; head draws are not rescaled in the committed design); a sensitivity re-runs those nulls with each draw rescaled to the target's write norm. The primary validation is unchanged.",
+  "utc": "2026-10-23T03:08:28.250595Z"
+ },
+ {
+  "id": "stability_screen",
+  "severity": "minor",
+  "text": "Pair set B (stability) ran the screen, exact patching of the top 60 + 20 calibration nodes, path patching and the F4b sweep, without the 160-node reliability check or IG; 12 of its 15 pairs have TE > 0.2.",
+  "utc": "2026-10-23T03:08:28.250612Z"
+ },
+ {
+  "id": "C1natB_pair_dropped_W2|guy",
+  "severity": "minor",
+  "text": "C1natB: pair W2|guy vs W2|hair has TE 0.158 <= 0.2",
+  "utc": "2026-10-23T03:22:46.656075Z"
+ },
+ {
+  "id": "C1natB_pair_dropped_W4|guy",
+  "severity": "minor",
+  "text": "C1natB: pair W4|guy vs W4|kid has TE 0.171 <= 0.2",
+  "utc": "2026-10-23T03:22:46.672022Z"
+ },
+ {
+  "id": "C1natB_pair_dropped_W5|fire",
+  "severity": "minor",
+  "text": "C1natB: pair W5|fire vs W5|kid has TE 0.072 <= 0.2",
+  "utc": "2026-10-23T03:22:46.688424Z"
+ },
+ {
+  "id": "time_rule_C1nat",
+  "severity": "minor",
+  "text": "validation extrapolated to 75 min > 45: V = 15 clean prompts + 5 held-out (committed time rule)",
+  "utc": "2026-10-23T03:46:10.090894Z"
+ },
+ {
+  "id": "dose_sensitivity_posthoc",
+  "severity": "minor",
+  "text": "POST HOC (labelled; commit_dose_<contrast> before its rows): at the committed dose 2 the matched random five also saturates the minority algorithm, so a dose sensitivity was added: logit-level P(minority token) at doses 0.25-2 and PREFILL generation of TOP5 / RAND5 at doses 0.5 and 1 on the same 30 CRN slots. The committed K3 verdicts use dose 2 only.",
+  "utc": "2026-10-23T03:47:32.762255Z"
+ },
+ {
+  "id": "mcnemar_sidedness",
+  "severity": "major",
+  "text": "Commit #0's text says 'exact McNemar TOP5 vs RAND5 p < 0.05' without sidedness; the analysis code fixed by hash at commit #0 used the one-sided test, the plan's power calibration (8:0 -> 0.0078, 7:1 -> 0.07) is two-sided. The two-sided test is primary (conservative): C1 is PARTIAL (7:1, p = 0.070); with the one-sided test C1 would be PASS (p = 0.035). Both are reported.",
+  "utc": "2026-10-23T03:47:32.762269Z"
+ },
+ {
+  "id": "oom_restarts",
+  "severity": "minor",
+  "text": "Two CUDA out-of-memory stops (class means cached on the GPU; memory accumulated over many stages in one process) were fixed (CPU class means, smaller row chunks, one process per stage) and every stage resumed from its files; no row was recomputed or dropped.",
+  "utc": "2026-10-23T03:47:32.762277Z"
+ },
+ {
+  "id": "U5_not_run",
+  "severity": "minor",
+  "text": "GPU test U5 (path-patching sanity against direct-logit attribution) was not run.",
+  "utc": "2026-10-23T03:47:32.762285Z"
+ }
+]
