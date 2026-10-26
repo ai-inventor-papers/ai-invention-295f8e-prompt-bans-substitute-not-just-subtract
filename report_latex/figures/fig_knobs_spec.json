@@ -1,0 +1,63 @@
+{
+  "type": "pareto",
+  "title": "What one more algorithm costs, by knob",
+  "xlabel": "Pass-rate points lost vs. reference run",
+  "ylabel": "Gain in correct-only rarefied Hill-1",
+  "aspect": "4:3",
+  "width_in": 7.5,
+  "ylim": [-0.3, 2.35],
+  "xlim": [-3.0, 62.0],
+  "frontier": true,
+  "ref_vline": 20.0,
+  "ref_vline_label": "20 pts = 80% of baseline pass rate (selection-rule floor)",
+  "ref_hline": 0.0,
+  "ref_hline_label": "no gain",
+  "series": [
+    {
+      "label": "Prompt ban",
+      "x": [0.0, 1.5, 20.5],
+      "values": [0.816, 0.770, 0.901],
+      "categories": [
+        "ban (instruct chat)",
+        "ban (decommitment twin)",
+        "cumulative ban x2"
+      ]
+    },
+    {
+      "label": "Other prompt or seed",
+      "x": [6.5, 7.0, 24.0, 3.0, 5.0, 24.0],
+      "values": [-0.077, 0.945, 0.391, 0.505, 0.179, 1.788],
+      "categories": [
+        "enumeration prompt (decommitment twin)",
+        "semantic seed",
+        "enumeration prompt (temp/seed screen)",
+        "novelty instruction",
+        "new-algorithm instruction",
+        "generate-then-select"
+      ]
+    },
+    {
+      "label": "Activation steering",
+      "x": [17.0, 28.0, 58.0, 35.0, 23.0],
+      "values": [0.627, 0.618, 0.867, 0.804, 0.405],
+      "categories": [
+        "decommitment direction, c=0.25",
+        "decommitment direction, c=0.375",
+        "decommitment direction, c=0.5",
+        "breadth direction",
+        "grid-task direction (cross-task transfer)"
+      ]
+    },
+    {
+      "label": "Random or placebo direction",
+      "x": [16.0, 8.0, 29.0, 0.0],
+      "values": [0.574, -0.059, 0.150, 0.252],
+      "categories": [
+        "random direction 1",
+        "random direction 2",
+        "placebo (variable-name) direction",
+        "random direction, read-position only"
+      ]
+    }
+  ]
+}

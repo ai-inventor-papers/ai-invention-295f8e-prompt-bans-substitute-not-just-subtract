@@ -1,0 +1,39 @@
+{
+  "figure_id": "fig_bench_route",
+  "type": "bar_route_with_guides",
+  "source": "run_aRfWvcSWjssb/3_invention_loop/iter_3/gen_art/gen_art_experiment_16: preview_method_out.json -> metadata.C2a (per_task, point, intervals.jackknife)",
+  "title": "Which route carries a ban, task by task",
+  "xlabel": "Bench task",
+  "ylabel": "Share of the ban effect carried by the route",
+  "aspect": "16:9",
+  "ylim": [0, 1.2],
+  "categories": [
+    "kth smallest",
+    "connected components",
+    "two sum",
+    "find duplicate",
+    "merge intervals",
+    "pooled (5 tasks)"
+  ],
+  "series": [
+    {
+      "label": "Prompt route F_prompt",
+      "ci_method": "per-task: template-then-slot bootstrap percentile 95% CI; pooled: leave-one-task-out jackknife 95% CI",
+      "values": [1.0, 1.0, 0.40963855421686746, 0.037974683544303826, 0.3898305084745762, 0.6111111111111112],
+      "ci_low":  [1.0, 1.0, 0.026275178687459426, 0.0, 0.0, 0.05514898596799356],
+      "ci_high": [1.0, 1.0, 0.8163451966152315, 0.13405993360125823, 0.7254901960784313, 1.1670732362542289]
+    },
+    {
+      "label": "Direct route F_direct",
+      "ci_method": "per-task: template-then-slot bootstrap percentile 95% CI; pooled: leave-one-task-out jackknife 95% CI",
+      "values": [0.7446808510638298, 0.797979797979798, 0.9638554216867471, 0.9873417721518988, 0.016949152542372895, 0.7439613526570049],
+      "ci_low":  [0.3645596590909091, 0.4, 0.8, 0.9000000000000001, 0.0, 0.38233071916098277],
+      "ci_high": [0.99, 1.0, 1.0, 1.0526315789473684, 0.08064516129032265, 1.105591986153027]
+    }
+  ],
+  "guides": [
+    {"value": 0.6666666666666666, "label": "prompt route claim (2/3)", "linestyle": "--"},
+    {"value": 0.3333333333333333, "label": "direct route disconfirms (1/3)", "linestyle": ":"}
+  ],
+  "notes": "C2a verdict in the source artifact is DISCONFIRMED under percentile, BCa and jackknife intervals alike (prompt route preregistered to carry >= 2/3 of the ban). Pooled F_prompt=0.6111 and F_direct=0.7440 are point estimates over only 5 gated tasks; their jackknife 95% intervals are wide and overlap heavily (F_prompt [0.055, 1.167], F_direct [0.382, 1.106]), so the pooled ranking is not a robust, well-separated result -- it is a task-heterogeneous pattern (T03/T10 redundant: both routes alone reproduce the ban; T05/T06 direct-route-dominated; T13 neither route alone suffices)."
+}

@@ -1,0 +1,59 @@
+{
+  "figure_id": "fig_bench_forecasts",
+  "title": "Sealed forecasts against uniform on bench bans",
+  "aspect": "16:9",
+  "width_in": 6.5,
+  "xlabel": "Mean log score minus uniform (nats per attempt not banned)",
+  "xlim": [-3.2, 0.5],
+  "null_line": 0.0,
+  "null_label": "uniform forecast",
+  "rows": [
+    {
+      "name": "Ladder (generic pushes)",
+      "point": 0.060681932670600555,
+      "ci_lo": 0.0,
+      "ci_hi": 0.18204579801180168,
+      "defined_n": 1,
+      "defined_total": 5
+    },
+    {
+      "name": "Subtraction (signature veto)",
+      "point": -0.6946454257641218,
+      "ci_lo": -1.415906699416256,
+      "ci_hi": 0.0,
+      "defined_n": 2,
+      "defined_total": 5
+    },
+    {
+      "name": "Proximity (tree edit distance)",
+      "point": -1.5293578019877663,
+      "ci_lo": -2.96458575035036,
+      "ci_hi": 0.0864567283030762,
+      "defined_n": 5,
+      "defined_total": 5
+    },
+    {
+      "name": "Association (stated alternative)",
+      "point": -1.7793171250470414,
+      "ci_lo": -2.728747172300638,
+      "ci_hi": -0.7286572677603592,
+      "defined_n": 5,
+      "defined_total": 5
+    }
+  ],
+  "n_gated_tasks": 5,
+  "gated_tasks": ["kth smallest", "find duplicate", "two sum", "connected components", "merge intervals"],
+  "gated_task_ids": ["T03", "T06", "T05", "T10", "T13"],
+  "note_undefined_scored_as_uniform": "An undefined forecast (fewer than 20 non-banned attempts, or no admissible nominee) is scored as uniform under the frozen rule, so a difference of 0 can mean the family was genuinely undefined on that event rather than tied with uniform. Ladder is defined on 1/5 gated events, Subtraction on 2/5, Proximity and Association on 5/5.",
+  "source": {
+    "artifact_workspace": "run_aRfWvcSWjssb/3_invention_loop/iter_3/gen_art/gen_art_experiment_13",
+    "artifact_title": "Forecasting where coding bans send a model",
+    "model": "Qwen3-8B (bf16, revision b968826d, thinking off)",
+    "point_and_ci_file": "results/posthoc_sensitivity.json -> vs_uniform_gated.<FAMILY>.{mean_diff_vs_uniform, task_bootstrap_95, n_defined}",
+    "cross_check_file": "results/analysis.json -> c1.mean_logscore_gated.<FAMILY> minus c1.mean_logscore_gated.UNIFORM reproduces mean_diff_vs_uniform to float precision",
+    "scoring_rule_file": "src/score.py (docstring): 'Log score = mean over the ban's non-banned attempts of ln p(label) (natural log)', under a fixed 0.93/0.05/0.02 smoothing of each family's forecast toward uniform and an 'other' bucket",
+    "ci_method": "task-cluster bootstrap, 95% interval, over the 5 gated events (results/posthoc_sensitivity.json note (2))",
+    "gated_task_definition": "avoidance >= 0.5 and >= 20 non-banned attempts (README.md line 77); 5 of the task's 12 modal bans pass this gate",
+    "verified": "all four point values and both CI bounds for all four families read back from the artifact's own output files and matched to the figure specification to 4 decimal places; defined_n/defined_total matched exactly"
+  }
+}

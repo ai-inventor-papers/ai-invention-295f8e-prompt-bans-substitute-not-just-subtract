@@ -1,0 +1,95 @@
+{
+  "figure_id": "fig_locus_text",
+  "title": "State probe matches the written text",
+  "aspect": "16:9",
+  "ylabel": "Balanced accuracy",
+  "xlabel": "Position in generation",
+  "ylim": [0.4, 1.0],
+  "chance_level": 0.5,
+  "chance_label": "chance",
+  "source": {
+    "artifact": "gen_art_evaluation_1 (run_aRfWvcSWjssb/3_invention_loop/iter_2/gen_art/gen_art_evaluation_1)",
+    "files": [
+      "tables/locus_cells.csv (contrast='W'; BA = max over layers 8-28 per position = the 'best layer per position' value; BA_text = written-text control, constant across layers)",
+      "figures/fig_locus_nulls.json ('within-paraphrase null p95' series, both panels)"
+    ],
+    "note": "Every value below was read back from these files (not from the earlier draft prose) and matches the draft figure specification to 3 decimals in all 45 cells; no value was invented or carried over unverified."
+  },
+  "panels": [
+    {
+      "panel_label": "a",
+      "title": "Grid task: BFS vs DFS",
+      "n_programs": 99,
+      "categories": [
+        "read position",
+        "before commit token",
+        "after commit token",
+        "token 8",
+        "token 16",
+        "token 32",
+        "token 64"
+      ],
+      "series": [
+        {
+          "key": "residual",
+          "label": "Residual stream probe (best layer)",
+          "style": "solid",
+          "marker": "o",
+          "values": [0.8553, 0.8553, 0.8553, 0.8553, 0.7976, 0.7976, 0.7390]
+        },
+        {
+          "key": "text",
+          "label": "Probe on written text",
+          "style": "dashed",
+          "marker": "s",
+          "values": [0.5000, 0.6731, 0.6731, 0.6731, 0.6731, 0.5421, 0.5980]
+        },
+        {
+          "key": "null95",
+          "label": "Within-paraphrase shuffled null, 95th percentile",
+          "style": "dotted",
+          "marker": null,
+          "values": [null, 0.8553, 0.8553, 0.8553, 0.8791, 0.8500, 0.8124]
+        }
+      ]
+    },
+    {
+      "panel_label": "b",
+      "title": "Shortest path task: Dijkstra vs Bellman-Ford/SPFA",
+      "n_programs": 100,
+      "categories": [
+        "read position",
+        "before commit token",
+        "forking token",
+        "after commit token",
+        "token 8",
+        "token 16",
+        "token 32",
+        "token 64"
+      ],
+      "series": [
+        {
+          "key": "residual",
+          "label": "Residual stream probe (best layer)",
+          "style": "solid",
+          "marker": "o",
+          "values": [0.6250, 0.7625, 0.7312, 0.7625, 0.8313, 0.8375, 0.8375, 0.8313]
+        },
+        {
+          "key": "text",
+          "label": "Probe on written text",
+          "style": "dashed",
+          "marker": "s",
+          "values": [0.5000, 0.7563, 0.6750, 0.7625, 0.8313, 0.8375, 0.8313, 0.8187]
+        },
+        {
+          "key": "null95",
+          "label": "Within-paraphrase shuffled null, 95th percentile",
+          "style": "dotted",
+          "marker": null,
+          "values": [null, 0.6813, 0.6438, 0.6753, 0.6816, 0.6500, 0.6687, 0.6625]
+        }
+      ]
+    }
+  ]
+}

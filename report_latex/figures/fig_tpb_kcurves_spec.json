@@ -1,0 +1,65 @@
+{
+  "type": "panel",
+  "panel_labels": true,
+  "title": "Compliance under cumulative bans",
+  "aspect": "16:9",
+  "ncols": 2,
+  "panels": [
+    {
+      "type": "line",
+      "title": "Qwen3-32B (thinking)",
+      "xlabel": "Algorithms banned, cumulative (k)",
+      "ylabel": "Share of completed programs compliant",
+      "ylim": [0, 1.08],
+      "legend_loc": "lower left",
+      "series": [
+        {
+          "label": "Lexical compliance (name avoided)",
+          "x": [1, 2, 3, 4, 5],
+          "values": [1.0, 1.0, 1.0, 0.9565, 0.8913],
+          "band": [0.0363, 0.0410, 0.0393, 0.0667, 0.0915]
+        },
+        {
+          "label": "Mechanistic compliance (runtime label)",
+          "x": [1, 2, 3, 4, 5],
+          "values": [1.0, 0.8372, 0.8444, 0.2391, 0.2174],
+          "band": [0.0363, 0.1093, 0.1052, 0.1201, 0.1166]
+        },
+        {
+          "label": "Mechanistic compliance (expansion-order tracer)",
+          "x": [1, 2, 3, 4, 5],
+          "values": [1.0, 0.8571, 0.9111, 0.4667, 0.6739],
+          "band": [0.0371, 0.1056, 0.0861, 0.1399, 0.1308]
+        }
+      ]
+    },
+    {
+      "type": "line",
+      "title": "Qwen3-14B (thinking)",
+      "xlabel": "Algorithms banned, cumulative (k)",
+      "ylabel": "Share of completed programs compliant",
+      "ylim": [0, 1.08],
+      "legend_loc": "lower left",
+      "series": [
+        {
+          "label": "Lexical compliance (name avoided)",
+          "x": [1, 2, 3, 4, 5],
+          "values": [1.0, 0.96, 1.0, 0.9, 0.8571],
+          "band": [0.0363, 0.0618, 0.0363, 0.0851, 0.0979]
+        },
+        {
+          "label": "Mechanistic compliance (runtime label)",
+          "x": [1, 2, 3, 4, 5],
+          "values": [1.0, 0.3, 0.5102, 0.2, 0.102],
+          "band": [0.0363, 0.1232, 0.1348, 0.1090, 0.0866]
+        },
+        {
+          "label": "Mechanistic compliance (expansion-order tracer)",
+          "x": [1, 2, 3, 4, 5],
+          "values": [1.0, 0.76, 0.7551, 0.2449, 0.2449],
+          "band": [0.0363, 0.1156, 0.1174, 0.1174, 0.1174]
+        }
+      ]
+    }
+  ]
+}

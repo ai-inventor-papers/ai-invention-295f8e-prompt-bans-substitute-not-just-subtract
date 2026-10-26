@@ -1,0 +1,56 @@
+{
+  "figure_id": "fig3",
+  "title": "Temperature multiplies phrasings, not algorithms",
+  "xlabel": "Sampling temperature",
+  "ylabel": "Count among 20 same-seed programs",
+  "aspect": "4:3",
+  "xticks": [0.3, 0.7, 1.0, 1.3],
+  "ylim": [0, 14.4],
+  "yticks": [0, 2, 4, 6, 8, 10, 12, 14],
+  "legend_loc": "upper left",
+  "series": [
+    {
+      "label": "Phrasing clusters, grid path (BFS)",
+      "x": [0.3, 0.7, 1.0, 1.3],
+      "values": [3, 10, 12, 13],
+      "color": "#0173B2",
+      "marker": "o",
+      "linestyle": "-"
+    },
+    {
+      "label": "Phrasing clusters, shortest path (Dijkstra)",
+      "x": [0.3, 0.7, 1.0, 1.3],
+      "values": [1, 2, 2, 2],
+      "color": "#DE8F05",
+      "marker": "s",
+      "linestyle": "-"
+    },
+    {
+      "label": "Phrasing clusters, k-th smallest (full sort)",
+      "x": [0.3, 0.7, 1.0, 1.3],
+      "values": [2, 2, 2, 2],
+      "color": "#029E73",
+      "marker": "^",
+      "linestyle": "-"
+    },
+    {
+      "label": "Distinct algorithms, all three tasks",
+      "x": [0.3, 0.7, 1.0, 1.3],
+      "values": [1, 1, 1, 1],
+      "color": "#333333",
+      "marker": "D",
+      "linestyle": "--"
+    }
+  ],
+  "annotations": [
+    {
+      "x": 1.0,
+      "y": 1.5,
+      "text": "algorithm changed in 0 of 20 seeds per task",
+      "offset": [0, 0],
+      "fontsize": 8.3,
+      "note": "y=1.5 is a label-placement anchor centred in the open band between the dashed line (y=1) and the flat phrasing-cluster lines (y=2), not a plotted value"
+    }
+  ],
+  "source_note": "Values read from gen_art_experiment_21 (run_aRfWvcSWjssb, iter_4): results/table_1ac.json, NOPN_T* rows, clusters at theta=0.8 (3 solid series) and attempted/changed_seed_count (dashed series); the 0.168 bound is results/c1seed.json field A1_C_T_off, reproduced in README.md and reproducibility.md. Cross-checked against 4_gen_paper_repo/_2_gen_paper_draft/workspace/notes/headline_candidates.json entries 1-5 (outcome: passed) and notes/figures.json fig3 entry."
+}

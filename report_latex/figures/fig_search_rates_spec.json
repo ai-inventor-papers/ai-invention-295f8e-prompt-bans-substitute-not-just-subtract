@@ -1,0 +1,70 @@
+{
+  "figure_id": "fig_search_rates",
+  "model": "Qwen3-8B (mutator for the search, no-evolution, instruction-only, enumerate-and-pick, base-intent and neutral-twin arms); Qwen3-235B-A22B-2507 for the larger-mutator arm (kth smallest only)",
+  "y_axis": {
+    "label": "Distinct programs passing the catalogue screen per call",
+    "scale": "log",
+    "min": 0.001,
+    "max": 0.3
+  },
+  "arms": {
+    "S":    {"display_name": "search",                         "color_hex": "#0173B2"},
+    "NE":   {"display_name": "no evolution",                   "color_hex": "#56B4E9"},
+    "I0":   {"display_name": "instruction only",                "color_hex": "#029E73"},
+    "EAP":  {"display_name": "enumerate and pick",              "color_hex": "#DE8F05"},
+    "BINT": {"display_name": "base intent",                     "color_hex": "#CA9161"},
+    "B0":   {"display_name": "neutral twin",                    "color_hex": "#949494"},
+    "L":    {"display_name": "larger mutator (Qwen3-235B)",     "color_hex": "#CC78BC"}
+  },
+  "panels": [
+    {
+      "task_id": "T03",
+      "task_label": "kth smallest",
+      "arm_order": ["S", "NE", "I0", "EAP", "BINT", "B0", "L"],
+      "data": {
+        "S":    {"N": 2500, "level_a_count": 412, "level_b_count": 78},
+        "NE":   {"N": 500,  "level_a_count": 52,  "level_b_count": 0},
+        "I0":   {"N": 500,  "level_a_count": 57,  "level_b_count": 2},
+        "EAP":  {"N": 1250, "level_a_count": 31,  "level_b_count": 0},
+        "BINT": {"N": 1250, "level_a_count": 23,  "level_b_count": 0},
+        "B0":   {"N": 200,  "level_a_count": 1,   "level_b_count": 0},
+        "L":    {"N": 500,  "level_a_count": 67,  "level_b_count": 23}
+      }
+    },
+    {
+      "task_id": "T2",
+      "task_label": "shortest path",
+      "arm_order": ["S", "NE", "I0", "EAP", "BINT", "B0"],
+      "data": {
+        "S":    {"N": 1500, "level_a_count": 46, "level_b_count": 0},
+        "NE":   {"N": 500,  "level_a_count": 1,  "level_b_count": 0},
+        "I0":   {"N": 500,  "level_a_count": 7,  "level_b_count": 0},
+        "EAP":  {"N": 750,  "level_a_count": 6,  "level_b_count": 0},
+        "BINT": {"N": 750,  "level_a_count": 5,  "level_b_count": 0},
+        "B0":   {"N": 200,  "level_a_count": 0,  "level_b_count": 0}
+      }
+    },
+    {
+      "task_id": "A3",
+      "task_label": "trapped rain water",
+      "arm_order": ["S", "NE", "I0", "EAP", "BINT", "B0"],
+      "data": {
+        "S":    {"N": 1000, "level_a_count": 31, "level_b_count": 0},
+        "NE":   {"N": 300,  "level_a_count": 33, "level_b_count": 0},
+        "I0":   {"N": 300,  "level_a_count": 17, "level_b_count": 0},
+        "EAP":  {"N": 500,  "level_a_count": 17, "level_b_count": 0},
+        "BINT": {"N": 500,  "level_a_count": 9,  "level_b_count": 0},
+        "B0":   {"N": 100,  "level_a_count": 1,  "level_b_count": 0}
+      }
+    }
+  ],
+  "aspect": "21:9",
+  "provenance": {
+    "source_artifact_workspace": "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_37",
+    "source_files": [
+      "preview_method_out.json#metadata.arm_rates.level_a.{T2,T03,A3}.{S,NE,I0,EAP,BINT,B0} (N, X_a, X_b)",
+      "results/L_vs_S.json#L (N, X_a, X_b for the larger-mutator arm on T03)"
+    ],
+    "note": "level_a_count = X_a, the count of distinct correct programs passing the out-of-catalogue screen (rate_a = level_a_count / N is computed at render time, not stored, so it cannot drift from N and the count). level_b_count = X_b, the subset of those further adjudicated by blind judges plus a manual read as implementing a known technique outside the catalogue (0 of any arm's programs were adjudicated NOVEL). Every (N, level_a_count, level_b_count) triple here was read back from the artifact's own output files, not copied from the paper-draft figure specification; all matched the specification exactly on verification."
+  }
+}

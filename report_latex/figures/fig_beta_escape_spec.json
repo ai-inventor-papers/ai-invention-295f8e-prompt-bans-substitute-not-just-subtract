@@ -1,0 +1,77 @@
+{
+  "figure_id": "fig_beta_escape",
+  "title": "Base-model variety against nudge movability",
+  "xlabel": "base off-default share among correct programs (β)",
+  "ylabel": "bf16 escape fraction at the ban-free unit (mean of α=1, α=2)",
+  "xlim": [0.0, 0.85],
+  "ylim": [0.0, 0.6],
+  "aspect": "1:1",
+  "label_if_y_above": 0.1,
+  "existing_tasks": [
+    {"id": "T03", "name": "kth smallest",                  "beta": 0.425531914893617,  "E_bf16": 0.25,   "E_fp8_screen": 0.4625},
+    {"id": "T2",  "name": "shortest path",                 "beta": 0.4090909090909091, "E_bf16": 0.0,    "E_fp8_screen": 0.1875},
+    {"id": "T05", "name": "two sum",                       "beta": 0.16326530612244897,"E_bf16": 0.0,    "E_fp8_screen": 0.0625},
+    {"id": "T10", "name": "connected components",          "beta": 0.6545454545454545, "E_bf16": 0.125,  "E_fp8_screen": 0.55},
+    {"id": "T06", "name": "find duplicate",                "beta": 0.19607843137254902,"E_bf16": 0.0,    "E_fp8_screen": 0.0},
+    {"id": "T1",  "name": "grid",                          "beta": 0.38392857142857145,"E_bf16": 0.0,    "E_fp8_screen": 0.0875},
+    {"id": "T04", "name": "substring search",              "beta": 0.11538461538461539,"E_bf16": 0.0,    "E_fp8_screen": 0.0},
+    {"id": "T08", "name": "Fibonacci",                     "beta": 0.16216216216216217,"E_bf16": 0.0,    "E_fp8_screen": 0.0},
+    {"id": "T11", "name": "longest increasing subsequence","beta": 0.09302325581395349,"E_bf16": 0.0,    "E_fp8_screen": 0.0},
+    {"id": "T13", "name": "merge intervals",               "beta": 0.0,                 "E_bf16": 0.0,    "E_fp8_screen": 0.0},
+    {"id": "T14", "name": "top-k frequent",                "beta": 0.3548387096774194, "E_bf16": 0.0,    "E_fp8_screen": 0.0},
+    {"id": "R1",  "name": "non-overlapping intervals",     "beta": 0.0,                 "E_bf16": 0.0,    "E_fp8_screen": 0.0},
+    {"id": "R3",  "name": "topological order",             "beta": 0.025,               "E_bf16": 0.0,    "E_fp8_screen": 0.0},
+    {"id": "R6",  "name": "first and last position",       "beta": 0.05,                "E_bf16": 0.0,    "E_fp8_screen": 0.0},
+    {"id": "R2",  "name": "cycle detection",                "beta": 0.16279069767441862,"E_bf16": 0.0,    "E_fp8_screen": 0.0}
+  ],
+  "new_units": [
+    {"id": "A1", "name": "majority element",             "beta": 0.41379310344827586, "E_bf16": 0.125,  "reserve": false},
+    {"id": "A2", "name": "maximum block sum",            "beta": 0.0,                  "E_bf16": 0.0,    "reserve": false},
+    {"id": "A3", "name": "trapped rain water",           "beta": 0.22727272727272727, "E_bf16": 0.4375, "reserve": false},
+    {"id": "A4", "name": "count primes",                 "beta": 0.8064516129032258,  "E_bf16": 0.0,    "reserve": false},
+    {"id": "A5", "name": "longest common prefix",        "beta": 0.3,                  "E_bf16": 0.0,    "reserve": false},
+    {"id": "A7", "name": "longest mirrored substring",   "beta": 0.4642857142857143,  "E_bf16": 0.1875, "reserve": false},
+    {"id": "A8", "name": "jump game",                    "beta": 0.47368421052631576, "E_bf16": 0.0,    "reserve": true},
+    {"id": "A9", "name": "median of two sorted lists",   "beta": 0.7083333333333334,  "E_bf16": 0.0,    "reserve": true},
+    {"id": "B1", "name": "missing number",               "beta": 0.05555555555555555, "E_bf16": 0.0,    "reserve": false},
+    {"id": "B2", "name": "single number",                "beta": 0.5645161290322581,  "E_bf16": 0.4375, "reserve": false},
+    {"id": "B3", "name": "minimum spanning tree weight", "beta": 0.10714285714285714, "E_bf16": 0.125,  "reserve": false},
+    {"id": "B4", "name": "integer square root",          "beta": 0.3684210526315789,  "E_bf16": 0.125,  "reserve": false},
+    {"id": "B5", "name": "all subsets",                  "beta": 0.37037037037037035, "E_bf16": 0.0,    "reserve": false},
+    {"id": "B6", "name": "valid anagram",                "beta": 0.8055555555555556,  "E_bf16": 0.0,    "reserve": false},
+    {"id": "B7", "name": "count inversions",             "beta": 0.7471264367816092,  "E_bf16": 0.3125, "reserve": false}
+  ],
+  "stats": {
+    "existing_bf16":       {"n": 15, "rho": 0.5860946948638273,  "perm_p_one_sided": 0.009944950275248622,  "ci_bonett_wright": [0.05917025425877926, 0.8575876016961388]},
+    "existing_fp8_screen": {"n": 15, "rho": 0.793787727350631,   "perm_p_one_sided": 0.00030499847500762493,"ci_bonett_wright": [0.4076277232956978, 0.9391050409979043]},
+    "new_units_13":        {"n": 13, "rho": 0.14559511621137752, "perm_p_one_sided": 0.31466842665786665,   "ci_bonett_wright": [-0.4433830150194423, 0.6467597089442118]},
+    "new_units_15_with_reserves": {"n": 15, "rho": 0.005841397865784151, "perm_p_one_sided": 0.49382253088734557, "ci_bonett_wright": [-0.5079449560373406, 0.5165620662564983]},
+    "pooled_bf16_28":      {"n": 28, "rho": 0.4780694479443099,  "perm_p_one_sided": 0.0052699736501317495,  "ci_bonett_wright": [0.10629115865187501, 0.732575434498066]},
+    "new_units_13_sens_correct_only_basis": {"rho": 0.03494282789073061, "perm_p_one_sided": 0.45776271118644407, "note": "B7 'count inversions' recomputed on a correct-only basis (0.1333 instead of the committed attempt-basis 0.7471); every other new-unit beta is already correct-only."}
+  },
+  "textbox": "Spearman: existing 0.59 (8-bit screen 0.79); new units 0.15; pooled bf16 0.48",
+  "legend_labels": {
+    "existing_bf16": "existing tasks, bf16",
+    "existing_fp8_screen": "existing tasks, 8-bit screen (ghost)",
+    "new_units_bf16": "new units, bf16",
+    "reserve_units": "reserve units"
+  },
+  "provenance": {
+    "note": "Every beta, E_bf16 and E_fp8_screen value was read back from raw per-unit result files, cross-checked against the paper's own reviewed run_report.yaml (Section 5.10, 'corrected in iteration 6') and recomputed independently with scipy.stats.spearmanr inside render_beta_escape.py before the figure is drawn.",
+    "sources": [
+      "run_aRfWvcSWjssb/3_invention_loop/iter_5/gen_art/gen_art_experiment_24/results/base_repertoire.json#/per_task/<task>/beta  (beta of all 15 existing tasks; beta_basis is CORRECT for 14/15, ATTEMPT for T1/grid, n_correct_base=14)",
+      "run_aRfWvcSWjssb/3_invention_loop/iter_5/gen_art/gen_art_experiment_24/results/screen_check.json#/alpha_mean/E_t/<task>  (E_fp8_screen for all 15 existing tasks)",
+      "run_aRfWvcSWjssb/3_invention_loop/iter_5/gen_art/gen_art_experiment_25/results/extra_arm_a.json  (E_bf16 for all 15 existing tasks)",
+      "run_aRfWvcSWjssb/3_invention_loop/iter_5/gen_art/gen_art_experiment_25/pooled_inputs.json#/units/<A..>  (beta, E_bf16 for A1,A2,A3,A4,A5,A7,A8,A9)",
+      "run_aRfWvcSWjssb/3_invention_loop/iter_5/gen_art/gen_art_experiment_26/pooled_inputs.json#/records/<B..>  (beta, E_bf16 for B1..B7)",
+      "run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_evaluation_5/results/0c.json  (movability rho/CI/permutation stats, and the sens_correct_only_basis check on B7)",
+      "run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_evaluation_5/tables/movability_units.csv  (per-unit beta_basis / beta_correct_only flags for the 13 new units)",
+      "run_jSassd-YWLVC/4_gen_paper_repo/_2_gen_paper_draft/run_record/run_report.yaml:5018-5267  (Section 5.10, the reviewed paper text this figure illustrates)"
+    ],
+    "caveats": [
+      "Two of the 28 plotted points are on an ATTEMPT basis rather than the CORRECT-only basis the x-axis states: T1/'grid' (beta from 43/112 attempts; only 14/112 attempts were correct) and B7/'count inversions' (beta from 65/87 attempts; 67% of attempts are 'other', not correct). This is the pipeline's own committed, audited number, not an invented one, but it is why the x-axis cannot be read as 'correct-only' at every point.",
+      "If B7 is instead taken on a correct-only basis (0.1333), the new-units Spearman drops from 0.146 to 0.035 (see stats.new_units_13_sens_correct_only_basis) -- the new-unit relationship is not robust to this definitional choice.",
+      "n=13-15 per series is small; none of the new-unit or pooled confidence intervals rule out zero or a strong relationship. The run's own tracked evidence_state for this claim is 'lead' (real but not yet a finding)."
+    ]
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "figure_id": "fig_nla_local",
+  "title": "An NLA names the algorithm only where the prompt does",
+  "aspect": "16:9",
+  "model": "Qwen2.5-7B-Instruct",
+  "layer": 20,
+  "xlabel": "position of the NLA readout within the prompt",
+  "ylabel": "share of states (first two positions)\nor of explanations (end of the prompt)",
+  "ylim": [0, 1],
+  "categories": [
+    "at the algorithm's\nname",
+    "end of that sentence\n(2-8 tokens later)",
+    "end of the prompt\n(about 170 tokens later)"
+  ],
+  "series": [
+    {
+      "key": "forced_mentions",
+      "label": "forced prompt: mentions Y",
+      "color_role": "dark_green",
+      "condition": "forced",
+      "criterion": "mentions",
+      "values": [0.8000, 0.2667, 0.0074],
+      "counts": [[60, 75], [20, 75], [8, 1080]]
+    },
+    {
+      "key": "forced_planned",
+      "label": "forced prompt: names Y as planned",
+      "color_role": "light_green",
+      "condition": "forced",
+      "criterion": "planned",
+      "values": [0.4800, 0.1067, 0.0028],
+      "counts": [[36, 75], [8, 75], [3, 1080]]
+    },
+    {
+      "key": "ban_mentions",
+      "label": "ban prompt: mentions the banned default",
+      "color_role": "dark_orange",
+      "condition": "ban",
+      "criterion": "mentions",
+      "values": [0.8857, 0.0571, 0.0071],
+      "counts": [[31, 35], [2, 35], [3, 420]]
+    },
+    {
+      "key": "ban_planned",
+      "label": "ban prompt: names the default as planned",
+      "color_role": "light_orange",
+      "condition": "ban",
+      "criterion": "planned",
+      "values": [0.0571, 0.0000, 0.0071],
+      "counts": [[2, 35], [0, 35], [3, 420]]
+    }
+  ],
+  "n_annotations": {
+    "name_and_sentence_positions": "n = 75 forced states, 35 ban states; each state counts by the majority vote of 3 blind-judged explanations",
+    "end_of_prompt_position": "n = 1080 forced explanations, 420 ban explanations; single explanations, pooled over the SPEC-1/SPEC-2/SPEC-3/READ prefill readout positions near the end of the prompt"
+  },
+  "value_label_format": ".2f",
+  "data_provenance": {
+    "source_artifact_workspace": "run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_32",
+    "read_from": [
+      "results/local_control.json: aggregates['forced|NAME'], aggregates['forced|SENT'], aggregates['ban|NAME'], aggregates['ban|SENT'] (mentioned_majority, planned_majority, n_states)",
+      "results/rederive_headlines.json: prefill_mentions_named_algorithm.forced='8/1080', prefill_mentions_named_algorithm.ban='3/420' (independently re-derived by the artifact's own audit/rederive_headlines.py); local_control block cross-checked against results/local_control.json and matches exactly",
+      "data/judgements.jsonl + cache/states_index.jsonl: re-derived directly (same population as prefill_mentions_named_algorithm: mode=='EXPL', kind=='PREFILL', condition in {forced, ban}) to get the 'named as planned' (resolved==target) counts at the end-of-prompt position, which the artifact's own audit script never computed"
+    ],
+    "corrections_from_draft_specification": [
+      "'forced prompt: names Y as planned' at the end-of-prompt position: the draft figure specification claimed 0 (0/1080); reading data/judgements.jsonl directly gives 3/1080 = 0.0028. Used the verified value.",
+      "'ban prompt: names the default as planned' at the end-of-prompt position: the draft figure specification claimed 0 (0/420); reading data/judgements.jsonl directly gives 3/420 = 0.0071 (the identical 3 explanations that also count as 'mentions' at that position -- every ban explanation that mentions the banned default at the end of the prompt also resolves it as the predicted/planned answer). Used the verified value.",
+      "All other 10 of the 12 plotted values matched the draft specification exactly against the artifact's own files and are used unchanged."
+    ]
+  }
+}

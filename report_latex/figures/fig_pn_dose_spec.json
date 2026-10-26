@@ -1,0 +1,856 @@
+{
+  "figure_id": "fig_pn_dose",
+  "title": "Plan noise dose, diversity and correctness",
+  "aspect": "16:9",
+  "source_artifact": "/ai-inventor/aii_data/runs/run_aRfWvcSWjssb/3_invention_loop/iter_4/gen_art/gen_art_experiment_19",
+  "source_file": "results/knob_rows.jsonl",
+  "source_run": "run_aRfWvcSWjssb, iteration 4, gen_art_experiment_19 ('Is plan noise the cheapest route to diverse code?')",
+  "method_note": "Fresh per-sample plan noise (PN): one isotropic random direction per sample, displacement-targeted at the task-specification states of transformer blocks 12-23 during prefill, in ban units (alpha). Qwen3-8B with 8-bit (FP8 W8A8) linear layers, thinking off, T=1.0. N=50 generations per (task, dose) cell.",
+  "left_panel_stat": "Correct-only rarefied Hill-1 diversity at rarefaction depth 25, with a 90% CI band (half-width = (ci90_hi - ci90_lo)/2); band omitted where the CI is undefined (fewer than 25 correct samples at that dose).",
+  "right_panel_stat": "Pass rate = n_correct / n (n=50 per cell), with a Wilson 90% CI band computed from n_correct and n.",
+  "left_panel_axis": {
+    "ylim": [
+      0.9,
+      3.0
+    ],
+    "yticks": [
+      1.0,
+      1.5,
+      2.0,
+      2.5,
+      3.0
+    ],
+    "dashed_reference_lines": [
+      1.5,
+      2.0
+    ],
+    "dose_tick_labels": [
+      "0",
+      "0.5",
+      "1",
+      "2",
+      "4"
+    ]
+  },
+  "right_panel_axis": {
+    "ylim": [
+      0.0,
+      1.05
+    ],
+    "dose_tick_labels": [
+      "0",
+      "0.5",
+      "1",
+      "2",
+      "4",
+      "8"
+    ]
+  },
+  "evidence_caveat": "This dose-response was measured once, on one FP8-quantised engine (exp19, iteration 4). The run's own later iterations flag it as unit- and precision-sensitive: a bf16 re-run (iteration 6, gen_art_evaluation_5) found the connected-components and shortest-path diversity jumps did not replicate at the population level under a matched bf16 dose, and a different dose-unit convention (iteration 5) produced far smaller escapes on the same tasks (iteration 7, gen_art_experiment_36). The run's final hypothesis update records this as evidence_state='lead', not a confirmed finding.",
+  "tasks": [
+    {
+      "task_id": "T03",
+      "label": "kth smallest",
+      "left_panel": [
+        {
+          "dose": 0,
+          "hill1_depth25": 1.0,
+          "ci90": [
+            1.0,
+            1.0
+          ],
+          "band_halfwidth": 0.0,
+          "n": 50,
+          "n_correct": 50,
+          "depth_flag": false
+        },
+        {
+          "dose": 0.5,
+          "hill1_depth25": 1.3046451443068614,
+          "ci90": [
+            1.0914352714014066,
+            1.5234906684690355
+          ],
+          "band_halfwidth": 0.21602769853381443,
+          "n": 50,
+          "n_correct": 50,
+          "depth_flag": false
+        },
+        {
+          "dose": 1,
+          "hill1_depth25": 2.135807752344181,
+          "ci90": [
+            1.7283913377930866,
+            2.459506567563602
+          ],
+          "band_halfwidth": 0.36555761488525773,
+          "n": 50,
+          "n_correct": 50,
+          "depth_flag": false
+        },
+        {
+          "dose": 2,
+          "hill1_depth25": 2.8691175227381716,
+          "ci90": [
+            2.405663087058945,
+            3.1775204712980822
+          ],
+          "band_halfwidth": 0.3859286921195686,
+          "n": 50,
+          "n_correct": 47,
+          "depth_flag": false
+        },
+        {
+          "dose": 4,
+          "hill1_depth25": 2.710403986160495,
+          "ci90": [
+            2.177083236661654,
+            3.088120859934524
+          ],
+          "band_halfwidth": 0.45551881163643504,
+          "n": 50,
+          "n_correct": 37,
+          "depth_flag": false
+        }
+      ],
+      "right_panel": [
+        {
+          "dose": 0,
+          "pass_rate": 1.0,
+          "n": 50,
+          "n_correct": 50,
+          "wilson_ci90": [
+            0.9486668142137298,
+            1.0
+          ],
+          "band_halfwidth": 0.02566659289313511
+        },
+        {
+          "dose": 0.5,
+          "pass_rate": 1.0,
+          "n": 50,
+          "n_correct": 50,
+          "wilson_ci90": [
+            0.9486668142137298,
+            1.0
+          ],
+          "band_halfwidth": 0.02566659289313511
+        },
+        {
+          "dose": 1,
+          "pass_rate": 1.0,
+          "n": 50,
+          "n_correct": 50,
+          "wilson_ci90": [
+            0.9486668142137298,
+            1.0
+          ],
+          "band_halfwidth": 0.02566659289313511
+        },
+        {
+          "dose": 2,
+          "pass_rate": 0.94,
+          "n": 50,
+          "n_correct": 47,
+          "wilson_ci90": [
+            0.8590580535393006,
+            0.9757687429687816
+          ],
+          "band_halfwidth": 0.058355344714740465
+        },
+        {
+          "dose": 4,
+          "pass_rate": 0.74,
+          "n": 50,
+          "n_correct": 37,
+          "wilson_ci90": [
+            0.6275387029219313,
+            0.827821367900659
+          ],
+          "band_halfwidth": 0.10014133248936385
+        },
+        {
+          "dose": 8,
+          "pass_rate": 0.04,
+          "n": 50,
+          "n_correct": 2,
+          "wilson_ci90": [
+            0.013326282653439103,
+            0.1139002482699294
+          ],
+          "band_halfwidth": 0.050286982808245145
+        }
+      ]
+    },
+    {
+      "task_id": "T05",
+      "label": "two sum",
+      "left_panel": [
+        {
+          "dose": 0,
+          "hill1_depth25": 1.0,
+          "ci90": [
+            1.0,
+            1.0
+          ],
+          "band_halfwidth": 0.0,
+          "n": 50,
+          "n_correct": 50,
+          "depth_flag": false
+        },
+        {
+          "dose": 0.5,
+          "hill1_depth25": 1.0,
+          "ci90": [
+            1.0,
+            1.0
+          ],
+          "band_halfwidth": 0.0,
+          "n": 50,
+          "n_correct": 50,
+          "depth_flag": false
+        },
+        {
+          "dose": 1,
+          "hill1_depth25": 1.0,
+          "ci90": [
+            1.0,
+            1.0
+          ],
+          "band_halfwidth": 0.0,
+          "n": 50,
+          "n_correct": 50,
+          "depth_flag": false
+        },
+        {
+          "dose": 2,
+          "hill1_depth25": 1.087046378374139,
+          "ci90": [
+            1.0,
+            1.243613794769096
+          ],
+          "band_halfwidth": 0.12180689738454797,
+          "n": 50,
+          "n_correct": 50,
+          "depth_flag": false
+        },
+        {
+          "dose": 4,
+          "hill1_depth25": 1.7930591749944025,
+          "ci90": [
+            1.5270453932323202,
+            1.9438322383725166
+          ],
+          "band_halfwidth": 0.20839342257009819,
+          "n": 50,
+          "n_correct": 40,
+          "depth_flag": false
+        }
+      ],
+      "right_panel": [
+        {
+          "dose": 0,
+          "pass_rate": 1.0,
+          "n": 50,
+          "n_correct": 50,
+          "wilson_ci90": [
+            0.9486668142137298,
+            1.0
+          ],
+          "band_halfwidth": 0.02566659289313511
+        },
+        {
+          "dose": 0.5,
+          "pass_rate": 1.0,
+          "n": 50,
+          "n_correct": 50,
+          "wilson_ci90": [
+            0.9486668142137298,
+            1.0
+          ],
+          "band_halfwidth": 0.02566659289313511
+        },
+        {
+          "dose": 1,
+          "pass_rate": 1.0,
+          "n": 50,
+          "n_correct": 50,
+          "wilson_ci90": [
+            0.9486668142137298,
+            1.0
+          ],
+          "band_halfwidth": 0.02566659289313511
+        },
+        {
+          "dose": 2,
+          "pass_rate": 1.0,
+          "n": 50,
+          "n_correct": 50,
+          "wilson_ci90": [
+            0.9486668142137298,
+            1.0
+          ],
+          "band_halfwidth": 0.02566659289313511
+        },
+        {
+          "dose": 4,
+          "pass_rate": 0.8,
+          "n": 50,
+          "n_correct": 40,
+          "wilson_ci90": [
+            0.6926736151891771,
+            0.8765264733390609
+          ],
+          "band_halfwidth": 0.09192642907494186
+        },
+        {
+          "dose": 8,
+          "pass_rate": 0.0,
+          "n": 50,
+          "n_correct": 0,
+          "wilson_ci90": [
+            0.0,
+            0.051333185786270115
+          ],
+          "band_halfwidth": 0.025666592893135057
+        }
+      ]
+    },
+    {
+      "task_id": "T06",
+      "label": "find duplicate",
+      "left_panel": [
+        {
+          "dose": 0,
+          "hill1_depth25": 1.0,
+          "ci90": [
+            1.0,
+            1.0
+          ],
+          "band_halfwidth": 0.0,
+          "n": 50,
+          "n_correct": 50,
+          "depth_flag": false
+        },
+        {
+          "dose": 0.5,
+          "hill1_depth25": 1.0,
+          "ci90": [
+            1.0,
+            1.0
+          ],
+          "band_halfwidth": 0.0,
+          "n": 50,
+          "n_correct": 50,
+          "depth_flag": false
+        },
+        {
+          "dose": 1,
+          "hill1_depth25": 1.0,
+          "ci90": [
+            1.0,
+            1.0
+          ],
+          "band_halfwidth": 0.0,
+          "n": 50,
+          "n_correct": 50,
+          "depth_flag": false
+        },
+        {
+          "dose": 2,
+          "hill1_depth25": 1.0,
+          "ci90": [
+            1.0,
+            1.0
+          ],
+          "band_halfwidth": 0.0,
+          "n": 50,
+          "n_correct": 49,
+          "depth_flag": false
+        },
+        {
+          "dose": 4,
+          "hill1_depth25": 1.0,
+          "ci90": [
+            NaN,
+            NaN
+          ],
+          "band_halfwidth": null,
+          "n": 50,
+          "n_correct": 12,
+          "depth_flag": true
+        }
+      ],
+      "right_panel": [
+        {
+          "dose": 0,
+          "pass_rate": 1.0,
+          "n": 50,
+          "n_correct": 50,
+          "wilson_ci90": [
+            0.9486668142137298,
+            1.0
+          ],
+          "band_halfwidth": 0.02566659289313511
+        },
+        {
+          "dose": 0.5,
+          "pass_rate": 1.0,
+          "n": 50,
+          "n_correct": 50,
+          "wilson_ci90": [
+            0.9486668142137298,
+            1.0
+          ],
+          "band_halfwidth": 0.02566659289313511
+        },
+        {
+          "dose": 1,
+          "pass_rate": 1.0,
+          "n": 50,
+          "n_correct": 50,
+          "wilson_ci90": [
+            0.9486668142137298,
+            1.0
+          ],
+          "band_halfwidth": 0.02566659289313511
+        },
+        {
+          "dose": 2,
+          "pass_rate": 0.98,
+          "n": 50,
+          "n_correct": 49,
+          "wilson_ci90": [
+            0.9151947057516905,
+            0.9955254358934902
+          ],
+          "band_halfwidth": 0.04016536507089985
+        },
+        {
+          "dose": 4,
+          "pass_rate": 0.24,
+          "n": 50,
+          "n_correct": 12,
+          "wilson_ci90": [
+            0.15566702155608025,
+            0.3510262350527801
+          ],
+          "band_halfwidth": 0.09767960674834991
+        },
+        {
+          "dose": 8,
+          "pass_rate": 0.0,
+          "n": 50,
+          "n_correct": 0,
+          "wilson_ci90": [
+            0.0,
+            0.051333185786270115
+          ],
+          "band_halfwidth": 0.025666592893135057
+        }
+      ]
+    },
+    {
+      "task_id": "T10",
+      "label": "connected components",
+      "left_panel": [
+        {
+          "dose": 0,
+          "hill1_depth25": 1.0,
+          "ci90": [
+            1.0,
+            1.0
+          ],
+          "band_halfwidth": 0.0,
+          "n": 50,
+          "n_correct": 50,
+          "depth_flag": false
+        },
+        {
+          "dose": 0.5,
+          "hill1_depth25": 1.0,
+          "ci90": [
+            1.0,
+            1.0
+          ],
+          "band_halfwidth": 0.0,
+          "n": 50,
+          "n_correct": 50,
+          "depth_flag": false
+        },
+        {
+          "dose": 1,
+          "hill1_depth25": 1.4246014432945922,
+          "ci90": [
+            1.2329544035330202,
+            1.6357804677502408
+          ],
+          "band_halfwidth": 0.20141303210861028,
+          "n": 50,
+          "n_correct": 50,
+          "depth_flag": false
+        },
+        {
+          "dose": 2,
+          "hill1_depth25": 2.095080261244917,
+          "ci90": [
+            1.8606767476514934,
+            2.277579558005415
+          ],
+          "band_halfwidth": 0.2084514051769608,
+          "n": 50,
+          "n_correct": 50,
+          "depth_flag": false
+        },
+        {
+          "dose": 4,
+          "hill1_depth25": 2.5609330189624577,
+          "ci90": [
+            NaN,
+            NaN
+          ],
+          "band_halfwidth": null,
+          "n": 50,
+          "n_correct": 21,
+          "depth_flag": true
+        }
+      ],
+      "right_panel": [
+        {
+          "dose": 0,
+          "pass_rate": 1.0,
+          "n": 50,
+          "n_correct": 50,
+          "wilson_ci90": [
+            0.9486668142137298,
+            1.0
+          ],
+          "band_halfwidth": 0.02566659289313511
+        },
+        {
+          "dose": 0.5,
+          "pass_rate": 1.0,
+          "n": 50,
+          "n_correct": 50,
+          "wilson_ci90": [
+            0.9486668142137298,
+            1.0
+          ],
+          "band_halfwidth": 0.02566659289313511
+        },
+        {
+          "dose": 1,
+          "pass_rate": 1.0,
+          "n": 50,
+          "n_correct": 50,
+          "wilson_ci90": [
+            0.9486668142137298,
+            1.0
+          ],
+          "band_halfwidth": 0.02566659289313511
+        },
+        {
+          "dose": 2,
+          "pass_rate": 1.0,
+          "n": 50,
+          "n_correct": 50,
+          "wilson_ci90": [
+            0.9486668142137298,
+            1.0
+          ],
+          "band_halfwidth": 0.02566659289313511
+        },
+        {
+          "dose": 4,
+          "pass_rate": 0.42,
+          "n": 50,
+          "n_correct": 21,
+          "wilson_ci90": [
+            0.31220657143264496,
+            0.5360067382931581
+          ],
+          "band_halfwidth": 0.11190008343025659
+        },
+        {
+          "dose": 8,
+          "pass_rate": 0.0,
+          "n": 50,
+          "n_correct": 0,
+          "wilson_ci90": [
+            0.0,
+            0.051333185786270115
+          ],
+          "band_halfwidth": 0.025666592893135057
+        }
+      ]
+    },
+    {
+      "task_id": "T1",
+      "label": "grid",
+      "left_panel": [
+        {
+          "dose": 0,
+          "hill1_depth25": 1.0,
+          "ci90": [
+            1.0,
+            1.0
+          ],
+          "band_halfwidth": 0.0,
+          "n": 50,
+          "n_correct": 37,
+          "depth_flag": false
+        },
+        {
+          "dose": 0.5,
+          "hill1_depth25": 1.0,
+          "ci90": [
+            1.0,
+            1.0
+          ],
+          "band_halfwidth": 0.0,
+          "n": 50,
+          "n_correct": 43,
+          "depth_flag": false
+        },
+        {
+          "dose": 1,
+          "hill1_depth25": 1.1353242016740819,
+          "ci90": [
+            1.0,
+            1.3338801367666775
+          ],
+          "band_halfwidth": 0.16694006838333875,
+          "n": 50,
+          "n_correct": 35,
+          "depth_flag": false
+        },
+        {
+          "dose": 2,
+          "hill1_depth25": 1.415451473727464,
+          "ci90": [
+            1.1270950272479552,
+            1.6363549601279093
+          ],
+          "band_halfwidth": 0.25462996643997704,
+          "n": 50,
+          "n_correct": 36,
+          "depth_flag": false
+        },
+        {
+          "dose": 4,
+          "hill1_depth25": 2.0574424589560687,
+          "ci90": [
+            NaN,
+            NaN
+          ],
+          "band_halfwidth": null,
+          "n": 50,
+          "n_correct": 12,
+          "depth_flag": true
+        }
+      ],
+      "right_panel": [
+        {
+          "dose": 0,
+          "pass_rate": 0.74,
+          "n": 50,
+          "n_correct": 37,
+          "wilson_ci90": [
+            0.6275387029219313,
+            0.827821367900659
+          ],
+          "band_halfwidth": 0.10014133248936385
+        },
+        {
+          "dose": 0.5,
+          "pass_rate": 0.86,
+          "n": 50,
+          "n_correct": 43,
+          "wilson_ci90": [
+            0.7607610040545155,
+            0.92227910217937
+          ],
+          "band_halfwidth": 0.08075904906242726
+        },
+        {
+          "dose": 1,
+          "pass_rate": 0.7,
+          "n": 50,
+          "n_correct": 35,
+          "wilson_ci90": [
+            0.5854003725969208,
+            0.794066353088571
+          ],
+          "band_halfwidth": 0.1043329902458251
+        },
+        {
+          "dose": 2,
+          "pass_rate": 0.72,
+          "n": 50,
+          "n_correct": 36,
+          "wilson_ci90": [
+            0.6063528574838282,
+            0.811060540770213
+          ],
+          "band_halfwidth": 0.10235384164319239
+        },
+        {
+          "dose": 4,
+          "pass_rate": 0.24,
+          "n": 50,
+          "n_correct": 12,
+          "wilson_ci90": [
+            0.15566702155608025,
+            0.3510262350527801
+          ],
+          "band_halfwidth": 0.09767960674834991
+        },
+        {
+          "dose": 8,
+          "pass_rate": 0.0,
+          "n": 50,
+          "n_correct": 0,
+          "wilson_ci90": [
+            0.0,
+            0.051333185786270115
+          ],
+          "band_halfwidth": 0.025666592893135057
+        }
+      ]
+    },
+    {
+      "task_id": "T2",
+      "label": "shortest path",
+      "left_panel": [
+        {
+          "dose": 0,
+          "hill1_depth25": 1.0,
+          "ci90": [
+            1.0,
+            1.0
+          ],
+          "band_halfwidth": 0.0,
+          "n": 50,
+          "n_correct": 50,
+          "depth_flag": false
+        },
+        {
+          "dose": 0.5,
+          "hill1_depth25": 1.2583421742425438,
+          "ci90": [
+            1.0822917442612658,
+            1.444551689031581
+          ],
+          "band_halfwidth": 0.1811299723851576,
+          "n": 50,
+          "n_correct": 49,
+          "depth_flag": false
+        },
+        {
+          "dose": 1,
+          "hill1_depth25": 1.6636284920277484,
+          "ci90": [
+            1.4188740368945016,
+            1.8550635762300538
+          ],
+          "band_halfwidth": 0.21809476966777608,
+          "n": 50,
+          "n_correct": 43,
+          "depth_flag": false
+        },
+        {
+          "dose": 2,
+          "hill1_depth25": 1.9519891077823865,
+          "ci90": [
+            1.7827153062550527,
+            1.9865354080698256
+          ],
+          "band_halfwidth": 0.10191005090738647,
+          "n": 50,
+          "n_correct": 37,
+          "depth_flag": false
+        },
+        {
+          "dose": 4,
+          "hill1_depth25": 1.0,
+          "ci90": [
+            NaN,
+            NaN
+          ],
+          "band_halfwidth": null,
+          "n": 50,
+          "n_correct": 2,
+          "depth_flag": true
+        }
+      ],
+      "right_panel": [
+        {
+          "dose": 0,
+          "pass_rate": 1.0,
+          "n": 50,
+          "n_correct": 50,
+          "wilson_ci90": [
+            0.9486668142137298,
+            1.0
+          ],
+          "band_halfwidth": 0.02566659289313511
+        },
+        {
+          "dose": 0.5,
+          "pass_rate": 0.98,
+          "n": 50,
+          "n_correct": 49,
+          "wilson_ci90": [
+            0.9151947057516905,
+            0.9955254358934902
+          ],
+          "band_halfwidth": 0.04016536507089985
+        },
+        {
+          "dose": 1,
+          "pass_rate": 0.86,
+          "n": 50,
+          "n_correct": 43,
+          "wilson_ci90": [
+            0.7607610040545155,
+            0.92227910217937
+          ],
+          "band_halfwidth": 0.08075904906242726
+        },
+        {
+          "dose": 2,
+          "pass_rate": 0.74,
+          "n": 50,
+          "n_correct": 37,
+          "wilson_ci90": [
+            0.6275387029219313,
+            0.827821367900659
+          ],
+          "band_halfwidth": 0.10014133248936385
+        },
+        {
+          "dose": 4,
+          "pass_rate": 0.04,
+          "n": 50,
+          "n_correct": 2,
+          "wilson_ci90": [
+            0.013326282653439103,
+            0.1139002482699294
+          ],
+          "band_halfwidth": 0.050286982808245145
+        },
+        {
+          "dose": 8,
+          "pass_rate": 0.0,
+          "n": 50,
+          "n_correct": 0,
+          "wilson_ci90": [
+            0.0,
+            0.051333185786270115
+          ],
+          "band_halfwidth": 0.025666592893135057
+        }
+      ]
+    }
+  ]
+}

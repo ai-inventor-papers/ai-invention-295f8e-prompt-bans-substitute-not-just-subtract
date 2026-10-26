@@ -1,0 +1,83 @@
+{
+  "figure_id": "fig_multiban",
+  "suptitle": "Long ban lists are not obeyed",
+  "aspect": "16:9",
+  "width_in": 6.5,
+  "source": {
+    "artifact": "gen_art_experiment_9 (run_aRfWvcSWjssb, iteration 2): 'Banning five path algorithms in one prompt'",
+    "panel_a_file": "results/landing.json (t1|baseline, t1|single:bfs, t1|multi:TOP, t1|multi:ARC, t1|multi:SCATTER, t1|multi:TOP5 -> counts, avoidance)",
+    "panel_b_file": "results/los.json (will_attempted_share, can_labelled_as_requested) cross-checked against results/catalogue_keep.json (tasks.t2.*.n_forced=40, share)",
+    "model": "Qwen3-8B, thinking off, vLLM 0.11, T=1.0",
+    "n_per_condition": 100,
+    "n_templates": 5,
+    "n_per_template": 20,
+    "n_forced_per_algorithm_panel_b": 40
+  },
+  "panel_a": {
+    "title": "Grid path (T1): mechanism mix per ban condition",
+    "xlabel": "Ban condition",
+    "ylabel": "Programs (of 100)",
+    "y_max_data": 100,
+    "ylim": [0, 122],
+    "categories": ["Baseline", "Ban: BFS", "TOP", "ARC", "SCATTER", "TOP5"],
+    "category_ban_lists": {
+      "Baseline": [],
+      "Ban: BFS": ["BFS"],
+      "TOP": ["BFS", "DFS", "greedy best-first", "IDDFS"],
+      "ARC": ["BFS", "bidirectional BFS", "A*", "greedy best-first"],
+      "SCATTER": ["BFS", "DFS", "greedy best-first", "IDA*"],
+      "TOP5": ["BFS", "DFS", "greedy best-first", "IDDFS", "A*"]
+    },
+    "series": [
+      {
+        "label": "BFS",
+        "values": [100, 14, 59, 63, 69, 63],
+        "banned": [false, true, true, true, true, true]
+      },
+      {
+        "label": "DFS",
+        "values": [0, 86, 26, 37, 27, 36],
+        "banned": [false, false, true, false, true, true]
+      },
+      {
+        "label": "Greedy best-first",
+        "values": [0, 0, 2, 0, 0, 0],
+        "banned": [false, false, true, false, false, false]
+      },
+      {
+        "label": "A*",
+        "values": [0, 0, 0, 0, 2, 0],
+        "banned": [false, false, false, false, false, false]
+      },
+      {
+        "label": "IDDFS",
+        "values": [0, 0, 0, 0, 0, 1],
+        "banned": [false, false, false, false, false, true]
+      },
+      {
+        "label": "Other",
+        "values": [0, 0, 13, 0, 2, 0],
+        "banned": [false, false, false, false, false, false]
+      }
+    ],
+    "avoidance_labels": ["n/a", "0.86", "0.13", "0.37", "0.04", "0.00"],
+    "hatch_note": "Hatched = banned mechanism"
+  },
+  "panel_b": {
+    "title": "Shortest path (T2): will vs can for the lone survivor",
+    "xlabel": "Only allowed algorithm",
+    "ylabel": "Share of programs",
+    "ylim": [0, 1.22],
+    "categories": ["Dijkstra", "Bellman-Ford/SPFA", "Bidirectional Dijkstra", "Floyd-Warshall", "Dial"],
+    "series": [
+      {
+        "label": "Will (chooses it freely, n=100)",
+        "values": [0.95, 0.51, 0.00, 0.00, 0.00]
+      },
+      {
+        "label": "Can (succeeds when forced, n=40)",
+        "values": [1.00, 1.00, 0.35, 1.00, 0.90]
+      }
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "type": "panel",
+  "title": "Same seed: temperature against plan noise",
+  "aspect": "16:9",
+  "ncols": 2,
+  "panels": [
+    {
+      "type": "bar",
+      "title": "Thinking off (all three tasks)",
+      "xlabel": "Task",
+      "ylabel": "Seeds whose algorithm changed (of 20)",
+      "ylim": [0, 20],
+      "annotate": true,
+      "categories": ["Shortest path", "Kth smallest", "Grid"],
+      "series": [
+        {"label": "Temperature 0.3–1.3", "values": [0, 0, 0]},
+        {"label": "Plan noise, α=1", "values": [17.25, 4.55, 2.50]},
+        {"label": "Plan noise, α=2", "values": [19.05, 10.60, 8.70]}
+      ]
+    },
+    {
+      "type": "bar",
+      "title": "Thinking on (same temperature sweep)",
+      "xlabel": "Task (kth smallest not tested)",
+      "ylabel": "Seeds whose algorithm changed (of 20)",
+      "ylim": [0, 20],
+      "annotate": true,
+      "categories": ["Shortest path (n=20)", "Grid (n=10)"],
+      "series": [
+        {"label": "Temperature 0.3–1.3", "values": [0, 0]}
+      ]
+    }
+  ]
+}

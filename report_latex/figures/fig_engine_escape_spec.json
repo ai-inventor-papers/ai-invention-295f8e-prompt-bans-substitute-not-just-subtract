@@ -1,0 +1,70 @@
+{
+  "figure_id": "fig_engine_escape",
+  "title": "Random pushes escape in bf16 too",
+  "aspect": "16:9",
+  "source_artifact": "run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29",
+  "source_files": [
+    "results/escape_by_engine.json",
+    "results/pn.json",
+    "results/relabel_table.json",
+    "results/report_tables.md"
+  ],
+  "note_on_values": "Every number below was read back from the artifact's own output files (escape_by_engine.json and pn.json), not copied from the draft caption. All four numerics are re-runs of the SAME 40 fixed random directions / per-sample plan-noise pushes from one shared bf16 snapshot of Qwen3-8B: a=W8A8 (native 8-bit float weights+activations), b=W8A16 (8-bit float weights, bf16 activations), c=W16A8 (bf16 weights, 8-bit float activations), d=bf16 (full precision).",
+  "categories": ["connected components", "shortest path"],
+  "engines": ["W8A8", "W8A16", "W16A8", "bf16"],
+  "engine_full_name": {
+    "W8A8": "8-bit float weights and activations",
+    "W8A16": "8-bit float weights, bf16 activations",
+    "W16A8": "bf16 weights, 8-bit float activations",
+    "bf16": "bf16 weights and activations (full precision)"
+  },
+  "panel_a": {
+    "title": "Escape fraction of 40 fixed random directions, α = 2",
+    "ylabel": "escape fraction (share of 40 directions)",
+    "ylim": [0.0, 1.0],
+    "what": "Share of 40 fixed random directions pushed into the task-spec activations at alpha=2 that flip the written algorithm, each engine scored against its own twin (confirmed/n_run out of 40), with Wilson 95% intervals. Source: escape_by_engine.json -> [engine][task]['alpha']['2.0'].",
+    "bars": {
+      "connected components": {
+        "W8A8":  {"value": 0.725, "n_confirmed": 29, "n_run": 40, "ci_low": 0.5717, "ci_high": 0.8389, "confirmed": true},
+        "W8A16": {"value": 0.7,   "n_confirmed": 28, "n_run": 40, "ci_low": null,   "ci_high": null,   "confirmed": false, "note": "confirmation stage incomplete; value is the screen-level pass rate n_screen_pass/n_run, drawn hatched with no error bar"},
+        "W16A8": {"value": 0.6,   "n_confirmed": 24, "n_run": 40, "ci_low": 0.4460, "ci_high": 0.7365, "confirmed": true},
+        "bf16":  {"value": 0.65,  "n_confirmed": 26, "n_run": 40, "ci_low": 0.4951, "ci_high": 0.7787, "confirmed": true}
+      },
+      "shortest path": {
+        "W8A8":  {"value": 0.2,   "n_confirmed": 8, "n_run": 40, "ci_low": 0.1050, "ci_high": 0.3476, "confirmed": true},
+        "W8A16": {"value": 0.125, "n_confirmed": 5, "n_run": 40, "ci_low": 0.0546, "ci_high": 0.2611, "confirmed": true},
+        "W16A8": {"value": 0.15,  "n_confirmed": 6, "n_run": 40, "ci_low": 0.0706, "ci_high": 0.2907, "confirmed": true},
+        "bf16":  {"value": 0.15,  "n_confirmed": 6, "n_run": 40, "ci_low": 0.0706, "ci_high": 0.2907, "confirmed": true}
+      }
+    }
+  },
+  "panel_b": {
+    "title": "Per-sample plan noise, α = 2",
+    "ylabel": "share of 50 valid attempts on an alternative algorithm",
+    "ylim": [0.0, 1.0],
+    "what": "Share of 50 fresh per-sample isotropic noise pushes (alpha=2) that land on a catalogue algorithm other than the twin's default, out of 50 valid attempts. Source: pn.json -> [task]['PN_a2'][engine].",
+    "bars": {
+      "connected components": {
+        "W8A8":  {"value": 0.6,  "k_off": 30, "n": 50},
+        "W8A16": {"value": 0.54, "k_off": 27, "n": 50},
+        "W16A8": {"value": 0.44, "k_off": 22, "n": 50},
+        "bf16":  {"value": 0.5,  "k_off": 25, "n": 50}
+      },
+      "shortest path": {
+        "W8A8":  {"value": 0.44, "k_off": 22, "n": 50},
+        "W8A16": {"value": 0.38, "k_off": 19, "n": 50},
+        "W16A8": {"value": 0.36, "k_off": 18, "n": 50},
+        "bf16":  {"value": 0.44, "k_off": 22, "n": 50}
+      }
+    },
+    "control_marker": {
+      "category": "connected components",
+      "value": 0.02,
+      "k_off": 1,
+      "n": 50,
+      "label": "iteration 5: bf16, ban-free unit, other seeds (1/50)",
+      "source": "a different iteration-5 experiment's bf16 plan-noise run on the same task, using its own ('ban-free') noise unit and direction seeds at a smaller effective dose; cited in this artifact's results/relabel_table.json as 'iteration-5 bf16 PN null on T10 (1/50 at its ban-free unit, block-12 dose 0.66x this unit)', class 'DOSE (not reproduced at the absolute unit)' -- i.e. the near-zero result traces to the different unit/seed convention, not to bf16 itself."
+    }
+  },
+  "takeaway": "In both panels the bf16 bars sit close to the W8A8 bars, and the W16A8 bars are not higher than the bf16 bars, so 8-bit float activation rounding alone does not create the escapes."
+}

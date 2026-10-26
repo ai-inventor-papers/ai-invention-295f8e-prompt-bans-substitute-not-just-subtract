@@ -1,0 +1,688 @@
+{
+  "figure_id": "fig_qwen_top5_geometry",
+  "model": "Qwen3-8B (bf16, thinking off)",
+  "task": "T1 unweighted grid-path task",
+  "source_artifact": "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_30/results/top5_push.json",
+  "readout_basis": "PCA of the 10 forced-prompt centroids (exp20, spec-mean block outputs 12-23 / median block norm), i.e. actual activation coordinates",
+  "pc1_pct": 36.1,
+  "pc2_pct": 25.2,
+  "mds_k": 6,
+  "zoom_xlim": [
+    -0.2,
+    0.25
+  ],
+  "zoom_ylim": [
+    -0.2,
+    0.2
+  ],
+  "centroids": [
+    {
+      "key": "astar",
+      "label": "A*",
+      "group": "banned",
+      "pca": [
+        -0.02326114848256111,
+        -0.0759483352303505
+      ],
+      "mds": [
+        0.9759288332008643,
+        0.030900028879880626
+      ]
+    },
+    {
+      "key": "bfs",
+      "label": "BFS",
+      "group": "banned",
+      "pca": [
+        0.12115243822336197,
+        -0.03391663357615471
+      ],
+      "mds": [
+        1.153663469735647,
+        0.04829153232295191
+      ]
+    },
+    {
+      "key": "biastar",
+      "label": "Bidirectional A*",
+      "group": "survivor",
+      "pca": [
+        -0.0941758081316948,
+        0.01958184875547886
+      ],
+      "mds": [
+        0.8378784865728496,
+        0.0077610213730615095
+      ]
+    },
+    {
+      "key": "bibfs",
+      "label": "Bidirectional BFS",
+      "group": "survivor",
+      "pca": [
+        0.023410851135849953,
+        0.06267081201076508
+      ],
+      "mds": [
+        1.0019141019467601,
+        0.00798238795159526
+      ]
+    },
+    {
+      "key": "dfs",
+      "label": "DFS",
+      "group": "banned",
+      "pca": [
+        0.14444226026535034,
+        -0.01391251478344202
+      ],
+      "mds": [
+        1.17333049511016,
+        0.04297119292977063
+      ]
+    },
+    {
+      "key": "dijkstra_unit",
+      "label": "Unit-weight Dijkstra",
+      "group": "survivor",
+      "pca": [
+        -0.00444831931963563,
+        -0.0634339451789856
+      ],
+      "mds": [
+        0.9916570500421626,
+        0.020125473612163103
+      ]
+    },
+    {
+      "key": "gbfs",
+      "label": "Greedy best-first",
+      "group": "banned",
+      "pca": [
+        -0.0006516388966701925,
+        -0.021958665922284126
+      ],
+      "mds": [
+        0.9915746693346446,
+        0.03699197307078443
+      ]
+    },
+    {
+      "key": "idastar",
+      "label": "IDA*",
+      "group": "survivor",
+      "pca": [
+        -0.08456950634717941,
+        0.05306541547179222
+      ],
+      "mds": [
+        0.8602823911897349,
+        -0.0016729418252168847
+      ]
+    },
+    {
+      "key": "iddfs",
+      "label": "IDDFS",
+      "group": "banned",
+      "pca": [
+        0.015790186822414398,
+        0.14218196272850037
+      ],
+      "mds": [
+        1.0270287870044297,
+        -0.04969765413890133
+      ]
+    },
+    {
+      "key": "jps",
+      "label": "Jump point search",
+      "group": "survivor",
+      "pca": [
+        -0.09768930822610855,
+        -0.06832993775606155
+      ],
+      "mds": [
+        0.8006004784878927,
+        0.02535359990716459
+      ]
+    }
+  ],
+  "points": [
+    {
+      "key": "twin__W1",
+      "condition": "twin",
+      "template": 1,
+      "pca": [
+        0.09830295294523239,
+        -0.14184343814849854
+      ],
+      "mds": [
+        1.515677260116738,
+        0.07563787274179828
+      ]
+    },
+    {
+      "key": "twin__W2",
+      "condition": "twin",
+      "template": 2,
+      "pca": [
+        0.09150469303131104,
+        -0.1428501456975937
+      ],
+      "mds": [
+        1.5127848718999024,
+        0.07701156873788584
+      ]
+    },
+    {
+      "key": "twin__W3",
+      "condition": "twin",
+      "template": 3,
+      "pca": [
+        0.07991566509008408,
+        -0.15930142998695374
+      ],
+      "mds": [
+        1.5583228253472086,
+        0.07808392872785125
+      ]
+    },
+    {
+      "key": "twin__W5",
+      "condition": "twin",
+      "template": 5,
+      "pca": [
+        0.10022681951522827,
+        -0.13144885003566742
+      ],
+      "mds": [
+        1.517418150074833,
+        0.07760674475053148
+      ]
+    },
+    {
+      "key": "ban1__W1",
+      "condition": "ban1",
+      "template": 1,
+      "pca": [
+        0.09715019166469574,
+        -0.07959282398223877
+      ],
+      "mds": [
+        1.3241965990511217,
+        0.06841462468479273
+      ]
+    },
+    {
+      "key": "ban1__W2",
+      "condition": "ban1",
+      "template": 2,
+      "pca": [
+        0.08564543724060059,
+        -0.08077917993068695
+      ],
+      "mds": [
+        1.3301309908323407,
+        0.06284999266590306
+      ]
+    },
+    {
+      "key": "ban1__W3",
+      "condition": "ban1",
+      "template": 3,
+      "pca": [
+        0.05767415836453438,
+        -0.05776999145746231
+      ],
+      "mds": [
+        1.3450097059669026,
+        0.045122782222611554
+      ]
+    },
+    {
+      "key": "ban1__W5",
+      "condition": "ban1",
+      "template": 5,
+      "pca": [
+        0.1060219258069992,
+        -0.05397992581129074
+      ],
+      "mds": [
+        1.3084518793008275,
+        0.049582892662865787
+      ]
+    },
+    {
+      "key": "push1__W1",
+      "condition": "push1",
+      "template": 1,
+      "pca": [
+        -0.434855580329895,
+        -0.1686129868030548
+      ],
+      "mds": [
+        0.35305011962949373,
+        -0.17720698650695849
+      ]
+    },
+    {
+      "key": "push1__W2",
+      "condition": "push1",
+      "template": 2,
+      "pca": [
+        -0.4416542053222656,
+        -0.16058392822742462
+      ],
+      "mds": [
+        0.2573159978373252,
+        -0.0370109036399898
+      ]
+    },
+    {
+      "key": "push1__W3",
+      "condition": "push1",
+      "template": 3,
+      "pca": [
+        -0.452114462852478,
+        -0.1769494116306305
+      ],
+      "mds": [
+        0.25305807299540095,
+        -0.0668433162951272
+      ]
+    },
+    {
+      "key": "push1__W5",
+      "condition": "push1",
+      "template": 5,
+      "pca": [
+        -0.4345111846923828,
+        -0.1542731374502182
+      ],
+      "mds": [
+        0.27337643411263784,
+        -0.014488062548873235
+      ]
+    },
+    {
+      "key": "push2__W1",
+      "condition": "push2",
+      "template": 1,
+      "pca": [
+        -0.9659786224365234,
+        -0.1784791648387909
+      ],
+      "mds": [
+        -0.32191074990383073,
+        -0.2746228659359792
+      ]
+    },
+    {
+      "key": "push2__W2",
+      "condition": "push2",
+      "template": 2,
+      "pca": [
+        -0.9733598232269287,
+        -0.16467633843421936
+      ],
+      "mds": [
+        -0.4109060468550354,
+        -0.0594597595363135
+      ]
+    },
+    {
+      "key": "push2__W3",
+      "condition": "push2",
+      "template": 3,
+      "pca": [
+        -0.9835541248321533,
+        -0.17923250794410706
+      ],
+      "mds": [
+        -0.4153869513167783,
+        -0.09508167410825595
+      ]
+    },
+    {
+      "key": "push2__W5",
+      "condition": "push2",
+      "template": 5,
+      "pca": [
+        -0.9670448303222656,
+        -0.16318964958190918
+      ],
+      "mds": [
+        -0.39336060157024233,
+        -0.03765890592821318
+      ]
+    },
+    {
+      "key": "push4__W1",
+      "condition": "push4",
+      "template": 1,
+      "pca": [
+        -2.0192787647247314,
+        -0.169800266623497
+      ],
+      "mds": [
+        -1.7736030721973643,
+        -0.387461968158062
+      ]
+    },
+    {
+      "key": "push4__W2",
+      "condition": "push4",
+      "template": 2,
+      "pca": [
+        -2.0266034603118896,
+        -0.14880898594856262
+      ],
+      "mds": [
+        -1.81972263051772,
+        -0.02706090058663295
+      ]
+    },
+    {
+      "key": "push4__W3",
+      "condition": "push4",
+      "template": 3,
+      "pca": [
+        -2.0363194942474365,
+        -0.1666373312473297
+      ],
+      "mds": [
+        -1.8196916399554424,
+        -0.05437357453463339
+      ]
+    },
+    {
+      "key": "push4__W5",
+      "condition": "push4",
+      "template": 5,
+      "pca": [
+        -2.0199403762817383,
+        -0.1566983163356781
+      ],
+      "mds": [
+        -1.7719283707079985,
+        0.10846198618103758
+      ]
+    },
+    {
+      "key": "push8__W1",
+      "condition": "push8",
+      "template": 1,
+      "pca": [
+        -4.126751899719238,
+        -0.1772046685218811
+      ],
+      "mds": [
+        -4.617532846579887,
+        -0.07665860352488459
+      ]
+    },
+    {
+      "key": "push8__W2",
+      "condition": "push8",
+      "template": 2,
+      "pca": [
+        -4.13375186920166,
+        -0.15155348181724548
+      ],
+      "mds": [
+        -4.638895780278499,
+        0.24902622841382313
+      ]
+    },
+    {
+      "key": "push8__W3",
+      "condition": "push8",
+      "template": 3,
+      "pca": [
+        -4.142871856689453,
+        -0.17445439100265503
+      ],
+      "mds": [
+        -4.6337159308431275,
+        -0.10032887834473714
+      ]
+    },
+    {
+      "key": "push8__W5",
+      "condition": "push8",
+      "template": 5,
+      "pca": [
+        -4.124869346618652,
+        -0.16611897945404053
+      ],
+      "mds": [
+        -4.612184954480312,
+        0.300178655746521
+      ]
+    },
+    {
+      "key": "top5ban__W1",
+      "condition": "top5ban",
+      "template": 1,
+      "pca": [
+        0.02665531076490879,
+        0.0004910044372081757
+      ],
+      "mds": [
+        1.1915420868092104,
+        0.027321098905166874
+      ]
+    },
+    {
+      "key": "top5ban__W2",
+      "condition": "top5ban",
+      "template": 2,
+      "pca": [
+        0.015717491507530212,
+        -0.008812966756522655
+      ],
+      "mds": [
+        1.2910824677770671,
+        0.01858366891925349
+      ]
+    },
+    {
+      "key": "top5ban__W3",
+      "condition": "top5ban",
+      "template": 3,
+      "pca": [
+        -0.01595858857035637,
+        0.05820062756538391
+      ],
+      "mds": [
+        1.204302287065849,
+        -0.012811676690018243
+      ]
+    },
+    {
+      "key": "top5ban__W5",
+      "condition": "top5ban",
+      "template": 5,
+      "pca": [
+        0.015106715261936188,
+        0.030900612473487854
+      ],
+      "mds": [
+        1.1792610637642367,
+        0.014179416895367352
+      ]
+    }
+  ],
+  "arrows": [
+    {
+      "template": 1,
+      "from_key": "twin__W1",
+      "to_key": "push8__W1"
+    },
+    {
+      "template": 2,
+      "from_key": "twin__W2",
+      "to_key": "push8__W2"
+    },
+    {
+      "template": 3,
+      "from_key": "twin__W3",
+      "to_key": "push8__W3"
+    },
+    {
+      "template": 5,
+      "from_key": "twin__W5",
+      "to_key": "push8__W5"
+    }
+  ],
+  "condition_meta": {
+    "twin": {
+      "label": "Neutral twin",
+      "order": 0
+    },
+    "ban1": {
+      "label": "Single-name ban (BFS)",
+      "order": 1
+    },
+    "push1": {
+      "label": "Push +1 ban unit",
+      "order": 2
+    },
+    "push2": {
+      "label": "Push +2 ban units",
+      "order": 3
+    },
+    "push4": {
+      "label": "Push +4 ban units",
+      "order": 4
+    },
+    "push8": {
+      "label": "Push +8 ban units",
+      "order": 5
+    },
+    "top5ban": {
+      "label": "Prompt top-5 ban",
+      "order": 6
+    }
+  },
+  "cells": {
+    "TWIN": {
+      "n": 50,
+      "pass": 0.92,
+      "bfs_share": 1.0,
+      "correct_non_bfs": 0,
+      "landing_comp": {},
+      "attempted_comp": {
+        "bfs": 50
+      }
+    },
+    "BAN": {
+      "n": 30,
+      "pass": 0.4,
+      "bfs_share": 0.0,
+      "correct_non_bfs": 12,
+      "landing_comp": {
+        "dfs": 12
+      },
+      "attempted_comp": {
+        "dfs": 30
+      }
+    },
+    "TOP5_a1": {
+      "n": 30,
+      "pass": 0.6666666666666666,
+      "bfs_share": 0.9666666666666667,
+      "correct_non_bfs": 1,
+      "landing_comp": {
+        "dfs": 1
+      },
+      "attempted_comp": {
+        "bfs": 29,
+        "dfs": 1
+      }
+    },
+    "TOP5_a2": {
+      "n": 30,
+      "pass": 0.3,
+      "bfs_share": 1.0,
+      "correct_non_bfs": 0,
+      "landing_comp": {},
+      "attempted_comp": {
+        "bfs": 30
+      }
+    },
+    "TOP5_a4": {
+      "n": 30,
+      "pass": 0.03333333333333333,
+      "bfs_share": 0.9666666666666667,
+      "correct_non_bfs": 0,
+      "landing_comp": {},
+      "attempted_comp": {
+        "bfs": 29,
+        "dijkstra": 1
+      }
+    },
+    "TOP5_a8": {
+      "n": 30,
+      "pass": 0.0,
+      "bfs_share": 0.06666666666666667,
+      "correct_non_bfs": 0,
+      "landing_comp": {},
+      "attempted_comp": {
+        "other": 28,
+        "bfs": 2
+      }
+    },
+    "TOP5BAN": {
+      "n": 50,
+      "pass": 0.62,
+      "bfs_share": 0.5,
+      "correct_non_bfs": 10,
+      "landing_comp": {
+        "dfs": 10
+      },
+      "attempted_comp": {
+        "bfs": 25,
+        "dfs": 23,
+        "other": 1,
+        "dijkstra": 1
+      }
+    }
+  },
+  "landing_test": {
+    "TOP5_a1": {
+      "n_correct_non_default": 1,
+      "n_on_survivors": 0,
+      "on_banned_algorithms": {
+        "dfs": 1
+      },
+      "verdict": "not computable (< 5 correct programs on survivor algorithms); correct non-BFS programs land on banned algorithms {'dfs': 1}"
+    },
+    "TOP5_a2": {
+      "n_correct_non_default": 0,
+      "n_on_survivors": 0,
+      "on_banned_algorithms": {},
+      "verdict": "not computable (< 5 correct programs on survivor algorithms)"
+    },
+    "TOP5_a4": {
+      "n_correct_non_default": 0,
+      "n_on_survivors": 0,
+      "on_banned_algorithms": {},
+      "verdict": "not computable (< 5 correct programs on survivor algorithms)"
+    },
+    "TOP5_a8": {
+      "n_correct_non_default": 0,
+      "n_on_survivors": 0,
+      "on_banned_algorithms": {},
+      "verdict": "not computable (< 5 correct programs on survivor algorithms)"
+    },
+    "TOP5BAN": {
+      "n_correct_non_default": 10,
+      "n_on_survivors": 0,
+      "on_banned_algorithms": {
+        "dfs": 10
+      },
+      "verdict": "not computable (< 5 correct programs on survivor algorithms); correct non-BFS programs land on banned algorithms {'dfs': 10}"
+    }
+  }
+}

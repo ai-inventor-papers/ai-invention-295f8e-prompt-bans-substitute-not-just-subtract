@@ -1,0 +1,43 @@
+{
+  "type": "panel",
+  "panel_labels": true,
+  "title": "Bin-packing name bans: lexical against mechanistic compliance",
+  "aspect": "16:9",
+  "ncols": 3,
+  "panels": [
+    {
+      "type": "line",
+      "title": "Qwen3-8B, no thinking",
+      "xlabel": "k (rules banned)",
+      "ylabel": "Compliance (share of valid)",
+      "xlim": [1, 5],
+      "ylim": [0.3, 1.05],
+      "series": [
+        {"label": "lexical", "x": [1, 2, 3, 4, 5], "values": [0.8537, 0.9348, 0.8372, 0.9024, 0.9070]},
+        {"label": "mechanistic", "x": [1, 2, 3, 4, 5], "values": [0.5854, 0.3696, 0.3953, 0.5366, 0.5116]}
+      ]
+    },
+    {
+      "type": "line",
+      "title": "Qwen3-14B, thinking",
+      "xlabel": "k (rules banned)",
+      "xlim": [1, 5],
+      "ylim": [0.3, 1.05],
+      "series": [
+        {"label": "lexical", "x": [1, 2, 3, 4, 5], "values": [0.9333, 0.8667, 0.9259, 0.8519, 0.9630]},
+        {"label": "mechanistic", "x": [1, 2, 3, 4, 5], "values": [1.0, 1.0, 0.8519, 0.9259, 0.9259]}
+      ]
+    },
+    {
+      "type": "line",
+      "title": "Qwen3-32B, thinking",
+      "xlabel": "k (rules banned)",
+      "xlim": [1, 5],
+      "ylim": [0.3, 1.05],
+      "series": [
+        {"label": "lexical", "x": [1, 2, 3, 4, 5], "values": [0.8667, 0.8621, 0.9091, 0.88, 0.875]},
+        {"label": "mechanistic", "x": [1, 2, 3, 4, 5], "values": [1.0, 1.0, 1.0, 0.96, 1.0]}
+      ]
+    }
+  ]
+}

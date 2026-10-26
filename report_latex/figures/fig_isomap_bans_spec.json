@@ -1,0 +1,61 @@
+{
+  "figure_id": "fig_isomap_bans",
+  "title": "Prompt bans on the activation manifold",
+  "aspect": "4:3",
+  "width_in": 7.6,
+  "xlabel": "Isomap coordinate 1",
+  "ylabel": "Isomap coordinate 2 (residual stream, layer 24)",
+  "source": "run_aRfWvcSWjssb/3_invention_loop/iter_2/gen_art/gen_art_experiment_9/results/{manifold,landing,los}.json (primary: layer 24, position 'pre', Isomap k=10); cross-checked against run_aRfWvcSWjssb/.../iter_4/gen_art/gen_art_evaluation_3/figures/captions.json",
+  "note": "Marker area is proportional to the implemented count under that condition (one shared scale across all four panels, anchored at the grid baseline's BFS=100). Small hollow circles mark a count of 0. A black × overlay marks a banned algorithm.",
+  "t1_algorithms": {
+    "bfs":     {"display": "BFS",                 "x": -100.9985580444336,  "y": -118.52066802978516},
+    "bibfs":   {"display": "bidirectional BFS",    "x": -100.92093658447266, "y": -118.5224609375},
+    "dfs":     {"display": "DFS",                  "x": -22.195167541503906, "y": 141.24661254882812},
+    "iddfs":   {"display": "IDDFS",                "x": -40.7924690246582,   "y": 206.07760620117188},
+    "astar":   {"display": "A*",                   "x": -60.9512825012207,   "y": -70.51759338378906},
+    "gbfs":    {"display": "greedy best first",    "x": -20.069538116455078, "y": -77.40193176269531},
+    "idastar": {"display": "IDA*",                 "x": 277.0491943359375,   "y": -42.57938766479492}
+  },
+  "t2_algorithms": {
+    "dijkstra":   {"display": "Dijkstra",             "x": -63.184104919433594, "y": -82.56016540527344},
+    "bf_spfa":    {"display": "Bellman-Ford/SPFA",     "x": -97.10752868652344,  "y": -78.75277709960938},
+    "bidijkstra": {"display": "bidirectional Dijkstra","x": -62.88869094848633,  "y": -82.4808349609375},
+    "floyd":      {"display": "Floyd-Warshall",        "x": -115.40242004394531, "y": 186.26870727539062},
+    "dial":       {"display": "Dial",                  "x": 305.04205322265625,  "y": 13.535298347473145}
+  },
+  "panels": [
+    {
+      "id": "a",
+      "task": "t1",
+      "title": "Grid, baseline",
+      "stress1": 0.025257667205943437,
+      "banned": [],
+      "counts": {"bfs": 100, "bibfs": 0, "dfs": 0, "iddfs": 0, "astar": 0, "gbfs": 0, "idastar": 0}
+    },
+    {
+      "id": "b",
+      "task": "t1",
+      "title": "Grid, single BFS ban",
+      "stress1": 0.025257667205943437,
+      "banned": ["bfs"],
+      "counts": {"bfs": 14, "dfs": 86, "bibfs": 0, "iddfs": 0, "astar": 0, "gbfs": 0, "idastar": 0}
+    },
+    {
+      "id": "c",
+      "task": "t1",
+      "title": "Grid, five-name ban",
+      "stress1": 0.025257667205943437,
+      "banned": ["bfs", "dfs", "gbfs", "iddfs", "astar"],
+      "counts": {"bfs": 63, "dfs": 36, "iddfs": 1, "gbfs": 0, "astar": 0, "bibfs": 0, "idastar": 0}
+    },
+    {
+      "id": "d",
+      "task": "t2",
+      "title": "Shortest path, only Bellman-Ford/SPFA allowed",
+      "stress1": 0.005963698517740344,
+      "banned": ["dijkstra", "bidijkstra", "floyd", "dial"],
+      "counts": {"bf_spfa": 51, "dijkstra": 48, "bidijkstra": 0, "floyd": 0, "dial": 0},
+      "unplaced_other": {"label": "other (unlabelled mechanism)", "count": 1}
+    }
+  ]
+}

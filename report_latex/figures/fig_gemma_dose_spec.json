@@ -1,0 +1,74 @@
+{
+  "figure_id": "fig_gemma_dose",
+  "provenance": {
+    "artifact": "run_0oWBKrKEGsmU/3_invention_loop/iter_8/gen_art/gen_art_experiment_42",
+    "title": "Fair test of Gemma's BFS steering dial (claim G)",
+    "files_read": [
+      "results/analysis.json (cells.*, scorecard.*)",
+      "README.md (tables under 'Free-generation dial' and 'The 2x2 toward BFS')"
+    ],
+    "model": "google/gemma-3-4b-it, bf16",
+    "task": "T1 grid-path (BFS vs DFS), one fork, block 17, free generation from index 0",
+    "n_per_cell": 50,
+    "note_on_draft_spec": "The original draft figure_specification's numbers (twin 11, DAS 42 at lambda 1, BFS instruction 35) come from iteration 7's discredited comparison, which this very artifact (iteration 8) was built to fix: the iteration-7 DAS cell had a 32-token opening prefilled while its forced-BFS-prompt comparator was sampled from scratch, so method and prefill were confounded (see this artifact's README.md lines 3-6, 21-31). This spec instead uses the artifact's own matched, free-generation (no-prefill) cells throughout, which is the only apples-to-apples comparison it reports. Verified: only two non-zero DAS scales were tested (lambda = 0.5 and 1.0), not the six-point sweep (0.1 ... 1.0) the draft described; that sweep does not exist in any artifact and is not plotted."
+  },
+  "x_lambda": [0.0, 0.5, 1.0],
+  "x_label": "DAS edit scale λ (block 17)",
+  "series": {
+    "das_rank4": {
+      "label": "DAS, rank 4",
+      "source_cells": ["F-twin (λ=0)", "F-DAS-r4-bfs-0.5", "F-DAS-r4-bfs-1.0"],
+      "correct_bfs_of_50": [13, 34, 38],
+      "correct_ci95_of_50": [[7.94, 19.78], [27.09, 39.62], [31.29, 42.85]],
+      "attempted_bfs_of_50": [18, 47, 48],
+      "pass_rate": [0.88, 0.72, 0.78],
+      "pass_ci95": [[0.762, 0.944], [0.583, 0.825], [0.648, 0.872]]
+    },
+    "das_rank1": {
+      "label": "DAS, rank 1",
+      "source_cells": ["F-twin (λ=0)", "F-DAS-r1-bfs-0.5", "F-DAS-r1-bfs-1.0"],
+      "correct_bfs_of_50": [13, 31, 35],
+      "correct_ci95_of_50": [[7.94, 19.78], [24.08, 37.07], [28.12, 40.45]],
+      "attempted_bfs_of_50": [18, 46, 48],
+      "pass_rate": [0.88, 0.68, 0.72],
+      "pass_ci95": [[0.762, 0.944], [0.542, 0.792], [0.583, 0.825]]
+    },
+    "random_rank4_lambda1": {
+      "label": "Random rank-4 direction (λ=1)",
+      "source_cell": "F-RAND-r4-1.0",
+      "x": 1.0,
+      "correct_bfs_of_50": 11,
+      "correct_ci95_of_50": [6.38, 17.62],
+      "attempted_bfs_of_50": 18,
+      "pass_rate": 0.84,
+      "pass_ci95": [0.715, 0.917]
+    },
+    "dim_matched": {
+      "label": "Difference-in-means (matched margin)",
+      "source_cell": "F-DiM-bfs",
+      "x": 1.0,
+      "correct_bfs_of_50": 0,
+      "correct_ci95_of_50": [0.0, 3.57],
+      "attempted_bfs_of_50": 49,
+      "pass_rate": 0.0,
+      "pass_ci95": [0.0, 0.071],
+      "note": "DiM's edit was scaled (beta=1380) so its teacher-forced effect at the fork matches DAS rank-4 lambda=1's ~12-nat margin (README.md lines 65-69, 235-236). It is plotted at x=1.0 for that reason, not because DiM has its own lambda."
+    },
+    "explicit_bfs_instruction": {
+      "label": "Explicit BFS instruction (prompt)",
+      "source_cell": "G1c",
+      "constant_across_x": true,
+      "correct_bfs_of_50": 32,
+      "correct_ci95_of_50": [25.07, 37.93],
+      "attempted_bfs_of_50": 50,
+      "pass_rate": 0.64,
+      "pass_ci95": [0.501, 0.759],
+      "note": "Prompting baseline, not a DAS-scale condition, so drawn as a flat reference across the whole lambda range. This is the pre-registered wording (template F5 / G1c); the artifact's own best-of-8 post-hoc wording search (F3, 49/50) is explicitly flagged there as 'selected post hoc' and is excluded here to avoid cherry-picking a baseline."
+    }
+  },
+  "excluded_from_draft_spec": {
+    "logits_only_das": "No 'logits-only DAS' condition exists in any read artifact (searched exp42's results/, README.md, method.py). The draft's identical values at lambda 0.5 and 1.0 (both 35) look like a placeholder. Dropped rather than invented.",
+    "six_point_lambda_sweep": "Only lambda in {0.5, 1.0} was ever run; 0.1/0.2/0.35/0.75 do not exist in this or any other read artifact.",
+    "random_reference_value": "Draft said twin=11/random=12; real values are twin=13, random(rank4,lambda=1)=11. Corrected."
+  }
+}

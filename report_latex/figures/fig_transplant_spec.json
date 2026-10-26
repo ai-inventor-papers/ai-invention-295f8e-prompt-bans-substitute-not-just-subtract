@@ -1,0 +1,37 @@
+{
+  "type": "panel",
+  "panel_labels": true,
+  "title": "Base plan states written into the instruct model",
+  "aspect": "16:9",
+  "width_in": 10,
+  "ncols": 2,
+  "panels": [
+    {
+      "type": "bar",
+      "title": "Qwen3-8B (fresh slots)",
+      "xlabel": "Task",
+      "ylabel": "Correct-program off-default share",
+      "ylim": [0, 1.0],
+      "categories": ["kth smallest", "shortest path", "connected components", "grid", "top-k frequent"],
+      "series": [
+        {"label": "transplant", "values": [0.06, 0.0, 0.08, 0.0, 0.42857142857142855]},
+        {"label": "matched random", "values": [0.42, 0.0, 0.02, 0.0, 0.05128205128205128]},
+        {"label": "borrowed shift", "values": [0.0, 0.0, 0.02, 0.0, 0.11363636363636363]}
+      ]
+    },
+    {
+      "type": "bar",
+      "title": "gemma-3-4b (pt into it, lambda 1)",
+      "xlabel": "Task",
+      "ylabel": "Correct-program off-default share",
+      "ylim": [0, 1.0],
+      "categories": ["kth smallest", "substring search", "find duplicate", "two sum", "connected components", "first and last position", "longest increasing subsequence"],
+      "series": [
+        {"label": "transplant", "values": [0.0, 0.8, 0.0, 0.0, 0.0, 0.78, 0.02]},
+        {"label": "matched random", "values": [0.02, 0.04, 0.0, 0.04, 0.02, 0.06, 0.16]},
+        {"label": "borrowed shift", "values": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]},
+        {"label": "twin", "values": [0.0, 0.12, 0.0, 0.0, 0.0, 0.08, 0.0]}
+      ]
+    }
+  ]
+}

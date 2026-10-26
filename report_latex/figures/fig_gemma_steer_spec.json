@@ -1,0 +1,307 @@
+{
+  "figure_id": "fig_gemma_steer",
+  "title": "Steering the fork of Gemma toward BFS",
+  "model": "google/gemma-3-4b-it",
+  "task": "T1 grid path, response index 32 (the fork), layer 22",
+  "n_per_condition": 50,
+  "source_artifact": "run_0oWBKrKEGsmU/.../iter_6/gen_art/gen_art_experiment_31",
+  "source_file": "results/clamps.json",
+  "source_flags": {
+    "feature_claim": false,
+    "matched_pass_rule_triggered": [
+      "FEAT_vs_DiM|FORK|k20",
+      "FEAT_vs_DiM|FORK|k50"
+    ],
+    "FEAT_vs_RANDF|FORK|k50": {
+      "a_only": 3,
+      "b_only": 2,
+      "discordant": 5,
+      "p": 1.0,
+      "delta": 0.02,
+      "meets": false,
+      "p_holm": 1.0
+    }
+  },
+  "reference_line": {
+    "axis": "left",
+    "value": 13,
+    "label": "twin's attempted BFS = 13"
+  },
+  "rows": [
+    {
+      "cell_key": "twin_cstar",
+      "label": "twin (no edit)",
+      "label_short": "twin\n(no edit)",
+      "n": 50,
+      "attempted_bfs": 13,
+      "attempted_bfs_ci": [
+        7.935763746776196,
+        19.776578632424417
+      ],
+      "bfs_and_correct": 6,
+      "bfs_and_correct_ci": [
+        2.808800075466137,
+        11.902408691601496
+      ],
+      "overall_pass_rate": 0.84,
+      "overall_pass_rate_ci": [
+        0.7148578393696501,
+        0.916625793219666
+      ],
+      "site": null,
+      "layer": null,
+      "kind": null,
+      "k_features": null
+    },
+    {
+      "cell_key": "FORK|FEATin|k5",
+      "label": "SAE clamp, top 5 input-selected latents",
+      "label_short": "SAE clamp\ntop 5, input-sel.",
+      "n": 50,
+      "attempted_bfs": 18,
+      "attempted_bfs_ci": [
+        12.06937482592337,
+        24.929491561943653
+      ],
+      "bfs_and_correct": 10,
+      "bfs_and_correct_ci": [
+        5.621875007888056,
+        16.518552966112708
+      ],
+      "overall_pass_rate": 0.84,
+      "overall_pass_rate_ci": [
+        0.7148578393696501,
+        0.916625793219666
+      ],
+      "site": "FORK",
+      "layer": 22,
+      "kind": "FEAT",
+      "k_features": 5
+    },
+    {
+      "cell_key": "FORK|FEATin|k20",
+      "label": "SAE clamp, top 20 input-selected latents",
+      "label_short": "SAE clamp\ntop 20, input-sel.",
+      "n": 50,
+      "attempted_bfs": 30,
+      "attempted_bfs_ci": [
+        23.09071887379468,
+        36.195805134871726
+      ],
+      "bfs_and_correct": 9,
+      "bfs_and_correct_ci": [
+        4.885096335117089,
+        15.398026837150391
+      ],
+      "overall_pass_rate": 0.58,
+      "overall_pass_rate_ci": [
+        0.4423344176857823,
+        0.7062499664528802
+      ],
+      "site": "FORK",
+      "layer": 22,
+      "kind": "FEAT",
+      "k_features": 20
+    },
+    {
+      "cell_key": "FORK|FEATin|k50",
+      "label": "SAE clamp, top 50 input-selected latents",
+      "label_short": "SAE clamp\ntop 50, input-sel.",
+      "n": 50,
+      "attempted_bfs": 36,
+      "attempted_bfs_ci": [
+        29.167438152021717,
+        41.26291466704439
+      ],
+      "bfs_and_correct": 10,
+      "bfs_and_correct_ci": [
+        5.621875007888056,
+        16.518552966112708
+      ],
+      "overall_pass_rate": 0.48,
+      "overall_pass_rate_ci": [
+        0.34797135286578046,
+        0.6148825510995539
+      ],
+      "site": "FORK",
+      "layer": 22,
+      "kind": "FEAT",
+      "k_features": 50
+    },
+    {
+      "cell_key": "FORK|RANDF@k50",
+      "label": "50 random latents (top-50 norm)",
+      "label_short": "50 random\nlatents (top-50 norm)",
+      "n": 50,
+      "attempted_bfs": 21,
+      "attempted_bfs_ci": [
+        14.687501677355991,
+        27.88327911571088
+      ],
+      "bfs_and_correct": 9,
+      "bfs_and_correct_ci": [
+        4.885096335117089,
+        15.398026837150391
+      ],
+      "overall_pass_rate": 0.76,
+      "overall_pass_rate_ci": [
+        0.6258731624205708,
+        0.8570260860300828
+      ],
+      "site": "FORK",
+      "layer": 22,
+      "kind": "RANDF",
+      "k_features": 50
+    },
+    {
+      "cell_key": "FORK|DiM@k20",
+      "label": "difference in means (top-20 norm)",
+      "label_short": "diff-in-means\n(top-20 norm)",
+      "n": 50,
+      "attempted_bfs": 46,
+      "attempted_bfs_ci": [
+        40.580876540828584,
+        48.422524295570355
+      ],
+      "bfs_and_correct": 12,
+      "bfs_and_correct_ci": [
+        7.148695698495865,
+        18.70634187897146
+      ],
+      "overall_pass_rate": 0.32,
+      "overall_pass_rate_ci": [
+        0.20758216260656845,
+        0.45810297308144077
+      ],
+      "site": "FORK",
+      "layer": 22,
+      "kind": "DiM",
+      "k_features": 20
+    },
+    {
+      "cell_key": "FORK|DiM@k50",
+      "label": "difference in means (top-50 norm)",
+      "label_short": "diff-in-means\n(top-50 norm)",
+      "n": 50,
+      "attempted_bfs": 49,
+      "attempted_bfs_ci": [
+        44.75227820518109,
+        49.823037036417695
+      ],
+      "bfs_and_correct": 7,
+      "bfs_and_correct_ci": [
+        3.475416713508147,
+        13.093096855292771
+      ],
+      "overall_pass_rate": 0.16,
+      "overall_pass_rate_ci": [
+        0.08337420678033404,
+        0.2851421606303499
+      ],
+      "site": "FORK",
+      "layer": 22,
+      "kind": "DiM",
+      "k_features": 50
+    },
+    {
+      "cell_key": "FORK|DiM@k20|matchDy",
+      "label": "difference in means, effect-matched (top-20 level)",
+      "label_short": "diff-in-means\neff.-matched (top-20)",
+      "n": 50,
+      "attempted_bfs": 32,
+      "attempted_bfs_ci": [
+        25.07050843805635,
+        37.930625174076624
+      ],
+      "bfs_and_correct": 13,
+      "bfs_and_correct_ci": [
+        7.935763746776196,
+        19.776578632424417
+      ],
+      "overall_pass_rate": 0.62,
+      "overall_pass_rate_ci": [
+        0.4815044693099298,
+        0.7413721068980641
+      ],
+      "site": "FORK",
+      "layer": 22,
+      "kind": "DiM",
+      "k_features": 20
+    },
+    {
+      "cell_key": "FORK|DiM@k50|matchDy",
+      "label": "difference in means, effect-matched (top-50 level)",
+      "label_short": "diff-in-means\neff.-matched (top-50)",
+      "n": 50,
+      "attempted_bfs": 34,
+      "attempted_bfs_ci": [
+        27.09485134592796,
+        39.62089186967158
+      ],
+      "bfs_and_correct": 14,
+      "bfs_and_correct_ci": [
+        8.737085332955616,
+        20.832561847978283
+      ],
+      "overall_pass_rate": 0.6,
+      "overall_pass_rate_ci": [
+        0.4618143774758936,
+        0.7239161026974346
+      ],
+      "site": "FORK",
+      "layer": 22,
+      "kind": "DiM",
+      "k_features": 50
+    },
+    {
+      "cell_key": "FORK|FEATout|k20",
+      "label": "SAE clamp, top 20 output-scored latents",
+      "label_short": "SAE clamp\ntop 20, output-scored",
+      "n": 50,
+      "attempted_bfs": 25,
+      "attempted_bfs_ci": [
+        18.32225715841429,
+        31.67774284158571
+      ],
+      "bfs_and_correct": 14,
+      "bfs_and_correct_ci": [
+        8.737085332955616,
+        20.832561847978283
+      ],
+      "overall_pass_rate": 0.78,
+      "overall_pass_rate_ci": [
+        0.6475845041874634,
+        0.8724608402978559
+      ],
+      "site": "FORK",
+      "layer": 22,
+      "kind": "FEAT",
+      "k_features": 20
+    },
+    {
+      "cell_key": "FORK|DAS|k4",
+      "label": "DAS rank-4 interchange",
+      "label_short": "DAS\nrank-4 interchange",
+      "n": 50,
+      "attempted_bfs": 50,
+      "attempted_bfs_ci": [
+        46.432620043332065,
+        50.0
+      ],
+      "bfs_and_correct": 0,
+      "bfs_and_correct_ci": [
+        3.469446951953614e-16,
+        3.5673799566679363
+      ],
+      "overall_pass_rate": 0.0,
+      "overall_pass_rate_ci": [
+        6.938893903907228e-18,
+        0.07134759913335872
+      ],
+      "site": "FORK",
+      "layer": 22,
+      "kind": "DAS",
+      "k_features": 4
+    }
+  ]
+}

@@ -1,0 +1,397 @@
+{
+ "figure_id": "fig_s0_kcurves",
+ "description": "Compliance under cumulative bans, every reading. Grid task, Qwen3-32B and Qwen3-14B with thinking on. k = number of banned algorithm names (1-5, committed templates). Lexical compliance (L1, no banned name/abbreviation appears) vs mechanistic compliance under four readings of what the program actually computes: runtime label (coarse/primary, fine), tracer (coarse, fine). Hand reads are a third, independent instrument substituted at k=5 only, scored against both the committed ban templates and a disjoint set of held-out templates. All rates are k_of_n shares; bands/error bars are 95% Wilson score intervals computed on those same (k, n).",
+ "source": "run_5eGZGmskluur/3_invention_loop/iter_10/gen_art/gen_art_evaluation_9 :: results/s0a.json#cells, tables/table431_all_k_fine_columns.csv, tables/table431b_k5_every_reading.csv (iteration-10 record-repair evaluation; cross-checked against gen_art_experiment_45 N3/iter-9 and gen_art_evaluation_8 0b corrections). Wilson 95% CIs for lexical were computed here from the same (k_of_n, n) pairs using the identical closed-form Wilson score formula the source file used for mechanistic CIs (verified to match the source mech_wilson values exactly before use).",
+ "k_values": [
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "panels": [
+  {
+   "model_key": "q32",
+   "panel_title": "Qwen3-32B, thinking on",
+   "series": {
+    "lexical": {
+     "values": [
+      1.0,
+      1.0,
+      1.0,
+      0.9565,
+      0.8913
+     ],
+     "wilson_lo": [
+      0.9273,
+      0.918,
+      0.9213,
+      0.8547,
+      0.7696
+     ],
+     "wilson_hi": [
+      1.0,
+      1.0,
+      1.0,
+      0.988,
+      0.9527
+     ],
+     "k_of_n": [
+      "49/49",
+      "43/43",
+      "45/45",
+      "44/46",
+      "41/46"
+     ]
+    },
+    "runtime_coarse": {
+     "values": [
+      1.0,
+      0.8372,
+      0.8444,
+      0.2391,
+      0.2174
+     ],
+     "wilson_lo": [
+      0.9273,
+      0.7003,
+      0.7122,
+      0.1391,
+      0.1226
+     ],
+     "wilson_hi": [
+      1.0,
+      0.9188,
+      0.9225,
+      0.3794,
+      0.3557
+     ],
+     "k_of_n": [
+      "49/49",
+      "36/43",
+      "38/45",
+      "11/46",
+      "10/46"
+     ]
+    },
+    "runtime_fine": {
+     "values": [
+      1.0,
+      0.8372,
+      0.8444,
+      0.4783,
+      0.2174
+     ],
+     "wilson_lo": [
+      0.9273,
+      0.7003,
+      0.7122,
+      0.3412,
+      0.1226
+     ],
+     "wilson_hi": [
+      1.0,
+      0.9188,
+      0.9225,
+      0.6186,
+      0.3557
+     ],
+     "k_of_n": [
+      "49/49",
+      "36/43",
+      "38/45",
+      "22/46",
+      "10/46"
+     ]
+    },
+    "tracer_coarse": {
+     "values": [
+      1.0,
+      0.8571,
+      0.9111,
+      0.4667,
+      0.6739
+     ],
+     "wilson_lo": [
+      0.9259,
+      0.7216,
+      0.7927,
+      0.3294,
+      0.5297
+     ],
+     "wilson_hi": [
+      1.0,
+      0.9328,
+      0.9649,
+      0.6092,
+      0.7913
+     ],
+     "k_of_n": [
+      "48/48",
+      "36/42",
+      "41/45",
+      "21/45",
+      "31/46"
+     ]
+    },
+    "tracer_fine": {
+     "values": [
+      1.0,
+      0.8571,
+      0.9111,
+      0.8222,
+      0.7391
+     ],
+     "wilson_lo": [
+      0.9259,
+      0.7216,
+      0.7927,
+      0.6867,
+      0.5974
+     ],
+     "wilson_hi": [
+      1.0,
+      0.9328,
+      0.9649,
+      0.9071,
+      0.844
+     ],
+     "k_of_n": [
+      "48/48",
+      "36/42",
+      "41/45",
+      "37/45",
+      "34/46"
+     ]
+    },
+    "hand_reads_committed": {
+     "rate": 0.587,
+     "wilson_lo": 0.4434,
+     "wilson_hi": 0.7171,
+     "k_of_n": "27/46"
+    },
+    "hand_reads_heldout": {
+     "rate": 0.5417,
+     "wilson_lo": 0.4029,
+     "wilson_hi": 0.6742,
+     "k_of_n": "26/48"
+    }
+   }
+  },
+  {
+   "model_key": "q14",
+   "panel_title": "Qwen3-14B, thinking on",
+   "series": {
+    "lexical": {
+     "values": [
+      1.0,
+      0.96,
+      1.0,
+      0.9,
+      0.8571
+     ],
+     "wilson_lo": [
+      0.9273,
+      0.8654,
+      0.9273,
+      0.7864,
+      0.7333
+     ],
+     "wilson_hi": [
+      1.0,
+      0.989,
+      1.0,
+      0.9565,
+      0.929
+     ],
+     "k_of_n": [
+      "49/49",
+      "48/50",
+      "49/49",
+      "45/50",
+      "42/49"
+     ]
+    },
+    "runtime_coarse": {
+     "values": [
+      1.0,
+      0.3,
+      0.5102,
+      0.2,
+      0.102
+     ],
+     "wilson_lo": [
+      0.9273,
+      0.191,
+      0.3747,
+      0.1124,
+      0.0444
+     ],
+     "wilson_hi": [
+      1.0,
+      0.4375,
+      0.6442,
+      0.3304,
+      0.2176
+     ],
+     "k_of_n": [
+      "49/49",
+      "15/50",
+      "25/49",
+      "10/50",
+      "5/49"
+     ]
+    },
+    "runtime_fine": {
+     "values": [
+      1.0,
+      0.3,
+      0.5102,
+      0.2,
+      0.102
+     ],
+     "wilson_lo": [
+      0.9273,
+      0.191,
+      0.3747,
+      0.1124,
+      0.0444
+     ],
+     "wilson_hi": [
+      1.0,
+      0.4375,
+      0.6442,
+      0.3304,
+      0.2176
+     ],
+     "k_of_n": [
+      "49/49",
+      "15/50",
+      "25/49",
+      "10/50",
+      "5/49"
+     ]
+    },
+    "tracer_coarse": {
+     "values": [
+      1.0,
+      0.76,
+      0.7551,
+      0.2449,
+      0.2449
+     ],
+     "wilson_lo": [
+      0.9273,
+      0.6259,
+      0.6191,
+      0.146,
+      0.146
+     ],
+     "wilson_hi": [
+      1.0,
+      0.857,
+      0.854,
+      0.3809,
+      0.3809
+     ],
+     "k_of_n": [
+      "49/49",
+      "38/50",
+      "37/49",
+      "12/49",
+      "12/49"
+     ]
+    },
+    "tracer_fine": {
+     "values": [
+      1.0,
+      0.76,
+      0.7551,
+      0.3469,
+      0.3673
+     ],
+     "wilson_lo": [
+      0.9273,
+      0.6259,
+      0.6191,
+      0.2292,
+      0.2467
+     ],
+     "wilson_hi": [
+      1.0,
+      0.857,
+      0.854,
+      0.4869,
+      0.5073
+     ],
+     "k_of_n": [
+      "49/49",
+      "38/50",
+      "37/49",
+      "17/49",
+      "18/49"
+     ]
+    },
+    "hand_reads_committed": {
+     "rate": 0.1224,
+     "wilson_lo": 0.0573,
+     "wilson_hi": 0.2424,
+     "k_of_n": "6/49"
+    },
+    "hand_reads_heldout": {
+     "rate": 0.12,
+     "wilson_lo": 0.0562,
+     "wilson_hi": 0.238,
+     "k_of_n": "6/50"
+    }
+   }
+  }
+ ],
+ "series_meta": {
+  "lexical": {
+   "label": "lexical (L1)",
+   "color": "#000000",
+   "linestyle": "-",
+   "marker": "o"
+  },
+  "runtime_coarse": {
+   "label": "runtime label, coarse (primary)",
+   "color": "#0173B2",
+   "linestyle": "-",
+   "marker": "o"
+  },
+  "runtime_fine": {
+   "label": "runtime label, fine",
+   "color": "#DE8F05",
+   "linestyle": "--",
+   "marker": "o"
+  },
+  "tracer_coarse": {
+   "label": "tracer, coarse",
+   "color": "#029E73",
+   "linestyle": "-.",
+   "marker": "o"
+  },
+  "tracer_fine": {
+   "label": "tracer, fine",
+   "color": "#CC78BC",
+   "linestyle": ":",
+   "marker": "o"
+  },
+  "hand_reads_committed": {
+   "label": "hand reads, k = 5",
+   "color": "#CA9161",
+   "marker": "D",
+   "filled": true
+  },
+  "hand_reads_heldout": {
+   "label": "hand reads, k = 5 held out",
+   "color": "#CA9161",
+   "marker": "s",
+   "filled": false
+  }
+ },
+ "xlabel": "k (names banned)",
+ "ylabel": "Compliance (share)",
+ "aspect": "16:9"
+}

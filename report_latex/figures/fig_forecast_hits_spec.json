@@ -1,0 +1,36 @@
+{
+  "type": "bar",
+  "title": "Forecast hit rates under one rule",
+  "xlabel": "Contest",
+  "ylabel": "Top-1 hit rate among defined events",
+  "aspect": "16:9",
+  "ylim": [0, 1.05],
+  "categories": [
+    "Qwen3-8B modal bench bans",
+    "Qwen3-8B exposure bans\n(named + unnamed)",
+    "Llama modal +\npresent-minor bans"
+  ],
+  "series": [
+    {
+      "label": "Subtraction",
+      "values": [0.0, 1.0, 0.3333333333333333],
+      "n_defined": [2, 8, 12]
+    },
+    {
+      "label": "Ladder",
+      "values": [1.0, 0.8125, 0.5384615384615384],
+      "n_defined": [1, 64, 13]
+    },
+    {
+      "label": "Association",
+      "values": [0.2, 0.484375, 0.5384615384615384],
+      "n_defined": [5, 64, 13]
+    },
+    {
+      "label": "Proximity",
+      "values": [0.2, 0.65625, 0.23076923076923078],
+      "n_defined": [5, 64, 13]
+    }
+  ],
+  "source_note": "Every (hit_rate, n_defined) value is read verbatim from tables/defined_only_hits.csv and results/rigor.json in gen_art_evaluation_3 (run_aRfWvcSWjssb, iteration 4, 'defined-only hit table'); contests are bench=exp13 gated events (5), exposure=exp14 gated events pooling named+unnamed arms (64), Llama=exp15 gated events (13). n_defined is the per-family count of those gated events for which that family produced a DEFINED (non-degenerate) forecast; hit_rate = top1_hits_defined_only / n_defined, counted over defined events only. Verified independently against the source files on 2026-10-26; all 12 pairs matched to full float precision."
+}

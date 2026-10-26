@@ -1,0 +1,66 @@
+{
+  "figure_id": "fig_knob_h5",
+  "chart_type": "bar_grouped_hand_written",
+  "renderer": "render_fig_knob_h5.py",
+  "title": "Plan noise against text-level plan samplers",
+  "xlabel": "Task",
+  "ylabel": "5-point Hill-1 (correct-only, within 5 pass points)",
+  "ylim": [0.9, 2.8],
+  "aspect": "16:9",
+  "reference_line": {"y": 1.0, "label": "one algorithm", "style": "dashed"},
+  "categories": ["kth smallest", "connected components", "shortest path", "two sum", "grid"],
+  "category_task_ids": ["T03", "T10", "T2", "T05", "T1"],
+  "series": [
+    {
+      "key": "PN", "label": "Plan noise", "color_role": "focal (blue)",
+      "values": [1.9840, 1.0936, 1.1821, 1.1685, 1.0569],
+      "ci95_lo": [1.6356, 1.0000, 1.0000, 1.0000, 1.0000],
+      "ci95_hi": [2.2835, 1.2602, 1.3388, 1.3783, 1.2967],
+      "source_file": "results/claim_c.json",
+      "source_keys": ["primary.per_task.<task>.H5_PN", "class_ci95.<task>.PN"]
+    },
+    {
+      "key": "BINT", "label": "Base intent", "color_role": "contrast (orange)",
+      "values": [1.7331, 2.5274, 1.4499, 1.6051, 1.0396],
+      "source_file": "results/claim_c.json",
+      "source_keys": ["primary.per_task.<task>.text_H5.BINT"]
+    },
+    {
+      "key": "IFG", "label": "Intent factored generation", "color_role": "muted (green)",
+      "values": [1.1929, 1.9619, 1.0000, 1.0000, 1.0000],
+      "source_file": "results/claim_c.json",
+      "source_keys": ["primary.per_task.<task>.text_H5.IFG"]
+    },
+    {
+      "key": "PSL", "label": "Plan search (lite)", "color_role": "muted (violet)",
+      "values": [1.0933, 1.4967, 1.0736, 1.0000, 1.0000],
+      "source_file": "results/claim_c.json",
+      "source_keys": ["primary.per_task.<task>.text_H5.PSL"]
+    },
+    {
+      "key": "EAP", "label": "Enumerate and pick", "color_role": "muted (tan)",
+      "values": [1.8322, 1.8844, 1.2368, 1.2708, 1.0821],
+      "source_file": "results/claim_c.json",
+      "source_keys": ["primary.per_task.<task>.text_H5.EAP"]
+    },
+    {
+      "key": "DMD", "label": "Decoding at matched departure", "color_role": "muted (grey)",
+      "values": [1.0985, 1.2515, 1.0922, 1.0000, 1.0000],
+      "source_file": "results/pn_vs_dmd.json",
+      "source_keys": ["per_task.<task>.H5_DMD"]
+    }
+  ],
+  "provenance": {
+    "note": "Every value above was read back from the experiment's own raw output JSON, not copied from the draft figure specification, per the task's evidence_check instruction. The draft spec's numbers were then cross-checked against these files and found to match to the displayed precision (3-4 decimals) on every one of the 30 point estimates plus the 5 plan-noise bootstrap CIs, so no number was invented, dropped, or altered beyond rounding.",
+    "artifact_id": "gen_art_experiment_27",
+    "artifact_title": "Plan noise vs plan-first prompting for code",
+    "run": "run_aRfWvcSWjssb/3_invention_loop/iter_5/gen_art/gen_art_experiment_27",
+    "files_read": [
+      "results/claim_c.json",
+      "results/pn_vs_dmd.json"
+    ],
+    "task_id_mapping_confirmed_against": "sibling artifacts in the same run repeatedly name T03=kth smallest, T10=connected components, T2=shortest path, T05=two sum, T1=grid (e.g. gen_art_experiment_19, _20, _39, _50 in the same run family)",
+    "committed_verdict_in_source": "DISCONFIRMED: plan noise's H5 matches or beats the best text sampler on only 1 of 5 decisive tasks (kth smallest), below the pre-registered threshold of 3/5; task-level bootstrap win probabilities (p_PN_ge_best_text) are 0.582 (kth smallest, flagged unresolved), 0.0 (connected components), 0.059 (shortest path), 0.0135 (two sum), 0.3775 (grid, flagged unresolved).",
+    "known_sensitivity_not_redrawn_here": "A later experiment in the same run (gen_art_experiment_36, iteration 7, run_0oWBKrKEGsmU) re-priced plan noise under a different noise-dose convention carried over from an earlier iteration and found a similar disconfirming outcome (plan noise beats base intent on 2 of 5 tasks there, still below the 3/5 threshold) with different point values on 3 of the 5 tasks; this figure plots the comparison's own iteration-5 engine/dose, not that alternative convention, and the summary field of this run's output records the sensitivity rather than blending the two into one set of bars."
+  }
+}

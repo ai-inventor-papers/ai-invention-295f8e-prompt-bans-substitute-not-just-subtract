@@ -1,0 +1,81 @@
+{
+  "figure_id": "fig_movability",
+  "chart_type": "scatter_labeled_two_panel",
+  "note_on_type": "Hand-written matplotlib via the aii-data-fig-gen house style: no cataloged type (checked --search and --list-types) supports both per-point text labels and an annotated horizontal threshold line, which this figure needs on every point.",
+  "aspect": "16:9",
+  "xlabel": "Escape fraction under random pushes",
+  "ylabel": "Catalogue-only ban avoidance",
+  "xlim": [-0.05, 1.05],
+  "ylim": [-0.05, 1.05],
+  "threshold": {"y": 0.5, "annotation": "obeys", "style": "dashed"},
+  "sources": {
+    "panel_a": {
+      "artifact": "gen_art_evaluation_3 (run_aRfWvcSWjssb, iteration 4)",
+      "file": "screen.json",
+      "fields_used": "tasks.<T>.alpha_1.E_t / alpha_2.E_t (max taken) as x; tasks.<T>.cat_only_ban_avoidance as y",
+      "verified": "every (x,y) pair below was read back from this file; Spearman recomputed independently from these 14 points = 0.850, matching the caption"
+    },
+    "panel_b": {
+      "artifact": "gen_art_experiment_23 (run_aRfWvcSWjssb, iteration 4)",
+      "file": "results/c3a.json (primary.E_t, primary.A_t, primary.balanced_accuracy, primary.fisher, primary.spearman) and results/bans.json",
+      "relabel_file": "results/posthoc_t2_relabel.json (variants.judge.T2_A_t)",
+      "verified": "every (x,y) pair below was read back from these files; BA 0.7386, Fisher p(two-sided) 0.2352, Spearman rho 0.5367 reproduced exactly, and independently re-derived again in iteration-5's gen_art_evaluation_4 (BA 0.739, Fisher p 0.235, Spearman 0.537)"
+    }
+  },
+  "panels": [
+    {
+      "letter": "a",
+      "title": "Qwen3-8B screen, 14 tasks",
+      "model": "Qwen3-8B",
+      "stats_for_caption": {
+        "spearman_rho": 0.85,
+        "n": 14,
+        "note": "frozen iteration-3 screen; escape fraction is the max over alpha 1 and 2; screen values, not confirmation"
+      },
+      "points": [
+        {"label": "kth smallest",            "x": 1.00, "y": 0.97, "movable": true},
+        {"label": "two sum",                 "x": 0.67, "y": 0.86, "movable": true},
+        {"label": "find duplicate",          "x": 0.33, "y": 0.79, "movable": true},
+        {"label": "connected components",    "x": 0.33, "y": 1.00, "movable": true},
+        {"label": "grid",                    "x": 0.07, "y": 0.86, "movable": true},
+        {"label": "shortest path",           "x": 0.20, "y": 0.83, "movable": true},
+        {"label": "substring search",        "x": 0.00, "y": 0.40, "movable": false},
+        {"label": "top-k frequent",          "x": 0.00, "y": 0.47, "movable": false},
+        {"label": "merge intervals",         "x": 0.00, "y": 0.14, "movable": false},
+        {"label": "topological order",       "x": 0.00, "y": 0.08, "movable": false},
+        {"label": "longest increasing subsequence", "x": 0.00, "y": 0.02, "movable": false},
+        {"label": "Fibonacci & first and last position", "x": 0.00, "y": 0.01, "movable": false, "n_tied": 2, "tie_note": "Fibonacci and first-and-last-position are exactly coincident in screen.json (cat_only_ban_avoidance = 0.01 for both T08 and R6); drawn as one marker so the figure does not show two overlapping dots"},
+        {"label": "nonoverlapping intervals","x": 0.00, "y": 0.00, "movable": false}
+      ]
+    },
+    {
+      "letter": "b",
+      "title": "gemma-3-4b-it, held out",
+      "model": "gemma-3-4b-it",
+      "stats_for_caption": {
+        "balanced_accuracy": 0.74,
+        "balanced_accuracy_ci95": [0.40, 0.95],
+        "fisher_p_two_sided": 0.24,
+        "spearman_rho": 0.54,
+        "n_directions": 8,
+        "n_tasks": 15,
+        "note": "predictions committed before any ban; shortest-path point's labeller read array-based Dijkstra as Bellman-Ford/SPFA, relabelled avoidance 0.11 (from results/posthoc_t2_relabel.json, judge variant)"
+      },
+      "points": [
+        {"label": "shortest path",            "x": 0.25,  "y": 0.96, "movable": true,  "relabel_y": 0.11, "relabel_note": "array-based Dijkstra mislabelled as Bellman-Ford/SPFA by the frozen labeller"},
+        {"label": "grid",                     "x": 0.125, "y": 0.83, "movable": true},
+        {"label": "two sum",                  "x": 0.25,  "y": 0.59, "movable": true},
+        {"label": "substring search",         "x": 0.25,  "y": 0.19, "movable": true},
+        {"label": "kth smallest",             "x": 0.00,  "y": 0.63, "movable": false},
+        {"label": "find duplicate",           "x": 0.00,  "y": 0.34, "movable": false},
+        {"label": "connected components & LIS", "x": 0.125, "y": 0.00, "movable": true, "n_tied": 2, "tie_note": "connected components and longest increasing subsequence are exactly coincident in results/c3a.json (E_t=0.125, A_t=0.0 for both T10 and T11)"},
+        {
+          "label": "7 tasks",
+          "x": 0.00, "y": 0.00, "movable": false,
+          "cluster_n": 7,
+          "standing_for": ["Fibonacci", "nonoverlapping intervals", "topological order", "merge intervals", "first and last position", "top-k frequent", "cycle detection"]
+        }
+      ]
+    }
+  ]
+}

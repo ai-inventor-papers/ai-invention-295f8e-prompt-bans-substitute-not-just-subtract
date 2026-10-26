@@ -1,0 +1,207 @@
+{
+  "figure_id": "fig_subspace",
+  "title": "How far each prompt moves the read position",
+  "aspect": "16:9",
+  "xlabel": "Read-position displacement ratio (vs. paraphrase noise)",
+  "ylabel": "Prompt condition",
+  "xlim": [
+    0,
+    5
+  ],
+  "provenance": {
+    "note": "Every ratio/ci value below is read verbatim from the cited artifact; nothing here is invented.",
+    "artifact": "gen_art_experiment_6 (run_4VFKidE1bxPG, iteration 1) \"Do temperature and seeds change an LLM's algorithm?\"",
+    "file": "results/analysis.json",
+    "json_path": "subspace_test.<T1|T2>.l_star.conditions.<condition>.{ratio,ratio_ci90}",
+    "caveat": "exp6's own mechanical verdict for its temperature/seed hypotheses is MIXED and the labeller gate did not meet the strict pre-registered bar, so the paper treats this figure's pattern as descriptive geometry, not a confirmed causal claim."
+  },
+  "tasks": [
+    {
+      "key": "T1",
+      "label": "T1: grid-path task (layer 27)",
+      "layer": 27,
+      "color": "#0173B2",
+      "offset": -0.17
+    },
+    {
+      "key": "T2",
+      "label": "T2: shortest-path task (layer 22)",
+      "layer": 22,
+      "color": "#DE8F05",
+      "offset": 0.17
+    }
+  ],
+  "reference_lines": [
+    {
+      "x": 1.0,
+      "label": "paraphrase noise (ratio = 1)",
+      "linestyle": "solid",
+      "color": "#999999"
+    },
+    {
+      "x": 1.5,
+      "label": "preregistered random-seed bound (ratio = 1.5)",
+      "linestyle": "dashed",
+      "color": "#4D4D4D"
+    }
+  ],
+  "conditions": [
+    {
+      "key": "seed_entropy",
+      "label": "Entropy seed",
+      "hollow": false
+    },
+    {
+      "key": "seed_word",
+      "label": "Word seed",
+      "hollow": false
+    },
+    {
+      "key": "seed_entropy_fresh",
+      "label": "Fresh entropy seed",
+      "hollow": true
+    },
+    {
+      "key": "seed_word_fresh",
+      "label": "Fresh word seed",
+      "hollow": true
+    },
+    {
+      "key": "neutral_insert",
+      "label": "Neutral sentence",
+      "hollow": true
+    },
+    {
+      "key": "seed_semantic",
+      "label": "Semantic seed",
+      "hollow": false
+    },
+    {
+      "key": "instr_creative",
+      "label": "Creativity instruction",
+      "hollow": false
+    },
+    {
+      "key": "instr_new_algo",
+      "label": "New-algorithm instruction",
+      "hollow": false
+    },
+    {
+      "key": "instr_fully_novel",
+      "label": "Novelty instruction",
+      "hollow": false
+    },
+    {
+      "key": "instr_enumerate",
+      "label": "Enumeration prompt",
+      "hollow": false
+    }
+  ],
+  "hollow_legend_label": "encoded without generation (no sampling)",
+  "data": {
+    "T1": {
+      "seed_entropy": {
+        "ratio": 0.7335976061103379,
+        "ci_lo": 0.5790021628811344,
+        "ci_hi": 0.8754365848588249
+      },
+      "seed_word": {
+        "ratio": 1.555017225365279,
+        "ci_lo": 1.3085071351728363,
+        "ci_hi": 1.8503776647785994
+      },
+      "seed_entropy_fresh": {
+        "ratio": 0.6643038610261808,
+        "ci_lo": 0.5297330474109696,
+        "ci_hi": 0.8253539409465722
+      },
+      "seed_word_fresh": {
+        "ratio": 1.0547143466351814,
+        "ci_lo": 0.8415000498955179,
+        "ci_hi": 1.3140394768606698
+      },
+      "neutral_insert": {
+        "ratio": 0.8116782605805851,
+        "ci_lo": 0.560620144169685,
+        "ci_hi": 1.0731677711798542
+      },
+      "seed_semantic": {
+        "ratio": 3.4166471370666227,
+        "ci_lo": 2.8756339387021006,
+        "ci_hi": 4.211010153961302
+      },
+      "instr_creative": {
+        "ratio": 1.0409468807728048,
+        "ci_lo": 0.845843797966168,
+        "ci_hi": 1.436338317232014
+      },
+      "instr_new_algo": {
+        "ratio": 1.3017816386918297,
+        "ci_lo": 0.9790675144434388,
+        "ci_hi": 1.6373012675083691
+      },
+      "instr_fully_novel": {
+        "ratio": 1.8089235420631318,
+        "ci_lo": 1.5092956256145795,
+        "ci_hi": 2.1725651573866833
+      },
+      "instr_enumerate": {
+        "ratio": 2.756922229007827,
+        "ci_lo": 2.250842770254566,
+        "ci_hi": 3.4354318977378466
+      }
+    },
+    "T2": {
+      "seed_entropy": {
+        "ratio": 1.1647899829332864,
+        "ci_lo": 0.9995041989087949,
+        "ci_hi": 1.5957647943879942
+      },
+      "seed_word": {
+        "ratio": 1.0120531984165557,
+        "ci_lo": 0.8650497647422831,
+        "ci_hi": 1.4007179709538442
+      },
+      "seed_entropy_fresh": {
+        "ratio": 0.9676876353779738,
+        "ci_lo": 0.7962193597026952,
+        "ci_hi": 1.3646139385759901
+      },
+      "seed_word_fresh": {
+        "ratio": 0.9272095280135607,
+        "ci_lo": 0.7564360103032896,
+        "ci_hi": 1.2524520359407991
+      },
+      "neutral_insert": {
+        "ratio": 1.2875589582035176,
+        "ci_lo": 1.0016907510097204,
+        "ci_hi": 1.9320023106652495
+      },
+      "seed_semantic": {
+        "ratio": 3.700452873238899,
+        "ci_lo": 3.0048881564912766,
+        "ci_hi": 4.951154163191388
+      },
+      "instr_creative": {
+        "ratio": 1.6838227903458325,
+        "ci_lo": 1.3042111772868776,
+        "ci_hi": 2.3496160120766287
+      },
+      "instr_new_algo": {
+        "ratio": 1.0165780240759825,
+        "ci_lo": 0.7904828482458873,
+        "ci_hi": 1.9634677666293596
+      },
+      "instr_fully_novel": {
+        "ratio": 3.062511602826632,
+        "ci_lo": 2.52268337162547,
+        "ci_hi": 4.158027675254529
+      },
+      "instr_enumerate": {
+        "ratio": 2.958941582492342,
+        "ci_lo": 2.38163927358035,
+        "ci_hi": 4.016122972238551
+      }
+    }
+  }
+}

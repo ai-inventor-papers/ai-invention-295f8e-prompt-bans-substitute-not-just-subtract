@@ -1,0 +1,84 @@
+{
+  "figure_id": "fig1",
+  "chart_shape": "grouped_bar_with_min_max_whiskers_plus_contrast_bracket",
+  "renderer": "hand-written matplotlib via chart_style/chart_geometry house style (aii-data-fig-gen skill) — the plain 'bar' generator type only accepts a single symmetric error magnitude per bar, which cannot show a true asymmetric min/max range, and no catalogue type draws a missing 'not run' bar or a bracket spanning two categories of a 4-series grouped bar",
+  "provenance": {
+    "primary_source": "run_aRfWvcSWjssb/3_invention_loop/iter_4/gen_art/gen_art_experiment_21/results/c1seed.json",
+    "secondary_sources": [
+      "run_aRfWvcSWjssb/3_invention_loop/iter_4/gen_art/gen_art_experiment_21/results/thinking.json",
+      "run_aRfWvcSWjssb/3_invention_loop/iter_4/gen_art/gen_art_experiment_21/results/engine_check.json",
+      "run_aRfWvcSWjssb/3_invention_loop/iter_4/gen_art/gen_art_experiment_21/results/fp8_crosscheck.json"
+    ],
+    "model_and_engine": "Qwen3-8B, HF FP8 W8A8 engine on a 16GB GPU (bf16 does not fit that card, so this design was never rerun in bf16)",
+    "cross_checked_uncorrected_through": "iteration-5/6/7 record-repair evaluations (art_* evaluation artifacts) re-derived the same counts and left them unmarked as corrected; the only addition at each pass was the bf16-untested caveat and the exact definition of the subset mean",
+    "note": "every numeric value below was read back from the JSON file(s) above, not transcribed from the earlier text summary, which omitted the alpha=2 condition entirely"
+  },
+  "title": "Same-seed algorithm changes: temperature against a task-state push",
+  "ylabel": "Seeds (of 20) whose algorithm changed",
+  "y_data_max": 20,
+  "yticks": [0, 5, 10, 15, 20],
+  "categories": [
+    "Shortest path (Dijkstra)",
+    "k-th smallest (full sort)",
+    "Grid path (BFS)"
+  ],
+  "series": [
+    {
+      "key": "temp_nonthinking",
+      "label": "Temperature 0.3–1.3, non-thinking",
+      "color": "#D4D4D4",
+      "edge_color": "#4D4D4D",
+      "n_seeds": [20, 20, 20],
+      "values": [0, 0, 0],
+      "display_text": ["0", "0", "0"],
+      "source_key": "A1_C_T_off.{T2,T03,T1}.primary.C_T"
+    },
+    {
+      "key": "temp_thinking",
+      "label": "Temperature 0.3–1.3, thinking mode",
+      "color": "#8C8C8C",
+      "edge_color": "#333333",
+      "n_seeds": [20, null, 10],
+      "values": [0, null, 0],
+      "display_text": ["0", "not run", "0 of 10"],
+      "source_key": "results/thinking.json (C_T_completed_all_4, T2 and T1_optional_i); k-th smallest has no thinking-mode entry in this file"
+    },
+    {
+      "key": "push_alpha1",
+      "label": "Random task-state push, α=1",
+      "color": "#7FB3D9",
+      "edge_color": "#1A5C8A",
+      "values": [17.25, 4.55, 2.50],
+      "whisker_min": [12, 0, 0],
+      "whisker_max": [20, 7, 5],
+      "n_subsets": 20,
+      "source_key": "A2_C_PN.{T2,T03,T1}.a1.0_T1.0.{C_PN,min,max}"
+    },
+    {
+      "key": "push_alpha2",
+      "label": "Random task-state push, α=2",
+      "color": "#1A5C8A",
+      "edge_color": "#0B3A57",
+      "values": [19.05, 10.60, 8.70],
+      "whisker_min": [17, 0, 2],
+      "whisker_max": [20, 20, 14],
+      "n_subsets": 20,
+      "source_key": "A2_C_PN.{T2,T03,T1}.a2.0_T1.0.{C_PN,min,max}"
+    }
+  ],
+  "bracket": {
+    "from_category_index": 0,
+    "to_category_index": 1,
+    "line1": "paired contrast, push (α=1) minus temperature:",
+    "line2": "0.545 per seed, 95% CI [0.41, 0.67], p = 1.0e-5",
+    "source_key": "A3_x_contrast.pooled.{mean_x,boot95,sign_flip.p} with tasks=[T2,T03]"
+  },
+  "temperature_cp95_upper_bound_per_seed": 0.1684334709830853,
+  "temperature_cp95_source_key": "A1_C_T_off.T2.primary.cp95_rate.cp95 (0 of 20; the same exact-Clopper-Pearson bound recurs for every 0/20 temperature cell in the file)",
+  "caveats_from_source": [
+    "Verdict in c1seed.json is PARTIAL: H-PN (the plan-noise/push hypothesis) fails its own pre-registered threshold on k-th smallest at alpha=1 (4.55 < 5 required)",
+    "fp8_crosscheck.json: 'bf16 HF does not fit the 16 GB card: the cross-check compares the two FP8 implementations (vLLM weight-only Marlin vs HF W8A8)'",
+    "iteration-6 record repair (art_dbUtqBjT0tPf-equivalent corrections.json): 'the same-seed contrast is untested in bf16', carried forward unresolved through iteration 7",
+    "this experiment is one model (Qwen3-8B), one engine precision (FP8 W8A8), N=20 seeds per task — consistent with the run's own classification of this result as a lead rather than a confirmed finding"
+  ]
+}

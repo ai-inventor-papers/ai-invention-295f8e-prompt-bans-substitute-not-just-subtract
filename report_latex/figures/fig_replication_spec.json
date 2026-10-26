@@ -1,0 +1,89 @@
+{
+  "figure_id": "fig_replication",
+  "title": "The same ban, obeyed very differently",
+  "chart_type_note": "Hand-written bar+jittered-strip overlay (two panels, shared y-scale). No catalogue type in aii-data-fig-gen combines a bar height with a per-unit jittered-point overlay on one shared axis (the catalogue's bar/strip/raincloud types are separate families); this is the one documented 'combination' gap, so per SKILL.md it is hand-written with the house style and its layout/legibility passes rather than forced into bar or strip alone.",
+  "aspect": "16:9",
+  "jitter_seed": 0,
+  "jitter_note": "Dot x-positions are jittered uniformly within +/-0.22 of the bar center with a fixed seed (0); jitter carries no information, only each dot's y value (banned count / 10) does. Re-rendering this spec gives a byte-identical picture.",
+  "experiments": ["Association", "Geometry", "Forking token", "Decommitment", "Instruction tuning"],
+  "n_samples_per_experiment": 100,
+  "n_paraphrases_per_experiment": 10,
+  "n_samples_per_paraphrase": 10,
+  "panels": [
+    {
+      "panel_label": "a",
+      "task_id": "T1",
+      "task_name": "Grid path search",
+      "banned_algorithm": "BFS",
+      "title": "T1 — grid path (BFS)",
+      "xlabel": "Experiment",
+      "ylabel": "Share using BFS (banned)",
+      "banned_share_by_experiment": {
+        "Association": 0.10,
+        "Geometry": 0.62,
+        "Forking token": 0.21,
+        "Decommitment": 0.49,
+        "Instruction tuning": 0.62
+      },
+      "per_paraphrase_banned_count_of_10": {
+        "Association": [0, 0, 0, 7, 0, 0, 0, 0, 3, 0],
+        "Geometry": [2, 0, 10, 0, 10, 10, 8, 10, 4, 8],
+        "Forking token": [4, 0, 0, 10, 0, 1, 0, 6, 0, 0],
+        "Decommitment": [4, 3, 4, 4, 5, 9, 9, 3, 8, 0],
+        "Instruction tuning": [4, 8, 0, 9, 7, 10, 10, 6, 5, 3]
+      }
+    },
+    {
+      "panel_label": "b",
+      "task_id": "T2",
+      "task_name": "Weighted shortest path",
+      "banned_algorithm": "Dijkstra",
+      "title": "T2 — shortest path (Dijkstra)",
+      "xlabel": "Experiment",
+      "ylabel": "Share using Dijkstra (banned)",
+      "banned_share_by_experiment": {
+        "Association": 0.09,
+        "Geometry": 0.72,
+        "Forking token": 0.20,
+        "Decommitment": 0.54,
+        "Instruction tuning": 0.54
+      },
+      "per_paraphrase_banned_count_of_10": {
+        "Association": [1, 0, 0, 3, 1, 1, 1, 0, 1, 1],
+        "Geometry": [8, 9, 2, 7, 9, 8, 6, 8, 7, 8],
+        "Forking token": [4, 2, 3, 4, 1, 3, 0, 1, 1, 1],
+        "Decommitment": [6, 3, 3, 3, 8, 5, 6, 7, 7, 6],
+        "Instruction tuning": [8, 4, 1, 0, 10, 10, 9, 3, 9, 0]
+      }
+    }
+  ],
+  "provenance": {
+    "note": "Every value above was independently re-extracted from each experiment's own raw/output file in this run's dependency tree (read-only, outside this workspace), not copied from the draft figure specification or from any artifact's prose summary. All 110 numbers (10 banned_share values + 100 per-paraphrase counts) matched the draft specification exactly on first extraction.",
+    "model": "Qwen/Qwen3-8B (instruction-tuned), thinking off, T=1.0, 10 ban-sentence paraphrases x 10 samples each = n=100 per experiment per task",
+    "Association": {
+      "artifact": "gen_art_experiment_1 (run_4VFKidE1bxPG/3_invention_loop/iter_1)",
+      "file": "data/samples.jsonl",
+      "method": "filter task in {t1,t2}, condition=='ban:bfs' / 'ban:dijkstra'; group by paraphrase_id (10 groups of 10); numerator = label=='bfs' / 'dijkstra'"
+    },
+    "Geometry": {
+      "artifact": "gen_art_experiment_2 (run_4VFKidE1bxPG/3_invention_loop/iter_1)",
+      "file": "full_method_out.json, datasets t1_grid_path / t2_weighted_sp",
+      "method": "filter metadata_condition=='ban:bfs' / 'ban:dijkstra'; group by metadata_paraphrase_id; numerator = predict_mode_label=='bfs' / 'dijkstra'"
+    },
+    "Forking token": {
+      "artifact": "gen_art_experiment_3 (run_4VFKidE1bxPG/3_invention_loop/iter_1)",
+      "file": "full_method_out.json, datasets T1_unweighted_grid_path_ban_pool / T2_weighted_shortest_path_ban_pool",
+      "method": "filter metadata_condition=='ban'; group by metadata_paraphrase_id; numerator = metadata_label=='BFS' / 'dijkstra'"
+    },
+    "Decommitment": {
+      "artifact": "gen_art_experiment_4 (run_4VFKidE1bxPG/3_invention_loop/iter_1)",
+      "file": "full_method_out.json, datasets T1_grid_path_search / T2_weighted_shortest_path",
+      "method": "field predict_ban_bfs / predict_ban_dijkstra, format 'label|pass_fail'; group by metadata_paraphrase_id; numerator = label=='bfs' / 'dijkstra'"
+    },
+    "Instruction tuning": {
+      "artifact": "gen_art_experiment_5 (run_4VFKidE1bxPG/3_invention_loop/iter_1)",
+      "file": "full_method_out.json, datasets T1_unweighted_grid_path / T2_weighted_shortest_path",
+      "method": "filter metadata_condition=='ban:BFS'/'ban:Dijkstra' AND metadata_arm=='instruct_chat'; group by metadata_paraphrase_id; numerator = metadata_label=='bfs' / 'dijkstra'"
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "figure_id": "fig_temperature_fork",
+  "chart_type": "hand_written_small_multiples_line_plus_errorbar",
+  "note": "No generator type in aii-data-fig-gen combines a connected predicted line with error-barred observed points in one panel ('line' has no per-series errorbars/markers; 'calibration' has the wrong x-semantics). Hand-written matplotlib with chart_style/chart_geometry house-style helpers, per SKILL.md's hand-write fallback. Every numeric value below was read back from the two cited artifact result files, not taken from the draft paper spec.",
+  "aspect": "21:9",
+  "width_in": 6.5,
+  "shared_xlabel": "Temperature T",
+  "shared_ylabel": "Attempted minority-algorithm share",
+  "xticks": [0.3, 0.7, 1.0, 1.3],
+  "ylim": [0.0, 0.7],
+  "palette_name": "Okabe-Ito",
+  "panels": [
+    {
+      "panel_label": "Qwen3-8B\nMST weight (Prim)",
+      "color_name": "blue",
+      "color_hex": "#0072B2",
+      "temperatures": [0.3, 0.7, 1.0, 1.3],
+      "predicted": [0.06823244743699411, 0.19346312796705784, 0.23715393459341066, 0.24737886521247682],
+      "observed": [0.06, 0.22, 0.40, 0.38],
+      "observed_ci_lower": [0.020614596364630478, 0.12753786224302288, 0.2760818978624575, 0.2586259584257722],
+      "observed_ci_upper": [0.16217343370877002, 0.35241815689459555, 0.5381881089724063, 0.5184980497760643],
+      "n_per_cell": 50,
+      "mae": 0.08257353410965937,
+      "pass_own_criterion": true,
+      "source_artifact": "run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_35",
+      "source_file": "results/test2.json",
+      "source_path": "per_unit.B3.cells.T{0.3,0.7,1.0,1.3}_p1.{a_min, a_min_ci, pred_a_min}; per_unit.B3.MAE"
+    },
+    {
+      "panel_label": "Qwen3-8B\nRain water (two pointers)",
+      "color_name": "orange",
+      "color_hex": "#E69F00",
+      "temperatures": [0.3, 0.7, 1.0, 1.3],
+      "predicted": [0.16644569854460708, 0.2850403873254866, 0.310718364795482, 0.3194396793088198],
+      "observed": [0.10, 0.18, 0.18, 0.20],
+      "observed_ci_lower": [0.04347512399157111, 0.0977008273245379, 0.0977008273245379, 0.11243629945973886],
+      "observed_ci_upper": [0.2136049033478839, 0.3079631945470261, 0.3079631945470261, 0.3303737210448524],
+      "n_per_cell": 50,
+      "mae": 0.10541171837316758,
+      "pass_own_criterion": false,
+      "source_artifact": "run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_35",
+      "source_file": "results/test2.json",
+      "source_path": "per_unit.A3.cells.T{0.3,0.7,1.0,1.3}_p1.{a_min, a_min_ci, pred_a_min}; per_unit.A3.MAE"
+    },
+    {
+      "panel_label": "Qwen3-8B\nValid anagram (fixed-count array)",
+      "color_name": "green",
+      "color_hex": "#009E73",
+      "temperatures": [0.3, 0.7, 1.0, 1.3],
+      "predicted": [0.16115862288005847, 0.1820319976270039, 0.1998990138525924, 0.2124278753705738],
+      "observed": [0.18, 0.14, 0.12, 0.18],
+      "observed_ci_lower": [0.0977008273245379, 0.06950745262022862, 0.05617523710624646, 0.0977008273245379],
+      "observed_ci_upper": [0.3079631945470261, 0.2618645719852809, 0.23805078886623582, 0.3079631945470261],
+      "n_per_cell": 50,
+      "mae": 0.04329960513666535,
+      "pass_own_criterion": false,
+      "source_artifact": "run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_35",
+      "source_file": "results/test2.json",
+      "source_path": "per_unit.B6.cells.T{0.3,0.7,1.0,1.3}_p1.{a_min, a_min_ci, pred_a_min}; per_unit.B6.MAE"
+    },
+    {
+      "panel_label": "gemma-3-4b-it\nGrid path (BFS)",
+      "color_name": "purple",
+      "color_hex": "#CC79A7",
+      "temperatures": [0.3, 0.7, 1.0, 1.3],
+      "predicted": [0.01528275571902576, 0.16575118334039923, 0.32312392797157663, 0.44997064300713563],
+      "observed": [0.02, 0.24, 0.34, 0.46],
+      "observed_ci_lower": [0.003539259271646236, 0.1429739139699173, 0.2243694922250009, 0.3296965219222435],
+      "observed_ci_upper": [0.10495443589637815, 0.3741268375794292, 0.478461739497674, 0.5960112860084253],
+      "n_per_cell": 50,
+      "mae": 0.026467872490465696,
+      "pass_own_criterion": true,
+      "source_artifact": "run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_38",
+      "source_file": "results/g3_sweep.json",
+      "source_path": "cells.T{0.3,0.7,1.0,1.3}|topp1.{attempted_share, ci95, pred_primary}; MAE_topp1"
+    }
+  ],
+  "series_legend": {
+    "predicted": "Dark-grey line, open circle markers: attempted-minority-algorithm share predicted by dividing the teacher-forced fork logits by T and renormalising, computed before any temperature sample was drawn.",
+    "observed": "Filled coloured point (one colour per panel) with a vertical Wilson 95% confidence interval: the attempted-minority-algorithm share actually sampled at that temperature, N=50 generations per cell, top-p=1."
+  },
+  "evidence_check_note": "All 16 (predicted, observed, CI) triples and all 4 MAE values above were extracted directly from results/test2.json (Qwen3-8B panels) and results/g3_sweep.json (Gemma panel) of the two cited artifacts -- not copied from the paper draft's prose. They match the draft spec's numbers to rounding, so no values were dropped or invented. Per the source files' own pre-registered pass/fail rule, only the MST-weight panel and the Gemma grid panel individually pass; the rain-water and valid-anagram panels do not (their predicted rise with T is in the right direction but not confirmed by a significant drop at low T), which is reflected in the figure caption rather than suppressed."
+}

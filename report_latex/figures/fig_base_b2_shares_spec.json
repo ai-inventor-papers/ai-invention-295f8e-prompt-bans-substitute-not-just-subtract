@@ -1,0 +1,26 @@
+{
+  "type": "bar",
+  "title": "Where the sharpening is carried in Qwen3-8B",
+  "xlabel": "Patched component set",
+  "ylabel": "Share of instruct-base margin closed",
+  "aspect": "16:9",
+  "categories": [
+    "Fork stack (10 nodes)",
+    "Random sets, median (n=50)",
+    "Random sets, 95th pct. (n=50)",
+    "Task-spec nodes",
+    "Unembedding alone"
+  ],
+  "series": [
+    {
+      "label": "Minimum spanning tree (gap 2.06 nats)",
+      "values": [1.00, 0.81, 1.41, -0.02, 0.43],
+      "errors": [0.04, 0, 0, 0.07, 0]
+    },
+    {
+      "label": "Connected components (gap 4.52 nats)",
+      "values": [0.45, -0.22, 0.06, -0.17, 0.85],
+      "errors": [0.14, 0, 0, 0.21, 0]
+    }
+  ]
+}

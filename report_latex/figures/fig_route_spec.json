@@ -1,0 +1,191 @@
+{
+  "figure_id": "fig_route",
+  "title": "A ban travels through the prompt states",
+  "aspect": "13:9",
+  "width_in": 6.5,
+  "panel_a": {
+    "panel_label": "a",
+    "xlabel": "Likelihood drop of the banned algorithm (nats)",
+    "xlim": [
+      -23,
+      3
+    ],
+    "null_line": 0.0,
+    "n_programs_per_task": 30,
+    "ci_note": "95% bootstrap CI over templates and programs",
+    "categories": [
+      "Full ban",
+      "Prompt route",
+      "Direct route",
+      "Read position only",
+      "Task specification only",
+      "Knockout, all generated tokens",
+      "Knockout, first 16 tokens",
+      "Knockout, after 16 tokens",
+      "Knockout, layers 0-11",
+      "Knockout, layers 12-23",
+      "Knockout, layers 24-35",
+      "Knockout on neutral prompt",
+      "Mention twin"
+    ],
+    "series": [
+      {
+        "key": "t1",
+        "label": "Grid path (ban BFS)",
+        "values": [
+          -12.25034175927834,
+          -10.65492951466466,
+          -0.2278008145567232,
+          0.0015273083233098839,
+          -10.48280100570994,
+          -11.646701128620188,
+          -10.735992832304568,
+          -11.56356296009988,
+          -13.882364933662538,
+          -8.289947634961887,
+          -14.379833691824349,
+          -0.212689675981586,
+          0.5514570732427418
+        ],
+        "ci_low": [
+          -20.88515976909171,
+          -12.348796491317916,
+          -2.9723146009914756,
+          -0.3676996290776518,
+          -12.482965976928975,
+          -13.573135909320959,
+          -15.540443191815115,
+          -15.703080379500165,
+          -22.285369987358035,
+          -11.382742299591522,
+          -20.1480501475054,
+          -0.6287761284323586,
+          -0.3206035038099895
+        ],
+        "ci_high": [
+          -6.89585991048251,
+          -9.587317832058202,
+          0.8346890402768745,
+          0.2311569530149179,
+          -9.251029956315143,
+          -9.93555932808857,
+          -9.454229957695198,
+          -6.8339042062412005,
+          -7.714057397686311,
+          -4.210874323884709,
+          -11.489223488380603,
+          0.568870661024962,
+          2.0616783092160067
+        ]
+      },
+      {
+        "key": "t2",
+        "label": "Shortest path (ban Dijkstra)",
+        "values": [
+          -5.780664185451661,
+          -4.728988367284903,
+          0.21723296556155006,
+          -0.10611613678036398,
+          -4.664095792184684,
+          -5.421602605332568,
+          -5.310314511077192,
+          -5.911165548262715,
+          -5.883584373785253,
+          -4.934401076505251,
+          -5.2355662468395305,
+          -0.2781749679465058,
+          -0.17174037934515032
+        ],
+        "ci_low": [
+          -7.88212807847088,
+          -6.228673466236931,
+          -0.32237846440014367,
+          -0.26404358744292306,
+          -6.07635208871966,
+          -6.627806363549994,
+          -6.673554367982963,
+          -7.806124725893177,
+          -8.004746072280964,
+          -6.322487199436873,
+          -7.256587637309492,
+          -0.605580836676708,
+          -0.7295867824839247
+        ],
+        "ci_high": [
+          -3.067304642957958,
+          -3.142764691010939,
+          0.8365977191951232,
+          0.009073941245030094,
+          -3.2062092850459547,
+          -3.9066742633188687,
+          -3.5141748879835806,
+          -3.502723000218897,
+          -3.1058283093013164,
+          -3.2784611985218084,
+          -2.8836291860684784,
+          -0.0027957095472649204,
+          0.40780032702944424
+        ]
+      }
+    ]
+  },
+  "panel_b": {
+    "panel_label": "b",
+    "ylabel": "Banned share of 100 programs",
+    "ylim": [
+      0,
+      1
+    ],
+    "n_programs_per_arm": 100,
+    "sampling_note": "common random numbers across arms",
+    "categories": [
+      "Neutral twin",
+      "Direct route",
+      "Prompt route",
+      "Full ban",
+      "Full knockout",
+      "Knockout, first 16 tokens",
+      "Knockout, after 16 tokens"
+    ],
+    "series": [
+      {
+        "key": "t1",
+        "label": "Grid path (ban BFS)",
+        "values": [
+          1.0,
+          0.7,
+          0.57,
+          0.14,
+          0.47,
+          0.16,
+          0.19
+        ]
+      },
+      {
+        "key": "t2",
+        "label": "Shortest path (ban Dijkstra)",
+        "values": [
+          0.99,
+          0.95,
+          0.13,
+          0.11,
+          0.06,
+          0.11,
+          0.11
+        ]
+      }
+    ]
+  },
+  "provenance": {
+    "source_artifact": "gen_art_experiment_8",
+    "source_run": "run_aRfWvcSWjssb/3_invention_loop/iter_2/gen_art/gen_art_experiment_8",
+    "model": "Qwen/Qwen3-8B (bf16, thinking off)",
+    "tasks": {
+      "t1": "T1 grid path, modal default BFS, ban arm bans BFS",
+      "t2": "T2 weighted shortest path, modal default Dijkstra, ban arm bans Dijkstra"
+    },
+    "panel_a_source": "results/analysis.json: route_frlp.per_task.{t1,t2}.D / .D_ci (FRLP drop of the banned algorithm over n_programs=30 self-written, name-scrubbed programs per task, pre-registered scoring rule, 95% bootstrap CI over templates and programs).",
+    "panel_b_source": "results/analysis.json: behaviour.per_task.{t1,t2}.{a,b,c,d,K1,K2}.banned_share and results/supplementary.json: behaviour_contrasts.{t1,t2}.K0_banned_share.share (N=100 common-random-number samples per arm).",
+    "verification": "Every value in this spec was read back from the artifact's own output files above and matches the figure specification to full precision; the layer-knockout arms (B1/B2/B3) have no N=100 behavioural arm in the source data, so panel (b) correctly omits them rather than inventing one."
+  }
+}

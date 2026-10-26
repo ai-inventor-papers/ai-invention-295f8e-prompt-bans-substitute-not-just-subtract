@@ -1,0 +1,136 @@
+{
+  "type": "panel",
+  "title": "Prompt groups in the fitted DAS coordinates",
+  "aspect": "16:9",
+  "width_in": 12.0,
+  "ncols": 2,
+  "panels": [
+    {
+      "type": "scatter",
+      "title": "Qwen3-8B: connected components, rank-8 DAS, block 22 (n=290)",
+      "xlabel": "MDS dim. 1 (a.u.)",
+      "ylabel": "MDS dim. 2 (a.u.)",
+      "series": [
+        {
+          "label": "Forced BFS source (34 impl.)",
+          "x": [
+            7.488131981301348
+          ],
+          "values": [
+            11.24505650506932
+          ]
+        },
+        {
+          "label": "Forced DFS source (35 impl.)",
+          "x": [
+            9.376249617038068
+          ],
+          "values": [
+            2.945068069058481
+          ]
+        },
+        {
+          "label": "Forced union-find source (87 impl.)",
+          "x": [
+            -1.57776590896629
+          ],
+          "values": [
+            2.564619151035271
+          ]
+        },
+        {
+          "label": "Modal ban (avoid union-find)",
+          "x": [
+            0.6389055831045842
+          ],
+          "values": [
+            0.3079634418554975
+          ]
+        },
+        {
+          "label": "Twin & neutral variants",
+          "x": [
+            -1.363672794562234,
+            -1.3826745515321648,
+            -1.4880910977824495,
+            -1.2858953442911871,
+            -1.8594198473666737
+          ],
+          "values": [
+            -1.5898728817784007,
+            -1.2977389335618386,
+            -1.638383722343357,
+            0.10520815710221187,
+            -1.4813636030728214
+          ]
+        }
+      ]
+    },
+    {
+      "type": "scatter",
+      "title": "Gemma-3-4b-it: grid path, rank-8 DAS, block 16 (n=207)",
+      "xlabel": "MDS dim. 1 (a.u.)",
+      "ylabel": "MDS dim. 2 (a.u.)",
+      "series": [
+        {
+          "label": "A*/greedy source",
+          "x": [
+            -56.553279078534274
+          ],
+          "values": [
+            26.29968978815247
+          ]
+        },
+        {
+          "label": "Forced BFS source (7 impl.)",
+          "x": [
+            -109.42247899278027
+          ],
+          "values": [
+            31.41764243557845
+          ]
+        },
+        {
+          "label": "Forced DFS source (21 impl.)",
+          "x": [
+            92.75505659966902
+          ],
+          "values": [
+            -29.352589544323695
+          ]
+        },
+        {
+          "label": "IDDFS source",
+          "x": [
+            1.7494285824251237
+          ],
+          "values": [
+            28.803113378836407
+          ]
+        },
+        {
+          "label": "Bans (single-name & top-five)",
+          "x": [
+            -4.891307844525906,
+            -4.298605453376605
+          ],
+          "values": [
+            -23.40007061948787,
+            -18.13830834856963
+          ]
+        },
+        {
+          "label": "Twin & instruction",
+          "x": [
+            12.249935642733016,
+            -11.81167466754762
+          ],
+          "values": [
+            -8.3013702138559,
+            -12.054034056155581
+          ]
+        }
+      ]
+    }
+  ]
+}

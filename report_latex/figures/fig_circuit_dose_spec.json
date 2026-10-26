@@ -1,0 +1,158 @@
+{
+  "type": "panel",
+  "title": "Steering Qwen3-8B's circuit against a matched random five",
+  "aspect": "16:9",
+  "ncols": 2,
+  "panels": [
+    {
+      "type": "line",
+      "title": "Minimum spanning tree weight (Kruskal to Prim)",
+      "xlabel": "Steering dose (write-norm multiplier)",
+      "ylabel": "P(minority fork token)",
+      "ylim": [
+        -0.2,
+        1.2
+      ],
+      "series": [
+        {
+          "label": "Top-5 circuit components",
+          "x": [
+            0.25,
+            0.5,
+            1.0,
+            2.0
+          ],
+          "values": [
+            0.5419,
+            0.7855,
+            0.9622,
+            0.9972
+          ],
+          "band": [
+            0.0755,
+            0.0535,
+            0.0122,
+            0.0008
+          ]
+        },
+        {
+          "label": "Matched random five",
+          "x": [
+            0.25,
+            0.5,
+            1.0,
+            2.0
+          ],
+          "values": [
+            0.4387,
+            0.6384,
+            0.8832,
+            0.9833
+          ],
+          "band": [
+            0.0846,
+            0.0746,
+            0.0371,
+            0.0068
+          ]
+        },
+        {
+          "label": "Unedited twin",
+          "x": [
+            0.25,
+            0.5,
+            1.0,
+            2.0
+          ],
+          "values": [
+            0.2626,
+            0.2626,
+            0.2626,
+            0.2626
+          ],
+          "band": [
+            0.0541,
+            0.0541,
+            0.0541,
+            0.0541
+          ]
+        }
+      ]
+    },
+    {
+      "type": "line",
+      "title": "Connected components (union-find to DFS)",
+      "xlabel": "Steering dose (write-norm multiplier)",
+      "ylabel": "P(minority fork token)",
+      "ylim": [
+        -0.2,
+        1.2
+      ],
+      "series": [
+        {
+          "label": "Top-5 circuit components",
+          "x": [
+            0.25,
+            0.5,
+            1.0,
+            2.0
+          ],
+          "values": [
+            0.9777,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "band": [
+            0.022,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "label": "Matched random five",
+          "x": [
+            0.25,
+            0.5,
+            1.0,
+            2.0
+          ],
+          "values": [
+            0.0886,
+            0.1941,
+            0.6948,
+            0.9999
+          ],
+          "band": [
+            0.1566,
+            0.3033,
+            0.2207,
+            0.0001
+          ]
+        },
+        {
+          "label": "Unedited twin",
+          "x": [
+            0.25,
+            0.5,
+            1.0,
+            2.0
+          ],
+          "values": [
+            0.0287,
+            0.0287,
+            0.0287,
+            0.0287
+          ],
+          "band": [
+            0.0509,
+            0.0509,
+            0.0509,
+            0.0509
+          ]
+        }
+      ]
+    }
+  ]
+}

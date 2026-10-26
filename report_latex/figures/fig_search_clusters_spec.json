@@ -1,0 +1,39 @@
+{
+  "type": "panel",
+  "panel_labels": true,
+  "title": "Behaviour clusters per 1,000 search calls",
+  "aspect": "16:9",
+  "ncols": 2,
+  "panels": [
+    {
+      "type": "bar",
+      "title": "Online bin packing, seeds 0 to 5",
+      "xlabel": "Search arm",
+      "ylabel": "Clusters per 1,000 calls",
+      "ylim": [0, 340],
+      "legend_loc": "upper left",
+      "categories": ["T1.0", "T1.6", "DTB", "RPB", "IDEA"],
+      "series": [
+        {"label": "Seed 0", "values": [22.5, 98.5, 76.0, 60.5, 219.5]},
+        {"label": "Seed 1", "values": [51.5, 88.0, 147.0, 45.5, 165.5]},
+        {"label": "Seed 2", "values": [6.5, 0.5, 115.0, 134.5, 67.0]},
+        {"label": "Seed 3", "values": [4.0, 0.5, 71.5, 116.5, 75.0]},
+        {"label": "Seed 4 (exploratory)", "values": [5.0, 0.5, 181.0, 94.5, 105.5]},
+        {"label": "Seed 5 (exploratory)", "values": [4.0, 0.5, 129.0, 116.0, 95.0]}
+      ]
+    },
+    {
+      "type": "bar",
+      "title": "Constructive TSP, seeds 0, 1",
+      "xlabel": "Search arm",
+      "ylabel": "Clusters per 1,000 calls",
+      "ylim": [0, 400],
+      "legend_loc": "upper left",
+      "categories": ["T1.0", "T1.6", "DTB", "RPB", "IDEA"],
+      "series": [
+        {"label": "Seed 0", "values": [228.2, 88.1, 228.2, 236.7, 296.4]},
+        {"label": "Seed 1", "values": [233.9, 104.2, 216.9, 233.0, 298.3]}
+      ]
+    }
+  ]
+}

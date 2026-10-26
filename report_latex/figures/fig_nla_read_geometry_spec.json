@@ -1,0 +1,801 @@
+{
+  "figure_id": "fig_nla_read_geometry",
+  "model": "Qwen2.5-7B-Instruct",
+  "layer_convention": "hidden_states[21] = output of transformer block 20 (the 'hs21' extraction convention)",
+  "position": "READ = last prompt token",
+  "pca_note": "PCA fitted per task on that task's forced-prompt READ states only (5 paraphrases per forced algorithm, pooled); twin and ban READ states are then projected onto the SAME per-task basis. PC1/PC2 are not comparable across panels.",
+  "aspect": "16:9",
+  "source_artifact": "run_0oWBKrKEGsmU/iter_6/gen_art_experiment_32 (cache/states_L20.npz H21 + cache/states_index.jsonl + results/behaviour.json forced.<mode>.adherence)",
+  "panels": [
+    {
+      "task_id": "T1",
+      "panel_title": "Grid path",
+      "pc1_var": 0.2686,
+      "pc2_var": 0.1852,
+      "n_forced_per_algorithm": 5,
+      "algorithms": [
+        {
+          "mode": "astar_gbfs",
+          "name": "A* or greedy best first",
+          "n": 5,
+          "pc1": 2.97,
+          "pc2": 2.335,
+          "adherence": 0.0
+        },
+        {
+          "mode": "bfs",
+          "name": "BFS",
+          "n": 5,
+          "pc1": -2.6,
+          "pc2": 3.441,
+          "adherence": 0.1
+        },
+        {
+          "mode": "dfs",
+          "name": "DFS",
+          "n": 5,
+          "pc1": -3.662,
+          "pc2": 2.727,
+          "adherence": 0.35
+        },
+        {
+          "mode": "dijkstra",
+          "name": "Dijkstra",
+          "n": 5,
+          "pc1": 1.594,
+          "pc2": -2.839,
+          "adherence": 0.05
+        },
+        {
+          "mode": "iddfs",
+          "name": "IDDFS",
+          "n": 5,
+          "pc1": 0.478,
+          "pc2": -2.556,
+          "adherence": 0.0
+        },
+        {
+          "mode": "bibfs",
+          "name": "bidirectional BFS",
+          "n": 5,
+          "pc1": 1.219,
+          "pc2": -3.109,
+          "adherence": 0.0
+        }
+      ],
+      "twins": [
+        {
+          "template": 1,
+          "pc1": -3.282,
+          "pc2": -0.685
+        },
+        {
+          "template": 2,
+          "pc1": -4.774,
+          "pc2": -3.652
+        },
+        {
+          "template": 3,
+          "pc1": -5.795,
+          "pc2": -4.053
+        },
+        {
+          "template": 4,
+          "pc1": -6.235,
+          "pc2": -4.257
+        },
+        {
+          "template": 5,
+          "pc1": 2.752,
+          "pc2": -2.223
+        }
+      ],
+      "bans": [
+        {
+          "template": 1,
+          "pc1": -7.712,
+          "pc2": -1.466
+        },
+        {
+          "template": 2,
+          "pc1": -7.357,
+          "pc2": -4.695
+        },
+        {
+          "template": 3,
+          "pc1": -6.111,
+          "pc2": -3.299
+        },
+        {
+          "template": 4,
+          "pc1": -5.864,
+          "pc2": -2.229
+        },
+        {
+          "template": 5,
+          "pc1": -0.119,
+          "pc2": -0.876
+        }
+      ]
+    },
+    {
+      "task_id": "T2",
+      "panel_title": "Shortest path",
+      "pc1_var": 0.2316,
+      "pc2_var": 0.1981,
+      "n_forced_per_algorithm": 5,
+      "algorithms": [
+        {
+          "mode": "bf_spfa",
+          "name": "Bellman-Ford/SPFA",
+          "n": 5,
+          "pc1": 0.213,
+          "pc2": 0.221,
+          "adherence": 0.65
+        },
+        {
+          "mode": "dial",
+          "name": "Dial's buckets",
+          "n": 5,
+          "pc1": 2.83,
+          "pc2": -2.239,
+          "adherence": 0.0
+        },
+        {
+          "mode": "dijkstra",
+          "name": "Dijkstra",
+          "n": 5,
+          "pc1": -3.121,
+          "pc2": 1.306,
+          "adherence": 0.85
+        },
+        {
+          "mode": "floyd",
+          "name": "Floyd-Warshall",
+          "n": 5,
+          "pc1": -2.536,
+          "pc2": 5.646,
+          "adherence": 0.3
+        },
+        {
+          "mode": "bidijkstra",
+          "name": "bidirectional Dijkstra",
+          "n": 5,
+          "pc1": 2.615,
+          "pc2": -4.934,
+          "adherence": 0.0
+        }
+      ],
+      "twins": [
+        {
+          "template": 1,
+          "pc1": -3.568,
+          "pc2": -1.505
+        },
+        {
+          "template": 2,
+          "pc1": -5.103,
+          "pc2": -4.201
+        },
+        {
+          "template": 3,
+          "pc1": -4.326,
+          "pc2": -4.317
+        },
+        {
+          "template": 4,
+          "pc1": -6.191,
+          "pc2": -6.205
+        },
+        {
+          "template": 5,
+          "pc1": 0.949,
+          "pc2": 0.092
+        }
+      ],
+      "bans": [
+        {
+          "template": 1,
+          "pc1": -3.667,
+          "pc2": -4.448
+        },
+        {
+          "template": 2,
+          "pc1": -3.854,
+          "pc2": -4.654
+        },
+        {
+          "template": 3,
+          "pc1": -1.076,
+          "pc2": -5.733
+        },
+        {
+          "template": 4,
+          "pc1": -4.085,
+          "pc2": -3.8
+        },
+        {
+          "template": 5,
+          "pc1": 1.209,
+          "pc2": -1.555
+        }
+      ]
+    },
+    {
+      "task_id": "T03",
+      "panel_title": "Kth smallest",
+      "pc1_var": 0.2948,
+      "pc2_var": 0.1514,
+      "n_forced_per_algorithm": 5,
+      "algorithms": [
+        {
+          "mode": "counting_sort",
+          "name": "counting sort",
+          "n": 5,
+          "pc1": 1.224,
+          "pc2": 1.73,
+          "adherence": 0.8
+        },
+        {
+          "mode": "full_sort",
+          "name": "full sort",
+          "n": 5,
+          "pc1": -6.746,
+          "pc2": 0.972,
+          "adherence": 0.15
+        },
+        {
+          "mode": "heapify_pop",
+          "name": "heapify and pop",
+          "n": 5,
+          "pc1": -5.249,
+          "pc2": -2.395,
+          "adherence": 0.45
+        },
+        {
+          "mode": "median_of_medians",
+          "name": "median of medians",
+          "n": 5,
+          "pc1": 9.828,
+          "pc2": -1.112,
+          "adherence": 0.05
+        },
+        {
+          "mode": "quickselect",
+          "name": "quickselect",
+          "n": 5,
+          "pc1": 4.213,
+          "pc2": 1.513,
+          "adherence": 1.0
+        },
+        {
+          "mode": "size_k_heap",
+          "name": "size k heap",
+          "n": 5,
+          "pc1": -3.27,
+          "pc2": -0.709,
+          "adherence": 0.15
+        }
+      ],
+      "twins": [
+        {
+          "template": 1,
+          "pc1": -8.704,
+          "pc2": 0.982
+        },
+        {
+          "template": 2,
+          "pc1": -8.689,
+          "pc2": -1.101
+        },
+        {
+          "template": 3,
+          "pc1": -7.514,
+          "pc2": 0.049
+        },
+        {
+          "template": 4,
+          "pc1": -7.242,
+          "pc2": 1.734
+        },
+        {
+          "template": 5,
+          "pc1": -7.28,
+          "pc2": -3.945
+        }
+      ],
+      "bans": []
+    },
+    {
+      "task_id": "T05",
+      "panel_title": "Two sum",
+      "pc1_var": 0.4051,
+      "pc2_var": 0.1752,
+      "n_forced_per_algorithm": 5,
+      "algorithms": [
+        {
+          "mode": "brute_force",
+          "name": "brute force",
+          "n": 5,
+          "pc1": 11.322,
+          "pc2": -2.148,
+          "adherence": 1.0
+        },
+        {
+          "mode": "hash_map",
+          "name": "hash map",
+          "n": 5,
+          "pc1": -1.429,
+          "pc2": 6.624,
+          "adherence": 1.0
+        },
+        {
+          "mode": "sort_binary_search",
+          "name": "sort and binary search",
+          "n": 5,
+          "pc1": -6.958,
+          "pc2": -4.907,
+          "adherence": 0.0
+        },
+        {
+          "mode": "sort_two_pointers",
+          "name": "sort and two pointers",
+          "n": 5,
+          "pc1": -2.935,
+          "pc2": 0.43,
+          "adherence": 0.65
+        }
+      ],
+      "twins": [
+        {
+          "template": 1,
+          "pc1": 0.366,
+          "pc2": 0.201
+        },
+        {
+          "template": 2,
+          "pc1": -0.423,
+          "pc2": 1.265
+        },
+        {
+          "template": 3,
+          "pc1": -1.103,
+          "pc2": -1.055
+        },
+        {
+          "template": 4,
+          "pc1": -1.752,
+          "pc2": 0.972
+        },
+        {
+          "template": 5,
+          "pc1": 3.654,
+          "pc2": 0.054
+        }
+      ],
+      "bans": [
+        {
+          "template": 1,
+          "pc1": -1.308,
+          "pc2": 3.132
+        },
+        {
+          "template": 2,
+          "pc1": -2.289,
+          "pc2": 3.744
+        },
+        {
+          "template": 3,
+          "pc1": -1.165,
+          "pc2": 2.709
+        },
+        {
+          "template": 4,
+          "pc1": -1.078,
+          "pc2": 2.882
+        },
+        {
+          "template": 5,
+          "pc1": 3.191,
+          "pc2": 0.078
+        }
+      ]
+    },
+    {
+      "task_id": "T06",
+      "panel_title": "Find duplicate",
+      "pc1_var": 0.3155,
+      "pc2_var": 0.1646,
+      "n_forced_per_algorithm": 5,
+      "algorithms": [
+        {
+          "mode": "floyd",
+          "name": "Floyd-Warshall",
+          "n": 5,
+          "pc1": 7.03,
+          "pc2": 5.192,
+          "adherence": 0.95
+        },
+        {
+          "mode": "value_binary_search",
+          "name": "binary search on values",
+          "n": 5,
+          "pc1": 5.727,
+          "pc2": 0.431,
+          "adherence": 0.95
+        },
+        {
+          "mode": "hash_set",
+          "name": "hash set",
+          "n": 5,
+          "pc1": -11.057,
+          "pc2": 4.845,
+          "adherence": 1.0
+        },
+        {
+          "mode": "index_marking",
+          "name": "index marking",
+          "n": 5,
+          "pc1": -2.17,
+          "pc2": -6.367,
+          "adherence": 0.0
+        },
+        {
+          "mode": "sort_adjacent",
+          "name": "sort and compare neighbours",
+          "n": 5,
+          "pc1": 0.47,
+          "pc2": -4.101,
+          "adherence": 0.6
+        }
+      ],
+      "twins": [
+        {
+          "template": 1,
+          "pc1": -1.175,
+          "pc2": -4.794
+        },
+        {
+          "template": 2,
+          "pc1": -0.968,
+          "pc2": -5.995
+        },
+        {
+          "template": 3,
+          "pc1": 1.313,
+          "pc2": -7.264
+        },
+        {
+          "template": 4,
+          "pc1": 0.934,
+          "pc2": -7.244
+        },
+        {
+          "template": 5,
+          "pc1": -1.502,
+          "pc2": -5.358
+        }
+      ],
+      "bans": [
+        {
+          "template": 1,
+          "pc1": -6.735,
+          "pc2": -7.2
+        },
+        {
+          "template": 2,
+          "pc1": -5.499,
+          "pc2": -7.356
+        },
+        {
+          "template": 3,
+          "pc1": -5.337,
+          "pc2": -5.014
+        },
+        {
+          "template": 4,
+          "pc1": -5.836,
+          "pc2": -2.936
+        },
+        {
+          "template": 5,
+          "pc1": -4.097,
+          "pc2": -5.921
+        }
+      ]
+    },
+    {
+      "task_id": "T10",
+      "panel_title": "Connected components",
+      "pc1_var": 0.2893,
+      "pc2_var": 0.223,
+      "n_forced_per_algorithm": 5,
+      "algorithms": [
+        {
+          "mode": "bfs",
+          "name": "BFS",
+          "n": 5,
+          "pc1": -4.218,
+          "pc2": 0.443,
+          "adherence": 0.75
+        },
+        {
+          "mode": "dfs",
+          "name": "DFS",
+          "n": 5,
+          "pc1": -3.186,
+          "pc2": 1.742,
+          "adherence": 0.95
+        },
+        {
+          "mode": "label_propagation",
+          "name": "label propagation",
+          "n": 5,
+          "pc1": -0.926,
+          "pc2": -5.372,
+          "adherence": 0.0
+        },
+        {
+          "mode": "union_find",
+          "name": "union find",
+          "n": 5,
+          "pc1": 8.33,
+          "pc2": 3.187,
+          "adherence": 0.95
+        }
+      ],
+      "twins": [
+        {
+          "template": 1,
+          "pc1": -2.968,
+          "pc2": -1.014
+        },
+        {
+          "template": 2,
+          "pc1": -1.781,
+          "pc2": -2.235
+        },
+        {
+          "template": 3,
+          "pc1": -1.274,
+          "pc2": -3.575
+        },
+        {
+          "template": 4,
+          "pc1": -1.501,
+          "pc2": -2.08
+        },
+        {
+          "template": 5,
+          "pc1": -1.825,
+          "pc2": -5.08
+        }
+      ],
+      "bans": [
+        {
+          "template": 1,
+          "pc1": -3.514,
+          "pc2": -2.612
+        },
+        {
+          "template": 2,
+          "pc1": -2.178,
+          "pc2": -2.962
+        },
+        {
+          "template": 3,
+          "pc1": -4.031,
+          "pc2": -3.788
+        },
+        {
+          "template": 4,
+          "pc1": -4.502,
+          "pc2": -1.536
+        },
+        {
+          "template": 5,
+          "pc1": -1.465,
+          "pc2": -6.307
+        }
+      ]
+    },
+    {
+      "task_id": "T04",
+      "panel_title": "Substring search",
+      "pc1_var": 0.4222,
+      "pc2_var": 0.1372,
+      "n_forced_per_algorithm": 5,
+      "algorithms": [
+        {
+          "mode": "bmh",
+          "name": "Boyer-Moore-Horspool",
+          "n": 5,
+          "pc1": 4.581,
+          "pc2": -2.172,
+          "adherence": 0.3
+        },
+        {
+          "mode": "kmp",
+          "name": "Knuth-Morris-Pratt",
+          "n": 5,
+          "pc1": 7.289,
+          "pc2": 3.225,
+          "adherence": 0.9
+        },
+        {
+          "mode": "rabin_karp",
+          "name": "Rabin-Karp",
+          "n": 5,
+          "pc1": 4.69,
+          "pc2": -2.238,
+          "adherence": 0.05
+        },
+        {
+          "mode": "z_algorithm",
+          "name": "Z algorithm",
+          "n": 5,
+          "pc1": 6.304,
+          "pc2": 2.017,
+          "adherence": 0.55
+        },
+        {
+          "mode": "builtin",
+          "name": "built-in search",
+          "n": 5,
+          "pc1": -15.075,
+          "pc2": 3.54,
+          "adherence": 0.8
+        },
+        {
+          "mode": "naive",
+          "name": "naive scan",
+          "n": 5,
+          "pc1": -7.79,
+          "pc2": -4.372,
+          "adherence": 1.0
+        }
+      ],
+      "twins": [
+        {
+          "template": 1,
+          "pc1": -11.209,
+          "pc2": -1.371
+        },
+        {
+          "template": 2,
+          "pc1": -10.057,
+          "pc2": -0.466
+        },
+        {
+          "template": 3,
+          "pc1": -11.153,
+          "pc2": 0.348
+        },
+        {
+          "template": 4,
+          "pc1": -12.132,
+          "pc2": 3.252
+        },
+        {
+          "template": 5,
+          "pc1": -10.121,
+          "pc2": -3.494
+        }
+      ],
+      "bans": [
+        {
+          "template": 1,
+          "pc1": -6.275,
+          "pc2": 0.627
+        },
+        {
+          "template": 2,
+          "pc1": -6.221,
+          "pc2": -0.216
+        },
+        {
+          "template": 3,
+          "pc1": -7.223,
+          "pc2": -1.573
+        },
+        {
+          "template": 4,
+          "pc1": -8.744,
+          "pc2": -2.2
+        },
+        {
+          "template": 5,
+          "pc1": -4.269,
+          "pc2": -4.768
+        }
+      ]
+    },
+    {
+      "task_id": "R6",
+      "panel_title": "First and last position",
+      "pc1_var": 0.5123,
+      "pc2_var": 0.1661,
+      "n_forced_per_algorithm": 5,
+      "algorithms": [
+        {
+          "mode": "binary_search",
+          "name": "binary search",
+          "n": 5,
+          "pc1": -7.375,
+          "pc2": 6.184,
+          "adherence": 0.9
+        },
+        {
+          "mode": "bisect_module",
+          "name": "bisect module",
+          "n": 5,
+          "pc1": 13.566,
+          "pc2": 0.432,
+          "adherence": 1.0
+        },
+        {
+          "mode": "exponential_search",
+          "name": "exponential search",
+          "n": 5,
+          "pc1": -6.19,
+          "pc2": -6.616,
+          "adherence": 0.0
+        }
+      ],
+      "twins": [
+        {
+          "template": 1,
+          "pc1": -1.253,
+          "pc2": 4.04
+        },
+        {
+          "template": 2,
+          "pc1": -1.467,
+          "pc2": 1.847
+        },
+        {
+          "template": 3,
+          "pc1": -1.351,
+          "pc2": -0.14
+        },
+        {
+          "template": 4,
+          "pc1": -1.055,
+          "pc2": 0.07
+        },
+        {
+          "template": 5,
+          "pc1": -1.933,
+          "pc2": 4.082
+        }
+      ],
+      "bans": [
+        {
+          "template": 1,
+          "pc1": -2.643,
+          "pc2": 4.364
+        },
+        {
+          "template": 2,
+          "pc1": -2.237,
+          "pc2": 4.296
+        },
+        {
+          "template": 3,
+          "pc1": -2.797,
+          "pc2": 5.019
+        },
+        {
+          "template": 4,
+          "pc1": -2.49,
+          "pc2": 4.169
+        },
+        {
+          "template": 5,
+          "pc1": -2.351,
+          "pc2": 4.539
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "figure_id": "fig_unit_seed",
+  "chart_type": "grouped_bar_with_group_annotations",
+  "note": "Hand-written matplotlib via aii-data-fig-gen house style: the catalogue's 'bar' type has no primitive for a text annotation spanning a whole group of bars (the 'unit effect' line above each group here), and its error bars are single symmetric magnitudes, not the asymmetric Wilson bounds this data actually has. See SKILL.md 'Use a generator when one fits -- hand-write only when none does'.",
+  "model": "Qwen/Qwen3-8B, bf16, thinking off",
+  "condition": "per-sample plan noise (PN), dose alpha = 2, task-specification positions of decoder blocks 12-23 during prefill",
+  "outcome": "share of CRN slots whose correct program implements an algorithm other than the twin's default (Y = correct off-default share)",
+  "design_2x2": {
+    "factor_1": "dose unit: U_abs (absolute, the ban's own per-block/per-position displacement norm) vs U_bf (relative, ||h_twin|| * r_Q(l))",
+    "factor_2": "direction-seed generator: S4 (iteration-4 seeds, exp29) vs S5 (iteration-5 seeds, exp27)",
+    "D1": "U_abs x S4 = absolute unit, iteration-4 seeds",
+    "D2": "U_abs x S5 = absolute unit, iteration-5 seeds",
+    "D3": "U_bf x S4 = relative unit, iteration-4 seeds",
+    "D4": "U_bf x S5 = relative unit, iteration-5 seeds"
+  },
+  "source_artifact": {
+    "run": "run_0oWBKrKEGsmU",
+    "artifact": "gen_art_experiment_36",
+    "workspace": "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_36",
+    "note_on_evidence_check_listing": "The evidence_check block in the prompt filed this artifact under iteration 6; on disk it is the iteration-7 gen_art directory (gen_art_experiment_36 does not exist under iter_6). Content (title 'Why random nudges stopped changing the algorithm', the U_abs/U_bf x S4/S5 design, T10/T2 numbers) matches the iteration-6 summary text verbatim, so this is the same artifact at a corrected path, not a different one.",
+    "files_read": [
+      "README.md",
+      "results/s1_2x2.json",
+      "results/e3_replicate.json"
+    ]
+  },
+  "series": [
+    {"id": "D1", "label": "absolute unit, iteration-4 seeds", "color": "#0072B2", "color_name": "dark blue (Okabe-Ito 'blue')", "hatch": null},
+    {"id": "D2", "label": "absolute unit, iteration-5 seeds", "color": "#56B4E9", "color_name": "light blue (Okabe-Ito 'sky blue')", "hatch": "///"},
+    {"id": "D3", "label": "relative unit, iteration-4 seeds", "color": "#D55E00", "color_name": "dark orange (Okabe-Ito 'vermillion')", "hatch": null},
+    {"id": "D4", "label": "relative unit, iteration-5 seeds", "color": "#E69F00", "color_name": "light orange (Okabe-Ito 'orange')", "hatch": "///"}
+  ],
+  "groups": [
+    {
+      "category": "connected components\n(50 slots)",
+      "task_id": "T10",
+      "n_per_arm": 50,
+      "source_file": "results/s1_2x2.json",
+      "source_pointer": "cells['T10|D{1..4}_a2'].Y, tables['T10|a2|Y']",
+      "has_error_bars": true,
+      "unit_effect_text": "unit +0.45 [0.35, 0.55]",
+      "seed_effect_text": "seed +0.03 [-0.07, 0.14]",
+      "bars": {
+        "D1": {"value": 0.50, "k": 25, "n": 50, "ci_low": 0.3664451431682858, "ci_high": 0.6335548568317142},
+        "D2": {"value": 0.52, "k": 26, "n": 50, "ci_low": 0.38511744890044614, "ci_high": 0.6520286471342196},
+        "D3": {"value": 0.10, "k": 5,  "n": 50, "ci_low": 0.04347576493189041, "ci_high": 0.21360231437479654},
+        "D4": {"value": 0.02, "k": 1,  "n": 50, "ci_low": 0.003539259271646236, "ci_high": 0.10495443589637815}
+      }
+    },
+    {
+      "category": "connected components,\nfresh slots (50)",
+      "task_id": "T10",
+      "n_per_arm": 50,
+      "source_file": "results/e3_replicate.json",
+      "source_pointer": "T10_fresh_k10_19['2x2|Y']",
+      "has_error_bars": false,
+      "unit_effect_text": "unit +0.42 [0.32, 0.52]",
+      "seed_effect_text": "seed -0.10 [-0.22, 0.02]",
+      "bars": {
+        "D1": {"value": 0.42, "n": 50},
+        "D2": {"value": 0.60, "n": 50},
+        "D3": {"value": 0.08, "n": 50},
+        "D4": {"value": 0.10, "n": 50}
+      }
+    },
+    {
+      "category": "kth smallest\n(50)",
+      "task_id": "T03",
+      "n_per_arm": 50,
+      "source_file": "results/e3_replicate.json",
+      "source_pointer": "T03_k0_9['2x2|Y']",
+      "has_error_bars": false,
+      "unit_effect_text": "unit +0.27 [0.18, 0.37]",
+      "seed_effect_text": "seed +0.03 [-0.12, 0.18]",
+      "bars": {
+        "D1": {"value": 0.56, "n": 50},
+        "D2": {"value": 0.52, "n": 50},
+        "D3": {"value": 0.28, "n": 50},
+        "D4": {"value": 0.26, "n": 50}
+      }
+    },
+    {
+      "category": "shortest path\n(100)",
+      "task_id": "T2",
+      "n_per_arm": 100,
+      "source_file": "results/s1_2x2.json",
+      "source_pointer": "cells['T2|D{1..4}_a2'].Y, tables['T2|a2|Y']",
+      "has_error_bars": true,
+      "unit_effect_text": "unit +0.115 [0.06, 0.17]",
+      "seed_effect_text": "seed -0.035 [-0.10, 0.03]",
+      "bars": {
+        "D1": {"value": 0.13, "k": 13, "n": 100, "ci_low": 0.07757167427240512, "ci_high": 0.20980351440076428},
+        "D2": {"value": 0.20, "k": 20, "n": 100, "ci_low": 0.1333669333310325,  "ci_high": 0.2888291655931589},
+        "D3": {"value": 0.05, "k": 5,  "n": 100, "ci_low": 0.02154367915436796, "ci_high": 0.11175046923191913},
+        "D4": {"value": 0.05, "k": 5,  "n": 100, "ci_low": 0.02154367915436796, "ci_high": 0.11175046923191913}
+      }
+    }
+  ],
+  "axes": {
+    "xlabel": "task (plan noise, α = 2)",
+    "ylabel": "correct share off the default",
+    "ylim": [0.0, 0.70]
+  },
+  "aspect": "2:1",
+  "width_in": 6.5,
+  "legend_loc": "outside upper center",
+  "error_bar_note": "Wilson 95% score intervals; asymmetric, drawn as true [low, high] bounds (not a symmetric approximation) since this is hand-written matplotlib rather than the generator's single-magnitude 'errors' key. Not reported (and not drawn) for the two exploratory E3 replication groups, matching results/e3_replicate.json, which gives pooled shares there but no per-arm Wilson interval.",
+  "deviations_from_draft_caption": [
+    "aspect rendered at 2:1, not the draft's 21:9. Verified against the catalogue generator itself: chart_gen.py's own 'bar' type, given these exact category and series label strings at 21:9 (height 2.79in) -- and even at 4:3/1:1 -- refuses with 'constrained layout could not place this figure... labels, legend and tick marks need more than that leaves for the data'. A full-sentence 4-entry legend plus this y-axis label do not fit a figure this short at 6.5in width; 2:1 (height 3.25in) is the shortest tested aspect at which the real render (with group-effect annotations too) passes assert_text_is_legible with no collisions.",
+    "font family is CMU Serif (the pipeline's paper caption font via apply_house_style), not the sans-serif named in the draft spec text -- SKILL.md: 'Do not re-solve [font family]; it is set globally in chart_style.py' so every figure in the paper keeps one typeface.",
+    "no in-image title, per the draft spec's own 'no title inside the image (the caption carries it)'; the figure's title lives only in this run's structured output and in the paper caption."
+  ]
+}
