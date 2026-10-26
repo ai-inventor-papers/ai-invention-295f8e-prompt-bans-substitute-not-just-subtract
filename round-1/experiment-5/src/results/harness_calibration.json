@@ -1,0 +1,127 @@
+{
+ "shrinks": [],
+ "per_ref": {
+  "t1": {
+   "bfs": {
+    "max_frac_of_limit": 0.0006336905062198639,
+    "median_frac": 4.6040862798690796e-05,
+    "harness_passed": true,
+    "harness_wall_s": 0.008296465501189232
+   },
+   "dfs_iter": {
+    "max_frac_of_limit": 0.0003960803151130676,
+    "median_frac": 2.9124319553375244e-05,
+    "harness_passed": true,
+    "harness_wall_s": 0.010080600157380104
+   },
+   "dfs_rec": {
+    "max_frac_of_limit": 0.000749705359339714,
+    "median_frac": 2.0544975996017456e-05,
+    "harness_passed": true,
+    "harness_wall_s": 0.00933673046529293
+   },
+   "bidir_bfs": {
+    "max_frac_of_limit": 0.0006834771484136581,
+    "median_frac": 3.697723150253296e-05,
+    "harness_passed": true,
+    "harness_wall_s": 0.012185800820589066
+   },
+   "iddfs": {
+    "max_frac_of_limit": 0.18972310982644558,
+    "median_frac": 0.0008448511362075806,
+    "harness_passed": true,
+    "harness_wall_s": 0.6908098254352808
+   },
+   "astar": {
+    "max_frac_of_limit": 0.0014159269630908966,
+    "median_frac": 6.823241710662842e-05,
+    "harness_passed": true,
+    "harness_wall_s": 0.011519240215420723
+   },
+   "greedy": {
+    "max_frac_of_limit": 0.0004883706569671631,
+    "median_frac": 3.641657531261444e-05,
+    "harness_passed": true,
+    "harness_wall_s": 0.006125321611762047
+   },
+   "dijkstra_unit": {
+    "max_frac_of_limit": 0.0013362877070903778,
+    "median_frac": 0.00010410696268081665,
+    "harness_passed": true,
+    "harness_wall_s": 0.013153189793229103
+   }
+  },
+  "t2": {
+   "dijkstra_heap": {
+    "max_frac_of_limit": 0.00015754997730255127,
+    "median_frac": 1.9595958292484283e-05,
+    "harness_passed": true,
+    "harness_wall_s": 0.022364480420947075
+   },
+   "dijkstra_array": {
+    "max_frac_of_limit": 0.00046607479453086853,
+    "median_frac": 8.356105536222458e-05,
+    "harness_passed": true,
+    "harness_wall_s": 0.02691541239619255
+   },
+   "bellman_ford": {
+    "max_frac_of_limit": 0.0005347207188606262,
+    "median_frac": 3.170967102050781e-05,
+    "harness_passed": true,
+    "harness_wall_s": 0.023686183616518974
+   },
+   "spfa": {
+    "max_frac_of_limit": 0.00021671690046787262,
+    "median_frac": 2.1182000637054443e-05,
+    "harness_passed": true,
+    "harness_wall_s": 0.022008610889315605
+   },
+   "bidir_dijkstra": {
+    "max_frac_of_limit": 0.00032667629420757294,
+    "median_frac": 3.06861475110054e-05,
+    "harness_passed": true,
+    "harness_wall_s": 0.023041976615786552
+   },
+   "floyd_warshall": {
+    "max_frac_of_limit": 0.027001161128282547,
+    "median_frac": 0.0010212846100330353,
+    "harness_passed": true,
+    "harness_wall_s": 0.2775368560105562
+   },
+   "dial": {
+    "max_frac_of_limit": 0.001090414822101593,
+    "median_frac": 0.0003063501790165901,
+    "harness_passed": true,
+    "harness_wall_s": 0.038598913699388504
+   }
+  }
+ },
+ "probes": {
+  "t1/probe:infinite_loop": {
+   "expected": "timeout",
+   "got": "timeout",
+   "ok": true
+  },
+  "t1/probe:alloc_4gb": {
+   "expected": "exception:MemoryError",
+   "got": "exception:MemoryError",
+   "ok": true
+  },
+  "t1/probe:non_adjacent_step": {
+   "expected": "wrong",
+   "got": "wrong:bad_step",
+   "ok": true
+  },
+  "t1/probe:sys_exit": {
+   "expected": "exception:SystemExit",
+   "got": "exception:SystemExit",
+   "ok": true
+  },
+  "t2/probe:ignores_weights_bfs": {
+   "expected": "wrong",
+   "got": "wrong:wrong_value",
+   "ok": true
+  }
+ },
+ "gate_ok": true
+}

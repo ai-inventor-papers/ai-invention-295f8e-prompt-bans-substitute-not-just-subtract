@@ -1,0 +1,260 @@
+{
+ "rows": [
+  {
+   "program": "t1/bfs",
+   "expected": "bfs",
+   "ast": "bfs",
+   "runtime": "bfs",
+   "runtime_why": "1 FIFO container",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t1/dfs_iter",
+   "expected": "dfs",
+   "ast": "dfs",
+   "runtime": "dfs",
+   "runtime_why": "lifo=260 depth=1 waves=4",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t1/dfs_rec",
+   "expected": "dfs",
+   "ast": "dfs",
+   "runtime": "dfs",
+   "runtime_why": "lifo=0 depth=225 waves=4",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t1/bidir_bfs",
+   "expected": "bidir_bfs",
+   "ast": "bidir_bfs",
+   "runtime": "bidir_bfs",
+   "runtime_why": "2 FIFO containers",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t1/iddfs",
+   "expected": "iddfs",
+   "ast": "iddfs",
+   "runtime": "iddfs",
+   "runtime_why": "lifo=9745 depth=1 waves=189 reread=54.2",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t1/astar",
+   "expected": "astar_greedy",
+   "ast": "astar_greedy",
+   "runtime": "astar_greedy",
+   "runtime_why": "heap share_gh=1.00 share_h=0.00",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t1/greedy",
+   "expected": "astar_greedy",
+   "ast": "astar_greedy",
+   "runtime": "astar_greedy",
+   "runtime_why": "heap share_gh=0.00 share_h=1.00",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t1/dijkstra_unit",
+   "expected": "dijkstra_unit",
+   "ast": "dijkstra_unit",
+   "runtime": "dijkstra_unit",
+   "runtime_why": "heap share_g=1.00",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t2/dijkstra_heap",
+   "expected": "dijkstra",
+   "ast": "dijkstra",
+   "runtime": "dijkstra",
+   "runtime_why": "1 heap",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t2/dijkstra_array",
+   "expected": "dijkstra",
+   "ast": "dijkstra",
+   "runtime": "unknown",
+   "runtime_why": "exponent 1.9055076101856692",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t2/bellman_ford",
+   "expected": "bellman_ford_spfa",
+   "ast": "bellman_ford_spfa",
+   "runtime": "bellman_ford_spfa",
+   "runtime_why": "edge passes 79.0",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t2/spfa",
+   "expected": "bellman_ford_spfa",
+   "ast": "bellman_ford_spfa",
+   "runtime": "bellman_ford_spfa",
+   "runtime_why": "FIFO re-enqueues 56",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t2/bidir_dijkstra",
+   "expected": "bidir_dijkstra",
+   "ast": "bidir_dijkstra",
+   "runtime": "bidir_dijkstra",
+   "runtime_why": "2 heaps",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t2/floyd_warshall",
+   "expected": "floyd_warshall",
+   "ast": "floyd_warshall",
+   "runtime": "floyd_warshall",
+   "runtime_why": "exponent 2.88",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t2/dial",
+   "expected": "dial",
+   "ast": "dial",
+   "runtime": "unknown",
+   "runtime_why": "exponent 1.0229266050472665",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t1/mut:astar_counter",
+   "expected": "astar_greedy",
+   "ast": "astar_greedy",
+   "runtime": "astar_greedy",
+   "runtime_why": "heap share_gh=1.00 share_h=0.00",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t1/mut:levels",
+   "expected": "bfs",
+   "ast": "bfs",
+   "runtime": "bfs",
+   "runtime_why": "read-order violation 0.005",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t1/mut:list_pop0",
+   "expected": "bfs",
+   "ast": "bfs",
+   "runtime": "bfs",
+   "runtime_why": "1 FIFO container",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t1/mut:queue_module",
+   "expected": "bfs",
+   "ast": "bfs",
+   "runtime": "bfs",
+   "runtime_why": "1 FIFO container",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t1/mut:bfs_pop_mutant",
+   "expected": "dfs",
+   "ast": "dfs",
+   "runtime": "dfs",
+   "runtime_why": "lifo=182 depth=1 waves=2",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t1/mut:recursive",
+   "expected": "iddfs",
+   "ast": "iddfs",
+   "runtime": "iddfs",
+   "runtime_why": "lifo=9319 depth=29 waves=171 reread=49.1",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": false
+  },
+  {
+   "program": "t2/mut:bf_no_early_exit",
+   "expected": "bellman_ford_spfa",
+   "ast": "bellman_ford_spfa",
+   "runtime": "bellman_ford_spfa",
+   "runtime_why": "edge passes 79.0",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t2/mut:spfa_list",
+   "expected": "bellman_ford_spfa",
+   "ast": "bellman_ford_spfa",
+   "runtime": "bellman_ford_spfa",
+   "runtime_why": "FIFO re-enqueues 56",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t2/mut:min_key",
+   "expected": "dijkstra",
+   "ast": "dijkstra",
+   "runtime": "unknown",
+   "runtime_why": "exponent 1.6007829135835485",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  },
+  {
+   "program": "t2/mut:priority_queue",
+   "expected": "dijkstra",
+   "ast": "dijkstra",
+   "runtime": "dijkstra",
+   "runtime_why": "1 heap",
+   "ast_ok": true,
+   "runtime_ok": true,
+   "passes_tests": true
+  }
+ ],
+ "ast_accuracy": 1.0,
+ "runtime_no_wrong_rate": 1.0,
+ "runtime_exact_accuracy": 0.88,
+ "gate_ok": true,
+ "n_programs": 25,
+ "all_programs_pass_tests": false
+}

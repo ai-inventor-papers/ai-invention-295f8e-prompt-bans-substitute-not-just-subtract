@@ -1,0 +1,97 @@
+[
+ {
+  "what": "Models read from the run's shared HF cache (HF_HOME preset by the platform) instead of ./hf_cache",
+  "why": "Platform rule: never override HF_HOME/TRANSFORMERS_CACHE (avoids duplicate weights); no workspace hf_cache exists",
+  "when": "2026-10-19T17:31:16Z"
+ },
+ {
+  "what": "vLLM 0.11.0 run with enforce_eager=True, max_num_seqs=48 (plan: 16), generation_config='vllm'",
+  "why": "Container has no C compiler for Triton/Inductor; max_num_seqs only changes throughput; generation_config='vllm' guarantees the HF sampling defaults (T=0.6, top_p=0.95, top_k=20) are never merged",
+  "when": "2026-10-19T17:31:17Z"
+ },
+ {
+  "what": "Program extraction keeps only top-level imports/defs/classes/assignments for EVERY arm (plan: template-free arms only)",
+  "why": "Identical rule across arms so module-level demo code (prints, example calls) can never crash an otherwise valid chat solution",
+  "when": "2026-10-19T17:31:17Z"
+ },
+ {
+  "what": "Steering arms use a custom decode loop (Gumbel-max over full-vocab float32 logits at T=1, one CUDA generator per (task, paraphrase, sample)) instead of HF generate + torch.manual_seed per batch",
+  "why": "Exact per-sample common-random-number coupling independent of batch composition (verified: hook test f2), and HF generation_config can never leak in; each batch holds 2 arms x 10 samples of one paraphrase (no padding) for ~2x throughput",
+  "when": "2026-10-19T17:31:17Z"
+ },
+ {
+  "what": "Uniform no-code cutoff for all HF arms: a row is stopped at 512 tokens if neither ``` nor 'def solve' has appeared (finish_reason nocode_cutoff, counted as degenerate)",
+  "why": "Sharpening arms produced pure garbage running to 1024 tokens; the rule is arm-blind, never fires on S0, and was applied post hoc (identically) to the 20 rows generated before it existed",
+  "when": "2026-10-19T17:31:17Z"
+ },
+ {
+  "what": "Runtime labeller rules refined (revision rounds 1-2): IDDFS restart = >=4 waves of start-neighbour reads after reads at start-distance >=4 AND re-read ratio >=5; Bellman-Ford/SPFA from edge-list passes, edge-order sensitivity, or FIFO re-enqueues (deque and list queues) instead of exponent band [1.6,2.6)",
+  "why": "The exponent band mislabels O(n^2) array Dijkstra as Bellman-Ford and the first wave rule fired on level-synchronous BFS; array-scan Dijkstra and Dial stay 'unknown' at runtime by design and are resolved by AST/judge",
+  "when": "2026-10-19T17:31:17Z"
+ },
+ {
+  "what": "AST labeller: added level-synchronous BFS (frontier lists swapped each round) and made the Floyd-Warshall X[i][k]+X[k][j] pattern require three distinct named indices",
+  "why": "Gate failures on a level-BFS variant and a false FW hit on pf[0][0]+pb[0][0] in bidirectional Dijkstra",
+  "when": "2026-10-19T17:31:17Z"
+ },
+ {
+  "what": "Blind judge (google/gemini-2.5-flash-lite) labels every distinct parseable program, not only disagreements; the FINAL label still follows the plan rule (runtime==AST catalogue label, else judge)",
+  "why": "Cost ~$0.0001/call; gives a full-sample judge-label sensitivity analysis and agreement rates per arm in addition to the 15-per-arm audit",
+  "when": "2026-10-19T17:31:17Z"
+ },
+ {
+  "what": "Judge 'other:<sub>' labels that name a catalogue algorithm (e.g. buggy_bfs, incorrect_dijkstra_attempt) are canonicalised to that algorithm, arm-blind",
+  "why": "The judge was instructed to label buggy programs by the algorithm they attempt but sometimes emitted other:buggy_X",
+  "when": "2026-10-19T17:31:17Z"
+ },
+ {
+  "what": "PREDICT primary predictor = base_tf all parseable labelled samples restricted to survivors (fallback 3), with the correct-only version committed as first secondary",
+  "why": "Only 12 (T1) and 18 (T2) correct base_tf samples (<40 per task); decided and hash-committed before phase C was sampled",
+  "when": "2026-10-19T17:31:17Z"
+ },
+ {
+  "what": "Ban prompts use the ban sentence itself as the lead-in segment (SEG = B_i), no neutral lead-in",
+  "why": "Literal reading of STEP 2.2-2.3 (SEG + spec); identical across base and instruct ban arms",
+  "when": "2026-10-19T17:31:17Z"
+ },
+ {
+  "what": "Neutral segments P10..P49 built from 10 opener templates x 8 object phrases (P0..P9 verbatim from the plan)",
+  "why": "Plan allows hand-written or template-built segments; all pass the lexicon check",
+  "when": "2026-10-19T17:31:17Z"
+ },
+ {
+  "what": "Checkers: T1 accepts any list/tuple of 2-element int sequences; T2 accepts a numeric value equal to the expected int (e.g. 5.0)",
+  "why": "Output-format leniency so correctness reflects the algorithm, not int-vs-float typing",
+  "when": "2026-10-19T17:31:17Z"
+ },
+ {
+  "what": "Programs that time out while 5 harness workers run in parallel are re-scored once with 2 workers",
+  "why": "Guards against CPU-contention false timeouts (limit floor 1 s, 10x reference)",
+  "when": "2026-10-19T17:31:17Z"
+ },
+ {
+  "what": "Hook unit test (b) uses a relative tolerance (||err||/||delta_8|| < 2%) instead of atol 1e-2",
+  "why": "Residual magnitudes are O(10-100) in bf16, so an absolute 1e-2 tolerance is below bf16 resolution; observed rel. error 0.26%",
+  "when": "2026-10-19T17:31:17Z"
+ },
+ {
+  "what": "S3 (c=1.5) run at N=100 per task (plan: N=30 once S2 is destructive)",
+  "why": "Paired batching with S1 made it free; S3 is reported as destructive",
+  "when": "2026-10-19T17:31:17Z"
+ },
+ {
+  "what": "Sharpening knob destructive at every c (0 parseable programs at c=0.5/1.0/1.5): c* set to 0.5 (flagged); fallback-6 single-layer arms (delta_18 at layer 18, c in {0.25,0.5,1.0}, N=50/task) run; extension arms added: R-only sharpening (prefill subtraction at R only, c=1.0, N=100/task) with a norm-matched R-only random control",
+  "why": "Plan fallback 6; the R-only ablation isolates the read-state claim from the destruction caused by subtracting the R-estimate at generated positions (cos(delta_R, delta_gen) only 0.15-0.42 in the band)",
+  "when": "2026-10-19T17:31:17Z"
+ },
+ {
+  "what": "A1 (base_tf baseline) and A2 (base_chat baseline) extended from N=200/100 to N=300 per task (new seeds, appended after phase C, rows tagged stage ext_*)",
+  "why": "Correct base programs were too few for the Hill_cc contrast (12-23 per task); fallback 3 allows A1 -> 300, A2 extended for the primary weights contrast; verdicts at the planned N are reported as a sensitivity (both MIXED)",
+  "when": "2026-10-19T19:22:13Z"
+ },
+ {
+  "what": "Cutoff-validation arm: R-only sharpening (c=1.0) re-run on 20 coupled samples per task without the 512-token no-code rule (max 1024 tokens)",
+  "why": "The R-only arm switches to thinking-style prose, so the uniform no-code rule could understate its parse rate; reported side by side (parse 0.30->0.55 T1, 0.15->0.40 T2; algorithm unchanged)",
+  "when": "2026-10-19T19:22:13Z"
+ }
+]
