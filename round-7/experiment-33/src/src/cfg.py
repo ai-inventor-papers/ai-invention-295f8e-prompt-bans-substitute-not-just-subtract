@@ -59,7 +59,7 @@ ITER1 = Path(os.environ.get("AII_ITER1_DIR", ROOT.parents[4] / "run_4VFKidE1bxPG
                             / "."))
 # the declared dataset dependency art_j3Rm_lr2nzR6: ART_J3RM_DIR, else the published sibling folder, else the run layout
 DEP_DATASET_DIR = Path(os.environ.get("ART_J3RM_DIR") or next(
-    (d for d in (ROOT.parent / "art_j3Rm_lr2nzR6",) if d.exists()), ITER1 / "gen_art_dataset_1"))
+    (d for d in (ROOT.parent / "art_j3Rm_lr2nzR6",) if d.exists()), ITER1 / "dataset-1/src"))
 
 # ------------------------------------------------------------------------------------------------ model
 MODEL_ID = "Qwen/Qwen3-8B"

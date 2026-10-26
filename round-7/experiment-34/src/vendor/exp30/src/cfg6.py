@@ -38,7 +38,7 @@ ITER = {i: PRIOR_RUN / f"iter_{i}" / "." for i in (2, 3, 4, 5)}
 _DEP_SIBLING = ROOT.parent / "art_j3Rm_lr2nzR6"
 DEP_DIR = Path(os.environ.get("ART_J3RM_DIR") or (_DEP_SIBLING if _DEP_SIBLING.exists() else
                                                   RUNS_DIR / "run_4VFKidE1bxPG" / "." / "round-1" /
-                                                  "." / "gen_art_dataset_1"))
+                                                  "." / "dataset-1/src"))
 _EXP_ITER = {8: 2, 11: 2, 7: 2, 13: 3, 16: 3, 18: 3, 19: 4, 20: 4, 22: 4, 23: 4, 25: 5, 26: 5, 27: 5, 28: 5}
 EXP_ORIG = {n: ITER[i] / f"gen_art_experiment_{n}" for n, i in _EXP_ITER.items()}   # original locations (gate only)
 EXP = {n: (ROOT / "inputs_extra" / f"exp{n}" if (ROOT / "inputs_extra" / f"exp{n}").exists() else EXP_ORIG[n])

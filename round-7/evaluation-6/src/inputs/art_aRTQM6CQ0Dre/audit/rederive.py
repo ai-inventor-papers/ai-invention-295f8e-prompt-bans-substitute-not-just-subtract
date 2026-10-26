@@ -18,14 +18,14 @@ from pathlib import Path
 WS = Path(__file__).resolve().parent.parent
 ROOT = Path(os.environ.get("AII_DEPS_ROOT", str(WS.parent)))
 REPORT = Path(os.environ.get("AII_REPORT", str(WS / "inputs" / "report" / "current_report.md")))
-_IDS = {"D19": ("art_mWn-MQEnNelg", "iter_4/gen_art/gen_art_experiment_19"),
-        "D22": ("art_SHaWv77P1XCI", "iter_4/gen_art/gen_art_experiment_22"),
-        "D24": ("art_CcZLW-9NX00l", "iter_5/gen_art/gen_art_experiment_24"),
-        "PA": ("art_8WbrpoEFslk9", "iter_5/gen_art/gen_art_experiment_25"),
-        "PB": ("art_9a8LrIv2lHbV", "iter_5/gen_art/gen_art_experiment_26"),
-        "D27": ("art_jR6Pyy3W9xum", "iter_5/gen_art/gen_art_experiment_27"),
-        "GEM": ("art_hG0QPiaIPNhP", "iter_5/gen_art/gen_art_experiment_28"),
-        "EV4": ("art_mgek9PfVBNbh", "iter_5/gen_art/gen_art_evaluation_4")}
+_IDS = {"D19": ("art_mWn-MQEnNelg", "round-4/experiment-19/src"),
+        "D22": ("art_SHaWv77P1XCI", "round-4/experiment-22/src"),
+        "D24": ("art_CcZLW-9NX00l", "round-5/experiment-24/src"),
+        "PA": ("art_8WbrpoEFslk9", "round-5/experiment-25/src"),
+        "PB": ("art_9a8LrIv2lHbV", "round-5/experiment-26/src"),
+        "D27": ("art_jR6Pyy3W9xum", "round-5/experiment-27/src"),
+        "GEM": ("art_hG0QPiaIPNhP", "round-5/experiment-28/src"),
+        "EV4": ("art_mgek9PfVBNbh", "round-5/evaluation-4/src")}
 
 
 def _locate(nick):

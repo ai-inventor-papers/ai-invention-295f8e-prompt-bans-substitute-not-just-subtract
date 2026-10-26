@@ -26,7 +26,7 @@ RUN_DIR = Path(os.environ.get("AII_RUN_DIR", str(ROOT.parents[3])))   # the run 
 ITER3 = RUN_DIR / "." / "round-3" / "."
 ITER2 = RUN_DIR / "." / "round-2" / "."
 ITER4 = RUN_DIR / "." / "round-4" / "."
-DEP_DATASET = RUN_DIR.parent / "run_4VFKidE1bxPG" / "." / "round-1" / "." / "gen_art_dataset_1"
+DEP_DATASET = RUN_DIR.parent / "run_4VFKidE1bxPG" / "." / "round-1" / "." / "dataset-1/src"
 
 TASKS4 = ("T2", "T03", "T1")                       # sampling order (plan S7)
 DEFAULT4 = {"T1": "bfs", "T2": "dijkstra", "T03": "full_sort"}

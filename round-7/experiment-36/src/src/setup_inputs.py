@@ -53,10 +53,10 @@ def tag_of(src: Path) -> str:
         return src.name
 
 
-E29, E30 = it(6) / "gen_art_experiment_29", it(6) / "gen_art_experiment_30"
-E27, E19, E23 = it(5) / "gen_art_experiment_27", it(4) / "gen_art_experiment_19", it(4) / "gen_art_experiment_23"
-E13, E17, E18 = it(3) / "gen_art_experiment_13", it(3) / "gen_art_experiment_17", it(3) / "gen_art_experiment_18"
-E11, E8, E7 = it(2) / "gen_art_experiment_11", it(2) / "gen_art_experiment_8", it(2) / "gen_art_experiment_7"
+E29, E30 = it(6) / "experiment-29/src", it(6) / "experiment-30/src"
+E27, E19, E23 = it(5) / "experiment-27/src", it(4) / "experiment-19/src", it(4) / "experiment-23/src"
+E13, E17, E18 = it(3) / "experiment-13/src", it(3) / "experiment-17/src", it(3) / "experiment-18/src"
+E11, E8, E7 = it(2) / "experiment-11/src", it(2) / "experiment-8/src", it(2) / "experiment-7/src"
 
 # (source, destination relative to ROOT). Directories are copied whole (minus IGNORE).
 ITEMS: list[tuple[Path, str]] = [

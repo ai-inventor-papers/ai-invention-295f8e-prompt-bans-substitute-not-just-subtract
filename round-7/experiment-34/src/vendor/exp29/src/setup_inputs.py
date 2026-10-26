@@ -22,11 +22,11 @@ ROOT = Path(__file__).resolve().parents[1]
 RUN4 = Path(__import__("os").environ.get("AII_ITER45_ROOT", str(ROOT.parent / "iter45_sources")))
 ITER4 = RUN4 / "round-4" / "."
 ITER5 = RUN4 / "round-5" / "."
-E22 = ITER4 / "gen_art_experiment_22"
-E19 = ITER4 / "gen_art_experiment_19"
-E27 = ITER5 / "gen_art_experiment_27"
-E28 = ITER5 / "gen_art_experiment_28"
-E25 = ITER5 / "gen_art_experiment_25"
+E22 = ITER4 / "experiment-22/src"
+E19 = ITER4 / "experiment-19/src"
+E27 = ITER5 / "experiment-27/src"
+E28 = ITER5 / "experiment-28/src"
+E25 = ITER5 / "experiment-25/src"
 
 COPIES: list[tuple[Path, str]] = [
     # vendored code tree of exp22 (unchanged)

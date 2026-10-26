@@ -30,13 +30,13 @@ DEP = Path(os.environ.get("AII_DEP_ART_J3RM", str(ROOT.parent / "art_j3Rm_lr2nzR
 INPUTS = ROOT / "inputs"
 RESULTS = ROOT / "results"
 
-E17 = ITER3 / "gen_art_experiment_17"
-E13 = ITER3 / "gen_art_experiment_13"
-E16 = ITER3 / "gen_art_experiment_16"
-E18 = ITER3 / "gen_art_experiment_18"
-E11 = ITER2 / "gen_art_experiment_11"
-E7 = ITER2 / "gen_art_experiment_7"
-E6 = ITER1 / "gen_art_experiment_6"
+E17 = ITER3 / "experiment-17/src"
+E13 = ITER3 / "experiment-13/src"
+E16 = ITER3 / "experiment-16/src"
+E18 = ITER3 / "experiment-18/src"
+E11 = ITER2 / "experiment-11/src"
+E7 = ITER2 / "experiment-7/src"
+E6 = ITER1 / "experiment-6/src"
 
 # (source, destination relative to ./inputs) -- directories are copied recursively
 COPIES: list[tuple[Path, str]] = [

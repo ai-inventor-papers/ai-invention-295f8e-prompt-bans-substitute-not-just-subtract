@@ -23,12 +23,12 @@ WS = Path(__file__).resolve().parents[1]
 # AII_DEPS_ROOT. If no source is reachable, the sha256-verified copies vendored under inputs/ are used.
 DEPS_ROOT = Path(os.environ.get("AII_DEPS_ROOT", str(WS.parents[2])))
 DEP_REL = {  # artifact id -> folder under DEPS_ROOT on the run server
-    "art_lpQalcAXMGr1": "iter_6/gen_art/gen_art_experiment_29",  # engine control
-    "art_rMlbrjVB1c__": "iter_6/gen_art/gen_art_experiment_30",  # exchange and site experiment
-    "art_zNyBP6zieI5u": "iter_6/gen_art/gen_art_experiment_31",  # Gemma
-    "art_dbUtqBjT0tPf": "iter_6/gen_art/gen_art_experiment_32",  # NLA
-    "art_aRTQM6CQ0Dre": "iter_6/gen_art/gen_art_evaluation_5",  # iteration-6 Step 0 (read by path)
-    "art_OUuQUYQn5voE": "iter_6/gen_art/gen_art_research_3",  # iteration-6 positioning audit (read by path)
+    "art_lpQalcAXMGr1": "round-6/experiment-29/src",  # engine control
+    "art_rMlbrjVB1c__": "round-6/experiment-30/src",  # exchange and site experiment
+    "art_zNyBP6zieI5u": "round-6/experiment-31/src",  # Gemma
+    "art_dbUtqBjT0tPf": "round-6/experiment-32/src",  # NLA
+    "art_aRTQM6CQ0Dre": "round-6/evaluation-5/src",  # iteration-6 Step 0 (read by path)
+    "art_OUuQUYQn5voE": "round-6/research-3/src",  # iteration-6 positioning audit (read by path)
 }
 DEPENDENCIES = ("art_lpQalcAXMGr1", "art_rMlbrjVB1c__", "art_zNyBP6zieI5u", "art_dbUtqBjT0tPf")
 REPORT_REL = "iter_7/gen_strat/current_report.md"  # the object being corrected, under DEPS_ROOT
