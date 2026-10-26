@@ -1,0 +1,34 @@
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.14it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:02<00:03,  1.10s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:03<00:02,  1.14s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:04<00:01,  1.10s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:04<00:00,  1.22it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:04<00:00,  1.07it/s]
+05:32:21|INFO   |Qwen/Qwen3-8B loaded: {'family': 'qwen', 'model_id': 'Qwen/Qwen3-8B', 'revision': 'b968826d9c46dd6066d109eabc6255188de91218', 'precision': 'bf16', 'cpu_embedding': True, 'free_vram_before_GB': 20.818, 'free_vram_after_GB': 5.675, 'total_vram_GB': 21.019, 'gpu': 'NVIDIA RTX A4500', 'load_seconds': 48.6, 'vocab_rows': 151936, 'n_layers': 36}
+05:33:13|INFO   |fit A3: {'two_pointers': 29, 'prefix_suffix_max': 70, 'other': 1} pass 1.00 (52.1s)
+05:33:38|INFO   |fit B6: {'fixed_count_array': 15, 'sort_compare': 79, 'hash_count': 6} pass 1.00 (25.0s)
+05:35:30|INFO   |fit B3: {'prim_heap': 20, 'kruskal': 78, 'other': 1, 'prim_array': 1} pass 0.98 (111.5s)
+05:35:31|INFO   |engine check qwen: {'A3': {'unit': 'A3', 'n_matched_slots': 100, 'label_agreement': 0.92, 'token_identical': 72, 'pass': False}, 'B6': {'unit': 'B6', 'n_matched_slots': 100, 'label_agreement': 0.95, 'token_identical': 90, 'pass': True}, 'B3': {'unit': 'B3', 'n_matched_slots': 100, 'label_agreement': 0.98, 'token_identical': 62, 'pass': True}}
+05:35:32|INFO   |locate A3: bins ['two_pointers', 'prefix_suffix_max', 'monotonic_stack', 'peak_split', 'other', 'invalid'] default prefix_suffix_max minority two_pointers clusters [('c0', 42, 0.32), ('c1', 48, 0.21)] W_u 64 oc_ok True
+05:42:23|INFO   |locate A3: 4 candidate openings, 3 confirmed, 2 minimal confirmed
+05:44:44|INFO   |locate A3: 2 openings [('o1', 18, np.float64(0.0)), ('o2', 18, np.float64(0.0))] second [('o1', ['2115']), ('o2', ['2115'])] (553.6s, 2976 conts)
+05:44:45|INFO   |locate B6: bins ['sort_compare', 'hash_count', 'fixed_count_array', 'other', 'invalid'] default sort_compare minority fixed_count_array clusters [('c0', 32, 0.55), ('c1', 19, 0.24), ('c2', 24, 0.2)] W_u 64 oc_ok True
+05:46:42|INFO   |locate B6: 2 candidate openings, 1 confirmed, 1 minimal confirmed
+05:47:09|INFO   |locate B6: 1 openings [('o1', 24, np.float64(0.0))] second [('o1', ['643'])] (145.0s, 1524 conts)
+05:47:12|INFO   |locate B3: bins ['kruskal', 'prim_heap', 'prim_array', 'boruvka', 'other', 'invalid'] default kruskal minority prim_heap clusters [('c0', 66, 0.41), ('c1', 61, 0.2)] W_u 140 oc_ok True
+06:00:19|INFO   |locate B3: 2 candidate openings, 1 confirmed, 1 minimal confirmed
+06:00:22|INFO   |locate B3: 1 openings [('o0', 61, 0.004)] second [('o0', [])] (792.7s, 2864 conts)
+06:00:22|INFO   |commit1_qwen committed; chain {'ok': True, 'n': 12, 'bad': []}
+06:01:00|INFO   |predict A3: L p1 = [0.163, 0.279, 0.307, 0.322] consistency TVD 0.017
+06:01:40|INFO   |predict B6: L p1 = [0.188, 0.178, 0.181, 0.183] consistency TVD 0.050
+06:02:56|INFO   |predict B3: L p1 = [0.087, 0.198, 0.231, 0.235] consistency TVD 0.031
+06:02:56|INFO   |commit2_qwen committed; chain {'ok': True, 'n': 13, 'bad': []}
+06:03:44|INFO   |sweep A3 T0.3: 100 programs, 0 top-k regenerations
+06:04:32|INFO   |sweep A3 T0.7: 100 programs, 0 top-k regenerations
+06:05:22|INFO   |sweep A3 T1.0: 100 programs, 0 top-k regenerations
+06:06:12|INFO   |sweep A3 T1.3: 100 programs, 0 top-k regenerations
+06:06:45|INFO   |sweep B6 T0.3: 100 programs, 0 top-k regenerations
+06:07:09|INFO   |sweep B6 T0.7: 100 programs, 0 top-k regenerations
+06:07:37|INFO   |sweep B6 T1.0: 100 programs, 0 top-k regenerations
+06:08:06|INFO   |sweep B6 T1.3: 100 programs, 0 top-k regenerations
+06:10:21|INFO   |sweep B3 T0.3: 100 programs, 0 top-k regenerations
+06:11:53|INFO   |sweep B3 T0.7: 100 programs, 0 top-k regenerations
+06:13:40|INFO   |sweep B3 T1.0: 100 programs, 1 top-k regenerations
+06:15:36|INFO   |sweep B3 T1.3: 100 programs, 5 top-k regenerations
