@@ -1,0 +1,58 @@
+{
+ "n_unique_pool": 1,
+ "n_pool_rows": 1,
+ "n_incorrect_under_stress": 0,
+ "resolved_class_counts": {
+  "DEGENERATE": 1
+ },
+ "manual_counts": {
+  "CATALOGUE VARIANT": 1
+ },
+ "judge_agreement": 0.0,
+ "n_novel_confirmed": 0,
+ "novel_ids": [],
+ "n_correct_programs_all_arms": 3555,
+ "n_correct_programs_incl_filler_twin_rows": 3719,
+ "rule_of_three_upper_bound": 0.0008438818565400844,
+ "claim_no_correct_novel_algorithm": true,
+ "by_arm": {
+  "S3_a2": {
+   "n_pool": 1,
+   "n_stress_fail": 0,
+   "n_novel_confirmed": 0,
+   "n_correct_in_arm": 134,
+   "rule_of_three": 0.022388059701492536
+  }
+ },
+ "records": [
+  {
+   "id": "T06|3d42ad385329",
+   "task": "T06",
+   "arms": [
+    "S3_a2"
+   ],
+   "stress": {
+    "passed": true,
+    "n_pass": 3,
+    "n_tests": 3
+   },
+   "judge_A": "LABELLER MISS",
+   "judge_B": "DEGENERATE",
+   "tiebreak": "DEGENERATE",
+   "resolved": "DEGENERATE",
+   "manual": "CATALOGUE VARIANT",
+   "manual_reason": "textbook quadratic brute force (list.count of every element, LeetCode 287's 'count each value' baseline); a known method outside the 5-mode catalogue, not new; passes stress at n = 10,000 only because count() runs in C",
+   "confirmed_novel": false
+  }
+ ],
+ "judges": [
+  "google/gemini-2.5-flash-lite",
+  "openai/gpt-4.1-mini"
+ ],
+ "tiebreak": "deepseek/deepseek-chat-v3.1",
+ "spend": {
+  "total_usd": 0.011753,
+  "stopped": false,
+  "reason": null
+ }
+}

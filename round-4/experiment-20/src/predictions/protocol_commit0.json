@@ -1,0 +1,59 @@
+{
+ "title": "Where noise must go to change the idea (iteration 4, plan gen_plan_experiment_2_idx3)",
+ "model": "Qwen/Qwen3-8B rev b968826d9c46dd6066d109eabc6255188de91218, thinking off, T=1.0, top-p 1, no top-k, max_new 1024, fence stop",
+ "precision_rule": "total VRAM >= 19.5 GiB -> bf16; Ada/Hopper with < 19.5 GiB -> exp17 FP8 W8A8 path; Ampere < 19.5 GiB -> FP8 weight-only. Every arm uses one precision.",
+ "tasks": [
+  "T03",
+  "T05",
+  "T06",
+  "T10",
+  "T1",
+  "T2"
+ ],
+ "sites": {
+  "S0": "blocks 12-23, task-spec positions S, target alpha*n_S[l,k]",
+  "S1": "blocks 12-23, read position R, alpha*n_R[l]",
+  "S2": "blocks 12-23, condition span COND_w, alpha*n_C,w[l,p]",
+  "S3": "blocks 12-23, generated input positions 1-32 (vs a teacher-forced shadow row), alpha*n_G[l]",
+  "S4": "blocks 0-11, S, alpha*n_S[l,k]",
+  "S5": "blocks 24-35, S, alpha*n_S[l,k] (block-35 edit is a no-op)",
+  "S1E/S2E": "S1/S2 with the target multiplied by the energy-matching scalar c",
+  "TOP5": "blocks 12-23, S, per-block u_top5[l], alpha*n_S[l,k] (T1)"
+ },
+ "units": "n = ||h_ban - h_twin|| per block and position, mean over W1-W5 (S, R) or per template (COND); per-position ban units are the primary dose convention",
+ "direction": "u(t,w,k) = normalise(PCG64(stable_seed('PN4',t,w,k)).standard_normal(4096)) float32, shared by every site, dose and boundary arm of slot (t,w,k)",
+ "uniforms": "exp17 u_stream(task, template, k) (stable_seed(task, template, k)), shared by every arm",
+ "alphas": [
+  1.0,
+  2.0,
+  4.0,
+  8.0
+ ],
+ "batch": "20 rows of one (task, template), fixed shape; finished rows fed <|im_end|>",
+ "engine_check_criteria": "REPRODUCED if JS(our composition, screen composition) <= the 95th percentile of a template-resampling null (JS between two template-stratified bootstrap resamples of the pooled programs at matched sizes) AND |off-default share difference| <= 0.15; run on T03 rand_9002 alpha 1 and T2 rand_9004 alpha 1 (N=50 each, k 0-9) under the screen's uniforms and units; failure is reported as precision/engine sensitivity, the run proceeds",
+ "precision_chosen": "fp8_w8a8",
+ "hardware": {
+  "gpu": "NVIDIA RTX 2000 Ada Generation",
+  "vram_gib": 15.58,
+  "compute_capability": "8.9",
+  "cpus": 5,
+  "ram_gb_container": 30.999998464,
+  "python": "3.12.14",
+  "torch": "2.8.0+cu128",
+  "precision_rule": "VRAM >= 19.5 GiB -> bf16; Ada/Hopper < 19.5 GiB -> exp17 FP8 W8A8; Ampere < 19.5 GiB -> FP8 weight-only",
+  "precision": "fp8_w8a8",
+  "quant": "fp8_e4m3_w8a8_dynamic(per-output-channel weight scales, per-token activation scales; lm_head/embeddings/norms bf16)",
+  "utc": "2026-10-21T03:41:17.971144Z",
+  "transformers": "4.57.6"
+ },
+ "screen_sha256": "d591760955b60ae657359a611855ad964b16c3cc01b36293a22badb1e59db2e2",
+ "units_sha256": {
+  "units_T03.npz": "77face96b5f590e1b63630ccd1b2c37b7b329166830f0baf8888b307f8ba9ee6",
+  "units_T05.npz": "0c3944cfd5c6c977b48af6f06f43006ad749d12c2c6cfed411f3c84ada76280b",
+  "units_T06.npz": "8571d4502b6ed4ed5a914c100daad34fbc22fc72c310fe9c8c6e27045f86d4c3",
+  "units_T1.npz": "78ee4e780ca549fcafbb0e800ecd747791e94daea41ff16251f3694ef4e51890",
+  "units_T10.npz": "f63f8460aecbfb076897d5ac41b6c1e2cba2b59c2ac9f6a2ee022b696d4b0138",
+  "units_T2.npz": "838c33ad806f523debd1a8c6aff9445611753a7dbee661c0e8a7d9b506902b5a"
+ },
+ "utc": "2026-10-21T03:46:50.624612Z"
+}
