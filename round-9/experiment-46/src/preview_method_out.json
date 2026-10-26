@@ -1,0 +1,726 @@
+{
+  "metadata": {
+    "method_name": "TP-G: ten-algorithm grid manifold with and without names (iteration 9)",
+    "description": "Qwen3-32B nf4 (truncated decoder) and Qwen3-8B bf16 activation manifolds of 10 path-search algorithms from alias prompts (M-name), name-free descriptions (M-desc), alias-minus-twin deltas (M-lex) and ...",
+    "n4_verdict": {
+      "named_outcome": "MIXED",
+      "mcode_class_k15": "EDGE",
+      "mdesc_class_k15": "OPPOSITE",
+      "mcode_source_robustness": "ROBUST",
+      "k_sensitive": false,
+      "statement": "The geometry is correlational: it describes where representations and survivors sit, not whether the model uses this geometry to choose an algorithm (iteration 7's in-manifold pushes moved 0/300)."
+    },
+    "predictions_pass": {
+      "P1": false,
+      "P2": false,
+      "P3": true,
+      "P4": true,
+      "P5": null,
+      "P6": true,
+      "P7": null,
+      "P8": true
+    },
+    "secondary_statistics": {
+      "32b|mname": {
+        "L_star": 31,
+        "k5": {
+          "udij_class": "MIDDLE",
+          "udij_rank": 3,
+          "udij_ratio": 1.0,
+          "nearest_banned": "iddfs",
+          "classes": {
+            "bibfs": "EDGE",
+            "biastar": "OPPOSITE",
+            "idastar": "EDGE",
+            "jps": "OPPOSITE",
+            "dijkstra_unit": "MIDDLE"
+          }
+        },
+        "k10": {
+          "udij_class": "OPPOSITE",
+          "udij_rank": 5,
+          "udij_ratio": 1.7828001234446156,
+          "nearest_banned": "iddfs",
+          "classes": {
+            "bibfs": "EDGE",
+            "biastar": "EDGE",
+            "idastar": "MIDDLE",
+            "jps": "OPPOSITE",
+            "dijkstra_unit": "OPPOSITE"
+          }
+        },
+        "k15": {
+          "udij_class": "OPPOSITE",
+          "udij_rank": 5,
+          "udij_ratio": 1.6310051031502248,
+          "nearest_banned": "astar",
+          "classes": {
+            "bibfs": "EDGE",
+            "biastar": "EDGE",
+            "idastar": "MIDDLE",
+            "jps": "OPPOSITE",
+            "dijkstra_unit": "OPPOSITE"
+          }
+        },
+        "bootstrap_k15": {
+          "udij_edge_probability": 0.0,
+          "udij_class_stability": 1.0,
+          "udij_ratio_ci95": [
+            1.270564590188291,
+            2.0066874413248654
+          ],
+          "n_boot": 1000
+        },
+        "robustness_udij_class_counts": {
+          "MIDDLE": 4,
+          "OPPOSITE": 10,
+          "EDGE": 1
+        },
+        "crossnobis_udij_class": "OPPOSITE",
+        "zscored_udij_class": "OPPOSITE",
+        "euclid_centroid_udij_class": "OPPOSITE",
+        "split_half_spearman_brown_k15": 0.9919649379108838,
+        "nonbanned_used": [
+          "bibfs",
+          "biastar",
+          "idastar"
+        ]
+      },
+      "32b|mlex": {
+        "L_star": 31,
+        "k5": {
+          "udij_class": "OPPOSITE",
+          "udij_rank": 5,
+          "udij_ratio": 1.5523128637874914,
+          "nearest_banned": "astar",
+          "classes": {
+            "bibfs": "EDGE",
+            "biastar": "MIDDLE",
+            "idastar": "EDGE",
+            "jps": "OPPOSITE",
+            "dijkstra_unit": "OPPOSITE"
+          }
+        },
+        "k10": {
+          "udij_class": "OPPOSITE",
+          "udij_rank": 4,
+          "udij_ratio": 1.2637408521222768,
+          "nearest_banned": "astar",
+          "classes": {
+            "bibfs": "EDGE",
+            "biastar": "EDGE",
+            "idastar": "MIDDLE",
+            "jps": "OPPOSITE",
+            "dijkstra_unit": "OPPOSITE"
+          }
+        },
+        "k15": {
+          "udij_class": "OPPOSITE",
+          "udij_rank": 4,
+          "udij_ratio": 1.200160346140986,
+          "nearest_banned": "astar",
+          "classes": {
+            "bibfs": "EDGE",
+            "biastar": "EDGE",
+            "idastar": "MIDDLE",
+            "jps": "OPPOSITE",
+            "dijkstra_unit": "OPPOSITE"
+          }
+        },
+        "bootstrap_k15": {
+          "udij_edge_probability": 0.0,
+          "udij_class_stability": 0.999,
+          "udij_ratio_ci95": [
+            1.0966313671447376,
+            1.31036043665128
+          ],
+          "n_boot": 1000
+        },
+        "robustness_udij_class_counts": {
+          "OPPOSITE": 15
+        },
+        "crossnobis_udij_class": "OPPOSITE",
+        "zscored_udij_class": "OPPOSITE",
+        "euclid_centroid_udij_class": "OPPOSITE",
+        "split_half_spearman_brown_k15": 0.9883372209263578,
+        "nonbanned_used": [
+          "bibfs",
+          "biastar",
+          "idastar"
+        ]
+      },
+      "32b|mdesc": {
+        "L_star": 31,
+        "k5": {
+          "udij_class": "OPPOSITE",
+          "udij_rank": 4,
+          "udij_ratio": 1.0212571538849213,
+          "nearest_banned": "astar",
+          "classes": {
+            "bibfs": "OPPOSITE",
+            "biastar": "EDGE",
+            "idastar": "EDGE",
+            "dijkstra_unit": "OPPOSITE"
+          }
+        },
+        "k10": {
+          "udij_class": "OPPOSITE",
+          "udij_rank": 3,
+          "udij_ratio": 1.0579689713910803,
+          "nearest_banned": "astar",
+          "classes": {
+            "bibfs": "OPPOSITE",
+            "biastar": "EDGE",
+            "idastar": "EDGE",
+            "dijkstra_unit": "OPPOSITE"
+          }
+        },
+        "k15": {
+          "udij_class": "OPPOSITE",
+          "udij_rank": 3,
+          "udij_ratio": 1.0811913889736746,
+          "nearest_banned": "astar",
+          "classes": {
+            "bibfs": "OPPOSITE",
+            "biastar": "EDGE",
+            "idastar": "EDGE",
+            "dijkstra_unit": "OPPOSITE"
+          }
+        },
+        "bootstrap_k15": {
+          "udij_edge_probability": 0.009,
+          "udij_class_stability": 0.991,
+          "udij_ratio_ci95": [
+            1.0116651536937242,
+            1.3689510274487982
+          ],
+          "n_boot": 1000
+        },
+        "robustness_udij_class_counts": {
+          "OPPOSITE": 15
+        },
+        "crossnobis_udij_class": "OPPOSITE",
+        "zscored_udij_class": "OPPOSITE",
+        "euclid_centroid_udij_class": "OPPOSITE",
+        "split_half_spearman_brown_k15": 0.9935233160621763,
+        "nonbanned_used": [
+          "bibfs",
+          "biastar",
+          "idastar"
+        ]
+      },
+      "32b|mcode_PRIMARY_R1": {
+        "L_star": 33,
+        "k5": {
+          "udij_class": "EDGE",
+          "udij_rank": 1,
+          "udij_ratio": 0.7322772704092657,
+          "nearest_banned": "gbfs",
+          "classes": {
+            "idastar": "OPPOSITE",
+            "dijkstra_unit": "EDGE"
+          }
+        },
+        "k10": {
+          "udij_class": "EDGE",
+          "udij_rank": 1,
+          "udij_ratio": 0.6386720364388945,
+          "nearest_banned": "gbfs",
+          "classes": {
+            "idastar": "OPPOSITE",
+            "dijkstra_unit": "EDGE"
+          }
+        },
+        "k15": {
+          "udij_class": "EDGE",
+          "udij_rank": 1,
+          "udij_ratio": 0.6725109631223612,
+          "nearest_banned": "gbfs",
+          "classes": {
+            "idastar": "OPPOSITE",
+            "dijkstra_unit": "EDGE"
+          }
+        },
+        "bootstrap_k15": {
+          "udij_edge_probability": 1.0,
+          "udij_class_stability": 1.0,
+          "udij_ratio_ci95": [
+            0.5971219115750814,
+            0.7600324532281274
+          ],
+          "n_boot": 1000
+        },
+        "robustness_udij_class_counts": {
+          "EDGE": 15
+        },
+        "crossnobis_udij_class": "EDGE",
+        "zscored_udij_class": "EDGE",
+        "euclid_centroid_udij_class": "EDGE",
+        "split_half_spearman_brown_k15": 0.9928057553956834,
+        "nonbanned_used": [
+          "idastar",
+          "dijkstra_unit"
+        ]
+      },
+      "32b|mcode_M32_R1": {
+        "L_star": 31,
+        "k5": {
+          "udij_class": "EDGE",
+          "udij_rank": 1,
+          "udij_ratio": 0.7682886429343294,
+          "nearest_banned": "gbfs",
+          "classes": {
+            "idastar": "OPPOSITE",
+            "dijkstra_unit": "EDGE"
+          }
+        },
+        "k10": {
+          "udij_class": "EDGE",
+          "udij_rank": 1,
+          "udij_ratio": 0.7526812076177055,
+          "nearest_banned": "gbfs",
+          "classes": {
+            "idastar": "OPPOSITE",
+            "dijkstra_unit": "EDGE"
+          }
+        },
+        "k15": {
+          "udij_class": "EDGE",
+          "udij_rank": 1,
+          "udij_ratio": 0.7930612742323719,
+          "nearest_banned": "gbfs",
+          "classes": {
+            "idastar": "OPPOSITE",
+            "dijkstra_unit": "EDGE"
+          }
+        },
+        "bootstrap_k15": {
+          "udij_edge_probability": 1.0,
+          "udij_class_stability": 1.0,
+          "udij_ratio_ci95": [
+            0.7180339109019984,
+            0.8620260403316418
+          ],
+          "n_boot": 200
+        },
+        "robustness_udij_class_counts": {
+          "EDGE": 15
+        },
+        "crossnobis_udij_class": "EDGE",
+        "zscored_udij_class": "EDGE",
+        "euclid_centroid_udij_class": "EDGE",
+        "split_half_spearman_brown_k15": 0.9909909909909909,
+        "nonbanned_used": [
+          "idastar",
+          "dijkstra_unit"
+        ]
+      },
+      "8b|mname": {
+        "L_star": 17,
+        "k5": {
+          "udij_class": "OPPOSITE",
+          "udij_rank": 4,
+          "udij_ratio": 1.017225098986635,
+          "nearest_banned": "iddfs",
+          "classes": {
+            "bibfs": "EDGE",
+            "biastar": "MIDDLE",
+            "idastar": "EDGE",
+            "jps": "OPPOSITE",
+            "dijkstra_unit": "OPPOSITE"
+          }
+        },
+        "k10": {
+          "udij_class": "OPPOSITE",
+          "udij_rank": 5,
+          "udij_ratio": 1.3898283042053148,
+          "nearest_banned": "astar",
+          "classes": {
+            "bibfs": "EDGE",
+            "biastar": "MIDDLE",
+            "idastar": "EDGE",
+            "jps": "OPPOSITE",
+            "dijkstra_unit": "OPPOSITE"
+          }
+        },
+        "k15": {
+          "udij_class": "OPPOSITE",
+          "udij_rank": 4,
+          "udij_ratio": 1.1726758250820848,
+          "nearest_banned": "astar",
+          "classes": {
+            "bibfs": "EDGE",
+            "biastar": "EDGE",
+            "idastar": "MIDDLE",
+            "jps": "OPPOSITE",
+            "dijkstra_unit": "OPPOSITE"
+          }
+        },
+        "bootstrap_k15": {
+          "udij_edge_probability": 0.005,
+          "udij_class_stability": 0.97,
+          "udij_ratio_ci95": [
+            1.0,
+            1.3353303552767086
+          ],
+          "n_boot": 200
+        },
+        "robustness_udij_class_counts": {
+          "OPPOSITE": 12,
+          "MIDDLE": 2,
+          "EDGE": 1
+        },
+        "crossnobis_udij_class": "MIDDLE",
+        "zscored_udij_class": "OPPOSITE",
+        "euclid_centroid_udij_class": "MIDDLE",
+        "split_half_spearman_brown_k15": 0.983663631494376,
+        "nonbanned_used": [
+          "bibfs",
+          "biastar",
+          "idastar"
+        ]
+      },
+      "8b|mdesc": {
+        "L_star": 17,
+        "k5": {
+          "udij_class": "EDGE",
+          "udij_rank": 1,
+          "udij_ratio": 0.8795696599086993,
+          "nearest_banned": "gbfs",
+          "classes": {
+            "bibfs": "OPPOSITE",
+            "biastar": "EDGE",
+            "idastar": "OPPOSITE",
+            "dijkstra_unit": "EDGE"
+          }
+        },
+        "k10": {
+          "udij_class": "OPPOSITE",
+          "udij_rank": 3,
+          "udij_ratio": 1.0119299661841972,
+          "nearest_banned": "astar",
+          "classes": {
+            "bibfs": "OPPOSITE",
+            "biastar": "EDGE",
+            "idastar": "EDGE",
+            "dijkstra_unit": "OPPOSITE"
+          }
+        },
+        "k15": {
+          "udij_class": "OPPOSITE",
+          "udij_rank": 3,
+          "udij_ratio": 1.0069299636547309,
+          "nearest_banned": "astar",
+          "classes": {
+            "bibfs": "EDGE",
+            "biastar": "EDGE",
+            "idastar": "OPPOSITE",
+            "dijkstra_unit": "OPPOSITE"
+          }
+        },
+        "bootstrap_k15": {
+          "udij_edge_probability": 0.495,
+          "udij_class_stability": 0.505,
+          "udij_ratio_ci95": [
+            0.8771494985387647,
+            1.1581709809816059
+          ],
+          "n_boot": 200
+        },
+        "robustness_udij_class_counts": {
+          "EDGE": 10,
+          "OPPOSITE": 5
+        },
+        "crossnobis_udij_class": "EDGE",
+        "zscored_udij_class": "OPPOSITE",
+        "euclid_centroid_udij_class": "EDGE",
+        "split_half_spearman_brown_k15": 0.9808499475341028,
+        "nonbanned_used": [
+          "bibfs",
+          "biastar",
+          "idastar"
+        ]
+      },
+      "8b|mcode_PRIMARY_R1": {
+        "L_star": 17,
+        "k5": {
+          "udij_class": "EDGE",
+          "udij_rank": 1,
+          "udij_ratio": 0.6445199977679976,
+          "nearest_banned": "gbfs",
+          "classes": {
+            "idastar": "OPPOSITE",
+            "dijkstra_unit": "EDGE"
+          }
+        },
+        "k10": {
+          "udij_class": "EDGE",
+          "udij_rank": 1,
+          "udij_ratio": 0.6189882887019043,
+          "nearest_banned": "gbfs",
+          "classes": {
+            "idastar": "OPPOSITE",
+            "dijkstra_unit": "EDGE"
+          }
+        },
+        "k15": {
+          "udij_class": "EDGE",
+          "udij_rank": 1,
+          "udij_ratio": 0.6296273612790644,
+          "nearest_banned": "gbfs",
+          "classes": {
+            "idastar": "OPPOSITE",
+            "dijkstra_unit": "EDGE"
+          }
+        },
+        "bootstrap_k15": {
+          "udij_edge_probability": 1.0,
+          "udij_class_stability": 1.0,
+          "udij_ratio_ci95": [
+            0.5708041734156358,
+            0.6876404886108674
+          ],
+          "n_boot": 200
+        },
+        "robustness_udij_class_counts": {
+          "EDGE": 15
+        },
+        "crossnobis_udij_class": "EDGE",
+        "zscored_udij_class": "EDGE",
+        "euclid_centroid_udij_class": "EDGE",
+        "split_half_spearman_brown_k15": 0.976234003656307,
+        "nonbanned_used": [
+          "idastar",
+          "dijkstra_unit"
+        ]
+      }
+    },
+    "commitments": {
+      "chain_ok": true,
+      "problems": [],
+      "entries": [
+        {
+          "label": "COMMIT0",
+          "utc": "2026-10-23T10:26:42.697909Z",
+          "payload": "predictions/commit0.json"
+        },
+        {
+          "label": "COMMIT1a",
+          "utc": "2026-10-23T11:46:45.439463Z",
+          "payload": "predictions/commit1a.json"
+        },
+        {
+          "label": "COMMIT1b",
+          "utc": "2026-10-23T13:48:25.751723Z",
+          "payload": "predictions/commit1b.json"
+        }
+      ]
+    },
+    "deviations": [
+      {
+        "code": "F1-repro",
+        "text": "M-name reproduction rho=0.894 (0.85-0.95: proceed with new states)",
+        "utc": "2026-10-23T10:40:10.656089Z"
+      },
+      {
+        "code": "D-desc-checks",
+        "text": "descriptions outside the checks: [('bibfs', 'D3', 19, None)]",
+        "utc": "2026-10-23T11:46:44.386698Z"
+      },
+      {
+        "code": "D-accept-B",
+        "text": "M-code sets use tier-B acceptance (mechanism labels + committed AST rules + trace check + valid paths on >= 38/40 probe grids) instead of the two hidden suites, for every source and algorithm alike: u...",
+        "utc": "2026-10-23T13:35:12.395422Z"
+      }
+    ],
+    "costs": {
+      "total_usd": 0.093709,
+      "by_purpose": {
+        "naming_gate": 0.008386,
+        "topups": 0.085323
+      },
+      "n_calls": 1440,
+      "budget_refusals": 0,
+      "updated_utc": "2026-10-23T12:59:22.949720Z"
+    },
+    "timing": [
+      {
+        "key": "smean_mname_32b",
+        "seconds": 78.37,
+        "units": 300,
+        "sec_per_unit": 0.261,
+        "note": "",
+        "utc": "2026-10-23T10:40:03.498363Z"
+      },
+      {
+        "key": "smean_mlex_alias_32b",
+        "seconds": 78.68,
+        "units": 300,
+        "sec_per_unit": 0.262,
+        "note": "",
+        "utc": "2026-10-23T12:16:03.870195Z"
+      },
+      {
+        "key": "smean_mlex_twin_32b",
+        "seconds": 78.76,
+        "units": 300,
+        "sec_per_unit": 0.263,
+        "note": "",
+        "utc": "2026-10-23T12:17:22.758796Z"
+      }
+    ],
+    "baselines": {
+      "lexical_model_rdm": "R_lex",
+      "surface_code_rdm": "R_surface",
+      "length_rdm": "R_len",
+      "behavioural_rdm": "R_beh",
+      "name_condition": "M-name (iteration 8 instrument)",
+      "nulls": "landing U/F/P/C; exact label-permutation Mantel"
+    },
+    "files": {
+      "acceptance.json": "0f392873ba7a42807aa2a1bb034a649d6ea0d844c353e282a2f4f6a0aefa7918",
+      "behavioural_distance.json": "266c2668d429722292d20f7a9d74a117d5883f3b1fb70b4d61d83fd12e772789",
+      "costs.json": "14861582ccc10adf7bc80d3e88c470aad7c03e31ffb6ed8717b710c9fc5c2bf6",
+      "deviations.json": "7210c523d0519bfd16bbcb062f6145355629e82297ff03f3a267e1828a6334ab",
+      "g_scrub.json": "1c1e50fb39e7b4c444ceba2c417256a7a34452ec5cee5e0eff313bb444bfca29",
+      "g_tracer.json": "a5bad92a0405259a18f8c9a07a916e43595c22938d868f6481005a5248b8db67",
+      "geometry_32b_mcode_M32_R1.json": "03b260bde5e16ec3d7ec4a6a10bc557d31bf995ef9e0d0eb8b789c4ed4a5ed7e",
+      "geometry_32b_mcode_PRIMARY_R1.json": "f9b29a6df291e59a29d8eae69343e01f29ace6b9bccb06c581be87e906036983",
+      "geometry_32b_mcode_PRIMARY_R2.json": "790a97a667ae8d5c24e9cee1d6e6b818d3e140b92e25f27c25c815575ddb8f69",
+      "geometry_32b_mdesc.json": "d6c2354973bfbb834685cb2be9a2f226d7cf259797026ecc5efdb13272f71166",
+      "geometry_32b_mlex.json": "a66747ee820e50df0b07a64d11606103d84d211a8710f0bd1ecfa6edf634b2ab",
+      "geometry_32b_mname.json": "b685cf52a0a3df7b76744612e9b12005aa4671819bc561a3657ac442df4d51a5",
+      "geometry_8b_mcode_PRIMARY_R1.json": "ba54ae2e4f7ff408109a266c67da15b27b5c25377d86c84bc995fc057d0b6028",
+      "geometry_8b_mdesc.json": "551440aa780f708e51f87718bd2e5c2966cca7097db34f1edae7daf460df3cbe",
+      "geometry_8b_mname.json": "9069196be55793fd92d3578029b7a99c07fc6f4da21f11f072c8a45bdd1e1bfb",
+      "geometry_all.json": "74f03596a9187ef716552d157e2f5f9034222081340f5ac3035d24eced3a12a4",
+      "inputs_status.json": "f811f313187a7fc2eebc8147bfdbc047ac8a3d99e3fc8ef95d7de3177543ee7a",
+      "lexical.json": "17e3e192ae565bcc0d0e8c593c3b82c6c7fe7ea92b37cf26b870203191334b24",
+      "lexical_regression.json": "7e560c4a20a6a3404990e671961eac4e5edcbc15f07f218b216e79dbb8b31055",
+      "load_32b_mcode.json": "798112998e07c9e38d5b35ee425746cbd962f342ddf40104e56e51c1b46df146",
+      "load_32b_mdesc_mcode.json": "dad846b12d6841469235c29caf0dbc026ba1bf26c04d559db5db51f1b02ec603",
+      "load_32b_mlex_ban.json": "5a21c1974742c214a54385da5d8682d44cb472ef4a1f00c1e3790c74a82ac1d9",
+      "load_8b_mcode.json": "34e88e6c405b5eda2b9d7d5dbd6c898f4974a78bce9e9da9baaa80f95e195d66",
+      "load_8b_mdesc.json": "325b38374a0e6e611b10b59b38e567051b75a23d2647779136ccbe7332ee040a",
+      "load_8b_mname_mlex_ban.json": "5979c86cc351654bb2893b3411d3e1bcb5e4393655fd8ab02c9676c71b543239",
+      "n4_verdict.json": "15456ef254eee666cc410c3b0e3c0f9089fdf7224ca71bdcda2a74cd61299198",
+      "naming_gate.json": "89e14ee03c5ddd29b31a8fa0ac800e93666518f5e3bd52d5c669a3bd7750a683",
+      "naming_scorer_test.json": "2ee2c3265e58e3bb5fffa99441b0f65aa31914f39e6e3354a19b20619645cddb",
+      "placement.json": "fcb608b4df9f2078e92deb92d57a8af0c627bec2133d1577dd7136d2dd777a71",
+      "positioning.json": "a58e2949855d01879e8b5a5fcbcf068ca9b68eb3fdb2b47238281a21d3f28f8e",
+      "repro_mname_32b.json": "d585c4c7f5e9812267ef063da667dff0a5632187716546b6a0b4c6cb3216b895",
+      "repro_mname_8b.json": "ab883d65ba53be22cebc8e0b5317b28680aa759a3ad955c6585fe032e41b7ca6",
+      "rsa.json": "93a9a7e4ba80604e6dbe599214c352a7fac472abea1045e320acaa5db53a3afc",
+      "states_mcode_32b.json": "679d3b680d5b1be96645c9857af1224de53eed8be90848016ef79e7ea8771ad7",
+      "states_mcode_8b.json": "770168b5ceeb6e32c55016878ae0faf9b0a31a31f8f2d41706c2f0b6189f8641",
+      "states_mdesc_32b.json": "37c9b96bcc504136dd2ba69aae25ba5c0c927c939f4701fd1fe0391d6ee55683",
+      "states_mdesc_8b.json": "dd9832bf6f989afc056d3c17d08c068710948f7ece5f4ca4faeb28a867c41e60",
+      "states_mlex_32b.json": "fd58cbd824aacda80ab516773f97b606fd16aa4dd387fca96962b887e61dba44",
+      "states_mlex_8b.json": "f41cff6fff36435b068217841b5f88ddf23a5de47d95fce8eb4b93e8ee01b378",
+      "states_mname_32b.json": "295752f8976eecc6cfcfa302aec92237e822761aece52bd6f38864b50c35741a",
+      "surface_rdm.json": "08e0e7dfba78fe27470ac507f3d8890954b0653f58ad0b363cb001dcd051f6d7",
+      "topups.json": "aeab2dd6c59452d84040c459e3411f9d5a822ab86e42ba8b5aab6d7ae6f569f3"
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "tpg_points",
+      "examples": [
+        {
+          "input": "Implement breadth-first search (BFS) for this task.\n\nTask: write a Python function solve(grid, start, goal) that finds a path between two cells of a grid. grid is a list of equal-length strings with b...",
+          "output": "bfs",
+          "predict_nearest_mname": "bfs",
+          "metadata_model": "unsloth/Qwen3-32B-bnb-4bit",
+          "metadata_manifold": "mname",
+          "metadata_point_id": "mname|bfs|t0|j0",
+          "metadata_k": 15
+        },
+        {
+          "input": "Implement BFS for this task.\n\nTask: write a Python function solve(grid, start, goal) that finds a path between two cells of a grid. grid is a list of equal-length strings with between 1 and 30 rows an...",
+          "output": "bfs",
+          "predict_nearest_mname": "bfs",
+          "metadata_model": "unsloth/Qwen3-32B-bnb-4bit",
+          "metadata_manifold": "mname",
+          "metadata_point_id": "mname|bfs|t0|j1",
+          "metadata_k": 15
+        },
+        {
+          "input": "Implement a breadth-first search for this task.\n\nTask: write a Python function solve(grid, start, goal) that finds a path between two cells of a grid. grid is a list of equal-length strings with betwe...",
+          "output": "bfs",
+          "predict_nearest_mname": "bfs",
+          "metadata_model": "unsloth/Qwen3-32B-bnb-4bit",
+          "metadata_manifold": "mname",
+          "metadata_point_id": "mname|bfs|t0|j2",
+          "metadata_k": 15
+        }
+      ]
+    },
+    {
+      "dataset": "tpg_placements",
+      "examples": [
+        {
+          "input": "import random\n\ndef solve(grid, start, goal):\n    rows = len(grid)\n    if rows == 0:\n        return []\n    cols = len(grid[0])\n    if grid[start[0]][start[1]] == '#' or grid[goal[0]][goal[1]] == '#':\n ...",
+          "output": "other: random walk with restart",
+          "predict_nearest_mcode": "bfs",
+          "predict_class": "EDGE",
+          "metadata_set": "SURV",
+          "metadata_uid": "C6|ban|0",
+          "metadata_g_x": 24.68766120716996,
+          "metadata_nearest_banned": "bfs"
+        },
+        {
+          "input": "import heapq\nimport math\n\ndef solve(grid, start, goal):\n    if grid[start[0]][start[1]] == '#' or grid[goal[0]][goal[1]] == '#':\n        return []\n    if start == goal:\n        return [start]\n    rows...",
+          "output": "dijkstra_unit",
+          "predict_nearest_mcode": "dijkstra_unit",
+          "predict_class": "EDGE",
+          "metadata_set": "SURV",
+          "metadata_uid": "C6|ban|7",
+          "metadata_g_x": 21.97903238341068,
+          "metadata_nearest_banned": "gbfs"
+        },
+        {
+          "input": "import heapq\n\ndef solve(grid, start, goal):\n    if grid[start[0]][start[1]] == '#' or grid[goal[0]][goal[1]] == '#':\n        return []\n    if start == goal:\n        return [start]\n    rows, cols = (le...",
+          "output": "dijkstra_unit",
+          "predict_nearest_mcode": "dijkstra_unit",
+          "predict_class": "EDGE",
+          "metadata_set": "SURV",
+          "metadata_uid": "C6|ban|18",
+          "metadata_g_x": 17.141750481699457,
+          "metadata_nearest_banned": "gbfs"
+        }
+      ]
+    },
+    {
+      "dataset": "tpg_naming",
+      "examples": [
+        {
+          "input": "a search that keeps the cells waiting to be visited in a first-in-first-out queue and always takes the oldest one next",
+          "output": "bfs",
+          "predict_qwen32b_modal": "bfs",
+          "metadata_rate": 1.0,
+          "metadata_passed": true,
+          "metadata_slot": "bfs|0",
+          "metadata_version": 0
+        },
+        {
+          "input": "a search that visits every cell one step from the start, then every cell two steps away, and so on, ring by ring",
+          "output": "bfs",
+          "predict_qwen32b_modal": "bfs",
+          "metadata_rate": 1.0,
+          "metadata_passed": true,
+          "metadata_slot": "bfs|1",
+          "metadata_version": 0
+        },
+        {
+          "input": "a search that spreads out from the start like a ripple on a pond, finishing each wave before starting the next",
+          "output": "bfs",
+          "predict_qwen32b_modal": "bfs",
+          "metadata_rate": 1.0,
+          "metadata_passed": true,
+          "metadata_slot": "bfs|2",
+          "metadata_version": 0
+        }
+      ]
+    }
+  ]
+}

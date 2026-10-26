@@ -1,0 +1,142 @@
+{
+ "artifact": "TP-G iteration 9 (gen_plan_experiment_2_idx3): mapping the ten grid algorithms with and without their names",
+ "utc": "2026-10-23T10:26:42.626166Z",
+ "banned": [
+  "bfs",
+  "dfs",
+  "iddfs",
+  "astar",
+  "gbfs"
+ ],
+ "nonbanned": [
+  "bibfs",
+  "biastar",
+  "idastar",
+  "jps",
+  "dijkstra_unit"
+ ],
+ "predictions": {
+  "P1": "M-name reproduces: Spearman(45 off-diagonal entries of the 10x10 class geodesic matrix, k 15, block 31, new states vs iteration-8 geo_C6_nf4.npz) >= 0.95 and the classes of NB5 are unchanged",
+  "P2": "M-code (PRIMARY frame, R1 readout) and M-desc: landing verdict for the 15 survivors (15 x unit Dijkstra) = EDGE at the committed block, with class(dijkstra_unit) = EDGE at both k 10 and 15",
+  "P3": "M-name and M-lex: verdict OPPOSITE (class(dijkstra_unit) = OPPOSITE at k 10 and 15)",
+  "P4": "M-name alias level: Spearman(g_alias, L1) <= -0.6 at k 10 AND k 15 (15 alias point sets of NB5)",
+  "P5": "M-code and M-desc: the overlap ordering does not reproduce (descriptive)",
+  "P6": "behavioural RDM: dijkstra_unit has the smallest d_beh to BFS among NB5 (anchor; true by construction for the order term)",
+  "P7": "RSA (descriptive, CIs): rho(D_name,R_lex) > rho(D_name,R_beh); rho(D_code,R_beh) > rho(D_code,R_lex); rho(D_desc,R_beh) > rho(D_desc,R_lex)",
+  "P8": "per-program: > 0.5 of the 15 dijkstra_unit survivor programs placed on M-code have program-level class EDGE (only if gate G-place passes)"
+ },
+ "secondary_statistics": [
+  "rank of g(dijkstra_unit) among NB5 (1 = nearest)",
+  "ratio g(dijkstra_unit)/median(g NB5) with bootstrap 95% CI",
+  "nearest banned algorithm of dijkstra_unit",
+  "robustness-grid class counts",
+  "bootstrap EDGE probability"
+ ],
+ "named_outcomes": {
+  "CONFIRMED": "P2, P3, P4 and P6 hold",
+  "ROBUST-OPPOSITE": "OPPOSITE on both M-code and M-desc",
+  "MIXED": "M-code and M-desc disagree, or a verdict changes between k 10 and 15, or SOURCE-SENSITIVE",
+  "NAMES-ONLY": "P3 and P4 hold but M-code and M-desc read MIDDLE or NEITHER",
+  "UNTESTABLE": "a gate fails as stated in the fallbacks"
+ },
+ "mcode_robustness": "M-code verdict is ROBUST only if the source-homogeneous M32 frame gives the same class(dijkstra_unit); otherwise SOURCE-SENSITIVE",
+ "gates": {
+  "G-repro": "P1 (>= 0.95; 0.85-0.95 proceed with new states and report; < 0.85 deviation)",
+  "G-name": ">= 16/20 Qwen3-32B namings per description (T 1.0, top_p 1.0, thinking off)",
+  "G-scrub": "no alias match; ast.dump equal modulo names (docstrings removed); both hidden suites pass; expansion sequences on the 40 probe grids identical; labeller label unchanged",
+  "G-tracer": "every T1 reference shows its algorithm's properties on the probe grids",
+  "G-place": "leave-one-out placement accuracy >= 0.70 on the M-code frame",
+  "reliability_flag": "split-half Spearman (Spearman-Brown corrected) < 0.7"
+ },
+ "definitions": {
+  "L1": "number of banned algorithms b whose alias_regex([b]) matches the alias string",
+  "L2": "max over banned aliases of character-3-gram Jaccard (lowercased)",
+  "L3": "max over banned aliases of Qwen3 token-type Jaccard",
+  "R_lex": "1 - mean over alias pairs of character-3-gram Jaccard (10x10)",
+  "D_overlap": "max content-word Jaccard (stoplist, plural stripping) with the 15 banned descriptions",
+  "d_beh": "d_order + 0.5 * d_DS; d_order = 1 - mean over 40 probe grids of J*(1+tau_b)/2 (J = Jaccard of expanded-cell sets, tau_b over ranks of common cells, 0 if < 3); d_DS = Hamming/6 over (fifo, lifo_or_recursion, heap, two_frontiers, restarts, heuristic_key); lambda 0 and 1 reported",
+  "R_surface": "1 - mean Jaccard of identifier-normalised AST 4-gram shingles between PRIMARY program sets",
+  "R_len": "absolute difference of mean stimulus token length",
+  "out_of_sample": "d(x,j) = min over x's k nearest frame points i of (||x-i|| + geo(i,j)); frozen graph",
+  "readouts": {
+   "S-mean": "mean over the SPEC tokens of the block output (iteration 8)",
+   "R1": "mean over code tokens",
+   "R1g": "R1 without tokens whose norm > 10x the sequence median",
+   "R2": "token after the earliest popleft/pop/heappop/get call in the code (AST); fallback: first token of the neighbour-loop body / first body statement of solve",
+   "R3": "16th code token (negative control)"
+  },
+  "block_rule": "iteration-8 layer_curve: standardise, PCA 64, logistic C=1, GroupKFold 10, balanced accuracy, ties within 0.01 or all-ceiling -> block nearest depth 0.5; block 31 (32B) and the depth-0.5 block (8B) always reported",
+  "k_rule": "verdict at k 15 (iteration 8 primary) and k 10; k 5 reported",
+  "classes": "EDGE g < median, MIDDLE g == median, OPPOSITE g > median over NB5 (iteration 8)",
+  "landing": "iteration-8 landing(): nulls U, F, P (120 permutations), C; verdict EDGE iff p_edge(U) < .05 and p_edge(F) < .05 and > 50% survivors EDGE; OPPOSITE mirrored; else NEITHER",
+  "groups": {
+   "M-name": "3t+j",
+   "M-desc": "3t+d",
+   "M-lex": "3t+j",
+   "M-code": "(rank within algorithm) mod 10"
+  },
+  "bootstrap": "1,000 group resamples (32B verdict settings), 200 elsewhere",
+  "rsa": "Spearman over 45 pairs, exact Mantel p over all 10! label permutations",
+  "drop_order": [
+   "Qwen3-8B states",
+   "M-lex",
+   "k 10 sensitivity",
+   "robustness grid reduced to block 31 + L*"
+  ],
+  "budget_usd": 0.4,
+  "topup_stop_usd": 0.32
+ },
+ "survivors_landing": {
+  "screen": [
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit"
+  ],
+  "confirm": [
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit"
+  ],
+  "pooled": [
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit",
+   "dijkstra_unit"
+  ]
+ },
+ "src_sha256": {
+  "common.py": "dc3a7a26af140cbcdf8bc335aee7f0a0048737dcf2caca2afb416e5e86efdcd0",
+  "geometry.py": "013ced7f8a63df972879c61ab4e042c7b97aa1cf26237f807092a78717e9d7fd",
+  "judge_tp.py": "b28119db1748ebcc3fba03e61506bc7d57534551328faefa13dd95af31c0fe85",
+  "label_tp.py": "f8996bfb2dee610f37a20b3c9fcf2847aec6914eaa2dc608952647c76de2af9c",
+  "landing.py": "480ecb69e4aaf080e15dc6fe18f7c74e2e35e097b4a3ae2d70ec009ab8ab5ced",
+  "prompts_tp.py": "afa000a8406a5471c3316f9d14161c1cf4d335a4dcd14f52bdf9778c1c1e5c9e",
+  "sample_or.py": "f860d06c3e0f1e4a08b163dce7a1edd8e0e03e9c0ee6f1abfca97694874fda57",
+  "stage_setup.py": "5c914c390204136f62a80924e9b3c68d0080e63b14328e72a74060a9313cc18a",
+  "stage_states.py": "9c3d3c102b24edd7bf5bf65210127ca7576f9ba6c8e369f40f1096f52d9f35c8",
+  "states.py": "ad1253577c6a9aa0c64f2abe47993e91b8ba0540a8abe1a75332249137d267f9",
+  "tpg.py": "4b3f883b92e2af03a3980d12aa11ae06d7e068aff91ccf5a8035ffde7bb0d427"
+ },
+ "inputs_SHA256SUMS_sha256": "0142e9e9da648891c7d57609efcfbc2f5d11cdd47d0824a9c65be609a744f7a5",
+ "correlational_statement": "geometry is correlational; no causal claim (iteration-7 in-manifold pushes moved 0/300)"
+}
