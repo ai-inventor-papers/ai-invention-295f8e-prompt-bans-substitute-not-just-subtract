@@ -1,0 +1,152 @@
+{
+ "created_utc": "2026-10-20T19:29:03.980864Z",
+ "quantisation": "fp8_e4m3_w8a8_dynamic(per-output-channel weight scales, per-token activation scales; lm_head/embeddings/norms bf16)",
+ "direction_sha256": {
+  "v_T2.npy": "631124052793857ca04f8714e7de4d1028dce2caa91cd4a41525a4d123658598",
+  "vraw_T2.npy": "d57e7e2b2d461263cdc57df0fdedacd5f279421ba756afa989005460a7ac7971",
+  "norms_T2.npy": "10d17204489d198f57bb1871d299b30d7e2e1563d5b4e8696bee325c7bc9c999",
+  "v_T1.npy": "ce61c7123a97e0c13358c60667c17da38ddb5aa261c4f236bdff5e7ecfb301cd",
+  "vraw_T1.npy": "8c03b95c1fb1798a586418e09224a4154969eba503749405d9279ccd0d3e623a",
+  "norms_T1.npy": "94e51af49339821a770be1d3ded1a2efd2f3727bd1117105383691b2675db7de",
+  "v_T03.npy": "70fbb9b72eaa9d5b5710fbf7912984c8458fb34e22b415f5e49140bfe7d71ef4",
+  "vraw_T03.npy": "e4e8aa66476554a3ccfb3a1854b86a78f94c1ae37c6ea3aed13619e4956dbd44",
+  "norms_T03.npy": "2d6746182cb3896aa1961e96a9743734bb1291115b9481eb66d36445291e2ef3",
+  "v_T04.npy": "5c70c5d99120a7b4419e2bebc0189845014ba2a743b1ccda134923127fc1fa2f",
+  "vraw_T04.npy": "57fe7984ec49fd7501635e42a620dc1026df7c37580ff697673693fab59104de",
+  "norms_T04.npy": "a4bb0436bc4a0b7f548e2e068d90d6271d0ca3fc2caa4b6dcef5845e0a895e92",
+  "v_T06.npy": "bcec7c4cab3863b0786657ddc7ff1b4a6c25dba6e0ed05bd7dfe9a094a050ea5",
+  "vraw_T06.npy": "8a5088084674d1c4a15a44472325f3ba5f1951c1c8df8ebe1f6915ce2f428f8d",
+  "norms_T06.npy": "66b68c72fca6fee39c08cdb91f3fd8641ec3bf468fe88abe5733d75121efbd7a",
+  "v_T05.npy": "a49b938180d55b3621cddb5c560a91c7dcaddb972fe0704fcc93570e581bd20d",
+  "vraw_T05.npy": "3e9f26faa6f6dd67d4f8edb44c9be4affcd0641f1399cbbad4aa191f822b7181",
+  "norms_T05.npy": "76ad29b6564acbb172d1622e60d0a510ce202f0a76e8be4c3d700cd360e1f23b",
+  "rand_9001.npy": "78bb58e005ce6f71c99cffb1921c306b2a591880760a110a7e4fc726980068f2",
+  "rand_9002.npy": "72a999c9a8b49467f6d0362e2c762aa97ffc3dce40eb7a963e0d705435e08ca0",
+  "rand_9003.npy": "f385a5399a5ae67c4adb3612ec27c5ac428274c0117a074b79666874f37f6f37",
+  "v_all.npy": "5e3cb9975c54751752072d20742b3e83ea75f463a2732e2716d076a6d5652f6a"
+ },
+ "random_direction_seeds": [
+  9001,
+  9002,
+  9003
+ ],
+ "alpha_grid": {
+  "ADD": [
+   1.0,
+   2.0,
+   0.5
+  ],
+  "RAND": [
+   1.0,
+   2.0
+  ]
+ },
+ "hooked_blocks": [
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23
+ ],
+ "head_sets": {
+  "target": [
+   [
+    21,
+    17
+   ],
+   [
+    26,
+    21
+   ],
+   [
+    26,
+    25
+   ]
+  ],
+  "rand7101": [
+   [
+    21,
+    28
+   ],
+   [
+    26,
+    7
+   ],
+   [
+    26,
+    19
+   ]
+  ],
+  "rand7102": [
+   [
+    21,
+    2
+   ],
+   [
+    26,
+    7
+   ],
+   [
+    26,
+    26
+   ]
+  ],
+  "rand7103": [
+   [
+    21,
+    10
+   ],
+   [
+    26,
+    4
+   ],
+   [
+    26,
+    13
+   ]
+  ]
+ },
+ "head_rand_seeds": [
+  7101,
+  7102,
+  7103
+ ],
+ "uniform_key": "u_stream(task, template, k) = PCG64(stable_seed(task, template, k)), identical in every arm",
+ "batch_layout": "every batch has 20 rows of one (task, template): one 20-slot block or two 10-slot blocks; prune=False",
+ "decision_rules": {
+  "C2d": "Per task: avoidance per arm with Wilson CIs; CRN flip tables for ADD vs each RAND at the same alpha; a one-sided exact McNemar test (H1: ADD avoidance > RAND avoidance), Holm over 3 controls x 2 alphas. A task PASSES ADD if, at some alpha in {1, 2}, all three Holm-adjusted p < 0.05 AND ADD's modal non-default label (requiring >= 10 non-default attempts) equals the named ban's modal non-banned label. Denominator = tasks where the named ban passes the EVENT GATE (avoidance >= 0.5 AND >= 20 non-banned attempts). On gate-failing tasks only the avoidance contrast is reported. SUBTRACT: for each task, Delta = banned share(SUB_plain) - banned share(ban, same slots), with a paired bootstrap CI over slots. Pooled Delta = the mean over the GATED tasks (those where the named ban's banned share is <= 0.5), with a task-level bootstrap and jackknife. C2d SUPPORTED iff ADD passes on >= 2/3 of the denominator tasks AND pooled Delta >= 0.3 with the CI lower bound > 0. DISCONFIRMED iff ADD avoidance is within the random range (not above max RAND) on > 1/3 of the tasks. Otherwise PARTIAL. Necessity is credited to v only if SUB_plain or SUB_affine exceeds SUB_rand by >= 0.15.",
+  "C2e": "Classes: 1 = default mechanism (incl. renamed/disguised defaults), 0 = any other attempted label incl. 'other'; 'invalid' and 'disputed' excluded. Eligible tasks have >= 8 of each class in the named-ban samples (T1 primary includes the declared W4 top-up: 100 + 60). Per position in {R, S-mean, 1..8, 16} and block 8..28: L2 logistic (batched IRLS; C by inner 3-fold CV from {1e-3,1e-2,1e-1,1}) on standardised states after PCA-64 fit on the training fold; 5-fold stratified by (template, class); pooled balanced accuracy; null = 500 within-template label permutations with full refits and a layer-max statistic per position. Text controls at each k (all with template one-hot): Ta one-hot token ids at 1..k; Tb layer-0 embeddings (mean of 1..k concatenated with token k), PCA-64; Tc exact prefix-match leave-one-out majority within template (fallback: template majority). R baseline = decoder at R (template-only by construction). LOCUS RULE (frozen): the first k in 1..8 at which max over blocks of state BA >= max(BA_R, BA_Ta, BA_Tb, BA_Tc) + 0.10 AND state BA > the layer-max null q95. 'Locus at tokens 1-3' requires k <= 3. Non-eligible tasks are 'not testable'. Conditional causal patch only if a locus (k*, L*) is found.",
+  "C2f": "Banned share for the target head set {L21H17, L26H21, L26H25} and each of 3 layer-matched random sets (k 0-9 slots), CRN flip tables against the no-ablation ban. Delta_T1 = target - mean(random). SUPPORTED iff Delta_T1 >= 0.15 (exact paired test against each random set, p < 0.05) AND |Delta_T2| <= 0.10 (90% CI reported).",
+  "0g": "FR_zero = (CE_zero - CE_sae) / (CE_zero - CE_clean). FROZEN PASS(L) := FR_zero(instruct, own text) >= 0.9 x FR_zero(base, own text). Companions: FR_mean, KL(clean||spliced), dCE ratio on own text, FVU and L0, displacement preservation cos(SAE(h_ban) - SAE(h_twin), h_ban - h_twin) and norm ratio at S. 5a stays descriptive whatever 0g shows (the zero-ablation denominator of ~12 nats makes the frozen rule lenient).",
+  "event_gate": "named ban avoidance >= 0.5 AND >= 20 non-banned attempts",
+  "best_alpha": "alpha in {1, 2} with the highest avoidance among those with pass rate >= 0.5; ties -> alpha 1"
+ },
+ "predictions": {
+  "P1": "ADD at alpha 1 or 2 beats every random control on >= 2/3 of the gated tasks and lands on the named ban's modal survivor.",
+  "P2": "SUB raises the banned share by >= 0.3.",
+  "P3": "C2e: no position beats the text controls by 0.10. State and text curves rise together at the first divergent token; the expected T2 fork is the import line, tokens 3-5.",
+  "P4": "C2f: T1 banned share rises >= 0.15 over random heads, T2 is unchanged.",
+  "P5": "0g: PASS by the frozen rule, with expected FR_zero about 0.98-0.995 for both models."
+ },
+ "t1_w4_topup_in_c2e_primary": true,
+ "sampled_tasks": [
+  "T2",
+  "T1",
+  "T03",
+  "T04",
+  "T06",
+  "T05"
+ ],
+ "deviations_declared_before_sampling": [
+  "FP8 W8A8-dynamic quantisation of the pinned bf16 weights (16 GB RTX 2000 Ada; F2 named bnb-8bit only because it assumed a GPU without FP8 support)",
+  "batch of 20 rows (two 10-slot blocks) instead of 10; N=50 arms that cannot be paired in a batch get the slots k 10-19 as extra rows (N=100) rather than idle padding",
+  "analysis code is hash-committed at commit #2 (still before any ban sample); the decision rules above are committed verbatim here"
+ ]
+}
