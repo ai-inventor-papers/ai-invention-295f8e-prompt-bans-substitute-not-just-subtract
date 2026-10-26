@@ -1,0 +1,60 @@
+{
+ "retrieved": "2026-10-22",
+ "A_P1": {
+  "verdict": "NOT FIRED (narrowly)",
+  "decisive": "No source found localizes which algorithm or solution strategy a code LLM will use as a low-rank causal variable by interchange/DAS and validates it by generation. Each half exists separately: DAS-based steering validated by generation on a non-plan attribute (CDAS, ICLR 2026: refusal and a CoT backdoor), algorithm choice in code moved by prompt cues only (Invisible Lottery, 92c source [30]), and code attributes that are not the algorithm moved by patching or difference-in-means vectors (Causal Syntax Circuits 2610.20683, next-token readout; Concept Vectors, ICLR 2027 submission; Rahman et al., 92c source [45]). None of these is DAS/interchange plus generation on a strategy or code attribute, so the PARTLY clause is not met either.",
+  "quotes": [
+   "P1-5",
+   "P1-8",
+   "P1-9",
+   "P1-7",
+   "P1-10"
+  ],
+  "interpretation_note": "'Only one half holds' is read as both halves applying to the same object (code algorithm choice). CDAS (refusal) is not a strategy, so it falls outside the PARTLY clause. Logged in protocol_amendments_iter6.jsonl.",
+  "would_change_if": "A paper (or the full text of an ICLR 2027 submission) that applies DAS/interchange to algorithm or strategy choice and scores the generated outputs."
+ },
+ "B_E": {
+  "verdict": "PARTLY FIRED",
+  "decisive": "Steering effect sizes under quantization have been measured only for weight-only INT8/NF4, with activations kept in FP16/BF16 (2609.06473: 'Activations remain in FP16/BF16 throughout the forward pass'). Two ICLR 2027 submissions show that the effect of the same steering direction changes across precision even when directions stay aligned (Stable Directions, desk-rejected; Activation Steering under Low-Bit Quantization). Their abstracts do not say whether activations are quantized, and the PDFs returned HTTP 403. FP8 weight-and-activation quantization has been studied only for batch non-determinism, with no perturbations (ICLR 2027 submission 9kskCmPMqd). Quantization also changes interpretability readouts (patching 2604.19884, 2609.01587; SAE features 2606.03002; probes under numeric formats 2609.31796).",
+  "quotes": [
+   "E-1",
+   "E-2",
+   "E-5",
+   "E-6",
+   "E-7",
+   "E-8",
+   "E-9",
+   "E-11",
+   "E-13",
+   "E-16"
+  ],
+  "open_part": "Activation quantization (FP8 W8A8, dynamic per-token scales) and the size of the effect of RANDOM activation perturbations relative to bf16 on the same directions: no source found.",
+  "would_change_if": "The full text of 8iTqrW1sxY or h57duZqLOr includes W8A8/FP8 activation quantization. B would then FIRE as a contemporaneous ICLR 2027 submission, for learned steering directions rather than random pushes."
+ },
+ "C_N": {
+  "verdict": "FIRED",
+  "decisive": "The NLA paper itself (Transformer Circuits, 7 May 2026) edits an NLA explanation of a PLAN (the rhyme word on the newline), reconstructs both versions with the AR, and steers with the difference at the newline token only. Steering succeeds 'roughly 50% of the time'. Its 'Reasoning about Rewards' case builds a steering vector the same way. Similar-verbaliser kin: LatentQA (ICLR 2026) steers with a decoder-defined differentiable loss, SelfIE (ICML 2024) Supervised Control edits concepts through one-layer gradients, and Dreaming Vectors (LessWrong) derives steering vectors from Activation Oracles.",
+  "quotes": [
+   "N-1",
+   "N-2",
+   "N-3",
+   "N-4",
+   "N-15",
+   "N-16",
+   "N-17",
+   "N-20"
+  ],
+  "cautions": "On a released Qwen-2.5-7B verbalizer, only a small share of specific claims are ones the reconstruction depends on (2607.20379), so editing one algorithm name may barely move the AR output. Small open models showed no newline-resident rhyme plan (2609.18440). Readout controls already published: shuffled activation, visible-text baseline, blinded judge (PKToLtvIZl)."
+ },
+ "D_P5": {
+  "verdict": "PARTLY FIRED",
+  "decisive": "Per-sample activation noise for diversity is a saturated method lane (inherited: STARS ICLR 2026, Noise Steering, random embedding injection, NC-GRPO; 92c sources [15, 14, 16, 52]). Latent-code sampling without a variable fitted inside a frozen LM exists: Latent-Plan Block Diffusion, Parallelizable Probabilistic Latent Reasoning, Singular-Value Perturbation (ICLR 2027 submissions). The closest fitted-variable work is Random Choice in LMs (ICLR 2027 submission). There a causally tested direction shapes the answer distribution and 'a mechanism-guided intervention ... improves sampling'. Its abstract does not say the variable is resampled once per generation, and its object is single-item random choice, not a plan or algorithm.",
+  "quotes": [
+   "P5-1",
+   "P5-2",
+   "P5-3",
+   "P5-4"
+  ],
+  "would_change_if": "The full text of eZYeqPZlFr resamples its distribution direction per generation for diversity. D would then come close to FIRED on a non-code object."
+ }
+}

@@ -1,0 +1,2005 @@
+{
+  "title": "Who already found the hidden plan?",
+  "answer": "# Who already found the hidden plan? Positioning audit for iteration-6 claims (Table 92e)\n\n*Retrieval date: 2026-10-22. This audit covers iteration-6 claims P1-P5, N, S and E. It extends Tables 92b/92c (art_kjrCpQnPaniY) and 92d (art_ObxQOIlAM9MS) and cites their rows by id without re-verifying them. Every new quote below is copied from the source's own versioned text: arXiv HTML (the PDF where no HTML exists), a transformer-circuits page, a PMLR or ICLR page, an OpenReview API record, a Hugging Face card or a GitHub README. Each quote was checked against a cached copy of that text, and then re-matched live by an independent fetch_grep pass. Rows state design facts only and quote no run-internal result.*\n\n## 1. Summary\n\n- **The four flags.** A: NOT FIRED (narrowly). B: PARTLY FIRED. C: FIRED. D: PARTLY FIRED.\n- **N is a replication, not a new method.** The NLA paper (Transformer Circuits, 7 May 2026) already does what N proposes [1]. It edits the explanation of a *plan* (the rhyme word on the newline), turns the edit into an activation with the AR, and steers at the newline only. This works \"roughly 50% of the time\".\n  - Verbaliser kin also steer: LatentQA [2], SelfIE [3, 4], and Dreaming Vectors, which takes steering vectors from Activation Oracles [5].\n  - N's causal arm is therefore a **replication in a new setting**: algorithm choice in code, Qwen2.5-7B-Instruct at L20, and new controls.\n  - Two 2026 results argue against assuming the edit will work. On a released Qwen-2.5-7B verbalizer, only \"as few as\" about 2% of specific claims are ones the reconstruction depends on [6]. A stress test on open models found no newline-resident rhyme plan [7].\n- **E is open in the published record, but crowded by contemporaneous submissions.**\n  - In the arXiv record, steering effect sizes under quantization have been compared with full precision only for weight-only INT8/NF4: \"Activations remain in FP16/BF16 throughout the forward pass\" [8].\n  - Two ICLR 2027 submissions show that the same steering direction can have a different effect at another precision, even when the directions stay aligned [9, 10]. Their abstracts do not say whether activations are quantized, and their PDFs returned HTTP 403.\n  - Among the sources found, FP8 weight-and-activation quantization appears only in a non-determinism study with no perturbations [11].\n  - **No source found (search dated 2026-10-22) measures how activation rounding (FP8 W8A8, dynamic per-token scales [12]) changes the effect size of random activation perturbations.**\n- **P1: the method is published, the object is open.**\n  - DAS is the standard method for localizing a causal variable [13, 14].\n  - DAS has already been used for steering validated by generation, but on refusal and a CoT backdoor, not on a plan [15].\n  - In the sources found, algorithm choice in code has been moved only by prompt cues (92c source 30 [16]). Code attributes that are not the algorithm (language, library, coding habits) have been moved by patching or difference-in-means vectors [17, 18, 19].\n  - The nearest same-model, same-site neighbour is an ICLR 2027 submission: SAE-feature targets at Qwen3-8B's final prompt position, with code benchmarks and random-null controls [20].\n- **S: the method is occupied on a non-code strategy.** SAE-feature steering of *reasoning strategies* beats prompt-based and activation-based baselines, validated by generation [21] (ACL 2026).\n  - Two priors pull in opposite directions. AxBench (prompting beats steering; SAEs not competitive [22]) is countered by its rebuttal [23]. On an open-model rhyme-planning task, only CLT-based steering succeeded [24].\n  - Qwen-3 transcoders that include 8B exist in circuit-tracer [25, 26], and a planning study already uses them [27]. The paper must therefore say why S runs on Gemma Scope 2.\n- **P2, P3 and P4 are ADJACENT-ONLY.**\n- **P5 is PARTLY OCCUPIED.** Activation noise and latent-code sampling for diversity are occupied lanes [28, 29, 30, 31, 32, 33]. Resampling a *fitted, causally localized* plan variable is not published. The closest work, a fitted random-choice direction, is an ICLR 2027 submission [34].\n\n## 2. Scope, date and method (PRISMA-S items)\n\n- **Protocol.** Frozen and sha256-stamped before the first search call: sha256 `88e3bab2e451d477009ac5c62d284b00e2614a50fc583f86380cc71b26f3c4bc`, stamped 2026-10-22T06:19:27Z (evidence/protocol_iter6.json and .sha256). Amendments are logged with timestamps in evidence/protocol_amendments_iter6.jsonl:\n  - an interpretation note on flag A;\n  - reuse of prior audit tools;\n  - two stop-rule entries.\n- **Databases and engines.**\n  - E1: OpenAlex/Crossref via the aii-web-tools scholarly search [35].\n  - E3: arXiv API, sorted by submission date, newest first [36].\n  - E4: Semantic Scholar search with year=2026, plus citations and references [37].\n  - E5: the OpenReview ICLR 2027 pool through api2 notes/search [38].\n  - E6: grey literature through the built-in web search, restricted to transformer-circuits.pub, lesswrong.com, alignmentforum.org, huggingface.co, github.com, neuronpedia.org and substack.com.\n- **Strings and rounds.**\n  - Round 1: 21 strings over 7 lanes (L1-L7). Every string ran on E3, E4 and E5; L1, L4 and L6 also ran on E1; L4, L5 and L6 also ran on E6.\n  - Round 2: 6 strings, each motivated by a named round-1 hit (evidence/round2_queries_iter6.json), run on E1, E3, E4 and E5.\n  - Snowballing: forward citations on Semantic Scholar for MIB (61 citers) and Emergent Response Planning (20 citers). Steering Under Compression had 0 citers, so the backward references of 2609.06473 and 2606.03002 were taken instead.\n  - The NLA paper is not indexed by Semantic Scholar title search, so its forward search used E6.\n  - Round 3 ran because round 2 produced new hits scoring at least 1.5: forward and backward references of those hits. It found no new hit scoring at least 1.5, so the search stopped (stop rule met).\n  - In total: 126 logged calls (E1 15, E3 27, E4 43, E5 28, E6 10, SUPP 3), each with UTC time, engine, string, hit count and top-20 ids (evidence/search_log_iter6.jsonl).\n- **Dates and limits.** Window: 2026-01-01 to 2026-10-22; anchors may be older. Contemporaneity rule inherited from 92d:\n  - an arXiv v1 after 2026-06-22 is tagged contemporaneous_4mo;\n  - every ICLR 2027 submission is tagged contemporaneous;\n  - arXiv-only papers are exempt from the ICLR rule.\n- **De-duplication.** 2191 raw hits reduced to 1820 unique records, keyed by arXiv id, then OpenReview forum id, then normalized title.\n- **Screening.**\n  - 1401 records were in the window. A documented keyword pre-screen (lane groups G1-G7, in tools/screen_iter6.py) passed 605.\n  - Manual title and abstract screening, with full text for the shortlist, led to O/I/C scores for 75 claim-rows covering 67 papers (some anchors predate the window).\n  - Results: 3 occupying, 66 adjacent, 6 irrelevant. In addition, 561 records were judged irrelevant at title/abstract and 790 were excluded at the keyword pre-screen.\n  - Every in-window record has a one-line verdict in evidence/saturation_hits_iter6.jsonl.\n- **Rubric (frozen).** Each axis scores 0, 0.5 or 1; a total of at least 2.5 occupies, 1-2 is adjacent, and below 1 is irrelevant.\n  - O (object): 1 = which algorithm a code model writes; 0.5 = a categorical plan, strategy or attribute in another domain.\n  - I (instrument): 1 = the claim's own intervention class; 0.5 = a neighbouring intervention.\n  - C (criterion): 1 = validated by generation scored by tests or labels; 0.5 = a logit, probe or next-token readout.\n- **Quote verification.**\n  - 123 new quotes from 94 sources: 123/123 matched the cached source text under the inherited normalization rule (whitespace, ligatures, curly quotes and dashes, html2text emphasis; [...] segments must occur in order).\n  - Statuses: 82 VERIFIED, 22 VERIFIED-ABSTRACT, 4 VERIFIED-BLOG, 15 VERIFIED-README.\n  - QA (Step 4): an independent live fetch_grep pass re-matched 123/123 quotes (evidence/qa_second_pass_iter6.jsonl).\n  - Where arXiv HTML renders a MathML number twice, the quote is split with [...] (2607.20379v2, 2602.17691v1, 2602.05234v2).\n  - No number in this report comes from a text that could not be retrieved.\n- **Inherited material.** 92b/92c/92d rows and quotes are cited by id (evidence/inherited_index.json: 207 sources). For the 8 flag-critical inherited references, the arXiv API was rechecked: none has a newer version than the one inherited (2601.22010, 2605.11936, 2608.21595, 2606.10302, 2603.23629, 2606.04057, 2605.05115, 2603.18353).\n\n## 3. Verdict box\n\n| Claim | Lane verdict | Deciding reference(s) |\n|---|---|---|\n| P1 low-rank causal PLAN variable (interchange/DAS) decides which algorithm Qwen3-8B writes; validated by generation | PARTLY OCCUPIED: the method is occupied (DAS; DAS steering validated by generation on a non-plan attribute); the object is open; flag A not fired | DAS/Boundless DAS [13, 39]; MIB [14]; CDAS [15]; Invisible Lottery [16]; Before Reasoning Begins [20] |\n| P2 plan subspace mediates which random pushes switch the algorithm | ADJACENT-ONLY (unchanged from 92c C2a; prediction of random-push effects is still open) | Before the First Token [40]; AJR [41]; DecodeShare [42]; output-sensitive component [43]; coordinate outside a subspace [44] |\n| P3 plan is discrete under interpolation | ADJACENT-ONLY | Park et al. [45]; Engels et al. [46]; Manifold Steering [47]; prolepsis [24]; random-choice switch [34] |\n| P4 temperature leaves the plan untouched, state noise moves it, at matched KL | ADJACENT-ONLY | departure-matched decoding [48]; Peeperkorn [49]; Forking Paths [50]; future-behaviour forecasting [51] |\n| P5 resampling the plan as a diversity knob | PARTLY OCCUPIED (activation noise and latent sampling for diversity are occupied; resampling a fitted causal plan variable is open); flag D partly fired | STARS / Noise Steering / REI [28, 29, 30]; LP-BD / PPLR / SVP [31, 32, 33]; Random Choice [34] |\n| N read and edit the plan in words with NLAs | OCCUPIED (method): replication in a new setting; flag C fired | NLA [1]; LatentQA [2]; SelfIE [3]; cautions [6, 7, 52] |\n| S the plan in Gemma Scope 2 SAE and transcoder features | PARTLY OCCUPIED (SAE-feature steering of reasoning strategies against prompt and activation baselines, validated by generation); algorithm choice in code is open | SAE-Steering [21]; AxBench and its rebuttal [22, 23]; Do SAEs Identify Reasoning Features [53]; prolepsis [24] |\n| E FP8 W8A8 activation rounding inflates the apparent effect of activation perturbations | ADJACENT-ONLY in the published and arXiv record; the general claim is PARTLY OCCUPIED by contemporaneous ICLR 2027 submissions (abstract-level); flag B partly fired | weight-only steering [8]; Stable Directions [9]; Low-bit steering [10]; FP8 W8A8 non-determinism [11] |\n\n**Optional lines (no new search):**\n- **ST and L.** Site comparisons for diversity injection remain as in 92c C1-site: PARTLY OCCUPIED [54, 29, 28].\n- **G.** The base-model variety lines remain as in 92d (A2/G rows: transplant and goal published; inference-time movability open) [55, 56].\n\n## 4. Flags (frozen definitions in evidence/protocol_iter6.json; verdicts in evidence/flags_iter6.json)\n\n### Flag A (P1): NOT FIRED, narrowly\n\nNo source localizes which algorithm or solution strategy a code LLM will use as a low-rank causal variable by interchange or DAS, and then checks the claim by scoring the generated programs. Each half exists on its own:\n\n- **DAS-based steering checked by generation, on a non-plan attribute.** CDAS: \"While we adopt the core mechanism of DAS, distributed interchange intervention (DII) [...] we introduce a novel distribution matching objective tailored for the steering task by aligning intervened output distributions with counterfactual distributions\" [15]. Its targets are refusal and a CoT backdoor.\n- **Algorithm choice in code, moved only by prompt cues** [16].\n- **Code attributes that are not the algorithm.**\n  - Causal Syntax Circuits: \"Code models write Python when the prompt does not say which language to use\" [17]. It uses patching, circuits and steering, read out at the next token.\n  - Concept Vectors: difference-in-means directions for coding habits [18].\n  - Rahman et al.: language and library [19].\n- **Algorithm identity found by DAS, but in toy networks**, validated against transfer learning rather than generation [57].\n\nNone of these does DAS/interchange plus generation on a strategy or a code attribute, so the PARTLY clause is not met. The interpretation note is logged: \"only one half\" means both halves apply to the same object.\n\n**Would change it:** a paper, or the full text of an ICLR 2027 submission, that applies interchange/DAS to algorithm or strategy choice and scores the generated outputs.\n\n### Flag B (E): PARTLY FIRED\n\n- **Weight-only quantization only, in the published record.** \"We systematically study activation steering under weight-only quantization (INT8 and NF4) across four open-weight 7–9B models and two behavioral targets\" and \"Activations remain in FP16/BF16 throughout the forward pass\" [8]. This is exactly the PARTLY clause.\n- **Two ICLR 2027 submissions on precision and steering effects.**\n  - \"Preserving standard model quality or direction-level representation similarity does not guarantee that the intervention effect is preserved\" [9] (desk-rejected).\n  - \"We study steering compatibility with the intervention layer, direction, and strength held fixed across full-precision and quantized models\" [10].\n  - Their abstracts do not say whether activations are quantized. The PDFs (openreview.net/pdf and api2 attachment) returned HTTP 403.\n- **FP8 W8A8 appears only for non-determinism.** It is studied \"using BF16, GPTQ, FP8 weight-and-activation quantization, and FP8 KV-cache quantization\" for batch-context non-determinism, with no perturbations [11].\n- **Readouts change under quantization.**\n  - Patching [58, 59].\n  - SAE features [60].\n  - Probes under numeric formats [61].\n\n**Open part:** activation quantization combined with the effect size of *random* perturbations, against bf16 on the same directions.\n\n**Would change it:** if the full text of either flag-B submission includes W8A8/FP8 activation quantization, B FIRES. It would be a contemporaneous submission about learned steering directions, not random pushes.\n\n### Flag C (N): FIRED, as the planner's pre-check predicted\n\nFrom the NLA paper [1]:\n\n- \"We can make a targeted edit to the NLA explanation, convert the modified explanation into an activation via the AR, and steer the target model with the resulting direction.\"\n- \"We then steer with this direction at the newline token only, at the layer the NLA is trained on.\"\n- \"We note that steering is only successful roughly 50% of the time and the completions are not always clean.\"\n- Its rewards case: \"by editing an explanation and reconstructing both the original and edited versions with the AR, we obtain a steering vector from their difference.\"\n\nKin under the \"similar verbaliser\" clause:\n\n- LatentQA: \"The trained decoder also enables control by providing a differentiable loss to steer activations towards\" [2].\n- SelfIE: \"We propose Supervised Control, which allows editing open-ended concepts while only requiring gradient computation of individual layer\" [3].\n- Dreaming Vectors (grey literature) [5].\n\nPatchscopes (92d source 88 [62]) is readout-only: no steer/control match in v4.\n\n### Flag D (P5): PARTLY FIRED\n\n- **Per-sample activation noise for diversity is a saturated lane** (92c sources 15, 14, 16, 52 [28, 29, 30, 63]).\n- **Latent-code sampling without a variable fitted inside a frozen LM:**\n  - LP-BD: \"before a block is decoded, a small conditional flow samples a low-dimensional plan given\" a context [31].\n  - PPLR: \"current latent models remain largely deterministic, capturing only a single reasoning trajectory rather than modeling a distribution over\" several trajectories [32].\n  - SVP [33].\n- **Closest work with a fitted variable:** Random Choice in LMs. \"one direction acts as a switch into the random-choice mode, whereas a separate direction shapes the resulting answer distribution\", and \"This decomposition enables a mechanism-guided intervention that improves sampling without task-specific gradient training\" [34]. Its abstract does not say the variable is resampled once per generation, and its object is single-item random choice.\n\n## 5. Table 92e\n\nAbbreviations:\n- Status: V = VERIFIED (full text); VA = VERIFIED-ABSTRACT (OpenReview API record); VB = VERIFIED-BLOG; VR = VERIFIED-README.\n- Contemporaneity: c = contemporaneous (ICLR 2027 submission); c4 = arXiv v1 after 2026-06-22; pub = published or older preprint.\n- Quote ids (e.g. N-1) point to evidence/quotes_iter6.jsonl.\n\n### P1: a low-rank causal PLAN variable, localized by interchange/DAS, decides which algorithm Qwen3-8B writes (validated by generation)\n\n| Row | Neighbour (venue, version, v1, tag) | Verified quote(s) (id; locator; status) | Relation | Lane verdict | What this run adds | Reviewer baseline implied |\n|---|---|---|---|---|---|---|\n| 92e-P1-1 | DAS: Geiger, Wu, Potts, Icard, Goodman, CLeaR 2024 (PMLR 236), arXiv v4, v1 2023-03-05, pub [13, 64]; Boundless DAS, Wu et al., NeurIPS 2023, v3 [39] | \"existing causal abstraction methods have two major limitations: they require a brute-force search over alignments [...]\" (P1-1; Abstract; V). \"We apply Boundless DAS to the Alpaca model (7B parameters), which, off the shelf, solves a simple numerical reasoning problem.\" (P1-3; Abstract; V) | method the claim uses | PARTLY OCCUPIED (method) | object = algorithm choice in code; validation by tests on emitted programs; Sutter-style controls | DAS with a declared rotation rank, against Boundless DAS |\n| 92e-P1-2 | MIB: Mueller et al., ICML 2025, v2, v1 2025-04-17, pub [14] | \"For causal variable localization, we find that the supervised DAS method performs best, while SAE features are not better than neurons, i.e., non-featurized hidden vectors.\" (P1-4; Abstract; V) | control the claim must meet (method ordering) | n/a | n/a | report neuron and SAE-feature arms beside DAS (MIB ordering) |\n| 92e-P1-3 | CDAS: Bao et al., ICLR 2026, v2, v1 2026-02-05, pub [15] | \"While we adopt the core mechanism of DAS, distributed interchange intervention (DII) [...] we introduce a novel distribution matching objective tailored for the steering task by aligning intervened output distributions with counterfactual distributions.\" (P1-5; Sec. 1; V) | occupies the method+criterion pair (rubric 2.5) on a non-plan attribute (refusal, CoT backdoor) | PARTLY OCCUPIED | a plan object (algorithm choice), route-derived predictions, random/shuffled controls | a CDAS-style distribution-matching DAS arm |\n| 92e-P1-4 | Programmable Semantic Interventions, ICLR 2027 submission, c [65] | \"a low-rank activation subspace learned so that interchanging it moves the model's answer the way the program declares.\" (P1-6; abstract; VA) | adjacent (rubric 1.5) | — | generation-validated plan object | PSI-style declared-program alignment |\n| 92e-P1-5 | Finding Algorithms in Neural Networks (DAS vs transfer), ICLR 2027 submission, c [57] | \"We find that, on toy arithmetic and vision tasks, the algorithms identified by DAS and TLA mostly agree\" (P1-7; abstract; VA) | adjacent (1.5); supports declaring the map class (non-linear DAS needed in vision) | — | algorithm identity in a code LLM, checked by generation | linear vs non-linear map classes |\n| 92e-P1-6 | Causal Syntax Circuits in CodeLMs, Kumar et al., NeurIPS 2026 workshop, v1 2026-10-14, c4 [17] | \"Code models write Python when the prompt does not say which language to use. We ask a mechanistic question about that habit: is it produced by a small, findable group of components inside the model?\" (P1-8; Abstract; V) | adjacent (1.5): a code attribute that is not the algorithm; next-token readout | — | algorithm (not language); low-rank DAS; generation | random-control significance test, as there |\n| 92e-P1-7 | Steering LLM Coding Behaviors with Concept Vectors, ICLR 2027 submission, c [18] | \"Adding them after the first sampled token changes held-out outputs, but effects depend on model and layer, strong scaling harms validity and correctness, and axis specificity remains unresolved without matched-norm causal controls.\" (P1-9; abstract; VA) | adjacent (2.0) | — | algorithm-level object with matched-norm controls | a difference-in-means direction for the algorithm, with matched-norm random controls |\n| 92e-P1-8 | Before Reasoning Begins (Qwen3-8B, final prompt position, SAE targets), ICLR 2027 submission, c [20] | \"This pipeline yields a compact set of 23 intervention targets in Qwen3-8B.\" (P1-10; abstract; VA). \"We use this functionally aligned contrast to screen sparse autoencoder features at the final prompt position\" (P1-11; abstract; VA) | adjacent (2.0): same model and site; object is reasoning, not algorithm | — | which algorithm (not whether reasoning happens); DAS rather than SAE suppression | layer-count-matched random null interventions |\n| 92e-P1-9 | Committed Before Reasoning, Jo, v1 2026-07-17, c4 [66] | \"Chat models sometimes commit to an answer and then produce reasoning that justifies the commitment rather than deriving it\" (P1-12; Abstract; V) | supports (pre-generation commitment in Qwen3-8B) | — | — | — |\n| 92e-P1-10 | Random Choice in LMs: linear choice state, ICLR 2027 submission, c [34] | \"one direction acts as a switch into the random-choice mode, whereas a separate direction shapes the resulting answer distribution.\" (P1-13; abstract; VA) | adjacent (2.0) | — | code-algorithm object | switch-vs-distribution decomposition |\n| 92e-P1-11 | Detecting and Characterizing Planning in LMs, Nainani et al., v1 2025-08-25, anchor [67] | \"We apply this pipeline to both base and instruction-tuned Gemma-2-2B models on the MBPP code generation benchmark and a poem generation task where Claude 3.5 Haiku was previously shown to plan.\" (P1-14; Abstract; V) | adjacent (1.5); contradicts in part (the same abstract reports that planning is not universal) | — | algorithm-level plan, not a future-token plan | a planning-vs-improvisation criterion |\n| 92e-P1-12 | Algorithmic Core Extraction, Schiffman, v2, v1 2026-02-26, pub [68] | \"extracting algorithmic cores, compact subspaces that are necessary and sufficient for a task and that recur across independently trained models.\" (P1-15; Abstract; V) | adjacent (1.0) | — | choice among algorithms, not a task core | — |\n| 92e-P1-13 | Invisible Lottery (algorithm choice in code moved by cues), ICML 2026: see 92c source 30 [16] | see 92c (not re-verified) | adjacent (2.0): object occupied behaviourally | — | internal causal variable | prompt-cue baseline |\n| 92e-P1-CTRL-1 | Sutter, Minder, Hofmann, Pimentel, NeurIPS 2025 Spotlight, v2, v1 2025-07-11, pub [69] | \"on an experiment using randomly initialised language models, our alignment maps reach 100% interchange-intervention accuracy on the indirect object identification task.\" (CTRL-1; Abstract; V) | control the claim must meet | — | declared linear map class and rank; random-init or random-rotation control | fit the same map on a randomly initialized Qwen3-8B, and with shuffled labels |\n| 92e-P1-CTRL-2 | Makelov, Lange, Geiger, Nanda, ICLR 2024, v2, pub [70, 71] | \"this effect may be achieved by activating a dormant parallel pathway leveraging another subspace that is causally disconnected from model outputs.\" (CTRL-2; Abstract; V) | control the claim must meet | — | nullspace/row-space decomposition of the patch | check that the patched subspace is not causally disconnected |\n| 92e-P1-CTRL-3 | Reply: Wu, Geiger, Huang, Arora, Icard, Potts, Goodman, v1 2024-01-23 [72] | \"their method of discovering \"illusions\" can reject explanations they consider \"non-illusory\".\" (CTRL-4; Abstract; V) | cite with CTRL-2 | — | — | — |\n| 92e-P1-CTRL-4 | Divergent representations: Grant et al., v5 (2026-04-22), v1 2025-11-06 [73] | \"minimizing divergence magnitude does not guarantee elimination of hidden pathways; it only reduces the risk surface.\" (CTRL-6; Sec. 5; V) | control | — | on-distribution check of patched states | report divergence of the intervened states |\n| 92e-P1-CTRL-5 | Right Answer, Wrong Mechanism, v2, v1 2026-09-30, c4 [74] | \"No method currently tells the two cases apart.\" (CTRL-7; Abstract; V) | control (do not rely on distance checks alone) | — | — | planted-pathway or clamp test |\n| 92e-P1-CTRL-6 | Curse of Multiple Mediators [75]; Many Circuits, One Mechanism (TMLR 2026) [76]; identification-assumptions position [77] | \"we find that the NIE does not solely capture the causal effect through the specific component.\" (CTRL-8; V). \"The discovered circuits appear specialized by frequency when compared structurally, but functional and representational analyses show no reliable evidence of corresponding differences.\" (CTRL-9; V) | controls | — | — | report interaction effects, cross-condition transfer and identification assumptions |\n\n### P2: the plan subspace mediates which random pushes switch the algorithm\n\n| Row | Neighbour | Verified quote(s) | Relation | Lane verdict | What this run adds | Reviewer baseline |\n|---|---|---|---|---|---|---|\n| 92e-P2-1 | Before the First Token (causal response-length subspace; parallel/orthogonal decomposition of interventions), ICLR 2027 submission: see 92c source 64 [40] | see 92c source 64 (not re-verified) | adjacent (nearest) | ADJACENT-ONLY | prediction of *random*-push effects on *algorithm* choice from projection onto the plan subspace | parallel/orthogonal decomposition of each push |\n| 92e-P2-2 | AJR [41]; ASTEER [78]; decodability is not actionability [79] | see 92c (not re-verified) | adjacent | — | — | Jacobian-readout predictor of push effects |\n| 92e-P2-3 | DecodeShare, v1 2026-05-21, pub [42] | \"disturbing the discovered shared subspace degrades decision performance far more than disturbing either a prefill-derived or random subspace under the same intervention budget.\" (P2-2; Abstract; V) | adjacent (1.5) | — | random pushes classified by plan-subspace energy | matched-budget random-subspace control |\n| 92e-P2-4 | What Does Activation Steering Control?, v1 2026-08-24, c4 [43] | \"A low-rank output-sensitive component containing 15.4% of the direction's squared norm retains 96.3% of this effect.\" (P2-7; Abstract; V) | supports a projection account (1.0) | — | — | report the share of each push's norm inside the plan subspace |\n| 92e-P2-5 | Jailbreak success coordinate outside the refusal subspace, ICLR 2027 submission, c [44] | \"whether success is decodable before generation from a coordinate outside an evaluated refusal subspace, whether intervention on that coordinate moves the behavior\" (P2-3; abstract; VA) | contradicts in part: the outcome-deciding coordinate can lie outside an evaluated subspace | — | — | test the orthogonal complement as well |\n| 92e-P2-6 | Before Reasoning Begins (targeted vs random-null) [20]; Latent Planning Emerges with Scale, ICLR 2026 [27] | \"same-size, layer-count-matched random null interventions reduce accuracy by only\" (P2-5; VA). \"even the less-successful Qwen-3 4B-8B have nascent planning mechanisms.\" (P2-4; Abstract; V) | adjacent / supports | — | — | random-null arm |\n| 92e-P2-8 | On the Non-Identifiability of Steering Vectors, v4, v1 2026-02-06, pub (found by a supplementary search) [80] | \"We show that, under white-box single-layer access, steering vectors are fundamentally non-identifiable due to large equivalence classes of behaviorally indistinguishable interventions.\" (P2-8; Abstract; V) | supports a subspace-level (not direction-level) account (1.0) | — | — | report plan claims at subspace level; orthogonal-perturbation control |\n| 92e-P2-7 | Steering off Course, v1 2025-04-06, anchor [81]; Tele-Lens (ICML 2026) [82] | \"Our analysis demonstrate fundamental flaws in the assumptions underlying these methods, challenging their reliability as scalable steering solutions\" (P2-1; Abstract; V) | caution | — | — | per-sample effect distributions |\n\n### P3: the plan is discrete under interpolation\n\n| Row | Neighbour | Verified quote(s) | Relation | Lane verdict | What this run adds | Reviewer baseline |\n|---|---|---|---|---|---|---|\n| 92e-P3-1 | Park, Choe, Jiang, Veitch, ICLR 2025 oral, v3, anchor [45] | \"This allows us to immediately formalize the representation of categorical concepts as polytopes in the representation space.\" (P3-1; Abstract; V) | supports (categorical geometry) | ADJACENT-ONLY | an interpolation sweep between plan centroids, with the emitted algorithm labelled at each step | polytope/simplex geometry of the plan centroids |\n| 92e-P3-2 | Engels et al., ICLR 2025, v3 (retitled \"...One-Dimensionally Linear\"), anchor [46] | \"we explore whether some language model representations may be inherently multi-dimensional.\" (P3-2; Abstract; V) | adjacent (2.0): interventions along circular features | — | discreteness vs continuity of a code plan | a test for irreducible multi-dimensional features |\n| 92e-P3-3 | Manifold Steering (ICML 2026 MI-workshop spotlight): see 92c source 44 [47] | see 92c (not re-verified) | adjacent | — | — | geodesic vs linear paths |\n| 92e-P3-4 | Prolepsis, Jacopin, v2, v1 2026-04-16 [24]; Random Choice switch [34]; manifold vs linear steering (ICLR 2027 submission) [83] | \"We introduce prolepsis: a transformer commits early, task-specific attention heads sustain the commitment, and no layer corrects it.\" (P3-3; V). \"show that both a linear direction and a low-dimensional manifold structure align with it.\" (P3-4; VA) | adjacent | — | — | linear vs manifold interpolation |\n\n### P4: temperature leaves the plan untouched while state noise moves it, at matched KL\n\n| Row | Neighbour | Verified quote(s) | Relation | Lane verdict | What this run adds | Reviewer baseline |\n|---|---|---|---|---|---|---|\n| 92e-P4-1 | departure-matched decoding (ICLR 2027 submission, \"Rethinking Activation Steering for Mathematical Reasoning\"): 92c source 66 [48]; Peeperkorn [49]; AdapT [84]; Gumbel counterfactuals [85]; Beneath the Diff [86] | see 92c (not re-verified) | adjacent; departure-matched decoding is the reviewer baseline | ADJACENT-ONLY | plan-level (algorithm) readout of temperature vs state noise at matched KL | decoding matched to the perturbation's departure from greedy |\n| 92e-P4-2 | Forking Paths, Bigelow et al., v1 2024-12-10, anchor [50] | \"We hypothesize that there exist key forking tokens, such that re-sampling the system at those specific tokens, but not others, leads to very different outcomes.\" (P4-1; Abstract; V) | adjacent (2.0) | — | — | forking-token resampling baseline |\n| 92e-P4-3 | HELIX (4-bit Granite; temperature plus steering), v1 2026-02-06 [87]; Predicting Future Behaviors, ICLR 2027 submission [51] | \"Quantized language models face a fundamental dilemma: low sampling temperatures yield repetitive, mode-collapsed outputs, while high temperatures [...] cause trajectory divergence and semantic incoherence.\" (P4-2; V). \"We apply a forking-paths-style analysis to behavioral evaluations and find that as generation progresses, LRMs define evolving distributions over behavioral outcomes.\" (P4-3; VA) | adjacent | — | — | — |\n\n### P5: resampling the plan as a diversity knob (flag D)\n\n| Row | Neighbour | Verified quote(s) | Relation | Lane verdict | What this run adds | Reviewer baseline |\n|---|---|---|---|---|---|---|\n| 92e-P5-1 | STARS (ICLR 2026), Noise Steering, REI, NC-GRPO, 2606.10302, Diversity Without Discovery: 92c sources 15, 14, 16, 52, 31, 63 [28, 29, 30, 63, 54, 88] | see 92c (not re-verified) | occupies the method family (activation noise for diversity) | PARTLY OCCUPIED | resampling a *fitted, causally localized* plan variable | matched-dose activation noise; text-level plan samplers (IFG, PlanSearch) [89, 90] |\n| 92e-P5-2 | Random Choice in LMs, ICLR 2027 submission, c [34] | \"This decomposition enables a mechanism-guided intervention that improves sampling without task-specific gradient training.\" (P5-1; abstract; VA) | adjacent (2.0); closest to flag D | — | per-generation resampling for algorithm diversity | distribution-direction intervention |\n| 92e-P5-3 | LP-BD [31]; PPLR [32]; SVP [33] (ICLR 2027 submissions, c) | \"before a block is decoded, a small conditional flow samples a low-dimensional plan given\" (P5-2; VA). \"which diversifies latent trajectories by randomly rescaling coefficients in the fixed SVD basis of a weight matrix.\" (P5-4; VA) | adjacent (flag D partly) | — | a frozen LM; the variable is fitted, not trained | — |\n| 92e-P5-4 | Latent Plan Transformer, v4, anchor (venue not stated in the arXiv record) [91] | \"We introduce the Latent Plan Transformer (LPT), a novel model that leverages a latent variable to connect a Transformer-based trajectory generator and the final return.\" (P5-5; Abstract; V) | adjacent | — | — | — |\n\n### N: reading and editing the plan in words with NLAs (flag C)\n\n| Row | Neighbour | Verified quote(s) | Relation | Lane verdict | What this run adds | Reviewer baseline |\n|---|---|---|---|---|---|---|\n| 92e-N-1 | Fraser-Taliente, Kantamneni, Ong et al., \"Natural Language Autoencoders Produce Unsupervised Explanations of LLM Activations\", Transformer Circuits, published May 7, 2026, pub [1] | \"We can make a targeted edit to the NLA explanation, convert the modified explanation into an activation via the AR, and steer the target model with the resulting direction.\" (N-1; Planning in Poetry; V). \"We note that steering is only successful roughly 50% of the time and the completions are not always clean.\" (N-3; V) | OCCUPIES the method (rubric 2.5) | OCCUPIED (method) | replication in a new setting: algorithm choice in code, Qwen2.5-7B-Instruct L20, text-only judges, an unrelated-word edit, a matched-norm random displacement | the paper's own newline-only steering protocol and success rate |\n| 92e-N-2 | same paper, Reasoning about Rewards [1] | \"by editing an explanation and reconstructing both the original and edited versions with the AR, we obtain a steering vector from their difference.\" (N-4; V) | occupies | — | — | AR-difference steering vector, norm-matched |\n| 92e-N-3 | same paper, Method and Limitations [1] | \"NLA explanations can contain claims about the target model's input context that are verifiably false.\" (N-5; V). \"with the NLAs evaluated in this paper reaching 0.6-0.8 FVE\" (N-6; V) | control the claim must meet (confabulation) | — | — | confabulation audit of plan claims |\n| 92e-N-4 | Released checkpoints: kitft README [92]; HF card [93]; nla_meta.yaml [94]; TransformerLens issue #1884 [95] | \"Qwen2.5-7B-Instruct \\| 20 / 28 \\| 3584\" (N-9; VR). \"Each checkpoint ships an `nla_meta.yaml` sidecar [...] load those, never hardcode them.\" (N-11; VR). \"In-distribution fve_nrm: 0.752\" (N-13; VR) | design facts | — | — | load nla_meta.yaml injection settings |\n| 92e-N-5 | LatentQA, Pan, Chen, Steinhardt, ICLR 2026, v2 [2]; SelfIE, ICML 2024, PMLR 235 [3, 4] | \"The trained decoder also enables control by providing a differentiable loss to steer activations towards\" (N-15; V). \"We propose Supervised Control, which allows editing open-ended concepts while only requiring gradient computation of individual layer.\" (N-17; V) | occupies the \"similar verbaliser\" clause of flag C (rubric 2.0 each) | — | — | decoder-loss steering arm |\n| 92e-N-6 | Activation Oracles, v2 [96]; Dreaming Vectors (LessWrong) [5] | \"we study Activation Oracles (AOs): models trained to answer arbitrary natural-language questions about LLM activations.\" (N-19; V) | readout kin / steering kin (grey literature) | — | — | — |\n| 92e-N-7 | Sood, Substack, 2026-08-18, c4 [97]; Auditing the Auditor, ICLR 2027 submission, c [52] | \"We audit two released NLA checkpoints and find that the readout reports what pressure was applied and what the model answered, but not whether the pressure changed that answer.\" (N-21; VB). \"under preregistered controls: a wrong-activation (shuffled) control, a visible-text baseline, a blinded judge, and supervised readability probes.\" (N-22; VA) | control set the readout must meet | — | — | shuffled-activation control; visible-text baseline; blinded judge |\n| 92e-N-8 | Train the Model, Not the Reader, Dingeto, v2, v1 2026-07-22, c4 [6] | \"On a released Qwen-2.5-7B verbalizer, explanations reconstruct well above chance while as few as [...] of their specific claims are ones the reconstruction depends on. The score therefore tracks the input's gist, not its specific\" (N-24; Abstract; V) | contradicts in part: an edited claim may not move the AR output | — | measure the AR displacement caused by the edit before steering | claim-flip reconstruction test |\n| 92e-N-9 | Colombian identity with NLA, v1 2026-07-23, c4 [98] | \"We use Natural Language Autoencoders (NLA) to verbalize residual-stream activations from layer 20 across four positional quartiles per prompt.\" (N-25; V) | readout replication on the same checkpoint | — | — | — |\n| 92e-N-10 | Community Qwen3-8B NLAs: nanoNLA [99, 100]; EasyNLA [101] | \"This repo hosts the AV for Qwen3-8B @ layer 24.\" (N-26; VR). \"On Qwen3-8B (layer 24) the default config reaches ~70% held-out FVE in ~3–4 hours on 4×H200.\" (N-28; VR) | corrects iteration 5's \"NLA unavailable for Qwen3-8B\" | — | — | an optional Qwen3-8B arm (unofficial; faithfulness disclaimer) |\n| 92e-N-11 | Planning or Improvisation?, Jacopin, v1 2026-09-16, c4 [7] | \"C2 and C3 are not recovered by any probe: a census of every active feature finds no rhyme-anticipating enrichment at the newline\" (N-29; Abstract; V) | contradicts in part (no newline-resident plan in small open models) | — | — | site sweep (newline vs final prompt token) |\n| 92e-N-12 | Measuring Activation Control [102]; Understanding Confabulation [103] | \"this level of control can evade activation-based monitoring methods (including linear probes, natural language autoencoders, activation oracles, and the Jacobian lens), albeit imperfectly.\" (N-30; V) | context | — | — | — |\n\n### S: the plan in Gemma Scope 2 SAE and transcoder features\n\n| Row | Neighbour | Verified quote(s) | Relation | Lane verdict | What this run adds | Reviewer baseline |\n|---|---|---|---|---|---|---|\n| 92e-S-1 | Gemma Scope 2: announcement 22 Dec 2025 [104]; technical report [105]; HF card [106] | \"every SAE trained on a PT model has a corresponding version finetuned for IT models\" (S-1; VB). \"we do not train IT SAEs from scratch: we initial [...] from the corresponding PT SAEs and finetune on the rollout-derived datasets.\" (S-3; V) | design facts | — | — | report the IT-vs-PT dictionary used |\n| 92e-S-2 | circuit-tracer README [25]; Qwen-3 transcoders (Hanna et al.) [26, 27] | \"Gemma-3 PLTs (originally from GemmaScope-2) can be found here for models of size 270M, 1B, 4B, 12B, and 27B, PT and IT. These require using the `nnsight` backend.\" (S-5; VR). \"Qwen-3 PLTs: for Qwen-3 0.6B, 1.7B, 4B, 8B, and 14B\" (S-6; VR) | design fact: Qwen3-8B transcoders exist, so a reviewer may ask why S uses Gemma | — | — | run S on the Qwen3-8B PLTs, or justify Gemma |\n| 92e-S-3 | AxBench, v3, v1 2025-01-28 [22]; rebuttal, v1 2026-05-29 [23] | \"For steering, we find that prompting outperforms all existing methods, followed by finetuning.\" (S-10; V). \"We find that Sparse Autoencoders can, in fact, perform close to on par with the reference LoRA performance on the AxBench benchmark, when features are selected and labelled with our supervised pipeline.\" (S-12; V) | prior the claim must meet | — | — | difference-in-means and prompting arms |\n| 92e-S-4 | SAE-Steering, Fang et al., ACL 2026 Main, v2 [21]; Galichin et al. [107] | \"To identify the few strategy-specific features from the vast pool of SAE features, we propose SAE-Steering, an efficient two-stage feature identification pipeline.\" (S-13; V). \"We compare SAE-Steering with three representative control methods [...] Think Intervention (Wu et al., 2025), which inserts human-crafted instructions into the middle of the reasoning process\" (S-13b; Sec. 4.1; V) | OCCUPIES the method on a non-code strategy (rubric 2.5) | PARTLY OCCUPIED | algorithm choice in code; Gemma Scope 2; transcoder attribution | SAE-Steering-style logit-recall feature selection |\n| 92e-S-5 | Do SAEs Identify Reasoning Features? (Gemma Scope 2), ICML 2026, v7 [53] | \"use SAEs from the GemmaScope-2 release (McDougall et al., 2025), each with 16,384 features trained on residual stream activations.\" (S-15; V). \"A small steering study yields minimal changes on the evaluated benchmarks.\" (S-16; V) | contradicts in part | — | — | token-injection falsification of candidate features |\n| 92e-S-6 | Prolepsis [24]; Latent Planning Emerges with Scale [27] | \"Planning is invisible to six residual-stream methods; among those tested, only CLT-based steering succeeds.\" (S-17; V) | adjacent; counter-evidence to the AxBench prior for plans | — | — | CLT/PLT arm against residual difference-in-means |\n| 92e-S-7 | SAE Interventions are Unreliable [108]; variable roles in code LMs (ICLR 2027 submission) [109]; attribution-graph caveat [110] | \"the clamp may block one visible route to a behavior without eliminating the behavior itself.\" (S-18; V). \"residual probes outperform individual SAE features and tested lexical baselines\" (S-19; VA). \"we've found that our attribution graphs provide us with satisfying insight for about a quarter of the prompts we've tried\" (S-20; V) | cautions | — | — | probe baseline; post-intervention recovery check |\n\n### E: FP8 W8A8 activation rounding inflates the apparent effect of activation perturbations (flag B)\n\n| Row | Neighbour | Verified quote(s) | Relation | Lane verdict | What this run adds | Reviewer baseline |\n|---|---|---|---|---|---|---|\n| 92e-E-1 | Steering Under Compression, Bhandari and Wade, v1 2026-09-06, c4 [8] | \"Activations remain in FP16/BF16 throughout the forward pass.\" (E-2; Sec. 3; V). \"demonstrating that compression can dominate the steering intervention.\" (E-4; V) | adjacent (1.5); flag B partly | ADJACENT-ONLY (published) | activation quantization; random perturbations; matched bf16 control | iso-effect comparison at matched behavioural effect |\n| 92e-E-2 | Stable Directions, Different Effects, ICLR 2027, desk rejected, c [9] | \"Preserving standard model quality or direction-level representation similarity does not guarantee that the intervention effect is preserved.\" (E-5; VA). \"Intervention effects can change even when directions remain strongly aligned\" (E-6; VA) | partly occupies the general claim (contemporaneous) | PARTLY OCCUPIED (contemporaneous) | random pushes; FP8 W8A8 named; noise-floor account | a first-order local-sensitivity predictor |\n| 92e-E-3 | Activation Steering under Low-Bit Quantization, ICLR 2027 submission, c [10] | \"We study steering compatibility with the intervention layer, direction, and strength held fixed across full-precision and quantized models.\" (E-7; VA) | adjacent (1.0) | — | — | hold layer, direction and strength fixed |\n| 92e-E-4 | Quantization Modulates Batch-Context Non-Determinism, ICLR 2027 submission, c [11] | \"using BF16, GPTQ, FP8 weight-and-activation quantization, and FP8 KV-cache quantization.\" (E-9; VA) | mechanism neighbour (noise floor) | — | perturbation effect sizes against the FP8 noise floor | same-batch-context repeat runs |\n| 92e-E-5 | PRISM, v1 2026-10-14, c4 [111] | \"we introduce PRISM, a framework for evaluating the transfer of activation interventions across precision, languages, and scales.\" (E-10; V) | adjacent (NF4) | — | — | — |\n| 92e-E-6 | Readouts under quantization: Findings ACL 2026 [58]; [59]; [60]; AACL 2025 [112]; TrustNLP 2026 [113] | \"These results show that behavioral metrics alone are insufficient evidence that full-precision interpretability findings transfer to quantized models, motivating feature-level audits of compression.\" (E-13; V) | flag B partly (readouts, not perturbation effect sizes) | — | — | — |\n| 92e-E-7 | Precision-induced divergence: TMLR 2026 [114]; [115, 116]; [117]; [61] | \"the same model, prompt, and decoding algorithm produce different outputs in BF16 versus FP16 on identical hardware.\" (E-17; V). \"under bfloat16 precision with greedy decoding, a reasoning model like DeepSeek-R1-Distill-Qwen-7B can exhibit up to 9% variation in accuracy and 9,000 tokens difference in response length due to differences in GPU count, type, and evaluation batch size.\" (E-18; V) | supports the mechanism (rounding flips trajectories) | — | — | a zero-norm (unperturbed) re-run under the same engine |\n| 92e-E-8 | Mechanism sources: LLM.int8() [118]; SmoothQuant [119]; massive activations [120]; FP8 formats [121]; llm-compressor FP8_DYNAMIC [12] | \"SmoothQuant smooths the activation outliers by offline migrating the quantization difficulty from activations to weights with a mathematically equivalent transformation.\" (E-21; V). \"Static, per-channel quantization on the weights [...] Dynamic, per-token quantization on the activations\" (E-24; VR) | mechanism background | — | — | per-token-scale ablation |\n\n## 6. Permitted wording (dated 2026-10-22; evidence: evidence/flags_iter6.json, evidence/quotes_iter6.jsonl)\n\n- **P1.**\n  - Permitted: \"To our knowledge (search dated 2026-10-22), the first interchange/DAS localization of *which algorithm* a code LLM will write that is validated by scoring the generated programs, with Sutter-style map-class, random-initialization and shuffled-label controls.\"\n  - Forbidden: \"first causal localization of a plan\", \"new method\", and \"first DAS-based steering\" (CDAS [15]).\n  - Cite DAS [13], MIB [14], CDAS [15], Sutter [69], Makelov with the reply [70, 72], divergent representations [73], and the contemporaneous Before Reasoning Begins [20].\n- **P2.**\n  - Permitted: \"we predict which random pushes switch the algorithm from their projection onto the plan subspace\".\n  - Forbidden: \"first causal planning subspace\" (Before the First Token [40]).\n  - Frame the parallel/orthogonal decomposition as following [40].\n- **P3.**\n  - Permitted: \"the plan behaves discretely under interpolation in our setting\".\n  - Forbidden: \"categorical concepts are discrete\" as a new finding ([45]).\n- **P4.**\n  - Permitted: \"at matched KL, temperature did not move the plan while state noise did\".\n  - The departure-matched decoding baseline [48] must be run or named.\n  - Forbidden: \"temperature is not the creativity knob\" as a new claim ([49]).\n- **P5.**\n  - Permitted: \"resampling a fitted, causally localized plan variable\"; activation noise for diversity is prior art [28, 29, 30].\n  - Forbidden: \"first latent diversity knob\" and \"new diversity method\".\n- **N.**\n  - Permitted: \"we replicate the NLA edit-and-steer protocol [1] on algorithm choice in code, with Qwen2.5-7B-Instruct and new controls\".\n  - Forbidden: \"first\", \"new method\", \"we introduce editing explanations to steer\".\n- **S.**\n  - Permitted: \"Gemma Scope 2 SAE/transcoder features for an algorithm-choice plan in code, compared against difference-in-means and prompting\".\n  - Forbidden: \"first SAE steering of strategies\" ([21]).\n  - State why Gemma Scope 2 is used when Qwen-3 PLTs exist [25].\n- **E.**\n  - Permitted: \"we find that activation-quantized (FP8 W8A8, dynamic per-token) inference inflates the apparent effect of random activation perturbations relative to bf16\".\n  - Cite the weight-only [8] and contemporaneous [9, 10, 11] work.\n  - Forbidden: \"first to show quantization changes steering effects\".\n\n## 7. Reviewer baselines (implied by the neighbours)\n\n1. **P1.**\n   - DAS with a declared linear rotation and rank, fitted also on a randomly initialized model and with shuffled labels [69].\n   - Neuron and SAE-feature arms [14].\n   - A CDAS-style distribution-matching arm [15].\n   - A difference-in-means direction with matched-norm random controls [18].\n   - A prompt-cue baseline [16].\n2. **P2.**\n   - Parallel/orthogonal decomposition [40].\n   - A matched-budget random subspace [42].\n   - A test of the orthogonal complement [44].\n3. **N.**\n   - Shuffled-activation and visible-text controls, plus a blinded judge [52].\n   - A claim-flip reconstruction test [6].\n   - The paper's newline-only protocol [1].\n4. **S.**\n   - Difference-in-means and prompting [22].\n   - A supervised SAE pipeline [23].\n   - SAE-Steering feature selection [21].\n   - CLT/PLT steering [24].\n5. **E.**\n   - A bf16 re-run of the same directions.\n   - A zero-norm FP8 re-run (noise floor) [11, 114].\n   - A weight-only (W8A16) arm [8].\n   - A per-token-scale ablation [12].\n6. **P4/P5.**\n   - Departure-matched decoding [48].\n   - IFG and PlanSearch [89, 90].\n\n## 8. Departures (from the plan) and limitations\n\n1. **Single screener.** O/I/C calls rest on one judgment, with every decisive sentence logged. Borderline calls:\n   - CDAS's O = 0.5 for refusal;\n   - SAE-Steering's I = 1;\n   - E-row verdicts that rest on abstracts.\n2. **ICLR 2027 rows are abstract-only.** OpenReview PDFs and api2 attachments returned HTTP 403, and the forum HTML is a browser check. Flag B and flag D both hinge on such abstracts.\n3. **Forward citations are thin.** They come from Semantic Scholar only, and the NLA paper is not indexed there (E6 used instead), so recent follow-ups may be undercounted.\n4. **Inherited quotes were not re-verified.** Only versions were rechecked, for 8 flag-critical references.\n5. **The prior audits' tools were reused.** They were readable on disk although the plan assumed otherwise; they were copied into tools/ and adapted.\n6. **Round 3 was run.** It found no new hit at or above 1.5.\n7. **E6 timing.** E6 calls were logged within minutes of being made, with the logging time as the timestamp.\n   Three supplementary general-web searches outside the frozen strings (round SUPP in the search log) looked for full-text versions of the abstract-only flag-B and flag-D neighbours. None was found. They surfaced one more P2-adjacent paper [80].\n8. **No full-text checks for the method details in ICLR 2027 abstracts.** For example, whether \"precision changes\" includes activation quantization.\n\n## 9. Corrections (evidence/corrections_iter6.jsonl)\n\n- **NLA.**\n  - Citation and date: \"Fraser-Taliente, Kantamneni, Ong et al.\", published May 7, 2026 [1].\n  - The paper already edits and steers a plan, so N is a replication.\n  - 4 base models × (AV, AR) = 8 checkpoints [92].\n  - Qwen3-8B has no *official* NLA checkpoint, but community reimplementations exist at layer 24 [99, 101]. friendli.ai/models/ceselder/nanoNLA is a hosting listing of that AV.\n- **Gemma Scope 2.** Announced 22 Dec 2025; IT SAEs are initialized from the PT SAEs and finetuned [104, 105].\n- **circuit-tracer.**\n  - Gemma-3 PLTs come from GemmaScope-2 and need the nnsight backend.\n  - Qwen-3 PLTs, including 8B, are by Hanna et al. The card names no checkpoint; the ICLR 2026 paper that uses them calls its Qwen-3 models instruction-tuned [25, 26, 27].\n- **Sutter et al.** NeurIPS 2025 Spotlight. The phrase \"any neural network can be mapped to any algorithm\" does not occur in v2; use the 100% IIA sentence [69].\n- **Makelov et al.** ICLR 2024; the arXiv comment names a NeurIPS 2023 workshop [71].\n- **SelfIE.** ICML 2024, PMLR 235:7373-7388 [4].\n- **DAS.** CLeaR 2024, PMLR 236 [64].\n- **Engels et al.** The current title is \"Not All Language Model Features Are One-Dimensionally Linear\" [46].\n- **2506.09501.**\n  - v1 is titled \"Give Me FP32 or Give Me Death? Challenges and Solutions for Reproducible Reasoning\"; v2 is retitled.\n  - \"up to 9% variation in accuracy\" is verified [116, 115].\n- **2609.15504.** The current title is \"Evaluating Losslessness in Speculative Decoding Under Finite-Precision Inference\" (no row).\n- **Latent Plan Transformer.** Venue not stated in the arXiv record (v4) [91].\n- **AxBench.** Venue not verified here: the arXiv comment is empty.\n- **Inherited versions.** No newer arXiv versions for the 8 flag-critical inherited references.\n\n## 10. Confidence and what would change it\n\n- **High confidence (full-text quotes).**\n  - Flag C fired.\n  - 2609.06473 is weight-only.\n  - Gemma Scope 2 and circuit-tracer facts.\n  - DAS, MIB, Sutter and Makelov controls.\n- **Medium confidence.**\n  - Flag A not fired: the search is broad but single-screened, and code-interpretability work moves fast.\n  - Flag D partly fired: Random Choice's full text is unread.\n- **Low-to-medium confidence on flag B.** It rests on two ICLR 2027 abstracts whose quantization type is unknown. Reading their PDFs once OpenReview access works is the single most valuable follow-up.\n- **Contradicting evidence logged.**\n  - Planning may be absent or improvised in small open models [67, 7].\n  - NLA reconstructions track the gist rather than specific claims [6].\n  - SAE reasoning features may be token correlates [53].\n  - Steering reliability is questioned [81, 108].\n\n## 11. Follow-up questions\n\n1. **Flag B.** Do the ICLR 2027 submissions \"Stable Directions, Different Effects\" and \"Activation Steering under Low-Bit Quantization\" quantize activations (W8A8/FP8) or only weights? Their full texts decide whether flag B fires. Re-read them once the OpenReview PDFs are reachable.\n2. **N's causal arm.** On the released Qwen2.5-7B-Instruct L20 NLA, how far does the AR reconstruction move when only the algorithm name in an explanation is edited? The claim-dependence result [6] predicts a small move. Measure this before running the edit-and-steer arm.\n3. **Flag A and P1.** Would interchange/DAS on the Qwen3-8B final prompt position find a low-rank variable for algorithm choice? Where does it sit relative to the 23 SAE targets of the contemporaneous Before Reasoning Begins submission [20] and to the Qwen-3 PLTs [25]?\n\n",
+  "sources": [
+    {
+      "index": 1,
+      "url": "https://transformer-circuits.pub/2026/nla/index.html",
+      "title": "Natural Language Autoencoders Produce Unsupervised Explanations of LLM Activations",
+      "summary": "Decisive for flag C: edits an NLA explanation of a rhyme plan, reconstructs it with the AR and steers at the newline (about 50% success); a steering vector from the explanation difference in the rewards case; confabulation; FVE 0.6-0.8. (version: HTML (single version); venue: Transformer Circuits Thread (published May 7, 2026); status: VERIFIED; retrieved 2026-10-22; author list truncated to the first names shown by the source)",
+      "authors": [
+        "Kit Fraser-Taliente",
+        "Subhash Kantamneni",
+        "Euan Ong"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "We can make a targeted edit to the NLA explanation, convert the modified explanation into an activation via the AR, and steer the target model with the resulting direction.",
+          "locator": "Case Studies > Planning in Poetry (N-1; VERIFIED)"
+        },
+        {
+          "quote": "We then steer with this direction at the newline token only, at the layer the NLA is trained on.",
+          "locator": "Case Studies > Planning in Poetry (N-2; VERIFIED)"
+        },
+        {
+          "quote": "We note that steering is only successful roughly 50% of the time and the completions are not always clean.",
+          "locator": "Case Studies > Planning in Poetry (results) (N-3; VERIFIED)"
+        },
+        {
+          "quote": "by editing an explanation and reconstructing both the original and edited versions with the AR, we obtain a steering vector from their difference.",
+          "locator": "Introduction (case-study overview: Reasoning about Rewards) (N-4; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "url": "https://arxiv.org/html/2412.08686v2",
+      "title": "LatentQA: Teaching LLMs to Decode Activations Into Natural Language",
+      "summary": "LatentQA (Pan, Chen, Steinhardt); cited in rows 92e-N-5. (version: v2; venue: ICLR 2026; project page at https://latentqa.github.io; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Alexander Pan",
+        "Lijie Chen",
+        "Jacob Steinhardt"
+      ],
+      "year": 2024,
+      "supporting_passages": [
+        {
+          "quote": "The trained decoder also enables control by providing a differentiable loss to steer activations towards",
+          "locator": "Sec. 4, 'Using the decoder for control' (N-15; VERIFIED)"
+        },
+        {
+          "quote": "we demonstrate that the decoder is precise enough to steer the target model to exhibit behaviors unseen during training.",
+          "locator": "Abstract (N-16; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "url": "https://arxiv.org/html/2403.10949v2",
+      "title": "SelfIE: Self-Interpretation of Large Language Model Embeddings",
+      "summary": "SelfIE (Chen, Vondrick, Mao); cited in rows 92e-N-5. (version: v2; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Haozhe Chen",
+        "Carl Vondrick",
+        "Chengzhi Mao"
+      ],
+      "year": 2024,
+      "supporting_passages": [
+        {
+          "quote": "We propose Supervised Control, which allows editing open-ended concepts while only requiring gradient computation of individual layer.",
+          "locator": "Abstract (N-17; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "url": "https://proceedings.mlr.press/v235/chen24ao.html",
+      "title": "SelfIE: Self-Interpretation of Large Language Model Embeddings (PMLR 235 record)",
+      "summary": "Venue record: ICML 2024, PMLR 235:7373-7388. (version: proceedings; venue: ICML 2024; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Haozhe Chen",
+        "Carl Vondrick",
+        "Chengzhi Mao"
+      ],
+      "year": 2024,
+      "supporting_passages": [
+        {
+          "quote": "Proceedings of the 41st International Conference on Machine",
+          "locator": "PMLR record (N-18; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "url": "https://www.lesswrong.com/posts/rdhyHtjf3LcZxuQPm/dreaming-vectors-gradient-descented-steering-vectors-from",
+      "title": "Dreaming Vectors: Gradient-descented steering vectors from Activation Oracles and using them to Red-Team AOs (LessWrong)",
+      "summary": "Grey-literature verbaliser-to-steering kin for flag C: steering vectors optimized against an Activation Oracle. (version: post; venue: LessWrong; status: VERIFIED-BLOG; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "Dreaming Vectors: Gradient-descented steering vectors from Activation Oracles and using them to Red-Team AOs",
+          "locator": "title (N-20; VERIFIED-BLOG)"
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "url": "https://arxiv.org/html/2607.20379v2",
+      "title": "Train the Model, Not the Reader: Decodability Supervision for Verifiable Activation Explanations",
+      "summary": "Train the Model, Not the Reader (Dingeto); cited in rows 92e-N-8. (version: v2; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Hiskias Dingeto"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "of their specific claims are ones the reconstruction depends on. The score therefore tracks the input",
+          "locator": "Abstract (N-24; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "url": "https://arxiv.org/html/2609.18440v1",
+      "title": "Planning or Improvisation? Stress-Testing the Poetry Planning Site on Open Models and Open Cross-Layer Transcoders",
+      "summary": "Planning or Improvisation? (Jacopin); cited in rows 92e-N-11. (version: v1; venue: 17 pages, 3 figures, 8 tables. Code, data and analysis scripts: https://github.com/PCfVW/poetry-planning-site . An earlier version was submitted to the BlackboxNLP 2026 special track on reproducibility and reliability in interpretability analyses; this version adds a rerun composition-horizon experiment (36 runs, 8,640 sampled lines) and a transcoder-free activation-patching test; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Éric Jacopin"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "C2 and C3 are not recovered by any probe: a census of every active feature finds no rhyme-anticipating enrichment at the newline",
+          "locator": "Abstract (N-29; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "url": "https://arxiv.org/html/2609.06473v1",
+      "title": "Steering Under Compression: Dose-Response, Capability Cost, and Failure Asymmetry in Quantized LLMs",
+      "summary": "Steering Under Compression (Bhandari, Wade); cited in rows 92e-E-1. (version: v1; venue: 17 pages, 5 figures; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Saurav Bhandari",
+        "Benjamin Wade"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "We systematically study activation steering under weight-only quantization (INT8 and NF4) across four open-weight",
+          "locator": "Abstract (E-1; VERIFIED)"
+        },
+        {
+          "quote": "Activations remain in FP16/BF16 throughout the forward pass.",
+          "locator": "Sec. 3 (deployment conditions) (E-2; VERIFIED)"
+        },
+        {
+          "quote": "we find that sentiment steering survives quantization intact.",
+          "locator": "Abstract (E-3; VERIFIED)"
+        },
+        {
+          "quote": "demonstrating that compression can dominate the steering intervention.",
+          "locator": "Abstract (E-4; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "url": "https://api2.openreview.net/notes/search?term=Stable%20Directions%2C%20Different%20Effects%3A%20Intervention%20Fidelity%20Across%20Model%20Precision&group=ICLR.cc/2027/Conference&limit=10",
+      "title": "Stable Directions, Different Effects: Intervention Fidelity Across Model Precision (OpenReview forum 8iTqrW1sxY)",
+      "summary": "ICLR 2027 Conference Desk Rejected Submission; contemporaneous. Cited in rows 92e-E-2. (version: submission; venue: ICLR 2027 Conference Desk Rejected Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "Preserving standard model quality or direction-level representation similarity does not guarantee that the",
+          "locator": "OpenReview abstract (forum 8iTqrW1sxY) (E-5; VERIFIED-ABSTRACT)"
+        },
+        {
+          "quote": "Intervention effects can change even when directions",
+          "locator": "OpenReview abstract (E-6; VERIFIED-ABSTRACT)"
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "url": "https://api2.openreview.net/notes/search?term=Activation%20Steering%20under%20Low-Bit%20Quantization%3A%20A%20Geometric%20Perspective%20on%20Degradation%20and%20Recovery&group=ICLR.cc/2027/Conference&limit=10",
+      "title": "Activation Steering under Low-Bit Quantization: A Geometric Perspective on Degradation and Recovery (OpenReview forum h57duZqLOr)",
+      "summary": "ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-E-3. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "We study steering compatibility with the intervention layer, direction, and strength held fixed across full-precision and quantized models.",
+          "locator": "OpenReview abstract (forum h57duZqLOr) (E-7; VERIFIED-ABSTRACT)"
+        },
+        {
+          "quote": "We show that ordinary output fidelity alone does not guarantee",
+          "locator": "OpenReview abstract (E-8; VERIFIED-ABSTRACT)"
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "url": "https://api2.openreview.net/notes/search?term=Quantization%20Modulates%20Batch-Context%20Non-Determinism%20in%20Greedy%20LLM%20Inference&group=ICLR.cc/2027/Conference&limit=10",
+      "title": "Quantization Modulates Batch-Context Non-Determinism in Greedy LLM Inference (OpenReview forum 9kskCmPMqd)",
+      "summary": "ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-E-4. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "using BF16, GPTQ, FP8 weight-and-activation quantization, and FP8 KV-cache quantization.",
+          "locator": "OpenReview abstract (forum 9kskCmPMqd) (E-9; VERIFIED-ABSTRACT)"
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "url": "https://raw.githubusercontent.com/vllm-project/llm-compressor/main/examples/quantization_w8a8_fp8/README.md",
+      "title": "llm-compressor examples/quantization_w8a8_fp8 README (vLLM project)",
+      "summary": "FP8_DYNAMIC scheme: static per-channel weight scales and dynamic per-token activation scales. (version: main; venue: GitHub (vLLM project); status: VERIFIED-README; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2024,
+      "supporting_passages": [
+        {
+          "quote": "Dynamic, per-token quantization on the activations",
+          "locator": "2) Apply Quantization (E-24; VERIFIED-README)"
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "url": "https://arxiv.org/html/2303.02536v4",
+      "title": "Finding Alignments Between Interpretable Causal Variables and Distributed Neural Representations",
+      "summary": "DAS (Geiger, Wu, Potts, Icard, Goodman); cited in rows 92e-P1-1. (version: v4; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Atticus Geiger",
+        "Zhengxuan Wu",
+        "Christopher Potts",
+        "Thomas Icard",
+        "Noah D. Goodman"
+      ],
+      "year": 2023,
+      "supporting_passages": [
+        {
+          "quote": "existing causal abstraction methods have two major limitations: they require a brute-force search over alignments between the high-level model and the low-level one, and they presuppose that variables in the high-level model will align with disjoint sets of neurons in the low-level one.",
+          "locator": "Abstract (P1-1; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "url": "https://arxiv.org/html/2504.13151v2",
+      "title": "MIB: A Mechanistic Interpretability Benchmark",
+      "summary": "MIB (Mueller et al.); cited in rows 92e-P1-2. (version: v2; venue: Accepted to ICML 2025. Project website at https://mib-bench.github.io; status: VERIFIED; retrieved 2026-10-22; author list truncated to the first names shown by the source)",
+      "authors": [
+        "Aaron Mueller",
+        "Atticus Geiger",
+        "Sarah Wiegreffe",
+        "Dana Arad",
+        "Iván Arcuschin",
+        "Adam Belfki",
+        "Yik Siu Chan",
+        "Jaden Fiotto-Kaufman",
+        "Tal Haklay",
+        "Michael Hanna",
+        "Jing Huang",
+        "Rohan Gupta"
+      ],
+      "year": 2025,
+      "supporting_passages": [
+        {
+          "quote": "For causal variable localization, we find that the supervised DAS method performs best, while SAE features are not better than neurons, i.e., non-featurized hidden vectors.",
+          "locator": "Abstract (P1-4; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "url": "https://arxiv.org/html/2602.05234v2",
+      "title": "Faithful Bi-Directional Model Steering via Distribution Matching and Distributed Interchange Interventions",
+      "summary": "CDAS (Bao et al.); cited in rows 92e-P1-3. (version: v2; venue: camera ready version; 55 pages, 25 figures; accepted for ICLR 2026 | Proceedings of the International Conference on Learning Representations (ICLR), 2026; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Yuntai Bao",
+        "Xuhong Zhang",
+        "Jintao Chen",
+        "Ge Su",
+        "Yuxiang Cai",
+        "Hao Peng",
+        "Bing Sun",
+        "Haiqin Weng",
+        "Liu Yan",
+        "Jianwei Yin"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "we introduce a novel distribution matching objective tailored for the steering task by aligning intervened output distributions with counterfactual distributions.",
+          "locator": "Sec. 1 Introduction (P1-5; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "url": "https://arxiv.org/html/2606.04057v1",
+      "title": "The Invisible Lottery: How Subtle Cues Steer Algorithm Choice in LLM Code Generation",
+      "summary": "Inherited from art_kjrCpQnPaniY Table 92b/92c source [30]; its quotes are cited by row id and were not re-fetched here. (version: v1; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": []
+    },
+    {
+      "index": 17,
+      "url": "https://arxiv.org/html/2610.20683v1",
+      "title": "Causal Syntax Circuits in CodeLMs: Budget and Probe Decide What Looks Localised",
+      "summary": "Causal Syntax Circuits in CodeLMs (Kumar et al.); cited in rows 92e-P1-6. (version: v1; venue: Accepted at the NeurIPS 2026 Workshop on Linguistic Principles for Foundation Models (LP4FM). All four authors contributed equally; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Harsh Kumar",
+        "Tanmay Shailesh Joshi",
+        "Rahul Maity",
+        "Anusa Saha"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "Code models write Python when the prompt does not say which language to use. We ask a mechanistic question about that habit: is it produced by a small, findable group of components inside the model?",
+          "locator": "Abstract (P1-8; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "url": "https://api2.openreview.net/notes/search?term=Steering%20LLM%20Coding%20Behaviors%20with%20Concept%20Vectors&group=ICLR.cc/2027/Conference&limit=10",
+      "title": "Steering LLM Coding Behaviors with Concept Vectors (OpenReview forum sbVictHY9s)",
+      "summary": "ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-P1-7. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "Adding them after the first sampled token changes held-out outputs, but effects depend on model and layer, strong scaling harms validity and correctness, and axis specificity remains unresolved without matched-norm causal",
+          "locator": "OpenReview abstract (forum sbVictHY9s) (P1-9; VERIFIED-ABSTRACT)"
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "url": "https://arxiv.org/html/2603.23629v2",
+      "title": "Steering Code LLMs with Activation Directions for Language and Library Control",
+      "summary": "Inherited from art_kjrCpQnPaniY Table 92b/92c source [45]; its quotes are cited by row id and were not re-fetched here. (version: v2; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": []
+    },
+    {
+      "index": 20,
+      "url": "https://api2.openreview.net/notes/search?term=Before%20Reasoning%20Begins%3A%20Temporal%20Contrast%20Reveals%20a%20Causal%20Target%20Across%20Reasoning%20Tasks&group=ICLR.cc/2027/Conference&limit=10",
+      "title": "Before Reasoning Begins: Temporal Contrast Reveals a Causal Target Across Reasoning Tasks (OpenReview forum vH3g2k4lPB)",
+      "summary": "ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-P1-8, 92e-P2-5. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "This pipeline yields a compact set of 23 intervention targets in Qwen3-8B.",
+          "locator": "OpenReview abstract (forum vH3g2k4lPB) (P1-10; VERIFIED-ABSTRACT)"
+        },
+        {
+          "quote": "We use this functionally aligned contrast to screen sparse autoencoder features at the final prompt position",
+          "locator": "OpenReview abstract (P1-11; VERIFIED-ABSTRACT)"
+        },
+        {
+          "quote": "same-size, layer-count-matched random null interventions reduce accuracy by only",
+          "locator": "OpenReview abstract (P2-5; VERIFIED-ABSTRACT)"
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "url": "https://arxiv.org/html/2601.03595v2",
+      "title": "Controllable LLM Reasoning via Sparse Autoencoder-Based Steering",
+      "summary": "SAE-Steering (Fang et al.); cited in rows 92e-S-4. (version: v2; venue: Accepted to the ACL 2026 Main; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Yi Fang",
+        "Wenjie Wang",
+        "Mingfeng Xue",
+        "Boyi Deng",
+        "Fengli Xu",
+        "Dayiheng Liu",
+        "Fuli Feng"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "To identify the few strategy-specific features from the vast pool of SAE features, we propose SAE-Steering, an efficient two-stage feature identification pipeline.",
+          "locator": "Abstract (S-13; VERIFIED)"
+        },
+        {
+          "quote": "Think Intervention (Wu et al., 2025), which inserts human-crafted instructions into the middle of the reasoning process",
+          "locator": "Sec. 4.1, Baselines (S-13b; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "url": "https://arxiv.org/html/2501.17148v3",
+      "title": "AxBench: Steering LLMs? Even Simple Baselines Outperform Sparse Autoencoders",
+      "summary": "AxBench (Wu et al.); cited in rows 92e-S-3. (version: v3; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Zhengxuan Wu",
+        "Aryaman Arora",
+        "Atticus Geiger",
+        "Zheng Wang",
+        "Jing Huang",
+        "Dan Jurafsky",
+        "Christopher D. Manning",
+        "Christopher Potts"
+      ],
+      "year": 2025,
+      "supporting_passages": [
+        {
+          "quote": "For steering, we find that prompting outperforms all existing methods, followed by finetuning.",
+          "locator": "Abstract (S-10; VERIFIED)"
+        },
+        {
+          "quote": "For concept detection, representation-based methods such as difference-in-means, perform the best. On both evaluations, SAEs are not competitive.",
+          "locator": "Abstract (S-11; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "url": "https://arxiv.org/html/2605.31183v1",
+      "title": "Steering LLMs? Actually, Sparse Autoencoders can outperform simple baselines",
+      "summary": "AxBench rebuttal (Jorgensen et al.); cited in rows 92e-S-3. (version: v1; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Mikkel Godsk Jørgensen",
+        "Lars Kai Hansen"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "We find that Sparse Autoencoders can, in fact, perform close to on par with the reference LoRA performance on the AxBench benchmark, when features are selected and labelled with our supervised pipeline.",
+          "locator": "Abstract (S-12; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 24,
+      "url": "https://arxiv.org/html/2604.15010v2",
+      "title": "What Is the Minimum Architecture for Prolepsis? Early Irrevocable Commitment Across Tasks in Small Transformers",
+      "summary": "Prolepsis (Jacopin); cited in rows 92e-P3-3, 92e-S-6. (version: v2; venue: v2: corrects three citations; reconciles main-text/appendix numbers (the two Llama sweeps now labeled); the effective last-token site differs from Anthropic's newline (position-specificity replicates, site identity does not); adds an erratum on a CLT encoder-hook mismatch (detection-side only); softens novelty, necessity, and depth claims per COLM 2026 reviews; defines prolepsis; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Éric Jacopin"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "We introduce prolepsis: a transformer commits early, task-specific attention heads sustain the commitment, and no layer corrects it.",
+          "locator": "Abstract (P3-3; VERIFIED)"
+        },
+        {
+          "quote": "Planning is invisible to six residual-stream methods; among those tested, only CLT-based steering succeeds.",
+          "locator": "Abstract (S-17; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 25,
+      "url": "https://raw.githubusercontent.com/safety-research/circuit-tracer/main/README.md",
+      "title": "safety-research/circuit-tracer README",
+      "summary": "Gemma-3 PLTs from GemmaScope-2 (need the nnsight backend); Qwen-3 PLTs for 0.6B-14B, including 8B. (version: main; venue: GitHub; status: VERIFIED-README; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "here for models of size 270M, 1B, 4B, 12B, and 27B, PT and",
+          "locator": "Supported transcoders (S-5; VERIFIED-README)"
+        }
+      ]
+    },
+    {
+      "index": 26,
+      "url": "https://huggingface.co/mwhanna/qwen3-8b-transcoders",
+      "title": "mwhanna/qwen3-8b-transcoders (Hugging Face)",
+      "summary": "Qwen-3 transcoder collection (0.6B-14B); the card does not name the exact checkpoint. (version: main; venue: Hugging Face; status: VERIFIED-README; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2025,
+      "supporting_passages": [
+        {
+          "quote": "Transcoders trained on Qwen-3 models from 0.6B to 14B",
+          "locator": "collection blurb (S-7; VERIFIED-README)"
+        }
+      ]
+    },
+    {
+      "index": 27,
+      "url": "https://arxiv.org/html/2604.12493v1",
+      "title": "Latent Planning Emerges with Scale",
+      "summary": "Latent Planning Emerges with Scale (Hanna et al.); cited in rows 92e-P2-4, 92e-S-2. (version: v1; venue: ICLR 2026; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Michael Hanna",
+        "Emmanuel Ameisen"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "even the less-successful Qwen-3 4B-8B have nascent planning mechanisms.",
+          "locator": "Abstract (P2-4; VERIFIED)"
+        },
+        {
+          "quote": "For our experiments, we use Hanna et al.",
+          "locator": "App. A.1, Qwen-3 Transcoders (S-8; VERIFIED)"
+        },
+        {
+          "quote": "Note that although these models are instruction-tuned",
+          "locator": "Sec. 4.1 Models and Data (S-9; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 28,
+      "url": "https://arxiv.org/html/2601.22010v1",
+      "title": "Exploring Diverse Generation Paths via Inference-time Stiefel Activation Steering",
+      "summary": "Inherited from art_kjrCpQnPaniY Table 92b/92c source [15]; its quotes are cited by row id and were not re-fetched here. (version: v1; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": []
+    },
+    {
+      "index": 29,
+      "url": "https://arxiv.org/pdf/2604.03380v2",
+      "title": "Noise Steering for Controlled Text Generation: Improving Diversity and Reading-Level Fidelity in Arabic Educational Story Generation",
+      "summary": "Inherited from art_kjrCpQnPaniY Table 92b/92c source [14]; its quotes are cited by row id and were not re-fetched here. (version: v2; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": []
+    },
+    {
+      "index": 30,
+      "url": "https://arxiv.org/html/2605.11936v2",
+      "title": "From Noise to Diversity: Random Embedding Injection in LLM Reasoning",
+      "summary": "Inherited from art_kjrCpQnPaniY Table 92b/92c source [16]; its quotes are cited by row id and were not re-fetched here. (version: v2; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": []
+    },
+    {
+      "index": 31,
+      "url": "https://api2.openreview.net/notes/search?term=Latent-Plan%20Block%20Diffusion%3A%20Sampling%20a%20Block-Level%20Intent%20for%20Few-Step%20Parallel%20Decoding&group=ICLR.cc/2027/Conference&limit=10",
+      "title": "Latent-Plan Block Diffusion: Sampling a Block-Level Intent for Few-Step Parallel Decoding (OpenReview forum IhQbFddkBp)",
+      "summary": "ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-P5-2. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "before a block is decoded, a small conditional flow samples a low-dimensional",
+          "locator": "OpenReview abstract (forum IhQbFddkBp) (P5-2; VERIFIED-ABSTRACT)"
+        }
+      ]
+    },
+    {
+      "index": 32,
+      "url": "https://api2.openreview.net/notes/search?term=Parallelizable%20Probabilistic%20Latent%20Reasoning%20for%20Diverse%20Reasoning%20Trajectories&group=ICLR.cc/2027/Conference&limit=10",
+      "title": "Parallelizable Probabilistic Latent Reasoning for Diverse Reasoning Trajectories (OpenReview forum CtluWEsiX7)",
+      "summary": "ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-P5-3. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "current latent models remain largely deterministic, capturing only a single reasoning trajectory rather than modeling a distribution over",
+          "locator": "OpenReview abstract (forum CtluWEsiX7) (P5-3; VERIFIED-ABSTRACT)"
+        }
+      ]
+    },
+    {
+      "index": 33,
+      "url": "https://api2.openreview.net/notes/search?term=Singular%20Value%20Perturbation%3A%20Unlocking%20RL%20Performance%20via%20Diverse%20Latent%20Reasoning&group=ICLR.cc/2027/Conference&limit=10",
+      "title": "Singular Value Perturbation: Unlocking RL Performance via Diverse Latent Reasoning (OpenReview forum oTt6XeccGk)",
+      "summary": "ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-P5-3. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "which diversifies latent trajectories by randomly rescaling coefficients in the fixed SVD basis of a weight matrix.",
+          "locator": "OpenReview abstract (forum oTt6XeccGk) (P5-4; VERIFIED-ABSTRACT)"
+        }
+      ]
+    },
+    {
+      "index": 34,
+      "url": "https://api2.openreview.net/notes/search?term=Random%20Choice%20in%20Language%20Models%3A%20A%20Linear%20Choice%20State%20and%20Low-Rank%20Sampling%20Control&group=ICLR.cc/2027/Conference&limit=10",
+      "title": "Random Choice in Language Models: A Linear Choice State and Low-Rank Sampling Control (OpenReview forum eZYeqPZlFr)",
+      "summary": "ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-P1-10, 92e-P5-1. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "one direction acts as a switch into the random-choice mode, whereas a separate direction shapes the resulting answer distribution.",
+          "locator": "OpenReview abstract (forum eZYeqPZlFr) (P1-13; VERIFIED-ABSTRACT)"
+        },
+        {
+          "quote": "This decomposition enables a mechanism-guided intervention that improves sampling without task-specific gradient training.",
+          "locator": "OpenReview abstract (P5-1; VERIFIED-ABSTRACT)"
+        }
+      ]
+    },
+    {
+      "index": 35,
+      "url": "https://api.openalex.org/works",
+      "title": "OpenAlex / Crossref scholarly search (via aii-web-tools aii_fast_web_search.py --mode scholarly)",
+      "summary": "Engine E1 for lanes L1, L4 and L6 in round 1, and all lanes in round 2. (status: ENGINE; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": []
+    },
+    {
+      "index": 36,
+      "url": "https://export.arxiv.org/api/query",
+      "title": "arXiv API (export.arxiv.org/api/query): version, v1 date, comment and journal-ref metadata",
+      "summary": "Engine E3 and the source of all version, v1-date and venue-comment lines (evidence/arxiv_meta.json). (status: ENGINE; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": []
+    },
+    {
+      "index": 37,
+      "url": "https://api.semanticscholar.org/graph/v1",
+      "title": "Semantic Scholar Graph API (search, citations, references)",
+      "summary": "Engine E4 (year=2026 search) and snowballing (forward citations and backward references). (status: ENGINE; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": []
+    },
+    {
+      "index": 38,
+      "url": "https://api2.openreview.net/notes/search",
+      "title": "OpenReview API v2 notes/search (ICLR.cc/2027/Conference)",
+      "summary": "Engine E5 and the locator of every VERIFIED-ABSTRACT ICLR 2027 row. (status: ENGINE; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": []
+    },
+    {
+      "index": 39,
+      "url": "https://arxiv.org/html/2305.08809v3",
+      "title": "Interpretability at Scale: Identifying Causal Mechanisms in Alpaca",
+      "summary": "Boundless DAS (Wu et al.); cited in rows 92e-P1-1. (version: v3; venue: NeurIPS 2023 with Author Corrections; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Zhengxuan Wu",
+        "Atticus Geiger",
+        "Thomas Icard",
+        "Christopher Potts",
+        "Noah D. Goodman"
+      ],
+      "year": 2023,
+      "supporting_passages": [
+        {
+          "quote": "We apply Boundless DAS to the Alpaca model (7B parameters), which, off the shelf, solves a simple numerical reasoning problem.",
+          "locator": "Abstract (P1-3; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 40,
+      "url": "https://api2.openreview.net/notes/search?term=Before%20the%20First%20Token%3A%20A%20Shared%20Causal%20Subspace%20for%20Response-Length%20Planning%20in%20LLMs&group=ICLR.cc/2027/Conference&limit=10",
+      "title": "Before the First Token: A Shared Causal Subspace for Response-Length Planning in LLMs",
+      "summary": "Inherited from art_kjrCpQnPaniY Table 92b/92c source [64]; its quotes are cited by row id and were not re-fetched here. (status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": []
+    },
+    {
+      "index": 41,
+      "url": "https://api2.openreview.net/notes/search?term=AJR%3A%20Amortized%20Jacobian%20Readouts%20for%20Prompt-Adaptive%20Steering&group=ICLR.cc/2027/Conference&limit=10",
+      "title": "AJR: Amortized Jacobian Readouts for Prompt-Adaptive Steering",
+      "summary": "Inherited from art_kjrCpQnPaniY Table 92b/92c source [65]; its quotes are cited by row id and were not re-fetched here. (status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": []
+    },
+    {
+      "index": 42,
+      "url": "https://arxiv.org/html/2607.20469v1",
+      "title": "DecodeShare: Tracing the Shared Subspace of LLM Decode-Time Decisions",
+      "summary": "DecodeShare (Shao et al.); cited in rows 92e-P2-2. (version: v1; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22; author list truncated to the first names shown by the source)",
+      "authors": [
+        "Zishan Shao",
+        "Lixun Zhang",
+        "Kangning Cui",
+        "Yixiao Wang",
+        "Ting Jiang",
+        "Hancheng Ye",
+        "Qinsi Wang",
+        "Zhixu Du",
+        "Yuzhe Fu",
+        "Fan Yang",
+        "Danyang Zhuo",
+        "Yiran Chen"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "disturbing the discovered shared subspace degrades decision performance far more than disturbing either a prefill-derived or random subspace under the same intervention budget.",
+          "locator": "Abstract (P2-2; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 43,
+      "url": "https://arxiv.org/html/2608.22985v1",
+      "title": "What Does Activation Steering Control? Attribution Across Answer Encodings and Output-Sensitive Subspaces",
+      "summary": "What Does Activation Steering Control? (Gao et al.); cited in rows 92e-P2-7. (version: v1; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Zhiwei Gao",
+        "Shaowen Peng",
+        "Shoko Wakamiya",
+        "Eiji Aramaki"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "A low-rank output-sensitive component containing 15.4% of the direction",
+          "locator": "Abstract (P2-7; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 44,
+      "url": "https://api2.openreview.net/notes/search?term=A%20Jailbreak%20Success%20Coordinate%20Outside%20the%20Refusal%20Subspace&group=ICLR.cc/2027/Conference&limit=10",
+      "title": "A Jailbreak Success Coordinate Outside the Refusal Subspace: Decodable Before Generation, Reachable from the Input (OpenReview forum 4gvIW4C0bw)",
+      "summary": "ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-P2-3. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "whether success is decodable before generation from a coordinate outside an evaluated refusal subspace, whether intervention on that coordinate moves the behavior",
+          "locator": "OpenReview abstract (forum 4gvIW4C0bw) (P2-3; VERIFIED-ABSTRACT)"
+        }
+      ]
+    },
+    {
+      "index": 45,
+      "url": "https://arxiv.org/html/2406.01506v3",
+      "title": "The Geometry of Categorical and Hierarchical Concepts in Large Language Models",
+      "summary": "Park, Choe, Jiang, Veitch; cited in rows 92e-P3-1. (version: v3; venue: Accepted for an oral presentation at ICLR 2025. Best Paper Award at the ICML 2024 Workshop on Mechanistic Interpretability. Code is available at https://github.com/KihoPark/LLM_Categorical_Hierarchical_Representations; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Kiho Park",
+        "Yo Joong Choe",
+        "Yibo Jiang",
+        "Victor Veitch"
+      ],
+      "year": 2024,
+      "supporting_passages": [
+        {
+          "quote": "This allows us to immediately formalize the representation of categorical concepts as polytopes in the representation space.",
+          "locator": "Abstract (P3-1; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 46,
+      "url": "https://arxiv.org/html/2405.14860v3",
+      "title": "Not All Language Model Features Are One-Dimensionally Linear",
+      "summary": "Engels et al.; cited in rows 92e-P3-2. (version: v3; venue: Accepted to ICLR 2025. Code and data at https://github.com/JoshEngels/MultiDimensionalFeatures; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Joshua Engels",
+        "Eric J. Michaud",
+        "Isaac Liao",
+        "Wes Gurnee",
+        "Max Tegmark"
+      ],
+      "year": 2024,
+      "supporting_passages": [
+        {
+          "quote": "we explore whether some language model representations may be inherently multi-dimensional.",
+          "locator": "Abstract (P3-2; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 47,
+      "url": "https://arxiv.org/html/2605.05115v1",
+      "title": "Manifold Steering Reveals the Shared Geometry of Neural Network Representation and Behavior",
+      "summary": "Inherited from art_kjrCpQnPaniY Table 92b/92c source [44]; its quotes are cited by row id and were not re-fetched here. (version: v1; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": []
+    },
+    {
+      "index": 48,
+      "url": "https://api2.openreview.net/notes/search?term=Rethinking%20Activation%20Steering%20for%20Mathematical%20Reasoning&group=ICLR.cc/2027/Conference&limit=10",
+      "title": "Rethinking Activation Steering for Mathematical Reasoning: What Actually Drives Its Reasoning Gains?",
+      "summary": "Inherited from art_kjrCpQnPaniY Table 92b/92c source [66]; its quotes are cited by row id and were not re-fetched here. (status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": []
+    },
+    {
+      "index": 49,
+      "url": "https://arxiv.org/html/2405.00492v1",
+      "title": "Is Temperature the Creativity Parameter of Large Language Models?",
+      "summary": "Inherited from art_kjrCpQnPaniY Table 92b/92c source [25]; its quotes are cited by row id and were not re-fetched here. (version: v1; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2024,
+      "supporting_passages": []
+    },
+    {
+      "index": 50,
+      "url": "https://arxiv.org/html/2412.07961v1",
+      "title": "Forking Paths in Neural Text Generation",
+      "summary": "Forking Paths in Neural Text Generation (Bigelow et al.); cited in rows 92e-P4-1. (version: v1; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Eric Bigelow",
+        "Ari Holtzman",
+        "Hidenori Tanaka",
+        "Tomer Ullman"
+      ],
+      "year": 2024,
+      "supporting_passages": [
+        {
+          "quote": "We hypothesize that there exist key forking tokens, such that re-sampling the system at those specific tokens, but not others, leads to very different outcomes.",
+          "locator": "Abstract (P4-1; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 51,
+      "url": "https://api2.openreview.net/notes/search?term=Predicting%20Future%20Behaviors%20in%20Reasoning%20Models%20Enables%20Better%20Steering&group=ICLR.cc/2027/Conference&limit=10",
+      "title": "Predicting Future Behaviors in Reasoning Models Enables Better Steering (OpenReview forum 5tVsS1vVLC)",
+      "summary": "ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-P4-3. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "We apply a forking-paths-style analysis to behavioral evaluations and find that as generation progresses, LRMs define evolving distributions over behavioral outcomes.",
+          "locator": "OpenReview abstract (forum 5tVsS1vVLC) (P4-3; VERIFIED-ABSTRACT)"
+        }
+      ]
+    },
+    {
+      "index": 52,
+      "url": "https://api2.openreview.net/notes/search?term=Auditing%20the%20Auditor%3A%20Ground-Truth%20Controls%20for%20Natural-Language%20Explanations%20of%20LLM%20Activations&group=ICLR.cc/2027/Conference&limit=10",
+      "title": "Auditing the Auditor: Ground-Truth Controls for Natural-Language Explanations of LLM Activations (OpenReview forum PKToLtvIZl)",
+      "summary": "ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-N-7. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "under preregistered controls: a wrong-activation (shuffled) control, a visible-text baseline, a blinded judge, and supervised readability probes.",
+          "locator": "OpenReview abstract (forum PKToLtvIZl) (N-22; VERIFIED-ABSTRACT)"
+        },
+        {
+          "quote": "apparent successes on famous facts are indistinguishable from verbalizer prior-completion under a truthful-instruction control",
+          "locator": "OpenReview abstract (N-23; VERIFIED-ABSTRACT)"
+        }
+      ]
+    },
+    {
+      "index": 53,
+      "url": "https://arxiv.org/html/2601.05679v7",
+      "title": "Do Sparse Autoencoders Identify Reasoning Features in Language Models?",
+      "summary": "Do SAEs Identify Reasoning Features? (Ma et al.); cited in rows 92e-S-5. (version: v7; venue: In Forty-Third International Conference on Machine Learning (2026); status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "George Ma",
+        "Zhongyuan Liang",
+        "Irene Y. Chen",
+        "Somayeh Sojoudi"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "use SAEs from the GemmaScope-2 release (McDougall et al., 2025), each with 16,384 features trained on residual stream activations.",
+          "locator": "Sec. 5.1 Experimental Setup (S-15; VERIFIED)"
+        },
+        {
+          "quote": "A small steering study yields minimal changes on the evaluated benchmarks.",
+          "locator": "Abstract (S-16; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 54,
+      "url": "https://arxiv.org/html/2606.10302v1",
+      "title": "Where You Inject Diversity Matters: A Unified Framework for Diverse Generation",
+      "summary": "Inherited from art_kjrCpQnPaniY Table 92b/92c source [31]; its quotes are cited by row id and were not re-fetched here. (version: v1; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": []
+    },
+    {
+      "index": 55,
+      "url": "https://arxiv.org/html/2605.07284v2",
+      "title": "Same Targets, Different Computation: How Post-Training Divides Work Across Model Layers",
+      "summary": "Inherited from art_ObxQOIlAM9MS Table 92d source [15]; its quotes are cited by row id and were not re-fetched here. (version: v2; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": []
+    },
+    {
+      "index": 56,
+      "url": "https://arxiv.org/html/2510.01171v4",
+      "title": "Verbalized Sampling: How to Mitigate Mode Collapse and Unlock LLM Diversity",
+      "summary": "Inherited from art_ObxQOIlAM9MS Table 92d source [11]; its quotes are cited by row id and were not re-fetched here. (version: v4; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2025,
+      "supporting_passages": []
+    },
+    {
+      "index": 57,
+      "url": "https://api2.openreview.net/notes/search?term=Finding%20Algorithms%20in%20Neural%20Networks%3A%20Convergent%20Predictions%20Between%20Distributed%20Alignment%20Search%20and%20Speed%20of%20Transfer%20Learning&group=ICLR.cc/2027/Conference&limit=10",
+      "title": "Finding Algorithms in Neural Networks: Convergent Predictions Between Distributed Alignment Search and Speed of Transfer Learning (OpenReview forum aHSbJo4RHN)",
+      "summary": "ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-P1-5. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "We find that, on toy arithmetic and vision tasks, the algorithms identified by DAS and TLA mostly agree",
+          "locator": "OpenReview abstract (forum aHSbJo4RHN) (P1-7; VERIFIED-ABSTRACT)"
+        }
+      ]
+    },
+    {
+      "index": 58,
+      "url": "https://arxiv.org/html/2604.19884v1",
+      "title": "From Signal Degradation to Computation Collapse: Uncovering the Two Failure Modes of LLM Quantization",
+      "summary": "From Signal Degradation to Computation Collapse (Zhou et al.); cited in rows 92e-E-6. (version: v1; venue: Accepted to Findings of ACL 2026; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Chenxi Zhou",
+        "Pengfei Cao",
+        "Jiang Li",
+        "Bohan Yu",
+        "Jinyu Ye",
+        "Jun Zhao",
+        "Kang Liu"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "we employ causal activation patching Heimersheim and Nanda (2024) to assess the integrity of the information pathway.",
+          "locator": "Sec. 3.4 (E-11; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 59,
+      "url": "https://arxiv.org/html/2609.01587v1",
+      "title": "The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally",
+      "summary": "The Structure of Quantization Damage (Hu, et al.); cited in rows 92e-E-6. (version: v1; venue: Preprint. Under review at a NeurIPS 2026 workshop. 11 pages, 4 figures, 8 tables; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Jundong Hu",
+        "Shekar Ramachandran"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "None of them predicts which layers benefit from restored precision.",
+          "locator": "Abstract (E-12; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 60,
+      "url": "https://arxiv.org/html/2606.03002v2",
+      "title": "Perplexity Can Miss SAE Feature Damage Under Quantization",
+      "summary": "Perplexity Can Miss SAE Feature Damage Under Quantization (Duan); cited in rows 92e-E-6. (version: v2; venue: 12 Pages of Content, Submitted to TMLR; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Evan Duan"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "These results show that behavioral metrics alone are insufficient evidence that full-precision interpretability findings transfer to quantized models, motivating feature-level audits of compression.",
+          "locator": "Abstract (E-13; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 61,
+      "url": "https://arxiv.org/html/2609.31796v1",
+      "title": "Same Probe, Different Numbers: Are Activation Probes Robust to Inference-Time Numerical Non-Determinism?",
+      "summary": "Same Probe, Different Numbers (Khatri); cited in rows 92e-E-7. (version: v1; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Alizishaan Khatri"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "Because common GPU kernels are not batch-invariant and floating-point formats round differently, the activations seen at deployment are not the ones the probe was trained on.",
+          "locator": "Abstract (E-16; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 62,
+      "url": "https://arxiv.org/html/2401.06102v4",
+      "title": "Patchscopes: A Unifying Framework for Inspecting Hidden Representations of Language Models",
+      "summary": "Inherited from art_ObxQOIlAM9MS Table 92d source [88]; its quotes are cited by row id and were not re-fetched here. (version: v4; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2024,
+      "supporting_passages": []
+    },
+    {
+      "index": 63,
+      "url": "https://arxiv.org/html/2608.21595v1",
+      "title": "Perturb the Thought, Not the Pixels: Latent-Space Rollout Diversification for Reinforcement Learning of Vision-Language Models",
+      "summary": "Inherited from art_kjrCpQnPaniY Table 92b/92c source [52]; its quotes are cited by row id and were not re-fetched here. (version: v1; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": []
+    },
+    {
+      "index": 64,
+      "url": "https://proceedings.mlr.press/v236/geiger24a.html",
+      "title": "Finding Alignments Between Interpretable Causal Variables and Distributed Neural Representations (PMLR 236 record)",
+      "summary": "Venue record for DAS: CLeaR 2024, PMLR 236. (version: proceedings; venue: CLeaR 2024; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Atticus Geiger",
+        "Zhengxuan Wu",
+        "Christopher Potts",
+        "Thomas Icard",
+        "Noah Goodman"
+      ],
+      "year": 2024,
+      "supporting_passages": [
+        {
+          "quote": "Finding Alignments Between Interpretable Causal Variables and Distributed Neural Representations",
+          "locator": "PMLR record (P1-2; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 65,
+      "url": "https://api2.openreview.net/notes/search?term=Programmable%20Semantic%20Interventions%3A%20Learning%20Causal%20Carriers%20from%20Behavioral%20Programs&group=ICLR.cc/2027/Conference&limit=10",
+      "title": "Programmable Semantic Interventions: Learning Causal Carriers from Behavioral Programs (OpenReview forum DLKIln4eAT)",
+      "summary": "ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-P1-4. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "a low-rank activation subspace learned so that interchanging it moves the model's answer the way the program declares.",
+          "locator": "OpenReview abstract (forum DLKIln4eAT) (P1-6; VERIFIED-ABSTRACT)"
+        }
+      ]
+    },
+    {
+      "index": 66,
+      "url": "https://arxiv.org/html/2607.16451v1",
+      "title": "Committed Before Reasoning: Behavioral Reproduction and Preliminary Activation-Level Evidence of Answer Pre-Commitment in an Open-Weight LLM",
+      "summary": "Committed Before Reasoning (Jo); cited in rows 92e-P1-9. (version: v1; venue: 8 pages. Code, data, and all reported statistics: https://github.com/JO-HEEJIN/interview_mate/tree/docs/car-wash-repro/car_wash/paper_4; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Heejin Jo"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "Chat models sometimes commit to an answer and then produce reasoning that justifies the commitment rather than deriving it",
+          "locator": "Abstract (P1-12; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 67,
+      "url": "https://arxiv.org/html/2508.18098v1",
+      "title": "Detecting and Characterizing Planning in Language Models",
+      "summary": "Detecting and Characterizing Planning (Nainani et al.); cited in rows 92e-P1-11. (version: v1; venue: 9 pages, 4 figures; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Jatin Nainani",
+        "Sankaran Vaidyanathan",
+        "Connor Watts",
+        "Andre N. Assis",
+        "Alice Rigg"
+      ],
+      "year": 2025,
+      "supporting_passages": [
+        {
+          "quote": "We apply this pipeline to both base and instruction-tuned Gemma-2-2B models on the MBPP code generation benchmark and a poem generation task where Claude 3.5 Haiku was previously shown to plan.",
+          "locator": "Abstract (P1-14; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 68,
+      "url": "https://arxiv.org/html/2602.22600v2",
+      "title": "Transformers converge to invariant algorithmic cores",
+      "summary": "Algorithmic Core Extraction (Schiffman); cited in rows 92e-P1-12. (version: v2; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Joshua S. Schiffman"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "compact subspaces that are necessary and sufficient for a task and that recur across independently trained models.",
+          "locator": "Abstract (P1-15; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 69,
+      "url": "https://arxiv.org/html/2507.08802v2",
+      "title": "The Non-Linear Representation Dilemma: Is Causal Abstraction Enough for Mechanistic Interpretability?",
+      "summary": "Sutter, Minder, Hofmann, Pimentel; cited in rows 92e-P1-CTRL-1. (version: v2; venue: NeurIPS 2025 (Spotlight); status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Denis Sutter",
+        "Julian Minder",
+        "Thomas Hofmann",
+        "Tiago Pimentel"
+      ],
+      "year": 2025,
+      "supporting_passages": [
+        {
+          "quote": "on an experiment using randomly initialised language models, our alignment maps reach 100% interchange-intervention accuracy on the indirect object identification task.",
+          "locator": "Abstract (CTRL-1; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 70,
+      "url": "https://arxiv.org/html/2311.17030v2",
+      "title": "Is This the Subspace You Are Looking for? An Interpretability Illusion for Subspace Activation Patching",
+      "summary": "Makelov, Lange, Geiger, Nanda; cited in rows 92e-P1-CTRL-2. (version: v2; venue: NeurIPS 2023 Workshop on Attributing Model Behavior at Scale; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Aleksandar Makelov",
+        "Georg Lange",
+        "Neel Nanda"
+      ],
+      "year": 2023,
+      "supporting_passages": [
+        {
+          "quote": "this effect may be achieved by activating a",
+          "locator": "Abstract (CTRL-2; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 71,
+      "url": "https://iclr.cc/virtual/2024/poster/19100",
+      "title": "Is This the Subspace You Are Looking for? (ICLR 2024 poster page)",
+      "summary": "Venue record: ICLR 2024 poster. (version: page; venue: ICLR 2024; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Aleksandar Makelov",
+        "Georg Lange",
+        "Atticus Geiger",
+        "Neel Nanda"
+      ],
+      "year": 2024,
+      "supporting_passages": [
+        {
+          "quote": "Is This the Subspace You Are Looking for? An Interpretability Illusion for Subspace Activation Patching",
+          "locator": "ICLR 2024 virtual poster page (CTRL-3; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 72,
+      "url": "https://arxiv.org/html/2401.12631v1",
+      "title": "A Reply to Makelov et al. (2023)'s \"Interpretability Illusion\" Arguments",
+      "summary": "Wu, Geiger, Huang, Arora, Icard, Potts, Goodman (reply); cited in rows 92e-P1-CTRL-3. (version: v1; venue: 20 pages, 14 figures; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Zhengxuan Wu",
+        "Atticus Geiger",
+        "Jing Huang",
+        "Aryaman Arora",
+        "Thomas Icard",
+        "Christopher Potts",
+        "Noah D. Goodman"
+      ],
+      "year": 2024,
+      "supporting_passages": [
+        {
+          "quote": "can reject explanations they consider",
+          "locator": "Abstract (CTRL-4; VERIFIED)"
+        },
+        {
+          "quote": "We then argue that the illusions Makelov et al. (2023) see in practice are artifacts of their training and evaluation paradigms.",
+          "locator": "Abstract (CTRL-5; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 73,
+      "url": "https://arxiv.org/html/2511.04638v5",
+      "title": "Addressing divergent representations from causal interventions on neural networks",
+      "summary": "Grant et al., divergent representations; cited in rows 92e-P1-CTRL-4. (version: v5; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Satchel Grant",
+        "Simon Jerome Han",
+        "Alexa R. Tartaglini",
+        "Christopher Potts"
+      ],
+      "year": 2025,
+      "supporting_passages": [
+        {
+          "quote": "minimizing divergence magnitude does not guarantee elimination of hidden pathways; it only reduces the risk surface.",
+          "locator": "Sec. 5 (CTRL-6; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 74,
+      "url": "https://arxiv.org/html/2609.39243v2",
+      "title": "Right Answer, Wrong Mechanism: Detecting Pernicious Divergence in Causal Interventions",
+      "summary": "Right Answer, Wrong Mechanism (Liu, Chen); cited in rows 92e-P1-CTRL-5. (version: v2; venue: 13 pages, 1 figure, 6 tables. Beiming Liu and Minjie Chen contributed equally; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Beiming Liu",
+        "Minjie Chen"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "No method currently tells the two cases apart.",
+          "locator": "Abstract (CTRL-7; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 75,
+      "url": "https://arxiv.org/html/2606.27510v1",
+      "title": "The Curse of Multiple Mediators: Hidden Interaction Effects in Activation Patching",
+      "summary": "The Curse of Multiple Mediators (Vaidyanathan et al.); cited in rows 92e-P1-CTRL-6. (version: v1; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Sankaran Vaidyanathan",
+        "David Arbour",
+        "Aaron Mueller",
+        "Scott Niekum",
+        "David Jensen"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "we find that the NIE does not solely capture the causal effect through the specific component.",
+          "locator": "Abstract (CTRL-8; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 76,
+      "url": "https://arxiv.org/html/2606.06267v2",
+      "title": "Many Circuits, One Mechanism: Input Variation and Evaluation Granularity in Circuit Discovery",
+      "summary": "Many Circuits, One Mechanism (Bayat Makou et al.); cited in rows 92e-P1-CTRL-6. (version: v2; venue: 101 pages, 44 figures | Transactions on Machine Learning Research, 2026; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Alireza Bayat Makou",
+        "Jingcheng Niu",
+        "Subhabrata Dutta",
+        "Iryna Gurevych"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "The discovered circuits appear specialized by frequency when compared structurally, but functional and representational analyses show no reliable evidence of corresponding",
+          "locator": "Abstract (CTRL-9; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 77,
+      "url": "https://arxiv.org/html/2605.08012v1",
+      "title": "Position: Mechanistic Interpretability Must Disclose Identification Assumptions for Causal Claims",
+      "summary": "Position: identification assumptions (Lin et al.); cited in rows 92e-P1-CTRL-6. (version: v1; venue: 10 pages, 2 figures. Submitted to NeurIPS 2026 (Position Track); status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Zezheng Lin",
+        "Fengming Liu"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "A purposive audit of 10 papers across four methodological strands finds no dedicated identification-assumptions section",
+          "locator": "Abstract (CTRL-10; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 78,
+      "url": "https://arxiv.org/html/2606.11599v1",
+      "title": "When is Your LLM Steerable?",
+      "summary": "Inherited from art_kjrCpQnPaniY Table 92b/92c source [21]; its quotes are cited by row id and were not re-fetched here. (version: v1; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": []
+    },
+    {
+      "index": 79,
+      "url": "https://arxiv.org/html/2603.18353v1",
+      "title": "Interpretability without actionability: mechanistic methods cannot correct language model errors despite near-perfect internal representations",
+      "summary": "Inherited from art_kjrCpQnPaniY Table 92b/92c source [43]; its quotes are cited by row id and were not re-fetched here. (version: v1; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": []
+    },
+    {
+      "index": 80,
+      "url": "https://arxiv.org/html/2602.06801v4",
+      "title": "On the Non-Identifiability of Steering Vectors in Large Language Models",
+      "summary": "On the Non-Identifiability of Steering Vectors (Venkatesh et al.); cited in rows 92e-P2-8. (version: v4; venue: Code available at https://github.com/sohv/non-identifiability; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Sohan Venkatesh",
+        "Ashish Mahendran Kurapath"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "We show that, under white-box single-layer access, steering vectors are fundamentally non-identifiable due to large equivalence classes of behaviorally indistinguishable interventions.",
+          "locator": "Abstract (P2-8; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 81,
+      "url": "https://arxiv.org/html/2504.04635v1",
+      "title": "Steering off Course: Reliability Challenges in Steering Language Models",
+      "summary": "Steering off Course (Da Silva et al.); cited in rows 92e-P2-1. (version: v1; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Patrick Queiroz Da Silva",
+        "Hari Sethuraman",
+        "Dheeraj Rajagopal",
+        "Hannaneh Hajishirzi",
+        "Sachin Kumar"
+      ],
+      "year": 2025,
+      "supporting_passages": [
+        {
+          "quote": "Our analysis demonstrate fundamental flaws in the assumptions underlying these methods, challenging their reliability as scalable steering solutions",
+          "locator": "Abstract (P2-1; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 82,
+      "url": "https://arxiv.org/html/2602.02103v2",
+      "title": "How Far Ahead Do LLMs Plan? Uncovering the Latent Horizon in Chain-of-Thought Reasoning",
+      "summary": "How Far Ahead Do LLMs Plan? (Xu et al.); cited in rows 92e-P2-6. (version: v2; venue: Accepted to ICML 2026; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Liyan Xu",
+        "Mo Yu",
+        "Fandong Meng",
+        "Jie Zhou"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "we investigate the latent planning strength of LLMs, through our probing method, Tele-Lens, applying to hidden states across diverse task domains.",
+          "locator": "Abstract (P2-6; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 83,
+      "url": "https://api2.openreview.net/notes/search?term=Representing%20and%20Steering%20a%20Hypothesized%20Consciousness%20Spectrum&group=ICLR.cc/2027/Conference&limit=10",
+      "title": "Representing and Steering a Hypothesized Consciousness Spectrum: Manifold-Guided vs. Linear Directions (OpenReview forum MN9X374VhG)",
+      "summary": "ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-P3-4. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "show that both a linear direction and a low-dimensional manifold structure align with it.",
+          "locator": "OpenReview abstract (forum MN9X374VhG) (P3-4; VERIFIED-ABSTRACT)"
+        }
+      ]
+    },
+    {
+      "index": 84,
+      "url": "https://arxiv.org/html/2309.02772v3",
+      "title": "Hot or Cold? Adaptive Temperature Sampling for Code Generation with Large Language Models",
+      "summary": "Inherited from art_kjrCpQnPaniY Table 92b/92c source [8]; its quotes are cited by row id and were not re-fetched here. (version: v3; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2023,
+      "supporting_passages": []
+    },
+    {
+      "index": 85,
+      "url": "https://arxiv.org/html/2411.07180v5",
+      "title": "Gumbel Counterfactual Generation From Language Models",
+      "summary": "Inherited from art_kjrCpQnPaniY Table 92b/92c source [33]; its quotes are cited by row id and were not re-fetched here. (version: v5; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2024,
+      "supporting_passages": []
+    },
+    {
+      "index": 86,
+      "url": "https://arxiv.org/html/2609.00077v1",
+      "title": "Beneath the Diff: Diagnosing and Mitigating Algorithmic Mode Collapse in Code-Level Autonomous Research Loops",
+      "summary": "Inherited from art_kjrCpQnPaniY Table 92b/92c source [29]; its quotes are cited by row id and were not re-fetched here. (version: v1; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": []
+    },
+    {
+      "index": 87,
+      "url": "https://arxiv.org/html/2602.17691v1",
+      "title": "Tethered Reasoning: Decoupling Entropy from Hallucination in Quantized LLMs via Manifold Steering",
+      "summary": "HELIX / Tethered Reasoning (Atkinson); cited in rows 92e-P4-2. (version: v1; venue: 16 pages, 6 tables; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Craig Atkinson"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "Quantized language models face a fundamental dilemma: low sampling temperatures yield repetitive, mode-collapsed outputs, while high temperatures",
+          "locator": "Abstract (P4-2; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 88,
+      "url": "https://api2.openreview.net/notes/search?term=Diversity%20Without%20Discovery%3A%20Why%20Chain%20Perturbation%20Fails%20to%20Explore%20in%20Latent%20Test-Time%20Scaling&group=ICLR.cc/2027/Conference&limit=10",
+      "title": "Diversity Without Discovery: Why Chain Perturbation Fails to Explore in Latent Test-Time Scaling",
+      "summary": "Inherited from art_kjrCpQnPaniY Table 92b/92c source [63]; its quotes are cited by row id and were not re-fetched here. (status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": []
+    },
+    {
+      "index": 89,
+      "url": "https://arxiv.org/html/2506.09659v1",
+      "title": "Intent Factored Generation: Unleashing the Diversity in Your Language Model",
+      "summary": "Inherited from art_kjrCpQnPaniY Table 92b/92c source [26]; its quotes are cited by row id and were not re-fetched here. (version: v1; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2025,
+      "supporting_passages": []
+    },
+    {
+      "index": 90,
+      "url": "https://arxiv.org/html/2409.03733v2",
+      "title": "Planning In Natural Language Improves LLM Search For Code Generation",
+      "summary": "Inherited from art_kjrCpQnPaniY Table 92b/92c source [27]; its quotes are cited by row id and were not re-fetched here. (version: v2; status: INHERITED (cited by id; not re-verified); retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2024,
+      "supporting_passages": []
+    },
+    {
+      "index": 91,
+      "url": "https://arxiv.org/html/2402.04647v4",
+      "title": "Latent Plan Transformer for Trajectory Abstraction: Planning as Latent Space Inference",
+      "summary": "Latent Plan Transformer (Kong et al.); cited in rows 92e-P5-4. (version: v4; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Deqian Kong",
+        "Dehong Xu",
+        "Minglu Zhao",
+        "Bo Pang",
+        "Jianwen Xie",
+        "Andrew Lizarraga",
+        "Yuhao Huang",
+        "Sirui Xie",
+        "Ying Nian Wu"
+      ],
+      "year": 2024,
+      "supporting_passages": [
+        {
+          "quote": "We introduce the Latent Plan Transformer (LPT), a novel model that leverages a latent variable to connect a Transformer-based trajectory generator and the final return.",
+          "locator": "Abstract (P5-5; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 92,
+      "url": "https://raw.githubusercontent.com/kitft/natural_language_autoencoders/main/README.md",
+      "title": "kitft/natural_language_autoencoders README (released NLA checkpoints)",
+      "summary": "Lists the 8 released checkpoints (4 base models x AV/AR) with layers, and requires loading nla_meta.yaml. (version: main branch; venue: GitHub; status: VERIFIED-README; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "Qwen2.5-7B-Instruct | 20 / 28 | 3584",
+          "locator": "Released checkpoints table (N-9; VERIFIED-README)"
+        },
+        {
+          "quote": "Llama-3.3-70B-Instruct | 53 / 80 | 8192",
+          "locator": "Released checkpoints table (N-10; VERIFIED-README)"
+        },
+        {
+          "quote": "Each checkpoint ships an `nla_meta.yaml` sidecar with the prompt template, injection token IDs, and scale factors that the model was trained with — load those, never hardcode them.",
+          "locator": "below the checkpoints table (N-11; VERIFIED-README)"
+        }
+      ]
+    },
+    {
+      "index": 93,
+      "url": "https://huggingface.co/kitft/nla-qwen2.5-7b-L20-av",
+      "title": "kitft/nla-qwen2.5-7b-L20-av model card (Hugging Face)",
+      "summary": "Qwen2.5-7B-Instruct AV: extraction at the residual output of block 20; in-distribution fve_nrm 0.752. (version: main; venue: Hugging Face; status: VERIFIED-README; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "Extraction layer: residual stream output of block",
+          "locator": "model card (N-12; VERIFIED-README)"
+        }
+      ]
+    },
+    {
+      "index": 94,
+      "url": "https://huggingface.co/kitft/nla-qwen2.5-7b-L20-av/raw/main/nla_meta.yaml",
+      "title": "nla_meta.yaml of kitft/nla-qwen2.5-7b-L20-av",
+      "summary": "Sidecar metadata: extraction_layer_index 20, injection and MSE scales. (version: main; venue: Hugging Face; status: VERIFIED-README; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "extraction_layer_index: 20",
+          "locator": "training block (N-14; VERIFIED-README)"
+        }
+      ]
+    },
+    {
+      "index": 95,
+      "url": "https://github.com/TransformerLensOrg/TransformerLens/issues/1884",
+      "title": "TransformerLens issue #1884: NLA explain/reconstruct proposal",
+      "summary": "Tooling proposal for the Qwen2.5-7B NLA pair that lists edited-explanation steering as a non-goal. (version: issue; venue: GitHub; status: VERIFIED-README; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "Edited-explanation steering or causal validation.",
+          "locator": "Non-goals (N-32; VERIFIED-README)"
+        }
+      ]
+    },
+    {
+      "index": 96,
+      "url": "https://arxiv.org/html/2512.15674v2",
+      "title": "Activation Oracles: Training and Evaluating LLMs as General-Purpose Activation Explainers",
+      "summary": "Activation Oracles (Karvonen et al.); cited in rows 92e-N-6. (version: v2; venue: 36 pages; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Adam Karvonen",
+        "James Chua",
+        "Clément Dumas",
+        "Kit Fraser-Taliente",
+        "Subhash Kantamneni",
+        "Julian Minder",
+        "Euan Ong",
+        "Arnab Sen Sharma",
+        "Daniel Wen",
+        "Owain Evans",
+        "Samuel Marks"
+      ],
+      "year": 2025,
+      "supporting_passages": [
+        {
+          "quote": "we study Activation Oracles (AOs): models trained to answer arbitrary natural-language questions about LLM activations.",
+          "locator": "Sec. 1 Introduction (N-19; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 97,
+      "url": "https://jaisood.substack.com/p/natural-language-autoencoders-can",
+      "title": "Natural Language Autoencoders can verbalize influence but don't report whether it changed the outcome",
+      "summary": "Grey-literature audit of two released NLA checkpoints: the readout reports applied pressure and answer, not whether the pressure changed the answer. (version: post (Aug 18, 2026); venue: Substack; status: VERIFIED-BLOG; retrieved 2026-10-22)",
+      "authors": [
+        "Jai Sood"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "We audit two released NLA checkpoints and find that the readout reports what pressure was applied and what the model answered, but not whether the pressure changed that answer.",
+          "locator": "Introduction (N-21; VERIFIED-BLOG)"
+        }
+      ]
+    },
+    {
+      "index": 98,
+      "url": "https://arxiv.org/html/2607.21774v1",
+      "title": "Probing Latent Colombian Identity Inferences in Qwen2.5-7B with Natural Language Autoencoders",
+      "summary": "Colombian identity with NLA (Potes Velasco et al.); cited in rows 92e-N-9. (version: v1; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Pablo Santiago Potes Velasco",
+        "María del Mar García Matabanchoy",
+        "Óscar Julián Pérez Ladino",
+        "Jhoan Stevan Mosquera Ortiz",
+        "Nicolás Lozano Mazuera",
+        "Gilber Alexis Corrales Gallego"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "We use Natural Language Autoencoders (NLA) to verbalize residual-stream activations from layer 20 across four positional quartiles per prompt.",
+          "locator": "Abstract (N-25; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 99,
+      "url": "https://huggingface.co/ceselder/nanoNLA",
+      "title": "ceselder/nanoNLA (nanonla-l24-av-qwen3-8b) model card",
+      "summary": "Community NLA activation verbalizer for Qwen3-8B at layer 24 (Karvonen injection). (version: main; venue: Hugging Face; status: VERIFIED-README; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": []
+    },
+    {
+      "index": 100,
+      "url": "https://raw.githubusercontent.com/ceselder/nanoNLA/main/README.md",
+      "title": "ceselder/nanoNLA README",
+      "summary": "Minimal NLA reimplementation; carries a faithfulness disclaimer and points users to another repository. (version: main; venue: GitHub; status: VERIFIED-README; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "Faithfulness disclaimer — this is a perpetual work-in-progress.",
+          "locator": "Faithfulness disclaimer (N-27; VERIFIED-README)"
+        }
+      ]
+    },
+    {
+      "index": 101,
+      "url": "https://raw.githubusercontent.com/syvb/EasyNLA/main/README.md",
+      "title": "syvb/EasyNLA README",
+      "summary": "NLA training codebase built on nanoNLA; reports ~70% held-out FVE on Qwen3-8B layer 24. (version: main; venue: GitHub; status: VERIFIED-README; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "On Qwen3-8B (layer 24) the default config reaches",
+          "locator": "Overview (N-28; VERIFIED-README)"
+        }
+      ]
+    },
+    {
+      "index": 102,
+      "url": "https://arxiv.org/html/2608.21664v1",
+      "title": "Measuring Activation Control in Large Language Models",
+      "summary": "Measuring Activation Control (Kowalski et al.); cited in rows 92e-N-12. (version: v1; venue: 19 figures, 4 tables. Code: https://github.com/mkobalski/activation-control. Data: https://huggingface.co/datasets/joshycodes/activation-control-battery; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Marek Mateusz Kowalski",
+        "Joshua Fonseca Rivera",
+        "Uzay Macar",
+        "David Demitri Africa"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "this level of control can evade activation-based monitoring methods (including linear probes, natural language autoencoders, activation oracles, and the Jacobian lens), albeit imperfectly.",
+          "locator": "Abstract (N-30; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 103,
+      "url": "https://arxiv.org/html/2609.33702v1",
+      "title": "Understanding Confabulation and Rethinking Reconstruction in Activation Explanations",
+      "summary": "Understanding Confabulation (Lek et al.); cited in rows 92e-N-12. (version: v1; venue: 18 pages, 9 figures; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Gert Lek",
+        "Zixuan Xia",
+        "Pin-Yu Chen",
+        "Lydia Y. Chen"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "explanations become more useful for predicting model behavior while also increasingly introducing unsupported details and exhibiting writing defects.",
+          "locator": "Abstract (N-31; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 104,
+      "url": "https://www.lesswrong.com/posts/YQro5LyYjDzZrBCdb/announcing-gemma-scope-2",
+      "title": "Announcing Gemma Scope 2 (LessWrong / AI Alignment Forum)",
+      "summary": "Release post dated 22 Dec 2025; every PT SAE has a version finetuned for IT models. (version: post; venue: LessWrong / AI Alignment Forum; status: VERIFIED-BLOG; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2025,
+      "supporting_passages": [
+        {
+          "quote": "every SAE trained on a PT model has a corresponding version finetuned for IT models",
+          "locator": "TLDR (S-1; VERIFIED-BLOG)"
+        },
+        {
+          "quote": "22nd Dec 2025",
+          "locator": "byline (S-2; VERIFIED-BLOG)"
+        }
+      ]
+    },
+    {
+      "index": 105,
+      "url": "https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/gemma-scope-2-helping-the-ai-safety-community-deepen-understanding-of-complex-language-model-behavior/Gemma_Scope_2_Technical_Paper.pdf",
+      "title": "Gemma Scope 2 Technical Paper (Google DeepMind)",
+      "summary": "IT SAEs are initialized from PT SAEs and finetuned on rollout-derived data. (version: PDF; venue: Google DeepMind technical report; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2025,
+      "supporting_passages": [
+        {
+          "quote": "from the corresponding PT SAEs and finetune on the rollout-derived datasets.",
+          "locator": "training of IT SAEs (S-3; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 106,
+      "url": "https://huggingface.co/google/gemma-scope-2-4b-it",
+      "title": "google/gemma-scope-2-4b-it model card",
+      "summary": "Sites (resid_post, attn_out, mlp_out, transcoders) at 4 depths (25/50/65/85%) with several widths and L0 values. (version: main; venue: Hugging Face; status: VERIFIED-README; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2025,
+      "supporting_passages": [
+        {
+          "quote": "contain SAEs at 4 different layers (25%, 50%, 65% and 85% depth) and a variety of widths & L0 values",
+          "locator": "What is in this repo (S-4; VERIFIED-README)"
+        }
+      ]
+    },
+    {
+      "index": 107,
+      "url": "https://arxiv.org/html/2503.18878v2",
+      "title": "I Have Covered All the Bases Here: Interpreting Reasoning Features in Large Language Models via Sparse Autoencoders",
+      "summary": "I Have Covered All the Bases Here (Galichin et al.); cited in rows 92e-S-4. (version: v2; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Andrey Galichin",
+        "Alexey Dontsov",
+        "Polina Druzhinina",
+        "Anton Razzhigaev",
+        "Oleg Y. Rogov",
+        "Elena Tutubalina",
+        "Ivan Oseledets"
+      ],
+      "year": 2025,
+      "supporting_passages": [
+        {
+          "quote": "Through steering experiments, we demonstrate that amplifying these features increases performance on reasoning-intensive benchmarks",
+          "locator": "Abstract (S-14; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 108,
+      "url": "https://arxiv.org/html/2606.18322v1",
+      "title": "SAE Interventions are Unreliable: Post-Intervention Recovery of Suppressed Behavior",
+      "summary": "SAE Interventions are Unreliable (Cui et al.); cited in rows 92e-S-7. (version: v1; venue: Code: https://github.com/Mingyuee88/sae-post-intervention-recovery, Project page: https://mingyuee88.github.io/sae-post-intervention-recovery/; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Mingyue Cui",
+        "Linghui Shen",
+        "Xingyi Yang"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "the clamp may block one visible route to a behavior without eliminating the behavior itself.",
+          "locator": "Abstract (S-18; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 109,
+      "url": "https://api2.openreview.net/notes/search?term=Do%20LMs%20Know%20What%20Variables%20Do%3F%20Interpreting%20Code%20Representations%20via%20Variable%20Roles&group=ICLR.cc/2027/Conference&limit=10",
+      "title": "Do LMs Know What Variables Do? Interpreting Code Representations via Variable Roles (OpenReview forum 2AiBLDA67W)",
+      "summary": "ICLR 2027 Conference Submission; contemporaneous. Cited in rows 92e-S-7. (version: submission; venue: ICLR 2027 Conference Submission; status: VERIFIED-ABSTRACT; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "residual probes outperform individual SAE features and tested lexical baselines",
+          "locator": "OpenReview abstract (forum 2AiBLDA67W) (S-19; VERIFIED-ABSTRACT)"
+        }
+      ]
+    },
+    {
+      "index": 110,
+      "url": "https://transformer-circuits.pub/2025/attribution-graphs/biology.html",
+      "title": "On the Biology of a Large Language Model (Transformer Circuits)",
+      "summary": "Attribution-graph caveat: satisfying insight for about a quarter of the prompts tried. (version: HTML; venue: Transformer Circuits Thread; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2025,
+      "supporting_passages": [
+        {
+          "quote": "ve found that our attribution graphs provide us with satisfying insight for about a quarter of the prompts we",
+          "locator": "Introduction (limitations) (S-20; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 111,
+      "url": "https://arxiv.org/html/2610.20808v1",
+      "title": "PRISM: Transfer and Limits of Activation Interventions in Tool-Calling Language Models",
+      "summary": "PRISM (Bonas et al.); cited in rows 92e-E-5. (version: v1; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Giovana Kerche Bonás",
+        "Thales Sales Almeida",
+        "Marcelo da Silva Reis",
+        "Rodrigo Nogueira",
+        "Marcos Meideiros Raimundo"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "we introduce PRISM, a framework for evaluating the transfer of activation interventions across precision, languages, and scales.",
+          "locator": "Abstract (E-10; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 112,
+      "url": "https://arxiv.org/html/2508.16785v3",
+      "title": "Interpreting the Effects of Quantization on LLMs",
+      "summary": "Interpreting the Effects of Quantization on LLMs (Singh, Sajjad); cited in rows 92e-E-6. (version: v3; venue: Accepted to AACL 2025 Main; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Manpreet Singh",
+        "Hassan Sajjad"
+      ],
+      "year": 2025,
+      "supporting_passages": [
+        {
+          "quote": "Our findings reveal that the impact of quantization on model calibration is generally minor.",
+          "locator": "Abstract (E-14; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 113,
+      "url": "https://arxiv.org/html/2505.13963v3",
+      "title": "Through a Compressed Lens: Investigating The Impact of Quantization on Factual Knowledge Recall",
+      "summary": "Through a Compressed Lens (Wang et al.); cited in rows 92e-E-6. (version: v3; venue: TrustNLP @ ACL 2026; camera-ready version; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Qianli Wang",
+        "Mingyang Wang",
+        "Nils Feldhus",
+        "Simon Ostermann",
+        "Yuan Cao",
+        "Hinrich Schütze",
+        "Sebastian Möller",
+        "Vera Schmitt"
+      ],
+      "year": 2025,
+      "supporting_passages": [
+        {
+          "quote": "We show that quantization typically results in information loss within LLMs, consequently diminishing their capacity for FKR.",
+          "locator": "Abstract (E-15; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 114,
+      "url": "https://arxiv.org/pdf/2609.26621v1",
+      "title": "Greedy Decoding Is Not Precision-Invariant: Cross-Precision Output Divergence in LLM Inference",
+      "summary": "Greedy Decoding Is Not Precision-Invariant (Du et al.); cited in rows 92e-E-7. (version: v1; venue: Accepted by Transactions on Machine Learning Research (TMLR), 2026 | Transactions on Machine Learning Research, 2026; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Gaoyuan Du",
+        "Anam Nawaz Khan",
+        "Rex Zhou",
+        "Xiaoyang Liu",
+        "Deepayan Chakrabarti",
+        "Fnu Suya",
+        "Xueping Li"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "different outputs in BF16 versus FP16 on identical hardware.",
+          "locator": "Abstract (PDF; no arXiv HTML) (E-17; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 115,
+      "url": "https://arxiv.org/html/2506.09501v2",
+      "title": "Understanding and Mitigating Numerical Sources of Nondeterminism in LLM Inference",
+      "summary": "Understanding and Mitigating Numerical Sources of Nondeterminism (Yuan et al.); cited in rows 92e-E-7. (version: v2; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Jiayi Yuan",
+        "Hao Li",
+        "Xinheng Ding",
+        "Wenya Xie",
+        "Yu-Jhe Li",
+        "Wentian Zhao",
+        "Kun Wan",
+        "Jing Shi",
+        "Xia Hu",
+        "Zirui Liu"
+      ],
+      "year": 2025,
+      "supporting_passages": [
+        {
+          "quote": "under bfloat16 precision with greedy decoding, a reasoning model like DeepSeek-R1-Distill-Qwen-7B can exhibit up to 9% variation in accuracy and 9,000 tokens difference in response length due to differences in GPU count, type, and evaluation batch size.",
+          "locator": "Abstract / Sec. 1 (E-18; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 116,
+      "url": "https://arxiv.org/abs/2506.09501v1",
+      "title": "arXiv abs page 2506.09501v1: Give Me FP32 or Give Me Death? Challenges and Solutions for Reproducible Reasoning",
+      "summary": "Confirms the v1 title and the 'up to 9%' abstract sentence. (version: v1; venue: arXiv; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": null,
+      "year": 2025,
+      "supporting_passages": [
+        {
+          "quote": "Give Me FP32 or Give Me Death? Challenges and Solutions for Reproducible Reasoning",
+          "locator": "abs page v1 (E-19; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 117,
+      "url": "https://arxiv.org/html/2604.19790v1",
+      "title": "Hidden Reliability Risks in Large Language Models: Systematic Identification of Precision-Induced Output Disagreements",
+      "summary": "Hidden Reliability Risks: Precision-Induced Output Disagreements (Wang et al.); cited in rows 92e-E-7. (version: v1; venue: 12 pages, 5 figures; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Yifei Wang",
+        "Tianlin Li",
+        "Xiaohan Zhang",
+        "Xiaoyu Zhang",
+        "Wei Ma",
+        "Mingfei Cheng",
+        "Li Pan"
+      ],
+      "year": 2026,
+      "supporting_passages": [
+        {
+          "quote": "Evaluations across five open-source models yield average detection success rates of 84.0% for bfloat16 vs. float16 and 99.5% for int16 vs. int8 transitions.",
+          "locator": "Sec. 1 contributions (E-25; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 118,
+      "url": "https://arxiv.org/html/2208.07339v2",
+      "title": "LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale",
+      "summary": "LLM.int8() (Dettmers et al.); cited in rows 92e-E-8. (version: v2; venue: Published at NeurIPS 2022. Camera-ready version; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Tim Dettmers",
+        "Mike Lewis",
+        "Younes Belkada",
+        "Luke Zettlemoyer"
+      ],
+      "year": 2022,
+      "supporting_passages": [
+        {
+          "quote": "the sparse but systematic large magnitude outlier features that ruin quantization precision once they emerge in all transformer layers starting at scales of 6.7B parameters.",
+          "locator": "Abstract (E-20; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 119,
+      "url": "https://arxiv.org/html/2211.10438v7",
+      "title": "SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Language Models",
+      "summary": "SmoothQuant (Xiao et al.); cited in rows 92e-E-8. (version: v7; venue: ICML 2023. First two authors contributed equally to this work; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Guangxuan Xiao",
+        "Ji Lin",
+        "Mickael Seznec",
+        "Hao Wu",
+        "Julien Demouth",
+        "Song Han"
+      ],
+      "year": 2022,
+      "supporting_passages": [
+        {
+          "quote": "SmoothQuant smooths the activation outliers by offline migrating the quantization difficulty from activations to weights with a mathematically equivalent transformation.",
+          "locator": "Abstract (E-21; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 120,
+      "url": "https://arxiv.org/html/2402.17762v2",
+      "title": "Massive Activations in Large Language Models",
+      "summary": "Massive Activations (Sun et al.); cited in rows 92e-E-8. (version: v2; venue: First Conference on Language Modeling (COLM), 2024. Website at https://eric-mingjie.github.io/massive-activations/index.html; status: VERIFIED; retrieved 2026-10-22)",
+      "authors": [
+        "Mingjie Sun",
+        "Xinlei Chen",
+        "J. Zico Kolter",
+        "Zhuang Liu"
+      ],
+      "year": 2024,
+      "supporting_passages": [
+        {
+          "quote": "we find their values largely stay constant regardless of the input, and they function as indispensable bias terms in LLMs.",
+          "locator": "Abstract (E-22; VERIFIED)"
+        }
+      ]
+    },
+    {
+      "index": 121,
+      "url": "https://arxiv.org/html/2209.05433v2",
+      "title": "FP8 Formats for Deep Learning",
+      "summary": "FP8 Formats for Deep Learning (Micikevicius et al.); cited in rows 92e-E-8. (version: v2; venue: arXiv preprint; status: VERIFIED; retrieved 2026-10-22; author list truncated to the first names shown by the source)",
+      "authors": [
+        "Paulius Micikevicius",
+        "Dusan Stosic",
+        "Neil Burgess",
+        "Marius Cornea",
+        "Pradeep Dubey",
+        "Richard Grisenthwaite",
+        "Sangwon Ha",
+        "Alexander Heinecke",
+        "Patrick Judd",
+        "John Kamalu",
+        "Naveen Mellempudi",
+        "Stuart Oberman"
+      ],
+      "year": 2022,
+      "supporting_passages": [
+        {
+          "quote": "two encodings - E4M3 (4-bit exponent and 3-bit mantissa) and E5M2 (5-bit exponent and 2-bit mantissa).",
+          "locator": "Abstract (E-23; VERIFIED)"
+        }
+      ]
+    }
+  ],
+  "summary": "Dated (2026-10-22) positioning audit for the iteration-6 claims P1-P5, N, S and E. It provides paste-ready Table 92e in research_report.md: 8 claim blocks plus CTRL rows. It has 123 new verbatim, versioned quotes from 94 sources, all 123/123 matched against cached source text and 123/123 re-matched by an independent live fetch_grep pass. Statuses: 82 VERIFIED, 22 VERIFIED-ABSTRACT, 4 VERIFIED-BLOG, 15 VERIFIED-README. It cites Tables 92b/92c (art_kjrCpQnPaniY) and 92d (art_ObxQOIlAM9MS) by row id without re-verifying them. Saturation search: protocol frozen and sha256-stamped before the first call; 21 strings over 7 lanes on arXiv API, Semantic Scholar, the OpenReview ICLR 2027 pool, OpenAlex/Crossref and grey literature; 6 round-2 strings; snowballing; a round 3 that met the stop rule; 126 logged calls (incl. 3 supplementary full-text checks). 2,191 raw hits gave 1,820 unique records, 1,401 in the window and 67 papers scored on the O/I/C rubric (75 claim-rows: 3 occupy, 66 adjacent, 6 irrelevant). FLAGS: A (DAS localization of algorithm choice in code, validated by generation) NOT FIRED, narrowly. CDAS (ICLR 2026) does DAS steering validated by generation, but on refusal and a CoT backdoor. Algorithm choice in code is moved only by prompt cues (92c Invisible Lottery). Code attributes that are not the algorithm (language, library, coding habits) are moved by patching or difference-in-means vectors. The nearest same-model, same-site neighbour is the ICLR 2027 submission 'Before Reasoning Begins' (Qwen3-8B final-prompt SAE targets, code benchmarks, random nulls). B (activation quantization changes perturbation effects) PARTLY FIRED. Steering under quantization has been measured only with weight-only INT8/NF4 (2609.06473: activations stay FP16/BF16). Two ICLR 2027 submissions show effect changes across precision with aligned directions, but their abstracts do not say whether activations are quantized (PDFs 403). FP8 W8A8 appears only in a non-determinism study. No source found measures the effect size of random perturbations under activation rounding. C (editing verbaliser explanations to steer) FIRED. The NLA paper (Transformer Circuits, 7 May 2026; cite as Fraser-Taliente, Kantamneni, Ong et al.) edits a rhyme-plan explanation, reconstructs it with the AR and steers at the newline only (~50% success). LatentQA, SelfIE and Dreaming Vectors are kin. N is therefore a replication in a new setting. Cautions: about 2% claim-dependence of the AR (2607.20379), no newline plan in small open models (2609.18440), and published readout controls (ICLR 2027 'Auditing the Auditor'). D (resampling a fitted causal plan variable for diversity) PARTLY FIRED. Activation noise and latent-code sampling are occupied; the closest fitted-direction work is the ICLR 2027 'Random Choice in LMs'. Lane verdicts: P1 PARTLY OCCUPIED (method); P2, P3 and P4 ADJACENT-ONLY; P5 PARTLY OCCUPIED; N OCCUPIED (method); S PARTLY OCCUPIED (SAE-Steering, ACL 2026, beats prompt and activation baselines on reasoning strategies); E ADJACENT-ONLY in the published record but PARTLY OCCUPIED by contemporaneous submissions. Corrections: there is no official NLA for Qwen3-8B, but community NLAs exist at L24 (nanoNLA, EasyNLA); circuit-tracer has Qwen-3 PLTs including 8B (Hanna et al.), so justify Gemma for S; Gemma Scope 2 dates from 22 Dec 2025, with IT SAEs finetuned from PT; Sutter's 'any network to any algorithm' phrase is not in v2; Engels' v3 title. The report also gives permitted and forbidden wording per claim and reviewer baselines. Evidence files are in evidence/.",
+  "follow_up_questions": [
+    "Do the ICLR 2027 submissions 'Stable Directions, Different Effects' and 'Activation Steering under Low-Bit Quantization' quantize activations (W8A8/FP8) or only weights? Their full texts decide whether flag B fires.",
+    "On the released Qwen2.5-7B-Instruct L20 NLA, how far does the AR reconstruction move when only the algorithm name in an explanation is edited? The ~2% claim-dependence result predicts a small move, so this should be measured before the edit-and-steer arm.",
+    "Would interchange/DAS at Qwen3-8B's final prompt position find a low-rank variable for algorithm choice? How does it relate to the 23 SAE targets of 'Before Reasoning Begins' and to the Qwen-3 PLTs in circuit-tracer?"
+  ]
+}
