@@ -1,0 +1,167 @@
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:02,  1.76it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:01,  1.65it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:01<00:01,  1.62it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  1.77it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  2.48it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  2.05it/s]
+14:25:58|INFO   |Qwen/Qwen3-8B bf16 loaded: {'precision': 'bf16', 'cpu_embedding': False, 'free_vram_before_GB': 24.838, 'free_vram_after_GB': 8.302, 'total_vram_GB': 25.253, 'gpu': 'NVIDIA GeForce RTX 4090', 'load_seconds': 43.8}
+14:25:58|INFO   |=== stage sweep ===
+14:26:08|INFO   |[sweep:B3:W1:p1] batch 1/1: 40 rows, 320 steps, 10.7s
+14:26:18|INFO   |[sweep:B3:W1:k10] batch 1/1: 40 rows, 320 steps, 9.6s
+14:26:27|INFO   |[sweep:B3:W2:p1] batch 1/1: 40 rows, 312 steps, 9.0s
+14:26:36|INFO   |[sweep:B3:W2:k10] batch 1/1: 40 rows, 312 steps, 9.1s
+14:26:46|INFO   |[sweep:B3:W3:p1] batch 1/1: 40 rows, 320 steps, 9.2s
+14:26:55|INFO   |[sweep:B3:W3:k10] batch 1/1: 40 rows, 320 steps, 9.4s
+14:27:05|INFO   |[sweep:B3:W4:p1] batch 1/1: 40 rows, 320 steps, 9.2s
+14:27:14|INFO   |[sweep:B3:W4:k10] batch 1/1: 40 rows, 320 steps, 9.4s
+14:27:23|INFO   |[sweep:B3:W5:p1] batch 1/1: 40 rows, 312 steps, 9.0s
+14:27:33|INFO   |[sweep:B3:W5:k10] batch 1/1: 40 rows, 312 steps, 9.2s
+14:28:00|INFO   |labelled 400 rows in 27.5s
+14:28:05|INFO   |[sweep:A3:W1:p1] batch 1/1: 40 rows, 168 steps, 4.7s
+14:28:10|INFO   |[sweep:A3:W1:k10] batch 1/1: 40 rows, 168 steps, 4.7s
+14:28:15|INFO   |[sweep:A3:W2:p1] batch 1/1: 40 rows, 168 steps, 4.6s
+14:28:19|INFO   |[sweep:A3:W2:k10] batch 1/1: 40 rows, 168 steps, 4.7s
+14:28:25|INFO   |[sweep:A3:W3:p1] batch 1/1: 40 rows, 176 steps, 4.9s
+14:28:30|INFO   |[sweep:A3:W3:k10] batch 1/1: 40 rows, 176 steps, 4.9s
+14:28:34|INFO   |[sweep:A3:W4:p1] batch 1/1: 40 rows, 168 steps, 4.6s
+14:28:39|INFO   |[sweep:A3:W4:k10] batch 1/1: 40 rows, 168 steps, 4.7s
+14:28:44|INFO   |[sweep:A3:W5:p1] batch 1/1: 40 rows, 176 steps, 4.9s
+14:28:49|INFO   |[sweep:A3:W5:k10] batch 1/1: 40 rows, 176 steps, 4.9s
+14:28:52|INFO   |labelled 400 rows in 2.9s
+14:28:55|INFO   |[sweep:B6:W1:p1] batch 1/1: 40 rows, 104 steps, 2.8s
+14:28:58|INFO   |[sweep:B6:W1:k10] batch 1/1: 40 rows, 104 steps, 2.9s
+14:29:01|INFO   |[sweep:B6:W2:p1] batch 1/1: 40 rows, 104 steps, 2.8s
+14:29:04|INFO   |[sweep:B6:W2:k10] batch 1/1: 40 rows, 104 steps, 2.9s
+14:29:07|INFO   |[sweep:B6:W3:p1] batch 1/1: 40 rows, 104 steps, 2.8s
+14:29:10|INFO   |[sweep:B6:W3:k10] batch 1/1: 40 rows, 104 steps, 2.9s
+14:29:11|INFO   |[sweep:B6:W4:p1] batch 1/1: 40 rows, 32 steps, 0.9s
+14:29:12|INFO   |[sweep:B6:W4:k10] batch 1/1: 40 rows, 32 steps, 0.9s
+14:29:13|INFO   |[sweep:B6:W5:p1] batch 1/1: 40 rows, 32 steps, 0.9s
+14:29:14|INFO   |[sweep:B6:W5:k10] batch 1/1: 40 rows, 32 steps, 0.9s
+14:29:24|INFO   |labelled 400 rows in 10.0s
+14:29:24|INFO   |=== stage sweep done in 207s ===
+14:29:24|INFO   |=== stage s4b ===
+14:29:32|INFO   |[s4b:B3:FORCED] batch 1/1: 30 rows, 264 steps, 7.1s
+14:29:41|INFO   |[s4b:B3:FORCEDPAD] batch 1/1: 30 rows, 328 steps, 8.9s
+14:29:49|INFO   |[s4b:B3:EXCH] batch 1/1: 30 rows, 296 steps, 8.0s
+14:29:59|ERROR  |gpu7 failed
+Traceback (most recent call last):
+
+> File "./src/gpu7.py", line 265, in <module>
+    main()
+    └ <function main at 0x79c04ae60cc0>
+
+  File "./src/gpu7.py", line 259, in main
+    stages7.run_stage(st, model, tok, units)
+    │       │         │   │      │    └ ['B3', 'A3', 'B6']
+    │       │         │   │      └ Qwen2TokenizerFast(name_or_path='<runs>/run_0oWBKrKEGsmU/.shared_cache/hf/hub/models--Qwen--Qwen3-8B/snap...
+    │       │         │   └ Qwen3ForCausalLM(
+    │       │         │       (model): Qwen3Model(
+    │       │         │         (embed_tokens): Embedding(151936, 4096)
+    │       │         │         (layers): ModuleList(
+    │       │         │           (0-35): ...
+    │       │         └ 's4b'
+    │       └ <function run_stage at 0x79bfbc3efce0>
+    └ <module 'stages7' from './src...
+
+  File "./src/stages7.py", line 440, in run_stage
+    stages7b.run_stage(st, model, tok, units)
+    │        │         │   │      │    └ ['B3', 'A3', 'B6']
+    │        │         │   │      └ Qwen2TokenizerFast(name_or_path='<runs>/run_0oWBKrKEGsmU/.shared_cache/hf/hub/models--Qwen--Qwen3-8B/snap...
+    │        │         │   └ Qwen3ForCausalLM(
+    │        │         │       (model): Qwen3Model(
+    │        │         │         (embed_tokens): Embedding(151936, 4096)
+    │        │         │         (layers): ModuleList(
+    │        │         │           (0-35): ...
+    │        │         └ 's4b'
+    │        └ <function run_stage at 0x79bfbc1519e0>
+    └ <module 'stages7b' from './sr...
+
+  File "./src/stages7b.py", line 634, in run_stage
+    stage_s4b(model, tok, units)
+    │         │      │    └ ['B3', 'A3', 'B6']
+    │         │      └ Qwen2TokenizerFast(name_or_path='<runs>/run_0oWBKrKEGsmU/.shared_cache/hf/hub/models--Qwen--Qwen3-8B/snap...
+    │         └ Qwen3ForCausalLM(
+    │             (model): Qwen3Model(
+    │               (embed_tokens): Embedding(151936, 4096)
+    │               (layers): ModuleList(
+    │                 (0-35): ...
+    └ <function stage_s4b at 0x79bfbc1518a0>
+
+  File "./src/stages7b.py", line 559, in stage_s4b
+    run_specs(model, tok, specs, 30, f"s4b:{u}:{arm}")
+    │         │      │    │                 │   └ 'MR'
+    │         │      │    │                 └ 'B3'
+    │         │      │    └ [{'sid': 'B3|S4B|MR|F|0', 'unit': 'B3', 'arm': 'S4B', 'cell': 'MR', 'template': 'F', 'slot': 0, 'ukey': ['iter7T', 'B3', 'F',...
+    │         │      └ Qwen2TokenizerFast(name_or_path='<runs>/run_0oWBKrKEGsmU/.shared_cache/hf/hub/models--Qwen--Qwen3-8B/snap...
+    │         └ Qwen3ForCausalLM(
+    │             (model): Qwen3Model(
+    │               (embed_tokens): Embedding(151936, 4096)
+    │               (layers): ModuleList(
+    │                 (0-35): ...
+    └ <function run_specs at 0x79bfbc3ef100>
+
+  File "./src/gpu7.py", line 82, in run_specs
+    res = EN.decode_rows(model, rows, tok, fence_kind=fence_of(part[0]["unit"]))
+          │  │           │      │     │               │        └ [{'sid': 'B3|S4B|MR|F|0', 'unit': 'B3', 'arm': 'S4B', 'cell': 'MR', 'template': 'F', 'slot': 0, 'ukey': ['iter7T', 'B3', 'F',...
+          │  │           │      │     │               └ <function fence_of at 0x79bfbc3ef060>
+          │  │           │      │     └ Qwen2TokenizerFast(name_or_path='<runs>/run_0oWBKrKEGsmU/.shared_cache/hf/hub/models--Qwen--Qwen3-8B/snap...
+          │  │           │      └ [{'pre': {'kv': [(tensor([[[[-2.9219e+00,  8.2812e-01,  1.0781e+00,  ..., -4.1875e+00,
+          │  │           │                    1.6504e-01, -3.3906e+00],
+          │  │           │        ...
+          │  │           └ Qwen3ForCausalLM(
+          │  │               (model): Qwen3Model(
+          │  │                 (embed_tokens): Embedding(151936, 4096)
+          │  │                 (layers): ModuleList(
+          │  │                   (0-35): ...
+          │  └ <function decode_rows at 0x79c04ae53060>
+          └ <module 'engine7' from './src...
+
+  File "./.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           │     │       └ {'fence_kind': 'bench'}
+           │     └ (Qwen3ForCausalLM(
+           │         (model): Qwen3Model(
+           │           (embed_tokens): Embedding(151936, 4096)
+           │           (layers): ModuleList(
+           │             (0-35):...
+           └ <function decode_rows at 0x79c04ae52fc0>
+
+  File "./inputs/iter6_exp30/src/engine5.py", line 149, in decode_rows
+    cache, Pmax, pads = assemble_cache(rows, max_steps)
+                        │              │     └ 768
+                        │              └ [{'pre': {'kv': [(tensor([[[[-2.9219e+00,  8.2812e-01,  1.0781e+00,  ..., -4.1875e+00,
+                        │                            1.6504e-01, -3.3906e+00],
+                        │                ...
+                        └ <function assemble_cache at 0x79c04ae52a20>
+
+  File "./inputs/iter6_exp30/src/engine5.py", line 123, in assemble_cache
+    vb = torch.zeros_like(kb)
+         │     │          └ tensor([[[[0., 0., 0.,  ..., 0., 0., 0.],
+         │     │                      [0., 0., 0.,  ..., 0., 0., 0.],
+         │     │                      [0., 0., 0.,  ..., 0., 0., 0.],...
+         │     └ <built-in method zeros_like of type object at 0x79c14378b4a0>
+         └ <module 'torch' from './.venv...
+
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 62.00 MiB. GPU 0 has a total capacity of 23.52 GiB of which 287.75 MiB is free. Including non-PyTorch memory, this process has 23.23 GiB memory in use. 22.81 GiB allowed; Of the allocated memory 22.00 GiB is allocated by PyTorch, and 790.90 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "./src/gpu7.py", line 265, in <module>
+    main()
+  File "./src/gpu7.py", line 259, in main
+    stages7.run_stage(st, model, tok, units)
+  File "./src/stages7.py", line 440, in run_stage
+    stages7b.run_stage(st, model, tok, units)
+  File "./src/stages7b.py", line 634, in run_stage
+    stage_s4b(model, tok, units)
+  File "./src/stages7b.py", line 559, in stage_s4b
+    run_specs(model, tok, specs, 30, f"s4b:{u}:{arm}")
+  File "./src/gpu7.py", line 82, in run_specs
+    res = EN.decode_rows(model, rows, tok, fence_kind=fence_of(part[0]["unit"]))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "./inputs/iter6_exp30/src/engine5.py", line 149, in decode_rows
+    cache, Pmax, pads = assemble_cache(rows, max_steps)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./inputs/iter6_exp30/src/engine5.py", line 123, in assemble_cache
+    vb = torch.zeros_like(kb)
+         ^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 62.00 MiB. GPU 0 has a total capacity of 23.52 GiB of which 287.75 MiB is free. Including non-PyTorch memory, this process has 23.23 GiB memory in use. 22.81 GiB allowed; Of the allocated memory 22.00 GiB is allocated by PyTorch, and 790.90 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
