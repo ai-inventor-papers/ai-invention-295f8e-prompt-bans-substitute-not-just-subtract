@@ -1,0 +1,46 @@
+
+============================================================
+Dataset: evalplus/humanevalplus
+============================================================
+Downloads: 39,771 | Likes: 23
+
+Configs: default
+
+--- Sample Rows (test) ---
+Columns: task_id, prompt, canonical_solution, entry_point, test
+
+Row 1:
+  task_id: HumanEval/0
+  prompt: from typing import List
+
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    """ Check if in given list of numbers, are any two numbers closer to each other than
+    given thr...
+  canonical_solution: 
+
+    sorted_numbers = sorted(numbers)
+    for i in range(len(sorted_numbers) - 1):
+        if sorted_numbers[i + 1] - sorted_numbers[i] < threshold:
+            return True
+    return False
+
+
+
+Row 2:
+  task_id: HumanEval/1
+  prompt: from typing import List
+
+
+def separate_paren_groups(paren_string: str) -> List[str]:
+    """ Input to this function is a string containing multiple groups of nested parentheses. Your goal is to
+    se...
+  canonical_solution: 
+
+    cnt, group, results = 0, "", []
+    for ch in paren_string:
+        if ch == "(": cnt += 1
+        if ch == ")": cnt -= 1
+        if ch != " ": group += ch
+        if cnt == 0:
+            if gr...

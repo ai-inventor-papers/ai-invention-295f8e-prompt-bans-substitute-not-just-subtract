@@ -1,0 +1,58 @@
+
+============================================================
+Dataset: openai/openai_humaneval
+============================================================
+Downloads: 242,192 | Likes: 410
+
+Description: 
+# Dataset Card for OpenAI HumanEval
+
+## Table of Contents
+- [OpenAI HumanEval](#openai-humaneval)
+  - [Table of Contents](#table-of-contents)
+  - [Dataset Description](#dataset-description)
+    - [Dataset Summary](#dataset-summary)
+    - [Supported Tasks and Leaderboards](#supported-tasks-and-leaderboards)
+    - [Languages](#languages)
+  - [Dataset Structure](#dataset-structure)
+    - [Data Instances](#data-instances)
+    - [Data Fields](#data-fields)
+    - [Data Splits](#data-splits)
+  - [Data... (+5202 chars)
+
+Configs: openai_humaneval
+
+--- Sample Rows (test) ---
+Columns: task_id, prompt, canonical_solution, test, entry_point
+
+Row 1:
+  task_id: HumanEval/0
+  prompt: from typing import List
+
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    """ Check if in given list of numbers, are any two numbers closer to each other than
+    given thr...
+  canonical_solution:     for idx, elem in enumerate(numbers):
+        for idx2, elem2 in enumerate(numbers):
+            if idx != idx2:
+                distance = abs(elem - elem2)
+                if distance < threshold...
+
+Row 2:
+  task_id: HumanEval/1
+  prompt: from typing import List
+
+
+def separate_paren_groups(paren_string: str) -> List[str]:
+    """ Input to this function is a string containing multiple groups of nested parentheses. Your goal is to
+    se...
+  canonical_solution:     result = []
+    current_string = []
+    current_depth = 0
+
+    for c in paren_string:
+        if c == '(':
+            current_depth += 1
+            current_string.append(c)
+        elif c == ')'...
