@@ -1,0 +1,81 @@
+{
+ "utc": "2026-10-21T14:26:39.910908Z",
+ "engine": "bf16_hf (RTX 4090)",
+ "reference": "exp17 rows (FP8 W8A8, RTX 2000 Ada)",
+ "T03|SCR_d9002_a1.0": {
+  "n_slots": 50,
+  "composition": {
+   "size_k_heap": 29,
+   "full_sort": 9,
+   "quickselect": 12
+  },
+  "exp17_composition": {
+   "quickselect": 16,
+   "full_sort": 15,
+   "size_k_heap": 19
+  },
+  "per_slot_label_agreement": 0.74,
+  "per_slot_code_sha_agreement": 0.64,
+  "pass": 1.0,
+  "exp17_pass": 1.0,
+  "JS": 0.020940445587811024,
+  "null_q95": 0.05104810180003906,
+  "reading": "within template-resampling null",
+  "gross_failure": false
+ },
+ "T03|TWIN": {
+  "n_slots": 50,
+  "composition": {
+   "full_sort": 50
+  },
+  "exp17_composition": {
+   "full_sort": 50
+  },
+  "per_slot_label_agreement": 1.0,
+  "per_slot_code_sha_agreement": 0.9,
+  "pass": 1.0,
+  "exp17_pass": 1.0,
+  "JS": 0.0,
+  "null_q95": 0.0,
+  "reading": "within template-resampling null",
+  "gross_failure": false
+ },
+ "T2|SCR_d9004_a1.0": {
+  "n_slots": 50,
+  "composition": {
+   "dijkstra": 31,
+   "disputed": 12,
+   "bf_spfa": 7
+  },
+  "exp17_composition": {
+   "dijkstra": 26,
+   "bf_spfa": 24
+  },
+  "per_slot_label_agreement": 0.64,
+  "per_slot_code_sha_agreement": 0.2,
+  "pass": 0.96,
+  "exp17_pass": 0.96,
+  "JS": 0.05062684951878167,
+  "null_q95": 0.0032504832027638875,
+  "reading": "outside null (precision sensitivity, reported)",
+  "gross_failure": false
+ },
+ "T2|TWIN": {
+  "n_slots": 50,
+  "composition": {
+   "dijkstra": 49,
+   "bf_spfa": 1
+  },
+  "exp17_composition": {
+   "dijkstra": 50
+  },
+  "per_slot_label_agreement": 0.98,
+  "per_slot_code_sha_agreement": 0.7,
+  "pass": 0.98,
+  "exp17_pass": 1.0,
+  "JS": 0.006981977714981405,
+  "null_q95": 0.0,
+  "reading": "outside null (precision sensitivity, reported)",
+  "gross_failure": false
+ }
+}

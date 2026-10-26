@@ -1,0 +1,55 @@
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]
+Loading checkpoint shards:  20%|██        | 1/5 [00:04<00:18,  4.69s/it]
+Loading checkpoint shards:  40%|████      | 2/5 [00:09<00:14,  4.70s/it]
+Loading checkpoint shards:  60%|██████    | 3/5 [00:13<00:09,  4.59s/it]
+Loading checkpoint shards:  80%|████████  | 4/5 [00:17<00:04,  4.23s/it]
+Loading checkpoint shards: 100%|██████████| 5/5 [00:19<00:00,  3.25s/it]
+Loading checkpoint shards: 100%|██████████| 5/5 [00:19<00:00,  3.81s/it]
+13:24:01|INFO   |Qwen/Qwen3-8B-Base@49e3418fbbbca6ecbdf9608b4d22e5a407081db4 loaded in 20s; free VRAM 8.5/25.3 GB
+13:24:02|INFO   |=== phase extra_base (base) units=['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7']
+./src/engine5.py:114: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  tok = torch.searchsorted(cdf, u[:, None].to(cdf.dtype)).squeeze(-1)
+13:24:31|INFO   |extra_base_parent P_T03/W1 ['BASE', 'BASE_EXTRA']: 29.5s, 1024 steps
+13:25:00|INFO   |extra_base_parent P_T03/W2 ['BASE', 'BASE_EXTRA']: 28.4s, 1024 steps
+13:25:28|INFO   |extra_base_parent P_T03/W3 ['BASE', 'BASE_EXTRA']: 27.8s, 1024 steps
+13:25:55|INFO   |extra_base_parent P_T03/W4 ['BASE', 'BASE_EXTRA']: 27.8s, 1024 steps
+13:26:23|INFO   |extra_base_parent P_T03/W5 ['BASE', 'BASE_EXTRA']: 27.9s, 1024 steps
+13:26:51|INFO   |extra_base_variant V_T03/W1 ['BASE']: 28.0s, 1024 steps
+13:27:12|INFO   |extra_base_variant V_T03/W2 ['BASE']: 20.2s, 752 steps
+13:27:40|INFO   |extra_base_variant V_T03/W3 ['BASE']: 27.9s, 1024 steps
+13:28:08|INFO   |extra_base_variant V_T03/W4 ['BASE']: 28.0s, 1024 steps
+13:28:35|INFO   |extra_base_variant V_T03/W5 ['BASE']: 27.9s, 1024 steps
+13:29:03|INFO   |extra_base_parent P_T10/W1 ['BASE', 'BASE_EXTRA']: 27.7s, 1024 steps
+13:29:31|INFO   |extra_base_parent P_T10/W2 ['BASE', 'BASE_EXTRA']: 27.7s, 1024 steps
+13:29:59|INFO   |extra_base_parent P_T10/W3 ['BASE', 'BASE_EXTRA']: 27.8s, 1024 steps
+13:30:27|INFO   |extra_base_parent P_T10/W4 ['BASE', 'BASE_EXTRA']: 27.7s, 1024 steps
+13:30:55|INFO   |extra_base_parent P_T10/W5 ['BASE', 'BASE_EXTRA']: 27.9s, 1024 steps
+13:31:23|INFO   |extra_base_variant V_T10/W1 ['BASE']: 28.0s, 1024 steps
+13:31:51|INFO   |extra_base_variant V_T10/W2 ['BASE']: 27.9s, 1024 steps
+13:32:19|INFO   |extra_base_variant V_T10/W3 ['BASE']: 28.1s, 1024 steps
+13:32:47|INFO   |extra_base_variant V_T10/W4 ['BASE']: 28.1s, 1024 steps
+13:33:15|INFO   |extra_base_variant V_T10/W5 ['BASE']: 28.1s, 1024 steps
+13:33:43|INFO   |extra_base_parent P_T05/W1 ['BASE', 'BASE_EXTRA']: 28.0s, 1024 steps
+13:34:11|INFO   |extra_base_parent P_T05/W2 ['BASE', 'BASE_EXTRA']: 27.9s, 1024 steps
+13:34:27|INFO   |extra_base_parent P_T05/W3 ['BASE', 'BASE_EXTRA']: 15.5s, 584 steps
+13:34:55|INFO   |extra_base_parent P_T05/W4 ['BASE', 'BASE_EXTRA']: 28.0s, 1024 steps
+13:35:23|INFO   |extra_base_parent P_T05/W5 ['BASE', 'BASE_EXTRA']: 28.0s, 1024 steps
+13:35:51|INFO   |extra_base_variant V_T05/W1 ['BASE']: 28.1s, 1024 steps
+13:36:19|INFO   |extra_base_variant V_T05/W2 ['BASE']: 28.1s, 1024 steps
+13:36:42|INFO   |extra_base_variant V_T05/W3 ['BASE']: 23.0s, 848 steps
+13:37:11|INFO   |extra_base_variant V_T05/W4 ['BASE']: 28.1s, 1024 steps
+13:37:39|INFO   |extra_base_variant V_T05/W5 ['BASE']: 28.1s, 1024 steps
+13:38:07|INFO   |extra_base_parent P_T06/W1 ['BASE', 'BASE_EXTRA']: 27.9s, 1024 steps
+13:38:35|INFO   |extra_base_parent P_T06/W2 ['BASE', 'BASE_EXTRA']: 27.8s, 1024 steps
+13:39:02|INFO   |extra_base_parent P_T06/W3 ['BASE', 'BASE_EXTRA']: 27.8s, 1024 steps
+13:39:18|INFO   |extra_base_parent P_T06/W4 ['BASE', 'BASE_EXTRA']: 15.7s, 592 steps
+13:39:46|INFO   |extra_base_parent P_T06/W5 ['BASE', 'BASE_EXTRA']: 27.8s, 1024 steps
+13:40:14|INFO   |extra_base_variant V_T06/W1 ['BASE']: 27.9s, 1024 steps
+13:40:42|INFO   |extra_base_variant V_T06/W2 ['BASE']: 28.1s, 1024 steps
+13:41:10|INFO   |extra_base_variant V_T06/W3 ['BASE']: 27.8s, 1024 steps
+13:41:38|INFO   |extra_base_variant V_T06/W4 ['BASE']: 27.9s, 1024 steps
+13:42:06|INFO   |extra_base_variant V_T06/W5 ['BASE']: 27.9s, 1024 steps
+13:42:06|INFO   |=== phase extra_base done in 1085s

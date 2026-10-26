@@ -1,0 +1,115 @@
+14:26:32|INFO   |=== stage final
+14:26:32|INFO   |$ src/adjudicate_all.py
+14:26:38|INFO   |adjudicated 1 disagreements
+adjudicated 1 disagreements
+14:26:38|INFO   |$ src/engine_check.py
+14:26:53|INFO   |T03|SCR_d9002_a1.0: {'n_slots': 50, 'composition': {'size_k_heap': 29, 'full_sort': 9, 'quickselect': 12}, 'exp17_composition': {'quickselect': 16, 'full_sort': 15, 'size_k_heap': 19}, 'per_slot_label_agreement': 0.74, 'per_slot_code_sha_agreement': 0.64, 'pass': 1.0, 'exp17_pass': 1.0, 'JS': 0.020940445587811024, 'null_q95': 0.05104810180003906, 'reading': 'within template-resampling null', 'gross_failure': False}
+14:26:53|INFO   |T03|TWIN: {'n_slots': 50, 'composition': {'full_sort': 50}, 'exp17_composition': {'full_sort': 50}, 'per_slot_label_agreement': 1.0, 'per_slot_code_sha_agreement': 0.9, 'pass': 1.0, 'exp17_pass': 1.0, 'JS': 0.0, 'null_q95': 0.0, 'reading': 'within template-resampling null', 'gross_failure': False}
+14:27:04|INFO   |T2|SCR_d9004_a1.0: {'n_slots': 50, 'composition': {'dijkstra': 31, 'disputed': 12, 'bf_spfa': 7}, 'exp17_composition': {'dijkstra': 26, 'bf_spfa': 24}, 'per_slot_label_agreement': 0.64, 'per_slot_code_sha_agreement': 0.2, 'pass': 0.96, 'exp17_pass': 0.96, 'JS': 0.05062684951878167, 'null_q95': 0.0032504832027638875, 'reading': 'outside null (precision sensitivity, reported)', 'gross_failure': False}
+14:27:04|INFO   |T2|TWIN: {'n_slots': 50, 'composition': {'dijkstra': 49, 'bf_spfa': 1}, 'exp17_composition': {'dijkstra': 50}, 'per_slot_label_agreement': 0.98, 'per_slot_code_sha_agreement': 0.7, 'pass': 0.98, 'exp17_pass': 1.0, 'JS': 0.006981977714981405, 'null_q95': 0.0, 'reading': 'outside null (precision sensitivity, reported)', 'gross_failure': False}
+14:27:04|INFO   |$ analysis/a1a2.py
+{
+ "A1": {
+  "rho": 0.20583232685540795,
+  "p": 0.3333333333333333,
+  "method": "exact enumeration (5040 permutations)",
+  "n": 7,
+  "bootstrap_ci95": [
+   -0.75,
+   0.9515011557912562
+  ]
+ },
+ "A2_top1": {
+  "hits": 3.0,
+  "n": 4,
+  "expected_by_chance": 1.2,
+  "poisson_binomial_p": 0.08148148148148149
+ },
+ "n_units": 7
+}
+14:28:01|INFO   |$ analysis/variants.py
+{'utc': '2026-10-21T14:28:43.273418Z', 'n_pairs': 8, 'n_pairs_no_default_shift': 6, 'sign_agreement': {'agree': 0, 'n': 1}, 'spearman_delta_beta_delta_E': {'rho': 0.13093073414159545, 'p': 0.5, 'method': 'exact enumeration (720 permutations)', 'n': 6}, 'default_shift_pairs': ['T10', 'T14'], 'reading': 'descriptive; within-parent wording change holds the computational task fixed'}
+14:28:43|INFO   |$ analysis/a1_extended.py
+{'utc': '2026-10-21T14:29:53.255948Z', 'panel_plus_parents': {'rho': 0.4289639248920666, 'p': 0.05549445055494451, 'method': '10000 shuffles', 'n': 15, 'units': ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'P_R1', 'P_T03', 'P_T04', 'P_T05', 'P_T06', 'P_T08', 'P_T10', 'P_T14'], 'reading': 'descriptive; parents re-measured on this engine with the ban-free unit'}, 'clustered_all': {'rho': 0.5412934374447977, 'p': 0.015498450154984501, 'n_units': 22, 'n_singletons': 8, 'n_pair_clusters': 7, 'method': '10000 cluster-preserving shuffles', 'units': ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'P_R1', 'P_T03', 'P_T04', 'P_T05', 'P_T06', 'P_T08', 'P_T10', 'P_T14', 'V_R1', 'V_T03', 'V_T04', 'V_T05', 'V_T06', 'V_T08', 'V_T10']}, 'values': 22}
+14:29:55|INFO   |$ analysis/screen_view.py
+{'utc': '2026-10-21T14:30:00.218922Z', 'source_beta': 'iteration-5 Step-1 artifact (gen_art_experiment_24) results/base_repertoire.json', 'source_beta_sha256': '5dcf8640bdd0431e78fdb05b93f30484a8b4e041b70e30db610822258d54698d', 'source_E': 'iteration-4 gen_art_experiment_22 results/escape.json (ban unit, FP8, cross-engine)', 'flags': ['beta file not in the Step-1 commit chain at read time', 'E from iteration 4: ban unit, FP8', 'descriptive only'], 'n': 15, 'spearman': {'rho': 0.7937877273506311, 'p': 0.00029997000299970003, 'method': '10000 shuffles', 'n': 15}}
+14:30:01|INFO   |$ src/novelty_audit.py
+14:31:12|INFO   |novelty audit: 12 distinct correct 'other' programs; 10366 correct programs
+Traceback (most recent call last):
+  File "./src/novelty_audit.py", line 141, in <module>
+    main()
+  File "./src/novelty_audit.py", line 126, in main
+    res = list(ex.map(one, items))
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./src/novelty_audit.py", line 122, in one
+    "judge_c": c and {k: c[k] for k in ("class", "closest")}, "verdict": verdict, **nearest_ref(u, code),
+                                                                                    ^^^^^^^^^^^^^^^^^^^^
+  File "./src/novelty_audit.py", line 80, in nearest_ref
+    for m, r in refs_for(u).items():
+                ^^^^^^^^^^^
+  File "./src/novelty_audit.py", line 41, in refs_for
+    return dict(unit_mod(u).REFERENCES)
+                ^^^^^^^^^^^
+  File "./src/unitlib.py", line 69, in unit_mod
+    return importlib.import_module(f"units.{u.lower()}")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "./vendor/exp23/units.py", line 20, in <module>
+    from cfg import BAND, N_LAYERS, RESULTS_DIR, read_json
+ModuleNotFoundError: No module named 'cfg'
+14:31:48|ERROR  |An error has been caught in function '<module>', process 'MainProcess' (428616), thread 'MainThread' (131634559703936):
+Traceback (most recent call last):
+
+> File "./method.py", line 93, in <module>
+    main()
+    └ <function main at 0x77b88e3567a0>
+
+  File "./method.py", line 88, in main
+    run(cmd)
+    │   └ ['src/novelty_audit.py']
+    └ <function run at 0x77b88edeb240>
+
+  File "./method.py", line 53, in run
+    raise RuntimeError(f"stage failed ({r.returncode}): {' '.join(args)}")
+                                        │ │                       └ ['src/novelty_audit.py']
+                                        │ └ 1
+                                        └ CompletedProcess(args=['./.ve...
+
+RuntimeError: stage failed (1): src/novelty_audit.py
+Traceback (most recent call last):
+  File "./method.py", line 93, in <module>
+    main()
+  File "./.venv/lib/python3.12/site-packages/loguru/_logger.py", line 1297, in catch_wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./method.py", line 88, in main
+    run(cmd)
+  File "./method.py", line 53, in run
+    raise RuntimeError(f"stage failed ({r.returncode}): {' '.join(args)}")
+RuntimeError: stage failed (1): src/novelty_audit.py

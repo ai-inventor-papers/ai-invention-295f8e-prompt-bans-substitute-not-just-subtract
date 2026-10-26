@@ -1,0 +1,263 @@
+{
+ "schema": "iter5_panelB_unit_commit_v1",
+ "unit": "B4",
+ "unit_id": "B4_integer_sqrt",
+ "utc": "2026-10-21T13:01:26.672535Z",
+ "catalogue": [
+  "binary_search",
+  "newton",
+  "bit_by_bit",
+  "library_isqrt",
+  "float_sqrt",
+  "linear_scan"
+ ],
+ "K_u": 6,
+ "excluded_by_limit": [],
+ "default": "binary_search",
+ "flags": [],
+ "twin": {
+  "n": 50,
+  "pass": 1.0,
+  "correct_composition": {
+   "binary_search": 50
+  },
+  "attempted_composition": {
+   "binary_search": 50
+  },
+  "modal_share": 1.0
+ },
+ "base": {
+  "n": 200,
+  "n_correct": 76,
+  "n_valid_attempts": 108,
+  "correct_composition": {
+   "linear_scan": 11,
+   "binary_search": 48,
+   "float_sqrt": 15,
+   "newton": 2
+  },
+  "attempted_composition": {
+   "float_sqrt": 17,
+   "newton": 5,
+   "linear_scan": 15,
+   "binary_search": 61,
+   "other": 9,
+   "bit_by_bit": 1
+  },
+  "beta_u": 0.3684210526315789,
+  "beta_correct": 0.3684210526315789,
+  "beta_attempt": 0.4351851851851852,
+  "beta_plain": 0.5,
+  "beta_source": "correct",
+  "r_u": "float_sqrt",
+  "r_u_ties": [
+   "float_sqrt"
+  ],
+  "hill1_rarefied": {
+   "depth": 25,
+   "hill1": 2.578497396831128,
+   "flag": null
+  },
+  "goods_coverage": 1.0,
+  "P_beta_ge_0.05": 1.0,
+  "P_beta_ge_0.2": 0.999,
+  "ci95": [
+   0.2631578947368421,
+   0.47368421052631576
+  ],
+  "plain": {
+   "n": 50,
+   "n_correct": 10,
+   "correct_composition": {
+    "binary_search": 5,
+    "linear_scan": 4,
+    "float_sqrt": 1
+   }
+  }
+ },
+ "rivals": {
+  "R_margin": 13.990973137943774,
+  "R_merit_runtime": 0.3503132880330844,
+  "R_merit_length": 1.288530192353999,
+  "R_modal": 0.0,
+  "R_novel": 0.0,
+  "R_novel_correct": 0.0,
+  "K_u": 6,
+  "ref_total_runtime_s": {
+   "binary_search": 0.000291,
+   "newton": 0.000254,
+   "bit_by_bit": 0.00034300000000000004,
+   "library_isqrt": 0.000205,
+   "float_sqrt": 0.000238,
+   "linear_scan": 0.069191
+  }
+ },
+ "novelty_cell": {
+  "n_rows": 30,
+  "n_valid": 30,
+  "off_default": 0,
+  "share": 0.0,
+  "pass": 1.0,
+  "n_correct": 30,
+  "labels_attempted": {
+   "binary_search": 30
+  },
+  "labels_correct": {
+   "binary_search": 30
+  },
+  "landing_correct": {}
+ },
+ "forecasts": {
+  "BASE": {
+   "newton": 0.0862295081967213,
+   "bit_by_bit": 0.025245901639344266,
+   "library_isqrt": 0.025245901639344266,
+   "float_sqrt": 0.48262295081967216,
+   "linear_scan": 0.36065573770491804,
+   "other": 0.02
+  },
+  "ASSOC": {
+   "newton": 0.8573333333333334,
+   "bit_by_bit": 0.03066666666666667,
+   "library_isqrt": 0.03066666666666667,
+   "float_sqrt": 0.03066666666666667,
+   "linear_scan": 0.03066666666666667,
+   "other": 0.02
+  },
+  "ASSOC_raw_counts": {
+   "newton": 20
+  },
+  "PROX": {
+   "newton": 0.22960189501471123,
+   "bit_by_bit": 0.20320010231339816,
+   "library_isqrt": 0.16746954418735863,
+   "float_sqrt": 0.17213763162449772,
+   "linear_scan": 0.20759082686003427,
+   "other": 0.02
+  },
+  "PROX_detail": {
+   "distances": {
+    "newton": 38.8,
+    "bit_by_bit": 44.5,
+    "library_isqrt": 53.6,
+    "float_sqrt": 52.3,
+    "linear_scan": 43.5
+   },
+   "median": 44.5,
+   "n_twin_programs": 10
+  }
+ },
+ "predicted_class": "MOVABLE",
+ "predicted_landing": "float_sqrt",
+ "base_label_audit": {
+  "n": 15,
+  "n_adjudicated": 15,
+  "agreement": 0.9333333333333333,
+  "items": [
+   {
+    "key": "B4|W1|BASE|3|base",
+    "labeller": "linear_scan",
+    "judges": "bit_by_bit",
+    "how": "majority_of_three"
+   },
+   {
+    "key": "B4|W1|BASE|4|base",
+    "labeller": "linear_scan",
+    "judges": "linear_scan",
+    "how": "two_judges_agree"
+   },
+   {
+    "key": "B4|W1|BASE|8|base",
+    "labeller": "linear_scan",
+    "judges": "linear_scan",
+    "how": "two_judges_agree"
+   },
+   {
+    "key": "B4|W1|BASE|16|base",
+    "labeller": "linear_scan",
+    "judges": "linear_scan",
+    "how": "two_judges_agree"
+   },
+   {
+    "key": "B4|W2|BASE|1|base",
+    "labeller": "float_sqrt",
+    "judges": "float_sqrt",
+    "how": "two_judges_agree"
+   },
+   {
+    "key": "B4|W2|BASE|6|base",
+    "labeller": "float_sqrt",
+    "judges": "float_sqrt",
+    "how": "two_judges_agree"
+   },
+   {
+    "key": "B4|W2|BASE|8|base",
+    "labeller": "float_sqrt",
+    "judges": "float_sqrt",
+    "how": "two_judges_agree"
+   },
+   {
+    "key": "B4|W2|BASE|9|base",
+    "labeller": "linear_scan",
+    "judges": "linear_scan",
+    "how": "two_judges_agree"
+   },
+   {
+    "key": "B4|W2|BASE|11|base",
+    "labeller": "float_sqrt",
+    "judges": "float_sqrt",
+    "how": "two_judges_agree"
+   },
+   {
+    "key": "B4|W2|BASE|14|base",
+    "labeller": "linear_scan",
+    "judges": "linear_scan",
+    "how": "two_judges_agree"
+   },
+   {
+    "key": "B4|W3|BASE|7|base",
+    "labeller": "float_sqrt",
+    "judges": "float_sqrt",
+    "how": "two_judges_agree"
+   },
+   {
+    "key": "B4|W3|BASE|12|base",
+    "labeller": "float_sqrt",
+    "judges": "float_sqrt",
+    "how": "two_judges_agree"
+   },
+   {
+    "key": "B4|W3|BASE|18|base",
+    "labeller": "linear_scan",
+    "judges": "linear_scan",
+    "how": "two_judges_agree"
+   },
+   {
+    "key": "B4|W4|BASE|11|base",
+    "labeller": "float_sqrt",
+    "judges": "float_sqrt",
+    "how": "two_judges_agree"
+   },
+   {
+    "key": "B4|W4|BASE|18|base",
+    "labeller": "linear_scan",
+    "judges": "linear_scan",
+    "how": "two_judges_agree"
+   }
+  ]
+ },
+ "grep_audit": {
+  "n_prompts": 13,
+  "violations": [],
+  "pass": true
+ },
+ "input_hashes": {
+  "labels.jsonl": "693aff553c1eed3cf5ee8ccb89312fe7967296026118e013c412b75e122fdb61",
+  "spec": "5adb02ae593ee7566840151721728eebbd9c406343f38c8eba128bbdbf5cd858",
+  "tests": "b8fa9fd3b0d7009da23c13be28df52ae1d5890ae65e24bab6e95e0ea8a1e02d6",
+  "labeller": "625728e50d544f3736ab1721fb35c878b1d4fd647b9af2d6dc8f643282e4870f",
+  "unitlib": "847172324419c108b144ee70103a5db78b82fae16987782011371c694726df6e",
+  "catalogue_frozen": "ab0196d91f6b7d172144f0d2fdb29ba271c5c659778c3fe86b8130bf23814fc7",
+  "gate": "70a33c5b8840f63725bc88cc7153036133610d78d4d00b3a217fbab72586737f"
+ }
+}
