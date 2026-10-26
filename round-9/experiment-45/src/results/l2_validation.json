@@ -1,0 +1,62 @@
+{
+ "n": 60,
+ "source": "alias-bearing code lines (comments, docstrings, identifiers) from NON-ban rows (iteration-8 C1-C8 baselines + iteration-2 baseline/forced); the baseline programs carry too few comment lines (63/729 programs contain any alias) for 60 comment lines",
+ "human_positives": 60,
+ "L2_recall": 0.8833333333333333,
+ "L2_precision": 1.0,
+ "L1_recall": 1.0,
+ "precision_note": "non-ban programs never disavow an algorithm, so this set has no negatives; L2's specificity is checked on the constructed disavowal cases of the unit tests",
+ "unit_test_disavowal_cases": 11,
+ "unit_test_disavowals_correct": 11,
+ "misses": [
+  {
+   "source": "exp9_forced_desc:jps",
+   "line": "# Priority queue for Jump Point Search",
+   "human_self_naming": 1,
+   "L2_hit": false,
+   "L1_hit": true
+  },
+  {
+   "source": "exp9_forced:jps",
+   "line": "# Find jump points",
+   "human_self_naming": 1,
+   "L2_hit": false,
+   "L1_hit": true
+  },
+  {
+   "source": "exp9_forced:gbfs",
+   "line": "# Priority queue for greedy best-first search (heuristic: Manhattan distance to goal)",
+   "human_self_naming": 1,
+   "L2_hit": false,
+   "L1_hit": true
+  },
+  {
+   "source": "exp9_forced_desc:jps",
+   "line": "# Jump Point Search implementation",
+   "human_self_naming": 1,
+   "L2_hit": false,
+   "L1_hit": true
+  },
+  {
+   "source": "iter8_baseline",
+   "line": "# BFS to find a path",
+   "human_self_naming": 1,
+   "L2_hit": false,
+   "L1_hit": true
+  },
+  {
+   "source": "exp9_forced:dijkstra_unit",
+   "line": "# BFS to find a path",
+   "human_self_naming": 1,
+   "L2_hit": false,
+   "L1_hit": true
+  },
+  {
+   "source": "exp9_forced_desc:biastar",
+   "line": "# A* search with priority queue",
+   "human_self_naming": 1,
+   "L2_hit": false,
+   "L1_hit": true
+  }
+ ]
+}
