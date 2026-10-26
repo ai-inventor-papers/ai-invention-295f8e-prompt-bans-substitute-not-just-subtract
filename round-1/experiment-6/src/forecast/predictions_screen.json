@@ -1,0 +1,23 @@
+{
+  "artifact": "gen_plan_experiment_6_idx7: Temperature and seeds: new ideas or rewording?",
+  "written_before_sampling": true,
+  "written_at": "2026-10-19 (before any generation arm ran)",
+  "model": "Qwen/Qwen3-8B (Qwen/Qwen3-4B only if the capacity probe forces it)",
+  "predictions": {
+    "P1": "On T1, thinking off, the BFS share (classified denominator) is >= 0.7 at every temperature T in {0.3, 0.7, 1.0, 1.3} and for both samplers (collapse prior).",
+    "P2": "On T2 the Dijkstra share is >= 0.8 at every temperature and for both samplers (prior: Invisible Lottery Table 12, 94.1%).",
+    "P3": "For seed_entropy and seed_word, the 90% paraphrase-cluster bootstrap CI of the modal-share shift vs A0 lies within +-15 pp and the cluster-permutation p > 0.05, on both tasks.",
+    "P4": "seed_semantic shifts toward its implied mode (T1: bidirectional_bfs share up; T2: bellman_ford_spfa share up) with p < 0.05 on >= 1 task.",
+    "P5": "At the read position R (layer l*), random seeds stay within the baseline-pair null (90% CI upper bound of the median displacement ratio < 1.5); seed_semantic exceeds it (Mann-Whitney p < 0.05) and moves toward the implied mode's centroid.",
+    "P6": "The OLS slope in T of log phrasings-per-idea is > 0 at every theta in {0.7, 0.8, 0.9} and for both samplers, and the slope of log DA_phr@25 exceeds the slope of log DA_idea@25.",
+    "P7": "The slope in T of the excess mode-subspace variance share of generated-position states is <= 0 (CI includes 0 or lies below it) while the complement variance rises with T.",
+    "P8": "Gen-then-select (A4 stage 2) has a higher DA_idea@25 than every other arm."
+  },
+  "decision_rules": {
+    "epsilon_pp": 15,
+    "equivalence_bound_behaviour_pp": 15,
+    "equivalence_bound_displacement_ratio": 1.5,
+    "alpha": 0.05,
+    "multiple_testing": "Holm across S-T5, S-T6, S-T7, S-B"
+  }
+}
