@@ -1,0 +1,4667 @@
+{
+  "metadata": {
+    "method_name": "De-commitment steering screen (list-vs-implement difference-of-means direction)",
+    "model": "Qwen/Qwen3-8B",
+    "thinking": "off (enable_thinking=False)",
+    "hardware": {
+      "gpu": "NVIDIA RTX A4500, 20470 MiB",
+      "cpus_quota": 11,
+      "container_ram_gb": 62.0
+    },
+    "versions": {
+      "python": "3.12.14",
+      "torch": "2.8.0+cu128",
+      "transformers": "4.57.1",
+      "vllm": "0.11.0",
+      "numpy": "2.2.6",
+      "scipy": "1.18.1",
+      "statsmodels": "0.15.0",
+      "cuda": "12.8"
+    },
+    "protocol": {
+      "model": "Qwen/Qwen3-8B",
+      "thinking": "off",
+      "prompt": "chat template, no system message, user = segment + blank line + SPEC; R = last token",
+      "decoding": {
+        "temperature": 1.0,
+        "top_p": 1.0,
+        "top_k": "disabled",
+        "min_p": 0.0,
+        "repetition_penalty": 1.0,
+        "note": "Qwen3 generation_config defaults (0.6/20/0.95) overridden and asserted"
+      },
+      "vllm": {
+        "max_tokens": 1024,
+        "enumerate_max_tokens": 1536,
+        "engines": {
+          "s1": {
+            "vllm": "0.11.0",
+            "gpu_memory_utilization": 0.95,
+            "max_num_seqs": 8,
+            "enforce_eager": true
+          },
+          "s2": {
+            "vllm": "0.11.0",
+            "gpu_memory_utilization": 0.95,
+            "max_num_seqs": 16,
+            "enforce_eager": true
+          },
+          "s3": {
+            "vllm": "0.11.0",
+            "gpu_memory_utilization": 0.95,
+            "max_num_seqs": 16,
+            "enforce_eager": true
+          }
+        },
+        "seed_rule": "stable_hash(task, condition, paraphrase_id)"
+      },
+      "hf": {
+        "max_new_tokens": 768,
+        "batch": "one baseline paraphrase x 10 samples",
+        "seed_rule": "torch.manual_seed(stable_hash(task, paraphrase_id)) for every arm (common random numbers)",
+        "dtype": "bfloat16",
+        "attn": "sdpa"
+      },
+      "direction": {
+        "frames": "LIST vs IMPLEMENT, 50 + 50 held-out paraphrases",
+        "layers_considered": [
+          8,
+          9,
+          10
+        ],
+        "selection": "5-fold CV held-out AUC (mean over tasks), ties within 0.005 broken by d'",
+        "injection": "x <- x + c * ||x|| * d_hat at R (prefill) and every generated position, on layers[L-1] output"
+      },
+      "grid_c": [
+        0.25,
+        0.5,
+        1.0
+      ],
+      "c_star_rule": "largest c with pass >= 0.8 x pass(HF c=0), pass rate only",
+      "arms": {
+        "vllm": [
+          "baseline N=200",
+          "enumerate N=100",
+          "ban:X_t N=100"
+        ],
+        "hf": [
+          "dc c in {0,0.25,0.5,1,1.5} + bisection, N=100 each",
+          "rand1/rand2 at c*",
+          "placebo at c* (E1)"
+        ]
+      },
+      "labeller": "hidden tests + runtime tracer (3 probes) + AST rules; disagreements -> gemini-2.5-flash-lite judge; gate with gpt-4.1-mini + claude-haiku-4.5 resolver",
+      "skipped_extensions": [],
+      "done_extensions": [
+        "placebo",
+        "breadth",
+        "dcxfer"
+      ]
+    },
+    "deviations": [
+      {
+        "what": "batch 10 instead of 8",
+        "why": "one batch = one paraphrase so the random-number layout is identical across arms"
+      },
+      {
+        "what": "HF c=0 control (hook attached, adds zero)",
+        "why": "engine-matched zero-strength reference for steering arms"
+      },
+      {
+        "what": "enumerate max_tokens 1536 (also re-scored as cut at 1024 = 'enumerate@1024')",
+        "why": "lists need room before code"
+      }
+    ],
+    "gates": {
+      "R0": {
+        "T1": true,
+        "T2": true
+      },
+      "labeller_gate": {
+        "T1": {
+          "pass": true,
+          "flag": null,
+          "kappa_runtime_ast": 1.0,
+          "runtime_vs_adjudicated": 1.0,
+          "pipeline_vs_adjudicated": 1.0
+        },
+        "T2": {
+          "pass": true,
+          "flag": null,
+          "kappa_runtime_ast": 0.8190954773869347,
+          "runtime_vs_adjudicated": 0.9166666666666666,
+          "pipeline_vs_adjudicated": 1.0
+        }
+      },
+      "engine_check": {
+        "T1": true,
+        "T2": true
+      },
+      "hook_tests": {
+        "noop_token_identical": true,
+        "hook_calls": [
+          159,
+          1,
+          1
+        ],
+        "hook_call_pattern_ok": true,
+        "norm_before": [
+          80.22796630859375,
+          80.22796630859375
+        ],
+        "norm_after": [
+          76.45503234863281,
+          76.45503234863281
+        ],
+        "norm_expected": [
+          76.45496368408203,
+          76.4549560546875
+        ],
+        "cos_before": [
+          -0.3418453633785248,
+          -0.3418455123901367
+        ],
+        "cos_after": [
+          0.16595976054668427,
+          0.16595976054668427
+        ],
+        "norm_change_ok": true,
+        "cos_rises": true
+      },
+      "cpu_unit_tests": {
+        "spec_tokens": {
+          "T1": 140,
+          "T2": 120
+        },
+        "spec_ge_50_tokens": true,
+        "empty_think_block_T1": true,
+        "empty_think_block_T2": true,
+        "n_prompts_suffix_checked": 930,
+        "R_token_identical_across_conditions": true,
+        "guard_refuses_uncommitted_event": true,
+        "guard_finds_committed_events": true,
+        "sha256_reverified": true,
+        "stats_self_test": true,
+        "all_pass": true
+      },
+      "vllm_same_seed_determinism": {
+        "engine": {
+          "gpu_memory_utilization": 0.95,
+          "max_num_seqs": 16,
+          "enforce_eager": true
+        },
+        "T1": {
+          "identical": false,
+          "n": 4,
+          "n_distinct_within_request": 4
+        },
+        "T2": {
+          "identical": true,
+          "n": 4,
+          "n_distinct_within_request": 4
+        },
+        "pass": false
+      },
+      "hook_layer_test": [
+        {
+          "layer": 8,
+          "max_abs_diff": 0.0,
+          "ref_norm": 40.64432907104492,
+          "pass": true
+        },
+        {
+          "layer": 18,
+          "max_abs_diff": 0.0,
+          "ref_norm": 80.42675018310547,
+          "pass": true
+        },
+        {
+          "layer": 28,
+          "max_abs_diff": 0.0,
+          "ref_norm": 344.58642578125,
+          "pass": true
+        }
+      ],
+      "commitment_positive_control": {
+        "T1": true,
+        "T2": true
+      }
+    },
+    "direction": {
+      "layer_selection": {
+        "layers": [
+          8,
+          9,
+          10
+        ],
+        "L_star": 18,
+        "best_auc": 1.0,
+        "tied_layers": [
+          8,
+          9,
+          10
+        ],
+        "rule": "argmax mean held-out AUC over tasks; ties within 0.005 broken by mean held-out d'"
+      },
+      "diagnostics_at_L": {
+        "T1": {
+          "norm_d": 16.516963958740234,
+          "norm_ratio": 0.20885398983955383,
+          "mean_norm_hR": 79.08378601074219,
+          "split_half_cos": 0.9881698650121689,
+          "pair_consistency": 0.7747166752815247,
+          "cos_breadth": 0.5313135385513306,
+          "cos_placebo": -0.08136003464460373,
+          "cos_enumerate_shift": 0.5898324847221375,
+          "norm_placebo": 7.237064361572266,
+          "norm_breadth": 10.775697708129883
+        },
+        "T2": {
+          "norm_d": 15.075336456298828,
+          "norm_ratio": 0.18845227360725403,
+          "mean_norm_hR": 79.99551391601562,
+          "split_half_cos": 0.9880489867925644,
+          "pair_consistency": 0.7712366580963135,
+          "cos_breadth": 0.5513717532157898,
+          "cos_placebo": -0.04180598631501198,
+          "cos_enumerate_shift": 0.6218840479850769,
+          "norm_placebo": 6.765806674957275,
+          "norm_breadth": 9.571588516235352
+        },
+        "cross_task_cos": 0.9798382520675659
+      },
+      "layer_rule": {
+        "changes": {
+          "18": {
+            "changed": 20,
+            "n": 20
+          },
+          "14": {
+            "changed": 12,
+            "n": 20
+          },
+          "22": {
+            "changed": 20,
+            "n": 20
+          }
+        },
+        "switch_to": null
+      },
+      "c_star": {
+        "layer": 18,
+        "T1": {
+          "pass_rates": {
+            "0.0": 1.0,
+            "0.1": 0.98,
+            "0.25": 0.57,
+            "0.5": 0.03,
+            "1.0": 0.0,
+            "1.5": 0.0
+          },
+          "threshold": 0.8,
+          "bisection": 0.1,
+          "final": true,
+          "c_star": 0.1,
+          "flag": null
+        },
+        "T2": {
+          "pass_rates": {
+            "0.0": 0.95,
+            "0.25": 0.78,
+            "0.375": 0.67,
+            "0.5": 0.37,
+            "1.0": 0.0,
+            "1.5": 0.0
+          },
+          "threshold": 0.76,
+          "bisection": 0.375,
+          "final": true,
+          "c_star": 0.25,
+          "flag": null
+        }
+      }
+    },
+    "conditions": {
+      "T1|ban:bfs": {
+        "n": 100,
+        "n_correct": 64,
+        "pass_rate": 0.64,
+        "wilson_ci": [
+          0.5423540237328172,
+          0.7272877966118639
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.89,
+        "names_X_rate": 0.55,
+        "label_counts": {
+          "dfs": 48,
+          "bfs": 49,
+          "dijkstra_unit": 2,
+          "other": 1
+        },
+        "label_counts_correct": {
+          "bfs": 46,
+          "dfs": 16,
+          "dijkstra_unit": 2
+        },
+        "hill_cc": {
+          "hill1": 1.9981845626935966,
+          "hill2": 1.7239057239057238
+        },
+        "richness_ge2": 3,
+        "modal_share_correct": 0.71875,
+        "mean_tokens": 301.62,
+        "hill1_ci90_sample": [
+          1.6935010329029279,
+          2.244059317475143
+        ],
+        "hill1_ci90_cluster": [
+          1.54243854127227,
+          2.363285750830394
+        ],
+        "tv_to_reference": 0.28125
+      },
+      "T1|baseline": {
+        "n": 200,
+        "n_correct": 200,
+        "pass_rate": 1.0,
+        "wilson_ci": [
+          0.9811546733310369,
+          0.9999999999999999
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.99,
+        "names_X_rate": 0.99,
+        "label_counts": {
+          "bfs": 200
+        },
+        "label_counts_correct": {
+          "bfs": 200
+        },
+        "hill_cc": {
+          "hill1": 1.0,
+          "hill2": 1.0
+        },
+        "richness_ge2": 1,
+        "modal_share_correct": 1.0,
+        "mean_tokens": 303.46,
+        "hill1_ci90_sample": [
+          1.0,
+          1.0
+        ],
+        "hill1_ci90_cluster": [
+          1.0,
+          1.0
+        ],
+        "tv_to_reference": 0.0
+      },
+      "T1|enumerate": {
+        "n": 100,
+        "n_correct": 100,
+        "pass_rate": 1.0,
+        "wilson_ci": [
+          0.9630065012310038,
+          1.0
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.99,
+        "names_X_rate": 0.99,
+        "label_counts": {
+          "bfs": 100
+        },
+        "label_counts_correct": {
+          "bfs": 100
+        },
+        "hill_cc": {
+          "hill1": 1.0,
+          "hill2": 1.0
+        },
+        "richness_ge2": 1,
+        "modal_share_correct": 1.0,
+        "mean_tokens": 368.52,
+        "hill1_ci90_sample": [
+          1.0,
+          1.0
+        ],
+        "hill1_ci90_cluster": [
+          1.0,
+          1.0
+        ],
+        "tv_to_reference": 0.0
+      },
+      "T1|enumerate@1024": {
+        "n": 100,
+        "n_correct": 100,
+        "pass_rate": 1.0,
+        "wilson_ci": [
+          0.9630065012310038,
+          1.0
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.99,
+        "names_X_rate": 0.99,
+        "label_counts": {
+          "bfs": 100
+        },
+        "label_counts_correct": {
+          "bfs": 100
+        },
+        "hill_cc": {
+          "hill1": 1.0,
+          "hill2": 1.0
+        },
+        "richness_ge2": 1,
+        "modal_share_correct": 1.0,
+        "mean_tokens": 368.52,
+        "hill1_ci90_sample": [
+          1.0,
+          1.0
+        ],
+        "hill1_ci90_cluster": [
+          1.0,
+          1.0
+        ],
+        "tv_to_reference": 0.0
+      },
+      "T1|mention:bfs": {
+        "n": 100,
+        "n_correct": 100,
+        "pass_rate": 1.0,
+        "wilson_ci": [
+          0.9630065012310038,
+          1.0
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.96,
+        "names_X_rate": 0.96,
+        "label_counts": {
+          "bfs": 100
+        },
+        "label_counts_correct": {
+          "bfs": 100
+        },
+        "hill_cc": {
+          "hill1": 1.0,
+          "hill2": 1.0
+        },
+        "richness_ge2": 1,
+        "modal_share_correct": 1.0,
+        "mean_tokens": 320.23,
+        "hill1_ci90_sample": [
+          1.0,
+          1.0
+        ],
+        "hill1_ci90_cluster": [
+          1.0,
+          1.0
+        ],
+        "tv_to_reference": 0.0
+      },
+      "T1|steer:breadth:c=0.1:L=18": {
+        "n": 100,
+        "n_correct": 99,
+        "pass_rate": 0.99,
+        "wilson_ci": [
+          0.9455138032509935,
+          0.9982325679553905
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.92,
+        "names_X_rate": 0.92,
+        "label_counts": {
+          "bfs": 100
+        },
+        "label_counts_correct": {
+          "bfs": 99
+        },
+        "hill_cc": {
+          "hill1": 1.0,
+          "hill2": 1.0
+        },
+        "richness_ge2": 1,
+        "modal_share_correct": 1.0,
+        "mean_tokens": 337.58,
+        "hill1_ci90_sample": [
+          1.0,
+          1.0
+        ],
+        "hill1_ci90_cluster": [
+          1.0,
+          1.0
+        ],
+        "tv_to_reference": 0.0
+      },
+      "T1|steer:dc:c=0.1:L=18": {
+        "n": 100,
+        "n_correct": 98,
+        "pass_rate": 0.98,
+        "wilson_ci": [
+          0.9299882086824253,
+          0.9944980324993383
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.87,
+        "names_X_rate": 0.87,
+        "label_counts": {
+          "bfs": 100
+        },
+        "label_counts_correct": {
+          "bfs": 98
+        },
+        "hill_cc": {
+          "hill1": 1.0,
+          "hill2": 1.0
+        },
+        "richness_ge2": 1,
+        "modal_share_correct": 1.0,
+        "mean_tokens": 322.11,
+        "hill1_ci90_sample": [
+          1.0,
+          1.0
+        ],
+        "hill1_ci90_cluster": [
+          1.0,
+          1.0
+        ],
+        "tv_to_reference": 0.0
+      },
+      "T1|steer:dc:c=0.25:L=18": {
+        "n": 100,
+        "n_correct": 57,
+        "pass_rate": 0.57,
+        "wilson_ci": [
+          0.4721538947286719,
+          0.6626670154436687
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.24,
+        "names_X_rate": 0.24,
+        "label_counts": {
+          "bfs": 97,
+          "other": 3
+        },
+        "label_counts_correct": {
+          "bfs": 57
+        },
+        "hill_cc": {
+          "hill1": 1.0,
+          "hill2": 1.0
+        },
+        "richness_ge2": 1,
+        "modal_share_correct": 1.0,
+        "mean_tokens": 267.03,
+        "hill1_ci90_sample": [
+          1.0,
+          1.0
+        ],
+        "hill1_ci90_cluster": [
+          1.0,
+          1.0
+        ],
+        "tv_to_reference": 0.0
+      },
+      "T1|steer:dc:c=0.5:L=18": {
+        "n": 100,
+        "n_correct": 3,
+        "pass_rate": 0.03,
+        "wilson_ci": [
+          0.010254523944281516,
+          0.08451936489857499
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.05,
+        "names_any_rate": 0.17,
+        "names_X_rate": 0.17,
+        "label_counts": {
+          "bfs": 84,
+          "other": 16
+        },
+        "label_counts_correct": {
+          "bfs": 3
+        },
+        "hill_cc": {
+          "hill1": 1.0,
+          "hill2": 1.0
+        },
+        "richness_ge2": 1,
+        "modal_share_correct": 1.0,
+        "mean_tokens": 327.92,
+        "hill1_ci90_sample": [
+          1.0,
+          1.0
+        ],
+        "hill1_ci90_cluster": [
+          1.0,
+          1.0
+        ],
+        "tv_to_reference": 0.0
+      },
+      "T1|steer:dc:c=0:L=18": {
+        "n": 100,
+        "n_correct": 100,
+        "pass_rate": 1.0,
+        "wilson_ci": [
+          0.9630065012310038,
+          1.0
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.96,
+        "names_X_rate": 0.96,
+        "label_counts": {
+          "bfs": 100
+        },
+        "label_counts_correct": {
+          "bfs": 100
+        },
+        "hill_cc": {
+          "hill1": 1.0,
+          "hill2": 1.0
+        },
+        "richness_ge2": 1,
+        "modal_share_correct": 1.0,
+        "mean_tokens": 301.58,
+        "hill1_ci90_sample": [
+          1.0,
+          1.0
+        ],
+        "hill1_ci90_cluster": [
+          1.0,
+          1.0
+        ],
+        "tv_to_reference": 0.0
+      },
+      "T1|steer:dc:c=1.5:L=18": {
+        "n": 100,
+        "n_correct": 0,
+        "pass_rate": 0.0,
+        "wilson_ci": [
+          0.0,
+          0.03699349876899627
+        ],
+        "format_ok_rate": 0.0,
+        "enumerated_rate": 0.02,
+        "no_code_rate": 1.0,
+        "truncation_rate": 0.46,
+        "names_any_rate": 0.0,
+        "names_X_rate": 0.0,
+        "label_counts": {
+          "no_code": 100
+        },
+        "label_counts_correct": {},
+        "hill_cc": {
+          "hill1": null,
+          "hill2": null
+        },
+        "richness_ge2": 0,
+        "modal_share_correct": null,
+        "mean_tokens": 364.01,
+        "tv_to_reference": null
+      },
+      "T1|steer:dc:c=1:L=14": {
+        "n": 10,
+        "n_correct": 0,
+        "pass_rate": 0.0,
+        "wilson_ci": [
+          0.0,
+          0.2775328030260577
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.9,
+        "names_any_rate": 0.9,
+        "names_X_rate": 0.9,
+        "label_counts": {
+          "other": 9,
+          "bfs": 1
+        },
+        "label_counts_correct": {},
+        "hill_cc": {
+          "hill1": null,
+          "hill2": null
+        },
+        "richness_ge2": 0,
+        "modal_share_correct": null,
+        "mean_tokens": 709.8,
+        "tv_to_reference": null
+      },
+      "T1|steer:dc:c=1:L=18": {
+        "n": 100,
+        "n_correct": 0,
+        "pass_rate": 0.0,
+        "wilson_ci": [
+          0.0,
+          0.03699349876899627
+        ],
+        "format_ok_rate": 0.08,
+        "enumerated_rate": 0.05,
+        "no_code_rate": 0.92,
+        "truncation_rate": 0.28,
+        "names_any_rate": 0.01,
+        "names_X_rate": 0.01,
+        "label_counts": {
+          "no_code": 92,
+          "other": 8
+        },
+        "label_counts_correct": {},
+        "hill_cc": {
+          "hill1": null,
+          "hill2": null
+        },
+        "richness_ge2": 0,
+        "modal_share_correct": null,
+        "mean_tokens": 267.77,
+        "tv_to_reference": null
+      },
+      "T1|steer:dc:c=1:L=22": {
+        "n": 10,
+        "n_correct": 0,
+        "pass_rate": 0.0,
+        "wilson_ci": [
+          0.0,
+          0.2775328030260577
+        ],
+        "format_ok_rate": 0.4,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.2,
+        "truncation_rate": 0.3,
+        "names_any_rate": 0.0,
+        "names_X_rate": 0.0,
+        "label_counts": {
+          "other": 8,
+          "no_code": 2
+        },
+        "label_counts_correct": {},
+        "hill_cc": {
+          "hill1": null,
+          "hill2": null
+        },
+        "richness_ge2": 0,
+        "modal_share_correct": null,
+        "mean_tokens": 383.8,
+        "tv_to_reference": null
+      },
+      "T1|steer:dcxfer:c=0.1:L=18": {
+        "n": 50,
+        "n_correct": 49,
+        "pass_rate": 0.98,
+        "wilson_ci": [
+          0.8950455630610349,
+          0.9964607407674954
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.92,
+        "names_X_rate": 0.92,
+        "label_counts": {
+          "bfs": 50
+        },
+        "label_counts_correct": {
+          "bfs": 49
+        },
+        "hill_cc": {
+          "hill1": 1.0,
+          "hill2": 1.0
+        },
+        "richness_ge2": 1,
+        "modal_share_correct": 1.0,
+        "mean_tokens": 331.14,
+        "hill1_ci90_sample": [
+          1.0,
+          1.0
+        ],
+        "hill1_ci90_cluster": [
+          1.0,
+          1.0
+        ],
+        "tv_to_reference": 0.0
+      },
+      "T1|steer:placebo:c=0.1:L=18": {
+        "n": 100,
+        "n_correct": 100,
+        "pass_rate": 1.0,
+        "wilson_ci": [
+          0.9630065012310038,
+          1.0
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.99,
+        "names_X_rate": 0.99,
+        "label_counts": {
+          "bfs": 100
+        },
+        "label_counts_correct": {
+          "bfs": 100
+        },
+        "hill_cc": {
+          "hill1": 1.0,
+          "hill2": 1.0
+        },
+        "richness_ge2": 1,
+        "modal_share_correct": 1.0,
+        "mean_tokens": 364.82,
+        "hill1_ci90_sample": [
+          1.0,
+          1.0
+        ],
+        "hill1_ci90_cluster": [
+          1.0,
+          1.0
+        ],
+        "tv_to_reference": 0.0
+      },
+      "T1|steer:rand1:c=0.1:L=18": {
+        "n": 100,
+        "n_correct": 98,
+        "pass_rate": 0.98,
+        "wilson_ci": [
+          0.9299882086824253,
+          0.9944980324993383
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.99,
+        "names_X_rate": 0.99,
+        "label_counts": {
+          "bfs": 100
+        },
+        "label_counts_correct": {
+          "bfs": 98
+        },
+        "hill_cc": {
+          "hill1": 1.0,
+          "hill2": 1.0
+        },
+        "richness_ge2": 1,
+        "modal_share_correct": 1.0,
+        "mean_tokens": 325.62,
+        "hill1_ci90_sample": [
+          1.0,
+          1.0
+        ],
+        "hill1_ci90_cluster": [
+          1.0,
+          1.0
+        ],
+        "tv_to_reference": 0.0
+      },
+      "T1|steer:rand2:c=0.1:L=18": {
+        "n": 100,
+        "n_correct": 100,
+        "pass_rate": 1.0,
+        "wilson_ci": [
+          0.9630065012310038,
+          1.0
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.96,
+        "names_X_rate": 0.96,
+        "label_counts": {
+          "bfs": 100
+        },
+        "label_counts_correct": {
+          "bfs": 100
+        },
+        "hill_cc": {
+          "hill1": 1.0,
+          "hill2": 1.0
+        },
+        "richness_ge2": 1,
+        "modal_share_correct": 1.0,
+        "mean_tokens": 289.57,
+        "hill1_ci90_sample": [
+          1.0,
+          1.0
+        ],
+        "hill1_ci90_cluster": [
+          1.0,
+          1.0
+        ],
+        "tv_to_reference": 0.0
+      },
+      "T1|succession:2": {
+        "n": 100,
+        "n_correct": 88,
+        "pass_rate": 0.88,
+        "wilson_ci": [
+          0.8018790050092598,
+          0.9300059359263032
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.83,
+        "names_X_rate": 0.65,
+        "label_counts": {
+          "dijkstra_unit": 15,
+          "dfs": 11,
+          "bfs": 70,
+          "astar": 3,
+          "other": 1
+        },
+        "label_counts_correct": {
+          "dijkstra_unit": 13,
+          "dfs": 7,
+          "bfs": 65,
+          "astar": 3
+        },
+        "hill_cc": {
+          "hill1": 2.2769312850915666,
+          "hill2": 1.739442946990117
+        },
+        "richness_ge2": 4,
+        "modal_share_correct": 0.7386363636363636,
+        "mean_tokens": 322.68,
+        "hill1_ci90_sample": [
+          1.8972151570174685,
+          2.6025582919449315
+        ],
+        "hill1_ci90_cluster": [
+          1.6255766427802072,
+          2.795133364934716
+        ],
+        "tv_to_reference": 0.26136363636363635
+      },
+      "T2|ban:dijkstra": {
+        "n": 100,
+        "n_correct": 87,
+        "pass_rate": 0.87,
+        "wilson_ci": [
+          0.7901964848675458,
+          0.922428326043397
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.86,
+        "names_X_rate": 0.64,
+        "label_counts": {
+          "dijkstra": 54,
+          "bellman_ford_spfa": 40,
+          "other": 6
+        },
+        "label_counts_correct": {
+          "dijkstra": 49,
+          "bellman_ford_spfa": 38
+        },
+        "hill_cc": {
+          "hill1": 1.9840349340977428,
+          "hill2": 1.9685305591677504
+        },
+        "richness_ge2": 2,
+        "modal_share_correct": 0.5632183908045977,
+        "mean_tokens": 256.19,
+        "hill1_ci90_sample": [
+          1.9125952053925912,
+          1.9998615932918402
+        ],
+        "hill1_ci90_cluster": [
+          1.848738140801985,
+          1.999854842806801
+        ],
+        "tv_to_reference": 0.39158386908240794
+      },
+      "T2|baseline": {
+        "n": 200,
+        "n_correct": 177,
+        "pass_rate": 0.885,
+        "wilson_ci": [
+          0.8333528305500862,
+          0.9221362679148123
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.995,
+        "names_X_rate": 0.98,
+        "label_counts": {
+          "dijkstra": 181,
+          "bellman_ford_spfa": 14,
+          "dial": 4,
+          "other": 1
+        },
+        "label_counts_correct": {
+          "dijkstra": 169,
+          "bellman_ford_spfa": 8
+        },
+        "hill_cc": {
+          "hill1": 1.2021658298379507,
+          "hill2": 1.0944628820960698
+        },
+        "richness_ge2": 2,
+        "modal_share_correct": 0.9548022598870056,
+        "mean_tokens": 207.81,
+        "hill1_ci90_sample": [
+          1.093249308324025,
+          1.3048439057367138
+        ],
+        "hill1_ci90_cluster": [
+          1.0657264426321227,
+          1.3290794803013266
+        ],
+        "tv_to_reference": 0.0
+      },
+      "T2|enumerate": {
+        "n": 100,
+        "n_correct": 82,
+        "pass_rate": 0.82,
+        "wilson_ci": [
+          0.7333264153744679,
+          0.8829977454133746
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 1.0,
+        "names_X_rate": 0.99,
+        "label_counts": {
+          "dijkstra": 92,
+          "other": 3,
+          "dial": 2,
+          "bellman_ford_spfa": 3
+        },
+        "label_counts_correct": {
+          "dijkstra": 80,
+          "bellman_ford_spfa": 2
+        },
+        "hill_cc": {
+          "hill1": 1.1214979894043937,
+          "hill2": 1.0499687695190507
+        },
+        "richness_ge2": 2,
+        "modal_share_correct": 0.975609756097561,
+        "mean_tokens": 232.01,
+        "hill1_ci90_sample": [
+          1.0,
+          1.2460171277960121
+        ],
+        "hill1_ci90_cluster": [
+          1.0,
+          1.2852519952289732
+        ],
+        "tv_to_reference": 0.02080749621055533
+      },
+      "T2|enumerate@1024": {
+        "n": 100,
+        "n_correct": 82,
+        "pass_rate": 0.82,
+        "wilson_ci": [
+          0.7333264153744679,
+          0.8829977454133746
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 1.0,
+        "names_X_rate": 0.99,
+        "label_counts": {
+          "dijkstra": 92,
+          "other": 3,
+          "dial": 2,
+          "bellman_ford_spfa": 3
+        },
+        "label_counts_correct": {
+          "dijkstra": 80,
+          "bellman_ford_spfa": 2
+        },
+        "hill_cc": {
+          "hill1": 1.1214979894043937,
+          "hill2": 1.0499687695190507
+        },
+        "richness_ge2": 2,
+        "modal_share_correct": 0.975609756097561,
+        "mean_tokens": 232.01,
+        "hill1_ci90_sample": [
+          1.0,
+          1.2437379982889774
+        ],
+        "hill1_ci90_cluster": [
+          1.0,
+          1.2805645828687247
+        ],
+        "tv_to_reference": 0.02080749621055533
+      },
+      "T2|mention:dijkstra": {
+        "n": 100,
+        "n_correct": 94,
+        "pass_rate": 0.94,
+        "wilson_ci": [
+          0.8752318448839114,
+          0.9722138761993719
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.98,
+        "names_X_rate": 0.98,
+        "label_counts": {
+          "dijkstra": 95,
+          "dial": 2,
+          "bellman_ford_spfa": 3
+        },
+        "label_counts_correct": {
+          "dijkstra": 92,
+          "bellman_ford_spfa": 2
+        },
+        "hill_cc": {
+          "hill1": 1.1084544531043852,
+          "hill2": 1.0434577231931979
+        },
+        "richness_ge2": 2,
+        "modal_share_correct": 0.9787234042553191,
+        "mean_tokens": 202.9,
+        "hill1_ci90_sample": [
+          1.0,
+          1.1994903966726251
+        ],
+        "hill1_ci90_cluster": [
+          1.0,
+          1.2800541164916346
+        ],
+        "tv_to_reference": 0.023921144368313496
+      },
+      "T2|steer:breadth:c=0.25:L=18": {
+        "n": 100,
+        "n_correct": 60,
+        "pass_rate": 0.6,
+        "wilson_ci": [
+          0.5020025860174634,
+          0.6905987142287374
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.74,
+        "names_X_rate": 0.72,
+        "label_counts": {
+          "bellman_ford_spfa": 38,
+          "other": 14,
+          "dijkstra": 43,
+          "dial": 5
+        },
+        "label_counts_correct": {
+          "bellman_ford_spfa": 31,
+          "dijkstra": 28,
+          "dial": 1
+        },
+        "hill_cc": {
+          "hill1": 2.1491857908629513,
+          "hill2": 2.0618556701030926
+        },
+        "richness_ge2": 2,
+        "modal_share_correct": 0.5166666666666667,
+        "mean_tokens": 242.95,
+        "hill1_ci90_sample": [
+          1.9570767620810525,
+          2.334307002233584
+        ],
+        "hill1_ci90_cluster": [
+          1.8898815748423097,
+          2.412253226494645
+        ],
+        "tv_to_reference": 0.4596491228070176
+      },
+      "T2|steer:dc:c=0.25:L=18": {
+        "n": 100,
+        "n_correct": 78,
+        "pass_rate": 0.78,
+        "wilson_ci": [
+          0.6892964640723263,
+          0.8499871766170359
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.59,
+        "names_X_rate": 0.46,
+        "label_counts": {
+          "bellman_ford_spfa": 61,
+          "dijkstra": 31,
+          "dial": 4,
+          "other": 4
+        },
+        "label_counts_correct": {
+          "bellman_ford_spfa": 54,
+          "dijkstra": 23,
+          "other": 1
+        },
+        "hill_cc": {
+          "hill1": 1.9552844459421488,
+          "hill2": 1.7655252466627975
+        },
+        "richness_ge2": 2,
+        "modal_share_correct": 0.6923076923076923,
+        "mean_tokens": 201.74,
+        "hill1_ci90_sample": [
+          1.7312431416772414,
+          2.132071691224516
+        ],
+        "hill1_ci90_cluster": [
+          1.661767174915249,
+          2.189689895301678
+        ],
+        "tv_to_reference": 0.6314439946018893
+      },
+      "T2|steer:dc:c=0.375:L=18": {
+        "n": 100,
+        "n_correct": 67,
+        "pass_rate": 0.67,
+        "wilson_ci": [
+          0.5730534371634074,
+          0.754368773255134
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.19,
+        "names_X_rate": 0.18,
+        "label_counts": {
+          "dijkstra": 24,
+          "bellman_ford_spfa": 50,
+          "other": 26
+        },
+        "label_counts_correct": {
+          "dijkstra": 19,
+          "bellman_ford_spfa": 47,
+          "other": 1
+        },
+        "hill_cc": {
+          "hill1": 1.9519964141288697,
+          "hill2": 1.7460132244262934
+        },
+        "richness_ge2": 2,
+        "modal_share_correct": 0.7014925373134329,
+        "mean_tokens": 204.57,
+        "hill1_ci90_sample": [
+          1.683597510070219,
+          2.1615529150160557
+        ],
+        "hill1_ci90_cluster": [
+          1.6097190296890578,
+          2.207875694483839
+        ],
+        "tv_to_reference": 0.6427336999214455
+      },
+      "T2|steer:dc:c=0.5:L=18": {
+        "n": 100,
+        "n_correct": 37,
+        "pass_rate": 0.37,
+        "wilson_ci": [
+          0.2818236047080924,
+          0.4677947049718467
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.04,
+        "names_any_rate": 0.35,
+        "names_X_rate": 0.35,
+        "label_counts": {
+          "dijkstra": 43,
+          "other": 29,
+          "bellman_ford_spfa": 28
+        },
+        "label_counts_correct": {
+          "bellman_ford_spfa": 10,
+          "dijkstra": 25,
+          "other": 2
+        },
+        "hill_cc": {
+          "hill1": 2.1732290526094307,
+          "hill2": 1.8779149519890261
+        },
+        "richness_ge2": 3,
+        "modal_share_correct": 0.6756756756756757,
+        "mean_tokens": 303.06,
+        "hill1_ci90_sample": [
+          1.721368429113672,
+          2.486600267009508
+        ],
+        "hill1_ci90_cluster": [
+          1.4368978234718084,
+          2.610190669623409
+        ],
+        "tv_to_reference": 0.25064011379800855
+      },
+      "T2|steer:dc:c=0:L=18": {
+        "n": 100,
+        "n_correct": 95,
+        "pass_rate": 0.95,
+        "wilson_ci": [
+          0.8882495301258955,
+          0.9784563209820079
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.99,
+        "names_X_rate": 0.94,
+        "label_counts": {
+          "dijkstra": 90,
+          "dial": 2,
+          "bellman_ford_spfa": 8
+        },
+        "label_counts_correct": {
+          "dijkstra": 88,
+          "bellman_ford_spfa": 7
+        },
+        "hill_cc": {
+          "hill1": 1.3009129047889467,
+          "hill2": 1.1580905941229307
+        },
+        "richness_ge2": 2,
+        "modal_share_correct": 0.9263157894736842,
+        "mean_tokens": 207.4,
+        "hill1_ci90_sample": [
+          1.1504907821179773,
+          1.4348706352329554
+        ],
+        "hill1_ci90_cluster": [
+          1.103829013850088,
+          1.4986915695229053
+        ],
+        "tv_to_reference": 0.0
+      },
+      "T2|steer:dc:c=1.5:L=18": {
+        "n": 100,
+        "n_correct": 0,
+        "pass_rate": 0.0,
+        "wilson_ci": [
+          0.0,
+          0.03699349876899627
+        ],
+        "format_ok_rate": 0.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 1.0,
+        "truncation_rate": 0.85,
+        "names_any_rate": 0.0,
+        "names_X_rate": 0.0,
+        "label_counts": {
+          "no_code": 100
+        },
+        "label_counts_correct": {},
+        "hill_cc": {
+          "hill1": null,
+          "hill2": null
+        },
+        "richness_ge2": 0,
+        "modal_share_correct": null,
+        "mean_tokens": 661.67,
+        "tv_to_reference": null
+      },
+      "T2|steer:dc:c=1:L=14": {
+        "n": 10,
+        "n_correct": 0,
+        "pass_rate": 0.0,
+        "wilson_ci": [
+          0.0,
+          0.2775328030260577
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 1.0,
+        "names_any_rate": 0.5,
+        "names_X_rate": 0.4,
+        "label_counts": {
+          "other": 10
+        },
+        "label_counts_correct": {},
+        "hill_cc": {
+          "hill1": null,
+          "hill2": null
+        },
+        "richness_ge2": 0,
+        "modal_share_correct": null,
+        "mean_tokens": 768.0,
+        "tv_to_reference": null
+      },
+      "T2|steer:dc:c=1:L=18": {
+        "n": 100,
+        "n_correct": 0,
+        "pass_rate": 0.0,
+        "wilson_ci": [
+          0.0,
+          0.03699349876899627
+        ],
+        "format_ok_rate": 0.28,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.7,
+        "truncation_rate": 0.28,
+        "names_any_rate": 0.01,
+        "names_X_rate": 0.01,
+        "label_counts": {
+          "other": 30,
+          "no_code": 70
+        },
+        "label_counts_correct": {},
+        "hill_cc": {
+          "hill1": null,
+          "hill2": null
+        },
+        "richness_ge2": 0,
+        "modal_share_correct": null,
+        "mean_tokens": 248.94,
+        "tv_to_reference": null
+      },
+      "T2|steer:dc:c=1:L=22": {
+        "n": 10,
+        "n_correct": 0,
+        "pass_rate": 0.0,
+        "wilson_ci": [
+          0.0,
+          0.2775328030260577
+        ],
+        "format_ok_rate": 0.3,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.1,
+        "truncation_rate": 0.7,
+        "names_any_rate": 0.0,
+        "names_X_rate": 0.0,
+        "label_counts": {
+          "other": 9,
+          "no_code": 1
+        },
+        "label_counts_correct": {},
+        "hill_cc": {
+          "hill1": null,
+          "hill2": null
+        },
+        "richness_ge2": 0,
+        "modal_share_correct": null,
+        "mean_tokens": 584.0,
+        "tv_to_reference": null
+      },
+      "T2|steer:dcxfer:c=0.25:L=18": {
+        "n": 50,
+        "n_correct": 36,
+        "pass_rate": 0.72,
+        "wilson_ci": [
+          0.5833487619095525,
+          0.8252582940118571
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.46,
+        "names_X_rate": 0.42,
+        "label_counts": {
+          "bellman_ford_spfa": 36,
+          "dijkstra": 12,
+          "other": 2
+        },
+        "label_counts_correct": {
+          "dijkstra": 8,
+          "bellman_ford_spfa": 28
+        },
+        "hill_cc": {
+          "hill1": 1.6984332340231805,
+          "hill2": 1.5283018867924527
+        },
+        "richness_ge2": 2,
+        "modal_share_correct": 0.7777777777777778,
+        "mean_tokens": 188.38,
+        "hill1_ci90_sample": [
+          1.426726838059324,
+          1.8898815748423097
+        ],
+        "hill1_ci90_cluster": [
+          1.3322056912494478,
+          1.9378192408783848
+        ],
+        "tv_to_reference": 0.704093567251462
+      },
+      "T2|steer:placebo:c=0.25:L=18": {
+        "n": 100,
+        "n_correct": 66,
+        "pass_rate": 0.66,
+        "wilson_ci": [
+          0.56277728776086,
+          0.7453847926330613
+        ],
+        "format_ok_rate": 0.96,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.92,
+        "names_X_rate": 0.92,
+        "label_counts": {
+          "dijkstra": 84,
+          "other": 8,
+          "bellman_ford_spfa": 4,
+          "dial": 4
+        },
+        "label_counts_correct": {
+          "dijkstra": 60,
+          "bellman_ford_spfa": 2,
+          "other": 1,
+          "dial": 3
+        },
+        "hill_cc": {
+          "hill1": 1.4867342553871825,
+          "hill2": 1.2053126729385724
+        },
+        "richness_ge2": 3,
+        "modal_share_correct": 0.9090909090909091,
+        "mean_tokens": 326.2,
+        "hill1_ci90_sample": [
+          1.19282717237898,
+          1.7730629490822063
+        ],
+        "hill1_ci90_cluster": [
+          1.0796628330525642,
+          1.9180315140967297
+        ],
+        "tv_to_reference": 0.060606060606060615
+      },
+      "T2|steer:rand1:c=0.25:L=18": {
+        "n": 100,
+        "n_correct": 79,
+        "pass_rate": 0.79,
+        "wilson_ci": [
+          0.7002003108844285,
+          0.8583434598295537
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.99,
+        "names_X_rate": 0.85,
+        "label_counts": {
+          "dijkstra": 60,
+          "bellman_ford_spfa": 37,
+          "dial": 1,
+          "other": 2
+        },
+        "label_counts_correct": {
+          "dijkstra": 53,
+          "bellman_ford_spfa": 26
+        },
+        "hill_cc": {
+          "hill1": 1.8842867242114847,
+          "hill2": 1.7908177905308464
+        },
+        "richness_ge2": 2,
+        "modal_share_correct": 0.6708860759493671,
+        "mean_tokens": 217.03,
+        "hill1_ci90_sample": [
+          1.7484680935209518,
+          1.9694524295383267
+        ],
+        "hill1_ci90_cluster": [
+          1.6315849325073415,
+          1.9957500334759117
+        ],
+        "tv_to_reference": 0.2554297135243171
+      },
+      "T2|steer:rand2:c=0.25:L=18": {
+        "n": 100,
+        "n_correct": 87,
+        "pass_rate": 0.87,
+        "wilson_ci": [
+          0.7901964848675458,
+          0.922428326043397
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 1.0,
+        "names_X_rate": 0.97,
+        "label_counts": {
+          "dijkstra": 90,
+          "bellman_ford_spfa": 9,
+          "other": 1
+        },
+        "label_counts_correct": {
+          "dijkstra": 82,
+          "bellman_ford_spfa": 5
+        },
+        "hill_cc": {
+          "hill1": 1.2460171277960121,
+          "hill2": 1.1214994814046526
+        },
+        "richness_ge2": 2,
+        "modal_share_correct": 0.9425287356321839,
+        "mean_tokens": 208.13,
+        "hill1_ci90_sample": [
+          1.1124513000098186,
+          1.384145488461686
+        ],
+        "hill1_ci90_cluster": [
+          1.0623657852814319,
+          1.4365013757341831
+        ],
+        "tv_to_reference": 0.016212946158499678
+      },
+      "T2|succession:2": {
+        "n": 100,
+        "n_correct": 68,
+        "pass_rate": 0.68,
+        "wilson_ci": [
+          0.583373813107172,
+          0.7633085273359894
+        ],
+        "format_ok_rate": 1.0,
+        "enumerated_rate": 0.0,
+        "no_code_rate": 0.0,
+        "truncation_rate": 0.0,
+        "names_any_rate": 0.58,
+        "names_X_rate": 0.57,
+        "label_counts": {
+          "other": 17,
+          "dijkstra": 42,
+          "bellman_ford_spfa": 41
+        },
+        "label_counts_correct": {
+          "dijkstra": 33,
+          "bellman_ford_spfa": 34,
+          "other": 1
+        },
+        "hill_cc": {
+          "hill1": 2.1371921562305145,
+          "hill2": 2.0587711487088156
+        },
+        "richness_ge2": 2,
+        "modal_share_correct": 0.5,
+        "mean_tokens": 256.75,
+        "hill1_ci90_sample": [
+          1.9646071210211644,
+          2.3063907611332777
+        ],
+        "hill1_ci90_cluster": [
+          1.9175374055035743,
+          2.347733203617414
+        ],
+        "tv_to_reference": 0.4695081422399468
+      }
+    },
+    "buy_table": {
+      "T1": {
+        "steer:dc:c=0.1:L=18": {
+          "n_correct_knob": 98,
+          "n_correct_ref": 100,
+          "n_min": 98,
+          "rarefy_to": 83,
+          "hill1_knob": 1.0,
+          "hill1_ref": 1.0,
+          "hill1_knob_rarefied": 1.0,
+          "hill1_ref_rarefied": 1.0,
+          "delta_hill_plugin": 0.0,
+          "delta_hill_rarefied": 0.0,
+          "ci90_plugin_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_plugin_sample": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_sample": [
+            0.0,
+            0.0
+          ],
+          "delta_pass_pts": 2.0000000000000018,
+          "efficiency": 0.0,
+          "tv_to_reference": 0.0,
+          "reference": "steer:dc:c=0 (HF)",
+          "pass_rate": 0.98
+        },
+        "steer:dc:c=0.25:L=18": {
+          "n_correct_knob": 57,
+          "n_correct_ref": 100,
+          "n_min": 57,
+          "rarefy_to": 48,
+          "hill1_knob": 1.0,
+          "hill1_ref": 1.0,
+          "hill1_knob_rarefied": 1.0,
+          "hill1_ref_rarefied": 1.0,
+          "delta_hill_plugin": 0.0,
+          "delta_hill_rarefied": 0.0,
+          "ci90_plugin_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_plugin_sample": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_sample": [
+            0.0,
+            0.0
+          ],
+          "delta_pass_pts": 43.00000000000001,
+          "efficiency": 0.0,
+          "tv_to_reference": 0.0,
+          "reference": "steer:dc:c=0 (HF)",
+          "pass_rate": 0.57
+        },
+        "steer:dc:c=0.5:L=18": {
+          "n_correct_knob": 3,
+          "n_correct_ref": 100,
+          "n_min": 3,
+          "rarefy_to": 2,
+          "hill1_knob": 1.0,
+          "hill1_ref": 1.0,
+          "hill1_knob_rarefied": 1.0,
+          "hill1_ref_rarefied": 1.0,
+          "delta_hill_plugin": 0.0,
+          "delta_hill_rarefied": 0.0,
+          "ci90_plugin_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_plugin_sample": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_sample": [
+            0.0,
+            0.0
+          ],
+          "delta_pass_pts": 97.0,
+          "efficiency": 0.0,
+          "tv_to_reference": 0.0,
+          "reference": "steer:dc:c=0 (HF)",
+          "pass_rate": 0.03
+        },
+        "steer:dc:c=1:L=18": {
+          "n_correct_knob": 0,
+          "n_correct_ref": 100,
+          "delta_hill_plugin": null,
+          "delta_hill_rarefied": null,
+          "note": "no correct samples",
+          "delta_pass_pts": 100.0,
+          "reference": "steer:dc:c=0 (HF)",
+          "pass_rate": 0.0
+        },
+        "steer:dc:c=1.5:L=18": {
+          "n_correct_knob": 0,
+          "n_correct_ref": 100,
+          "delta_hill_plugin": null,
+          "delta_hill_rarefied": null,
+          "note": "no correct samples",
+          "delta_pass_pts": 100.0,
+          "reference": "steer:dc:c=0 (HF)",
+          "pass_rate": 0.0
+        },
+        "steer:rand1:c=0.1:L=18": {
+          "n_correct_knob": 98,
+          "n_correct_ref": 100,
+          "n_min": 98,
+          "rarefy_to": 83,
+          "hill1_knob": 1.0,
+          "hill1_ref": 1.0,
+          "hill1_knob_rarefied": 1.0,
+          "hill1_ref_rarefied": 1.0,
+          "delta_hill_plugin": 0.0,
+          "delta_hill_rarefied": 0.0,
+          "ci90_plugin_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_plugin_sample": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_sample": [
+            0.0,
+            0.0
+          ],
+          "delta_pass_pts": 2.0000000000000018,
+          "efficiency": 0.0,
+          "tv_to_reference": 0.0,
+          "reference": "steer:dc:c=0 (HF)",
+          "pass_rate": 0.98
+        },
+        "steer:rand2:c=0.1:L=18": {
+          "n_correct_knob": 100,
+          "n_correct_ref": 100,
+          "n_min": 100,
+          "rarefy_to": 85,
+          "hill1_knob": 1.0,
+          "hill1_ref": 1.0,
+          "hill1_knob_rarefied": 1.0,
+          "hill1_ref_rarefied": 1.0,
+          "delta_hill_plugin": 0.0,
+          "delta_hill_rarefied": 0.0,
+          "ci90_plugin_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_plugin_sample": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_sample": [
+            0.0,
+            0.0
+          ],
+          "delta_pass_pts": 0.0,
+          "efficiency": "free gain",
+          "tv_to_reference": 0.0,
+          "reference": "steer:dc:c=0 (HF)",
+          "pass_rate": 1.0
+        },
+        "steer:placebo:c=0.1:L=18": {
+          "n_correct_knob": 100,
+          "n_correct_ref": 100,
+          "n_min": 100,
+          "rarefy_to": 85,
+          "hill1_knob": 1.0,
+          "hill1_ref": 1.0,
+          "hill1_knob_rarefied": 1.0,
+          "hill1_ref_rarefied": 1.0,
+          "delta_hill_plugin": 0.0,
+          "delta_hill_rarefied": 0.0,
+          "ci90_plugin_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_plugin_sample": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_sample": [
+            0.0,
+            0.0
+          ],
+          "delta_pass_pts": 0.0,
+          "efficiency": "free gain",
+          "tv_to_reference": 0.0,
+          "reference": "steer:dc:c=0 (HF)",
+          "pass_rate": 1.0
+        },
+        "steer:breadth:c=0.1:L=18": {
+          "n_correct_knob": 99,
+          "n_correct_ref": 100,
+          "n_min": 99,
+          "rarefy_to": 84,
+          "hill1_knob": 1.0,
+          "hill1_ref": 1.0,
+          "hill1_knob_rarefied": 1.0,
+          "hill1_ref_rarefied": 1.0,
+          "delta_hill_plugin": 0.0,
+          "delta_hill_rarefied": 0.0,
+          "ci90_plugin_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_plugin_sample": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_sample": [
+            0.0,
+            0.0
+          ],
+          "delta_pass_pts": 1.0000000000000009,
+          "efficiency": 0.0,
+          "tv_to_reference": 0.0,
+          "reference": "steer:dc:c=0 (HF)",
+          "pass_rate": 0.99
+        },
+        "steer:dcxfer:c=0.1:L=18": {
+          "n_correct_knob": 49,
+          "n_correct_ref": 100,
+          "n_min": 49,
+          "rarefy_to": 41,
+          "hill1_knob": 1.0,
+          "hill1_ref": 1.0,
+          "hill1_knob_rarefied": 1.0,
+          "hill1_ref_rarefied": 1.0,
+          "delta_hill_plugin": 0.0,
+          "delta_hill_rarefied": 0.0,
+          "ci90_plugin_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_plugin_sample": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_sample": [
+            0.0,
+            0.0
+          ],
+          "delta_pass_pts": 2.0000000000000018,
+          "efficiency": 0.0,
+          "tv_to_reference": 0.0,
+          "reference": "steer:dc:c=0 (HF)",
+          "pass_rate": 0.98
+        },
+        "enumerate": {
+          "n_correct_knob": 100,
+          "n_correct_ref": 200,
+          "n_min": 100,
+          "rarefy_to": 85,
+          "hill1_knob": 1.0,
+          "hill1_ref": 1.0,
+          "hill1_knob_rarefied": 1.0,
+          "hill1_ref_rarefied": 1.0,
+          "delta_hill_plugin": 0.0,
+          "delta_hill_rarefied": 0.0,
+          "ci90_plugin_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_plugin_sample": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_sample": [
+            0.0,
+            0.0
+          ],
+          "delta_pass_pts": 0.0,
+          "efficiency": "free gain",
+          "tv_to_reference": 0.0,
+          "reference": "baseline (vLLM)",
+          "pass_rate": 1.0
+        },
+        "enumerate@1024": {
+          "n_correct_knob": 100,
+          "n_correct_ref": 200,
+          "n_min": 100,
+          "rarefy_to": 85,
+          "hill1_knob": 1.0,
+          "hill1_ref": 1.0,
+          "hill1_knob_rarefied": 1.0,
+          "hill1_ref_rarefied": 1.0,
+          "delta_hill_plugin": 0.0,
+          "delta_hill_rarefied": 0.0,
+          "ci90_plugin_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_plugin_sample": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_sample": [
+            0.0,
+            0.0
+          ],
+          "delta_pass_pts": 0.0,
+          "efficiency": "free gain",
+          "tv_to_reference": 0.0,
+          "reference": "baseline (vLLM)",
+          "pass_rate": 1.0
+        },
+        "ban:bfs": {
+          "n_correct_knob": 64,
+          "n_correct_ref": 200,
+          "n_min": 64,
+          "rarefy_to": 54,
+          "hill1_knob": 1.9981845626935966,
+          "hill1_ref": 1.0,
+          "hill1_knob_rarefied": 1.9924487375490414,
+          "hill1_ref_rarefied": 1.0,
+          "delta_hill_plugin": 0.9981845626935966,
+          "delta_hill_rarefied": 0.9924487375490414,
+          "ci90_plugin_cluster": [
+            0.5561604300986318,
+            1.3778081303756458
+          ],
+          "ci90_plugin_sample": [
+            0.7019093305906109,
+            1.253212353963904
+          ],
+          "ci90_rarefied_cluster": [
+            0.5540356939915687,
+            1.3384760231090147
+          ],
+          "ci90_rarefied_sample": [
+            0.6931430732629558,
+            1.247587627946324
+          ],
+          "delta_pass_pts": 36.0,
+          "efficiency": 0.027568020487473373,
+          "tv_to_reference": 0.28125,
+          "reference": "baseline (vLLM)",
+          "pass_rate": 0.64
+        },
+        "mention:bfs": {
+          "n_correct_knob": 100,
+          "n_correct_ref": 200,
+          "n_min": 100,
+          "rarefy_to": 85,
+          "hill1_knob": 1.0,
+          "hill1_ref": 1.0,
+          "hill1_knob_rarefied": 1.0,
+          "hill1_ref_rarefied": 1.0,
+          "delta_hill_plugin": 0.0,
+          "delta_hill_rarefied": 0.0,
+          "ci90_plugin_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_plugin_sample": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_sample": [
+            0.0,
+            0.0
+          ],
+          "delta_pass_pts": 0.0,
+          "efficiency": "free gain",
+          "tv_to_reference": 0.0,
+          "reference": "baseline (vLLM)",
+          "pass_rate": 1.0
+        },
+        "succession:2": {
+          "n_correct_knob": 88,
+          "n_correct_ref": 200,
+          "n_min": 88,
+          "rarefy_to": 74,
+          "hill1_knob": 2.2769312850915666,
+          "hill1_ref": 1.0,
+          "hill1_knob_rarefied": 2.269973692658472,
+          "hill1_ref_rarefied": 1.0,
+          "delta_hill_plugin": 1.2769312850915666,
+          "delta_hill_rarefied": 1.2699736926584722,
+          "ci90_plugin_cluster": [
+            0.6401358041682501,
+            1.8023131617575991
+          ],
+          "ci90_plugin_sample": [
+            0.8909056576103083,
+            1.6115803356014151
+          ],
+          "ci90_rarefied_cluster": [
+            0.6443159288082392,
+            1.7985950632737235
+          ],
+          "ci90_rarefied_sample": [
+            0.8620616454248108,
+            1.598483264862556
+          ],
+          "delta_pass_pts": 12.0,
+          "efficiency": 0.10583114105487268,
+          "tv_to_reference": 0.26136363636363635,
+          "reference": "baseline (vLLM)",
+          "pass_rate": 0.88
+        },
+        "steer_vs_vllm_baseline": {
+          "n_correct_knob": 98,
+          "n_correct_ref": 200,
+          "n_min": 98,
+          "rarefy_to": 83,
+          "hill1_knob": 1.0,
+          "hill1_ref": 1.0,
+          "hill1_knob_rarefied": 1.0,
+          "hill1_ref_rarefied": 1.0,
+          "delta_hill_plugin": 0.0,
+          "delta_hill_rarefied": 0.0,
+          "ci90_plugin_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_plugin_sample": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_cluster": [
+            0.0,
+            0.0
+          ],
+          "ci90_rarefied_sample": [
+            0.0,
+            0.0
+          ],
+          "delta_pass_pts": 2.0000000000000018,
+          "efficiency": 0.0,
+          "tv_to_reference": 0.0,
+          "pass_rate": 0.98,
+          "reference": "baseline (vLLM), cross-engine"
+        },
+        "_hill_price": {
+          "curve": [
+            [
+              0.0,
+              1.0,
+              1.0
+            ],
+            [
+              0.1,
+              0.98,
+              1.0
+            ],
+            [
+              0.25,
+              0.57,
+              1.0
+            ]
+          ],
+          "hill2": {
+            "reached": false,
+            "note": "not reached within the tested range"
+          },
+          "hill3": {
+            "reached": false,
+            "note": "not reached within the tested range"
+          }
+        }
+      },
+      "T2": {
+        "steer:dc:c=0.25:L=18": {
+          "n_correct_knob": 78,
+          "n_correct_ref": 95,
+          "n_min": 78,
+          "rarefy_to": 66,
+          "hill1_knob": 1.9552844459421488,
+          "hill1_ref": 1.3009129047889467,
+          "hill1_knob_rarefied": 1.948580398694517,
+          "hill1_ref_rarefied": 1.2984068148568861,
+          "delta_hill_plugin": 0.6543715411532021,
+          "delta_hill_rarefied": 0.6501735838376308,
+          "ci90_plugin_cluster": [
+            0.31836741529197154,
+            0.9607879212797182
+          ],
+          "ci90_plugin_sample": [
+            0.3773352098658477,
+            0.8908129356981145
+          ],
+          "ci90_rarefied_cluster": [
+            0.3071108791424448,
+            0.9666887203527222
+          ],
+          "ci90_rarefied_sample": [
+            0.37747503099344265,
+            0.8855602301775921
+          ],
+          "delta_pass_pts": 16.999999999999993,
+          "efficiency": 0.03824550493162536,
+          "tv_to_reference": 0.6314439946018893,
+          "reference": "steer:dc:c=0 (HF)",
+          "pass_rate": 0.78
+        },
+        "steer:dc:c=0.375:L=18": {
+          "n_correct_knob": 67,
+          "n_correct_ref": 95,
+          "n_min": 67,
+          "rarefy_to": 56,
+          "hill1_knob": 1.9519964141288697,
+          "hill1_ref": 1.3009129047889467,
+          "hill1_knob_rarefied": 1.9442091750381727,
+          "hill1_ref_rarefied": 1.2967785206741893,
+          "delta_hill_plugin": 0.651083509339923,
+          "delta_hill_rarefied": 0.6474306543639834,
+          "ci90_plugin_cluster": [
+            0.27040379526850905,
+            0.9487931843579762
+          ],
+          "ci90_plugin_sample": [
+            0.3620835493513596,
+            0.9065519534267075
+          ],
+          "ci90_rarefied_cluster": [
+            0.28546901178492423,
+            0.9438445904517084
+          ],
+          "ci90_rarefied_sample": [
+            0.35973495602083994,
+            0.8872069061537559
+          ],
+          "delta_pass_pts": 27.999999999999993,
+          "efficiency": 0.02312252337014227,
+          "tv_to_reference": 0.6427336999214455,
+          "reference": "steer:dc:c=0 (HF)",
+          "pass_rate": 0.67
+        },
+        "steer:dc:c=0.5:L=18": {
+          "n_correct_knob": 37,
+          "n_correct_ref": 95,
+          "n_min": 37,
+          "rarefy_to": 31,
+          "hill1_knob": 2.1732290526094307,
+          "hill1_ref": 1.3009129047889467,
+          "hill1_knob_rarefied": 2.167050934490859,
+          "hill1_ref_rarefied": 1.3003868203128532,
+          "delta_hill_plugin": 0.872316147820484,
+          "delta_hill_rarefied": 0.8666641141780058,
+          "ci90_plugin_cluster": [
+            0.05613498004006622,
+            1.3800325446937127
+          ],
+          "ci90_plugin_sample": [
+            0.42462436446746543,
+            1.2134868911251804
+          ],
+          "ci90_rarefied_cluster": [
+            0.0926808489258225,
+            1.383807402974984
+          ],
+          "ci90_rarefied_sample": [
+            0.40993078800065424,
+            1.2286206470013425
+          ],
+          "delta_pass_pts": 57.99999999999999,
+          "efficiency": 0.014942484727206998,
+          "tv_to_reference": 0.25064011379800855,
+          "reference": "steer:dc:c=0 (HF)",
+          "pass_rate": 0.37
+        },
+        "steer:dc:c=1:L=18": {
+          "n_correct_knob": 0,
+          "n_correct_ref": 95,
+          "delta_hill_plugin": null,
+          "delta_hill_rarefied": null,
+          "note": "no correct samples",
+          "delta_pass_pts": 95.0,
+          "reference": "steer:dc:c=0 (HF)",
+          "pass_rate": 0.0
+        },
+        "steer:dc:c=1.5:L=18": {
+          "n_correct_knob": 0,
+          "n_correct_ref": 95,
+          "delta_hill_plugin": null,
+          "delta_hill_rarefied": null,
+          "note": "no correct samples",
+          "delta_pass_pts": 95.0,
+          "reference": "steer:dc:c=0 (HF)",
+          "pass_rate": 0.0
+        },
+        "steer:rand1:c=0.25:L=18": {
+          "n_correct_knob": 79,
+          "n_correct_ref": 95,
+          "n_min": 79,
+          "rarefy_to": 67,
+          "hill1_knob": 1.8842867242114847,
+          "hill1_ref": 1.3009129047889467,
+          "hill1_knob_rarefied": 1.8825828397521895,
+          "hill1_ref_rarefied": 1.2969791089814888,
+          "delta_hill_plugin": 0.583373819422538,
+          "delta_hill_rarefied": 0.5856037307707007,
+          "ci90_plugin_cluster": [
+            0.20770647173659756,
+            0.8835308740114542
+          ],
+          "ci90_plugin_sample": [
+            0.37463295265812663,
+            0.7590183677320728
+          ],
+          "ci90_rarefied_cluster": [
+            0.2069468296171219,
+            0.854542498330655
+          ],
+          "ci90_rarefied_sample": [
+            0.3895318286225286,
+            0.7661214898909177
+          ],
+          "delta_pass_pts": 15.999999999999993,
+          "efficiency": 0.03660023317316881,
+          "tv_to_reference": 0.2554297135243171,
+          "reference": "steer:dc:c=0 (HF)",
+          "pass_rate": 0.79
+        },
+        "steer:rand2:c=0.25:L=18": {
+          "n_correct_knob": 87,
+          "n_correct_ref": 95,
+          "n_min": 87,
+          "rarefy_to": 73,
+          "hill1_knob": 1.2460171277960121,
+          "hill1_ref": 1.3009129047889467,
+          "hill1_knob_rarefied": 1.2485055888773509,
+          "hill1_ref_rarefied": 1.2994303646072107,
+          "delta_hill_plugin": -0.054895776992934575,
+          "delta_hill_rarefied": -0.05092477572985987,
+          "ci90_plugin_cluster": [
+            -0.30305841447477694,
+            0.20485864296215936
+          ],
+          "ci90_plugin_sample": [
+            -0.2562759819919973,
+            0.1418222810481779
+          ],
+          "ci90_rarefied_cluster": [
+            -0.30889062937836403,
+            0.19594506336349535
+          ],
+          "ci90_rarefied_sample": [
+            -0.2625225312913506,
+            0.1462646584616122
+          ],
+          "delta_pass_pts": 7.9999999999999964,
+          "efficiency": -0.006365596966232487,
+          "tv_to_reference": 0.016212946158499678,
+          "reference": "steer:dc:c=0 (HF)",
+          "pass_rate": 0.87
+        },
+        "steer:placebo:c=0.25:L=18": {
+          "n_correct_knob": 66,
+          "n_correct_ref": 95,
+          "n_min": 66,
+          "rarefy_to": 56,
+          "hill1_knob": 1.4867342553871825,
+          "hill1_ref": 1.3009129047889467,
+          "hill1_knob_rarefied": 1.4828035643718962,
+          "hill1_ref_rarefied": 1.2971857383570387,
+          "delta_hill_plugin": 0.1858213505982358,
+          "delta_hill_rarefied": 0.18561782601485755,
+          "ci90_plugin_cluster": [
+            -0.302257702886914,
+            0.7336644910903363
+          ],
+          "ci90_plugin_sample": [
+            -0.14479534075644387,
+            0.513450403618822
+          ],
+          "ci90_rarefied_cluster": [
+            -0.30403250044919194,
+            0.7020798644173003
+          ],
+          "ci90_rarefied_sample": [
+            -0.13415188052653063,
+            0.4856995871413518
+          ],
+          "delta_pass_pts": 28.999999999999993,
+          "efficiency": 0.006400614690167503,
+          "tv_to_reference": 0.060606060606060615,
+          "reference": "steer:dc:c=0 (HF)",
+          "pass_rate": 0.66
+        },
+        "steer:breadth:c=0.25:L=18": {
+          "n_correct_knob": 60,
+          "n_correct_ref": 95,
+          "n_min": 60,
+          "rarefy_to": 51,
+          "hill1_knob": 2.1491857908629513,
+          "hill1_ref": 1.3009129047889467,
+          "hill1_knob_rarefied": 2.1425190700696657,
+          "hill1_ref_rarefied": 1.2954700175856675,
+          "delta_hill_plugin": 0.8482728860740045,
+          "delta_hill_rarefied": 0.8470490524839982,
+          "ci90_plugin_cluster": [
+            0.4663545020887032,
+            1.2007236007372193
+          ],
+          "ci90_plugin_sample": [
+            0.576777610644231,
+            1.0690446867635657
+          ],
+          "ci90_rarefied_cluster": [
+            0.462992330699088,
+            1.1660350863505275
+          ],
+          "ci90_rarefied_sample": [
+            0.5854732717134798,
+            1.07745291902849
+          ],
+          "delta_pass_pts": 35.0,
+          "efficiency": 0.024201401499542807,
+          "tv_to_reference": 0.4596491228070176,
+          "reference": "steer:dc:c=0 (HF)",
+          "pass_rate": 0.6
+        },
+        "steer:dcxfer:c=0.25:L=18": {
+          "n_correct_knob": 36,
+          "n_correct_ref": 95,
+          "n_min": 36,
+          "rarefy_to": 30,
+          "hill1_knob": 1.6984332340231805,
+          "hill1_ref": 1.3009129047889467,
+          "hill1_knob_rarefied": 1.6940663966720027,
+          "hill1_ref_rarefied": 1.2891835376694867,
+          "delta_hill_plugin": 0.39752032923423375,
+          "delta_hill_rarefied": 0.40488285900251597,
+          "ci90_plugin_cluster": [
+            -0.014688244610583817,
+            0.6756031187136359
+          ],
+          "ci90_plugin_sample": [
+            0.10164019184410207,
+            0.6452063620346105
+          ],
+          "ci90_rarefied_cluster": [
+            -0.01474919497785465,
+            0.6878722851182972
+          ],
+          "ci90_rarefied_sample": [
+            0.09424938736508173,
+            0.6522040986703455
+          ],
+          "delta_pass_pts": 23.0,
+          "efficiency": 0.01760360256532678,
+          "tv_to_reference": 0.704093567251462,
+          "reference": "steer:dc:c=0 (HF)",
+          "pass_rate": 0.72
+        },
+        "enumerate": {
+          "n_correct_knob": 82,
+          "n_correct_ref": 177,
+          "n_min": 82,
+          "rarefy_to": 69,
+          "hill1_knob": 1.1214979894043937,
+          "hill1_ref": 1.2021658298379507,
+          "hill1_knob_rarefied": 1.1196875625866547,
+          "hill1_ref_rarefied": 1.2015467160850049,
+          "delta_hill_plugin": -0.08066784043355701,
+          "delta_hill_rarefied": -0.08185915349835016,
+          "ci90_plugin_cluster": [
+            -0.26834116748088066,
+            0.12475731501934342
+          ],
+          "ci90_plugin_sample": [
+            -0.2323554227905789,
+            0.06229851344081183
+          ],
+          "ci90_rarefied_cluster": [
+            -0.27208684276157574,
+            0.12885608401731474
+          ],
+          "ci90_rarefied_sample": [
+            -0.23287080934054089,
+            0.0654078579250814
+          ],
+          "delta_pass_pts": 6.500000000000005,
+          "efficiency": -0.01259371592282309,
+          "tv_to_reference": 0.02080749621055533,
+          "reference": "baseline (vLLM)",
+          "pass_rate": 0.82
+        },
+        "enumerate@1024": {
+          "n_correct_knob": 82,
+          "n_correct_ref": 177,
+          "n_min": 82,
+          "rarefy_to": 69,
+          "hill1_knob": 1.1214979894043937,
+          "hill1_ref": 1.2021658298379507,
+          "hill1_knob_rarefied": 1.1201550820964563,
+          "hill1_ref_rarefied": 1.1998300484856763,
+          "delta_hill_plugin": -0.08066784043355701,
+          "delta_hill_rarefied": -0.07967496638922,
+          "ci90_plugin_cluster": [
+            -0.27445283774484236,
+            0.12535266589432623
+          ],
+          "ci90_plugin_sample": [
+            -0.2393154307290679,
+            0.07183804596392067
+          ],
+          "ci90_rarefied_cluster": [
+            -0.2742645002933235,
+            0.11470611067305292
+          ],
+          "ci90_rarefied_sample": [
+            -0.2290633914383281,
+            0.07559376964955952
+          ],
+          "delta_pass_pts": 6.500000000000005,
+          "efficiency": -0.012257687136803067,
+          "tv_to_reference": 0.02080749621055533,
+          "reference": "baseline (vLLM)",
+          "pass_rate": 0.82
+        },
+        "ban:dijkstra": {
+          "n_correct_knob": 87,
+          "n_correct_ref": 177,
+          "n_min": 87,
+          "rarefy_to": 73,
+          "hill1_knob": 1.9840349340977428,
+          "hill1_ref": 1.2021658298379507,
+          "hill1_knob_rarefied": 1.9814640167475386,
+          "hill1_ref_rarefied": 1.1960057235562052,
+          "delta_hill_plugin": 0.7818691042597921,
+          "delta_hill_rarefied": 0.7854582931913334,
+          "ci90_plugin_cluster": [
+            0.6036761628831973,
+            0.893677277065712
+          ],
+          "ci90_plugin_sample": [
+            0.6579049955163978,
+            0.8797991020702008
+          ],
+          "ci90_rarefied_cluster": [
+            0.6017266865239581,
+            0.904292703217304
+          ],
+          "ci90_rarefied_sample": [
+            0.6596143689838287,
+            0.8823134801600816
+          ],
+          "delta_pass_pts": 1.5000000000000013,
+          "efficiency": 0.5236388621275552,
+          "tv_to_reference": 0.39158386908240794,
+          "reference": "baseline (vLLM)",
+          "pass_rate": 0.87
+        },
+        "mention:dijkstra": {
+          "n_correct_knob": 94,
+          "n_correct_ref": 177,
+          "n_min": 94,
+          "rarefy_to": 79,
+          "hill1_knob": 1.1084544531043852,
+          "hill1_ref": 1.2021658298379507,
+          "hill1_knob_rarefied": 1.1079158996919813,
+          "hill1_ref_rarefied": 1.197107971046243,
+          "delta_hill_plugin": -0.09371137673356555,
+          "delta_hill_rarefied": -0.08919207135426155,
+          "ci90_plugin_cluster": [
+            -0.2934572090113128,
+            0.12028108538445915
+          ],
+          "ci90_plugin_sample": [
+            -0.23430859126451442,
+            0.041567419090535164
+          ],
+          "ci90_rarefied_cluster": [
+            -0.28792964890164463,
+            0.12148361049344279
+          ],
+          "ci90_rarefied_sample": [
+            -0.239140806495988,
+            0.05364953768263652
+          ],
+          "delta_pass_pts": -5.499999999999994,
+          "efficiency": "free gain",
+          "tv_to_reference": 0.023921144368313496,
+          "reference": "baseline (vLLM)",
+          "pass_rate": 0.94
+        },
+        "succession:2": {
+          "n_correct_knob": 68,
+          "n_correct_ref": 177,
+          "n_min": 68,
+          "rarefy_to": 57,
+          "hill1_knob": 2.1371921562305145,
+          "hill1_ref": 1.2021658298379507,
+          "hill1_knob_rarefied": 2.126574609779019,
+          "hill1_ref_rarefied": 1.1995523306118347,
+          "delta_hill_plugin": 0.9350263263925638,
+          "delta_hill_rarefied": 0.9270222791671843,
+          "ci90_plugin_cluster": [
+            0.6613089092686678,
+            1.1796721832920707
+          ],
+          "ci90_plugin_sample": [
+            0.7139247598524018,
+            1.1206722717321729
+          ],
+          "ci90_rarefied_cluster": [
+            0.6562026447004088,
+            1.1746699974932786
+          ],
+          "ci90_rarefied_sample": [
+            0.7132500691926469,
+            1.1286620531489568
+          ],
+          "delta_pass_pts": 20.499999999999996,
+          "efficiency": 0.04522059898376509,
+          "tv_to_reference": 0.4695081422399468,
+          "reference": "baseline (vLLM)",
+          "pass_rate": 0.68
+        },
+        "steer_vs_vllm_baseline": {
+          "n_correct_knob": 78,
+          "n_correct_ref": 177,
+          "n_min": 78,
+          "rarefy_to": 66,
+          "hill1_knob": 1.9552844459421488,
+          "hill1_ref": 1.2021658298379507,
+          "hill1_knob_rarefied": 1.9482820648329033,
+          "hill1_ref_rarefied": 1.1990420500200534,
+          "delta_hill_plugin": 0.7531186161041981,
+          "delta_hill_rarefied": 0.74924001481285,
+          "ci90_plugin_cluster": [
+            0.4464611538039415,
+            1.0208998237990543
+          ],
+          "ci90_plugin_sample": [
+            0.5161203297531466,
+            0.9634576446940466
+          ],
+          "ci90_rarefied_cluster": [
+            0.4333648415957035,
+            1.015186370737539
+          ],
+          "ci90_rarefied_sample": [
+            0.5137418591187588,
+            0.9684434267393981
+          ],
+          "delta_pass_pts": 10.499999999999998,
+          "efficiency": 0.0713561918869381,
+          "tv_to_reference": 0.6599304650152107,
+          "pass_rate": 0.78,
+          "reference": "baseline (vLLM), cross-engine"
+        },
+        "_hill_price": {
+          "curve": [
+            [
+              0.0,
+              0.95,
+              1.3009129047889467
+            ],
+            [
+              0.25,
+              0.78,
+              1.9552844459421488
+            ],
+            [
+              0.375,
+              0.67,
+              1.9519964141288697
+            ]
+          ],
+          "hill2": {
+            "reached": true,
+            "c": 0.4021227983135885,
+            "pass_rate": 0.6049052840473877,
+            "pass_cost_pts": 34.50947159526122
+          },
+          "hill3": {
+            "reached": false,
+            "note": "not reached within the tested range"
+          }
+        }
+      }
+    },
+    "predict_row": {
+      "T1_ban1": {
+        "task": "T1",
+        "condition": "ban:bfs",
+        "n_samples": 100,
+        "n_compliant": 18,
+        "realised_counts": {
+          "dfs": 16,
+          "dijkstra_unit": 2
+        },
+        "realised_mode": "dfs",
+        "sha256_ok": true,
+        "forecasts": {
+          "dc": {
+            "mean_log_score": -1.6296406197516198,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": "degenerate",
+            "js_divergence": 0.21513092174707488,
+            "minus_freq_vllm": {
+              "mean": 0.0,
+              "ci90_sample": [
+                0.0,
+                0.0
+              ],
+              "ci90_cluster": [
+                0.0,
+                0.0
+              ]
+            },
+            "minus_freq_hf": {
+              "mean": 0.0,
+              "ci90_sample": [
+                0.0,
+                0.0
+              ],
+              "ci90_cluster": [
+                0.0,
+                0.0
+              ]
+            },
+            "minus_uniform": {
+              "mean": 0.0,
+              "ci90_sample": [
+                0.0,
+                0.0
+              ],
+              "ci90_cluster": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "dc_c=0.25": {
+            "mean_log_score": -1.6296406197516198,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": "degenerate",
+            "js_divergence": 0.21513092174707488
+          },
+          "dc_c=0.5": {
+            "mean_log_score": -1.6296406197516198,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": "degenerate",
+            "js_divergence": 0.21513092174707488
+          },
+          "dc_c=1": {
+            "mean_log_score": -1.6296406197516198,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": "degenerate",
+            "js_divergence": 0.21513092174707488
+          },
+          "dc_c=1.5": {
+            "mean_log_score": -1.6296406197516198,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": "degenerate",
+            "js_divergence": 0.21513092174707488
+          },
+          "freq_hf": {
+            "mean_log_score": -1.6296406197516198,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": null,
+            "js_divergence": 0.21513092174707488
+          },
+          "freq_vllm": {
+            "mean_log_score": -1.6296406197516198,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": null,
+            "js_divergence": 0.21513092174707488
+          },
+          "uniform": {
+            "mean_log_score": -1.6296406197516198,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": null,
+            "js_divergence": 0.21513092174707488
+          }
+        },
+        "committed_utc": "2026-10-19T16:26:17.678482+00:00",
+        "n_ban_rows_seen": 100,
+        "log_score_rank": [
+          "uniform",
+          "freq_vllm",
+          "freq_hf"
+        ]
+      },
+      "T2_ban1": {
+        "task": "T2",
+        "condition": "ban:dijkstra",
+        "n_samples": 100,
+        "n_compliant": 38,
+        "realised_counts": {
+          "bellman_ford_spfa": 38
+        },
+        "realised_mode": "bellman_ford_spfa",
+        "sha256_ok": true,
+        "forecasts": {
+          "dc": {
+            "mean_log_score": -0.0584239201377173,
+            "top1": "bellman_ford_spfa",
+            "top1_hit": true,
+            "flag": null,
+            "js_divergence": 0.0004645999275953573,
+            "minus_freq_vllm": {
+              "mean": 0.16022972590364043,
+              "ci90_sample": [
+                0.16022972590364043,
+                0.16022972590364043
+              ],
+              "ci90_cluster": [
+                0.16022972590364043,
+                0.16022972590364046
+              ]
+            },
+            "minus_freq_hf": {
+              "mean": 0.17972752161690794,
+              "ci90_sample": [
+                0.17972752161690794,
+                0.17972752161690794
+              ],
+              "ci90_cluster": [
+                0.17972752161690794,
+                0.179727521616908
+              ]
+            },
+            "minus_uniform": {
+              "mean": 1.3480731482996924,
+              "ci90_sample": [
+                1.3480731482996924,
+                1.3480731482996924
+              ],
+              "ci90_cluster": [
+                1.3480731482996924,
+                1.3480731482996928
+              ]
+            }
+          },
+          "dc_c=0.375": {
+            "mean_log_score": -0.0584239201377173,
+            "top1": "bellman_ford_spfa",
+            "top1_hit": true,
+            "flag": null,
+            "js_divergence": 0.0004645999275953573
+          },
+          "dc_c=0.5": {
+            "mean_log_score": -0.0584239201377173,
+            "top1": "bellman_ford_spfa",
+            "top1_hit": true,
+            "flag": null,
+            "js_divergence": 0.0004645999275953573
+          },
+          "dc_c=1": {
+            "mean_log_score": -1.40649706843741,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": "degenerate",
+            "js_divergence": 0.3049109346692326
+          },
+          "dc_c=1.5": {
+            "mean_log_score": -1.40649706843741,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": "degenerate",
+            "js_divergence": 0.3049109346692326
+          },
+          "freq_hf": {
+            "mean_log_score": -0.23815144175462538,
+            "top1": "bellman_ford_spfa",
+            "top1_hit": true,
+            "flag": null,
+            "js_divergence": 0.03294440887789818
+          },
+          "freq_vllm": {
+            "mean_log_score": -0.21865364604135773,
+            "top1": "bellman_ford_spfa",
+            "top1_hit": true,
+            "flag": null,
+            "js_divergence": 0.028269108706752005
+          },
+          "uniform": {
+            "mean_log_score": -1.40649706843741,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": null,
+            "js_divergence": 0.3049109346692326
+          }
+        },
+        "committed_utc": "2026-10-19T16:26:23.431497+00:00",
+        "n_ban_rows_seen": 100,
+        "log_score_rank": [
+          "dc_c=0.5",
+          "dc_c=0.375",
+          "dc"
+        ]
+      },
+      "T1_succ2": {
+        "task": "T1",
+        "condition": "succession:2",
+        "n_samples": 100,
+        "n_compliant": 16,
+        "realised_counts": {
+          "dijkstra_unit": 13,
+          "astar": 3
+        },
+        "realised_mode": "dijkstra_unit",
+        "sha256_ok": true,
+        "forecasts": {
+          "dc": {
+            "mean_log_score": -1.40649706843741,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": "degenerate",
+            "js_divergence": 0.16560380251886384,
+            "minus_freq_vllm": {
+              "mean": 0.0,
+              "ci90_sample": [
+                0.0,
+                0.0
+              ],
+              "ci90_cluster": [
+                0.0,
+                0.0
+              ]
+            },
+            "minus_freq_hf": {
+              "mean": 0.0,
+              "ci90_sample": [
+                0.0,
+                0.0
+              ],
+              "ci90_cluster": [
+                0.0,
+                0.0
+              ]
+            },
+            "minus_uniform": {
+              "mean": 0.0,
+              "ci90_sample": [
+                0.0,
+                0.0
+              ],
+              "ci90_cluster": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "dc_c=0.25": {
+            "mean_log_score": -1.40649706843741,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": "degenerate",
+            "js_divergence": 0.16560380251886384
+          },
+          "dc_c=0.5": {
+            "mean_log_score": -1.40649706843741,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": "degenerate",
+            "js_divergence": 0.16560380251886384
+          },
+          "dc_c=1": {
+            "mean_log_score": -1.40649706843741,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": "degenerate",
+            "js_divergence": 0.16560380251886384
+          },
+          "dc_c=1.5": {
+            "mean_log_score": -1.40649706843741,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": "degenerate",
+            "js_divergence": 0.16560380251886384
+          },
+          "freq_hf": {
+            "mean_log_score": -1.40649706843741,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": null,
+            "js_divergence": 0.16560380251886384
+          },
+          "freq_vllm": {
+            "mean_log_score": -1.40649706843741,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": null,
+            "js_divergence": 0.16560380251886384
+          },
+          "uniform": {
+            "mean_log_score": -1.40649706843741,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": null,
+            "js_divergence": 0.16560380251886384
+          }
+        },
+        "committed_utc": "2026-10-19T16:55:49.114093+00:00",
+        "n_ban_rows_seen": 100,
+        "log_score_rank": [
+          "uniform",
+          "freq_vllm",
+          "freq_hf"
+        ]
+      },
+      "T2_succ2": {
+        "task": "T2",
+        "condition": "succession:2",
+        "n_samples": 100,
+        "n_compliant": 1,
+        "realised_counts": {
+          "other": 1
+        },
+        "realised_mode": "no clear mode",
+        "sha256_ok": true,
+        "forecasts": {
+          "dc": {
+            "mean_log_score": -3.912023005428146,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": "degenerate",
+            "js_divergence": 0.17746377021158177,
+            "minus_freq_vllm": {
+              "mean": 0.0,
+              "ci90_sample": [
+                0.0,
+                0.0
+              ],
+              "ci90_cluster": [
+                0.0,
+                0.0
+              ]
+            },
+            "minus_freq_hf": {
+              "mean": 0.0,
+              "ci90_sample": [
+                0.0,
+                0.0
+              ],
+              "ci90_cluster": [
+                0.0,
+                0.0
+              ]
+            },
+            "minus_uniform": {
+              "mean": 0.0,
+              "ci90_sample": [
+                0.0,
+                0.0
+              ],
+              "ci90_cluster": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "dc_c=0.375": {
+            "mean_log_score": -3.912023005428146,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": "degenerate",
+            "js_divergence": 0.17746377021158177
+          },
+          "dc_c=0.5": {
+            "mean_log_score": -3.912023005428146,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": "degenerate",
+            "js_divergence": 0.17746377021158177
+          },
+          "dc_c=1": {
+            "mean_log_score": -3.912023005428146,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": "degenerate",
+            "js_divergence": 0.17746377021158177
+          },
+          "dc_c=1.5": {
+            "mean_log_score": -3.912023005428146,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": "degenerate",
+            "js_divergence": 0.17746377021158177
+          },
+          "freq_hf": {
+            "mean_log_score": -3.912023005428146,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": null,
+            "js_divergence": 0.17746377021158177
+          },
+          "freq_vllm": {
+            "mean_log_score": -3.912023005428146,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": null,
+            "js_divergence": 0.17746377021158177
+          },
+          "uniform": {
+            "mean_log_score": -3.912023005428146,
+            "top1": "tie",
+            "top1_hit": false,
+            "flag": null,
+            "js_divergence": 0.17746377021158177
+          }
+        },
+        "committed_utc": "2026-10-19T16:55:53.564728+00:00",
+        "n_ban_rows_seen": 100,
+        "log_score_rank": [
+          "uniform",
+          "freq_vllm",
+          "freq_hf"
+        ]
+      }
+    },
+    "commitment_test": {
+      "T1": {
+        "kappa": {
+          "baseline": -0.05426687002182007,
+          "enumerate": 0.4832015633583069,
+          "listall": 0.815748929977417,
+          "LIST": 1.0000001192092896,
+          "IMPLEMENT": 0.0,
+          "ONE": 0.6533702611923218,
+          "ban:bfs": 0.04020190238952637,
+          "mention:bfs": 0.0010189139284193516,
+          "ban:dfs": 0.02275087870657444,
+          "mention:dfs": -0.0005538348341360688,
+          "ban:bidirectional_bfs": 0.006549886893481016,
+          "mention:bidirectional_bfs": -0.0044537377543747425,
+          "ban:iddfs": 0.036393411457538605,
+          "mention:iddfs": 0.012368458323180676,
+          "ban:astar": 0.07252787798643112,
+          "mention:astar": 0.0037553070578724146,
+          "ban:dijkstra_unit": 0.051244474947452545,
+          "mention:dijkstra_unit": 0.009553688578307629
+        },
+        "positive_control": {
+          "enum_delta_kappa": 0.5437093377113342,
+          "null_band_95": [
+            -0.046994773858971835,
+            0.04665803899850525
+          ],
+          "ok": true
+        },
+        "ban": {
+          "bfs": {
+            "X": "bfs",
+            "proj": 0.6471842527389526,
+            "cos": 0.1276685744524002,
+            "share": 0.016299264505505562,
+            "delta_kappa": 0.039183003265953364,
+            "null_band_95": [
+              -0.02364007106930237,
+              0.022930194196520835
+            ],
+            "perm_p_two_sided": 0.0004997501249375312,
+            "null_cos_band_95": [
+              -0.2294333279132843,
+              0.22266744077205658
+            ],
+            "share_pct_vs_isotropic": 1.0,
+            "share_pct_vs_top50pc": 0.781,
+            "share_iso_q95": 0.0009114109561778605,
+            "share_pc_q95": 0.04535697400569916,
+            "kappa_ban": 0.04020190238952637,
+            "kappa_mention": 0.0010189139284193516,
+            "positive_control_ok": true,
+            "verdict": "de-commits",
+            "norm_sbar": 5.0692524909973145
+          },
+          "dfs": {
+            "X": "dfs",
+            "proj": 0.38492316007614136,
+            "cos": 0.0747697502374649,
+            "share": 0.005590515676885843,
+            "delta_kappa": 0.023304716353301277,
+            "null_band_95": [
+              -0.0263323901858979,
+              0.026797768755861956
+            ],
+            "perm_p_two_sided": 0.09695152423788106,
+            "null_cos_band_95": [
+              -0.253494530916214,
+              0.25629132986068726
+            ],
+            "share_pct_vs_isotropic": 1.0,
+            "share_pct_vs_top50pc": 0.497,
+            "share_iso_q95": 0.000923558312933892,
+            "share_pc_q95": 0.043895602226257324,
+            "kappa_ban": 0.02275087870657444,
+            "kappa_mention": -0.0005538348341360688,
+            "positive_control_ok": true,
+            "verdict": "intact",
+            "norm_sbar": 5.14811372756958
+          },
+          "bidirectional_bfs": {
+            "X": "bidirectional_bfs",
+            "proj": 0.1817464530467987,
+            "cos": 0.03847728669643402,
+            "share": 0.0014805016107857227,
+            "delta_kappa": 0.011003623517058319,
+            "null_band_95": [
+              -0.02366608171324209,
+              0.025179870453494863
+            ],
+            "perm_p_two_sided": 0.4052973513243378,
+            "null_cos_band_95": [
+              -0.22221389412879944,
+              0.23624412715435028
+            ],
+            "share_pct_vs_isotropic": 0.987,
+            "share_pct_vs_top50pc": 0.288,
+            "share_iso_q95": 0.0009251295705325902,
+            "share_pc_q95": 0.04097511246800423,
+            "kappa_ban": 0.006549886893481016,
+            "kappa_mention": -0.0044537377543747425,
+            "positive_control_ok": true,
+            "verdict": "intact",
+            "norm_sbar": 4.72347354888916
+          },
+          "iddfs": {
+            "X": "iddfs",
+            "proj": 0.3968193531036377,
+            "cos": 0.08673438429832458,
+            "share": 0.007522853557020426,
+            "delta_kappa": 0.02402495725575849,
+            "null_band_95": [
+              -0.027576894408775483,
+              0.02719487230626979
+            ],
+            "perm_p_two_sided": 0.08745627186406797,
+            "null_cos_band_95": [
+              -0.24905437231063843,
+              0.24865500628948212
+            ],
+            "share_pct_vs_isotropic": 1.0,
+            "share_pct_vs_top50pc": 0.586,
+            "share_iso_q95": 0.0011233137920498848,
+            "share_pc_q95": 0.045376989990472794,
+            "kappa_ban": 0.036393411457538605,
+            "kappa_mention": 0.012368458323180676,
+            "positive_control_ok": true,
+            "verdict": "intact",
+            "norm_sbar": 4.575109958648682
+          },
+          "astar": {
+            "X": "astar",
+            "proj": 1.1359142065048218,
+            "cos": 0.21946388483047485,
+            "share": 0.04816439747810364,
+            "delta_kappa": 0.06877257886754262,
+            "null_band_95": [
+              -0.026087920662403518,
+              0.02522780566390935
+            ],
+            "perm_p_two_sided": 0.0004997501249375312,
+            "null_cos_band_95": [
+              -0.24199140071868896,
+              0.23275218904018402
+            ],
+            "share_pct_vs_isotropic": 1.0,
+            "share_pct_vs_top50pc": 0.956,
+            "share_iso_q95": 0.0009851109934970737,
+            "share_pc_q95": 0.04530028998851776,
+            "kappa_ban": 0.07252787798643112,
+            "kappa_mention": 0.0037553070578724146,
+            "positive_control_ok": true,
+            "verdict": "de-commits",
+            "norm_sbar": 5.175859451293945
+          },
+          "dijkstra_unit": {
+            "X": "dijkstra_unit",
+            "proj": 0.6886053085327148,
+            "cos": 0.14557898044586182,
+            "share": 0.021193239837884903,
+            "delta_kappa": 0.041690791979256424,
+            "null_band_95": [
+              -0.023476281581328497,
+              0.0249931961259588
+            ],
+            "perm_p_two_sided": 0.0004997501249375312,
+            "null_cos_band_95": [
+              -0.24655607342720032,
+              0.24856036901474
+            ],
+            "share_pct_vs_isotropic": 1.0,
+            "share_pct_vs_top50pc": 0.817,
+            "share_iso_q95": 0.0009913319954648614,
+            "share_pc_q95": 0.04215117171406746,
+            "kappa_ban": 0.051244474947452545,
+            "kappa_mention": 0.009553688578307629,
+            "positive_control_ok": true,
+            "verdict": "de-commits",
+            "norm_sbar": 4.730114936828613
+          }
+        }
+      },
+      "T2": {
+        "kappa": {
+          "baseline": -0.07520927488803864,
+          "enumerate": 0.495286762714386,
+          "listall": 0.8055356740951538,
+          "LIST": 1.0,
+          "IMPLEMENT": 0.0,
+          "ONE": 0.649924635887146,
+          "ban:dijkstra": 0.034994255751371384,
+          "mention:dijkstra": -0.01766957715153694,
+          "ban:bellman_ford_spfa": 0.046616848558187485,
+          "mention:bellman_ford_spfa": -0.018365906551480293,
+          "ban:bidirectional_dijkstra": 0.01656428724527359,
+          "mention:bidirectional_dijkstra": 0.0009241424850188196,
+          "ban:floyd_warshall": 0.029897643253207207,
+          "mention:floyd_warshall": -0.013033246621489525,
+          "ban:dial": 0.05223352089524269,
+          "mention:dial": -0.0023110636975616217
+        },
+        "positive_control": {
+          "enum_delta_kappa": 0.5817349553108215,
+          "null_band_95": [
+            -0.04807164595958561,
+            0.047671531083933086
+          ],
+          "ok": true
+        },
+        "ban": {
+          "dijkstra": {
+            "X": "dijkstra",
+            "proj": 0.7939252257347107,
+            "cos": 0.16877461969852448,
+            "share": 0.028484871610999107,
+            "delta_kappa": 0.05266384787073791,
+            "null_band_95": [
+              -0.0249069853210499,
+              0.024763488611611487
+            ],
+            "perm_p_two_sided": 0.0004997501249375312,
+            "null_cos_band_95": [
+              -0.24071624875068665,
+              0.23452390730381012
+            ],
+            "share_pct_vs_isotropic": 1.0,
+            "share_pct_vs_top50pc": 0.87,
+            "share_iso_q95": 0.0009702695533633232,
+            "share_pc_q95": 0.04743250831961632,
+            "kappa_ban": 0.034994255751371384,
+            "kappa_mention": -0.01766957715153694,
+            "positive_control_ok": true,
+            "verdict": "de-commits",
+            "norm_sbar": 4.7040557861328125
+          },
+          "bellman_ford_spfa": {
+            "X": "bellman_ford_spfa",
+            "proj": 0.9796369075775146,
+            "cos": 0.1947517693042755,
+            "share": 0.037928253412246704,
+            "delta_kappa": 0.06498275580232236,
+            "null_band_95": [
+              -0.022830663927231116,
+              0.023465209709408755
+            ],
+            "perm_p_two_sided": 0.0004997501249375312,
+            "null_cos_band_95": [
+              -0.19824303686618805,
+              0.20194284617900848
+            ],
+            "share_pct_vs_isotropic": 1.0,
+            "share_pct_vs_top50pc": 0.926,
+            "share_iso_q95": 0.0009458971908316016,
+            "share_pc_q95": 0.04272276908159256,
+            "kappa_ban": 0.046616848558187485,
+            "kappa_mention": -0.018365906551480293,
+            "positive_control_ok": true,
+            "verdict": "de-commits",
+            "norm_sbar": 5.030182361602783
+          },
+          "bidirectional_dijkstra": {
+            "X": "bidirectional_dijkstra",
+            "proj": 0.23578046262264252,
+            "cos": 0.05419242009520531,
+            "share": 0.002936818404123187,
+            "delta_kappa": 0.015640145963317982,
+            "null_band_95": [
+              -0.024402359888363447,
+              0.022954098635463254
+            ],
+            "perm_p_two_sided": 0.22038980509745126,
+            "null_cos_band_95": [
+              -0.23604674637317657,
+              0.22733773291110992
+            ],
+            "share_pct_vs_isotropic": 1.0,
+            "share_pct_vs_top50pc": 0.343,
+            "share_iso_q95": 0.0009654961759224534,
+            "share_pc_q95": 0.04512621462345123,
+            "kappa_ban": 0.01656428724527359,
+            "kappa_mention": 0.0009241424850188196,
+            "positive_control_ok": true,
+            "verdict": "intact",
+            "norm_sbar": 4.350801467895508
+          },
+          "floyd_warshall": {
+            "X": "floyd_warshall",
+            "proj": 0.6471976041793823,
+            "cos": 0.1313226968050003,
+            "share": 0.01724565029144287,
+            "delta_kappa": 0.04293088953971359,
+            "null_band_95": [
+              -0.027987226147777565,
+              0.02805516270744084
+            ],
+            "perm_p_two_sided": 0.001999000499750125,
+            "null_cos_band_95": [
+              -0.24302217364311218,
+              0.2457038015127182
+            ],
+            "share_pct_vs_isotropic": 1.0,
+            "share_pct_vs_top50pc": 0.755,
+            "share_iso_q95": 0.0009153364226222038,
+            "share_pc_q95": 0.04903703182935715,
+            "kappa_ban": 0.029897643253207207,
+            "kappa_mention": -0.013033246621489525,
+            "positive_control_ok": true,
+            "verdict": "de-commits",
+            "norm_sbar": 4.928299427032471
+          },
+          "dial": {
+            "X": "dial",
+            "proj": 0.8222780823707581,
+            "cos": 0.1680872142314911,
+            "share": 0.028253311291337013,
+            "delta_kappa": 0.05454459240458219,
+            "null_band_95": [
+              -0.027007047219141433,
+              0.027058884953211848
+            ],
+            "perm_p_two_sided": 0.0004997501249375312,
+            "null_cos_band_95": [
+              -0.253717303276062,
+              0.25385740399360657
+            ],
+            "share_pct_vs_isotropic": 1.0,
+            "share_pct_vs_top50pc": 0.873,
+            "share_iso_q95": 0.0009437774424441159,
+            "share_pc_q95": 0.0480235330760479,
+            "kappa_ban": 0.05223352089524269,
+            "kappa_mention": -0.0023110636975616217,
+            "positive_control_ok": true,
+            "verdict": "de-commits",
+            "norm_sbar": 4.89197301864624
+          }
+        }
+      }
+    },
+    "engine_check": {
+      "T1": {
+        "labels": [
+          "bfs"
+        ],
+        "vllm_counts": [
+          200
+        ],
+        "hf_counts": [
+          100
+        ],
+        "test": {
+          "test": "degenerate",
+          "p": 1.0
+        },
+        "pass_vllm": 1.0,
+        "pass_hf": 1.0,
+        "pass_diff_ci90": [
+          0.0,
+          0.0
+        ],
+        "tv": 0.0,
+        "pass": true
+      },
+      "T2": {
+        "labels": [
+          "bellman_ford_spfa",
+          "dijkstra"
+        ],
+        "vllm_counts": [
+          8,
+          169
+        ],
+        "hf_counts": [
+          7,
+          88
+        ],
+        "test": {
+          "test": "fisher_exact",
+          "p": 0.4045100193343548
+        },
+        "pass_vllm": 0.885,
+        "pass_hf": 0.95,
+        "pass_diff_ci90": [
+          -0.14,
+          0.010000000000000009
+        ],
+        "tv": 0.028486470413321426,
+        "pass": true
+      }
+    },
+    "flips": {
+      "T1|steer:breadth:c=0.1:L=18": {
+        "n_matched": 100,
+        "flip_rate": 0.0,
+        "flip_away_from_mode_rate": 0.0,
+        "flip_into_no_code_rate": 0.0,
+        "flip_ci95": [
+          0.0,
+          0.03699349876899627
+        ]
+      },
+      "T1|steer:dc:c=0.1:L=18": {
+        "n_matched": 100,
+        "flip_rate": 0.0,
+        "flip_away_from_mode_rate": 0.0,
+        "flip_into_no_code_rate": 0.0,
+        "flip_ci95": [
+          0.0,
+          0.03699349876899627
+        ]
+      },
+      "T1|steer:dc:c=0.25:L=18": {
+        "n_matched": 100,
+        "flip_rate": 0.03,
+        "flip_away_from_mode_rate": 0.03,
+        "flip_into_no_code_rate": 0.0,
+        "flip_ci95": [
+          0.010254523944281516,
+          0.08451936489857499
+        ]
+      },
+      "T1|steer:dc:c=0.5:L=18": {
+        "n_matched": 100,
+        "flip_rate": 0.16,
+        "flip_away_from_mode_rate": 0.16,
+        "flip_into_no_code_rate": 0.0,
+        "flip_ci95": [
+          0.10095288451828571,
+          0.2442026946446318
+        ]
+      },
+      "T1|steer:dc:c=1:L=14": {
+        "n_matched": 10,
+        "flip_rate": 0.9,
+        "flip_away_from_mode_rate": 0.9,
+        "flip_into_no_code_rate": 0.0,
+        "flip_ci95": [
+          0.5958499704752279,
+          0.982123787103926
+        ]
+      },
+      "T1|steer:dc:c=1:L=18": {
+        "n_matched": 100,
+        "flip_rate": 1.0,
+        "flip_away_from_mode_rate": 1.0,
+        "flip_into_no_code_rate": 0.92,
+        "flip_ci95": [
+          0.9630065012310038,
+          1.0
+        ]
+      },
+      "T1|steer:dc:c=1:L=22": {
+        "n_matched": 10,
+        "flip_rate": 1.0,
+        "flip_away_from_mode_rate": 1.0,
+        "flip_into_no_code_rate": 0.2,
+        "flip_ci95": [
+          0.7224671969739421,
+          0.9999999999999999
+        ]
+      },
+      "T1|steer:dc:c=1.5:L=18": {
+        "n_matched": 100,
+        "flip_rate": 1.0,
+        "flip_away_from_mode_rate": 1.0,
+        "flip_into_no_code_rate": 1.0,
+        "flip_ci95": [
+          0.9630065012310038,
+          1.0
+        ]
+      },
+      "T1|steer:dcxfer:c=0.1:L=18": {
+        "n_matched": 50,
+        "flip_rate": 0.0,
+        "flip_away_from_mode_rate": 0.0,
+        "flip_into_no_code_rate": 0.0,
+        "flip_ci95": [
+          0.0,
+          0.07134760017861413
+        ]
+      },
+      "T1|steer:placebo:c=0.1:L=18": {
+        "n_matched": 100,
+        "flip_rate": 0.0,
+        "flip_away_from_mode_rate": 0.0,
+        "flip_into_no_code_rate": 0.0,
+        "flip_ci95": [
+          0.0,
+          0.03699349876899627
+        ]
+      },
+      "T1|steer:rand1:c=0.1:L=18": {
+        "n_matched": 100,
+        "flip_rate": 0.0,
+        "flip_away_from_mode_rate": 0.0,
+        "flip_into_no_code_rate": 0.0,
+        "flip_ci95": [
+          0.0,
+          0.03699349876899627
+        ]
+      },
+      "T1|steer:rand2:c=0.1:L=18": {
+        "n_matched": 100,
+        "flip_rate": 0.0,
+        "flip_away_from_mode_rate": 0.0,
+        "flip_into_no_code_rate": 0.0,
+        "flip_ci95": [
+          0.0,
+          0.03699349876899627
+        ]
+      },
+      "T2|steer:breadth:c=0.25:L=18": {
+        "n_matched": 100,
+        "flip_rate": 0.59,
+        "flip_away_from_mode_rate": 0.51,
+        "flip_into_no_code_rate": 0.0,
+        "flip_ci95": [
+          0.49201429976362127,
+          0.6813268704579594
+        ]
+      },
+      "T2|steer:dc:c=0.25:L=18": {
+        "n_matched": 100,
+        "flip_rate": 0.66,
+        "flip_away_from_mode_rate": 0.62,
+        "flip_into_no_code_rate": 0.0,
+        "flip_ci95": [
+          0.56277728776086,
+          0.7453847926330613
+        ]
+      },
+      "T2|steer:dc:c=0.375:L=18": {
+        "n_matched": 100,
+        "flip_rate": 0.78,
+        "flip_away_from_mode_rate": 0.71,
+        "flip_into_no_code_rate": 0.0,
+        "flip_ci95": [
+          0.6892964640723263,
+          0.8499871766170359
+        ]
+      },
+      "T2|steer:dc:c=0.5:L=18": {
+        "n_matched": 100,
+        "flip_rate": 0.6,
+        "flip_away_from_mode_rate": 0.51,
+        "flip_into_no_code_rate": 0.0,
+        "flip_ci95": [
+          0.5020025860174634,
+          0.6905987142287374
+        ]
+      },
+      "T2|steer:dc:c=1:L=14": {
+        "n_matched": 10,
+        "flip_rate": 1.0,
+        "flip_away_from_mode_rate": 0.7,
+        "flip_into_no_code_rate": 0.0,
+        "flip_ci95": [
+          0.7224671969739421,
+          0.9999999999999999
+        ]
+      },
+      "T2|steer:dc:c=1:L=18": {
+        "n_matched": 100,
+        "flip_rate": 1.0,
+        "flip_away_from_mode_rate": 0.9,
+        "flip_into_no_code_rate": 0.7,
+        "flip_ci95": [
+          0.9630065012310038,
+          1.0
+        ]
+      },
+      "T2|steer:dc:c=1:L=22": {
+        "n_matched": 10,
+        "flip_rate": 1.0,
+        "flip_away_from_mode_rate": 0.7,
+        "flip_into_no_code_rate": 0.1,
+        "flip_ci95": [
+          0.7224671969739421,
+          0.9999999999999999
+        ]
+      },
+      "T2|steer:dc:c=1.5:L=18": {
+        "n_matched": 100,
+        "flip_rate": 1.0,
+        "flip_away_from_mode_rate": 0.9,
+        "flip_into_no_code_rate": 1.0,
+        "flip_ci95": [
+          0.9630065012310038,
+          1.0
+        ]
+      },
+      "T2|steer:dcxfer:c=0.25:L=18": {
+        "n_matched": 50,
+        "flip_rate": 0.76,
+        "flip_away_from_mode_rate": 0.68,
+        "flip_into_no_code_rate": 0.0,
+        "flip_ci95": [
+          0.6258731612803865,
+          0.8570260866267341
+        ]
+      },
+      "T2|steer:placebo:c=0.25:L=18": {
+        "n_matched": 100,
+        "flip_rate": 0.22,
+        "flip_away_from_mode_rate": 0.13,
+        "flip_into_no_code_rate": 0.0,
+        "flip_ci95": [
+          0.15001282338296418,
+          0.3107035359276738
+        ]
+      },
+      "T2|steer:rand1:c=0.25:L=18": {
+        "n_matched": 100,
+        "flip_rate": 0.42,
+        "flip_away_from_mode_rate": 0.36,
+        "flip_into_no_code_rate": 0.0,
+        "flip_ci95": [
+          0.3279838260663658,
+          0.5179351337366737
+        ]
+      },
+      "T2|steer:rand2:c=0.25:L=18": {
+        "n_matched": 100,
+        "flip_rate": 0.18,
+        "flip_away_from_mode_rate": 0.09,
+        "flip_into_no_code_rate": 0.0,
+        "flip_ci95": [
+          0.11700225458662546,
+          0.2666735846255322
+        ]
+      }
+    },
+    "dose_response": {
+      "T1": {
+        "modal_mode_c0": "bfs",
+        "correct_and_off_mode": {
+          "slope": null,
+          "se": null,
+          "p": null,
+          "note": "outcome constant"
+        },
+        "passed": {
+          "intercept": 5.139262305578006,
+          "slope": -18.788237494336002,
+          "se": 2.36319983727302,
+          "p": 1.8600331004664513e-15,
+          "ci95": [
+            -23.420024063662037,
+            -14.156450925009967
+          ]
+        },
+        "n": 600,
+        "restricted_c_le_cstar": {
+          "correct_and_off_mode": {
+            "slope": null,
+            "se": null,
+            "p": null,
+            "note": "outcome constant"
+          },
+          "passed": {
+            "intercept": 24.566068525145266,
+            "slope": -206.7424822703466,
+            "se": NaN,
+            "p": NaN,
+            "ci95": [
+              NaN,
+              NaN
+            ]
+          },
+          "n": 200
+        },
+        "off_mode_rate_by_c": {
+          "0": 0.0,
+          "0.1": 0.0,
+          "0.25": 0.0,
+          "0.5": 0.0,
+          "1": 0.0,
+          "1.5": 0.0
+        }
+      },
+      "T2": {
+        "modal_mode_c0": "dijkstra",
+        "correct_and_off_mode": {
+          "intercept": -0.404085107368662,
+          "slope": -2.0648260828822327,
+          "se": 0.13945362980643014,
+          "p": 1.3290303943932062e-49,
+          "ci95": [
+            -2.3381501748162172,
+            -1.7915019909482481
+          ]
+        },
+        "passed": {
+          "intercept": 3.3371289102919315,
+          "slope": -7.691130170338912,
+          "se": 0.8074532657537987,
+          "p": 1.6477093778748495e-21,
+          "ci95": [
+            -9.273709490415607,
+            -6.108550850262217
+          ]
+        },
+        "n": 600,
+        "restricted_c_le_cstar": {
+          "correct_and_off_mode": {
+            "intercept": -2.5866893440900673,
+            "slope": 11.149440158208897,
+            "se": 2.0536275288525925,
+            "p": 5.66248931510763e-08,
+            "ci95": [
+              7.124404163997825,
+              15.174476152419968
+            ]
+          },
+          "passed": {
+            "intercept": 2.9444389791664407,
+            "slope": -6.71509042334066,
+            "se": 2.065787507231951,
+            "p": 0.001151536134725557,
+            "ci95": [
+              -10.763959537228061,
+              -2.6662213094532596
+            ]
+          },
+          "n": 200
+        },
+        "off_mode_rate_by_c": {
+          "0": 0.07,
+          "0.25": 0.55,
+          "0.375": 0.48,
+          "0.5": 0.12,
+          "1": 0.0,
+          "1.5": 0.0
+        }
+      }
+    },
+    "move_vs_flatten": {
+      "T1": {
+        "ban:bfs": {
+          "tv": 0.28125,
+          "delta_hill_rarefied": 0.9924487375490414,
+          "ci90": [
+            0.5540356939915687,
+            1.3384760231090147
+          ],
+          "realised_mode": "bfs",
+          "moves": false,
+          "flattens": true
+        },
+        "steer:dc:c=0.1:L=18": {
+          "tv": 0.0,
+          "delta_hill_rarefied": 0.0,
+          "ci90": [
+            0.0,
+            0.0
+          ],
+          "realised_mode": "bfs",
+          "moves": false,
+          "flattens": false
+        },
+        "enumerate": {
+          "tv": 0.0,
+          "delta_hill_rarefied": 0.0,
+          "ci90": [
+            0.0,
+            0.0
+          ],
+          "realised_mode": "bfs",
+          "moves": false,
+          "flattens": false
+        }
+      },
+      "T2": {
+        "ban:dijkstra": {
+          "tv": 0.39158386908240794,
+          "delta_hill_rarefied": 0.7854582931913334,
+          "ci90": [
+            0.6017266865239581,
+            0.904292703217304
+          ],
+          "realised_mode": "dijkstra",
+          "moves": false,
+          "flattens": true
+        },
+        "steer:dc:c=0.25:L=18": {
+          "tv": 0.6314439946018893,
+          "delta_hill_rarefied": 0.6501735838376308,
+          "ci90": [
+            0.3071108791424448,
+            0.9666887203527222
+          ],
+          "realised_mode": "bellman_ford_spfa",
+          "moves": false,
+          "flattens": true
+        },
+        "enumerate": {
+          "tv": 0.02080749621055533,
+          "delta_hill_rarefied": -0.08185915349835016,
+          "ci90": [
+            -0.27208684276157574,
+            0.12885608401731474
+          ],
+          "realised_mode": "dijkstra",
+          "moves": false,
+          "flattens": false
+        }
+      }
+    },
+    "screen_verdict": {
+      "rules": {
+        "S_flat": "rarefied hill1_cc(dc at c*_t) - hill1_cc(HF c=0) has a paraphrase-cluster bootstrap 90% CI above 0 on both tasks ('partial' if on one); c*_t must be correctness-preserving (pass >= 0.8 x pass(c=0)).",
+        "S_specific": "that gain exceeds each random direction's gain at c*_t (paired cluster-bootstrap 90% CI of rarefied hill1(dc) - hill1(rand_k) above 0, k=1,2), and also the placebo's when E1 ran.",
+        "S_vs_prompt": "dc at c*_t against enumerate and ban:X_t (efficiency = delta_hill/delta_pass_pts, CIs); 'best knob' only if the 90% CIs separate.",
+        "S_commit": "commitment-test verdict for the modal X on each task (intact / de-commits / commits / uninformative).",
+        "PREDICT": "log-score ranks and top-1 hits of the hash-committed forecasts, reported as a forecast record with no threshold.",
+        "overall": "ADVANCE if S_flat and S_specific hold on >= 1 task with the same sign (point estimate of delta_hill > 0) on the other; PARTIAL if S_flat holds without S_specific; DROP if S_flat fails at every correct...",
+        "c_star": "largest c in {0.25,0.5,1.0,1.5} plus at most one pre-registered bisection point with pass_rate(c) >= 0.8 x pass_rate(HF c=0); chosen on pass rate only, blind to diversity.",
+        "bisection": "if pass(0.25) < 0.8 pass(0): add c=0.1; else add the midpoint between c* and the next grid point when the pass rate crosses the threshold there.",
+        "engine_check": "vLLM baseline vs HF c=0 correct-label distributions: pass if TV < 0.15 and exact/Monte-Carlo p > 0.05; otherwise steering-vs-prompt comparisons use HF c=0 and are flagged.",
+        "decisions_use": "paraphrase-cluster bootstrap (2000 resamples, 90%); sample bootstrap reported alongside.",
+        "move_vs_flatten": "'moves' := realised mode != X and the cluster CI of delta_hill includes 0 or lies below 0.5; 'flattens' := the CI of delta_hill lies above 0."
+      },
+      "per_task": {
+        "T1": {
+          "X": "bfs",
+          "c_star": 0.1,
+          "c_star_flag": null,
+          "correctness_preserving_c": [
+            0.1
+          ],
+          "S_flat": false,
+          "S_flat_any_preserving_c": false,
+          "S_flat_ci90": [
+            0.0,
+            0.0
+          ],
+          "delta_hill_rarefied": 0.0,
+          "S_specific": false,
+          "specificity": {
+            "rand1": {
+              "ci90": [
+                0.0,
+                0.0
+              ],
+              "n_boot": 2000,
+              "p_le_0": 1.0,
+              "point": 0.0,
+              "n_min": 98,
+              "rarefy_to": 83
+            },
+            "rand2": {
+              "ci90": [
+                0.0,
+                0.0
+              ],
+              "n_boot": 2000,
+              "p_le_0": 1.0,
+              "point": 0.0,
+              "n_min": 98,
+              "rarefy_to": 83
+            },
+            "placebo": {
+              "ci90": [
+                0.0,
+                0.0
+              ],
+              "n_boot": 2000,
+              "p_le_0": 1.0,
+              "point": 0.0,
+              "n_min": 98,
+              "rarefy_to": 83
+            }
+          },
+          "S_vs_prompt": {
+            "enumerate": {
+              "dc_efficiency": 0.0,
+              "prompt_efficiency": "free gain",
+              "dc_delta_hill_rarefied": 0.0,
+              "dc_ci90": [
+                0.0,
+                0.0
+              ],
+              "prompt_delta_hill_rarefied": 0.0,
+              "prompt_ci90": [
+                0.0,
+                0.0
+              ],
+              "best_knob": "not separated"
+            },
+            "ban:bfs": {
+              "dc_efficiency": 0.0,
+              "prompt_efficiency": 0.027568020487473373,
+              "dc_delta_hill_rarefied": 0.0,
+              "dc_ci90": [
+                0.0,
+                0.0
+              ],
+              "prompt_delta_hill_rarefied": 0.9924487375490414,
+              "prompt_ci90": [
+                0.5540356939915687,
+                1.3384760231090147
+              ],
+              "best_knob": "ban:bfs"
+            }
+          },
+          "S_commit": "de-commits"
+        },
+        "T2": {
+          "X": "dijkstra",
+          "c_star": 0.25,
+          "c_star_flag": null,
+          "correctness_preserving_c": [
+            0.25
+          ],
+          "S_flat": true,
+          "S_flat_any_preserving_c": true,
+          "S_flat_ci90": [
+            0.3071108791424448,
+            0.9666887203527222
+          ],
+          "delta_hill_rarefied": 0.6501735838376308,
+          "S_specific": false,
+          "specificity": {
+            "rand1": {
+              "ci90": [
+                -0.2570884091711825,
+                0.39338032843847115
+              ],
+              "n_boot": 1952,
+              "p_le_0": 0.3790983606557377,
+              "point": 0.06743243250044406,
+              "n_min": 78,
+              "rarefy_to": 66
+            },
+            "rand2": {
+              "ci90": [
+                0.37542056351599906,
+                1.013889103865979
+              ],
+              "n_boot": 1970,
+              "p_le_0": 0.0,
+              "point": 0.7040779868383304,
+              "n_min": 78,
+              "rarefy_to": 66
+            },
+            "placebo": {
+              "ci90": [
+                0.012648312407205533,
+                0.8433233367187929
+              ],
+              "n_boot": 1943,
+              "p_le_0": 0.04580545548121462,
+              "point": 0.46556991514248525,
+              "n_min": 66,
+              "rarefy_to": 56
+            }
+          },
+          "S_vs_prompt": {
+            "enumerate": {
+              "dc_efficiency": 0.03824550493162536,
+              "prompt_efficiency": -0.01259371592282309,
+              "dc_delta_hill_rarefied": 0.6501735838376308,
+              "dc_ci90": [
+                0.3071108791424448,
+                0.9666887203527222
+              ],
+              "prompt_delta_hill_rarefied": -0.08185915349835016,
+              "prompt_ci90": [
+                -0.27208684276157574,
+                0.12885608401731474
+              ],
+              "best_knob": "dc"
+            },
+            "ban:dijkstra": {
+              "dc_efficiency": 0.03824550493162536,
+              "prompt_efficiency": 0.5236388621275552,
+              "dc_delta_hill_rarefied": 0.6501735838376308,
+              "dc_ci90": [
+                0.3071108791424448,
+                0.9666887203527222
+              ],
+              "prompt_delta_hill_rarefied": 0.7854582931913334,
+              "prompt_ci90": [
+                0.6017266865239581,
+                0.904292703217304
+              ],
+              "best_knob": "not separated"
+            }
+          },
+          "S_commit": "de-commits"
+        }
+      },
+      "S_flat_tasks": [
+        "T2"
+      ],
+      "S_flat_status": "partial",
+      "tasks_with_correctness_preserving_c": [
+        "T1",
+        "T2"
+      ],
+      "overall": "PARTIAL",
+      "predict_summary": {
+        "T1_ban1": {
+          "rank": [
+            "uniform",
+            "freq_vllm",
+            "freq_hf"
+          ],
+          "realised": "dfs",
+          "dc_top1": "tie",
+          "dc_top1_hit": false,
+          "dc_flag": "degenerate",
+          "n_compliant": 18
+        },
+        "T2_ban1": {
+          "rank": [
+            "dc_c=0.5",
+            "dc_c=0.375",
+            "dc"
+          ],
+          "realised": "bellman_ford_spfa",
+          "dc_top1": "bellman_ford_spfa",
+          "dc_top1_hit": true,
+          "dc_flag": null,
+          "n_compliant": 38
+        },
+        "T1_succ2": {
+          "rank": [
+            "uniform",
+            "freq_vllm",
+            "freq_hf"
+          ],
+          "realised": "dijkstra_unit",
+          "dc_top1": "tie",
+          "dc_top1_hit": false,
+          "dc_flag": "degenerate",
+          "n_compliant": 16
+        },
+        "T2_succ2": {
+          "rank": [
+            "uniform",
+            "freq_vllm",
+            "freq_hf"
+          ],
+          "realised": "no clear mode",
+          "dc_top1": "tie",
+          "dc_top1_hit": false,
+          "dc_flag": "degenerate",
+          "n_compliant": 1
+        }
+      }
+    },
+    "preregistration": {
+      "written_utc": "2026-10-19T15:54:32.021095+00:00",
+      "note": "written before analysis/analyze.py was first run on any full arm; the c* grid search and bisection had been decided by gpu/hf_steer.py on pass rate only",
+      "rules": {
+        "S_flat": "rarefied hill1_cc(dc at c*_t) - hill1_cc(HF c=0) has a paraphrase-cluster bootstrap 90% CI above 0 on both tasks ('partial' if on one); c*_t must be correctness-preserving (pass >= 0.8 x pass(c=0)).",
+        "S_specific": "that gain exceeds each random direction's gain at c*_t (paired cluster-bootstrap 90% CI of rarefied hill1(dc) - hill1(rand_k) above 0, k=1,2), and also the placebo's when E1 ran.",
+        "S_vs_prompt": "dc at c*_t against enumerate and ban:X_t (efficiency = delta_hill/delta_pass_pts, CIs); 'best knob' only if the 90% CIs separate.",
+        "S_commit": "commitment-test verdict for the modal X on each task (intact / de-commits / commits / uninformative).",
+        "PREDICT": "log-score ranks and top-1 hits of the hash-committed forecasts, reported as a forecast record with no threshold.",
+        "overall": "ADVANCE if S_flat and S_specific hold on >= 1 task with the same sign (point estimate of delta_hill > 0) on the other; PARTIAL if S_flat holds without S_specific; DROP if S_flat fails at every correct...",
+        "c_star": "largest c in {0.25,0.5,1.0,1.5} plus at most one pre-registered bisection point with pass_rate(c) >= 0.8 x pass_rate(HF c=0); chosen on pass rate only, blind to diversity.",
+        "bisection": "if pass(0.25) < 0.8 pass(0): add c=0.1; else add the midpoint between c* and the next grid point when the pass rate crosses the threshold there.",
+        "engine_check": "vLLM baseline vs HF c=0 correct-label distributions: pass if TV < 0.15 and exact/Monte-Carlo p > 0.05; otherwise steering-vs-prompt comparisons use HF c=0 and are flagged.",
+        "decisions_use": "paraphrase-cluster bootstrap (2000 resamples, 90%); sample bootstrap reported alongside.",
+        "move_vs_flatten": "'moves' := realised mode != X and the cluster CI of delta_hill includes 0 or lies below 0.5; 'flattens' := the CI of delta_hill lies above 0."
+      }
+    },
+    "audit": {
+      "rederivation": {
+        "T2_c0": {
+          "n": 100,
+          "pass": 0.95,
+          "counts": {
+            "bellman_ford_spfa": 7,
+            "dijkstra": 88
+          },
+          "hill1": 1.3009129047889467
+        },
+        "T2_dc_c0.25": {
+          "n": 100,
+          "pass": 0.78,
+          "counts": {
+            "bellman_ford_spfa": 54,
+            "dijkstra": 23,
+            "other": 1
+          },
+          "hill1": 1.9552844459421488
+        },
+        "T2_rand1": {
+          "n": 100,
+          "pass": 0.79,
+          "counts": {
+            "bellman_ford_spfa": 26,
+            "dijkstra": 53
+          },
+          "hill1": 1.8842867242114847
+        },
+        "T2_ban": {
+          "n": 100,
+          "pass": 0.87,
+          "counts": {
+            "bellman_ford_spfa": 38,
+            "dijkstra": 49
+          },
+          "hill1": 1.9840349340977428
+        },
+        "T2_baseline": {
+          "n": 200,
+          "pass": 0.885,
+          "counts": {
+            "bellman_ford_spfa": 8,
+            "dijkstra": 169
+          },
+          "hill1": 1.2021658298379507
+        },
+        "T1_baseline": {
+          "n": 200,
+          "pass": 1.0,
+          "counts": {
+            "bfs": 200
+          },
+          "hill1": 1.0
+        },
+        "T1_c0": {
+          "n": 100,
+          "pass": 1.0,
+          "counts": {
+            "bfs": 100
+          },
+          "hill1": 1.0
+        },
+        "T1_dc_c0.1": {
+          "n": 100,
+          "pass": 0.98,
+          "counts": {
+            "bfs": 98
+          },
+          "hill1": 1.0
+        },
+        "T1_dc_c0.25": {
+          "n": 100,
+          "pass": 0.57,
+          "counts": {
+            "bfs": 57
+          },
+          "hill1": 1.0
+        },
+        "T2_delta_dc_vs_c0": {
+          "rarefy_to": 66,
+          "point": 0.6510635787361911,
+          "ci90_cluster": [
+            0.31828813045897925,
+            0.9839819627683983
+          ],
+          "n_boot_valid": 1984,
+          "shuffled_ci90": [
+            [
+              -0.24721862624099558,
+              0.284573325327233
+            ],
+            [
+              -0.20364073099576818,
+              0.26158020433612983
+            ],
+            [
+              -0.19527138045014356,
+              0.3751316143349849
+            ]
+          ],
+          "shuffled_excludes_zero": [
+            false,
+            false,
+            false
+          ]
+        },
+        "T2_delta_dc_vs_rand1": {
+          "rarefy_to": 66,
+          "point": 0.07064924671273398,
+          "ci90_cluster": [
+            -0.23647309247920062,
+            0.39761629314127317
+          ],
+          "n_boot_valid": 1950,
+          "shuffled_ci90": [
+            [
+              -0.05911704834839312,
+              0.32815711240266615
+            ],
+            [
+              -0.3221478182717796,
+              0.09134938540161153
+            ],
+            [
+              -0.3354626337815857,
+              0.08805822022387827
+            ]
+          ],
+          "shuffled_excludes_zero": [
+            false,
+            false,
+            false
+          ]
+        },
+        "T2_commitment": {
+          "delta_kappa": 0.05266384103618232,
+          "null_band_95": [
+            -0.024532507956525246,
+            0.02429886378845477
+          ],
+          "outside_band": true,
+          "shuffled_fraction_outside_band": 0.335
+        },
+        "T2_predict_dc_logscore": -0.0584239201377173,
+        "T2_predict_n_compliant": 38
+      },
+      "commitment_exact_permutation": {
+        "T1": {
+          "X": "bfs",
+          "delta_kappa": 0.03918299192713015,
+          "n_pairs_positive": 8,
+          "paired_signflip_p_exact": 0.025390625,
+          "unpaired_label_perm_p": 0.02064896755162242
+        },
+        "T2": {
+          "X": "dijkstra",
+          "delta_kappa": 0.05266384103618216,
+          "n_pairs_positive": 8,
+          "paired_signflip_p_exact": 0.015625,
+          "unpaired_label_perm_p": 0.00679966001699915
+        }
+      },
+      "note": "headline numbers re-derived from data/raw + label files through a separate code path; the pre-registered paraphrase-split null band of the commitment test is anti-conservative (exact permutation p = 0..."
+    },
+    "openrouter_cost_usd": 0.0622,
+    "timing": {
+      "n_timing_rows": 235,
+      "rows": [
+        {
+          "what": "hf T1 steer:breadth:c=0.1:L=18 p2",
+          "n_samples": 10,
+          "seconds": 17.75,
+          "s_per_sample": 1.775,
+          "max_tokens_in_batch": 389,
+          "utc": "2026-10-19T16:10:35.188417+00:00"
+        },
+        {
+          "what": "hf T1 steer:breadth:c=0.1:L=18 p3",
+          "n_samples": 10,
+          "seconds": 16.47,
+          "s_per_sample": 1.647,
+          "max_tokens_in_batch": 365,
+          "utc": "2026-10-19T16:10:51.712372+00:00"
+        },
+        {
+          "what": "hf T1 steer:breadth:c=0.1:L=18 p4",
+          "n_samples": 10,
+          "seconds": 18.33,
+          "s_per_sample": 1.833,
+          "max_tokens_in_batch": 397,
+          "utc": "2026-10-19T16:11:10.066026+00:00"
+        }
+      ]
+    },
+    "example_format": "output = label of the unsteered HF sample in the slot; predict_<arm> = '<label>|pass|fail'"
+  },
+  "datasets": [
+    {
+      "dataset": "T1_grid_path_search",
+      "examples": [
+        {
+          "input": "Solve the following programming task.\n\nTask: write a Python function solve(grid, start, goal). grid is a list of equal-length strings in which . is an open cell and # is a wall; start and goal are (ro...",
+          "output": "bfs",
+          "metadata_task": "T1",
+          "metadata_paraphrase_id": 0,
+          "metadata_sample_id": 0,
+          "metadata_reference_condition": "steer:dc:c=0:L=18",
+          "metadata_reference_passed": true,
+          "metadata_catalogue": [
+            "bfs",
+            "dfs",
+            "bidirectional_bfs"
+          ],
+          "predict_ban_bfs": "dfs|fail",
+          "predict_baseline": "bfs|pass",
+          "predict_enumerate": "bfs|pass",
+          "predict_enumerate_at1024": "bfs|pass",
+          "predict_mention_bfs": "bfs|pass",
+          "predict_steer_breadth_c0p1_L18": "bfs|pass",
+          "predict_steer_dc_c0p1_L18": "bfs|pass",
+          "predict_steer_dc_c0p25_L18": "bfs|pass",
+          "predict_steer_dc_c0p5_L18": "bfs|fail",
+          "predict_steer_dc_c1p5_L18": "no_code|fail",
+          "predict_steer_dc_c1_L14": "other|fail",
+          "predict_steer_dc_c1_L18": "no_code|fail",
+          "predict_steer_dc_c1_L22": "other|fail",
+          "predict_steer_dcxfer_c0p1_L18": "bfs|pass",
+          "predict_steer_placebo_c0p1_L18": "bfs|pass",
+          "predict_steer_rand1_c0p1_L18": "bfs|pass",
+          "predict_steer_rand2_c0p1_L18": "bfs|pass",
+          "predict_succession_2": "dijkstra_unit|pass"
+        },
+        {
+          "input": "Solve the following programming task.\n\nTask: write a Python function solve(grid, start, goal). grid is a list of equal-length strings in which . is an open cell and # is a wall; start and goal are (ro...",
+          "output": "bfs",
+          "metadata_task": "T1",
+          "metadata_paraphrase_id": 0,
+          "metadata_sample_id": 1,
+          "metadata_reference_condition": "steer:dc:c=0:L=18",
+          "metadata_reference_passed": true,
+          "metadata_catalogue": [
+            "bfs",
+            "dfs",
+            "bidirectional_bfs"
+          ],
+          "predict_ban_bfs": "dfs|fail",
+          "predict_baseline": "bfs|pass",
+          "predict_enumerate": "bfs|pass",
+          "predict_enumerate_at1024": "bfs|pass",
+          "predict_mention_bfs": "bfs|pass",
+          "predict_steer_breadth_c0p1_L18": "bfs|pass",
+          "predict_steer_dc_c0p1_L18": "bfs|pass",
+          "predict_steer_dc_c0p25_L18": "bfs|pass",
+          "predict_steer_dc_c0p5_L18": "bfs|fail",
+          "predict_steer_dc_c1p5_L18": "no_code|fail",
+          "predict_steer_dc_c1_L14": "other|fail",
+          "predict_steer_dc_c1_L18": "no_code|fail",
+          "predict_steer_dc_c1_L22": "other|fail",
+          "predict_steer_dcxfer_c0p1_L18": "bfs|pass",
+          "predict_steer_placebo_c0p1_L18": "bfs|pass",
+          "predict_steer_rand1_c0p1_L18": "bfs|pass",
+          "predict_steer_rand2_c0p1_L18": "bfs|pass",
+          "predict_succession_2": "dfs|pass"
+        },
+        {
+          "input": "Solve the following programming task.\n\nTask: write a Python function solve(grid, start, goal). grid is a list of equal-length strings in which . is an open cell and # is a wall; start and goal are (ro...",
+          "output": "bfs",
+          "metadata_task": "T1",
+          "metadata_paraphrase_id": 0,
+          "metadata_sample_id": 2,
+          "metadata_reference_condition": "steer:dc:c=0:L=18",
+          "metadata_reference_passed": true,
+          "metadata_catalogue": [
+            "bfs",
+            "dfs",
+            "bidirectional_bfs"
+          ],
+          "predict_ban_bfs": "bfs|pass",
+          "predict_baseline": "bfs|pass",
+          "predict_enumerate": "bfs|pass",
+          "predict_enumerate_at1024": "bfs|pass",
+          "predict_mention_bfs": "bfs|pass",
+          "predict_steer_breadth_c0p1_L18": "bfs|pass",
+          "predict_steer_dc_c0p1_L18": "bfs|pass",
+          "predict_steer_dc_c0p25_L18": "bfs|pass",
+          "predict_steer_dc_c0p5_L18": "other|fail",
+          "predict_steer_dc_c1p5_L18": "no_code|fail",
+          "predict_steer_dc_c1_L14": "other|fail",
+          "predict_steer_dc_c1_L18": "no_code|fail",
+          "predict_steer_dc_c1_L22": "other|fail",
+          "predict_steer_dcxfer_c0p1_L18": "bfs|pass",
+          "predict_steer_placebo_c0p1_L18": "bfs|pass",
+          "predict_steer_rand1_c0p1_L18": "bfs|pass",
+          "predict_steer_rand2_c0p1_L18": "bfs|pass",
+          "predict_succession_2": "bfs|pass"
+        }
+      ]
+    },
+    {
+      "dataset": "T2_weighted_shortest_path",
+      "examples": [
+        {
+          "input": "Solve the following programming task.\n\nTask: write a Python function solve(n, edges, s, t). The graph is directed with nodes 0..n-1 (n <= 100); edges is a list of (u, v, w) tuples with integer weights...",
+          "output": "dijkstra",
+          "metadata_task": "T2",
+          "metadata_paraphrase_id": 0,
+          "metadata_sample_id": 0,
+          "metadata_reference_condition": "steer:dc:c=0:L=18",
+          "metadata_reference_passed": true,
+          "metadata_catalogue": [
+            "dijkstra",
+            "bellman_ford_spfa",
+            "bidirectional_dijkstra"
+          ],
+          "predict_ban_dijkstra": "dijkstra|pass",
+          "predict_baseline": "dijkstra|pass",
+          "predict_enumerate": "dijkstra|pass",
+          "predict_enumerate_at1024": "dijkstra|pass",
+          "predict_mention_dijkstra": "dijkstra|pass",
+          "predict_steer_breadth_c0p25_L18": "bellman_ford_spfa|pass",
+          "predict_steer_dc_c0p25_L18": "bellman_ford_spfa|pass",
+          "predict_steer_dc_c0p375_L18": "dijkstra|pass",
+          "predict_steer_dc_c0p5_L18": "dijkstra|fail",
+          "predict_steer_dc_c1p5_L18": "no_code|fail",
+          "predict_steer_dc_c1_L14": "other|fail",
+          "predict_steer_dc_c1_L18": "other|fail",
+          "predict_steer_dc_c1_L22": "other|fail",
+          "predict_steer_dcxfer_c0p25_L18": "bellman_ford_spfa|fail",
+          "predict_steer_placebo_c0p25_L18": "dijkstra|fail",
+          "predict_steer_rand1_c0p25_L18": "dijkstra|pass",
+          "predict_steer_rand2_c0p25_L18": "dijkstra|pass",
+          "predict_succession_2": "other|fail"
+        },
+        {
+          "input": "Solve the following programming task.\n\nTask: write a Python function solve(n, edges, s, t). The graph is directed with nodes 0..n-1 (n <= 100); edges is a list of (u, v, w) tuples with integer weights...",
+          "output": "dijkstra",
+          "metadata_task": "T2",
+          "metadata_paraphrase_id": 0,
+          "metadata_sample_id": 1,
+          "metadata_reference_condition": "steer:dc:c=0:L=18",
+          "metadata_reference_passed": false,
+          "metadata_catalogue": [
+            "dijkstra",
+            "bellman_ford_spfa",
+            "bidirectional_dijkstra"
+          ],
+          "predict_ban_dijkstra": "dijkstra|pass",
+          "predict_baseline": "dijkstra|pass",
+          "predict_enumerate": "dijkstra|pass",
+          "predict_enumerate_at1024": "dijkstra|pass",
+          "predict_mention_dijkstra": "dijkstra|pass",
+          "predict_steer_breadth_c0p25_L18": "bellman_ford_spfa|fail",
+          "predict_steer_dc_c0p25_L18": "dijkstra|pass",
+          "predict_steer_dc_c0p375_L18": "dijkstra|pass",
+          "predict_steer_dc_c0p5_L18": "other|fail",
+          "predict_steer_dc_c1p5_L18": "no_code|fail",
+          "predict_steer_dc_c1_L14": "other|fail",
+          "predict_steer_dc_c1_L18": "no_code|fail",
+          "predict_steer_dc_c1_L22": "other|fail",
+          "predict_steer_dcxfer_c0p25_L18": "dijkstra|pass",
+          "predict_steer_placebo_c0p25_L18": "dijkstra|pass",
+          "predict_steer_rand1_c0p25_L18": "dijkstra|pass",
+          "predict_steer_rand2_c0p25_L18": "dijkstra|pass",
+          "predict_succession_2": "dijkstra|pass"
+        },
+        {
+          "input": "Solve the following programming task.\n\nTask: write a Python function solve(n, edges, s, t). The graph is directed with nodes 0..n-1 (n <= 100); edges is a list of (u, v, w) tuples with integer weights...",
+          "output": "dijkstra",
+          "metadata_task": "T2",
+          "metadata_paraphrase_id": 0,
+          "metadata_sample_id": 2,
+          "metadata_reference_condition": "steer:dc:c=0:L=18",
+          "metadata_reference_passed": true,
+          "metadata_catalogue": [
+            "dijkstra",
+            "bellman_ford_spfa",
+            "bidirectional_dijkstra"
+          ],
+          "predict_ban_dijkstra": "bellman_ford_spfa|pass",
+          "predict_baseline": "dijkstra|pass",
+          "predict_enumerate": "dijkstra|pass",
+          "predict_enumerate_at1024": "dijkstra|pass",
+          "predict_mention_dijkstra": "dijkstra|pass",
+          "predict_steer_breadth_c0p25_L18": "bellman_ford_spfa|pass",
+          "predict_steer_dc_c0p25_L18": "bellman_ford_spfa|pass",
+          "predict_steer_dc_c0p375_L18": "bellman_ford_spfa|pass",
+          "predict_steer_dc_c0p5_L18": "bellman_ford_spfa|fail",
+          "predict_steer_dc_c1p5_L18": "no_code|fail",
+          "predict_steer_dc_c1_L14": "other|fail",
+          "predict_steer_dc_c1_L18": "no_code|fail",
+          "predict_steer_dc_c1_L22": "other|fail",
+          "predict_steer_dcxfer_c0p25_L18": "bellman_ford_spfa|pass",
+          "predict_steer_placebo_c0p25_L18": "dijkstra|pass",
+          "predict_steer_rand1_c0p25_L18": "dijkstra|pass",
+          "predict_steer_rand2_c0p25_L18": "dijkstra|pass",
+          "predict_succession_2": "bellman_ford_spfa|pass"
+        }
+      ]
+    }
+  ]
+}

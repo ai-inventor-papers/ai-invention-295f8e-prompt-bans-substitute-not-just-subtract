@@ -1,0 +1,264 @@
+{
+ "rules": {
+  "S_flat": "rarefied hill1_cc(dc at c*_t) - hill1_cc(HF c=0) has a paraphrase-cluster bootstrap 90% CI above 0 on both tasks ('partial' if on one); c*_t must be correctness-preserving (pass >= 0.8 x pass(c=0)).",
+  "S_specific": "that gain exceeds each random direction's gain at c*_t (paired cluster-bootstrap 90% CI of rarefied hill1(dc) - hill1(rand_k) above 0, k=1,2), and also the placebo's when E1 ran.",
+  "S_vs_prompt": "dc at c*_t against enumerate and ban:X_t (efficiency = delta_hill/delta_pass_pts, CIs); 'best knob' only if the 90% CIs separate.",
+  "S_commit": "commitment-test verdict for the modal X on each task (intact / de-commits / commits / uninformative).",
+  "PREDICT": "log-score ranks and top-1 hits of the hash-committed forecasts, reported as a forecast record with no threshold.",
+  "overall": "ADVANCE if S_flat and S_specific hold on >= 1 task with the same sign (point estimate of delta_hill > 0) on the other; PARTIAL if S_flat holds without S_specific; DROP if S_flat fails at every correctness-preserving c of every task that has one; INCONCLUSIVE if no task has a correctness-preserving c.",
+  "c_star": "largest c in {0.25,0.5,1.0,1.5} plus at most one pre-registered bisection point with pass_rate(c) >= 0.8 x pass_rate(HF c=0); chosen on pass rate only, blind to diversity.",
+  "bisection": "if pass(0.25) < 0.8 pass(0): add c=0.1; else add the midpoint between c* and the next grid point when the pass rate crosses the threshold there.",
+  "engine_check": "vLLM baseline vs HF c=0 correct-label distributions: pass if TV < 0.15 and exact/Monte-Carlo p > 0.05; otherwise steering-vs-prompt comparisons use HF c=0 and are flagged.",
+  "decisions_use": "paraphrase-cluster bootstrap (2000 resamples, 90%); sample bootstrap reported alongside.",
+  "move_vs_flatten": "'moves' := realised mode != X and the cluster CI of delta_hill includes 0 or lies below 0.5; 'flattens' := the CI of delta_hill lies above 0."
+ },
+ "per_task": {
+  "T1": {
+   "X": "bfs",
+   "c_star": 0.1,
+   "c_star_flag": null,
+   "correctness_preserving_c": [
+    0.1
+   ],
+   "S_flat": false,
+   "S_flat_any_preserving_c": false,
+   "S_flat_ci90": [
+    0.0,
+    0.0
+   ],
+   "delta_hill_rarefied": 0.0,
+   "S_specific": false,
+   "specificity": {
+    "rand1": {
+     "ci90": [
+      0.0,
+      0.0
+     ],
+     "n_boot": 2000,
+     "p_le_0": 1.0,
+     "point": 0.0,
+     "n_min": 98,
+     "rarefy_to": 83
+    },
+    "rand2": {
+     "ci90": [
+      0.0,
+      0.0
+     ],
+     "n_boot": 2000,
+     "p_le_0": 1.0,
+     "point": 0.0,
+     "n_min": 98,
+     "rarefy_to": 83
+    },
+    "placebo": {
+     "ci90": [
+      0.0,
+      0.0
+     ],
+     "n_boot": 2000,
+     "p_le_0": 1.0,
+     "point": 0.0,
+     "n_min": 98,
+     "rarefy_to": 83
+    }
+   },
+   "S_vs_prompt": {
+    "enumerate": {
+     "dc_efficiency": 0.0,
+     "prompt_efficiency": "free gain",
+     "dc_delta_hill_rarefied": 0.0,
+     "dc_ci90": [
+      0.0,
+      0.0
+     ],
+     "prompt_delta_hill_rarefied": 0.0,
+     "prompt_ci90": [
+      0.0,
+      0.0
+     ],
+     "best_knob": "not separated"
+    },
+    "ban:bfs": {
+     "dc_efficiency": 0.0,
+     "prompt_efficiency": 0.027568020487473373,
+     "dc_delta_hill_rarefied": 0.0,
+     "dc_ci90": [
+      0.0,
+      0.0
+     ],
+     "prompt_delta_hill_rarefied": 0.9924487375490414,
+     "prompt_ci90": [
+      0.5540356939915687,
+      1.3384760231090147
+     ],
+     "best_knob": "ban:bfs"
+    }
+   },
+   "S_commit": "de-commits"
+  },
+  "T2": {
+   "X": "dijkstra",
+   "c_star": 0.25,
+   "c_star_flag": null,
+   "correctness_preserving_c": [
+    0.25
+   ],
+   "S_flat": true,
+   "S_flat_any_preserving_c": true,
+   "S_flat_ci90": [
+    0.3071108791424448,
+    0.9666887203527222
+   ],
+   "delta_hill_rarefied": 0.6501735838376308,
+   "S_specific": false,
+   "specificity": {
+    "rand1": {
+     "ci90": [
+      -0.2570884091711825,
+      0.39338032843847115
+     ],
+     "n_boot": 1952,
+     "p_le_0": 0.3790983606557377,
+     "point": 0.06743243250044406,
+     "n_min": 78,
+     "rarefy_to": 66
+    },
+    "rand2": {
+     "ci90": [
+      0.37542056351599906,
+      1.013889103865979
+     ],
+     "n_boot": 1970,
+     "p_le_0": 0.0,
+     "point": 0.7040779868383304,
+     "n_min": 78,
+     "rarefy_to": 66
+    },
+    "placebo": {
+     "ci90": [
+      0.012648312407205533,
+      0.8433233367187929
+     ],
+     "n_boot": 1943,
+     "p_le_0": 0.04580545548121462,
+     "point": 0.46556991514248525,
+     "n_min": 66,
+     "rarefy_to": 56
+    }
+   },
+   "S_vs_prompt": {
+    "enumerate": {
+     "dc_efficiency": 0.03824550493162536,
+     "prompt_efficiency": -0.01259371592282309,
+     "dc_delta_hill_rarefied": 0.6501735838376308,
+     "dc_ci90": [
+      0.3071108791424448,
+      0.9666887203527222
+     ],
+     "prompt_delta_hill_rarefied": -0.08185915349835016,
+     "prompt_ci90": [
+      -0.27208684276157574,
+      0.12885608401731474
+     ],
+     "best_knob": "dc"
+    },
+    "ban:dijkstra": {
+     "dc_efficiency": 0.03824550493162536,
+     "prompt_efficiency": 0.5236388621275552,
+     "dc_delta_hill_rarefied": 0.6501735838376308,
+     "dc_ci90": [
+      0.3071108791424448,
+      0.9666887203527222
+     ],
+     "prompt_delta_hill_rarefied": 0.7854582931913334,
+     "prompt_ci90": [
+      0.6017266865239581,
+      0.904292703217304
+     ],
+     "best_knob": "not separated"
+    }
+   },
+   "S_commit": "de-commits"
+  }
+ },
+ "S_flat_tasks": [
+  "T2"
+ ],
+ "S_flat_status": "partial",
+ "tasks_with_correctness_preserving_c": [
+  "T1",
+  "T2"
+ ],
+ "overall": "PARTIAL",
+ "predict_summary": {
+  "T1_ban1": {
+   "rank": [
+    "uniform",
+    "freq_vllm",
+    "freq_hf",
+    "dc_c=1.5",
+    "dc_c=1",
+    "dc_c=0.5",
+    "dc_c=0.25",
+    "dc"
+   ],
+   "realised": "dfs",
+   "dc_top1": "tie",
+   "dc_top1_hit": false,
+   "dc_flag": "degenerate",
+   "n_compliant": 18
+  },
+  "T2_ban1": {
+   "rank": [
+    "dc_c=0.5",
+    "dc_c=0.375",
+    "dc",
+    "freq_vllm",
+    "freq_hf",
+    "uniform",
+    "dc_c=1.5",
+    "dc_c=1"
+   ],
+   "realised": "bellman_ford_spfa",
+   "dc_top1": "bellman_ford_spfa",
+   "dc_top1_hit": true,
+   "dc_flag": null,
+   "n_compliant": 38
+  },
+  "T1_succ2": {
+   "rank": [
+    "uniform",
+    "freq_vllm",
+    "freq_hf",
+    "dc_c=1.5",
+    "dc_c=1",
+    "dc_c=0.5",
+    "dc_c=0.25",
+    "dc"
+   ],
+   "realised": "dijkstra_unit",
+   "dc_top1": "tie",
+   "dc_top1_hit": false,
+   "dc_flag": "degenerate",
+   "n_compliant": 16
+  },
+  "T2_succ2": {
+   "rank": [
+    "uniform",
+    "freq_vllm",
+    "freq_hf",
+    "dc_c=1.5",
+    "dc_c=1",
+    "dc_c=0.5",
+    "dc_c=0.375",
+    "dc"
+   ],
+   "realised": "no clear mode",
+   "dc_top1": "tie",
+   "dc_top1_hit": false,
+   "dc_flag": "degenerate",
+   "n_compliant": 1
+  }
+ }
+}
