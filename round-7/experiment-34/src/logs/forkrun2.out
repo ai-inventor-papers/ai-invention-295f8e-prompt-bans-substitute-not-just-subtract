@@ -1,0 +1,45 @@
+/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_34/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:02,  1.78it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.31it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.26it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  1.33it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.80it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.57it/s]
+14:10:12|INFO   |bf16 weight set loaded in 44s (252 linears); device cuda:0; free VRAM 8.89/23.52 GiB
+14:10:13|INFO   |T2: 12 base paths: Counter({('dijkstra', 'TWIN'): 6, ('bf_spfa', 'PN'): 3, ('bf_spfa', 'BAN'): 3}); t_dec [101, 112, 101, 114, 114, 114, 109, 82, 81, 71, 70, 70]
+14:10:13|INFO   |T2: screen done in 0s
+14:10:14|INFO   |T10: 18 base paths: Counter({('union_find', 'TWIN'): 6, ('bfs', 'BAN'): 5, ('dfs', 'PN'): 3, ('dfs', 'BAN'): 3, ('bfs', 'PN'): 1}); t_dec [14, 14, 14, 14, 13, 14, 84, 118, 118, 119, 121, 118, 13, 13, 13, 67, 67, 67]
+14:10:14|INFO   |T10: screen done in 0s
+14:10:14|INFO   |T03: 18 base paths: Counter({('full_sort', 'TWIN'): 6, ('size_k_heap', 'BAN'): 6, ('quickselect', 'BAN'): 6}); t_dec [13, 13, 13, 13, 13, 13, 19, 19, 19, 19, 19, 19, 13, 13, 13, 13, 13, 13]
+14:10:14|INFO   |T03: screen done in 0s
+14:10:15|INFO   |T2: no change point in 64 tokens -> window extension on 4 paths
+/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_34/vendor/exp29/vendor/exp22/src_base/engine.py:216: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  tok = torch.searchsorted(cdf, u[:, None].to(cdf.dtype)).squeeze(-1)
+14:10:20|INFO   |fork screen T2: 4 entries / 32 rows in 5.4s (96 steps)
+14:10:23|INFO   |fork screen T2: 4 entries / 32 rows in 2.4s (60 steps)
+14:10:26|INFO   |fork screen T2: 4 entries / 32 rows in 3.1s (80 steps)
+14:10:30|INFO   |fork screen T2: 3 entries / 24 rows in 3.9s (100 steps)
+14:10:34|INFO   |fork screen T2: 3 entries / 24 rows in 3.8s (88 steps)
+14:10:34|INFO   |fork screen T2: 2 entries / 16 rows in 0.9s (16 steps)
+14:10:38|INFO   |fork local T2: 1 entries / 8 rows in 2.0s (40 steps)
+14:10:40|INFO   |fork local T2: 1 entries / 8 rows in 1.7s (44 steps)
+14:10:42|INFO   |fork local T2: 1 entries / 8 rows in 1.5s (40 steps)
+14:10:43|INFO   |fork local T2: 1 entries / 8 rows in 1.4s (36 steps)
+14:10:44|INFO   |fork local T2: 1 entries / 8 rows in 1.0s (28 steps)
+14:10:50|INFO   |fork local T2: 1 entries / 8 rows in 5.4s (144 steps)
+14:10:50|INFO   |fork local T2: 1 entries / 8 rows in 0.9s (24 steps)
+14:10:52|INFO   |T2: forks [] along {} off {'bf_spfa': [92]} status no single fork
+14:10:56|INFO   |T10: forks [10] along {'dfs': [10, 11]} off {'bfs': [12, 39]} status fork found
+14:10:57|INFO   |T03: no change point in 64 tokens -> window extension on 10 paths
+Traceback (most recent call last):
+  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_34/src/forkrun.py", line 364, in <module>
+    main()
+  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_34/src/forkrun.py", line 335, in main
+    d0 = define(task, tok, paths, an, per_path)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_34/src/forkrun.py", line 237, in define
+    o_full, _ = F.canonical_opening([p["ids"] for p in twins], 130)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_34/src/fork7.py", line 264, in canonical_opening
+    pref, cnt = canonical_prefix(ids_list, t)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_34/vendor/exp31/fork.py", line 162, in canonical_prefix
+    pref, cnt = c.most_common(1)[0]
+                ~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range

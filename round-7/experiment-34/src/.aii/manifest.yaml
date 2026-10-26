@@ -1,0 +1,15 @@
+entries:
+  - path: .venv/
+    delete: regenerable
+    source: "uv venv .venv --python=3.12 && uv pip install --python .venv/bin/python -r pyproject.toml"
+  - path: cache/states/top5_T1_states.npz
+    delete: regenerable
+    source: ".venv/bin/python src/pushrun.py top5core (recomputes the T1 forced-prompt states in about 1 GPU-minute, then skips the finished generation rows)"
+  - path: cache/states/dbar_T10.npz
+    keep: committed per-direction pushed-minus-twin S-mean displacements (blocks 12-35) of the 40 POP directions; predictor inputs for iteration 8
+  - path: cache/states/dbar_T2.npz
+    keep: committed per-direction pushed-minus-twin S-mean displacements (blocks 12-35) of the 40 POP directions; predictor inputs for iteration 8
+  - path: cache/states/dbar_T03.npz
+    keep: committed displacements of the 24 fresh T03 directions (commit 3b predictor inputs)
+  - path: cache/states/top5_push_states.npz
+    keep: realised pushed-twin S-mean states of every T1 push arm (placed in the F6 geometry figure)
