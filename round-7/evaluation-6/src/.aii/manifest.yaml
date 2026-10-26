@@ -1,0 +1,7 @@
+entries:
+  - path: .venv/
+    delete: regenerable
+    source: "bash restore.sh"
+  - path: src/__pycache__/
+    delete: regenerable
+    source: "uv run eval.py --stages offline"

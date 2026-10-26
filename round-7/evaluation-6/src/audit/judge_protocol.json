@@ -1,0 +1,39 @@
+{
+ "frozen_before_calls_utc": "2026-10-22T13:39:49Z",
+ "judges": [
+  "openai/gpt-4.1-mini",
+  "deepseek/deepseek-chat-v3.1"
+ ],
+ "replacement_judges_if_a_gate_fails": [
+  "google/gemini-2.5-flash-lite"
+ ],
+ "classes": [
+  "NOVEL",
+  "KNOWN_OUTSIDE_CATALOGUE",
+  "CATALOGUE_VARIANT",
+  "DEGENERATE",
+  "LABELLER_MISS"
+ ],
+ "calls_per_item": 3,
+ "superseded_pass": "a first pass at 13:35Z used an adversarial stress case with node ids >= n (s_equals_t_large); it was fixed and every judge re-run; the superseded responses stay in judge_cache.jsonl and count toward spend",
+ "temperature": 0,
+ "shuffle_seed": 20261022,
+ "budget_usd": 0.5,
+ "gate": "a judge counts only if its majority class is right on >= 9 of 10 controls, with LABELLER_MISS and CATALOGUE_VARIANT merged (both mean 'a catalogue algorithm'); exact-class accuracy is reported beside it",
+ "prompt_sha256": {
+  "I01": "0e121c37894603f3730a7e40b27a8e082a527168c021915c225f63a44be813bb",
+  "I02": "f1b1b1d005c062283476e76ea4c16c8ec2cfbb4840b7b1228c23792915327c75",
+  "I03": "536d9f22e095fa7a454ea090d1478375dda492e5a64f8ea913f74a0024be20fb",
+  "I04": "59d1d7fe9627a896f18b867619e5236edbae87fba4c6c0e7e961bd57e60758fa",
+  "I05": "8187d2b9eb9c9f3dcd8a01ea04717f43a63a4aa4b772fe3ca8594753301c25fd",
+  "I06": "c6402eac78b74b9c47bd1d699fcbcbf1a67543c45e89b35e86f53ff7f25a3fa1",
+  "I07": "1f255f178ef493a911f499329802e6de75a79b65b09531cdbba880075c2e6a5e",
+  "I08": "d38b7be394fd90b0c032170d79ba1a948327057a32ed1998c883822380c60ba1",
+  "I09": "587781f1c581f87f89e5493f51782c1f33edfb0da51a3761152cf392fbd17738",
+  "I10": "5955c50b1bb5fe1c172319d1f2450171d8b9e327274e64ecd5cf187ae43b590c",
+  "I11": "eb15f14624f1c3b6f019ff9461866736646910d0d619999b3e71aa9d49d34f7d",
+  "I12": "8fafc31d0c405c9a3d9cce6a26b0e628dacec499995a78cb83c72db83a17956e",
+  "I13": "ca9ef5e37847a57a0540da62c3c208bf6a73d9c67b2fdd53bd5d164bc1a8bbc5"
+ },
+ "blind_map_sha256": "99987eba68ce7f2390f5a39369bc756d124e0402af08bfd344e4c6c620a08959"
+}

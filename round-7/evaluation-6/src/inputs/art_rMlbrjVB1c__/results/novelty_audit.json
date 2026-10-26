@@ -1,0 +1,71 @@
+{
+ "n_correct_other": 2,
+ "classes": {
+  "CATALOGUE_VARIANT": 2
+ },
+ "rows": [
+  {
+   "sample_id": "T03|ST_S3_a4|W2|12",
+   "task": "T03",
+   "arm": "ST_S3_a4",
+   "judge_a": {
+    "class": "NOVEL",
+    "catalogue_name": null,
+    "reason": "The algorithm uses binary search on the range of possible values, combined with a counting function, which is a novel approach not directly matching any of the listed catalogue algorithms."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code uses a binary search over the value range combined with counting elements less or equal to mid, which is a known counting-based selection method similar to counting sort or binary search on t"
+   },
+   "tie": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "quickselect",
+    "reason": "The program implements a binary search over the value range to find the k-th smallest element, which is a known variant approach similar to quickselect in its partitioning logic."
+   },
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "reference:quickselect",
+    "similarity": 0.3738,
+    "n_compared": 148
+   }
+  },
+  {
+   "sample_id": "T03|ST_S3_a2|W5|7",
+   "task": "T03",
+   "arm": "ST_S3_a2",
+   "judge_a": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "This algorithm uses a frequency map and then sorts the unique keys, which is a variant of counting sort adapted for arbitrary integer ranges."
+   },
+   "judge_b": {
+    "class": "CATALOGUE_VARIANT",
+    "catalogue_name": "counting_sort",
+    "reason": "The code uses a frequency dictionary and sorted keys to simulate counting sort, a known algorithm for this task."
+   },
+   "tie": null,
+   "class": "CATALOGUE_VARIANT",
+   "difflib": {
+    "nearest": "mercury:215:20",
+    "similarity": 0.4312,
+    "n_compared": 148
+   }
+  }
+ ],
+ "cost_usd": 0.00114,
+ "stopped_by_budget": null,
+ "judges": [
+  "google/gemini-2.5-flash-lite",
+  "openai/gpt-4.1-mini"
+ ],
+ "tie_breaker": "deepseek/deepseek-chat-v3.1",
+ "defaults": {
+  "T03": "full_sort",
+  "T10": "union_find",
+  "T2": "dijkstra",
+  "T05": "hash_map",
+  "T06": "hash_set",
+  "T1": "bfs"
+ }
+}
