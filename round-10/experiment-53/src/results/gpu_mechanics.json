@@ -1,0 +1,118 @@
+{
+  "utc": "2026-10-24T18:44:40Z",
+  "G1": {
+    "identical_top20_pos1": 19,
+    "sampled_lp_matches": 20,
+    "n": 20
+  },
+  "G2": {
+    "ids_returned": true,
+    "roundtrip_ok": true,
+    "finish": "length",
+    "n_tokens": 48
+  },
+  "G3": [
+    {
+      "no_branch": false,
+      "j_star": 16,
+      "forced_rank": 5,
+      "rank_ok": true,
+      "H_recomputed_ok": true,
+      "prefix_hit_rate_r2": 0.976271186440678,
+      "forced_text": " weight",
+      "r2_prompt_ok": true,
+      "forced_class": "identifier"
+    },
+    {
+      "no_branch": false,
+      "j_star": 16,
+      "forced_rank": 3,
+      "rank_ok": true,
+      "H_recomputed_ok": true,
+      "prefix_hit_rate_r2": 0.976271186440678,
+      "forced_text": " if",
+      "r2_prompt_ok": true,
+      "forced_class": "keyword"
+    },
+    {
+      "no_branch": false,
+      "j_star": 16,
+      "forced_rank": 7,
+      "rank_ok": true,
+      "H_recomputed_ok": true,
+      "prefix_hit_rate_r2": 0.976271186440678,
+      "forced_text": " \"\"\"\n",
+      "r2_prompt_ok": true,
+      "forced_class": "string-opener"
+    },
+    {
+      "no_branch": false,
+      "j_star": 16,
+      "forced_rank": 3,
+      "rank_ok": true,
+      "H_recomputed_ok": true,
+      "prefix_hit_rate_r2": 0.976271186440678,
+      "forced_text": " if",
+      "r2_prompt_ok": true,
+      "forced_class": "keyword"
+    },
+    {
+      "no_branch": false,
+      "j_star": 15,
+      "forced_rank": 5,
+      "rank_ok": true,
+      "H_recomputed_ok": true,
+      "prefix_hit_rate_r2": 0.9795918367346939,
+      "forced_text": " weights",
+      "r2_prompt_ok": true,
+      "forced_class": "identifier"
+    }
+  ],
+  "G4": [
+    {
+      "n_eligible": 25,
+      "n_draws": 100,
+      "n_distinct_positions": 25,
+      "chisq_p_uniform": 0.6680163956243438
+    },
+    {
+      "n_eligible": 11,
+      "n_draws": 100,
+      "n_distinct_positions": 11,
+      "chisq_p_uniform": 0.7734538049490757
+    },
+    {
+      "n_eligible": 11,
+      "n_draws": 100,
+      "n_distinct_positions": 11,
+      "chisq_p_uniform": 0.7734538049490757
+    },
+    {
+      "n_eligible": 18,
+      "n_draws": 100,
+      "n_distinct_positions": 18,
+      "chisq_p_uniform": 0.8627336864463983
+    }
+  ],
+  "G5": {
+    "byte_identical": true,
+    "note": "recorded, not required"
+  },
+  "throughput": {
+    "n": 64,
+    "wall_s": 11.141247749328613,
+    "gen_tokens": 7249,
+    "gen_tok_per_s": 650.645256536624,
+    "calls_per_s": 5.744419425899287,
+    "prompt_tokens_each": 278,
+    "finish": {
+      "stop": 64
+    },
+    "preemptions": 0
+  },
+  "sample_outputs": [
+    "    next_node = None\n    best_score = float(\"inf\")  # We want to minimize the score\n    \n    # Score function: weighted sum of distance to current node and distance to destination node\n    # Weight can be adjusted for different strategies (e.g., weight=0.5 for more focus on destination)\n    weight = 0.5\n    \n    for node in unvisited_nodes:\n        distance_to_current = distance_matrix[current_node][node]\n        distance_to_destination = distance_matrix[node][destination_node]\n        score = weight * distance_to_current + (1 - weight) * distance_to_destination\n        if score < best_score:\n",
+    "    next_node = None\n    best_score = float(\"inf\")\n    \n    for node in unvisited_nodes:\n        # Score is distance to current node + distance to destination node\n        score = distance_matrix[current_node][node] + distance_matrix[node][destination_node]\n        if score < best_score:\n            best_score = score\n            next_node = node\n    \n    return next_node\n",
+    "    next_node = None\n    best_score = float(\"inf\")\n    \n    for node in unvisited_nodes:\n        # Calculate a heuristic score: distance to current node + distance to destination\n        score = distance_matrix[current_node][node] + distance_matrix[node][destination_node]\n        if score < best_score:\n            best_score = score\n            next_node = node\n            \n    return next_node\n"
+  ]
+}

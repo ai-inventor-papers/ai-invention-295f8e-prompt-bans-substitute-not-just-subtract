@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# C compiler shim (no system gcc/cc on this box): zig's clang via the ziglang wheel.
+exec "$(dirname "$0")/../.venv/bin/python" -m ziglang cc "$@"

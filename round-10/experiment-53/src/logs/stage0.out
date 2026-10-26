@@ -1,0 +1,54 @@
+18:14:19|INFO   |hardware: {"utc": "2026-10-24T18:13:04Z", "gpu": {"name": "NVIDIA L4", "memory_total": "23034 MiB", "driver": "595.91.07", "compute_cap": "8.9", "cuda_driver_version": "13.2"}, "nproc_host": 48, "cgroup_cpu_quota": 5.1, "cgroup_ram_bytes": 61999996928, "compiler": null, "python": "3.12.14", "versions": {"vllm": "0.11.0", "torch": "2.8.0+cu128", "elkai": "unknown", "ortools": "9.15.6755", "numpy": "2.2.6", "
+18:14:19|INFO   |instances: {'selection': 64, 'heldout': 32, 'heldout_ext': 96, 'probe': 20}, probe states 2000, tsplib 13
+18:14:19|INFO   |references: 205 to solve (0 cached)
+18:14:24|INFO   |  ref 1/205 selection[0] elkai 0.11s L=5.5883
+18:14:24|INFO   |  ref 21/205 selection[15] elkai 0.14s L=5.6421
+18:14:25|INFO   |  ref 41/205 selection[38] elkai 0.50s L=7.4659
+18:14:26|INFO   |  ref 61/205 selection[63] elkai 0.30s L=7.6717
+18:14:34|INFO   |  ref 81/205 heldout[13] elkai 3.74s L=10.3388
+18:14:41|INFO   |  ref 101/205 heldout_ext[4] elkai 1.52s L=10.3871
+18:14:49|INFO   |  ref 121/205 heldout_ext[23] elkai 3.13s L=10.8575
+18:14:57|INFO   |  ref 141/205 heldout_ext[45] elkai 1.68s L=10.5039
+18:15:06|INFO   |  ref 161/205 heldout_ext[64] elkai 1.87s L=10.8726
+18:15:13|INFO   |  ref 181/205 heldout_ext[84] elkai 1.56s L=10.7388
+18:15:16|INFO   |  ref 201/205 tsplib[9] elkai 0.51s L=6110.0000
+18:15:19|INFO   |references done in 59.3s
+18:15:19|INFO   |TSPLIB gate passed: True
+18:15:23|ERROR  |An error has been caught in function '<module>', process 'MainProcess' (1137), thread 'MainThread' (126007234177920):
+Traceback (most recent call last):
+
+> File "./src/stage0.py", line 223, in <module>
+    main()
+    └ <function main at 0x7299d6cf47c0>
+
+  File "./src/stage0.py", line 218, in main
+    nn_gate_and_baselines(sets, tsplib)
+    │                     │     └ [{'name': 'eil51', 'coords': array([[37., 52.],
+    │                     │              [49., 49.],
+    │                     │              [52., 64.],
+    │                     │              [20., 26.],
+    │                     │              [40., 30.],
+    │                     │        ...
+    │                     └ {'selection': {'seeds': [910001, 910002, 910003, 910004, 910005, 910006, 910007, 910008, 910009, 910010, 910011, 910012, 9100...
+    └ <function nn_gate_and_baselines at 0x7299d6cf44a0>
+
+  File "./src/stage0.py", line 144, in nn_gate_and_baselines
+    tg = [ev.tsplib_gaps(r["tsplib"]["tours"], names) for r in runs]
+          │  │                                 │               └ [{'selection': {'label': 'runtime_error', 'reason': "FileNotFoundError: [Errno 2] No usable temporary directory found in ['/t...
+          │  │                                 └ ['eil51', 'berlin52', 'st70', 'eil76', 'pr76', 'kroA100', 'kroB100', 'eil101', 'lin105', 'ch130', 'ch150', 'kroA150', 'kroA200']
+          │  └ <function tsplib_gaps at 0x7298c734d300>
+          └ <module 'evaluator' from './...
+
+KeyError: 'tours'
+Traceback (most recent call last):
+  File "./src/stage0.py", line 223, in <module>
+    main()
+  File "./.venv/lib/python3.12/site-packages/loguru/_logger.py", line 1297, in catch_wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./src/stage0.py", line 218, in main
+    nn_gate_and_baselines(sets, tsplib)
+  File "./src/stage0.py", line 144, in nn_gate_and_baselines
+    tg = [ev.tsplib_gaps(r["tsplib"]["tours"], names) for r in runs]
+                         ~~~~~~~~~~~^^^^^^^^^
+KeyError: 'tours'
