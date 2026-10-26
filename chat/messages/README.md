@@ -1,0 +1,169 @@
+# Messages
+
+Complete, auto-generated transcript of **the full conversation every agent had** across this run — system & user prompts, assistant responses, thinking blocks, and every tool call with its result — generated at repository-upload time so it captures all steps. For an inputs-only view (just the prompts) see the sibling `../prompts/` folder.
+
+- Run: `gen_paper_repo_c164ac661673` — A Random Activation Push Changes a Code Model's Algorithm Where Temperature Does Not
+
+Each turn is labelled by role and timestamped, with its full untruncated body:
+
+- **SYSTEM PROMPT / SYSTEM-USER / HUMAN-USER** — the instructions and prompts fed in.
+- **ASSISTANT** — the model's response text.
+- **THINKING** — the model's reasoning blocks.
+- **TOOL CALL — `<tool>`** — a tool invocation with its input.
+- **TOOL RESULT — `<tool>`** — the tool's output (marked `[ERROR]` on failure).
+- **CONFIG / HOOK / RETRY** — the session config snapshot, injected hook reminders, and retry-attempt boundaries.
+
+Parsed identically for both agent backends (`terminal_claude` and `sdk_openhands`), which normalise into one event schema. Pure telemetry (token-usage ticks, cost rollups, lifecycle markers, pipeline status lines) is excluded.
+
+Layout mirrors the run's module tree (same as `../prompts/`): one folder per high-level phase, a `round_N/` per iteration where the phase iterates, then each module — a single-task module is one `.md` file, a parallel module (gen_plan / gen_art / gen_viz / gen_demo_art) is a folder with one `.md` per task.
+
+## Index
+
+- **1. report_results** — `gen_paper_repo`
+  - `chat/messages/1_report_results/1_gen_paper_draft.md` — 242 messages
+  - `2_gen_viz/` — 72 task(s)
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_1.md` — 141 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_2.md` — 226 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_3.md` — 131 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_4.md` — 111 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_5.md` — 150 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_6.md` — 154 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_1.md` — 120 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_2.md` — 149 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_3.md` — 81 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_4.md` — 77 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_5.md` — 91 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_6.md` — 77 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_7.md` — 124 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_8.md` — 191 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_9.md` — 78 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_10.md` — 47 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_11.md` — 120 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_12.md` — 114 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_13.md` — 94 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_14.md` — 60 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_15.md` — 87 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_16.md` — 88 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_17.md` — 78 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_18.md` — 96 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_19.md` — 63 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_20.md` — 68 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_21.md` — 157 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_22.md` — 103 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_23.md` — 98 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_24.md` — 84 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_25.md` — 82 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_26.md` — 118 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_27.md` — 107 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_28.md` — 162 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_29.md` — 175 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_30.md` — 144 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_31.md` — 153 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_32.md` — 391 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_33.md` — 134 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_34.md` — 144 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_35.md` — 155 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_36.md` — 153 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_37.md` — 110 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_38.md` — 159 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_39.md` — 59 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_40.md` — 120 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_41.md` — 91 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_42.md` — 131 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_43.md` — 94 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_44.md` — 101 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_45.md` — 169 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_46.md` — 108 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_47.md` — 92 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_48.md` — 128 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_49.md` — 194 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_50.md` — 159 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_51.md` — 74 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_52.md` — 115 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_53.md` — 59 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_54.md` — 114 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_55.md` — 158 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_56.md` — 160 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_57.md` — 134 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_58.md` — 164 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_59.md` — 146 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_60.md` — 142 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_61.md` — 76 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_62.md` — 246 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_63.md` — 90 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_64.md` — 93 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_65.md` — 183 messages
+    - `chat/messages/1_report_results/2_gen_viz/gen_viz_report_66.md` — 186 messages
+  - `3_gen_demo_art/` — 63 task(s)
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_dataset_1.md` — 245 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_evaluation_1.md` — 236 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_evaluation_2.md` — 250 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_evaluation_3.md` — 210 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_evaluation_4.md` — 211 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_evaluation_5.md` — 338 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_evaluation_6.md` — 190 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_evaluation_7.md` — 289 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_evaluation_8.md` — 155 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_evaluation_9.md` — 287 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_1.md` — 138 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_2.md` — 129 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_3.md` — 253 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_4.md` — 159 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_5.md` — 272 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_6.md` — 200 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_7.md` — 236 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_8.md` — 155 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_9.md` — 216 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_10.md` — 231 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_11.md` — 224 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_12.md` — 193 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_13.md` — 137 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_14.md` — 285 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_15.md` — 297 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_16.md` — 328 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_17.md` — 226 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_18.md` — 300 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_19.md` — 154 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_20.md` — 135 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_21.md` — 160 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_22.md` — 250 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_23.md` — 215 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_24.md` — 209 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_25.md` — 145 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_26.md` — 184 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_27.md` — 195 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_28.md` — 169 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_29.md` — 206 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_30.md` — 288 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_31.md` — 215 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_32.md` — 213 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_33.md` — 161 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_34.md` — 242 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_35.md` — 358 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_36.md` — 184 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_37.md` — 226 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_38.md` — 291 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_39.md` — 182 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_40.md` — 218 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_41.md` — 210 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_42.md` — 160 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_43.md` — 176 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_44.md` — 250 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_45.md` — 278 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_46.md` — 253 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_47.md` — 202 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_48.md` — 225 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_49.md` — 378 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_50.md` — 233 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_51.md` — 199 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_52.md` — 169 messages
+    - `chat/messages/1_report_results/3_gen_demo_art/gen_demo_art_experiment_53.md` — 254 messages
+  - `4_gen_full_paper/` — 3 task(s)
+    - `chat/messages/1_report_results/4_gen_full_paper/gen_full_paper.md` — 396 messages
+    - `chat/messages/1_report_results/4_gen_full_paper/gen_paper_site.md` — 212 messages
+    - `chat/messages/1_report_results/4_gen_full_paper/gen_report_doc.md` — 319 messages
+  - `chat/messages/1_report_results/5_gen_html_demo.md` — 206 messages
+  - `chat/messages/1_report_results/6_final_review.md` — 258 messages
+  - `7_deploy_gh/` — 2 task(s)
+    - `chat/messages/1_report_results/7_deploy_gh/repro_backfill.md` — 18 messages
+    - `chat/messages/1_report_results/7_deploy_gh/repro_backfill.md` — 20 messages
