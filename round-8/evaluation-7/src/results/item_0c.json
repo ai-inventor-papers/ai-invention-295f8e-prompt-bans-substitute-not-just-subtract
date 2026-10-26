@@ -1,0 +1,145 @@
+{
+ "edits": [
+  {
+   "id": "C8-c01",
+   "item": "0c",
+   "section": "7.8.4",
+   "kind": "prose",
+   "old_text": "at lambda 1 it gives more correct BFS programs (42) than the explicit instruction to use BFS (35).",
+   "new_text": "the explicit instruction to use BFS gives 35, but it was sampled from index 0 without the prefilled opening and is not comparable: the DAS, difference-in-means and twin cells run with the canonical 32-token opening prefilled (exp38 `src/g2.py` line 877, `run.run_cell(ids, cs, rows_w, raw, ...)`), while the forced-BFS ceiling is sampled from index 0 with no prefix (lines 878-885, `run.run_cell(pfz[\"ids\"], [], rows, raw, \"G2:forced\")`) on the same CRN slots (iteration-8 correction).",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-c02",
+   "item": "0c",
+   "section": "Table 365",
+   "kind": "caption",
+   "old_text": "**Table 365.** Gemma: DAS against difference in means as a dose dial toward BFS (N = 50 per cell, same seed).",
+   "new_text": "**Table 365.** Gemma: DAS against difference in means as a dose dial toward BFS (N = 50 per cell, same seed). (iteration-8 correction: every cell except the forced BFS prompt has the shared 32-token opening prefilled; the forced BFS prompt is sampled from index 0 without it, on the same slots, so its row is not comparable with the edits)",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-c03",
+   "item": "0c",
+   "section": "Table 365",
+   "kind": "table_row",
+   "old_text": "| forced BFS prompt, fifth forced source (prompting ceiling) | 50 | 35 | 0.70 | 4e-6 (unadjusted) | - |",
+   "new_text": "| forced BFS prompt, fifth forced source (sampled from index 0 without the prefilled opening; not comparable) | 50 | 35 | 0.70 | 4e-6 (unadjusted) | - |",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-c04",
+   "item": "0c",
+   "section": "Table 370",
+   "kind": "table_row",
+   "old_text": "| gemma-3-4b-it, grid | DAS rank 4 at block 17, lambda 1 | 42/50 BFS | 11/50 | 0.88 |",
+   "new_text": "| gemma-3-4b-it, grid | DAS rank 4 at block 17, lambda 1 (opening prefilled) | 42/50 BFS | 11/50 | 0.88 |",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-c05",
+   "item": "0c",
+   "section": "Table 370",
+   "kind": "table_row",
+   "old_text": "| gemma-3-4b-it, grid | Explicit BFS instruction | 35/50 BFS | 11/50 | 0.70 |",
+   "new_text": "| gemma-3-4b-it, grid | Explicit BFS instruction (no prefill, not comparable) | 35/50 BFS | 11/50 | 0.70 |",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-c06",
+   "item": "0c",
+   "section": "Table 370",
+   "kind": "caption",
+   "old_text": "**Table 370.** Edits that moved the algorithm in generation in iteration 7.",
+   "new_text": "**Table 370.** Edits that moved the algorithm in generation in iteration 7. (iteration-8 correction: prefill condition of the two Gemma rows stated; kth smallest counting sort row annotated)",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-c07",
+   "item": "0c",
+   "section": "7.9",
+   "kind": "prose",
+   "old_text": "In Gemma the DAS edit at the fork beats the explicit instruction in correct BFS programs, and steering five validated circuit nodes doubles them.",
+   "new_text": "In Gemma the DAS edit at the fork, with the shared opening prefilled, raises correct BFS programs from 11 to 42 of 50 (the explicit instruction's 35 was sampled without the prefill and is not comparable), and steering five validated circuit nodes doubles them (iteration-8 correction).",
+   "why": "",
+   "value_names": []
+  }
+ ],
+ "evidence": {
+  "g2.py:877": "run.run_cell(ids, cs, rows_w, raw, f\"G2:{w}\")",
+  "g2.py:878": "# forced-BFS ceiling (natural sampling from index 0, prompt F5 with iteration 6's display name)",
+  "g2.py:885": "run.run_cell(pfz[\"ids\"], [], rows, raw, \"G2:forced\")",
+  "README": [
+   "| G2 dose | **commit #3**; DAS and DiM (matched teacher-forced dy) toward BFS and DFS at 6 doses, twin, forced-BFS ceiling, RAND, logit-only DAS (G2-L); N = 50 per cell, CRN | `results/g2_dose.json`, `results/g2_dose_tf_pred.json`, F5 |",
+   "| forced-BFS prompt F5 (prompting ceiling) | 50 | 35 | 0.70 | 4e-6 (unadjusted) | - |",
+   "| F5 `F5_g2_dose` | dose response (attempted, correct, pass) for DAS vs DiM toward BFS and toward DFS, with the twin, the forced-BFS ceiling and the logit-only DAS cell |"
+  ],
+  "same_slots": true,
+  "prefix_len": {
+   "twin": [
+    32
+   ],
+   "DAS|bfs|1.0": [
+    32
+   ],
+   "forced_bfs_F5": [
+    0
+   ]
+  },
+  "n_rows": {
+   "twin": 50,
+   "DAS|bfs|1.0": 50,
+   "forced_bfs_F5": 50
+  }
+ },
+ "verdict": "CORRECTED (prefill condition stated at every mention)",
+ "values": [
+  {
+   "name": "Gemma dial: forced-BFS cell shares the CRN slots of the twin and DAS cells",
+   "item": "0c",
+   "recorded": null,
+   "recomputed": true,
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "art_HY7uYZz-OjRW:data/raw_g2dose.jsonl#ukey by cell"
+  },
+  {
+   "name": "Gemma dial: prefix length of twin / DAS lambda 1 / forced-BFS cells",
+   "item": "0c",
+   "recorded": null,
+   "recomputed": {
+    "twin": [
+     32
+    ],
+    "DAS|bfs|1.0": [
+     32
+    ],
+    "forced_bfs_F5": [
+     0
+    ]
+   },
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "art_HY7uYZz-OjRW:data/raw_g2dose.jsonl#prefix_len"
+  },
+  {
+   "name": "exp38 README: the sentences that describe the forced-BFS ceiling",
+   "item": "0c",
+   "recorded": null,
+   "recomputed": [
+    "| forced-BFS prompt F5 (prompting ceiling) | 50 | 35 | 0.70 | 4e-6 (unadjusted) | - |",
+    "- **DAS beats the prompting ceiling.** At lambda 1 it gives 42 correct BFS programs against 35 for the explicit"
+   ],
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "art_HY7uYZz-OjRW:README.md#grep 'forced' and 'ceiling'",
+   "note": "the README calls the unprefilled forced prompt the 'prompting ceiling' and compares the prefilled DAS cell with it"
+  }
+ ]
+}

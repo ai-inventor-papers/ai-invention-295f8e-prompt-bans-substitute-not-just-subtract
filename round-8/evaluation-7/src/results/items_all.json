@@ -1,0 +1,3002 @@
+{
+ "0a": {
+  "edits": [
+   {
+    "id": "C8-a01",
+    "item": "0a",
+    "section": "7.3.4",
+    "kind": "prose",
+    "old_text": "on kth smallest the forced counting sort source transfers 30 of 30 at every rank while the full state exchange gives 0 (29 programs labelled other, read below).",
+    "new_text": "on kth smallest the forced counting sort source transfers 30 of 30 at every rank, and the full state exchange of the same prompt gives 29 of 30: the 29 programs once labelled other are counting sort in dictionary form (counts in a dictionary walked in sorted key order), which the extended labeller now names counting sort, and the remaining program is a binary search on the value range (Table 300) (iteration-8 correction).",
+    "why": "dictionary-form counting sort was labelled other; relabel validated on references, gold set and negative controls",
+    "value_names": [],
+    "offset": 1037715,
+    "line_at_read": 6485
+   },
+   {
+    "id": "C8-a02",
+    "item": "0a",
+    "section": "Table 296",
+    "kind": "caption",
+    "old_text": "**Table 296.** Kth smallest: correct programs of the target algorithm (of 30) by source and rank.",
+    "new_text": "**Table 296.** Kth smallest: correct programs of the target algorithm (of 30) by source and rank. (iteration-8 correction: forced counting sort source, full state 0 -> 29 after the labeller was extended to counting sort in dictionary form)",
+    "why": "",
+    "value_names": [],
+    "offset": 1040738,
+    "line_at_read": 6523
+   },
+   {
+    "id": "C8-a03",
+    "item": "0a",
+    "section": "Table 296",
+    "kind": "table_row",
+    "old_text": "| forced counting sort source | counting sort | 0 | 0 | 30 (pass 1.00) | - | 30 (pass 1.00) | - | 30 (pass 1.00) |  |  | 1.00/1.00 |",
+    "new_text": "| forced counting sort source | counting sort | 0 | 29 | 30 (pass 1.00) | - | 30 (pass 1.00) | - | 30 (pass 1.00) |  |  | 1.00/1.00 |",
+    "why": "",
+    "value_names": [],
+    "offset": 1041373,
+    "line_at_read": 6529
+   },
+   {
+    "id": "C8-a04",
+    "item": "0a",
+    "section": "Table 297",
+    "kind": "caption",
+    "old_text": "**Table 297.** Kth smallest: pooled recovery and its controls by rank.",
+    "new_text": "**Table 297.** Kth smallest: pooled recovery and its controls by rank. (iteration-8 correction: pooled recovery recomputed after the counting-sort relabel with exp33's own slot bootstrap, 2,000 resamples; the old values 1.59 / 1.57 / 1.55 are reproduced exactly under the old labels; the permuted-label column is an absolute transfer, (count - base)/30, and the random-subspace recovery uses only the ban source, so neither changes; per-source recovery in Table 297b is the summary)",
+    "why": "",
+    "value_names": [],
+    "offset": 1041507,
+    "line_at_read": 6531
+   },
+   {
+    "id": "C8-a05",
+    "item": "0a",
+    "section": "Table 297",
+    "kind": "table_row",
+    "old_text": "| 1 | 1.59 [1.47, 1.72] | 0.05 | 20:0 (1.9e-06) | 0.60 | 0.90 |",
+    "new_text": "| 1 | 1.01 [0.95, 1.08] | 0.05 | 20:0 (1.9e-06) | 0.60 | 0.90 |",
+    "why": "",
+    "value_names": [],
+    "offset": 1041772,
+    "line_at_read": 6535
+   },
+   {
+    "id": "C8-a06",
+    "item": "0a",
+    "section": "Table 297",
+    "kind": "table_row",
+    "old_text": "| 4 | 1.57 [1.44, 1.72] | - | - | - | - |",
+    "new_text": "| 4 | 1.00 [0.93, 1.08] | - | - | - | - |",
+    "why": "",
+    "value_names": [],
+    "offset": 1041869,
+    "line_at_read": 6537
+   },
+   {
+    "id": "C8-a07",
+    "item": "0a",
+    "section": "Table 297",
+    "kind": "table_row",
+    "old_text": "| 16 | 1.55 [1.42, 1.70] | 0.05 | 21:0 (9.5e-07) | 0.47 | 0.90 |",
+    "new_text": "| 16 | 0.99 [0.92, 1.06] | 0.05 | 21:0 (9.5e-07) | 0.47 | 0.90 |",
+    "why": "",
+    "value_names": [],
+    "offset": 1041944,
+    "line_at_read": 6539
+   },
+   {
+    "id": "C8-a08",
+    "item": "0a",
+    "section": "7.3.6",
+    "kind": "prose",
+    "old_text": "and the counting sort source lands on counting sort in 30 of 30 at rank 16 while the full state exchange lands none (Table 300). Connected components is not categorical: the forced BFS source's rank-16 edit lands 21 DFS and 9 BFS. The subspace thus carries which algorithm, and on two tasks it carries it more cleanly than the whole state does.",
+    "new_text": "and the counting sort source lands on counting sort in 30 of 30 at rank 16, where the full state exchange of the same prompt also lands 29 of 30 on counting sort once its dictionary form is labelled (Table 300). Connected components is not categorical: the forced BFS source's rank-16 edit lands 21 DFS and 9 BFS. The subspace thus carries which algorithm, more cleanly than the full state on one task (shortest path: Floyd-Warshall 28/28 against 8/20); on kth smallest the DAS edit changes the implementation form (mostly an array of counts, 28 of 30 at rank 16, against the full state's dictionary with sorted keys, 29 of 30), not the algorithm (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1046731,
+    "line_at_read": 6577
+   },
+   {
+    "id": "C8-a09",
+    "item": "0a",
+    "section": "Table 300",
+    "kind": "caption",
+    "old_text": "**Table 300.** Routing: where correct programs off the default land under the full state exchange and under DAS.",
+    "new_text": "**Table 300.** Routing: where correct programs off the default land under the full state exchange and under DAS. (iteration-8 correction: kth smallest | counting sort row relabelled; the committed C rule still scores kth smallest categorical, because it reads the DAS columns)",
+    "why": "",
+    "value_names": [],
+    "offset": 1047077,
+    "line_at_read": 6579
+   },
+   {
+    "id": "C8-a10",
+    "item": "0a",
+    "section": "Table 300",
+    "kind": "table_row",
+    "old_text": "| kth smallest | counting sort | 0.00 (0/30) [0.00, 0.12] | 1.00 (30/30) [0.88, 1.00] | 1.00 (30/30) [0.88, 1.00] | 1.00 (30/30) [0.88, 1.00] | other 29, quickselect 1 | counting sort 30 |",
+    "new_text": "| kth smallest | counting sort | 0.97 (29/30) [0.83, 1.00] | 1.00 (30/30) [0.88, 1.00] | 1.00 (30/30) [0.88, 1.00] | 1.00 (30/30) [0.88, 1.00] | counting sort (dictionary form) 29, binary search on the value range 1 | counting sort 30 (array of counts 28, dictionary walked over the value range 2) |",
+    "why": "",
+    "value_names": [],
+    "offset": 1048337,
+    "line_at_read": 6588
+   },
+   {
+    "id": "C8-a11",
+    "item": "0a",
+    "section": "Table 314",
+    "kind": "table_row",
+    "old_text": "| kth smallest | full state exchange, forced counting sort source | 30 | 1.00 | 0 | other 29, quickselect 1 |",
+    "new_text": "| kth smallest | full state exchange, forced counting sort source | 30 | 1.00 | 0 | counting sort (dictionary form) 29, other 1 (binary search on the value range; iteration-8 correction) |",
+    "why": "",
+    "value_names": [],
+    "offset": 1112506,
+    "line_at_read": 7204
+   },
+   {
+    "id": "C8-a12",
+    "item": "0a",
+    "section": "7.3.9",
+    "kind": "prose",
+    "old_text": "Of the 38 correct programs labelled other across the experiment, 36 are catalogue variants and 2 are labeller misses; none is novel.",
+    "new_text": "Of the 38 correct programs labelled other across the experiment, 36 are catalogue variants and 2 are labeller misses; none is novel. 29 of the 36 come from the full state exchange of the forced counting sort source and 6 more from the forced counting sort prompts: they are counting sort in dictionary form, which the extended labeller now names counting sort (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1094299,
+    "line_at_read": 7037
+   },
+   {
+    "id": "C8-a13",
+    "item": "0a",
+    "section": "Table 371",
+    "kind": "table_row",
+    "old_text": "| DAS experiment | 38 correct programs labelled other | 36 catalogue variants, 2 labeller misses | 0 |",
+    "new_text": "| DAS experiment | 38 correct programs labelled other | 36 catalogue variants (35 are counting sort in dictionary form, 29 of them from the full state exchange of the forced counting sort source; relabelled counting sort in iteration 8), 2 labeller misses | 0 |",
+    "why": "",
+    "value_names": [],
+    "offset": 1232057,
+    "line_at_read": 8310
+   },
+   {
+    "id": "C8-a16",
+    "item": "0a",
+    "section": "Table 371",
+    "kind": "caption",
+    "old_text": "**Table 371.** Novelty audits of iteration 7.",
+    "new_text": "**Table 371.** Novelty audits of iteration 7. (iteration-8 correction: the DAS experiment row names the counting-sort cells)",
+    "why": "",
+    "value_names": [],
+    "offset": 1231801,
+    "line_at_read": 8305
+   },
+   {
+    "id": "C8-a14",
+    "item": "0a",
+    "section": "Table 372",
+    "kind": "table_row",
+    "old_text": "| Routing claim | Categorical on shortest path and kth smallest; not on connected components | Floyd-Warshall 28/28 and counting sort 30/30 under DAS; forced BFS lands on DFS |",
+    "new_text": "| Routing claim | Categorical by the committed rule on two tasks (shortest path, kth smallest), not on connected components (iteration-8 correction) | Floyd-Warshall 28/28 under DAS against 8/20 for the full state; on kth smallest the full state also lands 29 of 30 on counting sort (dictionary form) against 30/30 under DAS (28 of them an array of counts); forced BFS lands on DFS |",
+    "why": "",
+    "value_names": [],
+    "offset": 1233256,
+    "line_at_read": 8325
+   },
+   {
+    "id": "C8-a15",
+    "item": "0a",
+    "section": "Table 370",
+    "kind": "table_row",
+    "old_text": "| Qwen3-8B, kth smallest | DAS rank 1, forced counting sort source | 30/30 counting sort | 0/30 | 1.00 |",
+    "new_text": "| Qwen3-8B, kth smallest | DAS rank 1, forced counting sort source | 30/30 counting sort (28 an array of counts; the full state exchange gives 29/30 in dictionary form, iteration-8 correction) | 0/30 | 1.00 |",
+    "why": "",
+    "value_names": [],
+    "offset": 1230830,
+    "line_at_read": 8295
+   },
+   {
+    "id": "C8-a17",
+    "item": "0a",
+    "section": "Table 301",
+    "kind": "caption",
+    "old_text": "**Table 301.** The pilot of the committed contrastive maps in generation (base cells in parentheses).",
+    "new_text": "**Table 301.** The pilot of the committed contrastive maps in generation (base cells in parentheses). (iteration-8 correction: in the adjudicated column of these 100 programs (rule, two gated judges, manual read; `tables/counting_sort_adjudication.csv`), 56 of the 67 labelled other are degenerate text and 11 are attempted Dijkstra that crash on the edge list, and 19 of the 30 labelled Dijkstra are degenerate text that the frozen path labeller names Dijkstra; no relabelled program passes, so the correct-Y counts stand)",
+    "why": "",
+    "value_names": [],
+    "offset": 1048527,
+    "line_at_read": 6590
+   }
+  ],
+  "verdict": "CORRECTED",
+  "summary": {
+   "forms": {
+    "DASLY_F_counting_sort_k1": {
+     "array": 28,
+     "dict_value_range": 2
+    },
+    "DASLY_F_counting_sort_k4": {
+     "array": 27,
+     "dict_value_range": 3
+    },
+    "DASLY_F_counting_sort_k16": {
+     "array": 28,
+     "dict_value_range": 2
+    },
+    "FULL_F_counting_sort": {
+     "dict_sorted_keys": 29,
+     "neither": 1
+    }
+   },
+   "full_state_counting_sort": 29,
+   "kth_pooled_recovery": {
+    "1": 1.0125,
+    "4": 1.0,
+    "16": 0.9875
+   },
+   "kth_pooled_recovery_ci": {
+    "1": [
+     0.9518072289156626,
+     1.0789473684210527
+    ],
+    "4": [
+     0.9259027777777777,
+     1.075023734177215
+    ],
+    "16": [
+     0.9176470588235294,
+     1.0649350649350648
+    ]
+   },
+   "catalogue_variants_from_full_cell": 29,
+   "from_forced_prompts": 6
+  },
+  "values": [
+   {
+    "name": "T03 forced counting sort: full state correct counting sort (of 30)",
+    "item": "0a",
+    "recorded": 0,
+    "recomputed": 29,
+    "status": "CORRECTED",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==FULL_F_counting_sort + labeller_v2 + tables/counting_sort_adjudication.csv"
+   },
+   {
+    "name": "T03 pooled recovery k1 (old labels, placebo)",
+    "item": "0a",
+    "recorded": 1.59,
+    "recomputed": 1.588235294117647,
+    "status": "MATCH",
+    "tolerance": 0.005,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T03.per_k.1.recovery"
+   },
+   {
+    "name": "T03 pooled recovery k1",
+    "item": "0a",
+    "recorded": 1.59,
+    "recomputed": 1.0125,
+    "status": "CORRECTED",
+    "tolerance": 0.005,
+    "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==FULL_F_counting_sort + labeller_v2 + tables/counting_sort_adjudication.csv",
+    "note": "num 81 / den 80; slot bootstrap 95% [0.95, 1.08]"
+   },
+   {
+    "name": "T03 pooled recovery k4 (old labels, placebo)",
+    "item": "0a",
+    "recorded": 1.57,
+    "recomputed": 1.5686274509803921,
+    "status": "MATCH",
+    "tolerance": 0.005,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T03.per_k.4.recovery"
+   },
+   {
+    "name": "T03 pooled recovery k4",
+    "item": "0a",
+    "recorded": 1.57,
+    "recomputed": 1.0,
+    "status": "CORRECTED",
+    "tolerance": 0.005,
+    "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==FULL_F_counting_sort + labeller_v2 + tables/counting_sort_adjudication.csv",
+    "note": "num 80 / den 80; slot bootstrap 95% [0.93, 1.08]"
+   },
+   {
+    "name": "T03 pooled recovery k16 (old labels, placebo)",
+    "item": "0a",
+    "recorded": 1.55,
+    "recomputed": 1.5490196078431373,
+    "status": "MATCH",
+    "tolerance": 0.005,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T03.per_k.16.recovery"
+   },
+   {
+    "name": "T03 pooled recovery k16",
+    "item": "0a",
+    "recorded": 1.55,
+    "recomputed": 0.9875,
+    "status": "CORRECTED",
+    "tolerance": 0.005,
+    "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==FULL_F_counting_sort + labeller_v2 + tables/counting_sort_adjudication.csv",
+    "note": "num 79 / den 80; slot bootstrap 95% [0.92, 1.06]"
+   },
+   {
+    "name": "T03 random-subspace recovery k1 (Table 297)",
+    "item": "0a",
+    "recorded": 0.05,
+    "recomputed": 0.045454545454545456,
+    "status": "MATCH",
+    "tolerance": 0.005,
+    "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==FULL_F_counting_sort + labeller_v2 + tables/counting_sort_adjudication.csv",
+    "note": "normalised by the full state over the sources that have random arms (ban source only), so the relabel does not touch it"
+   },
+   {
+    "name": "T03 random-subspace recovery k16 (Table 297)",
+    "item": "0a",
+    "recorded": 0.05,
+    "recomputed": 0.045454545454545456,
+    "status": "MATCH",
+    "tolerance": 0.005,
+    "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==FULL_F_counting_sort + labeller_v2 + tables/counting_sort_adjudication.csv"
+   },
+   {
+    "name": "T03 permuted-label transfer k1 (7.3.5)",
+    "item": "0a",
+    "recorded": 0.6,
+    "recomputed": 0.6,
+    "status": "MATCH",
+    "tolerance": 0.005,
+    "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==FULL_F_counting_sort + labeller_v2 + tables/counting_sort_adjudication.csv",
+    "note": "absolute transfer (count - base)/30 of the ban source; not normalised by the full state, so the relabel does not touch it"
+   },
+   {
+    "name": "T03 permuted-label transfer k16 (Table 297)",
+    "item": "0a",
+    "recorded": 0.47,
+    "recomputed": 0.4666666666666667,
+    "status": "MATCH",
+    "tolerance": 0.005,
+    "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==FULL_F_counting_sort + labeller_v2 + tables/counting_sort_adjudication.csv"
+   },
+   {
+    "name": "Table 300 kth smallest | counting sort: full state routing",
+    "item": "0a",
+    "recorded": 0.0,
+    "recomputed": 0.9666666666666667,
+    "status": "CORRECTED",
+    "tolerance": 0.005,
+    "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==FULL_F_counting_sort + labeller_v2 + tables/counting_sort_adjudication.csv",
+    "note": "29/30 [CP 0.83, 1.00]"
+   },
+   {
+    "name": "7.3.9 catalogue variants from FULL_F_counting_sort (of 36)",
+    "item": "0a",
+    "recorded": null,
+    "recomputed": 29,
+    "status": "NEW",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/novelty_audit.json#rows[].arm"
+   },
+   {
+    "name": "7.3.9 catalogue variants from the forced counting sort prompts F1-F3 (of 36)",
+    "item": "0a",
+    "recorded": null,
+    "recomputed": 6,
+    "status": "NEW",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/novelty_audit.json#rows[].arm"
+   },
+   {
+    "name": "judge gate A (deepseek-chat-v3.1), of 10",
+    "item": "0a",
+    "recorded": null,
+    "recomputed": 10,
+    "status": "NEW",
+    "tolerance": 0,
+    "source": "audit/judge_gate.json"
+   },
+   {
+    "name": "judge gate B (mistral-medium-3.1), of 10",
+    "item": "0a",
+    "recorded": null,
+    "recomputed": 9,
+    "status": "NEW",
+    "tolerance": 0,
+    "source": "audit/judge_gate.json"
+   },
+   {
+    "name": "labeller v2: gold kappa runtime-vs-AST",
+    "item": "0a",
+    "recorded": 0.951,
+    "recomputed": 0.951048951048951,
+    "status": "MATCH",
+    "tolerance": 0.0005,
+    "source": "art_veI9l_Rb9wDY:inputs/exp11/bench/T03_kth_smallest/gate.json#gold"
+   },
+   {
+    "name": "labeller v2: controls passed (of 5)",
+    "item": "0a",
+    "recorded": null,
+    "recomputed": 5,
+    "status": "NEW",
+    "tolerance": 0,
+    "source": "results/a2_validation.json"
+   },
+   {
+    "name": "counting sort implementation form, DASLY_F_counting_sort_k1",
+    "item": "0a",
+    "recorded": null,
+    "recomputed": {
+     "array": 28,
+     "dict_value_range": 2
+    },
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==DASLY_F_counting_sort_k1 (regex on code)"
+   },
+   {
+    "name": "counting sort implementation form, DASLY_F_counting_sort_k16",
+    "item": "0a",
+    "recorded": null,
+    "recomputed": {
+     "array": 28,
+     "dict_value_range": 2
+    },
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==DASLY_F_counting_sort_k16 (regex on code)"
+   },
+   {
+    "name": "counting sort implementation form, DASLY_F_counting_sort_k4",
+    "item": "0a",
+    "recorded": null,
+    "recomputed": {
+     "array": 27,
+     "dict_value_range": 3
+    },
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==DASLY_F_counting_sort_k4 (regex on code)"
+   },
+   {
+    "name": "counting sort implementation form, FULL_F_counting_sort",
+    "item": "0a",
+    "recorded": null,
+    "recomputed": {
+     "dict_sorted_keys": 29,
+     "neither": 1
+    },
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==FULL_F_counting_sort (regex on code)"
+   },
+   {
+    "name": "Table 301 pilot: programs labelled other that are degenerate / attempted Dijkstra",
+    "item": "0a",
+    "recorded": null,
+    "recomputed": "56 / 11 of 67",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "tables/counting_sort_adjudication.csv#cell startswith DAS_"
+   },
+   {
+    "name": "Table 301 pilot: programs labelled Dijkstra by the frozen path labeller that are degenerate text",
+    "item": "0a",
+    "recorded": null,
+    "recomputed": "19 of 30",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "tables/counting_sort_adjudication.csv#cell startswith DAS_"
+   }
+  ]
+ },
+ "0b": {
+  "edits": [
+   {
+    "id": "C8-b01",
+    "item": "0b",
+    "section": "7.3.4",
+    "kind": "prose",
+    "old_text": "Recovery is the ratio of the edit's transfer to the full state transfer; pooled over sources it lies between 0.73 and 1.71 at every rank on every task, and above 1 where a trained direction moves the model further than the full exchange.",
+    "new_text": "Recovery is the ratio of the edit's transfer to the full state transfer, and its summary is per source and rank: by source it matches or exceeds the full state exchange for the ban sources (except shortest path at rank 16, 6 against 11) and for the forced Floyd-Warshall, quickselect, counting sort and DFS sources, recovers 0.17 to 0.43 of forced Bellman-Ford/SPFA and 0.06 to 0.53 of forced BFS, and rank 2 is untested for forced sources (Table 297b). Pooled over sources as a ratio of sums (secondary), it lies between 0.73 and 1.71 on shortest path and connected components and between 0.99 and 1.01 on kth smallest after the counting-sort relabel, above 1 where a trained direction moves the model further than the full exchange (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1037275,
+    "line_at_read": 6483
+   },
+   {
+    "id": "C8-b02",
+    "item": "0b",
+    "section": "Table 297b",
+    "kind": "table_insert",
+    "old_text": "\n\n### 7.3.5 The controls that make it a handle, not a variable",
+    "new_text": "\n\n**Table 297b.** Recovery by source and rank (summary statistic; pooled recovery is secondary). Each cell is the count of correct programs of the target algorithm of 30 and, in parentheses, the recovery (DAS count - base) / (full state count - base), undefined when the denominator is 0. Forced sources were generated at ranks 1, 4 and 16 only (deviation D-C-k), and the kth smallest ban source at ranks 1, 4 and 16. The kth smallest forced counting sort row uses the relabelled full state (29). Source: `results/p1.json` per_source of the DAS experiment, recomputed from `data/labels.jsonl` (iteration-8 correction: new table)\n\n| Task | Source | Target Y | Base | Full state | Rank 1 | Rank 2 | Rank 4 | Rank 8 | Rank 16 |\n|-|-|-|-|-|-|-|-|-|-|\n| shortest path | fifth template ban | Bellman-Ford/SPFA | 1 | 11 | 8 (0.70) | 12 (1.10) | 10 (0.90) | 10 (0.90) | 6 (0.50) |\n| shortest path | forced Bellman-Ford/SPFA | Bellman-Ford/SPFA | 0 | 30 | 13 (0.43) | not generated | 9 (0.30) | not generated | 5 (0.17) |\n| shortest path | forced Floyd-Warshall | Floyd-Warshall | 0 | 8 | 28 (3.50) | not generated | 28 (3.50) | not generated | 25 (3.12) |\n| connected components | fifth template ban | BFS | 0 | 17 | 18 (1.06) | 23 (1.35) | 21 (1.24) | 29 (1.71) | 29 (1.71) |\n| connected components | forced BFS | BFS | 0 | 17 | 1 (0.06) | not generated | 7 (0.41) | not generated | 9 (0.53) |\n| connected components | forced DFS | DFS | 0 | 30 | 30 (1.00) | not generated | 26 (0.87) | not generated | 23 (0.77) |\n| kth smallest | fifth template ban | quickselect, size k heap | 5 | 27 | 26 (0.95) | not generated | 27 (1.00) | not generated | 27 (1.00) |\n| kth smallest | forced quickselect | quickselect | 0 | 29 | 30 (1.03) | not generated | 28 (0.97) | not generated | 27 (0.93) |\n| kth smallest | forced counting sort | counting sort | 0 | 29 | 30 (1.03) | not generated | 30 (1.03) | not generated | 30 (1.03) |\n\n### 7.3.5 The controls that make it a handle, not a variable",
+    "why": "",
+    "value_names": [],
+    "offset": 1042008,
+    "line_at_read": 6539
+   },
+   {
+    "id": "C8-b03",
+    "item": "0b",
+    "section": "7.3.5",
+    "kind": "prose",
+    "old_text": "The fits on permuted labels transfer 0.47 on shortest path, 0.70 on connected components and 0.60 on kth smallest of the full state effect, against a committed limit of 0.1:",
+    "new_text": "The fits on permuted labels transfer 0.47 on shortest path, 0.70 on connected components and 0.60 on kth smallest as absolute transfers ((count - base)/30; relative to the full state effect 1.40, 1.24 and 0.82), against a committed limit of 0.1 (iteration-8 correction):",
+    "why": "",
+    "value_names": [],
+    "offset": 1042137,
+    "line_at_read": 6543
+   },
+   {
+    "id": "C8-b04",
+    "item": "0b",
+    "section": "7.3.5",
+    "kind": "prose",
+    "old_text": "The untrained network admits a teacher-forced fit almost as good as the trained one (13.31 nats against 14.45 on shortest path, a ratio of 0.92 against a limit of 0.5).",
+    "new_text": "The untrained network admits a teacher-forced fit as good as the trained one or better: the untrained-network control ran on shortest path only; the committed comparison with the diverged contrastive fit (ratio 0.013) proved meaningless and was replaced post hoc; under the matched likelihood fit the untrained network gains 43.6 nats against 8.6 for the trained one (ratio 5.1), while the fit-value ratio is 0.92 (13.31 against 14.45 nats); three different ratios exist (committed 0.013, fit value 0.92, likelihood gain 5.08), each against a limit of 0.5, and only the last is measured in the objective both maps were fitted with (LME_Y) (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1042842,
+    "line_at_read": 6543
+   },
+   {
+    "id": "C8-b05",
+    "item": "0b",
+    "section": "Table 372",
+    "kind": "table_row",
+    "old_text": "| DAS claim (Qwen3-8B) | Not supported on any task | Recovery 0.73 to 1.71 and random subspaces null, but permuted labels transfer 0.47 to 0.70 and an untrained network fits at 0.92 of the trained fit |",
+    "new_text": "| DAS claim (Qwen3-8B) | Not supported on any task | By source (Table 297b): matches or exceeds the full-state exchange for ban sources and for the forced Floyd-Warshall, quickselect, counting sort and DFS sources; recovers 0.17 to 0.43 of forced Bellman-Ford/SPFA and 0.06 to 0.53 of forced BFS; rank 2 untested for forced sources; random subspaces null; permuted labels transfer 0.47 to 0.70 of the 30 slots; the untrained network (shortest path only) gains 43.6 nats against 8.6 under the matched likelihood fit (ratio 5.1; the committed ratio 0.013 was against the diverged fit) (iteration-8 correction) |",
+    "why": "",
+    "value_names": [],
+    "offset": 1233053,
+    "line_at_read": 8324
+   },
+   {
+    "id": "C8-b06",
+    "item": "0a+0b",
+    "section": "7.10",
+    "kind": "prose",
+    "old_text": "In Qwen3-8B a rank-1 or rank-2 subspace of the task specification states at blocks 12 to 23 is a steering handle on the algorithm that matches the full state exchange, and on two tasks it routes more cleanly than the full state. The handle is not a certified variable, because permuted labels and an untrained network admit it.",
+    "new_text": "In Qwen3-8B a rank-1 or rank-2 subspace of the task specification states at blocks 12 to 23 is a steering handle on the algorithm that matches or exceeds the full-state exchange for ban sources and for the forced Floyd-Warshall, quickselect, counting sort and DFS sources; recovers 0.17 to 0.43 of forced Bellman-Ford/SPFA and 0.06 to 0.53 of forced BFS; rank 2 untested for forced sources. It routes more cleanly than the full state on one task (shortest path: Floyd-Warshall 28/28 against 8/20); on kth smallest the DAS edit changes the implementation form (mostly an array of counts against the full state's dictionary with sorted keys), not the algorithm. The handle is not a certified variable, because permuted labels and an untrained network admit it (the untrained-network control ran on shortest path only; the committed comparison with the diverged contrastive fit (ratio 0.013) proved meaningless and was replaced post hoc; under the matched likelihood fit the untrained network gains 43.6 nats against 8.6 for the trained one (ratio 5.1), while the fit-value ratio is 0.92 (13.31 against 14.45 nats)) (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1234555,
+    "line_at_read": 8335
+   },
+   {
+    "id": "C8-b07",
+    "item": "0b",
+    "section": "closing",
+    "kind": "prose",
+    "old_text": "and a DAS subspace of rank 1 or 2 at blocks 12 to 23 matches that exchange in generation while random subspaces of the same rank do nothing.",
+    "new_text": "and a DAS subspace of rank 1 or 2 at blocks 12 to 23 matches or exceeds that exchange in generation for the ban sources and the forced Floyd-Warshall, quickselect, counting sort and DFS sources, and recovers 0.17 to 0.43 of forced Bellman-Ford/SPFA and 0.06 to 0.53 of forced BFS, while random subspaces of the same rank do nothing (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1245297,
+    "line_at_read": 8357
+   },
+   {
+    "id": "C8-b08",
+    "item": "0b",
+    "section": "closing",
+    "kind": "prose",
+    "old_text": "That subspace is a steering handle and not a certified variable: permuted labels transfer 0.47 to 0.70 of its effect, an untrained network admits a fit 0.92 as good [132], and the reverse interchange does not restore the default [122].",
+    "new_text": "That subspace is a steering handle and not a certified variable: permuted labels transfer 0.47 to 0.70 of the 30 slots (0.82 to 1.40 of the full-state effect); the untrained-network control ran on shortest path only; the committed comparison with the diverged contrastive fit (ratio 0.013) proved meaningless and was replaced post hoc; under the matched likelihood fit the untrained network gains 43.6 nats against 8.6 for the trained one (ratio 5.1), while the fit-value ratio is 0.92 (13.31 against 14.45 nats) [132]; and the reverse interchange does not restore the default [122] (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1245438,
+    "line_at_read": 8357
+   },
+   {
+    "id": "C8-b10",
+    "item": "0b",
+    "section": "7.3.4",
+    "kind": "prose",
+    "old_text": "A rank-1 or rank-2 edit moves the algorithm about as far as the full state exchange on all three tasks,",
+    "new_text": "A rank-1 or rank-2 edit of the ban source moves the algorithm about as far as the full state exchange on all three tasks (forced sources by source in Table 297b; iteration-8 correction),",
+    "why": "",
+    "value_names": [],
+    "offset": 1036532,
+    "line_at_read": 6483
+   },
+   {
+    "id": "C8-b09",
+    "item": "0b",
+    "section": "7.9",
+    "kind": "prose",
+    "old_text": "In Qwen3-8B a rank-1 or rank-2 DAS edit matches the full state exchange at the same site,",
+    "new_text": "In Qwen3-8B a rank-1 or rank-2 DAS edit matches the full state exchange at the same site for most sources (it recovers 0.06 to 0.53 of forced BFS and 0.17 to 0.43 of forced Bellman-Ford/SPFA; Table 297b; iteration-8 correction),",
+    "why": "",
+    "value_names": [],
+    "offset": 1229140,
+    "line_at_read": 8283
+   }
+  ],
+  "verdict": "CORRECTED",
+  "summary": {
+   "untrained_ratios": {
+    "committed_contrastive": 0.013034216086236138,
+    "fit_value": 0.9209257540295512,
+    "matched_lmeY": 5.0775312947091
+   },
+   "permuted_relative_to_full": {
+    "T2": 1.4,
+    "T10": 1.2352941176470589,
+    "T03": 0.8181818181818182
+   },
+   "forced_bf_recovery": [
+    0.43333333333333335,
+    0.3,
+    0.16666666666666666
+   ],
+   "forced_bfs_recovery": [
+    0.058823529411764705,
+    0.4117647058823529,
+    0.5294117647058824
+   ]
+  },
+  "values": [
+   {
+    "name": "T2 ban full-state count",
+    "item": "0b",
+    "recorded": 11,
+    "recomputed": 11,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T2.per_source.ban.full_count"
+   },
+   {
+    "name": "T2 ban rank 1 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 8,
+    "recomputed": 8,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T2.per_source.ban.das.1.count"
+   },
+   {
+    "name": "T2 ban rank 2 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 12,
+    "recomputed": 12,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T2.per_source.ban.das.2.count"
+   },
+   {
+    "name": "T2 ban rank 4 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 10,
+    "recomputed": 10,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T2.per_source.ban.das.4.count"
+   },
+   {
+    "name": "T2 ban rank 8 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 10,
+    "recomputed": 10,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T2.per_source.ban.das.8.count"
+   },
+   {
+    "name": "T2 ban rank 16 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 6,
+    "recomputed": 6,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T2.per_source.ban.das.16.count"
+   },
+   {
+    "name": "T2 F_bf_spfa full-state count",
+    "item": "0b",
+    "recorded": 30,
+    "recomputed": 30,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T2.per_source.F_bf_spfa.full_count"
+   },
+   {
+    "name": "T2 F_bf_spfa rank 1 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 13,
+    "recomputed": 13,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T2.per_source.F_bf_spfa.das.1.count"
+   },
+   {
+    "name": "T2 F_bf_spfa rank 4 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 9,
+    "recomputed": 9,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T2.per_source.F_bf_spfa.das.4.count"
+   },
+   {
+    "name": "T2 F_bf_spfa rank 16 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 5,
+    "recomputed": 5,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T2.per_source.F_bf_spfa.das.16.count"
+   },
+   {
+    "name": "T2 F_floyd full-state count",
+    "item": "0b",
+    "recorded": 8,
+    "recomputed": 8,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T2.per_source.F_floyd.full_count"
+   },
+   {
+    "name": "T2 F_floyd rank 1 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 28,
+    "recomputed": 28,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T2.per_source.F_floyd.das.1.count"
+   },
+   {
+    "name": "T2 F_floyd rank 4 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 28,
+    "recomputed": 28,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T2.per_source.F_floyd.das.4.count"
+   },
+   {
+    "name": "T2 F_floyd rank 16 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 25,
+    "recomputed": 25,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T2.per_source.F_floyd.das.16.count"
+   },
+   {
+    "name": "T10 ban full-state count",
+    "item": "0b",
+    "recorded": 17,
+    "recomputed": 17,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T10.per_source.ban.full_count"
+   },
+   {
+    "name": "T10 ban rank 1 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 18,
+    "recomputed": 18,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T10.per_source.ban.das.1.count"
+   },
+   {
+    "name": "T10 ban rank 2 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 23,
+    "recomputed": 23,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T10.per_source.ban.das.2.count"
+   },
+   {
+    "name": "T10 ban rank 4 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 21,
+    "recomputed": 21,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T10.per_source.ban.das.4.count"
+   },
+   {
+    "name": "T10 ban rank 8 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 29,
+    "recomputed": 29,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T10.per_source.ban.das.8.count"
+   },
+   {
+    "name": "T10 ban rank 16 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 29,
+    "recomputed": 29,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T10.per_source.ban.das.16.count"
+   },
+   {
+    "name": "T10 F_bfs full-state count",
+    "item": "0b",
+    "recorded": 17,
+    "recomputed": 17,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T10.per_source.F_bfs.full_count"
+   },
+   {
+    "name": "T10 F_bfs rank 1 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 1,
+    "recomputed": 1,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T10.per_source.F_bfs.das.1.count"
+   },
+   {
+    "name": "T10 F_bfs rank 4 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 7,
+    "recomputed": 7,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T10.per_source.F_bfs.das.4.count"
+   },
+   {
+    "name": "T10 F_bfs rank 16 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 9,
+    "recomputed": 9,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T10.per_source.F_bfs.das.16.count"
+   },
+   {
+    "name": "T10 F_dfs full-state count",
+    "item": "0b",
+    "recorded": 30,
+    "recomputed": 30,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T10.per_source.F_dfs.full_count"
+   },
+   {
+    "name": "T10 F_dfs rank 1 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 30,
+    "recomputed": 30,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T10.per_source.F_dfs.das.1.count"
+   },
+   {
+    "name": "T10 F_dfs rank 4 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 26,
+    "recomputed": 26,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T10.per_source.F_dfs.das.4.count"
+   },
+   {
+    "name": "T10 F_dfs rank 16 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 23,
+    "recomputed": 23,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T10.per_source.F_dfs.das.16.count"
+   },
+   {
+    "name": "T03 ban full-state count",
+    "item": "0b",
+    "recorded": 27,
+    "recomputed": 27,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T03.per_source.ban.full_count"
+   },
+   {
+    "name": "T03 ban rank 1 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 26,
+    "recomputed": 26,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T03.per_source.ban.das.1.count"
+   },
+   {
+    "name": "T03 ban rank 4 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 27,
+    "recomputed": 27,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T03.per_source.ban.das.4.count"
+   },
+   {
+    "name": "T03 ban rank 16 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 27,
+    "recomputed": 27,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T03.per_source.ban.das.16.count"
+   },
+   {
+    "name": "T03 F_quickselect full-state count",
+    "item": "0b",
+    "recorded": 29,
+    "recomputed": 29,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T03.per_source.F_quickselect.full_count"
+   },
+   {
+    "name": "T03 F_quickselect rank 1 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 30,
+    "recomputed": 30,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T03.per_source.F_quickselect.das.1.count"
+   },
+   {
+    "name": "T03 F_quickselect rank 4 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 28,
+    "recomputed": 28,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T03.per_source.F_quickselect.das.4.count"
+   },
+   {
+    "name": "T03 F_quickselect rank 16 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 27,
+    "recomputed": 27,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T03.per_source.F_quickselect.das.16.count"
+   },
+   {
+    "name": "T03 F_counting_sort full-state count",
+    "item": "0b",
+    "recorded": 0,
+    "recomputed": 29,
+    "status": "CORRECTED",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T03.per_source.F_counting_sort.full_count"
+   },
+   {
+    "name": "T03 F_counting_sort rank 1 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 30,
+    "recomputed": 30,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T03.per_source.F_counting_sort.das.1.count"
+   },
+   {
+    "name": "T03 F_counting_sort rank 4 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 30,
+    "recomputed": 30,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T03.per_source.F_counting_sort.das.4.count"
+   },
+   {
+    "name": "T03 F_counting_sort rank 16 correct Y (of 30)",
+    "item": "0b",
+    "recorded": 30,
+    "recomputed": 30,
+    "status": "MATCH",
+    "tolerance": 0,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T03.per_source.F_counting_sort.das.16.count"
+   },
+   {
+    "name": "untrained network: committed ratio (contrastive objective, against the diverged fit)",
+    "item": "0b",
+    "recorded": null,
+    "recomputed": 0.013034216086236138,
+    "status": "NEW",
+    "tolerance": 0.0005,
+    "source": "art_veI9l_Rb9wDY:results/randinit_T2.json#ratio",
+    "note": "28.97 against 2222.31; D-randinit: not meaningful"
+   },
+   {
+    "name": "untrained network: fit-value ratio quoted in 7.3.5",
+    "item": "0b",
+    "recorded": 0.92,
+    "recomputed": 0.9209257540295512,
+    "status": "MATCH",
+    "tolerance": 0.005,
+    "source": "art_veI9l_Rb9wDY:results/randinit_ly_T2.json#random_net_heldout_das16_gain / trained_heldout_das16_gain",
+    "note": "13.31 against 14.45 nats"
+   },
+   {
+    "name": "untrained network: matched likelihood-gain ratio (ratio_lmeY)",
+    "item": "0b",
+    "recorded": null,
+    "recomputed": 5.0775312947091,
+    "status": "NEW",
+    "tolerance": 0.005,
+    "source": "art_veI9l_Rb9wDY:results/randinit_ly_T2.json#ratio_lmeY",
+    "note": "43.63 against 8.59 nats"
+   },
+   {
+    "name": "T2 permuted-label transfer (PERMLY_ban_k2), absolute",
+    "item": "0b",
+    "recorded": 0.47,
+    "recomputed": 0.4666666666666667,
+    "status": "MATCH",
+    "tolerance": 0.005,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T2.per_k.permuted_transfer_max"
+   },
+   {
+    "name": "T2 permuted-label transfer (PERMLY_ban_k2), relative to the full-state effect",
+    "item": "0b",
+    "recorded": null,
+    "recomputed": 1.4,
+    "status": "NEW",
+    "tolerance": 0.005,
+    "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==PERMLY_ban_k2"
+   },
+   {
+    "name": "T10 permuted-label transfer (PERMLY_ban_k16), absolute",
+    "item": "0b",
+    "recorded": 0.7,
+    "recomputed": 0.7,
+    "status": "MATCH",
+    "tolerance": 0.005,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T10.per_k.permuted_transfer_max"
+   },
+   {
+    "name": "T10 permuted-label transfer (PERMLY_ban_k16), relative to the full-state effect",
+    "item": "0b",
+    "recorded": null,
+    "recomputed": 1.2352941176470589,
+    "status": "NEW",
+    "tolerance": 0.005,
+    "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==PERMLY_ban_k16"
+   },
+   {
+    "name": "T03 permuted-label transfer (PERMLY_ban_k1), absolute",
+    "item": "0b",
+    "recorded": 0.6,
+    "recomputed": 0.6,
+    "status": "MATCH",
+    "tolerance": 0.005,
+    "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T03.per_k.permuted_transfer_max"
+   },
+   {
+    "name": "T03 permuted-label transfer (PERMLY_ban_k1), relative to the full-state effect",
+    "item": "0b",
+    "recorded": null,
+    "recomputed": 0.8181818181818182,
+    "status": "NEW",
+    "tolerance": 0.005,
+    "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==PERMLY_ban_k1"
+   }
+  ]
+ },
+ "0c": {
+  "edits": [
+   {
+    "id": "C8-c01",
+    "item": "0c",
+    "section": "7.8.4",
+    "kind": "prose",
+    "old_text": "at lambda 1 it gives more correct BFS programs (42) than the explicit instruction to use BFS (35).",
+    "new_text": "the explicit instruction to use BFS gives 35, but it was sampled from index 0 without the prefilled opening and is not comparable: the DAS, difference-in-means and twin cells run with the canonical 32-token opening prefilled (exp38 `src/g2.py` line 877, `run.run_cell(ids, cs, rows_w, raw, ...)`), while the forced-BFS ceiling is sampled from index 0 with no prefix (lines 878-885, `run.run_cell(pfz[\"ids\"], [], rows, raw, \"G2:forced\")`) on the same CRN slots (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1216264,
+    "line_at_read": 8179
+   },
+   {
+    "id": "C8-c02",
+    "item": "0c",
+    "section": "Table 365",
+    "kind": "caption",
+    "old_text": "**Table 365.** Gemma: DAS against difference in means as a dose dial toward BFS (N = 50 per cell, same seed).",
+    "new_text": "**Table 365.** Gemma: DAS against difference in means as a dose dial toward BFS (N = 50 per cell, same seed). (iteration-8 correction: every cell except the forced BFS prompt has the shared 32-token opening prefilled; the forced BFS prompt is sampled from index 0 without it, on the same slots, so its row is not comparable with the edits)",
+    "why": "",
+    "value_names": [],
+    "offset": 1217545,
+    "line_at_read": 8183
+   },
+   {
+    "id": "C8-c03",
+    "item": "0c",
+    "section": "Table 365",
+    "kind": "table_row",
+    "old_text": "| forced BFS prompt, fifth forced source (prompting ceiling) | 50 | 35 | 0.70 | 4e-6 (unadjusted) | - |",
+    "new_text": "| forced BFS prompt, fifth forced source (sampled from index 0 without the prefilled opening; not comparable) | 50 | 35 | 0.70 | 4e-6 (unadjusted) | - |",
+    "why": "",
+    "value_names": [],
+    "offset": 1218651,
+    "line_at_read": 8201
+   },
+   {
+    "id": "C8-c04",
+    "item": "0c",
+    "section": "Table 370",
+    "kind": "table_row",
+    "old_text": "| gemma-3-4b-it, grid | DAS rank 4 at block 17, lambda 1 | 42/50 BFS | 11/50 | 0.88 |",
+    "new_text": "| gemma-3-4b-it, grid | DAS rank 4 at block 17, lambda 1 (opening prefilled) | 42/50 BFS | 11/50 | 0.88 |",
+    "why": "",
+    "value_names": [],
+    "offset": 1231172,
+    "line_at_read": 8298
+   },
+   {
+    "id": "C8-c05",
+    "item": "0c",
+    "section": "Table 370",
+    "kind": "table_row",
+    "old_text": "| gemma-3-4b-it, grid | Explicit BFS instruction | 35/50 BFS | 11/50 | 0.70 |",
+    "new_text": "| gemma-3-4b-it, grid | Explicit BFS instruction (no prefill, not comparable) | 35/50 BFS | 11/50 | 0.70 |",
+    "why": "",
+    "value_names": [],
+    "offset": 1231258,
+    "line_at_read": 8299
+   },
+   {
+    "id": "C8-c06",
+    "item": "0c",
+    "section": "Table 370",
+    "kind": "caption",
+    "old_text": "**Table 370.** Edits that moved the algorithm in generation in iteration 7.",
+    "new_text": "**Table 370.** Edits that moved the algorithm in generation in iteration 7. (iteration-8 correction: prefill condition of the two Gemma rows stated; kth smallest counting sort row annotated)",
+    "why": "",
+    "value_names": [],
+    "offset": 1230019,
+    "line_at_read": 8285
+   },
+   {
+    "id": "C8-c07",
+    "item": "0c",
+    "section": "7.9",
+    "kind": "prose",
+    "old_text": "In Gemma the DAS edit at the fork beats the explicit instruction in correct BFS programs, and steering five validated circuit nodes doubles them.",
+    "new_text": "In Gemma the DAS edit at the fork, with the shared opening prefilled, raises correct BFS programs from 11 to 42 of 50 (the explicit instruction's 35 was sampled without the prefill and is not comparable), and steering five validated circuit nodes doubles them (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1229444,
+    "line_at_read": 8283
+   }
+  ],
+  "evidence": {
+   "g2.py:877": "run.run_cell(ids, cs, rows_w, raw, f\"G2:{w}\")",
+   "g2.py:878": "# forced-BFS ceiling (natural sampling from index 0, prompt F5 with iteration 6's display name)",
+   "g2.py:885": "run.run_cell(pfz[\"ids\"], [], rows, raw, \"G2:forced\")",
+   "README": [
+    "| G2 dose | **commit #3**; DAS and DiM (matched teacher-forced dy) toward BFS and DFS at 6 doses, twin, forced-BFS ceiling, RAND, logit-only DAS (G2-L); N = 50 per cell, CRN | `results/g2_dose.json`, `results/g2_dose_tf_pred.json`, F5 |",
+    "| forced-BFS prompt F5 (prompting ceiling) | 50 | 35 | 0.70 | 4e-6 (unadjusted) | - |",
+    "| F5 `F5_g2_dose` | dose response (attempted, correct, pass) for DAS vs DiM toward BFS and toward DFS, with the twin, the forced-BFS ceiling and the logit-only DAS cell |"
+   ],
+   "same_slots": true,
+   "prefix_len": {
+    "twin": [
+     32
+    ],
+    "DAS|bfs|1.0": [
+     32
+    ],
+    "forced_bfs_F5": [
+     0
+    ]
+   },
+   "n_rows": {
+    "twin": 50,
+    "DAS|bfs|1.0": 50,
+    "forced_bfs_F5": 50
+   }
+  },
+  "verdict": "CORRECTED (prefill condition stated at every mention)",
+  "values": [
+   {
+    "name": "Gemma dial: forced-BFS cell shares the CRN slots of the twin and DAS cells",
+    "item": "0c",
+    "recorded": null,
+    "recomputed": true,
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_HY7uYZz-OjRW:data/raw_g2dose.jsonl#ukey by cell"
+   },
+   {
+    "name": "Gemma dial: prefix length of twin / DAS lambda 1 / forced-BFS cells",
+    "item": "0c",
+    "recorded": null,
+    "recomputed": {
+     "twin": [
+      32
+     ],
+     "DAS|bfs|1.0": [
+      32
+     ],
+     "forced_bfs_F5": [
+      0
+     ]
+    },
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_HY7uYZz-OjRW:data/raw_g2dose.jsonl#prefix_len"
+   },
+   {
+    "name": "exp38 README: the sentences that describe the forced-BFS ceiling",
+    "item": "0c",
+    "recorded": null,
+    "recomputed": [
+     "| forced-BFS prompt F5 (prompting ceiling) | 50 | 35 | 0.70 | 4e-6 (unadjusted) | - |",
+     "- **DAS beats the prompting ceiling.** At lambda 1 it gives 42 correct BFS programs against 35 for the explicit"
+    ],
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_HY7uYZz-OjRW:README.md#grep 'forced' and 'ceiling'",
+    "note": "the README calls the unprefilled forced prompt the 'prompting ceiling' and compares the prefilled DAS cell with it"
+   }
+  ]
+ },
+ "0d": {
+  "edits": [
+   {
+    "id": "C8-d01",
+    "item": "0d",
+    "section": "7.4.3",
+    "kind": "prose",
+    "old_text": "its Spearman with the attempted share is 0.82, and the 48-token opening LLR in place of the fork margin reaches 0.87.",
+    "new_text": "its Spearman with the attempted share is 0.82, and the 48-token opening LLR in place of the fork margin reaches 0.87. Both are readouts taken where the outcome is already expressed, teacher-forced at the fork token and at the opening, so their agreement with the sampled outcomes measures the outcome there rather than predicting it from the push; no property of the push direction itself predicted which pushes move the fork (axis projection 0.17 and 0.01, Section 7.4.4; plan-subspace projection 0.03 in iteration 4) (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1117813,
+    "line_at_read": 7247
+   },
+   {
+    "id": "C8-d02",
+    "item": "0d",
+    "section": "7.9",
+    "kind": "prose",
+    "old_text": "where it exists its margin predicts the effect of random pushes (connected components) and of temperature (within the committed error on two of the four mixed units).",
+    "new_text": "where it exists, the effect of a push is already expressed at the fork token on connected components (a teacher-forced readout of the margin matches the sampled outcomes of random pushes at Spearman 0.80, and the 48-token opening log-likelihood ratio at 0.87; no direction-level property predicted which pushes move the fork), and its logits divided by T predicted the temperature response within the committed error on two of the four mixed units (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1228787,
+    "line_at_read": 8281
+   },
+   {
+    "id": "C8-d03",
+    "item": "0d",
+    "section": "7.10",
+    "kind": "prose",
+    "old_text": "and the fork margin under a random push predicts the effect of the push (Spearman 0.80), through the probability that stays on the default fork tokens rather than through which algorithm each other token leads to (a placebo that shuffles the token map reaches 0.80 in 18% of permutations).",
+    "new_text": "and the effect of a random push is already expressed at that token: a teacher-forced readout of the fork margin matches the sampled outcomes at Spearman 0.80 (the 48-token opening log-likelihood ratio at 0.87), through the probability that stays on the default fork tokens rather than through which algorithm each other token leads to (a placebo that shuffles the token map reaches 0.80 in 18% of permutations); no direction-level property predicted which pushes move the fork (axis 0.17 and 0.01; plan-subspace projection 0.03 in iteration 4) (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1235345,
+    "line_at_read": 8335
+   },
+   {
+    "id": "C8-d04",
+    "item": "0d",
+    "section": "closing",
+    "kind": "prose",
+    "old_text": "The margin at the decision predicts what moves the algorithm. Under 40 random pushes, the fork margin on connected components ranks which pushes change the algorithm (Spearman 0.80), although a placebo that shuffles which fork tokens lead to which algorithm reaches the same value in 18% of permutations, so the ranking rests on how much probability stays on the default fork tokens.",
+    "new_text": "The effect of a push is already expressed at the decision token. Under 40 random pushes on connected components, a teacher-forced readout of the fork margin matches which pushes change the algorithm (Spearman 0.80; the 48-token opening log-likelihood ratio 0.87), although a placebo that shuffles which fork tokens lead to which algorithm reaches the same value in 18% of permutations, so the agreement rests on how much probability stays on the default fork tokens; no direction-level property predicted which pushes move the fork (axis 0.17 and 0.01; plan-subspace projection 0.03 in iteration 4) (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1239815,
+    "line_at_read": 8349
+   }
+  ],
+  "verdict": "RESTATED (readout, not predictor)",
+  "summary": {
+   "rho_margin": 0.8038935854682215,
+   "rho_margin_ci": [
+    0.6174608400398528,
+    0.9119428117776284
+   ],
+   "rho_llr48": 0.8688928552769107,
+   "rho_llr48_ci": [
+    0.7305033254322211,
+    0.9386989789019361
+   ],
+   "perm_median": 0.0011337081943376024
+  },
+  "values": [
+   {
+    "name": "fork margin vs escape share Spearman (T10, 40 directions)",
+    "item": "0d",
+    "recorded": 0.8,
+    "recomputed": 0.8038935854682215,
+    "status": "MATCH",
+    "tolerance": 0.005,
+    "source": "art_pHL7LWNhpcCS:results/f_analysis.json#cells.T10[].m,y",
+    "note": "bootstrap 95% [0.62, 0.91]"
+   },
+   {
+    "name": "48-token opening LLR vs escape share Spearman (T10)",
+    "item": "0d",
+    "recorded": 0.87,
+    "recomputed": 0.8688928552769107,
+    "status": "MATCH",
+    "tolerance": 0.005,
+    "source": "art_pHL7LWNhpcCS:results/f_analysis.json#cells.T10[].llr48,y",
+    "note": "bootstrap 95% [0.73, 0.94]"
+   },
+   {
+    "name": "token-map shuffle placebo share reaching 0.80",
+    "item": "0d",
+    "recorded": 0.18,
+    "recomputed": 0.18,
+    "status": "CARRIED",
+    "tolerance": 0.0,
+    "source": "art_pHL7LWNhpcCS:README.md#Placebo, shuffled fork-token map on T10: 18% of the 200 permutations"
+   },
+   {
+    "name": "axis projection Spearman T10",
+    "item": "0d",
+    "recorded": 0.17,
+    "recomputed": 0.1732684023679302,
+    "status": "MATCH",
+    "tolerance": 0.005,
+    "source": "art_pHL7LWNhpcCS:results/p2_analysis.json#P2.T10.rho_b"
+   },
+   {
+    "name": "axis projection Spearman T2",
+    "item": "0d",
+    "recorded": 0.01,
+    "recomputed": 0.014865191729384867,
+    "status": "MATCH",
+    "tolerance": 0.005,
+    "source": "art_pHL7LWNhpcCS:results/p2_analysis.json#P2.T2.rho_b"
+   },
+   {
+    "name": "plan-subspace projection Spearman (iteration 4)",
+    "item": "0d",
+    "recorded": 0.03,
+    "recomputed": 0.03,
+    "status": "CARRIED",
+    "tolerance": 0.0,
+    "source": "current_report.md#Section 4 item 5 ('ranks them at 0.03')"
+   },
+   {
+    "name": "permuted-outcome placebo: median Spearman of margin vs shuffled outcomes",
+    "item": "0d",
+    "recorded": null,
+    "recomputed": 0.0011337081943376024,
+    "status": "NEW",
+    "tolerance": 0.05,
+    "source": "audit placebo (2,000 shuffles, seed 11)"
+   }
+  ]
+ },
+ "0e": {
+  "edits": [
+   {
+    "id": "C8-e01",
+    "item": "0e",
+    "section": "7.8.3",
+    "kind": "prose",
+    "old_text": "This time the controls hold.",
+    "new_text": "These controls hold (iteration-8 correction: within their limits below).",
+    "why": "",
+    "value_names": [],
+    "offset": 1212232,
+    "line_at_read": 8144
+   },
+   {
+    "id": "C8-e02",
+    "item": "0e",
+    "section": "7.8.3",
+    "kind": "prose",
+    "old_text": "The DAS claim's Gemma version is therefore supported at every rank, and the controls that failed for Qwen3-8B in Section 7.3 pass here.",
+    "new_text": "The DAS claim's Gemma version is therefore supported at every rank by the random-subspace, permuted-label and untrained-network controls; the dormancy checks (reverse interchange, projected-map retention) were not run, a recovery of 1.98 to 2.81 times the full-state swap is the off-manifold signature Makelov et al. [122] warn about, and the Qwen3-8B and Gemma controls used different objectives, readouts and permutation schemes, so their outcomes are not directly comparable (Table 364d) (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1212587,
+    "line_at_read": 8144
+   },
+   {
+    "id": "C8-e03",
+    "item": "0e",
+    "section": "7.8.3",
+    "kind": "prose",
+    "old_text": "and the subspace holds 0.0009 of the twin's natural variance across prompts, at the random 95th percentile.",
+    "new_text": "and the subspace holds less of the twin's natural variance across prompts than the random 95th percentile at ranks 1, 2 and 4 (0.00093 against 0.00098, 0.00116 against 0.00185, 0.00187 against 0.00275) and more only at rank 8 (0.00565 against 0.00486), so the dial's rank-4 subspace lies below it; at block 22 the rank-1 share lies above it (0.00294 against 0.00078). The committed dormant flag (exp38 `src/g2.py` line 618: rank-1 share at or below the random 95th percentile AND |rho| < 0.2) was false only because |rho| = 0.497, the coordinate tracking the natural fork log odds, not because of variance (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1212991,
+    "line_at_read": 8146
+   },
+   {
+    "id": "C8-e04",
+    "item": "0e",
+    "section": "Table 364b",
+    "kind": "caption",
+    "old_text": "**Table 364b.** Gemma: DAS at the fork by rank, with its controls (held-out templates and held-out forced sources, 768 pairs; block 17, and block 22 for comparison).",
+    "new_text": "**Table 364b.** Gemma: DAS at the fork by rank, with its controls (held-out templates and held-out forced sources, 768 pairs; block 17, and block 22 for comparison). (iteration-8 correction: the natural variance share lies below the random 95th percentile at ranks 1, 2 and 4 and above it at rank 8; at block 22, rank 1, it lies above (0.00294 against 0.00078); dormancy checks were not run; the controls are not comparable with those of Qwen3-8B, Table 364d)",
+    "why": "",
+    "value_names": [],
+    "offset": 1213266,
+    "line_at_read": 8148
+   },
+   {
+    "id": "C8-e05",
+    "item": "0e",
+    "section": "Table 364d",
+    "kind": "table_insert",
+    "old_text": "\n\n### 7.8.4 A dose dial that keeps the programs",
+    "new_text": "\n\n**Table 364d.** The controls of the two families were run under different protocols, so their outcomes are not directly comparable (iteration-8 correction: new table; `tables/control_protocols.csv`).\n\n| Family | Objective | Site and readout | Permutation scheme | Untrained network | Pairs |\n|-|-|-|-|-|-|\n| Qwen3-8B (Section 7.3) | whole-program likelihood LME_Y of the source's programs (amended; the committed contrastive objective diverged) | task-specification states at blocks 12-23 (one map over the band); held-out generation of whole programs and teacher-forced LME_Y | labels permuted over the two kept algorithms per task (44% of training labels changed; 56% on kth smallest) | random-init Qwen3-8B, shortest path only; committed comparison against the diverged fit (0.013), replaced post hoc by the matched LME_Y fit (5.08) | all source x base pairs (bans W1-W3, forced families 0-2 -> neutral and padding twins); held-out W5 ban and forced families 3-4, N = 30 slots |\n| gemma-3-4b-it (Section 7.8) | single-token fork margin (logsumexp over the BFS tokens minus the ' visited' logit) | block 17 at the fork position (response index 32, opening prefilled); teacher-forced margin, then generation | BFS/DFS source labels swapped (3 permutations) | randomly initialised Gemma on the same fork-margin readout | 768 held-out pairs (held-out templates and forced sources) |\n\n### 7.8.4 A dose dial that keeps the programs",
+    "why": "",
+    "value_names": [],
+    "offset": 1215914,
+    "line_at_read": 8175
+   },
+   {
+    "id": "C8-e06",
+    "item": "0c+0e",
+    "section": "Table 372",
+    "kind": "table_row",
+    "old_text": "| Gemma claims | Temperature law holds; DAS controls hold, calling it one dimensional not licensed; 7 to 8 of 10 circuit nodes validated | Error 0.026; random initialisation at most 0.25 times; dose dial 42 correct BFS against 35 for the instruction |",
+    "new_text": "| Gemma claims | Temperature law holds; DAS passes the random-subspace, permuted-label and untrained-network controls (dormancy checks not run; natural variance below the random 95th percentile at ranks 1, 2 and 4; controls not comparable with Qwen3-8B's), calling it one dimensional not licensed; 7 to 8 of 10 circuit nodes validated (iteration-8 correction) | Error 0.026; random initialisation at most 0.25 times; with the opening prefilled the dial raises correct BFS from 11 to 42 of 50 (the instruction's 35 was sampled without the prefill, not comparable) |",
+    "why": "",
+    "value_names": [],
+    "offset": 1234128,
+    "line_at_read": 8332
+   },
+   {
+    "id": "C8-e07",
+    "item": "0c+0e",
+    "section": "7.10",
+    "kind": "prose",
+    "old_text": "In Gemma the analogous subspace at the fork passes all three controls and acts as a dose dial that keeps the programs.",
+    "new_text": "In Gemma the analogous subspace at the fork passes the random-subspace, permuted-label and untrained-network controls (dormancy checks not run; its natural variance lies below the random 95th percentile at ranks 1, 2 and 4, and it recovers 1.98 to 2.81 times the full-state swap) and, with the shared opening prefilled, acts as a dose dial that keeps the programs; the Qwen3-8B and Gemma controls used different objectives, readouts and permutation schemes, so their outcomes are not directly comparable (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1234883,
+    "line_at_read": 8335
+   },
+   {
+    "id": "C8-e08",
+    "item": "0c+0e",
+    "section": "closing",
+    "kind": "prose",
+    "old_text": "In Gemma, DAS at the fork passes the controls with random subspaces, permuted labels and an untrained network, but the subspace is not unique across seeds and the committed rule does not license calling it one dimensional; as a dose dial it raises correct BFS programs from 11 to 42 of 50, above the 35 of an explicit BFS instruction, while a difference-in-means edit toward BFS at matched teacher-forced effect destroys the programs.",
+    "new_text": "In Gemma, DAS at the fork passes the controls with random subspaces, permuted labels and an untrained network (dormancy checks not run; its natural variance lies below the random 95th percentile at ranks 1, 2 and 4), but the subspace is not unique across seeds and the committed rule does not license calling it one dimensional; the Qwen3-8B and Gemma controls used different objectives, readouts and permutation schemes, so their outcomes are not directly comparable. With the shared opening prefilled, the edit raises correct BFS from 11 to 42 of 50; the instruction, sampled without the prefill, gives 35, which is not comparable; a difference-in-means edit toward BFS at matched teacher-forced effect destroys the programs (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1245722,
+    "line_at_read": 8357
+   },
+   {
+    "id": "C8-e09",
+    "item": "0e",
+    "section": "7.11",
+    "kind": "prose",
+    "old_text": "which may require fitting at the fork in generation, where Gemma's controls passed, rather than at the task specification states.",
+    "new_text": "which may require fitting at the fork in generation, where Gemma's controls passed, rather than at the task specification states; because the Qwen3-8B and Gemma controls used different objectives, readouts and permutation schemes, their outcomes are not directly comparable, and a matched protocol is part of that test (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1237174,
+    "line_at_read": 8343
+   },
+   {
+    "id": "C8-e10",
+    "item": "0e",
+    "section": "closing",
+    "kind": "prose",
+    "old_text": "First, whether Qwen3-8B's handle can be certified as a variable: a DAS fit at the fork in generation, where Gemma's controls passed, rather than at the task specification states.",
+    "new_text": "First, whether Qwen3-8B's handle can be certified as a variable: a DAS fit at the fork in generation, where Gemma's controls passed, rather than at the task specification states, under one protocol for both families (the Qwen3-8B and Gemma controls used different objectives, readouts and permutation schemes, so their outcomes are not directly comparable) (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1250938,
+    "line_at_read": 8365
+   }
+  ],
+  "verdict": "RESTATED (controls within their limits)",
+  "summary": {
+   "ranks_below_p95": [
+    1,
+    2,
+    4
+   ],
+   "block22_k1_above": true,
+   "dormant_flag": false,
+   "abs_rho": 0.49675930669109186,
+   "recovery_range": [
+    1.9845972886814716,
+    2.361914786321687,
+    2.5788978466683874,
+    2.807393929284768
+   ]
+  },
+  "values": [
+   {
+    "name": "Gemma natural variance share, block 17, rank 1",
+    "item": "0e",
+    "recorded": 0.00093,
+    "recomputed": 0.0009322572200138506,
+    "status": "MATCH",
+    "tolerance": 5e-06,
+    "source": "art_HY7uYZz-OjRW:results/g2_decisions.json#natural_variance.1.share"
+   },
+   {
+    "name": "Gemma natural variance random 95th percentile, block 17, rank 1",
+    "item": "0e",
+    "recorded": 0.00098,
+    "recomputed": 0.0009764995167364807,
+    "status": "MATCH",
+    "tolerance": 5e-06,
+    "source": "art_HY7uYZz-OjRW:results/g2_decisions.json#natural_variance.1.random_p95"
+   },
+   {
+    "name": "Gemma natural variance share, block 17, rank 2",
+    "item": "0e",
+    "recorded": 0.00116,
+    "recomputed": 0.001156531037287858,
+    "status": "MATCH",
+    "tolerance": 5e-06,
+    "source": "art_HY7uYZz-OjRW:results/g2_decisions.json#natural_variance.2.share"
+   },
+   {
+    "name": "Gemma natural variance random 95th percentile, block 17, rank 2",
+    "item": "0e",
+    "recorded": 0.00185,
+    "recomputed": 0.0018464621925119407,
+    "status": "MATCH",
+    "tolerance": 5e-06,
+    "source": "art_HY7uYZz-OjRW:results/g2_decisions.json#natural_variance.2.random_p95"
+   },
+   {
+    "name": "Gemma natural variance share, block 17, rank 4",
+    "item": "0e",
+    "recorded": 0.00187,
+    "recomputed": 0.0018726520404657514,
+    "status": "MATCH",
+    "tolerance": 5e-06,
+    "source": "art_HY7uYZz-OjRW:results/g2_decisions.json#natural_variance.4.share"
+   },
+   {
+    "name": "Gemma natural variance random 95th percentile, block 17, rank 4",
+    "item": "0e",
+    "recorded": 0.00275,
+    "recomputed": 0.002751280489684898,
+    "status": "MATCH",
+    "tolerance": 5e-06,
+    "source": "art_HY7uYZz-OjRW:results/g2_decisions.json#natural_variance.4.random_p95"
+   },
+   {
+    "name": "Gemma natural variance share, block 17, rank 8",
+    "item": "0e",
+    "recorded": 0.00565,
+    "recomputed": 0.00565079382307479,
+    "status": "MATCH",
+    "tolerance": 5e-06,
+    "source": "art_HY7uYZz-OjRW:results/g2_decisions.json#natural_variance.8.share"
+   },
+   {
+    "name": "Gemma natural variance random 95th percentile, block 17, rank 8",
+    "item": "0e",
+    "recorded": 0.00486,
+    "recomputed": 0.0048577240250756454,
+    "status": "MATCH",
+    "tolerance": 5e-06,
+    "source": "art_HY7uYZz-OjRW:results/g2_decisions.json#natural_variance.8.random_p95"
+   },
+   {
+    "name": "Gemma natural variance share, block 22, rank 1",
+    "item": "0e",
+    "recorded": null,
+    "recomputed": 0.002936096950799364,
+    "status": "NEW",
+    "tolerance": 5e-06,
+    "source": "art_HY7uYZz-OjRW:results/g2_decisions.json#second_layer.22.natural_variance_k1.share",
+    "note": "random 95th percentile 0.00078: above"
+   },
+   {
+    "name": "Gemma dormant_flag (g2.py:618 rule)",
+    "item": "0e",
+    "recorded": null,
+    "recomputed": false,
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_HY7uYZz-OjRW:results/g2_decisions.json#dormant_flag",
+    "note": "rule 'nat[\"dormant_flag\"] = bool(nat[1][\"share\"] <= nat[1][\"random_p95\"] and abs(rho) < 0.2)'; share_k1 <= p95 is True, |rho| = 0.497"
+   }
+  ]
+ },
+ "0f": {
+  "edits": [
+   {
+    "id": "C8-f01",
+    "item": "0f",
+    "section": "7.2 (record audit table)",
+    "kind": "table_row",
+    "old_text": "| A Tale of Two Temperatures (seed) | COLM, not ICML 2026 | CORRECTED |",
+    "new_text": "| A Tale of Two Temperatures (seed) | COLM (arXiv v2 comment 'V2: accepted as a full conference paper at COLM', no year) and two ICML 2026 workshop posters (AdaptFM, icml.cc/virtual/2026/75333; 4th Structured Probabilistic Inference & Generative Modeling, icml.cc/virtual/2026/74361); a paper on diffusion language models, not autoregressive code (iteration-8 correction, verified 2026-10-23) | CORRECTED |",
+    "why": "",
+    "value_names": [],
+    "offset": 1030387,
+    "line_at_read": 6435
+   },
+   {
+    "id": "C8-f02",
+    "item": "0f",
+    "section": "Table 371b",
+    "kind": "table_insert",
+    "old_text": "\n\n## 7.10 What iteration 7 established, what it ruled out, and what it abandoned",
+    "new_text": "\n\n**Table 371b.** Positioning of the iteration-7 claims (to our knowledge, mini search dated 2026-10-22, re-verified 2026-10-23 with fetch_grep of each abstract and venue page; raw outputs in `audit/web/`). Verdicts come from the record audit's positioning search (art_LzP2qPwUrANz `positioning.json`). (iteration-8 correction: new table)\n\n| Claim | Nearest neighbours (venue) | What they do | What the run adds | Verdict | Evidence (URL, version, quote, status, date) |\n|-|-|-|-|-|-|\n| Temperature acts on the algorithm through the fork logits divided by T | Hot or Cold? Adaptive Temperature Sampling for Code Generation (AAAI 2024); Control the Temperature (COLM 2025); Entropy-informed Decoding (ICML 2026 (arXiv 2605.09745 comment)); Beyond the 80/20 Rule (NeurIPS 2025); A Tale of Two Temperatures (COLM (arXiv v2 comment, no year); ICML 2026 workshop posters) | Hot or Cold? Adaptive Temperature Sampling for Code Generation: temperature set by token difficulty in code generation, no algorithm-level prediction; Control the Temperature: switches temperature per token to protect precision; Entropy-informed Decoding: branches decoding at high-entropy tokens, no algorithm-level outcome; Beyond the 80/20 Rule: forking (high-entropy) tokens drive RL for reasoning, not temperature at a code fork; A Tale of Two Temperatures: tempered remasking for sample diversity in diffusion language models, not autoregressive code | a per-algorithm prediction of the temperature response from teacher-forced fork logits, committed before sampling, and fork margins that explain the nulls on the collapsed tasks | adjacent: no neighbour predicts an algorithm-level temperature response | https://arxiv.org/abs/2309.02772 (v1 6 Sep 2023, v3 28 Dec 2023; 'Hot or Cold? Adaptive Temperature Sampling for Code Generation'; 'accepted by AAAI 2024'; VERIFIED, 2026-10-23); https://arxiv.org/abs/2510.01218 (v1 20 Sep 2025; 'Control the Temperature'; 'Second Conference on Language Modeling, 2025'; VERIFIED, 2026-10-23); https://arxiv.org/abs/2605.09745 (v1 10 May 2026; 'Entropy-informed Decoding'; 'Accepted at ICML 2026'; VERIFIED, 2026-10-23); https://arxiv.org/abs/2506.01939 (v1 2 Jun 2025, v2 13 Nov 2025; 'Beyond the 80/20 Rule'; 'Accepted to NeurIPS 2025'; VERIFIED, 2026-10-23); https://arxiv.org/abs/2604.09921 (v1 10 Apr 2026, v2 10 Aug 2026; 'A Tale of Two Temperatures'; 'V2: accepted as a full conference paper at COLM'; VERIFIED, 2026-10-23); https://icml.cc/virtual/2026/75333 (AdaptFM: Resource-Adaptive Foundation Model Inference; VERIFIED, 2026-10-23); https://icml.cc/virtual/2026/74361 (4th Structured Probabilistic Inference & Generative Modeling; VERIFIED, 2026-10-23) |\n| A DAS subspace at Gemma's fork is a dose dial on the algorithm in code | CDAS (ICLR 2026); MIB (ICML 2025) | CDAS: DAS-style interchange steering validated by generation on refusal and a backdoor; MIB: benchmark that ranks DAS first for causal variable localisation | an algorithm choice in code at a generated fork, with a dose curve that preserves the pass rate (with the shared opening prefilled; the instruction cell is not comparable) | adjacent: DAS steering is published; the algorithm-in-code object and the dose curve are not | https://arxiv.org/abs/2602.05234 (v1 5 Feb 2026, v2 15 Mar 2026; 'Faithful Bi-Directional Model Steering'; 'accepted for ICLR 2026'; VERIFIED, 2026-10-23); https://arxiv.org/abs/2504.13151 (v1 17 Apr 2025, v2 9 Jun 2025; 'MIB: A Mechanistic Interpretability Benchmark'; 'Accepted to ICML 2025'; VERIFIED, 2026-10-23) |\n| Evaluator-guided search reaches known techniques outside the catalogue at a rate single samples do not | FunSearch (Nature 2023); AlphaEvolve (2025 (arXiv)); DivAlgo (arXiv 2610.19157); Beneath the Diff (EMNLP 2026); Algorithm Discovery With LLMs (arXiv 2504.05108) | FunSearch: evaluator-guided program search finds new mathematical constructions; AlphaEvolve: evaluator-guided evolutionary coding agent (occupies the method family); DivAlgo: benchmarks algorithmic diversity of code models; Beneath the Diff: algorithmic mode collapse in autonomous research loops; Algorithm Discovery With LLMs: evolutionary search plus RL for algorithm discovery | a rate-matched comparison against single-sample knobs on a frozen LeetCode-style catalogue (78 of 2,500 calls against 2 of 500; 0 novel) | adjacent: the method is occupied (FunSearch, AlphaEvolve); the rate-matched comparison is the addition | https://www.nature.com/articles/s41586-023-06924-6 (version n/a; 'Mathematical discoveries from program search with large language models'; 'Published: 14 December 2023'; VERIFIED, 2026-10-23); https://arxiv.org/abs/2506.13131 (v1 16 Jun 2025; 'AlphaEvolve: A coding agent'; VERIFIED, 2026-10-23); https://arxiv.org/abs/2610.19157 (v1 13 Oct 2026; 'DivAlgo'; VERIFIED, 2026-10-23); https://arxiv.org/abs/2609.00077 (v1 31 Aug 2026; 'Beneath the Diff'; 'Accepted by EMNLP 2026'; VERIFIED, 2026-10-23); https://arxiv.org/abs/2504.05108 (v1 7 Apr 2025, v4 4 Aug 2025; 'Algorithm Discovery With LLMs'; VERIFIED, 2026-10-23) |\n\n## 7.10 What iteration 7 established, what it ruled out, and what it abandoned",
+    "why": "",
+    "value_names": [],
+    "offset": 1232685,
+    "line_at_read": 8315
+   }
+  ],
+  "verdict": "NEW (Table 371b) + venue row CORRECTED",
+  "summary": {
+   "n_rows": 12,
+   "status_counts": {
+    "VERIFIED": 12,
+    "VERIFIED-ABSTRACT": 0,
+    "UNVERIFIED": 0
+   },
+   "workshop_posters": [
+    "VERIFIED",
+    "VERIFIED"
+   ]
+  },
+  "rows": [
+   {
+    "key": "hotcold",
+    "claim_group": "temperature",
+    "name": "Hot or Cold? Adaptive Temperature Sampling for Code Generation",
+    "venue_claimed": "AAAI 2024",
+    "url": "https://arxiv.org/abs/2309.02772",
+    "version": "v1 6 Sep 2023, v3 28 Dec 2023",
+    "arxiv_comment": "This paper is accepted by AAAI 2024",
+    "title_quote": "Hot or Cold? Adaptive Temperature Sampling for Code Generation",
+    "venue_quote": "accepted by AAAI 2024",
+    "status": "VERIFIED",
+    "date": "2026-10-23",
+    "what_they_do": "temperature set by token difficulty in code generation; no algorithm-level prediction",
+    "raw": [
+     "audit/web/hotcold_abs.txt",
+     "audit/web/hotcold_venue.txt"
+    ],
+    "error": null
+   },
+   {
+    "key": "ctrltemp",
+    "claim_group": "temperature",
+    "name": "Control the Temperature: Selective Sampling for Diverse and High-Quality LLM Outputs",
+    "venue_claimed": "COLM 2025",
+    "url": "https://arxiv.org/abs/2510.01218",
+    "version": "v1 20 Sep 2025",
+    "arxiv_comment": "Second Conference on Language Modeling, 2025",
+    "title_quote": "Control the Temperature",
+    "venue_quote": "Second Conference on Language Modeling, 2025",
+    "status": "VERIFIED",
+    "date": "2026-10-23",
+    "what_they_do": "switches temperature per token to protect precision",
+    "raw": [
+     "audit/web/ctrltemp_abs.txt"
+    ],
+    "error": null
+   },
+   {
+    "key": "entropy",
+    "claim_group": "temperature",
+    "name": "Entropy-informed Decoding: Adaptive Information-Driven Branching",
+    "venue_claimed": "ICML 2026 (arXiv 2605.09745 comment)",
+    "url": "https://arxiv.org/abs/2605.09745",
+    "version": "v1 10 May 2026",
+    "arxiv_comment": "Accepted at ICML 2026",
+    "title_quote": "Entropy-informed Decoding",
+    "venue_quote": "Accepted at ICML 2026",
+    "status": "VERIFIED",
+    "date": "2026-10-23",
+    "what_they_do": "branches decoding at high-entropy tokens; no algorithm-level outcome",
+    "raw": [
+     "audit/web/entropy_abs.txt"
+    ],
+    "error": null
+   },
+   {
+    "key": "beyond8020",
+    "claim_group": "temperature",
+    "name": "Beyond the 80/20 Rule: High-Entropy Minority Tokens Drive Effective RL for LLM Reasoning",
+    "venue_claimed": "NeurIPS 2025",
+    "url": "https://arxiv.org/abs/2506.01939",
+    "version": "v1 2 Jun 2025, v2 13 Nov 2025",
+    "arxiv_comment": "Accepted to NeurIPS 2025. 25 pages, 17 figures, 2 tables",
+    "title_quote": "Beyond the 80/20 Rule",
+    "venue_quote": "Accepted to NeurIPS 2025",
+    "status": "VERIFIED",
+    "date": "2026-10-23",
+    "what_they_do": "forking (high-entropy) tokens drive RL for reasoning; not temperature at a code fork",
+    "raw": [
+     "audit/web/beyond8020_abs.txt"
+    ],
+    "error": null
+   },
+   {
+    "key": "tale",
+    "claim_group": "temperature",
+    "name": "A Tale of Two Temperatures: Simple, Efficient, and Diverse Sampling from Diffusion Language Models",
+    "venue_claimed": "COLM (arXiv v2 comment, no year); ICML 2026 workshop posters",
+    "url": "https://arxiv.org/abs/2604.09921",
+    "version": "v1 10 Apr 2026, v2 10 Aug 2026",
+    "arxiv_comment": "V2: accepted as a full conference paper at COLM",
+    "title_quote": "A Tale of Two Temperatures",
+    "venue_quote": "V2: accepted as a full conference paper at COLM",
+    "status": "VERIFIED",
+    "date": "2026-10-23",
+    "what_they_do": "tempered remasking for sample diversity in diffusion language models, not autoregressive code",
+    "raw": [
+     "audit/web/tale_abs.txt"
+    ],
+    "error": null,
+    "workshop_posters": [
+     {
+      "url": "https://icml.cc/virtual/2026/75333",
+      "workshop": "AdaptFM: Resource-Adaptive Foundation Model Inference",
+      "quote": "Poster in Workshop: AdaptFM: Resource-Adaptive Foundation Model Inference ... A Tale of Two Temperatures: Simple, Efficient, and Diverse Sampling from Diffusion Language Models",
+      "status": "VERIFIED",
+      "date": "2026-10-23",
+      "raw": "audit/web/icml_75333_b.txt"
+     },
+     {
+      "url": "https://icml.cc/virtual/2026/74361",
+      "workshop": "4th Structured Probabilistic Inference & Generative Modeling",
+      "quote": "Poster in Workshop: 4th Structured Probabilistic Inference & Generative Modeling ... A Tale of Two Temperatures: Simple, Efficient, and Diverse Sampling from Diffusion Language Models",
+      "status": "VERIFIED",
+      "date": "2026-10-23",
+      "raw": "audit/web/icml_74361_b.txt"
+     }
+    ]
+   },
+   {
+    "key": "cdas",
+    "claim_group": "dial",
+    "name": "CDAS: Faithful Bi-Directional Model Steering via Distribution Matching and Distributed Interchange Interventions",
+    "venue_claimed": "ICLR 2026",
+    "url": "https://arxiv.org/abs/2602.05234",
+    "version": "v1 5 Feb 2026, v2 15 Mar 2026",
+    "arxiv_comment": "camera ready version; 55 pages, 25 figures; accepted for ICLR 2026",
+    "title_quote": "Faithful Bi-Directional Model Steering",
+    "venue_quote": "accepted for ICLR 2026",
+    "status": "VERIFIED",
+    "date": "2026-10-23",
+    "what_they_do": "DAS-style interchange steering validated by generation on refusal and a backdoor",
+    "raw": [
+     "audit/web/cdas_abs.txt"
+    ],
+    "error": null
+   },
+   {
+    "key": "mib",
+    "claim_group": "dial",
+    "name": "MIB: A Mechanistic Interpretability Benchmark",
+    "venue_claimed": "ICML 2025",
+    "url": "https://arxiv.org/abs/2504.13151",
+    "version": "v1 17 Apr 2025, v2 9 Jun 2025",
+    "arxiv_comment": "Accepted to ICML 2025. Project website at [this https URL](https://mib-bench.github.io)",
+    "title_quote": "MIB: A Mechanistic Interpretability Benchmark",
+    "venue_quote": "Accepted to ICML 2025",
+    "status": "VERIFIED",
+    "date": "2026-10-23",
+    "what_they_do": "benchmark that ranks DAS first for causal variable localisation",
+    "raw": [
+     "audit/web/mib_abs.txt",
+     "audit/web/mib_venue.txt"
+    ],
+    "error": null
+   },
+   {
+    "key": "funsearch",
+    "claim_group": "search",
+    "name": "FunSearch: Mathematical discoveries from program search with large language models",
+    "venue_claimed": "Nature 2023",
+    "url": "https://www.nature.com/articles/s41586-023-06924-6",
+    "version": "",
+    "arxiv_comment": null,
+    "title_quote": "Mathematical discoveries from program search with large language models",
+    "venue_quote": "Published: 14 December 2023",
+    "status": "VERIFIED",
+    "date": "2026-10-23",
+    "what_they_do": "evaluator-guided program search finds new mathematical constructions",
+    "raw": [
+     "audit/web/funsearch.txt"
+    ],
+    "error": null
+   },
+   {
+    "key": "alphaevolve",
+    "claim_group": "search",
+    "name": "AlphaEvolve: A coding agent for scientific and algorithmic discovery",
+    "venue_claimed": "2025 (arXiv)",
+    "url": "https://arxiv.org/abs/2506.13131",
+    "version": "v1 16 Jun 2025",
+    "arxiv_comment": null,
+    "title_quote": "AlphaEvolve: A coding agent",
+    "venue_quote": null,
+    "status": "VERIFIED",
+    "date": "2026-10-23",
+    "what_they_do": "evaluator-guided evolutionary coding agent (occupies the method family)",
+    "raw": [
+     "audit/web/alphaevolve_abs.txt"
+    ],
+    "error": null
+   },
+   {
+    "key": "divalgo",
+    "claim_group": "search",
+    "name": "DivAlgo: A systematic evaluation of algorithmic diversity for code generation models",
+    "venue_claimed": "arXiv 2610.19157",
+    "url": "https://arxiv.org/abs/2610.19157",
+    "version": "v1 13 Oct 2026",
+    "arxiv_comment": "24 pages, 18 figures",
+    "title_quote": "DivAlgo",
+    "venue_quote": null,
+    "status": "VERIFIED",
+    "date": "2026-10-23",
+    "what_they_do": "benchmarks algorithmic diversity of code models",
+    "raw": [
+     "audit/web/divalgo_abs.txt"
+    ],
+    "error": null
+   },
+   {
+    "key": "beneath",
+    "claim_group": "search",
+    "name": "Beneath the Diff: Diagnosing and Mitigating Algorithmic Mode Collapse in Code-Level Autonomous Research Loops",
+    "venue_claimed": "EMNLP 2026",
+    "url": "https://arxiv.org/abs/2609.00077",
+    "version": "v1 31 Aug 2026",
+    "arxiv_comment": "Accepted by EMNLP 2026",
+    "title_quote": "Beneath the Diff",
+    "venue_quote": "Accepted by EMNLP 2026",
+    "status": "VERIFIED",
+    "date": "2026-10-23",
+    "what_they_do": "algorithmic mode collapse in autonomous research loops",
+    "raw": [
+     "audit/web/beneath_abs.txt"
+    ],
+    "error": null
+   },
+   {
+    "key": "algdisc",
+    "claim_group": "search",
+    "name": "Algorithm Discovery With LLMs: Evolutionary Search Meets Reinforcement Learning",
+    "venue_claimed": "arXiv 2504.05108",
+    "url": "https://arxiv.org/abs/2504.05108",
+    "version": "v1 7 Apr 2025, v4 4 Aug 2025",
+    "arxiv_comment": null,
+    "title_quote": "Algorithm Discovery With LLMs",
+    "venue_quote": null,
+    "status": "VERIFIED",
+    "date": "2026-10-23",
+    "what_they_do": "evolutionary search plus RL for algorithm discovery",
+    "raw": [
+     "audit/web/algdisc_abs.txt"
+    ],
+    "error": null
+   }
+  ],
+  "values": [
+   {
+    "name": "positioning row hotcold: status",
+    "item": "0f",
+    "recorded": null,
+    "recomputed": "VERIFIED",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "audit/web/hotcold_abs.txt + audit/web/hotcold_venue.txt",
+    "note": "Hot or Cold? Adaptive Temperature Sampling for Code Generation"
+   },
+   {
+    "name": "positioning row ctrltemp: status",
+    "item": "0f",
+    "recorded": null,
+    "recomputed": "VERIFIED",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "audit/web/ctrltemp_abs.txt",
+    "note": "Control the Temperature"
+   },
+   {
+    "name": "positioning row entropy: status",
+    "item": "0f",
+    "recorded": null,
+    "recomputed": "VERIFIED",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "audit/web/entropy_abs.txt",
+    "note": "Entropy-informed Decoding"
+   },
+   {
+    "name": "positioning row beyond8020: status",
+    "item": "0f",
+    "recorded": null,
+    "recomputed": "VERIFIED",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "audit/web/beyond8020_abs.txt",
+    "note": "Beyond the 80/20 Rule"
+   },
+   {
+    "name": "positioning row tale: status",
+    "item": "0f",
+    "recorded": null,
+    "recomputed": "VERIFIED",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "audit/web/tale_abs.txt",
+    "note": "A Tale of Two Temperatures"
+   },
+   {
+    "name": "positioning row cdas: status",
+    "item": "0f",
+    "recorded": null,
+    "recomputed": "VERIFIED",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "audit/web/cdas_abs.txt",
+    "note": "Faithful Bi-Directional Model Steering"
+   },
+   {
+    "name": "positioning row mib: status",
+    "item": "0f",
+    "recorded": null,
+    "recomputed": "VERIFIED",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "audit/web/mib_abs.txt + audit/web/mib_venue.txt",
+    "note": "MIB: A Mechanistic Interpretability Benchmark"
+   },
+   {
+    "name": "positioning row funsearch: status",
+    "item": "0f",
+    "recorded": null,
+    "recomputed": "VERIFIED",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "audit/web/funsearch.txt",
+    "note": "Mathematical discoveries from program search with large language models"
+   },
+   {
+    "name": "positioning row alphaevolve: status",
+    "item": "0f",
+    "recorded": null,
+    "recomputed": "VERIFIED",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "audit/web/alphaevolve_abs.txt",
+    "note": "AlphaEvolve: A coding agent"
+   },
+   {
+    "name": "positioning row divalgo: status",
+    "item": "0f",
+    "recorded": null,
+    "recomputed": "VERIFIED",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "audit/web/divalgo_abs.txt",
+    "note": "DivAlgo"
+   },
+   {
+    "name": "positioning row beneath: status",
+    "item": "0f",
+    "recorded": null,
+    "recomputed": "VERIFIED",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "audit/web/beneath_abs.txt",
+    "note": "Beneath the Diff"
+   },
+   {
+    "name": "positioning row algdisc: status",
+    "item": "0f",
+    "recorded": null,
+    "recomputed": "VERIFIED",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "audit/web/algdisc_abs.txt",
+    "note": "Algorithm Discovery With LLMs"
+   },
+   {
+    "name": "ICML 2026 workshop poster (AdaptFM: Resource-Adaptive Foundation Model Inference)",
+    "item": "0f",
+    "recorded": null,
+    "recomputed": "VERIFIED",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "audit/web/icml_75333_b.txt"
+   },
+   {
+    "name": "ICML 2026 workshop poster (4th Structured Probabilistic Inference & Generative Modeling)",
+    "item": "0f",
+    "recorded": null,
+    "recomputed": "VERIFIED",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "audit/web/icml_74361_b.txt"
+   }
+  ]
+ },
+ "0g": {
+  "edits": [
+   {
+    "id": "C8-g01",
+    "item": "0g",
+    "section": "7.3.10",
+    "kind": "section_insert",
+    "old_text": "\n\n## 7.4 Where the algorithm is decided in generation (Qwen3-8B)",
+    "new_text": "\n\n### 7.3.10 Not run and deviations\n\nThe DAS experiment's deviation log records what was not run and what departed from the plan; the four that bear on the claims above are quoted verbatim from `results/deviations.json` (iteration-8 correction: new subsection).\n\n- **D-drop.** \"Drop order applied: plan resampling (1) and the T1 extension (2: T1 DAS and the literal top-five placement on T1) were not run; M's top-k placement uses T2's leave-one-survivor bans only.\"\n- **D-tfsets.** \"Held-out teacher-forced evaluation scores held-out PROMPT pairs with the training target program sets (no separate held-out target sets).\"\n- **D-targets.** \"Distinct 48-token openings are few (the model repeats openings), so the default pool was extended to TRAIN-family padding-twin samples (commit1_<task>_v2 amendment); validation target sets are filled from training programs where < 8 distinct programs exist; T10 dfs has 3 distinct programs, T03 heapify_pop 1 and full_sort 2 (T03 short-program fallback: >= 16 tokens).\"\n- **D-cap.** \"Generation caps are exp30's 384 (bench) / 512 (T2) tokens, not 1,024/1,536: engine-check comparability with exp30 and the time budget; truncations are counted per cell (results/cells.json, n_length).\"\n\nTwo further deviations are used above: D-randinit (the committed untrained-network comparison against the diverged fit, replaced post hoc by the matched likelihood fit; Section 7.3.5) and D-C-k (forced sources were generated at ranks 1, 4 and 16 only, so the routing claim is scored at rank 16 and rank 2 is untested for forced sources; Table 297b). Plan resampling and the literal top-five placement in the fitted coordinates on the grid task remain open items (Sections 7.10 and 7.11).\n\n## 7.4 Where the algorithm is decided in generation (Qwen3-8B)",
+    "why": "",
+    "value_names": [],
+    "offset": 1113604,
+    "line_at_read": 7212
+   },
+   {
+    "id": "C8-g02",
+    "item": "0g",
+    "section": "7.10",
+    "kind": "prose",
+    "old_text": "which closes the push route for that question at the doses tried.",
+    "new_text": "which closes the push route for that question at the doses tried.\n\n**Not run.** Plan resampling and the DAS-coordinate top-five placement on the grid task (the T1 extension) were dropped by the DAS experiment's committed drop order (deviation D-drop, Section 7.3.10); the untrained-network control ran on shortest path only (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1236865,
+    "line_at_read": 8339
+   },
+   {
+    "id": "C8-g03",
+    "item": "0g",
+    "section": "7.11",
+    "kind": "prose",
+    "old_text": "so a search on a task whose catalogue already covers the known techniques, where a correct program outside it would be new, is the remaining route to a novel algorithm.",
+    "new_text": "so a search on a task whose catalogue already covers the known techniques, where a correct program outside it would be new, is the remaining route to a novel algorithm. Two items not run in iteration 7 carry forward: plan resampling and the DAS-coordinate top-five placement on the grid task (Section 7.3.10) (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1237925,
+    "line_at_read": 8343
+   }
+  ],
+  "verdict": "NEW (7.3.10)",
+  "quoted": {
+   "D-drop": "Drop order applied: plan resampling (1) and the T1 extension (2: T1 DAS and the literal top-five placement on T1) were not run; M's top-k placement uses T2's leave-one-survivor bans only.",
+   "D-tfsets": "Held-out teacher-forced evaluation scores held-out PROMPT pairs with the training target program sets (no separate held-out target sets).",
+   "D-targets": "Distinct 48-token openings are few (the model repeats openings), so the default pool was extended to TRAIN-family padding-twin samples (commit1_<task>_v2 amendment); validation target sets are filled from training programs where < 8 distinct programs exist; T10 dfs has 3 distinct programs, T03 heapify_pop 1 and full_sort 2 (T03 short-program fallback: >= 16 tokens).",
+   "D-cap": "Generation caps are exp30's 384 (bench) / 512 (T2) tokens, not 1,024/1,536: engine-check comparability with exp30 and the time budget; truncations are counted per cell (results/cells.json, n_length)."
+  },
+  "values": [
+   {
+    "name": "exp33 deviation D-drop quoted verbatim",
+    "item": "0g",
+    "recorded": null,
+    "recomputed": "Drop order applied: plan resampling (1) and the T1 extension (2: T1 DAS and the ...",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_veI9l_Rb9wDY:results/deviations.json#D-drop"
+   },
+   {
+    "name": "exp33 deviation D-tfsets quoted verbatim",
+    "item": "0g",
+    "recorded": null,
+    "recomputed": "Held-out teacher-forced evaluation scores held-out PROMPT pairs with the trainin...",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_veI9l_Rb9wDY:results/deviations.json#D-tfsets"
+   },
+   {
+    "name": "exp33 deviation D-targets quoted verbatim",
+    "item": "0g",
+    "recorded": null,
+    "recomputed": "Distinct 48-token openings are few (the model repeats openings), so the default ...",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_veI9l_Rb9wDY:results/deviations.json#D-targets"
+   },
+   {
+    "name": "exp33 deviation D-cap quoted verbatim",
+    "item": "0g",
+    "recorded": null,
+    "recomputed": "Generation caps are exp30's 384 (bench) / 512 (T2) tokens, not 1,024/1,536: engi...",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_veI9l_Rb9wDY:results/deviations.json#D-cap"
+   },
+   {
+    "name": "exp33 deviation D-randinit quoted verbatim",
+    "item": "0g",
+    "recorded": null,
+    "recomputed": "The committed random-init control (contrastive objective, results/randinit_T2.js...",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_veI9l_Rb9wDY:results/deviations.json#D-randinit"
+   },
+   {
+    "name": "exp33 deviation D-C-k quoted verbatim",
+    "item": "0g",
+    "recorded": null,
+    "recomputed": "C is scored at k = 16 when P1's k (2 on T2, 16 on T10) has no forced-source DAS ...",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_veI9l_Rb9wDY:results/deviations.json#D-C-k"
+   }
+  ]
+ },
+ "0h": {
+  "edits": [
+   {
+    "id": "C8-h01",
+    "item": "0h",
+    "section": "Table 346",
+    "kind": "caption",
+    "old_text": "**Table 346.** Connected components on 50 fresh slots (exploratory replication).",
+    "new_text": "**Table 346.** Connected components on 50 fresh slots (exploratory replication). (iteration-8 correction: profile rows and the fresh-slot seed effect added from the dose-unit experiment's `results/e3_replicate.json`, block T10_fresh_k10_19)",
+    "why": "",
+    "value_names": [],
+    "offset": 1178722,
+    "line_at_read": 7806
+   },
+   {
+    "id": "C8-h02",
+    "item": "0h",
+    "section": "Table 346",
+    "kind": "table_rows_insert",
+    "old_text": "| relative unit, iteration-5 seeds | 0.10 |\n\n**Table 347.**",
+    "new_text": "| relative unit, iteration-5 seeds | 0.10 |\n| top-quartile cells only, absolute unit, iteration-4 seeds | 0.48 (24/50; Wilson [0.35, 0.61]) |\n| the other three quartiles at the same energy | 0.18 (9/50); McNemar top quartile against rest 15:0 |\n| same energy at shuffled positions | 0.08 (4/50); McNemar full unit against shuffled 17:0 |\n| seed effect on the fresh slots (RD_seed) | -0.10 [-0.22, 0.02], at the edge of the committed +-0.10 band |\n\n**Table 347.**",
+    "why": "",
+    "value_names": [],
+    "offset": 1178967,
+    "line_at_read": 7813
+   },
+   {
+    "id": "C8-h03",
+    "item": "0h",
+    "section": "7.10",
+    "kind": "prose",
+    "old_text": "The weak plan noise of iteration 5 came from its dose unit; the absolute unit's peaky profile on a few task tokens carries the effect.",
+    "new_text": "The weak plan noise of iteration 5 came from its dose unit; profile and energy each carry part of the effect on connected components (profile +0.22 [0.08, 0.36], energy +0.18 [0.06, 0.30]); the shortest-path profile contrast is confounded by a massive-activation cell holding 82% of the unit's energy (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1235635,
+    "line_at_read": 8335
+   },
+   {
+    "id": "C8-h04",
+    "item": "0h",
+    "section": "closing",
+    "kind": "prose",
+    "old_text": "the absolute unit concentrates 81% of its energy on a few task tokens, and the same energy at shuffled positions moves almost nothing.",
+    "new_text": "on connected components the absolute unit concentrates 81% of its energy in its top quartile of cells, on bands of a few task tokens (on shortest path a different quantity, one massive-activation cell, holds 82%), profile and energy each carry part of the effect (+0.22 [0.08, 0.36] and +0.18 [0.06, 0.30]), and the same energy at shuffled positions moves almost nothing (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1242738,
+    "line_at_read": 8353
+   }
+  ],
+  "verdict": "ADDED (Table 346 rows)",
+  "summary": {
+   "PTOP": 24,
+   "PREST": 9,
+   "D1": 21,
+   "PSHUF": 4,
+   "RD_seed": -0.1,
+   "RD_seed_ci": [
+    -0.22,
+    0.02
+   ]
+  },
+  "values": [
+   {
+    "name": "Table 346 fresh slots: D1 full absolute unit, share Y",
+    "item": "0h",
+    "recorded": 0.42,
+    "recomputed": 0.42,
+    "status": "MATCH",
+    "tolerance": 0.005,
+    "source": "art_8O5eaNc5gxJs:results/e3_replicate.json#T10_fresh_k10_19.profiles.cells.D1.Y",
+    "note": "21/50 Wilson [0.29, 0.56]"
+   },
+   {
+    "name": "Table 346 fresh slots: PTOP top-quartile cells, share Y",
+    "item": "0h",
+    "recorded": null,
+    "recomputed": 0.48,
+    "status": "NEW",
+    "tolerance": 0.005,
+    "source": "art_8O5eaNc5gxJs:results/e3_replicate.json#T10_fresh_k10_19.profiles.cells.PTOP.Y",
+    "note": "24/50 Wilson [0.35, 0.61]"
+   },
+   {
+    "name": "Table 346 fresh slots: PREST rest of cells, share Y",
+    "item": "0h",
+    "recorded": null,
+    "recomputed": 0.18,
+    "status": "NEW",
+    "tolerance": 0.005,
+    "source": "art_8O5eaNc5gxJs:results/e3_replicate.json#T10_fresh_k10_19.profiles.cells.PREST.Y",
+    "note": "9/50 Wilson [0.10, 0.31]"
+   },
+   {
+    "name": "Table 346 fresh slots: PSHUF position-shuffled cells, share Y",
+    "item": "0h",
+    "recorded": null,
+    "recomputed": 0.08,
+    "status": "NEW",
+    "tolerance": 0.005,
+    "source": "art_8O5eaNc5gxJs:results/e3_replicate.json#T10_fresh_k10_19.profiles.cells.PSHUF.Y",
+    "note": "4/50 Wilson [0.03, 0.19]"
+   },
+   {
+    "name": "Table 346: McNemar top quartile vs rest (fresh slots)",
+    "item": "0h",
+    "recorded": null,
+    "recomputed": "15:0",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_8O5eaNc5gxJs:results/e3_replicate.json#T10_fresh_k10_19.profiles.PTOP_vs_PREST",
+    "note": "exact p 6.1e-05 (file 6.1e-05, one-sided)"
+   },
+   {
+    "name": "Table 346: McNemar full unit vs shuffled (fresh slots)",
+    "item": "0h",
+    "recorded": null,
+    "recomputed": "17:0",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_8O5eaNc5gxJs:results/e3_replicate.json#T10_fresh_k10_19.profiles.D1_vs_PSHUF"
+   },
+   {
+    "name": "Table 346: fresh-slot seed effect RD_seed",
+    "item": "0h",
+    "recorded": null,
+    "recomputed": -0.1,
+    "status": "NEW",
+    "tolerance": 0.005,
+    "source": "art_8O5eaNc5gxJs:results/e3_replicate.json#T10_fresh_k10_19.2x2|Y.RD_seed",
+    "note": "95% [-0.22, 0.02]"
+   },
+   {
+    "name": "Table 346: slot-level recomputation (data/samples.jsonl, E3_fresh) reproduces the aggregates",
+    "item": "0h",
+    "recorded": null,
+    "recomputed": true,
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_8O5eaNc5gxJs:data/samples.jsonl#stage==E3_fresh",
+    "note": "sums {'D1': 21, 'D2': 30, 'D3': 4, 'D4': 5, 'D5': 9, 'PTOP': 24, 'PREST': 9, 'PSHUF': 4}; McNemar PTOP:PREST 15:0, D1:PSHUF 17:0; RD_seed -0.10"
+   }
+  ]
+ },
+ "0i": {
+  "edits": [
+   {
+    "id": "C8-i01",
+    "item": "0i",
+    "section": "Table 372",
+    "kind": "table_row",
+    "old_text": "| Search claim | Not met at levels a and b | 6.65 times on kth smallest at level a; 78 known techniques against 0 at level b on kth smallest only; 0 novel |",
+    "new_text": "| Search claim | Not met at levels a and b | 6.65 times on kth smallest at level a; at level b on kth smallest only, search 78 of 2,500 calls (0.0312 [0.0247, 0.0388], 12 merged clusters) against 2 of 500 calls (0.0040 [0.0005, 0.0144], 1 merged cluster) for the instruction alone (rate ratio 7.8, lower 95% bound 2.41, short of the committed 10x), 0 of 1,250 for enumerate and pick and 0 of 500 without evolution; the larger mutator reached 23 of 500 calls (0.0460 [0.0294, 0.0682], 7 merged clusters); 0 novel (iteration-8 correction) |",
+    "why": "",
+    "value_names": [],
+    "offset": 1234380,
+    "line_at_read": 8333
+   },
+   {
+    "id": "C8-i02",
+    "item": "0i",
+    "section": "7.10",
+    "kind": "prose",
+    "old_text": "Evolutionary search with an evaluator reaches known techniques outside the catalogue on kth smallest at a rate no arm that draws single samples approaches (78 distinct programs against at most 2).",
+    "new_text": "Evolutionary search with an evaluator reaches known techniques outside the catalogue on kth smallest: search 78 of 2,500 calls (0.0312 [0.0247, 0.0388], 12 merged clusters) against 2 of 500 calls (0.0040 [0.0005, 0.0144], 1 merged cluster) for the instruction alone (rate ratio 7.8, lower 95% bound 2.41, short of the committed 10x), 0 of 1,250 for enumerate and pick and 0 of 500 without evolution; the larger mutator reached 23 of 500 calls (0.0460 [0.0294, 0.0682], 7 merged clusters); about five techniques in all (value-range binary search, Fenwick tree order statistics, a treap, bucket select, partial selection sort) (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1235770,
+    "line_at_read": 8335
+   },
+   {
+    "id": "C8-i03",
+    "item": "0i",
+    "section": "closing",
+    "kind": "prose",
+    "old_text": "against 0 for enumerate and pick, 0 for the same prompt without evolution and 2 for the instruction alone.",
+    "new_text": "against 0 of 1,250 calls for enumerate and pick, 0 of 500 for the same prompt without evolution and 2 of 500 for the instruction alone: rates of 0.031 and 0.004, a ratio of 7.8 with a lower 95% bound of 2.41, short of the committed 10x (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1250468,
+    "line_at_read": 8363
+   },
+   {
+    "id": "C8-i04",
+    "item": "0i",
+    "section": "7.11",
+    "kind": "prose",
+    "old_text": "Fourth, evolutionary search found known techniques outside the catalogue on kth smallest at a rate no knob applied to single samples approaches,",
+    "new_text": "Fourth, evolutionary search found known techniques outside the catalogue on kth smallest at 0.031 per call against 0.004 for the instruction alone (ratio 7.8, lower bound 2.41, short of the committed 10x; iteration-8 correction),",
+    "why": "",
+    "value_names": [],
+    "offset": 1237780,
+    "line_at_read": 8343
+   }
+  ],
+  "verdict": "RESTATED (rates and clusters)",
+  "summary": {
+   "rate_ratio": 7.8,
+   "LB95": 2.410595368106833,
+   "rows": [
+    {
+     "task": "T03",
+     "arm": "S",
+     "arm_name": "search",
+     "level_b_programs": 78,
+     "calls": 2500,
+     "rate": 0.0312,
+     "rate_cp95_lo": 0.024738765453168332,
+     "rate_cp95_hi": 0.03878757824432372,
+     "merged_clusters": 12,
+     "techniques": "Fenwick tree order statistics 44; value-range binary search 30; bucket select 3; treap 1"
+    },
+    {
+     "task": "T03",
+     "arm": "L",
+     "arm_name": "larger mutator (qwen3-235b)",
+     "level_b_programs": 23,
+     "calls": 500,
+     "rate": 0.046,
+     "rate_cp95_lo": 0.029380175392402348,
+     "rate_cp95_hi": 0.06822542788123648,
+     "merged_clusters": 7,
+     "techniques": "value-range binary search 10; partial selection sort 9; bucket select 4"
+    },
+    {
+     "task": "T03",
+     "arm": "I0",
+     "arm_name": "instruction only",
+     "level_b_programs": 2,
+     "calls": 500,
+     "rate": 0.004,
+     "rate_cp95_lo": 0.0004847861762899895,
+     "rate_cp95_hi": 0.014374078562198467,
+     "merged_clusters": 1,
+     "techniques": "value-range binary search 2"
+    },
+    {
+     "task": "T03",
+     "arm": "EAP",
+     "arm_name": "enumerate and pick",
+     "level_b_programs": 0,
+     "calls": 1250,
+     "rate": 0.0,
+     "rate_cp95_lo": 0.0,
+     "rate_cp95_hi": 0.0029467533375448496,
+     "merged_clusters": 0,
+     "techniques": ""
+    },
+    {
+     "task": "T03",
+     "arm": "NE",
+     "arm_name": "no evolution",
+     "level_b_programs": 0,
+     "calls": 500,
+     "rate": 0.0,
+     "rate_cp95_lo": 0.0,
+     "rate_cp95_hi": 0.007350610051907569,
+     "merged_clusters": 0,
+     "techniques": ""
+    },
+    {
+     "task": "T03",
+     "arm": "BINT",
+     "arm_name": "base intent",
+     "level_b_programs": 0,
+     "calls": 1250,
+     "rate": 0.0,
+     "rate_cp95_lo": 0.0,
+     "rate_cp95_hi": 0.0029467533375448496,
+     "merged_clusters": 0,
+     "techniques": ""
+    },
+    {
+     "task": "T03",
+     "arm": "B0",
+     "arm_name": "neutral twin",
+     "level_b_programs": 0,
+     "calls": 200,
+     "rate": 0.0,
+     "rate_cp95_lo": 0.0,
+     "rate_cp95_hi": 0.01827534035513584,
+     "merged_clusters": 0,
+     "techniques": ""
+    }
+   ]
+  },
+  "values": [
+   {
+    "name": "search level b, T03, arm S: programs / calls",
+    "item": "0i",
+    "recorded": null,
+    "recomputed": "78/2500",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_VhaHGe7SxV95:results/arm_rates.json#level_b.T03.S.X_b",
+    "note": "rate 0.0312 [CP 0.0247, 0.0388], 12 clusters"
+   },
+   {
+    "name": "search level b, T03, arm L: programs / calls",
+    "item": "0i",
+    "recorded": null,
+    "recomputed": "23/500",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_VhaHGe7SxV95:results/L_vs_S.json#level_b.T03.L.X_b",
+    "note": "rate 0.0460 [CP 0.0294, 0.0682], 7 clusters"
+   },
+   {
+    "name": "search level b, T03, arm I0: programs / calls",
+    "item": "0i",
+    "recorded": null,
+    "recomputed": "2/500",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_VhaHGe7SxV95:results/arm_rates.json#level_b.T03.I0.X_b",
+    "note": "rate 0.0040 [CP 0.0005, 0.0144], 1 clusters"
+   },
+   {
+    "name": "search level b, T03, arm EAP: programs / calls",
+    "item": "0i",
+    "recorded": null,
+    "recomputed": "0/1250",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_VhaHGe7SxV95:results/arm_rates.json#level_b.T03.EAP.X_b",
+    "note": "rate 0.0000 [CP 0.0000, 0.0029], 0 clusters"
+   },
+   {
+    "name": "search level b, T03, arm NE: programs / calls",
+    "item": "0i",
+    "recorded": null,
+    "recomputed": "0/500",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_VhaHGe7SxV95:results/arm_rates.json#level_b.T03.NE.X_b",
+    "note": "rate 0.0000 [CP 0.0000, 0.0074], 0 clusters"
+   },
+   {
+    "name": "search level b, T03, arm BINT: programs / calls",
+    "item": "0i",
+    "recorded": null,
+    "recomputed": "0/1250",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_VhaHGe7SxV95:results/arm_rates.json#level_b.T03.BINT.X_b",
+    "note": "rate 0.0000 [CP 0.0000, 0.0029], 0 clusters"
+   },
+   {
+    "name": "search level b, T03, arm B0: programs / calls",
+    "item": "0i",
+    "recorded": null,
+    "recomputed": "0/200",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_VhaHGe7SxV95:results/arm_rates.json#level_b.T03.B0.X_b",
+    "note": "rate 0.0000 [CP 0.0000, 0.0183], 0 clusters"
+   },
+   {
+    "name": "search vs instruction-only rate ratio (level b, T03)",
+    "item": "0i",
+    "recorded": null,
+    "recomputed": 7.8,
+    "status": "NEW",
+    "tolerance": 0.005,
+    "source": "art_VhaHGe7SxV95:results/ratio_tests.json#levels.b.per_task.T03.secondary.S_vs_I0.R_hat",
+    "note": "lower 95% bound 2.41 (conditional binomial, the file's method)"
+   },
+   {
+    "name": "Table 371 search row: distinct / catalogue / known outside / degenerate",
+    "item": "0i",
+    "recorded": "816 / 707 / 103 / 6",
+    "recomputed": "816 / 707 / 103 / 6",
+    "status": "MATCH",
+    "tolerance": "exact",
+    "source": "art_VhaHGe7SxV95:results/program_classes.json#is_first_of_distinct"
+   }
+  ]
+ },
+ "0j": {
+  "edits": [
+   {
+    "id": "C8-j01",
+    "item": "0j",
+    "section": "closing",
+    "kind": "prose",
+    "old_text": "Temperature acts on the algorithm only through the fork. Dividing the fork logits by T predicted the minority share at each temperature before sampling within the committed error on Gemma's grid task (mean absolute error 0.026) and on minimum spanning tree weight (0.083, with the observed drop twice the predicted one), just outside it on trapped rain water (0.105), and not in direction on valid anagram, where a second decision follows the fork.",
+    "new_text": "Temperature acts through one or two decision tokens whose logits fix the odds. Dividing the fork logits by T predicted the minority share before sampling within the committed error on Gemma's grid task (mean absolute error 0.026, pass) and on minimum spanning tree weight (0.083, pass), although there the T 1.0 prediction (0.237) lies outside the observed Wilson 95% interval for 20 of 50 ([0.28, 0.54]) and the stream-lean explanation (the twin's 20 of 100 against the sweep's 20 of 50, Fisher p 0.011) is post hoc; it fails on trapped rain water (0.105, which has a second opening with its own split) and on valid anagram, which has a second decision a few tokens after the fork (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1240381,
+    "line_at_read": 8351
+   },
+   {
+    "id": "C8-j02",
+    "item": "0j",
+    "section": "7.3.8",
+    "kind": "prose",
+    "old_text": "All five ban templates lie outside it (D 1.73 to 2.62, at the 100th percentile), each displaced toward the second choice",
+    "new_text": "Every ban template lies outside it (D 1.73 to 2.62, at the 100th percentile; the first three, W1-W3, are training templates of the map, so the conclusion that bans leave the null rests on the held-out fifth template, D 2.62, and the fourth, D 1.73; iteration-8 correction), each displaced toward the second choice",
+    "why": "",
+    "value_names": [],
+    "offset": 1089209,
+    "line_at_read": 6986
+   },
+   {
+    "id": "C8-j03",
+    "item": "0j",
+    "section": "7.3.8",
+    "kind": "prose",
+    "old_text": "The semantic seed was predicted outside and lies inside, at the 94th percentile (Table 309).",
+    "new_text": "The semantic seed was predicted outside and lies on the boundary, at the 93.9th percentile (D 1.127 against a null 95th percentile of 1.130; Table 309) (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 1089585,
+    "line_at_read": 6986
+   },
+   {
+    "id": "C8-j04",
+    "item": "0j",
+    "section": "Table 309",
+    "kind": "caption",
+    "old_text": "**Table 309.** Shortest path: placement of prompts in the rank-16 DAS coordinates against the paraphrase null.",
+    "new_text": "**Table 309.** Shortest path: placement of prompts in the rank-16 DAS coordinates against the paraphrase null. (iteration-8 correction: the first three ban templates are training templates of the map; the semantic seed sits on the boundary of the null 95%)",
+    "why": "",
+    "value_names": [],
+    "offset": 1091319,
+    "line_at_read": 7001
+   },
+   {
+    "id": "C8-j05",
+    "item": "0j",
+    "section": "Table 309",
+    "kind": "table_row",
+    "old_text": "| ban, first template | 2.25 | 100.0 | no | 1.55 |",
+    "new_text": "| ban, first template (training template of the map) | 2.25 | 100.0 | no | 1.55 |",
+    "why": "",
+    "value_names": [],
+    "offset": 1091626,
+    "line_at_read": 7005
+   },
+   {
+    "id": "C8-j06",
+    "item": "0j",
+    "section": "Table 309",
+    "kind": "table_row",
+    "old_text": "| ban, second template | 1.95 | 100.0 | no | 1.39 |",
+    "new_text": "| ban, second template (training template of the map) | 1.95 | 100.0 | no | 1.39 |",
+    "why": "",
+    "value_names": [],
+    "offset": 1091677,
+    "line_at_read": 7006
+   },
+   {
+    "id": "C8-j07",
+    "item": "0j",
+    "section": "Table 309",
+    "kind": "table_row",
+    "old_text": "| ban, third template | 1.79 | 100.0 | no | 1.15 |",
+    "new_text": "| ban, third template (training template of the map) | 1.79 | 100.0 | no | 1.15 |",
+    "why": "",
+    "value_names": [],
+    "offset": 1091729,
+    "line_at_read": 7007
+   },
+   {
+    "id": "C8-j08",
+    "item": "0j",
+    "section": "Table 372",
+    "kind": "table_row",
+    "old_text": "| Manifold claim | Bans outside the null, seeds and instructions inside; semantic seed missed | D 1.73 to 2.62 against a null 95th percentile of 1.13 |",
+    "new_text": "| Manifold claim | Bans outside the null (resting on the held-out templates, fourth D 1.73 and fifth D 2.62; the first three are training templates), seeds and instructions inside; semantic seed on the boundary (93.9th percentile) (iteration-8 correction) | D 1.73 to 2.62 against a null 95th percentile of 1.13 |",
+    "why": "",
+    "value_names": [],
+    "offset": 1233633,
+    "line_at_read": 8328
+   }
+  ],
+  "verdict": "RESTATED (per unit)",
+  "summary": {
+   "B3_T1_wilson": [
+    0.27608389730256544,
+    0.5381856225241064
+   ],
+   "B3_T1_pred": 0.23715393459341066,
+   "fisher_p": 0.011315850518915215,
+   "semantic_seed_percentile": 93.93939393939394,
+   "maes": {
+    "B3": 0.08257353410965937,
+    "A3": 0.10541171837316758,
+    "B6": 0.04329960513666535
+   }
+  },
+  "values": [
+   {
+    "name": "B3 T1.0 Wilson 95% for 20/50",
+    "item": "0j",
+    "recorded": null,
+    "recomputed": [
+     0.27608389730256544,
+     0.5381856225241064
+    ],
+    "status": "NEW",
+    "tolerance": 0.005,
+    "source": "art_MZAfDPVhM6Ui:results/test2.json#per_unit.B3.cells.T1.0_p1",
+    "note": "prediction 0.237 outside: True"
+   },
+   {
+    "name": "B3 stream-lean Fisher p (twin 20/100 vs sweep 20/50)",
+    "item": "0j",
+    "recorded": null,
+    "recomputed": 0.011315850518915215,
+    "status": "NEW",
+    "tolerance": 0.0005,
+    "source": "art_MZAfDPVhM6Ui:results/posthoc.json#B3.twin_vs_sweep_T1.fisher_p",
+    "note": "file 0.0113"
+   },
+   {
+    "name": "B3 twin minority share: Table 330 (Prim only) vs posthoc (off the Kruskal default)",
+    "item": "0j",
+    "recorded": 0.19,
+    "recomputed": 0.2,
+    "status": "CARRIED",
+    "tolerance": 0.0,
+    "source": "art_MZAfDPVhM6Ui:results/posthoc.json#B3.twin_vs_sweep_T1.twin",
+    "note": "Table 330 counts Prim with heap 19 of 100 (one disputed program not counted); posthoc.json counts 20 of 100 off the Kruskal default (19 Prim + 1 disputed); both are right under their definitions, the report's 0.19 stays"
+   },
+   {
+    "name": "temperature unit B3 MAE",
+    "item": "0j",
+    "recorded": 0.083,
+    "recomputed": 0.08257353410965937,
+    "status": "MATCH",
+    "tolerance": 0.0005,
+    "source": "art_MZAfDPVhM6Ui:results/test2.json#per_unit.B3.MAE",
+    "note": "test 2 pass"
+   },
+   {
+    "name": "temperature unit A3 MAE",
+    "item": "0j",
+    "recorded": 0.105,
+    "recomputed": 0.10541171837316758,
+    "status": "MATCH",
+    "tolerance": 0.0005,
+    "source": "art_MZAfDPVhM6Ui:results/test2.json#per_unit.A3.MAE",
+    "note": "test 2 fail"
+   },
+   {
+    "name": "temperature unit B6 MAE",
+    "item": "0j",
+    "recorded": 0.043,
+    "recomputed": 0.04329960513666535,
+    "status": "MATCH",
+    "tolerance": 0.0005,
+    "source": "art_MZAfDPVhM6Ui:results/test2.json#per_unit.B6.MAE",
+    "note": "test 2 fail"
+   },
+   {
+    "name": "semantic seed null percentile",
+    "item": "0j",
+    "recorded": 94.0,
+    "recomputed": 93.93939393939394,
+    "status": "CORRECTED",
+    "tolerance": 0.05,
+    "source": "art_veI9l_Rb9wDY:results/m_manifold.json#probes.T2|seed_sem|-|-.null_percentile",
+    "note": "D 1.1275 against the null 95th percentile 1.1299: on the boundary"
+   },
+   {
+    "name": "manifold: training templates of the map",
+    "item": "0j",
+    "recorded": null,
+    "recomputed": "W1, W2, W3 (TRAIN_W); held-out W5 (HELD_W); W4 reported separately",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_veI9l_Rb9wDY:src/cfg7.py#TRAIN_W, HELD_W",
+    "note": "D by template: W1 2.25, W2 1.95, W3 1.79, W4 1.73, W5 2.62"
+   }
+  ]
+ },
+ "0k": {
+  "edits": [
+   {
+    "id": "C8-k01",
+    "item": "0k",
+    "section": "5.7",
+    "kind": "prose",
+    "old_text": "**The plan sampler comparison is DISCONFIRMED** (Table 207) (ban-free unit and iteration-5 seeds; pending the 2x2 of Step K).",
+    "new_text": "**The plan sampler comparison is DISCONFIRMED** (Table 207) (ban-free unit and iteration-5 seeds; re-tagged by iteration 7's dose-unit experiment, Section 7.6: at the moving design D* = D1 the plan-sampler rule is still disconfirmed, at 2 of 5) (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 742524,
+    "line_at_read": 4613
+   },
+   {
+    "id": "C8-k02",
+    "item": "0k",
+    "section": "5.11",
+    "kind": "prose",
+    "old_text": "Not supported as a strong predictor, and not disconfirmed (ban-free unit and iteration-5 seeds; pending the 2x2 of Step K):",
+    "new_text": "Not supported as a strong predictor, and not disconfirmed (ban-free unit and iteration-5 seeds; re-tagged by iteration 7's dose-unit experiment, Section 7.6: at D* = D1 kth smallest and connected components are movable, and shortest path, two sum and the grid are not) (iteration-8 correction):",
+    "why": "",
+    "value_names": [],
+    "offset": 808851,
+    "line_at_read": 5057
+   },
+   {
+    "id": "C8-k03",
+    "item": "0k",
+    "section": "5.11",
+    "kind": "prose",
+    "old_text": "Disconfirmed (1 of 5 decisive tasks) (ban-free unit and iteration-5 seeds; pending the 2x2 of Step K);",
+    "new_text": "Disconfirmed (1 of 5 decisive tasks) (ban-free unit and iteration-5 seeds; re-tagged by iteration 7's dose-unit experiment, Section 7.6: at the moving design D* = D1 the plan-sampler rule is still disconfirmed, at 2 of 5) (iteration-8 correction);",
+    "why": "",
+    "value_names": [],
+    "offset": 811251,
+    "line_at_read": 5060
+   },
+   {
+    "id": "C8-k04",
+    "item": "0k",
+    "section": "6.2.4",
+    "kind": "prose",
+    "old_text": "(correction in Section 5.11) (ban-free unit and iteration-5 seeds; pending the 2x2 of Step K).",
+    "new_text": "(correction in Section 5.11) (ban-free unit and iteration-5 seeds; re-tagged by iteration 7's dose-unit experiment, Section 7.6: at D* = D1 kth smallest and connected components are movable, and shortest path, two sum and the grid are not) (iteration-8 correction).",
+    "why": "",
+    "value_names": [],
+    "offset": 847612,
+    "line_at_read": 5288
+   },
+   {
+    "id": "C8-k101",
+    "item": "0k",
+    "section": "file names",
+    "kind": "file_name_restore",
+    "old_text": "Source: the plan-noise results and per-row samples of the engine control.",
+    "new_text": "Source: engine control `results/pn.json`, `data/samples.jsonl` (iteration-8 correction: file names restored).",
+    "why": "",
+    "value_names": [],
+    "offset": 866296,
+    "line_at_read": 5408
+   },
+   {
+    "id": "C8-k102",
+    "item": "0k",
+    "section": "file names",
+    "kind": "file_name_restore",
+    "old_text": "(from the per-row labels of the samples, the engine-a rows coming from iteration 4)",
+    "new_text": "(from the per-row labels of `data/samples.jsonl` (file name restored, iteration-8 correction), the engine-a rows coming from iteration 4)",
+    "why": "",
+    "value_names": [],
+    "offset": 866440,
+    "line_at_read": 5408
+   },
+   {
+    "id": "C8-k103",
+    "item": "0k",
+    "section": "file names",
+    "kind": "file_name_restore",
+    "old_text": "(MDS stress not recorded). Points: 28 prompt states",
+    "new_text": "(MDS stress not recorded in `top5_push.json`; file name restored, iteration-8 correction). Points: 28 prompt states",
+    "why": "",
+    "value_names": [],
+    "offset": 917092,
+    "line_at_read": 5755
+   },
+   {
+    "id": "C8-k104",
+    "item": "0k",
+    "section": "file names",
+    "kind": "file_name_restore",
+    "old_text": "The deviation log records what did not run: the clamp read-back and matched-norm realisation tests as separate unit tests (the matched norm is imposed by construction in the clamp code,",
+    "new_text": "The deviation log records what did not run: the clamp read-back and matched-norm realisation tests as separate unit tests (the matched norm is imposed by construction in the clamp code, `src/clamp.py` (file name restored, iteration-8 correction),",
+    "why": "",
+    "value_names": [],
+    "offset": 927586,
+    "line_at_read": 5817
+   },
+   {
+    "id": "C8-k105",
+    "item": "0k",
+    "section": "file names",
+    "kind": "file_name_restore",
+    "old_text": "The deviation log of the Gemma experiment adds what it did not run: the clamp read-back and matched-norm realisation tests as separate unit tests (the matched norm is imposed by construction in the clamp code,",
+    "new_text": "The deviation log of the Gemma experiment adds what it did not run: the clamp read-back and matched-norm realisation tests as separate unit tests (the matched norm is imposed by construction in the clamp code, `src/clamp.py` (file name restored, iteration-8 correction),",
+    "why": "",
+    "value_names": [],
+    "offset": 989766,
+    "line_at_read": 6171
+   },
+   {
+    "id": "C8-k106",
+    "item": "0k",
+    "section": "file names",
+    "kind": "file_name_restore",
+    "old_text": "(MDS stress not recorded). Points: one point per centroid",
+    "new_text": "(MDS stress not recorded in `results/geometry.json`; file name restored, iteration-8 correction). Points: one point per centroid",
+    "why": "",
+    "value_names": [],
+    "offset": 965387,
+    "line_at_read": 6071
+   },
+   {
+    "id": "C8-k107",
+    "item": "0k",
+    "section": "file names",
+    "kind": "file_name_restore",
+    "old_text": "to the last token of the user message), so Gemma does not",
+    "new_text": "to the last token of the user message, `src/cfg.py` line 7; file name restored, iteration-8 correction), so Gemma does not",
+    "why": "",
+    "value_names": [],
+    "offset": 1001249,
+    "line_at_read": 6229
+   },
+   {
+    "id": "C8-k108",
+    "item": "0k",
+    "section": "file names",
+    "kind": "file_name_restore",
+    "old_text": "to the last token of the user message), so neither the read position nor the fork at response index 32 is plotted; output of block 17 (the residual stream after the block), five massive channels zeroed; projection: PCA (first component 0.43, second 0.12",
+    "new_text": "to the last token of the user message, `src/cfg.py` line 7; file name restored, iteration-8 correction), so neither the read position nor the fork at response index 32 is plotted; output of block 17 (the residual stream after the block), five massive channels zeroed; projection: PCA (first component 0.43, second 0.12",
+    "why": "",
+    "value_names": [],
+    "offset": 943811,
+    "line_at_read": 5932
+   },
+   {
+    "id": "C8-k109",
+    "item": "0k",
+    "section": "file names",
+    "kind": "file_name_restore",
+    "old_text": "to the last token of the user message), so neither the read position nor the fork at response index 32 is plotted; output of block 22 (the residual stream after the block), five massive channels zeroed; projection: PCA (first component 0.37, second 0.17",
+    "new_text": "to the last token of the user message, `src/cfg.py` line 7; file name restored, iteration-8 correction), so neither the read position nor the fork at response index 32 is plotted; output of block 22 (the residual stream after the block), five massive channels zeroed; projection: PCA (first component 0.37, second 0.17",
+    "why": "",
+    "value_names": [],
+    "offset": 945593,
+    "line_at_read": 5947
+   },
+   {
+    "id": "C8-k110",
+    "item": "0k",
+    "section": "file names",
+    "kind": "file_name_restore",
+    "old_text": "to the last token of the user message), so neither the read position nor the fork at response index 32 is plotted; output of block 17 (the residual stream after the block), Gemma Scope 2 SAE codes, log1p; projection: PCA (first component 0.23, second 0.08",
+    "new_text": "to the last token of the user message, `src/cfg.py` line 7; file name restored, iteration-8 correction), so neither the read position nor the fork at response index 32 is plotted; output of block 17 (the residual stream after the block), Gemma Scope 2 SAE codes, log1p; projection: PCA (first component 0.23, second 0.08",
+    "why": "",
+    "value_names": [],
+    "offset": 947632,
+    "line_at_read": 5960
+   },
+   {
+    "id": "C8-k111",
+    "item": "0k",
+    "section": "file names",
+    "kind": "file_name_restore",
+    "old_text": "to the last token of the user message), so neither the read position nor the fork at response index 32 is plotted; output of block 22 (the residual stream after the block), Gemma Scope 2 SAE codes, log1p; projection: PCA (first component 0.19, second 0.08",
+    "new_text": "to the last token of the user message, `src/cfg.py` line 7; file name restored, iteration-8 correction), so neither the read position nor the fork at response index 32 is plotted; output of block 22 (the residual stream after the block), Gemma Scope 2 SAE codes, log1p; projection: PCA (first component 0.19, second 0.08",
+    "why": "",
+    "value_names": [],
+    "offset": 949317,
+    "line_at_read": 5966
+   }
+  ],
+  "verdict": "CORRECTED (tags replaced, file names restored)",
+  "lost": [
+   {
+    "old_line": 5408,
+    "new_line": 5408,
+    "lost": [
+     "data/samples.jsonl",
+     "results/pn.json"
+    ]
+   },
+   {
+    "old_line": 5755,
+    "new_line": 5755,
+    "lost": [
+     "top5_push.json"
+    ]
+   },
+   {
+    "old_line": 5817,
+    "new_line": 5817,
+    "lost": [
+     "src/clamp.py"
+    ]
+   },
+   {
+    "old_line": 5932,
+    "new_line": 5932,
+    "lost": [
+     "src/cfg.py"
+    ]
+   },
+   {
+    "old_line": 5947,
+    "new_line": 5947,
+    "lost": [
+     "src/cfg.py"
+    ]
+   },
+   {
+    "old_line": 5960,
+    "new_line": 5960,
+    "lost": [
+     "src/cfg.py"
+    ]
+   },
+   {
+    "old_line": 5966,
+    "new_line": 5966,
+    "lost": [
+     "src/cfg.py"
+    ]
+   },
+   {
+    "old_line": 6071,
+    "new_line": 6071,
+    "lost": [
+     "results/geometry.json"
+    ]
+   },
+   {
+    "old_line": 6171,
+    "new_line": 6171,
+    "lost": [
+     "src/clamp.py"
+    ]
+   },
+   {
+    "old_line": 6229,
+    "new_line": 6229,
+    "lost": [
+     "src/cfg.py"
+    ]
+   }
+  ],
+  "n_restore_edits": 11,
+  "values": [
+   {
+    "name": "retag: D_star",
+    "item": "0k",
+    "recorded": null,
+    "recomputed": "D1",
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_8O5eaNc5gxJs:results/retag.json#D_star"
+   },
+   {
+    "name": "retag: movable tasks at D*",
+    "item": "0k",
+    "recorded": null,
+    "recomputed": [
+     "T03",
+     "T10"
+    ],
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_8O5eaNc5gxJs:results/retag.json#movability_at_D_star"
+   },
+   {
+    "name": "file-name losses found by difflib (report_corrected.md -> current_report.md)",
+    "item": "0k",
+    "recorded": null,
+    "recomputed": 10,
+    "status": "NEW",
+    "tolerance": "exact",
+    "source": "art_LzP2qPwUrANz:report_corrected.md vs current_report.md",
+    "note": "line 5408: ['data/samples.jsonl', 'results/pn.json']; line 5755: ['top5_push.json']; line 5817: ['src/clamp.py']; line 5932: ['src/cfg.py']; line 5947: ['src/cfg.py']; line 5960: ['src/cfg.py']; line 5966: ['src/cfg.py']; line 6071: ['results/geometry.json']; line 6171: ['src/clamp.py']; line 6229: ['src/cfg.py']"
+   }
+  ]
+ }
+}

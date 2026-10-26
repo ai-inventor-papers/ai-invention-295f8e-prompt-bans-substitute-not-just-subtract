@@ -1,0 +1,897 @@
+{
+ "n_checks": 97,
+ "n_mismatch": 0,
+ "mismatches": [],
+ "n_placebos": 6,
+ "n_placebos_failed": 6,
+ "placebos": [
+  {
+   "name": "(i) old labels give 0/30 and 1.59, not the corrected 29 and 1.01",
+   "placebo_failed_as_required": true,
+   "detail": "old full 0, old k1 1.588; new full 29, new k1 1.0125"
+  },
+  {
+   "name": "(ii-a) slot-shuffled DAS counts change the paired slot-bootstrap interval",
+   "placebo_failed_as_required": true,
+   "detail": "[0.9512195121951219, 1.0810810810810811] vs [0.9512195121951219, 1.082191780821918]"
+  },
+  {
+   "name": "(ii-b) label-shuffled rows change the pooled recovery",
+   "placebo_failed_as_required": true,
+   "detail": "None"
+  },
+  {
+   "name": "(iii) permuted margins give a Spearman near 0",
+   "placebo_failed_as_required": true,
+   "detail": "median 0.000 over 500 permutations"
+  },
+  {
+   "name": "(iv) the lint flags every phrase in the uncorrected report",
+   "placebo_failed_as_required": true,
+   "detail": "28 phrases; missing before: []"
+  },
+  {
+   "name": "(v) the apply test on a mutated old_text fails",
+   "placebo_failed_as_required": true,
+   "detail": "mutated C8-j01: occurs 0 times"
+  }
+ ],
+ "n_new_or_corrected": 70,
+ "unchecked_new_or_corrected": [],
+ "checks": [
+  {
+   "name": "all relabel transitions fall inside the adjudicated cells",
+   "audit": true,
+   "recorded": true,
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "relabel transitions are all other->counting_sort",
+   "audit": true,
+   "recorded": true,
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "T03 forced counting sort: full state correct counting sort (of 30)",
+   "audit": 29,
+   "recorded": 29,
+   "tol": 0,
+   "ok": true
+  },
+  {
+   "name": "T03 F_counting_sort full-state count",
+   "audit": 29,
+   "recorded": 29,
+   "tol": 0,
+   "ok": true
+  },
+  {
+   "name": "T03 pooled recovery k1",
+   "audit": 1.0125,
+   "recorded": 1.0125,
+   "tol": 1e-09,
+   "ok": true
+  },
+  {
+   "name": "T03 pooled recovery k1 (old labels, placebo)",
+   "audit": 1.588235294117647,
+   "recorded": 1.588235294117647,
+   "tol": 1e-09,
+   "ok": true
+  },
+  {
+   "name": "T03 pooled recovery k1: stdlib slot bootstrap interval within 0.03 of the numpy one",
+   "audit": true,
+   "recorded": true,
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "T03 pooled recovery k4",
+   "audit": 1.0,
+   "recorded": 1.0,
+   "tol": 1e-09,
+   "ok": true
+  },
+  {
+   "name": "T03 pooled recovery k4 (old labels, placebo)",
+   "audit": 1.5686274509803921,
+   "recorded": 1.5686274509803921,
+   "tol": 1e-09,
+   "ok": true
+  },
+  {
+   "name": "T03 pooled recovery k4: stdlib slot bootstrap interval within 0.03 of the numpy one",
+   "audit": true,
+   "recorded": true,
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "T03 pooled recovery k16",
+   "audit": 0.9875,
+   "recorded": 0.9875,
+   "tol": 1e-09,
+   "ok": true
+  },
+  {
+   "name": "T03 pooled recovery k16 (old labels, placebo)",
+   "audit": 1.5490196078431373,
+   "recorded": 1.5490196078431373,
+   "tol": 1e-09,
+   "ok": true
+  },
+  {
+   "name": "T03 pooled recovery k16: stdlib slot bootstrap interval within 0.03 of the numpy one",
+   "audit": true,
+   "recorded": true,
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "slot shuffle leaves the pooled ratio of sums unchanged (k1)",
+   "audit": 1.0125,
+   "recorded": 1.0125,
+   "tol": 1e-12,
+   "ok": true
+  },
+  {
+   "name": "Table 300 kth smallest | counting sort: full state routing",
+   "audit": 0.9666666666666667,
+   "recorded": 0.9666666666666667,
+   "tol": 1e-09,
+   "ok": true
+  },
+  {
+   "name": "Table 300 CP interval (stdlib)",
+   "audit": [
+    0.83,
+    1.0
+   ],
+   "recorded": [
+    0.83,
+    1.0
+   ],
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "7.3.9 catalogue variants from FULL_F_counting_sort (of 36)",
+   "audit": 29,
+   "recorded": 29,
+   "tol": 0,
+   "ok": true
+  },
+  {
+   "name": "7.3.9 catalogue variants from the forced counting sort prompts F1-F3 (of 36)",
+   "audit": 6,
+   "recorded": 6,
+   "tol": 0,
+   "ok": true
+  },
+  {
+   "name": "counting sort implementation form, DASLY_F_counting_sort_k1",
+   "audit": {
+    "array": 28,
+    "dict_value_range": 2
+   },
+   "recorded": {
+    "array": 28,
+    "dict_value_range": 2
+   },
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "counting sort implementation form, DASLY_F_counting_sort_k4",
+   "audit": {
+    "array": 27,
+    "dict_value_range": 3
+   },
+   "recorded": {
+    "array": 27,
+    "dict_value_range": 3
+   },
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "counting sort implementation form, DASLY_F_counting_sort_k16",
+   "audit": {
+    "array": 28,
+    "dict_value_range": 2
+   },
+   "recorded": {
+    "array": 28,
+    "dict_value_range": 2
+   },
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "counting sort implementation form, FULL_F_counting_sort",
+   "audit": {
+    "dict_sorted_keys": 29,
+    "neither": 1
+   },
+   "recorded": {
+    "dict_sorted_keys": 29,
+    "neither": 1
+   },
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "Table 301 pilot: programs labelled other that are degenerate / attempted Dijkstra",
+   "audit": "56 / 11 of 67",
+   "recorded": "56 / 11 of 67",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "Table 301 pilot: programs labelled Dijkstra by the frozen path labeller that are degenerate text",
+   "audit": "19 of 30",
+   "recorded": "19 of 30",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "no relabelled pilot program passes",
+   "audit": false,
+   "recorded": false,
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "judge gate A (deepseek-chat-v3.1), of 10",
+   "audit": 10,
+   "recorded": 10,
+   "tol": 0,
+   "ok": true
+  },
+  {
+   "name": "judge gate B (mistral-medium-3.1), of 10",
+   "audit": 9,
+   "recorded": 9,
+   "tol": 0,
+   "ok": true
+  },
+  {
+   "name": "labeller v2: controls passed (of 5)",
+   "audit": 5,
+   "recorded": 5,
+   "tol": 0,
+   "ok": true
+  },
+  {
+   "name": "untrained network: committed ratio (contrastive objective, against the diverged fit)",
+   "audit": 0.013034216086236138,
+   "recorded": 0.013034216086236138,
+   "tol": 1e-09,
+   "ok": true
+  },
+  {
+   "name": "untrained network: matched likelihood-gain ratio (ratio_lmeY)",
+   "audit": 5.0775312947091,
+   "recorded": 5.0775312947091,
+   "tol": 1e-09,
+   "ok": true
+  },
+  {
+   "name": "T2 permuted-label transfer (PERMLY_ban_k2), relative to the full-state effect",
+   "audit": 1.4,
+   "recorded": 1.4,
+   "tol": 1e-09,
+   "ok": true
+  },
+  {
+   "name": "T10 permuted-label transfer (PERMLY_ban_k16), relative to the full-state effect",
+   "audit": 1.2352941176470589,
+   "recorded": 1.2352941176470589,
+   "tol": 1e-09,
+   "ok": true
+  },
+  {
+   "name": "T03 permuted-label transfer (PERMLY_ban_k1), relative to the full-state effect",
+   "audit": 0.8181818181818182,
+   "recorded": 0.8181818181818182,
+   "tol": 1e-09,
+   "ok": true
+  },
+  {
+   "name": "g2.py:877 prefills the opening (cs) for the DAS, DiM and twin cells",
+   "audit": true,
+   "recorded": true,
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "g2.py:885 samples the forced-BFS ceiling with an empty prefix",
+   "audit": true,
+   "recorded": true,
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "Gemma dial: forced-BFS cell shares the CRN slots of the twin and DAS cells",
+   "audit": true,
+   "recorded": true,
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "exp38 README: the sentences that describe the forced-BFS ceiling",
+   "audit": [
+    "| forced-BFS prompt F5 (prompting ceiling) | 50 | 35 | 0.70 | 4e-6 (unadjusted) | - |",
+    "- **DAS beats the prompting ceiling.** At lambda 1 it gives 42 correct BFS programs against 35 for the explicit"
+   ],
+   "recorded": [
+    "| forced-BFS prompt F5 (prompting ceiling) | 50 | 35 | 0.70 | 4e-6 (unadjusted) | - |",
+    "- **DAS beats the prompting ceiling.** At lambda 1 it gives 42 correct BFS programs against 35 for the explicit"
+   ],
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "Gemma dial: prefix length of twin / DAS lambda 1 / forced-BFS cells",
+   "audit": {
+    "twin": [
+     32
+    ],
+    "DAS|bfs|1.0": [
+     32
+    ],
+    "forced_bfs_F5": [
+     0
+    ]
+   },
+   "recorded": {
+    "twin": [
+     32
+    ],
+    "DAS|bfs|1.0": [
+     32
+    ],
+    "forced_bfs_F5": [
+     0
+    ]
+   },
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "fork margin vs escape share Spearman (T10, 40 directions)",
+   "audit": 0.8038935854682214,
+   "recorded": 0.8038935854682215,
+   "tol": 1e-09,
+   "ok": true
+  },
+  {
+   "name": "48-token opening LLR vs escape share Spearman (T10)",
+   "audit": 0.8688928552769106,
+   "recorded": 0.8688928552769107,
+   "tol": 1e-09,
+   "ok": true
+  },
+  {
+   "name": "permuted-outcome placebo: median Spearman of margin vs shuffled outcomes",
+   "audit": true,
+   "recorded": true,
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "Gemma natural variance share, block 22, rank 1",
+   "audit": 0.002936096950799364,
+   "recorded": 0.002936096950799364,
+   "tol": 1e-12,
+   "ok": true
+  },
+  {
+   "name": "block 22 rank 1 share lies above the random 95th percentile",
+   "audit": true,
+   "recorded": true,
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "Gemma ranks below the random 95th percentile at block 17",
+   "audit": [
+    "1",
+    "2",
+    "4"
+   ],
+   "recorded": [
+    "1",
+    "2",
+    "4"
+   ],
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "Gemma dormant_flag (g2.py:618 rule)",
+   "audit": false,
+   "recorded": false,
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "Table 346 fresh slots: PTOP top-quartile cells, share Y",
+   "audit": 0.48,
+   "recorded": 0.48,
+   "tol": 1e-12,
+   "ok": true
+  },
+  {
+   "name": "Table 346 fresh slots: PREST rest of cells, share Y",
+   "audit": 0.18,
+   "recorded": 0.18,
+   "tol": 1e-12,
+   "ok": true
+  },
+  {
+   "name": "Table 346 fresh slots: PSHUF position-shuffled cells, share Y",
+   "audit": 0.08,
+   "recorded": 0.08,
+   "tol": 1e-12,
+   "ok": true
+  },
+  {
+   "name": "Table 346: McNemar top quartile vs rest (fresh slots)",
+   "audit": "15:0",
+   "recorded": "15:0",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "Table 346: McNemar full unit vs shuffled (fresh slots)",
+   "audit": "17:0",
+   "recorded": "17:0",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "Table 346: fresh-slot seed effect RD_seed",
+   "audit": -0.1,
+   "recorded": -0.1,
+   "tol": 1e-12,
+   "ok": true
+  },
+  {
+   "name": "Table 346: slot-level recomputation (data/samples.jsonl, E3_fresh) reproduces the aggregates",
+   "audit": true,
+   "recorded": true,
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "search level b, T03, arm S: programs / calls",
+   "audit": "78/2500",
+   "recorded": "78/2500",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "search level b, T03, arm L: programs / calls",
+   "audit": "23/500",
+   "recorded": "23/500",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "search level b, T03, arm I0: programs / calls",
+   "audit": "2/500",
+   "recorded": "2/500",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "search level b, T03, arm EAP: programs / calls",
+   "audit": "0/1250",
+   "recorded": "0/1250",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "search level b, T03, arm NE: programs / calls",
+   "audit": "0/500",
+   "recorded": "0/500",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "search level b, T03, arm BINT: programs / calls",
+   "audit": "0/1250",
+   "recorded": "0/1250",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "search level b, T03, arm B0: programs / calls",
+   "audit": "0/200",
+   "recorded": "0/200",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "search vs instruction-only rate ratio (level b, T03)",
+   "audit": 7.8,
+   "recorded": 7.8,
+   "tol": 1e-09,
+   "ok": true
+  },
+  {
+   "name": "B3 T1.0 Wilson 95% for 20/50",
+   "audit": [
+    0.276084,
+    0.538186
+   ],
+   "recorded": [
+    0.276084,
+    0.538186
+   ],
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "B3 T1.0 prediction outside the Wilson interval",
+   "audit": true,
+   "recorded": true,
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "B3 stream-lean Fisher p (twin 20/100 vs sweep 20/50)",
+   "audit": 0.011315850518915215,
+   "recorded": 0.011315850518915215,
+   "tol": 1e-09,
+   "ok": true
+  },
+  {
+   "name": "semantic seed null percentile",
+   "audit": 93.93939393939394,
+   "recorded": 93.93939393939394,
+   "tol": 1e-09,
+   "ok": true
+  },
+  {
+   "name": "semantic seed D below the null 95th percentile by less than 0.01",
+   "audit": true,
+   "recorded": true,
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "manifold: training templates of the map",
+   "audit": true,
+   "recorded": true,
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "exp33 deviation D-cap appears verbatim in report_corrected.md",
+   "audit": true,
+   "recorded": true,
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "exp33 deviation D-cap quoted verbatim",
+   "audit": "Generation caps are exp30's 384 (bench) / 512 (T2) tokens, not 1,024/1,536: engi...",
+   "recorded": "Generation caps are exp30's 384 (bench) / 512 (T2) tokens, not 1,024/1,536: engi...",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "exp33 deviation D-targets appears verbatim in report_corrected.md",
+   "audit": true,
+   "recorded": true,
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "exp33 deviation D-targets quoted verbatim",
+   "audit": "Distinct 48-token openings are few (the model repeats openings), so the default ...",
+   "recorded": "Distinct 48-token openings are few (the model repeats openings), so the default ...",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "exp33 deviation D-tfsets appears verbatim in report_corrected.md",
+   "audit": true,
+   "recorded": true,
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "exp33 deviation D-tfsets quoted verbatim",
+   "audit": "Held-out teacher-forced evaluation scores held-out PROMPT pairs with the trainin...",
+   "recorded": "Held-out teacher-forced evaluation scores held-out PROMPT pairs with the trainin...",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "exp33 deviation D-drop appears verbatim in report_corrected.md",
+   "audit": true,
+   "recorded": true,
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "exp33 deviation D-drop quoted verbatim",
+   "audit": "Drop order applied: plan resampling (1) and the T1 extension (2: T1 DAS and the ...",
+   "recorded": "Drop order applied: plan resampling (1) and the T1 extension (2: T1 DAS and the ...",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "exp33 deviation D-randinit quoted verbatim",
+   "audit": "The committed random-init control (contrastive objective, results/randinit_T2.js...",
+   "recorded": "The committed random-init control (contrastive objective, results/randinit_T2.js...",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "exp33 deviation D-C-k quoted verbatim",
+   "audit": "C is scored at k = 16 when P1's k (2 on T2, 16 on T10) has no forced-source DAS ...",
+   "recorded": "C is scored at k = 16 when P1's k (2 on T2, 16 on T10) has no forced-source DAS ...",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "retag: D_star",
+   "audit": "D1",
+   "recorded": "D1",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "retag: movable tasks at D*",
+   "audit": [
+    "T03",
+    "T10"
+   ],
+   "recorded": [
+    "T03",
+    "T10"
+   ],
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "positioning row hotcold: status",
+   "audit": "VERIFIED",
+   "recorded": "VERIFIED",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "positioning row ctrltemp: status",
+   "audit": "VERIFIED",
+   "recorded": "VERIFIED",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "positioning row entropy: status",
+   "audit": "VERIFIED",
+   "recorded": "VERIFIED",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "positioning row beyond8020: status",
+   "audit": "VERIFIED",
+   "recorded": "VERIFIED",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "positioning row tale: status",
+   "audit": "VERIFIED",
+   "recorded": "VERIFIED",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "positioning row cdas: status",
+   "audit": "VERIFIED",
+   "recorded": "VERIFIED",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "positioning row mib: status",
+   "audit": "VERIFIED",
+   "recorded": "VERIFIED",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "positioning row funsearch: status",
+   "audit": "VERIFIED",
+   "recorded": "VERIFIED",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "positioning row alphaevolve: status",
+   "audit": "VERIFIED",
+   "recorded": "VERIFIED",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "positioning row divalgo: status",
+   "audit": "VERIFIED",
+   "recorded": "VERIFIED",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "positioning row beneath: status",
+   "audit": "VERIFIED",
+   "recorded": "VERIFIED",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "positioning row algdisc: status",
+   "audit": "VERIFIED",
+   "recorded": "VERIFIED",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "ICML 2026 workshop poster (AdaptFM: Resource-Adaptive Foundation Model Inference)",
+   "audit": "VERIFIED",
+   "recorded": "VERIFIED",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "ICML 2026 workshop poster (4th Structured Probabilistic Inference & Generative Modeling)",
+   "audit": "VERIFIED",
+   "recorded": "VERIFIED",
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "file-name losses found by difflib (report_corrected.md -> current_report.md)",
+   "audit": 10,
+   "recorded": 10,
+   "tol": 0,
+   "ok": true
+  },
+  {
+   "name": "every lost file name is back in the corrected report",
+   "audit": 5,
+   "recorded": 5,
+   "tol": 0,
+   "ok": true
+  },
+  {
+   "name": "lint after: no phrase survives in report_corrected.md",
+   "audit": [],
+   "recorded": [],
+   "tol": 1e-06,
+   "ok": true
+  },
+  {
+   "name": "no undefined 'Step K' left",
+   "audit": 0,
+   "recorded": 0,
+   "tol": 0,
+   "ok": true
+  },
+  {
+   "name": "apply test: every old_text occurs exactly once in the vendored report",
+   "audit": true,
+   "recorded": true,
+   "tol": 1e-06,
+   "ok": true
+  }
+ ],
+ "headline": {
+  "checks": [
+   {
+    "name": "H1 FULL_F_counting_sort counting sort (regex relabel of raw code)",
+    "independent": 29,
+    "expected": 29,
+    "ok": true
+   },
+   {
+    "name": "H2 kth pooled recovery rank 1",
+    "independent": 1.0125,
+    "expected": 1.0125,
+    "ok": true
+   },
+   {
+    "name": "H2 kth pooled recovery rank 4",
+    "independent": 1.0,
+    "expected": 1.0,
+    "ok": true
+   },
+   {
+    "name": "H2 kth pooled recovery rank 16",
+    "independent": 0.9875,
+    "expected": 0.9875,
+    "ok": true
+   },
+   {
+    "name": "H3 fork margin Spearman",
+    "independent": 0.804,
+    "expected": 0.804,
+    "ok": true
+   },
+   {
+    "name": "H3 opening LLR Spearman",
+    "independent": 0.869,
+    "expected": 0.869,
+    "ok": true
+   },
+   {
+    "name": "H4 rate ratio search / instruction only",
+    "independent": 7.8,
+    "expected": 7.8,
+    "ok": true
+   },
+   {
+    "name": "H4 one-sided 95% lower bound of the ratio",
+    "independent": 2.41,
+    "expected": 2.41,
+    "ok": true
+   },
+   {
+    "name": "H5 lint hits before",
+    "independent": 35,
+    "expected": 35,
+    "ok": true
+   },
+   {
+    "name": "H5 lint hits after",
+    "independent": 0,
+    "expected": 0,
+    "ok": true
+   },
+   {
+    "name": "H6 judge spend USD from the raw cache",
+    "independent": 0.0952,
+    "expected": 0.0952,
+    "ok": true
+   }
+  ],
+  "placebos": [
+   {
+    "name": "H1/H2 old labels give 0/30 and 1.59",
+    "failed_as_required": true
+   },
+   {
+    "name": "regex detector finds no dictionary counting sort in quickselect/base cells",
+    "failed_as_required": true,
+    "detail": 0
+   },
+   {
+    "name": "shuffled labels do not give 1.0125",
+    "failed_as_required": true,
+    "detail": -0.14285714285714285
+   },
+   {
+    "name": "shuffled outcomes break the margin Spearman",
+    "failed_as_required": true,
+    "detail": 0.06547164822299652
+   },
+   {
+    "name": "equal rates give a lower bound below 1",
+    "failed_as_required": true
+   }
+  ],
+  "n_ok": 11,
+  "n": 11,
+  "placebos_failed": 5,
+  "n_placebos": 5
+ }
+}

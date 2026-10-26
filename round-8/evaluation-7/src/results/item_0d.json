@@ -1,0 +1,125 @@
+{
+ "edits": [
+  {
+   "id": "C8-d01",
+   "item": "0d",
+   "section": "7.4.3",
+   "kind": "prose",
+   "old_text": "its Spearman with the attempted share is 0.82, and the 48-token opening LLR in place of the fork margin reaches 0.87.",
+   "new_text": "its Spearman with the attempted share is 0.82, and the 48-token opening LLR in place of the fork margin reaches 0.87. Both are readouts taken where the outcome is already expressed, teacher-forced at the fork token and at the opening, so their agreement with the sampled outcomes measures the outcome there rather than predicting it from the push; no property of the push direction itself predicted which pushes move the fork (axis projection 0.17 and 0.01, Section 7.4.4; plan-subspace projection 0.03 in iteration 4) (iteration-8 correction).",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-d02",
+   "item": "0d",
+   "section": "7.9",
+   "kind": "prose",
+   "old_text": "where it exists its margin predicts the effect of random pushes (connected components) and of temperature (within the committed error on two of the four mixed units).",
+   "new_text": "where it exists, the effect of a push is already expressed at the fork token on connected components (a teacher-forced readout of the margin matches the sampled outcomes of random pushes at Spearman 0.80, and the 48-token opening log-likelihood ratio at 0.87; no direction-level property predicted which pushes move the fork), and its logits divided by T predicted the temperature response within the committed error on two of the four mixed units (iteration-8 correction).",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-d03",
+   "item": "0d",
+   "section": "7.10",
+   "kind": "prose",
+   "old_text": "and the fork margin under a random push predicts the effect of the push (Spearman 0.80), through the probability that stays on the default fork tokens rather than through which algorithm each other token leads to (a placebo that shuffles the token map reaches 0.80 in 18% of permutations).",
+   "new_text": "and the effect of a random push is already expressed at that token: a teacher-forced readout of the fork margin matches the sampled outcomes at Spearman 0.80 (the 48-token opening log-likelihood ratio at 0.87), through the probability that stays on the default fork tokens rather than through which algorithm each other token leads to (a placebo that shuffles the token map reaches 0.80 in 18% of permutations); no direction-level property predicted which pushes move the fork (axis 0.17 and 0.01; plan-subspace projection 0.03 in iteration 4) (iteration-8 correction).",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-d04",
+   "item": "0d",
+   "section": "closing",
+   "kind": "prose",
+   "old_text": "The margin at the decision predicts what moves the algorithm. Under 40 random pushes, the fork margin on connected components ranks which pushes change the algorithm (Spearman 0.80), although a placebo that shuffles which fork tokens lead to which algorithm reaches the same value in 18% of permutations, so the ranking rests on how much probability stays on the default fork tokens.",
+   "new_text": "The effect of a push is already expressed at the decision token. Under 40 random pushes on connected components, a teacher-forced readout of the fork margin matches which pushes change the algorithm (Spearman 0.80; the 48-token opening log-likelihood ratio 0.87), although a placebo that shuffles which fork tokens lead to which algorithm reaches the same value in 18% of permutations, so the agreement rests on how much probability stays on the default fork tokens; no direction-level property predicted which pushes move the fork (axis 0.17 and 0.01; plan-subspace projection 0.03 in iteration 4) (iteration-8 correction).",
+   "why": "",
+   "value_names": []
+  }
+ ],
+ "verdict": "RESTATED (readout, not predictor)",
+ "summary": {
+  "rho_margin": 0.8038935854682215,
+  "rho_margin_ci": [
+   0.6174608400398528,
+   0.9119428117776284
+  ],
+  "rho_llr48": 0.8688928552769107,
+  "rho_llr48_ci": [
+   0.7305033254322211,
+   0.9386989789019361
+  ],
+  "perm_median": 0.0011337081943376024
+ },
+ "values": [
+  {
+   "name": "fork margin vs escape share Spearman (T10, 40 directions)",
+   "item": "0d",
+   "recorded": 0.8,
+   "recomputed": 0.8038935854682215,
+   "status": "MATCH",
+   "tolerance": 0.005,
+   "source": "art_pHL7LWNhpcCS:results/f_analysis.json#cells.T10[].m,y",
+   "note": "bootstrap 95% [0.62, 0.91]"
+  },
+  {
+   "name": "48-token opening LLR vs escape share Spearman (T10)",
+   "item": "0d",
+   "recorded": 0.87,
+   "recomputed": 0.8688928552769107,
+   "status": "MATCH",
+   "tolerance": 0.005,
+   "source": "art_pHL7LWNhpcCS:results/f_analysis.json#cells.T10[].llr48,y",
+   "note": "bootstrap 95% [0.73, 0.94]"
+  },
+  {
+   "name": "token-map shuffle placebo share reaching 0.80",
+   "item": "0d",
+   "recorded": 0.18,
+   "recomputed": 0.18,
+   "status": "CARRIED",
+   "tolerance": 0.0,
+   "source": "art_pHL7LWNhpcCS:README.md#Placebo, shuffled fork-token map on T10: 18% of the 200 permutations"
+  },
+  {
+   "name": "axis projection Spearman T10",
+   "item": "0d",
+   "recorded": 0.17,
+   "recomputed": 0.1732684023679302,
+   "status": "MATCH",
+   "tolerance": 0.005,
+   "source": "art_pHL7LWNhpcCS:results/p2_analysis.json#P2.T10.rho_b"
+  },
+  {
+   "name": "axis projection Spearman T2",
+   "item": "0d",
+   "recorded": 0.01,
+   "recomputed": 0.014865191729384867,
+   "status": "MATCH",
+   "tolerance": 0.005,
+   "source": "art_pHL7LWNhpcCS:results/p2_analysis.json#P2.T2.rho_b"
+  },
+  {
+   "name": "plan-subspace projection Spearman (iteration 4)",
+   "item": "0d",
+   "recorded": 0.03,
+   "recomputed": 0.03,
+   "status": "CARRIED",
+   "tolerance": 0.0,
+   "source": "current_report.md#Section 4 item 5 ('ranks them at 0.03')"
+  },
+  {
+   "name": "permuted-outcome placebo: median Spearman of margin vs shuffled outcomes",
+   "item": "0d",
+   "recorded": null,
+   "recomputed": 0.0011337081943376024,
+   "status": "NEW",
+   "tolerance": 0.05,
+   "source": "audit placebo (2,000 shuffles, seed 11)"
+  }
+ ]
+}

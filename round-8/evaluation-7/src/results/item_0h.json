@@ -1,0 +1,137 @@
+{
+ "edits": [
+  {
+   "id": "C8-h01",
+   "item": "0h",
+   "section": "Table 346",
+   "kind": "caption",
+   "old_text": "**Table 346.** Connected components on 50 fresh slots (exploratory replication).",
+   "new_text": "**Table 346.** Connected components on 50 fresh slots (exploratory replication). (iteration-8 correction: profile rows and the fresh-slot seed effect added from the dose-unit experiment's `results/e3_replicate.json`, block T10_fresh_k10_19)",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-h02",
+   "item": "0h",
+   "section": "Table 346",
+   "kind": "table_rows_insert",
+   "old_text": "| relative unit, iteration-5 seeds | 0.10 |\n\n**Table 347.**",
+   "new_text": "| relative unit, iteration-5 seeds | 0.10 |\n| top-quartile cells only, absolute unit, iteration-4 seeds | 0.48 (24/50; Wilson [0.35, 0.61]) |\n| the other three quartiles at the same energy | 0.18 (9/50); McNemar top quartile against rest 15:0 |\n| same energy at shuffled positions | 0.08 (4/50); McNemar full unit against shuffled 17:0 |\n| seed effect on the fresh slots (RD_seed) | -0.10 [-0.22, 0.02], at the edge of the committed +-0.10 band |\n\n**Table 347.**",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-h03",
+   "item": "0h",
+   "section": "7.10",
+   "kind": "prose",
+   "old_text": "The weak plan noise of iteration 5 came from its dose unit; the absolute unit's peaky profile on a few task tokens carries the effect.",
+   "new_text": "The weak plan noise of iteration 5 came from its dose unit; profile and energy each carry part of the effect on connected components (profile +0.22 [0.08, 0.36], energy +0.18 [0.06, 0.30]); the shortest-path profile contrast is confounded by a massive-activation cell holding 82% of the unit's energy (iteration-8 correction).",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-h04",
+   "item": "0h",
+   "section": "closing",
+   "kind": "prose",
+   "old_text": "the absolute unit concentrates 81% of its energy on a few task tokens, and the same energy at shuffled positions moves almost nothing.",
+   "new_text": "on connected components the absolute unit concentrates 81% of its energy in its top quartile of cells, on bands of a few task tokens (on shortest path a different quantity, one massive-activation cell, holds 82%), profile and energy each carry part of the effect (+0.22 [0.08, 0.36] and +0.18 [0.06, 0.30]), and the same energy at shuffled positions moves almost nothing (iteration-8 correction).",
+   "why": "",
+   "value_names": []
+  }
+ ],
+ "verdict": "ADDED (Table 346 rows)",
+ "summary": {
+  "PTOP": 24,
+  "PREST": 9,
+  "D1": 21,
+  "PSHUF": 4,
+  "RD_seed": -0.1,
+  "RD_seed_ci": [
+   -0.22,
+   0.02
+  ]
+ },
+ "values": [
+  {
+   "name": "Table 346 fresh slots: D1 full absolute unit, share Y",
+   "item": "0h",
+   "recorded": 0.42,
+   "recomputed": 0.42,
+   "status": "MATCH",
+   "tolerance": 0.005,
+   "source": "art_8O5eaNc5gxJs:results/e3_replicate.json#T10_fresh_k10_19.profiles.cells.D1.Y",
+   "note": "21/50 Wilson [0.29, 0.56]"
+  },
+  {
+   "name": "Table 346 fresh slots: PTOP top-quartile cells, share Y",
+   "item": "0h",
+   "recorded": null,
+   "recomputed": 0.48,
+   "status": "NEW",
+   "tolerance": 0.005,
+   "source": "art_8O5eaNc5gxJs:results/e3_replicate.json#T10_fresh_k10_19.profiles.cells.PTOP.Y",
+   "note": "24/50 Wilson [0.35, 0.61]"
+  },
+  {
+   "name": "Table 346 fresh slots: PREST rest of cells, share Y",
+   "item": "0h",
+   "recorded": null,
+   "recomputed": 0.18,
+   "status": "NEW",
+   "tolerance": 0.005,
+   "source": "art_8O5eaNc5gxJs:results/e3_replicate.json#T10_fresh_k10_19.profiles.cells.PREST.Y",
+   "note": "9/50 Wilson [0.10, 0.31]"
+  },
+  {
+   "name": "Table 346 fresh slots: PSHUF position-shuffled cells, share Y",
+   "item": "0h",
+   "recorded": null,
+   "recomputed": 0.08,
+   "status": "NEW",
+   "tolerance": 0.005,
+   "source": "art_8O5eaNc5gxJs:results/e3_replicate.json#T10_fresh_k10_19.profiles.cells.PSHUF.Y",
+   "note": "4/50 Wilson [0.03, 0.19]"
+  },
+  {
+   "name": "Table 346: McNemar top quartile vs rest (fresh slots)",
+   "item": "0h",
+   "recorded": null,
+   "recomputed": "15:0",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "art_8O5eaNc5gxJs:results/e3_replicate.json#T10_fresh_k10_19.profiles.PTOP_vs_PREST",
+   "note": "exact p 6.1e-05 (file 6.1e-05, one-sided)"
+  },
+  {
+   "name": "Table 346: McNemar full unit vs shuffled (fresh slots)",
+   "item": "0h",
+   "recorded": null,
+   "recomputed": "17:0",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "art_8O5eaNc5gxJs:results/e3_replicate.json#T10_fresh_k10_19.profiles.D1_vs_PSHUF"
+  },
+  {
+   "name": "Table 346: fresh-slot seed effect RD_seed",
+   "item": "0h",
+   "recorded": null,
+   "recomputed": -0.1,
+   "status": "NEW",
+   "tolerance": 0.005,
+   "source": "art_8O5eaNc5gxJs:results/e3_replicate.json#T10_fresh_k10_19.2x2|Y.RD_seed",
+   "note": "95% [-0.22, 0.02]"
+  },
+  {
+   "name": "Table 346: slot-level recomputation (data/samples.jsonl, E3_fresh) reproduces the aggregates",
+   "item": "0h",
+   "recorded": null,
+   "recomputed": true,
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "art_8O5eaNc5gxJs:data/samples.jsonl#stage==E3_fresh",
+   "note": "sums {'D1': 21, 'D2': 30, 'D3': 4, 'D4': 5, 'D5': 9, 'PTOP': 24, 'PREST': 9, 'PSHUF': 4}; McNemar PTOP:PREST 15:0, D1:PSHUF 17:0; RD_seed -0.10"
+  }
+ ]
+}

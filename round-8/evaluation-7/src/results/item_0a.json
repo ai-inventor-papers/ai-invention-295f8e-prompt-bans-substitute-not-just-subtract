@@ -1,0 +1,453 @@
+{
+ "edits": [
+  {
+   "id": "C8-a01",
+   "item": "0a",
+   "section": "7.3.4",
+   "kind": "prose",
+   "old_text": "on kth smallest the forced counting sort source transfers 30 of 30 at every rank while the full state exchange gives 0 (29 programs labelled other, read below).",
+   "new_text": "on kth smallest the forced counting sort source transfers 30 of 30 at every rank, and the full state exchange of the same prompt gives 29 of 30: the 29 programs once labelled other are counting sort in dictionary form (counts in a dictionary walked in sorted key order), which the extended labeller now names counting sort, and the remaining program is a binary search on the value range (Table 300) (iteration-8 correction).",
+   "why": "dictionary-form counting sort was labelled other; relabel validated on references, gold set and negative controls",
+   "value_names": []
+  },
+  {
+   "id": "C8-a02",
+   "item": "0a",
+   "section": "Table 296",
+   "kind": "caption",
+   "old_text": "**Table 296.** Kth smallest: correct programs of the target algorithm (of 30) by source and rank.",
+   "new_text": "**Table 296.** Kth smallest: correct programs of the target algorithm (of 30) by source and rank. (iteration-8 correction: forced counting sort source, full state 0 -> 29 after the labeller was extended to counting sort in dictionary form)",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-a03",
+   "item": "0a",
+   "section": "Table 296",
+   "kind": "table_row",
+   "old_text": "| forced counting sort source | counting sort | 0 | 0 | 30 (pass 1.00) | - | 30 (pass 1.00) | - | 30 (pass 1.00) |  |  | 1.00/1.00 |",
+   "new_text": "| forced counting sort source | counting sort | 0 | 29 | 30 (pass 1.00) | - | 30 (pass 1.00) | - | 30 (pass 1.00) |  |  | 1.00/1.00 |",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-a04",
+   "item": "0a",
+   "section": "Table 297",
+   "kind": "caption",
+   "old_text": "**Table 297.** Kth smallest: pooled recovery and its controls by rank.",
+   "new_text": "**Table 297.** Kth smallest: pooled recovery and its controls by rank. (iteration-8 correction: pooled recovery recomputed after the counting-sort relabel with exp33's own slot bootstrap, 2,000 resamples; the old values 1.59 / 1.57 / 1.55 are reproduced exactly under the old labels; the permuted-label column is an absolute transfer, (count - base)/30, and the random-subspace recovery uses only the ban source, so neither changes; per-source recovery in Table 297b is the summary)",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-a05",
+   "item": "0a",
+   "section": "Table 297",
+   "kind": "table_row",
+   "old_text": "| 1 | 1.59 [1.47, 1.72] | 0.05 | 20:0 (1.9e-06) | 0.60 | 0.90 |",
+   "new_text": "| 1 | 1.01 [0.95, 1.08] | 0.05 | 20:0 (1.9e-06) | 0.60 | 0.90 |",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-a06",
+   "item": "0a",
+   "section": "Table 297",
+   "kind": "table_row",
+   "old_text": "| 4 | 1.57 [1.44, 1.72] | - | - | - | - |",
+   "new_text": "| 4 | 1.00 [0.93, 1.08] | - | - | - | - |",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-a07",
+   "item": "0a",
+   "section": "Table 297",
+   "kind": "table_row",
+   "old_text": "| 16 | 1.55 [1.42, 1.70] | 0.05 | 21:0 (9.5e-07) | 0.47 | 0.90 |",
+   "new_text": "| 16 | 0.99 [0.92, 1.06] | 0.05 | 21:0 (9.5e-07) | 0.47 | 0.90 |",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-a08",
+   "item": "0a",
+   "section": "7.3.6",
+   "kind": "prose",
+   "old_text": "and the counting sort source lands on counting sort in 30 of 30 at rank 16 while the full state exchange lands none (Table 300). Connected components is not categorical: the forced BFS source's rank-16 edit lands 21 DFS and 9 BFS. The subspace thus carries which algorithm, and on two tasks it carries it more cleanly than the whole state does.",
+   "new_text": "and the counting sort source lands on counting sort in 30 of 30 at rank 16, where the full state exchange of the same prompt also lands 29 of 30 on counting sort once its dictionary form is labelled (Table 300). Connected components is not categorical: the forced BFS source's rank-16 edit lands 21 DFS and 9 BFS. The subspace thus carries which algorithm, more cleanly than the full state on one task (shortest path: Floyd-Warshall 28/28 against 8/20); on kth smallest the DAS edit changes the implementation form (mostly an array of counts, 28 of 30 at rank 16, against the full state's dictionary with sorted keys, 29 of 30), not the algorithm (iteration-8 correction).",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-a09",
+   "item": "0a",
+   "section": "Table 300",
+   "kind": "caption",
+   "old_text": "**Table 300.** Routing: where correct programs off the default land under the full state exchange and under DAS.",
+   "new_text": "**Table 300.** Routing: where correct programs off the default land under the full state exchange and under DAS. (iteration-8 correction: kth smallest | counting sort row relabelled; the committed C rule still scores kth smallest categorical, because it reads the DAS columns)",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-a10",
+   "item": "0a",
+   "section": "Table 300",
+   "kind": "table_row",
+   "old_text": "| kth smallest | counting sort | 0.00 (0/30) [0.00, 0.12] | 1.00 (30/30) [0.88, 1.00] | 1.00 (30/30) [0.88, 1.00] | 1.00 (30/30) [0.88, 1.00] | other 29, quickselect 1 | counting sort 30 |",
+   "new_text": "| kth smallest | counting sort | 0.97 (29/30) [0.83, 1.00] | 1.00 (30/30) [0.88, 1.00] | 1.00 (30/30) [0.88, 1.00] | 1.00 (30/30) [0.88, 1.00] | counting sort (dictionary form) 29, binary search on the value range 1 | counting sort 30 (array of counts 28, dictionary walked over the value range 2) |",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-a11",
+   "item": "0a",
+   "section": "Table 314",
+   "kind": "table_row",
+   "old_text": "| kth smallest | full state exchange, forced counting sort source | 30 | 1.00 | 0 | other 29, quickselect 1 |",
+   "new_text": "| kth smallest | full state exchange, forced counting sort source | 30 | 1.00 | 0 | counting sort (dictionary form) 29, other 1 (binary search on the value range; iteration-8 correction) |",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-a12",
+   "item": "0a",
+   "section": "7.3.9",
+   "kind": "prose",
+   "old_text": "Of the 38 correct programs labelled other across the experiment, 36 are catalogue variants and 2 are labeller misses; none is novel.",
+   "new_text": "Of the 38 correct programs labelled other across the experiment, 36 are catalogue variants and 2 are labeller misses; none is novel. 29 of the 36 come from the full state exchange of the forced counting sort source and 6 more from the forced counting sort prompts: they are counting sort in dictionary form, which the extended labeller now names counting sort (iteration-8 correction).",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-a13",
+   "item": "0a",
+   "section": "Table 371",
+   "kind": "table_row",
+   "old_text": "| DAS experiment | 38 correct programs labelled other | 36 catalogue variants, 2 labeller misses | 0 |",
+   "new_text": "| DAS experiment | 38 correct programs labelled other | 36 catalogue variants (35 are counting sort in dictionary form, 29 of them from the full state exchange of the forced counting sort source; relabelled counting sort in iteration 8), 2 labeller misses | 0 |",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-a16",
+   "item": "0a",
+   "section": "Table 371",
+   "kind": "caption",
+   "old_text": "**Table 371.** Novelty audits of iteration 7.",
+   "new_text": "**Table 371.** Novelty audits of iteration 7. (iteration-8 correction: the DAS experiment row names the counting-sort cells)",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-a14",
+   "item": "0a",
+   "section": "Table 372",
+   "kind": "table_row",
+   "old_text": "| Routing claim | Categorical on shortest path and kth smallest; not on connected components | Floyd-Warshall 28/28 and counting sort 30/30 under DAS; forced BFS lands on DFS |",
+   "new_text": "| Routing claim | Categorical by the committed rule on two tasks (shortest path, kth smallest), not on connected components (iteration-8 correction) | Floyd-Warshall 28/28 under DAS against 8/20 for the full state; on kth smallest the full state also lands 29 of 30 on counting sort (dictionary form) against 30/30 under DAS (28 of them an array of counts); forced BFS lands on DFS |",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-a15",
+   "item": "0a",
+   "section": "Table 370",
+   "kind": "table_row",
+   "old_text": "| Qwen3-8B, kth smallest | DAS rank 1, forced counting sort source | 30/30 counting sort | 0/30 | 1.00 |",
+   "new_text": "| Qwen3-8B, kth smallest | DAS rank 1, forced counting sort source | 30/30 counting sort (28 an array of counts; the full state exchange gives 29/30 in dictionary form, iteration-8 correction) | 0/30 | 1.00 |",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-a17",
+   "item": "0a",
+   "section": "Table 301",
+   "kind": "caption",
+   "old_text": "**Table 301.** The pilot of the committed contrastive maps in generation (base cells in parentheses).",
+   "new_text": "**Table 301.** The pilot of the committed contrastive maps in generation (base cells in parentheses). (iteration-8 correction: in the adjudicated column of these 100 programs (rule, two gated judges, manual read; `tables/counting_sort_adjudication.csv`), 56 of the 67 labelled other are degenerate text and 11 are attempted Dijkstra that crash on the edge list, and 19 of the 30 labelled Dijkstra are degenerate text that the frozen path labeller names Dijkstra; no relabelled program passes, so the correct-Y counts stand)",
+   "why": "",
+   "value_names": []
+  }
+ ],
+ "verdict": "CORRECTED",
+ "summary": {
+  "forms": {
+   "DASLY_F_counting_sort_k1": {
+    "array": 28,
+    "dict_value_range": 2
+   },
+   "DASLY_F_counting_sort_k4": {
+    "array": 27,
+    "dict_value_range": 3
+   },
+   "DASLY_F_counting_sort_k16": {
+    "array": 28,
+    "dict_value_range": 2
+   },
+   "FULL_F_counting_sort": {
+    "dict_sorted_keys": 29,
+    "neither": 1
+   }
+  },
+  "full_state_counting_sort": 29,
+  "kth_pooled_recovery": {
+   "1": 1.0125,
+   "4": 1.0,
+   "16": 0.9875
+  },
+  "kth_pooled_recovery_ci": {
+   "1": [
+    0.9518072289156626,
+    1.0789473684210527
+   ],
+   "4": [
+    0.9259027777777777,
+    1.075023734177215
+   ],
+   "16": [
+    0.9176470588235294,
+    1.0649350649350648
+   ]
+  },
+  "catalogue_variants_from_full_cell": 29,
+  "from_forced_prompts": 6
+ },
+ "values": [
+  {
+   "name": "T03 forced counting sort: full state correct counting sort (of 30)",
+   "item": "0a",
+   "recorded": 0,
+   "recomputed": 29,
+   "status": "CORRECTED",
+   "tolerance": 0,
+   "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==FULL_F_counting_sort + labeller_v2 + tables/counting_sort_adjudication.csv"
+  },
+  {
+   "name": "T03 pooled recovery k1 (old labels, placebo)",
+   "item": "0a",
+   "recorded": 1.59,
+   "recomputed": 1.588235294117647,
+   "status": "MATCH",
+   "tolerance": 0.005,
+   "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T03.per_k.1.recovery"
+  },
+  {
+   "name": "T03 pooled recovery k1",
+   "item": "0a",
+   "recorded": 1.59,
+   "recomputed": 1.0125,
+   "status": "CORRECTED",
+   "tolerance": 0.005,
+   "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==FULL_F_counting_sort + labeller_v2 + tables/counting_sort_adjudication.csv",
+   "note": "num 81 / den 80; slot bootstrap 95% [0.95, 1.08]"
+  },
+  {
+   "name": "T03 pooled recovery k4 (old labels, placebo)",
+   "item": "0a",
+   "recorded": 1.57,
+   "recomputed": 1.5686274509803921,
+   "status": "MATCH",
+   "tolerance": 0.005,
+   "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T03.per_k.4.recovery"
+  },
+  {
+   "name": "T03 pooled recovery k4",
+   "item": "0a",
+   "recorded": 1.57,
+   "recomputed": 1.0,
+   "status": "CORRECTED",
+   "tolerance": 0.005,
+   "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==FULL_F_counting_sort + labeller_v2 + tables/counting_sort_adjudication.csv",
+   "note": "num 80 / den 80; slot bootstrap 95% [0.93, 1.08]"
+  },
+  {
+   "name": "T03 pooled recovery k16 (old labels, placebo)",
+   "item": "0a",
+   "recorded": 1.55,
+   "recomputed": 1.5490196078431373,
+   "status": "MATCH",
+   "tolerance": 0.005,
+   "source": "art_veI9l_Rb9wDY:results/p1.json#tasks.T03.per_k.16.recovery"
+  },
+  {
+   "name": "T03 pooled recovery k16",
+   "item": "0a",
+   "recorded": 1.55,
+   "recomputed": 0.9875,
+   "status": "CORRECTED",
+   "tolerance": 0.005,
+   "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==FULL_F_counting_sort + labeller_v2 + tables/counting_sort_adjudication.csv",
+   "note": "num 79 / den 80; slot bootstrap 95% [0.92, 1.06]"
+  },
+  {
+   "name": "T03 random-subspace recovery k1 (Table 297)",
+   "item": "0a",
+   "recorded": 0.05,
+   "recomputed": 0.045454545454545456,
+   "status": "MATCH",
+   "tolerance": 0.005,
+   "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==FULL_F_counting_sort + labeller_v2 + tables/counting_sort_adjudication.csv",
+   "note": "normalised by the full state over the sources that have random arms (ban source only), so the relabel does not touch it"
+  },
+  {
+   "name": "T03 random-subspace recovery k16 (Table 297)",
+   "item": "0a",
+   "recorded": 0.05,
+   "recomputed": 0.045454545454545456,
+   "status": "MATCH",
+   "tolerance": 0.005,
+   "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==FULL_F_counting_sort + labeller_v2 + tables/counting_sort_adjudication.csv"
+  },
+  {
+   "name": "T03 permuted-label transfer k1 (7.3.5)",
+   "item": "0a",
+   "recorded": 0.6,
+   "recomputed": 0.6,
+   "status": "MATCH",
+   "tolerance": 0.005,
+   "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==FULL_F_counting_sort + labeller_v2 + tables/counting_sort_adjudication.csv",
+   "note": "absolute transfer (count - base)/30 of the ban source; not normalised by the full state, so the relabel does not touch it"
+  },
+  {
+   "name": "T03 permuted-label transfer k16 (Table 297)",
+   "item": "0a",
+   "recorded": 0.47,
+   "recomputed": 0.4666666666666667,
+   "status": "MATCH",
+   "tolerance": 0.005,
+   "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==FULL_F_counting_sort + labeller_v2 + tables/counting_sort_adjudication.csv"
+  },
+  {
+   "name": "Table 300 kth smallest | counting sort: full state routing",
+   "item": "0a",
+   "recorded": 0.0,
+   "recomputed": 0.9666666666666667,
+   "status": "CORRECTED",
+   "tolerance": 0.005,
+   "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==FULL_F_counting_sort + labeller_v2 + tables/counting_sort_adjudication.csv",
+   "note": "29/30 [CP 0.83, 1.00]"
+  },
+  {
+   "name": "7.3.9 catalogue variants from FULL_F_counting_sort (of 36)",
+   "item": "0a",
+   "recorded": null,
+   "recomputed": 29,
+   "status": "NEW",
+   "tolerance": 0,
+   "source": "art_veI9l_Rb9wDY:results/novelty_audit.json#rows[].arm"
+  },
+  {
+   "name": "7.3.9 catalogue variants from the forced counting sort prompts F1-F3 (of 36)",
+   "item": "0a",
+   "recorded": null,
+   "recomputed": 6,
+   "status": "NEW",
+   "tolerance": 0,
+   "source": "art_veI9l_Rb9wDY:results/novelty_audit.json#rows[].arm"
+  },
+  {
+   "name": "judge gate A (deepseek-chat-v3.1), of 10",
+   "item": "0a",
+   "recorded": null,
+   "recomputed": 10,
+   "status": "NEW",
+   "tolerance": 0,
+   "source": "audit/judge_gate.json"
+  },
+  {
+   "name": "judge gate B (mistral-medium-3.1), of 10",
+   "item": "0a",
+   "recorded": null,
+   "recomputed": 9,
+   "status": "NEW",
+   "tolerance": 0,
+   "source": "audit/judge_gate.json"
+  },
+  {
+   "name": "labeller v2: gold kappa runtime-vs-AST",
+   "item": "0a",
+   "recorded": 0.951,
+   "recomputed": 0.951048951048951,
+   "status": "MATCH",
+   "tolerance": 0.0005,
+   "source": "art_veI9l_Rb9wDY:inputs/exp11/bench/T03_kth_smallest/gate.json#gold"
+  },
+  {
+   "name": "labeller v2: controls passed (of 5)",
+   "item": "0a",
+   "recorded": null,
+   "recomputed": 5,
+   "status": "NEW",
+   "tolerance": 0,
+   "source": "results/a2_validation.json"
+  },
+  {
+   "name": "counting sort implementation form, DASLY_F_counting_sort_k1",
+   "item": "0a",
+   "recorded": null,
+   "recomputed": {
+    "array": 28,
+    "dict_value_range": 2
+   },
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==DASLY_F_counting_sort_k1 (regex on code)"
+  },
+  {
+   "name": "counting sort implementation form, DASLY_F_counting_sort_k16",
+   "item": "0a",
+   "recorded": null,
+   "recomputed": {
+    "array": 28,
+    "dict_value_range": 2
+   },
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==DASLY_F_counting_sort_k16 (regex on code)"
+  },
+  {
+   "name": "counting sort implementation form, DASLY_F_counting_sort_k4",
+   "item": "0a",
+   "recorded": null,
+   "recomputed": {
+    "array": 27,
+    "dict_value_range": 3
+   },
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==DASLY_F_counting_sort_k4 (regex on code)"
+  },
+  {
+   "name": "counting sort implementation form, FULL_F_counting_sort",
+   "item": "0a",
+   "recorded": null,
+   "recomputed": {
+    "dict_sorted_keys": 29,
+    "neither": 1
+   },
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "art_veI9l_Rb9wDY:data/labels.jsonl#arm==FULL_F_counting_sort (regex on code)"
+  },
+  {
+   "name": "Table 301 pilot: programs labelled other that are degenerate / attempted Dijkstra",
+   "item": "0a",
+   "recorded": null,
+   "recomputed": "56 / 11 of 67",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "tables/counting_sort_adjudication.csv#cell startswith DAS_"
+  },
+  {
+   "name": "Table 301 pilot: programs labelled Dijkstra by the frozen path labeller that are degenerate text",
+   "item": "0a",
+   "recorded": null,
+   "recomputed": "19 of 30",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "tables/counting_sort_adjudication.csv#cell startswith DAS_"
+  }
+ ]
+}

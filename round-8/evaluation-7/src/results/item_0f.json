@@ -1,0 +1,415 @@
+{
+ "edits": [
+  {
+   "id": "C8-f01",
+   "item": "0f",
+   "section": "7.2 (record audit table)",
+   "kind": "table_row",
+   "old_text": "| A Tale of Two Temperatures (seed) | COLM, not ICML 2026 | CORRECTED |",
+   "new_text": "| A Tale of Two Temperatures (seed) | COLM (arXiv v2 comment 'V2: accepted as a full conference paper at COLM', no year) and two ICML 2026 workshop posters (AdaptFM, icml.cc/virtual/2026/75333; 4th Structured Probabilistic Inference & Generative Modeling, icml.cc/virtual/2026/74361); a paper on diffusion language models, not autoregressive code (iteration-8 correction, verified 2026-10-23) | CORRECTED |",
+   "why": "",
+   "value_names": []
+  },
+  {
+   "id": "C8-f02",
+   "item": "0f",
+   "section": "Table 371b",
+   "kind": "table_insert",
+   "old_text": "\n\n## 7.10 What iteration 7 established, what it ruled out, and what it abandoned",
+   "new_text": "\n\n**Table 371b.** Positioning of the iteration-7 claims (to our knowledge, mini search dated 2026-10-22, re-verified 2026-10-23 with fetch_grep of each abstract and venue page; raw outputs in `audit/web/`). Verdicts come from the record audit's positioning search (art_LzP2qPwUrANz `positioning.json`). (iteration-8 correction: new table)\n\n| Claim | Nearest neighbours (venue) | What they do | What the run adds | Verdict | Evidence (URL, version, quote, status, date) |\n|-|-|-|-|-|-|\n| Temperature acts on the algorithm through the fork logits divided by T | Hot or Cold? Adaptive Temperature Sampling for Code Generation (AAAI 2024); Control the Temperature (COLM 2025); Entropy-informed Decoding (ICML 2026 (arXiv 2605.09745 comment)); Beyond the 80/20 Rule (NeurIPS 2025); A Tale of Two Temperatures (COLM (arXiv v2 comment, no year); ICML 2026 workshop posters) | Hot or Cold? Adaptive Temperature Sampling for Code Generation: temperature set by token difficulty in code generation, no algorithm-level prediction; Control the Temperature: switches temperature per token to protect precision; Entropy-informed Decoding: branches decoding at high-entropy tokens, no algorithm-level outcome; Beyond the 80/20 Rule: forking (high-entropy) tokens drive RL for reasoning, not temperature at a code fork; A Tale of Two Temperatures: tempered remasking for sample diversity in diffusion language models, not autoregressive code | a per-algorithm prediction of the temperature response from teacher-forced fork logits, committed before sampling, and fork margins that explain the nulls on the collapsed tasks | adjacent: no neighbour predicts an algorithm-level temperature response | https://arxiv.org/abs/2309.02772 (v1 6 Sep 2023, v3 28 Dec 2023; 'Hot or Cold? Adaptive Temperature Sampling for Code Generation'; 'accepted by AAAI 2024'; VERIFIED, 2026-10-23); https://arxiv.org/abs/2510.01218 (v1 20 Sep 2025; 'Control the Temperature'; 'Second Conference on Language Modeling, 2025'; VERIFIED, 2026-10-23); https://arxiv.org/abs/2605.09745 (v1 10 May 2026; 'Entropy-informed Decoding'; 'Accepted at ICML 2026'; VERIFIED, 2026-10-23); https://arxiv.org/abs/2506.01939 (v1 2 Jun 2025, v2 13 Nov 2025; 'Beyond the 80/20 Rule'; 'Accepted to NeurIPS 2025'; VERIFIED, 2026-10-23); https://arxiv.org/abs/2604.09921 (v1 10 Apr 2026, v2 10 Aug 2026; 'A Tale of Two Temperatures'; 'V2: accepted as a full conference paper at COLM'; VERIFIED, 2026-10-23); https://icml.cc/virtual/2026/75333 (AdaptFM: Resource-Adaptive Foundation Model Inference; VERIFIED, 2026-10-23); https://icml.cc/virtual/2026/74361 (4th Structured Probabilistic Inference & Generative Modeling; VERIFIED, 2026-10-23) |\n| A DAS subspace at Gemma's fork is a dose dial on the algorithm in code | CDAS (ICLR 2026); MIB (ICML 2025) | CDAS: DAS-style interchange steering validated by generation on refusal and a backdoor; MIB: benchmark that ranks DAS first for causal variable localisation | an algorithm choice in code at a generated fork, with a dose curve that preserves the pass rate (with the shared opening prefilled; the instruction cell is not comparable) | adjacent: DAS steering is published; the algorithm-in-code object and the dose curve are not | https://arxiv.org/abs/2602.05234 (v1 5 Feb 2026, v2 15 Mar 2026; 'Faithful Bi-Directional Model Steering'; 'accepted for ICLR 2026'; VERIFIED, 2026-10-23); https://arxiv.org/abs/2504.13151 (v1 17 Apr 2025, v2 9 Jun 2025; 'MIB: A Mechanistic Interpretability Benchmark'; 'Accepted to ICML 2025'; VERIFIED, 2026-10-23) |\n| Evaluator-guided search reaches known techniques outside the catalogue at a rate single samples do not | FunSearch (Nature 2023); AlphaEvolve (2025 (arXiv)); DivAlgo (arXiv 2610.19157); Beneath the Diff (EMNLP 2026); Algorithm Discovery With LLMs (arXiv 2504.05108) | FunSearch: evaluator-guided program search finds new mathematical constructions; AlphaEvolve: evaluator-guided evolutionary coding agent (occupies the method family); DivAlgo: benchmarks algorithmic diversity of code models; Beneath the Diff: algorithmic mode collapse in autonomous research loops; Algorithm Discovery With LLMs: evolutionary search plus RL for algorithm discovery | a rate-matched comparison against single-sample knobs on a frozen LeetCode-style catalogue (78 of 2,500 calls against 2 of 500; 0 novel) | adjacent: the method is occupied (FunSearch, AlphaEvolve); the rate-matched comparison is the addition | https://www.nature.com/articles/s41586-023-06924-6 (version n/a; 'Mathematical discoveries from program search with large language models'; 'Published: 14 December 2023'; VERIFIED, 2026-10-23); https://arxiv.org/abs/2506.13131 (v1 16 Jun 2025; 'AlphaEvolve: A coding agent'; VERIFIED, 2026-10-23); https://arxiv.org/abs/2610.19157 (v1 13 Oct 2026; 'DivAlgo'; VERIFIED, 2026-10-23); https://arxiv.org/abs/2609.00077 (v1 31 Aug 2026; 'Beneath the Diff'; 'Accepted by EMNLP 2026'; VERIFIED, 2026-10-23); https://arxiv.org/abs/2504.05108 (v1 7 Apr 2025, v4 4 Aug 2025; 'Algorithm Discovery With LLMs'; VERIFIED, 2026-10-23) |\n\n## 7.10 What iteration 7 established, what it ruled out, and what it abandoned",
+   "why": "",
+   "value_names": []
+  }
+ ],
+ "verdict": "NEW (Table 371b) + venue row CORRECTED",
+ "summary": {
+  "n_rows": 12,
+  "status_counts": {
+   "VERIFIED": 12,
+   "VERIFIED-ABSTRACT": 0,
+   "UNVERIFIED": 0
+  },
+  "workshop_posters": [
+   "VERIFIED",
+   "VERIFIED"
+  ]
+ },
+ "rows": [
+  {
+   "key": "hotcold",
+   "claim_group": "temperature",
+   "name": "Hot or Cold? Adaptive Temperature Sampling for Code Generation",
+   "venue_claimed": "AAAI 2024",
+   "url": "https://arxiv.org/abs/2309.02772",
+   "version": "v1 6 Sep 2023, v3 28 Dec 2023",
+   "arxiv_comment": "This paper is accepted by AAAI 2024",
+   "title_quote": "Hot or Cold? Adaptive Temperature Sampling for Code Generation",
+   "venue_quote": "accepted by AAAI 2024",
+   "status": "VERIFIED",
+   "date": "2026-10-23",
+   "what_they_do": "temperature set by token difficulty in code generation; no algorithm-level prediction",
+   "raw": [
+    "audit/web/hotcold_abs.txt",
+    "audit/web/hotcold_venue.txt"
+   ],
+   "error": null
+  },
+  {
+   "key": "ctrltemp",
+   "claim_group": "temperature",
+   "name": "Control the Temperature: Selective Sampling for Diverse and High-Quality LLM Outputs",
+   "venue_claimed": "COLM 2025",
+   "url": "https://arxiv.org/abs/2510.01218",
+   "version": "v1 20 Sep 2025",
+   "arxiv_comment": "Second Conference on Language Modeling, 2025",
+   "title_quote": "Control the Temperature",
+   "venue_quote": "Second Conference on Language Modeling, 2025",
+   "status": "VERIFIED",
+   "date": "2026-10-23",
+   "what_they_do": "switches temperature per token to protect precision",
+   "raw": [
+    "audit/web/ctrltemp_abs.txt"
+   ],
+   "error": null
+  },
+  {
+   "key": "entropy",
+   "claim_group": "temperature",
+   "name": "Entropy-informed Decoding: Adaptive Information-Driven Branching",
+   "venue_claimed": "ICML 2026 (arXiv 2605.09745 comment)",
+   "url": "https://arxiv.org/abs/2605.09745",
+   "version": "v1 10 May 2026",
+   "arxiv_comment": "Accepted at ICML 2026",
+   "title_quote": "Entropy-informed Decoding",
+   "venue_quote": "Accepted at ICML 2026",
+   "status": "VERIFIED",
+   "date": "2026-10-23",
+   "what_they_do": "branches decoding at high-entropy tokens; no algorithm-level outcome",
+   "raw": [
+    "audit/web/entropy_abs.txt"
+   ],
+   "error": null
+  },
+  {
+   "key": "beyond8020",
+   "claim_group": "temperature",
+   "name": "Beyond the 80/20 Rule: High-Entropy Minority Tokens Drive Effective RL for LLM Reasoning",
+   "venue_claimed": "NeurIPS 2025",
+   "url": "https://arxiv.org/abs/2506.01939",
+   "version": "v1 2 Jun 2025, v2 13 Nov 2025",
+   "arxiv_comment": "Accepted to NeurIPS 2025. 25 pages, 17 figures, 2 tables",
+   "title_quote": "Beyond the 80/20 Rule",
+   "venue_quote": "Accepted to NeurIPS 2025",
+   "status": "VERIFIED",
+   "date": "2026-10-23",
+   "what_they_do": "forking (high-entropy) tokens drive RL for reasoning; not temperature at a code fork",
+   "raw": [
+    "audit/web/beyond8020_abs.txt"
+   ],
+   "error": null
+  },
+  {
+   "key": "tale",
+   "claim_group": "temperature",
+   "name": "A Tale of Two Temperatures: Simple, Efficient, and Diverse Sampling from Diffusion Language Models",
+   "venue_claimed": "COLM (arXiv v2 comment, no year); ICML 2026 workshop posters",
+   "url": "https://arxiv.org/abs/2604.09921",
+   "version": "v1 10 Apr 2026, v2 10 Aug 2026",
+   "arxiv_comment": "V2: accepted as a full conference paper at COLM",
+   "title_quote": "A Tale of Two Temperatures",
+   "venue_quote": "V2: accepted as a full conference paper at COLM",
+   "status": "VERIFIED",
+   "date": "2026-10-23",
+   "what_they_do": "tempered remasking for sample diversity in diffusion language models, not autoregressive code",
+   "raw": [
+    "audit/web/tale_abs.txt"
+   ],
+   "error": null,
+   "workshop_posters": [
+    {
+     "url": "https://icml.cc/virtual/2026/75333",
+     "workshop": "AdaptFM: Resource-Adaptive Foundation Model Inference",
+     "quote": "Poster in Workshop: AdaptFM: Resource-Adaptive Foundation Model Inference ... A Tale of Two Temperatures: Simple, Efficient, and Diverse Sampling from Diffusion Language Models",
+     "status": "VERIFIED",
+     "date": "2026-10-23",
+     "raw": "audit/web/icml_75333_b.txt"
+    },
+    {
+     "url": "https://icml.cc/virtual/2026/74361",
+     "workshop": "4th Structured Probabilistic Inference & Generative Modeling",
+     "quote": "Poster in Workshop: 4th Structured Probabilistic Inference & Generative Modeling ... A Tale of Two Temperatures: Simple, Efficient, and Diverse Sampling from Diffusion Language Models",
+     "status": "VERIFIED",
+     "date": "2026-10-23",
+     "raw": "audit/web/icml_74361_b.txt"
+    }
+   ]
+  },
+  {
+   "key": "cdas",
+   "claim_group": "dial",
+   "name": "CDAS: Faithful Bi-Directional Model Steering via Distribution Matching and Distributed Interchange Interventions",
+   "venue_claimed": "ICLR 2026",
+   "url": "https://arxiv.org/abs/2602.05234",
+   "version": "v1 5 Feb 2026, v2 15 Mar 2026",
+   "arxiv_comment": "camera ready version; 55 pages, 25 figures; accepted for ICLR 2026",
+   "title_quote": "Faithful Bi-Directional Model Steering",
+   "venue_quote": "accepted for ICLR 2026",
+   "status": "VERIFIED",
+   "date": "2026-10-23",
+   "what_they_do": "DAS-style interchange steering validated by generation on refusal and a backdoor",
+   "raw": [
+    "audit/web/cdas_abs.txt"
+   ],
+   "error": null
+  },
+  {
+   "key": "mib",
+   "claim_group": "dial",
+   "name": "MIB: A Mechanistic Interpretability Benchmark",
+   "venue_claimed": "ICML 2025",
+   "url": "https://arxiv.org/abs/2504.13151",
+   "version": "v1 17 Apr 2025, v2 9 Jun 2025",
+   "arxiv_comment": "Accepted to ICML 2025. Project website at [this https URL](https://mib-bench.github.io)",
+   "title_quote": "MIB: A Mechanistic Interpretability Benchmark",
+   "venue_quote": "Accepted to ICML 2025",
+   "status": "VERIFIED",
+   "date": "2026-10-23",
+   "what_they_do": "benchmark that ranks DAS first for causal variable localisation",
+   "raw": [
+    "audit/web/mib_abs.txt",
+    "audit/web/mib_venue.txt"
+   ],
+   "error": null
+  },
+  {
+   "key": "funsearch",
+   "claim_group": "search",
+   "name": "FunSearch: Mathematical discoveries from program search with large language models",
+   "venue_claimed": "Nature 2023",
+   "url": "https://www.nature.com/articles/s41586-023-06924-6",
+   "version": "",
+   "arxiv_comment": null,
+   "title_quote": "Mathematical discoveries from program search with large language models",
+   "venue_quote": "Published: 14 December 2023",
+   "status": "VERIFIED",
+   "date": "2026-10-23",
+   "what_they_do": "evaluator-guided program search finds new mathematical constructions",
+   "raw": [
+    "audit/web/funsearch.txt"
+   ],
+   "error": null
+  },
+  {
+   "key": "alphaevolve",
+   "claim_group": "search",
+   "name": "AlphaEvolve: A coding agent for scientific and algorithmic discovery",
+   "venue_claimed": "2025 (arXiv)",
+   "url": "https://arxiv.org/abs/2506.13131",
+   "version": "v1 16 Jun 2025",
+   "arxiv_comment": null,
+   "title_quote": "AlphaEvolve: A coding agent",
+   "venue_quote": null,
+   "status": "VERIFIED",
+   "date": "2026-10-23",
+   "what_they_do": "evaluator-guided evolutionary coding agent (occupies the method family)",
+   "raw": [
+    "audit/web/alphaevolve_abs.txt"
+   ],
+   "error": null
+  },
+  {
+   "key": "divalgo",
+   "claim_group": "search",
+   "name": "DivAlgo: A systematic evaluation of algorithmic diversity for code generation models",
+   "venue_claimed": "arXiv 2610.19157",
+   "url": "https://arxiv.org/abs/2610.19157",
+   "version": "v1 13 Oct 2026",
+   "arxiv_comment": "24 pages, 18 figures",
+   "title_quote": "DivAlgo",
+   "venue_quote": null,
+   "status": "VERIFIED",
+   "date": "2026-10-23",
+   "what_they_do": "benchmarks algorithmic diversity of code models",
+   "raw": [
+    "audit/web/divalgo_abs.txt"
+   ],
+   "error": null
+  },
+  {
+   "key": "beneath",
+   "claim_group": "search",
+   "name": "Beneath the Diff: Diagnosing and Mitigating Algorithmic Mode Collapse in Code-Level Autonomous Research Loops",
+   "venue_claimed": "EMNLP 2026",
+   "url": "https://arxiv.org/abs/2609.00077",
+   "version": "v1 31 Aug 2026",
+   "arxiv_comment": "Accepted by EMNLP 2026",
+   "title_quote": "Beneath the Diff",
+   "venue_quote": "Accepted by EMNLP 2026",
+   "status": "VERIFIED",
+   "date": "2026-10-23",
+   "what_they_do": "algorithmic mode collapse in autonomous research loops",
+   "raw": [
+    "audit/web/beneath_abs.txt"
+   ],
+   "error": null
+  },
+  {
+   "key": "algdisc",
+   "claim_group": "search",
+   "name": "Algorithm Discovery With LLMs: Evolutionary Search Meets Reinforcement Learning",
+   "venue_claimed": "arXiv 2504.05108",
+   "url": "https://arxiv.org/abs/2504.05108",
+   "version": "v1 7 Apr 2025, v4 4 Aug 2025",
+   "arxiv_comment": null,
+   "title_quote": "Algorithm Discovery With LLMs",
+   "venue_quote": null,
+   "status": "VERIFIED",
+   "date": "2026-10-23",
+   "what_they_do": "evolutionary search plus RL for algorithm discovery",
+   "raw": [
+    "audit/web/algdisc_abs.txt"
+   ],
+   "error": null
+  }
+ ],
+ "values": [
+  {
+   "name": "positioning row hotcold: status",
+   "item": "0f",
+   "recorded": null,
+   "recomputed": "VERIFIED",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "audit/web/hotcold_abs.txt + audit/web/hotcold_venue.txt",
+   "note": "Hot or Cold? Adaptive Temperature Sampling for Code Generation"
+  },
+  {
+   "name": "positioning row ctrltemp: status",
+   "item": "0f",
+   "recorded": null,
+   "recomputed": "VERIFIED",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "audit/web/ctrltemp_abs.txt",
+   "note": "Control the Temperature"
+  },
+  {
+   "name": "positioning row entropy: status",
+   "item": "0f",
+   "recorded": null,
+   "recomputed": "VERIFIED",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "audit/web/entropy_abs.txt",
+   "note": "Entropy-informed Decoding"
+  },
+  {
+   "name": "positioning row beyond8020: status",
+   "item": "0f",
+   "recorded": null,
+   "recomputed": "VERIFIED",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "audit/web/beyond8020_abs.txt",
+   "note": "Beyond the 80/20 Rule"
+  },
+  {
+   "name": "positioning row tale: status",
+   "item": "0f",
+   "recorded": null,
+   "recomputed": "VERIFIED",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "audit/web/tale_abs.txt",
+   "note": "A Tale of Two Temperatures"
+  },
+  {
+   "name": "positioning row cdas: status",
+   "item": "0f",
+   "recorded": null,
+   "recomputed": "VERIFIED",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "audit/web/cdas_abs.txt",
+   "note": "Faithful Bi-Directional Model Steering"
+  },
+  {
+   "name": "positioning row mib: status",
+   "item": "0f",
+   "recorded": null,
+   "recomputed": "VERIFIED",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "audit/web/mib_abs.txt + audit/web/mib_venue.txt",
+   "note": "MIB: A Mechanistic Interpretability Benchmark"
+  },
+  {
+   "name": "positioning row funsearch: status",
+   "item": "0f",
+   "recorded": null,
+   "recomputed": "VERIFIED",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "audit/web/funsearch.txt",
+   "note": "Mathematical discoveries from program search with large language models"
+  },
+  {
+   "name": "positioning row alphaevolve: status",
+   "item": "0f",
+   "recorded": null,
+   "recomputed": "VERIFIED",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "audit/web/alphaevolve_abs.txt",
+   "note": "AlphaEvolve: A coding agent"
+  },
+  {
+   "name": "positioning row divalgo: status",
+   "item": "0f",
+   "recorded": null,
+   "recomputed": "VERIFIED",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "audit/web/divalgo_abs.txt",
+   "note": "DivAlgo"
+  },
+  {
+   "name": "positioning row beneath: status",
+   "item": "0f",
+   "recorded": null,
+   "recomputed": "VERIFIED",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "audit/web/beneath_abs.txt",
+   "note": "Beneath the Diff"
+  },
+  {
+   "name": "positioning row algdisc: status",
+   "item": "0f",
+   "recorded": null,
+   "recomputed": "VERIFIED",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "audit/web/algdisc_abs.txt",
+   "note": "Algorithm Discovery With LLMs"
+  },
+  {
+   "name": "ICML 2026 workshop poster (AdaptFM: Resource-Adaptive Foundation Model Inference)",
+   "item": "0f",
+   "recorded": null,
+   "recomputed": "VERIFIED",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "audit/web/icml_75333_b.txt"
+  },
+  {
+   "name": "ICML 2026 workshop poster (4th Structured Probabilistic Inference & Generative Modeling)",
+   "item": "0f",
+   "recorded": null,
+   "recomputed": "VERIFIED",
+   "status": "NEW",
+   "tolerance": "exact",
+   "source": "audit/web/icml_74361_b.txt"
+  }
+ ]
+}
