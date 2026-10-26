@@ -1,9 +1,4 @@
 #!/usr/bin/env python3
-# NOTE (published copy): this file names server paths this repository
-# does not publish (a stage it does not ship, or another run's workspace),
-# so the steps that read them will not run from a clone as written:
-#   /ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_9/
-#   /ai-inventor/aii_data/runs/run_4VFKidE1bxPG/3_invention_loop/
 """Iteration-10 BASE-W artifact: constants, paths and shared utilities.
 
 Question: where did post-training write Qwen3-8B's default at the algorithm fork, at the level of WEIGHTS?
@@ -58,10 +53,8 @@ COMMITS = ROOT / "commitments.log"
 GENESIS = hashlib.sha256(b"iter10_basew").hexdigest()
 
 # read-only source of the iteration-9 artifact (only inputs10.py reads it; everything else reads inputs/iter9)
-ITER9 = Path(os.environ.get("ART_CDBA8_DIR", "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_9/"
-                                             "gen_art/gen_art_experiment_50"))
-DEP_DATASET = Path(os.environ.get("ART_J3RM_DIR", "/ai-inventor/aii_data/runs/run_4VFKidE1bxPG/3_invention_loop/"
-                                                  "iter_1/gen_art/gen_art_dataset_1"))
+ITER9 = Path(os.environ.get("ART_CDBA8_DIR", str(Path(__file__).resolve().parents[5] / "round-9/experiment-50/src")))
+DEP_DATASET = Path(os.environ.get("ART_J3RM_DIR", str(Path(__file__).resolve().parents[5] / "round-1/dataset-1/src")))
 
 # ------------------------------------------------------------------------------------------------ models
 MODELS = {

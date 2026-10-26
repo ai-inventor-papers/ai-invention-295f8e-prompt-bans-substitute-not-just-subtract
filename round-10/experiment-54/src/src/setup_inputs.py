@@ -56,14 +56,14 @@ def main() -> int:
     copy(bp9 / "tools" / "cc", ROOT / "inputs" / "bp9" / "tools" / "cc", rows, "input:bp9-tools")
     for f in ["harness_gate.json", "ext_sources.json"]:
         copy(bp9 / "results" / f, ROOT / "inputs" / "bp9" / f, rows, "input:bp9-results")
-    e45 = R9 / "gen_art_experiment_45"
+    e45 = R9 / "experiment-45/src"
     for f in ["sample_v9.py", "common.py", "judge_tp.py", "stats_v9.py", "lexical.py"]:
         copy(e45 / "src" / f, ROOT / "inputs" / "exp45" / f, rows, "input:exp45-src")
     copy(e45 / "results" / "judge_gate_v9.json", ROOT / "inputs" / "exp45" / "judge_gate_v9.json", rows,
          "input:exp45-results")
     copy(R9 / "gen_art_experiment_49" / "start_vllm.sh", ROOT / "inputs" / "tsp9" / "start_vllm.sh", rows,
          "input:tsp9")
-    copy(R8 / "gen_art_experiment_44" / "src" / "common.py", ROOT / "inputs" / "exp44" / "common.py", rows,
+    copy(R8 / "experiment-44/src" / "src" / "common.py", ROOT / "inputs" / "exp44" / "common.py", rows,
          "input:exp44-src")
     for f in ["preview_data_out.json", "mini_data_out.json", "reproducibility.md", "data.py"]:
         copy(DEP / f, ROOT / "inputs" / "dep_j3Rm" / f, rows, "input:dependency")

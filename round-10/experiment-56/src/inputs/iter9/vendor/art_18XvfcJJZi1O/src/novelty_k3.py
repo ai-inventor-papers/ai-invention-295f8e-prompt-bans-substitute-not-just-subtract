@@ -1,8 +1,4 @@
 #!/usr/bin/env python3
-# NOTE (published copy): this file names server paths this repository
-# does not publish (a stage it does not ship, or another run's workspace),
-# so the steps that read them will not run from a clone as written:
-#   /ai-inventor/aii_data/runs/run_4VFKidE1bxPG/3_invention_loop/iter_1/gen_art/gen_art_dataset_1/
 """Novelty audit (stage 13.1, CPU + OpenRouter): every CORRECT generated program labelled 'other' goes to two blind
 judges of different families (deepseek/deepseek-chat-v3.1, google/gemini-2.5-flash-lite), each shown its three nearest
 known solutions (token-sequence similarity over the art_j3Rm_lr2nzR6 corpus: LeetCode, Mercury, TheAlgorithms, KodCode,
@@ -29,8 +25,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from k3cfg import BUDGET_MSG, DATA_DIR, JUDGE_CAP_USD, RESULTS_DIR, read_jsonl, setup_logging, write_json  # noqa: E402
 
-DEP = Path("/ai-inventor/aii_data/runs/run_4VFKidE1bxPG/3_invention_loop/iter_1/gen_art/gen_art_dataset_1/"
-           "full_data_out.json")
+DEP = Path(__file__).resolve().parents[8] / "round-1/dataset-1/src/full_data_out.json"
 JUDGES = ("deepseek/deepseek-chat-v3.1", "google/gemini-2.5-flash-lite")
 TIEBREAK = "mistralai/mistral-medium-3.1"
 CLASSES = {"B3": ["kruskal", "prim_heap", "prim_array", "boruvka", "other"],

@@ -70,7 +70,7 @@ def run(stage: str, i: int, cmd: list[str]) -> None:
 
 
 def format_outputs() -> None:
-    skill = Path("/ai-inventor/.claude/skills/aii-json")
+    skill = Path(__file__).resolve().parents[5] / "tools/aii-json"
     py = skill.parent / ".ability_client_venv" / "bin" / "python"
     if py.exists():
         subprocess.run([str(py), str(skill / "scripts" / "aii_json_validate_schema.py"), "--format", "exp_gen_sol_out",

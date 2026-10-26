@@ -48,16 +48,16 @@ GENESIS = hashlib.sha256(b"iter9_base").hexdigest()
 RUN = ROOT.parents[3]
 ITER = RUN / "."
 SRCS = {
-    "art_18XvfcJJZi1O": ITER / "round-8" / "." / "gen_art_experiment_41",
-    "art_lzuosbrb34wB": ITER / "round-8" / "." / "gen_art_experiment_43",
-    "art_MZAfDPVhM6Ui": ITER / "round-7" / "." / "gen_art_experiment_35",
-    "art_pHL7LWNhpcCS": ITER / "round-7" / "." / "gen_art_experiment_34",
-    "art_vnyi0Fm5SyNH": ITER / "round-8" / "." / "gen_art_experiment_39",
-    "art_rMlbrjVB1c__": ITER / "round-6" / "." / "gen_art_experiment_30",
-    "art_zNyBP6zieI5u": ITER / "round-6" / "." / "gen_art_experiment_31",
-    "art_FJMIE9T9_PMv": ITER / "round-8" / "." / "gen_art_experiment_42",
-    "exp38": ITER / "round-7" / "." / "gen_art_experiment_38",
-    "art_j3Rm_lr2nzR6": RUN.parent / "run_4VFKidE1bxPG" / "." / "round-1" / "." / "gen_art_dataset_1",
+    "art_18XvfcJJZi1O": ITER / "round-8" / "." / "experiment-41/src",
+    "art_lzuosbrb34wB": ITER / "round-8" / "." / "experiment-43/src",
+    "art_MZAfDPVhM6Ui": ITER / "round-7" / "." / "experiment-35/src",
+    "art_pHL7LWNhpcCS": ITER / "round-7" / "." / "experiment-34/src",
+    "art_vnyi0Fm5SyNH": ITER / "round-8" / "." / "experiment-39/src",
+    "art_rMlbrjVB1c__": ITER / "round-6" / "." / "experiment-30/src",
+    "art_zNyBP6zieI5u": ITER / "round-6" / "." / "experiment-31/src",
+    "art_FJMIE9T9_PMv": ITER / "round-8" / "." / "experiment-42/src",
+    "exp38": ITER / "round-7" / "." / "experiment-38/src",
+    "art_j3Rm_lr2nzR6": RUN.parent / "run_4VFKidE1bxPG" / "." / "round-1" / "." / "dataset-1/src",
 }
 # portable resolution of every source artifact: ART_<ID>_DIR env var, else the published sibling folder ../<id>,
 # else the original run layout above (only s0_preflight.py reads these; everything else reads vendor/)
