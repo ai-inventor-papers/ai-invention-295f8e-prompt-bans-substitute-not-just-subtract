@@ -30,7 +30,7 @@ BENCH_DIR = INPUTS / "bench"          # copy of exp11 bench (frozen; verified ag
 SUITE_DIR = INPUTS / "suite"          # copy of exp8 suite (exp1 canonical labeller + T1/T2 tasks)
 # The declared dataset dependency (art_j3Rm_lr2nzR6, folder gen_art_dataset_1): read only by audit.py (corpus) and
 # dep_usage.py.  DEP_DATASET_DIR overrides the default sibling-folder location of the published repository.
-DEP_DATASET = Path(os.environ.get("DEP_DATASET_DIR", str(ROOT.parent / "gen_art_dataset_1")))
+DEP_DATASET = Path(os.environ.get("DEP_DATASET_DIR", str(ROOT.parent / "dataset-1/src")))
 
 for _p in (str(INPUTS), str(SUITE_DIR), str(SRC)):
     if _p not in sys.path:

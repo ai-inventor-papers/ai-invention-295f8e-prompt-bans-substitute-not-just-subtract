@@ -28,8 +28,8 @@ def provenance() -> dict:
     for p in sorted(INPUTS.rglob("*")):
         if p.is_file():
             rows.append({"path": str(p.relative_to(INPUTS)), "sha256": sha256_file(p), "bytes": p.stat().st_size})
-    src = {"exp11": "iter_2/gen_art/gen_art_experiment_11", "exp10": "iter_2/gen_art/gen_art_experiment_10",
-           "exp8": "iter_2/gen_art/gen_art_experiment_8", "exp7": "iter_2/gen_art/gen_art_experiment_7",
+    src = {"exp11": "round-2/experiment-11/src", "exp10": "round-2/experiment-10/src",
+           "exp8": "round-2/experiment-8/src", "exp7": "round-2/experiment-7/src",
            "dataset": "art_j3Rm_lr2nzR6 (gen_art_dataset_1)"}
     out = {"n_files": len(rows), "sources": src, "files": rows, "utc": utc_now()}
     write_json(INPUTS / "provenance.json", out)

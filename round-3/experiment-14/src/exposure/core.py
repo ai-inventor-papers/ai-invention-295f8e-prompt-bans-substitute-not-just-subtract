@@ -19,7 +19,7 @@ from pathlib import Path
 from loguru import logger
 
 ROOT = Path(__file__).resolve().parent.parent
-EXP11 = Path(os.environ.get("EXP11_DIR") or (ROOT.parents[2] / "round-2" / "." / "gen_art_experiment_11"))
+EXP11 = Path(os.environ.get("EXP11_DIR") or (ROOT.parents[2] / "round-2" / "." / "experiment-11/src"))
 BENCH = ROOT / "bench_copy"
 DATA = ROOT / "data"
 PRED = ROOT / "predictions"

@@ -25,9 +25,9 @@ overridden with an environment variable:
 
 | artifact id | role | default location (relative to this folder) | override |
 |---|---|---|---|
-| `art_0ndRfWKBWclR` | frozen bench (exp11) | `../../../iter_2/gen_art/gen_art_experiment_11` (sibling folder in the repository) | `AII_EXP11_DIR` |
-| `art_6zBfl3kDjeiP` | template/padding file and the stored scores for the scorer gate (exp7) | `../../../iter_2/gen_art/gen_art_experiment_7` | `AII_EXP7_DIR` |
-| `art_8_ULPE8jJQc_` | engine sources, provenance copy only (exp8) | `../../../iter_2/gen_art/gen_art_experiment_8` | `AII_EXP8_DIR` |
+| `art_0ndRfWKBWclR` | frozen bench (exp11) | `../../../round-2/experiment-11/src` (sibling folder in the repository) | `AII_EXP11_DIR` |
+| `art_6zBfl3kDjeiP` | template/padding file and the stored scores for the scorer gate (exp7) | `../../../round-2/experiment-7/src` | `AII_EXP7_DIR` |
+| `art_8_ULPE8jJQc_` | engine sources, provenance copy only (exp8) | `../../../round-2/experiment-8/src` | `AII_EXP8_DIR` |
 | `art_j3Rm_lr2nzR6` | iteration-1 dataset of another run; test-id provenance check only (skipped if absent) | `inputs/art_j3Rm_lr2nzR6` | `AII_DEP_DATASET_DIR` |
 
 Only two stages read these folders:

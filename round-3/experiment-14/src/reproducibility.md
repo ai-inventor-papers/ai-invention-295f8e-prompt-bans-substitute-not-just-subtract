@@ -14,7 +14,7 @@ cd <repository>/<this-artifact-folder>      # the folder that holds method.py
 The frozen bench this experiment uses is **exp11** of the same run (iteration 2, `gen_art_experiment_11`). The repository publishes it as a sibling folder. `exposure/core.py` locates it through one constant:
 
 - the environment variable `EXP11_DIR`, if set;
-- otherwise `../../../iter_2/gen_art/gen_art_experiment_11`, relative to this folder (the run layout).
+- otherwise `../../../round-2/experiment-11/src`, relative to this folder (the run layout).
 
 `method.py setup` copies exp11's `bench/` into `./bench_copy/` and verifies every committed sha256 before anything else runs. It also copies exp11's `data/judge_cache.jsonl` and `results/stageA_nominations.json`. The published folder already contains `bench_copy/`, `inputs/`, `predictions/`, `data/` and `results/`, so the analysis can be re-run without exp11.
 

@@ -41,8 +41,8 @@ EXP6 = INPUTS / "exp6"  # copied: analysis/metrics.py, phrasing.py, thinking.py
 RUNS_DIR = ROOT.parents[4]
 ITER1 = Path(os.environ.get("ITER1_GEN_ART",
                             str(RUNS_DIR / "run_4VFKidE1bxPG" / "." / "round-1" / ".")))
-EXP3_SRC = ITER1 / "gen_art_experiment_3"
-DATASET_SRC = ITER1 / "gen_art_dataset_1"
+EXP3_SRC = ITER1 / "experiment-3/src"
+DATASET_SRC = ITER1 / "dataset-1/src"
 
 # ---------------------------------------------------------------- models (see deviations.json D01)
 MODEL_HF = "Qwen/Qwen3-8B"            # bf16 weights: every state / attention / CE readout
