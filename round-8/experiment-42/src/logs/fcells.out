@@ -1,0 +1,35 @@
+01:18:09|INFO   |stage fcells start
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+01:18:41|INFO   |google/gemma-3-4b-it loaded in 4s; free VRAM 16.99/25.25 GB
+./src/gen8.py:141: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  nxt = torch.searchsorted(cdf, Ut[:, step:step + 1]).squeeze(-1).clamp_(max=V - 1)
+01:18:49|INFO   |FC:W1:0: 25/25 rows 6.8s, 320 steps, {'stop': 25}
+01:18:55|INFO   |FC:W1:1: 25/25 rows 6.4s, 320 steps, {'stop': 25}
+01:19:02|INFO   |FC:W1:2: 25/25 rows 7.0s, 352 steps, {'stop': 25}
+01:19:09|INFO   |FC:W1:3: 15/25 rows 6.7s, 336 steps, {'stop': 15}
+01:19:09|INFO   |fcells W1: 90 rows (28s)
+01:19:16|INFO   |FC:W2:0: 25/25 rows 7.0s, 352 steps, {'stop': 25}
+01:19:23|INFO   |FC:W2:1: 25/25 rows 7.0s, 352 steps, {'stop': 25}
+01:19:29|INFO   |FC:W2:2: 25/25 rows 6.8s, 336 steps, {'stop': 24, 'fence': 1}
+01:19:36|INFO   |FC:W2:3: 15/25 rows 7.0s, 352 steps, {'stop': 15}
+01:19:36|INFO   |fcells W2: 90 rows (55s)
+01:19:47|INFO   |FC:W3:0: 25/25 rows 10.7s, 320 steps, {'stop': 25}
+01:19:53|INFO   |FC:W3:1: 25/25 rows 6.3s, 320 steps, {'stop': 25}
+01:20:00|INFO   |FC:W3:2: 25/25 rows 6.9s, 352 steps, {'stop': 23, 'fence': 2}
+01:20:07|INFO   |FC:W3:3: 15/25 rows 7.0s, 352 steps, {'stop': 14, 'fence': 1}
+01:20:07|INFO   |fcells W3: 90 rows (86s)
+01:20:16|INFO   |FC:W4:0: 25/25 rows 8.8s, 448 steps, {'stop': 22, 'fence': 3}
+01:20:23|INFO   |FC:W4:1: 25/25 rows 6.8s, 336 steps, {'stop': 24, 'fence': 1}
+01:20:31|INFO   |FC:W4:2: 25/25 rows 7.9s, 400 steps, {'stop': 25}
+01:20:39|INFO   |FC:W4:3: 25/25 rows 7.9s, 400 steps, {'stop': 25}
+01:20:45|INFO   |FC:W4:4: 5/25 rows 6.0s, 304 steps, {'stop': 5}
+01:20:45|INFO   |fcells W4: 105 rows (124s)
+01:20:52|INFO   |FC:W5:0: 25/25 rows 7.1s, 352 steps, {'stop': 23, 'fence': 2}
+01:20:59|INFO   |FC:W5:1: 25/25 rows 6.7s, 336 steps, {'stop': 22, 'fence': 3}
+01:21:06|INFO   |FC:W5:2: 25/25 rows 7.2s, 352 steps, {'stop': 23, 'fence': 2}
+01:21:13|INFO   |FC:W5:3: 25/25 rows 7.5s, 352 steps, {'stop': 21, 'fence': 4}
+01:21:20|INFO   |FC:W5:4: 5/25 rows 6.7s, 336 steps, {'stop': 5}
+01:21:20|INFO   |fcells W5: 105 rows (159s)
+01:21:20|INFO   |prefix check: 0/480 mismatches
+01:21:20|INFO   |stage fcells done in 192s
