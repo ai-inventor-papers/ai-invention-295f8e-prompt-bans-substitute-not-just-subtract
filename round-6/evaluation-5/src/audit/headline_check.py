@@ -14,10 +14,10 @@ from pathlib import Path
 
 WS = Path(__file__).resolve().parent.parent
 ROOT = Path(os.environ.get("AII_DEPS_ROOT", str(WS.parent)))
-SIB = {"art_mWn-MQEnNelg": "iter_4/gen_art/gen_art_experiment_19", "art_SHaWv77P1XCI": "iter_4/gen_art/gen_art_experiment_22",
-       "art_CcZLW-9NX00l": "iter_5/gen_art/gen_art_experiment_24", "art_8WbrpoEFslk9": "iter_5/gen_art/gen_art_experiment_25",
-       "art_9a8LrIv2lHbV": "iter_5/gen_art/gen_art_experiment_26", "art_jR6Pyy3W9xum": "iter_5/gen_art/gen_art_experiment_27",
-       "art_hG0QPiaIPNhP": "iter_5/gen_art/gen_art_experiment_28"}
+SIB = {"art_mWn-MQEnNelg": "round-4/experiment-19/src", "art_SHaWv77P1XCI": "round-4/experiment-22/src",
+       "art_CcZLW-9NX00l": "round-5/experiment-24/src", "art_8WbrpoEFslk9": "round-5/experiment-25/src",
+       "art_9a8LrIv2lHbV": "round-5/experiment-26/src", "art_jR6Pyy3W9xum": "round-5/experiment-27/src",
+       "art_hG0QPiaIPNhP": "round-5/experiment-28/src"}
 OUT = []
 
 

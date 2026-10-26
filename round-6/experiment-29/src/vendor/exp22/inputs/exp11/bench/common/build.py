@@ -19,7 +19,7 @@ from .testgen import build_tests, write_tests
 
 # Dependency artifact art_j3Rm_lr2nzR6 (dataset "Source data for an algorithm-choice coding bench", workspace folder
 # gen_art_dataset_1).  The published repository holds it as a sibling folder of this one; DEP_DATASET_DIR overrides.
-DEP = Path(os.environ.get("DEP_DATASET_DIR", str(Path(__file__).resolve().parents[2].parent / "gen_art_dataset_1")))
+DEP = Path(os.environ.get("DEP_DATASET_DIR", str(Path(__file__).resolve().parents[2].parent / "dataset-1/src")))
 QID2TASK = {215: "T03", 28: "T04", 1: "T05", 287: "T06", 509: "T08", 547: "T10", 323: "T10", 300: "T11",
             56: "T13", 347: "T14", 435: "R1", 684: "R2", 210: "R3", 34: "R6"}
 # thealgorithms / kodcode / xlcost lexicon names -> (task, mode) for AST-rule fixtures

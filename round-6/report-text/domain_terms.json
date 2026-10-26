@@ -1,0 +1,1442 @@
+[
+ {
+  "term": "residual stream",
+  "gloss": "the running sum of layer outputs that every transformer block reads from and writes to",
+  "source_title": "Refusal in Language Models Is Mediated by a Single Direction"
+ },
+ {
+  "term": "residual stream activations",
+  "gloss": "the vector state of the residual stream at a given layer and token position",
+  "source_title": "Refusal in Language Models Is Mediated by a Single Direction"
+ },
+ {
+  "term": "difference-in-means",
+  "gloss": "a direction computed as the mean activation of one set of prompts minus the mean of a contrasting set",
+  "source_title": "Refusal in Language Models Is Mediated by a Single Direction"
+ },
+ {
+  "term": "directional ablation",
+  "gloss": "removing the component of an activation along a chosen direction at every layer and position it is applied to",
+  "source_title": "Refusal in Language Models Is Mediated by a Single Direction"
+ },
+ {
+  "term": "activation addition",
+  "gloss": "adding a fixed vector, scaled by a coefficient, to the residual stream during the forward pass",
+  "source_title": "Refusal in Language Models Is Mediated by a Single Direction"
+ },
+ {
+  "term": "chat template",
+  "gloss": "the model-specific token format that wraps user and assistant turns for a chat model",
+  "source_title": "Refusal in Language Models Is Mediated by a Single Direction"
+ },
+ {
+  "term": "chat model",
+  "gloss": "an instruction-tuned model served through a chat template",
+  "source_title": "Refusal in Language Models Is Mediated by a Single Direction"
+ },
+ {
+  "term": "model coherence",
+  "gloss": "whether an intervened model still produces fluent, usable output",
+  "source_title": "Refusal in Language Models Is Mediated by a Single Direction"
+ },
+ {
+  "term": "steering vector",
+  "gloss": "an activation-space vector added during inference to shift a behaviour",
+  "source_title": "Steering Llama 2 via Contrastive Activation Addition"
+ },
+ {
+  "term": "steering multiplier",
+  "gloss": "the coefficient that scales a steering vector before it is added",
+  "source_title": "Steering Llama 2 via Contrastive Activation Addition"
+ },
+ {
+  "term": "contrastive activation addition",
+  "gloss": "steering with the mean activation difference between paired positive and negative examples",
+  "source_title": "Steering Llama 2 via Contrastive Activation Addition"
+ },
+ {
+  "term": "system prompt",
+  "gloss": "an instruction placed before the user turn that conditions the response",
+  "source_title": "Steering Llama 2 via Contrastive Activation Addition"
+ },
+ {
+  "term": "open-ended generation",
+  "gloss": "free-form sampling, as opposed to scoring fixed answer options",
+  "source_title": "Steering Llama 2 via Contrastive Activation Addition"
+ },
+ {
+  "term": "layer sweep",
+  "gloss": "repeating an intervention or probe at every layer to find where it acts",
+  "source_title": "Steering Llama 2 via Contrastive Activation Addition"
+ },
+ {
+  "term": "base model",
+  "gloss": "the pretrained checkpoint before instruction tuning",
+  "source_title": "Steering Llama 2 via Contrastive Activation Addition"
+ },
+ {
+  "term": "prompting baseline",
+  "gloss": "the effect obtainable by prompt wording alone, against which a steering method is compared",
+  "source_title": "Steering Llama 2 via Contrastive Activation Addition"
+ },
+ {
+  "term": "linear probe",
+  "gloss": "a linear classifier trained on activations to read out a property",
+  "source_title": "The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets"
+ },
+ {
+  "term": "mass-mean probe",
+  "gloss": "a probe whose direction is the difference of class means",
+  "source_title": "The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets"
+ },
+ {
+  "term": "logistic regression probe",
+  "gloss": "a linear probe fitted by logistic regression",
+  "source_title": "The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets"
+ },
+ {
+  "term": "probe generalization",
+  "gloss": "accuracy of a probe on data distributions it was not trained on",
+  "source_title": "The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets"
+ },
+ {
+  "term": "activation patching",
+  "gloss": "replacing activations from one run with those of another to localise an effect",
+  "source_title": "The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets"
+ },
+ {
+  "term": "linear representation",
+  "gloss": "a property encoded along a direction of activation space",
+  "source_title": "The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets"
+ },
+ {
+  "term": "causal intervention",
+  "gloss": "editing activations and measuring the change in model output",
+  "source_title": "The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets"
+ },
+ {
+  "term": "forking token",
+  "gloss": "a token at which resampling the continuation changes the outcome distribution sharply",
+  "source_title": "Forking Paths in Neural Text Generation"
+ },
+ {
+  "term": "outcome distribution",
+  "gloss": "the distribution of final outcomes over continuations resampled from a prefix",
+  "source_title": "Forking Paths in Neural Text Generation"
+ },
+ {
+  "term": "change point detection",
+  "gloss": "statistical localisation of the positions where a series changes distribution",
+  "source_title": "Forking Paths in Neural Text Generation"
+ },
+ {
+  "term": "resampling",
+  "gloss": "drawing new continuations from a fixed prefix to estimate what the model could have produced",
+  "source_title": "Forking Paths in Neural Text Generation"
+ },
+ {
+  "term": "survival analysis",
+  "gloss": "modelling the time until an outcome becomes fixed during generation",
+  "source_title": "Forking Paths in Neural Text Generation"
+ },
+ {
+  "term": "next-token distribution",
+  "gloss": "the model's probability distribution over the next token at a position",
+  "source_title": "Forking Paths in Neural Text Generation"
+ },
+ {
+  "term": "chain-of-thought",
+  "gloss": "intermediate reasoning text produced before the final answer",
+  "source_title": "Forking Paths in Neural Text Generation"
+ },
+ {
+  "term": "uncertainty dynamics",
+  "gloss": "how the outcome distribution changes token by token during generation",
+  "source_title": "Forking Fast: Efficiently Estimating Uncertainty Dynamics in Text Generation"
+ },
+ {
+  "term": "forking point",
+  "gloss": "a position at which the outcome distribution changes abruptly",
+  "source_title": "Forking Fast: Efficiently Estimating Uncertainty Dynamics in Text Generation"
+ },
+ {
+  "term": "generative monoculture",
+  "gloss": "a narrowing of output diversity relative to the diversity available for the task",
+  "source_title": "Generative Monoculture in Large Language Models"
+ },
+ {
+  "term": "output diversity",
+  "gloss": "the spread of distinct outputs a model produces for one prompt",
+  "source_title": "Generative Monoculture in Large Language Models"
+ },
+ {
+  "term": "diversity collapse",
+  "gloss": "loss of output diversity, for example under chat-format structure",
+  "source_title": "The Price of Format: Diversity Collapse in LLMs"
+ },
+ {
+  "term": "Jaccard similarity",
+  "gloss": "intersection over union of two sets, used to compare programs or algorithm sets",
+  "source_title": "Generative Monoculture in Large Language Models"
+ },
+ {
+  "term": "Hill number",
+  "gloss": "the effective number of categories, exp of Shannon entropy at order 1",
+  "source_title": "Diversity and Evenness: A Unifying Notation and Its Consequences"
+ },
+ {
+  "term": "effective number",
+  "gloss": "the number of equally common categories that would give the observed diversity",
+  "source_title": "Diversity and Evenness: A Unifying Notation and Its Consequences"
+ },
+ {
+  "term": "Shannon entropy",
+  "gloss": "minus the sum of p log p over a distribution",
+  "source_title": "Diversity and Evenness: A Unifying Notation and Its Consequences"
+ },
+ {
+  "term": "evenness",
+  "gloss": "how uniformly mass is spread over the categories present",
+  "source_title": "Diversity and Evenness: A Unifying Notation and Its Consequences"
+ },
+ {
+  "term": "intrinsic dimension",
+  "gloss": "the number of degrees of freedom of the manifold a point cloud lies on",
+  "source_title": "Estimating the intrinsic dimension of datasets by a minimal neighborhood information"
+ },
+ {
+  "term": "TwoNN estimator",
+  "gloss": "an intrinsic-dimension estimator from ratios of first and second nearest-neighbour distances",
+  "source_title": "Estimating the intrinsic dimension of datasets by a minimal neighborhood information"
+ },
+ {
+  "term": "geodesic distance",
+  "gloss": "distance measured along a neighbourhood graph that approximates the data manifold",
+  "source_title": "A global geometric framework for nonlinear dimensionality reduction"
+ },
+ {
+  "term": "k-nearest-neighbour graph",
+  "gloss": "a graph linking each point to its k closest points",
+  "source_title": "A global geometric framework for nonlinear dimensionality reduction"
+ },
+ {
+  "term": "multidimensional scaling",
+  "gloss": "an embedding that preserves a matrix of pairwise distances in few dimensions",
+  "source_title": "A global geometric framework for nonlinear dimensionality reduction"
+ },
+ {
+  "term": "Isomap",
+  "gloss": "nonlinear dimensionality reduction by MDS on graph geodesic distances",
+  "source_title": "A global geometric framework for nonlinear dimensionality reduction"
+ },
+ {
+  "term": "nonlinear dimensionality reduction",
+  "gloss": "embedding data that lie on a curved manifold into few coordinates",
+  "source_title": "A global geometric framework for nonlinear dimensionality reduction"
+ },
+ {
+  "term": "manifold steering",
+  "gloss": "moving activations along a fitted representation manifold rather than a straight line",
+  "source_title": "Manifold Steering Reveals the Shared Geometry of Neural Network Representation and Behavior"
+ },
+ {
+  "term": "representation manifold",
+  "gloss": "the low-dimensional structure traced by activations of a family of inputs",
+  "source_title": "Manifold Steering Reveals the Shared Geometry of Neural Network Representation and Behavior"
+ },
+ {
+  "term": "affine concept editing",
+  "gloss": "editing activations relative to a reference point rather than the origin",
+  "source_title": "Refusal in LLMs is an Affine Function"
+ },
+ {
+  "term": "mean-anchored ablation",
+  "gloss": "projection-out of a direction measured from a reference mean instead of zero",
+  "source_title": "Refusal in LLMs is an Affine Function"
+ },
+ {
+  "term": "temperature",
+  "gloss": "the softmax scaling parameter used when sampling tokens",
+  "source_title": "Is Temperature the Creativity Parameter of Large Language Models?"
+ },
+ {
+  "term": "sampling temperature",
+  "gloss": "the temperature used at decoding time; higher values flatten the next-token distribution",
+  "source_title": "Is Temperature the Creativity Parameter of Large Language Models?"
+ },
+ {
+  "term": "novelty",
+  "gloss": "how different an output is from what is typical",
+  "source_title": "Is Temperature the Creativity Parameter of Large Language Models?"
+ },
+ {
+  "term": "typicality",
+  "gloss": "how representative an output is of the usual outputs",
+  "source_title": "Is Temperature the Creativity Parameter of Large Language Models?"
+ },
+ {
+  "term": "adaptive temperature sampling",
+  "gloss": "raising the temperature only at positions where tokens are hard to predict",
+  "source_title": "Hot or Cold? Adaptive Temperature Sampling for Code Generation with Large Language Models"
+ },
+ {
+  "term": "top-k sampling",
+  "gloss": "sampling restricted to the k most probable next tokens",
+  "source_title": "Is Temperature the Creativity Parameter of Large Language Models?"
+ },
+ {
+  "term": "nucleus sampling",
+  "gloss": "sampling restricted to the smallest token set with cumulative probability p (top-p)",
+  "source_title": "Generative Monoculture in Large Language Models"
+ },
+ {
+  "term": "negative constraint",
+  "gloss": "an instruction telling the model what not to produce",
+  "source_title": "Semantic Gravity Wells: Why Negative Constraints Backfire"
+ },
+ {
+  "term": "priming",
+  "gloss": "raising the probability of a concept by mentioning it, even when it is forbidden",
+  "source_title": "Semantic Gravity Wells: Why Negative Constraints Backfire"
+ },
+ {
+  "term": "negation",
+  "gloss": "processing of a 'not' in the input that should change the answer",
+  "source_title": "How Do LLMs Change Predictions Under Negation?"
+ },
+ {
+  "term": "suppression",
+  "gloss": "lowering the probability of the original answer",
+  "source_title": "How Do LLMs Change Predictions Under Negation?"
+ },
+ {
+  "term": "promotion",
+  "gloss": "raising the probability of an alternative candidate",
+  "source_title": "How Do LLMs Change Predictions Under Negation?"
+ },
+ {
+  "term": "denial prompting",
+  "gloss": "iteratively forbidding a technique used in the previous solution",
+  "source_title": "Benchmarking Language Model Creativity: A Case Study on Code Generation"
+ },
+ {
+  "term": "creativity",
+  "gloss": "producing correct and divergent solutions",
+  "source_title": "Benchmarking Language Model Creativity: A Case Study on Code Generation"
+ },
+ {
+  "term": "constraint compliance",
+  "gloss": "the fraction of outputs that satisfy an explicit constraint",
+  "source_title": "Compact Constraint Encoding for LLM Code Generation: An Empirical Study of Token Economics and Constraint Compliance"
+ },
+ {
+  "term": "implementation prior",
+  "gloss": "the default code pattern a model uses for a common task",
+  "source_title": "Compact Constraint Encoding for LLM Code Generation: An Empirical Study of Token Economics and Constraint Compliance"
+ },
+ {
+  "term": "algorithm choice",
+  "gloss": "which algorithm a model implements for a coding task",
+  "source_title": "The Invisible Lottery: How Subtle Cues Steer Algorithm Choice in LLM Code Generation"
+ },
+ {
+  "term": "semantic cue",
+  "gloss": "a prompt cue whose meaning bears on the solution approach",
+  "source_title": "The Invisible Lottery: How Subtle Cues Steer Algorithm Choice in LLM Code Generation"
+ },
+ {
+  "term": "innocuous cue",
+  "gloss": "a prompt cue with no bearing on the solution approach",
+  "source_title": "The Invisible Lottery: How Subtle Cues Steer Algorithm Choice in LLM Code Generation"
+ },
+ {
+  "term": "control task",
+  "gloss": "a task with shuffled or random labels that measures what a probe can learn by itself",
+  "source_title": "Designing and Interpreting Probes with Control Tasks"
+ },
+ {
+  "term": "selectivity",
+  "gloss": "probe accuracy minus control-task accuracy",
+  "source_title": "Designing and Interpreting Probes with Control Tasks"
+ },
+ {
+  "term": "sparse autoencoder",
+  "gloss": "a sparse dictionary of features learned on activations",
+  "source_title": "AxBench: Steering LLMs? Even Simple Baselines Outperform Sparse Autoencoders"
+ },
+ {
+  "term": "steering baseline",
+  "gloss": "a simple method, such as prompting or difference-in-means, that steering methods are compared against",
+  "source_title": "AxBench: Steering LLMs? Even Simple Baselines Outperform Sparse Autoencoders"
+ },
+ {
+  "term": "aligned model",
+  "gloss": "a model after preference or instruction tuning",
+  "source_title": "Base Models Beat Aligned Models at Randomness and Creativity"
+ },
+ {
+  "term": "post-training",
+  "gloss": "training stages after pretraining, such as instruction tuning and preference optimisation",
+  "source_title": "Base Models Beat Aligned Models at Randomness and Creativity"
+ },
+ {
+  "term": "thinking mode",
+  "gloss": "Qwen3's mode that emits a reasoning block before the answer; non-thinking mode skips it",
+  "source_title": "Qwen3 Technical Report"
+ },
+ {
+  "term": "non-thinking mode",
+  "gloss": "Qwen3's mode that answers without a reasoning block",
+  "source_title": "Qwen3 Technical Report"
+ },
+ {
+  "term": "log score",
+  "gloss": "the logarithm of the probability a forecast assigned to the observed outcome",
+  "source_title": "Strictly Proper Scoring Rules, Prediction, and Estimation"
+ },
+ {
+  "term": "strictly proper scoring rule",
+  "gloss": "a scoring rule maximised in expectation only by the true distribution",
+  "source_title": "Strictly Proper Scoring Rules, Prediction, and Estimation"
+ },
+ {
+  "term": "Cohen's kappa",
+  "gloss": "chance-corrected agreement between two raters on nominal labels",
+  "source_title": "A Coefficient of Agreement for Nominal Scales"
+ },
+ {
+  "term": "inter-rater agreement",
+  "gloss": "the extent to which independent labellers assign the same label",
+  "source_title": "A Coefficient of Agreement for Nominal Scales"
+ },
+ {
+  "term": "Wilson score interval",
+  "gloss": "a confidence interval for a binomial proportion",
+  "source_title": "Probable Inference, the Law of Succession, and Statistical Inference"
+ },
+ {
+  "term": "PELT",
+  "gloss": "pruned exact linear time search for multiple change points",
+  "source_title": "Optimal detection of changepoints with a linear computational cost"
+ },
+ {
+  "term": "Kendall's W",
+  "gloss": "the coefficient of concordance among several rankings of the same items",
+  "source_title": "The Problem of m Rankings"
+ },
+ {
+  "term": "algorithmic diversity",
+  "gloss": "the number and spread of distinct algorithms among solutions",
+  "source_title": "DivAlgo: A systematic evaluation of algorithmic diversity for code generation models"
+ },
+ {
+  "term": "functional correctness",
+  "gloss": "whether a program passes its test cases",
+  "source_title": "Is Your Code Generated by ChatGPT Really Correct? Rigorous Evaluation of Large Language Models for Code Generation"
+ },
+ {
+  "term": "hidden tests",
+  "gloss": "held-out test cases used to judge correctness",
+  "source_title": "Is Your Code Generated by ChatGPT Really Correct? Rigorous Evaluation of Large Language Models for Code Generation"
+ },
+ {
+  "term": "pass rate",
+  "gloss": "the fraction of generated programs that pass all tests",
+  "source_title": "Is Your Code Generated by ChatGPT Really Correct? Rigorous Evaluation of Large Language Models for Code Generation"
+ },
+ {
+  "term": "PagedAttention",
+  "gloss": "the KV-cache memory manager used by the vLLM serving engine",
+  "source_title": "Efficient Memory Management for Large Language Model Serving with PagedAttention"
+ },
+ {
+  "term": "prefix sharing",
+  "gloss": "reusing the KV cache of a common prompt prefix across sequences",
+  "source_title": "Efficient Memory Management for Large Language Model Serving with PagedAttention"
+ },
+ {
+  "term": "code efficiency",
+  "gloss": "runtime and memory cost of a correct program",
+  "source_title": "Mercury: A Code Efficiency Benchmark for Code Large Language Models"
+ },
+ {
+  "term": "execution trace",
+  "gloss": "the sequence of intermediate states of an algorithm run",
+  "source_title": "The CLRS-Text Algorithmic Reasoning Language Benchmark"
+ },
+ {
+  "term": "algorithmic reasoning",
+  "gloss": "the ability to reproduce the steps of classical algorithms",
+  "source_title": "The CLRS-Text Algorithmic Reasoning Language Benchmark"
+ },
+ {
+  "term": "verifiable solution",
+  "gloss": "a solution checked by executing unit tests",
+  "source_title": "KodCode: A Diverse, Challenging, and Verifiable Synthetic Dataset for Coding"
+ },
+ {
+  "term": "concreteness rating",
+  "gloss": "a norm of how concrete a word's referent is",
+  "source_title": "Concreteness ratings for 40 thousand generally known English word lemmas"
+ },
+ {
+  "term": "word frequency norm",
+  "gloss": "corpus-based frequency of a word, for example SUBTLEX",
+  "source_title": "Moving beyond Kučera and Francis: A critical evaluation of current word frequency norms and the introduction of a new and improved word frequency measure for American English"
+ },
+ {
+  "term": "behavioral evaluation",
+  "gloss": "measuring a behaviour from model outputs rather than internals",
+  "source_title": "Steering Llama 2 via Contrastive Activation Addition"
+ },
+ {
+  "term": "held-out",
+  "gloss": "data not used to fit the quantity being evaluated",
+  "source_title": "The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets"
+ },
+ {
+  "term": "principal component analysis",
+  "gloss": "projecting activations onto the directions of largest variance before visualisation or further analysis",
+  "source_title": "The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets"
+ },
+ {
+  "term": "change point",
+  "gloss": "a position in a sequence where the distribution of outcomes shifts abruptly",
+  "source_title": "Forking Paths in Neural Text Generation"
+ },
+ {
+  "term": "Bellman-Ford",
+  "gloss": "a single-source shortest path algorithm that relaxes every edge repeatedly; SPFA is its queue-based variant",
+  "source_title": "The CLRS-Text Algorithmic Reasoning Language Benchmark"
+ },
+ {
+  "term": "Floyd-Warshall",
+  "gloss": "an all-pairs shortest path algorithm by dynamic programming over intermediate nodes",
+  "source_title": "The CLRS-Text Algorithmic Reasoning Language Benchmark"
+ },
+ {
+  "term": "CLRS-Text",
+  "gloss": "a text version of the CLRS-30 algorithmic reasoning benchmark with execution traces",
+  "source_title": "The CLRS-Text Algorithmic Reasoning Language Benchmark"
+ },
+ {
+  "term": "top-k",
+  "gloss": "sampling restricted to the k most probable next tokens",
+  "source_title": "Is Temperature the Creativity Parameter of Large Language Models?"
+ },
+ {
+  "term": "top-p",
+  "gloss": "nucleus sampling parameter: sampling from the smallest token set whose probability mass reaches p",
+  "source_title": "Generative Monoculture in Large Language Models"
+ },
+ {
+  "term": "instruction-tuned",
+  "gloss": "describing a model fine-tuned to follow instructions in a chat format",
+  "source_title": "The Price of Format: Diversity Collapse in LLMs"
+ },
+ {
+  "term": "open-weight",
+  "gloss": "describing a model whose parameters are publicly released",
+  "source_title": "Refusal in Language Models Is Mediated by a Single Direction"
+ },
+ {
+  "term": "low-dimensional",
+  "gloss": "occupying few dimensions relative to the ambient activation space",
+  "source_title": "Manifold Steering Reveals the Shared Geometry of Neural Network Representation and Behavior"
+ },
+ {
+  "term": "cross-lingual",
+  "gloss": "spanning more than one programming or natural language",
+  "source_title": "XLCoST: A Benchmark Dataset for Cross-lingual Code Intelligence"
+ },
+ {
+  "term": "LLM-generated",
+  "gloss": "produced by a large language model",
+  "source_title": "How Efficient is LLM-Generated Code? A Rigorous & High-Standard Benchmark"
+ },
+ {
+  "term": "high-standard",
+  "gloss": "held to a strict evaluation standard",
+  "source_title": "How Efficient is LLM-Generated Code? A Rigorous & High-Standard Benchmark"
+ },
+ {
+  "term": "attention knockout",
+  "gloss": "blocking attention from chosen query positions to chosen key positions to measure how much information flows along those edges",
+  "source_title": "Dissecting Recall of Factual Associations in Auto-Regressive Language Models"
+ },
+ {
+  "term": "interchange intervention",
+  "gloss": "replacing a component's activations from one input with those from another and measuring the change in output",
+  "source_title": "Towards Best Practices of Activation Patching in Language Models: Metrics and Methods"
+ },
+ {
+  "term": "logit lens",
+  "gloss": "reading an intermediate residual stream state through the model's final unembedding to see which tokens it already favours",
+  "source_title": "Eliciting Latent Predictions from Transformers with the Tuned Lens"
+ },
+ {
+  "term": "tuned lens",
+  "gloss": "a logit lens with a learned affine translator per layer, trained to match the final-layer distribution",
+  "source_title": "Eliciting Latent Predictions from Transformers with the Tuned Lens"
+ },
+ {
+  "term": "latent prediction",
+  "gloss": "the next-token distribution decoded from an intermediate layer rather than the final one",
+  "source_title": "Eliciting Latent Predictions from Transformers with the Tuned Lens"
+ },
+ {
+  "term": "key-value cache",
+  "gloss": "the stored attention keys and values of earlier tokens that later tokens attend to during generation",
+  "source_title": "Efficient Memory Management for Large Language Model Serving with PagedAttention"
+ },
+ {
+  "term": "importance sampling",
+  "gloss": "estimating an expectation under one distribution with weighted samples drawn from another proposal distribution",
+  "source_title": "Optimally combining sampling techniques for Monte Carlo rendering"
+ },
+ {
+  "term": "multiple importance sampling",
+  "gloss": "importance sampling with samples drawn from several proposal distributions and combined by a weighting rule",
+  "source_title": "Optimally combining sampling techniques for Monte Carlo rendering"
+ },
+ {
+  "term": "balance heuristic",
+  "gloss": "the multiple importance sampling weight that treats all proposals as one mixture proposal",
+  "source_title": "Optimally combining sampling techniques for Monte Carlo rendering"
+ },
+ {
+  "term": "effective sample size",
+  "gloss": "the number of equally weighted samples that would give the same variance as a set of importance-weighted samples",
+  "source_title": "Optimally combining sampling techniques for Monte Carlo rendering"
+ },
+ {
+  "term": "interval for a difference of proportions",
+  "gloss": "a confidence interval for the difference between two independent binomial proportions, such as Newcombe's hybrid score interval",
+  "source_title": "Interval estimation for the difference between independent proportions: comparison of eleven methods"
+ },
+ {
+  "term": "thought anchors",
+  "gloss": "sentences of a reasoning trace whose resampling changes the final answer distribution most",
+  "source_title": "Thought Anchors: Which LLM Reasoning Steps Matter?"
+ },
+ {
+  "term": "top-k sparse autoencoder",
+  "gloss": "a sparse autoencoder that keeps only the k largest latent activations per input",
+  "source_title": "Scaling and evaluating sparse autoencoders"
+ },
+ {
+  "term": "sparse features",
+  "gloss": "directions found by a sparse dictionary that each fire on a narrow set of inputs",
+  "source_title": "Qwen-Scope: Turning Sparse Features into Development Tools for Large Language Models"
+ },
+ {
+  "term": "mode collapse",
+  "gloss": "a model's outputs concentrating on a few typical responses although many are acceptable",
+  "source_title": "Verbalized Sampling: How to Mitigate Mode Collapse and Unlock LLM Diversity"
+ },
+ {
+  "term": "typicality bias",
+  "gloss": "a preference, learned from human ratings, for familiar and typical responses",
+  "source_title": "Verbalized Sampling: How to Mitigate Mode Collapse and Unlock LLM Diversity"
+ },
+ {
+  "term": "stratification",
+  "gloss": "splitting the space of answers into strata and sampling a stratum before sampling an answer",
+  "source_title": "SimpleStrat: Diversifying Language Model Generation with Stratification"
+ },
+ {
+  "term": "introspection",
+  "gloss": "a model predicting facts about its own behaviour better than an external model trained on the same behaviour",
+  "source_title": "Looking Inward: Language Models Can Learn About Themselves by Introspection"
+ },
+ {
+  "term": "approach-level diversity",
+  "gloss": "diversity of the solution strategies used, as opposed to diversity of wording",
+  "source_title": "Are We Measuring Strategy or Phrasing? The Gap Between Surface- and Approach-Level Diversity in LLM Math Reasoning"
+ },
+ {
+  "term": "surface-level diversity",
+  "gloss": "diversity of wording and form among outputs that may share one strategy",
+  "source_title": "Are We Measuring Strategy or Phrasing? The Gap Between Surface- and Approach-Level Diversity in LLM Math Reasoning"
+ },
+ {
+  "term": "ironic negation",
+  "gloss": "the increase in probability of a concept that an instruction tells the model to avoid",
+  "source_title": "Don't Think of the White Bear: Ironic Negation in Transformer Models Under Cognitive Load"
+ },
+ {
+  "term": "negation processing",
+  "gloss": "how a model represents and applies a negation in its input",
+  "source_title": "How Language Models Process Negation"
+ },
+ {
+  "term": "interpretability without actionability",
+  "gloss": "decoding a property from internals without being able to change behaviour by editing it",
+  "source_title": "Interpretability without actionability: mechanistic methods cannot correct language model errors despite near-perfect internal representations"
+ },
+ {
+  "term": "mechanistic interpretability benchmark",
+  "gloss": "a shared benchmark that scores circuit-localisation and causal-variable methods against baselines",
+  "source_title": "MIB: A Mechanistic Interpretability Benchmark"
+ },
+ {
+  "term": "approach-organised representations",
+  "gloss": "internal states that cluster by solution approach rather than by surface topic",
+  "source_title": "Math Reasoning in LLMs is Organized by Approach, Not Topic"
+ },
+ {
+  "term": "humanlike diversity",
+  "gloss": "the spread of distinct, high-quality answers a population of people would give to one prompt",
+  "source_title": "NoveltyBench: Evaluating Language Models for Humanlike Diversity"
+ },
+ {
+  "term": "RLHF",
+  "gloss": "reinforcement learning from human feedback, a post-training stage",
+  "source_title": "Understanding the Effects of RLHF on LLM Generalisation and Diversity"
+ },
+ {
+  "term": "approach-level",
+  "gloss": "at the level of the solution strategy rather than its wording",
+  "source_title": "Are We Measuring Strategy or Phrasing? The Gap Between Surface- and Approach-Level Diversity in LLM Math Reasoning"
+ },
+ {
+  "term": "auto-regressive",
+  "gloss": "generating one token at a time, each conditioned on the tokens before it",
+  "source_title": "Dissecting Recall of Factual Associations in Auto-Regressive Language Models"
+ },
+ {
+  "term": "near-perfect",
+  "gloss": "almost perfect, said of how well a property can be decoded from internal representations",
+  "source_title": "Interpretability without actionability: mechanistic methods cannot correct language model errors despite near-perfect internal representations"
+ },
+ {
+  "term": "Qwen-Scope",
+  "gloss": "a released set of sparse autoencoders trained on Qwen3 models, used as development tools",
+  "source_title": "Qwen-Scope: Turning Sparse Features into Development Tools for Large Language Models"
+ },
+ {
+  "term": "task vector",
+  "gloss": "a compact representation of a demonstrated task that an in-context prompt induces at one position",
+  "source_title": "In-Context Learning Creates Task Vectors"
+ },
+ {
+  "term": "function vector",
+  "gloss": "a vector transported by a few attention heads that carries a demonstrated task and can trigger it elsewhere",
+  "source_title": "Function Vectors in Large Language Models"
+ },
+ {
+  "term": "task recognition point",
+  "gloss": "the layer after which a model no longer needs to attend to the instruction or examples",
+  "source_title": "Where does In-context Translation Happen in Large Language Models"
+ },
+ {
+  "term": "instruction following",
+  "gloss": "whether a model's response satisfies the instruction it was given",
+  "source_title": "Do LLMs \"know\" internally when they follow instructions?"
+ },
+ {
+  "term": "prefilling",
+  "gloss": "forcing the first tokens of the response before sampling the rest",
+  "source_title": "Safety Alignment Should Be Made More Than Just a Few Tokens Deep"
+ },
+ {
+  "term": "shallow alignment",
+  "gloss": "a learned behaviour that is enforced only in the first few tokens of a response",
+  "source_title": "Safety Alignment Should Be Made More Than Just a Few Tokens Deep"
+ },
+ {
+  "term": "constrained decoding",
+  "gloss": "restricting which tokens may be generated at decoding time",
+  "source_title": "The Alignment Problem in Constrained Code Generation"
+ },
+ {
+  "term": "tree edit distance",
+  "gloss": "the minimum number of node insertions, deletions and relabellings that turn one tree into another",
+  "source_title": "Simple Fast Algorithms for the Editing Distance Between Trees and Related Problems"
+ },
+ {
+  "term": "Wilcoxon signed-rank test",
+  "gloss": "a paired nonparametric test on the ranks of within-pair differences",
+  "source_title": "Individual Comparisons by Ranking Methods"
+ },
+ {
+  "term": "Pareto smoothed importance sampling",
+  "gloss": "importance sampling whose largest weights are replaced by a fitted generalised Pareto tail, with the shape k-hat as a reliability diagnostic",
+  "source_title": "Pareto Smoothed Importance Sampling"
+ },
+ {
+  "term": "rule of three",
+  "gloss": "an approximate 95% upper bound of 3/n on a rate when 0 events occur in n trials",
+  "source_title": "If nothing goes wrong, is everything all right? Interpreting zero numerators."
+ },
+ {
+  "term": "BCa interval",
+  "gloss": "a bias-corrected and accelerated bootstrap confidence interval",
+  "source_title": "Better Bootstrap Confidence Intervals"
+ },
+ {
+  "term": "mean ablation",
+  "gloss": "replacing a component's output by its mean over a reference distribution",
+  "source_title": "Scaling and evaluating sparse autoencoders"
+ },
+ {
+  "term": "fraction of variance unexplained",
+  "gloss": "the share of activation variance that a sparse autoencoder reconstruction leaves in its error",
+  "source_title": "Scaling and evaluating sparse autoencoders"
+ },
+ {
+  "term": "noise steering",
+  "gloss": "adding random noise to internal activations during generation to raise output diversity",
+  "source_title": "Noise Steering for Controlled Text Generation: Improving Diversity and Reading-Level Fidelity in Arabic Educational Story Generation"
+ },
+ {
+  "term": "activation steering",
+  "gloss": "editing hidden activations at inference time to change model behaviour",
+  "source_title": "Exploring Diverse Generation Paths via Inference-time Stiefel Activation Steering"
+ },
+ {
+  "term": "prompt formatting",
+  "gloss": "surface choices in how a prompt is laid out, to which model accuracy can be highly sensitive",
+  "source_title": "Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting"
+ },
+ {
+  "term": "intent factored generation",
+  "gloss": "sampling a high-level intent at high temperature before sampling the response at low temperature",
+  "source_title": "Intent Factored Generation: Unleashing the Diversity in Your Language Model"
+ },
+ {
+  "term": "plan search",
+  "gloss": "searching over natural-language plans before writing code, to diversify solutions",
+  "source_title": "Planning In Natural Language Improves LLM Search For Code Generation"
+ },
+ {
+  "term": "steerability",
+  "gloss": "whether an activation-steering intervention succeeds on a given model and concept",
+  "source_title": "When is Your LLM Steerable?"
+ },
+ {
+  "term": "Gumbel counterfactual generation",
+  "gloss": "generating counterfactual strings by reusing the same sampling noise under an intervened model",
+  "source_title": "Gumbel Counterfactual Generation From Language Models"
+ },
+ {
+  "term": "response planning",
+  "gloss": "information about the coming response that is already encoded in the prompt representations",
+  "source_title": "Emergent Response Planning in LLMs"
+ },
+ {
+  "term": "prefilling attack",
+  "gloss": "forcing the first tokens of a model's response to bypass a learned behaviour",
+  "source_title": "Jailbreaking Leading Safety-Aligned LLMs with Simple Adaptive Attacks"
+ },
+ {
+  "term": "seed-conditioning",
+  "gloss": "injecting randomness at the input layer instead of through output temperature",
+  "source_title": "Roll the dice & look before you leap: Going beyond the creative limits of next-token prediction"
+ },
+ {
+  "term": "program search",
+  "gloss": "evolutionary search over programs with an LLM proposer and an automatic evaluator",
+  "source_title": "Mathematical discoveries from program search with large language models"
+ },
+ {
+  "term": "random embedding injection",
+  "gloss": "inserting random embeddings into the input to diversify reasoning paths",
+  "source_title": "From Noise to Diversity: Random Embedding Injection in LLM Reasoning"
+ },
+ {
+  "term": "grammar-aligned decoding",
+  "gloss": "constrained decoding corrected so that outputs keep the model's own relative likelihoods",
+  "source_title": "Grammar-Aligned Decoding"
+ },
+ {
+  "term": "diversity injection",
+  "gloss": "the level at which randomness is introduced into a generation pipeline",
+  "source_title": "Where You Inject Diversity Matters: A Unified Framework for Diverse Generation"
+ },
+ {
+  "term": "coding agent",
+  "gloss": "an LLM system that iteratively writes, evaluates and improves programs",
+  "source_title": "AlphaEvolve: A coding agent for scientific and algorithmic discovery"
+ },
+ {
+  "term": "model-generated code",
+  "gloss": "programs written by a language model, as opposed to human solutions",
+  "source_title": "How Diversely Can Language Models Solve Problems? Exploring the Algorithmic Diversity of Model-Generated Code"
+ },
+ {
+  "term": "cross-model activation patching",
+  "gloss": "patching activations from one model into a related model to test whether their representations correspond",
+  "source_title": "Fine-Tuning Enhances Existing Mechanisms: A Case Study on Entity Tracking"
+ },
+ {
+  "term": "weight interpolation",
+  "gloss": "averaging the weights of a base and a fine-tuned checkpoint to trade off their behaviours",
+  "source_title": "Weight Ensembling Improves Reasoning in Language Models"
+ },
+ {
+  "term": "weight ensembling",
+  "gloss": "interpolating fine-tuned weights with earlier weights to recover diversity",
+  "source_title": "Weight Ensembling Improves Reasoning in Language Models"
+ },
+ {
+  "term": "selective layer restoration",
+  "gloss": "restoring a range of layers of a post-trained model to their pretrained weights",
+  "source_title": "Not All Layers Need Tuning: Selective Layer Restoration Recovers Diversity"
+ },
+ {
+  "term": "base-aligned model collaboration",
+  "gloss": "combining a base model and its aligned counterpart at inference time to balance diversity and quality",
+  "source_title": "Optimizing Diversity and Quality through Base-Aligned Model Collaboration"
+ },
+ {
+  "term": "conformative decoding",
+  "gloss": "guiding an instruction-tuned model's decoding with its more diverse base model",
+  "source_title": "Mind the Gap: Conformative Decoding to Improve Output Diversity of Instruction-Tuned Large Language Models"
+ },
+ {
+  "term": "alignment signature",
+  "gloss": "the direction in activation space that separates aligned from base residual states",
+  "source_title": "Measuring, Localizing, and Ablating Alignment Signatures in LLMs"
+ },
+ {
+  "term": "probability concentration",
+  "gloss": "the narrowing of the output distribution that alignment causes",
+  "source_title": "LLM Probability Concentration: How Alignment Shrinks the Generative Horizon"
+ },
+ {
+  "term": "branching factor",
+  "gloss": "the effective number of plausible next tokens at a position",
+  "source_title": "LLM Probability Concentration: How Alignment Shrinks the Generative Horizon"
+ },
+ {
+  "term": "conceptual diversity",
+  "gloss": "variety of the concepts a population of model outputs expresses",
+  "source_title": "One fish, two fish, but not the whole sea: Alignment reduces language models' conceptual diversity"
+ },
+ {
+  "term": "reasoning boundary",
+  "gloss": "the set of problems a model can solve with some sampling budget",
+  "source_title": "The Reasoning Boundary Paradox: How Reinforcement Learning Constrains Language Models"
+ },
+ {
+  "term": "pass@k",
+  "gloss": "the probability that at least one of k samples is correct",
+  "source_title": "When RLVR Shrinks the Reasoning Boundary: Diagnosing Pass@k Inversion"
+ },
+ {
+  "term": "RLVR",
+  "gloss": "reinforcement learning with verifiable rewards",
+  "source_title": "When RLVR Shrinks the Reasoning Boundary: Diagnosing Pass@k Inversion"
+ },
+ {
+  "term": "difference-in-differences",
+  "gloss": "a contrast of two differences that removes a shared confound",
+  "source_title": "Measuring Alignment-Induced Activation Shifts Correctly: A Template-Controlled Difference-in-Differences Protocol"
+ },
+ {
+  "term": "parametric code retrieval",
+  "gloss": "reproducing a named algorithm from internalised knowledge rather than synthesising a new one",
+  "source_title": "Are you Synthesizing or Recalling? Evaluating LLMs on Algorithmic Code Retrieval"
+ },
+ {
+  "term": "latent-space rollout diversification",
+  "gloss": "injecting noise into hidden states of the prompt pass to diversify rollouts",
+  "source_title": "Perturb the Thought, Not the Pixels: Latent-Space Rollout Diversification for Reinforcement Learning of Vision-Language Models"
+ },
+ {
+  "term": "in-context alignment",
+  "gloss": "aligning a base model with in-context examples instead of fine-tuning",
+  "source_title": "The Unlocking Spell on Base LLMs: Rethinking Alignment via In-Context Learning"
+ },
+ {
+  "term": "activation transfer",
+  "gloss": "carrying an activation-space intervention from one model to another",
+  "source_title": "Activation Space Interventions Can Be Transferred Between Large Language Models"
+ },
+ {
+  "term": "knowledge storage",
+  "gloss": "where factual associations are encoded inside a model's layers",
+  "source_title": "How Post-Training Reshapes LLMs: A Mechanistic View on Knowledge, Truthfulness, Refusal, and Confidence"
+ },
+ {
+  "term": "cross-patching",
+  "gloss": "replacing the hidden state at a layer boundary of one model with the state of another",
+  "source_title": "Same Targets, Different Computation: How Post-Training Divides Work Across Model Layers"
+ },
+ {
+  "term": "template-controlled",
+  "gloss": "measured with the base and the aligned model under the same chat template, so that the template does not enter the contrast",
+  "source_title": "Measuring Alignment-Induced Activation Shifts Correctly: A Template-Controlled Difference-in-Differences Protocol"
+ },
+ {
+  "term": "alignment-induced",
+  "gloss": "caused by alignment tuning, said of the activation shift between a base model and its aligned descendant",
+  "source_title": "Measuring Alignment-Induced Activation Shifts Correctly: A Template-Controlled Difference-in-Differences Protocol"
+ },
+ {
+  "term": "diversity-quality",
+  "gloss": "the pairing of output diversity with output quality, which merging a base and an aligned model trades against each other",
+  "source_title": "Controlling the Diversity-Quality Trade-Off of LLMs by Merging Models Before and After Alignment"
+ },
+ {
+  "term": "base-aligned",
+  "gloss": "combining a base model with its aligned descendant during generation",
+  "source_title": "Optimizing Diversity and Quality through Base-Aligned Model Collaboration"
+ },
+ {
+  "term": "latent-space",
+  "gloss": "in the space of a model's hidden representations rather than its tokens or pixels",
+  "source_title": "Perturb the Thought, Not the Pixels: Latent-Space Rollout Diversification for Reinforcement Learning of Vision-Language Models"
+ },
+ {
+  "term": "vision-language",
+  "gloss": "models that read images and text together",
+  "source_title": "Perturb the Thought, Not the Pixels: Latent-Space Rollout Diversification for Reinforcement Learning of Vision-Language Models"
+ },
+ {
+  "term": "redundancy-aware",
+  "gloss": "penalising samples that duplicate one another when several samples are drawn per prompt",
+  "source_title": "Beyond pass@k: Redundancy-Aware RLVR for Multi-Sample Code Generation"
+ },
+ {
+  "term": "multi-sample",
+  "gloss": "drawing several samples per prompt and scoring them as a set",
+  "source_title": "Beyond pass@k: Redundancy-Aware RLVR for Multi-Sample Code Generation"
+ },
+ {
+  "term": "per-problem",
+  "gloss": "measured separately for each problem rather than averaged over a benchmark",
+  "source_title": "What Will Post-Training Fix? Per-Problem Gains Are Shared Across Independent RL Runs, and Existing Checkpoints Predict Them Better Than A Priori Signals"
+ },
+ {
+  "term": "W8A8",
+  "gloss": "a quantisation scheme with 8-bit weights and 8-bit activations in the linear layers",
+  "source_title": "\"Give Me BF16 or Give Me Death\"? Accuracy-Performance Trade-Offs in LLM Quantization"
+ },
+ {
+  "term": "weight-only quantization",
+  "gloss": "quantising the weights to low precision while the activations stay in 16-bit floating point",
+  "source_title": "Steering Under Compression: Dose-Response, Capability Cost, and Failure Asymmetry in Quantized LLMs"
+ },
+ {
+  "term": "activation quantization",
+  "gloss": "rounding the inputs of each linear layer to low precision at inference time",
+  "source_title": "\"Give Me BF16 or Give Me Death\"? Accuracy-Performance Trade-Offs in LLM Quantization"
+ },
+ {
+  "term": "per-token",
+  "gloss": "computed separately for each token row of an activation matrix, as in per-token quantisation scales",
+  "source_title": "\"Give Me BF16 or Give Me Death\"? Accuracy-Performance Trade-Offs in LLM Quantization"
+ },
+ {
+  "term": "e4m3",
+  "gloss": "the 8-bit floating-point format with 4 exponent bits and 3 mantissa bits",
+  "source_title": "\"Give Me BF16 or Give Me Death\"? Accuracy-Performance Trade-Offs in LLM Quantization"
+ },
+ {
+  "term": "KV cache quantization",
+  "gloss": "storing the attention keys and values in low precision during decoding",
+  "source_title": "Alignment Collapse Under KV Cache Quantization: Diagnosis and Mitigation"
+ },
+ {
+  "term": "mixed-precision inference",
+  "gloss": "running different parts of a model's computation at different numerical precisions",
+  "source_title": "PAHQ: Accelerating Automated Circuit Discovery through Mixed-Precision Inference Optimization"
+ },
+ {
+  "term": "cross-precision divergence",
+  "gloss": "differences in a model's outputs when the same weights are run at two numerical precisions",
+  "source_title": "Greedy Decoding Is Not Precision-Invariant: Cross-Precision Output Divergence in LLM Inference"
+ },
+ {
+  "term": "numerical nondeterminism",
+  "gloss": "run-to-run differences in model outputs caused by floating-point arithmetic, batch size or hardware",
+  "source_title": "Understanding and Mitigating Numerical Sources of Nondeterminism in LLM Inference"
+ },
+ {
+  "term": "teacher forcing",
+  "gloss": "scoring a given continuation token by token with the model conditioned on the true preceding tokens",
+  "source_title": "A Learning Algorithm for Continually Running Fully Recurrent Neural Networks"
+ },
+ {
+  "term": "teacher-forced",
+  "gloss": "computed under teacher forcing, that is with the model conditioned on a given continuation",
+  "source_title": "A Learning Algorithm for Continually Running Fully Recurrent Neural Networks"
+ },
+ {
+  "term": "Mantel-Haenszel",
+  "gloss": "a pooled odds ratio over strata of a confounder, weighting each stratum's 2-by-2 table",
+  "source_title": "Statistical aspects of the analysis of data from retrospective studies of disease"
+ },
+ {
+  "term": "non-inferiority",
+  "gloss": "a test that an estimate is not worse than a comparator by more than a margin fixed in advance",
+  "source_title": "'Proving the null hypothesis' in clinical trials"
+ },
+ {
+  "term": "non-inferior",
+  "gloss": "not worse than a comparator by more than a margin fixed in advance",
+  "source_title": "'Proving the null hypothesis' in clinical trials"
+ },
+ {
+  "term": "Poisson-binomial",
+  "gloss": "the distribution of the number of successes in independent trials with unequal success probabilities",
+  "source_title": "On the Number of Successes in Independent Trials"
+ },
+ {
+  "term": "Bonett-Wright",
+  "gloss": "the approximate confidence interval for a Spearman correlation based on the Fisher transform with an adjusted variance",
+  "source_title": "Sample size requirements for estimating pearson, kendall and spearman correlations"
+ },
+ {
+  "term": "min-heap",
+  "gloss": "a binary heap whose root holds the smallest key",
+  "source_title": "Introduction to Algorithms"
+ },
+ {
+  "term": "max-heap",
+  "gloss": "a binary heap whose root holds the largest key",
+  "source_title": "Introduction to Algorithms"
+ },
+ {
+  "term": "emergent misalignment",
+  "gloss": "broad misaligned behaviour that appears after fine-tuning on a narrow task",
+  "source_title": "Emergent Misalignment Recruits a Pre-existing Persona Subspace"
+ },
+ {
+  "term": "persona subspace",
+  "gloss": "a low-dimensional set of directions in a tuned model's activations that carries a behavioural persona",
+  "source_title": "Emergent Misalignment Recruits a Pre-existing Persona Subspace"
+ },
+ {
+  "term": "power sampling",
+  "gloss": "sampling from a model's distribution raised to a power, which sharpens it toward its likeliest sequences",
+  "source_title": "Reasoning with Sampling: Your Base Model is Smarter Than You Think"
+ },
+ {
+  "term": "base model barrier",
+  "gloss": "the cost for outcome-reward policy gradient of reaching outputs the base model rarely produces",
+  "source_title": "Post-Training with Policy Gradients: Optimality and the Base Model Barrier"
+ },
+ {
+  "term": "embedding perturbation",
+  "gloss": "adding random noise to token embeddings to probe where a model's output is sensitive",
+  "source_title": "Uncertainty Localization in LLM Reasoning via Embedding Perturbations"
+ },
+ {
+  "term": "weak-to-strong jailbreaking",
+  "gloss": "steering a large aligned model's decoding with the distribution shift between two small models",
+  "source_title": "Weak-to-Strong Jailbreaking on Large Language Models"
+ },
+ {
+  "term": "few-shot",
+  "gloss": "conditioning a model on a few solved examples placed in the prompt before the target",
+  "source_title": "Language Models are Few-Shot Learners"
+ },
+ {
+  "term": "Holm adjustment",
+  "gloss": "the sequentially rejective correction of p values for multiple tests",
+  "source_title": "A Simple Sequentially Rejective Multiple Test Procedure"
+ },
+ {
+  "term": "floating-point",
+  "gloss": "a number format with a sign, an exponent and a mantissa",
+  "source_title": "What Every Computer Scientist Should Know About Floating-Point Arithmetic"
+ },
+ {
+  "term": "weight-only",
+  "gloss": "applied to the weights alone, with activations left at full precision",
+  "source_title": "Steering Under Compression: Dose-Response, Capability Cost, and Failure Asymmetry in Quantized LLMs"
+ },
+ {
+  "term": "Clopper-Pearson",
+  "gloss": "the exact binomial confidence interval obtained by inverting two one-sided binomial tests",
+  "source_title": "The use of confidence or fiducial limits illustrated in the case of the binomial"
+ },
+ {
+  "term": "Boyer-Moore",
+  "gloss": "the linear-time majority vote algorithm that keeps one candidate and a counter",
+  "source_title": "MJRTY: A Fast Majority Vote Algorithm"
+ },
+ {
+  "term": "accuracy-performance",
+  "gloss": "the trade-off between task accuracy and inference cost under quantisation",
+  "source_title": "\"Give Me BF16 or Give Me Death\"? Accuracy-Performance Trade-Offs in LLM Quantization"
+ },
+ {
+  "term": "dose-response",
+  "gloss": "how the size of an effect changes with the size of the intervention",
+  "source_title": "Steering Under Compression: Dose-Response, Capability Cost, and Failure Asymmetry in Quantized LLMs"
+ },
+ {
+  "term": "mixed-precision",
+  "gloss": "using different numerical precisions for different parts of one computation",
+  "source_title": "PAHQ: Accelerating Automated Circuit Discovery through Mixed-Precision Inference Optimization"
+ },
+ {
+  "term": "precision-invariant",
+  "gloss": "unchanged when the same model is run at another numerical precision",
+  "source_title": "Greedy Decoding Is Not Precision-Invariant: Cross-Precision Output Divergence in LLM Inference"
+ },
+ {
+  "term": "cross-precision",
+  "gloss": "comparing the same model and inputs across numerical precisions",
+  "source_title": "Greedy Decoding Is Not Precision-Invariant: Cross-Precision Output Divergence in LLM Inference"
+ },
+ {
+  "term": "weak-to-strong",
+  "gloss": "using a smaller model to steer or supervise a larger one",
+  "source_title": "Weak-to-Strong Jailbreaking on Large Language Models"
+ },
+ {
+  "term": "re-emergent",
+  "gloss": "reappearing after alignment had suppressed it",
+  "source_title": "Re-Emergent Misalignment: How Narrow Fine-Tuning Erodes Safety Alignment in LLMs"
+ },
+ {
+  "term": "pre-existing",
+  "gloss": "present in the model before the fine-tuning under study",
+  "source_title": "Emergent Misalignment Recruits a Pre-existing Persona Subspace"
+ },
+ {
+  "term": "open-ended",
+  "gloss": "as in open-ended generation: free-form sampling, as opposed to scoring fixed answer options",
+  "source_title": "Steering Llama 2 via Contrastive Activation Addition"
+ },
+ {
+  "term": "mass-mean",
+  "gloss": "as in mass-mean probe: a probe whose direction is the difference of class means",
+  "source_title": "The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets"
+ },
+ {
+  "term": "next-token",
+  "gloss": "as in next-token distribution: the model's probability distribution over the next token at a position",
+  "source_title": "Forking Paths in Neural Text Generation"
+ },
+ {
+  "term": "k-nearest-neighbour",
+  "gloss": "as in k-nearest-neighbour graph: a graph linking each point to its k closest points",
+  "source_title": "A global geometric framework for nonlinear dimensionality reduction"
+ },
+ {
+  "term": "mean-anchored",
+  "gloss": "as in mean-anchored ablation: projection-out of a direction measured from a reference mean instead of zero",
+  "source_title": "Refusal in LLMs is an Affine Function"
+ },
+ {
+  "term": "non-thinking",
+  "gloss": "as in non-thinking mode: Qwen3's mode that answers without a reasoning block",
+  "source_title": "Qwen3 Technical Report"
+ },
+ {
+  "term": "inter-rater",
+  "gloss": "as in inter-rater agreement: the extent to which independent labellers assign the same label",
+  "source_title": "A Coefficient of Agreement for Nominal Scales"
+ },
+ {
+  "term": "key-value",
+  "gloss": "as in key-value cache: the stored attention keys and values of earlier tokens that later tokens attend to during generation",
+  "source_title": "Efficient Memory Management for Large Language Model Serving with PagedAttention"
+ },
+ {
+  "term": "surface-level",
+  "gloss": "as in surface-level diversity: diversity of wording and form among outputs that may share one strategy",
+  "source_title": "Are We Measuring Strategy or Phrasing? The Gap Between Surface- and Approach-Level Diversity in LLM Math Reasoning"
+ },
+ {
+  "term": "approach-organised",
+  "gloss": "as in approach-organised representations: internal states that cluster by solution approach rather than by surface topic",
+  "source_title": "Math Reasoning in LLMs is Organized by Approach, Not Topic"
+ },
+ {
+  "term": "signed-rank",
+  "gloss": "as in Wilcoxon signed-rank test: a paired nonparametric test on the ranks of within-pair differences",
+  "source_title": "Individual Comparisons by Ranking Methods"
+ },
+ {
+  "term": "grammar-aligned",
+  "gloss": "as in grammar-aligned decoding: constrained decoding corrected so that outputs keep the model's own relative likelihoods",
+  "source_title": "Grammar-Aligned Decoding"
+ },
+ {
+  "term": "model-generated",
+  "gloss": "as in model-generated code: programs written by a language model, as opposed to human solutions",
+  "source_title": "How Diversely Can Language Models Solve Problems? Exploring the Algorithmic Diversity of Model-Generated Code"
+ },
+ {
+  "term": "cross-model",
+  "gloss": "as in cross-model activation patching: patching activations from one model into a related model to test whether their representations correspond",
+  "source_title": "Fine-Tuning Enhances Existing Mechanisms: A Case Study on Entity Tracking"
+ },
+ {
+  "term": "in-context",
+  "gloss": "as in in-context alignment: aligning a base model with in-context examples instead of fine-tuning",
+  "source_title": "The Unlocking Spell on Base LLMs: Rethinking Alignment via In-Context Learning"
+ },
+ {
+  "term": "min-p",
+  "gloss": "sampling that keeps only tokens whose probability is at least a set fraction of the top token's",
+  "source_title": "Turning Up the Heat: Min-p Sampling for Creative and Coherent LLM Outputs"
+ },
+ {
+  "term": "token-level",
+  "gloss": "measured or applied separately for each token of the output",
+  "source_title": "Sparse but Critical: A Token-Level Analysis of Distributional Shifts in RLVR Fine-Tuning of LLMs"
+ },
+ {
+  "term": "inference-time",
+  "gloss": "applied while the model generates, without changing its weights",
+  "source_title": "Inference-Time Intervention: Eliciting Truthful Answers from a Language Model"
+ },
+ {
+  "term": "distributed alignment search",
+  "gloss": "fitting an orthonormal low-rank subspace in which an interchange intervention reproduces a counterfactual behaviour",
+  "source_title": "Finding Alignments Between Interpretable Causal Variables and Distributed Neural Representations"
+ },
+ {
+  "term": "DAS",
+  "gloss": "distributed alignment search",
+  "source_title": "Finding Alignments Between Interpretable Causal Variables and Distributed Neural Representations"
+ },
+ {
+  "term": "Boundless DAS",
+  "gloss": "distributed alignment search with learned boundaries, scaled to a 7B model",
+  "source_title": "Interpretability at Scale: Identifying Causal Mechanisms in Alpaca"
+ },
+ {
+  "term": "interchange intervention accuracy",
+  "gloss": "the share of exchanged runs whose output matches the counterfactual source's output",
+  "source_title": "Interpretability at Scale: Identifying Causal Mechanisms in Alpaca"
+ },
+ {
+  "term": "distributed interchange intervention",
+  "gloss": "an interchange intervention applied inside a learned subspace rather than on whole components",
+  "source_title": "Faithful Bi-Directional Model Steering via Distribution Matching and Distributed Interchange Interventions"
+ },
+ {
+  "term": "natural language autoencoder",
+  "gloss": "a pair of models that writes a text explanation of an activation and reconstructs the activation from that text",
+  "source_title": "LatentQA: Teaching LLMs to Decode Activations Into Natural Language"
+ },
+ {
+  "term": "activation verbalizer",
+  "gloss": "the half of a natural language autoencoder that writes an explanation of a residual-stream state",
+  "source_title": "LatentQA: Teaching LLMs to Decode Activations Into Natural Language"
+ },
+ {
+  "term": "activation reconstructor",
+  "gloss": "the half of a natural language autoencoder that maps an explanation back to a residual-stream state",
+  "source_title": "LatentQA: Teaching LLMs to Decode Activations Into Natural Language"
+ },
+ {
+  "term": "JumpReLU sparse autoencoder",
+  "gloss": "a sparse autoencoder whose latents pass through a thresholded ReLU",
+  "source_title": "Jumping Ahead: Improving Reconstruction Fidelity with JumpReLU Sparse Autoencoders"
+ },
+ {
+  "term": "transcoder",
+  "gloss": "a sparse dictionary trained to reproduce an MLP's output from its input",
+  "source_title": "Latent Planning Emerges with Scale"
+ },
+ {
+  "term": "Gemma Scope",
+  "gloss": "a release of sparse autoencoders trained on every layer of Gemma models",
+  "source_title": "Gemma Scope: Open Sparse Autoencoders Everywhere All At Once on Gemma 2"
+ },
+ {
+  "term": "fraction of variance explained",
+  "gloss": "one minus the share of activation variance a reconstruction leaves unexplained",
+  "source_title": "Gemma Scope: Open Sparse Autoencoders Everywhere All At Once on Gemma 2"
+ },
+ {
+  "term": "L0",
+  "gloss": "the mean number of active sparse-autoencoder latents per token",
+  "source_title": "Gemma Scope: Open Sparse Autoencoders Everywhere All At Once on Gemma 2"
+ },
+ {
+  "term": "loss recovered",
+  "gloss": "the share of the language-model loss increase from zero ablation that a spliced-in reconstruction avoids",
+  "source_title": "Gemma Scope: Open Sparse Autoencoders Everywhere All At Once on Gemma 2"
+ },
+ {
+  "term": "W16A8",
+  "gloss": "16-bit weights with 8-bit activations in the linear layers",
+  "source_title": "FP8 Formats for Deep Learning"
+ },
+ {
+  "term": "W8A16",
+  "gloss": "8-bit weights with 16-bit activations in the linear layers",
+  "source_title": "FP8 Formats for Deep Learning"
+ },
+ {
+  "term": "fake quantisation",
+  "gloss": "rounding values to a low-precision format and back inside a higher-precision computation",
+  "source_title": "FP8 Formats for Deep Learning"
+ },
+ {
+  "term": "dynamic per-token scaling",
+  "gloss": "choosing each token row's quantisation scale from its own absolute maximum at run time",
+  "source_title": "FP8 Formats for Deep Learning"
+ },
+ {
+  "term": "Firth logistic regression",
+  "gloss": "logistic regression with a penalty that removes first-order bias and keeps estimates finite under separation",
+  "source_title": "Bias reduction of maximum likelihood estimates"
+ },
+ {
+  "term": "Mantel-Haenszel odds ratio",
+  "gloss": "an odds ratio pooled over strata of a confounder",
+  "source_title": "Statistical aspects of the analysis of data from retrospective studies of disease."
+ },
+ {
+  "term": "Gwet's AC1",
+  "gloss": "a chance-corrected agreement coefficient that stays stable when one category dominates",
+  "source_title": "Computing inter-rater reliability and its variance in the presence of high agreement."
+ },
+ {
+  "term": "Fleiss kappa",
+  "gloss": "chance-corrected agreement among more than two raters",
+  "source_title": "Measuring nominal scale agreement among many raters."
+ },
+ {
+  "term": "interpretability illusion",
+  "gloss": "a subspace intervention that changes behaviour through a pathway the model does not use naturally",
+  "source_title": "Is This the Subspace You Are Looking for? An Interpretability Illusion for Subspace Activation Patching"
+ },
+ {
+  "term": "prefix resampling",
+  "gloss": "drawing many continuations from fixed prefixes of a generation to locate where its outcome is decided",
+  "source_title": "Forking Paths in Neural Text Generation"
+ },
+ {
+  "term": "activation steering under quantization",
+  "gloss": "applying a steering vector to a quantised model and comparing its effect with full precision",
+  "source_title": "Steering Under Compression: Dose-Response, Capability Cost, and Failure Asymmetry in Quantized LLMs"
+ },
+ {
+  "term": "self-interpretation",
+  "gloss": "a model describing the content of its own hidden embeddings in natural language",
+  "source_title": "SelfIE: Self-Interpretation of Large Language Model Embeddings"
+ },
+ {
+  "term": "decodability supervision",
+  "gloss": "training a model so that verbalised explanations of its activations are checkable",
+  "source_title": "Train the Model, Not the Reader: Decodability Supervision for Verifiable Activation Explanations"
+ },
+ {
+  "term": "latent planning",
+  "gloss": "information about future output computed before it is emitted",
+  "source_title": "Latent Planning Emerges with Scale"
+ },
+ {
+  "term": "Fieller interval",
+  "gloss": "a confidence interval for a ratio or a transformed correlation that accounts for uncertainty in the denominator",
+  "source_title": "Sample size requirements for estimating pearson, kendall and spearman correlations"
+ },
+ {
+  "term": "8-bit floating point",
+  "gloss": "a number format with 8 bits per value (here e4m3: 4 exponent and 3 mantissa bits, maximum 448), used for weights and activations of linear layers in low-precision inference",
+  "source_title": "FP8 Formats for Deep Learning"
+ }
+]
