@@ -1,0 +1,13 @@
+entries:
+  - path: .venv/
+    delete: regenerable
+    source: "uv venv .venv --python=3.12 && uv pip install --python .venv/bin/python -r requirements.lock.txt"
+  - path: __pycache__/
+    delete: regenerable
+    source: ".venv/bin/python -c 'import eval'"
+  - path: src/__pycache__/
+    delete: regenerable
+    source: ".venv/bin/python eval.py --assemble"
+  - path: rivals/__pycache__/
+    delete: regenerable
+    source: ".venv/bin/python -c \"import sys; sys.path[:0] = ['src', 'rivals']; import compute_rivals\""
