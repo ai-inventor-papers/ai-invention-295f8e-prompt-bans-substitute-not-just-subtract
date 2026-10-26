@@ -1,0 +1,114 @@
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:01,  2.12it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:01,  1.56it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:01<00:01,  1.43it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  1.50it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  1.98it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  1.76it/s]
+02:01:26|INFO   |loaded qwen (random_init=False): {'family': 'qwen', 'model_id': 'Qwen/Qwen3-8B', 'revision': 'b968826d9c46dd6066d109eabc6255188de91218', 'random_init': False, 'precision': 'bf16 (sdpa); logits fp32; sampler float64', 'gpu': 'NVIDIA L4', 'free_vram_after_GB': 8.31, 'total_vram_GB': 23.66, 'cpu_embedding': True, 'load_seconds': 39.3}
+02:03:16|INFO   |DecSite: 290 prompts, 280 bases cached (Lmax 183) in 110s
+02:03:16|INFO   |T10: 2000 train / 600 held pairs; excluded sources 0
+02:03:19|INFO   |scan T10 L0: no full-state effect (-0.025)
+02:03:22|INFO   |scan T10 L2: no full-state effect (-0.012)
+02:03:24|INFO   |scan T10 L4: no full-state effect (-0.044)
+02:03:26|INFO   |scan T10 L6: no full-state effect (-0.012)
+02:03:28|INFO   |scan T10 L8: no full-state effect (0.055)
+02:03:30|INFO   |scan T10 L10: no full-state effect (-0.027)
+02:03:32|INFO   |scan T10 L12: no full-state effect (0.260)
+02:03:33|INFO   |scan T10 L14: no full-state effect (0.487)
+./src/das8.py:302: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  hist.append({"step": step, "k": k, "loss": float(loss)})
+02:04:02|INFO   |scan T10 L16: {'cv_recovery_by_fold': [5.406623654257471, 6.97957348524], 'cv_median_recovery': 6.193098569748736, 'full_state_mean_delta_held96': 1.0416250626246135, 'full_state_flip_share_held96': 1.0} (46s)
+02:04:29|INFO   |scan T10 L18: {'cv_recovery_by_fold': [4.325083661656515, 4.650517740150013], 'cv_median_recovery': 4.487800700903264, 'full_state_mean_delta_held96': 1.5911154747009277, 'full_state_flip_share_held96': 1.0} (73s)
+02:04:56|INFO   |scan T10 L20: {'cv_recovery_by_fold': [4.7362143589705035, 4.599495417479048], 'cv_median_recovery': 4.667854888224776, 'full_state_mean_delta_held96': 2.1952511072158813, 'full_state_flip_share_held96': 1.0} (99s)
+02:05:20|INFO   |scan T10 L22: {'cv_recovery_by_fold': [8.570195243578492, 7.241655764819687], 'cv_median_recovery': 7.9059255041990895, 'full_state_mean_delta_held96': 1.499998966852824, 'full_state_flip_share_held96': 0.9791666666666666} (124s)
+02:05:43|INFO   |scan T10 L24: {'cv_recovery_by_fold': [0.8705435512570563, 0.9347494480260795], 'cv_median_recovery': 0.902646499641568, 'full_state_mean_delta_held96': 14.922732055187225, 'full_state_flip_share_held96': 1.0} (147s)
+02:06:04|INFO   |scan T10 L26: {'cv_recovery_by_fold': [0.6581973326337273, 0.7694968401754335], 'cv_median_recovery': 0.7138470864045804, 'full_state_mean_delta_held96': 19.81040358543396, 'full_state_flip_share_held96': 1.0} (168s)
+02:06:21|INFO   |scan T10 L28: {'cv_recovery_by_fold': [0.5706332038241001, 0.65766949885264], 'cv_median_recovery': 0.6141513513383701, 'full_state_mean_delta_held96': 21.468275864919026, 'full_state_flip_share_held96': 1.0} (185s)
+02:06:37|INFO   |scan T10 L30: {'cv_recovery_by_fold': [0.5923630568654257, 0.671088214888817], 'cv_median_recovery': 0.6317256358771213, 'full_state_mean_delta_held96': 24.423468093077343, 'full_state_flip_share_held96': 1.0} (201s)
+02:06:52|INFO   |scan T10 L32: {'cv_recovery_by_fold': [0.5999247150303819, 0.6896675919983282], 'cv_median_recovery': 0.644796153514355, 'full_state_mean_delta_held96': 24.85550683736801, 'full_state_flip_share_held96': 1.0} (216s)
+02:07:04|INFO   |scan T10 L34: {'cv_recovery_by_fold': [0.588413665277858, 0.6403993297733845], 'cv_median_recovery': 0.6144064975256213, 'full_state_mean_delta_held96': 24.834733188152313, 'full_state_flip_share_held96': 1.0} (228s)
+02:07:04|INFO   |T10: L* = 22 (readout-proximal False)
+02:07:12|INFO   |[T10 L22 s0] step 20 loss 3.9045 val KL 4.6702 (7s)
+02:07:20|INFO   |[T10 L22 s0] step 40 loss 3.6565 val KL 2.5954 (14s)
+02:07:27|INFO   |[T10 L22 s0] step 60 loss 2.0763 val KL 1.1638 (21s)
+02:07:33|INFO   |[T10 L22 s0] step 80 loss 0.5581 val KL 0.7276 (27s)
+02:07:40|INFO   |[T10 L22 s0] step 100 loss 0.2667 val KL 0.5296 (35s)
+02:07:47|INFO   |[T10 L22 s0] step 120 loss 0.1627 val KL 0.4006 (41s)
+02:07:53|INFO   |[T10 L22 s0] step 140 loss 0.1403 val KL 0.3217 (48s)
+02:07:59|INFO   |[T10 L22 s0] step 160 loss 0.1000 val KL 0.2796 (54s)
+02:08:07|INFO   |[T10 L22 s0] step 180 loss 0.1076 val KL 0.2595 (62s)
+02:08:14|INFO   |[T10 L22 s0] step 200 loss 0.2058 val KL 0.2350 (68s)
+02:08:20|INFO   |[T10 L22 s0] step 220 loss 0.0500 val KL 0.2051 (74s)
+02:08:26|INFO   |[T10 L22 s0] step 240 loss 0.0359 val KL 0.1856 (81s)
+02:08:33|INFO   |[T10 L22 s1] step 20 loss 4.1845 val KL 5.2578 (7s)
+02:08:40|INFO   |[T10 L22 s1] step 40 loss 2.2178 val KL 2.7900 (14s)
+02:08:47|INFO   |[T10 L22 s1] step 60 loss 0.6251 val KL 1.0993 (21s)
+02:08:54|INFO   |[T10 L22 s1] step 80 loss 0.3985 val KL 0.6418 (27s)
+02:09:00|INFO   |[T10 L22 s1] step 100 loss 0.1633 val KL 0.3678 (34s)
+02:09:07|INFO   |[T10 L22 s1] step 120 loss 1.8387 val KL 0.2667 (41s)
+02:09:13|INFO   |[T10 L22 s1] step 140 loss 0.3330 val KL 0.2068 (47s)
+02:09:20|INFO   |[T10 L22 s1] step 160 loss 0.0721 val KL 0.1826 (54s)
+02:09:27|INFO   |[T10 L22 s1] step 180 loss 0.0910 val KL 0.1489 (61s)
+02:09:33|INFO   |[T10 L22 s1] step 200 loss 0.0733 val KL 0.1307 (67s)
+02:09:39|INFO   |[T10 L22 s1] step 220 loss 0.1182 val KL 0.1150 (73s)
+02:09:45|INFO   |[T10 L22 s1] step 240 loss 0.0456 val KL 0.0939 (79s)
+02:09:52|INFO   |[T10 L22 s2] step 20 loss 5.2410 val KL 4.9945 (7s)
+02:09:59|INFO   |[T10 L22 s2] step 40 loss 2.1913 val KL 2.8443 (13s)
+02:10:06|INFO   |[T10 L22 s2] step 60 loss 0.6719 val KL 1.3588 (21s)
+02:10:12|INFO   |[T10 L22 s2] step 80 loss 0.5260 val KL 0.8900 (27s)
+02:10:18|INFO   |[T10 L22 s2] step 100 loss 0.3251 val KL 0.7232 (33s)
+02:10:25|INFO   |[T10 L22 s2] step 120 loss 0.5642 val KL 0.6725 (40s)
+02:10:31|INFO   |[T10 L22 s2] step 140 loss 0.1597 val KL 0.5139 (46s)
+02:10:37|INFO   |[T10 L22 s2] step 160 loss 0.2699 val KL 0.5052 (52s)
+02:10:45|INFO   |[T10 L22 s2] step 180 loss 0.2137 val KL 0.4319 (60s)
+02:10:51|INFO   |[T10 L22 s2] step 200 loss 0.1753 val KL 0.3765 (66s)
+02:10:58|INFO   |[T10 L22 s2] step 220 loss 0.0571 val KL 0.3406 (73s)
+02:11:04|INFO   |[T10 L22 s2] step 240 loss 0.1046 val KL 0.3144 (79s)
+02:11:07|INFO   |[T10 r1only] step 20 loss 7.8383 val KL 10.5995 (3s)
+02:11:10|INFO   |[T10 r1only] step 40 loss 3.6749 val KL 7.5395 (7s)
+02:11:14|INFO   |[T10 r1only] step 60 loss 2.5649 val KL 5.0958 (10s)
+02:11:18|INFO   |[T10 r1only] step 80 loss 1.0204 val KL 2.0684 (14s)
+02:11:21|INFO   |[T10 r1only] step 100 loss 0.5127 val KL 0.6640 (18s)
+02:11:25|INFO   |[T10 r1only] step 120 loss 0.3717 val KL 0.5832 (21s)
+02:11:28|INFO   |[T10 r1only] step 140 loss 0.2974 val KL 0.4956 (24s)
+02:11:32|INFO   |[T10 r1only] step 160 loss 0.2580 val KL 0.4511 (28s)
+02:11:35|INFO   |[T10 r1only] step 180 loss 0.1874 val KL 0.3593 (32s)
+02:11:39|INFO   |[T10 r1only] step 200 loss 0.1734 val KL 0.3279 (35s)
+02:11:42|INFO   |[T10 r1only] step 220 loss 1.5645 val KL 0.2851 (39s)
+02:11:46|INFO   |[T10 r1only] step 240 loss 0.1218 val KL 0.2660 (42s)
+02:12:09|INFO   |T10: k* = 4; recovery 8.433 CI [5.944438813564415, 11.296062773717395]
+02:13:35|INFO   |c1 T10 k1: {'median': -0.008520448433719983, 'p95': 0.0070718851325280215, 'max': 0.015280275403198753, 'n': 50, 'pass': True}
+02:15:00|INFO   |c1 T10 k2: {'median': -0.0056122191365223775, 'p95': 0.005160303288540625, 'max': 0.013733504369389029, 'n': 50, 'pass': True}
+02:16:25|INFO   |c1 T10 k4: {'median': -0.005335866348852657, 'p95': 0.014967972142734435, 'max': 0.019018203906749454, 'n': 50, 'pass': True}
+02:17:51|INFO   |c1 T10 k8: {'median': 0.0010398891127624227, 'p95': 0.028834794071987017, 'max': 0.043646665835180815, 'n': 50, 'pass': True}
+02:17:59|INFO   |[c2 pi1] step 20 loss 0.8054 val KL 1.2028 (8s)
+02:18:07|INFO   |[c2 pi1] step 40 loss 0.2640 val KL 0.0316 (16s)
+02:18:15|INFO   |[c2 pi1] step 60 loss 0.0009 val KL 0.0051 (24s)
+02:18:23|INFO   |[c2 pi1] step 80 loss 0.0001 val KL 0.0025 (32s)
+02:18:32|INFO   |[c2 pi1] step 100 loss 0.0004 val KL 0.0012 (41s)
+02:18:40|INFO   |[c2 pi1] step 120 loss 0.0004 val KL 0.0010 (50s)
+02:18:49|INFO   |[c2 pi1] step 140 loss 0.0003 val KL 0.0009 (58s)
+02:18:57|INFO   |[c2 pi1] step 160 loss 0.0005 val KL 0.0008 (66s)
+02:19:05|INFO   |[c2 pi1] step 180 loss 0.0002 val KL 0.0007 (74s)
+02:19:14|INFO   |[c2 pi1] step 200 loss 0.0002 val KL 0.0006 (83s)
+02:19:22|INFO   |[c2 pi1] step 220 loss 0.0002 val KL 0.0007 (91s)
+02:19:30|INFO   |[c2 pi1] step 240 loss 0.0002 val KL 0.0007 (99s)
+02:19:35|INFO   |c2 pi1: ratio 0.8683451135316018
+02:19:43|INFO   |[c2 pi2] step 20 loss 9.7721 val KL 8.3773 (8s)
+02:19:51|INFO   |[c2 pi2] step 40 loss 3.7619 val KL 4.1547 (16s)
+02:20:00|INFO   |[c2 pi2] step 60 loss 0.0361 val KL 1.4986 (25s)
+02:20:08|INFO   |[c2 pi2] step 80 loss 0.5239 val KL 0.7419 (33s)
+02:20:16|INFO   |[c2 pi2] step 100 loss 0.0016 val KL 0.5232 (42s)
+02:20:25|INFO   |[c2 pi2] step 120 loss 0.0046 val KL 0.4758 (50s)
+02:20:35|INFO   |[c2 pi2] step 140 loss 0.0057 val KL 0.4013 (60s)
+02:20:43|INFO   |[c2 pi2] step 160 loss 0.0077 val KL 0.4312 (68s)
+02:20:51|INFO   |[c2 pi2] step 180 loss 0.0523 val KL 0.4625 (76s)
+02:20:59|INFO   |[c2 pi2] step 200 loss 0.0467 val KL 0.4597 (84s)
+02:20:59|INFO   |[c2 pi2] early stop at step 200 (best 140)
+02:21:04|INFO   |c2 pi2: ratio 0.6338190689558455
+02:21:12|INFO   |[c2 prompt] step 20 loss 5.2996 val KL 1.1937 (9s)
+02:21:21|INFO   |[c2 prompt] step 40 loss 2.5501 val KL 0.4005 (17s)
+02:21:29|INFO   |[c2 prompt] step 60 loss 2.1531 val KL 0.5270 (25s)
+02:21:37|INFO   |[c2 prompt] step 80 loss 0.8873 val KL 0.6976 (34s)
+02:21:45|INFO   |[c2 prompt] step 100 loss 0.8246 val KL 0.5220 (41s)
+02:21:45|INFO   |[c2 prompt] early stop at step 100 (best 40)
+02:21:48|INFO   |c2 prompt: ratio 0.7656893886843779
+02:24:50|INFO   |dec T10 done in 1404s

@@ -1,0 +1,55 @@
+{
+ "unit": "T10",
+ "classes": [
+  "bfs",
+  "dfs",
+  "union_find"
+ ],
+ "class_token_sets": {
+  "bfs": [
+   66564
+  ],
+  "dfs": [
+   1936,
+   25792
+  ],
+  "union_find": [
+   1477,
+   11300
+  ]
+ },
+ "token_strings": {
+  "bfs": [
+   " bfs"
+  ],
+  "dfs": [
+   " build",
+   " dfs"
+  ],
+  "union_find": [
+   " find",
+   " union"
+  ]
+ },
+ "decision_position": "last prefilled opening token (T10: token 10 ' def' after 'def solve(n, edges):'; GRID: c*[31])",
+ "n_train_pairs": 2000,
+ "n_held_pairs": 600,
+ "train_pairs_sha256": "2ede4bca5c095ea25605a8fcbc7c82edfef2b3ceb38852bda991a3c44c0040b7",
+ "held_pairs_sha256": "1cb5965ed7df20b85dd98b3aa0e64614b3d420879d245924a452235356d62b4d",
+ "excluded_sources": [],
+ "base_class_counts": {
+  "bfs": 0,
+  "dfs": 5,
+  "union_find": 215
+ },
+ "natural_basis": "twins (c5/c6); twins + forced + placement prompts (c5b/c6b)",
+ "scan_rule": "blocks 0,2,..; rank 1, seed 0, 2-fold leave-family-out CV inside train, 100 steps; L* = argmax median CV recovery (ties -> earlier)",
+ "fit": {
+  "steps": 240,
+  "lr": 0.02,
+  "G": 4,
+  "Q": 12,
+  "val_every": 20,
+  "patience": 3
+ }
+}

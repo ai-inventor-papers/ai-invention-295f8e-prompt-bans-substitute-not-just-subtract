@@ -1,0 +1,78 @@
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:01,  2.01it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.49it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.39it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  1.50it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  2.02it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  1.76it/s]
+04:33:59|INFO   |loaded qwen (random_init=False): {'family': 'qwen', 'model_id': 'Qwen/Qwen3-8B', 'revision': 'b968826d9c46dd6066d109eabc6255188de91218', 'random_init': False, 'precision': 'bf16 (sdpa); logits fp32; sampler float64', 'gpu': 'NVIDIA L4', 'free_vram_after_GB': 8.31, 'total_vram_GB': 23.66, 'cpu_embedding': True, 'load_seconds': 37.8}
+04:34:24|INFO   |predictor for 40 directions in 20s
+04:34:31|INFO   |mediation Spearman pooled: {'rho': 0.39147708195720493, 'p_one_sided': 0.006099390060993901, 'n': 40}
+./src/engine8.py:397: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  nxt = torch.searchsorted(cdf, U[:, step][:, None]).squeeze(-1).clamp_(max=probs.shape[-1] - 1)
+04:34:47|INFO   |med-clamp: +16 rows (15.0s, 160 steps); total 16/900
+04:35:00|INFO   |med-clamp: +16 rows (13.7s, 160 steps); total 32/900
+04:35:14|INFO   |med-clamp: +16 rows (13.8s, 160 steps); total 48/900
+04:35:28|INFO   |med-clamp: +16 rows (14.3s, 168 steps); total 64/900
+04:35:43|INFO   |med-clamp: +16 rows (14.3s, 168 steps); total 80/900
+04:35:57|INFO   |med-clamp: +16 rows (14.3s, 168 steps); total 96/900
+04:36:14|INFO   |med-clamp: +16 rows (16.8s, 200 steps); total 112/900
+04:36:30|INFO   |med-clamp: +16 rows (15.6s, 184 steps); total 128/900
+04:36:45|INFO   |med-clamp: +16 rows (15.0s, 176 steps); total 144/900
+04:37:00|INFO   |med-clamp: +16 rows (15.7s, 184 steps); total 160/900
+04:37:16|INFO   |med-clamp: +16 rows (15.6s, 184 steps); total 176/900
+04:37:30|INFO   |med-clamp: +4 rows (13.8s, 176 steps); total 180/900
+04:37:50|INFO   |med-clamp: +16 rows (20.7s, 248 steps); total 196/900
+04:38:11|INFO   |med-clamp: +16 rows (20.7s, 248 steps); total 212/900
+04:38:26|INFO   |med-clamp: +16 rows (14.4s, 168 steps); total 228/900
+04:38:42|INFO   |med-clamp: +16 rows (16.3s, 192 steps); total 244/900
+04:38:56|INFO   |med-clamp: +16 rows (13.8s, 160 steps); total 260/900
+04:39:14|INFO   |med-clamp: +16 rows (18.7s, 224 steps); total 276/900
+04:39:33|INFO   |med-clamp: +16 rows (18.7s, 224 steps); total 292/900
+04:39:52|INFO   |med-clamp: +16 rows (18.7s, 224 steps); total 308/900
+04:40:06|INFO   |med-clamp: +16 rows (13.8s, 160 steps); total 324/900
+04:40:21|INFO   |med-clamp: +16 rows (15.7s, 184 steps); total 340/900
+04:40:37|INFO   |med-clamp: +16 rows (16.0s, 176 steps); total 356/900
+04:40:50|INFO   |med-clamp: +4 rows (12.6s, 160 steps); total 360/900
+04:41:04|INFO   |med-clamp: +16 rows (13.8s, 160 steps); total 376/900
+04:41:19|INFO   |med-clamp: +16 rows (15.0s, 176 steps); total 392/900
+04:41:37|INFO   |med-clamp: +16 rows (18.3s, 216 steps); total 408/900
+04:41:55|INFO   |med-clamp: +16 rows (18.2s, 216 steps); total 424/900
+04:42:10|INFO   |med-clamp: +16 rows (15.0s, 176 steps); total 440/900
+04:42:26|INFO   |med-clamp: +16 rows (15.6s, 184 steps); total 456/900
+04:42:41|INFO   |med-clamp: +16 rows (15.6s, 184 steps); total 472/900
+04:42:57|INFO   |med-clamp: +16 rows (15.6s, 184 steps); total 488/900
+04:43:13|INFO   |med-clamp: +16 rows (15.6s, 184 steps); total 504/900
+04:43:28|INFO   |med-clamp: +16 rows (15.6s, 184 steps); total 520/900
+04:43:43|INFO   |med-clamp: +16 rows (15.0s, 176 steps); total 536/900
+04:43:57|INFO   |med-clamp: +4 rows (13.8s, 176 steps); total 540/900
+04:44:12|INFO   |med-clamp: +16 rows (15.0s, 176 steps); total 556/900
+04:44:33|INFO   |med-clamp: +16 rows (20.6s, 248 steps); total 572/900
+04:44:48|INFO   |med-clamp: +16 rows (15.0s, 176 steps); total 588/900
+04:45:05|INFO   |med-clamp: +16 rows (16.9s, 200 steps); total 604/900
+04:45:18|INFO   |med-clamp: +16 rows (13.8s, 160 steps); total 620/900
+04:45:35|INFO   |med-clamp: +16 rows (16.8s, 200 steps); total 636/900
+04:45:49|INFO   |med-clamp: +16 rows (13.8s, 160 steps); total 652/900
+04:46:04|INFO   |med-clamp: +16 rows (15.0s, 176 steps); total 668/900
+04:46:19|INFO   |med-clamp: +16 rows (15.1s, 176 steps); total 684/900
+04:46:34|INFO   |med-clamp: +16 rows (15.0s, 176 steps); total 700/900
+04:46:49|INFO   |med-clamp: +16 rows (15.0s, 176 steps); total 716/900
+04:47:02|INFO   |med-clamp: +4 rows (12.6s, 160 steps); total 720/900
+04:47:18|INFO   |med-clamp: +16 rows (16.2s, 192 steps); total 736/900
+04:47:34|INFO   |med-clamp: +16 rows (16.2s, 192 steps); total 752/900
+04:47:49|INFO   |med-clamp: +16 rows (15.0s, 176 steps); total 768/900
+04:48:04|INFO   |med-clamp: +16 rows (15.0s, 176 steps); total 784/900
+04:48:18|INFO   |med-clamp: +16 rows (13.8s, 160 steps); total 800/900
+04:48:33|INFO   |med-clamp: +16 rows (14.4s, 168 steps); total 816/900
+04:48:33|WARNING|med-clamp: deadline reached, 84 rows not run
+04:53:32|INFO   |prospective: +16 rows (16.9s, 200 steps); total 16/240
+04:53:44|INFO   |prospective: +16 rows (12.6s, 144 steps); total 32/240
+04:54:01|INFO   |prospective: +16 rows (16.8s, 200 steps); total 48/240
+04:54:17|INFO   |prospective: +16 rows (16.3s, 192 steps); total 64/240
+04:54:31|INFO   |prospective: +16 rows (13.8s, 160 steps); total 80/240
+04:54:48|INFO   |prospective: +16 rows (16.8s, 200 steps); total 96/240
+04:55:04|INFO   |prospective: +16 rows (16.3s, 192 steps); total 112/240
+04:55:21|INFO   |prospective: +16 rows (16.9s, 200 steps); total 128/240
+04:55:37|INFO   |prospective: +16 rows (16.2s, 192 steps); total 144/240
+04:55:54|INFO   |prospective: +16 rows (16.2s, 192 steps); total 160/240
+04:56:06|INFO   |prospective: +16 rows (12.5s, 144 steps); total 176/240
+04:56:18|INFO   |prospective: +16 rows (11.9s, 136 steps); total 192/240
+04:56:34|INFO   |prospective: +16 rows (16.2s, 192 steps); total 208/240
+04:56:34|WARNING|prospective: deadline reached, 32 rows not run
+04:56:35|INFO   |mediation done

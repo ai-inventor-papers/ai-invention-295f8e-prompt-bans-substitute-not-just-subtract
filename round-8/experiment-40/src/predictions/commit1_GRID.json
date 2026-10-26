@@ -1,0 +1,53 @@
+{
+ "unit": "GRID",
+ "classes": [
+  "bfs",
+  "dfs"
+ ],
+ "class_token_sets": {
+  "bfs": [
+   107,
+   584,
+   5265,
+   15204,
+   236809
+  ],
+  "dfs": [
+   9607,
+   53227
+  ]
+ },
+ "token_strings": {
+  "bfs": [
+   "\n",
+   "if",
+   "open",
+   "queue",
+   "q"
+  ],
+  "dfs": [
+   "stack",
+   "visited"
+  ]
+ },
+ "decision_position": "last prefilled opening token (T10: token 10 ' def' after 'def solve(n, edges):'; GRID: c*[31])",
+ "n_train_pairs": 612,
+ "n_held_pairs": 112,
+ "train_pairs_sha256": "ef2d361cbf77e16bce0812d5331640b7512ad653f9cbfd4398dccb6d48a28097",
+ "held_pairs_sha256": "9b0154676d2705a9af7a14f5a06ea57ca3ba46bbf4fedbfc763e8b681333a5ba",
+ "excluded_sources": [],
+ "base_class_counts": {
+  "bfs": 9,
+  "dfs": 111
+ },
+ "natural_basis": "twins (c5/c6); twins + forced + placement prompts (c5b/c6b)",
+ "scan_rule": "blocks 0,2,..; rank 1, seed 0, 2-fold leave-family-out CV inside train, 100 steps; L* = argmax median CV recovery (ties -> earlier)",
+ "fit": {
+  "steps": 240,
+  "lr": 0.02,
+  "G": 4,
+  "Q": 12,
+  "val_every": 20,
+  "patience": 3
+ }
+}
