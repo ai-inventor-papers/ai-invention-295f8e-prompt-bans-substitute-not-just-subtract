@@ -1,0 +1,792 @@
+{
+ "cells": [
+  {
+   "task": "T2",
+   "S": "dijkstra",
+   "rung": 1,
+   "can": 1.0,
+   "qualifies": false,
+   "prediction": null,
+   "disconfirming": null,
+   "will_source": "exp9 LOS (not re-run)",
+   "will": 0.95,
+   "n_attempted": 100,
+   "k": 95,
+   "will_ci": [
+    0.8882495307680808,
+    0.9784563208456319
+   ],
+   "will_template_bootstrap_ci": [
+    1.0,
+    1.0
+   ],
+   "cell_verdict": null
+  },
+  {
+   "task": "T2",
+   "S": "bf_spfa",
+   "rung": 2,
+   "can": 0.85,
+   "qualifies": false,
+   "prediction": null,
+   "disconfirming": null,
+   "will_source": "exp9 LOS (not re-run)",
+   "will": 0.51,
+   "n_attempted": 100,
+   "k": 51,
+   "will_ci": [
+    0.4134801193402717,
+    0.6057800106955886
+   ],
+   "will_template_bootstrap_ci": [
+    1.0,
+    1.0
+   ],
+   "cell_verdict": null
+  },
+  {
+   "task": "T2",
+   "S": "bidijkstra",
+   "rung": ">=3",
+   "can": 0.016666666666666666,
+   "qualifies": false,
+   "prediction": null,
+   "disconfirming": null,
+   "will_source": "exp9 LOS (not re-run)",
+   "will": 0.0,
+   "n_attempted": 100,
+   "k": 0,
+   "will_ci": [
+    3.469446951953614e-18,
+    0.03699349820698568
+   ],
+   "will_template_bootstrap_ci": null,
+   "cell_verdict": null
+  },
+  {
+   "task": "T2",
+   "S": "floyd",
+   "rung": ">=3",
+   "can": 1.0,
+   "qualifies": true,
+   "prediction": "will(floyd) <= 0.1",
+   "disconfirming": "will(floyd) >= 0.3",
+   "will_source": "exp9 LOS (not re-run)",
+   "will": 0.0,
+   "n_attempted": 100,
+   "k": 0,
+   "will_ci": [
+    3.469446951953614e-18,
+    0.03699349820698568
+   ],
+   "will_template_bootstrap_ci": null,
+   "cell_verdict": "CONFIRM"
+  },
+  {
+   "task": "T2",
+   "S": "dial",
+   "rung": ">=3",
+   "can": 0.075,
+   "qualifies": false,
+   "prediction": null,
+   "disconfirming": null,
+   "will_source": "exp9 LOS (not re-run)",
+   "will": 0.0,
+   "n_attempted": 100,
+   "k": 0,
+   "will_ci": [
+    3.469446951953614e-18,
+    0.03699349820698568
+   ],
+   "will_template_bootstrap_ci": null,
+   "cell_verdict": null
+  },
+  {
+   "task": "T03",
+   "S": "full_sort",
+   "rung": 1,
+   "can": 1.0,
+   "qualifies": false,
+   "prediction": null,
+   "disconfirming": null,
+   "will_source": "this artifact",
+   "will_corrected": 0.0,
+   "will": 0.0,
+   "n_attempted": 50,
+   "k": 0,
+   "will_ci": [
+    0.0,
+    0.07134760017861413
+   ],
+   "will_template_bootstrap_ci": [
+    0.0,
+    0.0
+   ],
+   "cell_verdict": null
+  },
+  {
+   "task": "T03",
+   "S": "quickselect",
+   "rung": ">=3",
+   "can": 0.95,
+   "qualifies": true,
+   "prediction": "will(quickselect) <= 0.1",
+   "disconfirming": "will(quickselect) >= 0.3",
+   "will_source": "this artifact",
+   "will_corrected": 1.0,
+   "will": 1.0,
+   "n_attempted": 50,
+   "k": 50,
+   "will_ci": [
+    0.9286523998213857,
+    0.9999999999999999
+   ],
+   "will_template_bootstrap_ci": [
+    1.0,
+    1.0
+   ],
+   "cell_verdict": "DISCONFIRM"
+  },
+  {
+   "task": "T03",
+   "S": "size_k_heap",
+   "rung": ">=3",
+   "can": 0.75,
+   "qualifies": true,
+   "prediction": "will(size_k_heap) <= 0.1",
+   "disconfirming": "will(size_k_heap) >= 0.3",
+   "will_source": "this artifact",
+   "will_corrected": 0.0,
+   "will": 0.0,
+   "n_attempted": 50,
+   "k": 0,
+   "will_ci": [
+    0.0,
+    0.07134760017861413
+   ],
+   "will_template_bootstrap_ci": [
+    0.0,
+    0.0
+   ],
+   "cell_verdict": "CONFIRM"
+  },
+  {
+   "task": "T03",
+   "S": "counting_sort",
+   "rung": 2,
+   "can": 0.7666666666666667,
+   "qualifies": false,
+   "prediction": null,
+   "disconfirming": null,
+   "will_source": "this artifact",
+   "will_corrected": 0.12,
+   "will": 0.0,
+   "n_attempted": 50,
+   "k": 0,
+   "will_ci": [
+    0.0,
+    0.07134760017861413
+   ],
+   "will_template_bootstrap_ci": [
+    0.0,
+    0.0
+   ],
+   "cell_verdict": null
+  },
+  {
+   "task": "T03",
+   "S": "heapify_pop",
+   "rung": ">=3",
+   "can": 0.7,
+   "qualifies": true,
+   "prediction": "will(heapify_pop) <= 0.1",
+   "disconfirming": "will(heapify_pop) >= 0.3",
+   "will_source": "this artifact",
+   "will_corrected": 0.0,
+   "will": 0.0,
+   "n_attempted": 50,
+   "k": 0,
+   "will_ci": [
+    0.0,
+    0.07134760017861413
+   ],
+   "will_template_bootstrap_ci": [
+    0.0,
+    0.0
+   ],
+   "cell_verdict": "CONFIRM"
+  },
+  {
+   "task": "T04",
+   "S": "naive",
+   "rung": 1,
+   "can": 1.0,
+   "qualifies": false,
+   "prediction": null,
+   "disconfirming": null,
+   "will_source": "this artifact",
+   "will_corrected": 1.0,
+   "will": 1.0,
+   "n_attempted": 50,
+   "k": 50,
+   "will_ci": [
+    0.9286523998213857,
+    0.9999999999999999
+   ],
+   "will_template_bootstrap_ci": [
+    1.0,
+    1.0
+   ],
+   "cell_verdict": null
+  },
+  {
+   "task": "T04",
+   "S": "kmp",
+   "rung": 2,
+   "can": 1.0,
+   "qualifies": false,
+   "prediction": null,
+   "disconfirming": null,
+   "will_source": "this artifact",
+   "will_corrected": 0.26,
+   "will": 0.26,
+   "n_attempted": 50,
+   "k": 13,
+   "will_ci": [
+    0.15871527430089563,
+    0.39553157378483916
+   ],
+   "will_template_bootstrap_ci": [
+    0.18,
+    0.34
+   ],
+   "cell_verdict": null
+  },
+  {
+   "task": "T04",
+   "S": "rabin_karp",
+   "rung": ">=3",
+   "can": 0.65,
+   "qualifies": false,
+   "prediction": null,
+   "disconfirming": null,
+   "will_source": "this artifact",
+   "will_corrected": 0.1,
+   "will": 0.1,
+   "n_attempted": 50,
+   "k": 5,
+   "will_ci": [
+    0.04347576465675888,
+    0.2136023154861324
+   ],
+   "will_template_bootstrap_ci": [
+    0.0,
+    0.3
+   ],
+   "cell_verdict": null
+  },
+  {
+   "task": "T04",
+   "S": "builtin",
+   "rung": ">=3",
+   "can": 0.6,
+   "qualifies": false,
+   "prediction": null,
+   "disconfirming": null,
+   "will_source": "this artifact",
+   "will_corrected": 0.0,
+   "will": 0.0,
+   "n_attempted": 50,
+   "k": 0,
+   "will_ci": [
+    0.0,
+    0.07134760017861413
+   ],
+   "will_template_bootstrap_ci": [
+    0.0,
+    0.0
+   ],
+   "cell_verdict": null
+  },
+  {
+   "task": "T04",
+   "S": "z_algorithm",
+   "rung": ">=3",
+   "can": 0.575,
+   "qualifies": false,
+   "prediction": null,
+   "disconfirming": null,
+   "will_source": "this artifact",
+   "will_corrected": 0.0,
+   "will": 0.0,
+   "n_attempted": 50,
+   "k": 0,
+   "will_ci": [
+    0.0,
+    0.07134760017861413
+   ],
+   "will_template_bootstrap_ci": [
+    0.0,
+    0.0
+   ],
+   "cell_verdict": null
+  },
+  {
+   "task": "T06",
+   "S": "hash_set",
+   "rung": 1,
+   "can": 1.0,
+   "qualifies": false,
+   "prediction": null,
+   "disconfirming": null,
+   "will_source": "this artifact",
+   "will_corrected": 0.86,
+   "will": 0.86,
+   "n_attempted": 50,
+   "k": 43,
+   "will_ci": [
+    0.7381380617631021,
+    0.9304916661082956
+   ],
+   "will_template_bootstrap_ci": [
+    0.78,
+    0.9
+   ],
+   "cell_verdict": null
+  },
+  {
+   "task": "T06",
+   "S": "value_binary_search",
+   "rung": ">=3",
+   "can": 0.775,
+   "qualifies": true,
+   "prediction": "will(value_binary_search) <= 0.1",
+   "disconfirming": "will(value_binary_search) >= 0.3",
+   "will_source": "this artifact",
+   "will_corrected": 0.0,
+   "will": 0.0,
+   "n_attempted": 50,
+   "k": 0,
+   "will_ci": [
+    0.0,
+    0.07134760017861413
+   ],
+   "will_template_bootstrap_ci": [
+    0.0,
+    0.0
+   ],
+   "cell_verdict": "CONFIRM"
+  },
+  {
+   "task": "T06",
+   "S": "floyd",
+   "rung": ">=3",
+   "can": 0.7,
+   "qualifies": true,
+   "prediction": "will(floyd) <= 0.1",
+   "disconfirming": "will(floyd) >= 0.3",
+   "will_source": "this artifact",
+   "will_corrected": 0.14,
+   "will": 0.14,
+   "n_attempted": 50,
+   "k": 7,
+   "will_ci": [
+    0.0695083338917044,
+    0.2618619382368978
+   ],
+   "will_template_bootstrap_ci": [
+    0.02,
+    0.28
+   ],
+   "cell_verdict": "NEITHER"
+  },
+  {
+   "task": "T06",
+   "S": "sort_adjacent",
+   "rung": 2,
+   "can": 0.525,
+   "qualifies": false,
+   "prediction": null,
+   "disconfirming": null,
+   "will_source": "this artifact",
+   "will_corrected": 0.02,
+   "will": 0.02,
+   "n_attempted": 50,
+   "k": 1,
+   "will_ci": [
+    0.003539259232504602,
+    0.10495443693896496
+   ],
+   "will_template_bootstrap_ci": [
+    0.0,
+    0.06
+   ],
+   "cell_verdict": null
+  },
+  {
+   "task": "T10",
+   "S": "bfs",
+   "rung": ">=3",
+   "can": 1.0,
+   "qualifies": true,
+   "prediction": "will(bfs) <= 0.1",
+   "disconfirming": "will(bfs) >= 0.3",
+   "will_source": "this artifact",
+   "will_corrected": 1.0,
+   "will": 1.0,
+   "n_attempted": 50,
+   "k": 50,
+   "will_ci": [
+    0.9286523998213857,
+    0.9999999999999999
+   ],
+   "will_template_bootstrap_ci": [
+    1.0,
+    1.0
+   ],
+   "cell_verdict": "DISCONFIRM"
+  },
+  {
+   "task": "T10",
+   "S": "dfs",
+   "rung": 2,
+   "can": 1.0,
+   "qualifies": false,
+   "prediction": null,
+   "disconfirming": null,
+   "will_source": "this artifact",
+   "will_corrected": 0.98,
+   "will": 0.98,
+   "n_attempted": 50,
+   "k": 49,
+   "will_ci": [
+    0.8950455630610349,
+    0.9964607407674954
+   ],
+   "will_template_bootstrap_ci": [
+    0.94,
+    1.0
+   ],
+   "cell_verdict": null
+  },
+  {
+   "task": "T10",
+   "S": "union_find",
+   "rung": 1,
+   "can": 1.0,
+   "qualifies": false,
+   "prediction": null,
+   "disconfirming": null,
+   "will_source": "this artifact",
+   "will_corrected": 0.94,
+   "will": 0.94,
+   "n_attempted": 50,
+   "k": 47,
+   "will_ci": [
+    0.8378290820312557,
+    0.9793850298115638
+   ],
+   "will_template_bootstrap_ci": [
+    0.9,
+    0.98
+   ],
+   "cell_verdict": null
+  }
+ ],
+ "per_task": {
+  "T2": {
+   "verdict": "CONFIRMED",
+   "n_qualifying": 1
+  },
+  "T03": {
+   "verdict": "DISCONFIRMED",
+   "n_qualifying": 3
+  },
+  "T04": {
+   "verdict": "UNTESTABLE",
+   "n_qualifying": 0
+  },
+  "T06": {
+   "verdict": "MIXED",
+   "n_qualifying": 2
+  },
+  "T10": {
+   "verdict": "DISCONFIRMED",
+   "n_qualifying": 1
+  }
+ },
+ "overall": "DISCONFIRMED",
+ "sensitivity_association_rung2": {
+  "cells": [
+   {
+    "task": "T2",
+    "S": "dijkstra",
+    "rung": 1,
+    "rung_alt": null,
+    "rung2_alt": null,
+    "can": 1.0,
+    "will": 0.95,
+    "will_corrected": null,
+    "qualifies": false,
+    "qualifies_alt": null
+   },
+   {
+    "task": "T2",
+    "S": "bf_spfa",
+    "rung": 2,
+    "rung_alt": null,
+    "rung2_alt": null,
+    "can": 0.85,
+    "will": 0.51,
+    "will_corrected": null,
+    "qualifies": false,
+    "qualifies_alt": null
+   },
+   {
+    "task": "T2",
+    "S": "bidijkstra",
+    "rung": ">=3",
+    "rung_alt": null,
+    "rung2_alt": null,
+    "can": 0.016666666666666666,
+    "will": 0.0,
+    "will_corrected": null,
+    "qualifies": false,
+    "qualifies_alt": null
+   },
+   {
+    "task": "T2",
+    "S": "floyd",
+    "rung": ">=3",
+    "rung_alt": null,
+    "rung2_alt": null,
+    "can": 1.0,
+    "will": 0.0,
+    "will_corrected": null,
+    "qualifies": true,
+    "qualifies_alt": null
+   },
+   {
+    "task": "T2",
+    "S": "dial",
+    "rung": ">=3",
+    "rung_alt": null,
+    "rung2_alt": null,
+    "can": 0.075,
+    "will": 0.0,
+    "will_corrected": null,
+    "qualifies": false,
+    "qualifies_alt": null
+   },
+   {
+    "task": "T03",
+    "S": "full_sort",
+    "rung": 1,
+    "rung_alt": 1,
+    "rung2_alt": "quickselect",
+    "can": 1.0,
+    "will": 0.0,
+    "will_corrected": 0.0,
+    "qualifies": false,
+    "qualifies_alt": false
+   },
+   {
+    "task": "T03",
+    "S": "quickselect",
+    "rung": ">=3",
+    "rung_alt": 2,
+    "rung2_alt": "quickselect",
+    "can": 0.95,
+    "will": 1.0,
+    "will_corrected": 1.0,
+    "qualifies": true,
+    "qualifies_alt": false
+   },
+   {
+    "task": "T03",
+    "S": "size_k_heap",
+    "rung": ">=3",
+    "rung_alt": ">=3",
+    "rung2_alt": "quickselect",
+    "can": 0.75,
+    "will": 0.0,
+    "will_corrected": 0.0,
+    "qualifies": true,
+    "qualifies_alt": true
+   },
+   {
+    "task": "T03",
+    "S": "counting_sort",
+    "rung": 2,
+    "rung_alt": ">=3",
+    "rung2_alt": "quickselect",
+    "can": 0.7666666666666667,
+    "will": 0.0,
+    "will_corrected": 0.12,
+    "qualifies": false,
+    "qualifies_alt": true
+   },
+   {
+    "task": "T03",
+    "S": "heapify_pop",
+    "rung": ">=3",
+    "rung_alt": ">=3",
+    "rung2_alt": "quickselect",
+    "can": 0.7,
+    "will": 0.0,
+    "will_corrected": 0.0,
+    "qualifies": true,
+    "qualifies_alt": true
+   },
+   {
+    "task": "T04",
+    "S": "naive",
+    "rung": 1,
+    "rung_alt": 1,
+    "rung2_alt": "kmp",
+    "can": 1.0,
+    "will": 1.0,
+    "will_corrected": 1.0,
+    "qualifies": false,
+    "qualifies_alt": false
+   },
+   {
+    "task": "T04",
+    "S": "kmp",
+    "rung": 2,
+    "rung_alt": 2,
+    "rung2_alt": "kmp",
+    "can": 1.0,
+    "will": 0.26,
+    "will_corrected": 0.26,
+    "qualifies": false,
+    "qualifies_alt": false
+   },
+   {
+    "task": "T04",
+    "S": "rabin_karp",
+    "rung": ">=3",
+    "rung_alt": ">=3",
+    "rung2_alt": "kmp",
+    "can": 0.65,
+    "will": 0.1,
+    "will_corrected": 0.1,
+    "qualifies": false,
+    "qualifies_alt": false
+   },
+   {
+    "task": "T04",
+    "S": "builtin",
+    "rung": ">=3",
+    "rung_alt": ">=3",
+    "rung2_alt": "kmp",
+    "can": 0.6,
+    "will": 0.0,
+    "will_corrected": 0.0,
+    "qualifies": false,
+    "qualifies_alt": false
+   },
+   {
+    "task": "T04",
+    "S": "z_algorithm",
+    "rung": ">=3",
+    "rung_alt": ">=3",
+    "rung2_alt": "kmp",
+    "can": 0.575,
+    "will": 0.0,
+    "will_corrected": 0.0,
+    "qualifies": false,
+    "qualifies_alt": false
+   },
+   {
+    "task": "T06",
+    "S": "hash_set",
+    "rung": 1,
+    "rung_alt": 1,
+    "rung2_alt": "floyd",
+    "can": 1.0,
+    "will": 0.86,
+    "will_corrected": 0.86,
+    "qualifies": false,
+    "qualifies_alt": false
+   },
+   {
+    "task": "T06",
+    "S": "value_binary_search",
+    "rung": ">=3",
+    "rung_alt": ">=3",
+    "rung2_alt": "floyd",
+    "can": 0.775,
+    "will": 0.0,
+    "will_corrected": 0.0,
+    "qualifies": true,
+    "qualifies_alt": true
+   },
+   {
+    "task": "T06",
+    "S": "floyd",
+    "rung": ">=3",
+    "rung_alt": 2,
+    "rung2_alt": "floyd",
+    "can": 0.7,
+    "will": 0.14,
+    "will_corrected": 0.14,
+    "qualifies": true,
+    "qualifies_alt": false
+   },
+   {
+    "task": "T06",
+    "S": "sort_adjacent",
+    "rung": 2,
+    "rung_alt": ">=3",
+    "rung2_alt": "floyd",
+    "can": 0.525,
+    "will": 0.02,
+    "will_corrected": 0.02,
+    "qualifies": false,
+    "qualifies_alt": false
+   },
+   {
+    "task": "T10",
+    "S": "bfs",
+    "rung": ">=3",
+    "rung_alt": ">=3",
+    "rung2_alt": "dfs",
+    "can": 1.0,
+    "will": 1.0,
+    "will_corrected": 1.0,
+    "qualifies": true,
+    "qualifies_alt": true
+   },
+   {
+    "task": "T10",
+    "S": "dfs",
+    "rung": 2,
+    "rung_alt": 2,
+    "rung2_alt": "dfs",
+    "can": 1.0,
+    "will": 0.98,
+    "will_corrected": 0.98,
+    "qualifies": false,
+    "qualifies_alt": false
+   },
+   {
+    "task": "T10",
+    "S": "union_find",
+    "rung": 1,
+    "rung_alt": 1,
+    "rung2_alt": "dfs",
+    "can": 1.0,
+    "will": 0.94,
+    "will_corrected": 0.94,
+    "qualifies": false,
+    "qualifies_alt": false
+   }
+  ],
+  "verdict_alt": "DISCONFIRMED",
+  "note": "post hoc (not preregistered): the walk stalled at step 1 on T03 and T10, so their committed rung 2 came from the flagged fallback chain; this recomputes C3 with rung 2 := the association modal answer for the default"
+ },
+ "holm_family": "C3 reach is a SECONDARY Holm-family member (recorded for next-round pooling; no Holm adjustment is applied inside this artifact because the verdict rule is a point-estimate rule)",
+ "rule": "CONFIRMED if every qualifying cell (rung >= 3, can >= 0.7) has will <= 0.1 and >= 1 cell exists; DISCONFIRMED if any has will >= 0.3; else MIXED / UNTESTABLE",
+ "scope": "Qwen3-8B only; bench cells from this artifact (FP8), T2 cells from exp9 (bf16, not re-run); T1 has no LOS (C3 untestable on T1: can is low for most algorithms)"
+}

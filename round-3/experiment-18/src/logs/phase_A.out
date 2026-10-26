@@ -1,0 +1,71 @@
+<workspace>/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+21:27:22|INFO   |[T1] distinctive n-gram of default bfs: ' c, path = queue.p' (n=6, presence 0.82, score 0.04, co-vetoed [])
+21:27:22|INFO   |[T2] distinctive n-gram of default dijkstra: ' heap = [(0, s' (n=6, presence 0.94, score 0.00, co-vetoed [])
+21:30:28|INFO   |[bf16] 250 generations, 69315 new tokens in 181s (382 tok/s)
+21:30:41|INFO   |labelled 170 new unique programs (1 judged)
+21:30:43|INFO   |scheduler iter 0: 250 programs, gen 181s, total 197s
+21:30:43|INFO   |  [walk T1] step 0 r0: counts {'bfs': 50} pass 0.92 leak 0.0 reem {} ->  status RUNNING
+21:30:43|INFO   |  [walk T2] step 0 r0: counts {'dijkstra': 50} pass 1.0 leak 0.0 reem {} ->  status RUNNING
+21:30:43|INFO   |  [sham T1] step 1 r0: counts {'bfs': 50} pass 0.96 leak 0.0 reem {} ->  status DONE
+21:30:43|INFO   |  [sham T2] step 1 r0: counts {'dijkstra': 50} pass 1.0 leak 0.96 reem {} ->  status DONE
+21:30:44|INFO   |  [fixed_top5 T1] step 1 r0: counts {'invalid': 38, 'bfs': 12} pass 0.75 leak 0.02 reem {'bfs': 1.0, 'dfs': 0.0, 'iddfs': 0.0, 'astar_gbfs': 0.0} -> re-emergence {'bfs': 1.0, 'dfs': 0.0, 'iddfs': 0.0, 'astar_gbfs': 0.0}: +[' queue.append(start'] status RUNNING
+21:32:43|INFO   |[bf16] 150 generations, 43382 new tokens in 119s (364 tok/s)
+21:32:47|INFO   |labelled 126 new unique programs (13 judged)
+21:32:48|INFO   |scheduler iter 1: 150 programs, gen 119s, total 124s
+21:32:49|INFO   |  [walk T1] step 1 r0: counts {'invalid': 33, 'bfs': 16, 'dfs': 1} pass 0.7647058823529411 leak 0.02 reem {'bfs': 0.9411764705882353} -> re-emergence {'bfs': 0.9411764705882353} >= 0.2: +[' queue.append(start'] status RUNNING
+21:32:49|INFO   |  [walk T2] step 1 r0: counts {'dijkstra': 46, 'invalid': 4} pass 0.41304347826086957 leak 0.02 reem {'dijkstra': 1.0} -> re-emergence {'dijkstra': 1.0} >= 0.2: +[' current_dist,'] status RUNNING
+21:32:49|INFO   |  [fixed_top5 T1] step 1 r1: counts {'invalid': 40, 'bfs': 10} pass 0.7 leak 0.0 reem {'bfs': 1.0, 'dfs': 0.0, 'iddfs': 0.0, 'astar_gbfs': 0.0} -> re-emergence {'bfs': 1.0, 'dfs': 0.0, 'iddfs': 0.0, 'astar_gbfs': 0.0}: +[' parent[n'] status RUNNING
+21:35:45|INFO   |[bf16] 150 generations, 42810 new tokens in 176s (243 tok/s)
+21:35:50|INFO   |labelled 113 new unique programs (18 judged)
+21:35:51|INFO   |scheduler iter 2: 150 programs, gen 176s, total 182s
+21:35:52|INFO   |  [walk T1] step 1 r1: counts {'invalid': 40, 'bfs': 9, 'dfs': 1} pass 0.9 leak 0.02 reem {'bfs': 0.9} -> re-emergence {'bfs': 0.9} >= 0.2: +['None for'] status RUNNING
+21:35:52|INFO   |  [walk T2] step 1 r1: counts {'invalid': 7, 'dijkstra': 43} pass 0.3488372093023256 leak 0.0 reem {'dijkstra': 1.0} -> re-emergence {'dijkstra': 1.0} >= 0.2: +[' dist[u]:\n'] status RUNNING
+21:35:52|INFO   |  [fixed_top5 T1] step 1 r2: counts {'invalid': 35, 'bfs': 13, 'dfs': 2} pass 0.4666666666666667 leak 0.04 reem {'bfs': 0.8666666666666667, 'dfs': 0.13333333333333333, 'iddfs': 0.0, 'astar_gbfs': 0.0} ->  status DONE
+21:37:04|INFO   |[bf16] 100 generations, 26420 new tokens in 72s (366 tok/s)
+21:37:07|INFO   |labelled 82 new unique programs (10 judged)
+21:37:09|INFO   |scheduler iter 3: 100 programs, gen 72s, total 76s
+21:37:09|INFO   |  [walk T1] step 1 r2: counts {'bfs': 15, 'invalid': 35} pass 0.9333333333333333 leak 0.02 reem {'bfs': 1.0} -> invalid share >= 0.5: one extra round without leading-space variants (F3) status RUNNING
+21:37:09|INFO   |  [walk T2] step 1 r2: counts {'dijkstra': 27, 'invalid': 23} pass 0.2962962962962963 leak 0.56 reem {'dijkstra': 1.0} -> STALLED: non-vetoed attempts 0, vetoed share 1.0 status STALLED
+21:38:22|INFO   |[bf16] 50 generations, 16402 new tokens in 73s (223 tok/s)
+21:38:23|INFO   |labelled 30 new unique programs (0 judged)
+21:38:23|INFO   |scheduler iter 4: 50 programs, gen 73s, total 74s
+21:38:23|INFO   |  [walk T1] step 1 r3: counts {'invalid': 43, 'bfs': 6, 'dfs': 1} pass 0.8571428571428571 leak 0.0 reem {'bfs': 0.8571428571428571} -> STALLED: non-vetoed attempts 1, vetoed share 0.8571428571428571 status STALLED
+21:38:23|INFO   |committed reach_forecasts_path.json: chain 51340e83894b
+21:38:23|INFO   |[path] two-step forecasts committed; two-step jobs queued
+Traceback (most recent call last):
+  File "<workspace>/src/phases.py", line 193, in <module>
+    main()
+  File "<workspace>/src/phases.py", line 186, in main
+    run_group("bf16", ["T1", "T2"], with_sham=True, with_top5=True, group="path")
+  File "<workspace>/src/phases.py", line 168, in run_group
+    sched.run(arms)
+  File "<workspace>/src/walk.py", line 532, in run
+    outs, dt_gen = run_batch(self.kind, [rq for _, rq in batch])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<workspace>/src/client.py", line 73, in run_batch
+    out = asyncio.run(generate_many(kind, reqs))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "<workspace>/src/client.py", line 68, in generate_many
+    return await asyncio.gather(*coros)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<workspace>/src/client.py", line 52, in complete
+    async with _sem(kind):
+               ^^^^^^^^^^
+  File "/usr/local/lib/python3.12/asyncio/locks.py", line 14, in __aenter__
+    await self.acquire()
+  File "/usr/local/lib/python3.12/asyncio/locks.py", line 378, in acquire
+    fut = self._get_loop().create_future()
+          ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/asyncio/mixins.py", line 20, in _get_loop
+    raise RuntimeError(f'{self!r} is bound to a different event loop')
+RuntimeError: <asyncio.locks.Semaphore object at 0x79905fe6cb90 [locked]> is bound to a different event loop
