@@ -1,0 +1,61 @@
+<workspace>/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+INFO 10-20 18:31:20 [__init__.py:216] Automatically detected platform cuda.
+INFO 10-20 18:31:57 [utils.py:233] non-default args: {'dtype': 'bfloat16', 'seed': 0, 'max_model_len': 2048, 'enable_prefix_caching': True, 'gpu_memory_utilization': 0.92, 'max_num_batched_tokens': 2048, 'max_num_seqs': 64, 'disable_log_stats': True, 'enforce_eager': True, 'generation_config': 'vllm', 'logits_processors': [<class 'src.engine_vllm.VetoAdapter'>], 'model': '<run shared HF cache>/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659'}
+INFO 10-20 18:31:57 [model.py:547] Resolved architecture: LlamaForCausalLM
+`torch_dtype` is deprecated! Use `dtype` instead!
+INFO 10-20 18:31:57 [model.py:1510] Using max model len 2048
+INFO 10-20 18:32:00 [scheduler.py:205] Chunked prefill is enabled with max_num_batched_tokens=2048.
+INFO 10-20 18:32:00 [__init__.py:381] Cudagraph is disabled under eager mode
+INFO 10-20 18:32:01 [core.py:77] Initializing a V1 LLM engine (v0.11.0) with config: model='<run shared HF cache>/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659', speculative_config=None, tokenizer='<run shared HF cache>/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser=''), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None), seed=0, served_model_name=<run shared HF cache>/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659, enable_prefix_caching=True, chunked_prefill_enabled=True, pooler_config=None, compilation_config={"level":0,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":null,"use_inductor":true,"compile_sizes":[],"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"cudagraph_mode":0,"use_cudagraph":true,"cudagraph_num_of_warmups":0,"cudagraph_capture_sizes":[],"cudagraph_copy_inputs":false,"full_cuda_graph":false,"use_inductor_graph_partition":false,"pass_config":{},"max_capture_size":0,"local_cache_dir":null}
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+INFO 10-20 18:32:10 [parallel_state.py:1208] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0, EP rank 0
+WARNING 10-20 18:32:10 [topk_topp_sampler.py:66] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+INFO 10-20 18:32:10 [gpu_model_runner.py:2602] Starting to load model <run shared HF cache>/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659...
+INFO 10-20 18:32:11 [gpu_model_runner.py:2634] Loading model from scratch...
+INFO 10-20 18:32:11 [cuda.py:366] Using Flash Attention backend on V1 engine.
+
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:11<00:35, 11.96s/it]
+
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:24<00:24, 12.07s/it]
+
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:36<00:12, 12.19s/it]
+
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:39<00:00,  8.56s/it]
+
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:39<00:00,  9.86s/it]
+
+INFO 10-20 18:32:51 [default_loader.py:267] Loading weights took 39.48 seconds
+INFO 10-20 18:32:51 [gpu_model_runner.py:2653] Model loading took 14.9889 GiB and 40.000418 seconds
+INFO 10-20 18:32:53 [gpu_worker.py:298] Available KV cache memory: 4.84 GiB
+INFO 10-20 18:32:53 [kv_cache_utils.py:1087] GPU KV cache size: 39,632 tokens
+INFO 10-20 18:32:53 [kv_cache_utils.py:1091] Maximum concurrency for 2,048 tokens per request: 19.35x
+WARNING 10-20 18:32:53 [cudagraph_dispatcher.py:106] cudagraph dispatching keys are not initialized. No cudagraph will be used.
+INFO 10-20 18:32:53 [core.py:210] init engine (profile, create kv cache, warmup model) took 2.30 seconds
+INFO 10-20 18:32:54 [llm.py:306] Supported_tasks: ('generate',)
+18:32:54|INFO   |vLLM ready in 58s (prefix_caching=True, gpu_mem=0.92)
+18:32:54|INFO   |KV cache: {'num_gpu_blocks': 2477, 'block_size': 16, 'kv_tokens': 39632}
+18:33:04|INFO   |T2 sampler test: {'effective_params': {'temperature': 1.0, 'top_p': 1.0, 'top_k': -1, 'min_p': 0.0, 'repetition_penalty': 1.0, 'presence_penalty': 0.0, 'frequency_penalty': 0.0, 'max_tokens': 1024, 'seed': 1, 'stop_token_ids': [128001, 128008, 128009], 'logit_bias': None, 'extra_args': None}, 'n': 20, 'identical_on_rerun_same_seed': 16, 'identical_T1_vs_T0.6_same_seed': 3, 'passed': True}
+18:33:05|INFO   |[B3r1] 1000 requests, 1000 to run
+18:34:09|INFO   |[B3r1] {'stage': '0-10', 'n': 10, 'seconds': 64.0, 'new_tokens': 2792, 'tok_per_s': 43.7, 'mean_new_tokens': 279.2, 'length_rate': 0.1, 'remaining': 990, 'eta_seconds_linear': 6332.0}
+18:35:30|INFO   |[B3r1] {'stage': '10-110', 'n': 100, 'seconds': 81.6, 'new_tokens': 21508, 'tok_per_s': 263.7, 'mean_new_tokens': 215.1, 'length_rate': 0.02, 'remaining': 890, 'eta_seconds_linear': 726.0}
+18:40:39|INFO   |[B3r1] {'stage': '110-1000', 'n': 890, 'seconds': 308.1, 'new_tokens': 187979, 'tok_per_s': 610.2, 'mean_new_tokens': 211.2, 'length_rate': 0.008, 'remaining': 0, 'eta_seconds_linear': 0.0}
+18:40:39|INFO   |B3r1 done in 454s
+18:40:39|INFO   |[B2] 1000 requests, 1000 to run
+18:40:45|INFO   |[B2] {'stage': '0-10', 'n': 10, 'seconds': 6.2, 'new_tokens': 960, 'tok_per_s': 155.3, 'mean_new_tokens': 96.0, 'length_rate': 1.0, 'remaining': 990, 'eta_seconds_linear': 612.0}
+18:41:00|INFO   |[B2] {'stage': '10-110', 'n': 100, 'seconds': 14.6, 'new_tokens': 9308, 'tok_per_s': 637.7, 'mean_new_tokens': 93.1, 'length_rate': 0.95, 'remaining': 890, 'eta_seconds_linear': 130.0}
+18:42:47|INFO   |[B2] {'stage': '110-1000', 'n': 890, 'seconds': 106.9, 'new_tokens': 83306, 'tok_per_s': 779.1, 'mean_new_tokens': 93.6, 'length_rate': 0.945, 'remaining': 0, 'eta_seconds_linear': 0.0}
+18:42:47|INFO   |B2 done in 128s
+18:42:47|INFO   |[B5] 1200 requests, 1200 to run
+18:43:16|INFO   |[B5] {'stage': '0-10', 'n': 10, 'seconds': 29.5, 'new_tokens': 1395, 'tok_per_s': 47.2, 'mean_new_tokens': 139.5, 'length_rate': 0.0, 'remaining': 1190, 'eta_seconds_linear': 3513.0}
+18:44:38|INFO   |[B5] {'stage': '10-110', 'n': 100, 'seconds': 82.0, 'new_tokens': 28688, 'tok_per_s': 350.0, 'mean_new_tokens': 286.9, 'length_rate': 0.05, 'remaining': 1090, 'eta_seconds_linear': 893.0}
+18:51:11|INFO   |[B5] {'stage': '110-1200', 'n': 1090, 'seconds': 392.5, 'new_tokens': 262346, 'tok_per_s': 668.5, 'mean_new_tokens': 240.7, 'length_rate': 0.021, 'remaining': 0, 'eta_seconds_linear': 0.0}
+18:51:11|INFO   |B5 done in 504s
+[rank0]:[W1020 18:51:12.380258653 ProcessGroupNCCL.cpp:1538] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())

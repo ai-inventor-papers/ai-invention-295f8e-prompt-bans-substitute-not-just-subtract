@@ -1,0 +1,80 @@
+{
+ "path": "<dependency art_j3Rm_lr2nzR6 folder>",
+ "files": {
+  "preview_data_out.json": {
+   "bytes": 26394,
+   "sha256": "38d5ee1b784be2720c1163285b15ecbf215e51db292c4f456518711f1aa36db5"
+  },
+  "mini_data_out.json": {
+   "bytes": 262028,
+   "sha256": "05d917f00573e15b508cb137dda9dfc76b1a403a4a16ab12e0b874a9461e6721"
+  },
+  "full_data_out.json": {
+   "bytes": 96205300,
+   "sha256": "079dec278b504db49dfad24cdf8713e2400ec9abbc9c49c56511a35f9f4c3038"
+  }
+ },
+ "datasets": {
+  "leetcodedataset": {
+   "n_examples": 2869,
+   "bench_task_map": {
+    "T05_two_sum": 1,
+    "T04_substring_search": 1,
+    "R6_first_occurrence": 1,
+    "T13_merge_intervals": 1,
+    "R3_course_schedule": 1,
+    "T03_kth_smallest": 1,
+    "T06_find_duplicate": 1,
+    "T11_longest_increasing_subsequence": 1,
+    "T10_connected_components": 3,
+    "T14_top_k_frequent": 1,
+    "R1_interval_scheduling": 1,
+    "T08_fibonacci": 1,
+    "T07_convex_hull": 1,
+    "R2_redundant_connection": 1,
+    "T02_weighted_shortest_path": 3,
+    "T01_grid_path": 1
+   }
+  },
+  "mercury": {
+   "n_examples": 440
+  },
+  "llm_creativity": {
+   "n_examples": 225
+  },
+  "thealgorithms_python": {
+   "n_examples": 1354
+  },
+  "clrs_text": {
+   "n_examples": 2910
+  },
+  "humanevalplus": {
+   "n_examples": 164
+  },
+  "enamel": {
+   "n_examples": 164
+  },
+  "concreteness_norms": {
+   "n_examples": 39954,
+   "neutral_noun_candidates": 0
+  },
+  "kodcode_algorithmic": {
+   "n_examples": 2767
+  },
+  "xlcost_python": {
+   "n_examples": 10622
+  }
+ },
+ "role_in_this_artifact": {
+  "leetcodedataset": "bench tasks + hidden tests (built in exp11; frozen copy in inputs/exp11/bench)",
+  "mercury": "bench references / efficiency calibration (exp11 build)",
+  "llm_creativity": "path-task (T2) prior labels (exp1/exp10 lineage; screen only)",
+  "thealgorithms_python": "AST-rule negatives (exp11 labeller gate)",
+  "clrs_text": "tracer tests (exp11 labeller gate)",
+  "humanevalplus": "harness smoke test (exp11)",
+  "enamel": "time-limit calibration (exp11)",
+  "concreteness_norms": "neutral nouns (bench neutral_nouns.json; exp10 noun_bank.json fallback ranking)",
+  "kodcode_algorithmic": "AST-rule negatives / name lexicon (exp11)",
+  "xlcost_python": "AST-rule negatives / name lexicon (exp11)"
+ }
+}
