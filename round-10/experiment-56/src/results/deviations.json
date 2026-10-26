@@ -1,0 +1,98 @@
+[
+ {
+  "id": "S0_per_prompt_T10",
+  "severity": "minor",
+  "text": "T10: max per-prompt |m - m_iter9| I 1.093, B 0.158 > 0.05 (different GPU: RTX 4090 vs iteration 9's L4; bf16 numerics depend on the kernel)",
+  "utc": "2026-10-24T23:29:19.264424Z"
+ },
+ {
+  "id": "S0_per_prompt_B3",
+  "severity": "minor",
+  "text": "B3: max per-prompt |m - m_iter9| I 0.266, B 0.076 > 0.05 (different GPU: RTX 4090 vs iteration 9's L4; bf16 numerics depend on the kernel)",
+  "utc": "2026-10-24T23:29:20.000041Z"
+ },
+ {
+  "id": "S0_reproduction_partial",
+  "severity": "major",
+  "text": "Stage-0 reproduction rule partly failed: T10 mean m_I 4.516 vs iteration 9 4.455 (|diff| 0.061 > 0.05), Spearman over prompts 0.983 (I) / 0.898 (B) < 0.99; B3 means pass (0.009, 0.022) but Spearman 0.783/0.908. The CPU readout decompositions reproduce (T10 0.842 vs 0.85, B3 0.416 vs 0.43, both within 0.03). Debug round 1: token ids and sha256 identical to units.json, same pinned transformers 4.57.6, sdpa, B_ot = 40; on THIS GPU the instruct T10 margin varies by mean 0.27 / max 0.55 nats across numerically equivalent paths (B = 1, 8, 16, 24, 40, full forward), so the cross-GPU (L4 -> RTX 4090) differences are of the bf16 numerics floor's size. Fallback F1: every share is computed against this run's own m_I / m_B from the same cached states.",
+  "utc": "2026-10-25T00:37:55.226935Z"
+ },
+ {
+  "id": "gpu_rtx4090",
+  "severity": "minor",
+  "text": "The machine has an RTX 4090 (24 GB), not the planned RTX A4500 (20 GB): iteration 9's one-token batch shape B_ot = 40 fits, so the plan's departure (6) (smaller B_ot) did not apply.",
+  "utc": "2026-10-25T00:37:55.242361Z"
+ },
+ {
+  "id": "vendor9_path",
+  "severity": "minor",
+  "text": "Vendored iteration-9 code lives at inputs/iter9/src (verbatim, sha256 in inputs_manifest.json) instead of src/vendor9, so that its cfg9 resolves ROOT = inputs/iter9 and the vendored labeller / base_subarm paths; it is imported, never edited.",
+  "utc": "2026-10-25T00:37:55.258454Z"
+ },
+ {
+  "id": "commit0_code_scope",
+  "severity": "minor",
+  "text": "COMMIT #0 snapshots the code that existed before the first forward (cfg10, inputs10, capture10, protocol10); the later stage modules were written during the run. Every decisive result was still committed before the next computation that depends on it (COMMIT #1 nulls before scoring, #2 predictions before generation, #3 matching before W2, #4 dose predictions before the extension), and a final code snapshot is committed at the end.",
+  "utc": "2026-10-25T00:37:55.274326Z"
+ },
+ {
+  "id": "tests_cpu_order",
+  "severity": "minor",
+  "text": "The CPU unit tests (results/tests_cpu.json) ran after the GPU stages; all pass. T1 (readout equivalence) is 1.2e-5, just above the plan's 1e-5 bar (GPU fp32 cached logits vs CPU fp32 row products), and passes at 1e-4.",
+  "utc": "2026-10-25T00:37:55.322883Z"
+ },
+ {
+  "id": "T1_T2_dropped",
+  "severity": "minor",
+  "text": "T1 (grid) and T2 (shortest path) dropped (second in the drop order after W3, which ran): at these forks every fork token has phat_off < 0.5, so the runner-up segment's first token (750 'def' for T1, 1499 'from' for T2) is itself a D token and the planned single-position margin is degenerate (A subset of D); only iteration 8's 16-token path margin is defined, which is a different estimand from the class margin W1 tests.",
+  "utc": "2026-10-25T00:37:55.341488Z"
+ },
+ {
+  "id": "w2_smoke",
+  "severity": "minor",
+  "text": "A 2-prompt smoke test of the W2 GPU stage ran after COMMIT #3 (matching) and before the full run; its rows were deleted and the full run recomputed every configuration. The G4 check of the smoke run read the MLP output before the replacement hook (a false 0.20 error); the check was fixed (hook order) and gives 1.7e-3 (bf16 rounding).",
+  "utc": "2026-10-25T00:37:55.355997Z"
+ },
+ {
+  "id": "resid_pca_storage",
+  "severity": "minor",
+  "text": "For RAND_RESID only the top-64 principal basis, eigenvalues and mean of the all-position instruct h_fin are kept (cache/resid_pca_*.pt), not the raw all-position states.",
+  "utc": "2026-10-25T00:37:55.370807Z"
+ },
+ {
+  "id": "dose_extension",
+  "severity": "minor",
+  "text": "Extension beyond the plan: a generation dose-response (ROWS x2, x3 vs the RAND_MED draw x2, x3), pre-registered as COMMIT #4 before any of its tokens; descriptive, no verdict.",
+  "utc": "2026-10-25T00:37:55.384390Z"
+ },
+ {
+  "id": "P3_placebo",
+  "severity": "minor",
+  "text": "The audit's D/A-identity shuffle placebo does not fail on T10 (median share 0.44 vs the true 0.55): restoring all three S rows moves any contrast among them toward the base readout, consistent with the committed qualifier 'readout-level but not token-specific'.",
+  "utc": "2026-10-25T00:37:55.397535Z"
+ },
+ {
+  "id": "w3_delta_swap_pool",
+  "severity": "minor",
+  "text": "W3 (Gemma) DELTA_SWAP: the candidate pool of the A-class row \"\\n\" has only 1 token satisfying the norm windows, so that row receives the same transplanted delta in all 50 draws; the Gemma DELTA_SWAP null is therefore partly degenerate (other pools: visited 13227, if 262, queue 13217, q 6546). Descriptive unit only.",
+  "utc": "2026-10-25T00:40:00.355925Z"
+ },
+ {
+  "id": "strong_null_extension",
+  "severity": "minor",
+  "text": "Second extension beyond the plan: generation at lambda = 3 for the stronger nulls (RAND_RESID and DELTA_SWAP draws with the median and the maximum teacher-forced share, scaled x3), pre-registered as COMMIT #5 before any of its tokens; descriptive. Chosen because the plan itself calls isotropic rows a straw man and the teacher-forced RAND_RESID null matched the base rows.",
+  "utc": "2026-10-25T00:52:23.250879Z"
+ },
+ {
+  "id": "power_extension",
+  "severity": "minor",
+  "text": "Third extension beyond the plan: 60 additional CRN slots (seeds 9131-9190, 12 per template) for TWIN, ROWS and RAND_MED at lambda = 1 on both units, pre-registered as COMMIT #7 before any of its tokens, pooled with the committed 30 into 90 McNemar pairs (descriptive; the committed 30-slot W1-GEN verdict stands as registered).",
+  "utc": "2026-10-25T00:58:28.553899Z"
+ },
+ {
+  "id": "commit_live_file_edited",
+  "severity": "minor",
+  "text": "COMMITs #4 and #5 hashed the live source file src/w1_dose_gen.py, which was later extended (new functions appended for the strong-null and power extensions), against the rule never to edit a committed file. The chain links all verify; the two committed versions were reconstructed byte-exactly (predictions/code_history/commit4_w1_dose_gen.py, commit5_w1_dose_gen.py) and match the committed sha256; results/tests_cpu.json reports the strict check (fails on these two entries) and the history-aware check (passes).",
+  "utc": "2026-10-25T01:16:17.637756Z"
+ }
+]

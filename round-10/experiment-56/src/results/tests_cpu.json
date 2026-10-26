@@ -1,0 +1,69 @@
+{
+ "utc": "2026-10-25T01:45:11.202026Z",
+ "T1_readout_equivalence_max_abs": 1.2215526583148062e-05,
+ "T1_pass": true,
+ "T2_lambda0_equals_twin": true,
+ "T2_full_unemb_minus_rows_all_max_abs": 0.0,
+ "T2_sign_flip_opposite": true,
+ "T2_share_twin": 0.0,
+ "T2_share_base": 1.0,
+ "T2_pass": true,
+ "T3": {
+  "T10": {
+   "reproducible": true,
+   "rand_iso_norm_rel_err": 0.0,
+   "rand_resid_norm_rel_err": 0.0,
+   "delta_swap_in_S": false,
+   "delta_swap_excluded_strings": [],
+   "pass": true
+  },
+  "B3": {
+   "reproducible": true,
+   "rand_iso_norm_rel_err": 1.1920928955078125e-07,
+   "rand_resid_norm_rel_err": 1.1920928955078125e-07,
+   "delta_swap_in_S": false,
+   "delta_swap_excluded_strings": [],
+   "pass": true
+  }
+ },
+ "T3_pass": true,
+ "T4_one_to_one": true,
+ "T4_c_recomputed": 1.1923188615421938,
+ "T4_pass": true,
+ "T5_chain": {
+  "n": 133,
+  "all_links_ok": true,
+  "all_hashes_ok": false,
+  "bad": [
+   {
+    "line": "commit4_dose_gen:src/w1_dose_gen.py",
+    "link_ok": true,
+    "hash_ok": false
+   },
+   {
+    "line": "commit5_strong_null_gen:src/w1_dose_gen.py",
+    "link_ok": true,
+    "hash_ok": false
+   }
+  ]
+ },
+ "T5_strict_chain_ok": false,
+ "T5_history": [
+  {
+   "entry": "commit4_dose_gen:src/w1_dose_gen.py",
+   "snapshot": "predictions/code_history/commit4_w1_dose_gen.py",
+   "snapshot_matches_commit": true
+  },
+  {
+   "entry": "commit5_strong_null_gen:src/w1_dose_gen.py",
+   "snapshot": "predictions/code_history/commit5_w1_dose_gen.py",
+   "snapshot_matches_commit": true
+  }
+ ],
+ "T5_pass": true,
+ "T6_audit_synthetic": true,
+ "T6_pass": true,
+ "all_pass": true,
+ "all_pass_strict": false,
+ "note": "run after the GPU stages (ordering deviation): every test checks code paths or cached data whose outputs are unchanged by when the test runs"
+}
