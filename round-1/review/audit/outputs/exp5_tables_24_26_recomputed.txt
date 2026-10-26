@@ -1,0 +1,37 @@
+engines Counter({'vllm': 2200, 'hf-custom-sampler': 1940})
+('t1', 'base_chat', 'baseline', 'vllm', 'None') N 300 parse 0.58 pass 0.19 correct {'bfs': 49, 'dfs': 7, 'astar_greedy': 1} hill_cc 1.582 hill_all 3.85
+('t1', 'base_tf', 'ban:BFS', 'vllm', 'None') N 100 parse 0.95 pass 0.01 correct {'bfs': 1} hill_cc 1.0 hill_all 6.02
+('t1', 'base_tf', 'baseline', 'vllm', 'None') N 300 parse 0.97 pass 0.05 correct {'bfs': 12, 'dfs': 3} hill_cc 1.649 hill_all 6.89
+('t1', 'instruct_chat', 'ban:BFS', 'vllm', 'None') N 100 parse 1.0 pass 0.7 correct {'bfs': 57, 'dfs': 12, 'dijkstra_unit': 1} hill_cc 1.699 hill_all 2.1
+('t1', 'instruct_chat', 'baseline', 'vllm', 'None') N 200 parse 1.0 pass 1.0 correct {'bfs': 200} hill_cc 1.0 hill_all 1.0
+('t1', 'instruct_tf', 'baseline', 'vllm', 'None') N 100 parse 0.93 pass 0.73 correct {'bfs': 73} hill_cc 1.0 hill_all 1.41
+('t1', 'steer:none:c=0', 'baseline', 'hf-custom-sampler', "{'kind': 'none', 'c': 0.0, 'layers': [8, 28], 'seed': None}") N 100 parse 1.0 pass 1.0 correct {'bfs': 100} hill_cc 1.0 hill_all 1.0
+('t1', 'steer:random1', 'baseline', 'hf-custom-sampler', "{'kind': 'random', 'c': 0.5, 'layers': [8, 28], 'seed': 1}") N 100 parse 0.96 pass 0.41 correct {'bfs': 41} hill_cc 1.0 hill_all 1.22
+('t1', 'steer:random1_Ronly:c=1.0', 'baseline', 'hf-custom-sampler', "{'kind': 'randomR', 'c': 1.0, 'layers': [8, 28], 'seed': 1}") N 100 parse 1.0 pass 1.0 correct {'bfs': 100} hill_cc 1.0 hill_all 1.0
+('t1', 'steer:random2', 'baseline', 'hf-custom-sampler', "{'kind': 'random', 'c': 0.5, 'layers': [8, 28], 'seed': 2}") N 100 parse 0.98 pass 0.68 correct {'bfs': 68} hill_cc 1.0 hill_all 1.06
+('t1', 'steer:sharpen:c=0.5', 'baseline', 'hf-custom-sampler', "{'kind': 'sharpen', 'c': 0.5, 'layers': [8, 28], 'seed': Non") N 100 parse 0.0 pass 0.0 correct {} hill_cc None hill_all nan
+('t1', 'steer:sharpen:c=1.0', 'baseline', 'hf-custom-sampler', "{'kind': 'sharpen', 'c': 1.0, 'layers': [8, 28], 'seed': Non") N 100 parse 0.0 pass 0.0 correct {} hill_cc None hill_all nan
+('t1', 'steer:sharpen:c=1.5', 'baseline', 'hf-custom-sampler', "{'kind': 'sharpen', 'c': 1.5, 'layers': [8, 28], 'seed': Non") N 100 parse 0.0 pass 0.0 correct {} hill_cc None hill_all nan
+('t1', 'steer:sharpen_Ronly:c=1.0', 'baseline', 'hf-custom-sampler', "{'kind': 'sharpenR', 'c': 1.0, 'layers': [8, 28], 'seed': No") N 100 parse 0.28 pass 0.14 correct {'bfs': 14} hill_cc 1.0 hill_all 1.29
+('t1', 'steer:sharpen_Ronly:c=1.0+nocutoff', 'baseline', 'hf-custom-sampler', "{'kind': 'sharpenR', 'c': 1.0, 'layers': [8, 28], 'seed': No") N 20 parse 0.55 pass 0.15 correct {'bfs': 3} hill_cc 1.0 hill_all 1.0
+('t1', 'steer:single18:c=0.25', 'baseline', 'hf-custom-sampler', "{'kind': 'single18', 'c': 0.25, 'layers': [8, 28], 'seed': N") N 50 parse 1.0 pass 0.94 correct {'bfs': 47} hill_cc 1.0 hill_all 1.0
+('t1', 'steer:single18:c=0.5', 'baseline', 'hf-custom-sampler', "{'kind': 'single18', 'c': 0.5, 'layers': [8, 28], 'seed': No") N 50 parse 1.0 pass 0.52 correct {'bfs': 26} hill_cc 1.0 hill_all 1.0
+('t1', 'steer:single18:c=1.0', 'baseline', 'hf-custom-sampler', "{'kind': 'single18', 'c': 1.0, 'layers': [8, 28], 'seed': No") N 50 parse 0.0 pass 0.0 correct {} hill_cc None hill_all nan
+('t2', 'base_chat', 'baseline', 'vllm', 'None') N 300 parse 0.66 pass 0.3 correct {'dijkstra': 63, 'bellman_ford_spfa': 24, 'other:bfs_ignoring_weights': 2, 'floyd_warshall': 1} hill_cc 2.089 hill_all 2.93
+('t2', 'base_tf', 'ban:Dijkstra', 'vllm', 'None') N 100 parse 0.98 pass 0.08 correct {'bellman_ford_spfa': 4, 'dijkstra': 4} hill_cc 2.0 hill_all 8.06
+('t2', 'base_tf', 'baseline', 'vllm', 'None') N 300 parse 0.97 pass 0.083 correct {'bellman_ford_spfa': 16, 'dijkstra': 8, 'floyd_warshall': 1} hill_cc 2.179 hill_all 9.26
+('t2', 'instruct_chat', 'ban:Dijkstra', 'vllm', 'None') N 100 parse 1.0 pass 1.0 correct {'dijkstra': 54, 'bellman_ford_spfa': 46} hill_cc 1.994 hill_all 1.99
+('t2', 'instruct_chat', 'baseline', 'vllm', 'None') N 200 parse 1.0 pass 1.0 correct {'dijkstra': 193, 'bellman_ford_spfa': 7} hill_cc 1.164 hill_all 1.16
+('t2', 'instruct_tf', 'baseline', 'vllm', 'None') N 100 parse 0.89 pass 0.72 correct {'dijkstra': 57, 'floyd_warshall': 8, 'bellman_ford_spfa': 7} hill_cc 1.926 hill_all 2.71
+('t2', 'steer:none:c=0', 'baseline', 'hf-custom-sampler', "{'kind': 'none', 'c': 0.0, 'layers': [8, 28], 'seed': None}") N 100 parse 1.0 pass 1.0 correct {'dijkstra': 100} hill_cc 1.0 hill_all 1.0
+('t2', 'steer:random1', 'baseline', 'hf-custom-sampler', "{'kind': 'random', 'c': 0.5, 'layers': [8, 28], 'seed': 1}") N 100 parse 1.0 pass 0.0 correct {} hill_cc None hill_all 1.0
+('t2', 'steer:random1_Ronly:c=1.0', 'baseline', 'hf-custom-sampler', "{'kind': 'randomR', 'c': 1.0, 'layers': [8, 28], 'seed': 1}") N 100 parse 1.0 pass 1.0 correct {'dijkstra': 90, 'bellman_ford_spfa': 9, 'other:0_1_bfs': 1} hill_cc 1.43 hill_all 1.43
+('t2', 'steer:random2', 'baseline', 'hf-custom-sampler', "{'kind': 'random', 'c': 0.5, 'layers': [8, 28], 'seed': 2}") N 100 parse 1.0 pass 0.33 correct {'bellman_ford_spfa': 33} hill_cc 1.0 hill_all 1.92
+('t2', 'steer:sharpen:c=0.5', 'baseline', 'hf-custom-sampler', "{'kind': 'sharpen', 'c': 0.5, 'layers': [8, 28], 'seed': Non") N 100 parse 0.0 pass 0.0 correct {} hill_cc None hill_all nan
+('t2', 'steer:sharpen:c=1.0', 'baseline', 'hf-custom-sampler', "{'kind': 'sharpen', 'c': 1.0, 'layers': [8, 28], 'seed': Non") N 100 parse 0.0 pass 0.0 correct {} hill_cc None hill_all nan
+('t2', 'steer:sharpen:c=1.5', 'baseline', 'hf-custom-sampler', "{'kind': 'sharpen', 'c': 1.5, 'layers': [8, 28], 'seed': Non") N 100 parse 0.0 pass 0.0 correct {} hill_cc None hill_all nan
+('t2', 'steer:sharpen_Ronly:c=1.0', 'baseline', 'hf-custom-sampler', "{'kind': 'sharpenR', 'c': 1.0, 'layers': [8, 28], 'seed': No") N 100 parse 0.05 pass 0.05 correct {'dijkstra': 5} hill_cc 1.0 hill_all 1.0
+('t2', 'steer:sharpen_Ronly:c=1.0+nocutoff', 'baseline', 'hf-custom-sampler', "{'kind': 'sharpenR', 'c': 1.0, 'layers': [8, 28], 'seed': No") N 20 parse 0.4 pass 0.2 correct {'dijkstra': 3, 'bellman_ford_spfa': 1} hill_cc 1.755 hill_all 3.36
+('t2', 'steer:single18:c=0.25', 'baseline', 'hf-custom-sampler', "{'kind': 'single18', 'c': 0.25, 'layers': [8, 28], 'seed': N") N 50 parse 1.0 pass 0.98 correct {'dijkstra': 49} hill_cc 1.0 hill_all 1.0
+('t2', 'steer:single18:c=0.5', 'baseline', 'hf-custom-sampler', "{'kind': 'single18', 'c': 0.5, 'layers': [8, 28], 'seed': No") N 50 parse 1.0 pass 0.98 correct {'dijkstra': 48, 'bellman_ford_spfa': 1} hill_cc 1.105 hill_all 1.1
+('t2', 'steer:single18:c=1.0', 'baseline', 'hf-custom-sampler', "{'kind': 'single18', 'c': 1.0, 'layers': [8, 28], 'seed': No") N 50 parse 0.0 pass 0.0 correct {} hill_cc None hill_all nan

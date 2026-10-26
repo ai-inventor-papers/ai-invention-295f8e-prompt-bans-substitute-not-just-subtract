@@ -1,0 +1,38 @@
+('T1', 'ban:bfs', 'vllm') {'N': 100, 'pass': 0.64, 'correct_labels': {'bfs': 46, 'dfs': 16, 'dijkstra_unit': 2}, 'hill_cc': 1.998} {'bfs': 49, 'dfs': 48, 'dijkstra_unit': 2, 'other': 1}
+('T1', 'baseline', 'vllm') {'N': 200, 'pass': 1.0, 'correct_labels': {'bfs': 200}, 'hill_cc': 1.0} 
+('T1', 'enumerate', 'vllm') {'N': 100, 'pass': 1.0, 'correct_labels': {'bfs': 100}, 'hill_cc': 1.0} 
+('T1', 'enumerate@1024', 'vllm') {'N': 100, 'pass': 1.0, 'correct_labels': {'bfs': 100}, 'hill_cc': 1.0} 
+('T1', 'mention:bfs', 'vllm') {'N': 100, 'pass': 1.0, 'correct_labels': {'bfs': 100}, 'hill_cc': 1.0} 
+('T1', 'steer:breadth:c=0.1:L=18', 'hf') {'N': 100, 'pass': 0.99, 'correct_labels': {'bfs': 99}, 'hill_cc': 1.0} 
+('T1', 'steer:dc:c=0.1:L=18', 'hf') {'N': 100, 'pass': 0.98, 'correct_labels': {'bfs': 98}, 'hill_cc': 1.0} 
+('T1', 'steer:dc:c=0.25:L=18', 'hf') {'N': 100, 'pass': 0.57, 'correct_labels': {'bfs': 57}, 'hill_cc': 1.0} 
+('T1', 'steer:dc:c=0.5:L=18', 'hf') {'N': 100, 'pass': 0.03, 'correct_labels': {'bfs': 3}, 'hill_cc': 1.0} 
+('T1', 'steer:dc:c=0:L=18', 'hf') {'N': 100, 'pass': 1.0, 'correct_labels': {'bfs': 100}, 'hill_cc': 1.0} 
+('T1', 'steer:dc:c=1.5:L=18', 'hf') {'N': 100, 'pass': 0.0, 'correct_labels': {}, 'hill_cc': None} 
+('T1', 'steer:dc:c=1:L=14', 'hf') {'N': 10, 'pass': 0.0, 'correct_labels': {}, 'hill_cc': None} 
+('T1', 'steer:dc:c=1:L=18', 'hf') {'N': 100, 'pass': 0.0, 'correct_labels': {}, 'hill_cc': None} 
+('T1', 'steer:dc:c=1:L=22', 'hf') {'N': 10, 'pass': 0.0, 'correct_labels': {}, 'hill_cc': None} 
+('T1', 'steer:dcxfer:c=0.1:L=18', 'hf') {'N': 50, 'pass': 0.98, 'correct_labels': {'bfs': 49}, 'hill_cc': 1.0} 
+('T1', 'steer:placebo:c=0.1:L=18', 'hf') {'N': 100, 'pass': 1.0, 'correct_labels': {'bfs': 100}, 'hill_cc': 1.0} 
+('T1', 'steer:rand1:c=0.1:L=18', 'hf') {'N': 100, 'pass': 0.98, 'correct_labels': {'bfs': 98}, 'hill_cc': 1.0} 
+('T1', 'steer:rand2:c=0.1:L=18', 'hf') {'N': 100, 'pass': 1.0, 'correct_labels': {'bfs': 100}, 'hill_cc': 1.0} 
+('T1', 'succession:2', 'vllm') {'N': 100, 'pass': 0.88, 'correct_labels': {'bfs': 65, 'dijkstra_unit': 13, 'dfs': 7, 'astar': 3}, 'hill_cc': 2.277} {'bfs': 70, 'dijkstra_unit': 15, 'dfs': 11, 'astar': 3, 'other': 1}
+('T2', 'ban:dijkstra', 'vllm') {'N': 100, 'pass': 0.87, 'correct_labels': {'dijkstra': 49, 'bellman_ford_spfa': 38}, 'hill_cc': 1.984} {'dijkstra': 54, 'bellman_ford_spfa': 40, 'other': 6}
+('T2', 'baseline', 'vllm') {'N': 200, 'pass': 0.885, 'correct_labels': {'dijkstra': 169, 'bellman_ford_spfa': 8}, 'hill_cc': 1.202} 
+('T2', 'enumerate', 'vllm') {'N': 100, 'pass': 0.82, 'correct_labels': {'dijkstra': 80, 'bellman_ford_spfa': 2}, 'hill_cc': 1.121} 
+('T2', 'enumerate@1024', 'vllm') {'N': 100, 'pass': 0.82, 'correct_labels': {'dijkstra': 80, 'bellman_ford_spfa': 2}, 'hill_cc': 1.121} 
+('T2', 'mention:dijkstra', 'vllm') {'N': 100, 'pass': 0.94, 'correct_labels': {'dijkstra': 92, 'bellman_ford_spfa': 2}, 'hill_cc': 1.108} 
+('T2', 'steer:breadth:c=0.25:L=18', 'hf') {'N': 100, 'pass': 0.6, 'correct_labels': {'bellman_ford_spfa': 31, 'dijkstra': 28, 'dial': 1}, 'hill_cc': 2.149} 
+('T2', 'steer:dc:c=0.25:L=18', 'hf') {'N': 100, 'pass': 0.78, 'correct_labels': {'bellman_ford_spfa': 54, 'dijkstra': 23, 'other': 1}, 'hill_cc': 1.955} 
+('T2', 'steer:dc:c=0.375:L=18', 'hf') {'N': 100, 'pass': 0.67, 'correct_labels': {'bellman_ford_spfa': 47, 'dijkstra': 19, 'other': 1}, 'hill_cc': 1.952} 
+('T2', 'steer:dc:c=0.5:L=18', 'hf') {'N': 100, 'pass': 0.37, 'correct_labels': {'dijkstra': 25, 'bellman_ford_spfa': 10, 'other': 2}, 'hill_cc': 2.173} 
+('T2', 'steer:dc:c=0:L=18', 'hf') {'N': 100, 'pass': 0.95, 'correct_labels': {'dijkstra': 88, 'bellman_ford_spfa': 7}, 'hill_cc': 1.301} 
+('T2', 'steer:dc:c=1.5:L=18', 'hf') {'N': 100, 'pass': 0.0, 'correct_labels': {}, 'hill_cc': None} 
+('T2', 'steer:dc:c=1:L=14', 'hf') {'N': 10, 'pass': 0.0, 'correct_labels': {}, 'hill_cc': None} 
+('T2', 'steer:dc:c=1:L=18', 'hf') {'N': 100, 'pass': 0.0, 'correct_labels': {}, 'hill_cc': None} 
+('T2', 'steer:dc:c=1:L=22', 'hf') {'N': 10, 'pass': 0.0, 'correct_labels': {}, 'hill_cc': None} 
+('T2', 'steer:dcxfer:c=0.25:L=18', 'hf') {'N': 50, 'pass': 0.72, 'correct_labels': {'bellman_ford_spfa': 28, 'dijkstra': 8}, 'hill_cc': 1.698} 
+('T2', 'steer:placebo:c=0.25:L=18', 'hf') {'N': 100, 'pass': 0.66, 'correct_labels': {'dijkstra': 60, 'dial': 3, 'bellman_ford_spfa': 2, 'other': 1}, 'hill_cc': 1.487} 
+('T2', 'steer:rand1:c=0.25:L=18', 'hf') {'N': 100, 'pass': 0.79, 'correct_labels': {'dijkstra': 53, 'bellman_ford_spfa': 26}, 'hill_cc': 1.884} 
+('T2', 'steer:rand2:c=0.25:L=18', 'hf') {'N': 100, 'pass': 0.87, 'correct_labels': {'dijkstra': 82, 'bellman_ford_spfa': 5}, 'hill_cc': 1.246} 
+('T2', 'succession:2', 'vllm') {'N': 100, 'pass': 0.68, 'correct_labels': {'bellman_ford_spfa': 34, 'dijkstra': 33, 'other': 1}, 'hill_cc': 2.137} {'dijkstra': 42, 'bellman_ford_spfa': 41, 'other': 17}

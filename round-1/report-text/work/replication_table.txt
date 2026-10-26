@@ -1,0 +1,22 @@
+exp1 (vLLM) | t1 ban:bfs | N=100 | nolabel=0 | banned share=10/100=0.10 | all labels={'DFS': 90, 'BFS': 10} | correct&compliant=38 {'DFS': 38} | correct banned=8
+exp1 (vLLM) | t2 ban:dijkstra | N=100 | nolabel=0 | banned share=9/100=0.09 | all labels={'BF/SPFA': 90, 'Dijkstra': 9, 'other': 1} | correct&compliant=86 {'BF/SPFA': 86} | correct banned=9
+exp2 (HF generate) | t1 ban:bfs | N=100 | nolabel=0 | banned share=62/100=0.62 | all labels={'DFS': 29, 'BFS': 62, 'unit-Dijkstra': 9} | correct&compliant=18 {'unit-Dijkstra': 8, 'DFS': 10} | correct banned=58
+exp2 (HF generate) | t2 ban:dijkstra | N=100 | nolabel=0 | banned share=72/100=0.72 | all labels={'Dijkstra': 72, 'BF/SPFA': 27, 'other': 1} | correct&compliant=22 {'BF/SPFA': 22} | correct banned=72
+exp3 (vLLM) | t1 ban:bfs | N=100 | nolabel=0 | banned share=21/100=0.21 | all labels={'DFS': 78, 'BFS': 21, 'unit-Dijkstra': 1} | correct&compliant=41 {'DFS': 40, 'unit-Dijkstra': 1} | correct banned=15
+exp3 (vLLM) | t2 ban:dijkstra | N=100 | nolabel=0 | banned share=20/100=0.20 | all labels={'Dijkstra': 20, 'BF/SPFA': 80} | correct&compliant=80 {'BF/SPFA': 80} | correct banned=20
+exp4 (vLLM) | t1 ban:bfs | N=100 | nolabel=0 | banned share=49/100=0.49 | all labels={'DFS': 48, 'BFS': 49, 'unit-Dijkstra': 2, 'other': 1} | correct&compliant=18 {'DFS': 16, 'unit-Dijkstra': 2} | correct banned=46
+exp4 (vLLM) | t2 ban:dijkstra | N=100 | nolabel=0 | banned share=54/100=0.54 | all labels={'Dijkstra': 54, 'BF/SPFA': 40, 'other': 6} | correct&compliant=38 {'BF/SPFA': 38} | correct banned=49
+exp5 (vLLM) | t1 ban:bfs | N=100 | nolabel=0 | banned share=62/100=0.62 | all labels={'DFS': 36, 'BFS': 62, 'unit-Dijkstra': 2} | correct&compliant=13 {'DFS': 12, 'unit-Dijkstra': 1} | correct banned=57
+exp5 (vLLM) | t2 ban:dijkstra | N=100 | nolabel=0 | banned share=54/100=0.54 | all labels={'Dijkstra': 54, 'BF/SPFA': 46} | correct&compliant=46 {'BF/SPFA': 46} | correct banned=54
+BASELINE exp1 | t1 | N=300 | labels={'BFS': 300} | pass=280/300
+BASELINE exp1 | t2 | N=300 | labels={'Dijkstra': 300} | pass=300/300
+BASELINE exp2 | t1 | N=200 | labels={'BFS': 200} | pass=198/200
+BASELINE exp2 | t2 | N=200 | labels={'Dijkstra': 200} | pass=200/200
+BASELINE exp3 | t1 | N=200 | labels={'BFS': 200} | pass=182/200
+BASELINE exp3 | t2 | N=200 | labels={'Dijkstra': 200} | pass=199/200
+BASELINE exp4 | t1 | N=200 | labels={'BFS': 200} | pass=200/200
+BASELINE exp4 | t2 | N=200 | labels={'Dijkstra': 181, 'BF/SPFA': 14, 'Dial': 4, 'other': 1} | pass=177/200
+BASELINE exp5 | t1 | N=200 | labels={'BFS': 200} | pass=200/200
+BASELINE exp5 | t2 | N=200 | labels={'Dijkstra': 193, 'BF/SPFA': 7} | pass=200/200
+BASELINE exp6 | t1 | N=100 | labels={'BFS': 99, 'unit-Dijkstra': 1} | pass=97/100
+BASELINE exp6 | t2 | N=100 | labels={'Dijkstra': 100} | pass=99/100

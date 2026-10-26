@@ -1,0 +1,39 @@
+DFS t1 programs 273 failed 161
+test_error [('wrong_answer', 127), ('timeout', 31), ('runtime_error', 3)]
+fail_case [('three_by_three', 81), ('two_by_two', 37), ('random_d10', 26), ('one_by_one', 8), ('random_d30', 4), ('start', 3), ('unreachable_enclosed', 1), ('random_d40', 1)]
+ban:bfs wrong_answer start_wall
+def solve(grid, start, goal):
+    if not grid or start == goal:
+        if grid[start[0]][start[1]] == '.':
+            return [start]
+        else:
+            return []
+    
+    rows, cols = len(grid), len(grid[0])
+    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+    
+    def is_valid(r, c):
+        return 0 <= r < rows and 0 <= c < cols and grid[r][c] == '.'
+    
+    stack = [start]
+    visited = set()
+    path_map = {}
+    
+    while stack:
+        current = stack.pop()
+        if current == goal:
+            path = [current]
+            while path[-1] != start:
+                path.append(path_map[path[-1]])
+            return path[::-1]
+        if current in visited:
+            continue
+        visited.add(current)
+        for dr, dc in directions:
+            r, c = current[0] + dr, current[1] + dc
+            if is_valid(r, c) and (r, c) not in visited:
+                path_map[(r, c)] = current
+                stack.append((r, c))
+    
+    return []
+
