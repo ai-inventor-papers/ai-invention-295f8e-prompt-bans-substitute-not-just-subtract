@@ -1,0 +1,102 @@
+[
+ {
+  "code": "D-commit-split",
+  "text": "Commit #1 split into #1a (cells, prompts, verifiers, all G1/G2 rules and predictions, before wave A), #1b (placed-program family lists with uids and code sha256, before any placed-program state) and #1c (sha256 of g1.py / g2.py / figures.py, before any G1/G2 output on real data and before the factorial freeze is analysed).",
+  "utc": "2026-10-24T18:24:45.643259Z"
+ },
+ {
+  "code": "D-covert-count",
+  "text": "F-COV has 136 programs (five-name ban, 9 non-C6 configurations) instead of ~294; the 98 covert programs of the iteration-2 single/multi-name bans are placed as F-COVX (descriptive).",
+  "utc": "2026-10-24T18:24:45.663277Z"
+ },
+ {
+  "code": "D-hardware",
+  "text": "Ran on an RTX 2000 Ada 16 GB with 6 CPUs and 28 GB RAM (plan: RTX A4500). Qwen3-8B keeps 27 blocks (extraction blocks 9-25 odd + 26), Qwen3-32B NF4 keeps 40 blocks (21, 25, 29, 31, 33, 35, 37, 39); primary blocks 17 / 33 unchanged.",
+  "utc": "2026-10-24T22:10:59.976212Z"
+ },
+ {
+  "code": "D-hf-cache",
+  "text": "HF_HOME was not overridden (run rule: the shared cache is pre-set); the plan's HF_HOME=./hf_cache was not used, so no hf_cache/ exists in the workspace.",
+  "utc": "2026-10-24T22:11:00.014401Z"
+ },
+ {
+  "code": "D-inputs-inplace",
+  "text": "exp46 frozen state caches (cache/states/mcode_8b.npz, mcode_32b.npz, geo_*_k15/k10.npz; 0.6 GB) and the dependency's full_data_out.json (96 MB) are read in place; their sha256 is in inputs_manifest.json (in_place). Everything else is copied into inputs/ or src/ / vendor/.",
+  "utc": "2026-10-24T22:11:00.029421Z"
+ },
+ {
+  "code": "D-repro-cosine",
+  "text": "State reproduction of 10 cached iteration-9 programs: hook check exact (max abs diff 0) and n_code_tokens 10/10 equal, but min cosine 0.99981 (8B) / 0.99990 (32B) against the 0.9999 threshold (mean 0.99996 / 0.99998): iteration 9 ran on an RTX 5090, this round on an RTX 2000 Ada (bf16 kernel numerics). Catalogue states are still taken from the iteration-9 cache.",
+  "utc": "2026-10-24T22:11:00.045451Z"
+ },
+ {
+  "code": "D-F7-grid2d",
+  "text": "Amendment in COMMIT1a (before wave A): the tracer reads the planted scan-derived GRID2D programs of BFSO, HEUR and COST as OTHER / DFS, so GRID2D discipline checks use the AST signature + a hand read.",
+  "utc": "2026-10-24T22:11:00.063163Z"
+ },
+ {
+  "code": "D-relax-container",
+  "text": "RELAX cells have no frontier; their container check is the structure swept every round (2-D arrays / explicit edge list / set of cells) inside a repeat loop, with no deque, heap, popleft, pop(0) or insort.",
+  "utc": "2026-10-24T22:11:00.161912Z"
+ },
+ {
+  "code": "D-no-think",
+  "text": "Thinking off via reasoning.enabled=false plus the Qwen3 '/no_think' suffix (DeepInfra ignores the flag alone; iteration-9 D10); smoke test confirmed 1 reasoning token.",
+  "utc": "2026-10-24T22:11:00.183257Z"
+ },
+ {
+  "code": "D-topup-paraphrase",
+  "text": "Top-ups: bibfs 12 and iddfs 12 generated; biastar 6 generated + 6 paraphrases; jps 0 of ~100 generated attempts verified, so all 12 JPS programs are paraphrases of the S3 reference jps4.py (no 50% cap for S3-seeded top-ups). JPS placement and frame evidence is therefore reference-derived, low independence.",
+  "utc": "2026-10-24T22:11:00.215418Z"
+ },
+ {
+  "code": "D-relax-set-11",
+  "text": "RELAX-SET reached 11 verified programs at freeze (one hand-read REJECT); above the 10 floor, N flagged.",
+  "utc": "2026-10-24T22:11:00.231705Z"
+ },
+ {
+  "code": "D-hand-read-depth",
+  "text": "Hand reads (139 rows in data/hand_reads_v10.jsonl): full programs for the first batches of every hand-read cell; later programs of highly uniform cells (GRID2D, BFSO-SET, IDDFS, BiBFS, BiA*) on their selection-rule / structure lines plus a container grep; JPS paraphrases 3 in full and 9 by jump-helper structure plus heap-push counts equal to the reference. Reasons are recorded per row.",
+  "utc": "2026-10-24T22:11:00.246667Z"
+ },
+ {
+  "code": "D-boot-counts",
+  "text": "Primary, crossed-core and cell-cluster bootstraps use 1,000 resamples and 2,000 restricted permutations as committed; the sensitivity variants (S3-S7, S10) use 200 program-bootstrap resamples and S2 semi-partial CIs 100, for time (the box was CPU-bound).",
+  "utc": "2026-10-24T22:11:00.264056Z"
+ },
+ {
+  "code": "D-runtime",
+  "text": "A first full G1 run was killed after BLAS oversubscription (load 14 on 6 CPUs) and rerun with one BLAS thread per process; results come from the rerun (same code, same seeds).",
+  "utc": "2026-10-24T22:11:00.281984Z"
+ },
+ {
+  "code": "D-T7",
+  "text": "T7 synthetic 'discipline-only' states encode the committed D_disc geometry (COST half-way from BFSO) and use noise 0.6; with independent discipline means the tie structure of D_disc caps rho_dc below 0.5.",
+  "utc": "2026-10-24T22:11:00.314009Z"
+ },
+ {
+  "code": "D-family-counts",
+  "text": "F-RF has 14 programs (iteration-8 randomized-DFS rows counted as random frontiers) and F-OTH 8 (plan: 13 and 10).",
+  "utc": "2026-10-24T22:11:00.332870Z"
+ },
+ {
+  "code": "D-catalogue-mix",
+  "text": "Frame catalogue = 129 iteration-9 M-code PRIMARY programs (frozen states, other GPU) + 48 frozen top-ups (this round); bibfs/iddfs/biastar classes mix both sources.",
+  "utc": "2026-10-24T22:11:00.350947Z"
+ },
+ {
+  "code": "D-positioning",
+  "text": "results/positioning.json is a title-level screen of 6 dated OpenAlex scholarly queries (top results, verdicts occupies/adjacent/irrelevant); verbatim quotes were not fetched (time), so verdicts are provisional.",
+  "utc": "2026-10-24T22:11:00.369550Z"
+ },
+ {
+  "code": "D-g1-post-commit",
+  "text": "src/g1.py differs from its COMMIT1c hash only by two lines in synthetic_states (the T7 test generator places COST half-way from BFSO); removing them reproduces the committed sha256 exactly (checked). All statistics functions are as committed; g2.py, r0.py, extract.py, assemble.py, freeze.py and tests/test_analysis.py match their committed hashes.",
+  "utc": "2026-10-24T22:26:15.749315Z"
+ },
+ {
+  "code": "D-driver-not-committed",
+  "text": "src/analysis.py (G1/G2 drivers: frame assembly, sensitivity list, subframe filters) was written after COMMIT1c and before any G1/G2 output, implementing COMMIT1a's rules, but was not hash-committed. After a first quick G1 run (whose numbers equal the final ones) only worker counts, BLAS threads and sensitivity bootstrap counts changed. src/figures.py and src/outputs.py were written after the G1/G2 outputs (presentation only), so the planned COMMIT1d did not happen.",
+  "utc": "2026-10-24T22:26:15.767043Z"
+ }
+]
