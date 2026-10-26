@@ -1,9 +1,4 @@
 #!/usr/bin/env python3
-# NOTE (published copy): this file names server paths this repository
-# does not publish (a stage it does not ship, or another run's workspace),
-# so the steps that read them will not run from a clone as written:
-#   /ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_35/data/
-#   /ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_34/data/
 """K3: the circuit behind Qwen3-8B's algorithm choice (bf16, thinking off).
 
 Stages (each resumes from its result files; run as `uv run method.py --stages a,b,c`):
@@ -1678,18 +1673,15 @@ def stage_enginecheck() -> None:
             append_jsonl(raw, recs)
     label_pending(raw, DATA_DIR / "engine_check_labels.jsonl", "mixed")
     lab = {r["sid"]: r for r in read_jsonl(DATA_DIR / "engine_check_labels.jsonl")}
-    ref35 = {r["sid"]: r for r in read_jsonl(Path("../../../round-7/"
-                                                  "gen_art/gen_art_experiment_35/data/labels.jsonl"))
+    ref35 = {r["sid"]: r for r in read_jsonl(Path(__file__).resolve().parents[3] / "round-7/experiment-35/src/data/labels.jsonl")
              if r["sid"].startswith("B3|TWIN|TWIN|")}
     raw35 = {}
-    p35 = Path("/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_35/data/"
-               "samples_raw.jsonl")
+    p35 = Path(__file__).resolve().parents[3] / "round-7/experiment-35/src/data/samples_raw.jsonl"
     if p35.exists():
         for r in read_jsonl(p35):
             if r["sid"].startswith("B3|TWIN|TWIN|"):
                 raw35[r["sid"]] = r["token_ids"]
-    p34 = Path("/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_34/data/"
-               "labels.jsonl")
+    p34 = Path(__file__).resolve().parents[3] / "round-7/experiment-34/src/data/labels.jsonl"
     ref34 = {r["key"]: r for r in read_jsonl(p34) if r.get("task") == "T10" and r.get("arm") == "TWIN"}
     out = {"B3": {"n": 0, "label_agree": 0, "token_identical": 0}, "T10": {"n": 0, "label_agree": 0}}
     rows = []

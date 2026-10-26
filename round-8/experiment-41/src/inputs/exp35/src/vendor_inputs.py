@@ -27,14 +27,14 @@ ROOT = Path(__file__).resolve().parents[1]
 RUNS = Path(os.environ.get("AII_RUNS_DIR", str(ROOT.parents[4])))   # <runs>/<run>/3_invention_loop/iter_7/gen_art/<this>
 R6 = RUNS / "run_0oWBKrKEGsmU" / "." / "round-6" / "."
 RA = RUNS / "run_aRfWvcSWjssb" / "."
-E30 = R6 / "gen_art_experiment_30"
-E29 = R6 / "gen_art_experiment_29"
-E25 = RA / "round-5" / "." / "gen_art_experiment_25"
-E26 = RA / "round-5" / "." / "gen_art_experiment_26"
-E22 = RA / "round-4" / "." / "gen_art_experiment_22"
-E18 = RA / "round-3" / "." / "gen_art_experiment_18"
-E7 = RA / "round-2" / "." / "gen_art_experiment_7"
-E11 = RA / "round-2" / "." / "gen_art_experiment_11"
+E30 = R6 / "experiment-30/src"
+E29 = R6 / "experiment-29/src"
+E25 = RA / "round-5" / "." / "experiment-25/src"
+E26 = RA / "round-5" / "." / "experiment-26/src"
+E22 = RA / "round-4" / "." / "experiment-22/src"
+E18 = RA / "round-3" / "." / "experiment-18/src"
+E7 = RA / "round-2" / "." / "experiment-7/src"
+E11 = RA / "round-2" / "." / "experiment-11/src"
 
 # (source, destination relative to inputs/, required)
 ITEMS: list[tuple[Path, str, bool]] = [

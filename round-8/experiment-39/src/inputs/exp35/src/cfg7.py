@@ -54,7 +54,7 @@ CONTS = DATA_DIR / "continuations.jsonl"
 _RUNS = ROOT.parents[4]
 DEP_DIR = Path(os.environ.get("ART_J3RM_DIR") or next(
     (d for d in (ROOT.parent / "art_j3Rm_lr2nzR6",) if d.exists()),
-    _RUNS / "run_4VFKidE1bxPG" / "." / "round-1" / "." / "gen_art_dataset_1"))
+    _RUNS / "run_4VFKidE1bxPG" / "." / "round-1" / "." / "dataset-1/src"))
 
 # ------------------------------------------------------------------------------------------------ model
 MODEL_ID = "Qwen/Qwen3-8B"

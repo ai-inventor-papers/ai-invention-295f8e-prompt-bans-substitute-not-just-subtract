@@ -22,7 +22,7 @@ ROOT = Path(__file__).resolve().parents[1]
 _RUN = ROOT.parents[2] / "round-7" / "."
 DEP = Path(os.environ.get("AII_DEP_ROOT") or (_RUN if _RUN.exists() else ROOT.parent))
 D = lambda name, aid: DEP / name if (DEP / name).exists() or not (DEP / aid).exists() else DEP / aid
-E33, E34, E37 = D("gen_art_experiment_33", "art_veI9l_Rb9wDY"), D("gen_art_experiment_34", "art_pHL7LWNhpcCS"), D("gen_art_experiment_37", "art_VhaHGe7SxV95")
+E33, E34, E37 = D("experiment-33/src", "art_veI9l_Rb9wDY"), D("experiment-34/src", "art_pHL7LWNhpcCS"), D("experiment-37/src", "art_VhaHGe7SxV95")
 OUT, PLC = [], []
 
 

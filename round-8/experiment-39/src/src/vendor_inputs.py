@@ -21,12 +21,12 @@ ROOT = Path(__file__).resolve().parents[1]
 INPUTS = ROOT / "inputs"
 LOOP = Path(os.environ.get("AII_RUN_LOOP") or ROOT.parents[2])     # .../3_invention_loop
 
-X35 = "iter_7/gen_art/gen_art_experiment_35"
-X34 = "iter_7/gen_art/gen_art_experiment_34"
-X38 = "iter_7/gen_art/gen_art_experiment_38"
-X36 = "iter_7/gen_art/gen_art_experiment_36"
-X37 = "iter_7/gen_art/gen_art_experiment_37"
-X29 = "iter_6/gen_art/gen_art_experiment_29"
+X35 = "round-7/experiment-35/src"
+X34 = "round-7/experiment-34/src"
+X38 = "round-7/experiment-38/src"
+X36 = "round-7/experiment-36/src"
+X37 = "round-7/experiment-37/src"
+X29 = "round-6/experiment-29/src"
 
 # (relative source under LOOP, destination under inputs/)
 COPIES: list[tuple[str, str]] = [

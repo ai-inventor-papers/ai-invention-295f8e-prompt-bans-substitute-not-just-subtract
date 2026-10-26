@@ -23,9 +23,9 @@ from cfg8 import INPUTS, LOOP, ROOT, add_deviation, setup_logging, sha256_file, 
 
 # Source artifacts by id. Resolution order: $AII_ARTIFACTS_DIR/<id> (a folder of sibling artifact folders, e.g. the
 # published repository root), then ../<id> next to this folder, then the run layout <run>/3_invention_loop/<iter>/...
-ARTIFACTS = {"art_veI9l_Rb9wDY": ("round-7", "gen_art_experiment_33"), "art_pHL7LWNhpcCS": ("round-7", "gen_art_experiment_34"),
-             "art_HY7uYZz-OjRW": ("round-7", "gen_art_experiment_38"), "art_lpQalcAXMGr1": ("round-6", "gen_art_experiment_29"),
-             "art_rMlbrjVB1c__": ("round-6", "gen_art_experiment_30")}
+ARTIFACTS = {"art_veI9l_Rb9wDY": ("round-7", "experiment-33/src"), "art_pHL7LWNhpcCS": ("round-7", "experiment-34/src"),
+             "art_HY7uYZz-OjRW": ("round-7", "experiment-38/src"), "art_lpQalcAXMGr1": ("round-6", "experiment-29/src"),
+             "art_rMlbrjVB1c__": ("round-6", "experiment-30/src")}
 
 
 def art_dir(art_id: str) -> Path:
@@ -41,7 +41,7 @@ def dep_dir() -> Path:
     for c in (os.environ.get("ART_J3RM_DIR"), str(ROOT.parent / "art_j3Rm_lr2nzR6")):
         if c and Path(c).exists():
             return Path(c)
-    return LOOP.parents[1] / "run_4VFKidE1bxPG" / "." / "round-1" / "." / "gen_art_dataset_1"
+    return LOOP.parents[1] / "run_4VFKidE1bxPG" / "." / "round-1" / "." / "dataset-1/src"
 
 
 E33, E34, E38 = art_dir("art_veI9l_Rb9wDY"), art_dir("art_pHL7LWNhpcCS"), art_dir("art_HY7uYZz-OjRW")

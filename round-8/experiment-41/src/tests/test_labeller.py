@@ -1,8 +1,4 @@
 #!/usr/bin/env python3
-# NOTE (published copy): this file names server paths this repository
-# does not publish (a stage it does not ship, or another run's workspace),
-# so the steps that read them will not run from a clone as written:
-#   /ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_35/data
 """T7: labeller re-check (CPU). B3: the 4 references and 30 iteration-7 twin programs re-labelled against their stored
 labels; T10: the 4 bench references and the 22-item gold set against their gold labels."""
 from __future__ import annotations
@@ -18,7 +14,7 @@ import label_k3 as LK  # noqa: E402
 
 B3_REF = ROOT / "inputs" / "iter5_exp26" / "units" / "B3" / "references"
 T10_DIR = ROOT / "inputs" / "iter6_exp30" / "inputs" / "exp11" / "bench" / "T10_connected_components"
-E35_DATA = Path("/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_35/data")
+E35_DATA = Path(__file__).resolve().parents[4] / "round-7/experiment-35/src/data"
 
 
 def fence(code: str) -> str:

@@ -54,10 +54,10 @@ def artifact_dir(art_id: str, env: str, volume_rel: str) -> Path:
     return sib if sib.exists() else ROOT / volume_rel
 
 
-ART_E38 = artifact_dir("art_HY7uYZz-OjRW", "AII_ART_HY7UYZZ_OJRW", "../../../iter_7/gen_art/gen_art_experiment_38")
-ART_E33 = artifact_dir("art_veI9l_Rb9wDY", "AII_ART_VEI9L_RB9WDY", "../../../iter_7/gen_art/gen_art_experiment_33")
+ART_E38 = artifact_dir("art_HY7uYZz-OjRW", "AII_ART_HY7UYZZ_OJRW", "../../../round-7/experiment-38/src")
+ART_E33 = artifact_dir("art_veI9l_Rb9wDY", "AII_ART_VEI9L_RB9WDY", "../../../round-7/experiment-33/src")
 ART_DEP = artifact_dir("art_j3Rm_lr2nzR6", "AII_ART_J3RM_LR2NZR6",
-                       "../../../../../run_4VFKidE1bxPG/3_invention_loop/iter_1/gen_art/gen_art_dataset_1")
+                       "../../../round-1/dataset-1/src")
 DEP_ABS = ART_DEP                    # the declared dependency (dataset artifact): full_data_out.json
 ART_IDS = {"E38": "art_HY7uYZz-OjRW", "E33": "art_veI9l_Rb9wDY"}
 COPIES = {  # workspace path -> (source artifact key, path inside that artifact); copied read-only

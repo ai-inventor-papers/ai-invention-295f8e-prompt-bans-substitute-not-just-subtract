@@ -60,7 +60,7 @@ E38 = INPUTS / "exp38"
 
 _RUNS = ROOT.parents[4] if len(ROOT.parents) > 4 else ROOT
 DEP_DIR = Path(os.environ.get("ART_J3RM_DIR") or (
-    _RUNS / "run_4VFKidE1bxPG" / "." / "round-1" / "." / "gen_art_dataset_1"))
+    _RUNS / "run_4VFKidE1bxPG" / "." / "round-1" / "." / "dataset-1/src"))
 
 # ------------------------------------------------------------------------------------------------ models
 QWEN_ID = "Qwen/Qwen3-8B"

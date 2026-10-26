@@ -5,7 +5,7 @@
 # Where art_HY7uYZz-OjRW is looked up (the same order as method.py's artifact_dir):
 #   1. $AII_ART_HY7UYZZ_OJRW, if set;
 #   2. the sibling folder ../art_HY7uYZz-OjRW (the published repository's layout);
-#   3. the run-volume layout ../../../iter_7/gen_art/gen_art_experiment_38.
+#   3. the run-volume layout ../../../round-7/experiment-38/src.
 # If that artifact's cache/states/ is not present (it is excluded from its published copy), rebuild it there first
 # with iteration 7's own code: (cd <that folder> && .venv/bin/python method.py --stage yv), about 2 GPU-minutes.
 set -euo pipefail
@@ -19,7 +19,7 @@ if [ -n "${AII_ART_HY7UYZZ_OJRW:-}" ]; then
 elif [ -d "../art_HY7uYZz-OjRW" ]; then
   SRC="../art_HY7uYZz-OjRW"
 else
-  SRC="../../../iter_7/gen_art/gen_art_experiment_38"
+  SRC="../../../round-7/experiment-38/src"
 fi
 mkdir -p cache/states
 for f in fork_variants fork_sources fork_twins; do
