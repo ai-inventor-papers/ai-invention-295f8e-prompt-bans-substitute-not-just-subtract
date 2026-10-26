@@ -1,0 +1,71 @@
+09:02:10|INFO   |stage B (smoke=False)
+09:02:23|INFO   |[B2_layer_probe] start
+09:02:25|INFO   |t1: 99 ban rows (21 banned-class), groups [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], dropped 1
+09:02:48|INFO   |layer probe t1 k_pre: within-paraphrase DiM AUC by layer [0.63, 0.54, 0.53, 0.61, 0.47, 0.61, 0.56, 0.61, 0.54, 0.57, 0.48, 0.53, 0.72, 0.57, 0.7, 0.63, 0.5, 0.54, 0.52, 0.61, 0.65]
+./.venv/lib/python3.12/site-packages/numpy/lib/_nanfunctions_impl.py:1601: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+09:02:48|INFO   |layer probe t1 k_fork: within-paraphrase DiM AUC by layer [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+09:03:10|INFO   |layer probe t1 k16: within-paraphrase DiM AUC by layer [0.6, 0.5, 0.61, 0.53, 0.5, 0.61, 0.54, 0.54, 0.61, 0.54, 0.63, 0.51, 0.46, 0.5, 0.48, 0.56, 0.47, 0.67, 0.6, 0.68, 0.65]
+09:03:32|INFO   |layer probe t1 R: within-paraphrase DiM AUC by layer [0.5, 0.57, 0.54, 0.46, 0.5, 0.5, 0.54, 0.54, 0.48, 0.5, 0.57, 0.52, 0.5, 0.46, 0.43, 0.52, 0.55, 0.5, 0.57, 0.54, 0.62]
+09:03:54|INFO   |layer probe t1 k_post: within-paraphrase DiM AUC by layer [0.7, 0.6, 0.67, 0.67, 0.7, 0.6, 0.7, 0.67, 0.64, 0.74, 0.65, 0.68, 0.75, 0.72, 0.73, 0.68, 0.62, 0.65, 0.51, 0.54, 0.63]
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+09:04:53|INFO   |t2: 100 ban rows (20 banned-class), groups [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], dropped 0
+09:05:14|INFO   |layer probe t2 k_pre: within-paraphrase DiM AUC by layer [0.76, 0.79, 0.69, 0.74, 0.74, 0.76, 0.7, 0.77, 0.74, 0.74, 0.72, 0.73, 0.74, 0.71, 0.71, 0.7, 0.74, 0.74, 0.8, 0.76, 0.8]
+09:05:35|INFO   |layer probe t2 k_fork: within-paraphrase DiM AUC by layer [0.55, 0.54, 0.46, 0.5, 0.48, 0.51, 0.51, 0.55, 0.51, 0.47, 0.65, 0.63, 0.61, 0.66, 0.58, 0.59, 0.66, 0.67, 0.6, 0.64, 0.57]
+09:05:56|INFO   |layer probe t2 k16: within-paraphrase DiM AUC by layer [0.8, 0.83, 0.86, 0.87, 0.84, 0.82, 0.86, 0.86, 0.87, 0.86, 0.85, 0.82, 0.81, 0.8, 0.83, 0.83, 0.82, 0.81, 0.82, 0.81, 0.82]
+09:06:15|INFO   |layer probe t2 R: within-paraphrase DiM AUC by layer [0.47, 0.6, 0.51, 0.55, 0.49, 0.62, 0.56, 0.51, 0.59, 0.47, 0.58, 0.54, 0.51, 0.5, 0.49, 0.46, 0.37, 0.46, 0.43, 0.49, 0.49]
+09:06:37|INFO   |layer probe t2 k_post: within-paraphrase DiM AUC by layer [0.76, 0.79, 0.74, 0.76, 0.73, 0.76, 0.79, 0.73, 0.75, 0.71, 0.71, 0.73, 0.73, 0.76, 0.76, 0.75, 0.75, 0.79, 0.73, 0.77, 0.76]
+09:06:39|INFO   |[B2_layer_probe] done in 4.3 min
+09:06:39|INFO   |B3 layer choice (logged before any SAE download): [15, 20, 27] score top: [(27, 0.6987362773130009), (20, 0.6831515408238907), (15, 0.6736559709131985), (22, 0.672844082036076), (25, 0.6721557414663419)]
+09:06:39|INFO   |[B4_sae_alignment] start
+09:07:00|INFO   |SAE L15 FVU at L-1/L/L+1: [1.349, 1.025, 1.254] -> aligned=True
+09:07:14|INFO   |SAE L20 FVU at L-1/L/L+1: [1.517, 1.139, 1.574] -> aligned=True
+09:07:26|INFO   |SAE L27 FVU at L-1/L/L+1: [1.538, 1.278, 1.603] -> aligned=True
+09:07:27|INFO   |[B4_sae_alignment] done in 0.8 min
+09:07:27|INFO   |[B5_discovery] start
+09:07:28|INFO   |[B5_discovery] done in 0.0 min
+09:07:28|ERROR  |An error has been caught in function '<module>', process 'MainProcess' (3068), thread 'MainThread' (131702670207872):
+Traceback (most recent call last):
+
+> File "./method.py", line 84, in <module>
+    main()
+    └ <function main at 0x77c869ec0360>
+
+  File "./method.py", line 54, in main
+    run_stage_b()
+    └ <function run_stage_b at 0x77c84b09b6a0>
+
+  File "./src/readout_i.py", line 633, in run_stage_b
+    DISC["objects"][key] = fit_all_rows_objects(H, Z, D["y"][m])
+    │               │      │                    │  │  │      └ array([False, False, False, False, False, False, False, False, False,
+    │               │      │                    │  │  │               False, False, False, False, False, False, False,...
+    │               │      │                    │  │  └ {'X': array([[[[ 3.9062e-03, -9.4922e-01, -4.5703e-01, ..., -2.6172e-01,
+    │               │      │                    │  │              -2.6953e-01,  3.2227e-01],
+    │               │      │                    │  │             [ 3.67...
+    │               │      │                    │  └ array([], shape=(0, 65536), dtype=float32)
+    │               │      │                    └ array([], shape=(0, 4096), dtype=float32)
+    │               │      └ <function fit_all_rows_objects at 0x77c84b09b560>
+    │               └ 't1|L15|k_fork'
+    └ {'configs': {}, 'objects': {'t1|L15|k_pre': {'sae_top1': {'latent': 36523, 'sign': 1.0, 'mu': 0.8771239820152822, 'sd': 0.627...
+
+  File "./src/readout_i.py", line 506, in fit_all_rows_objects
+    j = top[0]
+        └ array([], dtype=int64)
+
+IndexError: index 0 is out of bounds for axis 0 with size 0
+Traceback (most recent call last):
+  File "./method.py", line 84, in <module>
+    
+  File "./.venv/lib/python3.12/site-packages/loguru/_logger.py", line 1297, in catch_wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./method.py", line 54, in main
+    run_stage_b()
+  File "./src/readout_i.py", line 633, in run_stage_b
+    DISC["objects"][key] = fit_all_rows_objects(H, Z, D["y"][m])
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./src/readout_i.py", line 506, in fit_all_rows_objects
+    j = top[0]
+        ~~~^^^
+IndexError: index 0 is out of bounds for axis 0 with size 0
