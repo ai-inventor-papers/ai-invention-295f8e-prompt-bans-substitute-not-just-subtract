@@ -1,0 +1,35 @@
+findfont: Failed to find font weight normal for CMU Serif, now using 500.
+findfont: Failed to find font weight normal for CMU Serif, now using 500.
+findfont: Failed to find font weight normal for CMU Serif, now using 500.
+findfont: Failed to find font weight normal for CMU Serif, now using 500.
+findfont: Failed to find font weight normal for CMU Serif, now using 500.
+findfont: Failed to find font weight normal for CMU Serif, now using 500.
+findfont: Failed to find font weight normal for CMU Serif, now using 500.
+findfont: Failed to find font weight normal for CMU Serif, now using 500.
+findfont: Failed to find font weight normal for CMU Serif, now using 500.
+Traceback (most recent call last):
+  File "./src/figures.py", line 252, in main
+    fn(*args)
+  File "./src/figures.py", line 176, in f4
+    ax.bar(np.arange(len(units)) + (i - 2) * w, vals, width=w, yerr=[lo, hi], capsize=2, label=a,
+  File "./.venv/lib/python3.12/site-packages/matplotlib/__init__.py", line 1531, in inner
+    return func(
+           ^^^^^
+  File "./.venv/lib/python3.12/site-packages/matplotlib/axes/_axes.py", line 2633, in bar
+    errorbar = self.errorbar(ex, ey, yerr=yerr, xerr=xerr, fmt='none',
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./.venv/lib/python3.12/site-packages/matplotlib/_api/deprecation.py", line 477, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "./.venv/lib/python3.12/site-packages/matplotlib/__init__.py", line 1531, in inner
+    return func(
+           ^^^^^
+  File "./.venv/lib/python3.12/site-packages/matplotlib/axes/_axes.py", line 4232, in errorbar
+    raise ValueError(
+ValueError: 'yerr' must not contain negative values
+f1 ok
+f2 ok
+f3 ok
+f4 failed: 'yerr' must not contain negative values
+f5 ok
+f6 ok
