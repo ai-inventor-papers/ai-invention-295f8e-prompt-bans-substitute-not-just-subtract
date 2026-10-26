@@ -1,0 +1,27 @@
+./src/analysis/analysis.py:147: RuntimeWarning: Mean of empty slice
+  "F_prompt_mean": np.nanmean((sb - sc) / (sb - sa), -1),
+./src/analysis/analysis.py:148: RuntimeWarning: Mean of empty slice
+  "F_direct_mean": np.nanmean((sb - sd) / (sb - sa), -1)}
+./src/analysis/analysis.py:459: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  r_ = stats.spearmanr(v[ii], f[ii]).statistic
+20:31:56|INFO   |analysis: gated=['T03', 'T06', 'T05', 'T10', 'T13']; C2a=DISCONFIRMED point={'F_prompt': 0.6111111111111112, 'F_direct': 0.7439613526570049, 'I': -0.3550724637681161, 'F_prompt_mean': 0.5674887492471494, 'F_direct_mean': 0.7021613990849292, 'F_K0': 0.6207729468599033}; C2c=INCONCLUSIVE (hit 0.8, rho -0.3354101966249684)
+20:32:02|INFO   |replication: pooled r2 {'point': 0.6365795724465557, 'ci95': [0.2727272727272727, 0.9367081755422277]} / {'point': 0.7434679334916865, 'ci95': [0.43476985098999804, 0.9444617622610142]}; verdict DISCONFIRMED; placebo pass fraction 1.0
+20:32:05|INFO   |supplementary: W4 share of ban failures 0.2948328267477204; disputed 0; judge spend bench 0.0531 path 0.052398; nouns found True
+20:32:13|INFO   |figure fig1_arm_shares written
+20:32:18|INFO   |figure fig2_route_fractions written
+20:32:23|INFO   |figure fig3_veto_vs_direct written
+20:32:28|INFO   |figure fig4_first_divergence written
+20:32:32|INFO   |figure fig5_prefill_popen written
+20:32:37|INFO   |figure fig6_screen_rounds written
+20:32:38|INFO   |method_out.json: route_arms=1200, veto_sufficiency=1200, prefill=250, path_screen=200, controls_placebo_K0b=300
+{"n_mismatches": 0, "U4_pass": true, "U5_pass": true, "U6_pass": true, "hash_chain_ok": true} {"commit1_last_utc": "2026-10-20T18:41:06.517778Z", "commit2_last_utc": "2026-10-20T18:52:25.751265Z", "first_ban_row_utc": "2026-10-20T18:50:55.743395Z", "first_bench_ban_row_utc": "2026-10-20T18:52:46.592629Z", "first_arm_a_row_utc": "2026-10-20T18:52:46.592629Z", "commit1_before_first_ban": true, "commit2_before_first_bench_ban": true}
+Generated 3 versions:
+  Full (3150 items): ./full_method_out.json
+  Mini (15 items): ./mini_method_out.json
+  Preview (15 items, truncated): ./preview_method_out.json
+Format: exp_gen_sol_out
+Validation PASSED
+-rw-rw-rw- 1 aii-agent aii-agent 1.7M Oct 20 20:32 full_method_out.json
+-rw-rw-rw- 1 aii-agent aii-agent 1.4M Oct 20 20:32 method_out.json
+-rw-rw-rw- 1 aii-agent aii-agent 169K Oct 20 20:32 mini_method_out.json
+-rw-rw-rw- 1 aii-agent aii-agent 155K Oct 20 20:32 preview_method_out.json

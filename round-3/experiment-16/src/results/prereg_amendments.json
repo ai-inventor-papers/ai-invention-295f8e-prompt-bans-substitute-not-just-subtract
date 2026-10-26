@@ -1,0 +1,32 @@
+[
+ {
+  "id": "A1",
+  "utc": "2026-10-20T19:00:42.790492Z",
+  "file": "src/analysis/analysis.py",
+  "sha256_committed": "8879bc2a52b3957e0f2cab18687d59e381bce8bcdc8606d5f8fca1bc11776eb3",
+  "sha256_after": "5006fe669ee100cecea73e7fd9aac534ebc8d2033ad3371b746228ed4bb76722",
+  "change": "iter2_ban_landings(): recount exp12's fresh-pool landings from exp12's per-row labels (same frozen exp8/exp1 suite labeller) instead of re-judging the 200 raw texts; add a judge-free mechanical relabel as a cross-check; add BRT_SKIP_SCREEN switch for partial runs.",
+  "reason": "judge budget (the suite judge costs ~USD 0.002/call); descriptive screen reference only -- no decision rule, threshold or primary statistic changed",
+  "what_had_been_seen": "ban-free S4 summaries, the first path-screen rows and the T2 engine-validation counts (U9); bench ban-arm rows existed on disk but no bench ban-arm statistic had been computed"
+ },
+ {
+  "id": "A2",
+  "utc": "2026-10-20T19:19:46.586020+00:00",
+  "file": "src/analysis/analysis.py",
+  "sha256_before": "5006fe669ee100cecea73e7fd9aac534ebc8d2033ad3371b746228ed4bb76722",
+  "sha256_after": "6a468a818f711b2eade64bcdb014f4e73ecfe62bd8142a583bd6243fe667448e",
+  "change": "route_analysis(): implement the plan's pre-registered fallback F5 (3-5 gated tasks -> pooled estimate labelled low-cluster with the leave-one-task-out jackknife CI as primary); percentile and BCa verdicts still reported",
+  "reason": "the gate admitted 5 tasks; the committed code computed all three intervals but hard-wired the percentile one as primary",
+  "what_had_been_seen": "descriptive per-task F values of a partial smoke run (tasks T03-T06, T10) and the gate result; no pooled statistic or C2a verdict had been computed. The switch is decided solely by the number of gated tasks, as pre-registered in F5."
+ },
+ {
+  "id": "A3",
+  "utc": "2026-10-20T20:30:25.062825+00:00",
+  "file": "src/analysis/analysis.py",
+  "sha256_before": "6a468a818f711b2eade64bcdb014f4e73ecfe62bd8142a583bd6243fe667448e",
+  "sha256_after": "316184b9917603c91ef33abb695ed50f3a92d7afe851fe1f559d723138908e96",
+  "change": "c1_rows(): a family with tied maximal probability (LADDER, scored uniform by the plan) gets top1 = null instead of the first category in catalogue order",
+  "reason": "bug fix in the secondary C1 rows (no decision is made from them); the uniform LADDER previously scored spurious top-1 hits",
+  "what_had_been_seen": "all results"
+ }
+]
