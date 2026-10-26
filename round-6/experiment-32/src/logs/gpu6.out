@@ -1,59 +1,0 @@
-./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
-Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:07<00:29,  7.34s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:14<00:22,  7.42s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:22<00:14,  7.49s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:28<00:07,  7.08s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:31<00:00,  5.38s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:31<00:00,  6.24s/it]
-21:40:54|INFO   |Qwen/Qwen3-8B@b968826d9c46dd6066d109eabc6255188de91218 loaded in 33s; free VRAM 7.1/23.7 GB
-21:40:54|INFO   |=== task twin_hf|II1|None (always)
-21:40:54|INFO   |=== task twin_hf|II3|None (always)
-21:40:54|INFO   |=== task twin_hf|II4|None (always)
-./src/engine5.py:114: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
-  tok = torch.searchsorted(cdf, u[:, None].to(cdf.dtype)).squeeze(-1)
-21:41:04|INFO   |twin_hf II4/W5 ['TWIN', 'TWIN_EXTRA']: 9.0s, 80 steps
-21:41:04|INFO   |=== task twin_hf|II5|None (always)
-21:41:13|INFO   |twin_hf II5/W3 ['TWIN', 'TWIN_EXTRA']: 8.5s, 104 steps
-21:41:21|INFO   |twin_hf II5/W4 ['TWIN', 'TWIN_EXTRA']: 8.5s, 104 steps
-21:41:30|INFO   |twin_hf II5/W5 ['TWIN', 'TWIN_EXTRA']: 8.5s, 104 steps
-21:41:30|INFO   |=== task twin_hf|II6|None (always)
-21:41:37|INFO   |twin_hf II6/W1 ['TWIN', 'TWIN_EXTRA']: 7.1s, 88 steps
-21:41:44|INFO   |twin_hf II6/W2 ['TWIN', 'TWIN_EXTRA']: 6.5s, 80 steps
-21:41:50|INFO   |twin_hf II6/W3 ['TWIN', 'TWIN_EXTRA']: 6.5s, 80 steps
-21:41:57|INFO   |twin_hf II6/W4 ['TWIN', 'TWIN_EXTRA']: 6.5s, 80 steps
-21:42:03|INFO   |twin_hf II6/W5 ['TWIN', 'TWIN_EXTRA']: 6.5s, 80 steps
-21:55:42|INFO   |=== task qlik|II1|None (pending forced labels 0, final flag True)
-21:56:12|INFO   |q_lik II1: two_pointers: tok -0.395 raw -19.0 (n=10), iterator_consumption: tok -1.532 raw -66.3 (n=10), bisect_positions: tok -1.365 raw -65.5 (n=10); noise floor 0.16156959533691406
-21:56:13|INFO   |=== task qlik|II3|None (pending forced labels 0, final flag True)
-21:56:52|INFO   |q_lik II3: library_count: tok -1.664 raw -21.6 (n=10), kernighan: tok -0.282 raw -8.7 (n=10), shift_mask: tok -0.047 raw -1.8 (n=10), lookup_table: tok -1.679 raw -80.6 (n=10); noise floor 0.2297496795654297
-21:56:52|INFO   |=== task qlik|II4|None (pending forced labels 0, final flag True)
-21:57:18|INFO   |q_lik II4: binary_search_slope: tok -0.907 raw -43.6 (n=10), linear_scan: tok -0.378 raw -18.1 (n=10); noise floor 0.19523191452026367
-21:57:19|INFO   |=== task qlik|II5|None (pending forced labels 0, final flag True)
-21:58:06|INFO   |q_lik II5: backtracking_used: tok -2.075 raw -99.6 (n=10), swap_backtracking: tok -2.571 raw -123.4 (n=10), library_permutations: tok -1.627 raw -35.7 (n=10), heaps_algorithm: tok -2.339 raw -112.3 (n=2); noise floor 0.386199951171875
-21:58:06|INFO   |=== task qlik|II6|None (pending forced labels 0, final flag True)
-21:58:19|INFO   |q_lik II6: stack: tok -1.434 raw -68.8 (n=10); noise floor 0.320770263671875
-21:58:19|INFO   |=== task qlik|B1|None (pending forced labels 0, final flag True)
-21:59:01|INFO   |q_lik B1: arithmetic_sum: tok -2.419 raw -96.8 (n=10), xor_fold: tok -1.310 raw -59.0 (n=10), sort_scan: tok -1.201 raw -40.1 (n=10), sort_binary_search: tok -1.512 raw -72.6 (n=10), hash_set: tok -1.044 raw -37.9 (n=10); noise floor 0.45965003967285156
-21:59:01|INFO   |=== task qlik|B2|None (pending forced labels 0, final flag True)
-21:59:35|INFO   |q_lik B2: xor_fold: tok -0.164 raw -3.9 (n=10), hash_count: tok -0.474 raw -22.8 (n=10), set_sum_identity: tok -2.068 raw -35.2 (n=10), sort_pair_scan: tok -0.140 raw -6.7 (n=10); noise floor 0.2804262638092041
-21:59:35|INFO   |=== task qlik|B3|None (pending forced labels 0, final flag True)
-22:00:24|INFO   |q_lik B3: kruskal: tok -0.844 raw -40.5 (n=10), prim_heap: tok -0.175 raw -8.4 (n=10), prim_array: tok -0.471 raw -22.6 (n=4), boruvka: tok -1.067 raw -51.2 (n=1); noise floor 0.2928924560546875
-22:00:25|INFO   |=== task qlik|B4|None (pending forced labels 0, final flag True)
-22:01:04|INFO   |q_lik B4: binary_search: tok -0.977 raw -46.9 (n=10), newton: tok -0.606 raw -28.9 (n=7), library_isqrt: tok -2.145 raw -30.0 (n=10), float_sqrt: tok -1.641 raw -33.1 (n=10), linear_scan: tok -0.558 raw -17.8 (n=10); noise floor 0.24078369140625
-22:01:04|INFO   |=== task qlik|B5|None (pending forced labels 0, final flag True)
-22:01:41|INFO   |q_lik B5: backtracking: tok -2.028 raw -97.4 (n=10), bitmask_enumeration: tok -2.418 raw -116.0 (n=10), iterative_doubling: tok -1.437 raw -65.3 (n=10), itertools_combinations: tok -1.645 raw -74.3 (n=10); noise floor 0.3459320068359375
-22:01:41|INFO   |=== task qlik|B6|None (pending forced labels 0, final flag True)
-22:02:07|INFO   |q_lik B6: sort_compare: tok -1.521 raw -23.9 (n=10), hash_count: tok -0.896 raw -29.6 (n=10), fixed_count_array: tok -0.078 raw -3.8 (n=10); noise floor 0.2958030700683594
-22:02:08|INFO   |=== task qlik|B7|None (pending forced labels 0, final flag True)
-22:02:46|INFO   |q_lik B7: merge_sort_count: tok -2.174 raw -104.4 (n=10), fenwick_tree: tok -2.697 raw -129.5 (n=10), segment_tree: tok -2.126 raw -102.1 (n=1), sorted_insertion_bisect: tok -0.993 raw -47.7 (n=10); noise floor 0.3502197265625
-22:12:31|INFO   |adjudicated 21 disagreements
-22:12:31|INFO   |=== task conf|II1|[1.0, 2.0, 4.0] (stage-1 labels complete)
-22:12:34|INFO   |II1: stage-1 passers needing confirmation: []
-22:12:41|INFO   |adjudicated 20 disagreements
-22:12:41|INFO   |=== task conf|II3|[1.0, 2.0, 4.0] (stage-1 labels complete)
-22:12:44|INFO   |II3: stage-1 passers needing confirmation: []
-22:12:55|INFO   |adjudicated 42 disagreements
-22:12:55|INFO   |=== task conf|II4|[1.0, 2.0, 4.0] (stage-1 labels complete)
-22:12:59|INFO   |II4: stage-1 passers needing confirmation: []
-22:13:04|INFO   |adjudicated 8 disagreements
-22:13:04|INFO   |=== task conf|II5|[1.0, 2.0, 4.0] (stage-1 labels complete)
-22:13:07|INFO   |II5: stage-1 passers needing confirmation: []
-22:13:13|INFO   |adjudicated 12 disagreements
-22:13:13|INFO   |=== task conf|II6|[1.0, 2.0, 4.0] (stage-1 labels complete)
-22:13:17|INFO   |II6: stage-1 passers needing confirmation: []

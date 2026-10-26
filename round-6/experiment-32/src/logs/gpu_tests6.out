@@ -1,24 +1,0 @@
-./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
-Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:06<00:27,  6.93s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:14<00:22,  7.50s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:22<00:15,  7.56s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:27<00:06,  6.60s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:29<00:00,  4.93s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:29<00:00,  5.91s/it]
-00:07:53|INFO   |Qwen/Qwen3-8B@b968826d9c46dd6066d109eabc6255188de91218 loaded in 31s; free VRAM 7.1/23.7 GB
-./src/engine5.py:114: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
-  tok = torch.searchsorted(cdf, u[:, None].to(cdf.dtype)).squeeze(-1)
-{
- "utc": "2026-10-22T00:08:22.386457Z",
- "G1_crn_determinism_identical": true,
- "G2_alpha0_esc_identical_rows": "20/20",
- "G2_alpha0_rel_err": 0.0,
- "G3_realised_dose": {
-  "n_rows": 4850,
-  "max_rel_err": 0.0016102601075544953,
-  "median_rel_err": 0.00012708893336821347,
-  "pass_1pct": true
- },
- "G4_gtn_alpha0_identical_rows": "10/10",
- "G4_gtn_shadow_rel_err": 0.0,
- "G6_vllm_prompt_ids_identical": {
-  "identical": 5700,
-  "different": 0
- }
-}

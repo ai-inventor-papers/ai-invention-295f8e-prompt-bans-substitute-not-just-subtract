@@ -1,39 +1,0 @@
-/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_34/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
-Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:02,  1.65it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.33it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.27it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  1.33it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.83it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.58it/s]
-13:29:24|INFO   |bf16 weight set loaded in 44s (252 linears); device cuda:0; free VRAM 8.89/23.52 GiB
-13:29:24|INFO   |model loaded in 88s
-/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_34/vendor/exp29/vendor/exp22/src_base/engine.py:216: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
-  tok = torch.searchsorted(cdf, u[:, None].to(cdf.dtype)).squeeze(-1)
-13:29:59|INFO   |unit tests: {'U1_crn_determinism': {'identical': True, 'n_rows': 8}, 'U2_batch_invariance_B1_vs_B8': {'identical': [True, True, True, True], 'note': 'exp29 found invariance for B >= 3 only'}, 'U3_hook_identity_alpha0': {'kv_bitwise_equal': True, 'r_logits_equal': True}, 'U5_teacher_forced_vs_prefill': {'max_abs_logprob_diff_top50': 0.25, 'argmax_equal': True, 'position': 12}, 'U8_memory': {'peak_gib': 15.63454008102417, 'free_gib': 8.675537109375}}
-13:30:07|INFO   |S0a_twin T2/W1 ['TWIN', 'TWIN']: 7.8s, 200 steps
-13:30:14|INFO   |S0a_twin T2/W2 ['TWIN', 'TWIN']: 7.1s, 192 steps
-13:30:21|INFO   |S0a_twin T2/W3 ['TWIN', 'TWIN']: 7.4s, 200 steps
-13:30:29|INFO   |S0a_twin T2/W4 ['TWIN', 'TWIN']: 7.4s, 200 steps
-13:30:36|INFO   |S0a_twin T2/W5 ['TWIN', 'TWIN']: 7.4s, 200 steps
-13:30:37|INFO   |S0a_twin T03/W1 ['TWIN', 'TWIN']: 1.0s, 24 steps
-13:30:38|INFO   |S0a_twin T03/W2 ['TWIN', 'TWIN']: 0.9s, 24 steps
-13:30:39|INFO   |S0a_twin T03/W3 ['TWIN', 'TWIN']: 1.0s, 24 steps
-13:30:40|INFO   |S0a_twin T03/W4 ['TWIN', 'TWIN']: 1.0s, 24 steps
-13:30:41|INFO   |S0a_twin T03/W5 ['TWIN', 'TWIN']: 0.9s, 24 steps
-13:30:49|INFO   |S0a_twin T10/W1 ['TWIN', 'TWIN']: 7.5s, 192 steps
-13:30:54|INFO   |S0a_twin T10/W2 ['TWIN', 'TWIN']: 4.8s, 128 steps
-13:30:59|INFO   |S0a_twin T10/W3 ['TWIN', 'TWIN']: 5.1s, 136 steps
-13:31:06|INFO   |S0a_twin T10/W4 ['TWIN', 'TWIN']: 7.4s, 192 steps
-13:31:13|INFO   |S0a_twin T10/W5 ['TWIN', 'TWIN']: 7.2s, 192 steps
-13:31:28|INFO   |S0a_twin T1/W1 ['TWIN', 'TWIN']: 14.5s, 400 steps
-13:31:43|INFO   |S0a_twin T1/W2 ['TWIN', 'TWIN']: 14.5s, 400 steps
-13:31:57|INFO   |S0a_twin T1/W3 ['TWIN', 'TWIN']: 14.9s, 392 steps
-13:32:13|INFO   |S0a_twin T1/W4 ['TWIN', 'TWIN']: 15.4s, 408 steps
-13:32:28|INFO   |S0a_twin T1/W5 ['TWIN', 'TWIN']: 15.0s, 416 steps
-13:32:35|INFO   |S0b_pop T10/W1 ['POP_d9101_a2.0', 'POP_d9102_a2.0', 'POP_d9103_a2.0', 'POP_d9104_a2.0', 'POP_d9105_a2.0', 'TWIN']: 7.4s, 192 steps
-13:32:41|INFO   |S0b_pop T10/W2 ['POP_d9101_a2.0', 'POP_d9102_a2.0', 'POP_d9103_a2.0', 'POP_d9104_a2.0', 'POP_d9105_a2.0', 'TWIN']: 5.5s, 136 steps
-13:32:48|INFO   |S0b_pop T10/W3 ['POP_d9101_a2.0', 'POP_d9102_a2.0', 'POP_d9103_a2.0', 'POP_d9104_a2.0', 'POP_d9105_a2.0', 'TWIN']: 7.5s, 192 steps
-13:32:56|INFO   |S0b_pop T10/W4 ['POP_d9101_a2.0', 'POP_d9102_a2.0', 'POP_d9103_a2.0', 'POP_d9104_a2.0', 'POP_d9105_a2.0', 'TWIN']: 7.7s, 192 steps
-13:33:04|INFO   |S0b_pop T10/W5 ['POP_d9101_a2.0', 'POP_d9102_a2.0', 'POP_d9103_a2.0', 'POP_d9104_a2.0', 'POP_d9105_a2.0', 'TWIN']: 8.1s, 200 steps
-13:33:13|INFO   |S0b_pop T2/W1 ['POP_d9101_a2.0', 'POP_d9102_a2.0', 'POP_d9103_a2.0', 'POP_d9104_a2.0', 'POP_d9105_a2.0', 'TWIN']: 8.6s, 216 steps
-13:33:22|INFO   |S0b_pop T2/W2 ['POP_d9101_a2.0', 'POP_d9102_a2.0', 'POP_d9103_a2.0', 'POP_d9104_a2.0', 'POP_d9105_a2.0', 'TWIN']: 8.8s, 224 steps
-13:33:30|INFO   |S0b_pop T2/W3 ['POP_d9101_a2.0', 'POP_d9102_a2.0', 'POP_d9103_a2.0', 'POP_d9104_a2.0', 'POP_d9105_a2.0', 'TWIN']: 7.8s, 200 steps
-13:33:39|INFO   |S0b_pop T2/W4 ['POP_d9101_a2.0', 'POP_d9102_a2.0', 'POP_d9103_a2.0', 'POP_d9104_a2.0', 'POP_d9105_a2.0', 'TWIN']: 9.7s, 256 steps
-13:33:51|INFO   |S0b_pop T2/W5 ['POP_d9101_a2.0', 'POP_d9102_a2.0', 'POP_d9103_a2.0', 'POP_d9104_a2.0', 'POP_d9105_a2.0', 'TWIN']: 11.3s, 296 steps
-13:33:51|INFO   |0c realised norms: n 50 max rel {12: 2.4959151921296584e-05, 23: 0.0026844984583524025, 35: 0.023532586124839935} pass False

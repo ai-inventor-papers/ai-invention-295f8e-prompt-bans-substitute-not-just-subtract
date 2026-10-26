@@ -1,51 +1,0 @@
-<workspace>/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
-INFO 10-20 01:31:52 [__init__.py:216] Automatically detected platform cuda.
-INFO 10-20 01:32:19 [utils.py:233] non-default args: {'tokenizer': '<run-volume-path>', 'dtype': 'bfloat16', 'seed': 1234, 'max_model_len': 2048, 'enable_prefix_caching': True, 'max_num_seqs': 48, 'disable_log_stats': True, 'enforce_eager': True, 'generation_config': 'vllm', 'model': '<run-volume-path>'}
-INFO 10-20 01:33:37 [model.py:547] Resolved architecture: Qwen3ForCausalLM
-`torch_dtype` is deprecated! Use `dtype` instead!
-INFO 10-20 01:33:37 [model.py:1510] Using max model len 2048
-INFO 10-20 01:33:42 [scheduler.py:205] Chunked prefill is enabled with max_num_batched_tokens=8192.
-INFO 10-20 01:33:42 [__init__.py:381] Cudagraph is disabled under eager mode
-[1;36m(EngineCore_DP0 pid=8793)[0;0m INFO 10-20 01:33:43 [core.py:644] Waiting for init message from front-end.
-[1;36m(EngineCore_DP0 pid=8793)[0;0m INFO 10-20 01:33:43 [core.py:77] Initializing a V1 LLM engine (v0.11.0) with config: model='<run-volume-path>', speculative_config=None, tokenizer='<run-volume-path>', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser=''), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None), seed=1234, served_model_name=<run-volume-path>, enable_prefix_caching=True, chunked_prefill_enabled=True, pooler_config=None, compilation_config={"level":0,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":null,"use_inductor":true,"compile_sizes":[],"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"cudagraph_mode":0,"use_cudagraph":true,"cudagraph_num_of_warmups":0,"cudagraph_capture_sizes":[],"cudagraph_copy_inputs":false,"full_cuda_graph":false,"use_inductor_graph_partition":false,"pass_config":{},"max_capture_size":0,"local_cache_dir":null}
-[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
-[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
-[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
-[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
-[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
-[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
-[1;36m(EngineCore_DP0 pid=8793)[0;0m INFO 10-20 01:33:52 [parallel_state.py:1208] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0, EP rank 0
-[1;36m(EngineCore_DP0 pid=8793)[0;0m WARNING 10-20 01:33:53 [topk_topp_sampler.py:66] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
-[1;36m(EngineCore_DP0 pid=8793)[0;0m INFO 10-20 01:33:53 [gpu_model_runner.py:2602] Starting to load model <run-volume-path>
-[1;36m(EngineCore_DP0 pid=8793)[0;0m INFO 10-20 01:33:53 [gpu_model_runner.py:2634] Loading model from scratch...
-[1;36m(EngineCore_DP0 pid=8793)[0;0m INFO 10-20 01:33:54 [cuda.py:366] Using Flash Attention backend on V1 engine.
-[1;36m(EngineCore_DP0 pid=8793)[0;0m Loading safetensors checkpoint shards:   0% Completed | 0/5 [00:00<?, ?it/s]
-[1;36m(EngineCore_DP0 pid=8793)[0;0m Loading safetensors checkpoint shards:  20% Completed | 1/5 [00:04<00:17,  4.45s/it]
-[1;36m(EngineCore_DP0 pid=8793)[0;0m Loading safetensors checkpoint shards:  40% Completed | 2/5 [00:09<00:13,  4.53s/it]
-[1;36m(EngineCore_DP0 pid=8793)[0;0m Loading safetensors checkpoint shards:  60% Completed | 3/5 [00:13<00:09,  4.58s/it]
-[1;36m(EngineCore_DP0 pid=8793)[0;0m Loading safetensors checkpoint shards:  80% Completed | 4/5 [00:17<00:04,  4.21s/it]
-[1;36m(EngineCore_DP0 pid=8793)[0;0m Loading safetensors checkpoint shards: 100% Completed | 5/5 [00:18<00:00,  3.26s/it]
-[1;36m(EngineCore_DP0 pid=8793)[0;0m Loading safetensors checkpoint shards: 100% Completed | 5/5 [00:18<00:00,  3.78s/it]
-[1;36m(EngineCore_DP0 pid=8793)[0;0m 
-[1;36m(EngineCore_DP0 pid=8793)[0;0m INFO 10-20 01:34:13 [default_loader.py:267] Loading weights took 18.95 seconds
-[1;36m(EngineCore_DP0 pid=8793)[0;0m INFO 10-20 01:34:13 [gpu_model_runner.py:2653] Model loading took 15.2683 GiB and 19.314219 seconds
-[1;36m(EngineCore_DP0 pid=8793)[0;0m INFO 10-20 01:34:17 [gpu_worker.py:298] Available KV cache memory: 3.71 GiB
-[1;36m(EngineCore_DP0 pid=8793)[0;0m INFO 10-20 01:34:17 [kv_cache_utils.py:1087] GPU KV cache size: 26,992 tokens
-[1;36m(EngineCore_DP0 pid=8793)[0;0m INFO 10-20 01:34:17 [kv_cache_utils.py:1091] Maximum concurrency for 2,048 tokens per request: 13.18x
-[1;36m(EngineCore_DP0 pid=8793)[0;0m WARNING 10-20 01:34:17 [cudagraph_dispatcher.py:106] cudagraph dispatching keys are not initialized. No cudagraph will be used.
-[1;36m(EngineCore_DP0 pid=8793)[0;0m INFO 10-20 01:34:17 [core.py:210] init engine (profile, create kv cache, warmup model) took 3.95 seconds
-[1;36m(EngineCore_DP0 pid=8793)[0;0m INFO 10-20 01:34:18 [__init__.py:381] Cudagraph is disabled under eager mode
-INFO 10-20 01:34:18 [llm.py:306] Supported_tasks: ['generate']
-01:34:18|INFO   |vLLM loaded in 119s
-01:34:42|INFO   |generated 10 in 24s (2.40 s/gen, 132 tok/s)
-01:34:42|INFO   |smoke stop 320 tok: '```python\nfrom collections import deque\n\ndef solve(grid, start, goal):\n    rows = len(grid)\n    if rows == 0:\n        return []\n    cols = len(grid[0])\n    star'
-01:34:42|INFO   |smoke stop 315 tok: '```python\nfrom collections import deque\n\ndef solve(grid, start, goal):\n    rows = len(grid)\n    cols = len(grid[0]) if rows > 0 else 0\n\n    if not (0 <= start[0'
-01:34:42|INFO   |smoke stop 339 tok: '```python\nfrom collections import deque\n\ndef solve(grid, start, goal):\n    if not grid or not grid[0]:\n        return []\n    rows, cols = len(grid), len(grid[0]'
-01:34:42|INFO   |smoke stop 323 tok: '```python\nfrom collections import deque\n\ndef solve(grid, start, goal):\n    rows = len(grid)\n    cols = len(grid[0]) if rows > 0 else 0\n    \n    if not (0 <= sta'
-01:34:42|INFO   |smoke stop 311 tok: '```python\nfrom collections import deque\n\ndef solve(grid, start, goal):\n    if not grid or not start or not goal:\n        return []\n    rows, cols = len(grid), l'
-01:34:42|INFO   |smoke stop 313 tok: '```python\nfrom collections import deque\n\ndef solve(grid, start, goal):\n    rows = len(grid)\n    if rows == 0:\n        return []\n    cols = len(grid[0])\n    \n   '
-01:34:42|INFO   |smoke stop 313 tok: '```python\nfrom collections import deque\n\ndef solve(grid, start, goal):\n    if not grid or not grid[0]:\n        return []\n    \n    rows, cols = len(grid), len(gr'
-01:34:42|INFO   |smoke stop 308 tok: '```python\nfrom collections import deque\n\ndef solve(grid, start, goal):\n    if not grid or not start or not goal:\n        return []\n    rows, cols = len(grid), l'
-01:34:42|INFO   |smoke stop 328 tok: '```python\nfrom collections import deque\n\ndef solve(grid, start, goal):\n    if not grid or not start or not goal:\n        return []\n    rows, cols = len(grid), l'
-01:34:42|INFO   |smoke stop 309 tok: '```python\nfrom collections import deque\n\ndef solve(grid, start, goal):\n    if not grid or not grid[0]:\n        return []\n    rows, cols = len(grid), len(grid[0]'

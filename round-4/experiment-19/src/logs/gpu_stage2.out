@@ -1,8 +1,0 @@
-./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
-Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:02,  1.45it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.28it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.24it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.32it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.81it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.54it/s]
-04:32:51|INFO   |bf16 weights on CPU in 5s; quantising decoder linears to FP8
-04:33:37|INFO   |Qwen/Qwen3-8B loaded in 50s ({'n_fp8_linears': 252}); free VRAM 7.2/16.7 GB
-./src/engine_v4.py:254: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
-  tok = torch.searchsorted(cdf, u[:, None].to(cdf.dtype)).squeeze(-1)
-04:35:16|INFO   |EC:T2:W2 T2/W2 ['NEUTRAL', 'RAND9004_a1.0']: 98.8s, 272 steps, cap hits 0/20

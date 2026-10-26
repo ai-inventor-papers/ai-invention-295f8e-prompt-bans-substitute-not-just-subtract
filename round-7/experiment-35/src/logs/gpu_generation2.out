@@ -1,52 +1,0 @@
-./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
-Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:02,  1.51it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:01,  1.52it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:01<00:01,  1.53it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  1.70it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  2.38it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  1.94it/s]
-14:34:21|INFO   |Qwen/Qwen3-8B bf16 loaded: {'precision': 'bf16', 'cpu_embedding': False, 'free_vram_before_GB': 24.838, 'free_vram_after_GB': 8.302, 'total_vram_GB': 25.253, 'gpu': 'NVIDIA GeForce RTX 4090', 'load_seconds': 37.6}
-14:34:21|INFO   |=== stage s4b ===
-14:34:42|INFO   |[s4b:B3:MR] batch 1/1: 30 rows, 320 steps, 19.0s
-14:34:52|INFO   |labelled 120 rows in 9.3s
-14:34:56|INFO   |[s4b:A3:FORCED] batch 1/1: 30 rows, 152 steps, 4.0s
-14:35:01|INFO   |[s4b:A3:FORCEDPAD] batch 1/1: 30 rows, 168 steps, 4.4s
-14:35:05|INFO   |[s4b:A3:EXCH] batch 1/1: 30 rows, 152 steps, 4.0s
-14:35:17|INFO   |[s4b:A3:MR] batch 1/1: 30 rows, 168 steps, 12.0s
-14:35:19|INFO   |labelled 120 rows in 1.9s
-14:35:22|INFO   |[s4b:B6:FORCED] batch 1/1: 30 rows, 104 steps, 2.7s
-14:35:23|INFO   |[s4b:B6:FORCEDPAD] batch 1/1: 30 rows, 32 steps, 0.9s
-14:35:26|INFO   |[s4b:B6:EXCH] batch 1/1: 30 rows, 104 steps, 2.7s
-14:35:33|INFO   |[s4b:B6:MR] batch 1/1: 30 rows, 32 steps, 7.1s
-14:35:37|INFO   |labelled 120 rows in 3.1s
-14:35:37|INFO   |=== stage s4b done in 75s ===
-14:35:37|INFO   |=== stage s4a ===
-14:35:46|INFO   |[s4a:B3:W1] batch 1/1: 18 rows, 336 steps, 9.2s
-14:35:56|INFO   |[s4a:B3:W2] batch 1/1: 18 rows, 352 steps, 9.5s
-14:36:07|INFO   |[s4a:B3:W3] batch 1/1: 18 rows, 416 steps, 11.2s
-14:36:19|INFO   |[s4a:B3:W4] batch 1/1: 18 rows, 408 steps, 11.0s
-14:36:29|INFO   |[s4a:B3:W5] batch 1/1: 18 rows, 368 steps, 9.9s
-14:36:35|INFO   |labelled 90 rows in 6.4s
-14:36:40|INFO   |[s4a:A3:W1] batch 1/1: 18 rows, 168 steps, 4.6s
-14:36:45|INFO   |[s4a:A3:W2] batch 1/1: 18 rows, 168 steps, 4.6s
-14:36:50|INFO   |[s4a:A3:W3] batch 1/1: 18 rows, 168 steps, 4.6s
-14:36:55|INFO   |[s4a:A3:W4] batch 1/1: 18 rows, 168 steps, 4.6s
-14:36:59|INFO   |[s4a:A3:W5] batch 1/1: 18 rows, 168 steps, 4.6s
-14:37:02|INFO   |labelled 90 rows in 2.0s
-14:37:05|INFO   |[s4a:B6:W1] batch 1/1: 18 rows, 112 steps, 3.1s
-14:37:08|INFO   |[s4a:B6:W2] batch 1/1: 18 rows, 112 steps, 3.1s
-14:37:11|INFO   |[s4a:B6:W3] batch 1/1: 18 rows, 104 steps, 2.9s
-14:37:15|INFO   |[s4a:B6:W4] batch 1/1: 18 rows, 112 steps, 3.1s
-14:37:18|INFO   |[s4a:B6:W5] batch 1/1: 18 rows, 112 steps, 3.1s
-14:37:21|INFO   |labelled 90 rows in 2.4s
-14:37:21|INFO   |=== stage s4a done in 104s ===
-14:37:21|INFO   |=== stage geometry ===
-14:37:23|INFO   |geometry B3: 20 candidate fork states + 12 edited states
-14:37:25|INFO   |geometry A3: 20 candidate fork states + 12 edited states
-14:37:27|INFO   |geometry B6: 20 candidate fork states + 12 edited states
-14:37:27|INFO   |=== stage geometry done in 6s ===
-14:37:27|INFO   |=== stage collapsed ===
-14:37:40|INFO   |[collapsed13:T1] batch 1/2: 10 rows, 400 steps, 13.1s
-14:37:51|INFO   |[collapsed13:T1] batch 2/2: 10 rows, 344 steps, 11.1s
-14:37:57|INFO   |[collapsed13:T2] batch 1/2: 10 rows, 208 steps, 5.1s
-14:38:03|INFO   |[collapsed13:T2] batch 2/2: 10 rows, 200 steps, 6.1s
-14:38:10|INFO   |[collapsed13:T10] batch 1/1: 20 rows, 192 steps, 6.7s
-14:38:11|INFO   |[collapsed13:T03] batch 1/1: 20 rows, 24 steps, 0.9s
-14:38:19|INFO   |labelled 80 rows in 8.0s
-14:38:19|INFO   |=== stage collapsed done in 52s ===

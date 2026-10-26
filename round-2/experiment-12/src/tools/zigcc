@@ -1,4 +1,0 @@
-#!/bin/sh
-# C compiler shim for Triton's JIT (the pod has no gcc/clang): zig's bundled clang + libc headers.
-HERE="$(cd "$(dirname "$0")/.." && pwd)"
-exec "$HERE/.venv/bin/python" -m ziglang cc -target x86_64-linux-gnu.2.36 "$@"

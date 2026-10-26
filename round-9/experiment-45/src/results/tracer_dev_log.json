@@ -1,9 +1,0 @@
-{
- "note": "Development iterations of tracer v9 BEFORE the formal gate (testing plan 1: unit tests on references and planted controls before any gate run). Only the 15 T1 references and the 9 planted controls were used; no ban row and no gold row was traced during development.",
- "iterations": [
-  {"i": 1, "change": "initial design (events, merged candidates, confirmation by a 4-neighbour READ/PUSH before the next candidate)", "references_ok": "10/15", "failures": ["bfs_listpop_pathcarry (path-carrying queue items took the path's FIRST cell)", "dijkstra_lazy (spurious ITER candidates from tuple-literal neighbour loops next to start)", "idastar", "iddfs_recursive (path.pop() backtrack pops confirmed by late reads)", "biastar"]},
-  {"i": 2, "change": "cell of a carried path = its LAST cell; confirmation restricted to the first 4 READ/PUSH events on other cells; container pops preferred over iteration, iteration over calls", "references_ok": "13/15", "failures": ["idastar (ID on 0.45 of probes: Manhattan is exact on 22/40 probes so IDA* needs one pass)", "biastar"]},
-  {"i": 3, "change": "room and braided probes redrawn so the doors force a detour", "references_ok": "13/15", "failures": ["astar_fg (median rho_h 0.553 < 0.6 on detour-heavy probes)", "biastar"], "controls": "random walk and Bellman-Ford misclassified (tuple-literal ITER events)"},
-  {"i": 4, "change": "ITER only for pushed containers or seed frontiers of <= 2 items holding start/goal (never tuples); rooms P27-P30 detour-forcing, P31-P32 and the braided mazes unconstrained; ID fine class from the +1 share of the depth bounds", "references_ok": "14/15", "controls_ok": "9/9", "failures": ["biastar: its min-f side selection runs forward only on easy probes, so 'start and goal among the first 4 expansions' holds on 6/40 probes; BIDIR-heuristic is the one unverified class (fallback: excluded from the gate, its programs reported as 'unverified class')"]}
- ]
-}

@@ -1,9 +1,0 @@
-entries:
-  - path: .venv/
-    delete: regenerable
-    source: "uv venv .venv --python 3.12 && uv pip install --python .venv/bin/python -r <(python3 -c \"import tomllib;print('\\n'.join(tomllib.load(open('pyproject.toml','rb'))['project']['dependencies']))\")"
-  - path: src/__pycache__/
-    delete: regenerable
-    source: "created automatically by any python run of src/ (e.g. python method.py tests)"
-  - path: data/
-    keep: decision vectors, evaluations and island databases of 42,000 LLM calls (seeds 2-5) that cannot be reproduced byte-for-byte

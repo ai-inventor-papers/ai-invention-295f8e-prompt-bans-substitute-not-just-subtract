@@ -1,212 +1,0 @@
-[chain] 02:24:58 start 1800 tests
-02:24:59|INFO   |=== stage tests start
-./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
-Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:06<00:24,  6.15s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:12<00:18,  6.08s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:17<00:11,  5.85s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:22<00:05,  5.32s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:24<00:00,  4.10s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:24<00:00,  4.84s/it]
-02:26:44|INFO   |HF model loaded in 25s; attn=ko_sdpa; free VRAM 8.5/25.3 GB
-02:26:47|INFO   |U3: {'t1': {'prefill_vs_single_pass_mean_abs': [0.003705894574522972, 0.005146032199263573, 0.004834987223148346], 'prefill_ok': True, 'splice_ban_ban_identical': True, 'splice_neu_neu_identical': True, 'ko_inactive_vs_stock_max_abs': 0.0, 'stock_ok': True, 'empty_span_max_abs': 0.0, 'empty_ok': True, 'batch1_reproducible_across_calls': True, 'batch2_vs_batch1_max_abs_per_token': 0.4878716468811035, 'batch2_vs_batch1_mean_abs_per_token': 0.00450106943026185}, 't2': {'prefill_vs_single_pass_mean_abs': [0.0017136717215180397, 0.000884382170625031, 0.0008740317425690591], 'prefill_ok': True, 'splice_ban_ban_identical': True, 'splice_neu_neu_identical': True, 'ko_inactive_vs_stock_max_abs': 0.0, 'stock_ok': True, 'empty_span_max_abs': 0.0, 'empty_ok': True, 'batch1_reproducible_across_calls': True, 'batch2_vs_batch1_max_abs_per_token': 0.162866473197937, 'batch2_vs_batch1_mean_abs_per_token': 0.001500975340604782}}
-02:26:49|INFO   |U4: {'layer': 20, 'blocked_mass_max': 0.0, 'baseline_mass_mean': 0.010458431206643581, 'blocked_ok': True, 'layers_before_unchanged_max_abs': 0.0, 'prompt_rows_unchanged_max_abs': 0.0, 'K1_blocked_rows_mass': 0.0, 'K1_open_rows_mass': 0.002176770241931081, 'K2_blocked_rows_mass': 0.0, 'K2_open_rows_mass': 0.022880923002958298, 'K1_K2_ok': True, 'sdpa_vs_eager_ko_max_abs': 0.1328524351119995}
-02:27:41|INFO   |U5: {'self_agreement_identical_share': 1.0, 'floor_ok': True, 'splice_ban_ban_identical_share': 1.0, 'different_batch_shape_identical_share': 0.4, 'chi2_p_marginal_R': 0.9995501811782822, 'chi2_bins': 2, 'marginal_ok': True, 'seconds_per_batch20': 13.140612721443176, 'mean_tokens': 296.8}
-02:27:49|INFO   |U6: {'L_b_minus_L_a': 16.55725821296132, 'ban_effect_positive': True, 'ESS': {'a': 3.341196133384283, 'b': 2.590281289777889, 'pl': 2.3293044320466008, 'K0b': 3.6349980781848905, 'bB': 2.6166109662481007}, 'L': {'a': -18.711966434646225, 'b': -2.1547082216849063, 'pl': -1.7046505446527374, 'K0b': -1.6503782349445142, 'bB': -1.4753204778698845}, 'self_consistency_mean_abs_per_token': [0.0002307926680899175, 0.001883038898550296, 0.0006915768454071841, 8.321701550739746e-05, 0.00027808057722485065], 'self_consistency_ok': True, 'scrub': {'scrubbed_verified': 201, 'reverted_to_unscrubbed': 2, 'no_names': 120, 'outside_fence_dropped': 0}}
-U7: {'D_placebo': -0.22933006678285284, 'D_a': -16.55725821296132, 'placebo_ok': True, 'K0b_delta': 0.5043299867403921, 'K0b_ok': True}
-02:27:49|INFO   |critical tests passed: {'U3 splice identity': True, 'U3 empty-span KO': True, 'U3 prefill vs single pass (<0.05 nats)': True, 'U4 blocked mass': True, 'U2 alignment': True}
-02:27:49|INFO   |=== stage tests done in 2.8 min
-[chain] 02:27:50 end 1800 tests rc=0
-[chain] 02:27:50 start 3600 s4
-02:27:51|INFO   |=== stage s4 start
-./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
-Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:05<00:21,  5.39s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:11<00:17,  5.76s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:18<00:12,  6.26s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:23<00:05,  5.80s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:25<00:00,  4.44s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:25<00:00,  5.07s/it]
-02:29:33|INFO   |HF model loaded in 26s; attn=ko_sdpa; free VRAM 8.5/25.3 GB
-02:29:50|INFO   |S4 t1/W1/a: 20 samples in 15s (total 20 new, 6060 tok, 0.3 min)
-02:30:06|INFO   |S4 t1/W1/b: 20 samples in 15s (total 20 new, 6610 tok, 0.3 min)
-02:30:20|INFO   |S4 t1/W1/c: 20 samples in 14s (total 40 new, 12500 tok, 0.5 min)
-02:30:35|INFO   |S4 t1/W1/d: 20 samples in 15s (total 60 new, 19623 tok, 0.7 min)
-02:30:49|INFO   |S4 t1/W2/a: 20 samples in 13s (total 80 new, 25669 tok, 1.0 min)
-02:31:03|INFO   |S4 t1/W2/b: 20 samples in 14s (total 100 new, 32338 tok, 1.2 min)
-02:31:18|INFO   |S4 t1/W2/c: 20 samples in 15s (total 120 new, 38640 tok, 1.5 min)
-02:31:34|INFO   |S4 t1/W2/d: 20 samples in 16s (total 140 new, 45804 tok, 1.7 min)
-02:31:46|INFO   |S4 t1/W3/a: 20 samples in 12s (total 160 new, 51506 tok, 1.9 min)
-02:32:01|INFO   |S4 t1/W3/b: 20 samples in 14s (total 180 new, 58430 tok, 2.2 min)
-02:32:15|INFO   |S4 t1/W3/c: 20 samples in 14s (total 200 new, 64534 tok, 2.4 min)
-02:32:31|INFO   |S4 t1/W3/d: 20 samples in 16s (total 220 new, 71258 tok, 2.7 min)
-02:32:46|INFO   |S4 t1/W4/a: 20 samples in 15s (total 240 new, 77764 tok, 2.9 min)
-02:33:00|INFO   |S4 t1/W4/b: 20 samples in 15s (total 260 new, 84489 tok, 3.2 min)
-02:33:15|INFO   |S4 t1/W4/c: 20 samples in 14s (total 280 new, 90694 tok, 3.4 min)
-02:33:29|INFO   |S4 t1/W4/d: 20 samples in 14s (total 300 new, 97278 tok, 3.6 min)
-02:33:44|INFO   |S4 t1/W5/a: 20 samples in 15s (total 320 new, 103294 tok, 3.9 min)
-02:33:57|INFO   |S4 t1/W5/b: 20 samples in 13s (total 340 new, 109485 tok, 4.1 min)
-02:34:11|INFO   |S4 t1/W5/c: 20 samples in 14s (total 360 new, 115259 tok, 4.3 min)
-02:34:26|INFO   |S4 t1/W5/d: 20 samples in 15s (total 380 new, 122648 tok, 4.6 min)
-02:34:36|INFO   |S4 t2/W1/a: 20 samples in 10s (total 400 new, 126896 tok, 4.8 min)
-02:34:43|INFO   |S4 t2/W1/b: 20 samples in 7s (total 420 new, 130560 tok, 4.9 min)
-02:34:51|INFO   |S4 t2/W1/c: 20 samples in 8s (total 440 new, 134566 tok, 5.0 min)
-02:35:00|INFO   |S4 t2/W1/d: 20 samples in 9s (total 460 new, 138373 tok, 5.2 min)
-02:35:13|INFO   |S4 t2/W2/a: 20 samples in 12s (total 480 new, 142702 tok, 5.4 min)
-02:35:20|INFO   |S4 t2/W2/b: 20 samples in 7s (total 500 new, 146467 tok, 5.5 min)
-02:35:32|INFO   |S4 t2/W2/c: 20 samples in 12s (total 520 new, 150802 tok, 5.7 min)
-02:35:41|INFO   |S4 t2/W2/d: 20 samples in 9s (total 540 new, 154762 tok, 5.8 min)
-02:35:54|INFO   |S4 t2/W3/a: 20 samples in 13s (total 560 new, 159292 tok, 6.1 min)
-02:36:01|INFO   |S4 t2/W3/b: 20 samples in 7s (total 580 new, 162974 tok, 6.2 min)
-02:36:10|INFO   |S4 t2/W3/c: 20 samples in 9s (total 600 new, 166982 tok, 6.3 min)
-02:36:19|INFO   |S4 t2/W3/d: 20 samples in 9s (total 620 new, 170783 tok, 6.5 min)
-02:36:30|INFO   |S4 t2/W4/a: 20 samples in 11s (total 640 new, 175402 tok, 6.7 min)
-02:36:37|INFO   |S4 t2/W4/b: 20 samples in 7s (total 660 new, 179165 tok, 6.8 min)
-02:36:47|INFO   |S4 t2/W4/c: 20 samples in 10s (total 680 new, 183386 tok, 6.9 min)
-02:36:55|INFO   |S4 t2/W4/d: 20 samples in 8s (total 700 new, 187114 tok, 7.1 min)
-02:37:08|INFO   |S4 t2/W5/a: 20 samples in 13s (total 720 new, 191507 tok, 7.3 min)
-02:37:15|INFO   |S4 t2/W5/b: 20 samples in 7s (total 740 new, 195186 tok, 7.4 min)
-02:37:23|INFO   |S4 t2/W5/c: 20 samples in 8s (total 760 new, 199374 tok, 7.5 min)
-02:37:34|INFO   |S4 t2/W5/d: 20 samples in 11s (total 780 new, 203291 tok, 7.7 min)
-02:37:52|INFO   |S4 t1/W1/K1: 20 samples in 17s (total 20 new, 6324 tok, 0.3 min)
-02:38:12|INFO   |S4 t1/W1/K2: 20 samples in 20s (total 40 new, 12476 tok, 0.6 min)
-02:38:29|INFO   |S4 t1/W2/K1: 20 samples in 17s (total 60 new, 18764 tok, 0.9 min)
-02:38:48|INFO   |S4 t1/W2/K2: 20 samples in 19s (total 80 new, 25092 tok, 1.2 min)
-02:39:05|INFO   |S4 t1/W3/K1: 20 samples in 17s (total 100 new, 30884 tok, 1.5 min)
-02:39:22|INFO   |S4 t1/W3/K2: 20 samples in 17s (total 120 new, 36793 tok, 1.8 min)
-02:39:41|INFO   |S4 t1/W4/K1: 20 samples in 19s (total 140 new, 43320 tok, 2.1 min)
-02:40:02|INFO   |S4 t1/W4/K2: 20 samples in 21s (total 160 new, 49832 tok, 2.5 min)
-02:40:24|INFO   |S4 t1/W5/K1: 20 samples in 22s (total 180 new, 56595 tok, 2.8 min)
-02:40:43|INFO   |S4 t1/W5/K2: 20 samples in 18s (total 200 new, 62703 tok, 3.1 min)
-02:40:54|INFO   |S4 t2/W1/K1: 20 samples in 11s (total 220 new, 66975 tok, 3.3 min)
-02:41:05|INFO   |S4 t2/W1/K2: 20 samples in 11s (total 240 new, 71181 tok, 3.5 min)
-02:41:18|INFO   |S4 t2/W2/K1: 20 samples in 13s (total 260 new, 75447 tok, 3.7 min)
-02:41:33|INFO   |S4 t2/W2/K2: 20 samples in 15s (total 280 new, 79875 tok, 4.0 min)
-02:41:46|INFO   |S4 t2/W3/K1: 20 samples in 13s (total 300 new, 84327 tok, 4.2 min)
-02:41:59|INFO   |S4 t2/W3/K2: 20 samples in 13s (total 320 new, 88359 tok, 4.4 min)
-02:42:13|INFO   |S4 t2/W4/K1: 20 samples in 13s (total 340 new, 92944 tok, 4.6 min)
-02:42:23|INFO   |S4 t2/W4/K2: 20 samples in 11s (total 360 new, 97119 tok, 4.8 min)
-02:42:35|INFO   |S4 t2/W5/K1: 20 samples in 11s (total 380 new, 101332 tok, 5.0 min)
-02:42:46|INFO   |S4 t2/W5/K2: 20 samples in 11s (total 400 new, 105622 tok, 5.2 min)
-02:42:46|INFO   |=== stage s4 done in 14.9 min
-[chain] 02:42:47 end 3600 s4 rc=0
-[chain] 02:42:47 start 5400 s5
-02:42:47|INFO   |=== stage s5 start
-./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
-Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:06<00:25,  6.34s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:12<00:18,  6.26s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:18<00:12,  6.16s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:24<00:05,  5.88s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:25<00:00,  4.45s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:25<00:00,  5.19s/it]
-02:44:17|INFO   |HF model loaded in 27s; attn=ko_sdpa; free VRAM 8.5/25.3 GB
-02:44:17|INFO   |FRLP: 122 cells with unscored programs (465347 tokens)
-02:44:54|INFO   |FRLP group t1/F/prio0: 37s; total 600 seqs 221000 tok in 37s (5925 tok/s); projected remaining 0.7 min
-02:45:23|INFO   |FRLP group t2/F/prio0: 29s; total 1120 seqs 385145 tok in 67s (5787 tok/s); projected remaining 0.2 min
-02:45:30|INFO   |FRLP group t1/W1/prio1: 7s; total 1240 seqs 429345 tok in 73s (5845 tok/s); projected remaining 0.1 min
-02:45:35|INFO   |FRLP group t2/W1/prio1: 5s; total 1340 seqs 460349 tok in 79s (5840 tok/s); projected remaining 0.0 min
-02:45:36|INFO   |FRLP group t1/W1/prio3: 1s; total 1350 seqs 463505 tok in 80s (5824 tok/s); projected remaining 0.0 min
-02:45:37|INFO   |FRLP group t2/W1/prio3: 1s; total 1360 seqs 465347 tok in 80s (5796 tok/s); projected remaining 0.0 min
-02:45:37|INFO   |FRLP: 80 cells with unscored programs (696828 tokens)
-02:45:44|INFO   |FRLP group t1/W1/prio1: 7s; total 120 seqs 44200 tok in 7s (6417 tok/s); projected remaining 1.7 min
-02:45:57|INFO   |FRLP group t1/W2/prio1: 14s; total 360 seqs 132600 tok in 20s (6495 tok/s); projected remaining 1.4 min
-02:46:11|INFO   |FRLP group t1/W3/prio1: 14s; total 600 seqs 221000 tok in 34s (6512 tok/s); projected remaining 1.2 min
-02:46:24|INFO   |FRLP group t1/W4/prio1: 13s; total 840 seqs 309400 tok in 47s (6524 tok/s); projected remaining 1.0 min
-02:46:38|INFO   |FRLP group t1/W5/prio1: 14s; total 1080 seqs 397800 tok in 61s (6526 tok/s); projected remaining 0.8 min
-02:46:43|INFO   |FRLP group t2/W1/prio1: 5s; total 1180 seqs 428804 tok in 66s (6465 tok/s); projected remaining 0.7 min
-02:46:54|INFO   |FRLP group t2/W2/prio1: 10s; total 1380 seqs 490812 tok in 77s (6392 tok/s); projected remaining 0.5 min
-02:47:04|INFO   |FRLP group t2/W3/prio1: 11s; total 1580 seqs 552820 tok in 88s (6312 tok/s); projected remaining 0.4 min
-02:47:15|INFO   |FRLP group t2/W4/prio1: 11s; total 1780 seqs 614828 tok in 98s (6262 tok/s); projected remaining 0.2 min
-02:47:26|INFO   |FRLP group t2/W5/prio1: 11s; total 1980 seqs 676836 tok in 109s (6214 tok/s); projected remaining 0.1 min
-02:47:27|INFO   |FRLP group t1/W2/prio3: 1s; total 1990 seqs 679992 tok in 110s (6200 tok/s); projected remaining 0.0 min
-02:47:27|INFO   |FRLP group t1/W3/prio3: 1s; total 2000 seqs 683148 tok in 110s (6186 tok/s); projected remaining 0.0 min
-02:47:28|INFO   |FRLP group t1/W4/prio3: 1s; total 2010 seqs 686304 tok in 111s (6172 tok/s); projected remaining 0.0 min
-02:47:29|INFO   |FRLP group t1/W5/prio3: 1s; total 2020 seqs 689460 tok in 112s (6157 tok/s); projected remaining 0.0 min
-02:47:29|INFO   |FRLP group t2/W2/prio3: 1s; total 2030 seqs 691302 tok in 113s (6138 tok/s); projected remaining 0.0 min
-02:47:30|INFO   |FRLP group t2/W3/prio3: 1s; total 2040 seqs 693144 tok in 113s (6117 tok/s); projected remaining 0.0 min
-02:47:31|INFO   |FRLP group t2/W4/prio3: 1s; total 2050 seqs 694986 tok in 114s (6095 tok/s); projected remaining 0.0 min
-02:47:32|INFO   |FRLP group t2/W5/prio3: 1s; total 2060 seqs 696828 tok in 115s (6074 tok/s); projected remaining 0.0 min
-02:47:32|INFO   |FRLP: 342 cells with unscored programs (3438765 tokens)
-02:48:40|INFO   |FRLP group t1/F/prio0: 68s; total 1200 seqs 437660 tok in 68s (6423 tok/s); projected remaining 7.8 min
-02:49:29|INFO   |FRLP group t2/F/prio0: 49s; total 2163 seqs 708045 tok in 117s (6058 tok/s); projected remaining 7.5 min
-02:49:55|INFO   |FRLP group t1/W1/prio1: 26s; total 2643 seqs 883109 tok in 143s (6163 tok/s); projected remaining 6.9 min
-02:50:21|INFO   |FRLP group t1/W2/prio1: 26s; total 3123 seqs 1058173 tok in 170s (6235 tok/s); projected remaining 6.4 min
-02:50:48|INFO   |FRLP group t1/W3/prio1: 26s; total 3603 seqs 1233237 tok in 196s (6289 tok/s); projected remaining 5.8 min
-02:51:14|INFO   |FRLP group t1/W4/prio1: 26s; total 4083 seqs 1408301 tok in 222s (6332 tok/s); projected remaining 5.3 min
-02:51:40|INFO   |FRLP group t1/W5/prio1: 26s; total 4563 seqs 1583365 tok in 249s (6365 tok/s); projected remaining 4.9 min
-02:51:59|INFO   |FRLP group t2/W1/prio1: 18s; total 4935 seqs 1686209 tok in 267s (6319 tok/s); projected remaining 4.6 min
-02:52:16|INFO   |FRLP group t2/W2/prio1: 18s; total 5307 seqs 1789053 tok in 285s (6283 tok/s); projected remaining 4.4 min
-02:52:34|INFO   |FRLP group t2/W3/prio1: 18s; total 5679 seqs 1891897 tok in 303s (6251 tok/s); projected remaining 4.1 min
-02:52:52|INFO   |FRLP group t2/W4/prio1: 18s; total 6051 seqs 1994741 tok in 321s (6220 tok/s); projected remaining 3.9 min
-02:53:11|INFO   |FRLP group t2/W5/prio1: 18s; total 6423 seqs 2097585 tok in 339s (6186 tok/s); projected remaining 3.6 min
-02:53:17|INFO   |FRLP group t1/W1/prio2: 6s; total 6543 seqs 2135981 tok in 345s (6183 tok/s); projected remaining 3.5 min
-02:53:24|INFO   |FRLP group t1/W2/prio2: 6s; total 6663 seqs 2174377 tok in 352s (6180 tok/s); projected remaining 3.4 min
-02:53:30|INFO   |FRLP group t1/W3/prio2: 6s; total 6783 seqs 2212773 tok in 358s (6177 tok/s); projected remaining 3.3 min
-02:53:36|INFO   |FRLP group t1/W4/prio2: 6s; total 6903 seqs 2251169 tok in 365s (6174 tok/s); projected remaining 3.2 min
-02:53:43|INFO   |FRLP group t1/W5/prio2: 6s; total 7023 seqs 2289565 tok in 371s (6171 tok/s); projected remaining 3.1 min
-02:53:49|INFO   |FRLP group t2/W1/prio2: 6s; total 7143 seqs 2311589 tok in 377s (6134 tok/s); projected remaining 3.1 min
-02:53:54|INFO   |FRLP group t2/W2/prio2: 6s; total 7263 seqs 2333613 tok in 383s (6097 tok/s); projected remaining 3.0 min
-02:54:00|INFO   |FRLP group t2/W3/prio2: 6s; total 7383 seqs 2355637 tok in 389s (6060 tok/s); projected remaining 3.0 min
-02:54:06|INFO   |FRLP group t2/W4/prio2: 6s; total 7503 seqs 2377661 tok in 395s (6025 tok/s); projected remaining 2.9 min
-02:54:12|INFO   |FRLP group t2/W5/prio2: 6s; total 7623 seqs 2399685 tok in 401s (5989 tok/s); projected remaining 2.9 min
-02:54:18|INFO   |FRLP group t1/W1/prio3: 6s; total 7733 seqs 2434925 tok in 407s (5989 tok/s); projected remaining 2.8 min
-02:54:24|INFO   |FRLP group t1/W2/prio3: 6s; total 7843 seqs 2470165 tok in 412s (5990 tok/s); projected remaining 2.7 min
-02:54:30|INFO   |FRLP group t1/W3/prio3: 6s; total 7953 seqs 2505405 tok in 418s (5991 tok/s); projected remaining 2.6 min
-02:54:36|INFO   |FRLP group t1/W4/prio3: 6s; total 8063 seqs 2540645 tok in 424s (5992 tok/s); projected remaining 2.5 min
-02:54:42|INFO   |FRLP group t1/W5/prio3: 6s; total 8173 seqs 2575885 tok in 430s (5992 tok/s); projected remaining 2.4 min
-02:54:47|INFO   |FRLP group t2/W1/prio3: 5s; total 8283 seqs 2596067 tok in 435s (5968 tok/s); projected remaining 2.4 min
-02:54:51|INFO   |FRLP group t2/W2/prio3: 5s; total 8393 seqs 2616249 tok in 440s (5949 tok/s); projected remaining 2.3 min
-02:54:56|INFO   |FRLP group t2/W3/prio3: 5s; total 8503 seqs 2636431 tok in 445s (5929 tok/s); projected remaining 2.3 min
-02:55:01|INFO   |FRLP group t2/W4/prio3: 5s; total 8613 seqs 2656613 tok in 450s (5909 tok/s); projected remaining 2.2 min
-02:55:06|INFO   |FRLP group t2/W5/prio3: 5s; total 8723 seqs 2676795 tok in 454s (5890 tok/s); projected remaining 2.2 min
-02:55:11|INFO   |FRLP group t1/W1/prio4: 5s; total 8813 seqs 2705592 tok in 459s (5891 tok/s); projected remaining 2.1 min
-02:55:16|INFO   |FRLP group t1/W2/prio4: 5s; total 8903 seqs 2734389 tok in 464s (5892 tok/s); projected remaining 2.0 min
-02:55:21|INFO   |FRLP group t1/W3/prio4: 5s; total 8993 seqs 2763186 tok in 469s (5894 tok/s); projected remaining 1.9 min
-02:55:25|INFO   |FRLP group t1/W4/prio4: 5s; total 9083 seqs 2791983 tok in 474s (5896 tok/s); projected remaining 1.8 min
-02:55:30|INFO   |FRLP group t1/W5/prio4: 5s; total 9173 seqs 2820780 tok in 478s (5897 tok/s); projected remaining 1.7 min
-02:55:34|INFO   |FRLP group t2/W1/prio4: 4s; total 9263 seqs 2837298 tok in 483s (5879 tok/s); projected remaining 1.7 min
-02:55:39|INFO   |FRLP group t2/W2/prio4: 4s; total 9353 seqs 2853816 tok in 487s (5861 tok/s); projected remaining 1.7 min
-02:55:43|INFO   |FRLP group t2/W3/prio4: 4s; total 9443 seqs 2870334 tok in 491s (5846 tok/s); projected remaining 1.6 min
-02:55:47|INFO   |FRLP group t2/W4/prio4: 4s; total 9533 seqs 2886852 tok in 495s (5831 tok/s); projected remaining 1.6 min
-02:55:51|INFO   |FRLP group t2/W5/prio4: 4s; total 9623 seqs 2903370 tok in 499s (5814 tok/s); projected remaining 1.5 min
-02:56:01|INFO   |FRLP group t1/W1/prio5: 10s; total 9803 seqs 2969236 tok in 510s (5828 tok/s); projected remaining 1.3 min
-02:56:11|INFO   |FRLP group t1/W2/prio5: 10s; total 9983 seqs 3035102 tok in 520s (5841 tok/s); projected remaining 1.2 min
-02:56:21|INFO   |FRLP group t1/W3/prio5: 10s; total 10163 seqs 3100968 tok in 530s (5854 tok/s); projected remaining 1.0 min
-02:56:32|INFO   |FRLP group t1/W4/prio5: 10s; total 10343 seqs 3166834 tok in 540s (5866 tok/s); projected remaining 0.8 min
-02:56:42|INFO   |FRLP group t1/W5/prio5: 10s; total 10523 seqs 3232700 tok in 550s (5878 tok/s); projected remaining 0.6 min
-02:56:49|INFO   |FRLP group t2/W1/prio5: 7s; total 10666 seqs 3273913 tok in 557s (5876 tok/s); projected remaining 0.5 min
-02:56:56|INFO   |FRLP group t2/W2/prio5: 7s; total 10809 seqs 3315126 tok in 564s (5874 tok/s); projected remaining 0.4 min
-02:57:03|INFO   |FRLP group t2/W3/prio5: 7s; total 10952 seqs 3356339 tok in 572s (5872 tok/s); projected remaining 0.2 min
-02:57:10|INFO   |FRLP group t2/W4/prio5: 7s; total 11095 seqs 3397552 tok in 579s (5870 tok/s); projected remaining 0.1 min
-02:57:18|INFO   |FRLP group t2/W5/prio5: 7s; total 11238 seqs 3438765 tok in 586s (5869 tok/s); projected remaining 0.0 min
-02:57:18|INFO   |FRLP done: 13.0 min; skipped 0 cells
-02:57:18|INFO   |=== stage s5 done in 14.5 min
-[chain] 02:57:18 end 5400 s5 rc=0
-[chain] 02:57:18 start 2400 s6
-02:57:19|INFO   |=== stage s6 start
-./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
-Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:06<00:24,  6.04s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:11<00:17,  5.93s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:17<00:11,  5.66s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:21<00:05,  5.26s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:23<00:00,  3.97s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:23<00:00,  4.71s/it]
-02:58:47|INFO   |HF model loaded in 25s; attn=ko_sdpa; free VRAM 8.5/25.3 GB
-02:58:47|INFO   |lens sets t1: X=[' collections', ' deque', '.collections', 'collections', 'deque'] SUB=[' stack', 'stack', '.stack', '(stack']
-02:58:56|INFO   |lens sets t2: X=['heap', ' heap', '(heap', '.heap', ' heapq'] SUB=[' deque', 'deque']
-02:59:46|INFO   |tuned lens L3: held-out KL tuned 0.625 vs logit 17.974
-02:59:58|INFO   |tuned lens L6: held-out KL tuned 0.560 vs logit 12.212
-03:00:10|INFO   |tuned lens L9: held-out KL tuned 0.433 vs logit 11.471
-03:00:22|INFO   |tuned lens L12: held-out KL tuned 0.399 vs logit 10.406
-03:00:34|INFO   |tuned lens L15: held-out KL tuned 0.351 vs logit 9.987
-03:00:46|INFO   |tuned lens L18: held-out KL tuned 0.324 vs logit 10.196
-03:00:58|INFO   |tuned lens L21: held-out KL tuned 0.286 vs logit 10.593
-03:01:10|INFO   |tuned lens L24: held-out KL tuned 0.187 vs logit 9.912
-03:01:22|INFO   |tuned lens L27: held-out KL tuned 0.125 vs logit 8.708
-03:01:33|INFO   |tuned lens L30: held-out KL tuned 0.080 vs logit 5.392
-03:01:45|INFO   |tuned lens L33: held-out KL tuned 0.040 vs logit 2.192
-03:02:03|INFO   |lens done: 207 records; {"t1_default": {"n": 59, "veto_layer": {"n_defined": 0, "n_never": 59, "median": null, "iqr": null, "histogram": {}}, "sub_rise_layer": {"n_defined": 59, "n_never": 0, "median": 28.0, "iqr": [28.0, 28.0], "histogram": {"28": 49, "29": 10}}, "X_lnrank_ban_minus_neu_mean": [0.0, 0.003961967209638175, 0.005738533149331303, -0.05582720546399133, -0.016180862814693126, -0.043862876245530986, -0.13464621366080592, -0.089647664862164, -0.06890640420428777, -0.23071302801875745, -0.1630098940962452, -0.14760807813224147, -0.2398020372552387, -0.11599170151403394, -0.09411425105595993, -0.1154627840397
-03:02:03|INFO   |=== stage s6 done in 4.7 min
-[chain] 03:02:07 end 2400 s6 rc=0
-[chain] 03:02:07 start 1800 s7
-03:02:08|INFO   |=== stage s7 start
-./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
-Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:05<00:22,  5.57s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:11<00:16,  5.58s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:17<00:11,  6.00s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:22<00:05,  5.67s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:24<00:00,  4.25s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:24<00:00,  4.91s/it]
-03:03:36|INFO   |HF model loaded in 26s; attn=ko_sdpa; free VRAM 8.5/25.3 GB
-03:03:48|INFO   |C5 cross-check: {'exp2': {'n': 40, 'min_cos': 0.9995947480201721, 'share_ge_0_99': 1.0}, 'exp4': {'n': 60, 'min_cos': 0.9994427561759949, 'share_ge_0_99': 1.0}}
-03:05:17|INFO   |C5 shared-direction rho=-0.411 p=0.0003; decommitment rho=0.052 p=0.6777; ceiling=0.769
-03:05:17|INFO   |=== stage s7 done in 3.1 min
-[chain] 03:05:20 end 1800 s7 rc=0
-[chain] 03:05:20 start 1800 s8
-03:05:21|INFO   |=== stage s8 start
-./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
-03:06:40|INFO   |route: pooled={'D_a': -18.03100594473, 'D_c': -15.383917881949564, 'D_d': -0.010567848995173157, 'F_direct': 0.0005860931457494121, 'F_direct_ci': [-0.08388340451099108, 0.12283818067882293], 'F_direct_p2_5': -0.08388340451099108, 'F_prompt': 0.8531924358022791, 'F_prompt_ci': [0.6078967260992497, 1.201219276185672], 'F_prompt_p2_5': 0.6078967260992497, 'I': -2.6365202137852637, 'I_ci': [-9.371662687226014, 2.705409322598705], 'branch': {'branch': 'DECIDED_BEFORE_WRITING_prompt_route', 'F_prompt_lower_gt_half': True}, 'robust': True}
-03:06:40|INFO   |t1: D={'a': -12.25, 'b': 0.0, 'c': -10.655, 'd': -0.228, 'e': 0.002, 'f': -10.483, 'K0': -11.647, 'K1': -10.736, 'K2': -11.564, 'B1': -13.882, 'B2': -8.29, 'B3': -14.38, 'K0b': -0.213, 'mention': 0.551} F_direct=0.019 F_prompt=0.870 branch={'branch': 'DECIDED_BEFORE_WRITING_prompt_route', 'F_prompt_lower_gt_half': True}
-03:06:40|INFO   |t2: D={'a': -5.781, 'b': 0.0, 'c': -4.729, 'd': 0.217, 'e': -0.106, 'f': -4.664, 'K0': -5.422, 'K1': -5.31, 'K2': -5.911, 'B1': -5.884, 'B2': -4.934, 'B3': -5.236, 'K0b': -0.278, 'mention': -0.172} F_direct=-0.038 F_prompt=0.818 branch={'branch': 'DECIDED_BEFORE_WRITING_prompt_route', 'F_prompt_lower_gt_half': True}
-03:06:40|INFO   |=== stage s8 done in 1.3 min
-[chain] 03:06:44 end 1800 s8 rc=0
-[chain] done

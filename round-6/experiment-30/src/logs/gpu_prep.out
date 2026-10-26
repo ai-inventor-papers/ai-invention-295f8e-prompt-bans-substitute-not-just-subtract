@@ -1,24 +1,0 @@
-./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
-20:13:04|INFO   |hardware: {'gpu': 'NVIDIA L4', 'vram_gib': 22.04, 'compute_capability': '8.9', 'cpus': 5, 'ram_gb_container': 61.999996928, 'python': '3.12.14', 'torch': '2.8.0+cu128', 'transformers': '4.57.6', 'precision': 'W16A16', 'kernel': 'sdpa', 'cuda': '12.8', 'cudnn': 91002, 'utc': '2026-10-21T20:13:04.454944Z', 'note': 'VRAM >= 19.5 GiB: plain W16A16 on GPU (no CPU embedding offload needed)'}
-Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:07<00:28,  7.08s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:14<00:21,  7.18s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:21<00:14,  7.15s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:27<00:06,  6.56s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:29<00:00,  5.03s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:29<00:00,  5.88s/it]
-20:14:53|INFO   |Qwen/Qwen3-8B@b968826d loaded bf16 in 33s; free VRAM 7.1/23.7 GB
-20:15:01|INFO   |r_Q: calibration ratio 0.952 (in band True); r_Q used b0 0.0098 b11 0.0568 b12 0.0698 b23 0.1146 b24 0.1043 b35 0.0921
-20:15:04|INFO   |units T03: nS[18] 10.91, nR[18] 10.81, nG[b18] 10.91, c_S1E 13.76
-20:15:06|INFO   |units T10: nS[18] 10.93, nR[18] 10.62, nG[b18] 10.93, c_S1E 12.77
-20:15:08|INFO   |units T2: nS[18] 17.93, nR[18] 10.65, nG[b18] 17.93, c_S1E 85.43
-20:15:10|INFO   |units T1: nS[18] 11.14, nR[18] 10.54, nG[b18] 11.14, c_S1E 16.17
-20:15:11|INFO   |forced prompts T03: 360 ({'full_sort|named': 30, 'size_k_heap|named': 30, 'heapify_pop|named': 30, 'quickselect|named': 30, 'median_of_medians|named': 30, 'counting_sort|named': 30, 'full_sort|masked': 30, 'size_k_heap|masked': 30, 'heapify_pop|masked': 30, 'quickselect|masked': 30, 'median_of_medians|masked': 30, 'counting_sort|masked': 30})
-20:15:52|INFO   |forced states T03: 360 prompts in 42s
-20:15:52|INFO   |forced prompts T10: 240 ({'bfs|named': 30, 'dfs|named': 30, 'union_find|named': 30, 'label_propagation|named': 30, 'bfs|masked': 30, 'dfs|masked': 30, 'union_find|masked': 30, 'label_propagation|masked': 30})
-20:16:19|INFO   |forced states T10: 240 prompts in 27s
-20:16:20|INFO   |forced prompts T1: 480 ({'bfs|named': 30, 'dfs|named': 30, 'bibfs|named': 30, 'iddfs|named': 30, 'astar|named': 30, 'gbfs|named': 30, 'dijkstra_unit|named': 30, 'idastar|named': 30, 'jps|named': 30, 'biastar|named': 30, 'bfs|masked': 30, 'dfs|masked': 30, 'bibfs|masked': 30, 'iddfs|masked': 30, 'astar_gbfs|masked': 30, 'dijkstra|masked': 30})
-20:17:25|INFO   |forced states T1: 480 prompts in 66s
-20:17:26|INFO   |banned sets: {k: v['banned'] for k, v in sets.items()} -> survivors {'T03|TOP5': ['median_of_medians'], 'T03|TOP3': ['heapify_pop', 'counting_sort', 'median_of_medians'], 'T10|TOP5': ['label_propagation'], 'T1|TOP5': ['bibfs', 'idastar']}
-20:17:40|INFO   |push states: 120 vectors
-20:34:48|INFO   |push progress: T03|TOP5 b18 a1=3.46, a2=6.93, a4=13.84; T03|TOP3 b18 a1=-82.77, a2=-165.76, a4=-331.62; T10|TOP5 b18 a1=18.50, a2=36.99, a4=73.99; T1|TOP5 b18 a1=3.24, a2=6.48, a4=12.99
-./src/engine_w16.py:180: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
-  tok = torch.searchsorted(cdf, u[:, None].to(cdf.dtype)).squeeze(-1)
-20:36:14|INFO   |probe T03: {'B': 16, 'P': 190, 'max_new': 1024, 'ok': True, 'seconds_full_length': 85.09496474266052, 'peak_gib': 18.570432662963867, 'total_gib': 22.0362548828125}
-20:38:17|INFO   |probe T2: {'B': 12, 'P': 202, 'max_new': 1536, 'ok': True, 'seconds_full_length': 122.92553377151489, 'peak_gib': 18.667805194854736, 'total_gib': 22.0362548828125}
-20:38:18|INFO   |prep done

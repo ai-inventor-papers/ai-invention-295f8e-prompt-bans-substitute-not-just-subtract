@@ -1,35 +1,0 @@
-/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
-05:27:01|INFO   |hardware {'gpu': 'NVIDIA RTX 2000 Ada Generation', 'cc': [8, 9], 'torch': '2.8.0+cu128', 'cuda': '12.8', 'cublas': 'nvidia-cublas-cu12==12.8.4.1 (pinned)', 'transformers': '4.57.6', 'python': '3.12.14', 'driver': '595.91.07', 'model': 'Qwen/Qwen3-8B', 'revision': 'b968826d9c46dd6066d109eabc6255188de91218', 'vram_total_gib': 15.57550048828125, 'A_IMPL': 'native', 'utc': '2026-10-22T05:27:01.958337Z', 'cgroup_cpu_quota': 5.1}
-Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:00,  4.01it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:00<00:00,  3.36it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:00<00:00,  3.28it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:01<00:00,  3.34it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  4.16it/s]
-05:28:19|INFO   |bf16 weights on CPU in 5s; quantising decoder linears to FP8
-05:29:19|INFO   |Qwen/Qwen3-8B loaded in 65s ({'n_fp8_linears': 252}); free VRAM 7.2/16.7 GB
-05:29:21|INFO   |U1 {'native_vs_ref_eq': 0.9418886570236351, 'emul_vs_ref_eq': 0.9996462997756427, 'emul_vs_native_eq': 0.941957645325721, 'max_ulp': {'native_vs_ref': 29905, 'emul_vs_ref': 128, 'emul_vs_native': 29905}, 'note': 'reference = exact e4m3 products summed in fp64, x s_x x s_w, rounded fp64->fp32->bf16 (double rounding possible in rare ties); 12 real linear inputs (blocks 3/17/30 x 4 sites, T10 W1 twin prefill) + one random 64x4096 input with 4 outlier channels (x60)'}
-/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_6/gen_art/gen_art_experiment_29/vendor/exp22/src_base/engine.py:216: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
-  tok = torch.searchsorted(cdf, u[:, None].to(cdf.dtype)).squeeze(-1)
-05:29:49|INFO   |unit tests Q done in 30s: U2 {'all_256_e4m3_codes_exact_in_bf16': True} U4a {'alpha0_bitwise_twin_logits': True, 'alpha0_bitwise_twin_kv': True, 'alpha2_rel_err_max': 0.00013287791807670146, 'alpha2_disp_S_b23': 70.04574584960938, 'alpha2_disp_S_b35': 232.47547912597656, 'alpha2_disp_R_b35': 234.06976318359375} U3/U5 {'U5_same_batch_twice_identical': True, 'U3_batchmates_changed_rows_identical': True, 'U3_max_abs_dlogit_vs_B': {'1': 1.890625, '10': 0.0, '20': 0.0}, 'B': 20}
-05:30:04|INFO   |[a] REPRO T10/W1 6 cells: 14.5s, 208 steps
-05:30:18|INFO   |[a] REPRO T10/W1 6 cells: 13.9s, 200 steps
-05:30:28|INFO   |[a] REPRO T10/W2 6 cells: 9.7s, 136 steps
-05:30:37|INFO   |[a] REPRO T10/W2 6 cells: 8.9s, 128 steps
-05:30:47|INFO   |[a] REPRO T10/W3 6 cells: 10.2s, 144 steps
-05:30:56|INFO   |[a] REPRO T10/W3 6 cells: 9.1s, 128 steps
-05:31:10|INFO   |[a] REPRO T10/W4 6 cells: 13.8s, 200 steps
-05:31:23|INFO   |[a] REPRO T10/W4 6 cells: 12.9s, 192 steps
-05:31:37|INFO   |[a] REPRO T10/W5 6 cells: 13.9s, 208 steps
-05:31:46|INFO   |[a] REPRO T10/W5 6 cells: 9.0s, 128 steps
-05:32:01|INFO   |[a] REPRO T2/W1 6 cells: 14.9s, 216 steps
-05:32:22|INFO   |[a] REPRO T2/W1 6 cells: 20.9s, 320 steps
-05:32:38|INFO   |[a] REPRO T2/W2 6 cells: 15.9s, 232 steps
-05:32:55|INFO   |[a] REPRO T2/W2 6 cells: 16.7s, 248 steps
-05:33:10|INFO   |[a] REPRO T2/W3 6 cells: 15.6s, 224 steps
-05:33:26|INFO   |[a] REPRO T2/W3 6 cells: 15.9s, 232 steps
-05:33:42|INFO   |[a] REPRO T2/W4 6 cells: 15.2s, 216 steps
-05:33:58|INFO   |[a] REPRO T2/W4 6 cells: 15.9s, 232 steps
-05:34:20|INFO   |[a] REPRO T2/W5 6 cells: 22.3s, 328 steps
-05:34:51|INFO   |[a] REPRO T2/W5 6 cells: 31.1s, 472 steps
-05:34:52|INFO   |REPRO byte identity vs exp22: 400/400
-05:35:08|INFO   |[a] PN_check T10/W1 2 cells: 16.4s, 200 steps
-05:35:27|INFO   |[a] PN_check T2/W1 2 cells: 18.4s, 216 steps
-05:35:27|INFO   |PN byte identity vs exp19: 40/40
-05:35:28|INFO   |phase q1 done

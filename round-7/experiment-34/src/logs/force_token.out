@@ -1,47 +1,0 @@
-/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_34/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
-Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:02,  1.73it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.32it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.20it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.29it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.75it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.52it/s]
-15:25:20|INFO   |bf16 weight set loaded in 44s (252 linears); device cuda:0; free VRAM 8.89/23.52 GiB
-15:25:21|INFO   |T10: arms [('F10_parent', '):\n    parent'), ('F10_#', '):\n    #'), ('F10_from', '):\n    from'), ('F10_def', '):\n    def'), ('F11_find', '    def find'), ('F11_dfs', '    def dfs')]
-/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_34/vendor/exp29/vendor/exp22/src_base/engine.py:216: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
-  tok = torch.searchsorted(cdf, u[:, None].to(cdf.dtype)).squeeze(-1)
-15:25:28|INFO   |T10/W1/F10_parent: 6 rows in 7.1s
-15:25:34|INFO   |T10/W1/F10_#: 6 rows in 5.7s
-15:25:40|INFO   |T10/W1/F10_from: 6 rows in 6.8s
-15:25:47|INFO   |T10/W1/F10_def: 6 rows in 6.8s
-15:25:54|INFO   |T10/W1/F11_find: 6 rows in 6.5s
-15:25:58|INFO   |T10/W1/F11_dfs: 6 rows in 4.0s
-15:26:02|INFO   |T10/W2/F10_parent: 6 rows in 4.3s
-15:26:08|INFO   |T10/W2/F10_#: 6 rows in 6.0s
-15:26:15|INFO   |T10/W2/F10_from: 6 rows in 6.9s
-15:26:22|INFO   |T10/W2/F10_def: 6 rows in 6.6s
-15:26:28|INFO   |T10/W2/F11_find: 6 rows in 6.5s
-15:26:32|INFO   |T10/W2/F11_dfs: 6 rows in 4.0s
-15:26:37|INFO   |T10/W3/F10_parent: 6 rows in 4.3s
-15:26:43|INFO   |T10/W3/F10_#: 6 rows in 6.2s
-15:26:50|INFO   |T10/W3/F10_from: 6 rows in 6.9s
-15:26:57|INFO   |T10/W3/F10_def: 6 rows in 6.9s
-15:27:03|INFO   |T10/W3/F11_find: 6 rows in 6.8s
-15:27:07|INFO   |T10/W3/F11_dfs: 6 rows in 4.0s
-15:27:12|INFO   |T10/W4/F10_parent: 6 rows in 4.3s
-15:27:18|INFO   |T10/W4/F10_#: 6 rows in 6.0s
-15:27:25|INFO   |T10/W4/F10_from: 6 rows in 6.8s
-15:27:31|INFO   |T10/W4/F10_def: 6 rows in 6.5s
-15:27:38|INFO   |T10/W4/F11_find: 6 rows in 6.5s
-15:27:42|INFO   |T10/W4/F11_dfs: 6 rows in 4.0s
-15:27:46|INFO   |T10/W5/F10_parent: 6 rows in 4.3s
-15:27:52|INFO   |T10/W5/F10_#: 6 rows in 5.6s
-15:27:58|INFO   |T10/W5/F10_from: 6 rows in 6.8s
-15:28:05|INFO   |T10/W5/F10_def: 6 rows in 6.8s
-15:28:12|INFO   |T10/W5/F11_find: 6 rows in 6.5s
-15:28:16|INFO   |T10/W5/F11_dfs: 6 rows in 3.9s
-Traceback (most recent call last):
-  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_34/src/force_token.py", line 116, in <module>
-    main()
-  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_34/src/force_token.py", line 86, in main
-    o, arms = arms_for(task, tok, forks)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/ai-inventor/aii_data/runs/run_0oWBKrKEGsmU/3_invention_loop/iter_7/gen_art/gen_art_experiment_34/src/force_token.py", line 68, in arms_for
-    arms = [(f"FB_default_{tok.decode([o[f]]).strip() or 'sp'}", o[:f + 1])]
-                                       ~^^^
-IndexError: list index out of range

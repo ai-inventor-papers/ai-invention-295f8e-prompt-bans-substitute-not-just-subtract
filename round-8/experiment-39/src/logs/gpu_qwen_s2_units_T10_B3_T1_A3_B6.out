@@ -1,62 +1,0 @@
-./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
-Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:02,  1.55it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:01,  1.50it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:01<00:01,  1.50it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  1.61it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  2.17it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  1.84it/s]
-01:29:32|INFO   |Qwen3-8B bf16 loaded: {'model': 'Qwen/Qwen3-8B', 'revision': 'b968826d9c46dd6066d109eabc6255188de91218', 'precision': 'bf16', 'cpu_embedding': False, 'free_vram_before_GB': 23.458, 'free_vram_after_GB': 6.922, 'total_vram_GB': 23.661, 'gpu': 'NVIDIA L4', 'load_seconds': 39.2}
-01:29:32|INFO   |=== stage s2 (qwen) units=['T10', 'B3', 'T1', 'A3', 'B6']
-01:30:14|INFO   |S2_map_T10_n10 batch 1/5: 50 rows, 224 steps, 38.8s (173 ms/step)
-01:30:52|INFO   |S2_map_T10_n10 batch 2/5: 50 rows, 224 steps, 38.0s (170 ms/step)
-01:31:28|INFO   |S2_map_T10_n10 batch 3/5: 50 rows, 216 steps, 36.4s (168 ms/step)
-01:32:06|INFO   |S2_map_T10_n10 batch 4/5: 50 rows, 224 steps, 38.2s (170 ms/step)
-01:32:26|INFO   |S2_map_T10_n10 batch 5/5: 40 rows, 216 steps, 20.1s (93 ms/step)
-01:32:26|INFO   |token map T10/n10: 240 continuations in 175s
-01:33:02|INFO   |S2_map_T10_n11 batch 1/5: 50 rows, 200 steps, 34.5s (172 ms/step)
-01:33:37|INFO   |S2_map_T10_n11 batch 2/5: 50 rows, 208 steps, 35.0s (168 ms/step)
-01:34:12|INFO   |S2_map_T10_n11 batch 3/5: 50 rows, 208 steps, 35.6s (171 ms/step)
-01:34:46|INFO   |S2_map_T10_n11 batch 4/5: 50 rows, 200 steps, 33.5s (167 ms/step)
-01:35:06|INFO   |S2_map_T10_n11 batch 5/5: 40 rows, 216 steps, 20.0s (93 ms/step)
-01:35:06|INFO   |token map T10/n11: 240 continuations in 159s
-01:35:41|INFO   |S2_map_B3_c0 batch 1/7: 32 rows, 360 steps, 33.5s (93 ms/step)
-01:36:30|INFO   |S2_map_B3_c0 batch 2/7: 32 rows, 496 steps, 49.0s (99 ms/step)
-01:37:27|INFO   |S2_map_B3_c0 batch 3/7: 32 rows, 336 steps, 56.8s (169 ms/step)
-01:38:10|INFO   |S2_map_B3_c0 batch 4/7: 32 rows, 456 steps, 43.5s (95 ms/step)
-01:39:09|INFO   |S2_map_B3_c0 batch 5/7: 32 rows, 352 steps, 58.8s (167 ms/step)
-01:40:38|INFO   |S2_map_B3_c0 batch 6/7: 32 rows, 496 steps, 89.2s (180 ms/step)
-01:41:09|INFO   |S2_map_B3_c0 batch 7/7: 28 rows, 336 steps, 31.1s (92 ms/step)
-01:41:09|INFO   |token map B3/c0: 220 continuations in 363s
-01:41:52|INFO   |S2_map_B3_c1 batch 1/7: 32 rows, 440 steps, 41.7s (95 ms/step)
-01:42:47|INFO   |S2_map_B3_c1 batch 2/7: 32 rows, 560 steps, 54.2s (97 ms/step)
-01:44:27|INFO   |S2_map_B3_c1 batch 3/7: 32 rows, 544 steps, 99.9s (184 ms/step)
-01:45:19|INFO   |S2_map_B3_c1 batch 4/7: 32 rows, 544 steps, 52.4s (96 ms/step)
-01:46:19|INFO   |S2_map_B3_c1 batch 5/7: 32 rows, 360 steps, 60.4s (168 ms/step)
-01:47:42|INFO   |S2_map_B3_c1 batch 6/7: 32 rows, 464 steps, 82.1s (177 ms/step)
-01:48:13|INFO   |S2_map_B3_c1 batch 7/7: 28 rows, 336 steps, 31.0s (92 ms/step)
-01:48:13|INFO   |token map B3/c1: 220 continuations in 423s
-01:49:15|INFO   |S2_map_T1_n3 batch 1/8: 32 rows, 640 steps, 61.7s (96 ms/step)
-01:50:30|INFO   |S2_map_T1_n3 batch 2/8: 32 rows, 440 steps, 74.9s (170 ms/step)
-01:52:30|INFO   |S2_map_T1_n3 batch 3/8: 32 rows, 640 steps, 119.8s (187 ms/step)
-01:53:31|INFO   |S2_map_T1_n3 batch 4/8: 32 rows, 640 steps, 61.1s (95 ms/step)
-01:54:44|INFO   |S2_map_T1_n3 batch 5/8: 32 rows, 432 steps, 73.1s (169 ms/step)
-01:56:41|INFO   |S2_map_T1_n3 batch 6/8: 32 rows, 624 steps, 116.6s (187 ms/step)
-01:57:42|INFO   |S2_map_T1_n3 batch 7/8: 32 rows, 640 steps, 61.2s (96 ms/step)
-01:58:09|INFO   |S2_map_T1_n3 batch 8/8: 6 rows, 352 steps, 26.5s (75 ms/step)
-01:58:09|INFO   |token map T1/n3: 230 continuations in 596s
-01:58:29|INFO   |S2_map_A3_c0 batch 1/6: 40 rows, 208 steps, 19.5s (94 ms/step)
-01:58:49|INFO   |S2_map_A3_c0 batch 2/6: 40 rows, 208 steps, 19.6s (94 ms/step)
-01:59:22|INFO   |S2_map_A3_c0 batch 3/6: 40 rows, 208 steps, 33.0s (158 ms/step)
-01:59:54|INFO   |S2_map_A3_c0 batch 4/6: 40 rows, 208 steps, 32.7s (157 ms/step)
-02:00:26|INFO   |S2_map_A3_c0 batch 5/6: 40 rows, 200 steps, 31.4s (157 ms/step)
-02:00:41|INFO   |S2_map_A3_c0 batch 6/6: 20 rows, 176 steps, 14.9s (85 ms/step)
-02:00:41|INFO   |token map A3/c0: 220 continuations in 152s
-02:00:58|INFO   |S2_map_A3_c1 batch 1/6: 40 rows, 176 steps, 16.4s (93 ms/step)
-02:01:15|INFO   |S2_map_A3_c1 batch 2/6: 40 rows, 176 steps, 16.4s (93 ms/step)
-02:01:43|INFO   |S2_map_A3_c1 batch 3/6: 40 rows, 184 steps, 28.6s (156 ms/step)
-02:02:12|INFO   |S2_map_A3_c1 batch 4/6: 40 rows, 184 steps, 28.5s (155 ms/step)
-02:02:39|INFO   |S2_map_A3_c1 batch 5/6: 40 rows, 176 steps, 27.2s (155 ms/step)
-02:02:52|INFO   |S2_map_A3_c1 batch 6/6: 10 rows, 168 steps, 12.8s (76 ms/step)
-02:02:52|INFO   |token map A3/c1: 210 continuations in 131s
-02:03:08|INFO   |S2_map_B6_c0 batch 1/5: 50 rows, 160 steps, 15.4s (96 ms/step)
-02:03:27|INFO   |S2_map_B6_c0 batch 2/5: 50 rows, 120 steps, 18.9s (158 ms/step)
-02:03:46|INFO   |S2_map_B6_c0 batch 3/5: 50 rows, 120 steps, 18.9s (158 ms/step)
-02:04:10|INFO   |S2_map_B6_c0 batch 4/5: 50 rows, 144 steps, 23.9s (166 ms/step)
-02:04:21|INFO   |S2_map_B6_c0 batch 5/5: 30 rows, 120 steps, 10.6s (88 ms/step)
-02:04:21|INFO   |token map B6/c0: 230 continuations in 89s

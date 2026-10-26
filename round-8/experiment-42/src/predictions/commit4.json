@@ -1,6 +1,0 @@
-{
- "extension": "layer sweep of single-block full-state swaps at p_f (teacher-forced)",
- "design": "Exploratory (COMMIT #4 before running): where along depth does the p_f residual carry the forced prompt's\n    ' queue' preference? Single-block full-state swaps at p_f, block l = 0..33, teacher-forced (no sampling):\n      reverse: base = forced-BFS F4/F5 (4 display pairs) + c*, block-l p_f state <- the aligned twin's (W4/W5) state;\n      forward: base = twin W4/W5 + c*, block-l p_f state <- the forced-BFS state of each display pair;\n      dial:    base = twin + c* with the rank-4 DAS edit at block 17 (the P-DAS-bfs state), block-l p_f state <- the\n               forced-BFS state (does adding the prompt's late state reinstate ' queue'?).\n    Reported: p(' queue'), p('\\n') + p('if'), p_B, p_D, margin m at p_f (batch-1 full forwards, one path).",
- "status": "exploratory; no committed prediction depends on it",
- "committed_utc": "2026-10-23T01:43:37.262747Z"
-}

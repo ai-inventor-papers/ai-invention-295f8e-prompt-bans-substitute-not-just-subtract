@@ -1,7 +1,0 @@
-{
- "commit": "amend2_locator",
- "utc": "2026-10-23T04:14:18.515032Z",
- "reason": "Locator bug fix before any Llama or Qwen commit: every distinct candidate opening is force-confirmed, then nested openings are resolved among the confirmed ones only (the COMMIT #0 code kept the shortest candidate even when it failed confirmation, hiding a longer confirmed decision; found on L-T1, where W2's bfs/dfs decision at generated token 52 was nested under a non-decision at 36). Also: continuation cache by deterministic id; second-decision cost cap (2 searches per unit; 1 base path per leading algorithm for completion-labelled units). Gemma: the amended rule yields the same openings (every Gemma candidate was nested under a confirmed opening), so COMMIT #1/#2-gemma stand.",
- "gpu8.py": "30cad2d20f2a6e1d08f47ac898953562930a2896aea82f4d53de04463d38df6a",
- "applies_to": "every unit located after this commit (Llama, Qwen); Gemma unchanged"
-}

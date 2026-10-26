@@ -1,22 +1,0 @@
-./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
-Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:00,  6.08it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:00<00:00,  5.57it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:00<00:00,  5.02it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:00<00:00,  5.28it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:00<00:00,  6.47it/s]
-04:20:51|INFO   |bf16 weights on CPU in 2s; quantising decoder linears to FP8
-04:21:37|INFO   |Qwen/Qwen3-8B loaded in 48s ({'n_fp8_linears': 252}); free VRAM 7.1/16.7 GB
-./src/engine_v4.py:254: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
-  tok = torch.searchsorted(cdf, u[:, None].to(cdf.dtype)).squeeze(-1)
-04:21:49|INFO   |U1a T03/W1 ['TWIN']: 11.8s, 24 steps, cap hits 0/20
-04:21:59|INFO   |U1b T03/W1 ['TWIN']: 10.3s, 24 steps, cap hits 0/20
-04:22:15|INFO   |U2a T03/W1 ['PN_a0']: 14.4s, 24 steps, cap hits 0/20
-04:22:30|INFO   |U2b T03/W1 ['PN_a0', 'PN_a1']: 15.0s, 32 steps, cap hits 0/20
-04:22:41|INFO   |U5_bench_fence T03/W1 ['TWIN']: 11.2s, 24 steps, cap hits 0/20
-04:24:14|INFO   |U5_path_nofence T2/W1 ['TWIN']: 92.5s, 208 steps, cap hits 0/20
-04:25:44|INFO   |U5_path_fence T2/W1 ['TWIN']: 90.2s, 208 steps, cap hits 0/20
-04:25:47|INFO   |GPU unit tests: {'utc': '2026-10-21T04:21:37.427792Z', 'U1_determinism': 20, 'U1_vs_exp17_sampler': 20, 'U2_alpha0_vs_twin_20': 20, 'U2_alpha0_other_mates_10': 10, 'U2_alpha1_changed_10': 2, 'U3_max_relerr_along_u': 0.000962, 'U3_disp_b12_over_n12': 1.000278439692311, 'U3_pass': True, 'U5_bench_same_code': 20, 'U5_bench_steps_saved': [20, 20], 'U5_path_same_code': 20, 'U5_path_tokens_nofence_vs_fence': [3761, 3761], 'U4_peak_GB': 14.566536192, 'U4_total_GB': 16.724066304, 'U4_longest_P': 326, 'U4_pass': True, 'U6_untruncated_identical_1000': 1000, 'U6_topk10_allowed_1000': 1000, 'U6_minp_allowed_1000': 1000, 'all_pass': True}
-04:25:57|INFO   |R2 unit: rho {12: 0.06436000019311905, 13: 0.07350999861955643, 14: 0.07870999723672867, 15: 0.08704999834299088, 16: 0.0920799970626831, 17: 0.09952999651432037, 18: 0.11042000353336334, 19: 0.11150000244379044, 20: 0.11691000312566757, 21: 0.12058000266551971, 22: 0.11599999666213989, 23: 0.11253999918699265}; LOTO median |log ratio| {12: 0.3365, 13: 0.318, 14: 0.3207, 15: 0.3405, 16: 0.3542, 17: 0.3494, 18: 0.3499, 19: 0.3577, 20: 0.3626, 21: 0.3818, 22: 0.3685, 23: 0.3743}
-04:26:28|INFO   |EC:T03:W1 T03/W1 ['NEUTRAL', 'RAND9002_a1.0']: 31.3s, 200 steps, cap hits 0/20
-04:26:52|INFO   |EC:T03:W2 T03/W2 ['NEUTRAL', 'RAND9002_a1.0']: 23.3s, 144 steps, cap hits 0/20
-04:27:39|INFO   |EC:T03:W3 T03/W3 ['NEUTRAL', 'RAND9002_a1.0']: 47.2s, 200 steps, cap hits 0/20
-04:27:53|INFO   |EC:T03:W4 T03/W4 ['NEUTRAL', 'RAND9002_a1.0']: 14.3s, 32 steps, cap hits 0/20
-04:28:26|INFO   |EC:T03:W5 T03/W5 ['NEUTRAL', 'RAND9002_a1.0']: 32.7s, 144 steps, cap hits 0/20
-04:30:19|INFO   |EC:T2:W1 T2/W1 ['NEUTRAL', 'RAND9004_a1.0']: 113.3s, 376 steps, cap hits 0/20
