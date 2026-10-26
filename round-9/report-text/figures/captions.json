@@ -1,0 +1,242 @@
+{
+  "fig_forkdose_states": {
+    "title": "States after the fork, per unit",
+    "caption": "PCA of the final-norm hidden state averaged over the 16 positions from the fork token, computed separately per unit from the stored states of iteration 8's fork-dosing experiment. Panels: Qwen3-8B connected components (300 states), minimum spanning tree weight (202), trapped rain water (232), valid anagram (233) and grid path (50, twin only), and gemma-3-4b-it grid path (233). Each panel pools the twin, the low and high fork doses, class-uniform forcing and global temperature 1.3 and 2.0, and colours each state by the frozen labeller's program label; panel titles give the variance of the first two components (62% to 87% together). States of different labels mostly occupy separate regions on every unit."
+  },
+  "fig_das_handle_coords": {
+    "title": "Prompt groups in the fitted DAS coordinates",
+    "caption": "Group centroids of every prompt group in the fitted rank-8 DAS coordinates at the fork, from the stored metric MDS embedding of iteration 8's DAS experiment. (a) Qwen3-8B connected components, block 22 (290 prompts; Kruskal stress-1 0.015); (b) Gemma grid path, block 16 (207 prompts; stress-1 0.027). Legends give the implemented, test-passing programs of the class-forced sources. On connected components the forced BFS and DFS sources lie far from the twin, while the union-find source (the twin's own algorithm), the ban, the neutral variants and the instruction sit near it. In Gemma the BFS and DFS sources lie at opposite ends of the first axis, with the A*-greedy source on the BFS side, and the twin, the instruction and the two bans sit together near the middle. Only centroids are drawn; these are handle coordinates of an uncertified fit."
+  },
+  "fig_tp_mds": {
+    "title": "Classical MDS of Qwen3-32B's forced prompts",
+    "caption": "Classical MDS of Qwen3-32B (4-bit NormalFloat weights) block-31 states, the mean over the task-specification tokens, from iteration 8's stored states. (a) The 300 forced prompts (ten algorithms by ten templates by three aliases; Kruskal stress-1 0.42), with the ten baseline prompts and the seven ban prompts (three screen, four held out) projected onto the same axes; the five banned algorithms share one colour. (b) The ten algorithm centroids (stress-1 0.28), the banned centroids in one colour. Unit-weight Dijkstra prompts form their own group below the central banned cluster in (a), and its centroid is the only one in the upper part of (b). Centroids are not sized by implemented count."
+  },
+  "fig_tp_isomap": {
+    "title": "Isomap of Qwen3-32B's forced prompts",
+    "caption": "Isomap embedding of the 300 forced prompts of Qwen3-32B (4-bit NormalFloat weights) at block 31: classical MDS of the stored geodesic distances on the k = 15 nearest-neighbour graph (stress-1 0.18), from iteration 8's stored geodesics. Colours give the five banned algorithms pooled and each non-banned algorithm. Unit-weight Dijkstra forms a separate arm at the far end of the first axis, opposite the banned clusters; bidirectional BFS lies beside a banned cluster and bidirectional A* among the banned prompts. The manifold's prompts name each algorithm by an alias."
+  },
+  "fig_tp_program_states": {
+    "title": "Per-program states of Qwen3-32B",
+    "caption": "Per-program states of Qwen3-32B (4-bit NormalFloat weights) at block 31 at the first token that signals the program's class, from iteration 8's stored states: (a) PCA (38% and 18% of variance), (b) Isomap with k = 10. 59 programs: 30 baseline and 29 under the five-name ban. Colours give the name-level label of programs that are not correct ban survivors (BFS 32, DFS 8, greedy best-first 1, other 1) and, separately, the 17 correct ban survivors (unit-weight Dijkstra 6, other 11). The position depends on the label, so the separation is largely written into the tokens; at a label-independent position the label decodes at only 0.53 (chance 0.25)."
+  },
+  "fig_alias_overlap": {
+    "title": "Geodesic distance against shared words",
+    "caption": "The record audit's alias test on Qwen3-32B's named manifold (iteration 8's stored states and geodesics). (a, b) Geodesic distance g of each of the 15 aliases of the five non-banned algorithms to the banned five, against the number of content words the alias shares with a banned alias, at k = 15 (a; Spearman -0.61, exact p 0.009) and k = 10 (b; -0.77, p 0.0007). (c) Classical MDS of the stored k = 15 geodesics of all 300 forced prompts (stress-1 0.18). Unit-weight Dijkstra and jump point search, whose aliases share no word with a banned alias, have the largest g; within each algorithm g does not follow overlap (stratified p 0.46), so names and algorithm identity are confounded on this manifold."
+  },
+  "fig_tpb_gap": {
+    "title": "Compliance by name and by expansion order",
+    "caption": "Share of programs written under a ban of five path-algorithm names that comply by name (no banned alias in the code; orange) and by runtime expansion order (iteration 8's name-free runtime label; blue), for ten configurations, from 546 retraced programs of iterations 2, 6 and 8. The line between the two points is the rename gap (pooled 0.70; tracer 0.61). Gemma-3-27b-it complies by name in every program and by mechanism in none. The x-axis extends past 1 only to leave room for the legend."
+  },
+  "fig_tpb_kcurves": {
+    "title": "Compliance under cumulative bans",
+    "caption": "Lexical compliance (blue), mechanistic compliance by the runtime label (orange) and by the expansion-order tracer (green) under cumulative bans of the first k of BFS, DFS, IDDFS, A* and greedy best-first; 50 samples per k on three templates; rates over completed programs. (a) Qwen3-32B and (b) Qwen3-14B, both with thinking. At k = 1 every completed program complies both ways; lexical compliance stays at or above 0.86, while mechanistic compliance by the runtime label falls to 0.22 and 0.10 at k = 5. The tracer, which failed its gold gate, reads coordinate-key heaps and Bellman-Ford rounds as compliant and gives a weaker curve."
+  },
+  "fig_tpg_manifolds": {
+    "title": "Four maps of the ten grid algorithms",
+    "caption": "Isomap embeddings (k = 15) of Qwen3-32B (4-bit NormalFloat weights) states for the ten grid algorithms, from the geometry experiment's stored coordinates: (a) prompts that name each algorithm by an alias (300; block 31); (b) name-free descriptions of the mechanisms that the model names correctly (260; block 31; jump point search has no such description); (c) name-only sentences minus neutral-noun twins (300; block 31); (d) mean code-token states of name-scrubbed, verified programs (117; block 33). Colours: the banned five, unit-weight Dijkstra and the other non-banned algorithms. Panel titles give the class and the ratio of unit-weight Dijkstra's geodesic distance to the banned five over the non-banned median: opposite on (a) to (c), edge on (d)."
+  },
+  "fig_tpg_landing": {
+    "title": "The class of unit-weight Dijkstra on nine frames",
+    "caption": "log2 of the ratio of unit-weight Dijkstra's geodesic distance to the banned five over the median distance of the non-banned algorithms used, at k = 15, for nine manifold frames in Qwen3-32B and Qwen3-8B; bars below zero mark the edge class, above zero the opposite class. Every frame built from language reads opposite (ratios 1.01 to 1.63); every program frame reads edge (0.32 to 0.79). Qwen3-8B's described frame (1.01) is unstable under resampling."
+  },
+  "fig_base_b2_shares": {
+    "title": "Where the sharpening is carried in Qwen3-8B",
+    "caption": "Share of the instruct-minus-base fork margin closed when base-model outputs are patched into Qwen3-8B at the fork, for minimum spanning tree weight (gap 2.06 nats; blue) and connected components (gap 4.52 nats; orange), 20 prompts per unit: the ten validated fork-stack nodes, the median and 95th percentile of 50 write-norm-matched random sets of late-layer components, the task-specification nodes, and the instruct unembedding applied to the base model's final residual (a CPU decomposition). On minimum spanning tree random sets close nearly as much as the fork stack; on connected components most of the gap sits in the unembedding."
+  },
+  "fig_forkdose_hill": {
+    "title": "Temperature at the fork against its comparators",
+    "caption": "Correct-only Hill-1 (rarefied to 25 correct programs; 1 means one idea) for eight arms on five tasks, 50 slots of common random numbers per arm. Temperature at the fork reaches two ideas on the mixed tasks, as most comparators do, raises valid anagram from 1.78 to 2.78, and on the collapsed connected components task reaches 1.60 at the high dose, at a 14-point pass cost, short of the committed 1.8; class-uniform forcing reaches 1.99 there but only one of its 24 BFS programs passes."
+  },
+  "fig_das_controls": {
+    "title": "Specificity controls of one DAS protocol",
+    "caption": "Effect of control fits relative to the true or trained DAS fit at four sites under one committed protocol. Label controls are refits on deranged (Qwen3-8B) or shuffled (Gemma) labels, with a pass threshold of 0.10; the randomly initialised network uses the same map class and budget, with a pass threshold of 0.25. Every fork fails both kinds of control; the Qwen3-8B task band passes only the random-initialisation control. The block-24 site (asterisk) is a post hoc sensitivity scored by teacher forcing only."
+  },
+  "fig_gemma_dial_2x2": {
+    "title": "Gemma's dial against prompting under matched conditioning",
+    "caption": "Correct BFS programs out of 50 on Gemma's grid task, on the same 50 slots of common random numbers, with the 32-token shared opening prefilled or with free generation. With the opening prefilled the forced-BFS prompt writes BFS in every slot but every program fails, because the prefill drives the fork to ' queue', an opening without a wall check; the DAS dial gives 39. In free generation the dial (38) and the committed forced-BFS wording (32) cannot be told apart (11 to 5 discordant slots, p 0.21), and the best of eight wordings reaches 49."
+  },
+  "fig_templaw_heldout": {
+    "title": "The composed temperature law against held-out sweeps",
+    "caption": "Predicted (committed before sampling) and observed share of each task's minority algorithm at T 0.3, 0.7, 1.0 and 1.3, 100 fresh streams per temperature. Panels a to c are the Qwen3-8B units on which the law was developed; d and e are held-out Gemma units, where the law passes; f is the held-out Llama grid task, where the fork is reached through many openings and programs degenerate at T 1.3 (adjudicated labels), and every predictor fails. MAE is the mean total variation distance over temperatures."
+  },
+  "fig_circuit_dose": {
+    "title": "Steering Qwen3-8B's circuit against a matched random five",
+    "caption": "Mean probability of the minority fork token over five twin prompts as the steering dose rises, for the top five circuit components and for five matched random components (same type, position class and write norm), with the unedited twin as reference. On connected components the circuit saturates already at dose 0.25 while the random five need dose 2; on minimum spanning tree weight the two curves stay close, so at the committed dose 2 the random five flip most programs too."
+  },
+  "fig_ban_screen": {
+    "title": "Who obeys a ban of five path algorithms",
+    "caption": "Share of programs under a ban of each configuration's five most used path algorithms (BFS, DFS, IDDFS, A* and greedy best-first for every configuration) that pass the hidden tests with a mechanism outside the banned set. Only Qwen3-32B with thinking on clears the committed bar of 0.20 (17 of 50, Wilson 0.22 to 0.48), and it reaches 21 of 50 on four held-out ban templates (last bar). Bars at zero are configurations with no correct survivor."
+  },
+  "fig_ban_pca_states": {
+    "title": "Forced prompts and ban prompts in Qwen3-32B's activation space",
+    "caption": "Residual-stream states of Qwen3-32B (weights quantised to 4-bit NormalFloat) at block 31, averaged over the task specification tokens, projected on their first two principal components (32.4 and 12.0 per cent of variance). Each forced-algorithm cloud has 30 prompts (ten templates by three aliases); the banned five share one colour. The ten baseline prompts sit with the BFS and DFS clouds; the seven ban prompts move toward the middle; unit-weight Dijkstra, the only catalogue algorithm the model writes under the ban and the farthest non-banned algorithm from the banned five by geodesic distance (21.6 at k 15), forms its own cloud at the bottom. Coordinates are actual activation coordinates; the plot is descriptive, not causal."
+  },
+  "fig_das_manifold_sp": {
+    "title": "Shortest path prompts in the fitted DAS coordinates",
+    "caption": "Prompts of the shortest path task placed in the rank-16 DAS coordinates of Qwen3-8B (blocks 12-23, task specification positions). Horizontal axis: coordinate along the axis from the Dijkstra centroid to the Bellman-Ford/SPFA centroid; vertical axis: distance D from the default (Dijkstra) centroid. Dashed lines mark the paraphrase null (median 0.52, 95th percentile 1.13). All five ban templates lie outside the null, displaced toward the second choice; random seeds and novelty instructions lie inside it, and the semantic seed, predicted outside, lies inside at the 94th percentile."
+  },
+  "fig_fork_margin": {
+    "title": "Fork margin against the effect of 40 random pushes",
+    "caption": "Each point is one of iteration 4's 40 random directions at alpha 2 in Qwen3-8B bf16. (a) Connected components: the teacher-forced fork margin at generated tokens 10-11 against the correct share off the default (Spearman 0.80, 95% interval 0.62 to 0.91; a placebo that shuffles which fork tokens lead to which algorithm reaches 0.80 in 18% of 200 permutations, so the margin acts through the probability that stays on the default fork tokens). (b) Shortest path, which has no single fork: the committed fallback, the 48-token opening log likelihood ratio, against the same share (Spearman 0.15, p 0.18). The fork claim holds where a fork exists and fails where the decision falls late."
+  },
+  "fig_temperature_fork": {
+    "title": "Temperature acts through the fork logits",
+    "caption": "Minority (or BFS) share across temperature under the same seed, predicted from the teacher-forced fork logits divided by T before any temperature sample (line) against the observed share with its Wilson 95% interval (points), top-p 1, N = 50 per cell after the fork calibration. Qwen3-8B: minimum spanning tree weight (mean absolute error 0.083), trapped rain water (0.105), valid anagram (0.043, the drop not observed). gemma-3-4b-it, grid task: attempted BFS (0.026)."
+  },
+  "fig_unit_seed": {
+    "title": "Dose unit against direction seeds",
+    "caption": "Correct share off the default under per-sample plan noise at alpha 2 in Qwen3-8B bf16 for the four designs of the 2x2: absolute unit or relative unit, crossed with iteration-4 or iteration-5 direction seeds. The unit decides (connected components +0.45 [0.35, 0.55]; fresh slots +0.42; kth smallest +0.27; shortest path +0.115); the seeds do not (+0.03 on connected components)."
+  },
+  "fig_search_rates": {
+    "title": "Programs outside the catalogue: evolutionary search against arms that draw single samples",
+    "caption": "Distinct correct programs passing the catalogue screen per call (level a, bars, log scale) and distinct programs adjudicated as known techniques outside the catalogue (level b, numbers above bars), for each arm on three tasks in Qwen3-8B. Search reaches 6.65 times enumerate and pick on kth smallest at level a and is the main source of known techniques outside the catalogue (78 level b programs, against 23 for the larger mutator and at most 2 for every single sample arm); no program is novel."
+  },
+  "fig_gemma_dose": {
+    "title": "Gemma: DAS dose dial against difference in means",
+    "caption": "Correct BFS programs (left) and pass rate (right) of 50 per cell, gemma-3-4b-it grid task, edit applied once at the fork position at block 17 with the opening prefilled. DAS (rank 4) raises correct BFS from the twin's 11 to 42 at pass 0.88, above the explicit BFS instruction (35); difference in means at matched teacher-forced effect flips the algorithm but destroys the programs."
+  },
+  "fig_qwen_top5_geometry": {
+    "title": "Qwen3-8B grid task: prompt states around the top five ban",
+    "caption": "Actual activation coordinates of Qwen3-8B on the grid task (iteration 6): mean of the block outputs of blocks 12-23 over the task specification positions, divided by the median block norm, before any generated token. (a) PCA plane of the 10 forced prompt centroids (first and second components 36% and 25% of variance), with the twin, single-name ban, top five ban and pushed states of each template; (b) zoom on the centroid region; (c) classical MDS of geodesic distances on a 6-nearest-neighbour graph. Centroids are coloured by the prompt-defined top five set (banned five against survivors). Pushes of 1 to 8 ban units leave the manifold along one direction."
+  },
+  "fig_gemma_geometry_raw_L17": {
+    "title": "Gemma grid prompts at block 17, raw residual",
+    "caption": "Actual activation coordinates of gemma-3-4b-it on the grid task (iteration 6, recomputed from the cached states): mean over the task specification positions, output of block 17, raw residual (five massive channels zeroed); PCA plane fitted on all 230 points (first and second components 0.43 and 0.12 of variance). Prompts that force an algorithm, by mode (stars mark mode centroids; centroid size grows with the natural implemented count out of 200: DFS 139, BFS 61), BFS and DFS bans, the top five ban and its twin, and 120 neutral variants coloured by the fork log odds of BFS measured later at response index 32. The plotted position precedes the fork."
+  },
+  "fig_gemma_geometry_raw_L22": {
+    "title": "Gemma grid prompts at block 22, raw residual",
+    "caption": "Actual activation coordinates of gemma-3-4b-it on the grid task (iteration 6, recomputed from the cached states): mean over the task specification positions, output of block 22, raw residual (five massive channels zeroed); PCA plane fitted on all 230 points (first and second components 0.37 and 0.17 of variance). Prompts that force an algorithm, by mode (stars mark mode centroids; centroid size grows with the natural implemented count out of 200: DFS 139, BFS 61), BFS and DFS bans, the top five ban and its twin, and 120 neutral variants coloured by the fork log odds of BFS measured later at response index 32. The plotted position precedes the fork."
+  },
+  "fig_gemma_geometry_sae_L17": {
+    "title": "Gemma grid prompts at block 17, SAE codes",
+    "caption": "Actual activation coordinates of gemma-3-4b-it on the grid task (iteration 6, recomputed from the cached states): mean over the task specification positions, output of block 17, Gemma Scope 2 SAE codes, log1p; PCA plane fitted on all 230 points (first and second components 0.23 and 0.08 of variance). Prompts that force an algorithm, by mode (stars mark mode centroids; centroid size grows with the natural implemented count out of 200: DFS 139, BFS 61), BFS and DFS bans, the top five ban and its twin, and 120 neutral variants coloured by the fork log odds of BFS measured later at response index 32. The plotted position precedes the fork."
+  },
+  "fig_gemma_geometry_sae_L22": {
+    "title": "Gemma grid prompts at block 22, SAE codes",
+    "caption": "Actual activation coordinates of gemma-3-4b-it on the grid task (iteration 6, recomputed from the cached states): mean over the task specification positions, output of block 22, Gemma Scope 2 SAE codes, log1p; PCA plane fitted on all 230 points (first and second components 0.19 and 0.08 of variance). Prompts that force an algorithm, by mode (stars mark mode centroids; centroid size grows with the natural implemented count out of 200: DFS 139, BFS 61), BFS and DFS bans, the top five ban and its twin, and 120 neutral variants coloured by the fork log odds of BFS measured later at response index 32. The plotted position precedes the fork."
+  },
+  "fig_nla_read_geometry": {
+    "title": "Qwen2.5-7B-Instruct states at the read position per task",
+    "caption": "Actual activation coordinates of Qwen2.5-7B-Instruct (iteration 6, recomputed from the cached states): the read position (last prompt token) at the output of block 20, projected per task on the plane of the first two principal components of that task's forced prompt states. Stars: centroids of prompts that force an algorithm (legend gives forced adherence); circles: twin prompts per template, joined by arrows to the ban prompt of the same template (triangles). Every forced algorithm occupies its own region; twins and bans lie apart from them."
+  },
+  "fig_nla_mds_centroids": {
+    "title": "Qwen2.5-7B-Instruct: MDS of centroids at the read position",
+    "caption": "Classical MDS of the centroids at the read position (block 20 output) per task in Qwen2.5-7B-Instruct (iteration 6): centroids of prompts that force an algorithm, the twin centroid and the ban centroid. Filled marker area grows with the number of twin programs that implemented the algorithm, the dashed ring with the number under the ban. MDS stress was not recorded."
+  },
+  "fig_engine_escape": {
+    "title": "Random pushes escape in bf16 too",
+    "caption": "The random-push escapes of iteration 4 under four numerics built from one bf16 snapshot of Qwen3-8B, at the absolute displacement, directions and common-random-number slots of iteration 4. Left: share of 40 fixed random directions that escape at alpha 2, each engine scored against its own twin, with Wilson 95% intervals (W8A16 on connected components is the screen-level value, because its confirmation stage was incomplete). Right: per-sample plan noise at alpha 2, valid attempts on a catalogue alternative to the default out of 50. bf16 escapes on almost the same directions as the 8-bit W8A8 engine, and activation rounding alone (W16A8) adds nothing. The bf16 plan-noise cell of iteration 5 on connected components (1 of 50, grey marker) used the ban-free unit and other direction seeds; this control did not separate the two."
+  },
+  "fig_exchange_transfer": {
+    "title": "Where the substitute of a ban is carried",
+    "caption": "Stage A in bf16 Qwen3-8B: transfer of the substitute Y of the ban (Y share under the cell minus that of the neutral twin, N = 30 paired slots per cell) when the residual states of the full ban prompt are exchanged into the neutral twin at a block band of the task-specification positions, when the key-value cache of the condition span is spliced in, or when the read position is exchanged at all blocks. The task-specification states carry the ban on shortest path and kth smallest; the condition span carries it on two sum and find duplicate; on the grid task each carries part of it; the read position carries nothing on any task. Matched-norm random exchanges and a placebo twin transfer at most 0.13."
+  },
+  "fig_gemma_steer": {
+    "title": "Steering the fork of Gemma toward BFS",
+    "caption": "Edits at the fork position (response index 32, layer 22) of gemma-3-4b-it on the grid task, N = 50 paired slots per cell. An SAE clamp sets the k Gemma Scope 2 latents that best separate forced-BFS from forced-DFS prompts to their BFS-class mean; difference-in-means and random-latent edits are scaled to the clamp's norm or matched on its effect on the fork log-odds. Bars give programs attempting BFS and programs that are BFS and pass the hidden tests; the line gives the pass rate. The SAE clamp moves the plan, difference in means at the same norm moves it further, and every edit toward the minority algorithm costs correctness; DAS at rank 4 makes every program BFS and none correct."
+  },
+  "fig_nla_local": {
+    "title": "An NLA names the algorithm only where the prompt does",
+    "caption": "Natural language autoencoder explanations of layer-20 states of Qwen2.5-7B-Instruct, judged blind, at three positions: on the token of the algorithm's name inside the condition sentence, at the end of that sentence (2 to 8 tokens later), and at the end of the prompt (about 170 tokens later, the preregistered readout). At the first two positions each state counts by the majority of three explanations (75 forced and 35 ban states); at the end of the prompt the shares count single explanations (8 of 1,080 forced and 3 of 420 ban explanations mention the algorithm). Explanations mention the algorithm and respect a ban's negation at the name token, and the identity fades within one sentence. Exploratory local control."
+  },
+  "fig_beta_escape": {
+    "title": "Base-model variety against nudge movability",
+    "caption": "Corrected in iteration 6 to compare like with like. The base model's off-default share among correct programs (beta) against the escape fraction of fixed random directions measured in bf16 at iteration 5's ban-free unit (mean of alpha 1 and 2), for the 15 existing tasks (filled blue circles; open grey circles joined by a segment mark iteration 4's 8-bit screen value of the same task) and the 15 new units (orange diamonds; the two reserve units hollow). Spearman: existing tasks 0.59 (one-sided permutation p 0.010, Bonett-Wright 95% interval 0.06 to 0.86), 0.79 with the 8-bit screen values; new units 0.15 (p 0.315, interval -0.44 to 0.65), 0.01 with the reserve units; pooled bf16 0.48 (p 0.005). The existing-task correlation is carried by tasks with low beta that never move. Section 6.3 shows that the ban-free unit moves fewer programs than iteration 4's absolute unit."
+  },
+  "fig_knob_h5": {
+    "title": "Plan noise against text-level plan samplers",
+    "caption": "5-point Hill-1 (the highest correct-only rarefied Hill-1 a knob reaches within 5 pass points of the twin, on a randomisation hull over the full simplex) on the five decisive tasks, for per-sample plan noise (with its 95% bootstrap interval), four text-level plan samplers and decoding at matched departure (a decoding temperature set so that its per-token departure from the twin matches plan noise). A value of 1.0 means one algorithm. Plan noise matched the best text sampler only on kth smallest; base intent (the base model writes the intent sentence, the instruct model the code) won on connected components, the shortest path task and two sum."
+  },
+  "fig_transplant": {
+    "title": "Base plan states written into the instruct model",
+    "caption": "Correct off-default share (share of N = 50 programs that are correct and use an algorithm other than the instruct default) under a transplant of base-model task-specification states into the instruct prefill, against its controls on the same common-random-number slots. (a) Qwen3-8B, the five tasks diverse in the base, fresh confirmation slots, at each task's selected lambda (kth smallest 1, shortest path 0.25, connected components 0.5, grid 0.25, top-k frequent 1): transplant, matched-norm random displacement and borrowed shift (another task's base minus instruct direction at the same norm). (b) gemma-3-4b-pt states into gemma-3-4b-it at lambda 1 on its seven tasks diverse in the base: twin, transplant, random control and borrowed shift; the Gemma random controls and borrowed shifts broke most programs (pass ratios 0.16 to 0.50 and 0 to 0.22). The transplant moved top-k frequent in Qwen3-8B and substring search and first and last position in Gemma; elsewhere it did not reopen the base runner-up."
+  },
+  "fig_isomap_bans": {
+    "title": "Prompt bans on the activation manifold",
+    "caption": "Isomap embedding (k = 10) of teacher-forced residual stream states at layer 24, read at the token before the commit token, for forced programs of each catalogue algorithm (iteration-2 ban list experiment; coordinates as saved and checked by the iteration-4 record audit). Centroid area is proportional to the number of programs implementing that algorithm under the condition; banned centroids are crossed. (a) Grid baseline: BFS 100. (b) Single BFS ban: DFS 86, BFS 14. (c) Five-name ban of BFS, DFS, greedy best first, IDDFS and A*: BFS 63, DFS 36, IDDFS 1, all on banned centroids. (d) Shortest path ban that leaves only Bellman-Ford/SPFA: Bellman-Ford/SPFA 51, Dijkstra 48, other 1. Caveat: the reading position depends on the label of each program itself, so part of the separation can reflect position rather than algorithm. MDS stress-1 of the centroid geodesic matrix is 0.025 (grid) and 0.006 (shortest path)."
+  },
+  "fig_pn_dose": {
+    "title": "Plan noise dose, diversity and correctness",
+    "caption": "Dose response of fresh per-sample plan noise (a random direction added to the task-specification states at blocks 12 to 23 during prefill, in ban units) on the six screen-movable tasks, Qwen3-8B with 8-bit linear layers, N = 50 per dose. Left: correct-only rarefied Hill-1 at depth 25 (dashed lines at 1.5 and 2). Right: pass rate. Diversity rises with dose on kth smallest, connected components and both path tasks while the pass rate holds to alpha 2 (the shortest path task breaks at alpha 2); two sum and find duplicate stay on their defaults until alpha 4; alpha 8 erases the task. Source: plan noise experiment, dose sweep."
+  },
+  "fig_site_h5": {
+    "title": "Only task-specification noise moves the algorithm",
+    "caption": "Best correct-only rarefied Hill-1 within 5 pass points (randomisation hull) for the same random displacement written into six sites at matched per-position dose, Qwen3-8B with 8-bit linear layers, N = 30 per cell per dose. The read position and the condition sentence stay at 1.00 on every task (0 of 526 and 0 of 527 correct programs off the default), and the late blocks nearly so; the task-specification states and generated-token noise move the algorithm. The preregistered site rule returned PARTIAL (the blocks 12 to 23 site is best on 3 of 6 tasks). Source: site experiment."
+  },
+  "fig_seed_counts": {
+    "title": "Same seed: temperature against plan noise",
+    "caption": "Number of token seeds (of 20) whose algorithm changes across conditions with the noise stream of each seed held fixed (Qwen3-8B). Temperature varied over 0.3, 0.7, 1.0 and 1.3 changed the algorithm in no seed, with thinking off on all three tasks and with thinking on for the shortest path task (the grid thinking-on arm ran 10 seeds, also 0); kth smallest had no thinking-on arm. Changing the plan noise draw (mean over 20 three-direction subsets of 6 directions, temperature 1.0) changed it often. Pooled paired contrast over the shortest path task and kth smallest: 0.545 [0.41, 0.67], sign-flip p = 1.0e-5. Source: same seed experiment."
+  },
+  "fig_plan_geometry": {
+    "title": "Plan-site geometry and where pushes land",
+    "caption": "Block-18 Isomap (k = 10, PCA to 50 dimensions) of task-specification states in Qwen3-8B. Large circles: centroids of forced-algorithm prompts, area proportional to the number of programs implementing each algorithm across the random-push population. Small markers: mean projected state of the neutral twins, of the iteration-3 bans, of the targeted push toward the runner-up at 0.25, 0.5 and 1.0 of the centroid distance, and of the population pushes grouped by the algorithm they produced. (a) Connected components; (b) kth smallest. Pushed states stay near the twin region, apart from every forced-prompt centroid, and pushes that changed the algorithm sit among those that did not; only the targeted push travels toward the runner-up. Isomap trustworthiness is 0.97 on both tasks at this block, with stress-1 of 0.59 and 0.83, so distances are only roughly preserved. Source: plan subspace experiment."
+  },
+  "fig_movability": {
+    "title": "Push movability against ban compliance",
+    "caption": "Escape fraction under random pushes at the task-specification states (share of fixed directions that move the default by at least 20 points at a pass rate of at least 0.8 times that of the twin), against catalogue-only modal ban avoidance. (a) Qwen3-8B, the frozen iteration-3 screen (maximum over alpha 1 and 2; screen values, not confirmation; Spearman 0.85). (b) gemma-3-4b-it, a held-out family with predictions committed before any ban (8 directions; balanced accuracy 0.74 [0.40, 0.95], Fisher p 0.24, Spearman 0.54; the shortest path point rests on a labeller that read array-based Dijkstra as Bellman-Ford/SPFA, and relabelled its avoidance is 0.11). Dashed line: the obey threshold of 0.5. Sources: record audit screen; held-out family experiment."
+  },
+  "fig_forecast_hits": {
+    "title": "Forecast hit rates under one rule",
+    "caption": "Corrected in iteration 4. Top-1 hit rates of the four frozen forecast families in the three iteration-3 contests, counted over defined forecasts only, with the number of defined events above each bar (record audit, defined-only hit table). The earlier version of this figure mixed three rules for undefined forecasts (misses, fractional tie credit, dropped events). Exposure counts pool the named and unnamed arms (64 gated events). Rates on few defined events, such as subtraction in the bench contest (2) and the exposure contest (8), carry little weight."
+  },
+  "fig_bench_forecasts": {
+    "title": "Sealed forecasts against uniform on bench bans",
+    "caption": "Mean log score of each sealed forecast family minus the uniform reference, over the five gated Qwen3-8B modal bench bans (kth smallest, find duplicate, two sum, connected components, merge intervals), with task-cluster bootstrap 95% intervals. An undefined forecast is scored as uniform, so a difference of 0 can mean the family was undefined (ladder defined on 1 of 5 events, subtraction on 2 of 5, proximity and association on 5 of 5). No family forecasts the landing better than uniform by a clear margin, and the model's own stated alternative (association) is the worst."
+  },
+  "fig_bench_templates": {
+    "title": "One ban wording fails on almost every task",
+    "caption": "Banned programs out of 20 per template for each of the 12 modal bench bans in Qwen3-8B (bench forecast experiment; templates in the order of Table 40). The fourth template, which states only that X is not allowed here, keeps the default in 197 of 240 samples, against 85 to 135 for the others; four tasks resist every wording."
+  },
+  "fig_exposure_snapback": {
+    "title": "Banning a shown solution sends the model home",
+    "caption": "Mean share of attempts using the model's context-free default, by arm, over the shown algorithms Y of the exposure experiment (Qwen3-8B, 50 samples per Y and arm). Shown correct programs of Y, the model copies them (Y in 0.93 of attempts) and the default almost disappears; told not to use Y, the model returns to its default rather than to Y's stated alternative. The final veto round averages 29 Y with valid attempts."
+  },
+  "fig_bench_route": {
+    "title": "Which route carries a ban, task by task",
+    "caption": "Behavioural route fractions of the modal ban on the five gated bench tasks (Qwen3-8B, 100 common-random-number slots per arm): the share of the ban's effect reproduced by the prompt states alone (prompt route) and by generated tokens reading the ban alone (direct route), with template-then-slot bootstrap 95% intervals, and pooled values with the primary leave-one-task-out jackknife intervals. Dashed lines mark the preregistered bars: prompt route at least 2/3, disconfirmed if the direct route reaches 1/3. The pooled direct route (0.74) exceeds the pooled prompt route (0.61)."
+  },
+  "fig_prefill_depth": {
+    "title": "A ban gives way at the first body token",
+    "caption": "Share of the ban's effect undone (P_open) when the response is forced to begin with a prefix, against the number of forced tokens, on the five gated bench tasks (Qwen3-8B, 50 samples per cell under the ban and the twin). The leftmost point of each task is a neutral `def solve(...):` line; the others force the default's modal program up to 25%, 50% or 75% of its tokens or up to its distinctive n-gram. On kth smallest, forcing the `def` line and its indentation (10 tokens) leaves the ban intact, and one more token, the first body token `␣nums`, undoes it."
+  },
+  "fig_locus_text": {
+    "title": "State probe matches the written text",
+    "caption": "Decoder within one ban prompt of the algorithm the model goes on to write, by position in the generation (balanced accuracy at the best layer per position, folds that hold out one paraphrase at a time, saved states of the forking token experiment reprobed by the audit). Left: grid task, BFS against DFS (99 programs under one ban prompt). Right: shortest path task, Dijkstra against Bellman-Ford/SPFA (100 programs). The residual stream probe is compared with a probe on the text written so far and with the 95th percentile of probes refitted on labels shuffled within paraphrase. On the grid task that null reaches the probe at every generated position, so the signal is the paraphrase's base rate; on the shortest path task the state never beats the written text by more than 0.006, so the readout comes after commitment."
+  },
+  "fig_route": {
+    "title": "A ban travels through the prompt states",
+    "caption": "Route test by KV cache patching in Qwen3-8B. (a) Likelihood drop of the banned algorithm (nats, with 95% bootstrap intervals over templates and programs) under each arm, for the grid ban of BFS and the shortest path ban of Dijkstra. The prompt route and task specification arms reproduce most of the full ban; the direct route, read position only and generic damage arms are near zero. (b) Share of 100 sampled programs implementing the banned algorithm under the same arms, with common random numbers. On the shortest path task behaviour follows the prompt route; on the grid task hiding the ban segment from every generated token restores BFS to 0.47, so generated tokens also read the ban directly there."
+  },
+  "fig_multiban": {
+    "title": "Long ban lists are not obeyed",
+    "caption": "(a) Mechanism labels of 100 programs per condition on the grid task (five frozen templates by 20 samples) under the baseline, a single ban of BFS, and four ban lists: TOP, ARC and SCATTER ban four names, TOP5 is the literal ban of five names. Hatched segments are banned mechanisms; avoidance is printed above each bar. Every ban list fails the event gate, and the model writes the same mix of BFS and DFS whatever the list contains. (b) Shortest path bans that leave one survivor: the share of 100 programs that implement the only allowed algorithm (will) against the share of 40 forced programs labelled as that algorithm (can)."
+  },
+  "fig_c1share": {
+    "title": "X specific share of ban gains",
+    "caption": "X specific share of the between survivor variance in ban induced likelihood gains, with 95% bootstrap intervals, for Qwen3-8B (grid, shortest path, pooled) under the neutral twin and mention twin references, for the gate passing unscrubbed programs, and for Llama-3.1-8B-Instruct (grid task only). A share above 0.5 means the gains depend on which algorithm was banned more than on a shared ladder of survivors. Three intervals lie above 0.5 (Qwen3-8B grid under the mention reference, Qwen3-8B unscrubbed, Llama under the mention reference); the others include 0.5, and no branch is robust across the two references."
+  },
+  "fig_probe_layers": {
+    "title": "Read position probe transfer by layer",
+    "caption": "Accuracy of a linear probe trained on named forced-implementation prompts and tested on name-masked prompts, by layer, against the 95th percentile of 20 shuffled-label refits (geometry experiment, Qwen3-8B). Transfer rises with depth and peaks at layer 27 on the grid task (0.672) and layer 24 on the shortest path task (0.54); the grid task's read position gate nonetheless failed on its decoder criterion."
+  },
+  "fig_manifold": {
+    "title": "Path-search algorithms in activation space",
+    "caption": "Two-dimensional multidimensional scaling of geodesic distances between read position states of Qwen3-8B (grid task at layer 27, shortest path task at layer 24). Large markers are the centroids of each algorithm from forced-implementation prompts, coloured by how often the model implements each algorithm at baseline (200 of 200 for BFS and Dijkstra, 0 for every other algorithm). Small markers are the read position states of the baseline, the listing control, every ban and every mention twin. The ban points of all algorithms cluster together away from their centroids."
+  },
+  "fig_phrasings": {
+    "title": "Temperature adds phrasings, not ideas",
+    "caption": "Number of phrasing clusters (connected components of programs with identifier normalised AST-shingle Jaccard similarity of at least 0.8) among correct programs, against sampling temperature, for top-k=10 and top-p=0.95 with thinking off and on (N=100 per cell, decoding experiment). The number of ideas (distinct algorithms) stays at 1 or 2 in every cell while phrasings multiply, most steeply on the grid task with thinking off."
+  },
+  "fig_subspace": {
+    "title": "How far each prompt moves the read position",
+    "caption": "Displacement of the read position state along the algorithm (mode) subspace under each prompt condition, as a ratio to the displacement between baseline paraphrases (median ratio with 90% bootstrap interval; decoding experiment). A ratio of 1 is paraphrase noise and 1.5 is the preregistered bound for random seeds. Random seeds stay near the noise, except the fixed word seed on the grid task; the semantic seed and the enumeration prompt move the state three to four times the noise."
+  },
+  "fig_replication": {
+    "title": "The same ban, obeyed very differently",
+    "caption": "Share of programs that still use the banned algorithm under the modal ban (BFS on the grid task, Dijkstra on the shortest path task) in the five experiments that ran it, each with its own ten paraphrases of the ban sentence (bars), and the banned count per paraphrase out of 10 (dots). Wherever the ban was obeyed the compliant programs landed on the same substitute (DFS; Bellman-Ford/SPFA), but obedience ranged from 0.09 to 0.72 and from 0 to 10 of 10 across wordings."
+  },
+  "fig_knobs": {
+    "title": "What one more algorithm costs, by knob",
+    "caption": "Gain in the correctness conditioned Hill number (effective number of correct algorithms) against pass-rate points lost, for every knob tried on the shortest path task, each relative to its own experiment's reference (prompt and seed knobs against the unedited baseline, activation knobs against the hooked c=0 run; the decommitment experiment's gains are rarefied). Prompt bans and the semantic seed buy most diversity for the least correctness; most activation edits cost 16-58 points for comparable or smaller gains (the two cheap ones, a random read position edit and a layer-18 sharpening edit, gained 0.43 and 0.10), and a random direction matches the decommitment direction. Ban gains count correct programs of the banned algorithm."
+  }
+}

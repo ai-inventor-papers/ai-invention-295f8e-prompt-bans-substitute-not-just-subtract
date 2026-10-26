@@ -53,19 +53,19 @@ RUN = ROOT.parents[3]
 PREV = _RUNS / "run_aRfWvcSWjssb" / "."
 ITER = RUN / "."
 SRCS = {
-    "exp35": ITER / "round-7" / "." / "gen_art_experiment_35",      # art_MZAfDPVhM6Ui
-    "exp34": ITER / "round-7" / "." / "gen_art_experiment_34",      # art_pHL7LWNhpcCS
-    "exp38": ITER / "round-7" / "." / "gen_art_experiment_38",      # art_HY7uYZz-OjRW
-    "exp31": ITER / "round-6" / "." / "gen_art_experiment_31",      # art_zNyBP6zieI5u
-    "exp29": ITER / "round-6" / "." / "gen_art_experiment_29",      # art_lpQalcAXMGr1
-    "exp10": PREV / "round-2" / "." / "gen_art_experiment_10",
-    "exp11": PREV / "round-2" / "." / "gen_art_experiment_11",
-    "exp8": PREV / "round-2" / "." / "gen_art_experiment_8",
-    "exp18": PREV / "round-3" / "." / "gen_art_experiment_18",
-    "exp24": PREV / "round-5" / "." / "gen_art_experiment_24",      # art_CcZLW-9NX00l
-    "exp25": PREV / "round-5" / "." / "gen_art_experiment_25",
-    "exp26": PREV / "round-5" / "." / "gen_art_experiment_26",
-    "dep": _RUNS / "run_4VFKidE1bxPG" / "." / "round-1" / "." / "gen_art_dataset_1",
+    "exp35": ITER / "round-7" / "." / "experiment-35/src",      # art_MZAfDPVhM6Ui
+    "exp34": ITER / "round-7" / "." / "experiment-34/src",      # art_pHL7LWNhpcCS
+    "exp38": ITER / "round-7" / "." / "experiment-38/src",      # art_HY7uYZz-OjRW
+    "exp31": ITER / "round-6" / "." / "experiment-31/src",      # art_zNyBP6zieI5u
+    "exp29": ITER / "round-6" / "." / "experiment-29/src",      # art_lpQalcAXMGr1
+    "exp10": PREV / "round-2" / "." / "experiment-10/src",
+    "exp11": PREV / "round-2" / "." / "experiment-11/src",
+    "exp8": PREV / "round-2" / "." / "experiment-8/src",
+    "exp18": PREV / "round-3" / "." / "experiment-18/src",
+    "exp24": PREV / "round-5" / "." / "experiment-24/src",      # art_CcZLW-9NX00l
+    "exp25": PREV / "round-5" / "." / "experiment-25/src",
+    "exp26": PREV / "round-5" / "." / "experiment-26/src",
+    "dep": _RUNS / "run_4VFKidE1bxPG" / "." / "round-1" / "." / "dataset-1/src",
 }
 # the declared dataset dependency art_j3Rm_lr2nzR6 (read-only): ART_J3RM_DIR, else the published sibling folder
 # ../art_j3Rm_lr2nzR6 of the repository, else the original run layout

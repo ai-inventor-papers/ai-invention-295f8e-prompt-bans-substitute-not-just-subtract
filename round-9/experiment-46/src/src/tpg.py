@@ -1,9 +1,4 @@
 #!/usr/bin/env python3
-# NOTE (published copy): this file names server paths this repository
-# does not publish (a stage it does not ship, or another run's workspace),
-# so the steps that read them will not run from a clone as written:
-#   /ai-inventor/aii_data/runs/run_aRfWvcSWjssb/3_invention_loop/iter_2/
-#   /ai-inventor/aii_data/runs/run_4VFKidE1bxPG/3_invention_loop/iter_1/
 """TP-G shared constants and helpers (iteration 9, gen_plan_experiment_2_idx3).
 
 Everything that is frozen for this artifact lives here: the banned / non-banned split, the model pins, the block
@@ -29,15 +24,11 @@ assert set(B5) | set(NB5) == set(CANON_ORDER)
 
 # ---------------------------------------------------------------------------------------------- prior artifacts
 RUN0 = Path(__file__).resolve().parents[4]
-E44 = Path(os.environ.get("TPG_E44", str(RUN0 / "iter_8/gen_art/gen_art_experiment_44")))           # art_R-HSmXq2t97f
-EXP9 = Path(os.environ.get("TPG_EXP9", "/ai-inventor/aii_data/runs/run_aRfWvcSWjssb/3_invention_loop/iter_2/"
-                                       "gen_art/gen_art_experiment_9"))                              # art_IVZc3TWCeE9f
-EXP2 = Path(os.environ.get("TPG_EXP2", "/ai-inventor/aii_data/runs/run_4VFKidE1bxPG/3_invention_loop/iter_1/"
-                                       "gen_art/gen_art_experiment_2"))                              # art_D6Z0Snf09sFL
-EXP8 = Path(os.environ.get("TPG_EXP8", "/ai-inventor/aii_data/runs/run_aRfWvcSWjssb/3_invention_loop/iter_2/"
-                                       "gen_art/gen_art_experiment_8"))                              # art_8_ULPE8jJQc_
-DSET = Path(os.environ.get("TPG_DSET", "/ai-inventor/aii_data/runs/run_4VFKidE1bxPG/3_invention_loop/iter_1/"
-                                       "gen_art/gen_art_dataset_1"))                                 # art_j3Rm_lr2nzR6
+E44 = Path(os.environ.get("TPG_E44", str(RUN0 / "round-8/experiment-44/src")))           # art_R-HSmXq2t97f
+EXP9 = Path(os.environ.get("TPG_EXP9", str(Path(__file__).resolve().parents[4] / "round-2/experiment-9/src")))                              # art_IVZc3TWCeE9f
+EXP2 = Path(os.environ.get("TPG_EXP2", str(Path(__file__).resolve().parents[4] / "round-1/experiment-2/src")))                              # art_D6Z0Snf09sFL
+EXP8 = Path(os.environ.get("TPG_EXP8", str(Path(__file__).resolve().parents[4] / "round-2/experiment-8/src")))                              # art_8_ULPE8jJQc_
+DSET = Path(os.environ.get("TPG_DSET", str(Path(__file__).resolve().parents[4] / "round-1/dataset-1/src")))                                 # art_j3Rm_lr2nzR6
 ARTIFACT_IDS = {"E44": "art_R-HSmXq2t97f", "EXP9": "art_IVZc3TWCeE9f", "EXP2": "art_D6Z0Snf09sFL",
                 "EXP8": "art_8_ULPE8jJQc_", "DSET": "art_j3Rm_lr2nzR6"}
 

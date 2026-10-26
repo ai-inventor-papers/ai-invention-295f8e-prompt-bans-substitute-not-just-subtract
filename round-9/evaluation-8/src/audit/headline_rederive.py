@@ -22,8 +22,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DEPS = Path(os.environ.get("S0_DEPS_DIR", ROOT.parents[2] / "round-8" / "."))
-NAMES = {"circ": ("art_18XvfcJJZi1O", "gen_art_experiment_41"), "das": ("art_e-_q5mSJGrSb", "gen_art_experiment_40"),
-         "fork": ("art_vnyi0Fm5SyNH", "gen_art_experiment_39"), "tp": ("art_R-HSmXq2t97f", "gen_art_experiment_44")}
+NAMES = {"circ": ("art_18XvfcJJZi1O", "experiment-41/src"), "das": ("art_e-_q5mSJGrSb", "experiment-40/src"),
+         "fork": ("art_vnyi0Fm5SyNH", "experiment-39/src"), "tp": ("art_R-HSmXq2t97f", "experiment-44/src")}
 
 
 def art(key):
