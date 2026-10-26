@@ -1,0 +1,661 @@
+{
+ "t1": {
+  "baseline_n": 200,
+  "baseline_label_counts": {
+   "bfs": 200
+  },
+  "baseline_correct_label_counts": {
+   "bfs": 198
+  },
+  "pass_rate": 0.99,
+  "pass_wilson": [
+   0.9642775148038205,
+   0.9972533993962251
+  ],
+  "hill_cc": 1.0,
+  "modal": "bfs",
+  "modal_share_parseable": 1.0,
+  "modal_wilson": [
+   0.9811539940816791,
+   1.0
+  ],
+  "strata": {
+   "bfs": "modal",
+   "dfs": "absent",
+   "bidir_bfs": "absent",
+   "iddfs": "absent",
+   "astar": "absent",
+   "dijkstra_unit": "absent"
+  },
+  "label_wilson": {
+   "bfs": [
+    0.9811539940816791,
+    1.0
+   ],
+   "dfs": [
+    0.0,
+    0.018846005918320894
+   ],
+   "bidir_bfs": [
+    0.0,
+    0.018846005918320894
+   ],
+   "iddfs": [
+    0.0,
+    0.018846005918320894
+   ],
+   "astar": [
+    0.0,
+    0.018846005918320894
+   ],
+   "dijkstra_unit": [
+    0.0,
+    0.018846005918320894
+   ],
+   "other": [
+    0.0,
+    0.018846005918320894
+   ]
+  },
+  "manipulation_check": {
+   "forced:bfs": {
+    "n": 30,
+    "share_labelled_X": 1.0,
+    "wilson": [
+     0.8864829086095221,
+     1.0
+    ],
+    "pass_rate": 1.0,
+    "label_counts": {
+     "bfs": 30
+    }
+   },
+   "masked:bfs": {
+    "n": 30,
+    "share_labelled_X": 1.0,
+    "wilson": [
+     0.8864829086095221,
+     1.0
+    ],
+    "pass_rate": 0.9333333333333333,
+    "label_counts": {
+     "bfs": 30
+    }
+   },
+   "forced:dfs": {
+    "n": 30,
+    "share_labelled_X": 1.0,
+    "wilson": [
+     0.8864829086095221,
+     1.0
+    ],
+    "pass_rate": 0.3,
+    "label_counts": {
+     "dfs": 30
+    }
+   },
+   "masked:dfs": {
+    "n": 30,
+    "share_labelled_X": 0.9333333333333333,
+    "wilson": [
+     0.7867618227892791,
+     0.9815233646723066
+    ],
+    "pass_rate": 0.16666666666666666,
+    "label_counts": {
+     "dfs": 28,
+     "bfs": 2
+    }
+   },
+   "forced:bidir_bfs": {
+    "n": 30,
+    "share_labelled_X": 0.6666666666666666,
+    "wilson": [
+     0.48779725813830266,
+     0.807697044731538
+    ],
+    "pass_rate": 0.23333333333333334,
+    "label_counts": {
+     "bidir_bfs": 20,
+     "bfs": 10
+    }
+   },
+   "masked:bidir_bfs": {
+    "n": 30,
+    "share_labelled_X": 0.9666666666666667,
+    "wilson": [
+     0.8332924860304112,
+     0.9940915620051425
+    ],
+    "pass_rate": 0.06666666666666667,
+    "label_counts": {
+     "bidir_bfs": 29,
+     "bfs": 1
+    }
+   },
+   "forced:iddfs": {
+    "n": 30,
+    "share_labelled_X": 1.0,
+    "wilson": [
+     0.8864829086095221,
+     1.0
+    ],
+    "pass_rate": 0.0,
+    "label_counts": {
+     "iddfs": 30
+    }
+   },
+   "masked:iddfs": {
+    "n": 30,
+    "share_labelled_X": 0.7666666666666667,
+    "wilson": [
+     0.5907132766967574,
+     0.8820776078949878
+    ],
+    "pass_rate": 0.0,
+    "label_counts": {
+     "iddfs": 23,
+     "bfs": 1,
+     "dfs": 6
+    }
+   },
+   "forced:astar": {
+    "n": 30,
+    "share_labelled_X": 0.9666666666666667,
+    "wilson": [
+     0.8332924860304112,
+     0.9940915620051425
+    ],
+    "pass_rate": 0.9666666666666667,
+    "label_counts": {
+     "astar": 29,
+     "dijkstra_unit": 1
+    }
+   },
+   "masked:astar": {
+    "n": 30,
+    "share_labelled_X": 1.0,
+    "wilson": [
+     0.8864829086095221,
+     1.0
+    ],
+    "pass_rate": 0.9333333333333333,
+    "label_counts": {
+     "astar": 30
+    }
+   },
+   "forced:dijkstra_unit": {
+    "n": 30,
+    "share_labelled_X": 1.0,
+    "wilson": [
+     0.8864829086095221,
+     1.0
+    ],
+    "pass_rate": 0.9,
+    "label_counts": {
+     "dijkstra_unit": 30
+    }
+   },
+   "masked:dijkstra_unit": {
+    "n": 30,
+    "share_labelled_X": 1.0,
+    "wilson": [
+     0.8864829086095221,
+     1.0
+    ],
+    "pass_rate": 0.8333333333333334,
+    "label_counts": {
+     "dijkstra_unit": 30
+    }
+   }
+  },
+  "forced_overall_share": 0.9388888888888889,
+  "labeller_sources": {
+   "runtime+ast": 459,
+   "judge": 101
+  },
+  "truncated": 0,
+  "association": {
+   "bfs": {
+    "X": "bfs",
+    "n_rankings": 20,
+    "borda_A": {
+     "dfs": 0.004878048780487805,
+     "bidir_bfs": 0.22926829268292684,
+     "iddfs": 0.1073170731707317,
+     "astar": 0.37073170731707317,
+     "dijkstra_unit": 0.28780487804878047
+    },
+    "first_rank_F": {
+     "dfs": 0.04,
+     "bidir_bfs": 0.08,
+     "iddfs": 0.04,
+     "astar": 0.68,
+     "dijkstra_unit": 0.16
+    },
+    "borda_winner": "astar",
+    "clarity": 0.8,
+    "kendall_W": 0.8865,
+    "first_rank_entropy_norm": 0.38079720113903054,
+    "ambiguity_flag": false
+   },
+   "dfs": {
+    "X": "dfs",
+    "n_rankings": 19,
+    "borda_A": {
+     "bfs": 0.3435897435897436,
+     "bidir_bfs": 0.03076923076923077,
+     "iddfs": 0.19487179487179487,
+     "astar": 0.1794871794871795,
+     "dijkstra_unit": 0.2512820512820513
+    },
+    "first_rank_F": {
+     "bfs": 0.7083333333333334,
+     "bidir_bfs": 0.041666666666666664,
+     "iddfs": 0.041666666666666664,
+     "astar": 0.16666666666666666,
+     "dijkstra_unit": 0.041666666666666664
+    },
+    "borda_winner": "bfs",
+    "clarity": 0.8421052631578947,
+    "kendall_W": 0.5512465373961218,
+    "first_rank_entropy_norm": 0.271002889900671,
+    "ambiguity_flag": false
+   },
+   "bidir_bfs": {
+    "X": "bidir_bfs",
+    "n_rankings": 20,
+    "borda_A": {
+     "bfs": 0.36097560975609755,
+     "dfs": 0.04878048780487805,
+     "iddfs": 0.1902439024390244,
+     "astar": 0.2146341463414634,
+     "dijkstra_unit": 0.18536585365853658
+    },
+    "first_rank_F": {
+     "bfs": 0.68,
+     "dfs": 0.04,
+     "iddfs": 0.04,
+     "astar": 0.16,
+     "dijkstra_unit": 0.08
+    },
+    "borda_winner": "bfs",
+    "clarity": 0.8,
+    "kendall_W": 0.518,
+    "first_rank_entropy_norm": 0.38079720113903054,
+    "ambiguity_flag": false
+   },
+   "iddfs": {
+    "X": "iddfs",
+    "n_rankings": 20,
+    "borda_A": {
+     "bfs": 0.2975609756097561,
+     "dfs": 0.23902439024390243,
+     "bidir_bfs": 0.1073170731707317,
+     "astar": 0.2,
+     "dijkstra_unit": 0.15609756097560976
+    },
+    "first_rank_F": {
+     "bfs": 0.36,
+     "dfs": 0.32,
+     "bidir_bfs": 0.08,
+     "astar": 0.2,
+     "dijkstra_unit": 0.04
+    },
+    "borda_winner": "bfs",
+    "clarity": 0.4,
+    "kendall_W": 0.2265,
+    "first_rank_entropy_norm": 0.7490989389365986,
+    "ambiguity_flag": false
+   },
+   "astar": {
+    "X": "astar",
+    "n_rankings": 18,
+    "borda_A": {
+     "bfs": 0.3567567567567568,
+     "dfs": 0.016216216216216217,
+     "bidir_bfs": 0.13513513513513514,
+     "iddfs": 0.1783783783783784,
+     "dijkstra_unit": 0.31351351351351353
+    },
+    "first_rank_F": {
+     "bfs": 0.6521739130434783,
+     "dfs": 0.043478260869565216,
+     "bidir_bfs": 0.043478260869565216,
+     "iddfs": 0.043478260869565216,
+     "dijkstra_unit": 0.21739130434782608
+    },
+    "borda_winner": "bfs",
+    "clarity": 0.7777777777777778,
+    "kendall_W": 0.8018518518518518,
+    "first_rank_entropy_norm": 0.3291249665273085,
+    "ambiguity_flag": false
+   },
+   "dijkstra_unit": {
+    "X": "dijkstra_unit",
+    "n_rankings": 20,
+    "borda_A": {
+     "bfs": 0.32195121951219513,
+     "dfs": 0.004878048780487805,
+     "bidir_bfs": 0.18048780487804877,
+     "iddfs": 0.14146341463414633,
+     "astar": 0.35121951219512193
+    },
+    "first_rank_F": {
+     "bfs": 0.4,
+     "dfs": 0.04,
+     "bidir_bfs": 0.04,
+     "iddfs": 0.04,
+     "astar": 0.48
+    },
+    "borda_winner": "astar",
+    "clarity": 0.55,
+    "kendall_W": 0.8365,
+    "first_rank_entropy_norm": 0.4275646847866614,
+    "ambiguity_flag": false
+   }
+  },
+  "bfs_fraction_T1_T1.0": 1.0
+ },
+ "t2": {
+  "baseline_n": 200,
+  "baseline_label_counts": {
+   "dijkstra": 200
+  },
+  "baseline_correct_label_counts": {
+   "dijkstra": 200
+  },
+  "pass_rate": 1.0,
+  "pass_wilson": [
+   0.9811539940816791,
+   1.0
+  ],
+  "hill_cc": 1.0,
+  "modal": "dijkstra",
+  "modal_share_parseable": 1.0,
+  "modal_wilson": [
+   0.9811539940816791,
+   1.0
+  ],
+  "strata": {
+   "dijkstra": "modal",
+   "bellman_ford_spfa": "absent",
+   "bidir_dijkstra": "absent",
+   "floyd_warshall": "absent",
+   "dial": "absent"
+  },
+  "label_wilson": {
+   "dijkstra": [
+    0.9811539940816791,
+    1.0
+   ],
+   "bellman_ford_spfa": [
+    0.0,
+    0.018846005918320894
+   ],
+   "bidir_dijkstra": [
+    0.0,
+    0.018846005918320894
+   ],
+   "floyd_warshall": [
+    0.0,
+    0.018846005918320894
+   ],
+   "dial": [
+    0.0,
+    0.018846005918320894
+   ],
+   "other": [
+    0.0,
+    0.018846005918320894
+   ]
+  },
+  "manipulation_check": {
+   "forced:dijkstra": {
+    "n": 30,
+    "share_labelled_X": 1.0,
+    "wilson": [
+     0.8864829086095221,
+     1.0
+    ],
+    "pass_rate": 1.0,
+    "label_counts": {
+     "dijkstra": 30
+    }
+   },
+   "masked:dijkstra": {
+    "n": 30,
+    "share_labelled_X": 1.0,
+    "wilson": [
+     0.8864829086095221,
+     1.0
+    ],
+    "pass_rate": 0.9666666666666667,
+    "label_counts": {
+     "dijkstra": 30
+    }
+   },
+   "forced:bellman_ford_spfa": {
+    "n": 30,
+    "share_labelled_X": 1.0,
+    "wilson": [
+     0.8864829086095221,
+     1.0
+    ],
+    "pass_rate": 0.7666666666666667,
+    "label_counts": {
+     "bellman_ford_spfa": 30
+    }
+   },
+   "masked:bellman_ford_spfa": {
+    "n": 30,
+    "share_labelled_X": 0.7666666666666667,
+    "wilson": [
+     0.5907132766967574,
+     0.8820776078949878
+    ],
+    "pass_rate": 0.6666666666666666,
+    "label_counts": {
+     "bellman_ford_spfa": 23,
+     "dijkstra": 7
+    }
+   },
+   "forced:bidir_dijkstra": {
+    "n": 30,
+    "share_labelled_X": 0.3333333333333333,
+    "wilson": [
+     0.19230295526846194,
+     0.5122027418616973
+    ],
+    "pass_rate": 0.5,
+    "label_counts": {
+     "bidir_dijkstra": 10,
+     "dijkstra": 19,
+     "no_code": 1
+    }
+   },
+   "masked:bidir_dijkstra": {
+    "n": 30,
+    "share_labelled_X": 0.2,
+    "wilson": [
+     0.09504978102401235,
+     0.37306047381027446
+    ],
+    "pass_rate": 0.43333333333333335,
+    "label_counts": {
+     "dijkstra": 17,
+     "bidir_dijkstra": 6,
+     "bellman_ford_spfa": 7
+    }
+   },
+   "forced:floyd_warshall": {
+    "n": 30,
+    "share_labelled_X": 1.0,
+    "wilson": [
+     0.8864829086095221,
+     1.0
+    ],
+    "pass_rate": 1.0,
+    "label_counts": {
+     "floyd_warshall": 30
+    }
+   },
+   "masked:floyd_warshall": {
+    "n": 30,
+    "share_labelled_X": 0.7333333333333333,
+    "wilson": [
+     0.5555169795568831,
+     0.8581750444608938
+    ],
+    "pass_rate": 0.6666666666666666,
+    "label_counts": {
+     "floyd_warshall": 22,
+     "dijkstra": 8
+    }
+   },
+   "forced:dial": {
+    "n": 30,
+    "share_labelled_X": 0.36666666666666664,
+    "wilson": [
+     0.21873702204017678,
+     0.5448675356639506
+    ],
+    "pass_rate": 0.3,
+    "label_counts": {
+     "dial": 11,
+     "dijkstra": 9,
+     "other": 7,
+     "bellman_ford_spfa": 3
+    }
+   },
+   "masked:dial": {
+    "n": 30,
+    "share_labelled_X": 0.5666666666666667,
+    "wilson": [
+     0.3919700954540873,
+     0.7262276256938489
+    ],
+    "pass_rate": 0.7,
+    "label_counts": {
+     "bellman_ford_spfa": 5,
+     "dial": 17,
+     "dijkstra": 8
+    }
+   }
+  },
+  "forced_overall_share": 0.74,
+  "labeller_sources": {
+   "runtime+ast": 370,
+   "judge": 129,
+   "none": 1
+  },
+  "truncated": 1,
+  "association": {
+   "dijkstra": {
+    "X": "dijkstra",
+    "n_rankings": 19,
+    "borda_A": {
+     "bellman_ford_spfa": 0.211864406779661,
+     "bidir_dijkstra": 0.3135593220338983,
+     "floyd_warshall": 0.05084745762711865,
+     "dial": 0.423728813559322
+    },
+    "first_rank_F": {
+     "bellman_ford_spfa": 0.17391304347826086,
+     "bidir_dijkstra": 0.2608695652173913,
+     "floyd_warshall": 0.043478260869565216,
+     "dial": 0.5217391304347826
+    },
+    "borda_winner": "dial",
+    "clarity": 0.5789473684210527,
+    "kendall_W": 0.5811634349030471,
+    "first_rank_entropy_norm": 0.6919038677320415,
+    "ambiguity_flag": false
+   },
+   "bellman_ford_spfa": {
+    "X": "bellman_ford_spfa",
+    "n_rankings": 19,
+    "borda_A": {
+     "dijkstra": 0.4915254237288136,
+     "bidir_dijkstra": 0.16101694915254236,
+     "floyd_warshall": 0.3050847457627119,
+     "dial": 0.0423728813559322
+    },
+    "first_rank_F": {
+     "dijkstra": 0.8695652173913043,
+     "bidir_dijkstra": 0.043478260869565216,
+     "floyd_warshall": 0.043478260869565216,
+     "dial": 0.043478260869565216
+    },
+    "borda_winner": "dijkstra",
+    "clarity": 1.0,
+    "kendall_W": 0.8670360110803325,
+    "first_rank_entropy_norm": -0.0,
+    "ambiguity_flag": false
+   },
+   "bidir_dijkstra": {
+    "X": "bidir_dijkstra",
+    "n_rankings": 20,
+    "borda_A": {
+     "dijkstra": 0.49193548387096775,
+     "bellman_ford_spfa": 0.2661290322580645,
+     "floyd_warshall": 0.12096774193548387,
+     "dial": 0.12096774193548387
+    },
+    "first_rank_F": {
+     "dijkstra": 0.875,
+     "bellman_ford_spfa": 0.041666666666666664,
+     "floyd_warshall": 0.041666666666666664,
+     "dial": 0.041666666666666664
+    },
+    "borda_winner": "dijkstra",
+    "clarity": 1.0,
+    "kendall_W": 0.708,
+    "first_rank_entropy_norm": -0.0,
+    "ambiguity_flag": false
+   },
+   "floyd_warshall": {
+    "X": "floyd_warshall",
+    "n_rankings": 20,
+    "borda_A": {
+     "dijkstra": 0.4596774193548387,
+     "bellman_ford_spfa": 0.2661290322580645,
+     "bidir_dijkstra": 0.20161290322580644,
+     "dial": 0.07258064516129033
+    },
+    "first_rank_F": {
+     "dijkstra": 0.7083333333333334,
+     "bellman_ford_spfa": 0.20833333333333334,
+     "bidir_dijkstra": 0.041666666666666664,
+     "dial": 0.041666666666666664
+    },
+    "borda_winner": "dijkstra",
+    "clarity": 0.8,
+    "kendall_W": 0.6,
+    "first_rank_entropy_norm": 0.36096404744368116,
+    "ambiguity_flag": false
+   },
+   "dial": {
+    "X": "dial",
+    "n_rankings": 20,
+    "borda_A": {
+     "dijkstra": 0.49193548387096775,
+     "bellman_ford_spfa": 0.2903225806451613,
+     "bidir_dijkstra": 0.10483870967741936,
+     "floyd_warshall": 0.11290322580645161
+    },
+    "first_rank_F": {
+     "dijkstra": 0.875,
+     "bellman_ford_spfa": 0.041666666666666664,
+     "bidir_dijkstra": 0.041666666666666664,
+     "floyd_warshall": 0.041666666666666664
+    },
+    "borda_winner": "dijkstra",
+    "clarity": 1.0,
+    "kendall_W": 0.769,
+    "first_rank_entropy_norm": -0.0,
+    "ambiguity_flag": false
+   }
+  }
+ }
+}

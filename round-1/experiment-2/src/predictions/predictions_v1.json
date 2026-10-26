@@ -1,0 +1,3112 @@
+{
+ "created_utc": "2026-10-19T16:36:57.022426+00:00",
+ "model": "Qwen3-8B",
+ "events": {
+  "t1|ban:bfs": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs"
+   ],
+   "survivors": [
+    "dfs",
+    "bidir_bfs",
+    "iddfs",
+    "astar",
+    "dijkstra_unit"
+   ],
+   "X_k": "bfs",
+   "distributions": {
+    "association": {
+     "dfs": 0.004878048780487805,
+     "bidir_bfs": 0.22926829268292684,
+     "iddfs": 0.1073170731707317,
+     "astar": 0.37073170731707317,
+     "dijkstra_unit": 0.28780487804878047
+    },
+    "association_X1": {
+     "dfs": 0.004878048780487805,
+     "bidir_bfs": 0.22926829268292684,
+     "iddfs": 0.1073170731707317,
+     "astar": 0.37073170731707317,
+     "dijkstra_unit": 0.28780487804878047
+    },
+    "frequency": {
+     "dfs": 0.2,
+     "bidir_bfs": 0.2,
+     "iddfs": 0.2,
+     "astar": 0.2,
+     "dijkstra_unit": 0.2
+    },
+    "geodesic": {
+     "dfs": 0.287612360015868,
+     "bidir_bfs": 0.13497827194654397,
+     "iddfs": 0.1627377876576903,
+     "astar": 0.188904735578166,
+     "dijkstra_unit": 0.2257668448017317
+    },
+    "decoder": {
+     "dfs": 0.6612348999003488,
+     "bidir_bfs": 0.08984371697372436,
+     "iddfs": 0.22244199700163667,
+     "astar": 0.01570955385632266,
+     "dijkstra_unit": 0.010769832267967485
+    }
+   },
+   "top1": {
+    "association": "astar",
+    "association_X1": "astar",
+    "frequency": "dfs",
+    "geodesic": "dfs",
+    "decoder": "dfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": false
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.985,
+    "geodesic_margin": 17.20439208166546,
+    "frequency_stable": true,
+    "geodesic_stable": true
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+dfs": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "dfs"
+   ],
+   "survivors": [
+    "bidir_bfs",
+    "iddfs",
+    "astar",
+    "dijkstra_unit"
+   ],
+   "X_k": "dfs",
+   "distributions": {
+    "association": {
+     "bidir_bfs": 0.046875,
+     "iddfs": 0.296875,
+     "astar": 0.2734375,
+     "dijkstra_unit": 0.3828125
+    },
+    "association_X1": {
+     "bidir_bfs": 0.2303921568627451,
+     "iddfs": 0.10784313725490197,
+     "astar": 0.37254901960784315,
+     "dijkstra_unit": 0.2892156862745098
+    },
+    "frequency": {
+     "bidir_bfs": 0.25,
+     "iddfs": 0.25,
+     "astar": 0.25,
+     "dijkstra_unit": 0.25
+    },
+    "geodesic": {
+     "bidir_bfs": 0.1933480774899167,
+     "iddfs": 0.18192013978189064,
+     "astar": 0.27057838752240626,
+     "dijkstra_unit": 0.3541533952057865
+    },
+    "decoder": {
+     "bidir_bfs": 0.12899490227137955,
+     "iddfs": 0.8486840175757444,
+     "astar": 0.018093381592635297,
+     "dijkstra_unit": 0.004227698560240721
+    }
+   },
+   "top1": {
+    "association": "dijkstra_unit",
+    "association_X1": "astar",
+    "frequency": "bidir_bfs",
+    "geodesic": "dijkstra_unit",
+    "decoder": "iddfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 1.0,
+    "geodesic_margin": 19.127097955343686,
+    "frequency_stable": true,
+    "geodesic_stable": true
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+bidir_bfs": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "bidir_bfs"
+   ],
+   "survivors": [
+    "dfs",
+    "iddfs",
+    "astar",
+    "dijkstra_unit"
+   ],
+   "X_k": "bidir_bfs",
+   "distributions": {
+    "association": {
+     "dfs": 0.07633587786259544,
+     "iddfs": 0.2977099236641222,
+     "astar": 0.3358778625954199,
+     "dijkstra_unit": 0.29007633587786263
+    },
+    "association_X1": {
+     "dfs": 0.006329113924050633,
+     "iddfs": 0.13924050632911392,
+     "astar": 0.4810126582278481,
+     "dijkstra_unit": 0.3734177215189873
+    },
+    "frequency": {
+     "dfs": 0.25,
+     "iddfs": 0.25,
+     "astar": 0.25,
+     "dijkstra_unit": 0.25
+    },
+    "geodesic": {
+     "dfs": 0.17200035689124168,
+     "iddfs": 0.30468341025399487,
+     "astar": 0.2777917148512631,
+     "dijkstra_unit": 0.2455245180035002
+    },
+    "decoder": {
+     "dfs": 0.23805879154169518,
+     "iddfs": 0.6935788990902619,
+     "astar": 0.06118437068828051,
+     "dijkstra_unit": 0.00717793867976234
+    }
+   },
+   "top1": {
+    "association": "astar",
+    "association_X1": "astar",
+    "frequency": "dfs",
+    "geodesic": "iddfs",
+    "decoder": "iddfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": false
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.999,
+    "geodesic_margin": 6.566059634641448,
+    "frequency_stable": true,
+    "geodesic_stable": true
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+iddfs": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "iddfs"
+   ],
+   "survivors": [
+    "dfs",
+    "bidir_bfs",
+    "astar",
+    "dijkstra_unit"
+   ],
+   "X_k": "iddfs",
+   "distributions": {
+    "association": {
+     "dfs": 0.34027777777777773,
+     "bidir_bfs": 0.15277777777777776,
+     "astar": 0.2847222222222222,
+     "dijkstra_unit": 0.2222222222222222
+    },
+    "association_X1": {
+     "dfs": 0.005464480874316941,
+     "bidir_bfs": 0.25683060109289624,
+     "astar": 0.41530054644808745,
+     "dijkstra_unit": 0.3224043715846995
+    },
+    "frequency": {
+     "dfs": 0.25,
+     "bidir_bfs": 0.25,
+     "astar": 0.25,
+     "dijkstra_unit": 0.25
+    },
+    "geodesic": {
+     "dfs": 0.16167523200758757,
+     "bidir_bfs": 0.3043841470859445,
+     "astar": 0.3090263474773757,
+     "dijkstra_unit": 0.22491427342909234
+    },
+    "decoder": {
+     "dfs": 0.5444788197275617,
+     "bidir_bfs": 0.2394677857576652,
+     "astar": 0.20700949680208336,
+     "dijkstra_unit": 0.009043897712689696
+    }
+   },
+   "top1": {
+    "association": "dfs",
+    "association_X1": "astar",
+    "frequency": "dfs",
+    "geodesic": "astar",
+    "decoder": "dfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": true,
+    "AG": false
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.49,
+    "geodesic_margin": 1.0755637259882178,
+    "frequency_stable": true,
+    "geodesic_stable": false
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+astar": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "astar"
+   ],
+   "survivors": [
+    "dfs",
+    "bidir_bfs",
+    "iddfs",
+    "dijkstra_unit"
+   ],
+   "X_k": "astar",
+   "distributions": {
+    "association": {
+     "dfs": 0.025210084033613443,
+     "bidir_bfs": 0.21008403361344535,
+     "iddfs": 0.27731092436974786,
+     "dijkstra_unit": 0.4873949579831932
+    },
+    "association_X1": {
+     "dfs": 0.007751937984496124,
+     "bidir_bfs": 0.36434108527131787,
+     "iddfs": 0.17054263565891473,
+     "dijkstra_unit": 0.4573643410852713
+    },
+    "frequency": {
+     "dfs": 0.25,
+     "bidir_bfs": 0.25,
+     "iddfs": 0.25,
+     "dijkstra_unit": 0.25
+    },
+    "geodesic": {
+     "dfs": 0.21016617055755,
+     "bidir_bfs": 0.24254900954452338,
+     "iddfs": 0.27008626786021184,
+     "dijkstra_unit": 0.27719855203771476
+    },
+    "decoder": {
+     "dfs": 0.05659670234993322,
+     "bidir_bfs": 0.0743833351781462,
+     "iddfs": 0.8623112154411159,
+     "dijkstra_unit": 0.006708747030804669
+    }
+   },
+   "top1": {
+    "association": "dijkstra_unit",
+    "association_X1": "dijkstra_unit",
+    "frequency": "dfs",
+    "geodesic": "dijkstra_unit",
+    "decoder": "iddfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.736,
+    "geodesic_margin": 1.8470358409873597,
+    "frequency_stable": true,
+    "geodesic_stable": false
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+dijkstra_unit": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "dijkstra_unit"
+   ],
+   "survivors": [
+    "dfs",
+    "bidir_bfs",
+    "iddfs",
+    "astar"
+   ],
+   "X_k": "dijkstra_unit",
+   "distributions": {
+    "association": {
+     "dfs": 0.007194244604316547,
+     "bidir_bfs": 0.26618705035971224,
+     "iddfs": 0.20863309352517986,
+     "astar": 0.5179856115107914
+    },
+    "association_X1": {
+     "dfs": 0.006849315068493151,
+     "bidir_bfs": 0.3219178082191781,
+     "iddfs": 0.1506849315068493,
+     "astar": 0.5205479452054794
+    },
+    "frequency": {
+     "dfs": 0.25,
+     "bidir_bfs": 0.25,
+     "iddfs": 0.25,
+     "astar": 0.25
+    },
+    "geodesic": {
+     "dfs": 0.28558265718705533,
+     "bidir_bfs": 0.22255932614326077,
+     "iddfs": 0.20407731232936638,
+     "astar": 0.2877807043403175
+    },
+    "decoder": {
+     "dfs": 0.25936908959596816,
+     "bidir_bfs": 0.08034942808419022,
+     "iddfs": 0.5705024371678343,
+     "astar": 0.0897790451520073
+    }
+   },
+   "top1": {
+    "association": "astar",
+    "association_X1": "astar",
+    "frequency": "dfs",
+    "geodesic": "astar",
+    "decoder": "iddfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.447,
+    "geodesic_margin": 0.5448342092972638,
+    "frequency_stable": true,
+    "geodesic_stable": false
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+dfs+bidir_bfs": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "dfs",
+    "bidir_bfs"
+   ],
+   "survivors": [
+    "iddfs",
+    "astar",
+    "dijkstra_unit"
+   ],
+   "X_k": "bidir_bfs",
+   "distributions": {
+    "association": {
+     "iddfs": 0.32231404958677684,
+     "astar": 0.3636363636363636,
+     "dijkstra_unit": 0.31404958677685946
+    },
+    "association_X1": {
+     "iddfs": 0.14012738853503184,
+     "astar": 0.4840764331210191,
+     "dijkstra_unit": 0.375796178343949
+    },
+    "frequency": {
+     "iddfs": 0.3333333333333333,
+     "astar": 0.3333333333333333,
+     "dijkstra_unit": 0.3333333333333333
+    },
+    "geodesic": {
+     "iddfs": 0.3679752917646784,
+     "astar": 0.3354973847673205,
+     "dijkstra_unit": 0.2965273234680011
+    },
+    "decoder": {
+     "iddfs": 0.9760240044420904,
+     "astar": 0.022929974131761843,
+     "dijkstra_unit": 0.0010460214261478445
+    }
+   },
+   "top1": {
+    "association": "astar",
+    "association_X1": "astar",
+    "frequency": "iddfs",
+    "geodesic": "iddfs",
+    "decoder": "iddfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": false
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.999,
+    "geodesic_margin": 6.566059634641448,
+    "frequency_stable": true,
+    "geodesic_stable": true
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+dfs+iddfs": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "dfs",
+    "iddfs"
+   ],
+   "survivors": [
+    "bidir_bfs",
+    "astar",
+    "dijkstra_unit"
+   ],
+   "X_k": "iddfs",
+   "distributions": {
+    "association": {
+     "bidir_bfs": 0.23157894736842108,
+     "astar": 0.4315789473684211,
+     "dijkstra_unit": 0.33684210526315794
+    },
+    "association_X1": {
+     "bidir_bfs": 0.25824175824175827,
+     "astar": 0.4175824175824176,
+     "dijkstra_unit": 0.3241758241758242
+    },
+    "frequency": {
+     "bidir_bfs": 0.3333333333333333,
+     "astar": 0.3333333333333333,
+     "dijkstra_unit": 0.3333333333333333
+    },
+    "geodesic": {
+     "bidir_bfs": 0.36308619130372566,
+     "astar": 0.3686236638545464,
+     "dijkstra_unit": 0.268290144841728
+    },
+    "decoder": {
+     "bidir_bfs": 0.5174797292054414,
+     "astar": 0.4706813275624928,
+     "dijkstra_unit": 0.011838943232065835
+    }
+   },
+   "top1": {
+    "association": "astar",
+    "association_X1": "astar",
+    "frequency": "bidir_bfs",
+    "geodesic": "astar",
+    "decoder": "bidir_bfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.49,
+    "geodesic_margin": 1.0755637259882178,
+    "frequency_stable": true,
+    "geodesic_stable": false
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+dfs+astar": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "dfs",
+    "astar"
+   ],
+   "survivors": [
+    "bidir_bfs",
+    "iddfs",
+    "dijkstra_unit"
+   ],
+   "X_k": "astar",
+   "distributions": {
+    "association": {
+     "bidir_bfs": 0.21551724137931033,
+     "iddfs": 0.28448275862068967,
+     "dijkstra_unit": 0.5
+    },
+    "association_X1": {
+     "bidir_bfs": 0.3671875,
+     "iddfs": 0.171875,
+     "dijkstra_unit": 0.46093749999999994
+    },
+    "frequency": {
+     "bidir_bfs": 0.3333333333333333,
+     "iddfs": 0.3333333333333333,
+     "dijkstra_unit": 0.3333333333333333
+    },
+    "geodesic": {
+     "bidir_bfs": 0.307088656503534,
+     "iddfs": 0.34195327902182654,
+     "dijkstra_unit": 0.3509580644746395
+    },
+    "decoder": {
+     "bidir_bfs": 0.028004525792816645,
+     "iddfs": 0.9683470217854877,
+     "dijkstra_unit": 0.0036484524216956237
+    }
+   },
+   "top1": {
+    "association": "dijkstra_unit",
+    "association_X1": "dijkstra_unit",
+    "frequency": "bidir_bfs",
+    "geodesic": "dijkstra_unit",
+    "decoder": "iddfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.736,
+    "geodesic_margin": 1.8470358409873597,
+    "frequency_stable": true,
+    "geodesic_stable": false
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+dfs+dijkstra_unit": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "dfs",
+    "dijkstra_unit"
+   ],
+   "survivors": [
+    "bidir_bfs",
+    "iddfs",
+    "astar"
+   ],
+   "X_k": "dijkstra_unit",
+   "distributions": {
+    "association": {
+     "bidir_bfs": 0.26811594202898553,
+     "iddfs": 0.21014492753623187,
+     "astar": 0.5217391304347826
+    },
+    "association_X1": {
+     "bidir_bfs": 0.3241379310344828,
+     "iddfs": 0.15172413793103448,
+     "astar": 0.5241379310344828
+    },
+    "frequency": {
+     "bidir_bfs": 0.3333333333333333,
+     "iddfs": 0.3333333333333333,
+     "astar": 0.3333333333333333
+    },
+    "geodesic": {
+     "bidir_bfs": 0.31152564867330396,
+     "iddfs": 0.28565559666543505,
+     "astar": 0.40281875466126094
+    },
+    "decoder": {
+     "bidir_bfs": 0.03696914842907022,
+     "iddfs": 0.9302855586123785,
+     "astar": 0.03274529295855127
+    }
+   },
+   "top1": {
+    "association": "astar",
+    "association_X1": "astar",
+    "frequency": "bidir_bfs",
+    "geodesic": "astar",
+    "decoder": "iddfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 1.0,
+    "geodesic_margin": 18.26277754285782,
+    "frequency_stable": true,
+    "geodesic_stable": true
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+bidir_bfs+dfs": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "bidir_bfs",
+    "dfs"
+   ],
+   "survivors": [
+    "iddfs",
+    "astar",
+    "dijkstra_unit"
+   ],
+   "X_k": "dfs",
+   "distributions": {
+    "association": {
+     "iddfs": 0.3114754098360656,
+     "astar": 0.28688524590163933,
+     "dijkstra_unit": 0.4016393442622951
+    },
+    "association_X1": {
+     "iddfs": 0.14012738853503184,
+     "astar": 0.4840764331210191,
+     "dijkstra_unit": 0.375796178343949
+    },
+    "frequency": {
+     "iddfs": 0.3333333333333333,
+     "astar": 0.3333333333333333,
+     "dijkstra_unit": 0.3333333333333333
+    },
+    "geodesic": {
+     "iddfs": 0.22552495655846727,
+     "astar": 0.33543388414725306,
+     "dijkstra_unit": 0.43904115929427967
+    },
+    "decoder": {
+     "iddfs": 0.9827645688524052,
+     "astar": 0.016398312493038896,
+     "dijkstra_unit": 0.0008371186545559085
+    }
+   },
+   "top1": {
+    "association": "dijkstra_unit",
+    "association_X1": "astar",
+    "frequency": "iddfs",
+    "geodesic": "dijkstra_unit",
+    "decoder": "iddfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 1.0,
+    "geodesic_margin": 19.127097955343686,
+    "frequency_stable": true,
+    "geodesic_stable": true
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+bidir_bfs+iddfs": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "bidir_bfs",
+    "iddfs"
+   ],
+   "survivors": [
+    "dfs",
+    "astar",
+    "dijkstra_unit"
+   ],
+   "X_k": "iddfs",
+   "distributions": {
+    "association": {
+     "dfs": 0.4016393442622951,
+     "astar": 0.33606557377049184,
+     "dijkstra_unit": 0.26229508196721313
+    },
+    "association_X1": {
+     "dfs": 0.007352941176470589,
+     "astar": 0.5588235294117647,
+     "dijkstra_unit": 0.4338235294117647
+    },
+    "frequency": {
+     "dfs": 0.3333333333333333,
+     "astar": 0.3333333333333333,
+     "dijkstra_unit": 0.3333333333333333
+    },
+    "geodesic": {
+     "dfs": 0.23242028100754455,
+     "astar": 0.4442485693544945,
+     "dijkstra_unit": 0.32333114963796095
+    },
+    "decoder": {
+     "dfs": 0.5821067362054977,
+     "astar": 0.41168387268229895,
+     "dijkstra_unit": 0.006209391112203333
+    }
+   },
+   "top1": {
+    "association": "dfs",
+    "association_X1": "astar",
+    "frequency": "dfs",
+    "geodesic": "astar",
+    "decoder": "dfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": true,
+    "AG": false
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.998,
+    "geodesic_margin": 22.57627357544999,
+    "frequency_stable": true,
+    "geodesic_stable": true
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+bidir_bfs+astar": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "bidir_bfs",
+    "astar"
+   ],
+   "survivors": [
+    "dfs",
+    "iddfs",
+    "dijkstra_unit"
+   ],
+   "X_k": "astar",
+   "distributions": {
+    "association": {
+     "dfs": 0.031914893617021274,
+     "iddfs": 0.35106382978723405,
+     "dijkstra_unit": 0.6170212765957447
+    },
+    "association_X1": {
+     "dfs": 0.012195121951219513,
+     "iddfs": 0.2682926829268293,
+     "dijkstra_unit": 0.7195121951219512
+    },
+    "frequency": {
+     "dfs": 0.3333333333333333,
+     "iddfs": 0.3333333333333333,
+     "dijkstra_unit": 0.3333333333333333
+    },
+    "geodesic": {
+     "dfs": 0.277465041574731,
+     "iddfs": 0.35657259844336775,
+     "dijkstra_unit": 0.36596235998190124
+    },
+    "decoder": {
+     "dfs": 0.031388143353419995,
+     "iddfs": 0.9673694105106748,
+     "dijkstra_unit": 0.0012424461359051746
+    }
+   },
+   "top1": {
+    "association": "dijkstra_unit",
+    "association_X1": "dijkstra_unit",
+    "frequency": "dfs",
+    "geodesic": "dijkstra_unit",
+    "decoder": "iddfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.737,
+    "geodesic_margin": 1.8470358409873597,
+    "frequency_stable": true,
+    "geodesic_stable": false
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+bidir_bfs+dijkstra_unit": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "bidir_bfs",
+    "dijkstra_unit"
+   ],
+   "survivors": [
+    "dfs",
+    "iddfs",
+    "astar"
+   ],
+   "X_k": "dijkstra_unit",
+   "distributions": {
+    "association": {
+     "dfs": 0.00980392156862745,
+     "iddfs": 0.28431372549019607,
+     "astar": 0.7058823529411764
+    },
+    "association_X1": {
+     "dfs": 0.010101010101010102,
+     "iddfs": 0.22222222222222224,
+     "astar": 0.7676767676767677
+    },
+    "frequency": {
+     "dfs": 0.3333333333333333,
+     "iddfs": 0.3333333333333333,
+     "astar": 0.3333333333333333
+    },
+    "geodesic": {
+     "dfs": 0.3673369130152821,
+     "iddfs": 0.26249888794340615,
+     "astar": 0.3701641990413117
+    },
+    "decoder": {
+     "dfs": 0.08375679834033584,
+     "iddfs": 0.8824333929329461,
+     "astar": 0.03380980872671805
+    }
+   },
+   "top1": {
+    "association": "astar",
+    "association_X1": "astar",
+    "frequency": "dfs",
+    "geodesic": "astar",
+    "decoder": "iddfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.447,
+    "geodesic_margin": 0.5448342092972638,
+    "frequency_stable": true,
+    "geodesic_stable": false
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+iddfs+dfs": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "iddfs",
+    "dfs"
+   ],
+   "survivors": [
+    "bidir_bfs",
+    "astar",
+    "dijkstra_unit"
+   ],
+   "X_k": "dfs",
+   "distributions": {
+    "association": {
+     "bidir_bfs": 0.06666666666666667,
+     "astar": 0.3888888888888889,
+     "dijkstra_unit": 0.5444444444444444
+    },
+    "association_X1": {
+     "bidir_bfs": 0.25824175824175827,
+     "astar": 0.4175824175824176,
+     "dijkstra_unit": 0.3241758241758242
+    },
+    "frequency": {
+     "bidir_bfs": 0.3333333333333333,
+     "astar": 0.3333333333333333,
+     "dijkstra_unit": 0.3333333333333333
+    },
+    "geodesic": {
+     "bidir_bfs": 0.23634376897918977,
+     "astar": 0.3307481343572826,
+     "dijkstra_unit": 0.4329080966635276
+    },
+    "decoder": {
+     "bidir_bfs": 0.5897619873454305,
+     "astar": 0.4031581219109833,
+     "dijkstra_unit": 0.0070798907435862465
+    }
+   },
+   "top1": {
+    "association": "dijkstra_unit",
+    "association_X1": "astar",
+    "frequency": "bidir_bfs",
+    "geodesic": "dijkstra_unit",
+    "decoder": "bidir_bfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 1.0,
+    "geodesic_margin": 19.127097955343686,
+    "frequency_stable": true,
+    "geodesic_stable": true
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+iddfs+bidir_bfs": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "iddfs",
+    "bidir_bfs"
+   ],
+   "survivors": [
+    "dfs",
+    "astar",
+    "dijkstra_unit"
+   ],
+   "X_k": "bidir_bfs",
+   "distributions": {
+    "association": {
+     "dfs": 0.10869565217391304,
+     "astar": 0.47826086956521735,
+     "dijkstra_unit": 0.41304347826086957
+    },
+    "association_X1": {
+     "dfs": 0.007352941176470589,
+     "astar": 0.5588235294117647,
+     "dijkstra_unit": 0.4338235294117647
+    },
+    "frequency": {
+     "dfs": 0.3333333333333333,
+     "astar": 0.3333333333333333,
+     "dijkstra_unit": 0.3333333333333333
+    },
+    "geodesic": {
+     "dfs": 0.2473698447984283,
+     "astar": 0.3995183186305662,
+     "dijkstra_unit": 0.35311183657100553
+    },
+    "decoder": {
+     "dfs": 0.2738558288139637,
+     "astar": 0.7223996891577324,
+     "dijkstra_unit": 0.0037444820283037967
+    }
+   },
+   "top1": {
+    "association": "astar",
+    "association_X1": "astar",
+    "frequency": "dfs",
+    "geodesic": "astar",
+    "decoder": "astar"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 1.0,
+    "geodesic_margin": 8.774118341240793,
+    "frequency_stable": true,
+    "geodesic_stable": true
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+iddfs+astar": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "iddfs",
+    "astar"
+   ],
+   "survivors": [
+    "dfs",
+    "bidir_bfs",
+    "dijkstra_unit"
+   ],
+   "X_k": "astar",
+   "distributions": {
+    "association": {
+     "dfs": 0.03488372093023256,
+     "bidir_bfs": 0.29069767441860467,
+     "dijkstra_unit": 0.6744186046511628
+    },
+    "association_X1": {
+     "dfs": 0.009345794392523364,
+     "bidir_bfs": 0.4392523364485981,
+     "dijkstra_unit": 0.5514018691588785
+    },
+    "frequency": {
+     "dfs": 0.3333333333333333,
+     "bidir_bfs": 0.3333333333333333,
+     "dijkstra_unit": 0.3333333333333333
+    },
+    "geodesic": {
+     "dfs": 0.28793289029024655,
+     "bidir_bfs": 0.33229818657264565,
+     "dijkstra_unit": 0.3797689231371079
+    },
+    "decoder": {
+     "dfs": 0.35738521466860135,
+     "bidir_bfs": 0.5522920308559592,
+     "dijkstra_unit": 0.09032275447543943
+    }
+   },
+   "top1": {
+    "association": "dijkstra_unit",
+    "association_X1": "dijkstra_unit",
+    "frequency": "dfs",
+    "geodesic": "dijkstra_unit",
+    "decoder": "bidir_bfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.999,
+    "geodesic_margin": 9.488659201617025,
+    "frequency_stable": true,
+    "geodesic_stable": true
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+iddfs+dijkstra_unit": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "iddfs",
+    "dijkstra_unit"
+   ],
+   "survivors": [
+    "dfs",
+    "bidir_bfs",
+    "astar"
+   ],
+   "X_k": "dijkstra_unit",
+   "distributions": {
+    "association": {
+     "dfs": 0.00909090909090909,
+     "bidir_bfs": 0.3363636363636363,
+     "astar": 0.6545454545454544
+    },
+    "association_X1": {
+     "dfs": 0.008064516129032258,
+     "bidir_bfs": 0.3790322580645162,
+     "astar": 0.6129032258064516
+    },
+    "frequency": {
+     "dfs": 0.3333333333333333,
+     "bidir_bfs": 0.3333333333333333,
+     "astar": 0.3333333333333333
+    },
+    "geodesic": {
+     "dfs": 0.35880703190261903,
+     "bidir_bfs": 0.2796243021977527,
+     "astar": 0.36156866589962827
+    },
+    "decoder": {
+     "dfs": 0.21704488832445365,
+     "bidir_bfs": 0.2411047862367013,
+     "astar": 0.541850325438845
+    }
+   },
+   "top1": {
+    "association": "astar",
+    "association_X1": "astar",
+    "frequency": "dfs",
+    "geodesic": "astar",
+    "decoder": "astar"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.447,
+    "geodesic_margin": 0.5448342092972638,
+    "frequency_stable": true,
+    "geodesic_stable": false
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+astar+dfs": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "astar",
+    "dfs"
+   ],
+   "survivors": [
+    "bidir_bfs",
+    "iddfs",
+    "dijkstra_unit"
+   ],
+   "X_k": "dfs",
+   "distributions": {
+    "association": {
+     "bidir_bfs": 0.06451612903225808,
+     "iddfs": 0.40860215053763443,
+     "dijkstra_unit": 0.5268817204301075
+    },
+    "association_X1": {
+     "bidir_bfs": 0.3671875,
+     "iddfs": 0.171875,
+     "dijkstra_unit": 0.46093749999999994
+    },
+    "frequency": {
+     "bidir_bfs": 0.3333333333333333,
+     "iddfs": 0.3333333333333333,
+     "dijkstra_unit": 0.3333333333333333
+    },
+    "geodesic": {
+     "bidir_bfs": 0.26507039849447284,
+     "iddfs": 0.24940327606138601,
+     "dijkstra_unit": 0.48552632544414126
+    },
+    "decoder": {
+     "bidir_bfs": 0.11795470904346336,
+     "iddfs": 0.8815518329650064,
+     "dijkstra_unit": 0.0004934579915302348
+    }
+   },
+   "top1": {
+    "association": "dijkstra_unit",
+    "association_X1": "dijkstra_unit",
+    "frequency": "bidir_bfs",
+    "geodesic": "dijkstra_unit",
+    "decoder": "iddfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 1.0,
+    "geodesic_margin": 43.00821435914462,
+    "frequency_stable": true,
+    "geodesic_stable": true
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+astar+bidir_bfs": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "astar",
+    "bidir_bfs"
+   ],
+   "survivors": [
+    "dfs",
+    "iddfs",
+    "dijkstra_unit"
+   ],
+   "X_k": "bidir_bfs",
+   "distributions": {
+    "association": {
+     "dfs": 0.1149425287356322,
+     "iddfs": 0.4482758620689655,
+     "dijkstra_unit": 0.4367816091954023
+    },
+    "association_X1": {
+     "dfs": 0.012195121951219513,
+     "iddfs": 0.2682926829268293,
+     "dijkstra_unit": 0.7195121951219512
+    },
+    "frequency": {
+     "dfs": 0.3333333333333333,
+     "iddfs": 0.3333333333333333,
+     "dijkstra_unit": 0.3333333333333333
+    },
+    "geodesic": {
+     "dfs": 0.23815893617977354,
+     "iddfs": 0.42187747844965,
+     "dijkstra_unit": 0.33996358537057647
+    },
+    "decoder": {
+     "dfs": 0.008226626924963154,
+     "iddfs": 0.9915403818822836,
+     "dijkstra_unit": 0.00023299119275325568
+    }
+   },
+   "top1": {
+    "association": "iddfs",
+    "association_X1": "dijkstra_unit",
+    "frequency": "dfs",
+    "geodesic": "iddfs",
+    "decoder": "iddfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 1.0,
+    "geodesic_margin": 15.340177975882241,
+    "frequency_stable": true,
+    "geodesic_stable": true
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+astar+iddfs": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "astar",
+    "iddfs"
+   ],
+   "survivors": [
+    "dfs",
+    "bidir_bfs",
+    "dijkstra_unit"
+   ],
+   "X_k": "iddfs",
+   "distributions": {
+    "association": {
+     "dfs": 0.4757281553398058,
+     "bidir_bfs": 0.21359223300970873,
+     "dijkstra_unit": 0.3106796116504854
+    },
+    "association_X1": {
+     "dfs": 0.009345794392523364,
+     "bidir_bfs": 0.4392523364485981,
+     "dijkstra_unit": 0.5514018691588785
+    },
+    "frequency": {
+     "dfs": 0.3333333333333333,
+     "bidir_bfs": 0.3333333333333333,
+     "dijkstra_unit": 0.3333333333333333
+    },
+    "geodesic": {
+     "dfs": 0.2339817609793651,
+     "bidir_bfs": 0.44051483869853936,
+     "dijkstra_unit": 0.32550340032209546
+    },
+    "decoder": {
+     "dfs": 0.13200332025905281,
+     "bidir_bfs": 0.8580143559327255,
+     "dijkstra_unit": 0.009982323808221715
+    }
+   },
+   "top1": {
+    "association": "dfs",
+    "association_X1": "dijkstra_unit",
+    "frequency": "dfs",
+    "geodesic": "bidir_bfs",
+    "decoder": "bidir_bfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": true,
+    "AG": false
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.998,
+    "geodesic_margin": 21.50070984946177,
+    "frequency_stable": true,
+    "geodesic_stable": true
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+astar+dijkstra_unit": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "astar",
+    "dijkstra_unit"
+   ],
+   "survivors": [
+    "dfs",
+    "bidir_bfs",
+    "iddfs"
+   ],
+   "X_k": "dijkstra_unit",
+   "distributions": {
+    "association": {
+     "dfs": 0.01492537313432836,
+     "bidir_bfs": 0.5522388059701493,
+     "iddfs": 0.4328358208955224
+    },
+    "association_X1": {
+     "dfs": 0.014285714285714285,
+     "bidir_bfs": 0.6714285714285714,
+     "iddfs": 0.3142857142857143
+    },
+    "frequency": {
+     "dfs": 0.3333333333333333,
+     "bidir_bfs": 0.3333333333333333,
+     "iddfs": 0.3333333333333333
+    },
+    "geodesic": {
+     "dfs": 0.40097573728684033,
+     "bidir_bfs": 0.31248707736444925,
+     "iddfs": 0.28653718534871037
+    },
+    "decoder": {
+     "dfs": 0.014836864275461707,
+     "bidir_bfs": 0.06373452838816922,
+     "iddfs": 0.9214286073363691
+    }
+   },
+   "top1": {
+    "association": "bidir_bfs",
+    "association_X1": "bidir_bfs",
+    "frequency": "dfs",
+    "geodesic": "dfs",
+    "decoder": "iddfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": false
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 1.0,
+    "geodesic_margin": 17.717943333560555,
+    "frequency_stable": true,
+    "geodesic_stable": true
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+dijkstra_unit+dfs": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "dijkstra_unit",
+    "dfs"
+   ],
+   "survivors": [
+    "bidir_bfs",
+    "iddfs",
+    "astar"
+   ],
+   "X_k": "dfs",
+   "distributions": {
+    "association": {
+     "bidir_bfs": 0.0759493670886076,
+     "iddfs": 0.4810126582278481,
+     "astar": 0.4430379746835443
+    },
+    "association_X1": {
+     "bidir_bfs": 0.3241379310344828,
+     "iddfs": 0.15172413793103448,
+     "astar": 0.5241379310344828
+    },
+    "frequency": {
+     "bidir_bfs": 0.3333333333333333,
+     "iddfs": 0.3333333333333333,
+     "astar": 0.3333333333333333
+    },
+    "geodesic": {
+     "bidir_bfs": 0.2993715164787826,
+     "iddfs": 0.2816770087997225,
+     "astar": 0.41895147472149485
+    },
+    "decoder": {
+     "bidir_bfs": 0.05024229349826171,
+     "iddfs": 0.9268833067866229,
+     "astar": 0.022874399715115384
+    }
+   },
+   "top1": {
+    "association": "iddfs",
+    "association_X1": "astar",
+    "frequency": "bidir_bfs",
+    "geodesic": "astar",
+    "decoder": "iddfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": false
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.856,
+    "geodesic_margin": 23.88111640380093,
+    "frequency_stable": true,
+    "geodesic_stable": true
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+dijkstra_unit+bidir_bfs": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "dijkstra_unit",
+    "bidir_bfs"
+   ],
+   "survivors": [
+    "dfs",
+    "iddfs",
+    "astar"
+   ],
+   "X_k": "bidir_bfs",
+   "distributions": {
+    "association": {
+     "dfs": 0.10752688172043012,
+     "iddfs": 0.41935483870967744,
+     "astar": 0.4731182795698925
+    },
+    "association_X1": {
+     "dfs": 0.010101010101010102,
+     "iddfs": 0.22222222222222224,
+     "astar": 0.7676767676767677
+    },
+    "frequency": {
+     "dfs": 0.3333333333333333,
+     "iddfs": 0.3333333333333333,
+     "astar": 0.3333333333333333
+    },
+    "geodesic": {
+     "dfs": 0.22797342126492012,
+     "iddfs": 0.40383474019293364,
+     "astar": 0.3681918385421461
+    },
+    "decoder": {
+     "dfs": 0.033695880003815605,
+     "iddfs": 0.9191118766167876,
+     "astar": 0.047192243379396814
+    }
+   },
+   "top1": {
+    "association": "astar",
+    "association_X1": "astar",
+    "frequency": "dfs",
+    "geodesic": "iddfs",
+    "decoder": "iddfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": false
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.999,
+    "geodesic_margin": 6.566059634641448,
+    "frequency_stable": true,
+    "geodesic_stable": true
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+dijkstra_unit+iddfs": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "dijkstra_unit",
+    "iddfs"
+   ],
+   "survivors": [
+    "dfs",
+    "bidir_bfs",
+    "astar"
+   ],
+   "X_k": "iddfs",
+   "distributions": {
+    "association": {
+     "dfs": 0.43749999999999994,
+     "bidir_bfs": 0.1964285714285714,
+     "astar": 0.36607142857142855
+    },
+    "association_X1": {
+     "dfs": 0.008064516129032258,
+     "bidir_bfs": 0.3790322580645162,
+     "astar": 0.6129032258064516
+    },
+    "frequency": {
+     "dfs": 0.3333333333333333,
+     "bidir_bfs": 0.3333333333333333,
+     "astar": 0.3333333333333333
+    },
+    "geodesic": {
+     "dfs": 0.20859012940783,
+     "bidir_bfs": 0.3927102985531476,
+     "astar": 0.39869957203902245
+    },
+    "decoder": {
+     "dfs": 0.16053326065978474,
+     "bidir_bfs": 0.33435835572107026,
+     "astar": 0.505108383619145
+    }
+   },
+   "top1": {
+    "association": "dfs",
+    "association_X1": "astar",
+    "frequency": "dfs",
+    "geodesic": "astar",
+    "decoder": "astar"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": true,
+    "AG": false
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.49,
+    "geodesic_margin": 1.0755637259882178,
+    "frequency_stable": true,
+    "geodesic_stable": false
+   },
+   "ambiguity_flag": false
+  },
+  "t1|ban:bfs+dijkstra_unit+astar": {
+   "task": "t1",
+   "kind": "ban",
+   "banset": [
+    "bfs",
+    "dijkstra_unit",
+    "astar"
+   ],
+   "survivors": [
+    "dfs",
+    "bidir_bfs",
+    "iddfs"
+   ],
+   "X_k": "astar",
+   "distributions": {
+    "association": {
+     "dfs": 0.04918032786885246,
+     "bidir_bfs": 0.4098360655737705,
+     "iddfs": 0.5409836065573771
+    },
+    "association_X1": {
+     "dfs": 0.014285714285714285,
+     "bidir_bfs": 0.6714285714285714,
+     "iddfs": 0.3142857142857143
+    },
+    "frequency": {
+     "dfs": 0.3333333333333333,
+     "bidir_bfs": 0.3333333333333333,
+     "iddfs": 0.3333333333333333
+    },
+    "geodesic": {
+     "dfs": 0.2907661172373802,
+     "bidir_bfs": 0.3355679629977433,
+     "iddfs": 0.37366591976487656
+    },
+    "decoder": {
+     "dfs": 0.016567909677216833,
+     "bidir_bfs": 0.031000735374280147,
+     "iddfs": 0.9524313549485031
+    }
+   },
+   "top1": {
+    "association": "iddfs",
+    "association_X1": "bidir_bfs",
+    "frequency": "dfs",
+    "geodesic": "iddfs",
+    "decoder": "iddfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.989,
+    "geodesic_margin": 7.641623360629666,
+    "frequency_stable": true,
+    "geodesic_stable": true
+   },
+   "ambiguity_flag": false
+  },
+  "t1|removal:bfs": {
+   "task": "t1",
+   "kind": "removal",
+   "banset": [
+    "bfs"
+   ],
+   "survivors": [
+    "dfs",
+    "bidir_bfs",
+    "iddfs",
+    "astar",
+    "dijkstra_unit"
+   ],
+   "X_k": "bfs",
+   "distributions": {
+    "association": {
+     "dfs": 0.004878048780487805,
+     "bidir_bfs": 0.22926829268292684,
+     "iddfs": 0.1073170731707317,
+     "astar": 0.37073170731707317,
+     "dijkstra_unit": 0.28780487804878047
+    },
+    "association_X1": {
+     "dfs": 0.004878048780487805,
+     "bidir_bfs": 0.22926829268292684,
+     "iddfs": 0.1073170731707317,
+     "astar": 0.37073170731707317,
+     "dijkstra_unit": 0.28780487804878047
+    },
+    "frequency": {
+     "dfs": 0.2,
+     "bidir_bfs": 0.2,
+     "iddfs": 0.2,
+     "astar": 0.2,
+     "dijkstra_unit": 0.2
+    },
+    "geodesic": {
+     "dfs": 0.287612360015868,
+     "bidir_bfs": 0.13497827194654397,
+     "iddfs": 0.1627377876576903,
+     "astar": 0.188904735578166,
+     "dijkstra_unit": 0.2257668448017317
+    },
+    "decoder": {
+     "dfs": 0.532454220375145,
+     "bidir_bfs": 0.006239655983790727,
+     "iddfs": 0.0030778329389307643,
+     "astar": 0.0059023525379764625,
+     "dijkstra_unit": 0.452325938164157
+    }
+   },
+   "top1": {
+    "association": "astar",
+    "association_X1": "astar",
+    "frequency": "dfs",
+    "geodesic": "dfs",
+    "decoder": "dfs"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": false
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.985,
+    "geodesic_margin": 17.20439208166546,
+    "frequency_stable": true,
+    "geodesic_stable": true
+   },
+   "ambiguity_flag": false
+  },
+  "t2|ban:dijkstra": {
+   "task": "t2",
+   "kind": "ban",
+   "banset": [
+    "dijkstra"
+   ],
+   "survivors": [
+    "bellman_ford_spfa",
+    "bidir_dijkstra",
+    "floyd_warshall",
+    "dial"
+   ],
+   "X_k": "dijkstra",
+   "distributions": {
+    "association": {
+     "bellman_ford_spfa": 0.21186440677966104,
+     "bidir_dijkstra": 0.31355932203389836,
+     "floyd_warshall": 0.050847457627118654,
+     "dial": 0.42372881355932207
+    },
+    "association_X1": {
+     "bellman_ford_spfa": 0.21186440677966104,
+     "bidir_dijkstra": 0.31355932203389836,
+     "floyd_warshall": 0.050847457627118654,
+     "dial": 0.42372881355932207
+    },
+    "frequency": {
+     "bellman_ford_spfa": 0.25,
+     "bidir_dijkstra": 0.25,
+     "floyd_warshall": 0.25,
+     "dial": 0.25
+    },
+    "geodesic": {
+     "bellman_ford_spfa": 0.24081868452482835,
+     "bidir_dijkstra": 0.23925248379570804,
+     "floyd_warshall": 0.35829259731231616,
+     "dial": 0.1616362343671474
+    },
+    "decoder": {
+     "bellman_ford_spfa": 0.2263942110234939,
+     "bidir_dijkstra": 0.6184650923036761,
+     "floyd_warshall": 0.12607629224163144,
+     "dial": 0.029064404431198558
+    }
+   },
+   "top1": {
+    "association": "dial",
+    "association_X1": "dial",
+    "frequency": "bellman_ford_spfa",
+    "geodesic": "floyd_warshall",
+    "decoder": "bidir_dijkstra"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": false
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 1.0,
+    "geodesic_margin": 16.69594584434896,
+    "frequency_stable": false,
+    "geodesic_stable": true,
+    "note": "T2 baseline ~100% modal: frequency nominations unstable by construction"
+   },
+   "ambiguity_flag": false
+  },
+  "t2|ban:dijkstra+bellman_ford_spfa": {
+   "task": "t2",
+   "kind": "ban",
+   "banset": [
+    "dijkstra",
+    "bellman_ford_spfa"
+   ],
+   "survivors": [
+    "bidir_dijkstra",
+    "floyd_warshall",
+    "dial"
+   ],
+   "X_k": "bellman_ford_spfa",
+   "distributions": {
+    "association": {
+     "bidir_dijkstra": 0.31666666666666665,
+     "floyd_warshall": 0.6000000000000001,
+     "dial": 0.08333333333333333
+    },
+    "association_X1": {
+     "bidir_dijkstra": 0.3978494623655914,
+     "floyd_warshall": 0.06451612903225806,
+     "dial": 0.5376344086021505
+    },
+    "frequency": {
+     "bidir_dijkstra": 0.3333333333333333,
+     "floyd_warshall": 0.3333333333333333,
+     "dial": 0.3333333333333333
+    },
+    "geodesic": {
+     "bidir_dijkstra": 0.3477752660237152,
+     "floyd_warshall": 0.34092260052475304,
+     "dial": 0.31130213345153174
+    },
+    "decoder": {
+     "bidir_dijkstra": 0.7215052789108433,
+     "floyd_warshall": 0.009783235497049212,
+     "dial": 0.2687114855921075
+    }
+   },
+   "top1": {
+    "association": "floyd_warshall",
+    "association_X1": "dial",
+    "frequency": "bidir_dijkstra",
+    "geodesic": "bidir_dijkstra",
+    "decoder": "bidir_dijkstra"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": false
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.814,
+    "geodesic_margin": 0.836298658349989,
+    "frequency_stable": false,
+    "geodesic_stable": true,
+    "note": "T2 baseline ~100% modal: frequency nominations unstable by construction"
+   },
+   "ambiguity_flag": false
+  },
+  "t2|ban:dijkstra+bidir_dijkstra": {
+   "task": "t2",
+   "kind": "ban",
+   "banset": [
+    "dijkstra",
+    "bidir_dijkstra"
+   ],
+   "survivors": [
+    "bellman_ford_spfa",
+    "floyd_warshall",
+    "dial"
+   ],
+   "X_k": "bidir_dijkstra",
+   "distributions": {
+    "association": {
+     "bellman_ford_spfa": 0.5238095238095238,
+     "floyd_warshall": 0.2380952380952381,
+     "dial": 0.2380952380952381
+    },
+    "association_X1": {
+     "bellman_ford_spfa": 0.30864197530864196,
+     "floyd_warshall": 0.07407407407407408,
+     "dial": 0.6172839506172839
+    },
+    "frequency": {
+     "bellman_ford_spfa": 0.3333333333333333,
+     "floyd_warshall": 0.3333333333333333,
+     "dial": 0.3333333333333333
+    },
+    "geodesic": {
+     "bellman_ford_spfa": 0.34238948111154655,
+     "floyd_warshall": 0.31790113008919957,
+     "dial": 0.3397093887992539
+    },
+    "decoder": {
+     "bellman_ford_spfa": 0.8976011406438857,
+     "floyd_warshall": 0.05693664403599471,
+     "dial": 0.045462215320119514
+    }
+   },
+   "top1": {
+    "association": "bellman_ford_spfa",
+    "association_X1": "dial",
+    "frequency": "bellman_ford_spfa",
+    "geodesic": "bellman_ford_spfa",
+    "decoder": "bellman_ford_spfa"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": true,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.604,
+    "geodesic_margin": 0.33023334943132454,
+    "frequency_stable": false,
+    "geodesic_stable": false,
+    "note": "T2 baseline ~100% modal: frequency nominations unstable by construction"
+   },
+   "ambiguity_flag": false
+  },
+  "t2|ban:dijkstra+floyd_warshall": {
+   "task": "t2",
+   "kind": "ban",
+   "banset": [
+    "dijkstra",
+    "floyd_warshall"
+   ],
+   "survivors": [
+    "bellman_ford_spfa",
+    "bidir_dijkstra",
+    "dial"
+   ],
+   "X_k": "floyd_warshall",
+   "distributions": {
+    "association": {
+     "bellman_ford_spfa": 0.4925373134328358,
+     "bidir_dijkstra": 0.373134328358209,
+     "dial": 0.13432835820895525
+    },
+    "association_X1": {
+     "bellman_ford_spfa": 0.22321428571428573,
+     "bidir_dijkstra": 0.3303571428571429,
+     "dial": 0.44642857142857145
+    },
+    "frequency": {
+     "bellman_ford_spfa": 0.3333333333333333,
+     "bidir_dijkstra": 0.3333333333333333,
+     "dial": 0.3333333333333333
+    },
+    "geodesic": {
+     "bellman_ford_spfa": 0.38650144986046814,
+     "bidir_dijkstra": 0.36607130234971175,
+     "dial": 0.2474272477898202
+    },
+    "decoder": {
+     "bellman_ford_spfa": 0.5521143470692924,
+     "bidir_dijkstra": 0.39751154283312445,
+     "dial": 0.050374110097583115
+    }
+   },
+   "top1": {
+    "association": "bellman_ford_spfa",
+    "association_X1": "dial",
+    "frequency": "bellman_ford_spfa",
+    "geodesic": "bellman_ford_spfa",
+    "decoder": "bellman_ford_spfa"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": true,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.964,
+    "geodesic_margin": 2.2821595538702084,
+    "frequency_stable": false,
+    "geodesic_stable": true,
+    "note": "T2 baseline ~100% modal: frequency nominations unstable by construction"
+   },
+   "ambiguity_flag": false
+  },
+  "t2|ban:dijkstra+dial": {
+   "task": "t2",
+   "kind": "ban",
+   "banset": [
+    "dijkstra",
+    "dial"
+   ],
+   "survivors": [
+    "bellman_ford_spfa",
+    "bidir_dijkstra",
+    "floyd_warshall"
+   ],
+   "X_k": "dial",
+   "distributions": {
+    "association": {
+     "bellman_ford_spfa": 0.5714285714285715,
+     "bidir_dijkstra": 0.20634920634920637,
+     "floyd_warshall": 0.2222222222222222
+    },
+    "association_X1": {
+     "bellman_ford_spfa": 0.36764705882352944,
+     "bidir_dijkstra": 0.5441176470588236,
+     "floyd_warshall": 0.08823529411764708
+    },
+    "frequency": {
+     "bellman_ford_spfa": 0.3333333333333333,
+     "bidir_dijkstra": 0.3333333333333333,
+     "floyd_warshall": 0.3333333333333333
+    },
+    "geodesic": {
+     "bellman_ford_spfa": 0.3559349069459435,
+     "bidir_dijkstra": 0.39452480371441573,
+     "floyd_warshall": 0.24954028933964087
+    },
+    "decoder": {
+     "bellman_ford_spfa": 0.7737982230532541,
+     "bidir_dijkstra": 0.20816993547362092,
+     "floyd_warshall": 0.018031841473125046
+    }
+   },
+   "top1": {
+    "association": "bellman_ford_spfa",
+    "association_X1": "bidir_dijkstra",
+    "frequency": "bellman_ford_spfa",
+    "geodesic": "bidir_dijkstra",
+    "decoder": "bellman_ford_spfa"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": true,
+    "AG": false
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.993,
+    "geodesic_margin": 4.325593774854994,
+    "frequency_stable": false,
+    "geodesic_stable": true,
+    "note": "T2 baseline ~100% modal: frequency nominations unstable by construction"
+   },
+   "ambiguity_flag": false
+  },
+  "t2|ban:dijkstra+bellman_ford_spfa+bidir_dijkstra": {
+   "task": "t2",
+   "kind": "ban",
+   "banset": [
+    "dijkstra",
+    "bellman_ford_spfa",
+    "bidir_dijkstra"
+   ],
+   "survivors": [
+    "floyd_warshall",
+    "dial"
+   ],
+   "X_k": "bidir_dijkstra",
+   "distributions": {
+    "association": {
+     "floyd_warshall": 0.5,
+     "dial": 0.5
+    },
+    "association_X1": {
+     "floyd_warshall": 0.10714285714285716,
+     "dial": 0.8928571428571429
+    },
+    "frequency": {
+     "floyd_warshall": 0.5,
+     "dial": 0.5
+    },
+    "geodesic": {
+     "floyd_warshall": 0.48341856001108646,
+     "dial": 0.5165814399889135
+    },
+    "decoder": {
+     "floyd_warshall": 0.03312399966301435,
+     "dial": 0.9668760003369856
+    }
+   },
+   "top1": {
+    "association": "floyd_warshall",
+    "association_X1": "dial",
+    "frequency": "floyd_warshall",
+    "geodesic": "dial",
+    "decoder": "dial"
+   },
+   "top1_tied": {
+    "association": true,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": true,
+    "AG": false
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.996,
+    "geodesic_margin": 2.788224862788873,
+    "frequency_stable": false,
+    "geodesic_stable": true,
+    "note": "T2 baseline ~100% modal: frequency nominations unstable by construction"
+   },
+   "ambiguity_flag": false
+  },
+  "t2|ban:dijkstra+bellman_ford_spfa+floyd_warshall": {
+   "task": "t2",
+   "kind": "ban",
+   "banset": [
+    "dijkstra",
+    "bellman_ford_spfa",
+    "floyd_warshall"
+   ],
+   "survivors": [
+    "bidir_dijkstra",
+    "dial"
+   ],
+   "X_k": "floyd_warshall",
+   "distributions": {
+    "association": {
+     "bidir_dijkstra": 0.7352941176470589,
+     "dial": 0.26470588235294124
+    },
+    "association_X1": {
+     "bidir_dijkstra": 0.42528735632183906,
+     "dial": 0.5747126436781609
+    },
+    "frequency": {
+     "bidir_dijkstra": 0.5,
+     "dial": 0.5
+    },
+    "geodesic": {
+     "bidir_dijkstra": 0.5966946495088763,
+     "dial": 0.40330535049112376
+    },
+    "decoder": {
+     "bidir_dijkstra": 0.6074079540546727,
+     "dial": 0.3925920459453273
+    }
+   },
+   "top1": {
+    "association": "bidir_dijkstra",
+    "association_X1": "dial",
+    "frequency": "bidir_dijkstra",
+    "geodesic": "bidir_dijkstra",
+    "decoder": "bidir_dijkstra"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": true,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 1.0,
+    "geodesic_margin": 16.460864542363623,
+    "frequency_stable": false,
+    "geodesic_stable": true,
+    "note": "T2 baseline ~100% modal: frequency nominations unstable by construction"
+   },
+   "ambiguity_flag": false
+  },
+  "t2|ban:dijkstra+bellman_ford_spfa+dial": {
+   "task": "t2",
+   "kind": "ban",
+   "banset": [
+    "dijkstra",
+    "bellman_ford_spfa",
+    "dial"
+   ],
+   "survivors": [
+    "bidir_dijkstra",
+    "floyd_warshall"
+   ],
+   "X_k": "dial",
+   "distributions": {
+    "association": {
+     "bidir_dijkstra": 0.4814814814814815,
+     "floyd_warshall": 0.5185185185185185
+    },
+    "association_X1": {
+     "bidir_dijkstra": 0.8604651162790697,
+     "floyd_warshall": 0.13953488372093023
+    },
+    "frequency": {
+     "bidir_dijkstra": 0.5,
+     "floyd_warshall": 0.5
+    },
+    "geodesic": {
+     "bidir_dijkstra": 0.6125542401989843,
+     "floyd_warshall": 0.38744575980101575
+    },
+    "decoder": {
+     "bidir_dijkstra": 0.9886193314434866,
+     "floyd_warshall": 0.011380668556513382
+    }
+   },
+   "top1": {
+    "association": "floyd_warshall",
+    "association_X1": "bidir_dijkstra",
+    "frequency": "bidir_dijkstra",
+    "geodesic": "bidir_dijkstra",
+    "decoder": "bidir_dijkstra"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": false
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 1.0,
+    "geodesic_margin": 19.249089405152496,
+    "frequency_stable": false,
+    "geodesic_stable": true,
+    "note": "T2 baseline ~100% modal: frequency nominations unstable by construction"
+   },
+   "ambiguity_flag": false
+  },
+  "t2|ban:dijkstra+bidir_dijkstra+bellman_ford_spfa": {
+   "task": "t2",
+   "kind": "ban",
+   "banset": [
+    "dijkstra",
+    "bidir_dijkstra",
+    "bellman_ford_spfa"
+   ],
+   "survivors": [
+    "floyd_warshall",
+    "dial"
+   ],
+   "X_k": "bellman_ford_spfa",
+   "distributions": {
+    "association": {
+     "floyd_warshall": 0.8780487804878049,
+     "dial": 0.1219512195121951
+    },
+    "association_X1": {
+     "floyd_warshall": 0.10714285714285716,
+     "dial": 0.8928571428571429
+    },
+    "frequency": {
+     "floyd_warshall": 0.5,
+     "dial": 0.5
+    },
+    "geodesic": {
+     "floyd_warshall": 0.5227072552834974,
+     "dial": 0.4772927447165026
+    },
+    "decoder": {
+     "floyd_warshall": 0.05178370924253643,
+     "dial": 0.9482162907574636
+    }
+   },
+   "top1": {
+    "association": "floyd_warshall",
+    "association_X1": "dial",
+    "frequency": "floyd_warshall",
+    "geodesic": "floyd_warshall",
+    "decoder": "dial"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": true,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.955,
+    "geodesic_margin": 3.8195284659363296,
+    "frequency_stable": false,
+    "geodesic_stable": true,
+    "note": "T2 baseline ~100% modal: frequency nominations unstable by construction"
+   },
+   "ambiguity_flag": false
+  },
+  "t2|ban:dijkstra+bidir_dijkstra+floyd_warshall": {
+   "task": "t2",
+   "kind": "ban",
+   "banset": [
+    "dijkstra",
+    "bidir_dijkstra",
+    "floyd_warshall"
+   ],
+   "survivors": [
+    "bellman_ford_spfa",
+    "dial"
+   ],
+   "X_k": "floyd_warshall",
+   "distributions": {
+    "association": {
+     "bellman_ford_spfa": 0.7857142857142857,
+     "dial": 0.2142857142857143
+    },
+    "association_X1": {
+     "bellman_ford_spfa": 0.3333333333333333,
+     "dial": 0.6666666666666666
+    },
+    "frequency": {
+     "bellman_ford_spfa": 0.5,
+     "dial": 0.5
+    },
+    "geodesic": {
+     "bellman_ford_spfa": 0.6096923065528809,
+     "dial": 0.3903076934471191
+    },
+    "decoder": {
+     "bellman_ford_spfa": 0.9523114696028289,
+     "dial": 0.04768853039717119
+    }
+   },
+   "top1": {
+    "association": "bellman_ford_spfa",
+    "association_X1": "dial",
+    "frequency": "bellman_ford_spfa",
+    "geodesic": "bellman_ford_spfa",
+    "decoder": "bellman_ford_spfa"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": true,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 1.0,
+    "geodesic_margin": 18.74302409623383,
+    "frequency_stable": false,
+    "geodesic_stable": true,
+    "note": "T2 baseline ~100% modal: frequency nominations unstable by construction"
+   },
+   "ambiguity_flag": false
+  },
+  "t2|ban:dijkstra+bidir_dijkstra+dial": {
+   "task": "t2",
+   "kind": "ban",
+   "banset": [
+    "dijkstra",
+    "bidir_dijkstra",
+    "dial"
+   ],
+   "survivors": [
+    "bellman_ford_spfa",
+    "floyd_warshall"
+   ],
+   "X_k": "dial",
+   "distributions": {
+    "association": {
+     "bellman_ford_spfa": 0.72,
+     "floyd_warshall": 0.27999999999999997
+    },
+    "association_X1": {
+     "bellman_ford_spfa": 0.8064516129032259,
+     "floyd_warshall": 0.19354838709677424
+    },
+    "frequency": {
+     "bellman_ford_spfa": 0.5,
+     "floyd_warshall": 0.5
+    },
+    "geodesic": {
+     "bellman_ford_spfa": 0.5878604262065588,
+     "floyd_warshall": 0.4121395737934412
+    },
+    "decoder": {
+     "bellman_ford_spfa": 0.9882795992989176,
+     "floyd_warshall": 0.011720400701082337
+    }
+   },
+   "top1": {
+    "association": "bellman_ford_spfa",
+    "association_X1": "bellman_ford_spfa",
+    "frequency": "bellman_ford_spfa",
+    "geodesic": "bellman_ford_spfa",
+    "decoder": "bellman_ford_spfa"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": true,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 1.0,
+    "geodesic_margin": 14.923495630297502,
+    "frequency_stable": false,
+    "geodesic_stable": true,
+    "note": "T2 baseline ~100% modal: frequency nominations unstable by construction"
+   },
+   "ambiguity_flag": false
+  },
+  "t2|ban:dijkstra+floyd_warshall+bellman_ford_spfa": {
+   "task": "t2",
+   "kind": "ban",
+   "banset": [
+    "dijkstra",
+    "floyd_warshall",
+    "bellman_ford_spfa"
+   ],
+   "survivors": [
+    "bidir_dijkstra",
+    "dial"
+   ],
+   "X_k": "bellman_ford_spfa",
+   "distributions": {
+    "association": {
+     "bidir_dijkstra": 0.7916666666666666,
+     "dial": 0.20833333333333334
+    },
+    "association_X1": {
+     "bidir_dijkstra": 0.42528735632183906,
+     "dial": 0.5747126436781609
+    },
+    "frequency": {
+     "bidir_dijkstra": 0.5,
+     "dial": 0.5
+    },
+    "geodesic": {
+     "bidir_dijkstra": 0.5276698401441342,
+     "dial": 0.4723301598558658
+    },
+    "decoder": {
+     "bidir_dijkstra": 0.6625148696619599,
+     "dial": 0.33748513033804006
+    }
+   },
+   "top1": {
+    "association": "bidir_dijkstra",
+    "association_X1": "dial",
+    "frequency": "bidir_dijkstra",
+    "geodesic": "bidir_dijkstra",
+    "decoder": "bidir_dijkstra"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": true,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.994,
+    "geodesic_margin": 4.6558271242863185,
+    "frequency_stable": false,
+    "geodesic_stable": true,
+    "note": "T2 baseline ~100% modal: frequency nominations unstable by construction"
+   },
+   "ambiguity_flag": false
+  },
+  "t2|ban:dijkstra+floyd_warshall+bidir_dijkstra": {
+   "task": "t2",
+   "kind": "ban",
+   "banset": [
+    "dijkstra",
+    "floyd_warshall",
+    "bidir_dijkstra"
+   ],
+   "survivors": [
+    "bellman_ford_spfa",
+    "dial"
+   ],
+   "X_k": "bidir_dijkstra",
+   "distributions": {
+    "association": {
+     "bellman_ford_spfa": 0.6875,
+     "dial": 0.3125
+    },
+    "association_X1": {
+     "bellman_ford_spfa": 0.3333333333333333,
+     "dial": 0.6666666666666666
+    },
+    "frequency": {
+     "bellman_ford_spfa": 0.5,
+     "dial": 0.5
+    },
+    "geodesic": {
+     "bellman_ford_spfa": 0.501964592253791,
+     "dial": 0.498035407746209
+    },
+    "decoder": {
+     "bellman_ford_spfa": 0.9394138914085094,
+     "dial": 0.06058610859149065
+    }
+   },
+   "top1": {
+    "association": "bellman_ford_spfa",
+    "association_X1": "dial",
+    "frequency": "bellman_ford_spfa",
+    "geodesic": "bellman_ford_spfa",
+    "decoder": "bellman_ford_spfa"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": true,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.604,
+    "geodesic_margin": 0.33023334943132454,
+    "frequency_stable": false,
+    "geodesic_stable": false,
+    "note": "T2 baseline ~100% modal: frequency nominations unstable by construction"
+   },
+   "ambiguity_flag": false
+  },
+  "t2|ban:dijkstra+floyd_warshall+dial": {
+   "task": "t2",
+   "kind": "ban",
+   "banset": [
+    "dijkstra",
+    "floyd_warshall",
+    "dial"
+   ],
+   "survivors": [
+    "bellman_ford_spfa",
+    "bidir_dijkstra"
+   ],
+   "X_k": "dial",
+   "distributions": {
+    "association": {
+     "bellman_ford_spfa": 0.7346938775510203,
+     "bidir_dijkstra": 0.26530612244897955
+    },
+    "association_X1": {
+     "bellman_ford_spfa": 0.40322580645161293,
+     "bidir_dijkstra": 0.5967741935483871
+    },
+    "frequency": {
+     "bellman_ford_spfa": 0.5,
+     "bidir_dijkstra": 0.5
+    },
+    "geodesic": {
+     "bellman_ford_spfa": 0.474289161549715,
+     "bidir_dijkstra": 0.525710838450285
+    },
+    "decoder": {
+     "bellman_ford_spfa": 0.8790184868529912,
+     "bidir_dijkstra": 0.12098151314700875
+    }
+   },
+   "top1": {
+    "association": "bellman_ford_spfa",
+    "association_X1": "bidir_dijkstra",
+    "frequency": "bellman_ford_spfa",
+    "geodesic": "bidir_dijkstra",
+    "decoder": "bellman_ford_spfa"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": true,
+    "AG": false
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.993,
+    "geodesic_margin": 4.325593774854994,
+    "frequency_stable": false,
+    "geodesic_stable": true,
+    "note": "T2 baseline ~100% modal: frequency nominations unstable by construction"
+   },
+   "ambiguity_flag": false
+  },
+  "t2|ban:dijkstra+dial+bellman_ford_spfa": {
+   "task": "t2",
+   "kind": "ban",
+   "banset": [
+    "dijkstra",
+    "dial",
+    "bellman_ford_spfa"
+   ],
+   "survivors": [
+    "bidir_dijkstra",
+    "floyd_warshall"
+   ],
+   "X_k": "bellman_ford_spfa",
+   "distributions": {
+    "association": {
+     "bidir_dijkstra": 0.34545454545454546,
+     "floyd_warshall": 0.6545454545454547
+    },
+    "association_X1": {
+     "bidir_dijkstra": 0.8604651162790697,
+     "floyd_warshall": 0.13953488372093023
+    },
+    "frequency": {
+     "bidir_dijkstra": 0.5,
+     "floyd_warshall": 0.5
+    },
+    "geodesic": {
+     "bidir_dijkstra": 0.5049750883746058,
+     "floyd_warshall": 0.4950249116253942
+    },
+    "decoder": {
+     "bidir_dijkstra": 0.9907286281701382,
+     "floyd_warshall": 0.009271371829861774
+    }
+   },
+   "top1": {
+    "association": "floyd_warshall",
+    "association_X1": "bidir_dijkstra",
+    "frequency": "bidir_dijkstra",
+    "geodesic": "bidir_dijkstra",
+    "decoder": "bidir_dijkstra"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": false
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.816,
+    "geodesic_margin": 0.836298658349989,
+    "frequency_stable": false,
+    "geodesic_stable": true,
+    "note": "T2 baseline ~100% modal: frequency nominations unstable by construction"
+   },
+   "ambiguity_flag": false
+  },
+  "t2|ban:dijkstra+dial+bidir_dijkstra": {
+   "task": "t2",
+   "kind": "ban",
+   "banset": [
+    "dijkstra",
+    "dial",
+    "bidir_dijkstra"
+   ],
+   "survivors": [
+    "bellman_ford_spfa",
+    "floyd_warshall"
+   ],
+   "X_k": "bidir_dijkstra",
+   "distributions": {
+    "association": {
+     "bellman_ford_spfa": 0.6875,
+     "floyd_warshall": 0.3125
+    },
+    "association_X1": {
+     "bellman_ford_spfa": 0.8064516129032259,
+     "floyd_warshall": 0.19354838709677424
+    },
+    "frequency": {
+     "bellman_ford_spfa": 0.5,
+     "floyd_warshall": 0.5
+    },
+    "geodesic": {
+     "bellman_ford_spfa": 0.5185436159525384,
+     "floyd_warshall": 0.48145638404746155
+    },
+    "decoder": {
+     "bellman_ford_spfa": 0.9936690454172723,
+     "floyd_warshall": 0.006330954582727706
+    }
+   },
+   "top1": {
+    "association": "bellman_ford_spfa",
+    "association_X1": "bellman_ford_spfa",
+    "frequency": "bellman_ford_spfa",
+    "geodesic": "bellman_ford_spfa",
+    "decoder": "bellman_ford_spfa"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": true,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.999,
+    "geodesic_margin": 3.1184582122201974,
+    "frequency_stable": false,
+    "geodesic_stable": true,
+    "note": "T2 baseline ~100% modal: frequency nominations unstable by construction"
+   },
+   "ambiguity_flag": false
+  },
+  "t2|ban:dijkstra+dial+floyd_warshall": {
+   "task": "t2",
+   "kind": "ban",
+   "banset": [
+    "dijkstra",
+    "dial",
+    "floyd_warshall"
+   ],
+   "survivors": [
+    "bellman_ford_spfa",
+    "bidir_dijkstra"
+   ],
+   "X_k": "floyd_warshall",
+   "distributions": {
+    "association": {
+     "bellman_ford_spfa": 0.5689655172413793,
+     "bidir_dijkstra": 0.43103448275862066
+    },
+    "association_X1": {
+     "bellman_ford_spfa": 0.40322580645161293,
+     "bidir_dijkstra": 0.5967741935483871
+    },
+    "frequency": {
+     "bellman_ford_spfa": 0.5,
+     "bidir_dijkstra": 0.5
+    },
+    "geodesic": {
+     "bellman_ford_spfa": 0.5135735365456406,
+     "bidir_dijkstra": 0.4864264634543594
+    },
+    "decoder": {
+     "bellman_ford_spfa": 0.9152697187662059,
+     "bidir_dijkstra": 0.08473028123379411
+    }
+   },
+   "top1": {
+    "association": "bellman_ford_spfa",
+    "association_X1": "bidir_dijkstra",
+    "frequency": "bellman_ford_spfa",
+    "geodesic": "bellman_ford_spfa",
+    "decoder": "bellman_ford_spfa"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": true,
+    "AG": true
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 0.964,
+    "geodesic_margin": 2.2821595538702084,
+    "frequency_stable": false,
+    "geodesic_stable": true,
+    "note": "T2 baseline ~100% modal: frequency nominations unstable by construction"
+   },
+   "ambiguity_flag": false
+  },
+  "t2|removal:dijkstra": {
+   "task": "t2",
+   "kind": "removal",
+   "banset": [
+    "dijkstra"
+   ],
+   "survivors": [
+    "bellman_ford_spfa",
+    "bidir_dijkstra",
+    "floyd_warshall",
+    "dial"
+   ],
+   "X_k": "dijkstra",
+   "distributions": {
+    "association": {
+     "bellman_ford_spfa": 0.21186440677966104,
+     "bidir_dijkstra": 0.31355932203389836,
+     "floyd_warshall": 0.050847457627118654,
+     "dial": 0.42372881355932207
+    },
+    "association_X1": {
+     "bellman_ford_spfa": 0.21186440677966104,
+     "bidir_dijkstra": 0.31355932203389836,
+     "floyd_warshall": 0.050847457627118654,
+     "dial": 0.42372881355932207
+    },
+    "frequency": {
+     "bellman_ford_spfa": 0.25,
+     "bidir_dijkstra": 0.25,
+     "floyd_warshall": 0.25,
+     "dial": 0.25
+    },
+    "geodesic": {
+     "bellman_ford_spfa": 0.24081868452482835,
+     "bidir_dijkstra": 0.23925248379570804,
+     "floyd_warshall": 0.35829259731231616,
+     "dial": 0.1616362343671474
+    },
+    "decoder": {
+     "bellman_ford_spfa": 0.25708523477414014,
+     "bidir_dijkstra": 0.10900829634709189,
+     "floyd_warshall": 0.6080002445568874,
+     "dial": 0.025906224321880642
+    }
+   },
+   "top1": {
+    "association": "dial",
+    "association_X1": "dial",
+    "frequency": "bellman_ford_spfa",
+    "geodesic": "floyd_warshall",
+    "decoder": "floyd_warshall"
+   },
+   "top1_tied": {
+    "association": false,
+    "association_X1": false,
+    "frequency": true,
+    "geodesic": false,
+    "decoder": false
+   },
+   "concordance": {
+    "AF": false,
+    "AG": false
+   },
+   "stability": {
+    "frequency_share_same_top1": 1.0,
+    "frequency_margin": 0.0,
+    "geodesic_share_same_nearest": 1.0,
+    "geodesic_margin": 16.69594584434896,
+    "frequency_stable": false,
+    "geodesic_stable": true,
+    "note": "T2 baseline ~100% modal: frequency nominations unstable by construction"
+   },
+   "ambiguity_flag": false
+  }
+ },
+ "notes": [
+  "association = Borda A(X_k -> .) restricted to survivors (ladder rule); association_X1 = A(X_1 -> .) sensitivity",
+  "frequency = baseline counts + 1 restricted to survivors",
+  "geodesic = softmax(-d_geo/median inter-centroid d_geo)",
+  "decoder (exploratory) = l* probe on the mean h_R of the event's ban prompt; removal uses the affine-ablated baseline h_R"
+ ]
+}
