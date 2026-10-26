@@ -1,0 +1,70 @@
+18:05:18|INFO   |stage g2d start
+./.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+18:06:37|INFO   |google/gemma-3-4b-it loaded in 17s; free VRAM 8.83/16.72 GB
+18:07:56|INFO   |commit3 7f0ab85e0a37
+./src/engine.py:474: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  nxt = torch.searchsorted(cdf, Ut[:, step:step + 1]).squeeze(-1).clamp_(max=V - 1)
+18:08:19|INFO   |G2:W1:0: 25/25 rows 18.9s, 304 steps, {'stop': 24, 'fence': 1}
+18:08:37|INFO   |G2:W1:1: 25/25 rows 18.0s, 288 steps, {'stop': 25}
+18:08:55|INFO   |G2:W1:2: 25/25 rows 17.9s, 288 steps, {'stop': 25}
+18:09:13|INFO   |G2:W1:3: 25/25 rows 18.8s, 304 steps, {'stop': 24, 'fence': 1}
+18:09:31|INFO   |G2:W1:4: 25/25 rows 17.9s, 288 steps, {'stop': 25}
+18:09:50|INFO   |G2:W1:5: 25/25 rows 18.8s, 304 steps, {'stop': 23, 'fence': 2}
+18:10:10|INFO   |G2:W1:6: 25/25 rows 19.7s, 320 steps, {'stop': 24, 'fence': 1}
+18:10:30|INFO   |G2:W1:7: 25/25 rows 19.7s, 320 steps, {'stop': 22, 'fence': 3}
+18:10:51|INFO   |G2:W1:8: 25/25 rows 21.6s, 352 steps, {'stop': 25}
+18:11:13|INFO   |G2:W1:9: 25/25 rows 21.6s, 352 steps, {'stop': 25}
+18:11:34|INFO   |G2:W1:10: 10/25 rows 21.6s, 352 steps, {'stop': 10}
+18:11:56|INFO   |G2:W2:0: 25/25 rows 18.8s, 304 steps, {'stop': 25}
+18:12:16|INFO   |G2:W2:1: 25/25 rows 19.7s, 320 steps, {'stop': 25}
+18:12:34|INFO   |G2:W2:2: 25/25 rows 18.9s, 304 steps, {'stop': 25}
+18:12:52|INFO   |G2:W2:3: 25/25 rows 17.9s, 288 steps, {'stop': 25}
+18:13:08|INFO   |G2:W2:4: 25/25 rows 16.1s, 256 steps, {'stop': 25}
+18:13:27|INFO   |G2:W2:5: 25/25 rows 18.8s, 304 steps, {'stop': 25}
+18:13:46|INFO   |G2:W2:6: 25/25 rows 18.8s, 304 steps, {'stop': 25}
+18:14:05|INFO   |G2:W2:7: 25/25 rows 18.8s, 304 steps, {'stop': 22, 'fence': 3}
+18:14:26|INFO   |G2:W2:8: 25/25 rows 20.7s, 336 steps, {'stop': 25}
+18:14:46|INFO   |G2:W2:9: 25/25 rows 20.6s, 336 steps, {'stop': 25}
+18:15:07|INFO   |G2:W2:10: 10/25 rows 20.6s, 336 steps, {'stop': 10}
+18:15:29|INFO   |G2:W3:0: 25/25 rows 19.7s, 320 steps, {'stop': 24, 'fence': 1}
+18:15:49|INFO   |G2:W3:1: 25/25 rows 19.7s, 320 steps, {'stop': 25}
+18:16:07|INFO   |G2:W3:2: 25/25 rows 17.8s, 288 steps, {'stop': 25}
+18:16:26|INFO   |G2:W3:3: 25/25 rows 19.7s, 320 steps, {'stop': 24, 'fence': 1}
+18:16:43|INFO   |G2:W3:4: 25/25 rows 17.0s, 272 steps, {'stop': 25}
+18:17:03|INFO   |G2:W3:5: 25/25 rows 19.7s, 320 steps, {'stop': 23, 'fence': 2}
+18:17:23|INFO   |G2:W3:6: 25/25 rows 19.7s, 320 steps, {'stop': 22, 'fence': 3}
+18:17:43|INFO   |G2:W3:7: 25/25 rows 19.7s, 320 steps, {'stop': 22, 'fence': 3}
+18:18:06|INFO   |G2:W3:8: 25/25 rows 23.4s, 384 steps, {'stop': 23, 'fence': 2}
+18:18:29|INFO   |G2:W3:9: 25/25 rows 23.4s, 384 steps, {'stop': 22, 'fence': 3}
+18:18:53|INFO   |G2:W3:10: 10/25 rows 23.4s, 384 steps, {'stop': 9, 'fence': 1}
+18:19:18|INFO   |G2:W4:0: 25/25 rows 22.5s, 368 steps, {'stop': 25}
+18:19:38|INFO   |G2:W4:1: 25/25 rows 19.8s, 320 steps, {'stop': 24, 'fence': 1}
+18:20:00|INFO   |G2:W4:2: 25/25 rows 22.5s, 368 steps, {'stop': 24, 'fence': 1}
+18:20:23|INFO   |G2:W4:3: 25/25 rows 22.5s, 368 steps, {'stop': 25}
+18:20:41|INFO   |G2:W4:4: 25/25 rows 17.9s, 288 steps, {'stop': 25}
+18:21:03|INFO   |G2:W4:5: 25/25 rows 22.5s, 368 steps, {'stop': 25}
+18:21:26|INFO   |G2:W4:6: 25/25 rows 22.5s, 368 steps, {'stop': 25}
+18:21:49|INFO   |G2:W4:7: 25/25 rows 23.5s, 384 steps, {'stop': 25}
+18:22:10|INFO   |G2:W4:8: 25/25 rows 20.6s, 336 steps, {'stop': 25}
+18:22:31|INFO   |G2:W4:9: 25/25 rows 20.7s, 336 steps, {'stop': 25}
+18:22:51|INFO   |G2:W4:10: 10/25 rows 20.6s, 336 steps, {'stop': 10}
+18:23:13|INFO   |G2:W5:0: 25/25 rows 18.8s, 304 steps, {'stop': 24, 'fence': 1}
+18:23:32|INFO   |G2:W5:1: 25/25 rows 18.8s, 304 steps, {'stop': 25}
+18:23:50|INFO   |G2:W5:2: 25/25 rows 18.8s, 304 steps, {'stop': 24, 'fence': 1}
+18:24:09|INFO   |G2:W5:3: 25/25 rows 18.8s, 304 steps, {'stop': 24, 'fence': 1}
+18:24:24|INFO   |G2:W5:4: 25/25 rows 14.3s, 224 steps, {'stop': 25}
+18:24:42|INFO   |G2:W5:5: 25/25 rows 18.8s, 304 steps, {'stop': 24, 'fence': 1}
+18:25:02|INFO   |G2:W5:6: 25/25 rows 19.7s, 320 steps, {'stop': 23, 'fence': 2}
+18:25:22|INFO   |G2:W5:7: 25/25 rows 19.7s, 320 steps, {'stop': 24, 'fence': 1}
+18:25:43|INFO   |G2:W5:8: 25/25 rows 21.6s, 352 steps, {'stop': 25}
+18:26:05|INFO   |G2:W5:9: 25/25 rows 21.7s, 352 steps, {'stop': 25}
+18:26:27|INFO   |G2:W5:10: 10/25 rows 21.6s, 352 steps, {'stop': 10}
+18:26:46|INFO   |G2:forced:0: 25/25 rows 19.3s, 320 steps, {'stop': 25}
+18:27:05|INFO   |G2:forced:1: 25/25 rows 19.3s, 320 steps, {'stop': 25}
+18:27:25|INFO   |G2L:W1:0: 20/25 rows 19.9s, 288 steps, {'stop': 19, 'fence': 1}
+18:27:48|INFO   |G2L:W2:0: 20/25 rows 22.2s, 320 steps, {'stop': 20}
+18:28:07|INFO   |G2L:W3:0: 20/25 rows 19.8s, 288 steps, {'stop': 20}
+18:28:29|INFO   |G2L:W4:0: 20/25 rows 21.7s, 320 steps, {'stop': 18, 'fence': 2}
+18:28:50|INFO   |G2L:W5:0: 20/25 rows 20.9s, 304 steps, {'stop': 20}
+18:28:50|INFO   |stage g2d done in 1412s

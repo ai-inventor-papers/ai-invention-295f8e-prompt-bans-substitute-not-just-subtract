@@ -1,0 +1,96 @@
+{
+ "jaccard_top20_natural_vs_forced": 0.3793103448275862,
+ "top20_natural": [
+  "head|L20|H6|FORK",
+  "head|L20|H7|FORK",
+  "head|L22|H5|FORK",
+  "head|L31|H3|FORK",
+  "head|L33|H2|FORK",
+  "mlp|L0|H-1|COND",
+  "mlp|L10|H-1|COND",
+  "mlp|L14|H-1|COND",
+  "mlp|L17|H-1|FORK",
+  "mlp|L19|H-1|FORK",
+  "mlp|L1|H-1|COND",
+  "mlp|L21|H-1|FORK",
+  "mlp|L22|H-1|FORK",
+  "mlp|L23|H-1|FORK",
+  "mlp|L25|H-1|FORK",
+  "mlp|L26|H-1|FORK",
+  "mlp|L29|H-1|FORK",
+  "mlp|L31|H-1|FORK",
+  "mlp|L33|H-1|FORK",
+  "mlp|L6|H-1|COND"
+ ],
+ "top20_forced": [
+  "head|L15|H7|CSTAR",
+  "head|L15|H7|FORK",
+  "head|L22|H5|FORK",
+  "head|L22|H6|FORK",
+  "head|L25|H2|FORK",
+  "head|L33|H2|FORK",
+  "mlp|L0|H-1|COND",
+  "mlp|L14|H-1|COND",
+  "mlp|L15|H-1|SPEC",
+  "mlp|L17|H-1|CSTAR",
+  "mlp|L17|H-1|FORK",
+  "mlp|L18|H-1|FORK",
+  "mlp|L19|H-1|FORK",
+  "mlp|L21|H-1|FORK",
+  "mlp|L22|H-1|FORK",
+  "mlp|L25|H-1|FORK",
+  "mlp|L26|H-1|FORK",
+  "mlp|L2|H-1|COND",
+  "mlp|L3|H-1|COND",
+  "mlp|L6|H-1|COND"
+ ],
+ "exact_effect_share_by_class": {
+  "COND": 0.35736342830955525,
+  "FORK": 0.5312590993612496,
+  "SPEC": 0.05919690797616949,
+  "CSTAR": 0.05218056435302569
+ },
+ "iter6_first_order_nodes": [
+  {
+   "layer": 22,
+   "latent": 1774,
+   "ablate_dy_mean": 4.0094941675663
+  },
+  {
+   "layer": 29,
+   "latent": 15050,
+   "ablate_dy_mean": 6.278470277786255
+  },
+  {
+   "layer": 29,
+   "latent": 735,
+   "ablate_dy_mean": -0.5062999844551086
+  },
+  {
+   "layer": 29,
+   "latent": 6026,
+   "ablate_dy_mean": -0.9485216408967971
+  },
+  {
+   "layer": 22,
+   "latent": 142,
+   "ablate_dy_mean": -1.2550979405641556
+  }
+ ],
+ "iter6_site": "FORK (resid_post SAE latents)",
+ "iter6_layers": [
+  22,
+  29
+ ],
+ "g1p_top15_fork_layers": [
+  15,
+  17,
+  19,
+  21,
+  22,
+  25,
+  26,
+  33
+ ],
+ "cross_check": "iteration 6's strongest first-order nodes sit at the FORK position at layers [22, 29]; the G1-P top-15 FORK nodes sit at layers [15, 17, 19, 21, 22, 25, 26, 33]"
+}

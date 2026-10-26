@@ -1,0 +1,26 @@
+{
+ "status": "oom",
+ "t_start": 1792697807.3547573,
+ "prompts": [
+  {
+   "vid": "W1|face",
+   "cls": "bfs",
+   "m_replacement_with_errors": -0.4149971008300781,
+   "m_real_main_engine": -0.22518157958984375,
+   "sanity_abs_diff": 0.18981552124023438,
+   "error": "OutOfMemoryError: CUDA out of memory. Tried to allocate 274.00 MiB. GPU 0 has a total capacity of 15.58 GiB of which 132.25 MiB is free. Including non-PyTorch memory, this process has 15.44 GiB memory in use. Of the allocated memory 15.25 GiB is allocated by PyTorch, and 81.49 MiB is reserved by PyTorch but unallocated.",
+   "seconds": 21.08518886566162,
+   "vram_peak_gb": 16.370904064
+  }
+ ],
+ "config": {
+  "model": "google/gemma-3-4b-it",
+  "transcoders": "mwhanna/gemma-scope-2-4b-it/transcoder_all/width_16k_l0_big_affine@61cb16ec74f348f4a8643fe3a0157be9dc8a851d",
+  "batch_size": 64,
+  "max_feature_nodes": 7500,
+  "node_threshold": 0.8,
+  "edge_threshold": 0.98
+ },
+ "load_seconds": 71.91299319267273,
+ "vram_after_load_gb": 11.900432896
+}
