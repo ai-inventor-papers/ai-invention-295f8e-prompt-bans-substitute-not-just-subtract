@@ -1,0 +1,32 @@
+entries:
+  - path: .venv/
+    delete: regenerable
+    source: "uv venv .venv --python=3.12 && uv pip install --python .venv/bin/python -r pyproject.toml"
+  - path: src/__pycache__/
+    delete: regenerable
+    source: ".venv/bin/python -m compileall -q src (also recreated automatically when the scripts import src/*.py)"
+  - path: analysis/__pycache__/
+    delete: regenerable
+    source: ".venv/bin/python -m compileall -q analysis (also recreated automatically on import)"
+  - path: inputs/exp11/bench/__pycache__/
+    delete: regenerable
+    source: ".venv/bin/python -m compileall -q inputs/exp11/bench (also recreated when src/labels.py imports the bench)"
+  - path: inputs/exp11/bench/common/__pycache__/
+    delete: regenerable
+    source: ".venv/bin/python -m compileall -q inputs/exp11/bench/common (also recreated when src/labels.py imports the bench)"
+  - path: inputs/exp8/suite/__pycache__/
+    delete: regenerable
+    source: ".venv/bin/python -m compileall -q inputs/exp8/suite (also recreated when src/labels.py imports the path-task suite)"
+  - path: inputs/exp8/suite/labeller/__pycache__/
+    delete: regenerable
+    source: ".venv/bin/python -m compileall -q inputs/exp8/suite/labeller (also recreated when src/labels.py imports the labeller)"
+  - path: inputs/exp8/suite/tasks/__pycache__/
+    delete: regenerable
+    source: ".venv/bin/python -m compileall -q inputs/exp8/suite/tasks (also recreated when src/labels.py imports the task harness)"
+  - path: inputs/exp28/src/__pycache__/
+    delete: regenerable
+    source: ".venv/bin/python -m compileall -q inputs/exp28/src (also recreated when src/labels.py imports regate_rules)"
+  - path: cache/states_L20.npz
+    keep: layer-20 target states (hidden_states[20] and [21], fp32) that every NLA readout, edit and figure reads; one GPU pass to rebuild
+  - path: cache/recon.npz
+    keep: AR reconstructions of every explanation (the gate FVE, the edit selection and the deltas read them)
