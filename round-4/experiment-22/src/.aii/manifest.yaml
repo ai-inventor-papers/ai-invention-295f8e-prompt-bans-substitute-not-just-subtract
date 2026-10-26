@@ -1,0 +1,33 @@
+entries:
+  - path: states/
+    keep: fp16 prompt-state and realised-displacement tensors (about 3 GB) behind every committed predictor; the subspace files are hash-committed in commitments.log; kept on the run volume, not published (files over 100 MB)
+  - path: .venv/
+    delete: regenerable
+    source: "uv venv .venv --python=3.12 && uv pip install --python .venv/bin/python -r pyproject.toml"
+  - path: src/__pycache__/
+    delete: regenerable
+    source: "python -m compileall src (or any run of method.py)"
+  - path: src_base/__pycache__/
+    delete: regenerable
+    source: "python -m compileall src_base (or any run of method.py)"
+  - path: analysis/__pycache__/
+    delete: regenerable
+    source: "python -m compileall analysis (or any run of method.py analyze)"
+  - path: inputs/exp8/suite/__pycache__/
+    delete: regenerable
+    source: "regenerated automatically when the exp8 suite labeller is imported"
+  - path: inputs/exp8/suite/tasks/__pycache__/
+    delete: regenerable
+    source: "regenerated automatically when the exp8 suite labeller is imported"
+  - path: inputs/exp8/suite/labeller/__pycache__/
+    delete: regenerable
+    source: "regenerated automatically when the exp8 suite labeller is imported"
+  - path: inputs/exp11/bench/__pycache__/
+    delete: regenerable
+    source: "regenerated automatically when the bench labeller is imported"
+  - path: inputs/exp11/bench/common/__pycache__/
+    delete: regenerable
+    source: "regenerated automatically when the bench labeller is imported"
+  - path: inputs/exp13/src/__pycache__/
+    delete: regenerable
+    source: "regenerated automatically when inputs/exp13/src/score.py is imported"

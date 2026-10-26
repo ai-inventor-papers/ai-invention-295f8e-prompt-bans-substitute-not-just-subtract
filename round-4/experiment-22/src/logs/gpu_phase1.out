@@ -1,0 +1,49 @@
+/ai-inventor/aii_data/runs/run_aRfWvcSWjssb/3_invention_loop/iter_4/gen_art/gen_art_experiment_22/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:00,  4.53it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:00<00:00,  3.72it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:00<00:00,  3.53it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:01<00:00,  3.90it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  4.76it/s]
+03:54:15|INFO   |bf16 weights on CPU in 4s; quantising decoder linears to FP8
+03:55:07|INFO   |Qwen/Qwen3-8B loaded in 56s ({'n_fp8_linears': 252}); free VRAM 7.2/16.7 GB
+/ai-inventor/aii_data/runs/run_aRfWvcSWjssb/3_invention_loop/iter_4/gen_art/gen_art_experiment_22/src_base/engine.py:216: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  tok = torch.searchsorted(cdf, u[:, None].to(cdf.dtype)).squeeze(-1)
+03:55:25|INFO   |GPU tests: {'U1b_rows_identical_given_same_uniforms': True, 'prefill_repeat_max_abs_diff_block28': 0.0, 'prefill_repeat_r_logits_max_abs_diff': 0.0, 'prefill_bit_identical': True, 'TARGET_M0_identical_tokens': True, 'TARGET_M0_r_logits_max_abs_diff': 0.0, 'rel_err_along_U_max': {'T2_a1.0': 0.00019453917047940195, 'T2_a2.0': 0.0001020302515826188, 'T03_a1.0': 0.0003602280339691788, 'T03_a2.0': 0.0001778468576958403, 'T1_a1.0': 0.00021143307094462216, 'T1_a2.0': 0.00010669687617337331}, 'rel_err_pass': True, 'CLAMP_max_ratio_Qt_delta_over_delta': 0.0006693066679872572, 'CLAMP_pass': True, 'CLAMP_note': 'criterion in the plan: < 1e-3; the edited state is cast back to the block dtype (bf16), whose rounding (~2^-8 relative per coordinate) bounds the achievable residual', 'memory': {'P_max_twin': 247, 'free_GB_after_prealloc_B20': 3.104047104, 'total_GB': 16.724066304, 'max_allocated_GB': 13.411316736}, 'memory_pass': True, 'seconds': 17.94363307952881, 'all_pass': True}
+03:55:37|INFO   |engine_check:T03:W1:b0:1792554925 T03/W1 2 cells: 12.0s, 200 steps
+03:55:46|INFO   |engine_check:T03:W2:b0:1792554937 T03/W2 2 cells: 8.6s, 144 steps
+03:55:58|INFO   |engine_check:T03:W3:b0:1792554946 T03/W3 2 cells: 11.9s, 200 steps
+03:56:00|INFO   |engine_check:T03:W4:b0:1792554958 T03/W4 2 cells: 2.1s, 32 steps
+03:56:09|INFO   |engine_check:T03:W5:b0:1792554960 T03/W5 2 cells: 8.6s, 144 steps
+03:56:32|INFO   |engine_check:T2:W1:b0:1792554969 T2/W1 2 cells: 22.8s, 376 steps
+03:56:48|INFO   |engine_check:T2:W2:b0:1792554992 T2/W2 2 cells: 16.4s, 272 steps
+03:57:12|INFO   |engine_check:T2:W3:b0:1792555008 T2/W3 2 cells: 23.2s, 384 steps
+03:57:34|INFO   |engine_check:T2:W4:b0:1792555032 T2/W4 2 cells: 22.7s, 376 steps
+03:57:53|INFO   |engine_check:T2:W5:b0:1792555055 T2/W5 2 cells: 18.3s, 304 steps
+03:59:05|INFO   |states T03: 377 prompts in 72s
+04:00:12|INFO   |states T2: 317 prompts in 68s
+04:01:00|INFO   |states T05: 257 prompts in 47s
+04:01:48|INFO   |states T10: 257 prompts in 47s
+04:02:40|INFO   |states T06: 317 prompts in 52s
+04:04:13|INFO   |states T1: 377 prompts in 93s
+04:05:19|INFO   |states T04: 377 prompts in 65s
+04:06:03|INFO   |states T08: 257 prompts in 44s
+04:06:36|INFO   |states T11: 197 prompts in 32s
+04:07:13|INFO   |states T13: 197 prompts in 38s
+04:08:00|INFO   |states T14: 257 prompts in 46s
+04:08:48|INFO   |states R1: 257 prompts in 48s
+04:10:21|INFO   |states R3: 257 prompts in 93s
+04:12:47|INFO   |states R6: 197 prompts in 145s
+04:14:27|INFO   |states R2: 246 prompts in 99s
+04:14:28|INFO   |units: r_l {12: 0.06970569491386414, 13: 0.07797391712665558, 14: 0.08343499153852463, 15: 0.09253031015396118, 16: 0.09681204706430435, 17: 0.10433269292116165, 18: 0.11425433307886124, 19: 0.11578428745269775, 20: 0.12047778815031052, 21: 0.12374673783779144, 22: 0.11926218122243881, 23: 0.1149657815694809}
+04:16:00|INFO   |realised T03: 490 prefills in 93s; max rel_err 0.0007
+04:17:52|INFO   |realised T2: 490 prefills in 111s; max rel_err 0.0007
+04:19:12|INFO   |realised T05: 430 prefills in 80s; max rel_err 0.0006
+04:20:27|INFO   |realised T10: 400 prefills in 74s; max rel_err 0.0006
+04:21:44|INFO   |realised T06: 430 prefills in 77s; max rel_err 0.0004
+04:23:40|INFO   |realised T1: 490 prefills in 116s; max rel_err 0.0006
+04:24:01|INFO   |realised T04: 110 prefills in 21s; max rel_err 0.0005
+04:24:16|INFO   |realised T08: 80 prefills in 15s; max rel_err 0.0007
+04:24:31|INFO   |realised T11: 80 prefills in 15s; max rel_err 0.0005
+04:24:47|INFO   |realised T13: 80 prefills in 16s; max rel_err 0.0007
+04:25:03|INFO   |realised T14: 80 prefills in 15s; max rel_err 0.0005
+04:25:18|INFO   |realised R1: 80 prefills in 16s; max rel_err 0.0006
+04:25:34|INFO   |realised R3: 80 prefills in 16s; max rel_err 0.0005
+04:25:49|INFO   |realised R6: 80 prefills in 15s; max rel_err 0.0005
+04:26:05|INFO   |realised R2: 80 prefills in 16s; max rel_err 0.0006
