@@ -1,0 +1,97 @@
+{
+ "task": "T06",
+ "task_id": "T06_find_duplicate",
+ "leetcode_ids": [
+  287
+ ],
+ "signature": "solve(nums)",
+ "description": "Task: write a Python function solve(nums) that returns the repeated value in nums. The argument nums is a list of n + 1 integers, where 1 <= n <= 10000, and every value lies between 1 and n inclusive. Exactly one value occurs more than once, and it may occur two or more times; every other value occurs at most once. Return the repeated value as an int.",
+ "format_line": "Use only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+ "spec_text": "Task: write a Python function solve(nums) that returns the repeated value in nums. The argument nums is a list of n + 1 integers, where 1 <= n <= 10000, and every value lies between 1 and n inclusive. Exactly one value occurs more than once, and it may occur two or more times; every other value occurs at most once. Return the repeated value as an int.\n\nUse only the Python standard library. Return only one ```python code block containing the function solve and any helpers, with no example usage and no explanation.",
+ "bounds": {
+  "n": [
+   1,
+   10000
+  ]
+ },
+ "catalogue": [
+  {
+   "mode": "hash_set",
+   "display_name": "a hash set of seen values",
+   "mechanism": "scan once and remember seen values in a set (or a boolean/count array) until one repeats"
+  },
+  {
+   "mode": "sort_adjacent",
+   "display_name": "sorting and comparing neighbours",
+   "mechanism": "sort a copy of the list and return the first value equal to its neighbour"
+  },
+  {
+   "mode": "floyd",
+   "display_name": "Floyd's cycle detection",
+   "mechanism": "treat i -> nums[i] as a linked list and run tortoise-and-hare to find the cycle entrance"
+  },
+  {
+   "mode": "value_binary_search",
+   "display_name": "binary search on the value range",
+   "mechanism": "binary-search the value range, counting how many elements are at most mid (pigeonhole)"
+  },
+  {
+   "mode": "index_marking",
+   "display_name": "index marking in the input array",
+   "mechanism": "mark visited values inside the list itself by negating or swapping entries at index value"
+  }
+ ],
+ "aliases": {
+  "hash_set": [
+   "hash set",
+   "hashset",
+   "seen set",
+   "seen values",
+   "set of seen"
+  ],
+  "sort_adjacent": [
+   "sorting",
+   "sort and compare",
+   "compare neighbours",
+   "compare neighbors",
+   "adjacent"
+  ],
+  "floyd": [
+   "floyd",
+   "tortoise",
+   "hare",
+   "cycle detection",
+   "tortoise and hare",
+   "tortoise-and-hare"
+  ],
+  "value_binary_search": [
+   "binary search",
+   "binary-search",
+   "pigeonhole",
+   "value range"
+  ],
+  "index_marking": [
+   "index marking",
+   "negative marking",
+   "negation",
+   "mark visited",
+   "cyclic sort",
+   "in-place marking"
+  ]
+ },
+ "forced_templates": [
+  "Implement {j} for this task.",
+  "Use {j} to solve this task.",
+  "Solve this task with {j}.",
+  "Your solution should use {j}.",
+  "Write an implementation based on {j}.",
+  "Solve the task below using {j}.",
+  "Your solution must implement {j}.",
+  "Write code that implements {j}.",
+  "Base your solution on {j}.",
+  "Apply {j} to solve this task."
+ ],
+ "descriptive_forced_template": "Implement the approach described as: {d}",
+ "association_template": "What is the standard alternative to {x} for this task? Name one algorithm and answer in one sentence.",
+ "spec_version": 1
+}

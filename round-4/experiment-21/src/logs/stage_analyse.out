@@ -1,0 +1,61 @@
+07:15:59|INFO   |analysis: 3100 rows, 0 unlabelled
+07:16:30|INFO   |figure F1 written
+07:16:31|INFO   |figure F2 written
+07:16:32|INFO   |figure F3 written
+07:16:33|INFO   |figure F4 written
+07:16:33|ERROR  |figure F5 failed: 'yerr' must not contain negative values
+Traceback (most recent call last):
+
+  File "./method.py", line 101, in <module>
+    main()
+    └ <function main at 0x7c3896a36020>
+
+  File "./method.py", line 91, in main
+    run_analysis()
+    └ <function run_analysis at 0x7c3893ddee80>
+
+  File "./analysis/report.py", line 600, in run_analysis
+    make_figures(rows, idx, res, phr, th, tab)
+    │            │     │    │    │    │   └ [{'task': 'T2', 'condition': 'NOPN_T0.3', 'N': 20, 'pass_rate': 1.0, 'attempted': {'dijkstra': 20}, 'correct': {'dijkstra': 2...
+    │            │     │    │    │    └ {'available': True, 'task': 'T2', 'coupling': 'vLLM exponential race = Gumbel-max (per-request seed)', 'per_T': {'THINK_T0.3'...
+    │            │     │    │    └ {'thetas': [0.7, 0.8, 0.9], 'per_task': {'T2': {'theta': {'0.7': {'slope': 0.6646616799889885, 'ci95': (0.0, 0.66466167998898...
+    │            │     │    └ {'utc': '2026-10-21T07:15:59.131537Z', 'n_rows': 3100, 'n_unlabelled': 0, 'couplings': {'off': 'inverse-CDF CRN (PCG64 unifor...
+    │            │     └ {('T2', 'W1|0', 'THINK_T1.0'): {'task': 'T2', 'template': 'W1', 'arm': 'THINK_T1.0', 'condition': 'THINK_T1.0', 'sample_id': ...
+    │            └ [{'task': 'T2', 'template': 'W1', 'arm': 'THINK_T1.0', 'condition': 'THINK_T1.0', 'sample_id': 0, 'slot': 'T2|W1|0', 'seed': ...
+    └ <function make_figures at 0x7c379c3c9da0>
+
+> File "./analysis/figures.py", line 196, in make_figures
+    fn()
+    └ <function make_figures.<locals>.<lambda> at 0x7c379c3c9f80>
+
+  File "./analysis/figures.py", line 194, in <lambda>
+    ("F5", lambda: f5_theta(phr))):
+                   │        └ {'thetas': [0.7, 0.8, 0.9], 'per_task': {'T2': {'theta': {'0.7': {'slope': 0.6646616799889885, 'ci95': (0.0, 0.66466167998898...
+                   └ <function f5_theta at 0x7c379c3c9d00>
+
+  File "./analysis/figures.py", line 177, in f5_theta
+    ax.errorbar(np.array(th) + (k - 1) * 0.008, ys, yerr=[lo, hi], marker="o", capsize=3, label=task)
+    │  │        │  │     │      │               │         │   │                                 └ 'T1'
+    │  │        │  │     │      │               │         │   └ [0.21470429481692155, 0.18433653276370365, -0.014614113645071924]
+    │  │        │  │     │      │               │         └ [0.46554253756767916, 0.48451793885717864, 0.5737155201831392]
+    │  │        │  │     │      │               └ [1.2472918798000465, 1.4403927312002132, 1.4086975604547118]
+    │  │        │  │     │      └ 2
+    │  │        │  │     └ [0.7, 0.8, 0.9]
+    │  │        │  └ <built-in function array>
+    │  │        └ <module 'numpy' from './.venv...
+    │  └ <function Axes.errorbar at 0x7c379bfa5440>
+    └ <Axes: >
+
+  File "./.venv_hf/lib/python3.12/site-packages/matplotlib/_api/deprecation.py", line 477, in wrapper
+    return func(*args, **kwargs)
+           │     │       └ {'yerr': [[0.46554253756767916, 0.48451793885717864, 0.5737155201831392], [0.21470429481692155, 0.18433653276370365, -0.01461...
+           │     └ (<Axes: >, array([0.708, 0.808, 0.908]), [1.2472918798000465, 1.4403927312002132, 1.4086975604547118])
+           └ <function Axes.errorbar at 0x7c379bfa54e0>
+  File "./.venv_hf/lib/python3.12/site-packages/matplotlib/__init__.py", line 1531, in inner
+    return func(
+           └ <function Axes.errorbar at 0x7c379bfa53a0>
+  File "./.venv_hf/lib/python3.12/site-packages/matplotlib/axes/_axes.py", line 4232, in errorbar
+    raise ValueError(
+
+ValueError: 'yerr' must not contain negative values
+07:16:33|INFO   |verdict: {'verdict': 'PARTIAL', 'H-T': True, 'H-PN': False, 'H-PHR': True, 'H-CON': True, 'failed_parts': ['H-PN'], 'note': ''}
