@@ -57,12 +57,12 @@ We locate that choice token by token, labelling every program by execution and c
 \item \textbf{No route produced a confirmed new algorithm (Sections~\ref{sec:res-prompts} and~\ref{sec:res-novel}).} Context seeds, novelty instructions and bans moved the choice only among known algorithms, and none of 45,892 audited correct programs was new; a program search with an evaluator gave eight programs one reader classed as new, which its replication did not reproduce.
 \end{itemize}
 
-Figure~\ref{fig:overview} summarises the account, and Figure~\ref{fig:resampling} shows the measurement it rests on.
+Figure~\ref{fig:overview} traces the account on minimum spanning tree weight, with shortest path for the temperature margin, and Figure~\ref{fig:resampling} shows the measurement it rests on.
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=\linewidth,height=0.45\textheight,keepaspectratio]{figures/fig1_v0.jpg}
-  \caption{Schematic overview (illustrative, not data). Top left: sampled programs share an opening. Top right: one forking token decides the algorithm. Bottom left: temperature only reweights that token's options; a wide margin keeps the alternative out of reach. Bottom right: task specification states set the token's odds; perturbing or patching them changes the algorithm, but no knob adds a branch.}
+  \caption{One forking token fixes the algorithm Qwen3-8B writes. (a) After a shared opening (grey), \stok{Kr} leads to Kruskal (blue) and \stok{Prim} to Prim (orange). (b) Temperature only reweights them; on shortest path, Dijkstra's 4.85-nat lead holds all 20 seeds. (c) Patching in task specification states (green) gives Prim on 30 of 30 seeds. Drawn overview; numbers from Section~\ref{sec:results}.}
   \label{fig:overview}
 \end{figure}
 
