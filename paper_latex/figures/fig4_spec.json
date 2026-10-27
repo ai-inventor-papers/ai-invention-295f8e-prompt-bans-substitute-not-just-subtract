@@ -1,23 +1,56 @@
 {
   "type": "bar",
-  "title": "Where a random push changes the algorithm",
-  "xlabel": "Site of the random push",
+  "title": "Where steering along a random direction changes the algorithm",
+  "xlabel": "Site of steering along a random direction",
   "ylabel": "Correct programs off the default (of 180)",
   "aspect": "16:9",
-  "ylim": [0, 45],
+  "ylim": [
+    0,
+    45
+  ],
   "legend_loc": "upper right",
   "annotate": true,
   "categories": [
-    "Task spec, blocks 0-11",
-    "Task spec, blocks 12-23",
-    "Task spec, blocks 24-35",
-    "Read position",
+    "Task specification, blocks 0-11",
+    "Task specification, blocks 12-23",
+    "Task specification, blocks 24-35",
+    "Last prompt token",
     "Condition sentence",
     "Generated tokens 1-32"
   ],
   "series": [
-    {"label": "1 ban unit", "values": [7, 26, 0, 0, 0, 6]},
-    {"label": "2 ban units", "values": [13, 41, 3, 0, 0, 33]},
-    {"label": "4 ban units", "values": [34, 14, 3, 0, 0, 2]}
+    {
+      "label": "α = 1",
+      "values": [
+        7,
+        26,
+        0,
+        0,
+        0,
+        6
+      ]
+    },
+    {
+      "label": "α = 2",
+      "values": [
+        13,
+        41,
+        3,
+        0,
+        0,
+        33
+      ]
+    },
+    {
+      "label": "α = 4",
+      "values": [
+        34,
+        14,
+        3,
+        0,
+        0,
+        2
+      ]
+    }
   ]
 }

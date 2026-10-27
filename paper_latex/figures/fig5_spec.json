@@ -1,45 +1,159 @@
 {
-  "type": "bubble",
-  "title": "Activation geometry of the top-five ban (Qwen3-32B, block 31)",
-  "xlabel": "PC1 (32.4% of variance)",
-  "ylabel": "PC2 (12.0% of variance)",
-  "aspect": "4:3",
-  "xlim": [-8, 6],
-  "size_label": "Programs labelled that algorithm under the ban (of 50)",
-  "max_area": 620,
-  "legend_loc": "upper left",
-  "series": [
-    {
-      "label": "baseline prompt",
-      "x": [-6.325, -5.174, -4.925, -6.347, -5.163, -6.175, -5.932, -4.393, -6.726, -4.942],
-      "values": [-2.075, -0.416, 0.775, -1.046, 0.650, -0.993, -0.759, 1.804, -1.763, 1.006],
-      "sizes": [0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6]
-    },
-    {
-      "label": "held-out ban prompt",
-      "x": [-0.764, 0.210, -0.793, -0.744],
-      "values": [0.031, 2.894, 2.035, 4.929],
-      "sizes": [0.6, 0.6, 0.6, 0.6]
-    },
-    {
-      "label": "non-banned algorithm",
-      "x": [-2.982, 1.090, 4.148, 3.944, 4.226],
-      "values": [-0.469, -3.280, 0.204, 1.362, 0.665],
-      "sizes": [0.6, 6, 0.6, 0.6, 0.6],
-      "categories": ["BiBFS 0→0", "UW-Dijkstra 0→6", "IDA* 0→0", "JPS 0→0", "BiA* 0→0"]
-    },
-    {
-      "label": "ban prompt",
-      "x": [-1.361, -1.379, 0.428],
-      "values": [2.667, 0.344, 2.500],
-      "sizes": [0.6, 0.6, 0.6]
-    },
-    {
-      "label": "banned algorithm",
-      "x": [-6.479, -5.763, 1.548, -2.588, 2.856],
-      "values": [0.571, -0.549, 0.698, 1.280, -0.483],
-      "sizes": [8, 2, 1, 0.6, 0.6],
-      "categories": ["DFS 0→8", "BFS 91→2", "Greedy 0→1", "IDDFS 0→0", "A* 0→0"]
-    }
-  ]
+ "type": "bubble",
+ "title": "Activation geometry of the ban of five names (Qwen3-32B, block 31)",
+ "xlabel": "PC1 (32.4% of variance)",
+ "ylabel": "PC2 (12.0% of variance)",
+ "aspect": "3:2",
+ "xlim": [
+  -8,
+  6
+ ],
+ "ylim": [
+  -3.8,
+  5.8
+ ],
+ "max_area": 620,
+ "series": [
+  {
+   "label": "baseline prompt",
+   "x": [
+    -6.325,
+    -5.174,
+    -4.925,
+    -6.347,
+    -5.163,
+    -6.175,
+    -5.932,
+    -4.393,
+    -6.726,
+    -4.942
+   ],
+   "values": [
+    -2.075,
+    -0.416,
+    0.775,
+    -1.046,
+    0.65,
+    -0.993,
+    -0.759,
+    1.804,
+    -1.763,
+    1.006
+   ],
+   "sizes": [
+    0.6,
+    0.6,
+    0.6,
+    0.6,
+    0.6,
+    0.6,
+    0.6,
+    0.6,
+    0.6,
+    0.6
+   ]
+  },
+  {
+   "label": "held-out ban prompt",
+   "x": [
+    -0.764,
+    0.21,
+    -0.793,
+    -0.744
+   ],
+   "values": [
+    0.031,
+    2.894,
+    2.035,
+    4.929
+   ],
+   "sizes": [
+    0.6,
+    0.6,
+    0.6,
+    0.6
+   ]
+  },
+  {
+   "label": "non-banned algorithm",
+   "x": [
+    -2.982,
+    1.09,
+    4.148,
+    3.944,
+    4.226
+   ],
+   "values": [
+    -0.469,
+    -3.28,
+    0.204,
+    1.362,
+    0.665
+   ],
+   "sizes": [
+    0.6,
+    6,
+    0.6,
+    0.6,
+    0.6
+   ],
+   "categories": [
+    "BiBFS 0→0",
+    "Dijkstra with unit weights 0→6",
+    "IDA* 0→0",
+    "JPS 0→0",
+    "BiA* 0→0"
+   ]
+  },
+  {
+   "label": "ban prompt",
+   "x": [
+    -1.361,
+    -1.379,
+    0.428
+   ],
+   "values": [
+    2.667,
+    0.344,
+    2.5
+   ],
+   "sizes": [
+    0.6,
+    0.6,
+    0.6
+   ]
+  },
+  {
+   "label": "banned algorithm",
+   "x": [
+    -6.479,
+    -5.763,
+    1.548,
+    -2.588,
+    2.856
+   ],
+   "values": [
+    0.571,
+    -0.549,
+    0.698,
+    1.28,
+    -0.483
+   ],
+   "sizes": [
+    8,
+    2,
+    1,
+    0.6,
+    0.6
+   ],
+   "categories": [
+    "DFS 0→8",
+    "BFS 91→2",
+    "Greedy 0→1",
+    "IDDFS 0→0",
+    "A* 0→0"
+   ]
+  }
+ ],
+ "size_key": false
 }
