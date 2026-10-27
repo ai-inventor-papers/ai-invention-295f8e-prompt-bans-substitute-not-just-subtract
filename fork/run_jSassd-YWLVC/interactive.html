@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Temperature, pushes and the forking token: an interactive reading</title>
+<title>Temperature, steering along a random direction and the forking token: an interactive reading</title>
 <style>
 :root{
   --bg:#fbfbf9; --panel:#ffffff; --ink:#1b2029; --ink2:#3f4756; --muted:#5f6878; --line:#dfe2e6; --line2:#eef0f2;
@@ -177,28 +177,28 @@ code{overflow-wrap:anywhere}
   <div class="finding-grid">
     <div class="prose">
       <p class="q">Does raising the sampling temperature make a code model try a different algorithm?</p>
-      <p>Not on the tasks where it has a default. The run holds one stream of random numbers fixed per seed, a design called <button type="button" class="term" data-term="crn">common random numbers</button>, and labels every program by what it does when run on hidden tests. On those streams, temperature from 0.3 to 1.3 changed the algorithm in <span data-k="tempzero"></span> seeds on each of three tasks. A <button type="button" class="term" data-term="push">random task-state push</button>, one random direction added to the <button type="button" class="term" data-term="spec">task specification states</button>, changed it in more seeds than temperature did, by</p>
+      <p>Not on the tasks where it has a default. The run holds one stream of random numbers fixed per seed, a design called <button type="button" class="term" data-term="crn">common random numbers</button>, and labels every program by what it does when run on hidden tests. On those streams, temperature from 0.3 to 1.3 changed the algorithm in <span data-k="tempzero"></span> seeds on each of three tasks. <button type="button" class="term" data-term="push">Steering along a random direction</button>, one random direction added to the <button type="button" class="term" data-term="spec">task specification states</button>, changed it in more seeds than temperature did, by</p>
       <p class="bignum" data-k="pooled_mean"></p>
       <p>changed seeds per seed, pooled over shortest path and <i>k</i>-th smallest (95% CI <span data-k="pooled_ci"></span>; one-sided sign-flip <i>p</i> = <span data-k="pooled_p"></span>, <span data-k="pooled_n"></span> seeds).</p>
-      <p class="small">The contrast was preregistered and held. The experiment around it is graded <span data-k="verdict"></span>, because the push fell short of its predicted effect on <i>k</i>-th smallest, and it ran only in an 8-bit (W8A8) engine; the paired contrast is untested in bfloat16. Permuting conditions within each seed never reached the observed mean (maximum placebo mean <span data-k="placebo"></span> in <span data-k="placebo_reps"></span> permutations).</p>
+      <p class="small">The contrast was preregistered and held. The experiment around it is graded <span data-k="verdict"></span>, because the steering fell short of its predicted effect on <i>k</i>-th smallest, and it ran only in an 8-bit (W8A8) engine; the paired contrast is untested in bfloat16. Permuting conditions within each seed never reached the observed mean (maximum placebo mean <span data-k="placebo"></span> in <span data-k="placebo_reps"></span> permutations).</p>
     </div>
     <div class="card" id="headline-card" style="margin-top:0">
       <p class="q">On the same 20 seeds, which control changes the algorithm?</p>
       <div class="controls">
         <div class="ctl"><span class="lab" id="lab-hl-task">Task</span>
           <div class="seg" role="tablist" aria-labelledby="lab-hl-task" id="hl-task"></div></div>
-        <div class="ctl"><span class="lab" id="lab-hl-temp">Temperature arm</span>
+        <div class="ctl"><span class="lab" id="lab-hl-temp">Temperature condition</span>
           <div class="seg" role="radiogroup" aria-labelledby="lab-hl-temp" id="hl-temp"></div></div>
-        <div class="ctl"><span class="lab" id="lab-hl-alpha">Push size</span>
+        <div class="ctl"><span class="lab" id="lab-hl-alpha">Steering strength α</span>
           <div class="seg" role="radiogroup" aria-labelledby="lab-hl-alpha" id="hl-alpha"></div></div>
-        <div class="ctl"><span class="lab" id="lab-hl-dirs">Push directions in the union</span>
+        <div class="ctl"><span class="lab" id="lab-hl-dirs">Steering directions in the union</span>
           <div class="chips" role="group" aria-labelledby="lab-hl-dirs" id="hl-dirs"></div></div>
       </div>
       <div class="chart" id="hl-matrix" role="group" aria-label="Seed by condition matrix of algorithm labels"></div>
       <ul class="legend" id="hl-legend"></ul>
       <div class="chart" id="hl-bars" style="margin-top:1rem" role="group" aria-label="Seeds whose algorithm changed, by control"></div>
       <p class="takeaway" id="hl-take" aria-live="polite"></p>
-      <p class="note">Each row is one seed (template · slot). A row is marked changed when its label differs anywhere across the columns of a block. The T 1.0 column is also the unpushed arm that each push column is compared with. Point at any cell to read its record, or press Enter on it to open the program in the browser below; with the keyboard, Tab into the matrix and move between cells with the arrow keys. Source: experiment 21, <code>data/labels.jsonl</code> and <code>results/c1seed.json</code>.</p>
+      <p class="note">Each row is one seed (template · slot). A row is marked changed when its label differs anywhere across the columns of a block. The T 1.0 column is also the unsteered condition that each steering column is compared with. Point at any cell to read its record, or press Enter on it to open the program in the browser below; with the keyboard, Tab into the matrix and move between cells with the arrow keys. Source: experiment 21, <code>data/labels.jsonl</code> and <code>results/c1seed.json</code>.</p>
     </div>
   </div>
 </div>
@@ -223,7 +223,7 @@ code{overflow-wrap:anywhere}
     <p class="note">Use the stage markers, the buttons, or the left and right arrow keys while the stepper has focus. Sources: experiment 35 (<code>results/forks.json</code>, <code>results/predictions_view.json</code>, <code>results/s4b.json</code>), experiment 43 (<code>results/analysis_L.json</code>), and the prompt text from experiment 26 (<code>data/prompts.jsonl</code>, matched by SHA-256 to the prompt experiment 35 used).</p>
   </div>
   <figure>
-    <img src="figures/fig1_v0.jpg" alt="Three-panel overview. (a) The prompt to Qwen3-8B and the shared 61-token opening of its program fork at one token: ␣Kr (p = 0.72) leads to Kruskal's algorithm and ␣Prim (p = 0.27) to Prim's; the algorithm's entropy drops from 0.82 to 0.050 bits, and is at most 0.189 bits on all three mixed tasks. (b) On minimum spanning tree weight, stacked bars of the share of programs show Prim rising from 0.07 at T = 0.3 to 0.31 at T = 1.3; on shortest path a log-probability gauge puts Dijkstra 4.85 nats above the runner-up, and 0 of 20 seeds change from T = 0.3 to 1.3. (c) The prompt's tokens enter Qwen3-8B's 36 blocks from below; the states of its task specification tokens are patched at every block from the prompt 'Implement Prim's algorithm', and the output leaving the top of the last token’s column is ␣Prim: Prim on 30 of 30 seeds. No knob added a third algorithm." width="3840" height="2160" loading="lazy">
+    <img src="figures/fig1_v0.jpg" alt="Three-panel overview. (a) The prompt to Qwen3-8B and the shared 61-token opening of its program fork at one token: ␣Kr (p = 0.72) leads to Kruskal's algorithm and ␣Prim (p = 0.27) to Prim's; the algorithm's entropy drops from 0.82 to 0.050 bits, and is at most 0.189 bits on all three mixed tasks. (b) On minimum spanning tree weight, stacked bars of the share of programs show Prim rising from 0.07 at T = 0.3 to 0.31 at T = 1.3; on shortest path a log-probability gauge puts Dijkstra 4.85 nats above the runner-up, and 0 of 20 seeds change from T = 0.3 to 1.3. (c) The prompt's tokens enter Qwen3-8B's 36 blocks from below; the states of its task specification tokens are patched at every block from the prompt 'Implement Prim's algorithm', and the output leaving the top of the last token’s column is ␣Prim: Prim on 30 of 30 seeds. No intervention added a third algorithm." width="3840" height="2160" loading="lazy">
     <figcaption><b>Figure 1 of the paper.</b> One forking token fixes the algorithm Qwen3-8B writes. (a) After a shared opening (grey), <code>␣Kr</code> leads to Kruskal (blue) and <code>␣Prim</code> to Prim (orange). (b) Temperature only reweights them; on shortest path, Dijkstra's 4.85-nat lead holds all 20 seeds. (c) Patching in task specification states (green) gives Prim on 30 of 30 seeds. Drawn overview; numbers from Section 5.</figcaption>
   </figure>
 </div>
@@ -235,30 +235,30 @@ code{overflow-wrap:anywhere}
   <h2 id="h-evidence">Explore the evidence</h2>
 
   <div class="card" id="law-card">
-    <h3>Does the forking-token law predict temperature on every unit?</h3>
-    <p class="q">Where the fork is contested, does a law built from its logits, committed before sampling, track how the minority algorithm moves with temperature?</p>
-    <p class="small prose">The <button type="button" class="term" data-term="law">composed law</button> uses only teacher-forced logits and the shares of continuations forced from each fork token. Each <button type="button" class="term" data-term="unit">unit</button> was then swept on 100 fresh shared streams per temperature. The error is the <button type="button" class="term" data-term="mae">mean absolute error</button> over the four temperatures.</p>
+    <h3>Does the forking-token prediction track temperature on every task?</h3>
+    <p class="q">Where the fork is contested, does a prediction built from its logits, committed before sampling, track how the minority algorithm moves with temperature?</p>
+    <p class="small prose">The <button type="button" class="term" data-term="law">forking-token prediction</button> uses only teacher-forced logits and the shares of continuations forced from each fork token. Each <button type="button" class="term" data-term="unit">task</button> was then swept on 100 fresh shared streams per temperature. The error is the <button type="button" class="term" data-term="mae">mean absolute error</button> over the four temperatures.</p>
     <div class="controls">
-      <div class="ctl"><label class="lab" for="law-unit">Unit</label><select id="law-unit"></select></div>
+      <div class="ctl"><label class="lab" for="law-unit">Task</label><select id="law-unit"></select></div>
       <div class="ctl"><span class="lab" id="lab-law-pred">Predictors drawn (the legend is the switch)</span>
         <div class="chips" role="group" aria-labelledby="lab-law-pred" id="law-preds"></div></div>
     </div>
     <div class="chart" id="law-chart" role="group" aria-label="Minority share against temperature, observed and predicted"></div>
     <p class="takeaway" id="law-take" aria-live="polite"></p>
     <h4 style="margin-top:1rem">Mean absolute error of every predictor (top-<i>p</i> 1; lowest per row in bold; select a row to plot it)</h4>
-    <div class="tablewrap"><table id="law-table"><caption class="sr-only">Mean absolute error of the composed law and four rivals per unit</caption></table></div>
+    <div class="tablewrap"><table id="law-table"><caption class="sr-only">Mean absolute error of the forking-token prediction and four rivals per task</caption></table></div>
     <p class="note">Source: experiment 43, <code>results/analysis_L.json</code>. Observed points carry Wilson 95% intervals; predicted values are the committed predictions stored in the file.</p>
   </div>
 
   <div class="card" id="br-card">
-    <h3>What does a push do to one program?</h3>
-    <p class="q">Put a pushed program beside the program the same seed wrote without the push. What changed?</p>
+    <h3>What does steering along a random direction do to one program?</h3>
+    <p class="q">Put a steered program beside the program the same seed wrote without steering. What changed?</p>
     <div class="controls">
       <div class="ctl"><label class="lab" for="br-task">Task</label><select id="br-task"></select></div>
       <div class="ctl"><label class="lab" for="br-cond">Conditions</label><select id="br-cond"></select></div>
       <div class="ctl"><label class="lab" for="br-q">Search the code</label><input type="search" id="br-q" placeholder="for example heapq or deque" autocomplete="off"></div>
       <div class="ctl"><span class="lab">Filters</span>
-        <label class="check"><input type="checkbox" id="br-changed" checked> Only programs whose algorithm differs from the unpushed program of the same seed</label>
+        <label class="check"><input type="checkbox" id="br-changed" checked> Only programs whose algorithm differs from the unsteered program of the same seed</label>
         <label class="check"><input type="checkbox" id="br-fail"> Only programs that fail the hidden tests</label></div>
     </div>
     <p class="small" id="br-count" aria-live="polite"></p>
@@ -267,7 +267,7 @@ code{overflow-wrap:anywhere}
       <div id="br-detail"></div>
     </div>
     <p class="takeaway" id="br-take" aria-live="polite"></p>
-    <p class="note">Source: experiment 21, <code>data/labels.jsonl</code> (code and runtime labels for every program in the conditions shown; identical programs are stored once) and <code>prompts/prompts.jsonl</code> (the neutral-twin prompt each seed used).</p>
+    <p class="note">Source: experiment 21, <code>data/labels.jsonl</code> (code and runtime labels for every program in the conditions shown; identical programs are stored once) and <code>prompts/prompts.jsonl</code> (the control prompt of the same length that each seed used).</p>
   </div>
 
   <div class="card" id="mg-card">
@@ -277,14 +277,14 @@ code{overflow-wrap:anywhere}
       <div class="ctl"><span class="lab" id="lab-mg-fmt">Prompt format</span>
         <div class="seg" role="radiogroup" aria-labelledby="lab-mg-fmt" id="mg-fmt"></div></div>
     </div>
-    <div class="chart" id="mg-chart" role="group" aria-label="Fork margin of instruct and base model per task"></div>
+    <div class="chart" id="mg-chart" role="group" aria-label="Forking-token margin of instruct and base model per task"></div>
     <ul class="legend"><li><span class="sw" style="background:#1d4f91"></span>Qwen3-8B (instruct)</li><li><span class="sw" style="background:#a9b2be"></span>Qwen3-8B-Base</li><li><span class="sw" style="background:#fff;border-color:#333;border-width:1px;width:18px;height:2px"></span>whisker: minimum to maximum over five prompt templates</li></ul>
     <p class="takeaway" id="mg-take" aria-live="polite"></p>
-    <p class="note">The <button type="button" class="term" data-term="margin">fork margin</button> is a teacher-forced log-probability gap in nats. Source: experiment 43, <code>results/base_subarm.json</code>.</p>
+    <p class="note">The <button type="button" class="term" data-term="margin">forking-token margin</button> is a teacher-forced log-probability gap in nats. Source: experiment 43, <code>results/base_subarm.json</code>.</p>
   </div>
 
   <div class="card" id="geo-card">
-    <h3>Where does a ban of five names land in activation space?</h3>
+    <h3>Where does a ban of five names move the prompt states in activation space?</h3>
     <p class="q">When the five most common grid algorithms are banned by name, does the model move to an algorithm at the edge of the banned set or opposite it?</p>
     <div class="controls">
       <div class="ctl"><span class="lab" id="lab-geo-ov">Prompt states drawn on the map</span>
@@ -295,7 +295,7 @@ code{overflow-wrap:anywhere}
     <div class="chart" id="geo-chart" role="group" aria-label="Activation-space map of ten grid algorithms"></div>
     <ul class="legend" id="geo-legend"></ul>
     <p class="takeaway" id="geo-take" aria-live="polite"></p>
-    <p class="note">Points are the first two principal components of Qwen3-32B (4-bit weights, thinking mode) residual states at block <span data-k="geo_block"></span>, averaged over the task tokens of 300 forced <code>Implement &lt;algorithm&gt;</code> prompts (30 per algorithm); the axes carry <span data-k="geo_evr"></span> of the variance. Centroids are the means of each algorithm's points. Source: experiment 44, <code>results/geometry_M1.json</code>, <code>results/landing.json</code> and <code>data/labelled_C6_ban.jsonl</code>; program-map ratio from experiment 46, <code>results/geometry_32b_mcode_PRIMARY_R1.json</code>.</p>
+    <p class="note">Points are the first two principal components of Qwen3-32B (4-bit weights, thinking mode) residual states at block <span data-k="geo_block"></span>, averaged over the task tokens of 300 forced <code>Implement &lt;algorithm&gt;</code> prompts (30 per algorithm); the axes carry <span data-k="geo_evr"></span> of the variance, and the third component, not drawn, carries 11.0%. The map is a projection: the distances in the takeaway are taken in the full state space (mean Euclidean distances to centroids, and geodesics on a k-nearest-neighbour graph with <i>k</i> = 15), and the states of the individual prompts were not published, so no view of three or more components could be drawn. Centroids are the means of each algorithm's points. Source: experiment 44, <code>results/geometry_M1.json</code>, <code>results/landing.json</code> and <code>data/labelled_C6_ban.jsonl</code>; program-map ratio from experiment 46, <code>results/geometry_32b_mcode_PRIMARY_R1.json</code>.</p>
   </div>
 </div>
 </section>
@@ -305,10 +305,10 @@ code{overflow-wrap:anywhere}
 <div class="wrap">
   <h2 id="h-try">Try it: how hot would temperature have to be?</h2>
   <div class="card" id="wi-card">
-    <p class="q">Temperature divides the logits by <i>T</i>. Given the recorded fork margin, how much of the output leaves the default at a temperature of your choosing?</p>
-    <p class="small prose">The curve is the run's own two-token closed form, the share off the default when only the two leading fork tokens compete: 1 / (1 + e<sup><i>m</i>/<i>T</i></sup>) for a margin of <i>m</i> nats. It is a simplification the run recorded beside its fuller prediction over the top 20 fork tokens; both are drawn. It ignores the opening, so it is not the composed law.</p>
+    <p class="q">Temperature divides the logits by <i>T</i>. Given the recorded forking-token margin, how much of the output leaves the default at a temperature of your choosing?</p>
+    <p class="small prose">The curve is the run's own two-token closed form, the share off the default when only the two leading fork tokens compete: 1 / (1 + e<sup><i>m</i>/<i>T</i></sup>) for a margin of <i>m</i> nats. It is a simplification the run recorded beside its fuller prediction over the top 20 fork tokens; both are drawn. It ignores the opening, so it is not the full forking-token prediction.</p>
     <div class="controls">
-      <div class="ctl"><label class="lab" for="wi-task">Task or unit</label><select id="wi-task"></select></div>
+      <div class="ctl"><label class="lab" for="wi-task">Task</label><select id="wi-task"></select></div>
       <div class="ctl"><label class="lab" for="wi-T">Temperature <i>T</i>: <output class="valout" id="wi-Tout" for="wi-T"></output></label><input type="range" id="wi-T" min="0.1" max="3" step="0.05" value="1.3"></div>
       <div class="ctl"><span class="lab" id="lab-wi-scale">Vertical scale</span>
         <div class="seg" role="radiogroup" aria-labelledby="lab-wi-scale" id="wi-scale"></div></div>
@@ -316,7 +316,7 @@ code{overflow-wrap:anywhere}
     <div class="chart" id="wi-chart" role="group" aria-label="Share off the default against temperature"></div>
     <ul class="legend" id="wi-legend"></ul>
     <p class="takeaway" id="wi-take" aria-live="polite"></p>
-    <p class="note">Sources: experiment 35, <code>results/predictions_view.json</code> (margins, closed form and top-20 predictions; fork-token probabilities for the mixed units) and <code>results/test3.json</code> (samples drawn from the fork at <i>T</i> 1.3); observed shares of the mixed units from experiment 43, <code>results/analysis_L.json</code>.</p>
+    <p class="note">Sources: experiment 35, <code>results/predictions_view.json</code> (margins, closed form and top-20 predictions; forking-token probabilities for the mixed tasks) and <code>results/test3.json</code> (samples drawn from the fork at <i>T</i> 1.3); observed shares of the mixed tasks from experiment 43, <code>results/analysis_L.json</code>.</p>
   </div>
 </div>
 </section>
@@ -326,10 +326,10 @@ code{overflow-wrap:anywhere}
 <div class="wrap">
   <h2 id="h-fails">Where it fails</h2>
   <div class="card">
-    <h3>The law misses when the decision is spread over many openings</h3>
-    <p class="q">Which unit does the composed law fail on, and why?</p>
-    <p class="prose">On Llama-3.1-8B's grid task every predictor fails. Llama reaches the forking tokens through many openings, so the committed law is almost the flat law, and at high temperature the programs collapse into unusable code.</p>
-    <p><button type="button" class="btn" id="fail-llama">Show the Llama grid unit in the law view</button></p>
+    <h3>The prediction misses when the decision is spread over many openings</h3>
+    <p class="q">Which task does the forking-token prediction fail on, and why?</p>
+    <p class="prose">On Llama-3.1-8B's grid task every predictor fails. Llama reaches the forking tokens through many openings, so the committed prediction is almost the no-change baseline, and at high temperature the programs collapse into unusable code.</p>
+    <p><button type="button" class="btn" id="fail-llama">Show the Llama grid task in the prediction view</button></p>
     <p class="takeaway" id="fail-llama-take" aria-live="polite"></p>
   </div>
   <div class="card" id="ban-card">
@@ -339,20 +339,22 @@ code{overflow-wrap:anywhere}
       <div class="ctl"><span class="lab" id="lab-ban-m">Measure</span>
         <div class="seg" role="radiogroup" aria-labelledby="lab-ban-m" id="ban-m"></div></div>
     </div>
-    <div class="chart" id="ban-chart" role="group" aria-label="Survivor share under a ban of five names, per configuration"></div>
+    <div class="chart" id="ban-chart" role="group" aria-label="Share of correct and compliant programs under a ban of five names, per configuration"></div>
     <p class="takeaway" id="ban-take" aria-live="polite"></p>
-    <p class="note">A <button type="button" class="term" data-term="survivor">survivor</button> is a correct program whose algorithm is not banned. Whiskers are Wilson 95% intervals; the dashed line is the preregistered bar of <span data-k="ban_bar"></span>. Source: experiment 44, <code>results/screen.json</code>.</p>
+    <p class="note">A <button type="button" class="term" data-term="survivor">correct and compliant program</button> is a correct program whose algorithm is not banned. Whiskers are Wilson 95% intervals; the dashed line is the preregistered bar of <span data-k="ban_bar"></span>. Source: experiment 44, <code>results/screen.json</code>.</p>
   </div>
   <div class="card">
     <h3>What the paper does not show</h3>
     <ul class="limits prose">
-      <li>The headline contrast between push and temperature ran only in an 8-bit (W8A8) engine. The push alone changes the algorithm in bfloat16 at the same absolute push norm, but the paired contrast was not repeated, and on the grid task the push moved only <span data-k="t1_a1"></span> of 20 seeds.</li>
-      <li>Most results come from one model, Qwen3-8B, in non-thinking mode. The composed law was tested on <span data-k="law_heldout"></span> held-out units in two other families, below the four the preregistered claim required, so its generality is open.</li>
-      <li>The law is not clearly better than the flat law, a baseline that predicts no change: it wins on <span data-k="law_vs_flat"></span> units (sign test <i>p</i> = <span data-k="law_sign_p"></span>). Much of its accuracy reflects how little temperature moves these units.</li>
+      <li>The headline contrast between steering along a random direction and temperature ran only in an 8-bit (W8A8) engine. Steering alone changes the algorithm in bfloat16 at the same absolute strength, but the paired contrast was not repeated, and on the grid task steering moved only <span data-k="t1_a1"></span> of 20 seeds.</li>
+      <li>Most results come from one model, Qwen3-8B, in non-thinking mode. The forking-token prediction was tested on <span data-k="law_heldout"></span> held-out tasks in two other families, below the four the preregistered claim required, so its generality is open.</li>
+      <li>The prediction is not clearly better than the no-change baseline: it wins on <span data-k="law_vs_flat"></span> tasks (sign test <i>p</i> = <span data-k="law_sign_p"></span>). Much of its accuracy reflects how little temperature moves these tasks.</li>
       <li>The temperature null rests on 20 seeds per task, which bounds the change rate per seed below <span data-k="cp95"></span>, not at zero.</li>
       <li>The tasks are short, well-known problems whose solutions are probably memorised; conclusions may not carry to open-ended programs.</li>
       <li>Some label gates failed their strict criteria, so those numbers are descriptive. The activation-space geometry is correlational, and the map built from names is confounded by lexical overlap between algorithm names.</li>
       <li>No control the run applied to single samples produced a correct algorithm outside the known repertoire. With an evaluator selecting programs across generations, one bin-packing search yielded eight programs that its manual read classed as a new idea, and an independent replication found none.</li>
+    <li>The activation map shows only the first two principal components; the third, which carries 11.0% of the variance, is not drawn. No view of three or more components was made, although every distance quoted is taken in the full state space.</li>
+    <li>Newer open-weight generations, Qwen3.5 and later, were not tested, so the forking-token, temperature, ban and geometry results need replication there.</li>
     </ul>
   </div>
 </div>
@@ -503,23 +505,23 @@ document.querySelectorAll('[data-k]').forEach(function(el){var f=BIND[el.dataset
 /* ------------------------------------------------------------------ glossary and term tooltips */
 var TERMS={
   crn:['Common random numbers','Every seed owns one stream of uniform variates, and every condition maps the same variates through its own next-token distribution, so a difference between two conditions on one seed is caused by the condition, not by a different draw.'],
-  push:['Random task-state push','One isotropic unit direction added, during the prefill only, to the residual stream activations at the token positions that state the task, in blocks 12 to 23. Its size is set in multiples α of the displacement that a ban prompt induces at the same positions.'],
+  push:['Steering along a random direction','Activation steering along one isotropic random unit direction, added during the prefill only to the residual stream activations at the token positions that state the task, in blocks 12 to 23. Its intervention strength α is a multiple of the displacement that a ban sentence induces at the same positions.'],
   spec:['Task specification states','The residual stream activations at the prompt tokens that state the task.'],
-  fork:['Forking token','A position where resampling changes the algorithm distribution; found by resampling continuations from prefixes of growing length and refining the change point to a single token. "The fork" is short for the forking token.'],
+  fork:['Forking token','A position where resampling changes the algorithm distribution (the term of Bigelow et al., 2025); found by resampling continuations from prefixes of growing length and refining the change point to a single token. "The fork" is short for the forking token.'],
   opening:['Shared opening','The common prefix that programs of different algorithms share before the forking token.'],
-  margin:['Fork margin','The teacher-forced gap in log probability, at the forking token, between the class of tokens that lead to the default algorithm and the best class that leads elsewhere.'],
-  law:['Composed law','A prediction of the algorithm distribution at temperature T built from the tempered probability of each shared opening, the tempered next-token distribution at the fork, and the share of each algorithm among continuations forced from each fork token. It uses only teacher-forced logits and T = 1 conditionals, so it can be committed before any temperature sample.'],
-  flat:['Flat law','A rival that keeps the T = 1 shares at every temperature: a baseline that predicts no change.'],
+  margin:['Forking-token margin','The teacher-forced gap in log probability, at the forking token, between the class of tokens that lead to the default algorithm and the best class that leads elsewhere.'],
+  law:['Forking-token prediction','A prediction of the algorithm distribution at temperature T built from the tempered probability of each shared opening, the tempered next-token distribution at the fork, and the share of each algorithm among continuations forced from each fork token. It uses only teacher-forced logits and T = 1 conditionals, so it can be committed before any temperature sample.'],
+  flat:['No-change baseline','A rival prediction that keeps the T = 1 shares at every temperature.'],
   mae:['Mean absolute error (MAE)','The mean over the four temperatures of the total variation distance between predicted and observed label distributions.'],
-  unit:['Unit','A task paired with one model. A default task is one where the instruct model writes one algorithm in essentially all samples; a mixed unit already contains a second algorithm at a share of roughly 0.1 to 0.4.'],
-  exchange:['Task-state exchange','The task specification states of a forced prompt ("Implement the task with <minority algorithm>") are written into the forward pass of a padding twin, a copy in which the instruction is replaced by padding tokens so that all positions align.'],
+  unit:['Task','A coding task, always read with the model that writes it. A collapsed task is one where the instruct model writes one algorithm in essentially all samples; a mixed task already contains a second algorithm at a share of roughly 0.1 to 0.4.'],
+  exchange:['Activation patching','The task specification states of a forced prompt ("Implement the task with <minority algorithm>") are written into the forward pass of a control prompt of the same length, a copy in which filler tokens stand in place of the instruction tokens so that all positions align.'],
   phrasing:['Phrasing cluster','A connected component, within one idea, of programs whose AST 4-gram shingle sets (identifiers normalised; comments, docstrings and constants dropped) have Jaccard similarity at least 0.8.'],
   idea:['Idea','The runtime label of a correct program.'],
-  twin:['Neutral twin','A prompt matched in token length to a ban prompt: the same prohibition sentence with irrelevant nouns in place of the algorithm.'],
+  twin:['Control prompt of the same length','A prompt matched in token length to a ban prompt: the same prohibition sentence with irrelevant nouns, neutral filler, in place of the algorithm names.'],
   change:['Change count','For a block of conditions, the number of seeds whose algorithm label differs anywhere across the block.'],
-  survivor:['Survivor','A correct program whose algorithm is not banned.'],
+  survivor:['Correct and compliant program','A correct program whose algorithm is not banned.'],
   ban5:['Ban of five names','An instruction not to use five named algorithms at once (here BFS, DFS, IDDFS, A* and greedy best-first search).'],
-  landing:['Landing','The algorithm a changed program moved to.'],
+  landing:['Substitute algorithm','The algorithm a changed program moved to.'],
   hclass:['H(A | class)','The entropy of the algorithm given the class of the forking token: how much uncertainty about the algorithm remains once the fork token is known.']
 };
 var gloss=document.getElementById('gloss'), defs=document.getElementById('term-defs');
@@ -550,11 +552,11 @@ function pushCols(){var a=[]; for(var d=1;d<=6;d++)a.push('PN_D4600'+d+'_a'+hl.a
 function changedTemp(row){var ls={}, n=0; tempCols().forEach(function(c){var x=lab(row.cells[c]); if(x!==null){ls[x]=1;n++;}}); return n===0?null:Object.keys(ls).length>1;}
 function changedPush(row){var base=lab(row.cells['NOPN_T1.0']), any=false, sel=0; for(var d=1;d<=6;d++){if(!hl.dirs[d])continue; sel++; var x=lab(row.cells['PN_D4600'+d+'_a'+hl.alpha+'_T1.0']); if(x!==null&&x!==base)any=true;} return sel?any:null;}
 function condLabel(c){
-  if(c.indexOf('NOPN_T')===0) return 'temperature '+c.slice(6)+', thinking off'+(c==='NOPN_T1.0'?' (also the unpushed arm)':'');
+  if(c.indexOf('NOPN_T')===0) return 'temperature '+c.slice(6)+', thinking off'+(c==='NOPN_T1.0'?' (also the unsteered condition)':'');
   if(c.indexOf('THINK_T')===0) return 'temperature '+c.slice(7)+', thinking on';
   if(c==='TOPK10_T0.7') return 'top-k 10 at temperature 0.7';
   if(c==='MINP_T2.0') return 'min-p 0.1 at temperature 2.0';
-  var m=c.match(/PN_D4600(\d)_a([\d.]+)_T1\.0/); if(m) return 'push direction '+m[1]+', α = '+Number(m[2])+', T 1.0';
+  var m=c.match(/PN_D4600(\d)_a([\d.]+)_T1\.0/); if(m) return 'steering direction '+m[1]+', α = '+Number(m[2])+', T 1.0';
   return c;}
 function drawMatrix(){
   var box=document.getElementById('hl-matrix'); box.innerHTML='';
@@ -567,7 +569,7 @@ function drawMatrix(){
   function fit(cands,avail){for(var i=0;i<cands.length;i++){if(textW(cands[i],12,650)<=avail)return cands[i];} return cands[cands.length-1];}
   var tOn=hl.temp==='think'?'on':'off';
   T(svg,x0,13,fit(['Temperature, thinking '+tOn,'Temperature ('+tOn+')','Temperature','Temp.'],cw*4+gap-8),{'font-size':12,'font-weight':650,fill:'#1b2029'});
-  T(svg,x1,13,fit(['Push, α = '+Number(hl.alpha)+', T 1.0','Push, α = '+Number(hl.alpha),'Push'],cw*6+markW*2),{'font-size':12,'font-weight':650,fill:'#1b2029'});
+  T(svg,x1,13,fit(['Steering, α = '+Number(hl.alpha)+', T 1.0','Steering, α = '+Number(hl.alpha),'Steering'],cw*6+markW*2),{'font-size':12,'font-weight':650,fill:'#1b2029'});
   ['0.3','0.7','1.0','1.3'].forEach(function(t,i){T(svg,x0+cw*i+cw/2,34,t,{'font-size':11,'text-anchor':'middle'});});
   for(var d=1;d<=6;d++){T(svg,x1+cw*(d-1)+cw/2,34,'d'+d,{'font-size':11,'text-anchor':'middle','font-weight':hl.dirs[d]?700:400,fill:hl.dirs[d]?'#1b2029':'#9aa3ae'});}
   var gridEls=[];
@@ -613,9 +615,9 @@ function drawBars(){
     {lab:'The same, plus top-k 10 at T 0.7',v:st.with_topk,c:'#8b95a4',note:st.with_topk+' of 20'},
     {lab:'The same, plus min-p 0.1 at T 2.0',v:st.with_minp,c:'#8b95a4',note:st.with_minp+' of 20'},
     {lab:'Temperature 0.3 to 1.3, thinking mode',tiny:'Temperature, thinking mode',v:nThinkRows?nThink:null,c:'#8b95a4',note:nThinkRows?(nThink+' of '+nThinkRows):'not run',max:nThinkRows},
-    {lab:'Push α = 1: mean over the 20 subsets of three directions (min to max)',short:'Push α = 1, mean of 20 three-direction subsets',tiny:'Push α = 1, subset mean',v:st['a1.0'].mean,lo:st['a1.0'].min,hi:st['a1.0'].max,c:'#7fa6dd',note:fmt(st['a1.0'].mean,2)+' of 20'},
-    {lab:'Push α = 2: mean over the 20 subsets of three directions (min to max)',short:'Push α = 2, mean of 20 three-direction subsets',tiny:'Push α = 2, subset mean',v:st['a2.0'].mean,lo:st['a2.0'].min,hi:st['a2.0'].max,c:'#1d5bbf',note:fmt(st['a2.0'].mean,2)+' of 20'},
-    {lab:'Push α = '+Number(hl.alpha)+', the '+sel+' direction'+(sel===1?'':'s')+' you selected',tiny:'Push α = '+Number(hl.alpha)+', your '+sel+' direction'+(sel===1?'':'s'),v:sel?nSel:null,c:'#e69f00',note:sel?(nSel+' of 20'):'select a direction'}
+    {lab:'Steering α = 1: mean over the 20 subsets of three directions (min to max)',short:'Steering α = 1, mean of 20 three-direction subsets',tiny:'Steering α = 1, subset mean',v:st['a1.0'].mean,lo:st['a1.0'].min,hi:st['a1.0'].max,c:'#7fa6dd',note:fmt(st['a1.0'].mean,2)+' of 20'},
+    {lab:'Steering α = 2: mean over the 20 subsets of three directions (min to max)',short:'Steering α = 2, mean of 20 three-direction subsets',tiny:'Steering α = 2, subset mean',v:st['a2.0'].mean,lo:st['a2.0'].min,hi:st['a2.0'].max,c:'#1d5bbf',note:fmt(st['a2.0'].mean,2)+' of 20'},
+    {lab:'Steering α = '+Number(hl.alpha)+', the '+sel+' direction'+(sel===1?'':'s')+' you selected',tiny:'Steering α = '+Number(hl.alpha)+', your '+sel+' direction'+(sel===1?'':'s'),v:sel?nSel:null,c:'#e69f00',note:sel?(nSel+' of 20'):'select a direction'}
   ];
   var padL=4, padR=Math.ceil(textW('19.05 of 20',12,700))+12, bh=14, rowH=40, top=6, axisH=40;
   var h=top+items.length*rowH+axisH, x0=padL, x1=W-padR, sx=function(v){return x0+(x1-x0)*v/20;};
@@ -641,13 +643,13 @@ function drawBars(){
   var lands=Object.keys(landing).sort(function(a,b){return landing[b]-landing[a];}).map(function(k){return NAME[k]+' ('+landing[k]+')';});
   var tk=document.getElementById('hl-take');
   var tempTxt=(hl.temp==='think'?(nThinkRows?('With thinking on, temperature changed '+nThink+' of '+nThinkRows+' seeds'):'Thinking mode was not run on this task, but with thinking off temperature changed '+nTemp+' of '+nTempMax+' seeds'):('Temperature changed '+nTemp+' of '+nTempMax+' seeds'));
-  tk.textContent= tn+': '+tempTxt+'. '+(sel?('The union of the '+sel+' selected push direction'+(sel===1?'':'s')+' at α = '+Number(hl.alpha)+' changed '+nSel+' of 20'+(lands.length?(', and the changed programs landed on '+lands.join(', ')+'.'):'.')):'Select at least one push direction to compare.');
+  tk.textContent= tn+': '+tempTxt+'. '+(sel?('The union of the '+sel+' selected steering direction'+(sel===1?'':'s')+' at α = '+Number(hl.alpha)+' changed '+nSel+' of 20'+(lands.length?(', and the changed programs landed on '+lands.join(', ')+'.'):'.')):'Select at least one steering direction to compare.');
 }
 function drawHeadline(){drawMatrix(); drawBars();}
 seg(document.getElementById('hl-task'),'tablist',SEEDS.tasks.map(function(t){return {v:t.id,label:t.name};}),hl.task,function(v){hl.task=v; drawHeadline();});
 seg(document.getElementById('hl-temp'),'radiogroup',[{v:'temp',label:'Thinking off'},{v:'think',label:'Thinking on'}],hl.temp,function(v){hl.temp=v; drawHeadline();});
 seg(document.getElementById('hl-alpha'),'radiogroup',[{v:'1.0',label:'α = 1'},{v:'2.0',label:'α = 2'}],hl.alpha,function(v){hl.alpha=v; drawHeadline();});
-chipToggle(document.getElementById('hl-dirs'),[1,2,3,4,5,6].map(function(d){return {v:d,label:'d'+d,title:'Push direction '+d};}),function(d){return hl.dirs[d];},function(d,on){hl.dirs[d]=on; drawHeadline();});
+chipToggle(document.getElementById('hl-dirs'),[1,2,3,4,5,6].map(function(d){return {v:d,label:'d'+d,title:'Steering direction '+d};}),function(d){return hl.dirs[d];},function(d,on){hl.dirs[d]=on; drawHeadline();});
 document.getElementById('hl-task').setAttribute('aria-controls','hl-matrix');
 
 /* ------------------------------------------------------------------ 2. stepper */
@@ -660,14 +662,14 @@ function promptHTML(){var p=STEP.prompt, i=p.indexOf('Task:'), j=p.indexOf('Use 
 var STAGES=[
  {key:'prompt',name:'Prompt',
   inn:'<pre>'+promptHTML()+'</pre>',
-  done:'<p>The model reads the prompt. The highlighted span is where the task is stated. The opening sentence is a <button type="button" class="term" data-term="twin">neutral twin</button> of a ban: the same prohibition frame with an irrelevant noun ("'+esc(STEP.prompt_segment.split(' for ')[0].replace('Do not use ',''))+'").</p>',
+  done:'<p>The model reads the prompt. The highlighted span is where the task is stated. The opening sentence makes this a <button type="button" class="term" data-term="twin">control prompt of the same length</button> for a ban: the same prohibition frame with an irrelevant noun ("'+esc(STEP.prompt_segment.split(' for ')[0].replace('Do not use ',''))+'").</p>',
   out:'<p>Residual-stream activations at every prompt token.</p>',
   why:'<p>The algorithm is never named. Whatever the model writes is its own default for this task.</p>'},
  {key:'spec',name:'Task states',
   inn:'<p>The <button type="button" class="term" data-term="spec">task specification states</button> at blocks 12 to 23: the activations over the highlighted span.</p>',
-  done:'<p>Test of what they carry: a <button type="button" class="term" data-term="exchange">task-state exchange</button> writes the states of a prompt that asks for Prim into a padding twin, on '+EX.n+' shared streams.</p>',
-  out:'<p>Prim in <b>'+fmt(EX.exch*EX.n,0)+' of '+EX.n+'</b> streams after the exchange, against '+fmt(EX.twin*EX.n,0)+' of '+EX.n+' for the twin alone and '+fmt(EX.mr*EX.n,0)+' of '+EX.n+' for a random exchange of matched norm (discordant pairs '+EX.b+':'+EX.c+', <i>p</i> = '+fmtSci(EX.p,1)+'). The fork margin moved '+fmt(EX.dm_exch,2)+' nats toward Prim, against '+fmt(EX.dm_mr,2)+' for the random exchange.</p>',
-  why:'<p>The choice is carried by these states into the fork. A random push of them is the intervention compared with temperature in the headline.</p>'},
+  done:'<p>Test of what they carry: <button type="button" class="term" data-term="exchange">activation patching</button> writes the states of a prompt that asks for Prim into a control prompt of the same length, on '+EX.n+' shared streams.</p>',
+  out:'<p>Prim in <b>'+fmt(EX.exch*EX.n,0)+' of '+EX.n+'</b> streams after the exchange, against '+fmt(EX.twin*EX.n,0)+' of '+EX.n+' for the control prompt alone and '+fmt(EX.mr*EX.n,0)+' of '+EX.n+' for a random exchange of matched norm (discordant pairs '+EX.b+':'+EX.c+', <i>p</i> = '+fmtSci(EX.p,1)+'). The forking-token margin moved '+fmt(EX.dm_exch,2)+' nats toward Prim, against '+fmt(EX.dm_mr,2)+' for the random exchange.</p>',
+  why:'<p>The choice is carried by these states into the fork. Steering them along a random direction is the intervention compared with temperature in the headline.</p>'},
  {key:'opening',name:'Opening',
   inn:'<p>Generation starts. Programs of both algorithms begin with the same text.</p>',
   done:'<p>Prefix resampling: continuations are resampled from prefixes of growing length and labelled, until the algorithm distribution jumps.</p>',
@@ -685,9 +687,9 @@ var STAGES=[
   why:'<p>One token settles the algorithm, so temperature can change the algorithm only by changing which token is drawn here.</p>'},
  {key:'temp',name:'Temperature',
   inn:'<p>The tempered fork distribution and the tempered probability of reaching the opening, at <i>T</i> = 0.3, 0.7, 1.0 and 1.3.</p>',
-  done:'<p>The <button type="button" class="term" data-term="law">composed law</button> combines them with the branch shares. It was committed before sampling, then checked on 100 fresh shared streams per temperature.</p>',
+  done:'<p>The <button type="button" class="term" data-term="law">forking-token prediction</button> combines them with the branch shares. It was committed before sampling, then checked on 100 fresh shared streams per temperature.</p>',
   out:'<div id="st-tempchart" class="chart"></div>',
-  why:'<p>Here the fork is contested, so temperature moves the mix at the rate the logits predict. On the default tasks the same arithmetic leaves the alternative out of reach.</p>'},
+  why:'<p>Here the fork is contested, so temperature moves the mix at the rate the logits predict. On the collapsed tasks the same arithmetic leaves the alternative out of reach.</p>'},
  {key:'phr',name:'Phrasings',
   inn:'<p>The Kruskal programs of each temperature cell.</p>',
   done:'<p>Programs are grouped into <button type="button" class="term" data-term="phrasing">phrasing clusters</button> by AST 4-gram similarity.</p>',
@@ -736,10 +738,10 @@ function drawTempChart(){
   var yt=T(svg,0,0,'Prim share',{'font-size':11,'text-anchor':'middle',transform:'translate(10,'+(padT+(h-padT-padB)/2)+') rotate(-90)'});
   var d=''; STEP.temps.forEach(function(t,i){d+=(i?'L':'M')+sx(t.T)+','+sy(t.pred);}); S('path',{d:d,fill:'none',stroke:'#1d5bbf','stroke-width':2.2},svg);
   STEP.temps.forEach(function(t){var c=S('circle',{cx:sx(t.T),cy:sy(t.obs),r:5.5,fill:'#1b2029'},svg);
-    mark(c,'<b>T = '+fmt(t.T,1)+'</b><br>Observed Prim share '+fmt(t.obs,2)+' (of '+t.N+')<br>Composed law '+fmt(t.pred,3));
+    mark(c,'<b>T = '+fmt(t.T,1)+'</b><br>Observed Prim share '+fmt(t.obs,2)+' (of '+t.N+')<br>Forking-token prediction '+fmt(t.pred,3));
     var q=S('rect',{x:sx(t.T)-4,y:sy(t.pred)-4,width:8,height:8,fill:'#fff',stroke:'#1d5bbf','stroke-width':2},svg);
-    mark(q,'<b>T = '+fmt(t.T,1)+'</b><br>Composed law, committed before sampling: '+fmt(t.pred,3));});
-  var lg=H('ul',{'class':'legend'},'<li><span class="sw" style="background:#1b2029;border-radius:50%"></span>observed Prim share (100 streams per cell)</li><li><span class="sw" style="background:#fff;border:2px solid #1d5bbf"></span>composed law</li>');
+    mark(q,'<b>T = '+fmt(t.T,1)+'</b><br>Forking-token prediction, committed before sampling: '+fmt(t.pred,3));});
+  var lg=H('ul',{'class':'legend'},'<li><span class="sw" style="background:#1b2029;border-radius:50%"></span>observed Prim share (100 streams per cell)</li><li><span class="sw" style="background:#fff;border:2px solid #1d5bbf"></span>forking-token prediction</li>');
   box.appendChild(lg);
   var a=STEP.temps[0], b=STEP.temps[STEP.temps.length-1];
   box.appendChild(H('p',{'class':'small'},'Prim rose from '+fmt(a.obs,2)+' at T 0.3 to '+fmt(b.obs,2)+' at T 1.3. Lowering T from 1.0 to 0.3 removed Prim in one direction only: '+STEP.drop.mcnemar_b_c[0]+':'+STEP.drop.mcnemar_b_c[1]+' discordant streams (one-sided <i>p</i> = '+fmtSci(STEP.drop.p_one_sided,1)+').'));
@@ -763,11 +765,11 @@ function renderStage(){
   var t0=STEP.temps[0], t3=STEP.temps[STEP.temps.length-1];
   var TAKE=[
     'Stage 1: the prompt names no algorithm, so the program shows the model\u2019s own default for this task.',
-    'Stage 2: writing the Prim prompt\u2019s task states into the twin produced Prim in '+fmt(EX.exch*EX.n,0)+' of '+EX.n+' streams, so these states carry the choice into the fork.',
+    'Stage 2: patching the Prim prompt\u2019s task states into the control prompt produced Prim in '+fmt(EX.exch*EX.n,0)+' of '+EX.n+' streams, so these states carry the choice into the fork.',
     'Stage 3: the first '+STEP.opening_len+' tokens are the same whichever algorithm follows; nothing is decided yet.',
     'Stage 4: one token decides the mix: "'+kr.text.trim()+'" at '+fmt(kr.pi,2)+' and "'+prim.text.trim()+'" at '+fmt(prim.pi,2)+'.',
     'Stage 5: once the fork token is known, only '+fmt(STEP.H_bits,3)+' bits of uncertainty about the algorithm remain.',
-    'Stage 6: the committed law predicted Prim at '+fmt(t0.pred,3)+' at T 0.3 and '+fmt(t3.pred,3)+' at T 1.3; the observed shares were '+fmt(t0.obs,2)+' and '+fmt(t3.obs,2)+'.',
+    'Stage 6: the committed prediction gave Prim at '+fmt(t0.pred,3)+' at T 0.3 and '+fmt(t3.pred,3)+' at T 1.3; the observed shares were '+fmt(t0.obs,2)+' and '+fmt(t3.obs,2)+'.',
     'Stage 7: Kruskal phrasings grow from '+t0.phr_kr+' to '+t3.phr_kr+' across temperature while the ideas stay the same two.'];
   document.getElementById('st-take').textContent=TAKE[cur];
   document.getElementById('st-count').textContent='Stage '+(cur+1)+' of '+STAGES.length;
@@ -783,7 +785,7 @@ stepperEl.addEventListener('keydown',function(e){var tg=e.target; if(tg&&(tg.tag
   if(e.key==='ArrowRight'){e.preventDefault(); go(cur+1);} else if(e.key==='ArrowLeft'){e.preventDefault(); go(cur-1);}});
 
 /* ------------------------------------------------------------------ 3a. law view */
-var PREDS=[{k:'L',n:'Composed law',c:'#1d5bbf',dash:''},{k:'B0',n:'Flat law',c:'#6b7380',dash:'6 4'},{k:'B1',n:'Share tempering',c:'#e69f00',dash:'2 3'},{k:'B2',n:'Single fork law',c:'#009e73',dash:'8 3 2 3'},{k:'BH',n:'Highest-entropy position',c:'#cc79a7',dash:'1 2'}];
+var PREDS=[{k:'L',n:'Forking-token prediction',c:'#1d5bbf',dash:''},{k:'B0',n:'No-change baseline',c:'#6b7380',dash:'6 4'},{k:'B1',n:'Tempered shares',c:'#e69f00',dash:'2 3'},{k:'B2',n:'Forking token alone',c:'#009e73',dash:'8 3 2 3'},{k:'BH',n:'Highest-entropy position',c:'#cc79a7',dash:'1 2'}];
 var law={unit:'B3',on:{L:true,B0:true,B1:false,B2:false,BH:false}};
 var unitSel=document.getElementById('law-unit');
 LAW.units.forEach(function(u){var o=H('option',{value:u.id},esc(u.name+' ('+u.model+(u.held_out?', held out':'')+')')); unitSel.appendChild(o);});
@@ -821,12 +823,12 @@ function drawLaw(){
     mark(o,'<b>T = '+fmt(c.T,1)+'</b>: observed '+c.k+' of '+c.N+' ('+fmt(c.share,2)+'), Wilson 95% ['+fmt(c.wilson[0],2)+', '+fmt(c.wilson[1],2)+']<br>Pass rate '+fmt(c.pass,2)+(c.cap!==null&&c.cap!==undefined?'; programs hitting the token cap: '+c.cap:'')+(parts.length?'<br>'+parts.join('; '):''));});
   var best=PREDS.map(function(p){return p.k;}).reduce(function(a,b){return u.mae[b]<u.mae[a]?b:a;});
   var tk=document.getElementById('law-take');
-  tk.innerHTML=esc(u.name)+' ('+esc(u.model)+(u.held_out?', held out':', development')+'): the composed law’s error is '+fmt(u.mae.L,3)+' against '+fmt(u.mae.B0,3)+' for the flat law, and the lowest error here belongs to the '+esc(PREDS.filter(function(p){return p.k===best;})[0].n.toLowerCase())+' ('+fmt(u.mae[best],3)+'). The unit '+(u.pass?'passes':'fails')+' its preregistered criterion (error at most 0.10 with H(A | class) at most 0.3 bits; here '+(u.H>=0.1?fmt(u.H,2):(fmt(u.H,3)==='0.000'?'below 0.001':fmt(u.H,3)))+' bits).';
+  tk.innerHTML=esc(u.name)+' ('+esc(u.model)+(u.held_out?', held out':', development')+'): the forking-token prediction’s error is '+fmt(u.mae.L,3)+' against '+fmt(u.mae.B0,3)+' for the no-change baseline, and the lowest error here belongs to the '+esc(PREDS.filter(function(p){return p.k===best;})[0].n.toLowerCase())+' ('+fmt(u.mae[best],3)+'). The task '+(u.pass?'passes':'fails')+' its preregistered criterion (error at most 0.10 with H(A | class) at most 0.3 bits; here '+(u.H>=0.1?fmt(u.H,2):(fmt(u.H,3)==='0.000'?'below 0.001':fmt(u.H,3)))+' bits).';
   drawLawTable();
 }
 function drawLawTable(){
   var t=document.getElementById('law-table'); var cap=t.querySelector('caption');
-  var html='<thead><tr><th scope="col">Unit (model)</th><th scope="col">Held out</th>'+PREDS.map(function(p){return '<th scope="col">'+esc(p.n)+'</th>';}).join('')+'<th scope="col">Pass</th></tr></thead><tbody>';
+  var html='<thead><tr><th scope="col">Task (model)</th><th scope="col">Held out</th>'+PREDS.map(function(p){return '<th scope="col">'+esc(p.n)+'</th>';}).join('')+'<th scope="col">Pass</th></tr></thead><tbody>';
   LAW.units.forEach(function(u){var best=Math.min.apply(null,PREDS.map(function(p){return Number(fmt(u.mae[p.k],3));}));
     html+='<tr tabindex="0" data-u="'+u.id+'" aria-selected="'+(u.id===law.unit?'true':'false')+'"><td>'+esc(u.name)+' ('+esc(u.model)+')</td><td>'+(u.held_out?'yes':'no')+'</td>'+
       PREDS.map(function(p){var s=fmt(u.mae[p.k],3); return '<td'+(Number(s)===best?' class="best"':'')+'>'+s+'</td>';}).join('')+'<td>'+(u.pass?'yes':'no')+'</td></tr>';});
@@ -838,7 +840,7 @@ lawLegend();
 
 /* ------------------------------------------------------------------ 3b. program browser */
 var br={task:'T2',cond:'push1',changed:true,fail:false,q:'',sel:null};
-var COND_GROUPS=[{v:'all',n:'All conditions'},{v:'temp',n:'Temperature, thinking off'},{v:'think',n:'Temperature, thinking on'},{v:'sens',n:'Top-k 10 and min-p 0.1'},{v:'push1',n:'Push, α = 1'},{v:'push2',n:'Push, α = 2'}];
+var COND_GROUPS=[{v:'all',n:'All conditions'},{v:'temp',n:'Temperature, thinking off'},{v:'think',n:'Temperature, thinking on'},{v:'sens',n:'Top-k 10 and min-p 0.1'},{v:'push1',n:'Steering, α = 1'},{v:'push2',n:'Steering, α = 2'}];
 var bTask=document.getElementById('br-task'), bCond=document.getElementById('br-cond');
 SEEDS.tasks.forEach(function(t){bTask.appendChild(H('option',{value:t.id},esc(t.name)));});
 COND_GROUPS.forEach(function(g){bCond.appendChild(H('option',{value:g.v},esc(g.n)));});
@@ -860,7 +862,7 @@ function drawBrowser(){
   document.getElementById('br-count').innerHTML='<span class="count">'+its.length+'</span> of '+total+' programs in this task and condition group match the filters.';
   if(!its.length){br.sel=null;} else if(!br.sel||!its.some(function(it){return key(it)===br.sel;})){br.sel=key(its[0]);}
   its.forEach(function(it){var l=SEEDS.labels[it.v[0]];
-    var b=H('button',{type:'button','aria-current':key(it)===br.sel?'true':'false'},'<span class="sw" style="background:'+LCOL[l]+'"></span><span>Seed '+it.row.w+'·'+it.row.i+' · '+esc(condLabel(it.c).replace(' (also the unpushed arm)',''))+' · <b>'+esc(NAME[l]||l)+'</b>'+(it.v[1]?'':' · fails')+'</span>');
+    var b=H('button',{type:'button','aria-current':key(it)===br.sel?'true':'false'},'<span class="sw" style="background:'+LCOL[l]+'"></span><span>Seed '+it.row.w+'·'+it.row.i+' · '+esc(condLabel(it.c).replace(' (also the unsteered condition)',''))+' · <b>'+esc(NAME[l]||l)+'</b>'+(it.v[1]?'':' · fails')+'</span>');
     b.addEventListener('click',function(){br.sel=key(it); drawBrowser();});
     var li=H('li'); li.appendChild(b); list.appendChild(li);});
   var det=document.getElementById('br-detail');
@@ -869,9 +871,9 @@ function drawBrowser(){
   else{var base=it.row.cells['NOPN_T1.0'], lb=SEEDS.labels[base[0]], l=SEEDS.labels[it.v[0]];
     function pane(title,v,lbl){return '<div class="pane"><h4>'+title+' <span class="tag" style="background:'+LCOL[lbl]+'33">'+esc(NAME[lbl]||lbl)+'</span> <span class="tag '+(v[1]?'pass':'fail')+'">'+(v[1]?'passes hidden tests':'fails hidden tests')+'</span></h4><pre class="code" tabindex="0">'+esc(CODES[v[2]])+'</pre></div>';}
     det.innerHTML='<details class="prompt"><summary>Input: the prompt for seed '+it.row.w+'·'+it.row.i+' (template '+it.row.w+')</summary><p>'+esc(SEEDS.prompts[br.task][it.row.w])+'</p></details>'+
-      '<div class="panes" style="margin-top:.8rem">'+pane('Before: unpushed, T 1.0',base,lb)+pane('After: '+esc(condLabel(it.c).replace(' (also the unpushed arm)','')),it.v,l)+'</div>';}
+      '<div class="panes" style="margin-top:.8rem">'+pane('Before: unsteered, T 1.0',base,lb)+pane('After: '+esc(condLabel(it.c).replace(' (also the unsteered condition)','')),it.v,l)+'</div>';}
   var tk=document.getElementById('br-take'), gname=COND_GROUPS.filter(function(g){return g.v===br.cond;})[0].n.toLowerCase();
-  tk.textContent=TASKNAME[br.task]+', '+gname+': '+totalChanged+' of '+total+' programs use a different algorithm from the unpushed program of the same seed, and '+totalFail+' of '+total+' fail the hidden tests.'+(it?(' The selected program is '+(NAME[l]||l)+(lb===l?', the same algorithm as before.':(' where the same seed wrote '+(NAME[lb]||lb)+' without the push.'))):'');
+  tk.textContent=TASKNAME[br.task]+', '+gname+': '+totalChanged+' of '+total+' programs use a different algorithm from the unsteered program of the same seed, and '+totalFail+' of '+total+' fail the hidden tests.'+(it?(' The selected program is '+(NAME[l]||l)+(lb===l?', the same algorithm as before.':(' where the same seed wrote '+(NAME[lb]||lb)+' without steering.'))):'');
 }
 function openInBrowser(task,c,row){br.task=task; bTask.value=task; var cd=SEEDS.conds.filter(function(x){return x.id===c;})[0];
   br.cond=cd.group==='push'?(cd.alpha===1?'push1':'push2'):cd.group; bCond.value=br.cond; br.changed=false; document.getElementById('br-changed').checked=false;
@@ -892,14 +894,14 @@ function drawMargins(){
   tasks.forEach(function(t){var d=t[mg.fmt]; vals=vals.concat(d.instr,d.base);});
   var lo=Math.min(0,Math.floor(Math.min.apply(null,vals))), hi=Math.ceil(Math.max.apply(null,vals)/2)*2;
   var ticks=niceTicks(lo,hi,6), tf=ticksFmt(ticks), padL=8, padR=14, top=4, axisH=42, bh=14, x0=padL, x1=W-padR;
-  var lay=tasks.map(function(t){var title=fitText([t.name+' ('+t.default+')'+(t.is_default?'':', mixed unit'),t.name+' ('+t.default+')',t.name],12,650,x1-x0), gain='gain '+(t[mg.fmt].gain>=0?'+':'')+fmt(t[mg.fmt].gain,2);
+  var lay=tasks.map(function(t){var title=fitText([t.name+' ('+t.default+')'+(t.is_default?'':', mixed task'),t.name+' ('+t.default+')',t.name],12,650,x1-x0), gain='gain '+(t[mg.fmt].gain>=0?'+':'')+fmt(t[mg.fmt].gain,2);
     var two=textW(title,12,650)+textW(gain,12,700)+16>(x1-x0); return {title:title,gain:gain,two:two,h:two?90:74};});
   var ys=[], acc=top; lay.forEach(function(l){ys.push(acc); acc+=l.h;});
   var h=acc+axisH;
   var sx=function(v){return x0+(x1-x0)*(v-ticks[0])/(ticks[ticks.length-1]-ticks[0]);};
   var svg=S('svg',{viewBox:'0 0 '+W+' '+h,width:W,height:h},box);
   ticks.forEach(function(t){S('line',{x1:sx(t),x2:sx(t),y1:top,y2:h-axisH+4,stroke:t===0?'#9aa3ae':'#eef0f2'},svg); T(svg,sx(t),h-axisH+18,tf(t),{'font-size':11,'text-anchor':'middle'});});
-  axisTitle(svg,(x0+x1)/2,h-6,['Fork margin (nats), mean over five templates','Fork margin (nats)'],W);
+  axisTitle(svg,(x0+x1)/2,h-6,['Forking-token margin (nats), mean over five templates','Forking-token margin (nats)'],W);
   function mean(a){return a.reduce(function(s,v){return s+v;},0)/a.length;}
   tasks.forEach(function(t,i){var d=t[mg.fmt], L=lay[i], y=ys[i];
     T(svg,x0,y+13,L.title,{'font-size':12,'font-weight':650,fill:'#1b2029'});
@@ -911,18 +913,18 @@ function drawMargins(){
       var mn=Math.min.apply(null,arr), mx=Math.max.apply(null,arr);
       S('line',{x1:sx(mn),x2:sx(mx),y1:by+bh/2,y2:by+bh/2,stroke:'#1b2029','stroke-width':1.4},svg);
       S('line',{x1:sx(mn),x2:sx(mn),y1:by+3,y2:by+bh-3,stroke:'#1b2029','stroke-width':1.4},svg); S('line',{x1:sx(mx),x2:sx(mx),y1:by+3,y2:by+bh-3,stroke:'#1b2029','stroke-width':1.4},svg);
-      mark(r,'<b>'+esc(t.name)+'</b>, '+s[2]+(mg.fmt==='chat'?', chat template':', without chat tokens')+'<br>Mean fork margin '+fmt(m,2)+' nats; templates '+fmt(mn,2)+' to '+fmt(mx,2));});});
+      mark(r,'<b>'+esc(t.name)+'</b>, '+s[2]+(mg.fmt==='chat'?', chat template':', without chat tokens')+'<br>Mean forking-token margin '+fmt(m,2)+' nats; templates '+fmt(mn,2)+' to '+fmt(mx,2));});});
   var dflt=tasks.filter(function(t){return t.is_default;}), g=dflt.map(function(t){return (t[mg.fmt].gain>=0?'+':'')+fmt(t[mg.fmt].gain,2);});
   var tk=document.getElementById('mg-take');
   if(mg.fmt==='chat'){var dh=tasks.map(function(t){return t.dH;}), dmin=Math.min.apply(null,dh), dmax=Math.max.apply(null,dh);
     var ur=dflt.map(function(t){var n=0,k=0; for(var key in t.urial_phr){n+=t.urial_phr[key]; if(key==='1')k=t.urial_phr[key];} return k/n;});
-    tk.textContent='With the chat template, post-training widened the fork margin on the three default tasks by '+g.join(', ')+' nats. At ordinary phrasing positions the base model’s next-token entropy is only '+fmt(dmin,2)+' to '+fmt(dmax,2)+' nats higher, and the instruct token is the base model’s top token at '+fmt(100*Math.min.apply(null,ur),1)+'% to '+fmt(100*Math.max.apply(null,ur),1)+'% of phrasing positions on the default tasks.';}
-  else tk.textContent='Without chat tokens the gains on the default tasks are '+g.join(', ')+' nats, so the chat template does not produce them.';
+    tk.textContent='With the chat template, post-training widened the forking-token margin on the three collapsed tasks by '+g.join(', ')+' nats. At ordinary phrasing positions the base model’s next-token entropy is only '+fmt(dmin,2)+' to '+fmt(dmax,2)+' nats higher, and the instruct token is the base model’s top token at '+fmt(100*Math.min.apply(null,ur),1)+'% to '+fmt(100*Math.max.apply(null,ur),1)+'% of phrasing positions on the collapsed tasks.';}
+  else tk.textContent='Without chat tokens the gains on the collapsed tasks are '+g.join(', ')+' nats, so the chat template does not produce them.';
 }
 seg(document.getElementById('mg-fmt'),'radiogroup',[{v:'chat',label:'Chat template'},{v:'free',label:'Without chat tokens'}],mg.fmt,function(v){mg.fmt=v; drawMargins();});
 
 /* ------------------------------------------------------------------ 3d. geometry */
-var ALG={bfs:'BFS',dfs:'DFS',iddfs:'IDDFS',astar:'A*',gbfs:'greedy best-first',bibfs:'bidirectional BFS',dijkstra_unit:'unit-weight Dijkstra',idastar:'IDA*',jps:'jump point search',biastar:'bidirectional A*'};
+var ALG={bfs:'BFS',dfs:'DFS',iddfs:'IDDFS',astar:'A*',gbfs:'greedy best-first',bibfs:'bidirectional BFS',dijkstra_unit:'Dijkstra with unit weights',idastar:'IDA*',jps:'jump point search',biastar:'bidirectional A*'};
 var ACOL={bfs:'#332288',dfs:'#88ccee',iddfs:'#44aa99',astar:'#117733',gbfs:'#999933',bibfs:'#ddcc77',dijkstra_unit:'#cc3311',idastar:'#882255',jps:'#aa4499',biastar:'#6b7380'};
 var geo={ov:{baseline:false,ban:true,confirm:true},pts:'all'};
 var ALGS=['bfs','dfs','iddfs','astar','gbfs','bibfs','dijkstra_unit','idastar','jps','biastar'];
@@ -962,7 +964,7 @@ function drawGeo(){
     if(labelPos[a]) T(g,labelPos[a][0],labelPos[a][1],labelPos[a][2],{'font-size':11,'font-weight':650,fill:'#1b2029',stroke:'#fff','stroke-width':3,'paint-order':'stroke'});
     var cls=GEO.classes_k15[a];
     mark(g,'<b>'+esc(ALG[a])+'</b> ('+(banned[a]?'banned':'not banned')+')<br>Programs under the ban: '+n+' of '+GEO.ban_n+(a==='bfs'?'<br>Without the ban: '+(GEO.base_comp.bfs||0)+' of '+GEO.base_n+' programs':'')+(cls?'<br>Geodesic class on this map (k = 15): '+cls.toLowerCase():''));});
-  var OV={baseline:['neutral prompts','#1b2029','tri'],ban:['ban prompts W1 to W3','#cc3311','dia'],confirm:['held-out ban prompts','#cc3311','diao']};
+  var OV={baseline:['baseline prompts','#1b2029','tri'],ban:['ban prompts W1 to W3','#cc3311','dia'],confirm:['held-out ban prompts','#cc3311','diao']};
   Object.keys(OV).forEach(function(k){if(!geo.ov[k])return; var o=GEO.overlays[k];
     o.pca.forEach(function(p,i){var x=sx(p[0]), y=sy(p[1]), sh;
       if(OV[k][2]==='tri') sh=S('path',{d:'M'+x+','+(y-7)+'L'+(x+6)+','+(y+5)+'L'+(x-6)+','+(y+5)+'Z',fill:'#1b2029',stroke:'#fff','stroke-width':1},svg);
@@ -970,14 +972,14 @@ function drawGeo(){
       mark(sh,'<b>'+OV[k][0]+'</b>, template '+esc(o.templates[i]));});});
   var lg=document.getElementById('geo-legend'); lg.innerHTML='';
   ALGS.forEach(function(a){lg.appendChild(H('li',null,(banned[a]?'<svg width="14" height="14" aria-hidden="true"><path d="M2,2L12,12M2,12L12,2" stroke="'+ACOL[a]+'" stroke-width="3"/></svg>':'<span class="sw" style="background:'+ACOL[a]+';border-radius:50%"></span>')+esc(ALG[a])+(banned[a]?' (banned)':'')));});
-  lg.appendChild(H('li',null,'<svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="#1b2029" stroke-width="2.5"/></svg>thick ring: unit-weight Dijkstra, the unbanned catalogue algorithm written under the ban'));
+  lg.appendChild(H('li',null,'<svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="#1b2029" stroke-width="2.5"/></svg>thick ring: Dijkstra with unit weights, the unbanned catalogue algorithm written under the ban'));
   var pl=GEO.placement, tk=document.getElementById('geo-take'), parts=[];
-  if(geo.ov.ban||geo.ov.confirm){var k=geo.ov.ban?'ban':'confirm'; parts.push('The '+(k==='ban'?'ban prompts':'held-out ban prompts')+' sit nearest '+ALG[pl[k].nearest_order[0]]+' and '+ALG[pl[k].nearest_order[1]]+', and unit-weight Dijkstra is the farthest of the ten centroids from them (rank '+pl[k].rank_udij+' of 10).');}
-  if(geo.ov.baseline) parts.push('The neutral prompts sit nearest '+ALG[pl.baseline.nearest_order[0]]+' and '+ALG[pl.baseline.nearest_order[1]]+'.');
-  parts.push('Under the ban the one correct catalogue survivor is unit-weight Dijkstra ('+(GEO.ban_comp.dijkstra_unit||0)+' of '+GEO.ban_n+' programs). On this map built from named prompts it lies opposite the banned set ('+fmt(GEO.ratio_named_e46,2)+' times the median geodesic distance); on a map built from name-scrubbed programs it lies at the edge ('+fmt(GEO.ratio_program,2)+' times, nearest '+ALG[GEO.nearest_banned_program]+'). The two maps disagree, and the geometry is correlational.');
+  if(geo.ov.ban||geo.ov.confirm){var k=geo.ov.ban?'ban':'confirm'; parts.push('In the full state space (mean Euclidean distance to each centroid), the '+(k==='ban'?'ban prompts':'held-out ban prompts')+' lie nearest '+ALG[pl[k].nearest_order[0]]+' and '+ALG[pl[k].nearest_order[1]]+', and Dijkstra with unit weights is the farthest of the ten centroids from them (rank '+pl[k].rank_udij+' of 10).');}
+  if(geo.ov.baseline) parts.push('The baseline prompts lie nearest '+ALG[pl.baseline.nearest_order[0]]+' and '+ALG[pl.baseline.nearest_order[1]]+'.');
+  parts.push('Under the ban the only catalogue algorithm among correct compliant programs is Dijkstra with unit weights ('+(GEO.ban_comp.dijkstra_unit||0)+' of '+GEO.ban_n+' programs). By geodesic distance on a k-nearest-neighbour graph (k = 15) of the full states, it lies opposite the banned set on this map built from named prompts ('+fmt(GEO.ratio_named_e46,2)+' times the median geodesic distance); on a map built from name-scrubbed programs it lies at the edge ('+fmt(GEO.ratio_program,2)+' times, nearest '+ALG[GEO.nearest_banned_program]+'). The two maps disagree, the geometry is correlational, and the picture on two components is only a projection.');
   tk.textContent=parts.join(' ');
 }
-chipToggle(document.getElementById('geo-ov'),[{v:'baseline',label:'Neutral prompts'},{v:'ban',label:'Ban prompts'},{v:'confirm',label:'Held-out ban prompts'}],function(k){return geo.ov[k];},function(k,on){geo.ov[k]=on; drawGeo();});
+chipToggle(document.getElementById('geo-ov'),[{v:'baseline',label:'Baseline prompts'},{v:'ban',label:'Ban prompts'},{v:'confirm',label:'Held-out ban prompts'}],function(k){return geo.ov[k];},function(k,on){geo.ov[k]=on; drawGeo();});
 seg(document.getElementById('geo-pts'),'radiogroup',[{v:'all',label:'Show all 300'},{v:'cent',label:'Centroids only'}],geo.pts,function(v){geo.pts=v; drawGeo();});
 
 /* ------------------------------------------------------------------ 4. what-if */
@@ -1020,7 +1022,7 @@ function drawWhat(){
     var obsTxt=t.obs_T13.k+' of '+t.obs_T13.n+' samples drawn from the fork at T 1.3 left the default';
     lg.innerHTML+='<li><span>observed: '+t.obs_T13.k+' of '+t.obs_T13.n+' samples drawn from the fork at T 1.3 left the default (zero cannot be drawn on a logarithmic scale)</span></li>';
     var need=t.margin/Math.log(9);
-    document.getElementById('wi-take').innerHTML=esc(t.name)+': the fork margin is '+fmt(t.margin,2)+' nats. At T = '+fmt(wi.T,2)+' the two-token closed form puts '+f3(pT)+' of samples off '+esc(t.default)+'; the run’s top-20 prediction at T 1.3 is '+f3(t.pred_top20['1.3'])+', and '+obsTxt+'. Under the closed form, a tenth of samples would leave the default only at T = '+fmt(need,2)+'.';
+    document.getElementById('wi-take').innerHTML=esc(t.name)+': the forking-token margin is '+fmt(t.margin,2)+' nats. At T = '+fmt(wi.T,2)+' the two-token closed form puts '+f3(pT)+' of samples off '+esc(t.default)+'; the run’s top-20 prediction at T 1.3 is '+f3(t.pred_top20['1.3'])+', and '+obsTxt+'. Under the closed form, a tenth of samples would leave the default only at T = '+fmt(need,2)+'.';
   } else {
     t.obs.forEach(function(o){var x=sx(o.T); S('line',{x1:x,x2:x,y1:sy(o.wilson[0]),y2:sy(o.wilson[1]),stroke:'#1b2029','stroke-width':1.5},svg);
       var c=S('circle',{cx:x,cy:sy(o.share),r:5.5,fill:'#1b2029'},svg); mark(c,'<b>T = '+fmt(o.T,1)+'</b>: observed share of '+esc(t.minority)+' '+fmt(o.share,2)+' (of '+o.N+'), Wilson 95% ['+fmt(o.wilson[0],2)+', '+fmt(o.wilson[1],2)+']');});
@@ -1031,7 +1033,7 @@ function drawWhat(){
 
 /* ------------------------------------------------------------------ 5. failures */
 function llamaTake(shown){var u=unitById('L-T1'), c0=u.cells[0], c3=u.cells[3];
-  document.getElementById('fail-llama-take').textContent=(shown?'The law view above now shows Grid path (Llama-3.1-8B). ':'')+'On Grid path (Llama-3.1-8B) the composed law\u2019s error is '+fmt(u.mae.L,3)+', the flat law\u2019s '+fmt(u.mae.B0,3)+' and the best rival\u2019s (highest-entropy position) '+fmt(u.mae.BH,3)+', all above the bar of 0.10. Between T 0.3 and T 1.3 the pass rate falls from '+fmt(c0.pass,2)+' to '+fmt(c3.pass,2)+', and at T 1.3 '+c3.cap+' of '+c3.N+' programs run to the token cap.';}
+  document.getElementById('fail-llama-take').textContent=(shown?'The prediction view above now shows Grid path (Llama-3.1-8B). ':'')+'On Grid path (Llama-3.1-8B) the forking-token prediction\u2019s error is '+fmt(u.mae.L,3)+', the no-change baseline\u2019s '+fmt(u.mae.B0,3)+' and the best rival\u2019s (highest-entropy position) '+fmt(u.mae.BH,3)+', all above the bar of 0.10. Between T 0.3 and T 1.3 the pass rate falls from '+fmt(c0.pass,2)+' to '+fmt(c3.pass,2)+', and at T 1.3 '+c3.cap+' of '+c3.N+' programs run to the token cap.';}
 llamaTake(false);
 document.getElementById('fail-llama').addEventListener('click',function(){law.unit='L-T1'; unitSel.value='L-T1'; drawLaw(); llamaTake(true);
   document.getElementById('law-card').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}); unitSel.focus({preventScroll:true});});
@@ -1042,7 +1044,7 @@ function drawBan(){
   var h=top+cfg.length*rowH+axisH, sx=function(v){return x0+(x1-x0)*v;};
   var svg=S('svg',{viewBox:'0 0 '+W+' '+h,width:W,height:h},box);
   [0,0.2,0.4,0.6,0.8,1].forEach(function(t){S('line',{x1:sx(t),x2:sx(t),y1:top,y2:h-axisH+4,stroke:'#eef0f2'},svg); T(svg,sx(t),h-axisH+18,fmt(t,1),{'font-size':11,'text-anchor':'middle'});});
-  axisTitle(svg,(x0+x1)/2,h-6,bn.m==='share'?['Share of correct survivors (of the programs sampled under the ban)','Share of correct survivors','Correct survivor share']:['Share of programs whose runtime behaviour is a banned algorithm','Share with banned runtime behaviour','Banned-behaviour share'],W);
+  axisTitle(svg,(x0+x1)/2,h-6,bn.m==='share'?['Share of correct and compliant programs (of the programs sampled under the ban)','Share of correct and compliant programs','Correct and compliant share']:['Share of programs whose runtime behaviour is a banned algorithm','Share with banned runtime behaviour','Banned-behaviour share'],W);
   cfg.forEach(function(c,i){var y=top+i*rowH, by=y+17, v=bn.m==='share'?c.share:c.banned_mech;
     T(svg,x0,y+12,fitText([c.name+' (n = '+c.n+')',c.name],11.5,400,W-x0-4),{'font-size':11.5,fill:'#3f4756'});
     S('rect',{x:x0,y:by,width:x1-x0,height:bh,fill:'#f4f5f7'},svg);
@@ -1051,18 +1053,18 @@ function drawBan(){
     var r=S('rect',{'class':'bar',x:x0,y:by,width:Math.max(0,sx(v)-x0),height:bh,fill:bn.m==='share'?(pass?'#1d5bbf':'#8b95a4'):'#d55e00'},svg);
     if(bn.m==='share'){S('line',{x1:sx(c.wilson[0]),x2:sx(c.wilson[1]),y1:by+bh/2,y2:by+bh/2,stroke:'#1b2029','stroke-width':1.4},svg); S('line',{x1:sx(c.wilson[1]),x2:sx(c.wilson[1]),y1:by+2,y2:by+bh-2,stroke:'#1b2029','stroke-width':1.4},svg);}
     var hit=S('rect',{x:x0,y:by-3,width:x1-x0,height:bh+6,fill:'transparent'},svg);
-    mark(hit,'<b>'+esc(c.name)+'</b><br>Correct survivors: '+c.k+' of '+c.n+' = '+fmt(c.share,2)+', Wilson 95% ['+fmt(c.wilson[0],2)+', '+fmt(c.wilson[1],2)+']'+(c.banned_mech!==null&&c.banned_mech!==undefined?'<br>Programs whose runtime behaviour is banned: '+fmt(c.banned_mech,2):''));
+    mark(hit,'<b>'+esc(c.name)+'</b><br>Correct and compliant: '+c.k+' of '+c.n+' = '+fmt(c.share,2)+', Wilson 95% ['+fmt(c.wilson[0],2)+', '+fmt(c.wilson[1],2)+']'+(c.banned_mech!==null&&c.banned_mech!==undefined?'<br>Programs whose runtime behaviour is banned: '+fmt(c.banned_mech,2):''));
     T(svg,x1+6,by+bh-2,bn.m==='share'?(c.k+'/'+c.n+' = '+fmt(c.share,2)):fmt(v,2),{'font-size':11.5,'font-weight':700,fill:'#1b2029'});});
   var passing=cfg.filter(function(c){return c.share>=BAN.bar;}), zero=cfg.filter(function(c){return c.k===0;}).length, tk=document.getElementById('ban-take');
-  if(bn.m==='share') tk.textContent='Only '+passing.map(function(c){return c.name+' clears the bar of '+fmt(BAN.bar,2)+', with '+c.k+' of '+c.n+' = '+fmt(c.share,2)+' correct survivors [Wilson '+fmt(c.wilson[0],2)+', '+fmt(c.wilson[1],2)+']';}).join('; ')+'. '+zero+' of '+cfg.length+' configurations write no correct survivor at all.';
+  if(bn.m==='share') tk.textContent='Only '+passing.map(function(c){return c.name+' clears the bar of '+fmt(BAN.bar,2)+', with '+c.k+' of '+c.n+' = '+fmt(c.share,2)+' correct and compliant programs [Wilson '+fmt(c.wilson[0],2)+', '+fmt(c.wilson[1],2)+']';}).join('; ')+'. '+zero+' of '+cfg.length+' configurations write no correct and compliant program at all.';
   else{var hiM=cfg.filter(function(c){return c.banned_mech>=0.9;}).length; tk.textContent='In '+hiM+' of '+cfg.length+' configurations at least 0.90 of programs under the ban still behave like a banned algorithm at run time: the model keeps writing BFS or DFS, often without naming it.';}
 }
-seg(document.getElementById('ban-m'),'radiogroup',[{v:'share',label:'Correct survivors'},{v:'mech',label:'Banned behaviour'}],bn.m,function(v){bn.m=v; drawBan();});
+seg(document.getElementById('ban-m'),'radiogroup',[{v:'share',label:'Correct and compliant'},{v:'mech',label:'Banned behaviour'}],bn.m,function(v){bn.m=v; drawBan();});
 
 /* ------------------------------------------------------------------ provenance list */
 var prov=document.getElementById('prov');
 document.querySelectorAll('script[type="application/json"]').forEach(function(s){
-  var views={'data-seeds':'The finding (seed matrix and change counts) and the program browser','data-codes':'Program browser (program text)','data-law':'Law view, MAE table and the Llama failure case','data-stepper':'How it works (stepper)','data-margins':'Fork margins, instruct against base','data-geom':'Ban map in activation space','data-whatif':'Try it (temperature what-if)','data-ban':'Ban of five names screen'};
+  var views={'data-seeds':'The finding (seed matrix and change counts) and the program browser','data-codes':'Program browser (program text)','data-law':'Prediction view, MAE table and the Llama failure case','data-stepper':'How it works (stepper)','data-margins':'Forking-token margins, instruct against base','data-geom':'Ban map in activation space','data-whatif':'Try it (temperature what-if)','data-ban':'Ban of five names screen'};
   prov.appendChild(H('li',null,'<b>'+esc(views[s.id]||s.id)+'</b>: <code>'+esc(s.dataset.source)+'</code>'));});
 
 /* ------------------------------------------------------------------ section nav highlight */
