@@ -1,206 +1,45 @@
 {
-  "_provenance": {
-    "source_artifact": "run_0oWBKrKEGsmU/3_invention_loop/iter_8/gen_art/gen_art_experiment_43",
-    "source_file": "mini_method_out.json (cross-checked against full_method_out.json)",
-    "source_path": "metadata.base_subarm.tasks.<TASK>",
-    "note": "Every numeric value below (instruct/base per-template nats, means, min/max, gains, phrasing-entropy range) was read back from the artifact file above, not copied from the paper-draft figure specification. All 5 gain_mean_nats values and the phrasing dH range matched the draft specification's numbers exactly; they are reproduced here from the artifact directly rather than trusted from the draft."
-  },
-  "figure_id": "fig5",
-  "title": "Post-training widened the fork margin",
-  "aspect": "16:9",
-  "ylabel": "Fork margin (nats)",
-  "ylim_data_range": [
-    -2,
-    20
-  ],
-  "zero_line": true,
-  "group_separator_after_category_index": 2,
-  "group_labels": [
-    {
-      "text": "default tasks",
-      "category_indices": [
-        0,
-        1,
-        2
-      ]
-    },
-    {
-      "text": "mixed units",
-      "category_indices": [
-        3,
-        4
-      ]
-    }
-  ],
+  "type": "bubble",
+  "title": "Activation geometry of the top-five ban (Qwen3-32B, block 31)",
+  "xlabel": "PC1 (32.4% of variance)",
+  "ylabel": "PC2 (12.0% of variance)",
+  "aspect": "4:3",
+  "xlim": [-8, 6],
+  "size_label": "Programs labelled that algorithm under the ban (of 50)",
+  "max_area": 620,
+  "legend_loc": "upper left",
   "series": [
     {
-      "key": "instruct",
-      "label": "Qwen3-8B (instruct)",
-      "color_role": "dark_blue"
+      "label": "baseline prompt",
+      "x": [-6.325, -5.174, -4.925, -6.347, -5.163, -6.175, -5.932, -4.393, -6.726, -4.942],
+      "values": [-2.075, -0.416, 0.775, -1.046, 0.650, -0.993, -0.759, 1.804, -1.763, 1.006],
+      "sizes": [0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6]
     },
     {
-      "key": "base",
-      "label": "Qwen3-8B-Base",
-      "color_role": "light_grey"
+      "label": "held-out ban prompt",
+      "x": [-0.764, 0.210, -0.793, -0.744],
+      "values": [0.031, 2.894, 2.035, 4.929],
+      "sizes": [0.6, 0.6, 0.6, 0.6]
+    },
+    {
+      "label": "non-banned algorithm",
+      "x": [-2.982, 1.090, 4.148, 3.944, 4.226],
+      "values": [-0.469, -3.280, 0.204, 1.362, 0.665],
+      "sizes": [0.6, 6, 0.6, 0.6, 0.6],
+      "categories": ["BiBFS 0→0", "UW-Dijkstra 0→6", "IDA* 0→0", "JPS 0→0", "BiA* 0→0"]
+    },
+    {
+      "label": "ban prompt",
+      "x": [-1.361, -1.379, 0.428],
+      "values": [2.667, 0.344, 2.500],
+      "sizes": [0.6, 0.6, 0.6]
+    },
+    {
+      "label": "banned algorithm",
+      "x": [-6.479, -5.763, 1.548, -2.588, 2.856],
+      "values": [0.571, -0.549, 0.698, 1.280, -0.483],
+      "sizes": [8, 2, 1, 0.6, 0.6],
+      "categories": ["DFS 0→8", "BFS 91→2", "Greedy 0→1", "IDDFS 0→0", "A* 0→0"]
     }
-  ],
-  "categories": [
-    {
-      "task_id": "T1",
-      "category_label": "Grid path (BFS)",
-      "instruct": {
-        "raw_nats_per_template": [
-          7.1033501267649175,
-          6.981649643995522,
-          5.315658153526351,
-          4.913721711666067,
-          7.360056399036164
-        ],
-        "mean": 6.334887206997804,
-        "min": 4.913721711666067,
-        "max": 7.360056399036164
-      },
-      "base": {
-        "raw_nats_per_template": [
-          3.3097692535163477,
-          2.9735433045902786,
-          2.9865251607653738,
-          2.869153651896134,
-          3.193845882032454
-        ],
-        "mean": 3.0665674505601173,
-        "min": 2.869153651896134,
-        "max": 3.3097692535163477
-      },
-      "gain_mean_nats": 3.2683197564376867,
-      "gain_annotation": "+3.27"
-    },
-    {
-      "task_id": "T10",
-      "category_label": "Connected components (union-find)",
-      "instruct": {
-        "raw_nats_per_template": [
-          16.92353124844335,
-          16.508594805810247,
-          18.647986006771962,
-          17.279126937762584,
-          10.45137303523314
-        ],
-        "mean": 15.962122406804259,
-        "min": 10.45137303523314,
-        "max": 18.647986006771962
-      },
-      "base": {
-        "raw_nats_per_template": [
-          2.520773645260932,
-          2.6615415601172536,
-          2.6683681660202603,
-          2.3599869108879874,
-          2.5250086559766793
-        ],
-        "mean": 2.5471357876526226,
-        "min": 2.3599869108879874,
-        "max": 2.6683681660202603
-      },
-      "gain_mean_nats": 13.414986619151636,
-      "gain_annotation": "+13.41"
-    },
-    {
-      "task_id": "T2",
-      "category_label": "Shortest path (Dijkstra)",
-      "instruct": {
-        "raw_nats_per_template": [
-          5.1470845173521,
-          4.911483725768121,
-          5.97119532421936,
-          5.789986015194367,
-          6.236218662073647
-        ],
-        "mean": 5.611193648921519,
-        "min": 4.911483725768121,
-        "max": 6.236218662073647
-      },
-      "base": {
-        "raw_nats_per_template": [
-          3.519426493964264,
-          3.370744425994301,
-          3.4683235302598785,
-          3.5939177710795107,
-          3.5638990976257956
-        ],
-        "mean": 3.5032622637847495,
-        "min": 3.370744425994301,
-        "max": 3.5939177710795107
-      },
-      "gain_mean_nats": 2.10793138513677,
-      "gain_annotation": "+2.11"
-    },
-    {
-      "task_id": "B3",
-      "category_label": "Minimum spanning tree weight (Kruskal)",
-      "instruct": {
-        "raw_nats_per_template": [
-          1.2400575903362057,
-          0.7374865459100285,
-          1.4849633791502646,
-          1.2450283175428478,
-          0.4903905825667613
-        ],
-        "mean": 1.0395852831012216,
-        "min": 0.4903905825667613,
-        "max": 1.4849633791502646
-      },
-      "base": {
-        "raw_nats_per_template": [
-          -0.8115266032192954,
-          -0.8306134421600815,
-          -0.8173507919593187,
-          -0.7184566391382808,
-          -0.8045266009357099
-        ],
-        "mean": -0.7964948154825373,
-        "min": -0.8306134421600815,
-        "max": -0.7184566391382808
-      },
-      "gain_mean_nats": 1.8360800985837589,
-      "gain_annotation": "+1.84"
-    },
-    {
-      "task_id": "A3",
-      "category_label": "Trapped rain water (prefix and suffix maxima)",
-      "instruct": {
-        "raw_nats_per_template": [
-          1.9999992544736453,
-          2.499999252767873,
-          0.999999426575919,
-          0.9999995511123624,
-          0.9999995996152633
-        ],
-        "mean": 1.4999994169090125,
-        "min": 0.999999426575919,
-        "max": 2.499999252767873
-      },
-      "base": {
-        "raw_nats_per_template": [
-          -0.18396009046229567,
-          -0.1470857291215253,
-          0.05226670746816453,
-          0.05485929197573536,
-          0.06918883962654598
-        ],
-        "mean": -0.030946196102675017,
-        "min": -0.18396009046229567,
-        "max": 0.06918883962654598
-      },
-      "gain_mean_nats": 1.5309456130116876,
-      "gain_annotation": "+1.53"
-    }
-  ],
-  "legend_loc": "upper right",
-  "background": "white",
-  "font": "sans-serif",
-  "phrasing_entropy_gap_nats_range": [
-    0.20977900416084524,
-    0.3369993902155347
   ]
 }

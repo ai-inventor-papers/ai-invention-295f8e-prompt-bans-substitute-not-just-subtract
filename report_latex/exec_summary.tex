@@ -16,7 +16,7 @@
 \renewcommand{\arraystretch}{1.12}
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
-\title{A Random Activation Push Changes a Code Model's Algorithm Where Temperature Does Not\\[0.3em]
+\title{A single forking token fixes the algorithm a code model writes\\[0.3em]
 \large Executive summary of the run's internal research report}
 \date{26 October 2026}
 \author{}
@@ -26,23 +26,26 @@
 
 \section*{1. Headline}
 
-On the same random streams, a random push of Qwen3-8B's residual-stream states at the prompt's task-specification tokens
-changed the algorithm the model writes in more seeds than temperature did. The paired difference is \textbf{0.545 per seed
-(95\% interval 0.41 to 0.67)}, pooled over the shortest path and k-th smallest tasks (40 seeds), one-sided sign-flip
-$p = 1.0\times10^{-5}$. The push (union over three directions, $\alpha$ 1, T 1.0) changed the algorithm in 17.25 of 20 seeds
-on shortest path and 4.55 of 20 on k-th smallest; temperature 0.3, 0.7, 1.0 and 1.3 changed it in 0 of 20 seeds on each
-task.
+Where Qwen3-8B writes two algorithms for one task, a single generated token, the forking token, fixes which one it
+writes: on minimum spanning tree weight, trapped rain water and valid anagram the algorithm's entropy given that token's
+class is 0.050, 0.153 and \textbf{0.189 bits (95\% interval 0.123 to 0.239)}, against 0.82 to 1.02 bits just before it
+(pre-registered bar 0.3 bits). Temperature acts only through that token's odds: on the same random streams, temperature
+0.3 to 1.3 changed the algorithm in 0 of 20 seeds on each of three collapsed tasks, while a random push of the
+task-specification states changed it in more seeds, by \textbf{0.545 per seed (95\% interval 0.41 to 0.67)}, pooled
+over shortest path and k-th smallest (40 seeds; one-sided sign-flip $p = 1.0\times10^{-5}$).
 
-\textbf{Source:} the same seed experiment (\texttt{gen\_\allowbreak{}art\_\allowbreak{}experiment\_\allowbreak{}21}), iteration 4.
-\textbf{Evidence grade:} the contrast was pre-registered as the iteration's single secondary-family entry and held, but the
-experiment's own pre-registered verdict is \textbf{PARTIAL}, because its plan-noise prediction (at least 5 of 20 seeds)
-failed on k-th smallest at 4.55; the round record grades the strand a lead.
-\textbf{Scope:} Qwen3-8B with thinking off, two tasks, 40 seeds, an 8-bit (FP8 W8A8) engine only; the contrast is untested
-in bfloat16 (iteration 6's engine control found that the per-sample push escapes reproduce in bfloat16 at the same unit).
-\textbf{Check:} the artifact's output file gives a mean of 0.5449999999999999, a bootstrap interval of 0.41375 to
-0.6699999999999999, $p$ $9.99990000099999\times10^{-6}$, 17.25 and 4.55, temperature 0 of 20 on all three tasks (and with thinking on),
-and the verdict PARTIAL. The paper states the headline as passed with the partial verdict alongside, which agrees with the
-record.
+\textbf{Source:} the fork from \texttt{gen\_\allowbreak{}art\_\allowbreak{}experiment\_\allowbreak{}35} (iteration 7);
+the contrast from the same seed experiment \texttt{gen\_\allowbreak{}art\_\allowbreak{}experiment\_\allowbreak{}21}
+(iteration 4).
+\textbf{Evidence grade:} both experiments' verdicts are \textbf{PARTIAL}: the fork test passed on 3 of 3 units but the
+temperature prediction on 1 of 3; the contrast was pre-registered and held, but the plan-noise prediction (at least 5 of
+20 seeds) failed on k-th smallest at 4.55. The round record grades both strands leads.
+\textbf{Scope:} Qwen3-8B, thinking off; forks on three mixed tasks, found blind on two held-out gemma-3-4b-it tasks
+but not on Llama-3.1-8B-Instruct's grid task; the contrast on two tasks in an 8-bit (FP8 W8A8) engine only (the push
+escapes alone reproduce in bfloat16).
+\textbf{Check:} the fork experiment's \texttt{results/test1.json} (0.0503, 0.1527, 0.1894 bits) and the same seed
+experiment's \texttt{results/c1seed.json} (mean 0.5449999999999999, interval 0.41375 to 0.6699999999999999,
+$p$ $9.99990000099999\times10^{-6}$) hold these values and both PARTIAL verdicts; the paper states them the same way.
 
 \section*{2. Goal}
 
@@ -77,15 +80,15 @@ top-five prohibition, replicated in Llama, froze a 12-task bench and read the ba
 Llama), an exposure test (show a solution, ban it), the route of a ban per task, a search for a prohibition direction and
 locus, and how far bans and token vetoes reach.
 \item \textbf{Plan nudges reopen what tuning narrowed} (7). Random ``plan noise'' pushes at task-specification states were
-priced against temperature and other knobs. The iteration also located where noise must enter and ran the same-seed contrast
-(the headline), then tested a plan subspace, a held-out family (gemma-3-4b-it) and its positioning against published work.
+priced against temperature and other knobs. The iteration also located where noise must enter and ran the same-seed contrast,
+then tested a plan subspace, a held-out family (gemma-3-4b-it) and its positioning against published work.
 \item \textbf{A small hidden plan picks the algorithm} (7). Base-model plan states were transplanted into the instruct model.
 Two panels tested whether the base repertoire predicts which new tasks move. Plan noise was compared with text-level plan
 samplers and matched decoding, and the panels were repeated in Gemma.
 \item \textbf{A hidden plan tilts one deciding token} (6). An FP8 against bfloat16 engine control; where a ban and an
 instruction are carried (task-state exchange); a one-token fork read with Gemma Scope 2 SAEs; and the plan read in words by
 a natural language autoencoder on Qwen2.5-7B-Instruct.
-\item \textbf{One early token decides the algorithm} (7). A fitted plan subspace (DAS), the fork located in generation,
+\item \textbf{One early token decides the algorithm} (7). A fitted plan subspace (DAS), the fork located in generation (the headline),
 temperature acting through the fork, the dose unit of plan noise, an evolutionary search with an evaluator, and a controlled
 DAS with a circuit in Gemma.
 \item \textbf{Banned models rename their default algorithm} (7). Temperature applied only at the fork, one DAS protocol for
@@ -109,11 +112,11 @@ summary did not find in the artifact's result files; every other number below wa
 \toprule
 \textbf{Result} & \textbf{Numbers} & \textbf{Source (round)} & \textbf{Grade}\\
 \midrule
-Push against temperature on the same seeds (headline) & 0.545 [0.41, 0.67], $p$ $1.0\times10^{-5}$; push 17.25 and 4.55 of 20 seeds; temperature 0 of 20 per task & \texttt{gen\_\allowbreak{}art\_\allowbreak{}experiment\_\allowbreak{}21} (4) & lead; PARTIAL\\
+Push against temperature on the same seeds & 0.545 [0.41, 0.67], $p$ $1.0\times10^{-5}$; push 17.25 and 4.55 of 20 seeds; temperature 0 of 20 per task & \texttt{gen\_\allowbreak{}art\_\allowbreak{}experiment\_\allowbreak{}21} (4) & lead; PARTIAL\\
 Temperature is a phrasing knob & 797 of 800 programs BFS\textsuperscript{\dag}; phrasing clusters 4 to 36\textsuperscript{\dag} & \texttt{gen\_\allowbreak{}art\_\allowbreak{}experiment\_\allowbreak{}6} (1) & lead\\
 The push escapes are a model property, not 8-bit rounding & escapes, bfloat16 against FP8: connected components 0.65 vs 0.725, shortest path 0.15 vs 0.20 & \texttt{gen\_\allowbreak{}art\_\allowbreak{}experiment\_\allowbreak{}29} (6) & lead\\
 A temperature law over fork logits & passes 5 of 6 units\textsuperscript{\dag}, including held-out Gemma (0.033, 0.014); Llama fails (0.142); beats the flat law on 4 of 6\textsuperscript{\dag} (sign test $p$ 0.34) & \texttt{gen\_\allowbreak{}art\_\allowbreak{}experiment\_\allowbreak{}43} (8) & lead\\
-The fork on collapsed tasks & one-token fork on 3 of 3 mixed units\textsuperscript{\dag}; collapsed fork margins from 4.85\textsuperscript{\dag} up to 17.04 nats (connected components) & \texttt{gen\_\allowbreak{}art\_\allowbreak{}experiment\_\allowbreak{}35} (7) & lead\\
+The forking token (headline), and its margin on collapsed tasks & one-token fork on 3 of 3 mixed units, entropy given the token at most 0.189 bits; collapsed fork margins from 4.85\textsuperscript{\dag} up to 17.04 nats (connected components) & \texttt{gen\_\allowbreak{}art\_\allowbreak{}experiment\_\allowbreak{}35} (7) & lead\\
 Rename gap under a five-name ban (grid) & lexical minus mechanistic compliance 0.70 (runtime label) and 0.61 (tracer), pooled; positive in 10 of 10 configurations\textsuperscript{\dag}; the tracer missed its gate & \texttt{gen\_\allowbreak{}art\_\allowbreak{}experiment\_\allowbreak{}45} (9) & lead\\
 Rename gap, exact instrument (bin packing) & Qwen3-8B at $k=5$: +0.40 [0.21, 0.55], +0.08 on held-out templates; thinking models obey (+0.04, $-0.13$)\textsuperscript{\dag}; 0 of 1,143 programs novel and better than best fit\textsuperscript{\dag} & \texttt{gen\_\allowbreak{}art\_\allowbreak{}experiment\_\allowbreak{}54} (10) & lead\\
 Evaluator-guided search on bin packing & held-out excess at T 1.6: 1.40\% / 3.55\% against best fit's 3.98\% / 5.37\%; never without selection & \texttt{gen\_\allowbreak{}art\_\allowbreak{}experiment\_\allowbreak{}51} (10) & lead\\
@@ -164,7 +167,7 @@ temperature explored or copied.
 \item Why the same reasoning model renames a banned algorithm on the grid but obeys on bin packing.
 \item Whether a variable for the algorithm exists anywhere in the model. Specificity failed at the late fork sites under every
 method tried, and at the readout rows against random edits in the residual subspace.
-\item Whether the headline contrast holds in bfloat16 and on more tasks and models; it was measured in one 8-bit engine on two
+\item Whether the push-against-temperature contrast holds in bfloat16 and on more tasks and models; it was measured in one 8-bit engine on two
 tasks.
 \item A program map that separates algorithmic discipline from container and surface, built from programs by several authors.
 \end{itemize}

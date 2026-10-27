@@ -1,4 +1,4 @@
-# A Random Activation Push Changes a Code Model's Algorithm Where Temperature Does Not
+# A single forking token fixes the algorithm a code model writes
 
 <div align="center">
 
@@ -13,7 +13,7 @@
 
 </div>
 
-> **TL;DR** — On the same random streams, a random push of Qwen3-8B's residual-stream states at the prompt's task-specification tokens changed which algorithm the model implemented in more seeds than sampling temperature did, by a paired difference of 0.545 per seed (95% CI 0.41 to 0.67) pooled over shortest path and k-th smallest (40 seeds). This preregistered contrast held in a single experiment graded partial overall; it ran only in an 8-bit (W8A8) engine and is untested in bfloat16. Temperature from 0.3 to 1.3 changed the algorithm in 0 of 20 seeds on each of three tasks while the number of phrasings grew, because one or two forking tokens settle the algorithm and the default leads there by 4.85 to 17.04 nats. Where that token is contested, a law built from its logits predicted the temperature response on five of six units, though a no-change baseline was nearly as accurate. No control applied to single samples produced a correct novel algorithm; one program search on online bin packing yielded eight programs that its manual read classed as a new idea, which an independent replication did not reproduce.
+> **TL;DR** — We located where an instruction-tuned code model chooses the algorithm it writes, labelling programs by execution and resampling continuations from every prefix under shared random seeds. On the three tasks on which Qwen3-8B writes two algorithms (minimum spanning tree weight, trapped rain water, valid anagram), the algorithm's entropy given the class of one generated token was at most 0.189 bits (95% CI 0.123 to 0.239), down from 0.82 to 1.02 bits before it: a margin of -0.111 bits (95% CI -0.177 to -0.061) below a preregistered 0.3-bit bar that all three tasks passed; a blind relocation found such tokens on two held-out gemma-3-4b-it tasks but not on Llama-3.1-8B-Instruct's grid task. Where the default leads at that token by several nats, no sampling temperature from 0.3 to 1.3 changed any seed's algorithm, whereas random perturbations of the prompt's task specification states changed it in 55% of seeds on two of those tasks (difference from temperature over seeds 0.545, 95% CI 0.41 to 0.67; preregistered). Temperature rephrases code rather than changing its idea, and no knob, instruction, ban or activation edit produced a new algorithm.
 
 <details>
 <summary>Full hypothesis</summary>
